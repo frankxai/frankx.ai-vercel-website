@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Container Queries Deep Dive</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/responsive-design/references/container-queries.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Container Queries Deep Dive</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fresponsive-design">responsive-design</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fresponsive-design%2Freferences">references</a> / <span>container-queries.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Container Queries Deep Dive</h1>
+<h2>Overview</h2>
+<p>Container queries enable component-based responsive design by allowing elements to respond to their container&#39;s size rather than the viewport. This paradigm shift makes truly reusable components possible.</p>
+<h2>Browser Support</h2>
+<p>Container queries have excellent modern browser support (Chrome 105+, Firefox 110+, Safari 16+). For older browsers, provide graceful fallbacks.</p>
+<h2>Containment Basics</h2>
+<h3>Container Types</h3>
+<pre><code class="language-css">/* Size containment - queries based on inline and block size */
+.container {
+  container-type: size;
+}
+
+/* Inline-size containment - queries based on inline (width) size only */
+/* Most common and recommended */
+.container {
+  container-type: inline-size;
+}
+
+/* Normal - style queries only, no size queries */
+.container {
+  container-type: normal;
+}
+</code></pre>
+<h3>Named Containers</h3>
+<pre><code class="language-css">/* Named container for targeted queries */
+.card-wrapper {
+  container-type: inline-size;
+  container-name: card;
+}
+
+/* Shorthand */
+.card-wrapper {
+  container: card / inline-size;
+}
+
+/* Query specific container */
+@container card (min-width: 400px) {
+  .card-content {
+    display: flex;
+  }
+}
+</code></pre>
+<h2>Container Query Syntax</h2>
+<h3>Width-Based Queries</h3>
+<pre><code class="language-css">.container {
+  container-type: inline-size;
+}
+
+/* Minimum width */
+@container (min-width: 300px) {
+  .element {
+    /* styles */
+  }
+}
+
+/* Maximum width */
+@container (max-width: 500px) {
+  .element {
+    /* styles */
+  }
+}
+
+/* Range syntax */
+@container (300px &lt;= width &lt;= 600px) {
+  .element {
+    /* styles */
+  }
+}
+
+/* Exact width */
+@container (width: 400px) {
+  .element {
+    /* styles */
+  }
+}
+</code></pre>
+<h3>Combining Conditions</h3>
+<pre><code class="language-css">/* AND condition */
+@container (min-width: 400px) and (max-width: 800px) {
+  .element {
+    /* styles */
+  }
+}
+
+/* OR condition */
+@container (max-width: 300px) or (min-width: 800px) {
+  .element {
+    /* styles */
+  }
+}
+
+/* NOT condition */
+@container not (min-width: 400px) {
+  .element {
+    /* styles */
+  }
+}
+</code></pre>
+<h3>Named Container Queries</h3>
+<pre><code class="language-css">/* Multiple named containers */
+.page-wrapper {
+  container: page / inline-size;
+}
+
+.sidebar-wrapper {
+  container: sidebar / inline-size;
+}
+
+/* Target specific containers */
+@container page (min-width: 1024px) {
+  .main-content {
+    max-width: 800px;
+  }
+}
+
+@container sidebar (min-width: 300px) {
+  .sidebar-widget {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+</code></pre>
+<h2>Container Query Units</h2>
+<pre><code class="language-css">/* Container query length units */
+.element {
+  /* Container query width - 1cqw = 1% of container width */
+  width: 50cqw;
+
+  /* Container query height - 1cqh = 1% of container height */
+  height: 50cqh;
+
+  /* Container query inline - 1cqi = 1% of container inline size */
+  padding-inline: 5cqi;
+
+  /* Container query block - 1cqb = 1% of container block size */
+  padding-block: 3cqb;
+
+  /* Container query min - smaller of cqi and cqb */
+  font-size: 5cqmin;
+
+  /* Container query max - larger of cqi and cqb */
+  margin: 2cqmax;
+}
+
+/* Practical example: fluid typography based on container */
+.card-title {
+  font-size: clamp(1rem, 4cqi, 2rem);
+}
+
+.card-body {
+  padding: clamp(0.75rem, 4cqi, 1.5rem);
+}
+</code></pre>
+<h2>Style Queries</h2>
+<p>Style queries allow querying CSS custom property values. Currently limited support.</p>
+<pre><code class="language-css">/* Define a custom property */
+.card {
+  --layout: stack;
+}
+
+/* Query the property value */
+@container style(--layout: stack) {
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@container style(--layout: inline) {
+  .card-content {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+/* Toggle layout via custom property */
+.card.horizontal {
+  --layout: inline;
+}
+</code></pre>
+<h2>Practical Patterns</h2>
+<h3>Responsive Card Component</h3>
+<pre><code class="language-css">.card-container {
+  container: card / inline-size;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1rem, 4cqi, 2rem);
+}
+
+.card-image {
+  aspect-ratio: 16/9;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.card-title {
+  font-size: clamp(1rem, 4cqi, 1.5rem);
+  font-weight: 600;
+}
+
+/* Medium container: side-by-side layout */
+@container card (min-width: 400px) {
+  .card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .card-image {
+    width: 40%;
+    aspect-ratio: 1;
+  }
+
+  .card-content {
+    flex: 1;
+  }
+}
+
+/* Large container: enhanced layout */
+@container card (min-width: 600px) {
+  .card-image {
+    width: 250px;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+</code></pre>
+<h3>Responsive Grid Items</h3>
+<pre><code class="language-css">.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid-item {
+  container-type: inline-size;
+}
+
+.item-content {
+  padding: 1rem;
+}
+
+/* Item adapts to its own size, not the viewport */
+@container (min-width: 350px) {
+  .item-content {
+    padding: 1.5rem;
+  }
+
+  .item-title {
+    font-size: 1.25rem;
+  }
+}
+
+@container (min-width: 500px) {
+  .item-content {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+  }
+}
+</code></pre>
+<h3>Dashboard Widget</h3>
+<pre><code class="language-css">.widget-container {
+  container: widget / inline-size;
+}
+
+.widget {
+  --chart-height: 150px;
+  padding: 1rem;
+}
+
+.widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.widget-chart {
+  height: var(--chart-height);
+}
+
+.widget-stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@container widget (min-width: 300px) {
+  .widget {
+    --chart-height: 200px;
+  }
+
+  .widget-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@container widget (min-width: 500px) {
+  .widget {
+    --chart-height: 250px;
+    padding: 1.5rem;
+  }
+
+  .widget-stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .widget-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+</code></pre>
+<h3>Navigation Component</h3>
+<pre><code class="language-css">.nav-container {
+  container: nav / inline-size;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav-link-text {
+  display: none;
+}
+
+.nav-link-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Show text when container is wide enough */
+@container nav (min-width: 200px) {
+  .nav-link-text {
+    display: block;
+  }
+}
+
+/* Horizontal layout for wider containers */
+@container nav (min-width: 600px) {
+  .nav {
+    flex-direction: row;
+  }
+
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+}
+</code></pre>
+<h2>Tailwind CSS Integration</h2>
+<pre><code class="language-tsx">// Tailwind v3.2+ supports container queries
+// tailwind.config.js
+module.exports = {
+  plugins: [require(&quot;@tailwindcss/container-queries&quot;)],
+};
+
+// Component usage
+function Card({ title, image, description }) {
+  return (
+    // @container creates containment context
+    &lt;div className=&quot;@container&quot;&gt;
+      &lt;article className=&quot;flex flex-col @md:flex-row @md:gap-4&quot;&gt;
+        &lt;img
+          src={image}
+          alt=&quot;&quot;
+          className=&quot;w-full @md:w-48 @lg:w-64 aspect-video @md:aspect-square object-cover rounded-lg&quot;
+        /&gt;
+        &lt;div className=&quot;p-4 @md:p-0&quot;&gt;
+          &lt;h2 className=&quot;text-lg @md:text-xl @lg:text-2xl font-semibold&quot;&gt;
+            {title}
+          &lt;/h2&gt;
+          &lt;p className=&quot;mt-2 text-muted-foreground @lg:text-lg&quot;&gt;
+            {description}
+          &lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Named containers
+function Dashboard() {
+  return (
+    &lt;div className=&quot;@container/main&quot;&gt;
+      &lt;aside className=&quot;@container/sidebar&quot;&gt;
+        &lt;nav className=&quot;flex flex-col @lg/sidebar:flex-row&quot;&gt;{/* ... */}&lt;/nav&gt;
+      &lt;/aside&gt;
+      &lt;main className=&quot;@lg/main:grid @lg/main:grid-cols-2&quot;&gt;{/* ... */}&lt;/main&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h2>Fallback Strategies</h2>
+<pre><code class="language-css">/* Provide fallbacks for browsers without support */
+.card {
+  /* Default (fallback) styles */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Feature query for container support */
+@supports (container-type: inline-size) {
+  .card-container {
+    container-type: inline-size;
+  }
+
+  @container (min-width: 400px) {
+    .card {
+      flex-direction: row;
+    }
+  }
+}
+
+/* Alternative: media query fallback */
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Viewport-based fallback */
+@media (min-width: 768px) {
+  .card {
+    flex-direction: row;
+  }
+}
+
+/* Enhanced with container queries when supported */
+@supports (container-type: inline-size) {
+  @media (min-width: 768px) {
+    .card {
+      flex-direction: column; /* Reset */
+    }
+  }
+
+  @container (min-width: 400px) {
+    .card {
+      flex-direction: row;
+    }
+  }
+}
+</code></pre>
+<h2>Performance Considerations</h2>
+<pre><code class="language-css">/* Avoid over-nesting containers */
+/* Bad: Too many nested containers */
+.level-1 {
+  container-type: inline-size;
+}
+.level-2 {
+  container-type: inline-size;
+}
+.level-3 {
+  container-type: inline-size;
+}
+.level-4 {
+  container-type: inline-size;
+}
+
+/* Good: Strategic container placement */
+.component-wrapper {
+  container-type: inline-size;
+}
+
+/* Use inline-size instead of size when possible */
+/* size containment is more expensive */
+.container {
+  container-type: inline-size; /* Preferred */
+  /* container-type: size; */ /* Only when needed */
+}
+</code></pre>
+<h2>Testing Container Queries</h2>
+<pre><code class="language-javascript">// Test container query support
+const supportsContainerQueries = CSS.supports(&quot;container-type&quot;, &quot;inline-size&quot;);
+
+// Resize observer for testing
+const observer = new ResizeObserver((entries) =&gt; {
+  for (const entry of entries) {
+    console.log(&quot;Container width:&quot;, entry.contentRect.width);
+  }
+});
+
+observer.observe(document.querySelector(&quot;.container&quot;));
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_container_queries">MDN Container Queries</a></li>
+<li><a href="https://www.w3.org/TR/css-contain-3/">CSS Container Queries Spec</a></li>
+<li><a href="https://web.dev/cq-stable/">Una Kravets: Container Queries</a></li>
+<li><a href="https://ishadeed.com/article/container-queries-are-finally-here/">Ahmad Shadeed: Container Queries Guide</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

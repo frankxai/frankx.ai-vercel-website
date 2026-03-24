@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>General Code Style Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/templates/code_styleguides/general.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">General Code Style Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates%2Fcode_styleguides">code_styleguides</a> / <span>general.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>General Code Style Guide</h1>
+<p>Universal coding principles that apply across all languages and frameworks.</p>
+<h2>Readability</h2>
+<h3>Code is Read More Than Written</h3>
+<ul>
+<li>Write code for humans first, computers second</li>
+<li>Favor clarity over cleverness</li>
+<li>If code needs a comment to explain what it does, consider rewriting it</li>
+</ul>
+<h3>Formatting</h3>
+<ul>
+<li>Consistent indentation (use project standard)</li>
+<li>Reasonable line length (80-120 characters)</li>
+<li>Logical grouping with whitespace</li>
+<li>One statement per line</li>
+</ul>
+<h3>Structure</h3>
+<ul>
+<li>Keep functions/methods short (ideally &lt; 20 lines)</li>
+<li>One level of abstraction per function</li>
+<li>Early returns to reduce nesting</li>
+<li>Group related code together</li>
+</ul>
+<h2>Naming Conventions</h2>
+<h3>General Principles</h3>
+<ul>
+<li>Names should reveal intent</li>
+<li>Avoid abbreviations (except universally understood ones)</li>
+<li>Be consistent within codebase</li>
+<li>Length proportional to scope</li>
+</ul>
+<h3>Variables</h3>
+<pre><code># Bad
+d = 86400  # What is this?
+temp = getUserData()  # Temp what?
+
+# Good
+secondsPerDay = 86400
+userData = getUserData()
+</code></pre>
+<h3>Functions/Methods</h3>
+<ul>
+<li>Use verbs for actions: <code>calculateTotal()</code>, <code>validateInput()</code></li>
+<li>Use <code>is/has/can</code> for booleans: <code>isValid()</code>, <code>hasPermission()</code></li>
+<li>Be specific: <code>sendEmailNotification()</code> not <code>send()</code></li>
+</ul>
+<h3>Constants</h3>
+<ul>
+<li>Use SCREAMING_SNAKE_CASE or language convention</li>
+<li>Group related constants</li>
+<li>Document magic numbers</li>
+</ul>
+<h3>Classes/Types</h3>
+<ul>
+<li>Use nouns: <code>User</code>, <code>OrderProcessor</code>, <code>ValidationResult</code></li>
+<li>Avoid generic names: <code>Manager</code>, <code>Handler</code>, <code>Data</code></li>
+</ul>
+<h2>Comments</h2>
+<h3>When to Comment</h3>
+<ul>
+<li>WHY, not WHAT (code shows what, comments explain why)</li>
+<li>Complex algorithms or business logic</li>
+<li>Non-obvious workarounds with references</li>
+<li>Public API documentation</li>
+</ul>
+<h3>When NOT to Comment</h3>
+<ul>
+<li>Obvious code</li>
+<li>Commented-out code (delete it)</li>
+<li>Change history (use git)</li>
+<li>TODOs without tickets (create tickets instead)</li>
+</ul>
+<h3>Comment Quality</h3>
+<pre><code># Bad
+i += 1  # Increment i
+
+# Good
+# Retry limit based on SLA requirements (see JIRA-1234)
+maxRetries = 3
+</code></pre>
+<h2>Error Handling</h2>
+<h3>Principles</h3>
+<ul>
+<li>Fail fast and explicitly</li>
+<li>Handle errors at appropriate level</li>
+<li>Preserve error context</li>
+<li>Log for debugging, throw for callers</li>
+</ul>
+<h3>Patterns</h3>
+<pre><code># Bad: Silent failure
+try:
+    result = riskyOperation()
+except:
+    pass
+
+# Good: Explicit handling
+try:
+    result = riskyOperation()
+except SpecificError as e:
+    logger.error(f&quot;Operation failed: {e}&quot;)
+    raise OperationFailed(&quot;Unable to complete operation&quot;) from e
+</code></pre>
+<h3>Error Messages</h3>
+<ul>
+<li>Be specific about what failed</li>
+<li>Include relevant context</li>
+<li>Suggest remediation when possible</li>
+<li>Avoid exposing internal details to users</li>
+</ul>
+<h2>Functions and Methods</h2>
+<h3>Single Responsibility</h3>
+<ul>
+<li>One function = one task</li>
+<li>If you need &quot;and&quot; to describe it, split it</li>
+<li>Extract helper functions for clarity</li>
+</ul>
+<h3>Parameters</h3>
+<ul>
+<li>Limit parameters (ideally ≤ 3)</li>
+<li>Use objects/structs for many parameters</li>
+<li>Avoid boolean parameters (use named options)</li>
+<li>Order: required first, optional last</li>
+</ul>
+<h3>Return Values</h3>
+<ul>
+<li>Return early for edge cases</li>
+<li>Consistent return types</li>
+<li>Avoid returning null/nil when possible</li>
+<li>Consider Result/Option types for failures</li>
+</ul>
+<h2>Code Organization</h2>
+<h3>File Structure</h3>
+<ul>
+<li>One primary concept per file</li>
+<li>Related helpers in same file or nearby</li>
+<li>Consistent file naming</li>
+<li>Logical directory structure</li>
+</ul>
+<h3>Import/Dependency Order</h3>
+<ol>
+<li>Standard library</li>
+<li>External dependencies</li>
+<li>Internal dependencies</li>
+<li>Local/relative imports</li>
+</ol>
+<h3>Coupling and Cohesion</h3>
+<ul>
+<li>High cohesion within modules</li>
+<li>Low coupling between modules</li>
+<li>Depend on abstractions, not implementations</li>
+<li>Avoid circular dependencies</li>
+</ul>
+<h2>Testing Considerations</h2>
+<h3>Testable Code</h3>
+<ul>
+<li>Pure functions where possible</li>
+<li>Dependency injection</li>
+<li>Avoid global state</li>
+<li>Small, focused functions</li>
+</ul>
+<h3>Test Naming</h3>
+<pre><code># Describe behavior, not implementation
+test_user_can_login_with_valid_credentials()
+test_order_total_includes_tax_and_shipping()
+</code></pre>
+<h2>Security Basics</h2>
+<h3>Input Validation</h3>
+<ul>
+<li>Validate all external input</li>
+<li>Sanitize before use</li>
+<li>Whitelist over blacklist</li>
+<li>Fail closed (deny by default)</li>
+</ul>
+<h3>Secrets</h3>
+<ul>
+<li>Never hardcode secrets</li>
+<li>Use environment variables or secret managers</li>
+<li>Don&#39;t log sensitive data</li>
+<li>Rotate credentials regularly</li>
+</ul>
+<h3>Data Handling</h3>
+<ul>
+<li>Minimize data collection</li>
+<li>Encrypt sensitive data</li>
+<li>Secure data in transit and at rest</li>
+<li>Follow principle of least privilege</li>
+</ul>
+<h2>Performance Mindset</h2>
+<h3>Premature Optimization</h3>
+<ul>
+<li>Make it work, then make it fast</li>
+<li>Measure before optimizing</li>
+<li>Optimize bottlenecks, not everything</li>
+<li>Document performance-critical code</li>
+</ul>
+<h3>Common Pitfalls</h3>
+<ul>
+<li>N+1 queries</li>
+<li>Unnecessary allocations in loops</li>
+<li>Missing indexes</li>
+<li>Synchronous operations that could be async</li>
+</ul>
+<h2>Code Review Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Does it work correctly?</li>
+<li><input disabled="" type="checkbox"> Is it readable and maintainable?</li>
+<li><input disabled="" type="checkbox"> Are edge cases handled?</li>
+<li><input disabled="" type="checkbox"> Is error handling appropriate?</li>
+<li><input disabled="" type="checkbox"> Are there security concerns?</li>
+<li><input disabled="" type="checkbox"> Is it tested adequately?</li>
+<li><input disabled="" type="checkbox"> Does it follow project conventions?</li>
+<li><input disabled="" type="checkbox"> Is there unnecessary complexity?</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

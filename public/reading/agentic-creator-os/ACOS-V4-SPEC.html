@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agentic Creator OS v4 Specification</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/ACOS-V4-SPEC.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Agentic Creator OS v4 Specification</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#agentic-creator-os">agentic-creator-os</a> / <span>ACOS-V4-SPEC.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Agentic Creator OS v4 Specification</h1>
+<p><strong>Codename: Jarvis Protocol</strong></p>
+<blockquote>
+<p>Absorbing best patterns from GSD (Get Shit Done), extending for creator workflows, and adding Creator Hub Generator for bootstrapping personal AI operating systems.</p>
+</blockquote>
+<hr>
+<h2>Evolution Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Focus</th>
+<th>Key Innovation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v1</td>
+<td>Skill collection</td>
+<td>Skills as markdown files</td>
+</tr>
+<tr>
+<td>v2</td>
+<td>Agent personas</td>
+<td>Weighted multi-agent synthesis</td>
+</tr>
+<tr>
+<td>v3</td>
+<td>Workflows</td>
+<td>Orchestrated pipelines</td>
+</tr>
+<tr>
+<td><strong>v4</strong></td>
+<td><strong>Context Engineering</strong></td>
+<td><strong>GSD patterns + Creator Hub Generator</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Part 1: GSD Pattern Absorption</h2>
+<h3>1.1 Context Quality Curve</h3>
+<p><strong>The Problem</strong>: As Claude works, context fills with garbage. Quality degrades.</p>
+<p><strong>The Solution</strong>: Fresh contexts per task + STATE.md persistence.</p>
+<pre><code>Context Quality by Fill %:
+┌─────────────────────────────────────────────────────────────┐
+│ 100% ─┤                                                     │
+│  90% ─┤ ████                                                │
+│  80% ─┤ ████████                                            │
+│  70% ─┤ ████████████                                        │
+│  60% ─┤ ████████████████                                    │
+│  50% ─┤ ████████████████████  ← Start splitting here        │
+│  40% ─┤ ████████████████████████                            │
+│  30% ─┤ ████████████████████████████ ← Peak zone ends       │
+│  20% ─┤ ████████████████████████████████                    │
+│  10% ─┤ ████████████████████████████████████                │
+│   0% ─┴─────────────────────────────────────────────────────│
+│       0%   10%   20%   30%   40%   50%   60%   70%   80%    │
+└─────────────────────────────────────────────────────────────┘
+                    Context Window Fill %
+</code></pre>
+<p><strong>ACOS v4 Rules</strong>:</p>
+<ul>
+<li><strong>0-30%</strong>: Peak performance zone</li>
+<li><strong>30-50%</strong>: Good quality, watch for degradation</li>
+<li><strong>50-70%</strong>: Degrading, split tasks to subagents</li>
+<li><strong>70%+</strong>: Poor quality, MUST spawn fresh context</li>
+</ul>
+<h3>1.2 STATE.md - Living Memory</h3>
+<pre><code class="language-markdown"># Creator State
+
+## Hub Reference
+
+See: .creator-hub/HUB.md (updated [date])
+
+**Creator identity:** [One-liner from HUB.md]
+**Current focus:** [Active project/content]
+
+## Current Position
+
+Project: [X] - [Project name]
+Task: [A] of [B] in current workflow
+Status: [Planning / Creating / Publishing / Complete]
+Last activity: [YYYY-MM-DD] — [What happened]
+
+Progress: [░░░░░░░░░░] 0%
+
+## Accumulated Context
+
+### Decisions
+- [Date]: [Decision summary]
+
+### Pending Ideas
+- [Captured ideas from sessions]
+
+### Blockers/Concerns
+- [Issues affecting work]
+
+## Session Continuity
+
+Last session: [YYYY-MM-DD HH:MM]
+Stopped at: [Description]
+Resume file: [Path or &quot;None&quot;]
+</code></pre>
+<p><strong>Size constraint</strong>: Keep under 100 lines. It&#39;s a DIGEST, not an archive.</p>
+<h3>1.3 XML Task Specification</h3>
+<p><strong>Every task MUST have verification built in.</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task N: Action-oriented name&lt;/name&gt;
+  &lt;files&gt;exact/paths/to/files.ts&lt;/files&gt;
+  &lt;action&gt;
+    What to do, what to avoid, and WHY.
+    Be specific about implementation approach.
+  &lt;/action&gt;
+  &lt;verify&gt;
+    Exact command or check to prove completion.
+    Must be executable, not vague.
+  &lt;/verify&gt;
+  &lt;done&gt;
+    Measurable acceptance criteria.
+    Binary: either met or not.
+  &lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Task types</strong>:</p>
+<ul>
+<li><code>type=&quot;auto&quot;</code> — Claude executes autonomously</li>
+<li><code>type=&quot;checkpoint:human-verify&quot;</code> — User must verify (visual, UX)</li>
+<li><code>type=&quot;checkpoint:decision&quot;</code> — User must choose</li>
+<li><code>type=&quot;checkpoint:human-action&quot;</code> — Unavoidable manual step (login, 2FA)</li>
+</ul>
+<h3>1.4 Deviation Rules for Autonomous Execution</h3>
+<p><strong>When executing tasks, Claude WILL discover work not in the plan.</strong></p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    DEVIATION DECISION TREE                   │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  Is it a BUG?                                               │
+│  ├── YES → RULE 1: Auto-fix, track for summary              │
+│  └── NO ↓                                                    │
+│                                                              │
+│  Is it MISSING CRITICAL functionality?                       │
+│  (Security, validation, error handling)                      │
+│  ├── YES → RULE 2: Auto-add, track for summary              │
+│  └── NO ↓                                                    │
+│                                                              │
+│  Is it BLOCKING current task?                                │
+│  (Dependency, import, config)                                │
+│  ├── YES → RULE 3: Auto-fix, track for summary              │
+│  └── NO ↓                                                    │
+│                                                              │
+│  Is it an ARCHITECTURAL change?                              │
+│  (New tables, new services, breaking changes)                │
+│  ├── YES → RULE 4: STOP, return checkpoint, ask user        │
+│  └── NO → Continue task                                      │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>1.5 Progressive Disclosure Hierarchy</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│  LEVEL 1: COMMANDS (~50 tokens)                             │
+│  &quot;Should I use this?&quot;                                        │
+│  └── /gsd:create-content, /acos:daily-ops                   │
+├─────────────────────────────────────────────────────────────┤
+│  LEVEL 2: WORKFLOWS (~500 tokens)                           │
+│  &quot;What happens?&quot;                                             │
+│  └── Sequence of steps, agent coordination                   │
+├─────────────────────────────────────────────────────────────┤
+│  LEVEL 3: TEMPLATES (~1k tokens)                            │
+│  &quot;What does output look like?&quot;                               │
+│  └── Concrete structures with placeholders                   │
+├─────────────────────────────────────────────────────────────┤
+│  LEVEL 4: REFERENCES (~2k tokens)                           │
+│  &quot;Why this design?&quot;                                          │
+│  └── Deep explanations, examples, anti-patterns              │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>Part 2: Creator Hub Generator</h2>
+<p><strong>The Big Idea</strong>: Every creator should be able to bootstrap their own AI operating system in 15 minutes.</p>
+<h3>2.1 Hub Initialization Wizard</h3>
+<pre><code class="language-bash">/acos:init-hub
+</code></pre>
+<p><strong>Step 1: Identity Discovery</strong></p>
+<pre><code class="language-markdown">## Who Are You?
+
+Tell me about yourself in a few sentences:
+- What do you create? (content, code, music, art, products)
+- What&#39;s your unique angle?
+- What audience do you serve?
+</code></pre>
+<p><strong>Step 2: Workflow Mapping</strong></p>
+<pre><code class="language-markdown">## Your Creative Workflows
+
+What do you do regularly?
+- [ ] Write blog posts / articles
+- [ ] Create social media content
+- [ ] Produce music / audio
+- [ ] Build products / courses
+- [ ] Research topics
+- [ ] Manage a newsletter
+- [ ] Record videos / podcasts
+- [ ] Code projects
+- [ ] Other: ___________
+</code></pre>
+<p><strong>Step 3: Tool Integration</strong></p>
+<pre><code class="language-markdown">## Your Tools
+
+What platforms do you use?
+- [ ] WordPress / Ghost / Substack
+- [ ] Twitter/X / LinkedIn / Instagram
+- [ ] YouTube / TikTok / Podcast hosts
+- [ ] Notion / Obsidian / Roam
+- [ ] GitHub / VS Code / Cursor
+- [ ] Suno / Midjourney / ElevenLabs
+- [ ] Email: ConvertKit / Mailchimp / Resend
+</code></pre>
+<p><strong>Step 4: Voice Calibration</strong></p>
+<pre><code class="language-markdown">## Your Voice
+
+Share 3 examples of content you&#39;ve written that represents YOUR voice.
+(Paste URLs or text)
+
+I&#39;ll analyze and capture your patterns.
+</code></pre>
+<h3>2.2 Generated Hub Structure</h3>
+<pre><code>.creator-hub/
+├── HUB.md                    # Creator identity + context
+├── STATE.md                  # Living memory (&lt; 100 lines)
+├── VOICE.md                  # Captured writing voice patterns
+├── skills/                   # Auto-selected skills
+│   ├── content-strategy/
+│   ├── social-distribution/
+│   └── [selected-skills]/
+├── workflows/                # Generated workflows
+│   ├── daily-ops.md
+│   ├── content-creation.md
+│   └── [custom-workflows]/
+├── templates/                # Content templates
+│   ├── blog-post.md
+│   ├── social-post.md
+│   └── newsletter.md
+└── outputs/                  # Generated content
+    └── [by-date]/
+</code></pre>
+<h3>2.3 HUB.md - Creator Identity File</h3>
+<pre><code class="language-markdown"># Creator Hub
+
+## Identity
+
+**Name**: [Creator name]
+**Handle**: @[handle]
+**Core Identity**: [One sentence: who you are and what you do]
+
+## Mission
+
+**Purpose**: [Why you create]
+**Audience**: [Who you serve]
+**Unique Value**: [What makes you different]
+
+## Voice Profile
+
+**Tone**: [e.g., Conversational but authoritative]
+**Avoid**: [e.g., Jargon, hype, corporate speak]
+**Signature phrases**: [Your characteristic expressions]
+**Writing patterns**: [Analyzed from samples]
+
+## Constraints
+
+**Never**:
+- [Things you won&#39;t do]
+
+**Always**:
+- [Non-negotiables]
+
+## Active Projects
+
+| Project | Status | Priority | Last Touch |
+|---------|--------|----------|------------|
+| [Name]  | [Status] | [High/Med/Low] | [Date] |
+
+## Integration Points
+
+**Publishing**: [Platform URLs]
+**Social**: [Handles/URLs]
+**Newsletter**: [Platform/List]
+**Code**: [GitHub/Repos]
+
+## Key Decisions
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+| [Date] | [What] | [Why] |
+</code></pre>
+<h3>2.4 Skill Auto-Selection</h3>
+<p>Based on wizard responses, auto-select relevant skills:</p>
+<table>
+<thead>
+<tr>
+<th>Workflow Selected</th>
+<th>Skills Auto-Loaded</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Blog posts</td>
+<td>content-strategy, seo-optimization</td>
+</tr>
+<tr>
+<td>Social media</td>
+<td>social-distribution, frankx-brand</td>
+</tr>
+<tr>
+<td>Music production</td>
+<td>suno-ai-mastery, frequency-alchemist</td>
+</tr>
+<tr>
+<td>Products/courses</td>
+<td>product-development, landing-pages</td>
+</tr>
+<tr>
+<td>Research</td>
+<td>research-methodology, source-validation</td>
+</tr>
+<tr>
+<td>Newsletter</td>
+<td>email-marketing, audience-building</td>
+</tr>
+<tr>
+<td>Video/Podcast</td>
+<td>content-repurposing, script-writing</td>
+</tr>
+<tr>
+<td>Coding</td>
+<td>test-driven-development, code-review</td>
+</tr>
+</tbody></table>
+<h3>2.5 Generated Daily Workflow</h3>
+<p>Based on selected workflows, generate personalized daily ops:</p>
+<pre><code class="language-markdown"># Daily Creator Operations
+
+## Morning Ritual (15 min)
+
+1. Read STATE.md - Know where you are
+2. Check content calendar - What&#39;s due
+3. Review ideas backlog - What&#39;s ready
+
+## Creation Block (Focus time)
+
+Based on your workflows:
+- [If content creator]: Draft today&#39;s piece
+- [If music producer]: Session with Suno
+- [If developer]: Code the next feature
+
+## Distribution Block (30 min)
+
+1. Publish ready content
+2. Create social versions
+3. Engage with responses
+
+## Capture Block (10 min)
+
+1. Log ideas captured today
+2. Update STATE.md
+3. Set tomorrow&#39;s priority
+</code></pre>
+<hr>
+<h2>Part 3: TrustGraph Evaluation</h2>
+<h3>3.1 What TrustGraph Offers</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Relevance to ACOS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Knowledge graph construction</td>
+<td>Medium - could persist creator knowledge</td>
+</tr>
+<tr>
+<td>Ontology engineering</td>
+<td>Low - overkill for individual creators</td>
+</tr>
+<tr>
+<td>Vector embeddings</td>
+<td>Medium - useful for content similarity</td>
+</tr>
+<tr>
+<td>Multi-agent MCP support</td>
+<td>High - could enhance agent coordination</td>
+</tr>
+<tr>
+<td>Full infrastructure control</td>
+<td>Low - complexity not needed</td>
+</tr>
+</tbody></table>
+<h3>3.2 Recommendation</h3>
+<p><strong>Don&#39;t integrate TrustGraph directly.</strong> Too much infrastructure for solo creators.</p>
+<p><strong>Instead, borrow concepts</strong>:</p>
+<ul>
+<li><strong>Context Cores</strong>: Pre-compiled knowledge bundles → Already have Skills</li>
+<li><strong>Grounded Reasoning</strong>: Prevent hallucination → Use verification in tasks</li>
+<li><strong>Knowledge Persistence</strong>: → STATE.md + Memory MCP is sufficient</li>
+</ul>
+<p><strong>Future consideration</strong>: If ACOS scales to teams/enterprises, TrustGraph patterns become relevant.</p>
+<hr>
+<h2>Part 4: Implementation Roadmap</h2>
+<h3>Phase 1: Core Context Engineering (Week 1)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Implement STATE.md template and lifecycle</li>
+<li><input disabled="" type="checkbox"> Add XML task specification format</li>
+<li><input disabled="" type="checkbox"> Implement deviation rules in executor</li>
+<li><input disabled="" type="checkbox"> Add context quality monitoring</li>
+</ul>
+<h3>Phase 2: Creator Hub Generator (Week 2)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Build /acos:init-hub wizard</li>
+<li><input disabled="" type="checkbox"> Create HUB.md generator</li>
+<li><input disabled="" type="checkbox"> Implement skill auto-selection</li>
+<li><input disabled="" type="checkbox"> Generate personalized workflows</li>
+</ul>
+<h3>Phase 3: Execution Rigor (Week 3)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Checkpoint protocol implementation</li>
+<li><input disabled="" type="checkbox"> Atomic commit integration</li>
+<li><input disabled="" type="checkbox"> Performance metrics tracking</li>
+<li><input disabled="" type="checkbox"> Session continuity system</li>
+</ul>
+<h3>Phase 4: Documentation &amp; Launch (Week 4)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Update docs with v4 patterns</li>
+<li><input disabled="" type="checkbox"> Create video walkthrough</li>
+<li><input disabled="" type="checkbox"> Launch announcement</li>
+<li><input disabled="" type="checkbox"> Community feedback loop</li>
+</ul>
+<hr>
+<h2>Appendix: GSD vs ACOS Feature Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>GSD</th>
+<th>ACOS v3</th>
+<th>ACOS v4</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Context engineering</td>
+<td>✅ Excellent</td>
+<td>❌ Minimal</td>
+<td>✅ Absorbed</td>
+</tr>
+<tr>
+<td>XML task specs</td>
+<td>✅ Built-in</td>
+<td>❌ None</td>
+<td>✅ Absorbed</td>
+</tr>
+<tr>
+<td>Deviation rules</td>
+<td>✅ Clear</td>
+<td>❌ None</td>
+<td>✅ Absorbed</td>
+</tr>
+<tr>
+<td>STATE.md</td>
+<td>✅ Core</td>
+<td>❌ None</td>
+<td>✅ Absorbed</td>
+</tr>
+<tr>
+<td>Multi-agent</td>
+<td>⚠️ Sequential</td>
+<td>✅ Weighted</td>
+<td>✅ Enhanced</td>
+</tr>
+<tr>
+<td>Creator focus</td>
+<td>❌ Dev only</td>
+<td>✅ Core</td>
+<td>✅ Core</td>
+</tr>
+<tr>
+<td>Skill library</td>
+<td>❌ Minimal</td>
+<td>✅ 62 skills</td>
+<td>✅ 70+ skills</td>
+</tr>
+<tr>
+<td>Hub generator</td>
+<td>❌ None</td>
+<td>❌ None</td>
+<td>✅ NEW</td>
+</tr>
+<tr>
+<td>Voice capture</td>
+<td>❌ None</td>
+<td>⚠️ Basic</td>
+<td>✅ Enhanced</td>
+</tr>
+<tr>
+<td>Personal Jarvis</td>
+<td>❌ None</td>
+<td>⚠️ Partial</td>
+<td>✅ Complete</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Summary</h2>
+<p>ACOS v4 = <strong>GSD&#39;s rigor</strong> + <strong>ACOS&#39;s creator focus</strong> + <strong>Hub Generator</strong></p>
+<p>The result: Every creator can bootstrap their personal AI operating system in 15 minutes, with enterprise-grade context engineering under the hood.</p>
+<p><strong>Philosophy remains unchanged</strong>:</p>
+<blockquote>
+<p>Technology that amplifies creative expression, not replaces it.</p>
+</blockquote>
+<hr>
+<p><em>Agentic Creator OS v4 Specification</em>
+<em>Codename: Jarvis Protocol</em>
+<em>January 2026</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

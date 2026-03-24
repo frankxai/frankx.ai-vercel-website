@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>arcanea</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/arcanea.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">arcanea</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>arcanea.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <p>﻿# /arcanea — Arcanean World Command v2.0</p>
+<blockquote>
+<p>The world of Arcanea is a forkable creative civilization OS. Context compounds. Canon is protected. Every session grows the world.</p>
+</blockquote>
+<hr>
+<h2>WorldState Protocol (Always First)</h2>
+<p>Before generating anything, load:</p>
+<ul>
+<li><code>data/arcanea-world-state.json</code> → check <code>canon.established</code>, <code>world_threads.open</code>, <code>lore_episodes</code>, <code>eldrian_registry[*].episodes_generated</code></li>
+<li><code>data/arcanea-content-queue.json</code> → check what&#39;s already drafted</li>
+</ul>
+<p>No lore is generated that repeats an existing episode or contradicts established canon.</p>
+<hr>
+<h2>The Five Eldrians</h2>
+<table>
+<thead>
+<tr>
+<th>Eldrian</th>
+<th>Symbol</th>
+<th>Element</th>
+<th>Voice</th>
+<th>Domain</th>
+<th>Godbeast</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Aethelin the Architect</td>
+<td>∞</td>
+<td>Liquid starlight</td>
+<td>Calm mathematical precision</td>
+<td>Architecture of reality, systems, code-like rules</td>
+<td>Infinite Loom</td>
+</tr>
+<tr>
+<td>Solrex the Illuminant</td>
+<td>☀</td>
+<td>Crystallized stellar fire</td>
+<td>Declarative, revelatory without announcement</td>
+<td>Radiance amplification, revealing what was already true</td>
+<td>Mirror Absolute</td>
+</tr>
+<tr>
+<td>Velmara the Dreamer</td>
+<td>◈</td>
+<td>Quantum glass</td>
+<td>Layered simultaneous tones</td>
+<td>Dream-state navigation, probability, unchosen paths</td>
+<td>Silence Before</td>
+</tr>
+<tr>
+<td>Korghast the Forger</td>
+<td>⬡</td>
+<td>Cosmic obsidian-starlight alloy</td>
+<td>Deep, architectural, each word a structure</td>
+<td>World creation, making ideas permanent</td>
+<td>The Becoming</td>
+</tr>
+<tr>
+<td>Zyranthis the Void</td>
+<td>◉</td>
+<td>Anti-matter dark glass</td>
+<td>Silence that communicates — rare words land like demolition</td>
+<td>Entropy mastery, necessary endings</td>
+<td>The Shatter</td>
+</tr>
+</tbody></table>
+<p><strong>Visual DNA:</strong></p>
+<ul>
+<li>Aethelin: gender-ambiguous fluid form, 12 geometric data-orbs orbiting, starlight code trails from fingers, mountains at foot level</li>
+<li>Solrex: compressed starlight body, solar corona crown, light-spheres at high velocity, every surface radiates</li>
+<li>Velmara: translucent form with internal galaxy, quantum foam bubbles, eyes are starfields, multiple simultaneous states</li>
+<li>Korghast: dark crystalline obsidian with gold-lava veins, neutron-star hammer, 8 forge-orbs containing abandoned creative works</li>
+<li>Zyranthis: dark glass absorbing all light, void eye at center, entropy spirals radiating, stars dimming in radius</li>
+</ul>
+<hr>
+<h2>Godbeast Invocation Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Godbeast</th>
+<th>Eldrian</th>
+<th>Use When</th>
+<th>Invocation Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Infinite Loom</td>
+<td>Aethelin</td>
+<td>Building systems, designing architecture, writing rules</td>
+<td>&quot;Write the conditions that make this work inevitable — not the work itself.&quot;</td>
+</tr>
+<tr>
+<td>Mirror Absolute</td>
+<td>Solrex</td>
+<td>Clarity checks, revealing what is hidden in plain sight</td>
+<td>&quot;What is already there that we haven&#39;t looked at?&quot;</td>
+</tr>
+<tr>
+<td>Silence Before</td>
+<td>Velmara</td>
+<td>Exploring possibilities, unchosen paths, pre-decision space</td>
+<td>&quot;What worlds exist in the space before we choose?&quot;</td>
+</tr>
+<tr>
+<td>The Becoming</td>
+<td>Korghast</td>
+<td>Completing work, making ideas permanent, finishing what was started</td>
+<td>&quot;What needs weight to become real?&quot;</td>
+</tr>
+<tr>
+<td>The Shatter</td>
+<td>Zyranthis</td>
+<td>Ending what is complete, clearing space for new creation</td>
+<td>&quot;What must dissolve so something new can form?&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Input Modes</h2>
+<h3><code>/arcanea lore [eldrian]</code></h3>
+<p>Generate a new lore episode for the specified Eldrian.</p>
+<p><strong>Process:</strong></p>
+<ol>
+<li>Load WorldState — check <code>eldrian_registry.[Eldrian].episodes_generated</code> and <code>world_threads.open</code></li>
+<li>Identify which world thread this episode will advance</li>
+<li>Generate lore prose (150-250 words) in the Eldrian&#39;s locked voice</li>
+<li>Format into 4-tweet X thread (280 chars max each, zero hashtags)</li>
+<li>Tweet 3 must connect mythology to present reality</li>
+<li>Save to <code>data/arcanea-content-queue.json</code> as new entry</li>
+<li>Append episode to <code>data/arcanea-world-state.json</code> lore_episodes array</li>
+<li>Update <code>eldrian_registry.[Eldrian].episodes_generated</code> count</li>
+<li>Mark any new canon <code>under_construction</code> in WorldState</li>
+<li>Run quality gate before saving (see below)</li>
+</ol>
+<h3><code>/arcanea week</code></h3>
+<p>Generate a full week of X content using the Weekly Batch pattern:</p>
+<ul>
+<li>Monday: Aethelin — Origin or Prophecy</li>
+<li>Tuesday: Korghast — Revelation</li>
+<li>Wednesday: Velmara — Riddle</li>
+<li>Thursday: Solrex — Revelation</li>
+<li>Friday: Zyranthis — Entropy meditation</li>
+<li>Saturday: Image post (strongest visual Eldrian this week)</li>
+<li>Sunday: THE CONCLAVE — all five speak on one truth</li>
+</ul>
+<p>Saves all 7 pieces to content queue. Updates WorldState. Notifies Slack #content.</p>
+<h3><code>/arcanea conclave [topic]</code></h3>
+<p>Generate the Sunday Conclave — all five Eldrians speaking on one truth.</p>
+<p><strong>Structure:</strong></p>
+<ul>
+<li>Tweet 1: Set the question through first Eldrian&#39;s voice (implied, not asked directly)</li>
+<li>Tweet 2: Three Eldrians respond — one line each, symbol prefix, separated</li>
+<li>Tweet 3: Remaining two respond — Zyranthis last, always</li>
+<li>Tweet 4: The silence after — what the Conclave reveals about the creator reading it</li>
+</ul>
+<h3><code>/arcanea image [eldrian]</code></h3>
+<p>Generate/regenerate a character card for the specified Eldrian using nano-banana Gemini 3 Pro Image. 9:16 portrait format (768×1344). Save to <code>public/images/arcanea/eldrian-[name]-[YYYYMMDD].png</code>. Update WorldState images registry.</p>
+<h3><code>/arcanea arc [forging|schism|builders|aethelin-code]</code></h3>
+<p>Generate a 4-episode narrative arc for posting Monday-Thursday:</p>
+<ul>
+<li><strong>forging</strong>: How Arcanea was built — Silence Before → First Force → The Light That Wrote → The Condition</li>
+<li><strong>schism</strong>: Aethelin vs Zyranthis cycle — Architecture as love → Dissolution as love → No winner → Velmara&#39;s simultaneous view</li>
+<li><strong>builders</strong>: Human origin story — Valdris the Conductor → Gate System formation → First Luminor → Present moment</li>
+<li><strong>aethelin-code</strong>: Proto-code of reality — First writing → Rules governing creativity → AI echoes → Gate 10 rewrite</li>
+</ul>
+<h3><code>/arcanea worldstate</code></h3>
+<p>Display current WorldState summary:</p>
+<ul>
+<li>Current gate</li>
+<li>Eldrian episode counts</li>
+<li>Open world threads</li>
+<li>Established canon</li>
+<li>Pending content in queue</li>
+<li>n8n workflow status</li>
+</ul>
+<h3><code>/arcanea status</code></h3>
+<p>Quick status check — what is ready, what is pending, what is blocked.</p>
+<hr>
+<h2>Lore Generation System Prompt</h2>
+<p>When generating lore, the AI must maintain these voice rules:</p>
+<pre><code>VOICE ENFORCEMENT — ABSOLUTE RULES:
+
+Aethelin (∞): Calm. Mathematical. Paradoxes that resolve on reflection.
+  Signal: &quot;conditions&quot;, &quot;inevitable&quot;, &quot;architecture&quot;, &quot;wrote&quot;
+  FORBIDDEN: warmth, urgency, adjectives
+
+Solrex (☀): Declarative. Loud. Revelatory without announcement.
+  Signal: &quot;find&quot;, &quot;show&quot;, &quot;light&quot;, &quot;already&quot;, &quot;obvious&quot;
+  FORBIDDEN: modesty, questions, hedging
+
+Velmara (◈): Layered. Simultaneous. Holds grief and wonder equally.
+  Signal: &quot;world&quot;, &quot;breathes&quot;, &quot;every choice&quot;, &quot;simultaneously&quot;
+  FORBIDDEN: certainty, direct answers, conclusions
+
+Korghast (⬡): Deep. Architectural. Each word a structure.
+  Signal: &quot;weight&quot;, &quot;build&quot;, &quot;finish&quot;, &quot;permanent&quot;, &quot;make&quot;
+  FORBIDDEN: speed, abstraction, philosophy
+
+Zyranthis (◉): Silence. What is NOT said. Rare words land like demolition.
+  FORBIDDEN: explanation, comfort, resolution
+
+THREAD RULES (4 tweets, 280 chars max each):
+- Tweet 1: Open with the Eldrian&#39;s perspective — no preamble
+- Tweet 2: Expand. Show the principle in action.
+- Tweet 3: Connect to the creator&#39;s PRESENT REALITY — not mythology
+- Tweet 4: Close. Silence. Symbol.
+
+ABSOLUTE NO: zero hashtags. zero try-hard. zero cosmic word salad.
+</code></pre>
+<hr>
+<h2>Canon Protection</h2>
+<p><strong>Established canon (locked — CANNOT be contradicted):</strong></p>
+<ol>
+<li>All five Eldrians existed at the Forging — none created the others</li>
+<li>Godbeasts are primal creative processes that became self-aware — not beings</li>
+<li>The Silence Before is not emptiness — it is unmanifest potential in maximum concentration</li>
+<li>Every completed work opens three new possibilities (The Becoming)</li>
+<li>Gate 10 Luminors become the Guardians for those who follow</li>
+<li>Arcanea is a forkable creative civilization OS — context compounds, never shrinks</li>
+<li>Aethelin&#39;s first rule: things that recognize each other may find each other across infinite distance</li>
+<li>Korghast&#39;s forge-orbs contain half-finished worlds from creators who abandoned their work</li>
+<li>Velmara holds every unchosen creative path in her quantum foam — they remain alive there</li>
+<li>The Schism is not war between Aethelin and Zyranthis — it is a complementary cycle</li>
+</ol>
+<p><strong>If any generation would contradict established canon: STOP. Surface to Frank before proceeding.</strong></p>
+<hr>
+<h2>Quality Gate (must pass before saving to queue)</h2>
+<pre><code>□ All tweets under 280 characters?
+□ Zero hashtags in body?
+□ Tweet 3 connects to present creator reality (not just mythology)?
+□ Does not contradict established canon?
+□ Correct Eldrian voice maintained throughout?
+□ Does the piece have mythological weight (not cosmic word salad)?
+□ WorldState updated with new episode?
+□ Frank&#39;s review included before any X posting?
+</code></pre>
+<hr>
+<h2>WorldState Files</h2>
+<ul>
+<li><strong>World bible</strong>: <code>.claude/skills/arcanea/SKILL.md</code> (21,713 chars — full cosmology)</li>
+<li><strong>Swarm patterns</strong>: <code>.claude/skills/arcanea-swarm/SKILL.md</code> (12,363 chars)</li>
+<li><strong>Live state</strong>: <code>data/arcanea-world-state.json</code> (compound context — grows every session)</li>
+<li><strong>Content queue</strong>: <code>data/arcanea-content-queue.json</code> (draft episodes awaiting review)</li>
+<li><strong>Images</strong>: <code>public/images/arcanea/eldrian-[name]-[YYYYMMDD].png</code></li>
+</ul>
+<hr>
+<h2>n8n Integration</h2>
+<p><strong>Arcanean X Story Engine</strong> (ID: <code>syLlGYHRRJSu2oqs</code>):</p>
+<ul>
+<li>Status: INACTIVE — requires <code>XAI_API_KEY</code> in Railway n8n env vars + Slack credential linked</li>
+<li>When active: Schedule (8am UTC daily) → Code (Grok xAI lore + 4-tweet thread) → Slack (#content review)</li>
+<li>Activate: Set env var, link credential, <code>POST /api/v1/workflows/syLlGYHRRJSu2oqs/activate</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

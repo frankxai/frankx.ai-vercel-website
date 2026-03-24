@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Production-Ready GenAI on Oracle Cloud Infrastructure: Part 3 - The Operating Model</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="frankx-oracle-genai-content/frankx-oracle-genai-content-backup/content/blog/series-production-genai-oci/part-03-operating-model.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Production-Ready GenAI on Oracle Cloud Infrastructure: Part 3 - The Operating Model</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#frankx-oracle-genai-content">frankx-oracle-genai-content</a> / <a href="../../../index.html#frankx-oracle-genai-content%2Ffrankx-oracle-genai-content-backup">frankx-oracle-genai-content-backup</a> / <a href="../../index.html#frankx-oracle-genai-content%2Ffrankx-oracle-genai-content-backup%2Fcontent">content</a> / <a href="../index.html#frankx-oracle-genai-content%2Ffrankx-oracle-genai-content-backup%2Fcontent%2Fblog">blog</a> / <a href="index.html#frankx-oracle-genai-content%2Ffrankx-oracle-genai-content-backup%2Fcontent%2Fblog%2Fseries-production-genai-oci">series-production-genai-oci</a> / <span>part-03-operating-model.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Production-Ready GenAI on Oracle Cloud Infrastructure: Part 3 - The Operating Model</h1>
+<h2>Governance, Observability, and Lifecycle Management for Production AI</h2>
+<p><strong>TL;DR:</strong> Production GenAI systems fail not because of bad models, but because of missing operating models. This post covers the governance, observability, and lifecycle management that keeps production AI systems healthy—including prompt versioning, cost controls, evaluation pipelines, and incident response.</p>
+<hr>
+<h2>The Operating Model Gap</h2>
+<p>Most GenAI projects focus 90% of effort on the model and 10% on operations. Production systems require the inverse: the model is a dependency; the operating model is the product.</p>
+<p>An operating model answers:</p>
+<ul>
+<li>How do we version and deploy prompt changes?</li>
+<li>How do we know if quality is degrading?</li>
+<li>How do we control costs?</li>
+<li>How do we respond to incidents?</li>
+<li>How do we maintain compliance?</li>
+</ul>
+<p>Without clear answers, your production system is a ticking time bomb.</p>
+<hr>
+<h2>The Operations &amp; Governance Plane</h2>
+<p>In our six-plane architecture, the Operations &amp; Governance Plane is the foundation that supports everything else:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                OPERATIONS &amp; GOVERNANCE PLANE                     │
+│                                                                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
+│  │  Observability│  │  Evaluation  │  │  Cost Management     │  │
+│  │  &amp; Telemetry │  │  Pipeline    │  │  &amp; Quotas            │  │
+│  └──────────────┘  └──────────────┘  └──────────────────────┘  │
+│                                                                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐  │
+│  │  Prompt      │  │  Security &amp;  │  │  Incident            │  │
+│  │  Registry    │  │  Compliance  │  │  Response            │  │
+│  └──────────────┘  └──────────────┘  └──────────────────────┘  │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>1. Observability: See Everything</h2>
+<h3>The Three Pillars of AI Observability</h3>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>What It Captures</th>
+<th>OCI Service</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Traces</strong></td>
+<td>Request flow through agent, tools, models</td>
+<td>OCI APM + OpenTelemetry</td>
+</tr>
+<tr>
+<td><strong>Metrics</strong></td>
+<td>Latency, throughput, token counts, costs</td>
+<td>OCI Monitoring</td>
+</tr>
+<tr>
+<td><strong>Logs</strong></td>
+<td>Request/response payloads, errors, decisions</td>
+<td>OCI Logging</td>
+</tr>
+</tbody></table>
+<h3>Tracing the Agent Loop</h3>
+<p>Every production AI system needs end-to-end tracing. Here&#39;s what a trace should capture:</p>
+<pre><code>[User Request] → [Agent Router] → [Tool Selection] → [Tool Execution] → [Model Call] → [Response]
+    │               │                 │                  │                │              │
+    ├─ user_id      ├─ agent_id       ├─ tool_name       ├─ tool_latency  ├─ model_id    ├─ response_id
+    ├─ session_id   ├─ routing_time   ├─ tool_params     ├─ tool_result   ├─ input_tokens└─ output_tokens
+    └─ timestamp    └─ decision_path  └─ confidence      └─ error_state   └─ model_latency
+</code></pre>
+<h3>OpenTelemetry Implementation</h3>
+<pre><code class="language-python">from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+
+# Configure OCI APM exporter
+tracer_provider = TracerProvider()
+otlp_exporter = OTLPSpanExporter(
+    endpoint=&quot;https://apm.&lt;region&gt;.ocp.oraclecloud.com/20200101/observability&quot;,
+    headers={&quot;authorization&quot;: f&quot;Bearer {oci_token}&quot;}
+)
+tracer_provider.add_span_processor(BatchSpanProcessor(otlp_exporter))
+trace.set_tracer_provider(tracer_provider)
+
+tracer = trace.get_tracer(&quot;genai-agent-service&quot;)
+
+async def process_request(request: AgentRequest) -&gt; AgentResponse:
+    with tracer.start_as_current_span(&quot;agent_request&quot;) as span:
+        span.set_attribute(&quot;user_id&quot;, request.user_id)
+        span.set_attribute(&quot;session_id&quot;, request.session_id)
+
+        # Tool selection
+        with tracer.start_as_current_span(&quot;tool_selection&quot;) as tool_span:
+            selected_tool = await select_tool(request)
+            tool_span.set_attribute(&quot;tool_name&quot;, selected_tool.name)
+            tool_span.set_attribute(&quot;confidence&quot;, selected_tool.confidence)
+
+        # Tool execution
+        with tracer.start_as_current_span(&quot;tool_execution&quot;) as exec_span:
+            tool_result = await execute_tool(selected_tool, request)
+            exec_span.set_attribute(&quot;tool_latency_ms&quot;, tool_result.latency_ms)
+            exec_span.set_attribute(&quot;tool_success&quot;, tool_result.success)
+
+        # Model call
+        with tracer.start_as_current_span(&quot;model_call&quot;) as model_span:
+            response = await call_model(tool_result, request)
+            model_span.set_attribute(&quot;model_id&quot;, response.model_id)
+            model_span.set_attribute(&quot;input_tokens&quot;, response.usage.input_tokens)
+            model_span.set_attribute(&quot;output_tokens&quot;, response.usage.output_tokens)
+
+        return response
+</code></pre>
+<h3>Key Metrics to Track</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>SLO Target</th>
+<th>Alert Threshold</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>End-to-end latency (p95)</strong></td>
+<td>&lt; 5 seconds</td>
+<td>&gt; 8 seconds</td>
+</tr>
+<tr>
+<td><strong>Tool failure rate</strong></td>
+<td>&lt; 1%</td>
+<td>&gt; 3%</td>
+</tr>
+<tr>
+<td><strong>Model error rate</strong></td>
+<td>&lt; 0.1%</td>
+<td>&gt; 0.5%</td>
+</tr>
+<tr>
+<td><strong>Retrieval latency (p95)</strong></td>
+<td>&lt; 500ms</td>
+<td>&gt; 1 second</td>
+</tr>
+<tr>
+<td><strong>Groundedness rate</strong></td>
+<td>&gt; 95%</td>
+<td>&lt; 90%</td>
+</tr>
+<tr>
+<td><strong>Cost per interaction</strong></td>
+<td>&lt; $0.10</td>
+<td>&gt; $0.25</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. Evaluation Pipeline: Measure Quality</h2>
+<h3>Online vs Offline Evaluation</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>When</th>
+<th>What It Measures</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Online</strong></td>
+<td>Real-time, during inference</td>
+<td>Latency, errors, user feedback</td>
+</tr>
+<tr>
+<td><strong>Offline</strong></td>
+<td>Batch, on golden sets</td>
+<td>Accuracy, groundedness, regression</td>
+</tr>
+</tbody></table>
+<h3>Golden Set Testing</h3>
+<p>A golden set is a curated collection of input-output pairs that represent expected behavior. Run these before every deployment:</p>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import List, Dict
+import json
+
+@dataclass
+class GoldenTestCase:
+    id: str
+    input: str
+    expected_tool: str
+    expected_keywords: List[str]
+    max_latency_ms: float
+
+@dataclass
+class EvalResult:
+    case_id: str
+    passed: bool
+    actual_tool: str
+    actual_response: str
+    latency_ms: float
+    groundedness_score: float
+    errors: List[str]
+
+class GoldenSetEvaluator:
+    def __init__(self, agent: Agent, golden_set_path: str):
+        self.agent = agent
+        self.golden_set = self._load_golden_set(golden_set_path)
+
+    def _load_golden_set(self, path: str) -&gt; List[GoldenTestCase]:
+        with open(path) as f:
+            data = json.load(f)
+        return [GoldenTestCase(**case) for case in data]
+
+    async def run_evaluation(self) -&gt; Dict:
+        results = []
+        for case in self.golden_set:
+            result = await self._evaluate_case(case)
+            results.append(result)
+
+        return {
+            &quot;total_cases&quot;: len(results),
+            &quot;passed&quot;: sum(1 for r in results if r.passed),
+            &quot;failed&quot;: sum(1 for r in results if not r.passed),
+            &quot;pass_rate&quot;: sum(1 for r in results if r.passed) / len(results),
+            &quot;avg_latency_ms&quot;: sum(r.latency_ms for r in results) / len(results),
+            &quot;avg_groundedness&quot;: sum(r.groundedness_score for r in results) / len(results),
+            &quot;failures&quot;: [r for r in results if not r.passed]
+        }
+
+    async def _evaluate_case(self, case: GoldenTestCase) -&gt; EvalResult:
+        start_time = time.time()
+        errors = []
+
+        try:
+            response = await self.agent.process(case.input)
+            latency_ms = (time.time() - start_time) * 1000
+
+            # Check tool selection
+            tool_correct = response.selected_tool == case.expected_tool
+            if not tool_correct:
+                errors.append(f&quot;Wrong tool: expected {case.expected_tool}, got {response.selected_tool}&quot;)
+
+            # Check keywords
+            keywords_found = all(kw in response.text.lower() for kw in case.expected_keywords)
+            if not keywords_found:
+                errors.append(f&quot;Missing keywords: {case.expected_keywords}&quot;)
+
+            # Check latency
+            latency_ok = latency_ms &lt;= case.max_latency_ms
+            if not latency_ok:
+                errors.append(f&quot;Latency exceeded: {latency_ms}ms &gt; {case.max_latency_ms}ms&quot;)
+
+            # Calculate groundedness
+            groundedness = await self._calculate_groundedness(response)
+
+            return EvalResult(
+                case_id=case.id,
+                passed=tool_correct and keywords_found and latency_ok and groundedness &gt; 0.9,
+                actual_tool=response.selected_tool,
+                actual_response=response.text,
+                latency_ms=latency_ms,
+                groundedness_score=groundedness,
+                errors=errors
+            )
+        except Exception as e:
+            return EvalResult(
+                case_id=case.id,
+                passed=False,
+                actual_tool=&quot;error&quot;,
+                actual_response=str(e),
+                latency_ms=(time.time() - start_time) * 1000,
+                groundedness_score=0,
+                errors=[str(e)]
+            )
+</code></pre>
+<h3>CI/CD Integration</h3>
+<p>Run evaluation as part of your deployment pipeline:</p>
+<pre><code class="language-yaml"># .github/workflows/deploy-agent.yml
+name: Deploy Agent
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - &#39;agents/**&#39;
+      - &#39;prompts/**&#39;
+      - &#39;tools/**&#39;
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Golden Set Evaluation
+        run: |
+          python -m pytest tests/golden_set/ \
+            --golden-set=tests/golden_set/cases.json \
+            --min-pass-rate=0.95 \
+            --max-avg-latency=3000
+
+      - name: Run Regression Tests
+        run: |
+          python -m pytest tests/regression/ \
+            --baseline=tests/regression/baseline.json
+
+  deploy:
+    needs: evaluate
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to OCI
+        run: |
+          oci ai-agent deploy \
+            --agent-id ${{ secrets.AGENT_ID }} \
+            --version ${{ github.sha }}
+</code></pre>
+<hr>
+<h2>3. Prompt &amp; Agent Lifecycle Management</h2>
+<h3>Prompts as Code</h3>
+<p>Treat prompts like code: version them, review them, test them.</p>
+<pre><code>prompts/
+├── agents/
+│   ├── sales-assistant/
+│   │   ├── v1.0.0/
+│   │   │   ├── system.md
+│   │   │   ├── tools.yaml
+│   │   │   └── examples.json
+│   │   └── v1.1.0/
+│   │       ├── system.md
+│   │       ├── tools.yaml
+│   │       └── examples.json
+│   └── support-agent/
+│       └── ...
+└── registry.yaml
+</code></pre>
+<h3>Prompt Registry</h3>
+<pre><code class="language-yaml"># prompts/registry.yaml
+prompts:
+  sales-assistant:
+    current_version: &quot;1.1.0&quot;
+    versions:
+      &quot;1.0.0&quot;:
+        status: deprecated
+        deployed_at: &quot;2025-12-15&quot;
+        deprecated_at: &quot;2026-01-10&quot;
+      &quot;1.1.0&quot;:
+        status: active
+        deployed_at: &quot;2026-01-10&quot;
+        changes:
+          - &quot;Improved tool selection accuracy&quot;
+          - &quot;Added multi-language support&quot;
+        evaluation_results:
+          pass_rate: 0.97
+          avg_latency_ms: 2340
+          groundedness: 0.94
+
+  support-agent:
+    current_version: &quot;2.0.0&quot;
+    versions:
+      &quot;2.0.0&quot;:
+        status: active
+        deployed_at: &quot;2026-01-05&quot;
+</code></pre>
+<h3>Deployment Strategies</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Risk</th>
+<th>Rollback Time</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Blue/Green</strong></td>
+<td>Low</td>
+<td>Instant</td>
+<td>Major changes</td>
+</tr>
+<tr>
+<td><strong>Canary</strong></td>
+<td>Very Low</td>
+<td>Fast</td>
+<td>Incremental improvements</td>
+</tr>
+<tr>
+<td><strong>Shadow</strong></td>
+<td>None</td>
+<td>N/A</td>
+<td>Testing new models</td>
+</tr>
+</tbody></table>
+<pre><code class="language-python">class CanaryDeployment:
+    &quot;&quot;&quot;Route percentage of traffic to new version&quot;&quot;&quot;
+
+    def __init__(self, old_agent: Agent, new_agent: Agent, canary_percent: float = 5.0):
+        self.old_agent = old_agent
+        self.new_agent = new_agent
+        self.canary_percent = canary_percent
+
+    async def route(self, request: AgentRequest) -&gt; AgentResponse:
+        # Deterministic routing based on user_id for consistency
+        user_hash = hash(request.user_id) % 100
+
+        if user_hash &lt; self.canary_percent:
+            response = await self.new_agent.process(request)
+            response.metadata[&quot;version&quot;] = &quot;canary&quot;
+        else:
+            response = await self.old_agent.process(request)
+            response.metadata[&quot;version&quot;] = &quot;stable&quot;
+
+        return response
+</code></pre>
+<hr>
+<h2>4. Cost Management</h2>
+<h3>Cost Model Understanding</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Pricing Model</th>
+<th>Optimization Lever</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LLM Inference</strong></td>
+<td>Per token</td>
+<td>Caching, model selection, prompt length</td>
+</tr>
+<tr>
+<td><strong>Embeddings</strong></td>
+<td>Per token</td>
+<td>Batch processing, caching</td>
+</tr>
+<tr>
+<td><strong>Vector DB</strong></td>
+<td>Storage + queries</td>
+<td>Index optimization, data lifecycle</td>
+</tr>
+<tr>
+<td><strong>Compute</strong></td>
+<td>Per hour</td>
+<td>Right-sizing, autoscaling</td>
+</tr>
+<tr>
+<td><strong>Agent Platform</strong></td>
+<td>Per vCPU-hour</td>
+<td>Efficient tool design</td>
+</tr>
+</tbody></table>
+<h3>Cost Tracking</h3>
+<pre><code class="language-python">from dataclasses import dataclass
+from decimal import Decimal
+
+@dataclass
+class CostTracker:
+    # OCI GenAI pricing (approximate) - PER CHARACTER
+    # Note: Oracle charges per character, not per token
+    # 10,000 characters = 10,000 transactions
+    MODEL_COSTS = {
+        &quot;cohere.command-r-plus-08-2024&quot;: {&quot;per_10k_chars&quot;: Decimal(&quot;0.015&quot;)},
+        &quot;meta.llama-3.3-70b-instruct&quot;: {&quot;per_10k_chars&quot;: Decimal(&quot;0.025&quot;)},
+        &quot;cohere.embed-v4.0&quot;: {&quot;per_10k_chars&quot;: Decimal(&quot;0.001&quot;)},
+    }
+
+    def calculate_request_cost(self, model_id: str, input_chars: int, output_chars: int) -&gt; Decimal:
+        if model_id not in self.MODEL_COSTS:
+            return Decimal(&quot;0&quot;)
+
+        costs = self.MODEL_COSTS[model_id]
+        total_chars = input_chars + output_chars
+        # Oracle pricing: (characters / 10000) * price_per_10k_chars
+        cost = (Decimal(total_chars) / 10000) * costs.get(&quot;per_10k_chars&quot;, Decimal(&quot;0&quot;))
+
+        return cost
+
+    def log_cost(self, request_id: str, model_id: str, input_chars: int, output_chars: int):
+        cost = self.calculate_request_cost(model_id, input_chars, output_chars)
+
+        # Log to OCI Monitoring custom metric
+        self.metrics_client.post_metric(
+            namespace=&quot;genai_costs&quot;,
+            metric_name=&quot;request_cost_usd&quot;,
+            value=float(cost),
+            dimensions={
+                &quot;model_id&quot;: model_id,
+                &quot;request_id&quot;: request_id
+            }
+        )
+</code></pre>
+<h3>Cost Controls</h3>
+<pre><code class="language-python">class CostGovernor:
+    &quot;&quot;&quot;Enforce cost limits at multiple levels&quot;&quot;&quot;
+
+    def __init__(self,
+                 per_request_limit: Decimal = Decimal(&quot;1.00&quot;),
+                 per_user_daily_limit: Decimal = Decimal(&quot;10.00&quot;),
+                 per_tenant_monthly_limit: Decimal = Decimal(&quot;10000.00&quot;)):
+        self.per_request_limit = per_request_limit
+        self.per_user_daily_limit = per_user_daily_limit
+        self.per_tenant_monthly_limit = per_tenant_monthly_limit
+
+    async def check_limits(self, user_id: str, tenant_id: str, estimated_cost: Decimal) -&gt; bool:
+        # Check per-request limit
+        if estimated_cost &gt; self.per_request_limit:
+            raise CostLimitExceeded(f&quot;Request cost ${estimated_cost} exceeds limit ${self.per_request_limit}&quot;)
+
+        # Check user daily limit
+        user_daily_spend = await self._get_user_daily_spend(user_id)
+        if user_daily_spend + estimated_cost &gt; self.per_user_daily_limit:
+            raise CostLimitExceeded(f&quot;User daily limit exceeded&quot;)
+
+        # Check tenant monthly limit
+        tenant_monthly_spend = await self._get_tenant_monthly_spend(tenant_id)
+        if tenant_monthly_spend + estimated_cost &gt; self.per_tenant_monthly_limit:
+            raise CostLimitExceeded(f&quot;Tenant monthly limit exceeded&quot;)
+
+        return True
+</code></pre>
+<hr>
+<h2>5. Security &amp; Compliance</h2>
+<h3>Data Classification</h3>
+<pre><code class="language-yaml"># data-classification.yaml
+classifications:
+  public:
+    description: &quot;Publicly available information&quot;
+    allowed_models: [&quot;all&quot;]
+    logging: &quot;full&quot;
+    retention_days: 90
+
+  internal:
+    description: &quot;Internal business data&quot;
+    allowed_models: [&quot;oci-hosted&quot;]
+    logging: &quot;metadata_only&quot;
+    retention_days: 365
+    encryption: &quot;at_rest_and_transit&quot;
+
+  confidential:
+    description: &quot;Sensitive business data (PII, financials)&quot;
+    allowed_models: [&quot;oci-dedicated-cluster&quot;]
+    logging: &quot;audit_only&quot;
+    retention_days: 730
+    encryption: &quot;customer_managed_keys&quot;
+    data_residency: &quot;same_region&quot;
+
+  restricted:
+    description: &quot;Highly sensitive (trade secrets, health data)&quot;
+    allowed_models: [&quot;private-agent-factory&quot;]
+    logging: &quot;audit_only&quot;
+    retention_days: 2555  # 7 years
+    encryption: &quot;customer_managed_keys&quot;
+    data_residency: &quot;same_country&quot;
+    access_control: &quot;explicit_approval&quot;
+</code></pre>
+<h3>Prompt Injection Prevention</h3>
+<pre><code class="language-python">class PromptSanitizer:
+    &quot;&quot;&quot;Detect and prevent prompt injection attempts&quot;&quot;&quot;
+
+    INJECTION_PATTERNS = [
+        r&quot;ignore.*previous.*instructions&quot;,
+        r&quot;disregard.*above&quot;,
+        r&quot;you are now&quot;,
+        r&quot;pretend to be&quot;,
+        r&quot;system:.*&quot;,
+        r&quot;\[INST\]&quot;,
+        r&quot;&lt;\|.*\|&gt;&quot;,
+    ]
+
+    def sanitize(self, user_input: str) -&gt; str:
+        # Check for injection patterns
+        for pattern in self.INJECTION_PATTERNS:
+            if re.search(pattern, user_input, re.IGNORECASE):
+                raise PromptInjectionDetected(f&quot;Potential injection pattern detected&quot;)
+
+        # Escape special characters
+        sanitized = self._escape_special_chars(user_input)
+
+        # Truncate to max length
+        sanitized = sanitized[:MAX_INPUT_LENGTH]
+
+        return sanitized
+</code></pre>
+<hr>
+<h2>6. Incident Response</h2>
+<h3>Incident Classification</h3>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Definition</th>
+<th>Response Time</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>P1 - Critical</strong></td>
+<td>Service down, data breach</td>
+<td>15 minutes</td>
+<td>Agent returning sensitive data</td>
+</tr>
+<tr>
+<td><strong>P2 - High</strong></td>
+<td>Major functionality broken</td>
+<td>1 hour</td>
+<td>Tool failures &gt; 10%</td>
+</tr>
+<tr>
+<td><strong>P3 - Medium</strong></td>
+<td>Degraded performance</td>
+<td>4 hours</td>
+<td>Latency SLO breach</td>
+</tr>
+<tr>
+<td><strong>P4 - Low</strong></td>
+<td>Minor issues</td>
+<td>24 hours</td>
+<td>Occasional incorrect responses</td>
+</tr>
+</tbody></table>
+<h3>Runbook Template</h3>
+<pre><code class="language-markdown"># Runbook: High Latency Alert
+
+## Trigger
+- P95 latency &gt; 8 seconds for 5 minutes
+
+## Impact
+- User-facing degradation, potential timeouts
+
+## Investigation Steps
+
+1. **Check OCI APM Dashboard**
+   - Navigate to: OCI Console → APM → Traces
+   - Filter by: service=&quot;genai-agent&quot;, latency &gt; 5s
+   - Identify slow span
+
+2. **Common Causes &amp; Fixes**
+
+   | Cause | Indicator | Fix |
+   |-------|-----------|-----|
+   | Model overload | High model_latency span | Scale dedicated cluster |
+   | Vector DB slow | High retrieval_latency span | Check index, add replicas |
+   | Tool timeout | tool_execution &gt; 10s | Check external API health |
+   | Memory pressure | OOM in logs | Scale compute, reduce batch |
+
+3. **Immediate Mitigation**
+   ```bash
+   # Enable fallback to faster model
+   oci ai-agent update --agent-id $AGENT_ID \
+     --config &#39;{&quot;fallback_model&quot;: &quot;cohere.command-light&quot;}&#39;
+</code></pre>
+<ol start="4">
+<li><strong>Escalation</strong><ul>
+<li>If not resolved in 30 minutes: Page on-call AI engineer</li>
+<li>If P1: Notify AI CoE leadership</li>
+</ul>
+</li>
+</ol>
+<h2>Post-Incident</h2>
+<ul>
+<li>Create incident report within 48 hours</li>
+<li>Update runbook if new pattern identified</li>
+<li>Add regression test case</li>
+</ul>
+<pre><code>
+---
+
+## Minimal Deployable Baseline
+
+### Repository Structure
+</code></pre>
+<p>repo/
+├── infra/
+│   └── terraform/           # VCN, OKE, API Gateway, IAM
+├── platform/
+│   └── helm/                # Agent service chart
+├── services/
+│   └── agent-service/       # Agent loop, tools, retrieval
+├── prompts/
+│   └── registry/            # Versioned prompts
+├── eval/
+│   ├── golden_sets/         # Test cases
+│   └── scripts/             # Evaluation runners
+├── docs/
+│   ├── runbooks/            # Incident response
+│   └── adrs/                # Architecture decisions
+└── .github/
+    └── workflows/           # CI/CD pipelines</p>
+<pre><code>
+### OCI Services Baseline
+
+| Layer | Service | Purpose |
+|-------|---------|---------|
+| Network | VCN + Private Subnets | Isolation |
+| Edge | WAF + API Gateway | Security, rate limits |
+| Runtime | OKE or AI Agent Platform | Agent execution |
+| Models | OCI GenAI | LLM inference |
+| Data | Autonomous DB + Object Storage | Vector store, documents |
+| Ops | Logging + Monitoring + APM | Observability |
+| Governance | IAM + Vault | Access control, secrets |
+
+---
+
+## What&#39;s Next
+
+This three-part series has covered:
+1. **Part 1**: The enterprise architecture blueprint (six-plane model)
+2. **Part 2**: Agent patterns (managed vs framework)
+3. **Part 3**: The operating model (governance, observability, lifecycle)
+
+For hands-on implementation:
+- Clone the [OCI AI Blueprints](https://github.com/oracle-quickstart/oci-ai-blueprints) repo
+- Follow the [LiveLabs workshops](https://apexapps.oracle.com/pls/apex/f?p=133:1)
+- Join the [Oracle AI Community](https://community.oracle.com/tech/apps-infra/categories/oracle-cloud-infrastructure-generative-ai)
+
+---
+
+## Resources
+
+- [OCI APM for RAG solutions](https://blogs.oracle.com/cloud-infrastructure/post/oci-apm-rag-solutions)
+- [OCI Logging Service](https://docs.oracle.com/en-us/iaas/Content/Logging/home.htm)
+- [OCI Monitoring Service](https://docs.oracle.com/en-us/iaas/Content/Monitoring/home.htm)
+- [OpenTelemetry OCI Integration](https://docs.oracle.com/en-us/iaas/application-performance-monitoring/doc/configure-open-source-tracing-systems.html)
+- [OCI IAM Policies](https://docs.oracle.com/en-us/iaas/Content/Identity/policyreference/policyreference.htm)
+
+---
+
+## FAQ
+
+### How often should I run golden set evaluations?
+Before every deployment, and at least weekly for production systems. Set up automated evaluation in CI/CD.
+
+### What&#39;s a good starting SLO for latency?
+P95 &lt; 5 seconds for conversational agents, P95 &lt; 10 seconds for complex multi-tool workflows. Adjust based on user expectations.
+
+### How do I handle prompt drift?
+Version all prompts, run regression tests on changes, and monitor groundedness scores. If scores drop, investigate recent prompt or data changes.
+
+### Should I log full request/response payloads?
+Depends on data classification. For internal/public data, yes (helps debugging). For confidential/restricted, log metadata only and use separate audit logs.
+
+### How do I estimate costs before deploying?
+Run your golden set against the new configuration and measure **character usage**. Multiply by pricing (per 10,000 characters) to estimate production costs. Add 20% buffer for real-world variance.
+
+---
+
+*This is Part 3 of the &quot;Production-Ready GenAI on Oracle Cloud Infrastructure&quot; series. [Part 1: Architecture Overview](part-01-architecture-overview.md) covers the six-plane model. [Part 2: Agent Patterns](part-02-agent-patterns.md) covers managed vs framework agents.*
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

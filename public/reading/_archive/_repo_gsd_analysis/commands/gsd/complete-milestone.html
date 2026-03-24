@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>complete milestone</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/commands/gsd/complete-milestone.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">complete milestone</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fcommands">commands</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fcommands%2Fgsd">gsd</a> / <span>complete-milestone.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>type: prompt
+name: gsd:complete-milestone
+description: Archive completed milestone and prepare for next version
+argument-hint: <version>
+allowed-tools:
+  - Read
+  - Write
+  - Bash</h2>
+<objective>
+Mark milestone {{version}} complete, archive to milestones/, and update ROADMAP.md and REQUIREMENTS.md.
+
+<p>Purpose: Create historical record of shipped version, archive milestone artifacts (roadmap + requirements), and prepare for next milestone.
+Output: Milestone archived (roadmap + requirements), PROJECT.md evolved, git tagged.
+</objective></p>
+<execution_context>
+**Load these files NOW (before proceeding):**
+
+<ul>
+<li>@~/.claude/get-shit-done/workflows/complete-milestone.md (main workflow)</li>
+<li>@~/.claude/get-shit-done/templates/milestone-archive.md (archive template)</execution_context></li>
+</ul>
+<context>
+**Project files:**
+- `.planning/ROADMAP.md`
+- `.planning/REQUIREMENTS.md`
+- `.planning/STATE.md`
+- `.planning/PROJECT.md`
+
+<p><strong>User input:</strong></p>
+<ul>
+<li>Version: {{version}} (e.g., &quot;1.0&quot;, &quot;1.1&quot;, &quot;2.0&quot;)</context></li>
+</ul>
+<process>
+
+<p><strong>Follow complete-milestone.md workflow:</strong></p>
+<ol start="0">
+<li><p><strong>Check for audit:</strong></p>
+<ul>
+<li>Look for <code>.planning/v{{version}}-MILESTONE-AUDIT.md</code></li>
+<li>If missing or stale: recommend <code>/gsd:audit-milestone</code> first</li>
+<li>If audit status is <code>gaps_found</code>: recommend <code>/gsd:plan-milestone-gaps</code> first</li>
+<li>If audit status is <code>passed</code>: proceed to step 1</li>
+</ul>
+<pre><code class="language-markdown">## Pre-flight Check
+
+{If no v{{version}}-MILESTONE-AUDIT.md:}
+⚠ No milestone audit found. Run `/gsd:audit-milestone` first to verify
+requirements coverage, cross-phase integration, and E2E flows.
+
+{If audit has gaps:}
+⚠ Milestone audit found gaps. Run `/gsd:plan-milestone-gaps` to create
+phases that close the gaps, or proceed anyway to accept as tech debt.
+
+{If audit passed:}
+✓ Milestone audit passed. Proceeding with completion.
+</code></pre>
+</li>
+<li><p><strong>Verify readiness:</strong></p>
+<ul>
+<li>Check all phases in milestone have completed plans (SUMMARY.md exists)</li>
+<li>Present milestone scope and stats</li>
+<li>Wait for confirmation</li>
+</ul>
+</li>
+<li><p><strong>Gather stats:</strong></p>
+<ul>
+<li>Count phases, plans, tasks</li>
+<li>Calculate git range, file changes, LOC</li>
+<li>Extract timeline from git log</li>
+<li>Present summary, confirm</li>
+</ul>
+</li>
+<li><p><strong>Extract accomplishments:</strong></p>
+<ul>
+<li>Read all phase SUMMARY.md files in milestone range</li>
+<li>Extract 4-6 key accomplishments</li>
+<li>Present for approval</li>
+</ul>
+</li>
+<li><p><strong>Archive milestone:</strong></p>
+<ul>
+<li>Create <code>.planning/milestones/v{{version}}-ROADMAP.md</code></li>
+<li>Extract full phase details from ROADMAP.md</li>
+<li>Fill milestone-archive.md template</li>
+<li>Update ROADMAP.md to one-line summary with link</li>
+</ul>
+</li>
+<li><p><strong>Archive requirements:</strong></p>
+<ul>
+<li>Create <code>.planning/milestones/v{{version}}-REQUIREMENTS.md</code></li>
+<li>Mark all v1 requirements as complete (checkboxes checked)</li>
+<li>Note requirement outcomes (validated, adjusted, dropped)</li>
+<li>Delete <code>.planning/REQUIREMENTS.md</code> (fresh one created for next milestone)</li>
+</ul>
+</li>
+<li><p><strong>Update PROJECT.md:</strong></p>
+<ul>
+<li>Add &quot;Current State&quot; section with shipped version</li>
+<li>Add &quot;Next Milestone Goals&quot; section</li>
+<li>Archive previous content in <code>&lt;details&gt;</code> (if v1.1+)</li>
+</ul>
+</li>
+<li><p><strong>Commit and tag:</strong></p>
+<ul>
+<li>Stage: MILESTONES.md, PROJECT.md, ROADMAP.md, STATE.md, archive files</li>
+<li>Commit: <code>chore: archive v{{version}} milestone</code></li>
+<li>Tag: <code>git tag -a v{{version}} -m &quot;[milestone summary]&quot;</code></li>
+<li>Ask about pushing tag</li>
+</ul>
+</li>
+<li><p><strong>Offer next steps:</strong></p>
+<ul>
+<li><code>/gsd:new-milestone</code> — start next milestone (questioning → research → requirements → roadmap)</li>
+</ul>
+</li>
+</ol>
+</process>
+
+<success_criteria>
+
+<ul>
+<li>Milestone archived to <code>.planning/milestones/v{{version}}-ROADMAP.md</code></li>
+<li>Requirements archived to <code>.planning/milestones/v{{version}}-REQUIREMENTS.md</code></li>
+<li><code>.planning/REQUIREMENTS.md</code> deleted (fresh for next milestone)</li>
+<li>ROADMAP.md collapsed to one-line entry</li>
+<li>PROJECT.md updated with current state</li>
+<li>Git tag v{{version}} created</li>
+<li>Commit successful</li>
+<li>User knows next steps (including need for fresh requirements)</success_criteria></li>
+</ul>
+<critical_rules>
+
+<ul>
+<li><strong>Load workflow first:</strong> Read complete-milestone.md before executing</li>
+<li><strong>Verify completion:</strong> All phases must have SUMMARY.md files</li>
+<li><strong>User confirmation:</strong> Wait for approval at verification gates</li>
+<li><strong>Archive before deleting:</strong> Always create archive files before updating/deleting originals</li>
+<li><strong>One-line summary:</strong> Collapsed milestone in ROADMAP.md should be single line with link</li>
+<li><strong>Context efficiency:</strong> Archive keeps ROADMAP.md and REQUIREMENTS.md constant size per milestone</li>
+<li><strong>Fresh requirements:</strong> Next milestone starts with <code>/gsd:new-milestone</code> which includes requirements definition</critical_rules></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

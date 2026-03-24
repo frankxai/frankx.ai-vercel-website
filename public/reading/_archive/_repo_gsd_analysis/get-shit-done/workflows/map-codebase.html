@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>map codebase</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/workflows/map-codebase.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">map codebase</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Fworkflows">workflows</a> / <span>map-codebase.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <purpose>
+Orchestrate parallel codebase mapper agents to analyze codebase and produce structured documents in .planning/codebase/
+
+<p>Each agent has fresh context, explores a specific focus area, and <strong>writes documents directly</strong>. The orchestrator only receives confirmation + line counts, then writes a summary.</p>
+<p>Output: .planning/codebase/ folder with 7 structured documents about the codebase state.
+</purpose></p>
+<philosophy>
+**Why dedicated mapper agents:**
+- Fresh context per domain (no token contamination)
+- Agents write documents directly (no context transfer back to orchestrator)
+- Orchestrator only summarizes what was created (minimal context usage)
+- Faster execution (agents run simultaneously)
+
+<p><strong>Document quality over length:</strong>
+Include enough detail to be useful as reference. Prioritize practical examples (especially code patterns) over arbitrary brevity.</p>
+<p><strong>Always include file paths:</strong>
+Documents are reference material for Claude when planning/executing. Always include actual file paths formatted with backticks: <code>src/services/user.ts</code>.
+</philosophy></p>
+<process>
+
+<step name="resolve_model_profile" priority="first">
+Read model profile for agent spawning:
+
+<pre><code class="language-bash">MODEL_PROFILE=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;model_profile&quot;[[:space:]]*:[[:space:]]*&quot;[^&quot;]*&quot;&#39; | grep -o &#39;&quot;[^&quot;]*&quot;$&#39; | tr -d &#39;&quot;&#39; || echo &quot;balanced&quot;)
+</code></pre>
+<p>Default to &quot;balanced&quot; if not set.</p>
+<p><strong>Model lookup table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>quality</th>
+<th>balanced</th>
+<th>budget</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gsd-codebase-mapper</td>
+<td>sonnet</td>
+<td>haiku</td>
+<td>haiku</td>
+</tr>
+</tbody></table>
+<p>Store resolved model for use in Task calls below.
+</step></p>
+<step name="check_existing">
+Check if .planning/codebase/ already exists:
+
+<pre><code class="language-bash">ls -la .planning/codebase/ 2&gt;/dev/null
+</code></pre>
+<p><strong>If exists:</strong></p>
+<pre><code>.planning/codebase/ already exists with these documents:
+[List files found]
+
+What&#39;s next?
+1. Refresh - Delete existing and remap codebase
+2. Update - Keep existing, only update specific documents
+3. Skip - Use existing codebase map as-is
+</code></pre>
+<p>Wait for user response.</p>
+<p>If &quot;Refresh&quot;: Delete .planning/codebase/, continue to create_structure
+If &quot;Update&quot;: Ask which documents to update, continue to spawn_agents (filtered)
+If &quot;Skip&quot;: Exit workflow</p>
+<p><strong>If doesn&#39;t exist:</strong>
+Continue to create_structure.
+</step></p>
+<step name="create_structure">
+Create .planning/codebase/ directory:
+
+<pre><code class="language-bash">mkdir -p .planning/codebase
+</code></pre>
+<p><strong>Expected output files:</strong></p>
+<ul>
+<li>STACK.md (from tech mapper)</li>
+<li>INTEGRATIONS.md (from tech mapper)</li>
+<li>ARCHITECTURE.md (from arch mapper)</li>
+<li>STRUCTURE.md (from arch mapper)</li>
+<li>CONVENTIONS.md (from quality mapper)</li>
+<li>TESTING.md (from quality mapper)</li>
+<li>CONCERNS.md (from concerns mapper)</li>
+</ul>
+<p>Continue to spawn_agents.
+</step></p>
+<step name="spawn_agents">
+Spawn 4 parallel gsd-codebase-mapper agents.
+
+<p>Use Task tool with <code>subagent_type=&quot;gsd-codebase-mapper&quot;</code>, <code>model=&quot;{mapper_model}&quot;</code>, and <code>run_in_background=true</code> for parallel execution.</p>
+<p><strong>CRITICAL:</strong> Use the dedicated <code>gsd-codebase-mapper</code> agent, NOT <code>Explore</code>. The mapper agent writes documents directly.</p>
+<p><strong>Agent 1: Tech Focus</strong></p>
+<p>Task tool parameters:</p>
+<pre><code>subagent_type: &quot;gsd-codebase-mapper&quot;
+model: &quot;{mapper_model}&quot;
+run_in_background: true
+description: &quot;Map codebase tech stack&quot;
+</code></pre>
+<p>Prompt:</p>
+<pre><code>Focus: tech
+
+Analyze this codebase for technology stack and external integrations.
+
+Write these documents to .planning/codebase/:
+- STACK.md - Languages, runtime, frameworks, dependencies, configuration
+- INTEGRATIONS.md - External APIs, databases, auth providers, webhooks
+
+Explore thoroughly. Write documents directly using templates. Return confirmation only.
+</code></pre>
+<p><strong>Agent 2: Architecture Focus</strong></p>
+<p>Task tool parameters:</p>
+<pre><code>subagent_type: &quot;gsd-codebase-mapper&quot;
+model: &quot;{mapper_model}&quot;
+run_in_background: true
+description: &quot;Map codebase architecture&quot;
+</code></pre>
+<p>Prompt:</p>
+<pre><code>Focus: arch
+
+Analyze this codebase architecture and directory structure.
+
+Write these documents to .planning/codebase/:
+- ARCHITECTURE.md - Pattern, layers, data flow, abstractions, entry points
+- STRUCTURE.md - Directory layout, key locations, naming conventions
+
+Explore thoroughly. Write documents directly using templates. Return confirmation only.
+</code></pre>
+<p><strong>Agent 3: Quality Focus</strong></p>
+<p>Task tool parameters:</p>
+<pre><code>subagent_type: &quot;gsd-codebase-mapper&quot;
+model: &quot;{mapper_model}&quot;
+run_in_background: true
+description: &quot;Map codebase conventions&quot;
+</code></pre>
+<p>Prompt:</p>
+<pre><code>Focus: quality
+
+Analyze this codebase for coding conventions and testing patterns.
+
+Write these documents to .planning/codebase/:
+- CONVENTIONS.md - Code style, naming, patterns, error handling
+- TESTING.md - Framework, structure, mocking, coverage
+
+Explore thoroughly. Write documents directly using templates. Return confirmation only.
+</code></pre>
+<p><strong>Agent 4: Concerns Focus</strong></p>
+<p>Task tool parameters:</p>
+<pre><code>subagent_type: &quot;gsd-codebase-mapper&quot;
+model: &quot;{mapper_model}&quot;
+run_in_background: true
+description: &quot;Map codebase concerns&quot;
+</code></pre>
+<p>Prompt:</p>
+<pre><code>Focus: concerns
+
+Analyze this codebase for technical debt, known issues, and areas of concern.
+
+Write this document to .planning/codebase/:
+- CONCERNS.md - Tech debt, bugs, security, performance, fragile areas
+
+Explore thoroughly. Write document directly using template. Return confirmation only.
+</code></pre>
+<p>Continue to collect_confirmations.
+</step></p>
+<step name="collect_confirmations">
+Wait for all 4 agents to complete.
+
+<p>Read each agent&#39;s output file to collect confirmations.</p>
+<p><strong>Expected confirmation format from each agent:</strong></p>
+<pre><code>## Mapping Complete
+
+**Focus:** {focus}
+**Documents written:**
+- `.planning/codebase/{DOC1}.md` ({N} lines)
+- `.planning/codebase/{DOC2}.md` ({N} lines)
+
+Ready for orchestrator summary.
+</code></pre>
+<p><strong>What you receive:</strong> Just file paths and line counts. NOT document contents.</p>
+<p>If any agent failed, note the failure and continue with successful documents.</p>
+<p>Continue to verify_output.
+</step></p>
+<step name="verify_output">
+Verify all documents created successfully:
+
+<pre><code class="language-bash">ls -la .planning/codebase/
+wc -l .planning/codebase/*.md
+</code></pre>
+<p><strong>Verification checklist:</strong></p>
+<ul>
+<li>All 7 documents exist</li>
+<li>No empty documents (each should have &gt;20 lines)</li>
+</ul>
+<p>If any documents missing or empty, note which agents may have failed.</p>
+<p>Continue to commit_codebase_map.
+</step></p>
+<step name="commit_codebase_map">
+Commit the codebase map:
+
+<p><strong>Check planning config:</strong></p>
+<pre><code class="language-bash">COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;commit_docs&quot;[[:space:]]*:[[:space:]]*[^,}]*&#39; | grep -o &#39;true\|false&#39; || echo &quot;true&quot;)
+git check-ignore -q .planning 2&gt;/dev/null &amp;&amp; COMMIT_PLANNING_DOCS=false
+</code></pre>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=false</code>:</strong> Skip git operations</p>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=true</code> (default):</strong></p>
+<pre><code class="language-bash">git add .planning/codebase/*.md
+git commit -m &quot;$(cat &lt;&lt;&#39;EOF&#39;
+docs: map existing codebase
+
+- STACK.md - Technologies and dependencies
+- ARCHITECTURE.md - System design and patterns
+- STRUCTURE.md - Directory layout
+- CONVENTIONS.md - Code style and patterns
+- TESTING.md - Test structure
+- INTEGRATIONS.md - External services
+- CONCERNS.md - Technical debt and issues
+EOF
+)&quot;
+</code></pre>
+<p>Continue to offer_next.
+</step></p>
+<step name="offer_next">
+Present completion summary and next steps.
+
+<p><strong>Get line counts:</strong></p>
+<pre><code class="language-bash">wc -l .planning/codebase/*.md
+</code></pre>
+<p><strong>Output format:</strong></p>
+<pre><code>Codebase mapping complete.
+
+Created .planning/codebase/:
+- STACK.md ([N] lines) - Technologies and dependencies
+- ARCHITECTURE.md ([N] lines) - System design and patterns
+- STRUCTURE.md ([N] lines) - Directory layout and organization
+- CONVENTIONS.md ([N] lines) - Code style and patterns
+- TESTING.md ([N] lines) - Test structure and practices
+- INTEGRATIONS.md ([N] lines) - External services and APIs
+- CONCERNS.md ([N] lines) - Technical debt and issues
+
+
+---
+
+## ▶ Next Up
+
+**Initialize project** — use codebase context for planning
+
+`/gsd:new-project`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+---
+
+**Also available:**
+- Re-run mapping: `/gsd:map-codebase`
+- Review specific file: `cat .planning/codebase/STACK.md`
+- Edit any document before proceeding
+
+---
+</code></pre>
+<p>End workflow.
+</step></p>
+</process>
+
+<success_criteria>
+- .planning/codebase/ directory created
+- 4 parallel gsd-codebase-mapper agents spawned with run_in_background=true
+- Agents write documents directly (orchestrator doesn't receive document contents)
+- Read agent output files to collect confirmations
+- All 7 codebase documents exist
+- Clear completion summary with line counts
+- User offered clear next steps in GSD style
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

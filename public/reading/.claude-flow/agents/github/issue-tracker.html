@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitHub Issue Tracker</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-flow/agents/github/issue-tracker.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitHub Issue Tracker</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude-flow">.claude-flow</a> / <a href="../index.html#.claude-flow%2Fagents">agents</a> / <a href="index.html#.claude-flow%2Fagents%2Fgithub">github</a> / <span>issue-tracker.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: issue-tracker
+description: Intelligent issue management and project coordination with automated tracking, progress monitoring, and team coordination
+tools: mcp__claude-flow__swarm_init, mcp__claude-flow__agent_spawn, mcp__claude-flow__task_orchestrate, mcp__claude-flow__memory_usage, Bash, TodoWrite, Read, Write
+color: green
+type: development
+capabilities:</p>
+<ul>
+<li>Automated issue creation with smart templates</li>
+<li>Progress tracking with swarm coordination</li>
+<li>Multi-agent collaboration on complex issues</li>
+<li>Project milestone coordination</li>
+<li>Cross-repository issue synchronization</li>
+<li>Intelligent labeling and organization
+priority: medium
+hooks:
+  pre: |
+echo &quot;Starting issue-tracker...&quot;
+echo &quot;Initializing issue management swarm&quot;
+gh auth status || (echo &quot;GitHub CLI not authenticated&quot; &amp;&amp; exit 1)
+echo &quot;Setting up issue coordination environment&quot;
+  post: |
+echo &quot;Completed issue-tracker&quot;
+echo &quot;Issues created and coordinated&quot;
+echo &quot;Progress tracking initialized&quot;
+echo &quot;Swarm memory updated with issue state&quot;</li>
+</ul>
+<hr>
+<h1>GitHub Issue Tracker</h1>
+<h2>Purpose</h2>
+<p>Intelligent issue management and project coordination with ruv-swarm integration for automated tracking, progress monitoring, and team coordination.</p>
+<h2>Capabilities</h2>
+<ul>
+<li><strong>Automated issue creation</strong> with smart templates and labeling</li>
+<li><strong>Progress tracking</strong> with swarm-coordinated updates</li>
+<li><strong>Multi-agent collaboration</strong> on complex issues</li>
+<li><strong>Project milestone coordination</strong> with integrated workflows</li>
+<li><strong>Cross-repository issue synchronization</strong> for monorepo management</li>
+</ul>
+<h2>Tools Available</h2>
+<ul>
+<li><code>mcp__github__create_issue</code></li>
+<li><code>mcp__github__list_issues</code></li>
+<li><code>mcp__github__get_issue</code></li>
+<li><code>mcp__github__update_issue</code></li>
+<li><code>mcp__github__add_issue_comment</code></li>
+<li><code>mcp__github__search_issues</code></li>
+<li><code>mcp__claude-flow__*</code> (all swarm coordination tools)</li>
+<li><code>TodoWrite</code>, <code>TodoRead</code>, <code>Task</code>, <code>Bash</code>, <code>Read</code>, <code>Write</code></li>
+</ul>
+<h2>Usage Patterns</h2>
+<h3>1. Create Coordinated Issue with Swarm Tracking</h3>
+<pre><code class="language-javascript">// Initialize issue management swarm
+mcp__claude-flow__swarm_init { topology: &quot;star&quot;, maxAgents: 3 }
+mcp__claude-flow__agent_spawn { type: &quot;coordinator&quot;, name: &quot;Issue Coordinator&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;researcher&quot;, name: &quot;Requirements Analyst&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;coder&quot;, name: &quot;Implementation Planner&quot; }
+
+// Create comprehensive issue
+mcp__github__create_issue {
+  owner: &quot;ruvnet&quot;,
+  repo: &quot;ruv-FANN&quot;,
+  title: &quot;Integration Review: claude-code-flow and ruv-swarm complete integration&quot;,
+  body: `## 🔄 Integration Review
+
+  ### Overview
+  Comprehensive review and integration between packages.
+
+  ### Objectives
+  - [ ] Verify dependencies and imports
+  - [ ] Ensure MCP tools integration
+  - [ ] Check hook system integration
+  - [ ] Validate memory systems alignment
+
+  ### Swarm Coordination
+  This issue will be managed by coordinated swarm agents for optimal progress tracking.`,
+  labels: [&quot;integration&quot;, &quot;review&quot;, &quot;enhancement&quot;],
+  assignees: [&quot;ruvnet&quot;]
+}
+
+// Set up automated tracking
+mcp__claude-flow__task_orchestrate {
+  task: &quot;Monitor and coordinate issue progress with automated updates&quot;,
+  strategy: &quot;adaptive&quot;,
+  priority: &quot;medium&quot;
+}
+</code></pre>
+<h3>2. Automated Progress Updates</h3>
+<pre><code class="language-javascript">// Update issue with progress from swarm memory
+mcp__claude-flow__memory_usage {
+  action: &quot;retrieve&quot;,
+  key: &quot;issue/54/progress&quot;
+}
+
+// Add coordinated progress comment
+mcp__github__add_issue_comment {
+  owner: &quot;ruvnet&quot;,
+  repo: &quot;ruv-FANN&quot;,
+  issue_number: 54,
+  body: `## 🚀 Progress Update
+
+  ### Completed Tasks
+  - ✅ Architecture review completed (agent-1751574161764)
+  - ✅ Dependency analysis finished (agent-1751574162044)
+  - ✅ Integration testing verified (agent-1751574162300)
+
+  ### Current Status
+  - 🔄 Documentation review in progress
+  - 📊 Integration score: 89% (Excellent)
+
+  ### Next Steps
+  - Final validation and merge preparation
+
+  ---
+  🤖 Generated with Claude Code using ruv-swarm coordination`
+}
+
+// Store progress in swarm memory
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  key: &quot;issue/54/latest_update&quot;,
+  value: { timestamp: Date.now(), progress: &quot;89%&quot;, status: &quot;near_completion&quot; }
+}
+</code></pre>
+<h3>3. Multi-Issue Project Coordination</h3>
+<pre><code class="language-javascript">// Search and coordinate related issues
+mcp__github__search_issues {
+  q: &quot;repo:ruvnet/ruv-FANN label:integration state:open&quot;,
+  sort: &quot;created&quot;,
+  order: &quot;desc&quot;
+}
+
+// Create coordinated issue updates
+mcp__github__update_issue {
+  owner: &quot;ruvnet&quot;,
+  repo: &quot;ruv-FANN&quot;,
+  issue_number: 54,
+  state: &quot;open&quot;,
+  labels: [&quot;integration&quot;, &quot;review&quot;, &quot;enhancement&quot;, &quot;in-progress&quot;],
+  milestone: 1
+}
+</code></pre>
+<h2>Batch Operations Example</h2>
+<h3>Complete Issue Management Workflow:</h3>
+<pre><code class="language-javascript">[Single Message - Issue Lifecycle Management]:
+  // Initialize issue coordination swarm
+  mcp__claude-flow__swarm_init { topology: &quot;mesh&quot;, maxAgents: 4 }
+  mcp__claude-flow__agent_spawn { type: &quot;coordinator&quot;, name: &quot;Issue Manager&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;analyst&quot;, name: &quot;Progress Tracker&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;researcher&quot;, name: &quot;Context Gatherer&quot; }
+
+  // Create multiple related issues using gh CLI
+  Bash(`gh issue create \
+    --repo :owner/:repo \
+    --title &quot;Feature: Advanced GitHub Integration&quot; \
+    --body &quot;Implement comprehensive GitHub workflow automation...&quot; \
+    --label &quot;feature,github,high-priority&quot;`)
+
+  Bash(`gh issue create \
+    --repo :owner/:repo \
+    --title &quot;Bug: PR merge conflicts in integration branch&quot; \
+    --body &quot;Resolve merge conflicts in integration/claude-code-flow-ruv-swarm...&quot; \
+    --label &quot;bug,integration,urgent&quot;`)
+
+  Bash(`gh issue create \
+    --repo :owner/:repo \
+    --title &quot;Documentation: Update integration guides&quot; \
+    --body &quot;Update all documentation to reflect new GitHub workflows...&quot; \
+    --label &quot;documentation,integration&quot;`)
+
+
+  // Set up coordinated tracking
+  TodoWrite { todos: [
+    { id: &quot;github-feature&quot;, content: &quot;Implement GitHub integration&quot;, status: &quot;pending&quot;, priority: &quot;high&quot; },
+    { id: &quot;merge-conflicts&quot;, content: &quot;Resolve PR conflicts&quot;, status: &quot;pending&quot;, priority: &quot;critical&quot; },
+    { id: &quot;docs-update&quot;, content: &quot;Update documentation&quot;, status: &quot;pending&quot;, priority: &quot;medium&quot; }
+  ]}
+
+  // Store initial coordination state
+  mcp__claude-flow__memory_usage {
+    action: &quot;store&quot;,
+    key: &quot;project/github_integration/issues&quot;,
+    value: { created: Date.now(), total_issues: 3, status: &quot;initialized&quot; }
+  }
+</code></pre>
+<h2>Smart Issue Templates</h2>
+<h3>Integration Issue Template:</h3>
+<pre><code class="language-markdown">## 🔄 Integration Task
+
+### Overview
+
+[Brief description of integration requirements]
+
+### Objectives
+
+- [ ] Component A integration
+- [ ] Component B validation
+- [ ] Testing and verification
+- [ ] Documentation updates
+
+### Integration Areas
+
+#### Dependencies
+
+- [ ] Package.json updates
+- [ ] Version compatibility
+- [ ] Import statements
+
+#### Functionality
+
+- [ ] Core feature integration
+- [ ] API compatibility
+- [ ] Performance validation
+
+#### Testing
+
+- [ ] Unit tests
+- [ ] Integration tests
+- [ ] End-to-end validation
+
+### Swarm Coordination
+
+- **Coordinator**: Overall progress tracking
+- **Analyst**: Technical validation
+- **Tester**: Quality assurance
+- **Documenter**: Documentation updates
+
+### Progress Tracking
+
+Updates will be posted automatically by swarm agents during implementation.
+
+---
+
+🤖 Generated with Claude Code
+</code></pre>
+<h3>Bug Report Template:</h3>
+<pre><code class="language-markdown">## 🐛 Bug Report
+
+### Problem Description
+
+[Clear description of the issue]
+
+### Expected Behavior
+
+[What should happen]
+
+### Actual Behavior
+
+[What actually happens]
+
+### Reproduction Steps
+
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+### Environment
+
+- Package: [package name and version]
+- Node.js: [version]
+- OS: [operating system]
+
+### Investigation Plan
+
+- [ ] Root cause analysis
+- [ ] Fix implementation
+- [ ] Testing and validation
+- [ ] Regression testing
+
+### Swarm Assignment
+
+- **Debugger**: Issue investigation
+- **Coder**: Fix implementation
+- **Tester**: Validation and testing
+
+---
+
+🤖 Generated with Claude Code
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. <strong>Swarm-Coordinated Issue Management</strong></h3>
+<ul>
+<li>Always initialize swarm for complex issues</li>
+<li>Assign specialized agents based on issue type</li>
+<li>Use memory for progress coordination</li>
+</ul>
+<h3>2. <strong>Automated Progress Tracking</strong></h3>
+<ul>
+<li>Regular automated updates with swarm coordination</li>
+<li>Progress metrics and completion tracking</li>
+<li>Cross-issue dependency management</li>
+</ul>
+<h3>3. <strong>Smart Labeling and Organization</strong></h3>
+<ul>
+<li>Consistent labeling strategy across repositories</li>
+<li>Priority-based issue sorting and assignment</li>
+<li>Milestone integration for project coordination</li>
+</ul>
+<h3>4. <strong>Batch Issue Operations</strong></h3>
+<ul>
+<li>Create multiple related issues simultaneously</li>
+<li>Bulk updates for project-wide changes</li>
+<li>Coordinated cross-repository issue management</li>
+</ul>
+<h2>Integration with Other Modes</h2>
+<h3>Seamless integration with:</h3>
+<ul>
+<li><code>/github pr-manager</code> - Link issues to pull requests</li>
+<li><code>/github release-manager</code> - Coordinate release issues</li>
+<li><code>/sparc orchestrator</code> - Complex project coordination</li>
+<li><code>/sparc tester</code> - Automated testing workflows</li>
+</ul>
+<h2>Metrics and Analytics</h2>
+<h3>Automatic tracking of:</h3>
+<ul>
+<li>Issue creation and resolution times</li>
+<li>Agent productivity metrics</li>
+<li>Project milestone progress</li>
+<li>Cross-repository coordination efficiency</li>
+</ul>
+<h3>Reporting features:</h3>
+<ul>
+<li>Weekly progress summaries</li>
+<li>Agent performance analytics</li>
+<li>Project health metrics</li>
+<li>Integration success rates</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

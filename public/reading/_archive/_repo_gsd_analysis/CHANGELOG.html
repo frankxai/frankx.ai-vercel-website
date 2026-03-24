@@ -1,0 +1,1110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Changelog</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/CHANGELOG.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Changelog</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#_archive">_archive</a> / <a href="index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <span>CHANGELOG.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Changelog</h1>
+<p>All notable changes to GSD will be documented in this file.</p>
+<p>Format follows <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>.</p>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/compare/v1.9.4...HEAD">Unreleased</a></h2>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.9.4">1.9.4</a> - 2026-01-21</h2>
+<h3>Changed</h3>
+<ul>
+<li>Checkpoint automation now enforces automation-first principle: Claude starts servers, handles CLI installs, and fixes setup failures before presenting checkpoints to users</li>
+<li>Added server lifecycle protocol (port conflict handling, background process management)</li>
+<li>Added CLI auto-installation handling with safe-to-install matrix</li>
+<li>Added pre-checkpoint failure recovery (fix broken environment before asking user to verify)</li>
+<li>DRY refactor: checkpoints.md is now single source of truth for automation patterns</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.9.2">1.9.2</a> - 2025-01-21</h2>
+<h3>Removed</h3>
+<ul>
+<li><strong>Codebase Intelligence System</strong> — Removed due to overengineering concerns<ul>
+<li>Deleted <code>/gsd:analyze-codebase</code> command</li>
+<li>Deleted <code>/gsd:query-intel</code> command</li>
+<li>Removed SQLite graph database and sql.js dependency (21MB)</li>
+<li>Removed intel hooks (gsd-intel-index.js, gsd-intel-session.js, gsd-intel-prune.js)</li>
+<li>Removed entity file generation and templates</li>
+</ul>
+</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>new-project now properly includes model_profile in config</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.9.0">1.9.0</a> - 2025-01-20</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>Model Profiles</strong> — <code>/gsd:set-profile</code> for quality/balanced/budget agent configurations</li>
+<li><strong>Workflow Settings</strong> — <code>/gsd:settings</code> command for toggling workflow behaviors interactively</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Orchestrators now inline file contents in Task prompts (fixes context issues with @ references)</li>
+<li>Tech debt from milestone audit addressed</li>
+<li>All hooks now use <code>gsd-</code> prefix for consistency (statusline.js → gsd-statusline.js)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.8.0">1.8.0</a> - 2026-01-19</h2>
+<h3>Added</h3>
+<ul>
+<li>Uncommitted planning mode: Keep <code>.planning/</code> local-only (not committed to git) via <code>planning.commit_docs: false</code> in config.json. Useful for OSS contributions, client work, or privacy preferences.</li>
+<li><code>/gsd:new-project</code> now asks about git tracking during initial setup, letting you opt out of committing planning docs from the start</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.7.1">1.7.1</a> - 2026-01-19</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Quick task PLAN and SUMMARY files now use numbered prefix (<code>001-PLAN.md</code>, <code>001-SUMMARY.md</code>) matching regular phase naming convention</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.7.0">1.7.0</a> - 2026-01-19</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>Quick Mode</strong> (<code>/gsd:quick</code>) — Execute small, ad-hoc tasks with GSD guarantees but skip optional agents (researcher, checker, verifier). Quick tasks live in <code>.planning/quick/</code> with their own tracking in STATE.md.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Improved progress bar calculation to clamp values within 0-100 range</li>
+<li>Updated documentation with comprehensive Quick Mode sections in help.md, README.md, and GSD-STYLE.md</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Console window flash on Windows when running hooks</li>
+<li>Empty <code>--config-dir</code> value validation</li>
+<li>Consistent <code>allowed-tools</code> YAML format across agents</li>
+<li>Corrected agent name in research-phase heading</li>
+<li>Removed hardcoded 2025 year from search query examples</li>
+<li>Removed dead gsd-researcher agent references</li>
+<li>Integrated unused reference files into documentation</li>
+</ul>
+<h3>Housekeeping</h3>
+<ul>
+<li>Added homepage and bugs fields to package.json</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.6.4">1.6.4</a> - 2026-01-17</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Installation on WSL2/non-TTY terminals now works correctly - detects non-interactive stdin and falls back to global install automatically</li>
+<li>Installation now verifies files were actually copied before showing success checkmarks</li>
+<li>Orphaned <code>gsd-notify.sh</code> hook from previous versions is now automatically removed during install (both file and settings.json registration)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.6.3">1.6.3</a> - 2025-01-17</h2>
+<h3>Added</h3>
+<ul>
+<li><code>--gaps-only</code> flag for <code>/gsd:execute-phase</code> — executes only gap closure plans after verify-work finds issues, eliminating redundant state discovery</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.6.2">1.6.2</a> - 2025-01-17</h2>
+<h3>Changed</h3>
+<ul>
+<li>README restructured with clearer 6-step workflow: init → discuss → plan → execute → verify → complete</li>
+<li>Discuss-phase and verify-work now emphasized as critical steps in core workflow documentation</li>
+<li>&quot;Subagent Execution&quot; section replaced with &quot;Multi-Agent Orchestration&quot; explaining thin orchestrator pattern and 30-40% context efficiency</li>
+<li>Brownfield instructions consolidated into callout at top of &quot;How It Works&quot; instead of separate section</li>
+<li>Phase directories now created at discuss/plan-phase instead of during roadmap creation</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.6.1">1.6.1</a> - 2025-01-17</h2>
+<h3>Changed</h3>
+<ul>
+<li>Installer performs clean install of GSD folders, removing orphaned files from previous versions</li>
+<li><code>/gsd:update</code> shows changelog and asks for confirmation before updating, with clear warning about what gets replaced</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.6.0">1.6.0</a> - 2026-01-17</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>BREAKING:</strong> Unified <code>/gsd:new-milestone</code> flow — now mirrors <code>/gsd:new-project</code> with questioning → research → requirements → roadmap in a single command</li>
+<li>Roadmapper agent now references templates instead of inline structures for easier maintenance</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li><strong>BREAKING:</strong> <code>/gsd:discuss-milestone</code> — consolidated into <code>/gsd:new-milestone</code></li>
+<li><strong>BREAKING:</strong> <code>/gsd:create-roadmap</code> — integrated into project/milestone flows</li>
+<li><strong>BREAKING:</strong> <code>/gsd:define-requirements</code> — integrated into project/milestone flows</li>
+<li><strong>BREAKING:</strong> <code>/gsd:research-project</code> — integrated into project/milestone flows</li>
+</ul>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:verify-work</code> now includes next-step routing after verification completes</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.30">1.5.30</a> - 2026-01-17</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Output templates in <code>plan-phase</code>, <code>execute-phase</code>, and <code>audit-milestone</code> now render markdown correctly instead of showing literal backticks</li>
+<li>Next-step suggestions now consistently recommend <code>/gsd:discuss-phase</code> before <code>/gsd:plan-phase</code> across all routing paths</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.29">1.5.29</a> - 2025-01-16</h2>
+<h3>Changed</h3>
+<ul>
+<li>Discuss-phase now uses domain-aware questioning with deeper probing for gray areas</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Windows hooks now work via Node.js conversion (statusline, update-check)</li>
+<li>Phase input normalization at command entry points</li>
+<li>Removed blocking notification popups (gsd-notify) on all platforms</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.28">1.5.28</a> - 2026-01-16</h2>
+<h3>Changed</h3>
+<ul>
+<li>Consolidated milestone workflow into single command</li>
+<li>Merged domain expertise skills into agent configurations</li>
+<li><strong>BREAKING:</strong> Removed <code>/gsd:execute-plan</code> command (use <code>/gsd:execute-phase</code> instead)</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Phase directory matching now handles both zero-padded (05-<em>) and unpadded (5-</em>) folder names</li>
+<li>Map-codebase agent output collection</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.27">1.5.27</a> - 2026-01-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Orchestrator corrections between executor completions are now committed (previously left uncommitted when orchestrator made small fixes between waves)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.26">1.5.26</a> - 2026-01-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Revised plans now get committed after checker feedback (previously only initial plans were committed, leaving revisions uncommitted)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.25">1.5.25</a> - 2026-01-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Stop notification hook no longer shows stale project state (now uses session-scoped todos only)</li>
+<li>Researcher agent now reliably loads CONTEXT.md from discuss-phase</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.24">1.5.24</a> - 2026-01-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Stop notification hook now correctly parses STATE.md fields (was always showing &quot;Ready for input&quot;)</li>
+<li>Planner agent now reliably loads CONTEXT.md and RESEARCH.md files</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.23">1.5.23</a> - 2025-01-16</h2>
+<h3>Added</h3>
+<ul>
+<li>Cross-platform completion notification hook (Mac/Linux/Windows alerts when Claude stops)</li>
+<li>Phase researcher now loads CONTEXT.md from discuss-phase to focus research on user decisions</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Consistent zero-padding for phase directories (01-name, not 1-name)</li>
+<li>Plan file naming: <code>{phase}-{plan}-PLAN.md</code> pattern restored across all agents</li>
+<li>Double-path bug in researcher git add command</li>
+<li>Removed <code>/gsd:research-phase</code> from next-step suggestions (use <code>/gsd:plan-phase</code> instead)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.22">1.5.22</a> - 2025-01-16</h2>
+<h3>Added</h3>
+<ul>
+<li>Statusline update indicator — shows <code>⬆ /gsd:update</code> when a new version is available</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Planner now updates ROADMAP.md placeholders after planning completes</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.21">1.5.21</a> - 2026-01-16</h2>
+<h3>Added</h3>
+<ul>
+<li>GSD brand system for consistent UI (checkpoint boxes, stage banners, status symbols)</li>
+<li>Research synthesizer agent that consolidates parallel research into SUMMARY.md</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>Unified <code>/gsd:new-project</code> flow</strong> — Single command now handles questions → research → requirements → roadmap (~10 min)</li>
+<li>Simplified README to reflect streamlined workflow: new-project → plan-phase → execute-phase</li>
+<li>Added optional <code>/gsd:discuss-phase</code> documentation for UI/UX/behavior decisions before planning</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>verify-work now shows clear checkpoint box with action prompt (&quot;Type &#39;pass&#39; or describe what&#39;s wrong&quot;)</li>
+<li>Planner uses correct <code>{phase}-{plan}-PLAN.md</code> naming convention</li>
+<li>Planner no longer surfaces internal <code>user_setup</code> in output</li>
+<li>Research synthesizer commits all research files together (not individually)</li>
+<li>Project researcher agent can no longer commit (orchestrator handles commits)</li>
+<li>Roadmap requires explicit user approval before committing</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.20">1.5.20</a> - 2026-01-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Research no longer skipped based on premature &quot;Research: Unlikely&quot; predictions made during roadmap creation. The <code>--skip-research</code> flag provides explicit control when needed.</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li><code>Research: Likely/Unlikely</code> fields from roadmap phase template</li>
+<li><code>detect_research_needs</code> step from roadmap creation workflow</li>
+<li>Roadmap-based research skip logic from planner agent</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.19">1.5.19</a> - 2026-01-16</h2>
+<h3>Changed</h3>
+<ul>
+<li><code>/gsd:discuss-phase</code> redesigned with intelligent gray area analysis — analyzes phase to identify discussable areas (UI, UX, Behavior, etc.), presents multi-select for user control, deep-dives each area with focused questioning</li>
+<li>Explicit scope guardrail prevents scope creep during discussion — captures deferred ideas without acting on them</li>
+<li>CONTEXT.md template restructured for decisions (domain boundary, decisions by category, Claude&#39;s discretion, deferred ideas)</li>
+<li>Downstream awareness: discuss-phase now explicitly documents that CONTEXT.md feeds researcher and planner agents</li>
+<li><code>/gsd:plan-phase</code> now integrates research — spawns <code>gsd-phase-researcher</code> before planning unless research exists or <code>--skip-research</code> flag used</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.18">1.5.18</a> - 2026-01-16</h2>
+<h3>Added</h3>
+<ul>
+<li><strong>Plan verification loop</strong> — Plans are now verified before execution with a planner → checker → revise cycle<ul>
+<li>New <code>gsd-plan-checker</code> agent (744 lines) validates plans will achieve phase goals</li>
+<li>Six verification dimensions: requirement coverage, task completeness, dependency correctness, key links, scope sanity, must_haves derivation</li>
+<li>Max 3 revision iterations before user escalation</li>
+<li><code>--skip-verify</code> flag for experienced users who want to bypass verification</li>
+</ul>
+</li>
+<li><strong>Dedicated planner agent</strong> — <code>gsd-planner</code> (1,319 lines) consolidates all planning expertise<ul>
+<li>Complete methodology: discovery levels, task breakdown, dependency graphs, scope estimation, goal-backward analysis</li>
+<li>Revision mode for handling checker feedback</li>
+<li>TDD integration and checkpoint patterns</li>
+</ul>
+</li>
+<li><strong>Statusline integration</strong> — Context usage, model, and current task display</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><code>/gsd:plan-phase</code> refactored to thin orchestrator pattern (310 lines)<ul>
+<li>Spawns <code>gsd-planner</code> for planning, <code>gsd-plan-checker</code> for verification</li>
+<li>User sees status between agent spawns (not a black box)</li>
+</ul>
+</li>
+<li>Planning references deprecated with redirects to <code>gsd-planner</code> agent sections<ul>
+<li><code>plan-format.md</code>, <code>scope-estimation.md</code>, <code>goal-backward.md</code>, <code>principles.md</code></li>
+<li><code>workflows/plan-phase.md</code></li>
+</ul>
+</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Removed zombie <code>gsd-milestone-auditor</code> agent (was accidentally re-added after correct deletion)</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li>Phase 99 throwaway test files</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.17">1.5.17</a> - 2026-01-15</h2>
+<h3>Added</h3>
+<ul>
+<li>New <code>/gsd:update</code> command — check for updates, install, and display changelog of what changed (better UX than raw <code>npx get-shit-done-cc</code>)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.16">1.5.16</a> - 2026-01-15</h2>
+<h3>Added</h3>
+<ul>
+<li>New <code>gsd-researcher</code> agent (915 lines) with comprehensive research methodology, 4 research modes (ecosystem, feasibility, implementation, comparison), source hierarchy, and verification protocols</li>
+<li>New <code>gsd-debugger</code> agent (990 lines) with scientific debugging methodology, hypothesis testing, and 7+ investigation techniques</li>
+<li>New <code>gsd-codebase-mapper</code> agent for brownfield codebase analysis</li>
+<li>Research subagent prompt template for context-only spawning</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><code>/gsd:research-phase</code> refactored to thin orchestrator — now injects rich context (key insight framing, downstream consumer info, quality gates) to gsd-researcher agent</li>
+<li><code>/gsd:research-project</code> refactored to spawn 4 parallel gsd-researcher agents with milestone-aware context (greenfield vs v1.1+) and roadmap implications guidance</li>
+<li><code>/gsd:debug</code> refactored to thin orchestrator (149 lines) — spawns gsd-debugger agent with full debugging expertise</li>
+<li><code>/gsd:new-milestone</code> now explicitly references MILESTONE-CONTEXT.md</li>
+</ul>
+<h3>Deprecated</h3>
+<ul>
+<li><code>workflows/research-phase.md</code> — consolidated into gsd-researcher agent</li>
+<li><code>workflows/research-project.md</code> — consolidated into gsd-researcher agent</li>
+<li><code>workflows/debug.md</code> — consolidated into gsd-debugger agent</li>
+<li><code>references/research-pitfalls.md</code> — consolidated into gsd-researcher agent</li>
+<li><code>references/debugging.md</code> — consolidated into gsd-debugger agent</li>
+<li><code>references/debug-investigation.md</code> — consolidated into gsd-debugger agent</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.15">1.5.15</a> - 2025-01-15</h2>
+<h3>Fixed</h3>
+<ul>
+<li><strong>Agents now install correctly</strong> — The <code>agents/</code> folder (gsd-executor, gsd-verifier, gsd-integration-checker, gsd-milestone-auditor) was missing from npm package, now included</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Consolidated <code>/gsd:plan-fix</code> into <code>/gsd:plan-phase --gaps</code> for simpler workflow</li>
+<li>UAT file writes now batched instead of per-response for better performance</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.14">1.5.14</a> - 2025-01-15</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Plan-phase now always routes to <code>/gsd:execute-phase</code> after planning, even for single-plan phases</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.13">1.5.13</a> - 2026-01-15</h2>
+<h3>Fixed</h3>
+<ul>
+<li><code>/gsd:new-milestone</code> now presents research and requirements paths as equal options, matching <code>/gsd:new-project</code> format</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.12">1.5.12</a> - 2025-01-15</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>Milestone cycle reworked for proper requirements flow:</strong><ul>
+<li><code>complete-milestone</code> now archives AND deletes ROADMAP.md and REQUIREMENTS.md (fresh for next milestone)</li>
+<li><code>new-milestone</code> is now a &quot;brownfield new-project&quot; — updates PROJECT.md with new goals, routes to define-requirements</li>
+<li><code>discuss-milestone</code> is now required before <code>new-milestone</code> (creates context file)</li>
+<li><code>research-project</code> is milestone-aware — focuses on new features, ignores already-validated requirements</li>
+<li><code>create-roadmap</code> continues phase numbering from previous milestone</li>
+<li>Flow: complete → discuss → new-milestone → research → requirements → roadmap</li>
+</ul>
+</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li><code>MILESTONE-AUDIT.md</code> now versioned as <code>v{version}-MILESTONE-AUDIT.md</code> and archived on completion</li>
+<li><code>progress</code> now correctly routes to <code>/gsd:discuss-milestone</code> when between milestones (Route F)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.11">1.5.11</a> - 2025-01-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>Verifier reuses previous must-haves on re-verification instead of re-deriving, focuses deep verification on failed items with quick regression checks on passed items</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.10">1.5.10</a> - 2025-01-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>Milestone audit now reads existing phase VERIFICATION.md files instead of re-verifying each phase, aggregates tech debt and deferred gaps, adds <code>tech_debt</code> status for non-blocking accumulated debt</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>VERIFICATION.md now included in phase completion commit alongside ROADMAP.md, STATE.md, and REQUIREMENTS.md</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.9">1.5.9</a> - 2025-01-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Milestone audit system (<code>/gsd:audit-milestone</code>) for verifying milestone completion with parallel verification agents</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Checkpoint display format improved with box headers and unmissable &quot;→ YOUR ACTION:&quot; prompts</li>
+<li>Subagent colors updated (executor: yellow, integration-checker: blue)</li>
+<li>Execute-phase now recommends <code>/gsd:audit-milestone</code> when milestone completes</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Research-phase no longer gatekeeps by domain type</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li>Domain expertise feature (<code>~/.claude/skills/expertise/</code>) - was personal tooling not available to other users</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.8">1.5.8</a> - 2025-01-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Verification loop: When gaps are found, verifier generates fix plans that execute automatically before re-verifying</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><code>gsd-executor</code> subagent color changed from red to blue</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.7">1.5.7</a> - 2025-01-15</h2>
+<h3>Added</h3>
+<ul>
+<li><code>gsd-executor</code> subagent: Dedicated agent for plan execution with full workflow logic built-in</li>
+<li><code>gsd-verifier</code> subagent: Goal-backward verification that checks if phase goals are actually achieved (not just tasks completed)</li>
+<li>Phase verification: Automatic verification runs when a phase completes to catch stubs and incomplete implementations</li>
+<li>Goal-backward planning reference: Documentation for deriving must-haves from goals</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>execute-plan and execute-phase now spawn <code>gsd-executor</code> subagent instead of using inline workflow</li>
+<li>Roadmap and planning workflows enhanced with goal-backward analysis</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li>Obsolete templates (<code>checkpoint-resume.md</code>, <code>subagent-task-prompt.md</code>) — logic now lives in subagents</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Updated remaining <code>general-purpose</code> subagent references to use <code>gsd-executor</code></li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.6">1.5.6</a> - 2025-01-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>README: Separated flow into distinct steps (1 → 1.5 → 2 → 3 → 4 → 5) making <code>research-project</code> clearly optional and <code>define-requirements</code> required</li>
+<li>README: Research recommended for quality; skip only for speed</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>execute-phase: Phase metadata (timing, wave info) now bundled into single commit instead of separate commits</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.5">1.5.5</a> - 2025-01-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>README now documents the <code>research-project</code> → <code>define-requirements</code> flow (optional but recommended before <code>create-roadmap</code>)</li>
+<li>Commands section reorganized into 7 grouped tables (Setup, Execution, Verification, Milestones, Phase Management, Session, Utilities) for easier scanning</li>
+<li>Context Engineering table now includes <code>research/</code> and <code>REQUIREMENTS.md</code></li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.4">1.5.4</a> - 2025-01-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>Research phase now loads REQUIREMENTS.md to focus research on concrete requirements (e.g., &quot;email verification&quot;) rather than just high-level roadmap descriptions</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.3">1.5.3</a> - 2025-01-15</h2>
+<h3>Changed</h3>
+<ul>
+<li><strong>execute-phase narration</strong>: Orchestrator now describes what each wave builds before spawning agents, and summarizes what was built after completion. No more staring at opaque status updates.</li>
+<li><strong>new-project flow</strong>: Now offers two paths — research first (recommended) or define requirements directly (fast path for familiar domains)</li>
+<li><strong>define-requirements</strong>: Works without prior research. Gathers requirements through conversation when FEATURES.md doesn&#39;t exist.</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li>Dead <code>/gsd:status</code> command (referenced abandoned background agent model)</li>
+<li>Unused <code>agent-history.md</code> template</li>
+<li><code>_archive/</code> directory with old execute-phase version</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.2">1.5.2</a> - 2026-01-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Requirements traceability: roadmap phases now include <code>Requirements:</code> field listing which REQ-IDs they cover</li>
+<li>plan-phase loads REQUIREMENTS.md and shows phase-specific requirements before planning</li>
+<li>Requirements automatically marked Complete when phase finishes</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Workflow preferences (mode, depth, parallelization) now asked in single prompt instead of 3 separate questions</li>
+<li>define-requirements shows full requirements list inline before commit (not just counts)</li>
+<li>Research-project and workflow aligned to both point to define-requirements as next step</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Requirements status now updated by orchestrator (commands) instead of subagent workflow, which couldn&#39;t determine phase completion</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.1">1.5.1</a> - 2026-01-14</h2>
+<h3>Changed</h3>
+<ul>
+<li>Research agents write their own files directly (STACK.md, FEATURES.md, ARCHITECTURE.md, PITFALLS.md) instead of returning results to orchestrator</li>
+<li>Slimmed principles.md and load it dynamically in core commands</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.5.0">1.5.0</a> - 2026-01-14</h2>
+<h3>Added</h3>
+<ul>
+<li>New <code>/gsd:research-project</code> command for pre-roadmap ecosystem research — spawns parallel agents to investigate stack, features, architecture, and pitfalls before you commit to a roadmap</li>
+<li>New <code>/gsd:define-requirements</code> command for scoping v1 requirements from research findings — transforms &quot;what exists in this domain&quot; into &quot;what we&#39;re building&quot;</li>
+<li>Requirements traceability: phases now map to specific requirement IDs with 100% coverage validation</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>BREAKING:</strong> New project flow is now: <code>new-project → research-project → define-requirements → create-roadmap</code></li>
+<li>Roadmap creation now requires REQUIREMENTS.md and validates all v1 requirements are mapped to phases</li>
+<li>Simplified questioning in new-project to four essentials (vision, core priority, boundaries, constraints)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.29">1.4.29</a> - 2026-01-14</h2>
+<h3>Removed</h3>
+<ul>
+<li>Deleted obsolete <code>_archive/execute-phase.md</code> and <code>status.md</code> commands</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.28">1.4.28</a> - 2026-01-14</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Restored comprehensive checkpoint documentation with full examples for verification, decisions, and auth gates</li>
+<li>Fixed execute-plan command to use fresh continuation agents instead of broken resume pattern</li>
+<li>Rich checkpoint presentation formats now documented for all three checkpoint types</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Slimmed execute-phase command to properly delegate checkpoint handling to workflow</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.27">1.4.27</a> - 2025-01-14</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Restored &quot;what to do next&quot; commands after plan/phase execution completes — orchestrator pattern conversion had inadvertently removed the copy/paste-ready next-step routing</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.26">1.4.26</a> - 2026-01-14</h2>
+<h3>Added</h3>
+<ul>
+<li>Full changelog history backfilled from git (66 historical versions from 1.0.0 to 1.4.23)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.25">1.4.25</a> - 2026-01-14</h2>
+<h3>Added</h3>
+<ul>
+<li>New <code>/gsd:whats-new</code> command shows changes since your installed version</li>
+<li>VERSION file written during installation for version tracking</li>
+<li>CHANGELOG.md now included in package installation</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.24">1.4.24</a> - 2026-01-14</h2>
+<h3>Added</h3>
+<ul>
+<li>USER-SETUP.md template for external service configuration</li>
+</ul>
+<h3>Removed</h3>
+<ul>
+<li><strong>BREAKING:</strong> ISSUES.md system (replaced by phase-scoped UAT issues and TODOs)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.23">1.4.23</a> - 2026-01-14</h2>
+<h3>Changed</h3>
+<ul>
+<li>Removed dead ISSUES.md system code</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.22">1.4.22</a> - 2026-01-14</h2>
+<h3>Added</h3>
+<ul>
+<li>Subagent isolation for debug investigations with checkpoint support</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>DEBUG_DIR path constant to prevent typos in debug workflow</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.21">1.4.21</a> - 2026-01-14</h2>
+<h3>Fixed</h3>
+<ul>
+<li>SlashCommand tool added to plan-fix allowed-tools</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.20">1.4.20</a> - 2026-01-14</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Standardized debug file naming convention</li>
+<li>Debug workflow now invokes execute-plan correctly</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.19">1.4.19</a> - 2026-01-14</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Auto-diagnose issues instead of offering choice in plan-fix</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.18">1.4.18</a> - 2026-01-14</h2>
+<h3>Added</h3>
+<ul>
+<li>Parallel diagnosis before plan-fix execution</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.17">1.4.17</a> - 2026-01-14</h2>
+<h3>Changed</h3>
+<ul>
+<li>Redesigned verify-work as conversational UAT with persistent state</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.16">1.4.16</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li>Pre-execution summary for interactive mode in execute-plan</li>
+<li>Pre-computed wave numbers at plan time</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.15">1.4.15</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li>Context rot explanation to README header</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.14">1.4.14</a> - 2026-01-13</h2>
+<h3>Changed</h3>
+<ul>
+<li>YOLO mode is now recommended default in new-project</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.13">1.4.13</a> - 2026-01-13</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Brownfield flow documentation</li>
+<li>Removed deprecated resume-task references</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.12">1.4.12</a> - 2026-01-13</h2>
+<h3>Changed</h3>
+<ul>
+<li>execute-phase is now recommended as primary execution command</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.11">1.4.11</a> - 2026-01-13</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Checkpoints now use fresh continuation agents instead of resume</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.10">1.4.10</a> - 2026-01-13</h2>
+<h3>Changed</h3>
+<ul>
+<li>execute-plan converted to orchestrator pattern for performance</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.9">1.4.9</a> - 2026-01-13</h2>
+<h3>Changed</h3>
+<ul>
+<li>Removed subagent-only context from execute-phase orchestrator</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Removed &quot;what&#39;s out of scope&quot; question from discuss-phase</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.8">1.4.8</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li>TDD reasoning explanation restored to plan-phase docs</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.7">1.4.7</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li>Project state loading before execution in execute-phase</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Parallel execution marked as recommended, not experimental</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.6">1.4.6</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li>Checkpoint pause/resume for spawned agents</li>
+<li>Deviation rules, commit rules, and workflow references to execute-phase</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.5">1.4.5</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li>Parallel-first planning with dependency graphs</li>
+<li>Checkpoint-resume capability for long-running phases</li>
+<li><code>.claude/rules/</code> directory for auto-loaded contribution rules</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>execute-phase uses wave-based blocking execution</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.4">1.4.4</a> - 2026-01-13</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Inline listing for multiple active debug sessions</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.3">1.4.3</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:debug</code> command for systematic debugging with persistent state</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.2">1.4.2</a> - 2026-01-13</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Installation verification step clarification</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.1">1.4.1</a> - 2026-01-13</h2>
+<h3>Added</h3>
+<ul>
+<li>Parallel phase execution via <code>/gsd:execute-phase</code></li>
+<li>Parallel-aware planning in <code>/gsd:plan-phase</code></li>
+<li><code>/gsd:status</code> command for parallel agent monitoring</li>
+<li>Parallelization configuration in config.json</li>
+<li>Wave-based parallel execution with dependency graphs</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Renamed <code>execute-phase.md</code> workflow to <code>execute-plan.md</code> for clarity</li>
+<li>Plan frontmatter now includes <code>wave</code>, <code>depends_on</code>, <code>files_modified</code>, <code>autonomous</code></li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.4.0">1.4.0</a> - 2026-01-12</h2>
+<h3>Added</h3>
+<ul>
+<li>Full parallel phase execution system</li>
+<li>Parallelization frontmatter in plan templates</li>
+<li>Dependency analysis for parallel task scheduling</li>
+<li>Agent history schema v1.2 with parallel execution support</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Plans can now specify wave numbers and dependencies</li>
+<li>execute-phase orchestrates multiple subagents in waves</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.34">1.3.34</a> - 2026-01-11</h2>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:add-todo</code> and <code>/gsd:check-todos</code> for mid-session idea capture</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.33">1.3.33</a> - 2026-01-11</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Consistent zero-padding for decimal phase numbers (e.g., 01.1)</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Removed obsolete .claude-plugin directory</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.32">1.3.32</a> - 2026-01-10</h2>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:resume-task</code> for resuming interrupted subagent executions</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.31">1.3.31</a> - 2026-01-08</h2>
+<h3>Added</h3>
+<ul>
+<li>Planning principles for security, performance, and observability</li>
+<li>Pro patterns section in README</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.30">1.3.30</a> - 2026-01-08</h2>
+<h3>Added</h3>
+<ul>
+<li>verify-work option surfaces after plan execution</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.29">1.3.29</a> - 2026-01-08</h2>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:verify-work</code> for conversational UAT validation</li>
+<li><code>/gsd:plan-fix</code> for fixing UAT issues</li>
+<li>UAT issues template</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.28">1.3.28</a> - 2026-01-07</h2>
+<h3>Added</h3>
+<ul>
+<li><code>--config-dir</code> CLI argument for multi-account setups</li>
+<li><code>/gsd:remove-phase</code> command</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Validation for --config-dir edge cases</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.27">1.3.27</a> - 2026-01-07</h2>
+<h3>Added</h3>
+<ul>
+<li>Recommended permissions mode documentation</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Mandatory verification enforced before phase/milestone completion routing</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.26">1.3.26</a> - 2026-01-06</h2>
+<h3>Added</h3>
+<ul>
+<li>Claude Code marketplace plugin support</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Phase artifacts now committed when created</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.25">1.3.25</a> - 2026-01-06</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Milestone discussion context persists across /clear</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.24">1.3.24</a> - 2026-01-06</h2>
+<h3>Added</h3>
+<ul>
+<li><code>CLAUDE_CONFIG_DIR</code> environment variable support</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.23">1.3.23</a> - 2026-01-06</h2>
+<h3>Added</h3>
+<ul>
+<li>Non-interactive install flags (<code>--global</code>, <code>--local</code>) for Docker/CI</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.22">1.3.22</a> - 2026-01-05</h2>
+<h3>Changed</h3>
+<ul>
+<li>Removed unused auto.md command</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.21">1.3.21</a> - 2026-01-05</h2>
+<h3>Changed</h3>
+<ul>
+<li>TDD features use dedicated plans for full context quality</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.20">1.3.20</a> - 2026-01-05</h2>
+<h3>Added</h3>
+<ul>
+<li>Per-task atomic commits for better AI observability</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.19">1.3.19</a> - 2026-01-05</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Clarified create-milestone.md file locations with explicit instructions</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.18">1.3.18</a> - 2026-01-05</h2>
+<h3>Added</h3>
+<ul>
+<li>YAML frontmatter schema with dependency graph metadata</li>
+<li>Intelligent context assembly via frontmatter dependency graph</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.17">1.3.17</a> - 2026-01-04</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Clarified depth controls compression, not inflation in planning</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.16">1.3.16</a> - 2026-01-04</h2>
+<h3>Added</h3>
+<ul>
+<li>Depth parameter for planning thoroughness (<code>--depth=1-5</code>)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.15">1.3.15</a> - 2026-01-01</h2>
+<h3>Fixed</h3>
+<ul>
+<li>TDD reference loaded directly in commands</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.14">1.3.14</a> - 2025-12-31</h2>
+<h3>Added</h3>
+<ul>
+<li>TDD integration with detection, annotation, and execution flow</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.13">1.3.13</a> - 2025-12-29</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Restored deterministic bash commands</li>
+<li>Removed redundant decision_gate</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.12">1.3.12</a> - 2025-12-29</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Restored plan-format.md as output template</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.11">1.3.11</a> - 2025-12-29</h2>
+<h3>Changed</h3>
+<ul>
+<li>70% context reduction for plan-phase workflow</li>
+<li>Merged CLI automation into checkpoints</li>
+<li>Compressed scope-estimation (74% reduction) and plan-phase.md (66% reduction)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.10">1.3.10</a> - 2025-12-29</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Explicit plan count check in offer_next step</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.9">1.3.9</a> - 2025-12-27</h2>
+<h3>Added</h3>
+<ul>
+<li>Evolutionary PROJECT.md system with incremental updates</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.8">1.3.8</a> - 2025-12-18</h2>
+<h3>Added</h3>
+<ul>
+<li>Brownfield/existing projects section in README</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.7">1.3.7</a> - 2025-12-18</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Improved incremental codebase map updates</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.6">1.3.6</a> - 2025-12-18</h2>
+<h3>Added</h3>
+<ul>
+<li>File paths included in codebase mapping output</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.5">1.3.5</a> - 2025-12-17</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Removed arbitrary 100-line limit from codebase mapping</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.4">1.3.4</a> - 2025-12-17</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Inline code for Next Up commands (avoids nesting ambiguity)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.3">1.3.3</a> - 2025-12-17</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Check PROJECT.md not .planning/ directory for existing project detection</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.2">1.3.2</a> - 2025-12-17</h2>
+<h3>Added</h3>
+<ul>
+<li>Git commit step to map-codebase workflow</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.1">1.3.1</a> - 2025-12-17</h2>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:map-codebase</code> documentation in help and README</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.3.0">1.3.0</a> - 2025-12-17</h2>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:map-codebase</code> command for brownfield project analysis</li>
+<li>Codebase map templates (stack, architecture, structure, conventions, testing, integrations, concerns)</li>
+<li>Parallel Explore agent orchestration for codebase analysis</li>
+<li>Brownfield integration into GSD workflows</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Improved continuation UI with context and visual hierarchy</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Permission errors for non-DSP users (removed shell context)</li>
+<li>First question is now freeform, not AskUserQuestion</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.13">1.2.13</a> - 2025-12-17</h2>
+<h3>Added</h3>
+<ul>
+<li>Improved continuation UI with context and visual hierarchy</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.12">1.2.12</a> - 2025-12-17</h2>
+<h3>Fixed</h3>
+<ul>
+<li>First question should be freeform, not AskUserQuestion</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.11">1.2.11</a> - 2025-12-17</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Permission errors for non-DSP users (removed shell context)</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.10">1.2.10</a> - 2025-12-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Inline command invocation replaced with clear-then-paste pattern</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.9">1.2.9</a> - 2025-12-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Git init runs in current directory</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.8">1.2.8</a> - 2025-12-16</h2>
+<h3>Changed</h3>
+<ul>
+<li>Phase count derived from work scope, not arbitrary limits</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.7">1.2.7</a> - 2025-12-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>AskUserQuestion mandated for all exploration questions</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.6">1.2.6</a> - 2025-12-16</h2>
+<h3>Changed</h3>
+<ul>
+<li>Internal refactoring</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.5">1.2.5</a> - 2025-12-16</h2>
+<h3>Changed</h3>
+<ul>
+<li><code>&lt;if mode&gt;</code> tags for yolo/interactive branching</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.4">1.2.4</a> - 2025-12-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Stale CONTEXT.md references updated to new vision structure</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.3">1.2.3</a> - 2025-12-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Enterprise language removed from help and discuss-milestone</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.2">1.2.2</a> - 2025-12-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>new-project completion presented inline instead of as question</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.1">1.2.1</a> - 2025-12-16</h2>
+<h3>Fixed</h3>
+<ul>
+<li>AskUserQuestion restored for decision gate in questioning flow</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.2.0">1.2.0</a> - 2025-12-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>Research workflow implemented as Claude Code context injection</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.1.2">1.1.2</a> - 2025-12-15</h2>
+<h3>Fixed</h3>
+<ul>
+<li>YOLO mode now skips confirmation gates in plan-phase</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.1.1">1.1.1</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>README documentation for new research workflow</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.1.0">1.1.0</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Pre-roadmap research workflow</li>
+<li><code>/gsd:research-phase</code> for niche domain ecosystem discovery</li>
+<li><code>/gsd:research-project</code> command with workflow and templates</li>
+<li><code>/gsd:create-roadmap</code> command with research-aware workflow</li>
+<li>Research subagent prompt templates</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>new-project split to only create PROJECT.md + config.json</li>
+<li>Questioning rewritten as thinking partner, not interviewer</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.11">1.0.11</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li><code>/gsd:research-phase</code> for niche domain ecosystem discovery</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.10">1.0.10</a> - 2025-12-15</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Scope creep prevention in discuss-phase command</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.9">1.0.9</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Phase CONTEXT.md loaded in plan-phase command</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.8">1.0.8</a> - 2025-12-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>PLAN.md included in phase completion commits</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.7">1.0.7</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Path replacement for local installs</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.6">1.0.6</a> - 2025-12-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>Internal improvements</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.5">1.0.5</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Global/local install prompt during setup</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Bin path fixed (removed ./)</li>
+<li>.DS_Store ignored</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.4">1.0.4</a> - 2025-12-15</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Bin name and circular dependency removed</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.3">1.0.3</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>TDD guidance in planning workflow</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.2">1.0.2</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Issue triage system to prevent deferred issue pile-up</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.1">1.0.1</a> - 2025-12-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Initial npm package release</li>
+</ul>
+<h2><a href="https://github.com/glittercowboy/get-shit-done/releases/tag/v1.0.0">1.0.0</a> - 2025-12-14</h2>
+<h3>Added</h3>
+<ul>
+<li>Initial release of GSD (Get Shit Done) meta-prompting system</li>
+<li>Core slash commands: <code>/gsd:new-project</code>, <code>/gsd:discuss-phase</code>, <code>/gsd:plan-phase</code>, <code>/gsd:execute-phase</code></li>
+<li>PROJECT.md and STATE.md templates</li>
+<li>Phase-based development workflow</li>
+<li>YOLO mode for autonomous execution</li>
+<li>Interactive mode with checkpoints</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

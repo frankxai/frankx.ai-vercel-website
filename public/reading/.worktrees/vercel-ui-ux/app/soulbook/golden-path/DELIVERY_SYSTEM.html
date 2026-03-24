@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Golden Path Delivery System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/app/soulbook/golden-path/DELIVERY_SYSTEM.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Golden Path Delivery System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.worktrees">.worktrees</a> / <a href="../../../index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <a href="../../index.html#.worktrees%2Fvercel-ui-ux%2Fapp">app</a> / <a href="../index.html#.worktrees%2Fvercel-ui-ux%2Fapp%2Fsoulbook">soulbook</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux%2Fapp%2Fsoulbook%2Fgolden-path">golden-path</a> / <span>DELIVERY_SYSTEM.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Golden Path Delivery System</h1>
+<p><strong>Complete infrastructure for $297 product sales and delivery</strong></p>
+<hr>
+<h2>Architecture Overview</h2>
+<h3>1. Sales Page</h3>
+<p><strong>Location</strong>: <code>/soulbook/golden-path</code>
+<strong>Status</strong>: ✅ Complete
+<strong>Features</strong>:</p>
+<ul>
+<li>Conversion-optimized layout</li>
+<li>3-pillar framework explanation  </li>
+<li>Social proof (testimonials, 1,200+ users)</li>
+<li>FAQ section</li>
+<li>30-day guarantee</li>
+<li>Multiple CTAs</li>
+</ul>
+<h3>2. Checkout Flow</h3>
+<p><strong>Integration</strong>: Lemon Squeezy
+<strong>Components</strong>:</p>
+<ul>
+<li><code>CheckoutButton.tsx</code> (✅ Complete)</li>
+<li><code>/api/checkout/create-session</code> (✅ Complete)</li>
+</ul>
+<p><strong>Flow</strong>:</p>
+<ol>
+<li>User clicks &quot;Get Instant Access&quot; button</li>
+<li>API creates Lemon Squeezy checkout session</li>
+<li>User redirected to LS hosted checkout</li>
+<li>Payment processed by Lemon Squeezy</li>
+<li>Webhook triggers delivery</li>
+</ol>
+<h3>3. Webhook Handler</h3>
+<p><strong>Endpoint</strong>: <code>/api/checkout/webhook</code>
+<strong>Trigger</strong>: Lemon Squeezy order.success event</p>
+<p><strong>Actions on successful payment</strong>:</p>
+<ol>
+<li>Verify webhook signature</li>
+<li>Extract customer email + order ID</li>
+<li>Generate secure download link</li>
+<li>Send welcome email with PDF link (via Resend)</li>
+<li>Log purchase to database/JSON</li>
+</ol>
+<p><strong>Implementation</strong> (TBD):</p>
+<pre><code class="language-typescript">// app/api/checkout/webhook/route.ts
+export async function POST(request: NextRequest) {
+  const signature = request.headers.get(&#39;x-signature&#39;)
+  const body = await request.json()
+  
+  // Verify webhook authenticity
+  if (!verifySignature(signature, body)) {
+    return NextResponse.json({ error: &#39;Invalid signature&#39; }, { status: 401 })
+  }
+  
+  const { customer_email, order_id, product_id } = body
+  
+  // Generate download link
+  const downloadLink = generateSecureLink(order_id)
+  
+  // Send email via Resend MCP
+  await sendWelcomeEmail({
+    to: customer_email,
+    downloadLink,
+    orderNumber: order_id
+  })
+  
+  return NextResponse.json({ success: true })
+}
+</code></pre>
+<h3>4. Email Delivery</h3>
+<p><strong>Service</strong>: Resend (via MCP)
+<strong>From</strong>: <a href="mailto:frank@mail.frankx.ai">frank@mail.frankx.ai</a> (verified domain)</p>
+<p><strong>Welcome Email Template</strong>:</p>
+<pre><code>Subject: Your Golden Path Workbook is Ready
+
+Hi there,
+
+Welcome to the Golden Path! Your 4-week transformation starts now.
+
+Download your workbook:
+[Secure Download Link - expires in 24 hours]
+
+What&#39;s next:
+1. Download the PDF (80 pages)
+2. Print or use digitally (fillable PDF included)
+3. Start Week 1: Awareness &amp; Systems Thinking
+4. Follow the daily practices
+
+Need help? Reply to this email.
+
+— Frank
+</code></pre>
+<h3>5. Download Page</h3>
+<p><strong>Location</strong>: <code>/downloads/golden-path/[orderId]</code>
+<strong>Security</strong>: Order ID validation</p>
+<p><strong>Page Content</strong>:</p>
+<ul>
+<li>Order confirmation</li>
+<li>Download button (PDF)</li>
+<li>Quick start guide</li>
+<li>Upsell to $697/$897 tiers</li>
+<li>Support link</li>
+</ul>
+<p><strong>Implementation</strong> (TBD):</p>
+<pre><code class="language-typescript">// app/downloads/golden-path/[orderId]/page.tsx
+export default async function DownloadPage({ params }) {
+  const { orderId } = await params
+  
+  // Validate order exists
+  const order = await validateOrder(orderId)
+  if (!order) notFound()
+  
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Your Golden Path Workbook&lt;/h1&gt;
+      &lt;a href={`/products/golden-path-workbook.pdf`} download&gt;
+        Download PDF (12.3 MB)
+      &lt;/a&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<hr>
+<h2>Product File Structure</h2>
+<pre><code>public/products/
+└── golden-path-workbook.pdf (TBD - needs design + generation)
+
+data/orders/
+└── golden-path-orders.jsonl (purchase log)
+
+app/soulbook/golden-path/
+├── page.tsx (✅ sales page)
+└── DELIVERY_SYSTEM.md (this file)
+
+app/downloads/golden-path/[orderId]/
+└── page.tsx (TBD - download page)
+
+app/api/checkout/
+├── create-session/route.ts (✅ session creation)
+└── webhook/route.ts (TBD - payment processing)
+
+components/soulbook/
+└── CheckoutButton.tsx (✅ checkout component)
+</code></pre>
+<hr>
+<h2>Environment Variables Needed</h2>
+<pre><code class="language-bash"># Lemon Squeezy
+LEMON_SQUEEZY_API_KEY=your_api_key
+LEMON_SQUEEZY_STORE_ID=your_store_id
+LEMON_SQUEEZY_PRODUCT_ID=your_product_id  # Golden Path
+LEMON_SQUEEZY_WEBHOOK_SECRET=your_webhook_secret
+
+# Resend (email)
+RESEND_API_KEY=your_resend_key  # Already configured
+
+# Product URLs
+NEXT_PUBLIC_SITE_URL=https://frankx.ai
+</code></pre>
+<hr>
+<h2>Lemon Squeezy Setup Steps</h2>
+<ol>
+<li><p><strong>Create Product</strong>:</p>
+<ul>
+<li>Go to lemonsqueezy.com dashboard</li>
+<li>Products → New Product</li>
+<li>Name: &quot;The Golden Path Workbook&quot;</li>
+<li>Price: $297 (one-time)</li>
+<li>Add product description + images</li>
+</ul>
+</li>
+<li><p><strong>Get Product ID</strong>:</p>
+<ul>
+<li>Copy product ID from URL</li>
+<li>Add to env vars</li>
+</ul>
+</li>
+<li><p><strong>Configure Webhook</strong>:</p>
+<ul>
+<li>Settings → Webhooks → New Webhook</li>
+<li>URL: <code>https://frankx.ai/api/checkout/webhook</code></li>
+<li>Events: Select <code>order_created</code></li>
+<li>Copy webhook secret to env</li>
+</ul>
+</li>
+<li><p><strong>Test Checkout</strong>:</p>
+<ul>
+<li>Use test mode</li>
+<li>Complete purchase flow</li>
+<li>Verify webhook fires</li>
+<li>Check email delivery</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Email Template (HTML)</h2>
+<p><strong>File</strong>: <code>lib/email-templates/golden-path-welcome.ts</code></p>
+<pre><code class="language-typescript">export const goldenPathWelcomeEmail = (data: {
+  firstName?: string
+  downloadLink: string
+  orderNumber: string
+}) =&gt; `
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;style&gt;
+    body { font-family: system-ui, -apple-system, sans-serif; }
+    .container { max-width: 600px; margin: 0 auto; padding: 40px 20px; }
+    .button { display: inline-block; background: #10B981; color: white; 
+              padding: 16px 32px; text-decoration: none; border-radius: 8px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;h1&gt;Your Golden Path Workbook is Ready&lt;/h1&gt;
+    &lt;p&gt;Welcome to the 4-week transformation program.&lt;/p&gt;
+    
+    &lt;a href=&quot;${data.downloadLink}&quot; class=&quot;button&quot;&gt;
+      Download Your Workbook (PDF)
+    &lt;/a&gt;
+    
+    &lt;p&gt;Order #${data.orderNumber}&lt;/p&gt;
+    
+    &lt;p&gt;What&#39;s next:&lt;/p&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Download the 80-page PDF&lt;/li&gt;
+      &lt;li&gt;Start Week 1: Awareness &amp; Systems Thinking&lt;/li&gt;
+      &lt;li&gt;Follow the daily practices&lt;/li&gt;
+      &lt;li&gt;Complete all exercises&lt;/li&gt;
+    &lt;/ol&gt;
+    
+    &lt;p&gt;Need help? Reply to this email.&lt;/p&gt;
+    
+    &lt;p&gt;— Frank&lt;br&gt;frankx.ai&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+`
+</code></pre>
+<hr>
+<h2>Revenue Tracking</h2>
+<p><strong>File</strong>: <code>data/orders/golden-path-orders.jsonl</code></p>
+<p>Each line:</p>
+<pre><code class="language-json">{
+  &quot;orderId&quot;: &quot;ord_abc123&quot;,
+  &quot;productId&quot;: &quot;golden-path&quot;,
+  &quot;customerEmail&quot;: &quot;user@example.com&quot;,
+  &quot;amount&quot;: 297,
+  &quot;currency&quot;: &quot;USD&quot;,
+  &quot;status&quot;: &quot;completed&quot;,
+  &quot;downloadLink&quot;: &quot;https://frankx.ai/downloads/golden-path/ord_abc123&quot;,
+  &quot;purchasedAt&quot;: &quot;2026-02-17T01:30:00Z&quot;,
+  &quot;emailSent&quot;: true,
+  &quot;emailSentAt&quot;: &quot;2026-02-17T01:30:05Z&quot;
+}
+</code></pre>
+<p><strong>Analytics Endpoint</strong>: <code>/api/admin/revenue/golden-path</code></p>
+<ul>
+<li>Total revenue</li>
+<li>Number of sales</li>
+<li>Conversion rate (visitors → buyers)</li>
+<li>Email delivery success rate</li>
+</ul>
+<hr>
+<h2>Phase 2 Status</h2>
+<h3>✅ Complete</h3>
+<ul>
+<li>Sales page</li>
+<li>Checkout button component</li>
+<li>Checkout session API</li>
+<li>System architecture documented</li>
+</ul>
+<h3>🚧 Pending (Manual Setup Required)</h3>
+<ol>
+<li>Create Lemon Squeezy account + product</li>
+<li>Generate PDF workbook (80 pages, designed)</li>
+<li>Implement webhook handler</li>
+<li>Create email template</li>
+<li>Build download page</li>
+<li>Test full flow</li>
+<li>Add revenue tracking</li>
+</ol>
+<h3>Next: Phase 3 (Sales Page Optimization)</h3>
+<ul>
+<li>A/B testing framework</li>
+<li>Conversion analytics</li>
+<li>Exit-intent popup</li>
+<li>Testimonial collection system</li>
+<li>Upsell flow to $697/$897 tiers</li>
+</ul>
+<hr>
+<p><strong>Estimated completion</strong>: 4-6 hours for remaining implementation + PDF design</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

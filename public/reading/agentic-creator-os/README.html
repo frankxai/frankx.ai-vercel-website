@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agentic Creator OS</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Agentic Creator OS</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#agentic-creator-os">agentic-creator-os</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div align="center">
+
+<h1>Agentic Creator OS</h1>
+<p><strong>The Operating System for AI-Powered Creators</strong></p>
+<p><em>One install. Any coding agent. 75+ skills, 35+ commands, 38 agents — auto-activating.</em></p>
+<p><img src="docs/infographics/acos-hero.png" alt="ACOS v10"></p>
+<p><a href="https://github.com/frankxai/agentic-creator-os"><img src="https://img.shields.io/badge/version-10.1.0-cyan?style=for-the-badge" alt="Version"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-green?style=for-the-badge" alt="License"></a>
+<a href="#multi-platform-install"><img src="https://img.shields.io/badge/platforms-Claude%20%7C%20Cursor%20%7C%20Windsurf%20%7C%20Gemini-purple?style=for-the-badge" alt="Platforms"></a></p>
+</div>
+
+<hr>
+<h2>What Is ACOS?</h2>
+<p>A <strong>production-grade skill and agent system</strong> for AI coding assistants. It ships skills (domain knowledge), commands (reusable workflows), agents (specialized personas), and safety hooks — configured to auto-activate based on what you&#39;re working on.</p>
+<p>Works with <strong>Claude Code, Cursor, Windsurf, Gemini Code Assist</strong>, and any AI coding agent that reads markdown context files.</p>
+<pre><code>You: &quot;write a blog post about AI agents&quot;
+  → ACOS detects: creation + blog
+  → Auto-loads: content-strategy skill
+  → Routes to: /article-creator workflow
+  → Result: Guided article with SEO, images, social distribution
+</code></pre>
+<hr>
+<h2>Quick Start</h2>
+<h3>Claude Code (Full Feature Set)</h3>
+<pre><code class="language-bash">git clone https://github.com/frankxai/agentic-creator-os.git
+cd agentic-creator-os
+./install.sh
+
+# Open any project with Claude Code
+claude
+/acos
+</code></pre>
+<h3>Cursor / Windsurf</h3>
+<pre><code class="language-bash">git clone https://github.com/frankxai/agentic-creator-os.git
+cd agentic-creator-os
+./install.sh --platform=cursor    # or --platform=windsurf
+</code></pre>
+<p>This generates a <code>.cursorrules</code> or <code>.windsurfrules</code> file with all skills embedded.</p>
+<h3>Gemini Code Assist</h3>
+<pre><code class="language-bash">git clone https://github.com/frankxai/agentic-creator-os.git
+cd agentic-creator-os
+./install.sh --platform=gemini
+</code></pre>
+<p>This generates a <code>GEMINI.md</code> context file for Gemini to read on session start.</p>
+<h3>Any AI Coding Agent</h3>
+<pre><code class="language-bash">git clone https://github.com/frankxai/agentic-creator-os.git
+cd agentic-creator-os
+./install.sh --platform=generic
+</code></pre>
+<p>Generates a <code>CONTEXT.md</code> file. Point your agent at it as a system prompt or project instructions file.</p>
+<blockquote>
+<p><strong>See <a href="QUICKSTART.md">QUICKSTART.md</a> for detailed setup per platform</strong></p>
+</blockquote>
+<hr>
+<h2>v10 — Autonomous Intelligence</h2>
+<p>v10 introduces <strong>5 safety-first autonomous systems</strong> that make your AI coding agent smarter over time:</p>
+<h3>1. Experience Replay</h3>
+<p>The agent remembers what worked. Past successful tool sequences are injected as context for similar new tasks.</p>
+<h3>2. Agent IAM (Identity &amp; Access Management)</h3>
+<p>Per-profile scoping — a content writer can&#39;t modify your build config, a music producer can&#39;t run shell commands. 6 profiles with tool and directory restrictions.</p>
+<h3>3. Confidence Circuit Breaker</h3>
+<p>Tracks failures per file. After 3 failures: warn. After 5: restrict. After 8: block. Prevents the agent from brute-forcing broken approaches.</p>
+<h3>4. Conservative Self-Modify Gate</h3>
+<p>Before changing its own config, ACOS snapshots the current state and measures intelligence score. If the score drops more than 5 points after a change: auto-revert.</p>
+<h3>5. Immutable Audit Trail</h3>
+<p>Append-only JSONL logging of every tool use, IAM decision, gate verdict, and config change. The ground truth for what happened in a session.</p>
+<details>
+<summary><strong>v10 Architecture Diagram</strong></summary>
+
+<pre><code>                        /acos (Smart Router)
+                            |
+              +-------------+-------------+
+              |             |             |
+         Commands (35+)  Skills (75+)  Agents (38)
+              |             |             |
+              +------+------+------+------+
+                     |             |
+              +------+------+  +--+--+
+              |             |  |     |
+          Hooks (v10)   Workflows  MCP Servers
+              |
+    +---------+---------+---------+
+    |         |         |         |
+ Circuit   Audit    Self-Mod   Agent
+ Breaker   Trail    Gate       IAM
+</code></pre>
+</details>
+
+<hr>
+<h2>What&#39;s Included</h2>
+<h3>Commands (35+)</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Creation</strong></td>
+<td>8</td>
+<td><code>/article-creator</code>, <code>/create-music</code>, <code>/infogenius</code>, <code>/factory</code></td>
+</tr>
+<tr>
+<td><strong>Strategy</strong></td>
+<td>6</td>
+<td><code>/starlight-architect</code>, <code>/council</code>, <code>/research</code>, <code>/plan-week</code></td>
+</tr>
+<tr>
+<td><strong>Development</strong></td>
+<td>4</td>
+<td><code>/spec</code>, <code>/nextjs-deploy</code>, <code>/ux-design</code>, <code>/automation-dev</code></td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>5</td>
+<td><code>/acos</code>, <code>/inventory-status</code>, <code>/mcp-status</code>, <code>/publish</code></td>
+</tr>
+<tr>
+<td><strong>Quality</strong></td>
+<td>3</td>
+<td><code>/review-content</code>, <code>/classify-content</code>, <code>/polish-content</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Commands are Claude Code slash commands. On other platforms, describe the task and ACOS skills guide the agent to the same workflows.</p>
+</blockquote>
+<h3>Skills (75+ Auto-Activating)</h3>
+<p>Skills are domain knowledge modules that <strong>activate automatically</strong> based on what you&#39;re doing. No manual invocation needed.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Technical</strong></td>
+<td>25+</td>
+<td>TDD, systematic-debugging, mcp-architecture, react-nextjs-patterns</td>
+</tr>
+<tr>
+<td><strong>Creative</strong></td>
+<td>10+</td>
+<td>frankx-brand, suno-ai-mastery, excellence-book-writing</td>
+</tr>
+<tr>
+<td><strong>Content</strong></td>
+<td>15+</td>
+<td>content-strategy, social-media-strategy, video-production</td>
+</tr>
+<tr>
+<td><strong>Oracle/Cloud</strong></td>
+<td>5+</td>
+<td>oci-services-expert, oracle-database-expert, oracle-ai-architect</td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>5+</td>
+<td>product-management, coaching-program, financial-modeling</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>15+</td>
+<td>swarm-orchestration, agentic-jujutsu, planning-with-files</td>
+</tr>
+<tr>
+<td><strong>Personal</strong></td>
+<td>5+</td>
+<td>spartan-warrior, gym-training, health-nutrition</td>
+</tr>
+</tbody></table>
+<p><strong>How Auto-Activation Works:</strong></p>
+<pre><code>skill-rules.json → 22 pattern rules
+  &quot;tests&quot; + &quot;component&quot; → loads test-driven-development + react-patterns
+  &quot;blog&quot; + &quot;write&quot;      → loads content-strategy + seo-content-writer
+  &quot;deploy&quot; + &quot;vercel&quot;   → loads vercel-deployment + nextjs-best-practices
+</code></pre>
+<h3>Agents (38 Specialized)</h3>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Agents</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Writing</strong></td>
+<td>8</td>
+<td>Developmental Editor, Line Editor, Content Polisher, Story Architect</td>
+</tr>
+<tr>
+<td><strong>Strategy</strong></td>
+<td>5</td>
+<td>Starlight Orchestrator, Visionary, Oracle AI Architect</td>
+</tr>
+<tr>
+<td><strong>Design</strong></td>
+<td>4</td>
+<td>UI/UX Expert, Website Builder, Frankx Content Creation</td>
+</tr>
+<tr>
+<td><strong>Production</strong></td>
+<td>4</td>
+<td>Music Production, Sonic Engineer, Nano Banana Image Gen</td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>4</td>
+<td>Product Launch, Coaching Program, Product Development</td>
+</tr>
+<tr>
+<td><strong>Technical</strong></td>
+<td>5</td>
+<td>Technical Architect, Oracle Database, OpenAI AgentKit</td>
+</tr>
+<tr>
+<td><strong>Publishing</strong></td>
+<td>6</td>
+<td>Master Story Architect, Character Psychologist, Sensitivity Reader</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>3</td>
+<td>Skill Expert, Project Discovery, Rapid Content</td>
+</tr>
+</tbody></table>
+<h3>v10 Safety Hooks</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Trigger</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Circuit Breaker</strong></td>
+<td>PostToolUse (failure)</td>
+<td>Track failures per file, escalate at thresholds</td>
+</tr>
+<tr>
+<td><strong>Audit Trail</strong></td>
+<td>All tool use</td>
+<td>Append-only JSONL logging</td>
+</tr>
+<tr>
+<td><strong>Self-Modify Gate</strong></td>
+<td>Config changes</td>
+<td>Snapshot + validate intelligence score</td>
+</tr>
+<tr>
+<td><strong>Agent IAM</strong></td>
+<td>PreToolUse</td>
+<td>Enforce per-profile tool/path scopes</td>
+</tr>
+<tr>
+<td><strong>Quality Gate</strong></td>
+<td>PreToolUse (Edit/Write)</td>
+<td>Block edits to secrets, warn on production files</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>How It Works</h2>
+<h3>The <code>/acos</code> Smart Router</h3>
+<p>Everything starts with <code>/acos</code>. It parses intent and routes to the best subsystem:</p>
+<pre><code>/acos &quot;write a blog post about AI agents&quot;
+  → Detects: creation + blog
+  → Routes to: /article-creator
+  → Auto-loads: content-strategy skill
+  → Result: Guided article creation workflow
+</code></pre>
+<p>For multi-domain requests, it chains commands:</p>
+<pre><code>/acos &quot;Create a blog post about AI music with images and social posts&quot;
+  → /research &quot;AI music production&quot;
+  → /article-creator (with research context)
+  → /infogenius (hero image)
+  → /generate-social (distribution)
+</code></pre>
+<h3>Orchestration Patterns</h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Description</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Pipeline</strong></td>
+<td>Sequential: Research → Plan → Create → Optimize → Publish</td>
+<td>Blog posts, newsletters</td>
+</tr>
+<tr>
+<td><strong>Parallel</strong></td>
+<td>Concurrent agents with synthesis</td>
+<td>Code review, multi-analysis</td>
+</tr>
+<tr>
+<td><strong>Weighted Synthesis</strong></td>
+<td>Expert voting with percentage weights</td>
+<td>Strategic decisions</td>
+</tr>
+</tbody></table>
+<h3>Self-Learning</h3>
+<p>The system learns from every session:</p>
+<pre><code>Session Start → Create trajectory record
+Session Active → Track operations and outcomes
+Session End → Extract patterns → Store learnings
+Future Sessions → Apply accumulated intelligence
+</code></pre>
+<hr>
+<h2>Multi-Platform Install</h2>
+<p><a id="multi-platform-install"></a></p>
+<p>The install script detects your platform and configures accordingly:</p>
+<pre><code class="language-bash">./install.sh                      # Auto-detect platforms
+./install.sh --platform=claude    # Claude Code only
+./install.sh --platform=cursor    # Cursor only
+./install.sh --platform=windsurf  # Windsurf only
+./install.sh --platform=gemini    # Gemini Code Assist only
+./install.sh --platform=generic   # Any agent (CONTEXT.md)
+./install.sh --platform=all       # All detected platforms
+</code></pre>
+<h3>What Gets Installed Per Platform</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th align="center">Claude Code</th>
+<th align="center">Cursor</th>
+<th align="center">Windsurf</th>
+<th align="center">Gemini</th>
+<th align="center">Generic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Skills (knowledge)</td>
+<td align="center">~/.claude/skills/</td>
+<td align="center">.cursorrules</td>
+<td align="center">.windsurfrules</td>
+<td align="center">GEMINI.md</td>
+<td align="center">CONTEXT.md</td>
+</tr>
+<tr>
+<td>Commands (workflows)</td>
+<td align="center">~/.claude/commands/</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+</tr>
+<tr>
+<td>Agents (personas)</td>
+<td align="center">~/.claude/agents/</td>
+<td align="center">.cursorrules</td>
+<td align="center">.windsurfrules</td>
+<td align="center">GEMINI.md</td>
+<td align="center">CONTEXT.md</td>
+</tr>
+<tr>
+<td>Hooks (safety)</td>
+<td align="center">settings.json</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+</tr>
+<tr>
+<td>Auto-activation</td>
+<td align="center">skill-rules.json</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+</tr>
+<tr>
+<td>MCP servers</td>
+<td align="center">Optional</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+<td align="center">—</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Claude Code gets the full feature set</strong> including slash commands, lifecycle hooks, and auto-activation rules. Other platforms get skills and agent definitions embedded in their context files.</p>
+</blockquote>
+<hr>
+<h2>Directory Structure</h2>
+<pre><code>agentic-creator-os/
+├── .claude/
+│   ├── commands/           # 35+ slash commands
+│   ├── skills/             # 75+ auto-activating skills
+│   ├── agents/             # 38 specialized agents
+│   ├── hooks/              # v10 safety hooks
+│   │   ├── circuit-breaker.sh
+│   │   ├── audit-trail.sh
+│   │   ├── self-modify-gate.sh
+│   │   └── quality-gate.sh
+│   ├── agent-iam.json      # Role-based access control
+│   ├── skill-rules.json    # 22 auto-activation rules
+│   └── hooks.json          # Hook lifecycle config
+│
+├── adapters/               # Platform adapters
+│   ├── cursor/             # .cursorrules generator
+│   ├── windsurf/           # .windsurfrules generator
+│   ├── gemini/             # GEMINI.md generator
+│   └── generic/            # CONTEXT.md generator
+│
+├── departments/            # Agent team definitions
+│   ├── content/
+│   ├── design/
+│   ├── dev/
+│   ├── marketing/
+│   └── business/
+│
+├── mcp-servers/            # MCP integrations (optional)
+├── templates/              # Reusable templates
+├── workflows/              # Workflow definitions
+├── docs/infographics/      # Visual documentation
+├── install.sh              # Multi-platform installer
+├── CLAUDE.md               # Claude Code context
+└── package.json            # v10.1.0
+</code></pre>
+<hr>
+<h2>The Starlight Connection</h2>
+<p>ACOS is the <strong>Claude Code implementation</strong> of the <a href="https://github.com/frankxai/Starlight-Intelligence-System">Starlight Intelligence System</a> — a universal, platform-agnostic framework for multi-agent orchestration.</p>
+<pre><code>Starlight Intelligence System (Framework)
+├── 5-layer cognitive architecture
+├── 7 council agents with emergent leadership
+├── 6 orchestration patterns
+└── Platform adapters
+     └── ACOS (Claude Code + Multi-Platform)
+         ├── 35+ commands routed through /acos
+         ├── 38 agents aligned to Starlight council
+         ├── 75+ auto-activating skills
+         ├── v10 safety systems (IAM, circuit breaker, audit)
+         └── Self-learning via trajectory patterns
+</code></pre>
+<hr>
+<h2>Design Principles</h2>
+<ol>
+<li><strong>Configuration over Code</strong> — Markdown + JSON + AI&#39;s native abilities. Zero install friction.</li>
+<li><strong>Commands over Prompts</strong> — Reusable workflows beat one-off prompts. Build once, use forever.</li>
+<li><strong>Agents over Chat</strong> — Specialized expertise beats general conversation.</li>
+<li><strong>Files over Memory</strong> — Persistent artifacts beat ephemeral threads. Everything is git-trackable.</li>
+<li><strong>Progressive Disclosure</strong> — Load only what you need. ~100 tokens metadata before 5K skill definition.</li>
+<li><strong>Open and Forkable</strong> — MIT licensed. Every component replaceable.</li>
+</ol>
+<hr>
+<h2>Version History</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Highlights</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>v10.1</strong></td>
+<td>Feb 2026</td>
+<td>Deep clean — removed claude-flow artifacts, honest metrics, clean repo</td>
+</tr>
+<tr>
+<td>v10.0</td>
+<td>Feb 2026</td>
+<td>Autonomous Intelligence — 5 safety systems, multi-platform, Agent IAM</td>
+</tr>
+<tr>
+<td>v8.0</td>
+<td>Feb 2026</td>
+<td>Starlight integration, GitHub release assets, swarm orchestration</td>
+</tr>
+<tr>
+<td>v7.0</td>
+<td>Feb 2026</td>
+<td>Visionary agent, premium infographics, expanded commands</td>
+</tr>
+<tr>
+<td>v6.0</td>
+<td>Jan 2026</td>
+<td>Smart router (/acos), auto-activation, hooks</td>
+</tr>
+<tr>
+<td>v5.0</td>
+<td>Jan 2026</td>
+<td>7-pillar architecture, 62 skills, swarm topologies</td>
+</tr>
+<tr>
+<td>v4.0</td>
+<td>Jan 2026</td>
+<td>Initial release, 14 commands, basic skills</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Credits &amp; Attribution</h2>
+<p>ACOS builds on work from the open-source community:</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Author</th>
+<th>What We Learned</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/ruvnet/claude-flow">claude-flow</a></td>
+<td>@ruvnet</td>
+<td>Swarm orchestration, hierarchical topologies</td>
+</tr>
+<tr>
+<td><a href="https://github.com/wshobson/agents">wshobson/agents</a></td>
+<td>@wshobson</td>
+<td>Plugin architecture, modular skills</td>
+</tr>
+<tr>
+<td><a href="https://github.com/obra/superpowers">obra/superpowers</a></td>
+<td>@obra</td>
+<td>Progressive disclosure, token-efficient loading</td>
+</tr>
+<tr>
+<td><a href="https://github.com/diet103/claude-code-infrastructure-showcase">diet103/claude-code-infrastructure-showcase</a></td>
+<td>@diet103</td>
+<td><code>skill-rules.json</code> auto-activation pattern</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ChrisWiles/claude-code-showcase">ChrisWiles/claude-code-showcase</a></td>
+<td>@ChrisWiles</td>
+<td>Hook automation patterns</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Pimzino/claude-code-spec-workflow">Pimzino/claude-code-spec-workflow</a></td>
+<td>@Pimzino</td>
+<td>Spec-driven development</td>
+</tr>
+<tr>
+<td><a href="https://github.com/github/github-mcp-server">github/github-mcp-server</a></td>
+<td>GitHub</td>
+<td>Official GitHub MCP server</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ruvnet/agentic-jujutsu">agentic-jujutsu</a></td>
+<td>@ruvnet</td>
+<td>Self-learning trajectory patterns</td>
+</tr>
+</tbody></table>
+<p><strong>Built on:</strong> <a href="https://claude.ai/claude-code">Claude Code</a> by Anthropic, <a href="https://modelcontextprotocol.io/">Model Context Protocol</a></p>
+<hr>
+<h2>Related Projects</h2>
+<ul>
+<li><strong><a href="https://github.com/frankxai/Starlight-Intelligence-System">Starlight Intelligence System</a></strong> — The universal framework powering ACOS</li>
+<li><strong><a href="https://github.com/frankxai/arcanea">Arcanea</a></strong> — AI-native creative platform built with ACOS</li>
+</ul>
+<hr>
+<h2>License</h2>
+<p>MIT — Use it, fork it, build your own OS with it.</p>
+<hr>
+<div align="center">
+
+<p><strong>Agentic Creator OS v10.1</strong> — Autonomous Intelligence</p>
+<p><em>75+ Skills | 35+ Commands | 38 Agents | Multi-Platform | Self-Learning</em></p>
+<p><a href="https://github.com/frankxai/agentic-creator-os">GitHub</a> | <a href="https://frankx.ai/products/agentic-creator-os">Website</a> | <a href="https://github.com/frankxai/agentic-creator-os/issues">Issues</a></p>
+</div>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

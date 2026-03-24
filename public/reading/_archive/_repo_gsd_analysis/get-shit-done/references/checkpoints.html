@@ -1,0 +1,1276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Run in background, capture PID for cleanup</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/references/checkpoints.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Run in background, capture PID for cleanup</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Freferences">references</a> / <span>checkpoints.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <overview>
+Plans execute autonomously. Checkpoints formalize the interaction points where human verification or decisions are needed.
+
+<p><strong>Core principle:</strong> Claude automates everything with CLI/API. Checkpoints are for verification and decisions, not manual work.</p>
+<p><strong>Golden rules:</strong></p>
+<ol>
+<li><strong>If Claude can run it, Claude runs it</strong> - Never ask user to execute CLI commands, start servers, or run builds</li>
+<li><strong>Claude sets up the verification environment</strong> - Start dev servers, seed databases, configure env vars</li>
+<li><strong>User only does what requires human judgment</strong> - Visual checks, UX evaluation, &quot;does this feel right?&quot;</li>
+<li><strong>Secrets come from user, automation comes from Claude</strong> - Ask for API keys, then Claude uses them via CLI</overview></li>
+</ol>
+<checkpoint_types>
+
+<type name="human-verify">
+## checkpoint:human-verify (Most Common - 90%)
+
+<p><strong>When:</strong> Claude completed automated work, human confirms it works correctly.</p>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Visual UI checks (layout, styling, responsiveness)</li>
+<li>Interactive flows (click through wizard, test user flows)</li>
+<li>Functional verification (feature works as expected)</li>
+<li>Audio/video playback quality</li>
+<li>Animation smoothness</li>
+<li>Accessibility testing</li>
+</ul>
+<p><strong>Structure:</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;[What Claude automated and deployed/built]&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    [Exact steps to test - URLs, commands, expected behavior]
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;[How to continue - &quot;approved&quot;, &quot;yes&quot;, or describe issues]&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Key elements:</strong></p>
+<ul>
+<li><code>&lt;what-built&gt;</code>: What Claude automated (deployed, built, configured)</li>
+<li><code>&lt;how-to-verify&gt;</code>: Exact steps to confirm it works (numbered, specific)</li>
+<li><code>&lt;resume-signal&gt;</code>: Clear indication of how to continue</li>
+</ul>
+<p><strong>Example: Vercel Deployment</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Deploy to Vercel&lt;/name&gt;
+  &lt;files&gt;.vercel/, vercel.json&lt;/files&gt;
+  &lt;action&gt;Run `vercel --yes` to create project and deploy. Capture deployment URL from output.&lt;/action&gt;
+  &lt;verify&gt;vercel ls shows deployment, curl {url} returns 200&lt;/verify&gt;
+  &lt;done&gt;App deployed, URL captured&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Deployed to Vercel at https://myapp-abc123.vercel.app&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Visit https://myapp-abc123.vercel.app and confirm:
+    - Homepage loads without errors
+    - Login form is visible
+    - No console errors in browser DevTools
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; to continue, or describe issues to fix&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Example: UI Component</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Build responsive dashboard layout&lt;/name&gt;
+  &lt;files&gt;src/components/Dashboard.tsx, src/app/dashboard/page.tsx&lt;/files&gt;
+  &lt;action&gt;Create dashboard with sidebar, header, and content area. Use Tailwind responsive classes for mobile.&lt;/action&gt;
+  &lt;verify&gt;npm run build succeeds, no TypeScript errors&lt;/verify&gt;
+  &lt;done&gt;Dashboard component builds without errors&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Start dev server for verification&lt;/name&gt;
+  &lt;action&gt;Run `npm run dev` in background, wait for &quot;ready&quot; message, capture port&lt;/action&gt;
+  &lt;verify&gt;curl http://localhost:3000 returns 200&lt;/verify&gt;
+  &lt;done&gt;Dev server running at http://localhost:3000&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Responsive dashboard layout - dev server running at http://localhost:3000&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Visit http://localhost:3000/dashboard and verify:
+    1. Desktop (&gt;1024px): Sidebar left, content right, header top
+    2. Tablet (768px): Sidebar collapses to hamburger menu
+    3. Mobile (375px): Single column layout, bottom nav appears
+    4. No layout shift or horizontal scroll at any size
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; or describe layout issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Key pattern:</strong> Claude starts the dev server BEFORE the checkpoint. User only needs to visit the URL.</p>
+<p><strong>Example: Xcode Build</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Build macOS app with Xcode&lt;/name&gt;
+  &lt;files&gt;App.xcodeproj, Sources/&lt;/files&gt;
+  &lt;action&gt;Run `xcodebuild -project App.xcodeproj -scheme App build`. Check for compilation errors in output.&lt;/action&gt;
+  &lt;verify&gt;Build output contains &quot;BUILD SUCCEEDED&quot;, no errors&lt;/verify&gt;
+  &lt;done&gt;App builds successfully&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Built macOS app at DerivedData/Build/Products/Debug/App.app&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Open App.app and test:
+    - App launches without crashes
+    - Menu bar icon appears
+    - Preferences window opens correctly
+    - No visual glitches or layout issues
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; or describe issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+</type>
+
+<type name="decision">
+## checkpoint:decision (9%)
+
+<p><strong>When:</strong> Human must make choice that affects implementation direction.</p>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Technology selection (which auth provider, which database)</li>
+<li>Architecture decisions (monorepo vs separate repos)</li>
+<li>Design choices (color scheme, layout approach)</li>
+<li>Feature prioritization (which variant to build)</li>
+<li>Data model decisions (schema structure)</li>
+</ul>
+<p><strong>Structure:</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:decision&quot; gate=&quot;blocking&quot;&gt;
+  &lt;decision&gt;[What&#39;s being decided]&lt;/decision&gt;
+  &lt;context&gt;[Why this decision matters]&lt;/context&gt;
+  &lt;options&gt;
+    &lt;option id=&quot;option-a&quot;&gt;
+      &lt;name&gt;[Option name]&lt;/name&gt;
+      &lt;pros&gt;[Benefits]&lt;/pros&gt;
+      &lt;cons&gt;[Tradeoffs]&lt;/cons&gt;
+    &lt;/option&gt;
+    &lt;option id=&quot;option-b&quot;&gt;
+      &lt;name&gt;[Option name]&lt;/name&gt;
+      &lt;pros&gt;[Benefits]&lt;/pros&gt;
+      &lt;cons&gt;[Tradeoffs]&lt;/cons&gt;
+    &lt;/option&gt;
+  &lt;/options&gt;
+  &lt;resume-signal&gt;[How to indicate choice]&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Key elements:</strong></p>
+<ul>
+<li><code>&lt;decision&gt;</code>: What&#39;s being decided</li>
+<li><code>&lt;context&gt;</code>: Why this matters</li>
+<li><code>&lt;options&gt;</code>: Each option with balanced pros/cons (not prescriptive)</li>
+<li><code>&lt;resume-signal&gt;</code>: How to indicate choice</li>
+</ul>
+<p><strong>Example: Auth Provider Selection</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:decision&quot; gate=&quot;blocking&quot;&gt;
+  &lt;decision&gt;Select authentication provider&lt;/decision&gt;
+  &lt;context&gt;
+    Need user authentication for the app. Three solid options with different tradeoffs.
+  &lt;/context&gt;
+  &lt;options&gt;
+    &lt;option id=&quot;supabase&quot;&gt;
+      &lt;name&gt;Supabase Auth&lt;/name&gt;
+      &lt;pros&gt;Built-in with Supabase DB we&#39;re using, generous free tier, row-level security integration&lt;/pros&gt;
+      &lt;cons&gt;Less customizable UI, tied to Supabase ecosystem&lt;/cons&gt;
+    &lt;/option&gt;
+    &lt;option id=&quot;clerk&quot;&gt;
+      &lt;name&gt;Clerk&lt;/name&gt;
+      &lt;pros&gt;Beautiful pre-built UI, best developer experience, excellent docs&lt;/pros&gt;
+      &lt;cons&gt;Paid after 10k MAU, vendor lock-in&lt;/cons&gt;
+    &lt;/option&gt;
+    &lt;option id=&quot;nextauth&quot;&gt;
+      &lt;name&gt;NextAuth.js&lt;/name&gt;
+      &lt;pros&gt;Free, self-hosted, maximum control, widely adopted&lt;/pros&gt;
+      &lt;cons&gt;More setup work, you manage security updates, UI is DIY&lt;/cons&gt;
+    &lt;/option&gt;
+  &lt;/options&gt;
+  &lt;resume-signal&gt;Select: supabase, clerk, or nextauth&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Example: Database Selection</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:decision&quot; gate=&quot;blocking&quot;&gt;
+  &lt;decision&gt;Select database for user data&lt;/decision&gt;
+  &lt;context&gt;
+    App needs persistent storage for users, sessions, and user-generated content.
+    Expected scale: 10k users, 1M records first year.
+  &lt;/context&gt;
+  &lt;options&gt;
+    &lt;option id=&quot;supabase&quot;&gt;
+      &lt;name&gt;Supabase (Postgres)&lt;/name&gt;
+      &lt;pros&gt;Full SQL, generous free tier, built-in auth, real-time subscriptions&lt;/pros&gt;
+      &lt;cons&gt;Vendor lock-in for real-time features, less flexible than raw Postgres&lt;/cons&gt;
+    &lt;/option&gt;
+    &lt;option id=&quot;planetscale&quot;&gt;
+      &lt;name&gt;PlanetScale (MySQL)&lt;/name&gt;
+      &lt;pros&gt;Serverless scaling, branching workflow, excellent DX&lt;/pros&gt;
+      &lt;cons&gt;MySQL not Postgres, no foreign keys in free tier&lt;/cons&gt;
+    &lt;/option&gt;
+    &lt;option id=&quot;convex&quot;&gt;
+      &lt;name&gt;Convex&lt;/name&gt;
+      &lt;pros&gt;Real-time by default, TypeScript-native, automatic caching&lt;/pros&gt;
+      &lt;cons&gt;Newer platform, different mental model, less SQL flexibility&lt;/cons&gt;
+    &lt;/option&gt;
+  &lt;/options&gt;
+  &lt;resume-signal&gt;Select: supabase, planetscale, or convex&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+</type>
+
+<type name="human-action">
+## checkpoint:human-action (1% - Rare)
+
+<p><strong>When:</strong> Action has NO CLI/API and requires human-only interaction, OR Claude hit an authentication gate during automation.</p>
+<p><strong>Use ONLY for:</strong></p>
+<ul>
+<li><strong>Authentication gates</strong> - Claude tried to use CLI/API but needs credentials to continue (this is NOT a failure)</li>
+<li>Email verification links (account creation requires clicking email)</li>
+<li>SMS 2FA codes (phone verification)</li>
+<li>Manual account approvals (platform requires human review before API access)</li>
+<li>Credit card 3D Secure flows (web-based payment authorization)</li>
+<li>OAuth app approvals (some platforms require web-based approval)</li>
+</ul>
+<p><strong>Do NOT use for pre-planned manual work:</strong></p>
+<ul>
+<li>Manually deploying to Vercel (use <code>vercel</code> CLI - auth gate if needed)</li>
+<li>Manually creating Stripe webhooks (use Stripe API - auth gate if needed)</li>
+<li>Manually creating databases (use provider CLI - auth gate if needed)</li>
+<li>Running builds/tests manually (use Bash tool)</li>
+<li>Creating files manually (use Write tool)</li>
+</ul>
+<p><strong>Structure:</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;action&gt;[What human must do - Claude already did everything automatable]&lt;/action&gt;
+  &lt;instructions&gt;
+    [What Claude already automated]
+    [The ONE thing requiring human action]
+  &lt;/instructions&gt;
+  &lt;verification&gt;[What Claude can check afterward]&lt;/verification&gt;
+  &lt;resume-signal&gt;[How to continue]&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Key principle:</strong> Claude automates EVERYTHING possible first, only asks human for the truly unavoidable manual step.</p>
+<p><strong>Example: Email Verification</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create SendGrid account via API&lt;/name&gt;
+  &lt;action&gt;Use SendGrid API to create subuser account with provided email. Request verification email.&lt;/action&gt;
+  &lt;verify&gt;API returns 201, account created&lt;/verify&gt;
+  &lt;done&gt;Account created, verification email sent&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;action&gt;Complete email verification for SendGrid account&lt;/action&gt;
+  &lt;instructions&gt;
+    I created the account and requested verification email.
+    Check your inbox for SendGrid verification link and click it.
+  &lt;/instructions&gt;
+  &lt;verification&gt;SendGrid API key works: curl test succeeds&lt;/verification&gt;
+  &lt;resume-signal&gt;Type &quot;done&quot; when email verified&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Example: Credit Card 3D Secure</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create Stripe payment intent&lt;/name&gt;
+  &lt;action&gt;Use Stripe API to create payment intent for $99. Generate checkout URL.&lt;/action&gt;
+  &lt;verify&gt;Stripe API returns payment intent ID and URL&lt;/verify&gt;
+  &lt;done&gt;Payment intent created&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;action&gt;Complete 3D Secure authentication&lt;/action&gt;
+  &lt;instructions&gt;
+    I created the payment intent: https://checkout.stripe.com/pay/cs_test_abc123
+    Visit that URL and complete the 3D Secure verification flow with your test card.
+  &lt;/instructions&gt;
+  &lt;verification&gt;Stripe webhook receives payment_intent.succeeded event&lt;/verification&gt;
+  &lt;resume-signal&gt;Type &quot;done&quot; when payment completes&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Example: Authentication Gate (Dynamic Checkpoint)</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Deploy to Vercel&lt;/name&gt;
+  &lt;files&gt;.vercel/, vercel.json&lt;/files&gt;
+  &lt;action&gt;Run `vercel --yes` to deploy&lt;/action&gt;
+  &lt;verify&gt;vercel ls shows deployment, curl returns 200&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;!-- If vercel returns &quot;Error: Not authenticated&quot;, Claude creates checkpoint on the fly --&gt;
+
+&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;action&gt;Authenticate Vercel CLI so I can continue deployment&lt;/action&gt;
+  &lt;instructions&gt;
+    I tried to deploy but got authentication error.
+    Run: vercel login
+    This will open your browser - complete the authentication flow.
+  &lt;/instructions&gt;
+  &lt;verification&gt;vercel whoami returns your account email&lt;/verification&gt;
+  &lt;resume-signal&gt;Type &quot;done&quot; when authenticated&lt;/resume-signal&gt;
+&lt;/task&gt;
+
+&lt;!-- After authentication, Claude retries the deployment --&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Retry Vercel deployment&lt;/name&gt;
+  &lt;action&gt;Run `vercel --yes` (now authenticated)&lt;/action&gt;
+  &lt;verify&gt;vercel ls shows deployment, curl returns 200&lt;/verify&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Key distinction:</strong> Authentication gates are created dynamically when Claude encounters auth errors during automation. They&#39;re NOT pre-planned - Claude tries to automate first, only asks for credentials when blocked.
+</type>
+</checkpoint_types></p>
+<execution_protocol>
+
+<p>When Claude encounters <code>type=&quot;checkpoint:*&quot;</code>:</p>
+<ol>
+<li><strong>Stop immediately</strong> - do not proceed to next task</li>
+<li><strong>Display checkpoint clearly</strong> using the format below</li>
+<li><strong>Wait for user response</strong> - do not hallucinate completion</li>
+<li><strong>Verify if possible</strong> - check files, run tests, whatever is specified</li>
+<li><strong>Resume execution</strong> - continue to next task only after confirmation</li>
+</ol>
+<p><strong>For checkpoint:human-verify:</strong></p>
+<pre><code>╔═══════════════════════════════════════════════════════╗
+║  CHECKPOINT: Verification Required                    ║
+╚═══════════════════════════════════════════════════════╝
+
+Progress: 5/8 tasks complete
+Task: Responsive dashboard layout
+
+Built: Responsive dashboard at /dashboard
+
+How to verify:
+  1. Run: npm run dev
+  2. Visit: http://localhost:3000/dashboard
+  3. Desktop (&gt;1024px): Sidebar visible, content fills remaining space
+  4. Tablet (768px): Sidebar collapses to icons
+  5. Mobile (375px): Sidebar hidden, hamburger menu appears
+
+────────────────────────────────────────────────────────
+→ YOUR ACTION: Type &quot;approved&quot; or describe issues
+────────────────────────────────────────────────────────
+</code></pre>
+<p><strong>For checkpoint:decision:</strong></p>
+<pre><code>╔═══════════════════════════════════════════════════════╗
+║  CHECKPOINT: Decision Required                        ║
+╚═══════════════════════════════════════════════════════╝
+
+Progress: 2/6 tasks complete
+Task: Select authentication provider
+
+Decision: Which auth provider should we use?
+
+Context: Need user authentication. Three options with different tradeoffs.
+
+Options:
+  1. supabase - Built-in with our DB, free tier
+     Pros: Row-level security integration, generous free tier
+     Cons: Less customizable UI, ecosystem lock-in
+
+  2. clerk - Best DX, paid after 10k users
+     Pros: Beautiful pre-built UI, excellent documentation
+     Cons: Vendor lock-in, pricing at scale
+
+  3. nextauth - Self-hosted, maximum control
+     Pros: Free, no vendor lock-in, widely adopted
+     Cons: More setup work, DIY security updates
+
+────────────────────────────────────────────────────────
+→ YOUR ACTION: Select supabase, clerk, or nextauth
+────────────────────────────────────────────────────────
+</code></pre>
+<p><strong>For checkpoint:human-action:</strong></p>
+<pre><code>╔═══════════════════════════════════════════════════════╗
+║  CHECKPOINT: Action Required                          ║
+╚═══════════════════════════════════════════════════════╝
+
+Progress: 3/8 tasks complete
+Task: Deploy to Vercel
+
+Attempted: vercel --yes
+Error: Not authenticated. Please run &#39;vercel login&#39;
+
+What you need to do:
+  1. Run: vercel login
+  2. Complete browser authentication when it opens
+  3. Return here when done
+
+I&#39;ll verify: vercel whoami returns your account
+
+────────────────────────────────────────────────────────
+→ YOUR ACTION: Type &quot;done&quot; when authenticated
+────────────────────────────────────────────────────────
+</code></pre>
+</execution_protocol>
+
+<authentication_gates>
+
+<p><strong>Critical:</strong> When Claude tries CLI/API and gets auth error, this is NOT a failure - it&#39;s a gate requiring human input to unblock automation.</p>
+<p><strong>Pattern:</strong> Claude tries automation → auth error → creates checkpoint → you authenticate → Claude retries → continues</p>
+<p><strong>Gate protocol:</strong></p>
+<ol>
+<li>Recognize it&#39;s not a failure - missing auth is expected</li>
+<li>Stop current task - don&#39;t retry repeatedly</li>
+<li>Create checkpoint:human-action dynamically</li>
+<li>Provide exact authentication steps</li>
+<li>Verify authentication works</li>
+<li>Retry the original task</li>
+<li>Continue normally</li>
+</ol>
+<p><strong>Example execution flow (Vercel auth gate):</strong></p>
+<pre><code>Claude: Running `vercel --yes` to deploy...
+
+Error: Not authenticated. Please run &#39;vercel login&#39;
+
+╔═══════════════════════════════════════════════════════╗
+║  CHECKPOINT: Action Required                          ║
+╚═══════════════════════════════════════════════════════╝
+
+Progress: 2/8 tasks complete
+Task: Deploy to Vercel
+
+Attempted: vercel --yes
+Error: Not authenticated
+
+What you need to do:
+  1. Run: vercel login
+  2. Complete browser authentication
+
+I&#39;ll verify: vercel whoami returns your account
+
+────────────────────────────────────────────────────────
+→ YOUR ACTION: Type &quot;done&quot; when authenticated
+────────────────────────────────────────────────────────
+
+User: done
+
+Claude: Verifying authentication...
+Running: vercel whoami
+✓ Authenticated as: user@example.com
+
+Retrying deployment...
+Running: vercel --yes
+✓ Deployed to: https://myapp-abc123.vercel.app
+
+Task 3 complete. Continuing to task 4...
+</code></pre>
+<p><strong>Key distinction:</strong></p>
+<ul>
+<li>Pre-planned checkpoint: &quot;I need you to do X&quot; (wrong - Claude should automate)</li>
+<li>Auth gate: &quot;I tried to automate X but need credentials&quot; (correct - unblocks automation)</li>
+</ul>
+</authentication_gates>
+
+<automation_reference>
+
+<p><strong>The rule:</strong> If it has CLI/API, Claude does it. Never ask human to perform automatable work.</p>
+<h2>Service CLI Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>CLI/API</th>
+<th>Key Commands</th>
+<th>Auth Gate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vercel</td>
+<td><code>vercel</code></td>
+<td><code>--yes</code>, <code>env add</code>, <code>--prod</code>, <code>ls</code></td>
+<td><code>vercel login</code></td>
+</tr>
+<tr>
+<td>Railway</td>
+<td><code>railway</code></td>
+<td><code>init</code>, <code>up</code>, <code>variables set</code></td>
+<td><code>railway login</code></td>
+</tr>
+<tr>
+<td>Fly</td>
+<td><code>fly</code></td>
+<td><code>launch</code>, <code>deploy</code>, <code>secrets set</code></td>
+<td><code>fly auth login</code></td>
+</tr>
+<tr>
+<td>Stripe</td>
+<td><code>stripe</code> + API</td>
+<td><code>listen</code>, <code>trigger</code>, API calls</td>
+<td>API key in .env</td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td><code>supabase</code></td>
+<td><code>init</code>, <code>link</code>, <code>db push</code>, <code>gen types</code></td>
+<td><code>supabase login</code></td>
+</tr>
+<tr>
+<td>Upstash</td>
+<td><code>upstash</code></td>
+<td><code>redis create</code>, <code>redis get</code></td>
+<td><code>upstash auth login</code></td>
+</tr>
+<tr>
+<td>PlanetScale</td>
+<td><code>pscale</code></td>
+<td><code>database create</code>, <code>branch create</code></td>
+<td><code>pscale auth login</code></td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td><code>gh</code></td>
+<td><code>repo create</code>, <code>pr create</code>, <code>secret set</code></td>
+<td><code>gh auth login</code></td>
+</tr>
+<tr>
+<td>Node</td>
+<td><code>npm</code>/<code>pnpm</code></td>
+<td><code>install</code>, <code>run build</code>, <code>test</code>, <code>run dev</code></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Xcode</td>
+<td><code>xcodebuild</code></td>
+<td><code>-project</code>, <code>-scheme</code>, <code>build</code>, <code>test</code></td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Convex</td>
+<td><code>npx convex</code></td>
+<td><code>dev</code>, <code>deploy</code>, <code>env set</code>, <code>env get</code></td>
+<td><code>npx convex login</code></td>
+</tr>
+</tbody></table>
+<h2>Environment Variable Automation</h2>
+<p><strong>Env files:</strong> Use Write/Edit tools. Never ask human to create .env manually.</p>
+<p><strong>Dashboard env vars via CLI:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>CLI Command</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Convex</td>
+<td><code>npx convex env set</code></td>
+<td><code>npx convex env set OPENAI_API_KEY sk-...</code></td>
+</tr>
+<tr>
+<td>Vercel</td>
+<td><code>vercel env add</code></td>
+<td><code>vercel env add STRIPE_KEY production</code></td>
+</tr>
+<tr>
+<td>Railway</td>
+<td><code>railway variables set</code></td>
+<td><code>railway variables set API_KEY=value</code></td>
+</tr>
+<tr>
+<td>Fly</td>
+<td><code>fly secrets set</code></td>
+<td><code>fly secrets set DATABASE_URL=...</code></td>
+</tr>
+<tr>
+<td>Supabase</td>
+<td><code>supabase secrets set</code></td>
+<td><code>supabase secrets set MY_SECRET=value</code></td>
+</tr>
+</tbody></table>
+<p><strong>Pattern for secret collection:</strong></p>
+<pre><code class="language-xml">&lt;!-- WRONG: Asking user to add env vars in dashboard --&gt;
+&lt;task type=&quot;checkpoint:human-action&quot;&gt;
+  &lt;action&gt;Add OPENAI_API_KEY to Convex dashboard&lt;/action&gt;
+  &lt;instructions&gt;Go to dashboard.convex.dev → Settings → Environment Variables → Add&lt;/instructions&gt;
+&lt;/task&gt;
+
+&lt;!-- RIGHT: Claude asks for value, then adds via CLI --&gt;
+&lt;task type=&quot;checkpoint:human-action&quot;&gt;
+  &lt;action&gt;Provide your OpenAI API key&lt;/action&gt;
+  &lt;instructions&gt;
+    I need your OpenAI API key to configure the Convex backend.
+    Get it from: https://platform.openai.com/api-keys
+    Paste the key (starts with sk-)
+  &lt;/instructions&gt;
+  &lt;verification&gt;I&#39;ll add it via `npx convex env set` and verify it&#39;s configured&lt;/verification&gt;
+  &lt;resume-signal&gt;Paste your API key&lt;/resume-signal&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Configure OpenAI key in Convex&lt;/name&gt;
+  &lt;action&gt;Run `npx convex env set OPENAI_API_KEY {user-provided-key}`&lt;/action&gt;
+  &lt;verify&gt;`npx convex env get OPENAI_API_KEY` returns the key (masked)&lt;/verify&gt;
+&lt;/task&gt;
+</code></pre>
+<h2>Dev Server Automation</h2>
+<p><strong>Claude starts servers, user visits URLs:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Start Command</th>
+<th>Ready Signal</th>
+<th>Default URL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Next.js</td>
+<td><code>npm run dev</code></td>
+<td>&quot;Ready in&quot; or &quot;started server&quot;</td>
+<td><a href="http://localhost:3000">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td>Vite</td>
+<td><code>npm run dev</code></td>
+<td>&quot;ready in&quot;</td>
+<td><a href="http://localhost:5173">http://localhost:5173</a></td>
+</tr>
+<tr>
+<td>Convex</td>
+<td><code>npx convex dev</code></td>
+<td>&quot;Convex functions ready&quot;</td>
+<td>N/A (backend only)</td>
+</tr>
+<tr>
+<td>Express</td>
+<td><code>npm start</code></td>
+<td>&quot;listening on port&quot;</td>
+<td><a href="http://localhost:3000">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td>Django</td>
+<td><code>python manage.py runserver</code></td>
+<td>&quot;Starting development server&quot;</td>
+<td><a href="http://localhost:8000">http://localhost:8000</a></td>
+</tr>
+</tbody></table>
+<h3>Server Lifecycle Protocol</h3>
+<p><strong>Starting servers:</strong></p>
+<pre><code class="language-bash"># Run in background, capture PID for cleanup
+npm run dev &amp;
+DEV_SERVER_PID=$!
+
+# Wait for ready signal (max 30s)
+timeout 30 bash -c &#39;until curl -s localhost:3000 &gt; /dev/null 2&gt;&amp;1; do sleep 1; done&#39;
+</code></pre>
+<p><strong>Port conflicts:</strong>
+If default port is in use, check what&#39;s running and either:</p>
+<ol>
+<li>Kill the existing process if it&#39;s stale: <code>lsof -ti:3000 | xargs kill</code></li>
+<li>Use alternate port: <code>npm run dev -- --port 3001</code></li>
+</ol>
+<p><strong>Server stays running</strong> for the duration of the checkpoint. After user approves, server continues running for subsequent tasks. Only kill explicitly if:</p>
+<ul>
+<li>Plan is complete and no more verification needed</li>
+<li>Switching to production deployment</li>
+<li>Port needed for different service</li>
+</ul>
+<p><strong>Pattern:</strong></p>
+<pre><code class="language-xml">&lt;!-- Claude starts server before checkpoint --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Start dev server&lt;/name&gt;
+  &lt;action&gt;Run `npm run dev` in background, wait for ready signal&lt;/action&gt;
+  &lt;verify&gt;curl http://localhost:3000 returns 200&lt;/verify&gt;
+  &lt;done&gt;Dev server running&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;!-- User only visits URL --&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;
+  &lt;what-built&gt;Feature X - dev server running at http://localhost:3000&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Visit http://localhost:3000/feature and verify:
+    1. [Visual check 1]
+    2. [Visual check 2]
+  &lt;/how-to-verify&gt;
+&lt;/task&gt;
+</code></pre>
+<h2>CLI Installation Handling</h2>
+<p><strong>When a required CLI is not installed:</strong></p>
+<table>
+<thead>
+<tr>
+<th>CLI</th>
+<th>Auto-install?</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>npm/pnpm/yarn</td>
+<td>No - ask user</td>
+<td>User chooses package manager</td>
+</tr>
+<tr>
+<td>vercel</td>
+<td>Yes</td>
+<td><code>npm i -g vercel</code></td>
+</tr>
+<tr>
+<td>gh (GitHub)</td>
+<td>Yes</td>
+<td><code>brew install gh</code> (macOS) or <code>apt install gh</code> (Linux)</td>
+</tr>
+<tr>
+<td>stripe</td>
+<td>Yes</td>
+<td><code>npm i -g stripe</code></td>
+</tr>
+<tr>
+<td>supabase</td>
+<td>Yes</td>
+<td><code>npm i -g supabase</code></td>
+</tr>
+<tr>
+<td>convex</td>
+<td>No - use npx</td>
+<td><code>npx convex</code> (no install needed)</td>
+</tr>
+<tr>
+<td>fly</td>
+<td>Yes</td>
+<td><code>brew install flyctl</code> or curl installer</td>
+</tr>
+<tr>
+<td>railway</td>
+<td>Yes</td>
+<td><code>npm i -g @railway/cli</code></td>
+</tr>
+</tbody></table>
+<p><strong>Protocol:</strong></p>
+<ol>
+<li>Try the command</li>
+<li>If &quot;command not found&quot;, check if auto-installable</li>
+<li>If yes: install silently, retry command</li>
+<li>If no: create checkpoint asking user to install</li>
+</ol>
+<pre><code class="language-xml">&lt;!-- Example: vercel not found --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Install Vercel CLI&lt;/name&gt;
+  &lt;action&gt;Run `npm i -g vercel`&lt;/action&gt;
+  &lt;verify&gt;`vercel --version` succeeds&lt;/verify&gt;
+  &lt;done&gt;Vercel CLI installed&lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<h2>Pre-Checkpoint Automation Failures</h2>
+<p><strong>When setup fails before checkpoint:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Server won&#39;t start</td>
+<td>Check error output, fix issue, retry (don&#39;t proceed to checkpoint)</td>
+</tr>
+<tr>
+<td>Port in use</td>
+<td>Kill stale process or use alternate port</td>
+</tr>
+<tr>
+<td>Missing dependency</td>
+<td>Run <code>npm install</code>, retry</td>
+</tr>
+<tr>
+<td>Build error</td>
+<td>Fix the error first (this is a bug, not a checkpoint issue)</td>
+</tr>
+<tr>
+<td>Auth error</td>
+<td>Create auth gate checkpoint</td>
+</tr>
+<tr>
+<td>Network timeout</td>
+<td>Retry with backoff, then checkpoint if persistent</td>
+</tr>
+</tbody></table>
+<p><strong>Key principle:</strong> Never present a checkpoint with broken verification environment. If <code>curl localhost:3000</code> fails, don&#39;t ask user to &quot;visit localhost:3000&quot;.</p>
+<pre><code class="language-xml">&lt;!-- WRONG: Checkpoint with broken environment --&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;
+  &lt;what-built&gt;Dashboard (server failed to start)&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Visit http://localhost:3000...&lt;/how-to-verify&gt;
+&lt;/task&gt;
+
+&lt;!-- RIGHT: Fix first, then checkpoint --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Fix server startup issue&lt;/name&gt;
+  &lt;action&gt;Investigate error, fix root cause, restart server&lt;/action&gt;
+  &lt;verify&gt;curl http://localhost:3000 returns 200&lt;/verify&gt;
+  &lt;done&gt;Server running correctly&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;
+  &lt;what-built&gt;Dashboard - server running at http://localhost:3000&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Visit http://localhost:3000/dashboard...&lt;/how-to-verify&gt;
+&lt;/task&gt;
+</code></pre>
+<h2>Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Automatable?</th>
+<th>Claude does it?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Deploy to Vercel</td>
+<td>Yes (<code>vercel</code>)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Create Stripe webhook</td>
+<td>Yes (API)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Write .env file</td>
+<td>Yes (Write tool)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Create Upstash DB</td>
+<td>Yes (<code>upstash</code>)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Run tests</td>
+<td>Yes (<code>npm test</code>)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Start dev server</td>
+<td>Yes (<code>npm run dev</code>)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Add env vars to Convex</td>
+<td>Yes (<code>npx convex env set</code>)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Add env vars to Vercel</td>
+<td>Yes (<code>vercel env add</code>)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Seed database</td>
+<td>Yes (CLI/API)</td>
+<td>YES</td>
+</tr>
+<tr>
+<td>Click email verification link</td>
+<td>No</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Enter credit card with 3DS</td>
+<td>No</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Complete OAuth in browser</td>
+<td>No</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Visually verify UI looks correct</td>
+<td>No</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Test interactive user flows</td>
+<td>No</td>
+<td>NO</td>
+</tr>
+</tbody></table>
+</automation_reference>
+
+<writing_guidelines>
+
+<p><strong>DO:</strong></p>
+<ul>
+<li>Automate everything with CLI/API before checkpoint</li>
+<li>Be specific: &quot;Visit <a href="https://myapp.vercel.app">https://myapp.vercel.app</a>&quot; not &quot;check deployment&quot;</li>
+<li>Number verification steps: easier to follow</li>
+<li>State expected outcomes: &quot;You should see X&quot;</li>
+<li>Provide context: why this checkpoint exists</li>
+<li>Make verification executable: clear, testable steps</li>
+</ul>
+<p><strong>DON&#39;T:</strong></p>
+<ul>
+<li>Ask human to do work Claude can automate (deploy, create resources, run builds)</li>
+<li>Assume knowledge: &quot;Configure the usual settings&quot; ❌</li>
+<li>Skip steps: &quot;Set up database&quot; ❌ (too vague)</li>
+<li>Mix multiple verifications in one checkpoint (split them)</li>
+<li>Make verification impossible (Claude can&#39;t check visual appearance without user confirmation)</li>
+</ul>
+<p><strong>Placement:</strong></p>
+<ul>
+<li><strong>After automation completes</strong> - not before Claude does the work</li>
+<li><strong>After UI buildout</strong> - before declaring phase complete</li>
+<li><strong>Before dependent work</strong> - decisions before implementation</li>
+<li><strong>At integration points</strong> - after configuring external services</li>
+</ul>
+<p><strong>Bad placement:</strong></p>
+<ul>
+<li>Before Claude automates (asking human to do automatable work) ❌</li>
+<li>Too frequent (every other task is a checkpoint) ❌</li>
+<li>Too late (checkpoint is last task, but earlier tasks needed its result) ❌</writing_guidelines></li>
+</ul>
+<examples>
+
+<h3>Example 1: Deployment Flow (Correct)</h3>
+<pre><code class="language-xml">&lt;!-- Claude automates everything --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Deploy to Vercel&lt;/name&gt;
+  &lt;files&gt;.vercel/, vercel.json, package.json&lt;/files&gt;
+  &lt;action&gt;
+    1. Run `vercel --yes` to create project and deploy
+    2. Capture deployment URL from output
+    3. Set environment variables with `vercel env add`
+    4. Trigger production deployment with `vercel --prod`
+  &lt;/action&gt;
+  &lt;verify&gt;
+    - vercel ls shows deployment
+    - curl {url} returns 200
+    - Environment variables set correctly
+  &lt;/verify&gt;
+  &lt;done&gt;App deployed to production, URL captured&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;!-- Human verifies visual/functional correctness --&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Deployed to https://myapp.vercel.app&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Visit https://myapp.vercel.app and confirm:
+    - Homepage loads correctly
+    - All images/assets load
+    - Navigation works
+    - No console errors
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; or describe issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>Example 2: Database Setup (No Checkpoint Needed)</h3>
+<pre><code class="language-xml">&lt;!-- Claude automates everything --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create Upstash Redis database&lt;/name&gt;
+  &lt;files&gt;.env&lt;/files&gt;
+  &lt;action&gt;
+    1. Run `upstash redis create myapp-cache --region us-east-1`
+    2. Capture connection URL from output
+    3. Write to .env: UPSTASH_REDIS_URL={url}
+    4. Verify connection with test command
+  &lt;/action&gt;
+  &lt;verify&gt;
+    - upstash redis list shows database
+    - .env contains UPSTASH_REDIS_URL
+    - Test connection succeeds
+  &lt;/verify&gt;
+  &lt;done&gt;Redis database created and configured&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;!-- NO CHECKPOINT NEEDED - Claude automated everything and verified programmatically --&gt;
+</code></pre>
+<h3>Example 3: Stripe Webhooks (Correct)</h3>
+<pre><code class="language-xml">&lt;!-- Claude automates everything --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Configure Stripe webhooks&lt;/name&gt;
+  &lt;files&gt;.env, src/app/api/webhooks/route.ts&lt;/files&gt;
+  &lt;action&gt;
+    1. Use Stripe API to create webhook endpoint pointing to /api/webhooks
+    2. Subscribe to events: payment_intent.succeeded, customer.subscription.updated
+    3. Save webhook signing secret to .env
+    4. Implement webhook handler in route.ts
+  &lt;/action&gt;
+  &lt;verify&gt;
+    - Stripe API returns webhook endpoint ID
+    - .env contains STRIPE_WEBHOOK_SECRET
+    - curl webhook endpoint returns 200
+  &lt;/verify&gt;
+  &lt;done&gt;Stripe webhooks configured and handler implemented&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;!-- Human verifies in Stripe dashboard --&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Stripe webhook configured via API&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Visit Stripe Dashboard &gt; Developers &gt; Webhooks
+    Confirm: Endpoint shows https://myapp.com/api/webhooks with correct events
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;yes&quot; if correct&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>Example 4: Full Auth Flow Verification (Correct)</h3>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create user schema&lt;/name&gt;
+  &lt;files&gt;src/db/schema.ts&lt;/files&gt;
+  &lt;action&gt;Define User, Session, Account tables with Drizzle ORM&lt;/action&gt;
+  &lt;verify&gt;npm run db:generate succeeds&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create auth API routes&lt;/name&gt;
+  &lt;files&gt;src/app/api/auth/[...nextauth]/route.ts&lt;/files&gt;
+  &lt;action&gt;Set up NextAuth with GitHub provider, JWT strategy&lt;/action&gt;
+  &lt;verify&gt;TypeScript compiles, no errors&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create login UI&lt;/name&gt;
+  &lt;files&gt;src/app/login/page.tsx, src/components/LoginButton.tsx&lt;/files&gt;
+  &lt;action&gt;Create login page with GitHub OAuth button&lt;/action&gt;
+  &lt;verify&gt;npm run build succeeds&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Start dev server for auth testing&lt;/name&gt;
+  &lt;action&gt;Run `npm run dev` in background, wait for ready signal&lt;/action&gt;
+  &lt;verify&gt;curl http://localhost:3000 returns 200&lt;/verify&gt;
+  &lt;done&gt;Dev server running at http://localhost:3000&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;!-- ONE checkpoint at end verifies the complete flow - Claude already started server --&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Complete authentication flow - dev server running at http://localhost:3000&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    1. Visit: http://localhost:3000/login
+    2. Click &quot;Sign in with GitHub&quot;
+    3. Complete GitHub OAuth flow
+    4. Verify: Redirected to /dashboard, user name displayed
+    5. Refresh page: Session persists
+    6. Click logout: Session cleared
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; or describe issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+</examples>
+
+<anti_patterns>
+
+<h3>❌ BAD: Asking user to start dev server</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Dashboard component&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    1. Run: npm run dev
+    2. Visit: http://localhost:3000/dashboard
+    3. Check layout is correct
+  &lt;/how-to-verify&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Claude can run <code>npm run dev</code>. User should only visit URLs, not execute commands.</p>
+<h3>✅ GOOD: Claude starts server, user visits</h3>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Start dev server&lt;/name&gt;
+  &lt;action&gt;Run `npm run dev` in background&lt;/action&gt;
+  &lt;verify&gt;curl localhost:3000 returns 200&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Dashboard at http://localhost:3000/dashboard (server running)&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Visit http://localhost:3000/dashboard and verify:
+    1. Layout matches design
+    2. No console errors
+  &lt;/how-to-verify&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>❌ BAD: Asking user to add env vars in dashboard</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;action&gt;Add environment variables to Convex&lt;/action&gt;
+  &lt;instructions&gt;
+    1. Go to dashboard.convex.dev
+    2. Select your project
+    3. Navigate to Settings → Environment Variables
+    4. Add OPENAI_API_KEY with your key
+  &lt;/instructions&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Convex has <code>npx convex env set</code>. Claude should ask for the key value, then run the CLI command.</p>
+<h3>✅ GOOD: Claude collects secret, adds via CLI</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;action&gt;Provide your OpenAI API key&lt;/action&gt;
+  &lt;instructions&gt;
+    I need your OpenAI API key. Get it from: https://platform.openai.com/api-keys
+    Paste the key below (starts with sk-)
+  &lt;/instructions&gt;
+  &lt;verification&gt;I&#39;ll configure it via CLI&lt;/verification&gt;
+  &lt;resume-signal&gt;Paste your key&lt;/resume-signal&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Add OpenAI key to Convex&lt;/name&gt;
+  &lt;action&gt;Run `npx convex env set OPENAI_API_KEY {key}`&lt;/action&gt;
+  &lt;verify&gt;`npx convex env get` shows OPENAI_API_KEY configured&lt;/verify&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>❌ BAD: Asking human to deploy</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;action&gt;Deploy to Vercel&lt;/action&gt;
+  &lt;instructions&gt;
+    1. Visit vercel.com/new
+    2. Import Git repository
+    3. Click Deploy
+    4. Copy deployment URL
+  &lt;/instructions&gt;
+  &lt;verification&gt;Deployment exists&lt;/verification&gt;
+  &lt;resume-signal&gt;Paste URL&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Vercel has a CLI. Claude should run <code>vercel --yes</code>.</p>
+<h3>✅ GOOD: Claude automates, human verifies</h3>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Deploy to Vercel&lt;/name&gt;
+  &lt;action&gt;Run `vercel --yes`. Capture URL.&lt;/action&gt;
+  &lt;verify&gt;vercel ls shows deployment, curl returns 200&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;
+  &lt;what-built&gt;Deployed to {url}&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Visit {url}, check homepage loads&lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot;&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>❌ BAD: Too many checkpoints</h3>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;Create schema&lt;/task&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;Check schema&lt;/task&gt;
+&lt;task type=&quot;auto&quot;&gt;Create API route&lt;/task&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;Check API&lt;/task&gt;
+&lt;task type=&quot;auto&quot;&gt;Create UI form&lt;/task&gt;
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;Check form&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Verification fatigue. Combine into one checkpoint at end.</p>
+<h3>✅ GOOD: Single verification checkpoint</h3>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;Create schema&lt;/task&gt;
+&lt;task type=&quot;auto&quot;&gt;Create API route&lt;/task&gt;
+&lt;task type=&quot;auto&quot;&gt;Create UI form&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot;&gt;
+  &lt;what-built&gt;Complete auth flow (schema + API + UI)&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Test full flow: register, login, access protected page&lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot;&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>❌ BAD: Asking for automatable file operations</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot;&gt;
+  &lt;action&gt;Create .env file&lt;/action&gt;
+  &lt;instructions&gt;
+    1. Create .env in project root
+    2. Add: DATABASE_URL=...
+    3. Add: STRIPE_KEY=...
+  &lt;/instructions&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Claude has Write tool. This should be <code>type=&quot;auto&quot;</code>.</p>
+<h3>❌ BAD: Vague verification steps</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-verify&quot;&gt;
+  &lt;what-built&gt;Dashboard&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Check it works&lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Continue&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> No specifics. User doesn&#39;t know what to test or what &quot;works&quot; means.</p>
+<h3>✅ GOOD: Specific verification steps (server already running)</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-verify&quot;&gt;
+  &lt;what-built&gt;Responsive dashboard - server running at http://localhost:3000&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    Visit http://localhost:3000/dashboard and verify:
+    1. Desktop (&gt;1024px): Sidebar visible, content area fills remaining space
+    2. Tablet (768px): Sidebar collapses to icons
+    3. Mobile (375px): Sidebar hidden, hamburger menu in header
+    4. No horizontal scroll at any size
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; or describe layout issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>❌ BAD: Asking user to run any CLI command</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot;&gt;
+  &lt;action&gt;Run database migrations&lt;/action&gt;
+  &lt;instructions&gt;
+    1. Run: npx prisma migrate deploy
+    2. Run: npx prisma db seed
+    3. Verify tables exist
+  &lt;/instructions&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Claude can run these commands. User should never execute CLI commands.</p>
+<h3>❌ BAD: Asking user to copy values between services</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot;&gt;
+  &lt;action&gt;Configure webhook URL in Stripe&lt;/action&gt;
+  &lt;instructions&gt;
+    1. Copy the deployment URL from terminal
+    2. Go to Stripe Dashboard → Webhooks
+    3. Add endpoint with URL + /api/webhooks
+    4. Copy webhook signing secret
+    5. Add to .env file
+  &lt;/instructions&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Stripe has an API. Claude should create the webhook via API and write to .env directly.</p>
+</anti_patterns>
+
+<summary>
+
+<p>Checkpoints formalize human-in-the-loop points. Use them when Claude cannot complete a task autonomously OR when human verification is required for correctness.</p>
+<p><strong>The golden rule:</strong> If Claude CAN automate it, Claude MUST automate it.</p>
+<p><strong>Checkpoint priority:</strong></p>
+<ol>
+<li><strong>checkpoint:human-verify</strong> (90% of checkpoints) - Claude automated everything, human confirms visual/functional correctness</li>
+<li><strong>checkpoint:decision</strong> (9% of checkpoints) - Human makes architectural/technology choices</li>
+<li><strong>checkpoint:human-action</strong> (1% of checkpoints) - Truly unavoidable manual steps with no API/CLI</li>
+</ol>
+<p><strong>When NOT to use checkpoints:</strong></p>
+<ul>
+<li>Things Claude can verify programmatically (tests pass, build succeeds)</li>
+<li>File operations (Claude can read files to verify)</li>
+<li>Code correctness (use tests and static analysis)</li>
+<li>Anything automatable via CLI/API</summary></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

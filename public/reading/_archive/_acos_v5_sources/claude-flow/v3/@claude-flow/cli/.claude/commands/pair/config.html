@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Pair Programming Configuration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/commands/pair/config.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Pair Programming Configuration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands%2Fpair">pair</a> / <span>config.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Pair Programming Configuration</h1>
+<p>Complete configuration guide for pair programming sessions.</p>
+<h2>Configuration File</h2>
+<p>Main configuration file: <code>.claude-flow/pair-config.json</code></p>
+<h2>Basic Configuration</h2>
+<pre><code class="language-json">{
+  &quot;pair&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;defaultMode&quot;: &quot;switch&quot;,
+    &quot;defaultAgent&quot;: &quot;auto&quot;,
+    &quot;autoStart&quot;: false,
+    &quot;theme&quot;: &quot;professional&quot;
+  }
+}
+</code></pre>
+<h2>Complete Configuration</h2>
+<pre><code class="language-json">{
+  &quot;pair&quot;: {
+    &quot;general&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;defaultMode&quot;: &quot;switch&quot;,
+      &quot;defaultAgent&quot;: &quot;senior-dev&quot;,
+      &quot;autoStart&quot;: false,
+      &quot;theme&quot;: &quot;professional&quot;,
+      &quot;language&quot;: &quot;javascript&quot;,
+      &quot;timezone&quot;: &quot;UTC&quot;
+    },
+    
+    &quot;modes&quot;: {
+      &quot;driver&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;suggestions&quot;: true,
+        &quot;realTimeReview&quot;: true,
+        &quot;autoComplete&quot;: false
+      },
+      &quot;navigator&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;codeGeneration&quot;: true,
+        &quot;explanations&quot;: true,
+        &quot;alternatives&quot;: true
+      },
+      &quot;switch&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;interval&quot;: &quot;10m&quot;,
+        &quot;warning&quot;: &quot;30s&quot;,
+        &quot;autoSwitch&quot;: true,
+        &quot;pauseOnIdle&quot;: true
+      }
+    },
+    
+    &quot;verification&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;threshold&quot;: 0.95,
+      &quot;autoRollback&quot;: true,
+      &quot;preCommitCheck&quot;: true,
+      &quot;continuousMonitoring&quot;: true,
+      &quot;blockOnFailure&quot;: true
+    },
+    
+    &quot;testing&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;autoRun&quot;: true,
+      &quot;framework&quot;: &quot;jest&quot;,
+      &quot;onSave&quot;: true,
+      &quot;coverage&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;minimum&quot;: 80,
+        &quot;enforce&quot;: true,
+        &quot;reportFormat&quot;: &quot;html&quot;
+      },
+      &quot;watch&quot;: true,
+      &quot;parallel&quot;: true
+    },
+    
+    &quot;review&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;continuous&quot;: true,
+      &quot;preCommit&quot;: true,
+      &quot;security&quot;: true,
+      &quot;performance&quot;: true,
+      &quot;style&quot;: true,
+      &quot;complexity&quot;: {
+        &quot;maxComplexity&quot;: 10,
+        &quot;maxDepth&quot;: 4,
+        &quot;maxLines&quot;: 100
+      }
+    },
+    
+    &quot;git&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;autoCommit&quot;: false,
+      &quot;commitTemplate&quot;: &quot;feat: {message}&quot;,
+      &quot;signCommits&quot;: false,
+      &quot;pushOnEnd&quot;: false,
+      &quot;branchProtection&quot;: true
+    },
+    
+    &quot;session&quot;: {
+      &quot;autoSave&quot;: true,
+      &quot;saveInterval&quot;: &quot;5m&quot;,
+      &quot;maxDuration&quot;: &quot;4h&quot;,
+      &quot;idleTimeout&quot;: &quot;15m&quot;,
+      &quot;breakReminder&quot;: &quot;45m&quot;,
+      &quot;metricsInterval&quot;: &quot;1m&quot;,
+      &quot;recordSession&quot;: false,
+      &quot;shareByDefault&quot;: false
+    },
+    
+    &quot;ai&quot;: {
+      &quot;model&quot;: &quot;advanced&quot;,
+      &quot;temperature&quot;: 0.7,
+      &quot;maxTokens&quot;: 4000,
+      &quot;contextWindow&quot;: 8000,
+      &quot;personality&quot;: &quot;professional&quot;,
+      &quot;expertise&quot;: [&quot;backend&quot;, &quot;testing&quot;, &quot;security&quot;],
+      &quot;learningEnabled&quot;: true
+    },
+    
+    &quot;interface&quot;: {
+      &quot;theme&quot;: &quot;dark&quot;,
+      &quot;fontSize&quot;: 14,
+      &quot;showMetrics&quot;: true,
+      &quot;notifications&quot;: true,
+      &quot;sounds&quot;: false,
+      &quot;shortcuts&quot;: {
+        &quot;switch&quot;: &quot;ctrl+shift+s&quot;,
+        &quot;suggest&quot;: &quot;ctrl+space&quot;,
+        &quot;review&quot;: &quot;ctrl+r&quot;,
+        &quot;test&quot;: &quot;ctrl+t&quot;
+      }
+    },
+    
+    &quot;quality&quot;: {
+      &quot;linting&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;autoFix&quot;: true,
+        &quot;rules&quot;: &quot;standard&quot;
+      },
+      &quot;formatting&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;autoFormat&quot;: true,
+        &quot;style&quot;: &quot;prettier&quot;
+      },
+      &quot;documentation&quot;: {
+        &quot;required&quot;: true,
+        &quot;format&quot;: &quot;jsdoc&quot;,
+        &quot;checkCompleteness&quot;: true
+      }
+    },
+    
+    &quot;advanced&quot;: {
+      &quot;parallelSessions&quot;: false,
+      &quot;multiAgent&quot;: false,
+      &quot;customAgents&quot;: [],
+      &quot;plugins&quot;: [],
+      &quot;webhooks&quot;: {
+        &quot;onStart&quot;: &quot;&quot;,
+        &quot;onEnd&quot;: &quot;&quot;,
+        &quot;onCommit&quot;: &quot;&quot;,
+        &quot;onError&quot;: &quot;&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h2>Agent Configuration</h2>
+<h3>Built-in Agents</h3>
+<pre><code class="language-json">{
+  &quot;agents&quot;: {
+    &quot;senior-dev&quot;: {
+      &quot;expertise&quot;: [&quot;architecture&quot;, &quot;patterns&quot;, &quot;optimization&quot;],
+      &quot;style&quot;: &quot;thorough&quot;,
+      &quot;reviewLevel&quot;: &quot;strict&quot;
+    },
+    &quot;tdd-specialist&quot;: {
+      &quot;expertise&quot;: [&quot;testing&quot;, &quot;mocks&quot;, &quot;coverage&quot;],
+      &quot;style&quot;: &quot;test-first&quot;,
+      &quot;reviewLevel&quot;: &quot;comprehensive&quot;
+    },
+    &quot;debugger-expert&quot;: {
+      &quot;expertise&quot;: [&quot;debugging&quot;, &quot;profiling&quot;, &quot;tracing&quot;],
+      &quot;style&quot;: &quot;analytical&quot;,
+      &quot;reviewLevel&quot;: &quot;focused&quot;
+    },
+    &quot;junior-dev&quot;: {
+      &quot;expertise&quot;: [&quot;learning&quot;, &quot;basics&quot;, &quot;documentation&quot;],
+      &quot;style&quot;: &quot;questioning&quot;,
+      &quot;reviewLevel&quot;: &quot;educational&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Custom Agents</h3>
+<pre><code class="language-json">{
+  &quot;customAgents&quot;: [
+    {
+      &quot;id&quot;: &quot;security-expert&quot;,
+      &quot;name&quot;: &quot;Security Specialist&quot;,
+      &quot;expertise&quot;: [&quot;security&quot;, &quot;cryptography&quot;, &quot;vulnerabilities&quot;],
+      &quot;personality&quot;: &quot;cautious&quot;,
+      &quot;prompts&quot;: {
+        &quot;review&quot;: &quot;Focus on security vulnerabilities&quot;,
+        &quot;suggest&quot;: &quot;Prioritize secure coding practices&quot;
+      }
+    }
+  ]
+}
+</code></pre>
+<h2>Mode-Specific Configuration</h2>
+<h3>Driver Mode</h3>
+<pre><code class="language-json">{
+  &quot;driver&quot;: {
+    &quot;autocomplete&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;delay&quot;: 500,
+      &quot;minChars&quot;: 3
+    },
+    &quot;suggestions&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;frequency&quot;: &quot;onChange&quot;,
+      &quot;inline&quot;: true
+    },
+    &quot;review&quot;: {
+      &quot;realTime&quot;: true,
+      &quot;highlighting&quot;: true,
+      &quot;annotations&quot;: true
+    }
+  }
+}
+</code></pre>
+<h3>Navigator Mode</h3>
+<pre><code class="language-json">{
+  &quot;navigator&quot;: {
+    &quot;generation&quot;: {
+      &quot;style&quot;: &quot;verbose&quot;,
+      &quot;comments&quot;: true,
+      &quot;tests&quot;: true
+    },
+    &quot;explanation&quot;: {
+      &quot;level&quot;: &quot;detailed&quot;,
+      &quot;examples&quot;: true,
+      &quot;alternatives&quot;: 3
+    }
+  }
+}
+</code></pre>
+<h3>Switch Mode</h3>
+<pre><code class="language-json">{
+  &quot;switch&quot;: {
+    &quot;intervals&quot;: {
+      &quot;default&quot;: &quot;10m&quot;,
+      &quot;minimum&quot;: &quot;5m&quot;,
+      &quot;maximum&quot;: &quot;30m&quot;
+    },
+    &quot;handoff&quot;: {
+      &quot;summary&quot;: true,
+      &quot;context&quot;: true,
+      &quot;nextSteps&quot;: true
+    }
+  }
+}
+</code></pre>
+<h2>Quality Thresholds</h2>
+<pre><code class="language-json">{
+  &quot;thresholds&quot;: {
+    &quot;verification&quot;: {
+      &quot;error&quot;: 0.90,
+      &quot;warning&quot;: 0.95,
+      &quot;success&quot;: 0.98
+    },
+    &quot;coverage&quot;: {
+      &quot;error&quot;: 70,
+      &quot;warning&quot;: 80,
+      &quot;success&quot;: 90
+    },
+    &quot;complexity&quot;: {
+      &quot;error&quot;: 15,
+      &quot;warning&quot;: 10,
+      &quot;success&quot;: 5
+    }
+  }
+}
+</code></pre>
+<h2>Language-Specific Settings</h2>
+<h3>JavaScript/TypeScript</h3>
+<pre><code class="language-json">{
+  &quot;languages&quot;: {
+    &quot;javascript&quot;: {
+      &quot;framework&quot;: &quot;react&quot;,
+      &quot;linter&quot;: &quot;eslint&quot;,
+      &quot;formatter&quot;: &quot;prettier&quot;,
+      &quot;testRunner&quot;: &quot;jest&quot;,
+      &quot;transpiler&quot;: &quot;babel&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Python</h3>
+<pre><code class="language-json">{
+  &quot;languages&quot;: {
+    &quot;python&quot;: {
+      &quot;version&quot;: &quot;3.11&quot;,
+      &quot;linter&quot;: &quot;pylint&quot;,
+      &quot;formatter&quot;: &quot;black&quot;,
+      &quot;testRunner&quot;: &quot;pytest&quot;,
+      &quot;typeChecker&quot;: &quot;mypy&quot;
+    }
+  }
+}
+</code></pre>
+<h2>Environment Variables</h2>
+<pre><code class="language-bash"># Override configuration via environment
+export CLAUDE_PAIR_MODE=driver
+export CLAUDE_PAIR_VERIFY=true
+export CLAUDE_PAIR_THRESHOLD=0.98
+export CLAUDE_PAIR_AGENT=senior-dev
+export CLAUDE_PAIR_AUTO_TEST=true
+</code></pre>
+<h2>CLI Configuration</h2>
+<h3>Set Configuration</h3>
+<pre><code class="language-bash"># Set single value
+claude-flow pair config set defaultMode switch
+
+# Set nested value
+claude-flow pair config set verification.threshold 0.98
+
+# Set from file
+claude-flow pair config import config.json
+</code></pre>
+<h3>Get Configuration</h3>
+<pre><code class="language-bash"># Get all configuration
+claude-flow pair config get
+
+# Get specific value
+claude-flow pair config get defaultMode
+
+# Export configuration
+claude-flow pair config export &gt; config.json
+</code></pre>
+<h3>Reset Configuration</h3>
+<pre><code class="language-bash"># Reset to defaults
+claude-flow pair config reset
+
+# Reset specific section
+claude-flow pair config reset verification
+</code></pre>
+<h2>Profile Management</h2>
+<h3>Create Profile</h3>
+<pre><code class="language-bash">claude-flow pair profile create refactoring \
+  --mode driver \
+  --verify true \
+  --threshold 0.98 \
+  --focus refactor
+</code></pre>
+<h3>Use Profile</h3>
+<pre><code class="language-bash">claude-flow pair --start --profile refactoring
+</code></pre>
+<h3>List Profiles</h3>
+<pre><code class="language-bash">claude-flow pair profile list
+</code></pre>
+<h3>Profiles Configuration</h3>
+<pre><code class="language-json">{
+  &quot;profiles&quot;: {
+    &quot;refactoring&quot;: {
+      &quot;mode&quot;: &quot;driver&quot;,
+      &quot;verification&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;threshold&quot;: 0.98
+      },
+      &quot;focus&quot;: &quot;refactor&quot;
+    },
+    &quot;debugging&quot;: {
+      &quot;mode&quot;: &quot;navigator&quot;,
+      &quot;agent&quot;: &quot;debugger-expert&quot;,
+      &quot;trace&quot;: true,
+      &quot;verbose&quot;: true
+    },
+    &quot;learning&quot;: {
+      &quot;mode&quot;: &quot;mentor&quot;,
+      &quot;pace&quot;: &quot;slow&quot;,
+      &quot;explanations&quot;: &quot;detailed&quot;,
+      &quot;examples&quot;: true
+    }
+  }
+}
+</code></pre>
+<h2>Workspace Configuration</h2>
+<h3>Project-Specific</h3>
+<p><code>.claude-flow/pair-config.json</code> in project root</p>
+<h3>User-Specific</h3>
+<p><code>~/.claude-flow/pair-config.json</code></p>
+<h3>Global</h3>
+<p><code>/etc/claude-flow/pair-config.json</code></p>
+<h3>Priority Order</h3>
+<ol>
+<li>Command-line arguments</li>
+<li>Environment variables</li>
+<li>Project configuration</li>
+<li>User configuration</li>
+<li>Global configuration</li>
+<li>Built-in defaults</li>
+</ol>
+<h2>Configuration Validation</h2>
+<pre><code class="language-bash"># Validate configuration
+claude-flow pair config validate
+
+# Test configuration
+claude-flow pair config test
+</code></pre>
+<h2>Migration</h2>
+<h3>From Version 1.x</h3>
+<pre><code class="language-bash">claude-flow pair config migrate --from 1.x
+</code></pre>
+<h3>Export/Import</h3>
+<pre><code class="language-bash"># Export current config
+claude-flow pair config export &gt; my-config.json
+
+# Import config
+claude-flow pair config import my-config.json
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Start Simple</strong> - Use defaults, customize as needed</li>
+<li><strong>Version Control</strong> - Commit project config</li>
+<li><strong>Team Standards</strong> - Share configurations</li>
+<li><strong>Regular Review</strong> - Update thresholds based on metrics</li>
+<li><strong>Profile Usage</strong> - Create profiles for common scenarios</li>
+</ol>
+<h2>Troubleshooting</h2>
+<h3>Configuration Not Loading</h3>
+<ul>
+<li>Check file syntax (JSON)</li>
+<li>Verify file permissions</li>
+<li>Check priority order</li>
+<li>Validate configuration</li>
+</ul>
+<h3>Settings Not Applied</h3>
+<ul>
+<li>Restart session</li>
+<li>Clear cache</li>
+<li>Check overrides</li>
+<li>Review logs</li>
+</ul>
+<h2>Related Documentation</h2>
+<ul>
+<li><a href="./README.md">Getting Started</a></li>
+<li><a href="./session.md">Session Management</a></li>
+<li><a href="./modes.md">Modes</a></li>
+<li><a href="./templates.md">Templates</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

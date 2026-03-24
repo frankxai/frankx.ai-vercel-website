@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ACOS Book Publishing Skill v1.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/book-publishing/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">ACOS Book Publishing Skill v1.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fbook-publishing">book-publishing</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ACOS Book Publishing Skill v1.0</h1>
+<h2>Purpose</h2>
+<p>Intelligence layer for FrankX&#39;s 6-book publishing platform. Provides AI agents with complete book DNA — voice, research context, visual identity, and writing style for each book line. Any agent loading this skill can produce content indistinguishable from Frank&#39;s authored work.</p>
+<h2>Activation</h2>
+<p>Auto-activates when session involves: book writing, chapter drafting, book cover generation, PDF/EPUB creation, library reviews, or any <code>/books/</code> route work.</p>
+<p><strong>Triggers</strong>: <code>book</code>, <code>chapter</code>, <code>poetry</code>, <code>spartan</code>, <code>self-development</code>, <code>imagination</code>, <code>manifestation</code>, <code>golden-age</code>, <code>library</code>, <code>review</code>, <code>cover image</code>, <code>pdf generation</code>, <code>epub</code></p>
+<hr>
+<h2>Book Registry (6 Books)</h2>
+<h3>1. Love &amp; Poetry</h3>
+<ul>
+<li><strong>Slug</strong>: <code>love-and-poetry</code></li>
+<li><strong>Subtitle</strong>: Verses That Move the Soul</li>
+<li><strong>Status</strong>: Published</li>
+<li><strong>Theme</strong>: Rose/Gold on dark (#0a0a0f)</li>
+<li><strong>Fonts</strong>: Serif headings + serif body (Playfair Display)</li>
+<li><strong>Voice</strong>: Atmospheric, flowing, tender yet profound. Long sentences that breathe. Metaphor-heavy. No sentimentality — raw emotional truth.</li>
+<li><strong>Research Sources</strong>: Rumi (13th century Sufi poetry), Rilke (Letters to a Young Poet, Duino Elegies), Goethe (West-Eastern Divan), Erich Fried (Es ist was es ist), Kahlil Gibran (The Prophet), Paulo Coelho, Saint-Exupery, Thich Nhat Hanh, Vietnamese folk poetry traditions</li>
+<li><strong>Languages</strong>: English primary, German poems in original + translation, Vietnamese poems in original + translation</li>
+<li><strong>Visual Identity</strong>: Rose-gold particles, glass petals, constellation hearts, quill pen motifs, cherry blossom elements</li>
+<li><strong>Cover</strong>: <code>/images/books/love-and-poetry-cover.png</code></li>
+<li><strong>Content Dir</strong>: <code>content/books/love-and-poetry/</code></li>
+<li><strong>Chapters</strong>: 5 (Rumi Speaks, Dichter der Liebe, Nha Tho Tinh Yeu, Wisdom of Ages, A Poem for You)</li>
+<li><strong>Writing Rules</strong>:<ul>
+<li>Poetry chapters use centered text with line breaks preserved</li>
+<li>Prose sections use flowing paragraphs, not bullet points</li>
+<li>Each poem gets attribution with poet name and era</li>
+<li>Original poems in Chapter 5 must match quality bar of curated poets</li>
+<li>NO emoji, NO hashtags, NO social media tone</li>
+</ul>
+</li>
+</ul>
+<h3>2. Spartan Mindset</h3>
+<ul>
+<li><strong>Slug</strong>: <code>spartan-mindset</code></li>
+<li><strong>Subtitle</strong>: The Discipline of One More</li>
+<li><strong>Status</strong>: In Progress</li>
+<li><strong>Theme</strong>: Red/Stone on dark (#030712)</li>
+<li><strong>Fonts</strong>: Sans headings + sans body (Inter bold)</li>
+<li><strong>Voice</strong>: Direct, commanding, zero fluff. Short declarative sentences. Imperative mood. Every paragraph earns its place through actionable truth. Think Marcus Aurelius meets David Goggins.</li>
+<li><strong>Research Sources</strong>: Plutarch (Spartan society, Lycurgus), Steven Pressfield (Gates of Fire, The War of Art), David Goggins (Can&#39;t Hurt Me), Jocko Willink (Extreme Ownership), Arnold Schwarzenegger (Total Recall), Marcus Aurelius (Meditations), Miyamoto Musashi (Book of Five Rings), modern exercise science (periodization, progressive overload, neuroplasticity)</li>
+<li><strong>Visual Identity</strong>: Chrome Spartan helmet, blood-red accents, barbell silhouettes, gunmetal textures, geometric discipline patterns</li>
+<li><strong>Cover</strong>: <code>/images/books/spartan-mindset-cover.png</code></li>
+<li><strong>Content Dir</strong>: <code>content/books/spartan-mindset/</code></li>
+<li><strong>Chapters</strong>: 5 (The Spartan Code, Iron Discipline, One More Rep, The Forge, Mind Over Matter)</li>
+<li><strong>Writing Rules</strong>:<ul>
+<li>Paragraphs max 4 sentences</li>
+<li>Use training metaphors (reps, sets, forge, iron)</li>
+<li>Include concrete exercises/protocols (not vague advice)</li>
+<li>Each chapter ends with a &quot;The Standard&quot; section — a non-negotiable takeaway</li>
+<li>NO spiritual language, NO manifestation talk, NO &quot;vibes&quot;</li>
+<li>Epigraphs from warriors, athletes, stoics</li>
+</ul>
+</li>
+</ul>
+<h3>3. The Golden Age of Creators</h3>
+<ul>
+<li><strong>Slug</strong>: <code>golden-age</code></li>
+<li><strong>Subtitle</strong>: The Democratization of Creative Capability and Distribution</li>
+<li><strong>Status</strong>: Published</li>
+<li><strong>Theme</strong>: Amber/Indigo on dark (#0F172A)</li>
+<li><strong>Fonts</strong>: Serif headings + sans body</li>
+<li><strong>Voice</strong>: Visionary and warm. Long-form narrative journalism meets personal essay. Data-backed optimism. Specific creator economy statistics woven with philosophical reflection. Hopeful without being naive.</li>
+<li><strong>Research Sources</strong>: Creator Economy reports (Goldman Sachs $250B valuation), SignalFire Creator Report, a16z Future of Creative Work, Li Jin (passion economy), Naval Ravikant (leverage), Kevin Kelly (1000 True Fans), historical creator movements (Renaissance patronage, printing press, radio, YouTube revolution)</li>
+<li><strong>Visual Identity</strong>: Warm amber glow, indigo depths, sunrise/dawn metaphors, constellation patterns, golden ratio spirals</li>
+<li><strong>Cover</strong>: <code>/images/golden-age/hero-golden-age.png</code></li>
+<li><strong>Content Dir</strong>: <code>content/golden-age-book/</code></li>
+<li><strong>Chapters</strong>: 3 published (When Creation Calls, The Orchestration Age, The First Gesture)</li>
+<li><strong>Writing Rules</strong>:<ul>
+<li>Each chapter blends personal narrative + industry data + philosophical insight</li>
+<li>Include real statistics with sources</li>
+<li>Reference specific creators and platforms (not generic)</li>
+<li>Chapter structure: opening anecdote → thesis → evidence → reflection → call to action</li>
+<li>Maintain dual voice: technical authority + creative warmth</li>
+</ul>
+</li>
+</ul>
+<h3>4. The Art of Self-Development</h3>
+<ul>
+<li><strong>Slug</strong>: <code>self-development</code></li>
+<li><strong>Subtitle</strong>: Seven Pillars of a Complete Life</li>
+<li><strong>Status</strong>: In Progress</li>
+<li><strong>Theme</strong>: Emerald/Cyan on dark (#030f0a)</li>
+<li><strong>Fonts</strong>: Sans headings + sans body</li>
+<li><strong>Voice</strong>: Grounded and systematic. Like a wise mentor who has done the work and now shares the framework. No self-help platitudes — specific routines, numbers, protocols. Confident authority without arrogance.</li>
+<li><strong>Research Sources</strong>: James Clear (Atomic Habits), Cal Newport (Deep Work, So Good They Can&#39;t Ignore You), Ray Dalio (Principles), Naval Ravikant (Almanack), Seneca (Letters from a Stoic), Benjamin Franklin (Autobiography — 13 virtues), Nassim Taleb (Antifragile), Charlie Munger (mental models), Andrew Huberman (neuroscience protocols), modern sleep/nutrition science</li>
+<li><strong>Visual Identity</strong>: Seven emerald pillars, cyan energy connections, crystal structures, obsidian reflective surfaces, geometric precision</li>
+<li><strong>Cover</strong>: <code>/images/books/self-development-cover.png</code></li>
+<li><strong>Content Dir</strong>: <code>content/books/self-development/</code></li>
+<li><strong>Chapters</strong>: 7 (Energy, Mind, Soul, Craft, Capital, Circle, Legacy)</li>
+<li><strong>Writing Rules</strong>:<ul>
+<li>Each chapter = one pillar, standalone but interconnected</li>
+<li>Include specific protocols (e.g., &quot;4-7-8 breathing&quot;, &quot;2-minute rule&quot;)</li>
+<li>Reference research with specificity (study names, percentages)</li>
+<li>Structure: opening metaphor → framework → protocol → integration → closing reflection</li>
+<li>Use numbered lists sparingly for actual step sequences</li>
+<li>NO vague advice like &quot;be present&quot; without concrete how-to</li>
+</ul>
+</li>
+</ul>
+<h3>5. Imagination</h3>
+<ul>
+<li><strong>Slug</strong>: <code>imagination</code></li>
+<li><strong>Subtitle</strong>: Unlocking the Power of the Mind</li>
+<li><strong>Status</strong>: In Progress</li>
+<li><strong>Theme</strong>: Violet/Cyan on dark (#0a0a12)</li>
+<li><strong>Fonts</strong>: Serif headings + sans body</li>
+<li><strong>Voice</strong>: Dreamy yet intellectual. Einstein&#39;s thought experiments meets Oliver Sacks&#39; neuroscience storytelling. Expansive paragraphs that unfold like mental landscapes. Wonder as a thinking tool, not decoration.</li>
+<li><strong>Research Sources</strong>: Albert Einstein (thought experiments, &quot;Imagination is more important than knowledge&quot;), Oliver Sacks (The Man Who Mistook His Wife for a Hat), Daniel Kahneman (Thinking Fast and Slow), Edward de Bono (lateral thinking), Charlie Munger (mental models), Mihaly Csikszentmihalyi (Flow), neuroscience of mental imagery (Kosslyn&#39;s work), Chicago basketball free-throw visualization study, Tesla&#39;s mental engineering</li>
+<li><strong>Visual Identity</strong>: Glass/crystal brain, violet neural pathways, fractal thought waves, inner galaxies, bioluminescent accents</li>
+<li><strong>Cover</strong>: <code>/images/books/imagination-cover.png</code></li>
+<li><strong>Content Dir</strong>: <code>content/books/imagination/</code></li>
+<li><strong>Chapters</strong>: 5 (The Inner Theater, Creative Visualization, Mental Models, The Architect&#39;s Eye, Beyond the Visible)</li>
+<li><strong>Writing Rules</strong>:<ul>
+<li>Open each chapter with a vivid mental image or thought experiment</li>
+<li>Alternate between scientific evidence and philosophical reflection</li>
+<li>Include practical exercises labeled &quot;Mental Workshop&quot;</li>
+<li>Metaphors from architecture, theater, and optics</li>
+<li>Let paragraphs breathe — this is not an airport business book</li>
+<li>NO self-help cliches, NO &quot;unlock your potential&quot;</li>
+</ul>
+</li>
+</ul>
+<h3>6. Manifestation</h3>
+<ul>
+<li><strong>Slug</strong>: <code>manifestation</code></li>
+<li><strong>Subtitle</strong>: The Architecture of Reality</li>
+<li><strong>Status</strong>: In Progress</li>
+<li><strong>Theme</strong>: Gold/Purple on dark (#0f0a05)</li>
+<li><strong>Fonts</strong>: Serif headings + sans body</li>
+<li><strong>Voice</strong>: Magnetic and confident. Grounded psychology, not magical thinking. Reframes &quot;law of attraction&quot; through neuroscience (RAS, expectation effect), psychology (identity theory, cognitive behavioral patterns), and strategic action. Respects the reader&#39;s intelligence.</li>
+<li><strong>Research Sources</strong>: Reticular Activating System (neuroscience), Dr. Alia Crum (expectation effect, Stanford), Carol Dweck (Mindset), Viktor Frankl (Man&#39;s Search for Meaning), Napoleon Hill (Think and Grow Rich — psychology analysis), cognitive behavioral therapy frameworks, James Clear (identity-based habits), Pareto Principle, modern goal-setting research</li>
+<li><strong>Visual Identity</strong>: Golden key, liquid gold chrome, sacred geometry (Flower of Life), concentric golden rings, purple energy wisps, obsidian mirrors</li>
+<li><strong>Cover</strong>: <code>/images/books/manifestation-cover.png</code></li>
+<li><strong>Content Dir</strong>: <code>content/books/manifestation/</code></li>
+<li><strong>Chapters</strong>: 5 (Architecture of Reality, Thought as Blueprint, The Frequency Principle, Aligned Action, The Evidence Journal)</li>
+<li><strong>Writing Rules</strong>:<ul>
+<li>Always ground claims in psychology/neuroscience before philosophical expansion</li>
+<li>Structure: myth-busting opener → scientific basis → framework → practice → integration</li>
+<li>The Evidence Journal (Ch5) is an interactive exercise chapter</li>
+<li>Reference &quot;The Secret&quot; only to improve upon it with scientific rigor</li>
+<li>NO &quot;the universe will provide&quot; without &quot;here&#39;s the mechanism&quot;</li>
+<li>NO spiritual bypassing — acknowledge that action is non-negotiable</li>
+<li>Use &quot;architect&quot; and &quot;blueprint&quot; metaphors throughout (consistent with subtitle)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>Cross-Book Standards</h2>
+<h3>Typography</h3>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Font</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Serif headings</td>
+<td>Playfair Display</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Sans headings</td>
+<td>Inter</td>
+<td>700</td>
+</tr>
+<tr>
+<td>Serif body</td>
+<td>Lora or Playfair Display</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Sans body</td>
+<td>Inter</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Code/data</td>
+<td>JetBrains Mono</td>
+<td>400</td>
+</tr>
+</tbody></table>
+<h3>Color System</h3>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Primary</th>
+<th>Accent</th>
+<th>Background</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Love &amp; Poetry</td>
+<td><code>rose-500</code></td>
+<td><code>amber-400</code></td>
+<td><code>#0a0a0f</code></td>
+</tr>
+<tr>
+<td>Spartan Mindset</td>
+<td><code>red-600</code></td>
+<td><code>stone-400</code></td>
+<td><code>#030712</code></td>
+</tr>
+<tr>
+<td>Golden Age</td>
+<td><code>amber-500</code></td>
+<td><code>indigo-400</code></td>
+<td><code>#0F172A</code></td>
+</tr>
+<tr>
+<td>Self-Development</td>
+<td><code>emerald-500</code></td>
+<td><code>cyan-400</code></td>
+<td><code>#030f0a</code></td>
+</tr>
+<tr>
+<td>Imagination</td>
+<td><code>violet-500</code></td>
+<td><code>cyan-400</code></td>
+<td><code>#0a0a12</code></td>
+</tr>
+<tr>
+<td>Manifestation</td>
+<td><code>amber-400</code></td>
+<td><code>purple-500</code></td>
+<td><code>#0f0a05</code></td>
+</tr>
+</tbody></table>
+<h3>Writing Universal Rules</h3>
+<ol>
+<li><strong>No emoji</strong> in any book content</li>
+<li><strong>No hashtags</strong> or social media formatting</li>
+<li><strong>No AI-sounding phrases</strong>: &quot;delve into&quot;, &quot;it&#39;s important to note&quot;, &quot;in conclusion&quot;</li>
+<li><strong>Frank&#39;s voice markers</strong>: Direct but warm. Lead with insight, not preamble. Specific over general. Results over theory.</li>
+<li><strong>Epigraphs</strong>: Every chapter can have an opening quote — must be real, attributed, verifiable</li>
+<li><strong>Word count</strong>: Chapters target 2,000-3,000 words (8-15 min read)</li>
+<li><strong>Markdown format</strong>: H1 for title, H2 for sections, H3 for subsections, blockquotes for quotes</li>
+<li><strong>Image refs</strong>: Use relative paths <code>/images/books/{slug}/</code> for chapter images</li>
+</ol>
+<h3>Quality Gate</h3>
+<p>Before any book content is published:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Voice matches book profile (re-read 2 paragraphs of existing chapters)</li>
+<li><input disabled="" type="checkbox"> No AI-pattern language detected</li>
+<li><input disabled="" type="checkbox"> Specific claims have cited sources or verifiable references</li>
+<li><input disabled="" type="checkbox"> Chapter structure follows the book&#39;s pattern</li>
+<li><input disabled="" type="checkbox"> Epigraph is real and attributed</li>
+<li><input disabled="" type="checkbox"> Reading time estimate is within 8-15 minutes</li>
+<li><input disabled="" type="checkbox"> Markdown renders correctly in BookReader component</li>
+</ul>
+<hr>
+<h2>ACOS Integration</h2>
+<h3>Skill Auto-Activation Rules</h3>
+<pre><code class="language-json">{
+  &quot;book-publishing&quot;: {
+    &quot;triggers&quot;: [&quot;book&quot;, &quot;chapter&quot;, &quot;poetry&quot;, &quot;spartan&quot;, &quot;self-development&quot;, &quot;imagination&quot;, &quot;manifestation&quot;, &quot;golden-age&quot;, &quot;library&quot;, &quot;review&quot;, &quot;cover&quot;, &quot;pdf&quot;, &quot;epub&quot;],
+    &quot;priority&quot;: &quot;high&quot;,
+    &quot;profile&quot;: &quot;content-architect&quot;,
+    &quot;auto_load&quot;: true
+  }
+}
+</code></pre>
+<h3>Agent Profiles for Book Work</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Book Work Scope</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>content-architect</code></td>
+<td>Chapter writing, book structure, voice consistency</td>
+</tr>
+<tr>
+<td><code>seo-intelligence</code></td>
+<td>Book/library SEO, JSON-LD schemas, meta optimization</td>
+</tr>
+<tr>
+<td><code>frontend-designer</code></td>
+<td>BookReader UI, cover display, theme components</td>
+</tr>
+<tr>
+<td><code>devops-engineer</code></td>
+<td>PDF pipeline, EPUB generation, Vercel Blob uploads</td>
+</tr>
+</tbody></table>
+<h3>Hook Integration</h3>
+<ul>
+<li><strong>PreToolUse:Write</strong> — When writing to <code>content/books/</code>, validate against book voice profile</li>
+<li><strong>PostToolUse:Write</strong> — After chapter creation, update reading time estimate in registry</li>
+<li><strong>Stop</strong> — Log book content changes to trajectory system for learning</li>
+</ul>
+<h3>File Watchers</h3>
+<table>
+<thead>
+<tr>
+<th>Path Pattern</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>content/books/*/chapter-*.md</code></td>
+<td>Validate voice, update registry</td>
+</tr>
+<tr>
+<td><code>public/images/books/*</code></td>
+<td>Verify image dimensions (848x1264 for covers)</td>
+</tr>
+<tr>
+<td><code>app/books/**/*.tsx</code></td>
+<td>Run TypeScript check on book components</td>
+</tr>
+<tr>
+<td><code>data/book-reviews.ts</code></td>
+<td>Validate review schema completeness</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>PDF/EPUB Pipeline</h2>
+<h3>PDF Generation</h3>
+<ul>
+<li><strong>Tool</strong>: Puppeteer (extends <code>scripts/generate-and-upload-pdfs.mjs</code>)</li>
+<li><strong>Format</strong>: 6x9&quot; trade paperback (432pt x 648pt)</li>
+<li><strong>Templates</strong>: <code>public/pdf-templates/books/{slug}.html</code></li>
+<li><strong>Per-book</strong>: Each book gets themed template matching its colors</li>
+<li><strong>Output</strong>: Vercel Blob storage via existing upload pipeline</li>
+</ul>
+<h3>EPUB Generation</h3>
+<ul>
+<li><strong>Tool</strong>: <code>epub-gen-memory</code> npm package</li>
+<li><strong>Metadata</strong>: ISBN placeholder, author, description, cover image</li>
+<li><strong>Chapters</strong>: Ordered by chapter number from registry</li>
+<li><strong>Output</strong>: Vercel Blob alongside PDF</li>
+</ul>
+<h3>Generation Command</h3>
+<pre><code class="language-bash"># Generate all book PDFs
+node scripts/generate-book-pdfs.mjs
+
+# Generate single book
+node scripts/generate-book-pdfs.mjs --book spartan-mindset
+
+# Generate EPUBs
+node scripts/generate-book-epubs.mjs
+</code></pre>
+<hr>
+<h2>Library Integration</h2>
+<h3>Book Reviews (<code>/library/</code>)</h3>
+<ul>
+<li><strong>Data</strong>: <code>data/book-reviews.ts</code> — 8 reviews with cross-references to our books</li>
+<li><strong>Schema</strong>: Title, author, rating (1-5), key insights, best-for tags, related book slug</li>
+<li><strong>Cross-sell</strong>: Each review links to &quot;Our book on this topic&quot; via <code>relatedBook</code> field</li>
+</ul>
+<h3>Review Voice</h3>
+<p>Reviews follow FrankX blog voice: concise, opinionated, actionable insights over summary. Each review answers &quot;What changed after reading this?&quot; not &quot;What is this book about?&quot;</p>
+<hr>
+<h2>Content Generation Workflow</h2>
+<h3>Writing a New Chapter</h3>
+<ol>
+<li>Load this skill (auto or manual)</li>
+<li>Read 2 existing chapters from the same book for voice calibration</li>
+<li>Check the book&#39;s research sources for relevant material</li>
+<li>Write the chapter following the book-specific structure pattern</li>
+<li>Run through quality gate checklist</li>
+<li>Save to <code>content/books/{slug}/chapter-{nn}-{title-slug}.md</code></li>
+<li>Update <code>books-registry.ts</code> with the new chapter entry</li>
+</ol>
+<h3>Creating a Book Review</h3>
+<ol>
+<li>Load this skill</li>
+<li>Read the actual book (or comprehensive summary + key passages)</li>
+<li>Identify 5 key insights that changed thinking/behavior</li>
+<li>Write review following FrankX voice (NOT summary, YES transformation)</li>
+<li>Map to <code>relatedBook</code> from our 6-book catalog</li>
+<li>Add to <code>data/book-reviews.ts</code></li>
+</ol>
+<h3>Generating Cover Images</h3>
+<ol>
+<li>Load this skill for the book&#39;s visual identity section</li>
+<li>Use Nano Banana MCP with <code>pro</code> model, <code>2:3</code> aspect, <code>high</code> resolution</li>
+<li>Negative prompt ALWAYS includes: <code>clay, claymorphic, pastel, cartoon, cute, childish</code></li>
+<li>Save to <code>public/images/books/{slug}-cover.png</code></li>
+<li>Verify dimensions: 848x1264 (2:3 at high resolution)</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

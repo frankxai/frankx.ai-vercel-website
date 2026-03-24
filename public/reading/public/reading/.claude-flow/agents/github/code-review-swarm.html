@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Code Review Swarm - Automated Code Review with AI Agents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-flow/agents/github/code-review-swarm.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Code Review Swarm - Automated Code Review with AI Agents</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude-flow">.claude-flow</a> / <a href="../index.html#.claude-flow%2Fagents">agents</a> / <a href="index.html#.claude-flow%2Fagents%2Fgithub">github</a> / <span>code-review-swarm.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: code-review-swarm
+description: Deploy specialized AI agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis
+tools: mcp__claude-flow__swarm_init, mcp__claude-flow__agent_spawn, mcp__claude-flow__task_orchestrate, Bash, Read, Write, TodoWrite
+color: blue
+type: development
+capabilities:</p>
+<ul>
+<li>Automated multi-agent code review</li>
+<li>Security vulnerability analysis</li>
+<li>Performance bottleneck detection</li>
+<li>Architecture pattern validation</li>
+<li>Style and convention enforcement
+priority: high
+hooks:
+  pre: |
+echo &quot;Starting code-review-swarm...&quot;
+echo &quot;Initializing multi-agent review system&quot;
+gh auth status || (echo &quot;GitHub CLI not authenticated&quot; &amp;&amp; exit 1)
+  post: |
+echo &quot;Completed code-review-swarm&quot;
+echo &quot;Review results posted to GitHub&quot;
+echo &quot;Quality gates evaluated&quot;</li>
+</ul>
+<hr>
+<h1>Code Review Swarm - Automated Code Review with AI Agents</h1>
+<h2>Overview</h2>
+<p>Deploy specialized AI agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis.</p>
+<h2>Core Features</h2>
+<h3>1. Multi-Agent Review System</h3>
+<pre><code class="language-bash"># Initialize code review swarm with gh CLI
+# Get PR details
+PR_DATA=$(gh pr view 123 --json files,additions,deletions,title,body)
+PR_DIFF=$(gh pr diff 123)
+
+# Initialize swarm with PR context
+npx ruv-swarm github review-init \
+  --pr 123 \
+  --pr-data &quot;$PR_DATA&quot; \
+  --diff &quot;$PR_DIFF&quot; \
+  --agents &quot;security,performance,style,architecture,accessibility&quot; \
+  --depth comprehensive
+
+# Post initial review status
+gh pr comment 123 --body &quot;🔍 Multi-agent code review initiated&quot;
+</code></pre>
+<h3>2. Specialized Review Agents</h3>
+<h4>Security Agent</h4>
+<pre><code class="language-bash"># Security-focused review with gh CLI
+# Get changed files
+CHANGED_FILES=$(gh pr view 123 --json files --jq &#39;.files[].path&#39;)
+
+# Run security review
+SECURITY_RESULTS=$(npx ruv-swarm github review-security \
+  --pr 123 \
+  --files &quot;$CHANGED_FILES&quot; \
+  --check &quot;owasp,cve,secrets,permissions&quot; \
+  --suggest-fixes)
+
+# Post security findings
+if echo &quot;$SECURITY_RESULTS&quot; | grep -q &quot;critical&quot;; then
+  # Request changes for critical issues
+  gh pr review 123 --request-changes --body &quot;$SECURITY_RESULTS&quot;
+  # Add security label
+  gh pr edit 123 --add-label &quot;security-review-required&quot;
+else
+  # Post as comment for non-critical issues
+  gh pr comment 123 --body &quot;$SECURITY_RESULTS&quot;
+fi
+</code></pre>
+<h4>Performance Agent</h4>
+<pre><code class="language-bash"># Performance analysis
+npx ruv-swarm github review-performance \
+  --pr 123 \
+  --profile &quot;cpu,memory,io&quot; \
+  --benchmark-against main \
+  --suggest-optimizations
+</code></pre>
+<h4>Architecture Agent</h4>
+<pre><code class="language-bash"># Architecture review
+npx ruv-swarm github review-architecture \
+  --pr 123 \
+  --check &quot;patterns,coupling,cohesion,solid&quot; \
+  --visualize-impact \
+  --suggest-refactoring
+</code></pre>
+<h3>3. Review Configuration</h3>
+<pre><code class="language-yaml"># .github/review-swarm.yml
+version: 1
+review:
+  auto-trigger: true
+  required-agents:
+    - security
+    - performance
+    - style
+  optional-agents:
+    - architecture
+    - accessibility
+    - i18n
+
+  thresholds:
+    security: block
+    performance: warn
+    style: suggest
+
+  rules:
+    security:
+      - no-eval
+      - no-hardcoded-secrets
+      - proper-auth-checks
+    performance:
+      - no-n-plus-one
+      - efficient-queries
+      - proper-caching
+    architecture:
+      - max-coupling: 5
+      - min-cohesion: 0.7
+      - follow-patterns
+</code></pre>
+<h2>Review Agents</h2>
+<h3>Security Review Agent</h3>
+<pre><code class="language-javascript">// Security checks performed
+{
+  &quot;checks&quot;: [
+    &quot;SQL injection vulnerabilities&quot;,
+    &quot;XSS attack vectors&quot;,
+    &quot;Authentication bypasses&quot;,
+    &quot;Authorization flaws&quot;,
+    &quot;Cryptographic weaknesses&quot;,
+    &quot;Dependency vulnerabilities&quot;,
+    &quot;Secret exposure&quot;,
+    &quot;CORS misconfigurations&quot;
+  ],
+  &quot;actions&quot;: [
+    &quot;Block PR on critical issues&quot;,
+    &quot;Suggest secure alternatives&quot;,
+    &quot;Add security test cases&quot;,
+    &quot;Update security documentation&quot;
+  ]
+}
+</code></pre>
+<h3>Performance Review Agent</h3>
+<pre><code class="language-javascript">// Performance analysis
+{
+  &quot;metrics&quot;: [
+    &quot;Algorithm complexity&quot;,
+    &quot;Database query efficiency&quot;,
+    &quot;Memory allocation patterns&quot;,
+    &quot;Cache utilization&quot;,
+    &quot;Network request optimization&quot;,
+    &quot;Bundle size impact&quot;,
+    &quot;Render performance&quot;
+  ],
+  &quot;benchmarks&quot;: [
+    &quot;Compare with baseline&quot;,
+    &quot;Load test simulations&quot;,
+    &quot;Memory leak detection&quot;,
+    &quot;Bottleneck identification&quot;
+  ]
+}
+</code></pre>
+<h3>Style &amp; Convention Agent</h3>
+<pre><code class="language-javascript">// Style enforcement
+{
+  &quot;checks&quot;: [
+    &quot;Code formatting&quot;,
+    &quot;Naming conventions&quot;,
+    &quot;Documentation standards&quot;,
+    &quot;Comment quality&quot;,
+    &quot;Test coverage&quot;,
+    &quot;Error handling patterns&quot;,
+    &quot;Logging standards&quot;
+  ],
+  &quot;auto-fix&quot;: [
+    &quot;Formatting issues&quot;,
+    &quot;Import organization&quot;,
+    &quot;Trailing whitespace&quot;,
+    &quot;Simple naming issues&quot;
+  ]
+}
+</code></pre>
+<h3>Architecture Review Agent</h3>
+<pre><code class="language-javascript">// Architecture analysis
+{
+  &quot;patterns&quot;: [
+    &quot;Design pattern adherence&quot;,
+    &quot;SOLID principles&quot;,
+    &quot;DRY violations&quot;,
+    &quot;Separation of concerns&quot;,
+    &quot;Dependency injection&quot;,
+    &quot;Layer violations&quot;,
+    &quot;Circular dependencies&quot;
+  ],
+  &quot;metrics&quot;: [
+    &quot;Coupling metrics&quot;,
+    &quot;Cohesion scores&quot;,
+    &quot;Complexity measures&quot;,
+    &quot;Maintainability index&quot;
+  ]
+}
+</code></pre>
+<h2>Advanced Review Features</h2>
+<h3>1. Context-Aware Reviews</h3>
+<pre><code class="language-bash"># Review with full context
+npx ruv-swarm github review-context \
+  --pr 123 \
+  --load-related-prs \
+  --analyze-impact \
+  --check-breaking-changes
+</code></pre>
+<h3>2. Learning from History</h3>
+<pre><code class="language-bash"># Learn from past reviews
+npx ruv-swarm github review-learn \
+  --analyze-past-reviews \
+  --identify-patterns \
+  --improve-suggestions \
+  --reduce-false-positives
+</code></pre>
+<h3>3. Cross-PR Analysis</h3>
+<pre><code class="language-bash"># Analyze related PRs together
+npx ruv-swarm github review-batch \
+  --prs &quot;123,124,125&quot; \
+  --check-consistency \
+  --verify-integration \
+  --combined-impact
+</code></pre>
+<h2>Review Automation</h2>
+<h3>Auto-Review on Push</h3>
+<pre><code class="language-yaml"># .github/workflows/auto-review.yml
+name: Automated Code Review
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  swarm-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup GitHub CLI
+        run: echo &quot;${{ secrets.GITHUB_TOKEN }}&quot; | gh auth login --with-token
+
+      - name: Run Review Swarm
+        run: |
+          # Get PR context with gh CLI
+          PR_NUM=${{ github.event.pull_request.number }}
+          PR_DATA=$(gh pr view $PR_NUM --json files,title,body,labels)
+
+          # Run swarm review
+          REVIEW_OUTPUT=$(npx ruv-swarm github review-all \
+            --pr $PR_NUM \
+            --pr-data &quot;$PR_DATA&quot; \
+            --agents &quot;security,performance,style,architecture&quot;)
+
+          # Post review results
+          echo &quot;$REVIEW_OUTPUT&quot; | gh pr review $PR_NUM --comment -F -
+
+          # Update PR status
+          if echo &quot;$REVIEW_OUTPUT&quot; | grep -q &quot;approved&quot;; then
+            gh pr review $PR_NUM --approve
+          elif echo &quot;$REVIEW_OUTPUT&quot; | grep -q &quot;changes-requested&quot;; then
+            gh pr review $PR_NUM --request-changes -b &quot;See review comments above&quot;
+          fi
+</code></pre>
+<h3>Review Triggers</h3>
+<pre><code class="language-javascript">// Custom review triggers
+{
+  &quot;triggers&quot;: {
+    &quot;high-risk-files&quot;: {
+      &quot;paths&quot;: [&quot;**/auth/**&quot;, &quot;**/payment/**&quot;],
+      &quot;agents&quot;: [&quot;security&quot;, &quot;architecture&quot;],
+      &quot;depth&quot;: &quot;comprehensive&quot;
+    },
+    &quot;performance-critical&quot;: {
+      &quot;paths&quot;: [&quot;**/api/**&quot;, &quot;**/database/**&quot;],
+      &quot;agents&quot;: [&quot;performance&quot;, &quot;database&quot;],
+      &quot;benchmarks&quot;: true
+    },
+    &quot;ui-changes&quot;: {
+      &quot;paths&quot;: [&quot;**/components/**&quot;, &quot;**/styles/**&quot;],
+      &quot;agents&quot;: [&quot;accessibility&quot;, &quot;style&quot;, &quot;i18n&quot;],
+      &quot;visual-tests&quot;: true
+    }
+  }
+}
+</code></pre>
+<h2>Review Comments</h2>
+<h3>Intelligent Comment Generation</h3>
+<pre><code class="language-bash"># Generate contextual review comments with gh CLI
+# Get PR diff with context
+PR_DIFF=$(gh pr diff 123 --color never)
+PR_FILES=$(gh pr view 123 --json files)
+
+# Generate review comments
+COMMENTS=$(npx ruv-swarm github review-comment \
+  --pr 123 \
+  --diff &quot;$PR_DIFF&quot; \
+  --files &quot;$PR_FILES&quot; \
+  --style &quot;constructive&quot; \
+  --include-examples \
+  --suggest-fixes)
+
+# Post comments using gh CLI
+echo &quot;$COMMENTS&quot; | jq -c &#39;.[]&#39; | while read -r comment; do
+  FILE=$(echo &quot;$comment&quot; | jq -r &#39;.path&#39;)
+  LINE=$(echo &quot;$comment&quot; | jq -r &#39;.line&#39;)
+  BODY=$(echo &quot;$comment&quot; | jq -r &#39;.body&#39;)
+
+  # Create review with inline comments
+  gh api \
+    --method POST \
+    /repos/:owner/:repo/pulls/123/comments \
+    -f path=&quot;$FILE&quot; \
+    -f line=&quot;$LINE&quot; \
+    -f body=&quot;$BODY&quot; \
+    -f commit_id=&quot;$(gh pr view 123 --json headRefOid -q .headRefOid)&quot;
+done
+</code></pre>
+<h3>Comment Templates</h3>
+<pre><code class="language-markdown">&lt;!-- Security Issue Template --&gt;
+
+🔒 **Security Issue: [Type]**
+
+**Severity**: 🔴 Critical / 🟡 High / 🟢 Low
+
+**Description**:
+[Clear explanation of the security issue]
+
+**Impact**:
+[Potential consequences if not addressed]
+
+**Suggested Fix**:
+
+```language
+[Code example of the fix]
+```
+</code></pre>
+<p><strong>References</strong>:</p>
+<ul>
+<li><a href="link">OWASP Guide</a></li>
+<li><a href="link">Security Best Practices</a></li>
+</ul>
+<pre><code>
+### Batch Comment Management
+```bash
+# Manage review comments efficiently
+npx ruv-swarm github review-comments \
+  --pr 123 \
+  --group-by &quot;agent,severity&quot; \
+  --summarize \
+  --resolve-outdated
+</code></pre>
+<h2>Integration with CI/CD</h2>
+<h3>Status Checks</h3>
+<pre><code class="language-yaml"># Required status checks
+protection_rules:
+  required_status_checks:
+    contexts:
+      - &quot;review-swarm/security&quot;
+      - &quot;review-swarm/performance&quot;
+      - &quot;review-swarm/architecture&quot;
+</code></pre>
+<h3>Quality Gates</h3>
+<pre><code class="language-bash"># Define quality gates
+npx ruv-swarm github quality-gates \
+  --define &#39;{
+    &quot;security&quot;: {&quot;threshold&quot;: &quot;no-critical&quot;},
+    &quot;performance&quot;: {&quot;regression&quot;: &quot;&lt;5%&quot;},
+    &quot;coverage&quot;: {&quot;minimum&quot;: &quot;80%&quot;},
+    &quot;architecture&quot;: {&quot;complexity&quot;: &quot;&lt;10&quot;}
+  }&#39;
+</code></pre>
+<h3>Review Metrics</h3>
+<pre><code class="language-bash"># Track review effectiveness
+npx ruv-swarm github review-metrics \
+  --period 30d \
+  --metrics &quot;issues-found,false-positives,fix-rate&quot; \
+  --export-dashboard
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Review Configuration</h3>
+<ul>
+<li>Define clear review criteria</li>
+<li>Set appropriate thresholds</li>
+<li>Configure agent specializations</li>
+<li>Establish override procedures</li>
+</ul>
+<h3>2. Comment Quality</h3>
+<ul>
+<li>Provide actionable feedback</li>
+<li>Include code examples</li>
+<li>Reference documentation</li>
+<li>Maintain respectful tone</li>
+</ul>
+<h3>3. Performance</h3>
+<ul>
+<li>Cache analysis results</li>
+<li>Incremental reviews for large PRs</li>
+<li>Parallel agent execution</li>
+<li>Smart comment batching</li>
+</ul>
+<h2>Advanced Features</h2>
+<h3>1. AI Learning</h3>
+<pre><code class="language-bash"># Train on your codebase
+npx ruv-swarm github review-train \
+  --learn-patterns \
+  --adapt-to-style \
+  --improve-accuracy
+</code></pre>
+<h3>2. Custom Review Agents</h3>
+<pre><code class="language-javascript">// Create custom review agent
+class CustomReviewAgent {
+  async review(pr) {
+    const issues = [];
+
+    // Custom logic here
+    if (await this.checkCustomRule(pr)) {
+      issues.push({
+        severity: &quot;warning&quot;,
+        message: &quot;Custom rule violation&quot;,
+        suggestion: &quot;Fix suggestion&quot;,
+      });
+    }
+
+    return issues;
+  }
+}
+</code></pre>
+<h3>3. Review Orchestration</h3>
+<pre><code class="language-bash"># Orchestrate complex reviews
+npx ruv-swarm github review-orchestrate \
+  --strategy &quot;risk-based&quot; \
+  --allocate-time-budget \
+  --prioritize-critical
+</code></pre>
+<h2>Examples</h2>
+<h3>Security-Critical PR</h3>
+<pre><code class="language-bash"># Auth system changes
+npx ruv-swarm github review-init \
+  --pr 456 \
+  --agents &quot;security,authentication,audit&quot; \
+  --depth &quot;maximum&quot; \
+  --require-security-approval
+</code></pre>
+<h3>Performance-Sensitive PR</h3>
+<pre><code class="language-bash"># Database optimization
+npx ruv-swarm github review-init \
+  --pr 789 \
+  --agents &quot;performance,database,caching&quot; \
+  --benchmark \
+  --profile
+</code></pre>
+<h3>UI Component PR</h3>
+<pre><code class="language-bash"># New component library
+npx ruv-swarm github review-init \
+  --pr 321 \
+  --agents &quot;accessibility,style,i18n,docs&quot; \
+  --visual-regression \
+  --component-tests
+</code></pre>
+<h2>Monitoring &amp; Analytics</h2>
+<h3>Review Dashboard</h3>
+<pre><code class="language-bash"># Launch review dashboard
+npx ruv-swarm github review-dashboard \
+  --real-time \
+  --show &quot;agent-activity,issue-trends,fix-rates&quot;
+</code></pre>
+<h3>Review Reports</h3>
+<pre><code class="language-bash"># Generate review reports
+npx ruv-swarm github review-report \
+  --format &quot;markdown&quot; \
+  --include &quot;summary,details,trends&quot; \
+  --email-stakeholders
+</code></pre>
+<p>See also: <a href="./swarm-pr.md">swarm-pr.md</a>, <a href="./workflow-automation.md">workflow-automation.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

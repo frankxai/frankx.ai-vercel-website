@@ -1,0 +1,1358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Workflow Automation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cicd-automation/commands/workflow-automate.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Workflow Automation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation">cicd-automation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation%2Fcommands">commands</a> / <span>workflow-automate.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Workflow Automation</h1>
+<p>You are a workflow automation expert specializing in creating efficient CI/CD pipelines, GitHub Actions workflows, and automated development processes. Design and implement automation that reduces manual work, improves consistency, and accelerates delivery while maintaining quality and security.</p>
+<h2>Context</h2>
+<p>The user needs to automate development workflows, deployment processes, or operational tasks. Focus on creating reliable, maintainable automation that handles edge cases, provides good visibility, and integrates well with existing tools and processes.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. Workflow Analysis</h3>
+<p>Analyze existing processes and identify automation opportunities:</p>
+<p><strong>Workflow Discovery Script</strong></p>
+<pre><code class="language-python">import os
+import yaml
+import json
+from pathlib import Path
+from typing import List, Dict, Any
+
+class WorkflowAnalyzer:
+    def analyze_project(self, project_path: str) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Analyze project to identify automation opportunities
+        &quot;&quot;&quot;
+        analysis = {
+            &#39;current_workflows&#39;: self._find_existing_workflows(project_path),
+            &#39;manual_processes&#39;: self._identify_manual_processes(project_path),
+            &#39;automation_opportunities&#39;: [],
+            &#39;tool_recommendations&#39;: [],
+            &#39;complexity_score&#39;: 0
+        }
+
+        # Analyze different aspects
+        analysis[&#39;build_process&#39;] = self._analyze_build_process(project_path)
+        analysis[&#39;test_process&#39;] = self._analyze_test_process(project_path)
+        analysis[&#39;deployment_process&#39;] = self._analyze_deployment_process(project_path)
+        analysis[&#39;code_quality&#39;] = self._analyze_code_quality_checks(project_path)
+
+        # Generate recommendations
+        self._generate_recommendations(analysis)
+
+        return analysis
+
+    def _find_existing_workflows(self, project_path: str) -&gt; List[Dict]:
+        &quot;&quot;&quot;Find existing CI/CD workflows&quot;&quot;&quot;
+        workflows = []
+
+        # GitHub Actions
+        gh_workflow_path = Path(project_path) / &#39;.github&#39; / &#39;workflows&#39;
+        if gh_workflow_path.exists():
+            for workflow_file in gh_workflow_path.glob(&#39;*.y*ml&#39;):
+                with open(workflow_file) as f:
+                    workflow = yaml.safe_load(f)
+                    workflows.append({
+                        &#39;type&#39;: &#39;github_actions&#39;,
+                        &#39;name&#39;: workflow.get(&#39;name&#39;, workflow_file.stem),
+                        &#39;file&#39;: str(workflow_file),
+                        &#39;triggers&#39;: list(workflow.get(&#39;on&#39;, {}).keys())
+                    })
+
+        # GitLab CI
+        gitlab_ci = Path(project_path) / &#39;.gitlab-ci.yml&#39;
+        if gitlab_ci.exists():
+            with open(gitlab_ci) as f:
+                config = yaml.safe_load(f)
+                workflows.append({
+                    &#39;type&#39;: &#39;gitlab_ci&#39;,
+                    &#39;name&#39;: &#39;GitLab CI Pipeline&#39;,
+                    &#39;file&#39;: str(gitlab_ci),
+                    &#39;stages&#39;: config.get(&#39;stages&#39;, [])
+                })
+
+        # Jenkins
+        jenkinsfile = Path(project_path) / &#39;Jenkinsfile&#39;
+        if jenkinsfile.exists():
+            workflows.append({
+                &#39;type&#39;: &#39;jenkins&#39;,
+                &#39;name&#39;: &#39;Jenkins Pipeline&#39;,
+                &#39;file&#39;: str(jenkinsfile)
+            })
+
+        return workflows
+
+    def _identify_manual_processes(self, project_path: str) -&gt; List[Dict]:
+        &quot;&quot;&quot;Identify processes that could be automated&quot;&quot;&quot;
+        manual_processes = []
+
+        # Check for manual build scripts
+        script_patterns = [&#39;build.sh&#39;, &#39;deploy.sh&#39;, &#39;release.sh&#39;, &#39;test.sh&#39;]
+        for pattern in script_patterns:
+            scripts = Path(project_path).glob(f&#39;**/{pattern}&#39;)
+            for script in scripts:
+                manual_processes.append({
+                    &#39;type&#39;: &#39;script&#39;,
+                    &#39;file&#39;: str(script),
+                    &#39;purpose&#39;: pattern.replace(&#39;.sh&#39;, &#39;&#39;),
+                    &#39;automation_potential&#39;: &#39;high&#39;
+                })
+
+        # Check README for manual steps
+        readme_files = [&#39;README.md&#39;, &#39;README.rst&#39;, &#39;README.txt&#39;]
+        for readme_name in readme_files:
+            readme = Path(project_path) / readme_name
+            if readme.exists():
+                content = readme.read_text()
+                if any(keyword in content.lower() for keyword in [&#39;manually&#39;, &#39;by hand&#39;, &#39;steps to&#39;]):
+                    manual_processes.append({
+                        &#39;type&#39;: &#39;documented_process&#39;,
+                        &#39;file&#39;: str(readme),
+                        &#39;indicators&#39;: &#39;Contains manual process documentation&#39;
+                    })
+
+        return manual_processes
+
+    def _generate_recommendations(self, analysis: Dict) -&gt; None:
+        &quot;&quot;&quot;Generate automation recommendations&quot;&quot;&quot;
+        recommendations = []
+
+        # CI/CD recommendations
+        if not analysis[&#39;current_workflows&#39;]:
+            recommendations.append({
+                &#39;priority&#39;: &#39;high&#39;,
+                &#39;category&#39;: &#39;ci_cd&#39;,
+                &#39;recommendation&#39;: &#39;Implement CI/CD pipeline&#39;,
+                &#39;tools&#39;: [&#39;GitHub Actions&#39;, &#39;GitLab CI&#39;, &#39;Jenkins&#39;],
+                &#39;effort&#39;: &#39;medium&#39;
+            })
+
+        # Build automation
+        if analysis[&#39;build_process&#39;][&#39;manual_steps&#39;]:
+            recommendations.append({
+                &#39;priority&#39;: &#39;high&#39;,
+                &#39;category&#39;: &#39;build&#39;,
+                &#39;recommendation&#39;: &#39;Automate build process&#39;,
+                &#39;tools&#39;: [&#39;Make&#39;, &#39;Gradle&#39;, &#39;npm scripts&#39;],
+                &#39;effort&#39;: &#39;low&#39;
+            })
+
+        # Test automation
+        if not analysis[&#39;test_process&#39;][&#39;automated_tests&#39;]:
+            recommendations.append({
+                &#39;priority&#39;: &#39;high&#39;,
+                &#39;category&#39;: &#39;testing&#39;,
+                &#39;recommendation&#39;: &#39;Implement automated testing&#39;,
+                &#39;tools&#39;: [&#39;Jest&#39;, &#39;Pytest&#39;, &#39;JUnit&#39;],
+                &#39;effort&#39;: &#39;medium&#39;
+            })
+
+        # Deployment automation
+        if analysis[&#39;deployment_process&#39;][&#39;manual_deployment&#39;]:
+            recommendations.append({
+                &#39;priority&#39;: &#39;critical&#39;,
+                &#39;category&#39;: &#39;deployment&#39;,
+                &#39;recommendation&#39;: &#39;Automate deployment process&#39;,
+                &#39;tools&#39;: [&#39;ArgoCD&#39;, &#39;Flux&#39;, &#39;Terraform&#39;],
+                &#39;effort&#39;: &#39;high&#39;
+            })
+
+        analysis[&#39;automation_opportunities&#39;] = recommendations
+</code></pre>
+<h3>2. GitHub Actions Workflows</h3>
+<p>Create comprehensive GitHub Actions workflows:</p>
+<p><strong>Multi-Environment CI/CD Pipeline</strong></p>
+<pre><code class="language-yaml"># .github/workflows/ci-cd.yml
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  release:
+    types: [created]
+
+env:
+  NODE_VERSION: &quot;18&quot;
+  PYTHON_VERSION: &quot;3.11&quot;
+  GO_VERSION: &quot;1.21&quot;
+
+jobs:
+  # Code quality checks
+  quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for better analysis
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: &quot;npm&quot;
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            ~/.cache
+            node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles(&#39;**/package-lock.json&#39;) }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: |
+          npm run lint
+          npm run lint:styles
+
+      - name: Type checking
+        run: npm run typecheck
+
+      - name: Security audit
+        run: |
+          npm audit --production
+          npx snyk test
+
+      - name: License check
+        run: npx license-checker --production --onlyAllow &#39;MIT;Apache-2.0;BSD-3-Clause;BSD-2-Clause;ISC&#39;
+
+  # Testing
+  test:
+    name: Test Suite
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [16, 18, 20]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: &quot;npm&quot;
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm run test:unit -- --coverage
+
+      - name: Run integration tests
+        run: npm run test:integration
+        env:
+          TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
+
+      - name: Upload coverage
+        if: matrix.os == &#39;ubuntu-latest&#39; &amp;&amp; matrix.node == 18
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests
+          name: codecov-umbrella
+
+  # Build
+  build:
+    name: Build Application
+    needs: [quality, test]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [development, staging, production]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up build environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: &quot;npm&quot;
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build application
+        run: npm run build
+        env:
+          NODE_ENV: ${{ matrix.environment }}
+          BUILD_NUMBER: ${{ github.run_number }}
+          COMMIT_SHA: ${{ github.sha }}
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            --build-arg BUILD_DATE=$(date -u +&#39;%Y-%m-%dT%H:%M:%SZ&#39;) \
+            --build-arg VCS_REF=${GITHUB_SHA::8} \
+            --build-arg VERSION=${GITHUB_REF#refs/tags/} \
+            -t ${{ github.repository }}:${{ matrix.environment }}-${{ github.sha }} \
+            -t ${{ github.repository }}:${{ matrix.environment }}-latest \
+            .
+
+      - name: Scan Docker image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ github.repository }}:${{ matrix.environment }}-${{ github.sha }}
+          format: &quot;sarif&quot;
+          output: &quot;trivy-results.sarif&quot;
+
+      - name: Upload scan results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: &quot;trivy-results.sarif&quot;
+
+      - name: Push to registry
+        if: github.event_name != &#39;pull_request&#39;
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push ${{ github.repository }}:${{ matrix.environment }}-${{ github.sha }}
+          docker push ${{ github.repository }}:${{ matrix.environment }}-latest
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-${{ matrix.environment }}
+          path: |
+            dist/
+            build/
+            .next/
+          retention-days: 7
+
+  # Deploy
+  deploy:
+    name: Deploy to ${{ matrix.environment }}
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name != &#39;pull_request&#39;
+    strategy:
+      matrix:
+        environment: [staging, production]
+        exclude:
+          - environment: production
+            branches: [develop]
+    environment:
+      name: ${{ matrix.environment }}
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy to ECS
+        id: deploy
+        run: |
+          # Update task definition
+          aws ecs register-task-definition \
+            --family myapp-${{ matrix.environment }} \
+            --container-definitions &quot;[{
+              \&quot;name\&quot;: \&quot;app\&quot;,
+              \&quot;image\&quot;: \&quot;${{ github.repository }}:${{ matrix.environment }}-${{ github.sha }}\&quot;,
+              \&quot;environment\&quot;: [{
+                \&quot;name\&quot;: \&quot;ENVIRONMENT\&quot;,
+                \&quot;value\&quot;: \&quot;${{ matrix.environment }}\&quot;
+              }]
+            }]&quot;
+
+          # Update service
+          aws ecs update-service \
+            --cluster ${{ matrix.environment }}-cluster \
+            --service myapp-service \
+            --task-definition myapp-${{ matrix.environment }}
+
+          # Get service URL
+          echo &quot;url=https://${{ matrix.environment }}.example.com&quot; &gt;&gt; $GITHUB_OUTPUT
+
+      - name: Notify deployment
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: Deployment to ${{ matrix.environment }} ${{ job.status }}
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        if: always()
+
+  # Post-deployment verification
+  verify:
+    name: Verify Deployment
+    needs: deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [staging, production]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run smoke tests
+        run: |
+          npm run test:smoke -- --url https://${{ matrix.environment }}.example.com
+
+      - name: Run E2E tests
+        uses: cypress-io/github-action@v5
+        with:
+          config: baseUrl=https://${{ matrix.environment }}.example.com
+          record: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
+      - name: Performance test
+        run: |
+          npm install -g @sitespeed.io/sitespeed.io
+          sitespeed.io https://${{ matrix.environment }}.example.com \
+            --budget.configPath=.sitespeed.io/budget.json \
+            --plugins.add=@sitespeed.io/plugin-lighthouse
+
+      - name: Security scan
+        run: |
+          npm install -g @zaproxy/action-baseline
+          zaproxy/action-baseline -t https://${{ matrix.environment }}.example.com
+</code></pre>
+<h3>3. Release Automation</h3>
+<p>Automate release processes:</p>
+<p><strong>Semantic Release Workflow</strong></p>
+<pre><code class="language-yaml"># .github/workflows/release.yml
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run semantic release
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
+
+      - name: Update documentation
+        if: steps.semantic-release.outputs.new_release_published == &#39;true&#39;
+        run: |
+          npm run docs:generate
+          npm run docs:publish
+
+      - name: Create release notes
+        if: steps.semantic-release.outputs.new_release_published == &#39;true&#39;
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: releases } = await github.rest.repos.listReleases({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 1
+            });
+
+            const latestRelease = releases[0];
+            const changelog = await generateChangelog(latestRelease);
+
+            // Update release notes
+            await github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: latestRelease.id,
+              body: changelog
+            });
+</code></pre>
+<p><strong>Release Configuration</strong></p>
+<pre><code class="language-javascript">// .releaserc.js
+module.exports = {
+  branches: [
+    &quot;main&quot;,
+    { name: &quot;beta&quot;, prerelease: true },
+    { name: &quot;alpha&quot;, prerelease: true },
+  ],
+  plugins: [
+    &quot;@semantic-release/commit-analyzer&quot;,
+    &quot;@semantic-release/release-notes-generator&quot;,
+    [
+      &quot;@semantic-release/changelog&quot;,
+      {
+        changelogFile: &quot;CHANGELOG.md&quot;,
+      },
+    ],
+    &quot;@semantic-release/npm&quot;,
+    [
+      &quot;@semantic-release/git&quot;,
+      {
+        assets: [&quot;CHANGELOG.md&quot;, &quot;package.json&quot;],
+        message:
+          &quot;chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}&quot;,
+      },
+    ],
+    &quot;@semantic-release/github&quot;,
+  ],
+};
+</code></pre>
+<h3>4. Development Workflow Automation</h3>
+<p>Automate common development tasks:</p>
+<p><strong>Pre-commit Hooks</strong></p>
+<pre><code class="language-yaml"># .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [&quot;--maxkb=1000&quot;]
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: detect-private-key
+
+  - repo: https://github.com/psf/black
+    rev: 23.10.0
+    hooks:
+      - id: black
+        language_version: python3.11
+
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: [&quot;--profile&quot;, &quot;black&quot;]
+
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        additional_dependencies: [flake8-docstrings]
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.52.0
+    hooks:
+      - id: eslint
+        files: \.[jt]sx?$
+        types: [file]
+        additional_dependencies:
+          - eslint@8.52.0
+          - eslint-config-prettier@9.0.0
+          - eslint-plugin-react@7.33.2
+
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.3
+    hooks:
+      - id: prettier
+        types_or: [css, javascript, jsx, typescript, tsx, json, yaml]
+
+  - repo: local
+    hooks:
+      - id: unit-tests
+        name: Run unit tests
+        entry: npm run test:unit -- --passWithNoTests
+        language: system
+        pass_filenames: false
+        stages: [commit]
+</code></pre>
+<p><strong>Development Environment Setup</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# scripts/setup-dev-environment.sh
+
+set -euo pipefail
+
+echo &quot;🚀 Setting up development environment...&quot;
+
+# Check prerequisites
+check_prerequisites() {
+    echo &quot;Checking prerequisites...&quot;
+
+    commands=(&quot;git&quot; &quot;node&quot; &quot;npm&quot; &quot;docker&quot; &quot;docker-compose&quot;)
+    for cmd in &quot;${commands[@]}&quot;; do
+        if ! command -v &quot;$cmd&quot; &amp;&gt; /dev/null; then
+            echo &quot;❌ $cmd is not installed&quot;
+            exit 1
+        fi
+    done
+
+    echo &quot;✅ All prerequisites installed&quot;
+}
+
+# Install dependencies
+install_dependencies() {
+    echo &quot;Installing dependencies...&quot;
+    npm ci
+
+    # Install global tools
+    npm install -g @commitlint/cli @commitlint/config-conventional
+    npm install -g semantic-release
+
+    # Install pre-commit
+    pip install pre-commit
+    pre-commit install
+    pre-commit install --hook-type commit-msg
+}
+
+# Setup local services
+setup_services() {
+    echo &quot;Setting up local services...&quot;
+
+    # Create docker network
+    docker network create dev-network 2&gt;/dev/null || true
+
+    # Start services
+    docker-compose -f docker-compose.dev.yml up -d
+
+    # Wait for services
+    echo &quot;Waiting for services to be ready...&quot;
+    ./scripts/wait-for-services.sh
+}
+
+# Initialize database
+initialize_database() {
+    echo &quot;Initializing database...&quot;
+    npm run db:migrate
+    npm run db:seed
+}
+
+# Setup environment variables
+setup_environment() {
+    echo &quot;Setting up environment variables...&quot;
+
+    if [ ! -f .env.local ]; then
+        cp .env.example .env.local
+        echo &quot;✅ Created .env.local from .env.example&quot;
+        echo &quot;⚠️  Please update .env.local with your values&quot;
+    fi
+}
+
+# Main execution
+main() {
+    check_prerequisites
+    install_dependencies
+    setup_services
+    setup_environment
+    initialize_database
+
+    echo &quot;✅ Development environment setup complete!&quot;
+    echo &quot;&quot;
+    echo &quot;Next steps:&quot;
+    echo &quot;1. Update .env.local with your configuration&quot;
+    echo &quot;2. Run &#39;npm run dev&#39; to start the development server&quot;
+    echo &quot;3. Visit http://localhost:3000&quot;
+}
+
+main
+</code></pre>
+<h3>5. Infrastructure Automation</h3>
+<p>Automate infrastructure provisioning:</p>
+<p><strong>Terraform Workflow</strong></p>
+<pre><code class="language-yaml"># .github/workflows/terraform.yml
+name: Terraform
+
+on:
+  pull_request:
+    paths:
+      - &quot;terraform/**&quot;
+      - &quot;.github/workflows/terraform.yml&quot;
+  push:
+    branches:
+      - main
+    paths:
+      - &quot;terraform/**&quot;
+
+env:
+  TF_VERSION: &quot;1.6.0&quot;
+  TF_VAR_project_name: ${{ github.event.repository.name }}
+
+jobs:
+  terraform:
+    name: Terraform Plan &amp; Apply
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+          terraform_wrapper: false
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init
+        run: |
+          terraform init \
+            -backend-config=&quot;bucket=${{ secrets.TF_STATE_BUCKET }}&quot; \
+            -backend-config=&quot;key=${{ github.repository }}/terraform.tfstate&quot; \
+            -backend-config=&quot;region=us-east-1&quot;
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Terraform Plan
+        id: plan
+        run: |
+          terraform plan -out=tfplan -no-color | tee plan_output.txt
+
+          # Extract plan summary
+          echo &quot;PLAN_SUMMARY&lt;&lt;EOF&quot; &gt;&gt; $GITHUB_ENV
+          grep -E &#39;(Plan:|No changes.|# )&#39; plan_output.txt &gt;&gt; $GITHUB_ENV
+          echo &quot;EOF&quot; &gt;&gt; $GITHUB_ENV
+
+      - name: Comment PR
+        if: github.event_name == &#39;pull_request&#39;
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const output = `#### Terraform Plan 📖
+            \`\`\`
+            ${process.env.PLAN_SUMMARY}
+            \`\`\`
+
+            *Pushed by: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
+
+      - name: Terraform Apply
+        if: github.ref == &#39;refs/heads/main&#39; &amp;&amp; github.event_name == &#39;push&#39;
+        run: terraform apply tfplan
+</code></pre>
+<h3>6. Monitoring and Alerting Automation</h3>
+<p>Automate monitoring setup:</p>
+<p><strong>Monitoring Stack Deployment</strong></p>
+<pre><code class="language-yaml"># .github/workflows/monitoring.yml
+name: Deploy Monitoring
+
+on:
+  push:
+    paths:
+      - &quot;monitoring/**&quot;
+      - &quot;.github/workflows/monitoring.yml&quot;
+    branches:
+      - main
+
+jobs:
+  deploy-monitoring:
+    name: Deploy Monitoring Stack
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: &quot;3.12.0&quot;
+
+      - name: Configure Kubernetes
+        run: |
+          echo &quot;${{ secrets.KUBE_CONFIG }}&quot; | base64 -d &gt; kubeconfig
+          export KUBECONFIG=kubeconfig
+
+      - name: Add Helm repositories
+        run: |
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm repo add grafana https://grafana.github.io/helm-charts
+          helm repo update
+
+      - name: Deploy Prometheus
+        run: |
+          helm upgrade --install prometheus prometheus-community/kube-prometheus-stack \
+            --namespace monitoring \
+            --create-namespace \
+            --values monitoring/prometheus-values.yaml \
+            --wait
+
+      - name: Deploy Grafana Dashboards
+        run: |
+          kubectl apply -f monitoring/dashboards/
+
+      - name: Deploy Alert Rules
+        run: |
+          kubectl apply -f monitoring/alerts/
+
+      - name: Setup Alert Routing
+        run: |
+          helm upgrade --install alertmanager prometheus-community/alertmanager \
+            --namespace monitoring \
+            --values monitoring/alertmanager-values.yaml
+</code></pre>
+<h3>7. Dependency Update Automation</h3>
+<p>Automate dependency updates:</p>
+<p><strong>Renovate Configuration</strong></p>
+<pre><code class="language-json">{
+  &quot;extends&quot;: [
+    &quot;config:base&quot;,
+    &quot;:dependencyDashboard&quot;,
+    &quot;:semanticCommits&quot;,
+    &quot;:automergeDigest&quot;,
+    &quot;:automergeMinor&quot;
+  ],
+  &quot;schedule&quot;: [
+    &quot;after 10pm every weekday&quot;,
+    &quot;before 5am every weekday&quot;,
+    &quot;every weekend&quot;
+  ],
+  &quot;timezone&quot;: &quot;America/New_York&quot;,
+  &quot;vulnerabilityAlerts&quot;: {
+    &quot;labels&quot;: [&quot;security&quot;],
+    &quot;automerge&quot;: true
+  },
+  &quot;packageRules&quot;: [
+    {
+      &quot;matchDepTypes&quot;: [&quot;devDependencies&quot;],
+      &quot;automerge&quot;: true
+    },
+    {
+      &quot;matchPackagePatterns&quot;: [&quot;^@types/&quot;],
+      &quot;automerge&quot;: true
+    },
+    {
+      &quot;matchPackageNames&quot;: [&quot;node&quot;],
+      &quot;enabled&quot;: false
+    },
+    {
+      &quot;matchPackagePatterns&quot;: [&quot;^eslint&quot;],
+      &quot;groupName&quot;: &quot;eslint packages&quot;,
+      &quot;automerge&quot;: true
+    },
+    {
+      &quot;matchManagers&quot;: [&quot;docker&quot;],
+      &quot;pinDigests&quot;: true
+    }
+  ],
+  &quot;postUpdateOptions&quot;: [&quot;npmDedupe&quot;, &quot;yarnDedupeHighest&quot;],
+  &quot;prConcurrentLimit&quot;: 3,
+  &quot;prCreation&quot;: &quot;not-pending&quot;,
+  &quot;rebaseWhen&quot;: &quot;behind-base-branch&quot;,
+  &quot;semanticCommitScope&quot;: &quot;deps&quot;
+}
+</code></pre>
+<h3>8. Documentation Automation</h3>
+<p>Automate documentation generation:</p>
+<p><strong>Documentation Workflow</strong></p>
+<pre><code class="language-yaml"># .github/workflows/docs.yml
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - &quot;src/**&quot;
+      - &quot;docs/**&quot;
+      - &quot;README.md&quot;
+
+jobs:
+  generate-docs:
+    name: Generate Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate API docs
+        run: |
+          npm run docs:api
+          npm run docs:typescript
+
+      - name: Generate architecture diagrams
+        run: |
+          npm install -g @mermaid-js/mermaid-cli
+          mmdc -i docs/architecture.mmd -o docs/architecture.png
+
+      - name: Build documentation site
+        run: |
+          npm run docs:build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/dist
+          cname: docs.example.com
+</code></pre>
+<p><strong>Documentation Generation Script</strong></p>
+<pre><code class="language-typescript">// scripts/generate-docs.ts
+import { Application, TSConfigReader, TypeDocReader } from &quot;typedoc&quot;;
+import { generateMarkdown } from &quot;./markdown-generator&quot;;
+import { createApiReference } from &quot;./api-reference&quot;;
+
+async function generateDocumentation() {
+  // TypeDoc for TypeScript documentation
+  const app = new Application();
+  app.options.addReader(new TSConfigReader());
+  app.options.addReader(new TypeDocReader());
+
+  app.bootstrap({
+    entryPoints: [&quot;src/index.ts&quot;],
+    out: &quot;docs/api&quot;,
+    theme: &quot;default&quot;,
+    includeVersion: true,
+    excludePrivate: true,
+    readme: &quot;README.md&quot;,
+    plugin: [&quot;typedoc-plugin-markdown&quot;],
+  });
+
+  const project = app.convert();
+  if (project) {
+    await app.generateDocs(project, &quot;docs/api&quot;);
+
+    // Generate custom markdown docs
+    await generateMarkdown(project, {
+      output: &quot;docs/guides&quot;,
+      includeExamples: true,
+      generateTOC: true,
+    });
+
+    // Create API reference
+    await createApiReference(project, {
+      format: &quot;openapi&quot;,
+      output: &quot;docs/openapi.json&quot;,
+      includeSchemas: true,
+    });
+  }
+
+  // Generate architecture documentation
+  await generateArchitectureDocs();
+
+  // Generate deployment guides
+  await generateDeploymentGuides();
+}
+
+async function generateArchitectureDocs() {
+  const mermaidDiagrams = `
+    graph TB
+      A[Client] --&gt; B[Load Balancer]
+      B --&gt; C[Web Server]
+      C --&gt; D[Application Server]
+      D --&gt; E[Database]
+      D --&gt; F[Cache]
+      D --&gt; G[Message Queue]
+  `;
+
+  // Save diagrams and generate documentation
+  await fs.writeFile(&quot;docs/architecture.mmd&quot;, mermaidDiagrams);
+}
+</code></pre>
+<h3>9. Security Automation</h3>
+<p>Automate security scanning and compliance:</p>
+<p><strong>Security Scanning Workflow</strong></p>
+<pre><code class="language-yaml"># .github/workflows/security.yml
+name: Security Scan
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+  schedule:
+    - cron: &quot;0 0 * * 0&quot; # Weekly on Sunday
+
+jobs:
+  security-scan:
+    name: Security Scanning
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: &quot;fs&quot;
+          scan-ref: &quot;.&quot;
+          format: &quot;sarif&quot;
+          output: &quot;trivy-results.sarif&quot;
+          severity: &quot;CRITICAL,HIGH&quot;
+
+      - name: Upload Trivy results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: &quot;trivy-results.sarif&quot;
+
+      - name: Run Snyk security scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: ${{ github.repository }}
+          path: &quot;.&quot;
+          format: &quot;ALL&quot;
+          args: &gt;
+            --enableRetired
+            --enableExperimental
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Run Semgrep
+        uses: returntocorp/semgrep-action@v1
+        with:
+          config: &gt;-
+            p/security-audit
+            p/secrets
+            p/owasp-top-ten
+
+      - name: GitLeaks secret scanning
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+</code></pre>
+<h3>10. Workflow Orchestration</h3>
+<p>Create complex workflow orchestration:</p>
+<p><strong>Workflow Orchestrator</strong></p>
+<pre><code class="language-typescript">// workflow-orchestrator.ts
+import { EventEmitter } from &quot;events&quot;;
+import { Logger } from &quot;winston&quot;;
+
+interface WorkflowStep {
+  name: string;
+  type: &quot;parallel&quot; | &quot;sequential&quot;;
+  steps?: WorkflowStep[];
+  action?: () =&gt; Promise&lt;any&gt;;
+  retries?: number;
+  timeout?: number;
+  condition?: () =&gt; boolean;
+  onError?: &quot;fail&quot; | &quot;continue&quot; | &quot;retry&quot;;
+}
+
+export class WorkflowOrchestrator extends EventEmitter {
+  constructor(
+    private logger: Logger,
+    private config: WorkflowConfig,
+  ) {
+    super();
+  }
+
+  async execute(workflow: WorkflowStep): Promise&lt;WorkflowResult&gt; {
+    const startTime = Date.now();
+    const result: WorkflowResult = {
+      success: true,
+      steps: [],
+      duration: 0,
+    };
+
+    try {
+      await this.executeStep(workflow, result);
+    } catch (error) {
+      result.success = false;
+      result.error = error;
+      this.emit(&quot;workflow:failed&quot;, result);
+    }
+
+    result.duration = Date.now() - startTime;
+    this.emit(&quot;workflow:completed&quot;, result);
+
+    return result;
+  }
+
+  private async executeStep(
+    step: WorkflowStep,
+    result: WorkflowResult,
+    parentPath: string = &quot;&quot;,
+  ): Promise&lt;void&gt; {
+    const stepPath = parentPath ? `${parentPath}.${step.name}` : step.name;
+
+    this.emit(&quot;step:start&quot;, { step: stepPath });
+
+    // Check condition
+    if (step.condition &amp;&amp; !step.condition()) {
+      this.logger.info(`Skipping step ${stepPath} due to condition`);
+      this.emit(&quot;step:skipped&quot;, { step: stepPath });
+      return;
+    }
+
+    const stepResult: StepResult = {
+      name: step.name,
+      path: stepPath,
+      startTime: Date.now(),
+      success: true,
+    };
+
+    try {
+      if (step.action) {
+        // Execute single action
+        await this.executeAction(step, stepResult);
+      } else if (step.steps) {
+        // Execute sub-steps
+        if (step.type === &quot;parallel&quot;) {
+          await this.executeParallel(step.steps, result, stepPath);
+        } else {
+          await this.executeSequential(step.steps, result, stepPath);
+        }
+      }
+
+      stepResult.endTime = Date.now();
+      stepResult.duration = stepResult.endTime - stepResult.startTime;
+      result.steps.push(stepResult);
+
+      this.emit(&quot;step:complete&quot;, { step: stepPath, result: stepResult });
+    } catch (error) {
+      stepResult.success = false;
+      stepResult.error = error;
+      result.steps.push(stepResult);
+
+      this.emit(&quot;step:failed&quot;, { step: stepPath, error });
+
+      if (step.onError === &quot;fail&quot;) {
+        throw error;
+      }
+    }
+  }
+
+  private async executeAction(
+    step: WorkflowStep,
+    stepResult: StepResult,
+  ): Promise&lt;void&gt; {
+    const timeout = step.timeout || this.config.defaultTimeout;
+    const retries = step.retries || 0;
+
+    let lastError: Error;
+
+    for (let attempt = 0; attempt &lt;= retries; attempt++) {
+      try {
+        const result = await Promise.race([
+          step.action!(),
+          this.createTimeout(timeout),
+        ]);
+
+        stepResult.output = result;
+        return;
+      } catch (error) {
+        lastError = error as Error;
+
+        if (attempt &lt; retries) {
+          this.logger.warn(
+            `Step ${step.name} failed, retry ${attempt + 1}/${retries}`,
+          );
+          await this.delay(this.calculateBackoff(attempt));
+        }
+      }
+    }
+
+    throw lastError!;
+  }
+
+  private async executeParallel(
+    steps: WorkflowStep[],
+    result: WorkflowResult,
+    parentPath: string,
+  ): Promise&lt;void&gt; {
+    await Promise.all(
+      steps.map((step) =&gt; this.executeStep(step, result, parentPath)),
+    );
+  }
+
+  private async executeSequential(
+    steps: WorkflowStep[],
+    result: WorkflowResult,
+    parentPath: string,
+  ): Promise&lt;void&gt; {
+    for (const step of steps) {
+      await this.executeStep(step, result, parentPath);
+    }
+  }
+
+  private createTimeout(ms: number): Promise&lt;never&gt; {
+    return new Promise((_, reject) =&gt; {
+      setTimeout(() =&gt; reject(new Error(`Timeout after ${ms}ms`)), ms);
+    });
+  }
+
+  private calculateBackoff(attempt: number): number {
+    return Math.min(1000 * Math.pow(2, attempt), 30000);
+  }
+
+  private delay(ms: number): Promise&lt;void&gt; {
+    return new Promise((resolve) =&gt; setTimeout(resolve, ms));
+  }
+}
+
+// Example workflow definition
+export const deploymentWorkflow: WorkflowStep = {
+  name: &quot;deployment&quot;,
+  type: &quot;sequential&quot;,
+  steps: [
+    {
+      name: &quot;pre-deployment&quot;,
+      type: &quot;parallel&quot;,
+      steps: [
+        {
+          name: &quot;backup-database&quot;,
+          action: async () =&gt; {
+            // Backup database
+          },
+          timeout: 300000, // 5 minutes
+        },
+        {
+          name: &quot;health-check&quot;,
+          action: async () =&gt; {
+            // Check system health
+          },
+          retries: 3,
+        },
+      ],
+    },
+    {
+      name: &quot;deployment&quot;,
+      type: &quot;sequential&quot;,
+      steps: [
+        {
+          name: &quot;blue-green-switch&quot;,
+          action: async () =&gt; {
+            // Switch traffic to new version
+          },
+          onError: &quot;retry&quot;,
+          retries: 2,
+        },
+        {
+          name: &quot;smoke-tests&quot;,
+          action: async () =&gt; {
+            // Run smoke tests
+          },
+          onError: &quot;fail&quot;,
+        },
+      ],
+    },
+    {
+      name: &quot;post-deployment&quot;,
+      type: &quot;parallel&quot;,
+      steps: [
+        {
+          name: &quot;notify-teams&quot;,
+          action: async () =&gt; {
+            // Send notifications
+          },
+          onError: &quot;continue&quot;,
+        },
+        {
+          name: &quot;update-monitoring&quot;,
+          action: async () =&gt; {
+            // Update monitoring dashboards
+          },
+        },
+      ],
+    },
+  ],
+};
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>Workflow Analysis</strong>: Current processes and automation opportunities</li>
+<li><strong>CI/CD Pipeline</strong>: Complete GitHub Actions/GitLab CI configuration</li>
+<li><strong>Release Automation</strong>: Semantic versioning and release workflows</li>
+<li><strong>Development Automation</strong>: Pre-commit hooks and setup scripts</li>
+<li><strong>Infrastructure Automation</strong>: Terraform and Kubernetes workflows</li>
+<li><strong>Security Automation</strong>: Scanning and compliance workflows</li>
+<li><strong>Documentation Generation</strong>: Automated docs and diagrams</li>
+<li><strong>Workflow Orchestration</strong>: Complex workflow management</li>
+<li><strong>Monitoring Integration</strong>: Automated alerts and dashboards</li>
+<li><strong>Implementation Guide</strong>: Step-by-step setup instructions</li>
+</ol>
+<p>Focus on creating reliable, maintainable automation that reduces manual work while maintaining quality and security standards.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

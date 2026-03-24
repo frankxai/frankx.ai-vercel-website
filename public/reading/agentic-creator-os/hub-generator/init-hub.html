@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/acos:init-hub - Creator Hub Initialization Wizard</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/hub-generator/init-hub.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/acos:init-hub - Creator Hub Initialization Wizard</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="index.html#agentic-creator-os%2Fhub-generator">hub-generator</a> / <span>init-hub.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/acos:init-hub - Creator Hub Initialization Wizard</h1>
+<objective>
+Bootstrap a personalized AI operating system for any creator in 15 minutes.
+
+<p>This wizard captures creator identity, workflows, tools, and voice - then generates
+a complete <code>.creator-hub/</code> directory with HUB.md, STATE.md, skills, workflows, and templates.
+</objective></p>
+<execution_context>
+@agentic-creator-os/hub-generator/templates/HUB.md
+@agentic-creator-os/hub-generator/templates/STATE.md
+@agentic-creator-os/hub-generator/templates/VOICE.md
+@agentic-creator-os/hub-generator/skill-mappings.json
+</execution_context>
+
+<hr>
+<h2>Wizard Flow</h2>
+<step name="identity_discovery" priority="first">
+
+<h3>Step 1: Identity Discovery</h3>
+<p>Present to the user:</p>
+<pre><code class="language-markdown">## Who Are You?
+
+Tell me about yourself in a few sentences:
+
+1. **What do you create?** (content, code, music, art, products, courses)
+2. **What&#39;s your unique angle?** (your differentiator, what makes you YOU)
+3. **Who do you serve?** (your audience, their problems, their aspirations)
+4. **What&#39;s your mission?** (the change you want to create in the world)
+</code></pre>
+<p><strong>Capture:</strong></p>
+<ul>
+<li><code>creator_name</code>: Full name</li>
+<li><code>handle</code>: Primary social handle</li>
+<li><code>core_identity</code>: One sentence summary</li>
+<li><code>mission</code>: Why they create</li>
+<li><code>audience</code>: Who they serve</li>
+<li><code>unique_value</code>: What makes them different</li>
+</ul>
+</step>
+
+<step name="workflow_mapping">
+
+<h3>Step 2: Workflow Mapping</h3>
+<p>Present to the user:</p>
+<pre><code class="language-markdown">## Your Creative Workflows
+
+What do you do regularly? (Select all that apply)
+
+- [ ] Write blog posts / articles
+- [ ] Create social media content
+- [ ] Produce music / audio
+- [ ] Build products / courses
+- [ ] Research topics
+- [ ] Manage a newsletter
+- [ ] Record videos / podcasts
+- [ ] Code projects
+- [ ] Design visuals
+- [ ] Consult / coach clients
+- [ ] Other: ___________
+</code></pre>
+<p><strong>Capture:</strong></p>
+<ul>
+<li><code>workflows[]</code>: Array of selected workflows</li>
+<li><code>primary_workflow</code>: Most frequent activity</li>
+<li><code>secondary_workflows[]</code>: Supporting activities</li>
+</ul>
+</step>
+
+<step name="tool_integration">
+
+<h3>Step 3: Tool Integration</h3>
+<p>Present to the user:</p>
+<pre><code class="language-markdown">## Your Tools
+
+What platforms and tools do you use? (Select all that apply)
+
+**Publishing:**
+- [ ] WordPress / Ghost / Substack
+- [ ] Medium / Dev.to / Hashnode
+- [ ] Personal website (framework: _______)
+
+**Social:**
+- [ ] Twitter/X
+- [ ] LinkedIn
+- [ ] Instagram
+- [ ] YouTube
+- [ ] TikTok
+- [ ] Threads
+
+**Productivity:**
+- [ ] Notion / Obsidian / Roam
+- [ ] Google Docs / Sheets
+- [ ] Airtable / Coda
+
+**Development:**
+- [ ] GitHub / GitLab
+- [ ] VS Code / Cursor / Windsurf
+- [ ] Vercel / Netlify
+
+**AI Creation:**
+- [ ] ChatGPT / Claude / Gemini
+- [ ] Suno / Udio (music)
+- [ ] Midjourney / DALL-E (images)
+- [ ] ElevenLabs (voice)
+
+**Email:**
+- [ ] ConvertKit / Mailchimp / Resend
+- [ ] Beehiiv / Buttondown
+
+**Other:**
+- [ ] _____________
+</code></pre>
+<p><strong>Capture:</strong></p>
+<ul>
+<li><code>tools.publishing[]</code>: Publishing platforms</li>
+<li><code>tools.social[]</code>: Social platforms</li>
+<li><code>tools.productivity[]</code>: Productivity tools</li>
+<li><code>tools.development[]</code>: Dev tools</li>
+<li><code>tools.ai_creation[]</code>: AI tools</li>
+<li><code>tools.email[]</code>: Email platforms</li>
+</ul>
+</step>
+
+<step name="voice_calibration">
+
+<h3>Step 4: Voice Calibration</h3>
+<p>Present to the user:</p>
+<pre><code class="language-markdown">## Your Voice
+
+Share 3 examples of content you&#39;ve written that represents YOUR authentic voice.
+
+This can be:
+- URLs to published articles/posts
+- Pasted text from your writing
+- Screenshots of your content
+
+I&#39;ll analyze and capture your patterns:
+- Tone and register
+- Sentence structure preferences
+- Vocabulary patterns
+- Signature phrases
+- What you avoid
+</code></pre>
+<p><strong>Analyze and capture:</strong></p>
+<ul>
+<li><code>voice.tone</code>: Overall tone (e.g., &quot;Conversational but authoritative&quot;)</li>
+<li><code>voice.register</code>: Formality level</li>
+<li><code>voice.sentence_patterns</code>: How they structure sentences</li>
+<li><code>voice.vocabulary</code>: Common words and phrases</li>
+<li><code>voice.signature_phrases</code>: Characteristic expressions</li>
+<li><code>voice.avoid</code>: Things they never say/do</li>
+</ul>
+</step>
+
+<hr>
+<h2>Generation Phase</h2>
+<step name="generate_hub">
+
+<h3>Generate the Hub</h3>
+<p>After all steps complete, generate:</p>
+<p><strong>1. Create directory structure:</strong></p>
+<pre><code class="language-bash">mkdir -p .creator-hub/{skills,workflows,templates,outputs}
+</code></pre>
+<p><strong>2. Generate HUB.md</strong> from template with captured data</p>
+<p><strong>3. Generate STATE.md</strong> initialized for fresh start</p>
+<p><strong>4. Generate VOICE.md</strong> with analyzed voice patterns</p>
+<p><strong>5. Auto-select skills</strong> based on workflow mappings:</p>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Auto-Load Skills</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Blog posts</td>
+<td>content-strategy, seo-optimization</td>
+</tr>
+<tr>
+<td>Social media</td>
+<td>social-distribution, frankx-brand</td>
+</tr>
+<tr>
+<td>Music</td>
+<td>suno-ai-mastery, frequency-alchemist</td>
+</tr>
+<tr>
+<td>Products/courses</td>
+<td>product-development, landing-pages</td>
+</tr>
+<tr>
+<td>Research</td>
+<td>research-methodology, source-validation</td>
+</tr>
+<tr>
+<td>Newsletter</td>
+<td>email-marketing, audience-building</td>
+</tr>
+<tr>
+<td>Video/Podcast</td>
+<td>content-repurposing, script-writing</td>
+</tr>
+<tr>
+<td>Coding</td>
+<td>test-driven-development, code-review</td>
+</tr>
+<tr>
+<td>Design</td>
+<td>ui-ux-design, visual-brand</td>
+</tr>
+<tr>
+<td>Consulting</td>
+<td>coaching-frameworks, client-management</td>
+</tr>
+</tbody></table>
+<p><strong>6. Generate daily-ops.md</strong> workflow based on selected activities</p>
+<p><strong>7. Create content templates</strong> for primary content types</p>
+</step>
+
+<hr>
+<h2>Output Structure</h2>
+<pre><code>.creator-hub/
+├── HUB.md                    # Creator identity + context
+├── STATE.md                  # Living memory (initialized)
+├── VOICE.md                  # Captured voice patterns
+├── skills/                   # Auto-selected skills
+│   └── [symlinks or copies from ACOS]
+├── workflows/
+│   ├── daily-ops.md          # Personalized daily ritual
+│   ├── content-creation.md   # Primary content workflow
+│   └── distribution.md       # Publishing workflow
+├── templates/
+│   ├── blog-post.md
+│   ├── social-post.md
+│   ├── newsletter.md
+│   └── [content-type].md
+└── outputs/
+    └── .gitkeep
+</code></pre>
+<hr>
+<h2>Success Criteria</h2>
+<verify>
+- [ ] `.creator-hub/` directory exists
+- [ ] `HUB.md` contains personalized creator identity
+- [ ] `STATE.md` initialized with starting position
+- [ ] `VOICE.md` captures analyzed voice patterns
+- [ ] Skills directory contains relevant skills for workflows
+- [ ] At least one workflow generated
+- [ ] At least one template generated
+</verify>
+
+<done>
+Creator can immediately use their hub:
+- `cat .creator-hub/HUB.md` shows their identity
+- `cat .creator-hub/STATE.md` shows current position
+- `/acos:daily-ops` runs their personalized routine
+</done>
+
+<hr>
+<h2>Post-Initialization</h2>
+<p>After generating, present:</p>
+<pre><code class="language-markdown">## Your Creator Hub is Ready!
+
+### Quick Start
+
+1. Review your identity: `cat .creator-hub/HUB.md`
+2. Check your state: `cat .creator-hub/STATE.md`
+3. Start your day: `/acos:daily-ops`
+
+### Customize Further
+
+- Edit `HUB.md` to refine your identity
+- Edit `VOICE.md` to tune your voice patterns
+- Add custom workflows in `workflows/`
+- Create new templates in `templates/`
+
+### Daily Usage
+
+Your STATE.md is your living memory. Update it:
+- After completing significant work
+- When making key decisions
+- At session end
+
+Keep it under 100 lines - it&#39;s a digest, not an archive.
+
+Welcome to your personal AI operating system!
+</code></pre>
+<hr>
+<p><em>Creator Hub Generator - Part of Agentic Creator OS v4</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

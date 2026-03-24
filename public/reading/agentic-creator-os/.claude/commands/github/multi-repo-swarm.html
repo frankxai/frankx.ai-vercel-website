@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Multi-Repo Swarm - Cross-Repository Swarm Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/commands/github/multi-repo-swarm.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Multi-Repo Swarm - Cross-Repository Swarm Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fcommands">commands</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fcommands%2Fgithub">github</a> / <span>multi-repo-swarm.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Multi-Repo Swarm - Cross-Repository Swarm Orchestration</h1>
+<h2>Overview</h2>
+<p>Coordinate AI swarms across multiple repositories, enabling organization-wide automation and intelligent cross-project collaboration.</p>
+<h2>Core Features</h2>
+<h3>1. Cross-Repo Initialization</h3>
+<pre><code class="language-bash"># Initialize multi-repo swarm with gh CLI
+# List organization repositories
+REPOS=$(gh repo list org --limit 100 --json name,description,languages \
+  --jq &#39;.[] | select(.name | test(&quot;frontend|backend|shared&quot;))&#39;)
+
+# Get repository details
+REPO_DETAILS=$(echo &quot;$REPOS&quot; | jq -r &#39;.name&#39; | while read -r repo; do
+  gh api repos/org/$repo --jq &#39;{name, default_branch, languages, topics}&#39;
+done | jq -s &#39;.&#39;)
+
+# Initialize swarm with repository context
+npx ruv-swarm github multi-repo-init \
+  --repo-details &quot;$REPO_DETAILS&quot; \
+  --repos &quot;org/frontend,org/backend,org/shared&quot; \
+  --topology hierarchical \
+  --shared-memory \
+  --sync-strategy eventual
+</code></pre>
+<h3>2. Repository Discovery</h3>
+<pre><code class="language-bash"># Auto-discover related repositories with gh CLI
+# Search organization repositories
+REPOS=$(gh repo list my-organization --limit 100 \
+  --json name,description,languages,topics \
+  --jq &#39;.[] | select(.languages | keys | contains([&quot;TypeScript&quot;]))&#39;)
+
+# Analyze repository dependencies
+DEPS=$(echo &quot;$REPOS&quot; | jq -r &#39;.name&#39; | while read -r repo; do
+  # Get package.json if it exists
+  if gh api repos/my-organization/$repo/contents/package.json --jq &#39;.content&#39; 2&gt;/dev/null; then
+    gh api repos/my-organization/$repo/contents/package.json \
+      --jq &#39;.content&#39; | base64 -d | jq &#39;{name, dependencies, devDependencies}&#39;
+  fi
+done | jq -s &#39;.&#39;)
+
+# Discover and analyze
+npx ruv-swarm github discover-repos \
+  --repos &quot;$REPOS&quot; \
+  --dependencies &quot;$DEPS&quot; \
+  --analyze-dependencies \
+  --suggest-swarm-topology
+</code></pre>
+<h3>3. Synchronized Operations</h3>
+<pre><code class="language-bash"># Execute synchronized changes across repos with gh CLI
+# Get matching repositories
+MATCHING_REPOS=$(gh repo list org --limit 100 --json name \
+  --jq &#39;.[] | select(.name | test(&quot;-service$&quot;)) | .name&#39;)
+
+# Execute task and create PRs
+echo &quot;$MATCHING_REPOS&quot; | while read -r repo; do
+  # Clone repo
+  gh repo clone org/$repo /tmp/$repo -- --depth=1
+  
+  # Execute task
+  cd /tmp/$repo
+  npx ruv-swarm github task-execute \
+    --task &quot;update-dependencies&quot; \
+    --repo &quot;org/$repo&quot;
+  
+  # Create PR if changes exist
+  if [[ -n $(git status --porcelain) ]]; then
+    git checkout -b update-dependencies-$(date +%Y%m%d)
+    git add -A
+    git commit -m &quot;chore: Update dependencies&quot;
+    
+    # Push and create PR
+    git push origin HEAD
+    PR_URL=$(gh pr create \
+      --title &quot;Update dependencies&quot; \
+      --body &quot;Automated dependency update across services&quot; \
+      --label &quot;dependencies,automated&quot;)
+    
+    echo &quot;$PR_URL&quot; &gt;&gt; /tmp/created-prs.txt
+  fi
+  cd -
+done
+
+# Link related PRs
+PR_URLS=$(cat /tmp/created-prs.txt)
+npx ruv-swarm github link-prs --urls &quot;$PR_URLS&quot;
+</code></pre>
+<h2>Configuration</h2>
+<h3>Multi-Repo Config File</h3>
+<pre><code class="language-yaml"># .swarm/multi-repo.yml
+version: 1
+organization: my-org
+repositories:
+  - name: frontend
+    url: github.com/my-org/frontend
+    role: ui
+    agents: [coder, designer, tester]
+    
+  - name: backend
+    url: github.com/my-org/backend
+    role: api
+    agents: [architect, coder, tester]
+    
+  - name: shared
+    url: github.com/my-org/shared
+    role: library
+    agents: [analyst, coder]
+
+coordination:
+  topology: hierarchical
+  communication: webhook
+  memory: redis://shared-memory
+  
+dependencies:
+  - from: frontend
+    to: [backend, shared]
+  - from: backend
+    to: [shared]
+</code></pre>
+<h3>Repository Roles</h3>
+<pre><code class="language-javascript">// Define repository roles and responsibilities
+{
+  &quot;roles&quot;: {
+    &quot;ui&quot;: {
+      &quot;responsibilities&quot;: [&quot;user-interface&quot;, &quot;ux&quot;, &quot;accessibility&quot;],
+      &quot;default-agents&quot;: [&quot;designer&quot;, &quot;coder&quot;, &quot;tester&quot;]
+    },
+    &quot;api&quot;: {
+      &quot;responsibilities&quot;: [&quot;endpoints&quot;, &quot;business-logic&quot;, &quot;data&quot;],
+      &quot;default-agents&quot;: [&quot;architect&quot;, &quot;coder&quot;, &quot;security&quot;]
+    },
+    &quot;library&quot;: {
+      &quot;responsibilities&quot;: [&quot;shared-code&quot;, &quot;utilities&quot;, &quot;types&quot;],
+      &quot;default-agents&quot;: [&quot;analyst&quot;, &quot;coder&quot;, &quot;documenter&quot;]
+    }
+  }
+}
+</code></pre>
+<h2>Orchestration Commands</h2>
+<h3>Dependency Management</h3>
+<pre><code class="language-bash"># Update dependencies across all repos with gh CLI
+# Create tracking issue first
+TRACKING_ISSUE=$(gh issue create \
+  --title &quot;Dependency Update: typescript@5.0.0&quot; \
+  --body &quot;Tracking issue for updating TypeScript across all repositories&quot; \
+  --label &quot;dependencies,tracking&quot; \
+  --json number -q .number)
+
+# Get all repos with TypeScript
+TS_REPOS=$(gh repo list org --limit 100 --json name | jq -r &#39;.[].name&#39; | \
+  while read -r repo; do
+    if gh api repos/org/$repo/contents/package.json 2&gt;/dev/null | \
+       jq -r &#39;.content&#39; | base64 -d | grep -q &#39;&quot;typescript&quot;&#39;; then
+      echo &quot;$repo&quot;
+    fi
+  done)
+
+# Update each repository
+echo &quot;$TS_REPOS&quot; | while read -r repo; do
+  # Clone and update
+  gh repo clone org/$repo /tmp/$repo -- --depth=1
+  cd /tmp/$repo
+  
+  # Update dependency
+  npm install --save-dev typescript@5.0.0
+  
+  # Test changes
+  if npm test; then
+    # Create PR
+    git checkout -b update-typescript-5
+    git add package.json package-lock.json
+    git commit -m &quot;chore: Update TypeScript to 5.0.0
+
+Part of #$TRACKING_ISSUE&quot;
+    
+    git push origin HEAD
+    gh pr create \
+      --title &quot;Update TypeScript to 5.0.0&quot; \
+      --body &quot;Updates TypeScript to version 5.0.0\n\nTracking: #$TRACKING_ISSUE&quot; \
+      --label &quot;dependencies&quot;
+  else
+    # Report failure
+    gh issue comment $TRACKING_ISSUE \
+      --body &quot;❌ Failed to update $repo - tests failing&quot;
+  fi
+  cd -
+done
+</code></pre>
+<h3>Refactoring Operations</h3>
+<pre><code class="language-bash"># Coordinate large-scale refactoring
+npx ruv-swarm github multi-repo-refactor \
+  --pattern &quot;rename:OldAPI-&gt;NewAPI&quot; \
+  --analyze-impact \
+  --create-migration-guide \
+  --staged-rollout
+</code></pre>
+<h3>Security Updates</h3>
+<pre><code class="language-bash"># Coordinate security patches
+npx ruv-swarm github multi-repo-security \
+  --scan-all \
+  --patch-vulnerabilities \
+  --verify-fixes \
+  --compliance-report
+</code></pre>
+<h2>Communication Strategies</h2>
+<h3>1. Webhook-Based Coordination</h3>
+<pre><code class="language-javascript">// webhook-coordinator.js
+const { MultiRepoSwarm } = require(&#39;ruv-swarm&#39;);
+
+const swarm = new MultiRepoSwarm({
+  webhook: {
+    url: &#39;https://swarm-coordinator.example.com&#39;,
+    secret: process.env.WEBHOOK_SECRET
+  }
+});
+
+// Handle cross-repo events
+swarm.on(&#39;repo:update&#39;, async (event) =&gt; {
+  await swarm.propagate(event, {
+    to: event.dependencies,
+    strategy: &#39;eventual-consistency&#39;
+  });
+});
+</code></pre>
+<h3>2. GraphQL Federation</h3>
+<pre><code class="language-graphql"># Federated schema for multi-repo queries
+type Repository @key(fields: &quot;id&quot;) {
+  id: ID!
+  name: String!
+  swarmStatus: SwarmStatus!
+  dependencies: [Repository!]!
+  agents: [Agent!]!
+}
+
+type SwarmStatus {
+  active: Boolean!
+  topology: Topology!
+  tasks: [Task!]!
+  memory: JSON!
+}
+</code></pre>
+<h3>3. Event Streaming</h3>
+<pre><code class="language-yaml"># Kafka configuration for real-time coordination
+kafka:
+  brokers: [&#39;kafka1:9092&#39;, &#39;kafka2:9092&#39;]
+  topics:
+    swarm-events: 
+      partitions: 10
+      replication: 3
+    swarm-memory:
+      partitions: 5
+      replication: 3
+</code></pre>
+<h2>Advanced Features</h2>
+<h3>1. Distributed Task Queue</h3>
+<pre><code class="language-bash"># Create distributed task queue
+npx ruv-swarm github multi-repo-queue \
+  --backend redis \
+  --workers 10 \
+  --priority-routing \
+  --dead-letter-queue
+</code></pre>
+<h3>2. Cross-Repo Testing</h3>
+<pre><code class="language-bash"># Run integration tests across repos
+npx ruv-swarm github multi-repo-test \
+  --setup-test-env \
+  --link-services \
+  --run-e2e \
+  --tear-down
+</code></pre>
+<h3>3. Monorepo Migration</h3>
+<pre><code class="language-bash"># Assist in monorepo migration
+npx ruv-swarm github to-monorepo \
+  --analyze-repos \
+  --suggest-structure \
+  --preserve-history \
+  --create-migration-prs
+</code></pre>
+<h2>Monitoring &amp; Visualization</h2>
+<h3>Multi-Repo Dashboard</h3>
+<pre><code class="language-bash"># Launch monitoring dashboard
+npx ruv-swarm github multi-repo-dashboard \
+  --port 3000 \
+  --metrics &quot;agent-activity,task-progress,memory-usage&quot; \
+  --real-time
+</code></pre>
+<h3>Dependency Graph</h3>
+<pre><code class="language-bash"># Visualize repo dependencies
+npx ruv-swarm github dep-graph \
+  --format mermaid \
+  --include-agents \
+  --show-data-flow
+</code></pre>
+<h3>Health Monitoring</h3>
+<pre><code class="language-bash"># Monitor swarm health across repos
+npx ruv-swarm github health-check \
+  --repos &quot;org/*&quot; \
+  --check &quot;connectivity,memory,agents&quot; \
+  --alert-on-issues
+</code></pre>
+<h2>Synchronization Patterns</h2>
+<h3>1. Eventually Consistent</h3>
+<pre><code class="language-javascript">// Eventual consistency for non-critical updates
+{
+  &quot;sync&quot;: {
+    &quot;strategy&quot;: &quot;eventual&quot;,
+    &quot;max-lag&quot;: &quot;5m&quot;,
+    &quot;retry&quot;: {
+      &quot;attempts&quot;: 3,
+      &quot;backoff&quot;: &quot;exponential&quot;
+    }
+  }
+}
+</code></pre>
+<h3>2. Strong Consistency</h3>
+<pre><code class="language-javascript">// Strong consistency for critical operations
+{
+  &quot;sync&quot;: {
+    &quot;strategy&quot;: &quot;strong&quot;,
+    &quot;consensus&quot;: &quot;raft&quot;,
+    &quot;quorum&quot;: 0.51,
+    &quot;timeout&quot;: &quot;30s&quot;
+  }
+}
+</code></pre>
+<h3>3. Hybrid Approach</h3>
+<pre><code class="language-javascript">// Mix of consistency levels
+{
+  &quot;sync&quot;: {
+    &quot;default&quot;: &quot;eventual&quot;,
+    &quot;overrides&quot;: {
+      &quot;security-updates&quot;: &quot;strong&quot;,
+      &quot;dependency-updates&quot;: &quot;strong&quot;,
+      &quot;documentation&quot;: &quot;eventual&quot;
+    }
+  }
+}
+</code></pre>
+<h2>Use Cases</h2>
+<h3>1. Microservices Coordination</h3>
+<pre><code class="language-bash"># Coordinate microservices development
+npx ruv-swarm github microservices \
+  --services &quot;auth,users,orders,payments&quot; \
+  --ensure-compatibility \
+  --sync-contracts \
+  --integration-tests
+</code></pre>
+<h3>2. Library Updates</h3>
+<pre><code class="language-bash"># Update shared library across consumers
+npx ruv-swarm github lib-update \
+  --library &quot;org/shared-lib&quot; \
+  --version &quot;2.0.0&quot; \
+  --find-consumers \
+  --update-imports \
+  --run-tests
+</code></pre>
+<h3>3. Organization-Wide Changes</h3>
+<pre><code class="language-bash"># Apply org-wide policy changes
+npx ruv-swarm github org-policy \
+  --policy &quot;add-security-headers&quot; \
+  --repos &quot;org/*&quot; \
+  --validate-compliance \
+  --create-reports
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Repository Organization</h3>
+<ul>
+<li>Clear repository roles and boundaries</li>
+<li>Consistent naming conventions</li>
+<li>Documented dependencies</li>
+<li>Shared configuration standards</li>
+</ul>
+<h3>2. Communication</h3>
+<ul>
+<li>Use appropriate sync strategies</li>
+<li>Implement circuit breakers</li>
+<li>Monitor latency and failures</li>
+<li>Clear error propagation</li>
+</ul>
+<h3>3. Security</h3>
+<ul>
+<li>Secure cross-repo authentication</li>
+<li>Encrypted communication channels</li>
+<li>Audit trail for all operations</li>
+<li>Principle of least privilege</li>
+</ul>
+<h2>Performance Optimization</h2>
+<h3>Caching Strategy</h3>
+<pre><code class="language-bash"># Implement cross-repo caching
+npx ruv-swarm github cache-strategy \
+  --analyze-patterns \
+  --suggest-cache-layers \
+  --implement-invalidation
+</code></pre>
+<h3>Parallel Execution</h3>
+<pre><code class="language-bash"># Optimize parallel operations
+npx ruv-swarm github parallel-optimize \
+  --analyze-dependencies \
+  --identify-parallelizable \
+  --execute-optimal
+</code></pre>
+<h3>Resource Pooling</h3>
+<pre><code class="language-bash"># Pool resources across repos
+npx ruv-swarm github resource-pool \
+  --share-agents \
+  --distribute-load \
+  --monitor-usage
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>Connectivity Issues</h3>
+<pre><code class="language-bash"># Diagnose connectivity problems
+npx ruv-swarm github diagnose-connectivity \
+  --test-all-repos \
+  --check-permissions \
+  --verify-webhooks
+</code></pre>
+<h3>Memory Synchronization</h3>
+<pre><code class="language-bash"># Debug memory sync issues
+npx ruv-swarm github debug-memory \
+  --check-consistency \
+  --identify-conflicts \
+  --repair-state
+</code></pre>
+<h3>Performance Bottlenecks</h3>
+<pre><code class="language-bash"># Identify performance issues
+npx ruv-swarm github perf-analysis \
+  --profile-operations \
+  --identify-bottlenecks \
+  --suggest-optimizations
+</code></pre>
+<h2>Examples</h2>
+<h3>Full-Stack Application Update</h3>
+<pre><code class="language-bash"># Update full-stack application
+npx ruv-swarm github fullstack-update \
+  --frontend &quot;org/web-app&quot; \
+  --backend &quot;org/api-server&quot; \
+  --database &quot;org/db-migrations&quot; \
+  --coordinate-deployment
+</code></pre>
+<h3>Cross-Team Collaboration</h3>
+<pre><code class="language-bash"># Facilitate cross-team work
+npx ruv-swarm github cross-team \
+  --teams &quot;frontend,backend,devops&quot; \
+  --task &quot;implement-feature-x&quot; \
+  --assign-by-expertise \
+  --track-progress
+</code></pre>
+<p>See also: <a href="./swarm-pr.md">swarm-pr.md</a>, <a href="./project-board-sync.md">project-board-sync.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

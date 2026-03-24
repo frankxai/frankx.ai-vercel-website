@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Flow Nexus Challenges</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/flow-nexus/challenges.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Flow Nexus Challenges</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands%2Fflow-nexus">flow-nexus</a> / <span>challenges.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: flow-nexus-challenges
+description: Coding challenges, achievements, and leaderboards</h2>
+<h1>Flow Nexus Challenges</h1>
+<p>Complete coding challenges to earn rUv credits and climb the leaderboard.</p>
+<h2>List Challenges</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__challenges_list({
+  difficulty: &quot;intermediate&quot;, // beginner, advanced, expert
+  category: &quot;algorithms&quot;,
+  status: &quot;active&quot;,
+  limit: 20
+})
+</code></pre>
+<h2>Get Challenge Details</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__challenge_get({
+  challenge_id: &quot;two-sum-problem&quot;
+})
+</code></pre>
+<h2>Submit Solution</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__challenge_submit({
+  challenge_id: &quot;challenge_id&quot;,
+  user_id: &quot;your_id&quot;,
+  solution_code: `
+    function solution(nums, target) {
+      const map = new Map();
+      for (let i = 0; i &lt; nums.length; i++) {
+        const complement = target - nums[i];
+        if (map.has(complement)) {
+          return [map.get(complement), i];
+        }
+        map.set(nums[i], i);
+      }
+      return [];
+    }
+  `,
+  language: &quot;javascript&quot;,
+  execution_time: 45 // milliseconds
+})
+</code></pre>
+<h2>Complete Challenge</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__app_store_complete_challenge({
+  challenge_id: &quot;challenge_id&quot;,
+  user_id: &quot;your_id&quot;,
+  submission_data: {
+    passed_tests: 10,
+    total_tests: 10,
+    execution_time: 45
+  }
+})
+</code></pre>
+<h2>Leaderboards</h2>
+<pre><code class="language-javascript">// Global leaderboard
+mcp__flow-nexus__leaderboard_get({
+  type: &quot;global&quot;, // weekly, monthly, challenge
+  limit: 10
+})
+
+// Challenge-specific leaderboard
+mcp__flow-nexus__leaderboard_get({
+  type: &quot;challenge&quot;,
+  challenge_id: &quot;specific_challenge&quot;,
+  limit: 25
+})
+</code></pre>
+<h2>Achievements</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__achievements_list({
+  user_id: &quot;your_id&quot;,
+  category: &quot;speed_demon&quot; // Categories vary
+})
+</code></pre>
+<h2>rUv Credits</h2>
+<pre><code class="language-javascript">// Check balance
+mcp__flow-nexus__ruv_balance({ user_id: &quot;your_id&quot; })
+
+// View history
+mcp__flow-nexus__ruv_history({
+  user_id: &quot;your_id&quot;,
+  limit: 20
+})
+
+// Earn credits (automatic on completion)
+mcp__flow-nexus__app_store_earn_ruv({
+  user_id: &quot;your_id&quot;,
+  amount: 100,
+  reason: &quot;Completed expert challenge&quot;,
+  source: &quot;challenge&quot;
+})
+</code></pre>
+<h2>Challenge Categories</h2>
+<ul>
+<li><strong>algorithms</strong>: Classic algorithm problems</li>
+<li><strong>data-structures</strong>: DS implementation challenges</li>
+<li><strong>system-design</strong>: Architecture challenges</li>
+<li><strong>optimization</strong>: Performance challenges</li>
+<li><strong>security</strong>: Security-focused problems</li>
+<li><strong>ml-basics</strong>: Machine learning fundamentals</li>
+</ul>
+<h2>Tips</h2>
+<ol>
+<li>Start with beginner challenges</li>
+<li>Review other solutions after completing</li>
+<li>Optimize for both correctness and speed</li>
+<li>Complete daily challenges for bonus credits</li>
+<li>Unlock achievements for extra rewards</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

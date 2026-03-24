@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Cline Settings</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/cline/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Cline Settings</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#_archive">_archive</a> / <a href="../index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fcline">cline</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Cline Settings</h1>
+<p>Configuration for <a href="https://github.com/cline/cline">Cline</a> (VSCode AI coding assistant).</p>
+<h2>Installation</h2>
+<pre><code class="language-bash"># Copy to your project
+cp -r cline/.cline ./
+
+# Or use the installer
+./install.sh cline
+</code></pre>
+<h2>Features</h2>
+<ul>
+<li><strong>Anthropic Claude</strong> as default provider (Claude Sonnet 4)</li>
+<li><strong>Auto-approve</strong> safe file types (md, json, txt)</li>
+<li><strong>Custom instructions</strong> with brand voice and tech stack</li>
+<li><strong>MCP servers</strong> for memory and filesystem access</li>
+<li><strong>Workspace optimization</strong> with smart exclusions</li>
+<li><strong>Checkpoint support</strong> for undo/redo</li>
+</ul>
+<h2>Configuration Overview</h2>
+<h3>API Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provider</td>
+<td>Anthropic</td>
+<td>Claude API</td>
+</tr>
+<tr>
+<td>Model</td>
+<td>claude-sonnet-4-20250514</td>
+<td>Latest Sonnet</td>
+</tr>
+<tr>
+<td>Max Tokens</td>
+<td>8192</td>
+<td>Response limit</td>
+</tr>
+<tr>
+<td>Temperature</td>
+<td>0.7</td>
+<td>Creativity level</td>
+</tr>
+<tr>
+<td>Timeout</td>
+<td>120s</td>
+<td>Request timeout</td>
+</tr>
+</tbody></table>
+<h3>Behavior Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Auto-approve</td>
+<td>false</td>
+<td>Requires confirmation</td>
+</tr>
+<tr>
+<td>Read-only allow</td>
+<td>true</td>
+<td>Read files freely</td>
+</tr>
+<tr>
+<td>Checkpoints</td>
+<td>true</td>
+<td>Enable undo points</td>
+</tr>
+<tr>
+<td>Diff enabled</td>
+<td>true</td>
+<td>Show changes</td>
+</tr>
+</tbody></table>
+<h3>Workspace Settings</h3>
+<p>Excluded patterns prevent indexing of:</p>
+<ul>
+<li><code>node_modules/</code>, <code>.git/</code>, <code>dist/</code>, <code>build/</code></li>
+<li><code>.next/</code>, <code>coverage/</code>, <code>.turbo/</code>, <code>out/</code></li>
+</ul>
+<p>Included file types:</p>
+<ul>
+<li>TypeScript/JavaScript (<code>.ts</code>, <code>.tsx</code>, <code>.js</code>, <code>.jsx</code>)</li>
+<li>Content (<code>.md</code>, <code>.json</code>, <code>.yaml</code>, <code>.yml</code>)</li>
+<li>Styles (<code>.css</code>)</li>
+</ul>
+<h3>MCP Servers</h3>
+<p>Pre-configured Model Context Protocol servers:</p>
+<ul>
+<li><strong>Memory</strong>: Persistent memory across conversations</li>
+<li><strong>Filesystem</strong>: File operations within project</li>
+</ul>
+<h2>Custom Instructions</h2>
+<p>The settings include comprehensive instructions for:</p>
+<h3>Brand Voice</h3>
+<p>Technical authority with creative wisdom. Soul-aligned technology that serves human expression.</p>
+<h3>Code Standards</h3>
+<ul>
+<li>TypeScript with strict types</li>
+<li>React functional components with hooks</li>
+<li>Accessibility (WCAG 2.1 AA)</li>
+<li>JSDoc comments for APIs</li>
+<li>Tailwind CSS styling</li>
+</ul>
+<h3>Tech Stack</h3>
+<ul>
+<li>Frontend: Next.js 15, React 19, TypeScript</li>
+<li>Styling: Tailwind CSS, Radix UI, Framer Motion</li>
+<li>Backend: Node.js, Prisma, PostgreSQL</li>
+<li>Deployment: Vercel</li>
+</ul>
+<h3>Design System</h3>
+<ul>
+<li>Primary: Deep navy (#0F172A), Cosmic purple (#AB47C7)</li>
+<li>Accent: Aurora blue (#43BFE3), Gold (#F59E0B)</li>
+<li>Typography: Poppins (headings), Inter (body)</li>
+<li>Style: Glassmorphism with subtle gradients</li>
+</ul>
+<h2>Keyboard Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Approve</td>
+<td>Ctrl+Enter</td>
+</tr>
+<tr>
+<td>Reject</td>
+<td>Ctrl+Backspace</td>
+</tr>
+<tr>
+<td>New Chat</td>
+<td>Ctrl+N</td>
+</tr>
+</tbody></table>
+<h2>Related Tools</h2>
+<ul>
+<li><a href="https://claude.ai/code">Claude Code</a> - Anthropic&#39;s CLI</li>
+<li><a href="https://continue.dev">Continue</a> - Alternative VSCode AI</li>
+<li><a href="https://cursor.sh">Cursor</a> - AI-native IDE</li>
+<li><a href="https://github.com/code-yeongyu/opencode">OpenCode</a> - Open source alternative</li>
+</ul>
+<hr>
+<p><em>Part of the FrankX AI Settings collection</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

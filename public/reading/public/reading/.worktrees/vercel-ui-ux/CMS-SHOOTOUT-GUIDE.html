@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX CMS Shootout: Test 3 Options Side-by-Side</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/CMS-SHOOTOUT-GUIDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX CMS Shootout: Test 3 Options Side-by-Side</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.worktrees">.worktrees</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <span>CMS-SHOOTOUT-GUIDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX CMS Shootout: Test 3 Options Side-by-Side</h1>
+<p>All three git-based CMS options are now installed and ready to test!</p>
+<h2>🎯 The Contenders</h2>
+<h3>1. Tina CMS ✅ RUNNING</h3>
+<ul>
+<li><strong>Location</strong>: <code>/mnt/c/Users/Frank/FrankX/tina-frankx/</code></li>
+<li><strong>Port</strong>: <a href="http://localhost:3000">http://localhost:3000</a></li>
+<li><strong>Status</strong>: Fully working, 1028 packages installed</li>
+<li><strong>Cost</strong>: $0/month (forever free)</li>
+</ul>
+<h3>2. Sanity CMS ⏸️ READY TO TEST</h3>
+<ul>
+<li><strong>Location</strong>: <code>/mnt/c/Users/Frank/FrankX/sanity-frankx/</code></li>
+<li><strong>Ports</strong>:<ul>
+<li>Next.js: <a href="http://localhost:3001">http://localhost:3001</a></li>
+<li>Sanity Studio: <a href="http://localhost:3333">http://localhost:3333</a></li>
+</ul>
+</li>
+<li><strong>Status</strong>: Configured, needs <code>npm install</code></li>
+<li><strong>Cost</strong>: $0-99/month</li>
+</ul>
+<h3>3. Keystatic CMS ⏸️ READY TO TEST</h3>
+<ul>
+<li><strong>Location</strong>: <code>/mnt/c/Users/Frank/FrankX/keystatic-frankx/</code></li>
+<li><strong>Port</strong>: <a href="http://localhost:3002">http://localhost:3002</a></li>
+<li><strong>Admin</strong>: <a href="http://localhost:3002/keystatic">http://localhost:3002/keystatic</a></li>
+<li><strong>Status</strong>: Configured, needs <code>npm install</code></li>
+<li><strong>Cost</strong>: $0/month (forever free)</li>
+</ul>
+<hr>
+<h2>🚀 Quick Start Commands</h2>
+<h3>Test Tina CMS (Already Running)</h3>
+<pre><code class="language-bash"># Already running at http://localhost:3000
+open http://localhost:3000
+
+# Or restart if needed
+cd /mnt/c/Users/Frank/FrankX/tina-frankx
+pkill -f &quot;next dev&quot; &amp;&amp; npm run dev
+</code></pre>
+<h3>Test Sanity CMS</h3>
+<pre><code class="language-bash">cd /mnt/c/Users/Frank/FrankX/sanity-frankx
+
+# 1. Install (first time only)
+npm install
+
+# 2. Start Sanity Studio
+npm run sanity
+# Opens at http://localhost:3333
+
+# 3. In another terminal, start Next.js
+npm run dev
+# Opens at http://localhost:3001
+</code></pre>
+<h3>Test Keystatic CMS</h3>
+<pre><code class="language-bash">cd /mnt/c/Users/Frank/FrankX/keystatic-frankx
+
+# 1. Install (first time only)
+npm install
+
+# 2. Create content directories
+mkdir -p content/courses content/articles public/uploads
+
+# 3. Start dev server
+npm run dev
+# Opens at http://localhost:3002
+# Admin at http://localhost:3002/keystatic
+</code></pre>
+<hr>
+<h2>📊 Feature Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Tina</th>
+<th>Sanity</th>
+<th>Keystatic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cost</strong></td>
+<td>Free forever</td>
+<td>$0-99/mo</td>
+<td>Free forever</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>Git (your repo)</td>
+<td>Cloud (Sanity)</td>
+<td>Git (your repo)</td>
+</tr>
+<tr>
+<td><strong>Database</strong></td>
+<td>None</td>
+<td>Sanity Cloud</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Admin UI</strong></td>
+<td>Optional cloud</td>
+<td>Sanity Studio</td>
+<td>Built-in</td>
+</tr>
+<tr>
+<td><strong>Real-time Collab</strong></td>
+<td>Optional</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Image CDN</strong></td>
+<td>Manual</td>
+<td>Included</td>
+<td>Manual</td>
+</tr>
+<tr>
+<td><strong>TypeScript</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>React 19</strong></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Setup Time</strong></td>
+<td>15 min</td>
+<td>15-20 min</td>
+<td>10-15 min</td>
+</tr>
+<tr>
+<td><strong>Vendor Lock-in</strong></td>
+<td>None</td>
+<td>Medium</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Community Size</strong></td>
+<td>Medium</td>
+<td>Large</td>
+<td>Small</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🎨 UI/UX Comparison</h2>
+<h3>Tina CMS</h3>
+<ul>
+<li><strong>Admin</strong>: Optional visual editor (requires Tina Cloud signup)</li>
+<li><strong>Content Editing</strong>: Direct MDX file editing or inline editor</li>
+<li><strong>UX</strong>: Clean, modern, developer-friendly</li>
+<li><strong>Learning Curve</strong>: Low</li>
+</ul>
+<h3>Sanity CMS</h3>
+<ul>
+<li><strong>Admin</strong>: Sanity Studio (dedicated app)</li>
+<li><strong>Content Editing</strong>: Rich block editor with real-time preview</li>
+<li><strong>UX</strong>: Professional, polished, non-developer friendly</li>
+<li><strong>Learning Curve</strong>: Medium (GROQ query language)</li>
+</ul>
+<h3>Keystatic CMS</h3>
+<ul>
+<li><strong>Admin</strong>: Built-in at <code>/keystatic</code> route</li>
+<li><strong>Content Editing</strong>: Document editor with formatting toolbar</li>
+<li><strong>UX</strong>: Simple, clean, React-native feel</li>
+<li><strong>Learning Curve</strong>: Low</li>
+</ul>
+<hr>
+<h2>💰 Cost Breakdown (Annual)</h2>
+<h3>Scenario: Startup (You + 1 Team Member)</h3>
+<p><strong>Tina CMS</strong>:</p>
+<ul>
+<li>Self-hosted: $0/year</li>
+<li>Optional Tina Cloud: $0-348/year</li>
+<li><strong>Total: $0-348/year</strong> ✅</li>
+</ul>
+<p><strong>Sanity CMS</strong>:</p>
+<ul>
+<li>Free tier: $0/year (3 users, 10k docs)</li>
+<li>Growth when scaling: $1,188/year</li>
+<li><strong>Total: $0-1,188/year</strong></li>
+</ul>
+<p><strong>Keystatic CMS</strong>:</p>
+<ul>
+<li>Self-hosted: $0/year</li>
+<li>No cloud option (yet)</li>
+<li><strong>Total: $0/year</strong> ✅</li>
+</ul>
+<hr>
+<h2>🔍 When to Choose Each</h2>
+<h3>Choose Tina If:</h3>
+<p>✅ You want the most mature git-based CMS
+✅ Optional cloud features appeal to you
+✅ Large community and docs matter
+✅ You might want visual editing later</p>
+<p><strong>Best for</strong>: Established projects wanting flexibility</p>
+<h3>Choose Sanity If:</h3>
+<p>✅ You need real-time collaboration
+✅ Team includes non-developers
+✅ You want managed hosting
+✅ Rich media is critical
+✅ You have budget for growth</p>
+<p><strong>Best for</strong>: Teams prioritizing collaboration</p>
+<h3>Choose Keystatic If:</h3>
+<p>✅ You want the simplest setup
+✅ React-native approach appeals
+✅ Strong TypeScript is priority
+✅ You trust Thinkmill team
+✅ You want zero vendor dependencies</p>
+<p><strong>Best for</strong>: New projects wanting simplicity</p>
+<hr>
+<h2>🧪 Testing Methodology</h2>
+<h3>Phase 1: Basic Setup (10 minutes each)</h3>
+<ol>
+<li>Install dependencies</li>
+<li>Start dev server</li>
+<li>Access admin interface</li>
+<li>Check first-run experience</li>
+</ol>
+<h3>Phase 2: Content Creation (20 minutes each)</h3>
+<ol>
+<li>Create a test course</li>
+<li>Add images</li>
+<li>Format content</li>
+<li>Preview changes</li>
+<li>Save/commit</li>
+</ol>
+<h3>Phase 3: Developer Experience (15 minutes each)</h3>
+<ol>
+<li>Read the code structure</li>
+<li>Understand configuration</li>
+<li>Check TypeScript support</li>
+<li>Test hot reload</li>
+<li>Review documentation</li>
+</ol>
+<h3>Phase 4: Decision (5 minutes)</h3>
+<p>Compare notes and pick your favorite!</p>
+<hr>
+<h2>📝 Evaluation Scorecard</h2>
+<p>Rate each CMS on these criteria (1-10):</p>
+<table>
+<thead>
+<tr>
+<th>Criteria</th>
+<th>Tina</th>
+<th>Sanity</th>
+<th>Keystatic</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Setup Ease</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>UI/UX Quality</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Developer Experience</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>TypeScript Support</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Content Editing UX</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td>Cost Value</td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+<tr>
+<td><strong>Total Score</strong></td>
+<td>___</td>
+<td>___</td>
+<td>___</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🎯 Current Recommendation</h2>
+<p>Based on setup and configuration:</p>
+<p><strong>1st Place: Tina CMS</strong> (Already working, mature, flexible)
+<strong>2nd Place: Keystatic CMS</strong> (Simplest, modern, free)
+<strong>3rd Place: Sanity CMS</strong> (Powerful, but requires cloud)</p>
+<p><strong>But</strong>: Test all three yourself! Each has unique strengths.</p>
+<hr>
+<h2>🛠️ Installation Status</h2>
+<h3>✅ Tina CMS</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Configured</li>
+<li><input checked="" disabled="" type="checkbox"> Dependencies installed (1028 packages)</li>
+<li><input checked="" disabled="" type="checkbox"> Server running</li>
+<li><input checked="" disabled="" type="checkbox"> Sample content created</li>
+<li><input checked="" disabled="" type="checkbox"> Documentation complete</li>
+</ul>
+<h3>⏸️ Sanity CMS</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Configured</li>
+<li><input disabled="" type="checkbox"> Dependencies installed (run <code>npm install</code>)</li>
+<li><input disabled="" type="checkbox"> Sanity project created (run <code>npx sanity init</code>)</li>
+<li><input checked="" disabled="" type="checkbox"> Schema defined</li>
+<li><input checked="" disabled="" type="checkbox"> Documentation complete</li>
+</ul>
+<h3>⏸️ Keystatic CMS</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Configured</li>
+<li><input disabled="" type="checkbox"> Dependencies installed (run <code>npm install</code>)</li>
+<li><input disabled="" type="checkbox"> Content directories created</li>
+<li><input checked="" disabled="" type="checkbox"> Schema defined</li>
+<li><input checked="" disabled="" type="checkbox"> Documentation complete</li>
+</ul>
+<hr>
+<h2>🎬 Next Steps</h2>
+<ol>
+<li><strong>Right Now</strong>: Keep testing Tina at <a href="http://localhost:3000">http://localhost:3000</a></li>
+<li><strong>Later Today</strong>: Install and test Sanity</li>
+<li><strong>Tomorrow</strong>: Install and test Keystatic</li>
+<li><strong>After Testing</strong>: Pick your favorite and commit!</li>
+</ol>
+<hr>
+<h2>📚 Resources</h2>
+<h3>Tina CMS</h3>
+<ul>
+<li>Docs: <a href="https://tina.io/docs/">https://tina.io/docs/</a></li>
+<li>GitHub: <a href="https://github.com/tinacms/tinacms">https://github.com/tinacms/tinacms</a></li>
+<li>Discord: <a href="https://discord.com/invite/zumN63Ybpf">https://discord.com/invite/zumN63Ybpf</a></li>
+</ul>
+<h3>Sanity CMS</h3>
+<ul>
+<li>Docs: <a href="https://www.sanity.io/docs">https://www.sanity.io/docs</a></li>
+<li>GitHub: <a href="https://github.com/sanity-io/sanity">https://github.com/sanity-io/sanity</a></li>
+<li>Slack: <a href="https://slack.sanity.io/">https://slack.sanity.io/</a></li>
+</ul>
+<h3>Keystatic CMS</h3>
+<ul>
+<li>Docs: <a href="https://keystatic.com/docs">https://keystatic.com/docs</a></li>
+<li>GitHub: <a href="https://github.com/Thinkmill/keystatic">https://github.com/Thinkmill/keystatic</a></li>
+<li>Discord: <a href="https://discord.gg/keystatic">https://discord.gg/keystatic</a></li>
+</ul>
+<hr>
+<p><strong>All three are ready to test!</strong> Each runs on a different port so you can compare them side-by-side. 🚀</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

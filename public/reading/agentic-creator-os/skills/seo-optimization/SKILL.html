@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SEO Optimization</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/skills/seo-optimization/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SEO Optimization</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2Fskills%2Fseo-optimization">seo-optimization</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: SEO Optimization
+description: Optimize content for search engines to increase organic traffic and rankings
+version: 1.0.0
+triggers:
+  - &quot;seo&quot;
+  - &quot;seo optimization&quot;
+  - &quot;search optimization&quot;
+  - &quot;keyword research&quot;
+  - &quot;rank higher&quot;
+  - &quot;skill:seo-optimization&quot;</h2>
+<h1>SEO Optimization</h1>
+<h2>Purpose</h2>
+<p>Optimize content to rank higher in search engines and drive organic traffic:</p>
+<ul>
+<li>Research and target the right keywords</li>
+<li>Structure content for search intent</li>
+<li>Build technical SEO foundations</li>
+<li>Earn quality backlinks</li>
+</ul>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Optimizing existing blog posts</li>
+<li>Planning new content around keywords</li>
+<li>Technical SEO audits</li>
+<li>Competitor keyword analysis</li>
+<li>Local SEO optimization</li>
+<li>E-commerce product pages</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>The SEO Pyramid</h3>
+<pre><code>                    ┌─────────────┐
+                    │  BACKLINKS  │ ← Authority building
+                    └──────┬──────┘
+               ┌───────────┼───────────┐
+          ┌────┴────┐ ┌────┴────┐ ┌────┴────┐
+          │Content  │ │On-Page  │ │Technical│
+          │Quality  │ │Elements │ │ SEO     │
+          └─────────┘ └─────────┘ └─────────┘
+                    ┌───────────┐
+                    │ KEYWORDS  │ ← Foundation
+                    └───────────┘
+</code></pre>
+<h3>Search Intent Types</h3>
+<pre><code class="language-typescript">type SearchIntent =
+  | &#39;informational&#39;    // &quot;What is...&quot; - Answer questions
+  | &#39;navigational&#39;     // &quot;Netflix login&quot; - Brand queries
+  | &#39;transactional&#39;    // &quot;Buy iPhone&quot; - Purchase intent
+  | &#39;commercial&#39;       // &quot;Best laptop 2024&quot; - Research before buy
+
+function matchIntent(keyword: string, content: Content): boolean {
+  // Informational: How-to guides, explanations
+  // Navigational: Brand pages, login
+  // Transactional: Pricing, demo, buy
+  // Commercial: Comparisons, reviews
+}
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: On-Page SEO Checklist</h3>
+<pre><code class="language-markdown">## Title Tag (50-60 characters)
+&lt;title&gt;[Primary Keyword] - [Benefit] | [Brand]&lt;/title&gt;
+
+## Meta Description (150-160 characters)
+&lt;meta name=&quot;description&quot; content=&quot;[Compelling description with keywords and CTA]&quot;&gt;
+
+## Heading Structure
+&lt;H1&gt;[Title matching title tag]&lt;/H1&gt;
+&lt;H2&gt;[Major section - includes secondary keywords]&lt;/H2&gt;
+&lt;H3&gt;[Sub-section - includes related keywords]&lt;/H3&gt;
+&lt;H2&gt;[Another major section]&lt;/H2&gt;
+...
+
+## Content Optimization
+✓ Primary keyword in first paragraph
+✓ Secondary keywords in 2-3 paragraphs each
+✓ Keywords in bold/strong (2-3 occurrences)
+✓ Related keywords naturally throughout
+✓ LSI keywords for context
+
+## Image Optimization
+✓ Alt text with keywords
+✓ Compressed file sizes
+✓ Descriptive filenames
+✓ Lazy loading for below-fold images
+
+## Internal Linking
+✓ 2-4 internal links to related content
+✓ Anchor text varies naturally
+✓ Links to pillar/cluster content
+
+## Technical Elements
+✓ Fast loading (&lt;3 seconds)
+✓ Mobile responsive
+✓ SSL certificate (HTTPS)
+✓ XML sitemap submitted
+✓ Robots.txt configured
+✓ Canonical tags for duplicates
+</code></pre>
+<h3>Pattern 2: Keyword Research Framework</h3>
+<pre><code class="language-typescript">interface KeywordData {
+  keyword: string;           // Target keyword
+  volume: number;            // Monthly searches
+  difficulty: number;        // 0-100 scale
+  cpc: number;               // Cost per click
+  intent: SearchIntent;      // Type of search
+  serpFeatures: string[];    // Featured snippets, etc.
+}
+
+const researchKeywords = (topic: string): KeywordData[] =&gt; {
+  return [
+    // Primary keyword (high volume, high difficulty)
+    { keyword: `${topic}`, volume: 10000, difficulty: 70, intent: &#39;informational&#39; },
+    // Long-tail keyword (low volume, low difficulty)
+    { keyword: `how to ${topic} for beginners`, volume: 1000, difficulty: 30, intent: &#39;informational&#39; },
+    // Commercial intent
+    { keyword: `best ${topic} tools`, volume: 5000, difficulty: 60, intent: &#39;commercial&#39; },
+    // Question keyword (featured snippet)
+    { keyword: `what is ${topic}`, volume: 3000, difficulty: 40, intent: &#39;informational&#39; },
+  ];
+}
+</code></pre>
+<h3>Pattern 3: Content Brief Template</h3>
+<pre><code class="language-markdown"># Content Brief: [Target Keyword]
+
+## Basic Info
+- Primary Keyword: [keyword]
+- Target Search Intent: [informational/navigational/transactional/commercial]
+- Target Word Count: [1,500-2,500 words]
+- Suggested Title: &quot;[title with keyword]&quot;
+- Target Ranking: [Position 1-3]
+
+## Keyword Strategy
+**Primary Keyword:** [keyword]
+**Secondary Keywords:**
+- [keyword 1]
+- [keyword 2]
+- [keyword 3]
+
+**Related Terms to Include:**
+- [term 1]
+- [term 2]
+- [term 3]
+
+**Questions to Answer:**
+- [Question 1]
+- [Question 2]
+- [Question 3]
+
+## Content Structure
+**H2 Outline:**
+1. [Section about X]
+2. [Section about Y]
+3. [Section about Z]
+
+**Featured Snippet Target:**
+Question: &quot;[Question to answer]&quot;
+Answer: &quot;[50-word answer - direct, concise]&quot;
+
+## Competitor Analysis
+**Top 3 Ranking Pages:**
+1. [URL 1] - Strengths, weaknesses
+2. [URL 2] - Strengths, weaknesses
+3. [URL 3] - Strengths, weaknesses
+
+**Content Gaps to Exploit:**
+- [Gap 1]
+- [Gap 2]
+
+## Links to Include
+**Internal Links (2-4):**
+- [Link 1 to pillar/cluster content]
+- [Link 2 to related content]
+
+**External Links (2-4):**
+- [Link to authoritative source 1]
+- [Link to authoritative source 2]
+
+## Success Metrics
+- Target word count: [number]
+- Readability grade: [6-8]
+- Keyword density: [1-2%]
+- Images: [3-5 with optimized alt text]
+</code></pre>
+<h2>Step-by-Step Process</h2>
+<ol>
+<li><p><strong>Keyword Research</strong></p>
+<ul>
+<li>Use Ahrefs/Semrush/Moz for data</li>
+<li>Find keywords with right volume/difficulty balance</li>
+<li>Analyze search intent</li>
+<li>Identify content gaps</li>
+</ul>
+</li>
+<li><p><strong>Competitive Analysis</strong></p>
+<ul>
+<li>Analyze top-ranking pages</li>
+<li>Identify what makes them rank</li>
+<li>Find gaps to outrank them</li>
+<li>Note their word count and structure</li>
+</ul>
+</li>
+<li><p><strong>Content Planning</strong></p>
+<ul>
+<li>Create detailed content briefs</li>
+<li>Define target word count</li>
+<li>Plan headings and structure</li>
+<li>Specify internal/external links</li>
+</ul>
+</li>
+<li><p><strong>On-Page Optimization</strong></p>
+<ul>
+<li>Include keywords in title/meta</li>
+<li>Structure with H2s/H3s</li>
+<li>Optimize images</li>
+<li>Add internal links</li>
+</ul>
+</li>
+<li><p><strong>Technical SEO</strong></p>
+<ul>
+<li>Fix crawl errors</li>
+<li>Improve page speed</li>
+<li>Ensure mobile-friendliness</li>
+<li>Submit sitemap</li>
+</ul>
+</li>
+<li><p><strong>Link Building</strong></p>
+<ul>
+<li>Create link-worthy content</li>
+<li>Reach out for backlinks</li>
+<li>Build internal links</li>
+<li>Monitor backlink profile</li>
+</ul>
+</li>
+</ol>
+<h2>FrankX Application</h2>
+<pre><code class="language-markdown"># SEO Strategy: [TOPIC] for [AUDIENCE]
+
+## The FrankX SEO Philosophy
+
+Most SEO is playing defense.
+
+FrankX plays offense.
+
+**Our approach:**
+
+1. Own the narrative, not just the keywords
+2. Create content so good they have to link
+3. Build topical authority, not just page authority
+
+## Target Keyword Clusters
+
+**Pillar Page:** &quot;[Ultimate Guide to TOPIC]&quot;
+- 10,000+ words
+- Comprehensive coverage
+- Links to all cluster content
+
+**Cluster Content:**
+- &quot;How to [TOPIC] for Beginners&quot; (1,500 words)
+- &quot;[TOPIC] Mistakes to Avoid&quot; (1,200 words)
+- &quot;The Science Behind [TOPIC]&quot; (1,800 words)
+- &quot;[TOPIC] Case Studies&quot; (2,000 words)
+
+## Link Building Strategy
+
+**Resource Page Outreach:**
+- Create ultimate resource pages
+- Pitch to relevant resource pages
+- Track responses and follow up
+
+**HARO/Connectively:**
+- Position as expert source
+- Provide valuable insights
+- Earn backlinks from journalists
+
+**Broken Link Building:**
+- Find broken links in niche
+- Offer content as replacement
+- Easy wins for backlinks
+</code></pre>
+<h2>Anti-Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Bad Practice</th>
+<th>Why It&#39;s Bad</th>
+<th>Better Approach</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Keyword stuffing</td>
+<td>Penalized by Google</td>
+<td>Natural keyword usage</td>
+</tr>
+<tr>
+<td>Ignoring search intent</td>
+<td>Low engagement metrics</td>
+<td>Match content to intent</td>
+</tr>
+<tr>
+<td>Thin content (&lt;1,000 words)</td>
+<td>Doesn&#39;t satisfy users</td>
+<td>Comprehensive 1,500+ words</td>
+</tr>
+<tr>
+<td>No internal linking</td>
+<td>Weak site structure</td>
+<td>Connect related content</td>
+</tr>
+<tr>
+<td>Duplicate content</td>
+<td>Confuses search engines</td>
+<td>Use canonical tags</td>
+</tr>
+<tr>
+<td>Ignoring mobile</td>
+<td>Poor rankings, UX</td>
+<td>Mobile-first design</td>
+</tr>
+<tr>
+<td>Slow page speed</td>
+<td>High bounce rate</td>
+<td>Optimize images, minify</td>
+</tr>
+</tbody></table>
+<h2>Quick Commands</h2>
+<pre><code class="language-bash"># Research keywords for topic
+skill:seo-optimization, research keywords for [TOPIC]
+
+# Audit existing content
+skill:seo-optimization, audit my blog post at [URL]
+
+# Create content brief
+skill:seo-optimization, create a content brief for [KEYWORD]
+
+# Optimize existing page
+skill:seo-optimization, optimize my page [URL] for [KEYWORD]
+
+# Find link building opportunities
+skill:seo-optimization, find link building opportunities for [TOPIC]
+</code></pre>
+<h2>Related Skills</h2>
+<ul>
+<li><code>blog-writing</code> - Create SEO-optimized content</li>
+<li><code>content-strategy</code> - Plan keyword-targeted content</li>
+<li><code>social-media</code> - Promote content for backlinks</li>
+<li><code>video-script</code> - Create YouTube SEO content</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><code>resources/templates.md</code> - Content brief templates</li>
+<li><code>resources/checklists.md</code> - Pre-publication SEO checklist</li>
+<li><code>resources/tools.md</code> - SEO tool recommendations</li>
+<li><code>resources/competitor-analysis.md</code> - Competitor research framework</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

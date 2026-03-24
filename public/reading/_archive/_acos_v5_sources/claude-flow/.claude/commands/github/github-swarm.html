@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>github swarm</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/github/github-swarm.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">github swarm</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands%2Fgithub">github</a> / <span>github-swarm.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>github swarm</h1>
+<p>Create a specialized swarm for GitHub repository management.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">npx claude-flow github swarm [options]
+</code></pre>
+<h2>Options</h2>
+<ul>
+<li><code>--repository, -r &lt;owner/repo&gt;</code> - Target GitHub repository</li>
+<li><code>--agents, -a &lt;number&gt;</code> - Number of specialized agents (default: 5)</li>
+<li><code>--focus, -f &lt;type&gt;</code> - Focus area: maintenance, development, review, triage</li>
+<li><code>--auto-pr</code> - Enable automatic pull request enhancements</li>
+<li><code>--issue-labels</code> - Auto-categorize and label issues</li>
+<li><code>--code-review</code> - Enable AI-powered code reviews</li>
+</ul>
+<h2>Examples</h2>
+<h3>Basic GitHub swarm</h3>
+<pre><code class="language-bash">npx claude-flow github swarm --repository owner/repo
+</code></pre>
+<h3>Maintenance-focused swarm</h3>
+<pre><code class="language-bash">npx claude-flow github swarm -r owner/repo -f maintenance --issue-labels
+</code></pre>
+<h3>Development swarm with PR automation</h3>
+<pre><code class="language-bash">npx claude-flow github swarm -r owner/repo -f development --auto-pr --code-review
+</code></pre>
+<h3>Full-featured triage swarm</h3>
+<pre><code class="language-bash">npx claude-flow github swarm -r owner/repo -a 8 -f triage --issue-labels --auto-pr
+</code></pre>
+<h2>Agent Types</h2>
+<h3>Issue Triager</h3>
+<ul>
+<li>Analyzes and categorizes issues</li>
+<li>Suggests labels and priorities</li>
+<li>Identifies duplicates and related issues</li>
+</ul>
+<h3>PR Reviewer</h3>
+<ul>
+<li>Reviews code changes</li>
+<li>Suggests improvements</li>
+<li>Checks for best practices</li>
+</ul>
+<h3>Documentation Agent</h3>
+<ul>
+<li>Updates README files</li>
+<li>Creates API documentation</li>
+<li>Maintains changelog</li>
+</ul>
+<h3>Test Agent</h3>
+<ul>
+<li>Identifies missing tests</li>
+<li>Suggests test cases</li>
+<li>Validates test coverage</li>
+</ul>
+<h3>Security Agent</h3>
+<ul>
+<li>Scans for vulnerabilities</li>
+<li>Reviews dependencies</li>
+<li>Suggests security improvements</li>
+</ul>
+<h2>Workflows</h2>
+<h3>Issue Triage Workflow</h3>
+<ol>
+<li>Scan all open issues</li>
+<li>Categorize by type and priority</li>
+<li>Apply appropriate labels</li>
+<li>Suggest assignees</li>
+<li>Link related issues</li>
+</ol>
+<h3>PR Enhancement Workflow</h3>
+<ol>
+<li>Analyze PR changes</li>
+<li>Suggest missing tests</li>
+<li>Improve documentation</li>
+<li>Format code consistently</li>
+<li>Add helpful comments</li>
+</ol>
+<h3>Repository Health Check</h3>
+<ol>
+<li>Analyze code quality metrics</li>
+<li>Review dependency status</li>
+<li>Check test coverage</li>
+<li>Assess documentation completeness</li>
+<li>Generate health report</li>
+</ol>
+<h2>Integration with Claude Code</h2>
+<p>Use in Claude Code with MCP tools:</p>
+<pre><code class="language-javascript">mcp__claude-flow__github_swarm {
+  repository: &quot;owner/repo&quot;,
+  agents: 6,
+  focus: &quot;maintenance&quot;
+}
+</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><code>repo analyze</code> - Deep repository analysis</li>
+<li><code>pr enhance</code> - Enhance pull requests</li>
+<li><code>issue triage</code> - Intelligent issue management</li>
+<li><code>code review</code> - Automated reviews</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,1250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>AI Assistant Development</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/llm-application-dev/commands/ai-assistant.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">AI Assistant Development</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev">llm-application-dev</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fcommands">commands</a> / <span>ai-assistant.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: &quot;Build AI assistant application with NLU, dialog management, and integrations&quot;
+argument-hint: &quot;<assistant-type> [options]&quot;</h2>
+<h1>AI Assistant Development</h1>
+<p>You are an AI assistant development expert specializing in creating intelligent conversational interfaces, chatbots, and AI-powered applications. Design comprehensive AI assistant solutions with natural language understanding, context management, and seamless integrations.</p>
+<h2>Context</h2>
+<p>The user needs to develop an AI assistant or chatbot with natural language capabilities, intelligent responses, and practical functionality. Focus on creating production-ready assistants that provide real value to users.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. AI Assistant Architecture</h3>
+<p>Design comprehensive assistant architecture:</p>
+<p><strong>Assistant Architecture Framework</strong></p>
+<pre><code class="language-python">from typing import Dict, List, Optional, Any
+from dataclasses import dataclass
+from abc import ABC, abstractmethod
+import asyncio
+
+@dataclass
+class ConversationContext:
+    &quot;&quot;&quot;Maintains conversation state and context&quot;&quot;&quot;
+    user_id: str
+    session_id: str
+    messages: List[Dict[str, Any]]
+    user_profile: Dict[str, Any]
+    conversation_state: Dict[str, Any]
+    metadata: Dict[str, Any]
+
+class AIAssistantArchitecture:
+    def __init__(self, config: Dict[str, Any]):
+        self.config = config
+        self.components = self._initialize_components()
+
+    def design_architecture(self):
+        &quot;&quot;&quot;Design comprehensive AI assistant architecture&quot;&quot;&quot;
+        return {
+            &#39;core_components&#39;: {
+                &#39;nlu&#39;: self._design_nlu_component(),
+                &#39;dialog_manager&#39;: self._design_dialog_manager(),
+                &#39;response_generator&#39;: self._design_response_generator(),
+                &#39;context_manager&#39;: self._design_context_manager(),
+                &#39;integration_layer&#39;: self._design_integration_layer()
+            },
+            &#39;data_flow&#39;: self._design_data_flow(),
+            &#39;deployment&#39;: self._design_deployment_architecture(),
+            &#39;scalability&#39;: self._design_scalability_features()
+        }
+
+    def _design_nlu_component(self):
+        &quot;&quot;&quot;Natural Language Understanding component&quot;&quot;&quot;
+        return {
+            &#39;intent_recognition&#39;: {
+                &#39;model&#39;: &#39;transformer-based classifier&#39;,
+                &#39;features&#39;: [
+                    &#39;Multi-intent detection&#39;,
+                    &#39;Confidence scoring&#39;,
+                    &#39;Fallback handling&#39;
+                ],
+                &#39;implementation&#39;: &#39;&#39;&#39;
+class IntentClassifier:
+    def __init__(self, model_path: str, *, config: Optional[Dict[str, Any]] = None):
+        self.model = self.load_model(model_path)
+        self.intents = self.load_intent_schema()
+        default_config = {&quot;threshold&quot;: 0.65}
+        self.config = {**default_config, **(config or {})}
+
+    async def classify(self, text: str) -&gt; Dict[str, Any]:
+        # Preprocess text
+        processed = self.preprocess(text)
+
+        # Get model predictions
+        predictions = await self.model.predict(processed)
+
+        # Extract intents with confidence
+        intents = []
+        for intent, confidence in predictions:
+            if confidence &gt; self.config[&#39;threshold&#39;]:
+                intents.append({
+                    &#39;name&#39;: intent,
+                    &#39;confidence&#39;: confidence,
+                    &#39;parameters&#39;: self.extract_parameters(text, intent)
+                })
+
+        return {
+            &#39;intents&#39;: intents,
+            &#39;primary_intent&#39;: intents[0] if intents else None,
+            &#39;requires_clarification&#39;: len(intents) &gt; 1
+        }
+&#39;&#39;&#39;
+            },
+            &#39;entity_extraction&#39;: {
+                &#39;model&#39;: &#39;NER with custom entities&#39;,
+                &#39;features&#39;: [
+                    &#39;Domain-specific entities&#39;,
+                    &#39;Contextual extraction&#39;,
+                    &#39;Entity resolution&#39;
+                ]
+            },
+            &#39;sentiment_analysis&#39;: {
+                &#39;model&#39;: &#39;Fine-tuned sentiment classifier&#39;,
+                &#39;features&#39;: [
+                    &#39;Emotion detection&#39;,
+                    &#39;Urgency classification&#39;,
+                    &#39;User satisfaction tracking&#39;
+                ]
+            }
+        }
+
+    def _design_dialog_manager(self):
+        &quot;&quot;&quot;Dialog management system&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+class DialogManager:
+    &quot;&quot;&quot;Manages conversation flow and state&quot;&quot;&quot;
+
+    def __init__(self):
+        self.state_machine = ConversationStateMachine()
+        self.policy_network = DialogPolicy()
+
+    async def process_turn(self,
+                          context: ConversationContext,
+                          nlu_result: Dict[str, Any]) -&gt; Dict[str, Any]:
+        # Determine current state
+        current_state = self.state_machine.get_state(context)
+
+        # Apply dialog policy
+        action = await self.policy_network.select_action(
+            current_state,
+            nlu_result,
+            context
+        )
+
+        # Execute action
+        result = await self.execute_action(action, context)
+
+        # Update state
+        new_state = self.state_machine.transition(
+            current_state,
+            action,
+            result
+        )
+
+        return {
+            &#39;action&#39;: action,
+            &#39;new_state&#39;: new_state,
+            &#39;response_data&#39;: result
+        }
+
+    async def execute_action(self, action: str, context: ConversationContext):
+        &quot;&quot;&quot;Execute dialog action&quot;&quot;&quot;
+        action_handlers = {
+            &#39;greet&#39;: self.handle_greeting,
+            &#39;provide_info&#39;: self.handle_information_request,
+            &#39;clarify&#39;: self.handle_clarification,
+            &#39;confirm&#39;: self.handle_confirmation,
+            &#39;execute_task&#39;: self.handle_task_execution,
+            &#39;end_conversation&#39;: self.handle_conversation_end
+        }
+
+        handler = action_handlers.get(action, self.handle_unknown)
+        return await handler(context)
+&#39;&#39;&#39;
+</code></pre>
+<h3>2. Natural Language Processing</h3>
+<p>Implement advanced NLP capabilities:</p>
+<p><strong>NLP Pipeline Implementation</strong></p>
+<pre><code class="language-python">class NLPPipeline:
+    def __init__(self):
+        self.tokenizer = self._initialize_tokenizer()
+        self.embedder = self._initialize_embedder()
+        self.models = self._load_models()
+
+    async def process_message(self, message: str, context: ConversationContext):
+        &quot;&quot;&quot;Process user message through NLP pipeline&quot;&quot;&quot;
+        # Tokenization and preprocessing
+        tokens = self.tokenizer.tokenize(message)
+
+        # Generate embeddings
+        embeddings = await self.embedder.embed(tokens)
+
+        # Parallel processing of NLP tasks
+        tasks = [
+            self.detect_intent(embeddings),
+            self.extract_entities(tokens, embeddings),
+            self.analyze_sentiment(embeddings),
+            self.detect_language(tokens),
+            self.check_spelling(tokens)
+        ]
+
+        results = await asyncio.gather(*tasks)
+
+        return {
+            &#39;intent&#39;: results[0],
+            &#39;entities&#39;: results[1],
+            &#39;sentiment&#39;: results[2],
+            &#39;language&#39;: results[3],
+            &#39;corrections&#39;: results[4],
+            &#39;original_message&#39;: message,
+            &#39;processed_tokens&#39;: tokens
+        }
+
+    async def detect_intent(self, embeddings):
+        &quot;&quot;&quot;Advanced intent detection&quot;&quot;&quot;
+        # Multi-label classification
+        intent_scores = await self.models[&#39;intent_classifier&#39;].predict(embeddings)
+
+        # Hierarchical intent detection
+        primary_intent = self.get_primary_intent(intent_scores)
+        sub_intents = self.get_sub_intents(primary_intent, embeddings)
+
+        return {
+            &#39;primary&#39;: primary_intent,
+            &#39;secondary&#39;: sub_intents,
+            &#39;confidence&#39;: max(intent_scores.values()),
+            &#39;all_scores&#39;: intent_scores
+        }
+
+    def extract_entities(self, tokens, embeddings):
+        &quot;&quot;&quot;Extract and resolve entities&quot;&quot;&quot;
+        # Named Entity Recognition
+        entities = self.models[&#39;ner&#39;].extract(tokens, embeddings)
+
+        # Entity linking and resolution
+        resolved_entities = []
+        for entity in entities:
+            resolved = self.resolve_entity(entity)
+            resolved_entities.append({
+                &#39;text&#39;: entity[&#39;text&#39;],
+                &#39;type&#39;: entity[&#39;type&#39;],
+                &#39;resolved_value&#39;: resolved[&#39;value&#39;],
+                &#39;confidence&#39;: resolved[&#39;confidence&#39;],
+                &#39;alternatives&#39;: resolved.get(&#39;alternatives&#39;, [])
+            })
+
+        return resolved_entities
+
+    def build_semantic_understanding(self, nlu_result, context):
+        &quot;&quot;&quot;Build semantic representation of user intent&quot;&quot;&quot;
+        return {
+            &#39;user_goal&#39;: self.infer_user_goal(nlu_result, context),
+            &#39;required_information&#39;: self.identify_missing_info(nlu_result),
+            &#39;constraints&#39;: self.extract_constraints(nlu_result),
+            &#39;preferences&#39;: self.extract_preferences(nlu_result, context)
+        }
+</code></pre>
+<h3>3. Conversation Flow Design</h3>
+<p>Design intelligent conversation flows:</p>
+<p><strong>Conversation Flow Engine</strong></p>
+<pre><code class="language-python">class ConversationFlowEngine:
+    def __init__(self):
+        self.flows = self._load_conversation_flows()
+        self.state_tracker = StateTracker()
+
+    def design_conversation_flow(self):
+        &quot;&quot;&quot;Design multi-turn conversation flows&quot;&quot;&quot;
+        return {
+            &#39;greeting_flow&#39;: {
+                &#39;triggers&#39;: [&#39;hello&#39;, &#39;hi&#39;, &#39;greetings&#39;],
+                &#39;nodes&#39;: [
+                    {
+                        &#39;id&#39;: &#39;greet_user&#39;,
+                        &#39;type&#39;: &#39;response&#39;,
+                        &#39;content&#39;: self.personalized_greeting,
+                        &#39;next&#39;: &#39;ask_how_to_help&#39;
+                    },
+                    {
+                        &#39;id&#39;: &#39;ask_how_to_help&#39;,
+                        &#39;type&#39;: &#39;question&#39;,
+                        &#39;content&#39;: &quot;How can I assist you today?&quot;,
+                        &#39;expected_intents&#39;: [&#39;request_help&#39;, &#39;ask_question&#39;],
+                        &#39;timeout&#39;: 30,
+                        &#39;timeout_action&#39;: &#39;offer_suggestions&#39;
+                    }
+                ]
+            },
+            &#39;task_completion_flow&#39;: {
+                &#39;triggers&#39;: [&#39;task_request&#39;],
+                &#39;nodes&#39;: [
+                    {
+                        &#39;id&#39;: &#39;understand_task&#39;,
+                        &#39;type&#39;: &#39;nlu_processing&#39;,
+                        &#39;extract&#39;: [&#39;task_type&#39;, &#39;parameters&#39;],
+                        &#39;next&#39;: &#39;check_requirements&#39;
+                    },
+                    {
+                        &#39;id&#39;: &#39;check_requirements&#39;,
+                        &#39;type&#39;: &#39;validation&#39;,
+                        &#39;validate&#39;: self.validate_task_requirements,
+                        &#39;on_success&#39;: &#39;confirm_task&#39;,
+                        &#39;on_missing&#39;: &#39;request_missing_info&#39;
+                    },
+                    {
+                        &#39;id&#39;: &#39;request_missing_info&#39;,
+                        &#39;type&#39;: &#39;slot_filling&#39;,
+                        &#39;slots&#39;: self.get_required_slots,
+                        &#39;prompts&#39;: self.get_slot_prompts,
+                        &#39;next&#39;: &#39;confirm_task&#39;
+                    },
+                    {
+                        &#39;id&#39;: &#39;confirm_task&#39;,
+                        &#39;type&#39;: &#39;confirmation&#39;,
+                        &#39;content&#39;: self.generate_task_summary,
+                        &#39;on_confirm&#39;: &#39;execute_task&#39;,
+                        &#39;on_deny&#39;: &#39;clarify_task&#39;
+                    }
+                ]
+            }
+        }
+
+    async def execute_flow(self, flow_id: str, context: ConversationContext):
+        &quot;&quot;&quot;Execute a conversation flow&quot;&quot;&quot;
+        flow = self.flows[flow_id]
+        current_node = flow[&#39;nodes&#39;][0]
+
+        while current_node:
+            result = await self.execute_node(current_node, context)
+
+            # Determine next node
+            if result.get(&#39;user_input&#39;):
+                next_node_id = self.determine_next_node(
+                    current_node,
+                    result[&#39;user_input&#39;],
+                    context
+                )
+            else:
+                next_node_id = current_node.get(&#39;next&#39;)
+
+            current_node = self.get_node(flow, next_node_id)
+
+            # Update context
+            context.conversation_state.update(result.get(&#39;state_updates&#39;, {}))
+
+        return context
+</code></pre>
+<h3>4. Response Generation</h3>
+<p>Create intelligent response generation:</p>
+<p><strong>Response Generator</strong></p>
+<pre><code class="language-python">class ResponseGenerator:
+    def __init__(self, llm_client=None):
+        self.llm = llm_client
+        self.templates = self._load_response_templates()
+        self.personality = self._load_personality_config()
+
+    async def generate_response(self,
+                               intent: str,
+                               context: ConversationContext,
+                               data: Dict[str, Any]) -&gt; str:
+        &quot;&quot;&quot;Generate contextual responses&quot;&quot;&quot;
+
+        # Select response strategy
+        if self.should_use_template(intent):
+            response = self.generate_from_template(intent, data)
+        elif self.should_use_llm(intent, context):
+            response = await self.generate_with_llm(intent, context, data)
+        else:
+            response = self.generate_hybrid_response(intent, context, data)
+
+        # Apply personality and tone
+        response = self.apply_personality(response, context)
+
+        # Ensure response appropriateness
+        response = self.validate_response(response, context)
+
+        return response
+
+    async def generate_with_llm(self, intent, context, data):
+        &quot;&quot;&quot;Generate response using LLM&quot;&quot;&quot;
+        # Construct prompt
+        prompt = self.build_llm_prompt(intent, context, data)
+
+        # Set generation parameters
+        params = {
+            &#39;temperature&#39;: self.get_temperature(intent),
+            &#39;max_tokens&#39;: 150,
+            &#39;stop_sequences&#39;: [&#39;\n\n&#39;, &#39;User:&#39;, &#39;Human:&#39;]
+        }
+
+        # Generate response
+        response = await self.llm.generate(prompt, **params)
+
+        # Post-process response
+        return self.post_process_llm_response(response)
+
+    def build_llm_prompt(self, intent, context, data):
+        &quot;&quot;&quot;Build context-aware prompt for LLM&quot;&quot;&quot;
+        return f&quot;&quot;&quot;
+You are a helpful AI assistant with the following characteristics:
+{self.personality.description}
+
+Conversation history:
+{self.format_conversation_history(context.messages[-5:])}
+
+User intent: {intent}
+Relevant data: {json.dumps(data, indent=2)}
+
+Generate a helpful, concise response that:
+1. Addresses the user&#39;s intent
+2. Uses the provided data appropriately
+3. Maintains conversation continuity
+4. Follows the personality guidelines
+
+Response:&quot;&quot;&quot;
+
+    def generate_from_template(self, intent, data):
+        &quot;&quot;&quot;Generate response from templates&quot;&quot;&quot;
+        template = self.templates.get(intent)
+        if not template:
+            return self.get_fallback_response()
+
+        # Select template variant
+        variant = self.select_template_variant(template, data)
+
+        # Fill template slots
+        response = variant
+        for key, value in data.items():
+            response = response.replace(f&quot;{{{key}}}&quot;, str(value))
+
+        return response
+
+    def apply_personality(self, response, context):
+        &quot;&quot;&quot;Apply personality traits to response&quot;&quot;&quot;
+        # Add personality markers
+        if self.personality.get(&#39;friendly&#39;):
+            response = self.add_friendly_markers(response)
+
+        if self.personality.get(&#39;professional&#39;):
+            response = self.ensure_professional_tone(response)
+
+        # Adjust based on user preferences
+        if context.user_profile.get(&#39;prefers_brief&#39;):
+            response = self.make_concise(response)
+
+        return response
+</code></pre>
+<h3>5. Context Management</h3>
+<p>Implement sophisticated context management:</p>
+<p><strong>Context Management System</strong></p>
+<pre><code class="language-python">class ContextManager:
+    def __init__(self):
+        self.short_term_memory = ShortTermMemory()
+        self.long_term_memory = LongTermMemory()
+        self.working_memory = WorkingMemory()
+
+    async def manage_context(self,
+                            new_input: Dict[str, Any],
+                            current_context: ConversationContext) -&gt; ConversationContext:
+        &quot;&quot;&quot;Manage conversation context&quot;&quot;&quot;
+
+        # Update conversation history
+        current_context.messages.append({
+            &#39;role&#39;: &#39;user&#39;,
+            &#39;content&#39;: new_input[&#39;message&#39;],
+            &#39;timestamp&#39;: datetime.now(),
+            &#39;metadata&#39;: new_input.get(&#39;metadata&#39;, {})
+        })
+
+        # Resolve references
+        resolved_input = await self.resolve_references(new_input, current_context)
+
+        # Update working memory
+        self.working_memory.update(resolved_input, current_context)
+
+        # Detect topic changes
+        topic_shift = self.detect_topic_shift(resolved_input, current_context)
+        if topic_shift:
+            current_context = self.handle_topic_shift(topic_shift, current_context)
+
+        # Maintain entity state
+        current_context = self.update_entity_state(resolved_input, current_context)
+
+        # Prune old context if needed
+        if len(current_context.messages) &gt; self.config[&#39;max_context_length&#39;]:
+            current_context = self.prune_context(current_context)
+
+        return current_context
+
+    async def resolve_references(self, input_data, context):
+        &quot;&quot;&quot;Resolve pronouns and references&quot;&quot;&quot;
+        text = input_data[&#39;message&#39;]
+
+        # Pronoun resolution
+        pronouns = self.extract_pronouns(text)
+        for pronoun in pronouns:
+            referent = self.find_referent(pronoun, context)
+            if referent:
+                text = text.replace(pronoun[&#39;text&#39;], referent[&#39;resolved&#39;])
+
+        # Temporal reference resolution
+        temporal_refs = self.extract_temporal_references(text)
+        for ref in temporal_refs:
+            resolved_time = self.resolve_temporal_reference(ref, context)
+            text = text.replace(ref[&#39;text&#39;], str(resolved_time))
+
+        input_data[&#39;resolved_message&#39;] = text
+        return input_data
+
+    def maintain_entity_state(self):
+        &quot;&quot;&quot;Track entity states across conversation&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+class EntityStateTracker:
+    def __init__(self):
+        self.entities = {}
+
+    def update_entity(self, entity_id: str, updates: Dict[str, Any]):
+        &quot;&quot;&quot;Update entity state&quot;&quot;&quot;
+        if entity_id not in self.entities:
+            self.entities[entity_id] = {
+                &#39;id&#39;: entity_id,
+                &#39;type&#39;: updates.get(&#39;type&#39;),
+                &#39;attributes&#39;: {},
+                &#39;history&#39;: []
+            }
+
+        # Record history
+        self.entities[entity_id][&#39;history&#39;].append({
+            &#39;timestamp&#39;: datetime.now(),
+            &#39;updates&#39;: updates
+        })
+
+        # Apply updates
+        self.entities[entity_id][&#39;attributes&#39;].update(updates)
+
+    def get_entity_state(self, entity_id: str) -&gt; Optional[Dict[str, Any]]:
+        &quot;&quot;&quot;Get current entity state&quot;&quot;&quot;
+        return self.entities.get(entity_id)
+
+    def query_entities(self, entity_type: str = None, **filters):
+        &quot;&quot;&quot;Query entities by type and attributes&quot;&quot;&quot;
+        results = []
+        for entity in self.entities.values():
+            if entity_type and entity[&#39;type&#39;] != entity_type:
+                continue
+
+            matches = True
+            for key, value in filters.items():
+                if entity[&#39;attributes&#39;].get(key) != value:
+                    matches = False
+                    break
+
+            if matches:
+                results.append(entity)
+
+        return results
+&#39;&#39;&#39;
+</code></pre>
+<h3>6. Integration with LLMs</h3>
+<p>Integrate with various LLM providers:</p>
+<p><strong>LLM Integration Layer</strong></p>
+<pre><code class="language-python">class LLMIntegrationLayer:
+    def __init__(self):
+        self.providers = {
+            &#39;openai&#39;: OpenAIProvider(),
+            &#39;anthropic&#39;: AnthropicProvider(),
+            &#39;local&#39;: LocalLLMProvider()
+        }
+        self.current_provider = None
+
+    async def setup_llm_integration(self, provider: str, config: Dict[str, Any]):
+        &quot;&quot;&quot;Setup LLM integration&quot;&quot;&quot;
+        self.current_provider = self.providers[provider]
+        await self.current_provider.initialize(config)
+
+        return {
+            &#39;provider&#39;: provider,
+            &#39;capabilities&#39;: self.current_provider.get_capabilities(),
+            &#39;rate_limits&#39;: self.current_provider.get_rate_limits()
+        }
+
+    async def generate_completion(self,
+                                 prompt: str,
+                                 system_prompt: str = None,
+                                 **kwargs):
+        &quot;&quot;&quot;Generate completion with fallback handling&quot;&quot;&quot;
+        try:
+            # Primary attempt
+            response = await self.current_provider.complete(
+                prompt=prompt,
+                system_prompt=system_prompt,
+                **kwargs
+            )
+
+            # Validate response
+            if self.is_valid_response(response):
+                return response
+            else:
+                return await self.handle_invalid_response(prompt, response)
+
+        except RateLimitError:
+            # Switch to fallback provider
+            return await self.use_fallback_provider(prompt, system_prompt, **kwargs)
+        except Exception as e:
+            # Log error and use cached response if available
+            return self.get_cached_response(prompt) or self.get_default_response()
+
+    def create_function_calling_interface(self):
+        &quot;&quot;&quot;Create function calling interface for LLMs&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+class FunctionCallingInterface:
+    def __init__(self):
+        self.functions = {}
+
+    def register_function(self,
+                         name: str,
+                         func: callable,
+                         description: str,
+                         parameters: Dict[str, Any]):
+        &quot;&quot;&quot;Register a function for LLM to call&quot;&quot;&quot;
+        self.functions[name] = {
+            &#39;function&#39;: func,
+            &#39;description&#39;: description,
+            &#39;parameters&#39;: parameters
+        }
+
+    async def process_function_call(self, llm_response):
+        &quot;&quot;&quot;Process function calls from LLM&quot;&quot;&quot;
+        if &#39;function_call&#39; not in llm_response:
+            return llm_response
+
+        function_name = llm_response[&#39;function_call&#39;][&#39;name&#39;]
+        arguments = llm_response[&#39;function_call&#39;][&#39;arguments&#39;]
+
+        if function_name not in self.functions:
+            return {&#39;error&#39;: f&#39;Unknown function: {function_name}&#39;}
+
+        # Validate arguments
+        validated_args = self.validate_arguments(
+            function_name,
+            arguments
+        )
+
+        # Execute function
+        result = await self.functions[function_name][&#39;function&#39;](**validated_args)
+
+        # Return result for LLM to process
+        return {
+            &#39;function_result&#39;: result,
+            &#39;function_name&#39;: function_name
+        }
+&#39;&#39;&#39;
+</code></pre>
+<h3>7. Testing Conversational AI</h3>
+<p>Implement comprehensive testing:</p>
+<p><strong>Conversation Testing Framework</strong></p>
+<pre><code class="language-python">class ConversationTestFramework:
+    def __init__(self):
+        self.test_suites = []
+        self.metrics = ConversationMetrics()
+
+    def create_test_suite(self):
+        &quot;&quot;&quot;Create comprehensive test suite&quot;&quot;&quot;
+        return {
+            &#39;unit_tests&#39;: self._create_unit_tests(),
+            &#39;integration_tests&#39;: self._create_integration_tests(),
+            &#39;conversation_tests&#39;: self._create_conversation_tests(),
+            &#39;performance_tests&#39;: self._create_performance_tests(),
+            &#39;user_simulation&#39;: self._create_user_simulation()
+        }
+
+    def _create_conversation_tests(self):
+        &quot;&quot;&quot;Test multi-turn conversations&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+class ConversationTest:
+    async def test_multi_turn_conversation(self):
+        &quot;&quot;&quot;Test complete conversation flow&quot;&quot;&quot;
+        assistant = AIAssistant()
+        context = ConversationContext(user_id=&quot;test_user&quot;)
+
+        # Conversation script
+        conversation = [
+            {
+                &#39;user&#39;: &quot;Hello, I need help with my order&quot;,
+                &#39;expected_intent&#39;: &#39;order_help&#39;,
+                &#39;expected_action&#39;: &#39;ask_order_details&#39;
+            },
+            {
+                &#39;user&#39;: &quot;My order number is 12345&quot;,
+                &#39;expected_entities&#39;: [{&#39;type&#39;: &#39;order_id&#39;, &#39;value&#39;: &#39;12345&#39;}],
+                &#39;expected_action&#39;: &#39;retrieve_order&#39;
+            },
+            {
+                &#39;user&#39;: &quot;When will it arrive?&quot;,
+                &#39;expected_intent&#39;: &#39;delivery_inquiry&#39;,
+                &#39;should_use_context&#39;: True
+            }
+        ]
+
+        for turn in conversation:
+            # Send user message
+            response = await assistant.process_message(
+                turn[&#39;user&#39;],
+                context
+            )
+
+            # Validate intent detection
+            if &#39;expected_intent&#39; in turn:
+                assert response[&#39;intent&#39;] == turn[&#39;expected_intent&#39;]
+
+            # Validate entity extraction
+            if &#39;expected_entities&#39; in turn:
+                self.validate_entities(
+                    response[&#39;entities&#39;],
+                    turn[&#39;expected_entities&#39;]
+                )
+
+            # Validate context usage
+            if turn.get(&#39;should_use_context&#39;):
+                assert &#39;order_id&#39; in response[&#39;context_used&#39;]
+
+    def test_error_handling(self):
+        &quot;&quot;&quot;Test error scenarios&quot;&quot;&quot;
+        error_cases = [
+            {
+                &#39;input&#39;: &quot;askdjfkajsdf&quot;,
+                &#39;expected_behavior&#39;: &#39;fallback_response&#39;
+            },
+            {
+                &#39;input&#39;: &quot;I want to [REDACTED]&quot;,
+                &#39;expected_behavior&#39;: &#39;safety_response&#39;
+            },
+            {
+                &#39;input&#39;: &quot;Tell me about &quot; + &quot;x&quot; * 1000,
+                &#39;expected_behavior&#39;: &#39;length_limit_response&#39;
+            }
+        ]
+
+        for case in error_cases:
+            response = assistant.process_message(case[&#39;input&#39;])
+            assert response[&#39;behavior&#39;] == case[&#39;expected_behavior&#39;]
+&#39;&#39;&#39;
+
+    def create_automated_testing(self):
+        &quot;&quot;&quot;Automated conversation testing&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+class AutomatedConversationTester:
+    def __init__(self):
+        self.test_generator = TestCaseGenerator()
+        self.evaluator = ResponseEvaluator()
+
+    async def run_automated_tests(self, num_tests: int = 100):
+        &quot;&quot;&quot;Run automated conversation tests&quot;&quot;&quot;
+        results = {
+            &#39;total_tests&#39;: num_tests,
+            &#39;passed&#39;: 0,
+            &#39;failed&#39;: 0,
+            &#39;metrics&#39;: {}
+        }
+
+        for i in range(num_tests):
+            # Generate test case
+            test_case = self.test_generator.generate()
+
+            # Run conversation
+            conversation_log = await self.run_conversation(test_case)
+
+            # Evaluate results
+            evaluation = self.evaluator.evaluate(
+                conversation_log,
+                test_case[&#39;expectations&#39;]
+            )
+
+            if evaluation[&#39;passed&#39;]:
+                results[&#39;passed&#39;] += 1
+            else:
+                results[&#39;failed&#39;] += 1
+
+            # Collect metrics
+            self.update_metrics(results[&#39;metrics&#39;], evaluation[&#39;metrics&#39;])
+
+        return results
+
+    def generate_adversarial_tests(self):
+        &quot;&quot;&quot;Generate adversarial test cases&quot;&quot;&quot;
+        return [
+            # Ambiguous inputs
+            &quot;I want that thing we discussed&quot;,
+
+            # Context switching
+            &quot;Actually, forget that. Tell me about the weather&quot;,
+
+            # Multiple intents
+            &quot;Cancel my order and also update my address&quot;,
+
+            # Incomplete information
+            &quot;Book a flight&quot;,
+
+            # Contradictions
+            &quot;I want a vegetarian meal with bacon&quot;
+        ]
+&#39;&#39;&#39;
+</code></pre>
+<h3>8. Deployment and Scaling</h3>
+<p>Deploy and scale AI assistants:</p>
+<p><strong>Deployment Architecture</strong></p>
+<pre><code class="language-python">class AssistantDeployment:
+    def create_deployment_architecture(self):
+        &quot;&quot;&quot;Create scalable deployment architecture&quot;&quot;&quot;
+        return {
+            &#39;containerization&#39;: &#39;&#39;&#39;
+# Dockerfile for AI Assistant
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application
+COPY . .
+
+# Load models at build time
+RUN python -m app.model_loader
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD python -m app.health_check
+
+# Run application
+CMD [&quot;gunicorn&quot;, &quot;--worker-class&quot;, &quot;uvicorn.workers.UvicornWorker&quot;, \
+     &quot;--workers&quot;, &quot;4&quot;, &quot;--bind&quot;, &quot;0.0.0.0:8080&quot;, &quot;app.main:app&quot;]
+&#39;&#39;&#39;,
+            &#39;kubernetes_deployment&#39;: &#39;&#39;&#39;
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-assistant
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ai-assistant
+  template:
+    metadata:
+      labels:
+        app: ai-assistant
+    spec:
+      containers:
+      - name: assistant
+        image: ai-assistant:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: &quot;2Gi&quot;
+            cpu: &quot;1000m&quot;
+          limits:
+            memory: &quot;4Gi&quot;
+            cpu: &quot;2000m&quot;
+        env:
+        - name: MODEL_CACHE_SIZE
+          value: &quot;1000&quot;
+        - name: MAX_CONCURRENT_SESSIONS
+          value: &quot;100&quot;
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-assistant-service
+spec:
+  selector:
+    app: ai-assistant
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ai-assistant-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ai-assistant
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+&#39;&#39;&#39;,
+            &#39;caching_strategy&#39;: self._design_caching_strategy(),
+            &#39;load_balancing&#39;: self._design_load_balancing()
+        }
+
+    def _design_caching_strategy(self):
+        &quot;&quot;&quot;Design caching for performance&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+class AssistantCache:
+    def __init__(self):
+        self.response_cache = ResponseCache()
+        self.model_cache = ModelCache()
+        self.context_cache = ContextCache()
+
+    async def get_cached_response(self,
+                                 message: str,
+                                 context_hash: str) -&gt; Optional[str]:
+        &quot;&quot;&quot;Get cached response if available&quot;&quot;&quot;
+        cache_key = self.generate_cache_key(message, context_hash)
+
+        # Check response cache
+        cached = await self.response_cache.get(cache_key)
+        if cached and not self.is_expired(cached):
+            return cached[&#39;response&#39;]
+
+        return None
+
+    def cache_response(self,
+                      message: str,
+                      context_hash: str,
+                      response: str,
+                      ttl: int = 3600):
+        &quot;&quot;&quot;Cache response with TTL&quot;&quot;&quot;
+        cache_key = self.generate_cache_key(message, context_hash)
+
+        self.response_cache.set(
+            cache_key,
+            {
+                &#39;response&#39;: response,
+                &#39;timestamp&#39;: datetime.now(),
+                &#39;ttl&#39;: ttl
+            }
+        )
+
+    def preload_model_cache(self):
+        &quot;&quot;&quot;Preload frequently used models&quot;&quot;&quot;
+        models_to_cache = [
+            &#39;intent_classifier&#39;,
+            &#39;entity_extractor&#39;,
+            &#39;response_generator&#39;
+        ]
+
+        for model_name in models_to_cache:
+            model = load_model(model_name)
+            self.model_cache.store(model_name, model)
+&#39;&#39;&#39;
+</code></pre>
+<h3>9. Monitoring and Analytics</h3>
+<p>Monitor assistant performance:</p>
+<p><strong>Assistant Analytics System</strong></p>
+<pre><code class="language-python">class AssistantAnalytics:
+    def __init__(self):
+        self.metrics_collector = MetricsCollector()
+        self.analytics_engine = AnalyticsEngine()
+
+    def create_monitoring_dashboard(self):
+        &quot;&quot;&quot;Create monitoring dashboard configuration&quot;&quot;&quot;
+        return {
+            &#39;real_time_metrics&#39;: {
+                &#39;active_sessions&#39;: &#39;gauge&#39;,
+                &#39;messages_per_second&#39;: &#39;counter&#39;,
+                &#39;response_time_p95&#39;: &#39;histogram&#39;,
+                &#39;intent_accuracy&#39;: &#39;gauge&#39;,
+                &#39;fallback_rate&#39;: &#39;gauge&#39;
+            },
+            &#39;conversation_metrics&#39;: {
+                &#39;avg_conversation_length&#39;: &#39;gauge&#39;,
+                &#39;completion_rate&#39;: &#39;gauge&#39;,
+                &#39;user_satisfaction&#39;: &#39;gauge&#39;,
+                &#39;escalation_rate&#39;: &#39;gauge&#39;
+            },
+            &#39;system_metrics&#39;: {
+                &#39;model_inference_time&#39;: &#39;histogram&#39;,
+                &#39;cache_hit_rate&#39;: &#39;gauge&#39;,
+                &#39;error_rate&#39;: &#39;counter&#39;,
+                &#39;resource_utilization&#39;: &#39;gauge&#39;
+            },
+            &#39;alerts&#39;: [
+                {
+                    &#39;name&#39;: &#39;high_fallback_rate&#39;,
+                    &#39;condition&#39;: &#39;fallback_rate &gt; 0.2&#39;,
+                    &#39;severity&#39;: &#39;warning&#39;
+                },
+                {
+                    &#39;name&#39;: &#39;slow_response_time&#39;,
+                    &#39;condition&#39;: &#39;response_time_p95 &gt; 2000&#39;,
+                    &#39;severity&#39;: &#39;critical&#39;
+                }
+            ]
+        }
+
+    def analyze_conversation_quality(self):
+        &quot;&quot;&quot;Analyze conversation quality metrics&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+class ConversationQualityAnalyzer:
+    def analyze_conversations(self, time_range: str):
+        &quot;&quot;&quot;Analyze conversation quality&quot;&quot;&quot;
+        conversations = self.fetch_conversations(time_range)
+
+        metrics = {
+            &#39;intent_recognition&#39;: self.analyze_intent_accuracy(conversations),
+            &#39;response_relevance&#39;: self.analyze_response_relevance(conversations),
+            &#39;conversation_flow&#39;: self.analyze_conversation_flow(conversations),
+            &#39;user_satisfaction&#39;: self.analyze_satisfaction(conversations),
+            &#39;error_patterns&#39;: self.identify_error_patterns(conversations)
+        }
+
+        return self.generate_quality_report(metrics)
+
+    def identify_improvement_areas(self, analysis):
+        &quot;&quot;&quot;Identify areas for improvement&quot;&quot;&quot;
+        improvements = []
+
+        # Low intent accuracy
+        if analysis[&#39;intent_recognition&#39;][&#39;accuracy&#39;] &lt; 0.85:
+            improvements.append({
+                &#39;area&#39;: &#39;Intent Recognition&#39;,
+                &#39;issue&#39;: &#39;Low accuracy in intent detection&#39;,
+                &#39;recommendation&#39;: &#39;Retrain intent classifier with more examples&#39;,
+                &#39;priority&#39;: &#39;high&#39;
+            })
+
+        # High fallback rate
+        if analysis[&#39;conversation_flow&#39;][&#39;fallback_rate&#39;] &gt; 0.15:
+            improvements.append({
+                &#39;area&#39;: &#39;Coverage&#39;,
+                &#39;issue&#39;: &#39;High fallback rate&#39;,
+                &#39;recommendation&#39;: &#39;Expand training data for uncovered intents&#39;,
+                &#39;priority&#39;: &#39;medium&#39;
+            })
+
+        return improvements
+&#39;&#39;&#39;
+</code></pre>
+<h3>10. Continuous Improvement</h3>
+<p>Implement continuous improvement cycle:</p>
+<p><strong>Improvement Pipeline</strong></p>
+<pre><code class="language-python">class ContinuousImprovement:
+    def create_improvement_pipeline(self):
+        &quot;&quot;&quot;Create continuous improvement pipeline&quot;&quot;&quot;
+        return {
+            &#39;data_collection&#39;: &#39;&#39;&#39;
+class ConversationDataCollector:
+    async def collect_feedback(self, session_id: str):
+        &quot;&quot;&quot;Collect user feedback&quot;&quot;&quot;
+        feedback_prompt = {
+            &#39;satisfaction&#39;: &#39;How satisfied were you with this conversation? (1-5)&#39;,
+            &#39;resolved&#39;: &#39;Was your issue resolved?&#39;,
+            &#39;improvements&#39;: &#39;How could we improve?&#39;
+        }
+
+        feedback = await self.prompt_user_feedback(
+            session_id,
+            feedback_prompt
+        )
+
+        # Store feedback
+        await self.store_feedback({
+            &#39;session_id&#39;: session_id,
+            &#39;timestamp&#39;: datetime.now(),
+            &#39;feedback&#39;: feedback,
+            &#39;conversation_metadata&#39;: self.get_session_metadata(session_id)
+        })
+
+        return feedback
+
+    def identify_training_opportunities(self):
+        &quot;&quot;&quot;Identify conversations for training&quot;&quot;&quot;
+        # Find low-confidence interactions
+        low_confidence = self.find_low_confidence_interactions()
+
+        # Find failed conversations
+        failed = self.find_failed_conversations()
+
+        # Find highly-rated conversations
+        exemplary = self.find_exemplary_conversations()
+
+        return {
+            &#39;needs_improvement&#39;: low_confidence + failed,
+            &#39;good_examples&#39;: exemplary
+        }
+&#39;&#39;&#39;,
+            &#39;model_retraining&#39;: &#39;&#39;&#39;
+class ModelRetrainer:
+    async def retrain_models(self, new_data):
+        &quot;&quot;&quot;Retrain models with new data&quot;&quot;&quot;
+        # Prepare training data
+        training_data = self.prepare_training_data(new_data)
+
+        # Validate data quality
+        validation_result = self.validate_training_data(training_data)
+        if not validation_result[&#39;passed&#39;]:
+            return {&#39;error&#39;: &#39;Data quality check failed&#39;, &#39;issues&#39;: validation_result[&#39;issues&#39;]}
+
+        # Retrain models
+        models_to_retrain = [&#39;intent_classifier&#39;, &#39;entity_extractor&#39;]
+
+        for model_name in models_to_retrain:
+            # Load current model
+            current_model = self.load_model(model_name)
+
+            # Create new version
+            new_model = await self.train_model(
+                model_name,
+                training_data,
+                base_model=current_model
+            )
+
+            # Evaluate new model
+            evaluation = await self.evaluate_model(
+                new_model,
+                self.get_test_set()
+            )
+
+            # Deploy if improved
+            if evaluation[&#39;performance&#39;] &gt; current_model.performance:
+                await self.deploy_model(new_model, model_name)
+
+        return {&#39;status&#39;: &#39;completed&#39;, &#39;models_updated&#39;: models_to_retrain}
+&#39;&#39;&#39;,
+            &#39;a_b_testing&#39;: &#39;&#39;&#39;
+class ABTestingFramework:
+    def create_ab_test(self,
+                      test_name: str,
+                      variants: List[Dict[str, Any]],
+                      metrics: List[str]):
+        &quot;&quot;&quot;Create A/B test for assistant improvements&quot;&quot;&quot;
+        test = {
+            &#39;id&#39;: generate_test_id(),
+            &#39;name&#39;: test_name,
+            &#39;variants&#39;: variants,
+            &#39;metrics&#39;: metrics,
+            &#39;allocation&#39;: self.calculate_traffic_allocation(variants),
+            &#39;duration&#39;: self.estimate_test_duration(metrics)
+        }
+
+        # Deploy test
+        self.deploy_test(test)
+
+        return test
+
+    async def analyze_test_results(self, test_id: str):
+        &quot;&quot;&quot;Analyze A/B test results&quot;&quot;&quot;
+        data = await self.collect_test_data(test_id)
+
+        results = {}
+        for metric in data[&#39;metrics&#39;]:
+            # Statistical analysis
+            analysis = self.statistical_analysis(
+                data[&#39;control&#39;][metric],
+                data[&#39;variant&#39;][metric]
+            )
+
+            results[metric] = {
+                &#39;control_mean&#39;: analysis[&#39;control_mean&#39;],
+                &#39;variant_mean&#39;: analysis[&#39;variant_mean&#39;],
+                &#39;lift&#39;: analysis[&#39;lift&#39;],
+                &#39;p_value&#39;: analysis[&#39;p_value&#39;],
+                &#39;significant&#39;: analysis[&#39;p_value&#39;] &lt; 0.05
+            }
+
+        return results
+&#39;&#39;&#39;
+        }
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>Architecture Design</strong>: Complete AI assistant architecture with components</li>
+<li><strong>NLP Implementation</strong>: Natural language processing pipeline and models</li>
+<li><strong>Conversation Flows</strong>: Dialog management and flow design</li>
+<li><strong>Response Generation</strong>: Intelligent response creation with LLM integration</li>
+<li><strong>Context Management</strong>: Sophisticated context and state management</li>
+<li><strong>Testing Framework</strong>: Comprehensive testing for conversational AI</li>
+<li><strong>Deployment Guide</strong>: Scalable deployment architecture</li>
+<li><strong>Monitoring Setup</strong>: Analytics and performance monitoring</li>
+<li><strong>Improvement Pipeline</strong>: Continuous improvement processes</li>
+</ol>
+<p>Focus on creating production-ready AI assistants that provide real value through natural conversations, intelligent responses, and continuous learning from user interactions.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

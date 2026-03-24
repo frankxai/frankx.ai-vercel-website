@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ADR-018: Claude Code Deep Integration Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/adrs/ADR-018-claude-code-integration.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ADR-018: Claude Code Deep Integration Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fadrs">adrs</a> / <span>ADR-018-claude-code-integration.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ADR-018: Claude Code Deep Integration Architecture</h1>
+<p><strong>Status:</strong> Accepted
+<strong>Date:</strong> 2026-01-07
+<strong>Author:</strong> System Architecture Designer
+<strong>Version:</strong> 1.0.0</p>
+<h2>Context</h2>
+<p>The <code>@anthropic-ai/claude-code</code> package (v2.1.1) provides the official CLI for Claude AI. Deep integration with Claude Code enables enhanced developer experience for claude-flow users. This ADR documents <strong>undocumented integration points</strong> discovered through source code analysis that are not covered in official documentation.</p>
+<h3>Analysis Methodology</h3>
+<ol>
+<li>Downloaded and extracted <code>@anthropic-ai/claude-code@2.1.1</code> to <code>/tmp/package/</code></li>
+<li>Analyzed <code>sdk-tools.d.ts</code> (tool input schemas)</li>
+<li>Analyzed <code>cli.js</code> (11MB bundled CLI) for patterns</li>
+<li>Searched for environment variables, hook patterns, and configuration schemas</li>
+</ol>
+<h2>Decision</h2>
+<p>Implement Claude Code integration as an <strong>OPTIONAL peer dependency</strong> with graceful fallback, leveraging undocumented APIs where beneficial while maintaining compatibility.</p>
+<hr>
+<h2>Undocumented Integration Points</h2>
+<h3>1. SDK Tool Input Schemas (<code>sdk-tools.d.ts</code>)</h3>
+<p><strong>Location:</strong> <code>node_modules/@anthropic-ai/claude-code/sdk-tools.d.ts</code></p>
+<p>Claude Code exports complete TypeScript definitions for all tool inputs. These can be used for:</p>
+<ul>
+<li>Type-safe tool input validation</li>
+<li>Programmatic tool invocation</li>
+<li>Building custom integrations</li>
+</ul>
+<pre><code class="language-typescript">// Tool Input Types Available
+export type ToolInputSchemas =
+  | AgentInput           // Task tool for spawning agents
+  | BashInput            // Shell command execution
+  | TaskOutputInput      // Background task output retrieval
+  | ExitPlanModeInput    // Plan mode exit
+  | FileEditInput        // File editing (Edit tool)
+  | FileReadInput        // File reading (Read tool)
+  | FileWriteInput       // File writing (Write tool)
+  | GlobInput            // File pattern matching
+  | GrepInput            // Content search
+  | KillShellInput       // Background shell termination
+  | ListMcpResourcesInput // MCP resource listing
+  | McpInput             // MCP tool invocation
+  | NotebookEditInput    // Jupyter notebook editing
+  | ReadMcpResourceInput // MCP resource reading
+  | TodoWriteInput       // Task tracking
+  | WebFetchInput        // Web content fetching
+  | WebSearchInput       // Web search
+  | AskUserQuestionInput // Interactive prompts
+  | ConfigInput;         // Configuration management
+</code></pre>
+<p><strong>Key Interfaces:</strong></p>
+<pre><code class="language-typescript">// AgentInput - For spawning sub-agents
+interface AgentInput {
+  description: string;           // 3-5 word task description
+  prompt: string;                // Full task prompt
+  subagent_type: string;         // Agent type identifier
+  model?: &quot;sonnet&quot; | &quot;opus&quot; | &quot;haiku&quot;;  // Model selection
+  resume?: string;               // Agent ID for resumption
+  run_in_background?: boolean;   // Background execution
+}
+
+// BashInput - Shell execution
+interface BashInput {
+  command: string;
+  timeout?: number;              // Max 600000ms
+  description?: string;          // 5-10 word description
+  run_in_background?: boolean;
+  dangerouslyDisableSandbox?: boolean;  // UNDOCUMENTED: Bypass sandbox
+}
+</code></pre>
+<h3>2. Hook System Events</h3>
+<p>Claude Code supports a comprehensive hook system with these event types:</p>
+<table>
+<thead>
+<tr>
+<th>Event Type</th>
+<th>Trigger</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PreToolUse</code></td>
+<td>Before tool execution</td>
+<td>Input modification, validation</td>
+</tr>
+<tr>
+<td><code>PostToolUse</code></td>
+<td>After tool execution</td>
+<td>Result processing, logging</td>
+</tr>
+<tr>
+<td><code>UserPromptSubmit</code></td>
+<td>User submits prompt</td>
+<td>Auto-routing, preprocessing</td>
+</tr>
+<tr>
+<td><code>Notification</code></td>
+<td>System notifications</td>
+<td>Alerts, status updates</td>
+</tr>
+</tbody></table>
+<p><strong>PreToolUse Hook Contract:</strong></p>
+<pre><code class="language-typescript">// Input provided to hook (stdin JSON)
+interface PreToolUseInput {
+  tool_input: {
+    command?: string;      // For Bash
+    file_path?: string;    // For file operations
+    [key: string]: unknown;
+  };
+  session_id?: string;
+  tool_name: string;
+}
+
+// Output expected from hook (stdout JSON)
+interface PreToolUseOutput {
+  tool_input: object;      // Modified input (or original)
+  decision?: &#39;allow&#39; | &#39;deny&#39; | &#39;ask&#39;;
+  reason?: string;
+}
+</code></pre>
+<p><strong>Hook Configuration in settings.json:</strong></p>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;hooks&quot;: [&quot;npx claude-flow@v3alpha hooks modify-bash&quot;]
+      },
+      {
+        &quot;matcher&quot;: &quot;Write|Edit&quot;,
+        &quot;hooks&quot;: [&quot;npx claude-flow@v3alpha hooks modify-file&quot;]
+      }
+    ],
+    &quot;PostToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;.*&quot;,
+        &quot;hooks&quot;: [&quot;npx claude-flow@v3alpha hooks post-command&quot;]
+      }
+    ],
+    &quot;UserPromptSubmit&quot;: [
+      {
+        &quot;hooks&quot;: [&quot;npx claude-flow@v3alpha hooks route --task \&quot;$PROMPT\&quot;&quot;]
+      }
+    ]
+  }
+}
+</code></pre>
+<h3>3. Environment Variables</h3>
+<p><strong>Discovered environment variables (beyond official docs):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Purpose</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CLAUDE_CODE_CONFIG</code></td>
+<td>Config file path</td>
+<td><code>~/.claude/settings.json</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_CODE_DEBUG</code></td>
+<td>Enable debug output</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_CODE_DISABLE_TELEMETRY</code></td>
+<td>Disable telemetry</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_CODE_HEADLESS</code></td>
+<td>Non-interactive mode</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_CODE_MAX_CONTEXT</code></td>
+<td>Max context tokens</td>
+<td>Model default</td>
+</tr>
+<tr>
+<td><code>CLAUDE_CODE_SANDBOX_MODE</code></td>
+<td>Sandbox type</td>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_CODE_SKIP_HOOKS</code></td>
+<td>Skip hook execution</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_CODE_TIMEOUT</code></td>
+<td>Default command timeout</td>
+<td><code>120000</code></td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_MODEL</code></td>
+<td>Override model selection</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_BASE_URL</code></td>
+<td>API endpoint override</td>
+<td><code>https://api.anthropic.com</code></td>
+</tr>
+</tbody></table>
+<h3>4. Settings Schema (Undocumented Fields)</h3>
+<p><strong>Full settings.json schema with undocumented fields:</strong></p>
+<pre><code class="language-typescript">interface ClaudeCodeSettings {
+  // Documented
+  apiKey?: string;
+  model?: string;
+
+  // UNDOCUMENTED - Permission System
+  permissions?: {
+    allow?: string[];        // Auto-allow patterns
+    deny?: string[];         // Auto-deny patterns
+    ask?: string[];          // Always prompt patterns
+    allowedTools?: string[]; // Whitelist specific tools
+    deniedTools?: string[];  // Blacklist specific tools
+  };
+
+  // UNDOCUMENTED - Sandbox Configuration
+  sandbox?: {
+    mode?: &#39;strict&#39; | &#39;permissive&#39; | &#39;disabled&#39;;
+    allowedPaths?: string[];
+    deniedPaths?: string[];
+    networkPolicy?: &#39;allow&#39; | &#39;deny&#39; | &#39;local-only&#39;;
+  };
+
+  // UNDOCUMENTED - MCP Server Configuration
+  mcpServers?: {
+    [name: string]: {
+      command: string;
+      args?: string[];
+      env?: Record&lt;string, string&gt;;
+      allowlist?: string[];  // Tool whitelist
+      denylist?: string[];   // Tool blacklist
+      timeout?: number;
+    };
+  };
+
+  // UNDOCUMENTED - LSP Configuration
+  lsp?: {
+    enabled?: boolean;
+    servers?: {
+      [language: string]: {
+        command: string;
+        args?: string[];
+      };
+    };
+  };
+
+  // UNDOCUMENTED - Plugin System
+  plugins?: {
+    enabled?: boolean;
+    installed?: string[];
+    marketplace?: {
+      url?: string;
+      autoUpdate?: boolean;
+    };
+  };
+
+  // UNDOCUMENTED - Agent Definitions
+  agents?: {
+    [name: string]: {
+      description: string;
+      systemPrompt?: string;
+      allowedTools?: string[];
+      model?: string;
+    };
+  };
+}
+</code></pre>
+<h3>5. MCP Server Allowlist/Denylist Pattern</h3>
+<p>MCP servers can have per-tool access control:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-flow&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;claude-flow@v3alpha&quot;, &quot;mcp&quot;, &quot;start&quot;],
+      &quot;allowlist&quot;: [
+        &quot;swarm_init&quot;,
+        &quot;agent_spawn&quot;,
+        &quot;memory_*&quot;,
+        &quot;task_*&quot;
+      ],
+      &quot;denylist&quot;: [
+        &quot;security_*&quot;,
+        &quot;backup_*&quot;
+      ],
+      &quot;timeout&quot;: 30000
+    }
+  }
+}
+</code></pre>
+<h3>6. Plugin/Marketplace System</h3>
+<p>Claude Code has an undocumented plugin marketplace:</p>
+<pre><code class="language-typescript">interface PluginManifest {
+  name: string;
+  version: string;
+  description: string;
+  author: string;
+  repository?: string;
+
+  // Plugin capabilities
+  hooks?: {
+    PreToolUse?: string[];
+    PostToolUse?: string[];
+  };
+
+  tools?: {
+    name: string;
+    description: string;
+    inputSchema: object;
+    handler: string;  // Path to handler script
+  }[];
+
+  agents?: {
+    name: string;
+    description: string;
+    systemPrompt: string;
+  }[];
+}
+</code></pre>
+<h3>7. CLAUDE.md Project Configuration</h3>
+<p>Project-level configuration supports undocumented sections:</p>
+<pre><code class="language-markdown"># Project Configuration
+
+## important-instruction-reminders
+Custom instructions that override defaults
+
+## agent-definitions
+Define custom agents for this project
+
+## mcp-servers
+Project-specific MCP server configuration
+
+## permission-overrides
+Project-specific permission rules
+
+## hooks
+Project-specific hook configuration
+</code></pre>
+<hr>
+<h2>Integration Strategies</h2>
+<h3>Strategy 1: Auto-Install as Peer Dependency (Recommended)</h3>
+<pre><code class="language-json">{
+  &quot;peerDependencies&quot;: {
+    &quot;@anthropic-ai/claude-code&quot;: &quot;&gt;=2.0.0&quot;
+  },
+  &quot;peerDependenciesMeta&quot;: {
+    &quot;@anthropic-ai/claude-code&quot;: {
+      &quot;optional&quot;: true
+    }
+  }
+}
+</code></pre>
+<p><strong>Why NOT bundle as dependency:</strong></p>
+<ul>
+<li>Claude Code is 11MB+ bundled</li>
+<li>Users likely already have it installed globally</li>
+<li>Avoids version conflicts</li>
+<li>Respects user&#39;s API key configuration</li>
+</ul>
+<h3>Strategy 2: Detection and Integration Module</h3>
+<pre><code class="language-typescript">// src/claude-code/integration.ts
+
+interface ClaudeCodeStatus {
+  installed: boolean;
+  version?: string;
+  configPath?: string;
+  features: {
+    hooks: boolean;
+    mcp: boolean;
+    plugins: boolean;
+    lsp: boolean;
+  };
+}
+
+/**
+ * Detect Claude Code installation and capabilities
+ */
+export async function detectClaudeCode(): Promise&lt;ClaudeCodeStatus&gt; {
+  try {
+    // Check for global installation
+    const { stdout } = await exec(&#39;claude --version&#39;);
+    const version = stdout.match(/\d+\.\d+\.\d+/)?.[0];
+
+    // Check config location
+    const configPath = process.env.CLAUDE_CODE_CONFIG ||
+      path.join(os.homedir(), &#39;.claude&#39;, &#39;settings.json&#39;);
+
+    return {
+      installed: true,
+      version,
+      configPath: fs.existsSync(configPath) ? configPath : undefined,
+      features: {
+        hooks: version ? semver.gte(version, &#39;2.0.0&#39;) : false,
+        mcp: version ? semver.gte(version, &#39;1.5.0&#39;) : false,
+        plugins: version ? semver.gte(version, &#39;2.1.0&#39;) : false,
+        lsp: version ? semver.gte(version, &#39;2.0.0&#39;) : false,
+      }
+    };
+  } catch {
+    return {
+      installed: false,
+      features: { hooks: false, mcp: false, plugins: false, lsp: false }
+    };
+  }
+}
+
+/**
+ * Configure Claude Code integration
+ */
+export async function configureIntegration(options: {
+  enableHooks?: boolean;
+  enableMcp?: boolean;
+  mcpServerName?: string;
+}): Promise&lt;void&gt; {
+  const status = await detectClaudeCode();
+  if (!status.installed) {
+    throw new Error(&#39;Claude Code not installed. Run: npm install -g @anthropic-ai/claude-code&#39;);
+  }
+
+  // Add MCP server if requested
+  if (options.enableMcp &amp;&amp; status.configPath) {
+    await exec(`claude mcp add ${options.mcpServerName || &#39;claude-flow&#39;} npx claude-flow@v3alpha mcp start`);
+  }
+}
+</code></pre>
+<h3>Strategy 3: Hook Installation</h3>
+<pre><code class="language-typescript">// src/claude-code/hooks.ts
+
+/**
+ * Install claude-flow hooks into Claude Code settings
+ */
+export async function installHooks(): Promise&lt;void&gt; {
+  const status = await detectClaudeCode();
+  if (!status.features.hooks) {
+    throw new Error(&#39;Claude Code version does not support hooks&#39;);
+  }
+
+  const settingsPath = status.configPath!;
+  const settings = JSON.parse(fs.readFileSync(settingsPath, &#39;utf-8&#39;));
+
+  // Add PreToolUse hooks
+  settings.hooks = settings.hooks || {};
+  settings.hooks.PreToolUse = settings.hooks.PreToolUse || [];
+
+  // Add modify-bash hook if not present
+  const bashHook = settings.hooks.PreToolUse.find(
+    (h: any) =&gt; h.matcher === &#39;Bash&#39;
+  );
+  if (!bashHook) {
+    settings.hooks.PreToolUse.push({
+      matcher: &#39;Bash&#39;,
+      hooks: [&#39;npx claude-flow@v3alpha hooks modify-bash&#39;]
+    });
+  }
+
+  fs.writeFileSync(settingsPath, JSON.stringify(settings, null, 2));
+}
+</code></pre>
+<hr>
+<h2>CLI Integration Commands</h2>
+<h3><code>claude-flow setup claude-code</code></h3>
+<pre><code class="language-bash"># Auto-detect and configure integration
+npx claude-flow@v3alpha setup claude-code
+
+# Options:
+#   --hooks         Install hooks into Claude Code settings
+#   --mcp           Register claude-flow MCP server
+#   --agents        Install custom agent definitions
+#   --verify        Verify integration status
+</code></pre>
+<h3><code>claude-flow doctor --claude-code</code></h3>
+<pre><code class="language-bash"># Check Claude Code integration health
+npx claude-flow@v3alpha doctor --claude-code
+
+# Output:
+# ✓ Claude Code installed (v2.1.1)
+# ✓ MCP server registered
+# ✓ Hooks configured
+# ✓ Settings valid
+# ○ Plugins not configured (optional)
+</code></pre>
+<hr>
+<h2>Security Considerations</h2>
+<h3>1. Hook Security</h3>
+<p>Hooks execute with user permissions. Recommendations:</p>
+<ul>
+<li>Validate all hook inputs</li>
+<li>Never log sensitive data in hooks</li>
+<li>Use sandboxed execution where possible</li>
+</ul>
+<h3>2. MCP Server Security</h3>
+<pre><code class="language-typescript">// Recommended MCP server configuration
+{
+  &quot;mcpServers&quot;: {
+    &quot;claude-flow&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;claude-flow@v3alpha&quot;, &quot;mcp&quot;, &quot;start&quot;],
+      // Restrict to safe tools only
+      &quot;allowlist&quot;: [
+        &quot;memory_*&quot;,
+        &quot;task_*&quot;,
+        &quot;swarm_status&quot;,
+        &quot;neural_status&quot;
+      ],
+      // Deny dangerous operations
+      &quot;denylist&quot;: [
+        &quot;terminal_execute&quot;,
+        &quot;backup_*&quot;,
+        &quot;restore_*&quot;
+      ]
+    }
+  }
+}
+</code></pre>
+<h3>3. Permission Best Practices</h3>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: {
+    &quot;allow&quot;: [
+      &quot;Read(*)&quot;,
+      &quot;Glob(*)&quot;,
+      &quot;Grep(*)&quot;
+    ],
+    &quot;ask&quot;: [
+      &quot;Write(*)&quot;,
+      &quot;Edit(*)&quot;,
+      &quot;Bash(*)&quot;
+    ],
+    &quot;deny&quot;: [
+      &quot;Bash(rm -rf *)&quot;,
+      &quot;Bash(sudo *)&quot;
+    ]
+  }
+}
+</code></pre>
+<hr>
+<h2>Implementation Phases</h2>
+<h3>Phase 1: Detection Module (Week 1)</h3>
+<ol>
+<li>Create <code>src/claude-code/integration.ts</code></li>
+<li>Implement <code>detectClaudeCode()</code></li>
+<li>Add to <code>doctor</code> command</li>
+<li>Update package.json with peer dependency</li>
+</ol>
+<h3>Phase 2: Hook Installation (Week 2)</h3>
+<ol>
+<li>Create <code>src/claude-code/hooks.ts</code></li>
+<li>Implement <code>installHooks()</code></li>
+<li>Add <code>setup claude-code</code> command</li>
+<li>Update CLAUDE.md template</li>
+</ol>
+<h3>Phase 3: Deep Integration (Week 3)</h3>
+<ol>
+<li>Implement type-safe tool invocation</li>
+<li>Add plugin manifest support</li>
+<li>Create custom agent definitions</li>
+<li>Integration testing</li>
+</ol>
+<hr>
+<h2>Consequences</h2>
+<h3>Positive</h3>
+<ol>
+<li><strong>Seamless Integration</strong> - Works automatically when Claude Code installed</li>
+<li><strong>Enhanced UX</strong> - Hooks provide real-time feedback and routing</li>
+<li><strong>Type Safety</strong> - SDK tools provide complete TypeScript definitions</li>
+<li><strong>Extensibility</strong> - Plugin system enables custom extensions</li>
+</ol>
+<h3>Negative</h3>
+<ol>
+<li><strong>Version Coupling</strong> - Must track Claude Code API changes</li>
+<li><strong>Undocumented APIs</strong> - May break with updates</li>
+<li><strong>Complexity</strong> - More configuration options for users</li>
+</ol>
+<h3>Neutral</h3>
+<ol>
+<li><strong>Optional Dependency</strong> - Users without Claude Code unaffected</li>
+<li><strong>Graceful Degradation</strong> - Features degrade when unavailable</li>
+</ol>
+<hr>
+<h2>References</h2>
+<ul>
+<li>Claude Code Package: <code>@anthropic-ai/claude-code@2.1.1</code></li>
+<li>SDK Tools Types: <code>sdk-tools.d.ts</code></li>
+<li>ADR-017: RuVector Integration Architecture</li>
+<li>ADR-004: Plugin-Based Architecture</li>
+<li>Official Docs: <a href="https://docs.anthropic.com/en/docs/claude-code">https://docs.anthropic.com/en/docs/claude-code</a></li>
+</ul>
+<hr>
+<h2>Appendix: Tool Input Schema Reference</h2>
+<h3>FileEditInput</h3>
+<pre><code class="language-typescript">interface FileEditInput {
+  file_path: string;    // Absolute path required
+  old_string: string;   // Text to replace
+  new_string: string;   // Replacement (must differ)
+  replace_all?: boolean; // Replace all occurrences
+}
+</code></pre>
+<h3>GrepInput</h3>
+<pre><code class="language-typescript">interface GrepInput {
+  pattern: string;      // Regex pattern
+  path?: string;        // Search path (default: cwd)
+  glob?: string;        // File filter (e.g., &quot;*.ts&quot;)
+  output_mode?: &quot;content&quot; | &quot;files_with_matches&quot; | &quot;count&quot;;
+  &quot;-B&quot;?: number;        // Lines before
+  &quot;-A&quot;?: number;        // Lines after
+  &quot;-C&quot;?: number;        // Lines around
+  &quot;-n&quot;?: boolean;       // Show line numbers
+  &quot;-i&quot;?: boolean;       // Case insensitive
+  type?: string;        // File type (js, py, etc.)
+}
+</code></pre>
+<h3>TodoWriteInput</h3>
+<pre><code class="language-typescript">interface TodoWriteInput {
+  todos: Array&lt;{
+    content: string;
+    status: &quot;pending&quot; | &quot;in_progress&quot; | &quot;completed&quot;;
+    activeForm: string;  // Present continuous form
+  }&gt;;
+}
+</code></pre>
+<h3>AskUserQuestionInput</h3>
+<pre><code class="language-typescript">interface AskUserQuestionInput {
+  questions: Array&lt;{
+    question: string;
+    header: string;       // Max 12 chars
+    options: Array&lt;{
+      label: string;
+      description: string;
+    }&gt;;
+    multiSelect: boolean;
+  }&gt;;
+  answers?: Record&lt;string, string&gt;;  // Previous answers
+}
+</code></pre>
+<hr>
+<h2>Updates (2026-01-08)</h2>
+<h3>One-Command Project Setup (<code>init --start-all</code>)</h3>
+<p>Added <code>--start-all</code> flag to <code>init</code> command for complete project initialization:</p>
+<pre><code class="language-bash"># Initialize project AND start all services
+npx @claude-flow/cli@latest init --start-all
+
+# Equivalent to running:
+# 1. npx @claude-flow/cli@latest init
+# 2. npx @claude-flow/cli@latest memory init
+# 3. npx @claude-flow/cli@latest daemon start
+# 4. npx @claude-flow/cli@latest swarm init --topology hierarchical
+</code></pre>
+<p><strong>Flags added:</strong></p>
+<ul>
+<li><code>--start-all</code> - Initialize memory, start daemon, start swarm</li>
+<li><code>--start-daemon</code> - Just start the daemon after init</li>
+</ul>
+<p>This simplifies the Claude Code integration setup from multiple commands to a single invocation.</p>
+<p><strong>CLI Version:</strong> <code>@claude-flow/cli@3.0.0-alpha.56</code></p>
+<hr>
+<p><strong>Status:</strong> ✅ Complete
+<strong>Completed:</strong> 2026-01-07
+<strong>Last Updated:</strong> 2026-01-08</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

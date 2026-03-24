@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>JavaScript/TypeScript</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/references/tdd.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">JavaScript/TypeScript</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Freferences">references</a> / <span>tdd.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <overview>
+TDD is about design quality, not coverage metrics. The red-green-refactor cycle forces you to think about behavior before implementation, producing cleaner interfaces and more testable code.
+
+<p><strong>Principle:</strong> If you can describe the behavior as <code>expect(fn(input)).toBe(output)</code> before writing <code>fn</code>, TDD improves the result.</p>
+<p><strong>Key insight:</strong> TDD work is fundamentally heavier than standard tasks—it requires 2-3 execution cycles (RED → GREEN → REFACTOR), each with file reads, test runs, and potential debugging. TDD features get dedicated plans to ensure full context is available throughout the cycle.
+</overview></p>
+<when_to_use_tdd>
+## When TDD Improves Quality
+
+<p><strong>TDD candidates (create a TDD plan):</strong></p>
+<ul>
+<li>Business logic with defined inputs/outputs</li>
+<li>API endpoints with request/response contracts</li>
+<li>Data transformations, parsing, formatting</li>
+<li>Validation rules and constraints</li>
+<li>Algorithms with testable behavior</li>
+<li>State machines and workflows</li>
+<li>Utility functions with clear specifications</li>
+</ul>
+<p><strong>Skip TDD (use standard plan with <code>type=&quot;auto&quot;</code> tasks):</strong></p>
+<ul>
+<li>UI layout, styling, visual components</li>
+<li>Configuration changes</li>
+<li>Glue code connecting existing components</li>
+<li>One-off scripts and migrations</li>
+<li>Simple CRUD with no business logic</li>
+<li>Exploratory prototyping</li>
+</ul>
+<p><strong>Heuristic:</strong> Can you write <code>expect(fn(input)).toBe(output)</code> before writing <code>fn</code>?
+→ Yes: Create a TDD plan
+→ No: Use standard plan, add tests after if needed
+</when_to_use_tdd></p>
+<tdd_plan_structure>
+## TDD Plan Structure
+
+<p>Each TDD plan implements <strong>one feature</strong> through the full RED-GREEN-REFACTOR cycle.</p>
+<pre><code class="language-markdown">---
+phase: XX-name
+plan: NN
+type: tdd
+---
+
+&lt;objective&gt;
+[What feature and why]
+Purpose: [Design benefit of TDD for this feature]
+Output: [Working, tested feature]
+&lt;/objective&gt;
+
+&lt;context&gt;
+@.planning/PROJECT.md
+@.planning/ROADMAP.md
+@relevant/source/files.ts
+&lt;/context&gt;
+
+&lt;feature&gt;
+  &lt;name&gt;[Feature name]&lt;/name&gt;
+  &lt;files&gt;[source file, test file]&lt;/files&gt;
+  &lt;behavior&gt;
+    [Expected behavior in testable terms]
+    Cases: input → expected output
+  &lt;/behavior&gt;
+  &lt;implementation&gt;[How to implement once tests pass]&lt;/implementation&gt;
+&lt;/feature&gt;
+
+&lt;verification&gt;
+[Test command that proves feature works]
+&lt;/verification&gt;
+
+&lt;success_criteria&gt;
+- Failing test written and committed
+- Implementation passes test
+- Refactor complete (if needed)
+- All 2-3 commits present
+&lt;/success_criteria&gt;
+
+&lt;output&gt;
+After completion, create SUMMARY.md with:
+- RED: What test was written, why it failed
+- GREEN: What implementation made it pass
+- REFACTOR: What cleanup was done (if any)
+- Commits: List of commits produced
+&lt;/output&gt;
+</code></pre>
+<p><strong>One feature per TDD plan.</strong> If features are trivial enough to batch, they&#39;re trivial enough to skip TDD—use a standard plan and add tests after.
+</tdd_plan_structure></p>
+<execution_flow>
+## Red-Green-Refactor Cycle
+
+<p><strong>RED - Write failing test:</strong></p>
+<ol>
+<li>Create test file following project conventions</li>
+<li>Write test describing expected behavior (from <code>&lt;behavior&gt;</code> element)</li>
+<li>Run test - it MUST fail</li>
+<li>If test passes: feature exists or test is wrong. Investigate.</li>
+<li>Commit: <code>test({phase}-{plan}): add failing test for [feature]</code></li>
+</ol>
+<p><strong>GREEN - Implement to pass:</strong></p>
+<ol>
+<li>Write minimal code to make test pass</li>
+<li>No cleverness, no optimization - just make it work</li>
+<li>Run test - it MUST pass</li>
+<li>Commit: <code>feat({phase}-{plan}): implement [feature]</code></li>
+</ol>
+<p><strong>REFACTOR (if needed):</strong></p>
+<ol>
+<li>Clean up implementation if obvious improvements exist</li>
+<li>Run tests - MUST still pass</li>
+<li>Only commit if changes made: <code>refactor({phase}-{plan}): clean up [feature]</code></li>
+</ol>
+<p><strong>Result:</strong> Each TDD plan produces 2-3 atomic commits.
+</execution_flow></p>
+<test_quality>
+## Good Tests vs Bad Tests
+
+<p><strong>Test behavior, not implementation:</strong></p>
+<ul>
+<li>Good: &quot;returns formatted date string&quot;</li>
+<li>Bad: &quot;calls formatDate helper with correct params&quot;</li>
+<li>Tests should survive refactors</li>
+</ul>
+<p><strong>One concept per test:</strong></p>
+<ul>
+<li>Good: Separate tests for valid input, empty input, malformed input</li>
+<li>Bad: Single test checking all edge cases with multiple assertions</li>
+</ul>
+<p><strong>Descriptive names:</strong></p>
+<ul>
+<li>Good: &quot;should reject empty email&quot;, &quot;returns null for invalid ID&quot;</li>
+<li>Bad: &quot;test1&quot;, &quot;handles error&quot;, &quot;works correctly&quot;</li>
+</ul>
+<p><strong>No implementation details:</strong></p>
+<ul>
+<li>Good: Test public API, observable behavior</li>
+<li>Bad: Mock internals, test private methods, assert on internal state</test_quality></li>
+</ul>
+<framework_setup>
+## Test Framework Setup (If None Exists)
+
+<p>When executing a TDD plan but no test framework is configured, set it up as part of the RED phase:</p>
+<p><strong>1. Detect project type:</strong></p>
+<pre><code class="language-bash"># JavaScript/TypeScript
+if [ -f package.json ]; then echo &quot;node&quot;; fi
+
+# Python
+if [ -f requirements.txt ] || [ -f pyproject.toml ]; then echo &quot;python&quot;; fi
+
+# Go
+if [ -f go.mod ]; then echo &quot;go&quot;; fi
+
+# Rust
+if [ -f Cargo.toml ]; then echo &quot;rust&quot;; fi
+</code></pre>
+<p><strong>2. Install minimal framework:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Framework</th>
+<th>Install</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Node.js</td>
+<td>Jest</td>
+<td><code>npm install -D jest @types/jest ts-jest</code></td>
+</tr>
+<tr>
+<td>Node.js (Vite)</td>
+<td>Vitest</td>
+<td><code>npm install -D vitest</code></td>
+</tr>
+<tr>
+<td>Python</td>
+<td>pytest</td>
+<td><code>pip install pytest</code></td>
+</tr>
+<tr>
+<td>Go</td>
+<td>testing</td>
+<td>Built-in</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>cargo test</td>
+<td>Built-in</td>
+</tr>
+</tbody></table>
+<p><strong>3. Create config if needed:</strong></p>
+<ul>
+<li>Jest: <code>jest.config.js</code> with ts-jest preset</li>
+<li>Vitest: <code>vitest.config.ts</code> with test globals</li>
+<li>pytest: <code>pytest.ini</code> or <code>pyproject.toml</code> section</li>
+</ul>
+<p><strong>4. Verify setup:</strong></p>
+<pre><code class="language-bash"># Run empty test suite - should pass with 0 tests
+npm test  # Node
+pytest    # Python
+go test ./...  # Go
+cargo test    # Rust
+</code></pre>
+<p><strong>5. Create first test file:</strong>
+Follow project conventions for test location:</p>
+<ul>
+<li><code>*.test.ts</code> / <code>*.spec.ts</code> next to source</li>
+<li><code>__tests__/</code> directory</li>
+<li><code>tests/</code> directory at root</li>
+</ul>
+<p>Framework setup is a one-time cost included in the first TDD plan&#39;s RED phase.
+</framework_setup></p>
+<error_handling>
+## Error Handling
+
+<p><strong>Test doesn&#39;t fail in RED phase:</strong></p>
+<ul>
+<li>Feature may already exist - investigate</li>
+<li>Test may be wrong (not testing what you think)</li>
+<li>Fix before proceeding</li>
+</ul>
+<p><strong>Test doesn&#39;t pass in GREEN phase:</strong></p>
+<ul>
+<li>Debug implementation</li>
+<li>Don&#39;t skip to refactor</li>
+<li>Keep iterating until green</li>
+</ul>
+<p><strong>Tests fail in REFACTOR phase:</strong></p>
+<ul>
+<li>Undo refactor</li>
+<li>Commit was premature</li>
+<li>Refactor in smaller steps</li>
+</ul>
+<p><strong>Unrelated tests break:</strong></p>
+<ul>
+<li>Stop and investigate</li>
+<li>May indicate coupling issue</li>
+<li>Fix before proceeding</error_handling></li>
+</ul>
+<commit_pattern>
+## Commit Pattern for TDD Plans
+
+<p>TDD plans produce 2-3 atomic commits (one per phase):</p>
+<pre><code>test(08-02): add failing test for email validation
+
+- Tests valid email formats accepted
+- Tests invalid formats rejected
+- Tests empty input handling
+
+feat(08-02): implement email validation
+
+- Regex pattern matches RFC 5322
+- Returns boolean for validity
+- Handles edge cases (empty, null)
+
+refactor(08-02): extract regex to constant (optional)
+
+- Moved pattern to EMAIL_REGEX constant
+- No behavior changes
+- Tests still pass
+</code></pre>
+<p><strong>Comparison with standard plans:</strong></p>
+<ul>
+<li>Standard plans: 1 commit per task, 2-4 commits per plan</li>
+<li>TDD plans: 2-3 commits for single feature</li>
+</ul>
+<p>Both follow same format: <code>{type}({phase}-{plan}): {description}</code></p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Each commit independently revertable</li>
+<li>Git bisect works at commit level</li>
+<li>Clear history showing TDD discipline</li>
+<li>Consistent with overall commit strategy</commit_pattern></li>
+</ul>
+<context_budget>
+## Context Budget
+
+<p>TDD plans target <strong>~40% context usage</strong> (lower than standard plans&#39; ~50%).</p>
+<p>Why lower:</p>
+<ul>
+<li>RED phase: write test, run test, potentially debug why it didn&#39;t fail</li>
+<li>GREEN phase: implement, run test, potentially iterate on failures</li>
+<li>REFACTOR phase: modify code, run tests, verify no regressions</li>
+</ul>
+<p>Each phase involves reading files, running commands, analyzing output. The back-and-forth is inherently heavier than linear task execution.</p>
+<p>Single feature focus ensures full quality throughout the cycle.
+</context_budget></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

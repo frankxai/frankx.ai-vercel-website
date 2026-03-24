@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Memory Safety Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/systems-programming/skills/memory-safety-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Memory Safety Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsystems-programming">systems-programming</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsystems-programming%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsystems-programming%2Fskills%2Fmemory-safety-patterns">memory-safety-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: memory-safety-patterns
+description: Implement memory-safe programming with RAII, ownership, smart pointers, and resource management across Rust, C++, and C. Use when writing safe systems code, managing resources, or preventing memory bugs.</h2>
+<h1>Memory Safety Patterns</h1>
+<p>Cross-language patterns for memory-safe programming including RAII, ownership, smart pointers, and resource management.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Writing memory-safe systems code</li>
+<li>Managing resources (files, sockets, memory)</li>
+<li>Preventing use-after-free and leaks</li>
+<li>Implementing RAII patterns</li>
+<li>Choosing between languages for safety</li>
+<li>Debugging memory issues</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Memory Bug Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Bug Type</th>
+<th>Description</th>
+<th>Prevention</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Use-after-free</strong></td>
+<td>Access freed memory</td>
+<td>Ownership, RAII</td>
+</tr>
+<tr>
+<td><strong>Double-free</strong></td>
+<td>Free same memory twice</td>
+<td>Smart pointers</td>
+</tr>
+<tr>
+<td><strong>Memory leak</strong></td>
+<td>Never free memory</td>
+<td>RAII, GC</td>
+</tr>
+<tr>
+<td><strong>Buffer overflow</strong></td>
+<td>Write past buffer end</td>
+<td>Bounds checking</td>
+</tr>
+<tr>
+<td><strong>Dangling pointer</strong></td>
+<td>Pointer to freed memory</td>
+<td>Lifetime tracking</td>
+</tr>
+<tr>
+<td><strong>Data race</strong></td>
+<td>Concurrent unsynchronized access</td>
+<td>Ownership, Sync</td>
+</tr>
+</tbody></table>
+<h3>2. Safety Spectrum</h3>
+<pre><code>Manual (C) → Smart Pointers (C++) → Ownership (Rust) → GC (Go, Java)
+Less safe                                              More safe
+More control                                           Less control
+</code></pre>
+<h2>Patterns by Language</h2>
+<h3>Pattern 1: RAII in C++</h3>
+<pre><code class="language-cpp">// RAII: Resource Acquisition Is Initialization
+// Resource lifetime tied to object lifetime
+
+#include &lt;memory&gt;
+#include &lt;fstream&gt;
+#include &lt;mutex&gt;
+
+// File handle with RAII
+class FileHandle {
+public:
+    explicit FileHandle(const std::string&amp; path)
+        : file_(path) {
+        if (!file_.is_open()) {
+            throw std::runtime_error(&quot;Failed to open file&quot;);
+        }
+    }
+
+    // Destructor automatically closes file
+    ~FileHandle() = default; // fstream closes in its destructor
+
+    // Delete copy (prevent double-close)
+    FileHandle(const FileHandle&amp;) = delete;
+    FileHandle&amp; operator=(const FileHandle&amp;) = delete;
+
+    // Allow move
+    FileHandle(FileHandle&amp;&amp;) = default;
+    FileHandle&amp; operator=(FileHandle&amp;&amp;) = default;
+
+    void write(const std::string&amp; data) {
+        file_ &lt;&lt; data;
+    }
+
+private:
+    std::fstream file_;
+};
+
+// Lock guard (RAII for mutexes)
+class Database {
+public:
+    void update(const std::string&amp; key, const std::string&amp; value) {
+        std::lock_guard&lt;std::mutex&gt; lock(mutex_); // Released on scope exit
+        data_[key] = value;
+    }
+
+    std::string get(const std::string&amp; key) {
+        std::shared_lock&lt;std::shared_mutex&gt; lock(shared_mutex_);
+        return data_[key];
+    }
+
+private:
+    std::mutex mutex_;
+    std::shared_mutex shared_mutex_;
+    std::map&lt;std::string, std::string&gt; data_;
+};
+
+// Transaction with rollback (RAII)
+template&lt;typename T&gt;
+class Transaction {
+public:
+    explicit Transaction(T&amp; target)
+        : target_(target), backup_(target), committed_(false) {}
+
+    ~Transaction() {
+        if (!committed_) {
+            target_ = backup_; // Rollback
+        }
+    }
+
+    void commit() { committed_ = true; }
+
+    T&amp; get() { return target_; }
+
+private:
+    T&amp; target_;
+    T backup_;
+    bool committed_;
+};
+</code></pre>
+<h3>Pattern 2: Smart Pointers in C++</h3>
+<pre><code class="language-cpp">#include &lt;memory&gt;
+
+// unique_ptr: Single ownership
+class Engine {
+public:
+    void start() { /* ... */ }
+};
+
+class Car {
+public:
+    Car() : engine_(std::make_unique&lt;Engine&gt;()) {}
+
+    void start() {
+        engine_-&gt;start();
+    }
+
+    // Transfer ownership
+    std::unique_ptr&lt;Engine&gt; extractEngine() {
+        return std::move(engine_);
+    }
+
+private:
+    std::unique_ptr&lt;Engine&gt; engine_;
+};
+
+// shared_ptr: Shared ownership
+class Node {
+public:
+    std::string data;
+    std::shared_ptr&lt;Node&gt; next;
+
+    // Use weak_ptr to break cycles
+    std::weak_ptr&lt;Node&gt; parent;
+};
+
+void sharedPtrExample() {
+    auto node1 = std::make_shared&lt;Node&gt;();
+    auto node2 = std::make_shared&lt;Node&gt;();
+
+    node1-&gt;next = node2;
+    node2-&gt;parent = node1; // Weak reference prevents cycle
+
+    // Access weak_ptr
+    if (auto parent = node2-&gt;parent.lock()) {
+        // parent is valid shared_ptr
+    }
+}
+
+// Custom deleter for resources
+class Socket {
+public:
+    static void close(int* fd) {
+        if (fd &amp;&amp; *fd &gt;= 0) {
+            ::close(*fd);
+            delete fd;
+        }
+    }
+};
+
+auto createSocket() {
+    int fd = socket(AF_INET, SOCK_STREAM, 0);
+    return std::unique_ptr&lt;int, decltype(&amp;Socket::close)&gt;(
+        new int(fd),
+        &amp;Socket::close
+    );
+}
+
+// make_unique/make_shared best practices
+void bestPractices() {
+    // Good: Exception safe, single allocation
+    auto ptr = std::make_shared&lt;Widget&gt;();
+
+    // Bad: Two allocations, not exception safe
+    std::shared_ptr&lt;Widget&gt; ptr2(new Widget());
+
+    // For arrays
+    auto arr = std::make_unique&lt;int[]&gt;(10);
+}
+</code></pre>
+<h3>Pattern 3: Ownership in Rust</h3>
+<pre><code class="language-rust">// Move semantics (default)
+fn move_example() {
+    let s1 = String::from(&quot;hello&quot;);
+    let s2 = s1; // s1 is MOVED, no longer valid
+
+    // println!(&quot;{}&quot;, s1); // Compile error!
+    println!(&quot;{}&quot;, s2);
+}
+
+// Borrowing (references)
+fn borrow_example() {
+    let s = String::from(&quot;hello&quot;);
+
+    // Immutable borrow (multiple allowed)
+    let len = calculate_length(&amp;s);
+    println!(&quot;{} has length {}&quot;, s, len);
+
+    // Mutable borrow (only one allowed)
+    let mut s = String::from(&quot;hello&quot;);
+    change(&amp;mut s);
+}
+
+fn calculate_length(s: &amp;String) -&gt; usize {
+    s.len()
+} // s goes out of scope, but doesn&#39;t drop since borrowed
+
+fn change(s: &amp;mut String) {
+    s.push_str(&quot;, world&quot;);
+}
+
+// Lifetimes: Compiler tracks reference validity
+fn longest&lt;&#39;a&gt;(x: &amp;&#39;a str, y: &amp;&#39;a str) -&gt; &amp;&#39;a str {
+    if x.len() &gt; y.len() { x } else { y }
+}
+
+// Struct with references needs lifetime annotation
+struct ImportantExcerpt&lt;&#39;a&gt; {
+    part: &amp;&#39;a str,
+}
+
+impl&lt;&#39;a&gt; ImportantExcerpt&lt;&#39;a&gt; {
+    fn level(&amp;self) -&gt; i32 {
+        3
+    }
+
+    // Lifetime elision: compiler infers &#39;a for &amp;self
+    fn announce_and_return_part(&amp;self, announcement: &amp;str) -&gt; &amp;str {
+        println!(&quot;Attention: {}&quot;, announcement);
+        self.part
+    }
+}
+
+// Interior mutability
+use std::cell::{Cell, RefCell};
+use std::rc::Rc;
+
+struct Stats {
+    count: Cell&lt;i32&gt;,           // Copy types
+    data: RefCell&lt;Vec&lt;String&gt;&gt;, // Non-Copy types
+}
+
+impl Stats {
+    fn increment(&amp;self) {
+        self.count.set(self.count.get() + 1);
+    }
+
+    fn add_data(&amp;self, item: String) {
+        self.data.borrow_mut().push(item);
+    }
+}
+
+// Rc for shared ownership (single-threaded)
+fn rc_example() {
+    let data = Rc::new(vec![1, 2, 3]);
+    let data2 = Rc::clone(&amp;data); // Increment reference count
+
+    println!(&quot;Count: {}&quot;, Rc::strong_count(&amp;data)); // 2
+}
+
+// Arc for shared ownership (thread-safe)
+use std::sync::Arc;
+use std::thread;
+
+fn arc_example() {
+    let data = Arc::new(vec![1, 2, 3]);
+
+    let handles: Vec&lt;_&gt; = (0..3)
+        .map(|_| {
+            let data = Arc::clone(&amp;data);
+            thread::spawn(move || {
+                println!(&quot;{:?}&quot;, data);
+            })
+        })
+        .collect();
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+}
+</code></pre>
+<h3>Pattern 4: Safe Resource Management in C</h3>
+<pre><code class="language-c">// C doesn&#39;t have RAII, but we can use patterns
+
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+
+// Pattern: goto cleanup
+int process_file(const char* path) {
+    FILE* file = NULL;
+    char* buffer = NULL;
+    int result = -1;
+
+    file = fopen(path, &quot;r&quot;);
+    if (!file) {
+        goto cleanup;
+    }
+
+    buffer = malloc(1024);
+    if (!buffer) {
+        goto cleanup;
+    }
+
+    // Process file...
+    result = 0;
+
+cleanup:
+    if (buffer) free(buffer);
+    if (file) fclose(file);
+    return result;
+}
+
+// Pattern: Opaque pointer with create/destroy
+typedef struct Context Context;
+
+Context* context_create(void);
+void context_destroy(Context* ctx);
+int context_process(Context* ctx, const char* data);
+
+// Implementation
+struct Context {
+    int* data;
+    size_t size;
+    FILE* log;
+};
+
+Context* context_create(void) {
+    Context* ctx = calloc(1, sizeof(Context));
+    if (!ctx) return NULL;
+
+    ctx-&gt;data = malloc(100 * sizeof(int));
+    if (!ctx-&gt;data) {
+        free(ctx);
+        return NULL;
+    }
+
+    ctx-&gt;log = fopen(&quot;log.txt&quot;, &quot;w&quot;);
+    if (!ctx-&gt;log) {
+        free(ctx-&gt;data);
+        free(ctx);
+        return NULL;
+    }
+
+    return ctx;
+}
+
+void context_destroy(Context* ctx) {
+    if (ctx) {
+        if (ctx-&gt;log) fclose(ctx-&gt;log);
+        if (ctx-&gt;data) free(ctx-&gt;data);
+        free(ctx);
+    }
+}
+
+// Pattern: Cleanup attribute (GCC/Clang extension)
+#define AUTO_FREE __attribute__((cleanup(auto_free_func)))
+
+void auto_free_func(void** ptr) {
+    free(*ptr);
+}
+
+void auto_free_example(void) {
+    AUTO_FREE char* buffer = malloc(1024);
+    // buffer automatically freed at end of scope
+}
+</code></pre>
+<h3>Pattern 5: Bounds Checking</h3>
+<pre><code class="language-cpp">// C++: Use containers instead of raw arrays
+#include &lt;vector&gt;
+#include &lt;array&gt;
+#include &lt;span&gt;
+
+void safe_array_access() {
+    std::vector&lt;int&gt; vec = {1, 2, 3, 4, 5};
+
+    // Safe: throws std::out_of_range
+    try {
+        int val = vec.at(10);
+    } catch (const std::out_of_range&amp; e) {
+        // Handle error
+    }
+
+    // Unsafe but faster (no bounds check)
+    int val = vec[2];
+
+    // Modern C++20: std::span for array views
+    std::span&lt;int&gt; view(vec);
+    // Iterators are bounds-safe
+    for (int&amp; x : view) {
+        x *= 2;
+    }
+}
+
+// Fixed-size arrays
+void fixed_array() {
+    std::array&lt;int, 5&gt; arr = {1, 2, 3, 4, 5};
+
+    // Compile-time size known
+    static_assert(arr.size() == 5);
+
+    // Safe access
+    int val = arr.at(2);
+}
+</code></pre>
+<pre><code class="language-rust">// Rust: Bounds checking by default
+
+fn rust_bounds_checking() {
+    let vec = vec![1, 2, 3, 4, 5];
+
+    // Runtime bounds check (panics if out of bounds)
+    let val = vec[2];
+
+    // Explicit option (no panic)
+    match vec.get(10) {
+        Some(val) =&gt; println!(&quot;Got {}&quot;, val),
+        None =&gt; println!(&quot;Index out of bounds&quot;),
+    }
+
+    // Iterators (no bounds checking needed)
+    for val in &amp;vec {
+        println!(&quot;{}&quot;, val);
+    }
+
+    // Slices are bounds-checked
+    let slice = &amp;vec[1..3]; // [2, 3]
+}
+</code></pre>
+<h3>Pattern 6: Preventing Data Races</h3>
+<pre><code class="language-cpp">// C++: Thread-safe shared state
+#include &lt;mutex&gt;
+#include &lt;shared_mutex&gt;
+#include &lt;atomic&gt;
+
+class ThreadSafeCounter {
+public:
+    void increment() {
+        // Atomic operations
+        count_.fetch_add(1, std::memory_order_relaxed);
+    }
+
+    int get() const {
+        return count_.load(std::memory_order_relaxed);
+    }
+
+private:
+    std::atomic&lt;int&gt; count_{0};
+};
+
+class ThreadSafeMap {
+public:
+    void write(const std::string&amp; key, int value) {
+        std::unique_lock lock(mutex_);
+        data_[key] = value;
+    }
+
+    std::optional&lt;int&gt; read(const std::string&amp; key) {
+        std::shared_lock lock(mutex_);
+        auto it = data_.find(key);
+        if (it != data_.end()) {
+            return it-&gt;second;
+        }
+        return std::nullopt;
+    }
+
+private:
+    mutable std::shared_mutex mutex_;
+    std::map&lt;std::string, int&gt; data_;
+};
+</code></pre>
+<pre><code class="language-rust">// Rust: Data race prevention at compile time
+
+use std::sync::{Arc, Mutex, RwLock};
+use std::sync::atomic::{AtomicI32, Ordering};
+use std::thread;
+
+// Atomic for simple types
+fn atomic_example() {
+    let counter = Arc::new(AtomicI32::new(0));
+
+    let handles: Vec&lt;_&gt; = (0..10)
+        .map(|_| {
+            let counter = Arc::clone(&amp;counter);
+            thread::spawn(move || {
+                counter.fetch_add(1, Ordering::SeqCst);
+            })
+        })
+        .collect();
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+
+    println!(&quot;Counter: {}&quot;, counter.load(Ordering::SeqCst));
+}
+
+// Mutex for complex types
+fn mutex_example() {
+    let data = Arc::new(Mutex::new(vec![]));
+
+    let handles: Vec&lt;_&gt; = (0..10)
+        .map(|i| {
+            let data = Arc::clone(&amp;data);
+            thread::spawn(move || {
+                let mut vec = data.lock().unwrap();
+                vec.push(i);
+            })
+        })
+        .collect();
+
+    for handle in handles {
+        handle.join().unwrap();
+    }
+}
+
+// RwLock for read-heavy workloads
+fn rwlock_example() {
+    let data = Arc::new(RwLock::new(HashMap::new()));
+
+    // Multiple readers OK
+    let read_guard = data.read().unwrap();
+
+    // Writer blocks readers
+    let write_guard = data.write().unwrap();
+}
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Prefer RAII</strong> - Tie resource lifetime to scope</li>
+<li><strong>Use smart pointers</strong> - Avoid raw pointers in C++</li>
+<li><strong>Understand ownership</strong> - Know who owns what</li>
+<li><strong>Check bounds</strong> - Use safe access methods</li>
+<li><strong>Use tools</strong> - AddressSanitizer, Valgrind, Miri</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t use raw pointers</strong> - Unless interfacing with C</li>
+<li><strong>Don&#39;t return local references</strong> - Dangling pointer</li>
+<li><strong>Don&#39;t ignore compiler warnings</strong> - They catch bugs</li>
+<li><strong>Don&#39;t use <code>unsafe</code> carelessly</strong> - In Rust, minimize it</li>
+<li><strong>Don&#39;t assume thread safety</strong> - Be explicit</li>
+</ul>
+<h2>Debugging Tools</h2>
+<pre><code class="language-bash"># AddressSanitizer (Clang/GCC)
+clang++ -fsanitize=address -g source.cpp
+
+# Valgrind
+valgrind --leak-check=full ./program
+
+# Rust Miri (undefined behavior detector)
+cargo +nightly miri run
+
+# ThreadSanitizer
+clang++ -fsanitize=thread -g source.cpp
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://isocpp.github.io/CppCoreGuidelines/">C++ Core Guidelines</a></li>
+<li><a href="https://doc.rust-lang.org/book/ch04-00-understanding-ownership.html">Rust Ownership</a></li>
+<li><a href="https://clang.llvm.org/docs/AddressSanitizer.html">AddressSanitizer</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

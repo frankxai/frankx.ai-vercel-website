@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>iOS Navigation Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/mobile-ios-design/references/ios-navigation.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">iOS Navigation Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fmobile-ios-design">mobile-ios-design</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fmobile-ios-design%2Freferences">references</a> / <span>ios-navigation.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>iOS Navigation Patterns</h1>
+<h2>NavigationStack (iOS 16+)</h2>
+<h3>Basic Navigation</h3>
+<pre><code class="language-swift">struct BasicNavigationView: View {
+    var body: some View {
+        NavigationStack {
+            List(items) { item in
+                NavigationLink(item.title, value: item)
+            }
+            .navigationTitle(&quot;Items&quot;)
+            .navigationDestination(for: Item.self) { item in
+                ItemDetailView(item: item)
+            }
+        }
+    }
+}
+</code></pre>
+<h3>Programmatic Navigation</h3>
+<pre><code class="language-swift">struct ProgrammaticNavigationView: View {
+    @State private var path = NavigationPath()
+
+    var body: some View {
+        NavigationStack(path: $path) {
+            VStack(spacing: 20) {
+                Button(&quot;Go to Settings&quot;) {
+                    path.append(Destination.settings)
+                }
+
+                Button(&quot;Go to Profile&quot;) {
+                    path.append(Destination.profile)
+                }
+
+                Button(&quot;Deep Link to Item 123&quot;) {
+                    path.append(Destination.settings)
+                    path.append(Destination.itemDetail(id: 123))
+                }
+            }
+            .navigationTitle(&quot;Home&quot;)
+            .navigationDestination(for: Destination.self) { destination in
+                switch destination {
+                case .settings:
+                    SettingsView()
+                case .profile:
+                    ProfileView()
+                case .itemDetail(let id):
+                    ItemDetailView(itemId: id)
+                }
+            }
+        }
+    }
+
+    enum Destination: Hashable {
+        case settings
+        case profile
+        case itemDetail(id: Int)
+    }
+}
+</code></pre>
+<h3>Navigation State Persistence</h3>
+<pre><code class="language-swift">struct PersistentNavigationView: View {
+    @SceneStorage(&quot;navigationPath&quot;) private var pathData: Data?
+    @State private var path = NavigationPath()
+
+    var body: some View {
+        NavigationStack(path: $path) {
+            ContentView()
+                .navigationDestination(for: Item.self) { item in
+                    ItemDetailView(item: item)
+                }
+        }
+        .onAppear {
+            restorePath()
+        }
+        .onChange(of: path) { _, newPath in
+            savePath(newPath)
+        }
+    }
+
+    private func savePath(_ path: NavigationPath) {
+        guard let representation = path.codable else { return }
+        pathData = try? JSONEncoder().encode(representation)
+    }
+
+    private func restorePath() {
+        guard let data = pathData,
+              let representation = try? JSONDecoder().decode(
+                NavigationPath.CodableRepresentation.self,
+                from: data
+              ) else { return }
+        path = NavigationPath(representation)
+    }
+}
+</code></pre>
+<h2>NavigationSplitView</h2>
+<h3>Two-Column Layout</h3>
+<pre><code class="language-swift">struct TwoColumnView: View {
+    @State private var selectedCategory: Category?
+    @State private var columnVisibility: NavigationSplitViewVisibility = .all
+
+    var body: some View {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
+            // Sidebar
+            List(categories, selection: $selectedCategory) { category in
+                NavigationLink(value: category) {
+                    Label(category.name, systemImage: category.icon)
+                }
+            }
+            .navigationTitle(&quot;Categories&quot;)
+        } detail: {
+            // Detail
+            if let category = selectedCategory {
+                CategoryDetailView(category: category)
+            } else {
+                ContentUnavailableView(
+                    &quot;Select a Category&quot;,
+                    systemImage: &quot;sidebar.leading&quot;
+                )
+            }
+        }
+        .navigationSplitViewStyle(.balanced)
+    }
+}
+</code></pre>
+<h3>Three-Column Layout</h3>
+<pre><code class="language-swift">struct ThreeColumnView: View {
+    @State private var selectedFolder: Folder?
+    @State private var selectedDocument: Document?
+
+    var body: some View {
+        NavigationSplitView {
+            // Sidebar
+            List(folders, selection: $selectedFolder) { folder in
+                NavigationLink(value: folder) {
+                    Label(folder.name, systemImage: &quot;folder&quot;)
+                }
+            }
+            .navigationTitle(&quot;Folders&quot;)
+        } content: {
+            // Content column
+            if let folder = selectedFolder {
+                List(folder.documents, selection: $selectedDocument) { document in
+                    NavigationLink(value: document) {
+                        DocumentRow(document: document)
+                    }
+                }
+                .navigationTitle(folder.name)
+            } else {
+                Text(&quot;Select a folder&quot;)
+            }
+        } detail: {
+            // Detail column
+            if let document = selectedDocument {
+                DocumentDetailView(document: document)
+            } else {
+                ContentUnavailableView(
+                    &quot;Select a Document&quot;,
+                    systemImage: &quot;doc&quot;
+                )
+            }
+        }
+    }
+}
+</code></pre>
+<h2>Sheet Navigation</h2>
+<h3>Modal Sheets</h3>
+<pre><code class="language-swift">struct SheetNavigationView: View {
+    @State private var showSettings = false
+    @State private var showNewItem = false
+    @State private var editingItem: Item?
+
+    var body: some View {
+        NavigationStack {
+            ContentView()
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button(&quot;Add&quot;, systemImage: &quot;plus&quot;) {
+                            showNewItem = true
+                        }
+                    }
+                    ToolbarItem(placement: .topBarLeading) {
+                        Button(&quot;Settings&quot;, systemImage: &quot;gear&quot;) {
+                            showSettings = true
+                        }
+                    }
+                }
+        }
+        // Boolean-based sheet
+        .sheet(isPresented: $showSettings) {
+            SettingsSheet()
+        }
+        // Boolean-based fullscreen cover
+        .fullScreenCover(isPresented: $showNewItem) {
+            NewItemView()
+        }
+        // Item-based sheet
+        .sheet(item: $editingItem) { item in
+            EditItemSheet(item: item)
+        }
+    }
+}
+</code></pre>
+<h3>Sheet with Navigation</h3>
+<pre><code class="language-swift">struct NavigableSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section(&quot;General&quot;) {
+                    NavigationLink(&quot;Account&quot;) {
+                        AccountSettingsView()
+                    }
+                    NavigationLink(&quot;Notifications&quot;) {
+                        NotificationSettingsView()
+                    }
+                }
+
+                Section(&quot;Advanced&quot;) {
+                    NavigationLink(&quot;Privacy&quot;) {
+                        PrivacySettingsView()
+                    }
+                }
+            }
+            .navigationTitle(&quot;Settings&quot;)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(&quot;Done&quot;) {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h3>Sheet Customization</h3>
+<pre><code class="language-swift">struct CustomSheetView: View {
+    @State private var showSheet = false
+
+    var body: some View {
+        Button(&quot;Show Sheet&quot;) {
+            showSheet = true
+        }
+        .sheet(isPresented: $showSheet) {
+            SheetContent()
+                // Available detents
+                .presentationDetents([
+                    .medium,
+                    .large,
+                    .height(200),
+                    .fraction(0.75)
+                ])
+                // Selected detent binding
+                .presentationDetents([.medium, .large], selection: $selectedDetent)
+                // Drag indicator visibility
+                .presentationDragIndicator(.visible)
+                // Corner radius
+                .presentationCornerRadius(24)
+                // Background interaction
+                .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+                // Prevent interactive dismiss
+                .interactiveDismissDisabled(hasUnsavedChanges)
+        }
+    }
+}
+</code></pre>
+<h2>Tab Navigation</h2>
+<h3>Basic TabView</h3>
+<pre><code class="language-swift">struct MainTabView: View {
+    @State private var selectedTab = 0
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            HomeView()
+                .tabItem {
+                    Label(&quot;Home&quot;, systemImage: &quot;house&quot;)
+                }
+                .tag(0)
+
+            SearchView()
+                .tabItem {
+                    Label(&quot;Search&quot;, systemImage: &quot;magnifyingglass&quot;)
+                }
+                .tag(1)
+
+            ProfileView()
+                .tabItem {
+                    Label(&quot;Profile&quot;, systemImage: &quot;person&quot;)
+                }
+                .tag(2)
+                .badge(unreadCount)
+        }
+    }
+}
+</code></pre>
+<h3>Tab with Custom Badge</h3>
+<pre><code class="language-swift">struct BadgedTabView: View {
+    @State private var selectedTab: Tab = .home
+    @State private var cartCount = 3
+
+    enum Tab: String, CaseIterable {
+        case home, search, cart, profile
+
+        var icon: String {
+            switch self {
+            case .home: return &quot;house&quot;
+            case .search: return &quot;magnifyingglass&quot;
+            case .cart: return &quot;cart&quot;
+            case .profile: return &quot;person&quot;
+            }
+        }
+    }
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            ForEach(Tab.allCases, id: \.self) { tab in
+                NavigationStack {
+                    contentView(for: tab)
+                }
+                .tabItem {
+                    Label(tab.rawValue.capitalized, systemImage: tab.icon)
+                }
+                .tag(tab)
+                .badge(tab == .cart ? cartCount : 0)
+            }
+        }
+    }
+}
+</code></pre>
+<h2>Deep Linking</h2>
+<h3>URL-Based Navigation</h3>
+<pre><code class="language-swift">struct DeepLinkableApp: App {
+    @StateObject private var router = NavigationRouter()
+
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+                .environmentObject(router)
+                .onOpenURL { url in
+                    router.handle(url: url)
+                }
+        }
+    }
+}
+
+class NavigationRouter: ObservableObject {
+    @Published var path = NavigationPath()
+    @Published var selectedTab: Tab = .home
+
+    func handle(url: URL) {
+        guard url.scheme == &quot;myapp&quot; else { return }
+
+        switch url.host {
+        case &quot;item&quot;:
+            if let id = Int(url.lastPathComponent) {
+                selectedTab = .home
+                path = NavigationPath()
+                path.append(Destination.itemDetail(id: id))
+            }
+        case &quot;settings&quot;:
+            selectedTab = .profile
+            path = NavigationPath()
+            path.append(Destination.settings)
+        default:
+            break
+        }
+    }
+}
+</code></pre>
+<h3>Universal Links</h3>
+<pre><code class="language-swift">struct UniversalLinkHandler: View {
+    @EnvironmentObject private var router: NavigationRouter
+
+    var body: some View {
+        ContentView()
+            .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+                guard let url = activity.webpageURL else { return }
+                handleUniversalLink(url)
+            }
+    }
+
+    private func handleUniversalLink(_ url: URL) {
+        // Parse URL path and navigate accordingly
+        let pathComponents = url.pathComponents
+
+        if pathComponents.contains(&quot;product&quot;),
+           let idString = pathComponents.last,
+           let id = Int(idString) {
+            router.navigate(to: .product(id: id))
+        }
+    }
+}
+</code></pre>
+<h2>Navigation Coordinator Pattern</h2>
+<pre><code class="language-swift">@MainActor
+class NavigationCoordinator: ObservableObject {
+    @Published var path = NavigationPath()
+    @Published var sheet: Sheet?
+    @Published var fullScreenCover: FullScreenCover?
+
+    enum Sheet: Identifiable {
+        case settings
+        case newItem
+        case editItem(Item)
+
+        var id: String {
+            switch self {
+            case .settings: return &quot;settings&quot;
+            case .newItem: return &quot;newItem&quot;
+            case .editItem(let item): return &quot;editItem-\(item.id)&quot;
+            }
+        }
+    }
+
+    enum FullScreenCover: Identifiable {
+        case onboarding
+        case camera
+
+        var id: String {
+            switch self {
+            case .onboarding: return &quot;onboarding&quot;
+            case .camera: return &quot;camera&quot;
+            }
+        }
+    }
+
+    func push(_ destination: Destination) {
+        path.append(destination)
+    }
+
+    func pop() {
+        guard !path.isEmpty else { return }
+        path.removeLast()
+    }
+
+    func popToRoot() {
+        path = NavigationPath()
+    }
+
+    func present(_ sheet: Sheet) {
+        self.sheet = sheet
+    }
+
+    func presentFullScreen(_ cover: FullScreenCover) {
+        self.fullScreenCover = cover
+    }
+
+    func dismiss() {
+        if fullScreenCover != nil {
+            fullScreenCover = nil
+        } else if sheet != nil {
+            sheet = nil
+        }
+    }
+}
+</code></pre>
+<h2>Navigation Transitions (iOS 18+)</h2>
+<h3>Custom Navigation Transitions</h3>
+<pre><code class="language-swift">struct CustomTransitionView: View {
+    @Namespace private var namespace
+
+    var body: some View {
+        NavigationStack {
+            List(items) { item in
+                NavigationLink(value: item) {
+                    ItemRow(item: item)
+                        .matchedTransitionSource(id: item.id, in: namespace)
+                }
+            }
+            .navigationDestination(for: Item.self) { item in
+                ItemDetailView(item: item)
+                    .navigationTransition(.zoom(sourceID: item.id, in: namespace))
+            }
+        }
+    }
+}
+</code></pre>
+<h3>Hero Transitions</h3>
+<pre><code class="language-swift">struct HeroTransitionView: View {
+    @Namespace private var animation
+    @State private var selectedItem: Item?
+
+    var body: some View {
+        ZStack {
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(items) { item in
+                        if selectedItem?.id != item.id {
+                            ItemCard(item: item)
+                                .matchedGeometryEffect(id: item.id, in: animation)
+                                .onTapGesture {
+                                    withAnimation(.spring(response: 0.3)) {
+                                        selectedItem = item
+                                    }
+                                }
+                        }
+                    }
+                }
+            }
+
+            if let item = selectedItem {
+                ItemDetailView(item: item)
+                    .matchedGeometryEffect(id: item.id, in: animation)
+                    .onTapGesture {
+                        withAnimation(.spring(response: 0.3)) {
+                            selectedItem = nil
+                        }
+                    }
+            }
+        }
+    }
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

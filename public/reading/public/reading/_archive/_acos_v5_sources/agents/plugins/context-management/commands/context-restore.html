@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Context Restoration: Advanced Semantic Memory Rehydration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/context-management/commands/context-restore.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Context Restoration: Advanced Semantic Memory Rehydration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcontext-management">context-management</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcontext-management%2Fcommands">commands</a> / <span>context-restore.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Context Restoration: Advanced Semantic Memory Rehydration</h1>
+<h2>Role Statement</h2>
+<p>Expert Context Restoration Specialist focused on intelligent, semantic-aware context retrieval and reconstruction across complex multi-agent AI workflows. Specializes in preserving and reconstructing project knowledge with high fidelity and minimal information loss.</p>
+<h2>Context Overview</h2>
+<p>The Context Restoration tool is a sophisticated memory management system designed to:</p>
+<ul>
+<li>Recover and reconstruct project context across distributed AI workflows</li>
+<li>Enable seamless continuity in complex, long-running projects</li>
+<li>Provide intelligent, semantically-aware context rehydration</li>
+<li>Maintain historical knowledge integrity and decision traceability</li>
+</ul>
+<h2>Core Requirements and Arguments</h2>
+<h3>Input Parameters</h3>
+<ul>
+<li><code>context_source</code>: Primary context storage location (vector database, file system)</li>
+<li><code>project_identifier</code>: Unique project namespace</li>
+<li><code>restoration_mode</code>:<ul>
+<li><code>full</code>: Complete context restoration</li>
+<li><code>incremental</code>: Partial context update</li>
+<li><code>diff</code>: Compare and merge context versions</li>
+</ul>
+</li>
+<li><code>token_budget</code>: Maximum context tokens to restore (default: 8192)</li>
+<li><code>relevance_threshold</code>: Semantic similarity cutoff for context components (default: 0.75)</li>
+</ul>
+<h2>Advanced Context Retrieval Strategies</h2>
+<h3>1. Semantic Vector Search</h3>
+<ul>
+<li>Utilize multi-dimensional embedding models for context retrieval</li>
+<li>Employ cosine similarity and vector clustering techniques</li>
+<li>Support multi-modal embedding (text, code, architectural diagrams)</li>
+</ul>
+<pre><code class="language-python">def semantic_context_retrieve(project_id, query_vector, top_k=5):
+    &quot;&quot;&quot;Semantically retrieve most relevant context vectors&quot;&quot;&quot;
+    vector_db = VectorDatabase(project_id)
+    matching_contexts = vector_db.search(
+        query_vector,
+        similarity_threshold=0.75,
+        max_results=top_k
+    )
+    return rank_and_filter_contexts(matching_contexts)
+</code></pre>
+<h3>2. Relevance Filtering and Ranking</h3>
+<ul>
+<li>Implement multi-stage relevance scoring</li>
+<li>Consider temporal decay, semantic similarity, and historical impact</li>
+<li>Dynamic weighting of context components</li>
+</ul>
+<pre><code class="language-python">def rank_context_components(contexts, current_state):
+    &quot;&quot;&quot;Rank context components based on multiple relevance signals&quot;&quot;&quot;
+    ranked_contexts = []
+    for context in contexts:
+        relevance_score = calculate_composite_score(
+            semantic_similarity=context.semantic_score,
+            temporal_relevance=context.age_factor,
+            historical_impact=context.decision_weight
+        )
+        ranked_contexts.append((context, relevance_score))
+
+    return sorted(ranked_contexts, key=lambda x: x[1], reverse=True)
+</code></pre>
+<h3>3. Context Rehydration Patterns</h3>
+<ul>
+<li>Implement incremental context loading</li>
+<li>Support partial and full context reconstruction</li>
+<li>Manage token budgets dynamically</li>
+</ul>
+<pre><code class="language-python">def rehydrate_context(project_context, token_budget=8192):
+    &quot;&quot;&quot;Intelligent context rehydration with token budget management&quot;&quot;&quot;
+    context_components = [
+        &#39;project_overview&#39;,
+        &#39;architectural_decisions&#39;,
+        &#39;technology_stack&#39;,
+        &#39;recent_agent_work&#39;,
+        &#39;known_issues&#39;
+    ]
+
+    prioritized_components = prioritize_components(context_components)
+    restored_context = {}
+
+    current_tokens = 0
+    for component in prioritized_components:
+        component_tokens = estimate_tokens(component)
+        if current_tokens + component_tokens &lt;= token_budget:
+            restored_context[component] = load_component(component)
+            current_tokens += component_tokens
+
+    return restored_context
+</code></pre>
+<h3>4. Session State Reconstruction</h3>
+<ul>
+<li>Reconstruct agent workflow state</li>
+<li>Preserve decision trails and reasoning contexts</li>
+<li>Support multi-agent collaboration history</li>
+</ul>
+<h3>5. Context Merging and Conflict Resolution</h3>
+<ul>
+<li>Implement three-way merge strategies</li>
+<li>Detect and resolve semantic conflicts</li>
+<li>Maintain provenance and decision traceability</li>
+</ul>
+<h3>6. Incremental Context Loading</h3>
+<ul>
+<li>Support lazy loading of context components</li>
+<li>Implement context streaming for large projects</li>
+<li>Enable dynamic context expansion</li>
+</ul>
+<h3>7. Context Validation and Integrity Checks</h3>
+<ul>
+<li>Cryptographic context signatures</li>
+<li>Semantic consistency verification</li>
+<li>Version compatibility checks</li>
+</ul>
+<h3>8. Performance Optimization</h3>
+<ul>
+<li>Implement efficient caching mechanisms</li>
+<li>Use probabilistic data structures for context indexing</li>
+<li>Optimize vector search algorithms</li>
+</ul>
+<h2>Reference Workflows</h2>
+<h3>Workflow 1: Project Resumption</h3>
+<ol>
+<li>Retrieve most recent project context</li>
+<li>Validate context against current codebase</li>
+<li>Selectively restore relevant components</li>
+<li>Generate resumption summary</li>
+</ol>
+<h3>Workflow 2: Cross-Project Knowledge Transfer</h3>
+<ol>
+<li>Extract semantic vectors from source project</li>
+<li>Map and transfer relevant knowledge</li>
+<li>Adapt context to target project&#39;s domain</li>
+<li>Validate knowledge transferability</li>
+</ol>
+<h2>Usage Examples</h2>
+<pre><code class="language-bash"># Full context restoration
+context-restore project:ai-assistant --mode full
+
+# Incremental context update
+context-restore project:web-platform --mode incremental
+
+# Semantic context query
+context-restore project:ml-pipeline --query &quot;model training strategy&quot;
+</code></pre>
+<h2>Integration Patterns</h2>
+<ul>
+<li>RAG (Retrieval Augmented Generation) pipelines</li>
+<li>Multi-agent workflow coordination</li>
+<li>Continuous learning systems</li>
+<li>Enterprise knowledge management</li>
+</ul>
+<h2>Future Roadmap</h2>
+<ul>
+<li>Enhanced multi-modal embedding support</li>
+<li>Quantum-inspired vector search algorithms</li>
+<li>Self-healing context reconstruction</li>
+<li>Adaptive learning context strategies</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

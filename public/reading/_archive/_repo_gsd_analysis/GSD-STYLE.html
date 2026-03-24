@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GSD-STYLE.md</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/GSD-STYLE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GSD-STYLE.md</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#_archive">_archive</a> / <a href="index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <span>GSD-STYLE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>GSD-STYLE.md</h1>
+<blockquote>
+<p><strong>Comprehensive reference.</strong> Core rules auto-load from <code>.claude/rules/</code>. This document provides deep explanations and examples for when you need the full picture.</p>
+</blockquote>
+<p>This document explains how GSD is written so future Claude instances can contribute consistently.</p>
+<h2>Core Philosophy</h2>
+<p>GSD is a <strong>meta-prompting system</strong> where every file is both implementation and specification. Files teach Claude how to build software systematically. The system optimizes for:</p>
+<ul>
+<li><strong>Solo developer + Claude workflow</strong> (no enterprise patterns)</li>
+<li><strong>Context engineering</strong> (manage Claude&#39;s context window deliberately)</li>
+<li><strong>Plans as prompts</strong> (PLAN.md files are executable, not documents to transform)</li>
+</ul>
+<hr>
+<h2>File Structure Conventions</h2>
+<h3>Slash Commands (<code>commands/gsd/*.md</code>)</h3>
+<pre><code class="language-yaml">---
+name: gsd:command-name
+description: One-line description
+argument-hint: &quot;&lt;required&gt;&quot; or &quot;[optional]&quot;
+allowed-tools: [Read, Write, Bash, Glob, Grep, AskUserQuestion]
+---
+</code></pre>
+<p><strong>Section order:</strong></p>
+<ol>
+<li><code>&lt;objective&gt;</code> — What/why/when (always present)</li>
+<li><code>&lt;execution_context&gt;</code> — @-references to workflows, templates, references</li>
+<li><code>&lt;context&gt;</code> — Dynamic content: <code>$ARGUMENTS</code>, bash output, @file refs</li>
+<li><code>&lt;process&gt;</code> or <code>&lt;step&gt;</code> elements — Implementation steps</li>
+<li><code>&lt;success_criteria&gt;</code> — Measurable completion checklist</li>
+</ol>
+<p><strong>Commands are thin wrappers.</strong> Delegate detailed logic to workflows.</p>
+<h3>Workflows (<code>get-shit-done/workflows/*.md</code>)</h3>
+<p>No YAML frontmatter. Structure varies by workflow.</p>
+<p><strong>Common tags</strong> (not all workflows use all of these):</p>
+<ul>
+<li><code>&lt;purpose&gt;</code> — What this workflow accomplishes</li>
+<li><code>&lt;when_to_use&gt;</code> or <code>&lt;trigger&gt;</code> — Decision criteria</li>
+<li><code>&lt;required_reading&gt;</code> — Prerequisite files</li>
+<li><code>&lt;process&gt;</code> — Container for steps</li>
+<li><code>&lt;step&gt;</code> — Individual execution step</li>
+</ul>
+<p>Some workflows use domain-specific tags like <code>&lt;philosophy&gt;</code>, <code>&lt;references&gt;</code>, <code>&lt;planning_principles&gt;</code>, <code>&lt;decimal_phase_numbering&gt;</code>.</p>
+<p><strong>When using <code>&lt;step&gt;</code> elements:</strong></p>
+<ul>
+<li><code>name</code> attribute: snake_case (e.g., <code>name=&quot;load_project_state&quot;</code>)</li>
+<li><code>priority</code> attribute: Optional (&quot;first&quot;, &quot;second&quot;)</li>
+</ul>
+<p><strong>Key principle:</strong> Match the style of the specific workflow you&#39;re editing.</p>
+<h3>Templates (<code>get-shit-done/templates/*.md</code>)</h3>
+<p>Structure varies. Common patterns:</p>
+<ul>
+<li>Most start with <code># [Name] Template</code> header</li>
+<li>Many include a <code>&lt;template&gt;</code> block with the actual template content</li>
+<li>Some include examples or guidelines sections</li>
+</ul>
+<p><strong>Placeholder conventions:</strong></p>
+<ul>
+<li>Square brackets: <code>[Project Name]</code>, <code>[Description]</code></li>
+<li>Curly braces: <code>{phase}-{plan}-PLAN.md</code></li>
+</ul>
+<h3>References (<code>get-shit-done/references/*.md</code>)</h3>
+<p>Typically use outer XML containers related to filename, but structure varies.</p>
+<p>Examples:</p>
+<ul>
+<li><code>principles.md</code> → <code>&lt;principles&gt;...&lt;/principles&gt;</code></li>
+<li><code>checkpoints.md</code> → <code>&lt;overview&gt;</code> then <code>&lt;checkpoint_types&gt;</code></li>
+<li><code>plan-format.md</code> → <code>&lt;overview&gt;</code> then <code>&lt;core_principle&gt;</code></li>
+</ul>
+<p>Internal organization varies — semantic sub-containers, markdown headers within XML, code examples.</p>
+<hr>
+<h2>XML Tag Conventions</h2>
+<h3>Semantic Containers Only</h3>
+<p>XML tags serve semantic purposes. Use Markdown headers for hierarchy within.</p>
+<p><strong>DO:</strong></p>
+<pre><code class="language-xml">&lt;objective&gt;
+## Primary Goal
+Build authentication system
+
+## Success Criteria
+- Users can log in
+- Sessions persist
+&lt;/objective&gt;
+</code></pre>
+<p><strong>DON&#39;T:</strong></p>
+<pre><code class="language-xml">&lt;section name=&quot;objective&quot;&gt;
+  &lt;subsection name=&quot;primary-goal&quot;&gt;
+    &lt;content&gt;Build authentication system&lt;/content&gt;
+  &lt;/subsection&gt;
+&lt;/section&gt;
+</code></pre>
+<h3>Task Structure</h3>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task N: Action-oriented name&lt;/name&gt;
+  &lt;files&gt;src/path/file.ts, src/other/file.ts&lt;/files&gt;
+  &lt;action&gt;What to do, what to avoid and WHY&lt;/action&gt;
+  &lt;verify&gt;Command or check to prove completion&lt;/verify&gt;
+  &lt;done&gt;Measurable acceptance criteria&lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<p><strong>Task types:</strong></p>
+<ul>
+<li><code>type=&quot;auto&quot;</code> — Claude executes autonomously</li>
+<li><code>type=&quot;checkpoint:human-verify&quot;</code> — User must verify</li>
+<li><code>type=&quot;checkpoint:decision&quot;</code> — User must choose</li>
+</ul>
+<h3>Checkpoint Structure</h3>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Description of what was built&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Numbered steps for user&lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Text telling user how to continue&lt;/resume-signal&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:decision&quot; gate=&quot;blocking&quot;&gt;
+  &lt;decision&gt;What needs deciding&lt;/decision&gt;
+  &lt;context&gt;Why this matters&lt;/context&gt;
+  &lt;options&gt;
+    &lt;option id=&quot;identifier&quot;&gt;
+      &lt;name&gt;Option Name&lt;/name&gt;
+      &lt;pros&gt;Benefits&lt;/pros&gt;
+      &lt;cons&gt;Tradeoffs&lt;/cons&gt;
+    &lt;/option&gt;
+  &lt;/options&gt;
+  &lt;resume-signal&gt;Selection instruction&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3>Conditional Logic</h3>
+<pre><code class="language-xml">&lt;if mode=&quot;yolo&quot;&gt;
+  Content for yolo mode
+&lt;/if&gt;
+
+&lt;if mode=&quot;interactive&quot; OR=&quot;custom with gates.execute_next_plan true&quot;&gt;
+  Content for multiple conditions
+&lt;/if&gt;
+</code></pre>
+<hr>
+<h2>@-Reference Patterns</h2>
+<p><strong>Static references</strong> (always load):</p>
+<pre><code>@~/.claude/get-shit-done/workflows/execute-phase.md
+@.planning/PROJECT.md
+</code></pre>
+<p><strong>Conditional references</strong> (based on existence):</p>
+<pre><code>@.planning/DISCOVERY.md (if exists)
+</code></pre>
+<p><strong>@-references are lazy loading signals.</strong> They tell Claude what to read, not pre-loaded content.</p>
+<hr>
+<h2>Naming Conventions</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Convention</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Files</td>
+<td>kebab-case</td>
+<td><code>execute-phase.md</code></td>
+</tr>
+<tr>
+<td>Commands</td>
+<td><code>gsd:kebab-case</code></td>
+<td><code>gsd:execute-phase</code></td>
+</tr>
+<tr>
+<td>XML tags</td>
+<td>kebab-case</td>
+<td><code>&lt;execution_context&gt;</code></td>
+</tr>
+<tr>
+<td>Step names</td>
+<td>snake_case</td>
+<td><code>name=&quot;load_project_state&quot;</code></td>
+</tr>
+<tr>
+<td>Bash variables</td>
+<td>CAPS_UNDERSCORES</td>
+<td><code>PHASE_ARG</code>, <code>PLAN_START_TIME</code></td>
+</tr>
+<tr>
+<td>Type attributes</td>
+<td>colon separator</td>
+<td><code>type=&quot;checkpoint:human-verify&quot;</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Language &amp; Tone</h2>
+<h3>Imperative Voice</h3>
+<p><strong>DO:</strong> &quot;Execute tasks&quot;, &quot;Create file&quot;, &quot;Read STATE.md&quot;</p>
+<p><strong>DON&#39;T:</strong> &quot;Execution is performed&quot;, &quot;The file should be created&quot;</p>
+<h3>No Filler</h3>
+<p>Absent: &quot;Let me&quot;, &quot;Just&quot;, &quot;Simply&quot;, &quot;Basically&quot;, &quot;I&#39;d be happy to&quot;</p>
+<p>Present: Direct instructions, technical precision</p>
+<h3>No Sycophancy</h3>
+<p>Absent: &quot;Great!&quot;, &quot;Awesome!&quot;, &quot;Excellent!&quot;, &quot;I&#39;d love to help&quot;</p>
+<p>Present: Factual statements, verification results, direct answers</p>
+<h3>Brevity with Substance</h3>
+<p><strong>Good one-liner:</strong> &quot;JWT auth with refresh rotation using jose library&quot;</p>
+<p><strong>Bad one-liner:</strong> &quot;Phase complete&quot; or &quot;Authentication implemented&quot;</p>
+<hr>
+<h2>Context Engineering</h2>
+<h3>Size Constraints</h3>
+<ul>
+<li><strong>Plans:</strong> 2-3 tasks maximum</li>
+<li><strong>Quality curve:</strong> 0-30% peak, 30-50% good, 50-70% degrading, 70%+ poor</li>
+<li><strong>Split triggers:</strong> &gt;3 tasks, multiple subsystems, &gt;5 files per task</li>
+</ul>
+<h3>Fresh Context Pattern</h3>
+<p>Use subagents for autonomous work. Reserve main context for user interaction.</p>
+<h3>State Preservation</h3>
+<ul>
+<li><code>STATE.md</code> — Living memory across sessions</li>
+<li><code>agent-history.json</code> — Subagent tracking for resume</li>
+<li>SUMMARY.md frontmatter — Machine-readable for dependency graphs</li>
+</ul>
+<hr>
+<h2>Anti-Patterns to Avoid</h2>
+<h3>Enterprise Patterns (Banned)</h3>
+<ul>
+<li>Story points, sprint ceremonies, RACI matrices</li>
+<li>Human dev time estimates (days/weeks)</li>
+<li>Team coordination, knowledge transfer docs</li>
+<li>Change management processes</li>
+</ul>
+<h3>Temporal Language (Banned in Implementation Docs)</h3>
+<p><strong>DON&#39;T:</strong> &quot;We changed X to Y&quot;, &quot;Previously&quot;, &quot;No longer&quot;, &quot;Instead of&quot;</p>
+<p><strong>DO:</strong> Describe current state only</p>
+<p><strong>Exception:</strong> CHANGELOG.md, MIGRATION.md, git commits</p>
+<h3>Generic XML (Banned)</h3>
+<p><strong>DON&#39;T:</strong> <code>&lt;section&gt;</code>, <code>&lt;item&gt;</code>, <code>&lt;content&gt;</code></p>
+<p><strong>DO:</strong> Semantic purpose tags: <code>&lt;objective&gt;</code>, <code>&lt;verification&gt;</code>, <code>&lt;action&gt;</code></p>
+<h3>Vague Tasks (Banned)</h3>
+<pre><code class="language-xml">&lt;!-- BAD --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Add authentication&lt;/name&gt;
+  &lt;action&gt;Implement auth&lt;/action&gt;
+  &lt;verify&gt;???&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;!-- GOOD --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create login endpoint with JWT&lt;/name&gt;
+  &lt;files&gt;src/app/api/auth/login/route.ts&lt;/files&gt;
+  &lt;action&gt;POST endpoint accepting {email, password}. Query User by email, compare password with bcrypt. On match, create JWT with jose library, set as httpOnly cookie. Return 200. On mismatch, return 401.&lt;/action&gt;
+  &lt;verify&gt;curl -X POST localhost:3000/api/auth/login returns 200 with Set-Cookie header&lt;/verify&gt;
+  &lt;done&gt;Valid credentials → 200 + cookie. Invalid → 401.&lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<hr>
+<h2>Commit Conventions</h2>
+<h3>Format</h3>
+<pre><code>{type}({phase}-{plan}): {description}
+</code></pre>
+<h3>Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>feat</code></td>
+<td>New feature</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Bug fix</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Tests only (TDD RED)</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>Code cleanup (TDD REFACTOR)</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>Documentation/metadata</td>
+</tr>
+<tr>
+<td><code>chore</code></td>
+<td>Config/dependencies</td>
+</tr>
+</tbody></table>
+<h3>Rules</h3>
+<ul>
+<li>One commit per task during execution</li>
+<li>Stage files individually (never <code>git add .</code>)</li>
+<li>Capture hash for SUMMARY.md</li>
+<li>Include Co-Authored-By line</li>
+</ul>
+<hr>
+<h2>UX Patterns</h2>
+<p><strong>Visual patterns:</strong> <code>get-shit-done/references/ui-brand.md</code></p>
+<p>Orchestrators @-reference ui-brand.md for stage banners, checkpoint boxes, status symbols, and completion displays.</p>
+<h3>&quot;Next Up&quot; Format</h3>
+<pre><code class="language-markdown">───────────────────────────────────────────────────────────────
+
+## ▶ Next Up
+
+**{identifier}: {name}** — {one-line description}
+
+`{copy-paste command}`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+───────────────────────────────────────────────────────────────
+
+**Also available:**
+- Alternative option
+- Another option
+
+───────────────────────────────────────────────────────────────
+</code></pre>
+<h3>Decision Gates</h3>
+<p>Always use AskUserQuestion with concrete options. Never plain text prompts.</p>
+<p>Include escape hatch: &quot;Something else&quot;, &quot;Let me describe&quot;</p>
+<hr>
+<h2>Progressive Disclosure</h2>
+<p>Information flows through layers:</p>
+<ol>
+<li><strong>Command</strong> — High-level objective, delegates to workflow</li>
+<li><strong>Workflow</strong> — Detailed process, references templates/references</li>
+<li><strong>Template</strong> — Concrete structure with placeholders</li>
+<li><strong>Reference</strong> — Deep dive on specific concept</li>
+</ol>
+<p>Each layer answers different questions:</p>
+<ul>
+<li>Command: &quot;Should I use this?&quot;</li>
+<li>Workflow: &quot;What happens?&quot;</li>
+<li>Template: &quot;What does output look like?&quot;</li>
+<li>Reference: &quot;Why this design?&quot;</li>
+</ul>
+<hr>
+<h2>Depth &amp; Compression</h2>
+<p>Depth setting controls compression tolerance:</p>
+<ul>
+<li><strong>Quick:</strong> Compress aggressively (1-3 plans/phase)</li>
+<li><strong>Standard:</strong> Balanced (3-5 plans/phase)</li>
+<li><strong>Comprehensive:</strong> Resist compression (5-10 plans/phase)</li>
+</ul>
+<p><strong>Key principle:</strong> Depth controls compression, not inflation. Never pad to hit a target number. Derive plans from actual work.</p>
+<hr>
+<h2>Quick Mode Patterns</h2>
+<p>Quick mode provides GSD guarantees for ad-hoc tasks without full planning overhead.</p>
+<h3>When to Use Quick Mode</h3>
+<p><strong>Quick mode:</strong></p>
+<ul>
+<li>Task is small and self-contained</li>
+<li>You know exactly what to do (no research needed)</li>
+<li>Task doesn&#39;t warrant full phase planning</li>
+<li>Mid-project fixes or small additions</li>
+</ul>
+<p><strong>Full planning:</strong></p>
+<ul>
+<li>Task involves multiple subsystems</li>
+<li>You need to investigate approach first</li>
+<li>Task is part of a larger phase</li>
+<li>Task might have hidden complexity</li>
+</ul>
+<h3>Quick Task Structure</h3>
+<pre><code>.planning/quick/
+├── 001-add-dark-mode/
+│   ├── PLAN.md
+│   └── SUMMARY.md
+├── 002-fix-login-bug/
+│   ├── PLAN.md
+│   └── SUMMARY.md
+</code></pre>
+<p>Numbering: 3-digit sequential (001, 002, 003...)
+Slug: kebab-case from description, max 40 chars</p>
+<h3>Quick Mode Tracking</h3>
+<p>Quick tasks update STATE.md, NOT ROADMAP.md:</p>
+<pre><code class="language-markdown">### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 001 | Add dark mode toggle | 2026-01-19 | abc123f | [001-add-dark-mode](./quick/001-add-dark-mode/) |
+</code></pre>
+<h3>Quick Mode Orchestration</h3>
+<p>Unlike full phases, quick mode orchestration is inline in the command file — no separate workflow. The simplified flow:</p>
+<ol>
+<li>Validate ROADMAP.md exists (project active)</li>
+<li>Get task description</li>
+<li>Spawn planner (quick constraints)</li>
+<li>Spawn executor</li>
+<li>Update STATE.md</li>
+<li>Commit artifacts</li>
+</ol>
+<h3>Commit Convention</h3>
+<pre><code>docs(quick-NNN): description
+
+Quick task completed.
+
+Co-Authored-By: Claude Opus 4.5 &lt;noreply@anthropic.com&gt;
+</code></pre>
+<hr>
+<h2>TDD Plans</h2>
+<h3>Detection Heuristic</h3>
+<blockquote>
+<p>Can you write <code>expect(fn(input)).toBe(output)</code> before writing <code>fn</code>?</p>
+</blockquote>
+<p>Yes → TDD plan (one feature per plan)
+No → Standard plan</p>
+<h3>TDD Plan Structure</h3>
+<pre><code class="language-yaml">---
+type: tdd
+---
+</code></pre>
+<pre><code class="language-xml">&lt;objective&gt;
+Implement [feature] using TDD (RED → GREEN → REFACTOR)
+&lt;/objective&gt;
+
+&lt;behavior&gt;
+Expected behavior specification
+&lt;/behavior&gt;
+
+&lt;implementation&gt;
+How to make tests pass
+&lt;/implementation&gt;
+</code></pre>
+<h3>TDD Commits</h3>
+<ul>
+<li>RED: <code>test({phase}-{plan}): add failing test for [feature]</code></li>
+<li>GREEN: <code>feat({phase}-{plan}): implement [feature]</code></li>
+<li>REFACTOR: <code>refactor({phase}-{plan}): clean up [feature]</code></li>
+</ul>
+<hr>
+<h2>Summary: Core Meta-Patterns</h2>
+<ol>
+<li><strong>XML for semantic structure, Markdown for content</strong></li>
+<li><strong>@-references are lazy loading signals</strong></li>
+<li><strong>Commands delegate to workflows</strong></li>
+<li><strong>Progressive disclosure hierarchy</strong></li>
+<li><strong>Imperative, brief, technical</strong> — no filler, no sycophancy</li>
+<li><strong>Solo developer + Claude</strong> — no enterprise patterns</li>
+<li><strong>Context size as quality constraint</strong> — split aggressively</li>
+<li><strong>Temporal language banned</strong> — current state only</li>
+<li><strong>Plans ARE prompts</strong> — executable, not documents</li>
+<li><strong>Atomic commits</strong> — Git history as context source</li>
+<li><strong>AskUserQuestion for all exploration</strong> — always options</li>
+<li><strong>Checkpoints post-automation</strong> — automate first, verify after</li>
+<li><strong>Deviation rules are automatic</strong> — no permission for bugs/critical</li>
+<li><strong>Depth controls compression</strong> — derive from actual work</li>
+<li><strong>TDD gets dedicated plans</strong> — cycle too heavy to embed</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

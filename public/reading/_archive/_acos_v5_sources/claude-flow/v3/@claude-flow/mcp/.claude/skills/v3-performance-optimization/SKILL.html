@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Performance Optimization</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/skills/v3-performance-optimization/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Performance Optimization</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fskills%2Fv3-performance-optimization">v3-performance-optimization</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: &quot;V3 Performance Optimization&quot;
+description: &quot;Achieve aggressive v3 performance targets: 2.49x-7.47x Flash Attention speedup, 150x-12,500x search improvements, 50-75% memory reduction. Comprehensive benchmarking and optimization suite.&quot;</h2>
+<h1>V3 Performance Optimization</h1>
+<h2>What This Skill Does</h2>
+<p>Validates and optimizes claude-flow v3 to achieve industry-leading performance through Flash Attention, AgentDB HNSW indexing, and comprehensive system optimization with continuous benchmarking.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Initialize performance optimization
+Task(&quot;Performance baseline&quot;, &quot;Establish v2 performance benchmarks&quot;, &quot;v3-performance-engineer&quot;)
+
+# Target validation (parallel)
+Task(&quot;Flash Attention&quot;, &quot;Validate 2.49x-7.47x speedup target&quot;, &quot;v3-performance-engineer&quot;)
+Task(&quot;Search optimization&quot;, &quot;Validate 150x-12,500x search improvement&quot;, &quot;v3-performance-engineer&quot;)
+Task(&quot;Memory optimization&quot;, &quot;Achieve 50-75% memory reduction&quot;, &quot;v3-performance-engineer&quot;)
+</code></pre>
+<h2>Performance Target Matrix</h2>
+<h3>Flash Attention Revolution</h3>
+<pre><code>┌─────────────────────────────────────────┐
+│           FLASH ATTENTION               │
+├─────────────────────────────────────────┤
+│  Baseline: Standard attention           │
+│  Target:   2.49x - 7.47x speedup       │
+│  Memory:   50-75% reduction             │
+│  Latency:  Sub-millisecond processing   │
+└─────────────────────────────────────────┘
+</code></pre>
+<h3>Search Performance Revolution</h3>
+<pre><code>┌─────────────────────────────────────────┐
+│            SEARCH OPTIMIZATION         │
+├─────────────────────────────────────────┤
+│  Current:  O(n) linear search           │
+│  Target:   150x - 12,500x improvement   │
+│  Method:   HNSW indexing                │
+│  Latency:  &lt;100ms for 1M+ entries       │
+└─────────────────────────────────────────┘
+</code></pre>
+<h2>Comprehensive Benchmark Suite</h2>
+<h3>Startup Performance</h3>
+<pre><code class="language-typescript">class StartupBenchmarks {
+  async benchmarkColdStart(): Promise&lt;BenchmarkResult&gt; {
+    const startTime = performance.now();
+
+    await this.initializeCLI();
+    await this.initializeMCPServer();
+    await this.spawnTestAgent();
+
+    const totalTime = performance.now() - startTime;
+
+    return {
+      total: totalTime,
+      target: 500, // ms
+      achieved: totalTime &lt; 500
+    };
+  }
+}
+</code></pre>
+<h3>Memory Operation Benchmarks</h3>
+<pre><code class="language-typescript">class MemoryBenchmarks {
+  async benchmarkVectorSearch(): Promise&lt;SearchBenchmark&gt; {
+    const queries = this.generateTestQueries(10000);
+
+    // Baseline: Current linear search
+    const baselineTime = await this.timeOperation(() =&gt;
+      this.currentMemory.searchAll(queries)
+    );
+
+    // Target: HNSW search
+    const hnswTime = await this.timeOperation(() =&gt;
+      this.agentDBMemory.hnswSearchAll(queries)
+    );
+
+    const improvement = baselineTime / hnswTime;
+
+    return {
+      baseline: baselineTime,
+      hnsw: hnswTime,
+      improvement,
+      targetRange: [150, 12500],
+      achieved: improvement &gt;= 150
+    };
+  }
+
+  async benchmarkMemoryUsage(): Promise&lt;MemoryBenchmark&gt; {
+    const baseline = process.memoryUsage().heapUsed;
+
+    await this.loadTestDataset();
+    const withData = process.memoryUsage().heapUsed;
+
+    await this.enableOptimization();
+    const optimized = process.memoryUsage().heapUsed;
+
+    const reduction = (withData - optimized) / withData;
+
+    return {
+      baseline,
+      withData,
+      optimized,
+      reductionPercent: reduction * 100,
+      targetReduction: [50, 75],
+      achieved: reduction &gt;= 0.5
+    };
+  }
+}
+</code></pre>
+<h3>Swarm Coordination Benchmarks</h3>
+<pre><code class="language-typescript">class SwarmBenchmarks {
+  async benchmark15AgentCoordination(): Promise&lt;SwarmBenchmark&gt; {
+    const agents = await this.spawn15Agents();
+
+    // Coordination latency
+    const coordinationTime = await this.timeOperation(() =&gt;
+      this.coordinateSwarmTask(agents)
+    );
+
+    // Task decomposition
+    const decompositionTime = await this.timeOperation(() =&gt;
+      this.decomposeComplexTask()
+    );
+
+    // Consensus achievement
+    const consensusTime = await this.timeOperation(() =&gt;
+      this.achieveSwarmConsensus(agents)
+    );
+
+    return {
+      coordination: coordinationTime,
+      decomposition: decompositionTime,
+      consensus: consensusTime,
+      agentCount: 15,
+      efficiency: this.calculateEfficiency(agents)
+    };
+  }
+}
+</code></pre>
+<h3>Flash Attention Benchmarks</h3>
+<pre><code class="language-typescript">class AttentionBenchmarks {
+  async benchmarkFlashAttention(): Promise&lt;AttentionBenchmark&gt; {
+    const sequences = this.generateSequences([512, 1024, 2048, 4096]);
+    const results = [];
+
+    for (const sequence of sequences) {
+      // Baseline attention
+      const baselineResult = await this.benchmarkStandardAttention(sequence);
+
+      // Flash attention
+      const flashResult = await this.benchmarkFlashAttention(sequence);
+
+      results.push({
+        sequenceLength: sequence.length,
+        speedup: baselineResult.time / flashResult.time,
+        memoryReduction: (baselineResult.memory - flashResult.memory) / baselineResult.memory,
+        targetSpeedup: [2.49, 7.47],
+        achieved: this.checkTarget(flashResult, [2.49, 7.47])
+      });
+    }
+
+    return {
+      results,
+      averageSpeedup: this.calculateAverage(results, &#39;speedup&#39;),
+      averageMemoryReduction: this.calculateAverage(results, &#39;memoryReduction&#39;)
+    };
+  }
+}
+</code></pre>
+<h3>SONA Learning Benchmarks</h3>
+<pre><code class="language-typescript">class SONABenchmarks {
+  async benchmarkAdaptationTime(): Promise&lt;SONABenchmark&gt; {
+    const scenarios = [
+      &#39;pattern_recognition&#39;,
+      &#39;task_optimization&#39;,
+      &#39;error_correction&#39;,
+      &#39;performance_tuning&#39;
+    ];
+
+    const results = [];
+
+    for (const scenario of scenarios) {
+      const startTime = performance.hrtime.bigint();
+      await this.sona.adapt(scenario);
+      const endTime = performance.hrtime.bigint();
+
+      const adaptationTimeMs = Number(endTime - startTime) / 1000000;
+
+      results.push({
+        scenario,
+        adaptationTime: adaptationTimeMs,
+        target: 0.05, // ms
+        achieved: adaptationTimeMs &lt;= 0.05
+      });
+    }
+
+    return {
+      scenarios: results,
+      averageTime: results.reduce((sum, r) =&gt; sum + r.adaptationTime, 0) / results.length,
+      successRate: results.filter(r =&gt; r.achieved).length / results.length
+    };
+  }
+}
+</code></pre>
+<h2>Performance Monitoring Dashboard</h2>
+<h3>Real-time Metrics</h3>
+<pre><code class="language-typescript">class PerformanceMonitor {
+  async collectMetrics(): Promise&lt;PerformanceSnapshot&gt; {
+    return {
+      timestamp: Date.now(),
+      flashAttention: await this.measureFlashAttention(),
+      searchPerformance: await this.measureSearchSpeed(),
+      memoryUsage: await this.measureMemoryEfficiency(),
+      startupTime: await this.measureStartupLatency(),
+      sonaAdaptation: await this.measureSONASpeed(),
+      swarmCoordination: await this.measureSwarmEfficiency()
+    };
+  }
+
+  async generateReport(): Promise&lt;PerformanceReport&gt; {
+    const snapshot = await this.collectMetrics();
+
+    return {
+      summary: this.generateSummary(snapshot),
+      achievements: this.checkTargetAchievements(snapshot),
+      trends: this.analyzeTrends(),
+      recommendations: this.generateOptimizations(),
+      regressions: await this.detectRegressions()
+    };
+  }
+}
+</code></pre>
+<h3>Continuous Regression Detection</h3>
+<pre><code class="language-typescript">class PerformanceRegression {
+  async detectRegressions(): Promise&lt;RegressionReport&gt; {
+    const current = await this.runFullBenchmark();
+    const baseline = await this.getBaseline();
+
+    const regressions = [];
+
+    for (const [metric, currentValue] of Object.entries(current)) {
+      const baselineValue = baseline[metric];
+      const change = (currentValue - baselineValue) / baselineValue;
+
+      if (change &lt; -0.05) { // 5% regression threshold
+        regressions.push({
+          metric,
+          baseline: baselineValue,
+          current: currentValue,
+          regressionPercent: change * 100,
+          severity: this.classifyRegression(change)
+        });
+      }
+    }
+
+    return {
+      hasRegressions: regressions.length &gt; 0,
+      regressions,
+      recommendations: this.generateRegressionFixes(regressions)
+    };
+  }
+}
+</code></pre>
+<h2>Optimization Strategies</h2>
+<h3>Memory Optimization</h3>
+<pre><code class="language-typescript">class MemoryOptimization {
+  async optimizeMemoryUsage(): Promise&lt;OptimizationResult&gt; {
+    // Implement memory pooling
+    await this.setupMemoryPools();
+
+    // Enable garbage collection tuning
+    await this.optimizeGarbageCollection();
+
+    // Implement object reuse patterns
+    await this.setupObjectPools();
+
+    // Enable memory compression
+    await this.enableMemoryCompression();
+
+    return this.validateMemoryReduction();
+  }
+}
+</code></pre>
+<h3>CPU Optimization</h3>
+<pre><code class="language-typescript">class CPUOptimization {
+  async optimizeCPUUsage(): Promise&lt;OptimizationResult&gt; {
+    // Implement worker thread pools
+    await this.setupWorkerThreads();
+
+    // Enable CPU-specific optimizations
+    await this.enableSIMDInstructions();
+
+    // Implement task batching
+    await this.optimizeTaskBatching();
+
+    return this.validateCPUImprovement();
+  }
+}
+</code></pre>
+<h2>Target Validation Framework</h2>
+<h3>Performance Gates</h3>
+<pre><code class="language-typescript">class PerformanceGates {
+  async validateAllTargets(): Promise&lt;ValidationReport&gt; {
+    const results = await Promise.all([
+      this.validateFlashAttention(),     // 2.49x-7.47x
+      this.validateSearchPerformance(),  // 150x-12,500x
+      this.validateMemoryReduction(),    // 50-75%
+      this.validateStartupTime(),        // &lt;500ms
+      this.validateSONAAdaptation()      // &lt;0.05ms
+    ]);
+
+    return {
+      allTargetsAchieved: results.every(r =&gt; r.achieved),
+      results,
+      overallScore: this.calculateOverallScore(results),
+      recommendations: this.generateRecommendations(results)
+    };
+  }
+}
+</code></pre>
+<h2>Success Metrics</h2>
+<h3>Primary Targets</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Flash Attention</strong>: 2.49x-7.47x speedup validated</li>
+<li><input disabled="" type="checkbox"> <strong>Search Performance</strong>: 150x-12,500x improvement confirmed</li>
+<li><input disabled="" type="checkbox"> <strong>Memory Reduction</strong>: 50-75% usage optimization achieved</li>
+<li><input disabled="" type="checkbox"> <strong>Startup Time</strong>: &lt;500ms cold start consistently</li>
+<li><input disabled="" type="checkbox"> <strong>SONA Adaptation</strong>: &lt;0.05ms learning response time</li>
+<li><input disabled="" type="checkbox"> <strong>15-Agent Coordination</strong>: Efficient parallel execution</li>
+</ul>
+<h3>Continuous Monitoring</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Performance Dashboard</strong>: Real-time metrics collection</li>
+<li><input disabled="" type="checkbox"> <strong>Regression Testing</strong>: Automated performance validation</li>
+<li><input disabled="" type="checkbox"> <strong>Trend Analysis</strong>: Performance evolution tracking</li>
+<li><input disabled="" type="checkbox"> <strong>Alert System</strong>: Immediate regression notification</li>
+</ul>
+<h2>Related V3 Skills</h2>
+<ul>
+<li><code>v3-integration-deep</code> - Performance integration with agentic-flow</li>
+<li><code>v3-memory-unification</code> - Memory performance optimization</li>
+<li><code>v3-swarm-coordination</code> - Swarm performance coordination</li>
+<li><code>v3-security-overhaul</code> - Secure performance patterns</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Complete Performance Validation</h3>
+<pre><code class="language-bash"># Full performance suite
+npm run benchmark:v3
+
+# Specific target validation
+npm run benchmark:flash-attention
+npm run benchmark:agentdb-search
+npm run benchmark:memory-optimization
+
+# Continuous monitoring
+npm run monitor:performance
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

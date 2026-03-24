@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>clean gone</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/commit-commands/commands/clean_gone.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">clean gone</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../../../../../../../index.html#agentic-creator-os%2FC%3A">C:</a> / <a href="../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers">Users</a> / <a href="../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fcommit-commands">commit-commands</a> / <a href="index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fcommit-commands%2Fcommands">commands</a> / <span>clean_gone.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Cleans up all git branches marked as [gone] (branches that have been deleted on the remote but still exist locally), including removing associated worktrees.</h2>
+<h2>Your Task</h2>
+<p>You need to execute the following bash commands to clean up stale local branches that have been deleted from the remote repository.</p>
+<h2>Commands to Execute</h2>
+<ol>
+<li><p><strong>First, list branches to identify any with [gone] status</strong>
+Execute this command:</p>
+<pre><code class="language-bash">git branch -v
+</code></pre>
+<p>Note: Branches with a &#39;+&#39; prefix have associated worktrees and must have their worktrees removed before deletion.</p>
+</li>
+<li><p><strong>Next, identify worktrees that need to be removed for [gone] branches</strong>
+Execute this command:</p>
+<pre><code class="language-bash">git worktree list
+</code></pre>
+</li>
+<li><p><strong>Finally, remove worktrees and delete [gone] branches (handles both regular and worktree branches)</strong>
+Execute this command:</p>
+<pre><code class="language-bash"># Process all [gone] branches, removing &#39;+&#39; prefix if present
+git branch -v | grep &#39;\[gone\]&#39; | sed &#39;s/^[+* ]//&#39; | awk &#39;{print $1}&#39; | while read branch; do
+  echo &quot;Processing branch: $branch&quot;
+  # Find and remove worktree if it exists
+  worktree=$(git worktree list | grep &quot;\\[$branch\\]&quot; | awk &#39;{print $1}&#39;)
+  if [ ! -z &quot;$worktree&quot; ] &amp;&amp; [ &quot;$worktree&quot; != &quot;$(git rev-parse --show-toplevel)&quot; ]; then
+    echo &quot;  Removing worktree: $worktree&quot;
+    git worktree remove --force &quot;$worktree&quot;
+  fi
+  # Delete the branch
+  echo &quot;  Deleting branch: $branch&quot;
+  git branch -D &quot;$branch&quot;
+done
+</code></pre>
+</li>
+</ol>
+<h2>Expected Behavior</h2>
+<p>After executing these commands, you will:</p>
+<ul>
+<li>See a list of all local branches with their status</li>
+<li>Identify and remove any worktrees associated with [gone] branches</li>
+<li>Delete all branches marked as [gone]</li>
+<li>Provide feedback on which worktrees and branches were removed</li>
+</ul>
+<p>If no branches are marked as [gone], report that no cleanup was needed.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

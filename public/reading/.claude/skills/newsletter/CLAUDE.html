@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Newsletter Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/newsletter/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">FrankX Newsletter Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fnewsletter">newsletter</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Newsletter Skill</h1>
+<h2>Overview</h2>
+<p>Agentic newsletter management system powered by Resend Audiences. This skill enables:</p>
+<ul>
+<li>Subscriber management (view, export, analyze)</li>
+<li>Newsletter content curation and generation</li>
+<li>Broadcast sending via API</li>
+<li>Analytics and reporting</li>
+</ul>
+<h2>Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                  NEWSLETTER SYSTEM                           │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  Storage: Resend Audiences                                  │
+│  ├── Contacts stored globally in Resend                    │
+│  ├── Segments for organization                              │
+│  └── Broadcasts for sending                                 │
+│                                                             │
+│  API Endpoints:                                             │
+│  ├── POST /api/newsletter/subscribe   → Add contact        │
+│  ├── POST /api/newsletter/broadcast   → Send newsletter    │
+│  ├── GET  /api/newsletter/stats       → Get statistics     │
+│  └── Dashboard: /dashboard/newsletter                       │
+│                                                             │
+│  Key Files:                                                 │
+│  ├── lib/newsletter.ts        → Resend API wrapper         │
+│  ├── email-templates/*.tsx    → Visual email templates     │
+│  └── app/newsletter/page.tsx  → Public signup page         │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Newsletter Segments</h2>
+<table>
+<thead>
+<tr>
+<th>Segment</th>
+<th>Audience</th>
+<th>Content Focus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>creation-chronicles</code></td>
+<td>Blog readers</td>
+<td>Weekly blog roundup, AI insights</td>
+</tr>
+<tr>
+<td><code>golden-age-readers</code></td>
+<td>Book waitlist</td>
+<td>Book updates, exclusive chapters</td>
+</tr>
+<tr>
+<td><code>creator-intelligence</code></td>
+<td>AI creators</td>
+<td>Tools, tutorials, workflows</td>
+</tr>
+<tr>
+<td><code>inner-circle</code></td>
+<td>Premium/VIP</td>
+<td>Early access, exclusive content</td>
+</tr>
+</tbody></table>
+<h2>Commands</h2>
+<h3>1. Generate Newsletter Draft</h3>
+<p>When asked to create a newsletter, follow this process:</p>
+<pre><code class="language-markdown">## Newsletter: [Title]
+
+**Subject Line**: [Compelling subject, &lt;60 chars]
+**Preheader**: [Preview text, &lt;100 chars]
+
+### Opening
+[Personal greeting, what&#39;s been happening]
+
+### Main Content
+[2-3 key sections with value]
+
+### Featured Content
+[Link to blog post, resource, or tool]
+
+### Call to Action
+[What should readers do?]
+
+### Sign-off
+[Personal close]
+</code></pre>
+<h3>2. Curate Content</h3>
+<p>To curate newsletter content from recent blog posts:</p>
+<ol>
+<li>Read recent posts from <code>content/blog/</code></li>
+<li>Summarize key insights</li>
+<li>Extract actionable takeaways</li>
+<li>Format for newsletter</li>
+</ol>
+<h3>3. Send Newsletter</h3>
+<p>To send a newsletter via API:</p>
+<pre><code class="language-bash">curl -X POST https://frankx.ai/api/newsletter/broadcast \
+  -H &quot;Content-Type: application/json&quot; \
+  -H &quot;x-api-key: $NEWSLETTER_BROADCAST_API_KEY&quot; \
+  -d &#39;{
+    &quot;subject&quot;: &quot;Subject Line&quot;,
+    &quot;title&quot;: &quot;Newsletter Title&quot;,
+    &quot;preheader&quot;: &quot;Preview text&quot;,
+    &quot;sections&quot;: [
+      {
+        &quot;heading&quot;: &quot;Section Title&quot;,
+        &quot;content&quot;: &quot;Section content with &lt;br&gt; for line breaks&quot;,
+        &quot;cta&quot;: { &quot;text&quot;: &quot;Read More&quot;, &quot;url&quot;: &quot;https://frankx.ai/blog/post&quot; }
+      }
+    ]
+  }&#39;
+</code></pre>
+<h3>4. View Stats</h3>
+<pre><code class="language-bash">curl https://frankx.ai/api/newsletter/stats \
+  -H &quot;x-api-key: $NEWSLETTER_BROADCAST_API_KEY&quot;
+</code></pre>
+<h2>Agentic Workflow</h2>
+<h3>Weekly Newsletter Generation</h3>
+<ol>
+<li><p><strong>Content Curation</strong> (Monday)</p>
+<ul>
+<li>Scan <code>content/blog/</code> for posts from last 7 days</li>
+<li>Identify top 3 most relevant articles</li>
+<li>Extract key insights and quotes</li>
+</ul>
+</li>
+<li><p><strong>Draft Creation</strong> (Tuesday)</p>
+<ul>
+<li>Generate newsletter draft using template</li>
+<li>Include personal opening</li>
+<li>Add curated content summaries</li>
+<li>Create compelling CTAs</li>
+</ul>
+</li>
+<li><p><strong>Review &amp; Polish</strong> (Wednesday)</p>
+<ul>
+<li>Review draft for FrankX voice</li>
+<li>Check all links work</li>
+<li>Verify email renders correctly</li>
+</ul>
+</li>
+<li><p><strong>Send</strong> (Thursday)</p>
+<ul>
+<li>Send via broadcast API</li>
+<li>Monitor delivery stats</li>
+</ul>
+</li>
+</ol>
+<h3>Content Themes by Day</h3>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>Theme</th>
+<th>Content Type</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mon</td>
+<td>AI Tools</td>
+<td>New tools, tutorials</td>
+</tr>
+<tr>
+<td>Tue</td>
+<td>Creator Journey</td>
+<td>Personal stories</td>
+</tr>
+<tr>
+<td>Wed</td>
+<td>Technical</td>
+<td>Code, architectures</td>
+</tr>
+<tr>
+<td>Thu</td>
+<td>Music</td>
+<td>Suno, AI music</td>
+</tr>
+<tr>
+<td>Fri</td>
+<td>Weekly Roundup</td>
+<td>Curated summary</td>
+</tr>
+</tbody></table>
+<h2>Email Template Structure</h2>
+<pre><code class="language-typescript">generateNewsletterHTML({
+  title: &#39;Newsletter Title&#39;,
+  preheader: &#39;Preview text shown in inbox&#39;,
+  greeting: &#39;Hey there!&#39;,
+  sections: [
+    {
+      heading: &#39;Section 1&#39;,
+      content: &#39;HTML content here&#39;,
+      cta: { text: &#39;Learn More&#39;, url: &#39;https://...&#39; }
+    },
+    {
+      heading: &#39;Section 2&#39;,
+      content: &#39;More content&#39;,
+    }
+  ],
+  footer: &#39;Optional custom footer&#39;
+})
+</code></pre>
+<h2>Environment Variables</h2>
+<pre><code class="language-bash"># Resend (required)
+RESEND_API_KEY=re_xxxxx
+RESEND_AUDIENCE_ID=aud_xxxxx
+RESEND_FROM_EMAIL=frank@frankx.ai
+
+# Broadcast protection
+NEWSLETTER_BROADCAST_API_KEY=your_secret_key
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><p><strong>Subject Lines</strong></p>
+<ul>
+<li>Keep under 60 characters</li>
+<li>Use curiosity or value proposition</li>
+<li>Avoid spam triggers (FREE, URGENT, etc.)</li>
+</ul>
+</li>
+<li><p><strong>Content</strong></p>
+<ul>
+<li>Lead with value, not asks</li>
+<li>One main CTA per email</li>
+<li>Personal, conversational tone</li>
+<li>Include specific examples</li>
+</ul>
+</li>
+<li><p><strong>Frequency</strong></p>
+<ul>
+<li>Weekly is optimal for engagement</li>
+<li>Consistent day/time builds habit</li>
+<li>Quality over quantity</li>
+</ul>
+</li>
+<li><p><strong>Voice</strong></p>
+<ul>
+<li>First person, conversational</li>
+<li>Share genuine experiences</li>
+<li>Admit when learning</li>
+<li>No corporate speak</li>
+</ul>
+</li>
+</ol>
+<h2>Integration Points</h2>
+<ul>
+<li><strong>Blog</strong>: Auto-include recent posts</li>
+<li><strong>Products</strong>: Announce launches to inner-circle first</li>
+<li><strong>Music</strong>: Share new tracks with creator-intelligence</li>
+<li><strong>Book</strong>: Send chapters to golden-age-readers</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

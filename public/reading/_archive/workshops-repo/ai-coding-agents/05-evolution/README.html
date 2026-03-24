@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Module 5: Evolution Path</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/ai-coding-agents/05-evolution/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Module 5: Evolution Path</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="../index.html#_archive%2Fworkshops-repo%2Fai-coding-agents">ai-coding-agents</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fai-coding-agents%2F05-evolution">05-evolution</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Module 5: Evolution Path</h1>
+<p><strong>Time</strong>: 3 hours | <strong>Difficulty</strong>: Intermediate to Advanced</p>
+<hr>
+<h2>Learning Objectives</h2>
+<p>By completing this module, you will:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Understand the evolution from basic prompts to full orchestration</li>
+<li><input disabled="" type="checkbox"> Create skill.md files for domain expertise</li>
+<li><input disabled="" type="checkbox"> Build agent.md configurations for specialized behaviors</li>
+<li><input disabled="" type="checkbox"> Master CLAUDE.md project instructions</li>
+<li><input disabled="" type="checkbox"> Implement plugins and MCP servers for extensibility</li>
+</ul>
+<hr>
+<h2>The Evolution Framework</h2>
+<p>Your journey from AI assistant user to AI system architect:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    THE EVOLUTION STACK                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  LEVEL 5: ORCHESTRATION                                         │
+│  ├── Multi-agent systems                                        │
+│  ├── Agent handoffs and routing                                 │
+│  ├── Workflow automation                                        │
+│  └── Production deployments                                     │
+│                                                                  │
+│  LEVEL 4: PLUGINS &amp; MCP                                         │
+│  ├── Custom MCP servers                                         │
+│  ├── Plugin development                                         │
+│  ├── External integrations                                      │
+│  └── Tool ecosystems                                            │
+│                                                                  │
+│  LEVEL 3: agent.md                                              │
+│  ├── Agent personas                                             │
+│  ├── Behavioral rules                                           │
+│  ├── Specialized knowledge                                      │
+│  └── Response patterns                                          │
+│                                                                  │
+│  LEVEL 2: skill.md                                              │
+│  ├── Domain expertise                                           │
+│  ├── Best practices                                             │
+│  ├── Code patterns                                              │
+│  └── Methodology                                                │
+│                                                                  │
+│  LEVEL 1: CLAUDE.md                                             │
+│  ├── Project context                                            │
+│  ├── Codebase instructions                                      │
+│  ├── Team conventions                                           │
+│  └── Current focus                                              │
+│                                                                  │
+│  LEVEL 0: BASIC PROMPTS                                         │
+│  └── Simple questions and commands                              │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>Level 0: Basic Prompts</h2>
+<p>Where everyone starts:</p>
+<pre><code class="language-bash">&gt; &quot;Write a function to validate email addresses&quot;
+&gt; &quot;Fix the bug on line 45&quot;
+&gt; &quot;Explain what this code does&quot;
+</code></pre>
+<p><strong>Limitations</strong>:</p>
+<ul>
+<li>No persistent context</li>
+<li>Agent doesn&#39;t know your patterns</li>
+<li>Same questions repeated</li>
+<li>No accumulated knowledge</li>
+</ul>
+<hr>
+<h2>Level 1: CLAUDE.md - Project Context</h2>
+<p>Your first evolution: teaching the agent about your project.</p>
+<h3>Structure</h3>
+<pre><code class="language-markdown"># Project Name
+
+## Overview
+One-paragraph description of what this project does.
+
+## Tech Stack
+- Language: TypeScript 5.x
+- Framework: Next.js 15 (App Router)
+- Database: PostgreSQL with Drizzle ORM
+- Styling: Tailwind CSS
+- Testing: Vitest
+
+## Project Structure
+</code></pre>
+<p>src/
+├── app/           # Next.js pages
+├── components/    # React components
+├── lib/           # Utility functions
+├── services/      # Business logic
+└── types/         # TypeScript types</p>
+<pre><code>
+## Conventions
+- Use functional components with hooks
+- Prefer named exports over default exports
+- Tests live alongside source files (*.test.ts)
+- Use absolute imports (@/...)
+
+## Current Focus
+We&#39;re implementing user authentication with JWT.
+
+## Important Notes
+- Never commit .env files
+- Run `pnpm lint` before committing
+- Database migrations in /drizzle folder
+</code></pre>
+<h3>Placement</h3>
+<pre><code>your-project/
+├── CLAUDE.md          # Root level for project context
+├── src/
+│   └── CLAUDE.md      # Optional: per-directory context
+├── package.json
+└── ...
+</code></pre>
+<h3>Impact</h3>
+<p>With CLAUDE.md, the agent:</p>
+<ul>
+<li>Knows your tech stack</li>
+<li>Follows your conventions</li>
+<li>Understands project structure</li>
+<li>Stays focused on current work</li>
+</ul>
+<hr>
+<h2>Level 2: skill.md - Domain Expertise</h2>
+<p>Package your knowledge into reusable skills.</p>
+<h3>What is a Skill?</h3>
+<p>A skill is documented expertise the agent can invoke:</p>
+<pre><code class="language-markdown"># TypeScript Best Practices Skill
+
+## Purpose
+Guide for writing clean, type-safe TypeScript code.
+
+## Core Principles
+
+### 1. Strict Mode Always
+```json
+{
+  &quot;compilerOptions&quot;: {
+    &quot;strict&quot;: true,
+    &quot;noImplicitAny&quot;: true,
+    &quot;strictNullChecks&quot;: true
+  }
+}
+</code></pre>
+<h3>2. Prefer Type Inference</h3>
+<pre><code class="language-typescript">// Good - inferred
+const user = { name: &quot;Frank&quot;, age: 30 };
+
+// Unnecessary - explicit when obvious
+const user: { name: string; age: number } = { name: &quot;Frank&quot;, age: 30 };
+</code></pre>
+<h3>3. Use Type Guards</h3>
+<pre><code class="language-typescript">function isUser(value: unknown): value is User {
+  return typeof value === &#39;object&#39;
+    &amp;&amp; value !== null
+    &amp;&amp; &#39;name&#39; in value;
+}
+</code></pre>
+<h2>Common Patterns</h2>
+<p>[Pattern examples...]</p>
+<h2>Anti-Patterns to Avoid</h2>
+<p>[What not to do...]</p>
+<h2>Activation</h2>
+<p>Use this skill when:</p>
+<ul>
+<li>Writing new TypeScript code</li>
+<li>Reviewing TypeScript PRs</li>
+<li>Refactoring JavaScript to TypeScript</li>
+</ul>
+<pre><code>
+### Creating Skills
+
+1. **Identify repeated expertise** - What do you explain often?
+2. **Document best practices** - What works?
+3. **Include examples** - Show, don&#39;t just tell
+4. **Define activation** - When should it apply?
+
+### Skill Organization
+</code></pre>
+<p>.claude-skills/
+├── technical/
+│   ├── typescript-best-practices/
+│   │   └── CLAUDE.md
+│   ├── react-patterns/
+│   │   └── CLAUDE.md
+│   └── testing-strategies/
+│       └── CLAUDE.md
+├── business/
+│   └── api-design/
+│       └── CLAUDE.md
+└── README.md</p>
+<pre><code>
+### Invoking Skills
+
+```bash
+# In Claude Code
+/skill typescript-best-practices
+
+# The agent now applies this knowledge
+&gt; &quot;Review this TypeScript code&quot;
+# Agent applies best practices from skill
+</code></pre>
+<hr>
+<h2>Level 3: agent.md - Agent Personas</h2>
+<p>Create specialized agents with distinct behaviors.</p>
+<h3>Agent Configuration Structure</h3>
+<pre><code class="language-markdown"># Code Reviewer Agent
+
+## Identity
+You are a meticulous senior code reviewer focused on code quality,
+security, and maintainability.
+
+## Personality
+- Thorough but not pedantic
+- Explains the &quot;why&quot; behind suggestions
+- Prioritizes critical issues over style nits
+- Encouraging when code is good
+
+## Behaviors
+
+### On Code Review Request
+1. First, understand the full context
+2. Check for security vulnerabilities
+3. Review logic and edge cases
+4. Assess maintainability
+5. Note positive aspects too
+
+### Response Format
+```markdown
+## Review Summary
+[Overall assessment]
+
+## Critical Issues
+[Must fix before merge]
+
+## Suggestions
+[Nice to have improvements]
+
+## Positive Notes
+[What&#39;s done well]
+</code></pre>
+<h2>Tools to Use</h2>
+<ul>
+<li>Read: Always read full file context</li>
+<li>Grep: Search for similar patterns</li>
+<li>Web: Check for known vulnerabilities</li>
+</ul>
+<h2>Tools to Avoid</h2>
+<ul>
+<li>Write: Don&#39;t auto-fix, suggest instead</li>
+<li>Bash: No command execution during review</li>
+</ul>
+<h2>Example Interactions</h2>
+<p>User: &quot;Review this authentication code&quot;
+Agent: [Reads code, provides structured review]</p>
+<pre><code>
+### Multiple Agents
+</code></pre>
+<p>.claude/agents/
+├── code-reviewer.md
+├── architect.md
+├── documentation-writer.md
+└── test-generator.md</p>
+<pre><code>
+### Switching Agents
+
+```bash
+# Activate specific agent
+/agent code-reviewer
+
+# Now reviews use this persona
+&gt; &quot;Review the latest PR&quot;
+</code></pre>
+<hr>
+<h2>Level 4: Plugins &amp; MCP Servers</h2>
+<p>Extend capabilities with custom integrations.</p>
+<h3>Plugin System</h3>
+<pre><code class="language-yaml"># .claude/plugins/git-enhanced.yaml
+name: git-enhanced
+version: 1.0.0
+description: Enhanced git operations
+
+commands:
+  - name: smart-commit
+    description: Generate commit message and commit
+    handler: ./handlers/smart-commit.ts
+
+  - name: pr-summary
+    description: Generate PR summary from commits
+    handler: ./handlers/pr-summary.ts
+
+permissions:
+  - bash
+  - read
+  - write
+</code></pre>
+<h3>Custom MCP Server</h3>
+<pre><code class="language-typescript">// mcp-servers/notes-server/index.ts
+import { Server } from &quot;@modelcontextprotocol/sdk/server/index.js&quot;;
+
+const server = new Server({
+  name: &quot;notes-server&quot;,
+  version: &quot;1.0.0&quot;,
+});
+
+// Resource: List all notes
+server.setRequestHandler(&quot;resources/list&quot;, async () =&gt; ({
+  resources: [
+    {
+      uri: &quot;notes://all&quot;,
+      name: &quot;All Notes&quot;,
+      mimeType: &quot;application/json&quot;
+    }
+  ]
+}));
+
+// Tool: Create note
+server.setRequestHandler(&quot;tools/list&quot;, async () =&gt; ({
+  tools: [
+    {
+      name: &quot;create_note&quot;,
+      description: &quot;Create a new note&quot;,
+      inputSchema: {
+        type: &quot;object&quot;,
+        properties: {
+          title: { type: &quot;string&quot; },
+          content: { type: &quot;string&quot; }
+        },
+        required: [&quot;title&quot;, &quot;content&quot;]
+      }
+    }
+  ]
+}));
+
+// Run server
+server.run();
+</code></pre>
+<h3>MCP Server Registration</h3>
+<pre><code class="language-json">// ~/.claude/mcp_servers.json
+{
+  &quot;servers&quot;: {
+    &quot;notes&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;./mcp-servers/notes-server/index.js&quot;],
+      &quot;env&quot;: {}
+    },
+    &quot;database&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@mcp/postgres-server&quot;],
+      &quot;env&quot;: {
+        &quot;DATABASE_URL&quot;: &quot;postgresql://...&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<hr>
+<h2>Level 5: Orchestration</h2>
+<p>The pinnacle: coordinating multiple agents and systems.</p>
+<h3>Multi-Agent Architecture</h3>
+<pre><code>┌────────────────────────────────────────────────────────────┐
+│                    ORCHESTRATOR                             │
+│  Routes tasks, manages handoffs, aggregates results        │
+├────────────────────────────────────────────────────────────┤
+│                           │                                 │
+│      ┌────────────────────┼────────────────────┐           │
+│      │                    │                    │           │
+│  ┌───▼───┐          ┌────▼────┐         ┌────▼────┐       │
+│  │ Coder │          │Reviewer │         │  Tester │       │
+│  │ Agent │          │  Agent  │         │  Agent  │       │
+│  └───────┘          └─────────┘         └─────────┘       │
+│                                                            │
+│  Skills: TypeScript, React    Security, Performance    Vitest│
+│  Tools: Write, Execute        Read, Analyze            Bash │
+└────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Workflow Definition</h3>
+<pre><code class="language-yaml"># workflows/feature-development.yaml
+name: Feature Development
+description: Full feature implementation workflow
+
+steps:
+  - agent: architect
+    task: &quot;Design the feature architecture&quot;
+    output: design.md
+
+  - agent: coder
+    task: &quot;Implement based on {design.md}&quot;
+    output: implementation/
+
+  - agent: reviewer
+    task: &quot;Review {implementation/}&quot;
+    output: review.md
+    gate:
+      condition: &quot;no critical issues&quot;
+
+  - agent: tester
+    task: &quot;Write tests for {implementation/}&quot;
+    output: tests/
+
+  - agent: documenter
+    task: &quot;Document the feature&quot;
+    output: docs/
+
+on_complete:
+  - create PR
+  - notify team
+</code></pre>
+<h3>Handoff Patterns</h3>
+<pre><code class="language-typescript">// Example handoff logic
+async function developFeature(request: string) {
+  // Step 1: Architecture
+  const design = await runAgent(&#39;architect&#39;, {
+    task: `Design: ${request}`,
+    context: await getProjectContext()
+  });
+
+  // Step 2: Implementation
+  const code = await runAgent(&#39;coder&#39;, {
+    task: &#39;Implement this design&#39;,
+    context: design,
+    skills: [&#39;typescript&#39;, &#39;react&#39;]
+  });
+
+  // Step 3: Review
+  const review = await runAgent(&#39;reviewer&#39;, {
+    task: &#39;Review this implementation&#39;,
+    context: code
+  });
+
+  // Step 4: Gate check
+  if (review.hasCriticalIssues) {
+    return developFeature(request); // Recurse
+  }
+
+  // Step 5: Tests
+  const tests = await runAgent(&#39;tester&#39;, {
+    task: &#39;Write tests&#39;,
+    context: code
+  });
+
+  return { design, code, review, tests };
+}
+</code></pre>
+<hr>
+<h2>Practical Lab: Build Your Evolution Stack</h2>
+<h3>Lab 5.1: Create Your CLAUDE.md (15 min)</h3>
+<ol>
+<li>Choose a project</li>
+<li>Create CLAUDE.md with:<ul>
+<li>Project overview</li>
+<li>Tech stack</li>
+<li>Conventions</li>
+<li>Current focus</li>
+</ul>
+</li>
+<li>Test by asking the agent about your project</li>
+</ol>
+<h3>Lab 5.2: Build Your First Skill (30 min)</h3>
+<ol>
+<li>Identify expertise you share often</li>
+<li>Create <code>.claude-skills/your-skill/CLAUDE.md</code></li>
+<li>Include:<ul>
+<li>Purpose</li>
+<li>Core principles</li>
+<li>Examples</li>
+<li>When to use</li>
+</ul>
+</li>
+<li>Test the skill</li>
+</ol>
+<h3>Lab 5.3: Configure an Agent (30 min)</h3>
+<ol>
+<li>Create <code>.claude/agents/your-agent.md</code></li>
+<li>Define:<ul>
+<li>Identity and personality</li>
+<li>Behaviors</li>
+<li>Tools permissions</li>
+</ul>
+</li>
+<li>Test the agent persona</li>
+</ol>
+<h3>Lab 5.4: Build an MCP Server (45 min)</h3>
+<ol>
+<li>Scaffold MCP server with template</li>
+<li>Implement one resource</li>
+<li>Implement one tool</li>
+<li>Register with Claude Code</li>
+<li>Test integration</li>
+</ol>
+<hr>
+<h2>Assessment</h2>
+<h3>Evolution Quiz</h3>
+<ol>
+<li>What problem does CLAUDE.md solve?</li>
+<li>When should you create a skill vs agent?</li>
+<li>What are the three MCP primitives?</li>
+<li>What&#39;s the benefit of multi-agent orchestration?</li>
+</ol>
+<h3>Practical Assessment</h3>
+<p>Create a complete evolution stack for a sample project:</p>
+<ul>
+<li><input disabled="" type="checkbox"> CLAUDE.md with full project context</li>
+<li><input disabled="" type="checkbox"> One skill for a technical domain</li>
+<li><input disabled="" type="checkbox"> One agent configuration</li>
+<li><input disabled="" type="checkbox"> Verification that all work together</li>
+</ul>
+<hr>
+<h2>Key Takeaways</h2>
+<pre><code>EVOLUTION SUMMARY
+═════════════════
+
+LEVEL 0: Basic Prompts
+└── Starting point, no persistence
+
+LEVEL 1: CLAUDE.md
+└── Project context persists across sessions
+
+LEVEL 2: skill.md
+└── Package expertise into reusable knowledge
+
+LEVEL 3: agent.md
+└── Specialized behaviors and personas
+
+LEVEL 4: Plugins &amp; MCP
+└── Extend capabilities with integrations
+
+LEVEL 5: Orchestration
+└── Coordinate multiple agents for complex tasks
+
+THE PRINCIPLE: Each level builds on previous
+└── Start simple, evolve as needed
+</code></pre>
+<hr>
+<h2>Resources</h2>
+<h3>Templates</h3>
+<ul>
+<li><a href="../resources/templates/CLAUDE.md.template">CLAUDE.md Template</a></li>
+<li><a href="../resources/templates/skill.md.template">skill.md Template</a></li>
+<li><a href="../resources/templates/agent.md.template">agent.md Template</a></li>
+<li><a href="../resources/templates/mcp-server/">MCP Server Template</a></li>
+</ul>
+<h3>Examples</h3>
+<ul>
+<li><a href="https://github.com/frankx-ai/claude-skills">FrankX Skills Library</a></li>
+<li><a href="https://github.com/opencode-ai/oh-my-opencode">Oh-My-OpenCode</a></li>
+<li><a href="https://github.com/modelcontextprotocol/servers">MCP Server Examples</a></li>
+</ul>
+<h3>Community</h3>
+<ul>
+<li>FrankX Workshop Discord</li>
+<li>Weekly Evolution Showcases</li>
+<li>GitHub Discussions</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<p>Congratulations! You&#39;ve completed the Evolution module.</p>
+<p><strong>Continue your journey</strong>:</p>
+<ul>
+<li><a href="../labs/">Labs: Hands-On Practice</a></li>
+<li><a href="../projects/">Projects: Capstone Challenges</a></li>
+<li><a href="../../oracle-genai-enterprise/">Oracle GenAI Workshop</a></li>
+</ul>
+<hr>
+<p><em>Estimated time: 3 hours | You&#39;ve reached the Evolution milestone!</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

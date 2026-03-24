@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>new sdk app</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/agent-sdk-dev/commands/new-sdk-app.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">new sdk app</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fagent-sdk-dev">agent-sdk-dev</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fagent-sdk-dev%2Fcommands">commands</a> / <span>new-sdk-app.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Create and setup a new Claude Agent SDK application
+argument-hint: [project-name]</h2>
+<p>You are tasked with helping the user create a new Claude Agent SDK application. Follow these steps carefully:</p>
+<h2>Reference Documentation</h2>
+<p>Before starting, review the official documentation to ensure you provide accurate and up-to-date guidance. Use WebFetch to read these pages:</p>
+<ol>
+<li><strong>Start with the overview</strong>: <a href="https://docs.claude.com/en/api/agent-sdk/overview">https://docs.claude.com/en/api/agent-sdk/overview</a></li>
+<li><strong>Based on the user&#39;s language choice, read the appropriate SDK reference</strong>:<ul>
+<li>TypeScript: <a href="https://docs.claude.com/en/api/agent-sdk/typescript">https://docs.claude.com/en/api/agent-sdk/typescript</a></li>
+<li>Python: <a href="https://docs.claude.com/en/api/agent-sdk/python">https://docs.claude.com/en/api/agent-sdk/python</a></li>
+</ul>
+</li>
+<li><strong>Read relevant guides mentioned in the overview</strong> such as:<ul>
+<li>Streaming vs Single Mode</li>
+<li>Permissions</li>
+<li>Custom Tools</li>
+<li>MCP integration</li>
+<li>Subagents</li>
+<li>Sessions</li>
+<li>Any other relevant guides based on the user&#39;s needs</li>
+</ul>
+</li>
+</ol>
+<p><strong>IMPORTANT</strong>: Always check for and use the latest versions of packages. Use WebSearch or WebFetch to verify current versions before installation.</p>
+<h2>Gather Requirements</h2>
+<p>IMPORTANT: Ask these questions one at a time. Wait for the user&#39;s response before asking the next question. This makes it easier for the user to respond.</p>
+<p>Ask the questions in this order (skip any that the user has already provided via arguments):</p>
+<ol>
+<li><p><strong>Language</strong> (ask first): &quot;Would you like to use TypeScript or Python?&quot;</p>
+<ul>
+<li>Wait for response before continuing</li>
+</ul>
+</li>
+<li><p><strong>Project name</strong> (ask second): &quot;What would you like to name your project?&quot;</p>
+<ul>
+<li>If $ARGUMENTS is provided, use that as the project name and skip this question</li>
+<li>Wait for response before continuing</li>
+</ul>
+</li>
+<li><p><strong>Agent type</strong> (ask third, but skip if #2 was sufficiently detailed): &quot;What kind of agent are you building? Some examples:</p>
+<ul>
+<li>Coding agent (SRE, security review, code review)</li>
+<li>Business agent (customer support, content creation)</li>
+<li>Custom agent (describe your use case)&quot;</li>
+<li>Wait for response before continuing</li>
+</ul>
+</li>
+<li><p><strong>Starting point</strong> (ask fourth): &quot;Would you like:</p>
+<ul>
+<li>A minimal &#39;Hello World&#39; example to start</li>
+<li>A basic agent with common features</li>
+<li>A specific example based on your use case&quot;</li>
+<li>Wait for response before continuing</li>
+</ul>
+</li>
+<li><p><strong>Tooling choice</strong> (ask fifth): Let the user know what tools you&#39;ll use, and confirm with them that these are the tools they want to use (for example, they may prefer pnpm or bun over npm). Respect the user&#39;s preferences when executing on the requirements.</p>
+</li>
+</ol>
+<p>After all questions are answered, proceed to create the setup plan.</p>
+<h2>Setup Plan</h2>
+<p>Based on the user&#39;s answers, create a plan that includes:</p>
+<ol>
+<li><p><strong>Project initialization</strong>:</p>
+<ul>
+<li>Create project directory (if it doesn&#39;t exist)</li>
+<li>Initialize package manager:<ul>
+<li>TypeScript: <code>npm init -y</code> and setup <code>package.json</code> with type: &quot;module&quot; and scripts (include a &quot;typecheck&quot; script)</li>
+<li>Python: Create <code>requirements.txt</code> or use <code>poetry init</code></li>
+</ul>
+</li>
+<li>Add necessary configuration files:<ul>
+<li>TypeScript: Create <code>tsconfig.json</code> with proper settings for the SDK</li>
+<li>Python: Optionally create config files if needed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Check for Latest Versions</strong>:</p>
+<ul>
+<li>BEFORE installing, use WebSearch or check npm/PyPI to find the latest version</li>
+<li>For TypeScript: Check <a href="https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk">https://www.npmjs.com/package/@anthropic-ai/claude-agent-sdk</a></li>
+<li>For Python: Check <a href="https://pypi.org/project/claude-agent-sdk/">https://pypi.org/project/claude-agent-sdk/</a></li>
+<li>Inform the user which version you&#39;re installing</li>
+</ul>
+</li>
+<li><p><strong>SDK Installation</strong>:</p>
+<ul>
+<li>TypeScript: <code>npm install @anthropic-ai/claude-agent-sdk@latest</code> (or specify latest version)</li>
+<li>Python: <code>pip install claude-agent-sdk</code> (pip installs latest by default)</li>
+<li>After installation, verify the installed version:<ul>
+<li>TypeScript: Check package.json or run <code>npm list @anthropic-ai/claude-agent-sdk</code></li>
+<li>Python: Run <code>pip show claude-agent-sdk</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Create starter files</strong>:</p>
+<ul>
+<li>TypeScript: Create an <code>index.ts</code> or <code>src/index.ts</code> with a basic query example</li>
+<li>Python: Create a <code>main.py</code> with a basic query example</li>
+<li>Include proper imports and basic error handling</li>
+<li>Use modern, up-to-date syntax and patterns from the latest SDK version</li>
+</ul>
+</li>
+<li><p><strong>Environment setup</strong>:</p>
+<ul>
+<li>Create a <code>.env.example</code> file with <code>ANTHROPIC_API_KEY=your_api_key_here</code></li>
+<li>Add <code>.env</code> to <code>.gitignore</code></li>
+<li>Explain how to get an API key from <a href="https://console.anthropic.com/">https://console.anthropic.com/</a></li>
+</ul>
+</li>
+<li><p><strong>Optional: Create .claude directory structure</strong>:</p>
+<ul>
+<li>Offer to create <code>.claude/</code> directory for agents, commands, and settings</li>
+<li>Ask if they want any example subagents or slash commands</li>
+</ul>
+</li>
+</ol>
+<h2>Implementation</h2>
+<p>After gathering requirements and getting user confirmation on the plan:</p>
+<ol>
+<li>Check for latest package versions using WebSearch or WebFetch</li>
+<li>Execute the setup steps</li>
+<li>Create all necessary files</li>
+<li>Install dependencies (always use latest stable versions)</li>
+<li>Verify installed versions and inform the user</li>
+<li>Create a working example based on their agent type</li>
+<li>Add helpful comments in the code explaining what each part does</li>
+<li><strong>VERIFY THE CODE WORKS BEFORE FINISHING</strong>:<ul>
+<li>For TypeScript:<ul>
+<li>Run <code>npx tsc --noEmit</code> to check for type errors</li>
+<li>Fix ALL type errors until types pass completely</li>
+<li>Ensure imports and types are correct</li>
+<li>Only proceed when type checking passes with no errors</li>
+</ul>
+</li>
+<li>For Python:<ul>
+<li>Verify imports are correct</li>
+<li>Check for basic syntax errors</li>
+</ul>
+</li>
+<li><strong>DO NOT consider the setup complete until the code verifies successfully</strong></li>
+</ul>
+</li>
+</ol>
+<h2>Verification</h2>
+<p>After all files are created and dependencies are installed, use the appropriate verifier agent to validate that the Agent SDK application is properly configured and ready for use:</p>
+<ol>
+<li><strong>For TypeScript projects</strong>: Launch the <strong>agent-sdk-verifier-ts</strong> agent to validate the setup</li>
+<li><strong>For Python projects</strong>: Launch the <strong>agent-sdk-verifier-py</strong> agent to validate the setup</li>
+<li>The agent will check SDK usage, configuration, functionality, and adherence to official documentation</li>
+<li>Review the verification report and address any issues</li>
+</ol>
+<h2>Getting Started Guide</h2>
+<p>Once setup is complete and verified, provide the user with:</p>
+<ol>
+<li><p><strong>Next steps</strong>:</p>
+<ul>
+<li>How to set their API key</li>
+<li>How to run their agent:<ul>
+<li>TypeScript: <code>npm start</code> or <code>node --loader ts-node/esm index.ts</code></li>
+<li>Python: <code>python main.py</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Useful resources</strong>:</p>
+<ul>
+<li>Link to TypeScript SDK reference: <a href="https://docs.claude.com/en/api/agent-sdk/typescript">https://docs.claude.com/en/api/agent-sdk/typescript</a></li>
+<li>Link to Python SDK reference: <a href="https://docs.claude.com/en/api/agent-sdk/python">https://docs.claude.com/en/api/agent-sdk/python</a></li>
+<li>Explain key concepts: system prompts, permissions, tools, MCP servers</li>
+</ul>
+</li>
+<li><p><strong>Common next steps</strong>:</p>
+<ul>
+<li>How to customize the system prompt</li>
+<li>How to add custom tools via MCP</li>
+<li>How to configure permissions</li>
+<li>How to create subagents</li>
+</ul>
+</li>
+</ol>
+<h2>Important Notes</h2>
+<ul>
+<li><strong>ALWAYS USE LATEST VERSIONS</strong>: Before installing any packages, check for the latest versions using WebSearch or by checking npm/PyPI directly</li>
+<li><strong>VERIFY CODE RUNS CORRECTLY</strong>:<ul>
+<li>For TypeScript: Run <code>npx tsc --noEmit</code> and fix ALL type errors before finishing</li>
+<li>For Python: Verify syntax and imports are correct</li>
+<li>Do NOT consider the task complete until the code passes verification</li>
+</ul>
+</li>
+<li>Verify the installed version after installation and inform the user</li>
+<li>Check the official documentation for any version-specific requirements (Node.js version, Python version, etc.)</li>
+<li>Always check if directories/files already exist before creating them</li>
+<li>Use the user&#39;s preferred package manager (npm, yarn, pnpm for TypeScript; pip, poetry for Python)</li>
+<li>Ensure all code examples are functional and include proper error handling</li>
+<li>Use modern syntax and patterns that are compatible with the latest SDK version</li>
+<li>Make the experience interactive and educational</li>
+<li><strong>ASK QUESTIONS ONE AT A TIME</strong> - Do not ask multiple questions in a single response</li>
+</ul>
+<p>Begin by asking the FIRST requirement question only. Wait for the user&#39;s answer before proceeding to the next question.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

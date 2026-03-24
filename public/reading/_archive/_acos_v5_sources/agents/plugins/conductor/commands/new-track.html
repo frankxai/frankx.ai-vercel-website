@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>New Track</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/commands/new-track.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">New Track</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fcommands">commands</a> / <span>new-track.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: &quot;Create a new track with specification and phased implementation plan&quot;
+argument-hint: &quot;&lt;feature|bug|chore|refactor&gt; <name>&quot;</h2>
+<h1>New Track</h1>
+<p>Create a new track (feature, bug fix, chore, or refactor) with a detailed specification and phased implementation plan.</p>
+<h2>Pre-flight Checks</h2>
+<ol>
+<li><p>Verify Conductor is initialized:</p>
+<ul>
+<li>Check <code>conductor/product.md</code> exists</li>
+<li>Check <code>conductor/tech-stack.md</code> exists</li>
+<li>Check <code>conductor/workflow.md</code> exists</li>
+<li>If missing: Display error and suggest running <code>/conductor:setup</code> first</li>
+</ul>
+</li>
+<li><p>Load context files:</p>
+<ul>
+<li>Read <code>conductor/product.md</code> for product context</li>
+<li>Read <code>conductor/tech-stack.md</code> for technical context</li>
+<li>Read <code>conductor/workflow.md</code> for TDD/commit preferences</li>
+</ul>
+</li>
+</ol>
+<h2>Track Classification</h2>
+<p>Determine track type based on description or ask user:</p>
+<pre><code>What type of track is this?
+
+1. Feature - New functionality
+2. Bug - Fix for existing issue
+3. Chore - Maintenance, dependencies, config
+4. Refactor - Code improvement without behavior change
+</code></pre>
+<h2>Interactive Specification Gathering</h2>
+<p><strong>CRITICAL RULES:</strong></p>
+<ul>
+<li>Ask ONE question per turn</li>
+<li>Wait for user response before proceeding</li>
+<li>Tailor questions based on track type</li>
+<li>Maximum 6 questions total</li>
+</ul>
+<h3>For Feature Tracks</h3>
+<p><strong>Q1: Feature Summary</strong></p>
+<pre><code>Describe the feature in 1-2 sentences.
+[If argument provided, confirm: &quot;You want to: {argument}. Is this correct?&quot;]
+</code></pre>
+<p><strong>Q2: User Story</strong></p>
+<pre><code>Who benefits and how?
+
+Format: As a [user type], I want to [action] so that [benefit].
+</code></pre>
+<p><strong>Q3: Acceptance Criteria</strong></p>
+<pre><code>What must be true for this feature to be complete?
+
+List 3-5 acceptance criteria (one per line):
+</code></pre>
+<p><strong>Q4: Dependencies</strong></p>
+<pre><code>Does this depend on any existing code, APIs, or other tracks?
+
+1. No dependencies
+2. Depends on existing code (specify)
+3. Depends on incomplete track (specify)
+</code></pre>
+<p><strong>Q5: Scope Boundaries</strong></p>
+<pre><code>What is explicitly OUT of scope for this track?
+(Helps prevent scope creep)
+</code></pre>
+<p><strong>Q6: Technical Considerations (optional)</strong></p>
+<pre><code>Any specific technical approach or constraints?
+(Press enter to skip)
+</code></pre>
+<h3>For Bug Tracks</h3>
+<p><strong>Q1: Bug Summary</strong></p>
+<pre><code>What is broken?
+[If argument provided, confirm]
+</code></pre>
+<p><strong>Q2: Steps to Reproduce</strong></p>
+<pre><code>How can this bug be reproduced?
+List steps:
+</code></pre>
+<p><strong>Q3: Expected vs Actual Behavior</strong></p>
+<pre><code>What should happen vs what actually happens?
+</code></pre>
+<p><strong>Q4: Affected Areas</strong></p>
+<pre><code>What parts of the system are affected?
+</code></pre>
+<p><strong>Q5: Root Cause Hypothesis (optional)</strong></p>
+<pre><code>Any hypothesis about the cause?
+(Press enter to skip)
+</code></pre>
+<h3>For Chore/Refactor Tracks</h3>
+<p><strong>Q1: Task Summary</strong></p>
+<pre><code>What needs to be done?
+[If argument provided, confirm]
+</code></pre>
+<p><strong>Q2: Motivation</strong></p>
+<pre><code>Why is this work needed?
+</code></pre>
+<p><strong>Q3: Success Criteria</strong></p>
+<pre><code>How will we know this is complete?
+</code></pre>
+<p><strong>Q4: Risk Assessment</strong></p>
+<pre><code>What could go wrong? Any risky changes?
+</code></pre>
+<h2>Track ID Generation</h2>
+<p>Generate track ID in format: <code>{shortname}_{YYYYMMDD}</code></p>
+<ul>
+<li>Extract shortname from feature/bug summary (2-3 words, lowercase, hyphenated)</li>
+<li>Use current date</li>
+<li>Example: <code>user-auth_20250115</code>, <code>nav-bug_20250115</code></li>
+</ul>
+<p>Validate uniqueness:</p>
+<ul>
+<li>Check <code>conductor/tracks.md</code> for existing IDs</li>
+<li>If collision, append counter: <code>user-auth_20250115_2</code></li>
+</ul>
+<h2>Specification Generation</h2>
+<p>Create <code>conductor/tracks/{trackId}/spec.md</code>:</p>
+<pre><code class="language-markdown"># Specification: {Track Title}
+
+**Track ID:** {trackId}
+**Type:** {Feature|Bug|Chore|Refactor}
+**Created:** {YYYY-MM-DD}
+**Status:** Draft
+
+## Summary
+
+{1-2 sentence summary}
+
+## Context
+
+{Product context from product.md relevant to this track}
+
+## User Story (for features)
+
+As a {user}, I want to {action} so that {benefit}.
+
+## Problem Description (for bugs)
+
+{Bug description, steps to reproduce}
+
+## Acceptance Criteria
+
+- [ ] {Criterion 1}
+- [ ] {Criterion 2}
+- [ ] {Criterion 3}
+
+## Dependencies
+
+{List dependencies or &quot;None&quot;}
+
+## Out of Scope
+
+{Explicit exclusions}
+
+## Technical Notes
+
+{Technical considerations or &quot;None specified&quot;}
+
+---
+
+_Generated by Conductor. Review and edit as needed._
+</code></pre>
+<h2>User Review of Spec</h2>
+<p>Display the generated spec and ask:</p>
+<pre><code>Here is the specification I&#39;ve generated:
+
+{spec content}
+
+Is this specification correct?
+1. Yes, proceed to plan generation
+2. No, let me edit (opens for inline edits)
+3. Start over with different inputs
+</code></pre>
+<h2>Plan Generation</h2>
+<p>After spec approval, generate <code>conductor/tracks/{trackId}/plan.md</code>:</p>
+<h3>Plan Structure</h3>
+<pre><code class="language-markdown"># Implementation Plan: {Track Title}
+
+**Track ID:** {trackId}
+**Spec:** [spec.md](./spec.md)
+**Created:** {YYYY-MM-DD}
+**Status:** [ ] Not Started
+
+## Overview
+
+{Brief summary of implementation approach}
+
+## Phase 1: {Phase Name}
+
+{Phase description}
+
+### Tasks
+
+- [ ] Task 1.1: {Description}
+- [ ] Task 1.2: {Description}
+- [ ] Task 1.3: {Description}
+
+### Verification
+
+- [ ] {Verification step for phase 1}
+
+## Phase 2: {Phase Name}
+
+{Phase description}
+
+### Tasks
+
+- [ ] Task 2.1: {Description}
+- [ ] Task 2.2: {Description}
+
+### Verification
+
+- [ ] {Verification step for phase 2}
+
+## Phase 3: {Phase Name} (if needed)
+
+...
+
+## Final Verification
+
+- [ ] All acceptance criteria met
+- [ ] Tests passing
+- [ ] Documentation updated (if applicable)
+- [ ] Ready for review
+
+---
+
+_Generated by Conductor. Tasks will be marked [~] in progress and [x] complete._
+</code></pre>
+<h3>Phase Guidelines</h3>
+<ul>
+<li>Group related tasks into logical phases</li>
+<li>Each phase should be independently verifiable</li>
+<li>Include verification task after each phase</li>
+<li>TDD tracks: Include test writing tasks before implementation tasks</li>
+<li>Typical structure:<ol>
+<li><strong>Setup/Foundation</strong> - Initial scaffolding, interfaces</li>
+<li><strong>Core Implementation</strong> - Main functionality</li>
+<li><strong>Integration</strong> - Connect with existing system</li>
+<li><strong>Polish</strong> - Error handling, edge cases, docs</li>
+</ol>
+</li>
+</ul>
+<h2>User Review of Plan</h2>
+<p>Display the generated plan and ask:</p>
+<pre><code>Here is the implementation plan:
+
+{plan content}
+
+Is this plan correct?
+1. Yes, create the track
+2. No, let me edit (opens for inline edits)
+3. Add more phases/tasks
+4. Start over
+</code></pre>
+<h2>Track Creation</h2>
+<p>After plan approval:</p>
+<ol>
+<li><p>Create directory structure:</p>
+<pre><code>conductor/tracks/{trackId}/
+├── spec.md
+├── plan.md
+├── metadata.json
+└── index.md
+</code></pre>
+</li>
+<li><p>Create <code>metadata.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;{trackId}&quot;,
+  &quot;title&quot;: &quot;{Track Title}&quot;,
+  &quot;type&quot;: &quot;feature|bug|chore|refactor&quot;,
+  &quot;status&quot;: &quot;pending&quot;,
+  &quot;created&quot;: &quot;ISO_TIMESTAMP&quot;,
+  &quot;updated&quot;: &quot;ISO_TIMESTAMP&quot;,
+  &quot;phases&quot;: {
+    &quot;total&quot;: N,
+    &quot;completed&quot;: 0
+  },
+  &quot;tasks&quot;: {
+    &quot;total&quot;: M,
+    &quot;completed&quot;: 0
+  }
+}
+</code></pre>
+</li>
+<li><p>Create <code>index.md</code>:</p>
+<pre><code class="language-markdown"># Track: {Track Title}
+
+**ID:** {trackId}
+**Status:** Pending
+
+## Documents
+
+- [Specification](./spec.md)
+- [Implementation Plan](./plan.md)
+
+## Progress
+
+- Phases: 0/{N} complete
+- Tasks: 0/{M} complete
+
+## Quick Links
+
+- [Back to Tracks](../../tracks.md)
+- [Product Context](../../product.md)
+</code></pre>
+</li>
+<li><p>Register in <code>conductor/tracks.md</code>:</p>
+<ul>
+<li>Add row to tracks table</li>
+<li>Format: <code>| [ ] | {trackId} | {title} | {created} | {created} |</code></li>
+</ul>
+</li>
+<li><p>Update <code>conductor/index.md</code>:</p>
+<ul>
+<li>Add track to &quot;Active Tracks&quot; section</li>
+</ul>
+</li>
+</ol>
+<h2>Completion Message</h2>
+<pre><code>Track created successfully!
+
+Track ID: {trackId}
+Location: conductor/tracks/{trackId}/
+
+Files created:
+- spec.md - Requirements specification
+- plan.md - Phased implementation plan
+- metadata.json - Track metadata
+- index.md - Track navigation
+
+Next steps:
+1. Review spec.md and plan.md, make any edits
+2. Run /conductor:implement {trackId} to start implementation
+3. Run /conductor:status to see project progress
+</code></pre>
+<h2>Error Handling</h2>
+<ul>
+<li>If directory creation fails: Halt and report, do not register in tracks.md</li>
+<li>If any file write fails: Clean up partial track, report error</li>
+<li>If tracks.md update fails: Warn user to manually register track</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

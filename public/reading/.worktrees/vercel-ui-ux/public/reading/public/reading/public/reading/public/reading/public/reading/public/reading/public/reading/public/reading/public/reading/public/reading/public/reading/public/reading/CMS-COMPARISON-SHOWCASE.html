@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Headless CMS Comparison Showcase for FrankX</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CMS-COMPARISON-SHOWCASE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Headless CMS Comparison Showcase for FrankX</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>CMS-COMPARISON-SHOWCASE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Headless CMS Comparison Showcase for FrankX</h1>
+<p><strong>Evaluating Payload CMS vs Tina CMS</strong></p>
+<h2>Executive Summary</h2>
+<p>You&#39;re evaluating two leading headless CMS solutions with different philosophies:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Payload CMS</th>
+<th>Tina CMS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Philosophy</strong></td>
+<td>Database-driven, feature-rich admin panel</td>
+<td>Git-based, inline visual editing</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Complex content models, teams, e-commerce</td>
+<td>Content-heavy sites, developers, blogs</td>
+</tr>
+<tr>
+<td><strong>Ports</strong></td>
+<td>:3001 (Payload)</td>
+<td>:3002 (Tina)</td>
+</tr>
+<tr>
+<td><strong>Demo Accounts</strong></td>
+<td>Create admin user</td>
+<td>No auth needed (git-based)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🎯 Smart Showcase Strategy</h2>
+<h3>Phase 1: Initial Exploration (15 minutes)</h3>
+<p><strong>Test the &quot;First Impression&quot; Experience</strong></p>
+<h4>Payload CMS (Port 3001)</h4>
+<ol>
+<li><strong>Access</strong>: <a href="http://localhost:3001/admin">http://localhost:3001/admin</a></li>
+<li><strong>Create Account</strong>: First-time admin setup</li>
+<li><strong>Explore Collections</strong>: Posts, Pages, Projects, Media</li>
+<li><strong>Test</strong>: Create a blog post with rich text editor</li>
+<li><strong>Note</strong>: How does the admin UI feel? Intuitive?</li>
+</ol>
+<h4>Tina CMS (Port 3002)</h4>
+<ol>
+<li><strong>Access</strong>: <a href="http://localhost:3002">http://localhost:3002</a></li>
+<li><strong>Login</strong>: Click &quot;Edit This Page&quot; (no signup needed)</li>
+<li><strong>Inline Editing</strong>: Edit content directly on the page</li>
+<li><strong>Test</strong>: Modify homepage content, see live preview</li>
+<li><strong>Note</strong>: How does inline editing compare to admin panel?</li>
+</ol>
+<h3>Phase 2: Content Creation Test (30 minutes)</h3>
+<p><strong>Create the Same AI Music Academy Course in Both</strong></p>
+<p>Create this course in each CMS:</p>
+<pre><code>Title: &quot;AI Music Production Fundamentals&quot;
+Slug: ai-music-fundamentals
+Description: Learn the foundations of AI-powered music creation
+Price: $297
+Category: AI Music Production
+Learning Outcomes:
+  - Generate professional tracks with Suno AI
+  - Master prompt engineering for music
+  - Build complete songs from scratch
+Thumbnail: Upload test image
+Status: Published
+</code></pre>
+<p><strong>Compare:</strong></p>
+<ul>
+<li>⏱️ Time to create</li>
+<li>🎨 Content editing experience</li>
+<li>📸 Media upload workflow</li>
+<li>👁️ Preview before publish</li>
+<li>🔄 Draft/publish flow</li>
+</ul>
+<h3>Phase 3: Technical Integration (30 minutes)</h3>
+<p><strong>How Would This Work with Your FrankX Site?</strong></p>
+<h4>Test API Data Fetching</h4>
+<p><strong>Payload CMS:</strong></p>
+<pre><code class="language-typescript">// Fetch from Payload REST API
+const response = await fetch(&#39;http://localhost:3001/api/posts&#39;)
+const posts = await response.json()
+</code></pre>
+<p><strong>Tina CMS:</strong></p>
+<pre><code class="language-typescript">// Tina queries from git-committed markdown
+import { client } from &#39;../tina/__generated__/client&#39;
+const posts = await client.queries.postConnection()
+</code></pre>
+<p><strong>Compare:</strong></p>
+<ul>
+<li>🔌 Integration complexity</li>
+<li>📊 Data fetching pattern</li>
+<li>🚀 Deployment requirements</li>
+<li>💾 Data storage approach</li>
+</ul>
+<h3>Phase 4: Team Workflow (15 minutes)</h3>
+<p><strong>Imagine Your Content Team Using Each</strong></p>
+<h4>Payload Scenario:</h4>
+<ul>
+<li>Non-technical person wants to add a new course</li>
+<li>They log into <code>/admin</code></li>
+<li>Navigate to Collections → Courses</li>
+<li>Fill in form fields</li>
+<li>Upload thumbnail</li>
+<li>Click Publish</li>
+</ul>
+<h4>Tina Scenario:</h4>
+<ul>
+<li>Content editor opens FrankX website</li>
+<li>Clicks &quot;Edit This Page&quot;</li>
+<li>Edits inline, sees changes live</li>
+<li>Commits to git when done</li>
+<li>Changes deploy automatically</li>
+</ul>
+<p><strong>Questions to Answer:</strong></p>
+<ul>
+<li>Which feels more natural for non-developers?</li>
+<li>Which has less friction?</li>
+<li>Which gives more control?</li>
+</ul>
+<hr>
+<h2>📊 Evaluation Scorecard</h2>
+<p>Rate each on a scale of 1-5 stars after testing:</p>
+<h3>Content Creation UX</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Payload</th>
+<th>Tina</th>
+<th>Winner</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ease of creating content</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Rich text editor</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Media management</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Live preview</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Draft/publish flow</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>Developer Experience</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Payload</th>
+<th>Tina</th>
+<th>Winner</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Setup complexity</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TypeScript support</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>API flexibility</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Content modeling</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>Infrastructure &amp; Deployment</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Payload</th>
+<th>Tina</th>
+<th>Winner</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vercel compatibility</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Database requirements</td>
+<td>⭐⭐⭐ (MongoDB)</td>
+<td>⭐⭐⭐⭐⭐ (None)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hosting costs</td>
+<td>⭐⭐⭐ ($30-80/mo)</td>
+<td>⭐⭐⭐⭐⭐ (Free)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Scaling complexity</td>
+<td>⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>FrankX-Specific Fit</h3>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Payload</th>
+<th>Tina</th>
+<th>Winner</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Course management</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Blog/articles</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Creator resources</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Content relationships</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Version control</td>
+<td>⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐ (Git)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🔬 Deep Dive Testing Scenarios</h2>
+<h3>Scenario 1: Add a New Course</h3>
+<p><strong>Time yourself and note friction points</strong></p>
+<p><strong>Payload Steps:</strong></p>
+<ol>
+<li>Login to admin</li>
+<li>Navigate to Courses collection</li>
+<li>Click &quot;Create New&quot;</li>
+<li>Fill in 10+ fields</li>
+<li>Upload media</li>
+<li>Save draft</li>
+<li>Preview</li>
+<li>Publish</li>
+</ol>
+<p><strong>Tina Steps:</strong></p>
+<ol>
+<li>Edit page inline</li>
+<li>Frontmatter editor appears</li>
+<li>Fill in fields</li>
+<li>See live preview</li>
+<li>Commit to git</li>
+<li>Deploy</li>
+</ol>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>Which was faster?</li>
+<li>Which felt more natural?</li>
+<li>Where did you get stuck?</li>
+</ul>
+<h3>Scenario 2: Bulk Import Existing Content</h3>
+<p><strong>How would you migrate 50+ existing courses?</strong></p>
+<p><strong>Payload:</strong></p>
+<ul>
+<li>Write migration script using Payload API</li>
+<li>Programmatic bulk import</li>
+<li>Or use CSV import plugin</li>
+</ul>
+<p><strong>Tina:</strong></p>
+<ul>
+<li>Convert to markdown files</li>
+<li>Add frontmatter</li>
+<li>Commit to git</li>
+<li>Done (Tina auto-discovers)</li>
+</ul>
+<p><strong>Questions:</strong></p>
+<ul>
+<li>Which migration would be easier?</li>
+<li>Which gives you more control?</li>
+</ul>
+<h3>Scenario 3: Team Collaboration</h3>
+<p><strong>Invite a non-technical person to test</strong></p>
+<p>Give them this task:</p>
+<blockquote>
+<p>&quot;Create a new blog post about AI music trends with 2 images&quot;</p>
+</blockquote>
+<p><strong>Observe:</strong></p>
+<ul>
+<li>Do they understand the UI immediately?</li>
+<li>Where do they hesitate?</li>
+<li>Do they need help?</li>
+<li>How long does it take?</li>
+</ul>
+<hr>
+<h2>💰 Total Cost of Ownership (1 Year)</h2>
+<h3>Payload CMS</h3>
+<pre><code>Vercel Pro:           $20/mo  × 12 = $240
+MongoDB Atlas M10:    $57/mo  × 12 = $684
+Vercel Blob Storage:  ~$20/mo × 12 = $240
+                      ─────────────────────
+Total Year 1:                      $1,164
+</code></pre>
+<h3>Tina CMS</h3>
+<pre><code>Vercel Hobby:         $0/mo   × 12 = $0
+(or Tina Cloud Free)  $0/mo   × 12 = $0
+Git storage:          $0/mo   × 12 = $0
+                      ─────────────────────
+Total Year 1:                      $0
+
+(Tina Cloud Pro if needed: $29/mo × 12 = $348)
+</code></pre>
+<p><strong>💡 Insight:</strong> Tina can be <strong>$800-1,100 cheaper</strong> per year due to no database hosting.</p>
+<hr>
+<h2>🎓 Architecture Comparison</h2>
+<h3>Payload CMS Architecture</h3>
+<pre><code>User → Payload Admin UI → REST/GraphQL API → MongoDB → Next.js Frontend
+       (port 3001)         (server-side)      (Atlas)   (your site)
+</code></pre>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Rich admin panel</li>
+<li>Complex relationships</li>
+<li>Real-time collaboration</li>
+<li>Advanced access control</li>
+<li>E-commerce ready</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Requires MongoDB hosting</li>
+<li>More infrastructure to manage</li>
+<li>Higher costs at scale</li>
+</ul>
+<h3>Tina CMS Architecture</h3>
+<pre><code>User → Inline Editor → Git Commit → GitHub → Vercel Deploy → Static Site
+       (on your site)    (markdown)   (free)   (free)        (fast)
+</code></pre>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Zero infrastructure</li>
+<li>Git version control</li>
+<li>Free hosting</li>
+<li>Instant previews</li>
+<li>Simpler deployment</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Less suitable for complex relationships</li>
+<li>Git-based (learning curve for some)</li>
+<li>Limited real-time collaboration</li>
+</ul>
+<hr>
+<h2>🚀 Deployment to Vercel</h2>
+<h3>Payload CMS on Vercel</h3>
+<p><strong>Requirements:</strong></p>
+<ol>
+<li>MongoDB Atlas account (free tier available)</li>
+<li>Vercel project</li>
+<li>Environment variables:<ul>
+<li><code>DATABASE_URI</code></li>
+<li><code>PAYLOAD_SECRET</code></li>
+</ul>
+</li>
+<li>Pro plan recommended for production ($20/mo)</li>
+</ol>
+<p><strong>Deploy Command:</strong></p>
+<pre><code class="language-bash">vercel --prod
+</code></pre>
+<h3>Tina CMS on Vercel</h3>
+<p><strong>Requirements:</strong></p>
+<ol>
+<li>GitHub repo (free)</li>
+<li>Vercel project (auto-detected)</li>
+<li>Environment variables:<ul>
+<li><code>NEXT_PUBLIC_TINA_CLIENT_ID</code> (optional)</li>
+</ul>
+</li>
+<li>Hobby plan works fine (free)</li>
+</ol>
+<p><strong>Deploy Command:</strong></p>
+<pre><code class="language-bash">git push origin main  # Auto-deploys
+</code></pre>
+<hr>
+<h2>🎯 Decision Framework</h2>
+<h3>Choose <strong>Payload CMS</strong> if:</h3>
+<p>✅ You need a traditional admin panel
+✅ Complex content relationships are critical
+✅ Team is non-technical (prefers forms over code)
+✅ You&#39;re building e-commerce features
+✅ Budget allows $30-80/month infrastructure
+✅ Real-time collaboration is important
+✅ You need role-based access control</p>
+<h3>Choose <strong>Tina CMS</strong> if:</h3>
+<p>✅ You want git-based version control
+✅ Content is primarily blog/article-focused
+✅ Budget is tight (free hosting possible)
+✅ Team is comfortable with markdown
+✅ You want inline, contextual editing
+✅ Simplicity and speed are priorities
+✅ You&#39;re already using Vercel/Netlify</p>
+<h3>Choose <strong>Current MDX Setup</strong> if:</h3>
+<p>✅ Your current workflow already works
+✅ Team is developer-heavy
+✅ Content updates are infrequent
+✅ You love full code control
+✅ Zero infrastructure complexity desired</p>
+<hr>
+<h2>📝 Testing Checklist</h2>
+<h3>Day 1: Initial Setup ✓</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Payload running on port 3001</li>
+<li><input checked="" disabled="" type="checkbox"> Tina running on port 3002</li>
+<li><input disabled="" type="checkbox"> Both accessible in browser</li>
+<li><input disabled="" type="checkbox"> Can create first content in each</li>
+</ul>
+<h3>Day 2: Content Creation</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Create 3 sample courses in Payload</li>
+<li><input disabled="" type="checkbox"> Create 3 sample courses in Tina</li>
+<li><input disabled="" type="checkbox"> Upload 5 images to each</li>
+<li><input disabled="" type="checkbox"> Test rich text editing in both</li>
+</ul>
+<h3>Day 3: Integration</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Fetch Payload data in Next.js page</li>
+<li><input disabled="" type="checkbox"> Fetch Tina data in Next.js page</li>
+<li><input disabled="" type="checkbox"> Measure API response times</li>
+<li><input disabled="" type="checkbox"> Test preview functionality</li>
+</ul>
+<h3>Day 4: Team Testing</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Invite non-developer to test both</li>
+<li><input disabled="" type="checkbox"> Record their feedback</li>
+<li><input disabled="" type="checkbox"> Note pain points</li>
+<li><input disabled="" type="checkbox"> Ask preference</li>
+</ul>
+<h3>Day 5: Decision</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Review scorecard</li>
+<li><input disabled="" type="checkbox"> Calculate TCO (Total Cost of Ownership)</li>
+<li><input disabled="" type="checkbox"> Assess migration effort</li>
+<li><input disabled="" type="checkbox"> Make final choice</li>
+</ul>
+<hr>
+<h2>🎬 Your Next Steps (Right Now)</h2>
+<ol>
+<li>✅ <strong>Wait for installations to complete</strong> (~5 more minutes)</li>
+<li>✅ <strong>Access Payload Admin</strong>: <a href="http://localhost:3001/admin">http://localhost:3001/admin</a></li>
+<li>✅ <strong>Access Tina Site</strong>: <a href="http://localhost:3002">http://localhost:3002</a></li>
+<li>✅ <strong>Create first content in each</strong> (side by side)</li>
+<li>✅ <strong>Fill out scorecard above</strong> as you test</li>
+<li>✅ <strong>Make decision within 48 hours</strong></li>
+</ol>
+<hr>
+<h2>📚 Resources</h2>
+<h3>Payload CMS</h3>
+<ul>
+<li><a href="https://payloadcms.com/docs">Official Docs</a></li>
+<li><a href="./payload-cms-eval/src/payload/payload.config.ts">FrankX Payload Config</a></li>
+<li><a href="http://localhost:3001/admin">Admin Panel</a></li>
+</ul>
+<h3>Tina CMS</h3>
+<ul>
+<li><a href="https://tina.io/docs">Official Docs</a></li>
+<li><a href="./tina-cms-eval/tina/config.ts">FrankX Tina Config</a></li>
+<li><a href="http://localhost:3002">Site + Editor</a></li>
+</ul>
+<h3>Comparison</h3>
+<ul>
+<li><a href="https://www.reddit.com/r/webdev/comments/payload_vs_tina">Payload vs Tina Reddit Thread</a></li>
+<li><a href="https://jamstack.org/headless-cms/">Headless CMS Comparison 2025</a></li>
+</ul>
+<hr>
+<p><strong>Created</strong>: December 2025
+<strong>For</strong>: FrankX AI Music Academy Evaluation
+<strong>Decision Deadline</strong>: 48 hours from first test</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

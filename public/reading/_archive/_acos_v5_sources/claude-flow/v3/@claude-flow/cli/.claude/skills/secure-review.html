@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Secure Review Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/skills/secure-review.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Secure Review Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fskills">skills</a> / <span>secure-review.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: secure-review
+version: 1.0.0
+description: Security-focused code review with AI manipulation detection
+author: rUv
+tags: [security, code-review, aidefence]</p>
+<p>invocation:</p>
+<ul>
+<li>/secure-review</li>
+<li>/security-review</li>
+</ul>
+<h2>requires:
+  - &quot;@claude-flow/aidefence&quot;</h2>
+<h1>Secure Review Skill</h1>
+<p>Perform security-focused code reviews that include AI manipulation detection, credential scanning, and security best practice validation.</p>
+<h2>Commands</h2>
+<h3><code>/secure-review &lt;file-or-directory&gt;</code></h3>
+<p>Review code for security issues including:</p>
+<ul>
+<li>Hardcoded credentials</li>
+<li>Prompt injection vulnerabilities</li>
+<li>Unsafe input handling</li>
+<li>Security anti-patterns</li>
+</ul>
+<h3><code>/secure-review --quick &lt;file&gt;</code></h3>
+<p>Quick security scan without detailed analysis.</p>
+<h3><code>/secure-review --fix &lt;file&gt;</code></h3>
+<p>Review and suggest fixes for security issues.</p>
+<hr>
+<h2>Execution Instructions</h2>
+<p>When <code>/secure-review</code> is invoked:</p>
+<h3>Step 1: Initialize Security Tools</h3>
+<pre><code class="language-typescript">import { createAIDefence } from &#39;@claude-flow/aidefence&#39;;
+
+const aidefence = createAIDefence({ enableLearning: true });
+</code></pre>
+<h3>Step 2: Read and Analyze Files</h3>
+<p>For each file to review:</p>
+<ol>
+<li><strong>Read the file</strong> using the Read tool</li>
+<li><strong>Scan for PII/Credentials</strong>:</li>
+</ol>
+<pre><code class="language-typescript">const piiResult = aidefence.hasPII(fileContent);
+if (piiResult) {
+  findings.push({
+    type: &#39;pii&#39;,
+    severity: &#39;high&#39;,
+    message: &#39;Potential credentials or PII detected&#39;,
+    file: filePath
+  });
+}
+</code></pre>
+<ol start="3">
+<li><strong>Check for dangerous patterns</strong>:</li>
+</ol>
+<pre><code class="language-typescript">const dangerousPatterns = [
+  { pattern: /eval\s*\(/, message: &#39;Unsafe eval() usage&#39;, severity: &#39;critical&#39; },
+  { pattern: /innerHTML\s*=/, message: &#39;Potential XSS via innerHTML&#39;, severity: &#39;high&#39; },
+  { pattern: /shell:\s*true/, message: &#39;Shell injection risk&#39;, severity: &#39;critical&#39; },
+  { pattern: /dangerouslySetInnerHTML/, message: &#39;Dangerous HTML injection&#39;, severity: &#39;high&#39; },
+  { pattern: /password.*=.*[&#39;&quot;][^&#39;&quot;]+[&#39;&quot;]/, message: &#39;Hardcoded password&#39;, severity: &#39;critical&#39; },
+];
+
+for (const { pattern, message, severity } of dangerousPatterns) {
+  const match = fileContent.match(pattern);
+  if (match) {
+    findings.push({ type: &#39;security&#39;, severity, message, file: filePath, line: getLineNumber(match) });
+  }
+}
+</code></pre>
+<ol start="4">
+<li><strong>Scan for prompt injection in AI code</strong>:</li>
+</ol>
+<pre><code class="language-typescript">// If file contains AI/LLM related code
+if (/openai|anthropic|llm|prompt|chat/i.test(fileContent)) {
+  // Check for unsafe prompt construction
+  const unsafePromptPatterns = [
+    /\$\{.*user.*\}/i,  // Template literal with user input
+    /\+ .*input/i,      // String concatenation with input
+    /prompt.*=.*request/i, // Direct request to prompt
+  ];
+
+  for (const pattern of unsafePromptPatterns) {
+    if (pattern.test(fileContent)) {
+      findings.push({
+        type: &#39;prompt_injection_risk&#39;,
+        severity: &#39;high&#39;,
+        message: &#39;Potential prompt injection vulnerability - user input directly in prompt&#39;,
+        file: filePath
+      });
+    }
+  }
+}
+</code></pre>
+<h3>Step 3: Generate Report</h3>
+<pre><code class="language-markdown">## Security Review Report
+
+### Summary
+- Files reviewed: X
+- Critical issues: X
+- High severity: X
+- Medium severity: X
+- Low severity: X
+
+### Findings
+
+#### Critical
+1. **[file.ts:42]** Hardcoded API key detected
+   - **Risk**: Credential exposure
+   - **Fix**: Move to environment variable
+
+#### High
+1. **[api.ts:108]** User input directly concatenated to prompt
+   - **Risk**: Prompt injection vulnerability
+   - **Fix**: Sanitize and validate user input before including in prompts
+
+### Recommendations
+1. Enable input validation at all API boundaries
+2. Use environment variables for all credentials
+3. Implement prompt injection defenses for AI code
+</code></pre>
+<h3>Step 4: Learn from Review</h3>
+<pre><code class="language-typescript">// Store review patterns for learning
+for (const finding of findings) {
+  await aidefence.learnFromDetection(
+    finding.context,
+    { safe: false, threats: [{ type: finding.type, severity: finding.severity }] }
+  );
+}
+</code></pre>
+<h2>Example Output</h2>
+<pre><code>🔍 Security Review: src/api/
+
+Scanning 12 files...
+
+❌ CRITICAL: src/api/config.ts:15
+   Hardcoded API key: sk-ant-api03...
+   → Move to .env file and use process.env.ANTHROPIC_API_KEY
+
+⚠️ HIGH: src/api/chat.ts:42
+   User input directly in prompt template
+   → Sanitize input: const sanitized = sanitizeForPrompt(userInput)
+
+⚠️ HIGH: src/api/chat.ts:67
+   No input length validation
+   → Add: if (input.length &gt; MAX_INPUT_LENGTH) throw new Error(&#39;...&#39;)
+
+ℹ️ MEDIUM: src/api/utils.ts:23
+   Using eval() for JSON parsing
+   → Use JSON.parse() instead
+
+📊 Summary: 1 critical, 2 high, 1 medium issues found
+</code></pre>
+<h2>Integration Notes</h2>
+<ul>
+<li>Works with <code>reviewer</code> agent for comprehensive code reviews</li>
+<li>Findings are stored in memory for pattern learning</li>
+<li>Can be triggered automatically via pre-commit hooks</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

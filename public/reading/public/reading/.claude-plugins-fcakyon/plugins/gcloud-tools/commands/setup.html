@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GCloud Tools Setup</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-plugins-fcakyon/plugins/gcloud-tools/commands/setup.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">GCloud Tools Setup</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude-plugins-fcakyon">.claude-plugins-fcakyon</a> / <a href="../../index.html#.claude-plugins-fcakyon%2Fplugins">plugins</a> / <a href="../index.html#.claude-plugins-fcakyon%2Fplugins%2Fgcloud-tools">gcloud-tools</a> / <a href="index.html#.claude-plugins-fcakyon%2Fplugins%2Fgcloud-tools%2Fcommands">commands</a> / <span>setup.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Configure GCloud CLI authentication</h2>
+<h1>GCloud Tools Setup</h1>
+<p><strong>Source:</strong> <a href="https://github.com/googleapis/gcloud-mcp">googleapis/gcloud-mcp</a></p>
+<p>Check GCloud MCP status and configure CLI authentication if needed.</p>
+<h2>Step 1: Check gcloud CLI</h2>
+<p>Run: <code>gcloud --version</code></p>
+<p>If not installed: Continue to Step 2.
+If installed: Skip to Step 3.</p>
+<h2>Step 2: Install gcloud CLI</h2>
+<p>Tell the user:</p>
+<pre><code>Install Google Cloud SDK:
+
+macOS (Homebrew):
+  brew install google-cloud-sdk
+
+macOS/Linux (Manual):
+  curl https://sdk.cloud.google.com | bash
+  exec -l $SHELL
+
+Windows:
+  Download from: https://cloud.google.com/sdk/docs/install
+
+After install, restart your terminal.
+</code></pre>
+<h2>Step 3: Authenticate</h2>
+<p>Run these commands:</p>
+<pre><code class="language-bash"># Login with your Google account
+gcloud auth login
+
+# Set up Application Default Credentials (required for MCP)
+gcloud auth application-default login
+</code></pre>
+<p>Both commands will open a browser for authentication.</p>
+<h2>Step 4: Set Default Project</h2>
+<pre><code class="language-bash"># List available projects
+gcloud projects list
+
+# Set default project
+gcloud config set project YOUR_PROJECT_ID
+</code></pre>
+<h2>Step 5: Verify Setup</h2>
+<p>Run: <code>gcloud auth list</code></p>
+<p>Should show your authenticated account with asterisk (*).</p>
+<h2>Step 6: Restart Claude Code</h2>
+<p>Tell the user:</p>
+<pre><code>After authentication:
+1. Exit Claude Code
+2. Run `claude` again
+
+The MCP will use your gcloud credentials.
+</code></pre>
+<h2>Troubleshooting</h2>
+<p>If GCloud MCP fails:</p>
+<pre><code>Common fixes:
+1. ADC not found - Run gcloud auth application-default login
+2. Project not set - Run gcloud config set project PROJECT_ID
+3. Permission denied - Check IAM roles in Cloud Console
+4. Quota exceeded - Check quotas in Cloud Console
+5. Token expired - Run gcloud auth application-default login again
+</code></pre>
+<h2>Alternative: Disable Plugin</h2>
+<p>If user doesn&#39;t need GCloud integration:</p>
+<pre><code>To disable this plugin:
+1. Run /mcp command
+2. Find the gcloud-observability server
+3. Disable it
+
+This prevents errors from missing authentication.
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

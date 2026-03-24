@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow Commands</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/claude-flow-help.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow Commands</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <span>claude-flow-help.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: claude-flow-help
+description: Show Claude-Flow commands and usage</h2>
+<h1>Claude-Flow Commands</h1>
+<h2>🌊 Claude-Flow: Agent Orchestration Platform</h2>
+<p>Claude-Flow is the ultimate multi-terminal orchestration platform that revolutionizes how you work with Claude Code.</p>
+<h2>Core Commands</h2>
+<h3>🚀 System Management</h3>
+<ul>
+<li><code>./claude-flow start</code> - Start orchestration system</li>
+<li><code>./claude-flow start --ui</code> - Start with interactive process management UI</li>
+<li><code>./claude-flow status</code> - Check system status</li>
+<li><code>./claude-flow monitor</code> - Real-time monitoring</li>
+<li><code>./claude-flow stop</code> - Stop orchestration</li>
+</ul>
+<h3>🤖 Agent Management</h3>
+<ul>
+<li><code>./claude-flow agent spawn &lt;type&gt;</code> - Create new agent</li>
+<li><code>./claude-flow agent list</code> - List active agents</li>
+<li><code>./claude-flow agent info &lt;id&gt;</code> - Agent details</li>
+<li><code>./claude-flow agent terminate &lt;id&gt;</code> - Stop agent</li>
+</ul>
+<h3>📋 Task Management</h3>
+<ul>
+<li><code>./claude-flow task create &lt;type&gt; &quot;description&quot;</code> - Create task</li>
+<li><code>./claude-flow task list</code> - List all tasks</li>
+<li><code>./claude-flow task status &lt;id&gt;</code> - Task status</li>
+<li><code>./claude-flow task cancel &lt;id&gt;</code> - Cancel task</li>
+<li><code>./claude-flow task workflow &lt;file&gt;</code> - Execute workflow</li>
+</ul>
+<h3>🧠 Memory Operations</h3>
+<ul>
+<li><code>./claude-flow memory store &quot;key&quot; &quot;value&quot;</code> - Store data</li>
+<li><code>./claude-flow memory query &quot;search&quot;</code> - Search memory</li>
+<li><code>./claude-flow memory stats</code> - Memory statistics</li>
+<li><code>./claude-flow memory export &lt;file&gt;</code> - Export memory</li>
+<li><code>./claude-flow memory import &lt;file&gt;</code> - Import memory</li>
+</ul>
+<h3>⚡ SPARC Development</h3>
+<ul>
+<li><code>./claude-flow sparc &quot;task&quot;</code> - Run SPARC orchestrator</li>
+<li><code>./claude-flow sparc modes</code> - List all 17+ SPARC modes</li>
+<li><code>./claude-flow sparc run &lt;mode&gt; &quot;task&quot;</code> - Run specific mode</li>
+<li><code>./claude-flow sparc tdd &quot;feature&quot;</code> - TDD workflow</li>
+<li><code>./claude-flow sparc info &lt;mode&gt;</code> - Mode details</li>
+</ul>
+<h3>🐝 Swarm Coordination</h3>
+<ul>
+<li><code>./claude-flow swarm &quot;task&quot; --strategy &lt;type&gt;</code> - Start swarm</li>
+<li><code>./claude-flow swarm &quot;task&quot; --background</code> - Long-running swarm</li>
+<li><code>./claude-flow swarm &quot;task&quot; --monitor</code> - With monitoring</li>
+<li><code>./claude-flow swarm &quot;task&quot; --ui</code> - Interactive UI</li>
+<li><code>./claude-flow swarm &quot;task&quot; --distributed</code> - Distributed coordination</li>
+</ul>
+<h3>🌍 MCP Integration</h3>
+<ul>
+<li><code>./claude-flow mcp status</code> - MCP server status</li>
+<li><code>./claude-flow mcp tools</code> - List available tools</li>
+<li><code>./claude-flow mcp config</code> - Show configuration</li>
+<li><code>./claude-flow mcp logs</code> - View MCP logs</li>
+</ul>
+<h3>🤖 Claude Integration</h3>
+<ul>
+<li><code>./claude-flow claude spawn &quot;task&quot;</code> - Spawn Claude with enhanced guidance</li>
+<li><code>./claude-flow claude batch &lt;file&gt;</code> - Execute workflow configuration</li>
+</ul>
+<h2>🌟 Quick Examples</h2>
+<h3>Initialize with SPARC:</h3>
+<pre><code class="language-bash">npx -y claude-flow@latest init --sparc
+</code></pre>
+<h3>Start a development swarm:</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;Build REST API&quot; --strategy development --monitor --review
+</code></pre>
+<h3>Run TDD workflow:</h3>
+<pre><code class="language-bash">./claude-flow sparc tdd &quot;user authentication&quot;
+</code></pre>
+<h3>Store project context:</h3>
+<pre><code class="language-bash">./claude-flow memory store &quot;project_requirements&quot; &quot;e-commerce platform specs&quot; --namespace project
+</code></pre>
+<h3>Spawn specialized agents:</h3>
+<pre><code class="language-bash">./claude-flow agent spawn researcher --name &quot;Senior Researcher&quot; --priority 8
+./claude-flow agent spawn developer --name &quot;Lead Developer&quot; --priority 9
+</code></pre>
+<h2>🎯 Best Practices</h2>
+<ul>
+<li>Use <code>./claude-flow</code> instead of <code>npx claude-flow</code> after initialization</li>
+<li>Store important context in memory for cross-session persistence</li>
+<li>Use swarm mode for complex tasks requiring multiple agents</li>
+<li>Enable monitoring for real-time progress tracking</li>
+<li>Use background mode for tasks &gt; 30 minutes</li>
+</ul>
+<h2>📚 Resources</h2>
+<ul>
+<li>Documentation: <a href="https://github.com/ruvnet/claude-code-flow/docs">https://github.com/ruvnet/claude-code-flow/docs</a></li>
+<li>Examples: <a href="https://github.com/ruvnet/claude-code-flow/examples">https://github.com/ruvnet/claude-code-flow/examples</a></li>
+<li>Issues: <a href="https://github.com/ruvnet/claude-code-flow/issues">https://github.com/ruvnet/claude-code-flow/issues</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

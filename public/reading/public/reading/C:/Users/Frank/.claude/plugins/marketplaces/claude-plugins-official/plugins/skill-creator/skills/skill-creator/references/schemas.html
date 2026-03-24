@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>JSON Schemas</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/skill-creator/skills/skill-creator/references/schemas.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">JSON Schemas</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fskill-creator">skill-creator</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fskill-creator%2Fskills">skills</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fskill-creator%2Fskills%2Fskill-creator">skill-creator</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fskill-creator%2Fskills%2Fskill-creator%2Freferences">references</a> / <span>schemas.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>JSON Schemas</h1>
+<p>This document defines the JSON schemas used by skill-creator.</p>
+<hr>
+<h2>evals.json</h2>
+<p>Defines the evals for a skill. Located at <code>evals/evals.json</code> within the skill directory.</p>
+<pre><code class="language-json">{
+  &quot;skill_name&quot;: &quot;example-skill&quot;,
+  &quot;evals&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;prompt&quot;: &quot;User&#39;s example prompt&quot;,
+      &quot;expected_output&quot;: &quot;Description of expected result&quot;,
+      &quot;files&quot;: [&quot;evals/files/sample1.pdf&quot;],
+      &quot;expectations&quot;: [
+        &quot;The output includes X&quot;,
+        &quot;The skill used script Y&quot;
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Fields:</strong></p>
+<ul>
+<li><code>skill_name</code>: Name matching the skill&#39;s frontmatter</li>
+<li><code>evals[].id</code>: Unique integer identifier</li>
+<li><code>evals[].prompt</code>: The task to execute</li>
+<li><code>evals[].expected_output</code>: Human-readable description of success</li>
+<li><code>evals[].files</code>: Optional list of input file paths (relative to skill root)</li>
+<li><code>evals[].expectations</code>: List of verifiable statements</li>
+</ul>
+<hr>
+<h2>history.json</h2>
+<p>Tracks version progression in Improve mode. Located at workspace root.</p>
+<pre><code class="language-json">{
+  &quot;started_at&quot;: &quot;2026-01-15T10:30:00Z&quot;,
+  &quot;skill_name&quot;: &quot;pdf&quot;,
+  &quot;current_best&quot;: &quot;v2&quot;,
+  &quot;iterations&quot;: [
+    {
+      &quot;version&quot;: &quot;v0&quot;,
+      &quot;parent&quot;: null,
+      &quot;expectation_pass_rate&quot;: 0.65,
+      &quot;grading_result&quot;: &quot;baseline&quot;,
+      &quot;is_current_best&quot;: false
+    },
+    {
+      &quot;version&quot;: &quot;v1&quot;,
+      &quot;parent&quot;: &quot;v0&quot;,
+      &quot;expectation_pass_rate&quot;: 0.75,
+      &quot;grading_result&quot;: &quot;won&quot;,
+      &quot;is_current_best&quot;: false
+    },
+    {
+      &quot;version&quot;: &quot;v2&quot;,
+      &quot;parent&quot;: &quot;v1&quot;,
+      &quot;expectation_pass_rate&quot;: 0.85,
+      &quot;grading_result&quot;: &quot;won&quot;,
+      &quot;is_current_best&quot;: true
+    }
+  ]
+}
+</code></pre>
+<p><strong>Fields:</strong></p>
+<ul>
+<li><code>started_at</code>: ISO timestamp of when improvement started</li>
+<li><code>skill_name</code>: Name of the skill being improved</li>
+<li><code>current_best</code>: Version identifier of the best performer</li>
+<li><code>iterations[].version</code>: Version identifier (v0, v1, ...)</li>
+<li><code>iterations[].parent</code>: Parent version this was derived from</li>
+<li><code>iterations[].expectation_pass_rate</code>: Pass rate from grading</li>
+<li><code>iterations[].grading_result</code>: &quot;baseline&quot;, &quot;won&quot;, &quot;lost&quot;, or &quot;tie&quot;</li>
+<li><code>iterations[].is_current_best</code>: Whether this is the current best version</li>
+</ul>
+<hr>
+<h2>grading.json</h2>
+<p>Output from the grader agent. Located at <code>&lt;run-dir&gt;/grading.json</code>.</p>
+<pre><code class="language-json">{
+  &quot;expectations&quot;: [
+    {
+      &quot;text&quot;: &quot;The output includes the name &#39;John Smith&#39;&quot;,
+      &quot;passed&quot;: true,
+      &quot;evidence&quot;: &quot;Found in transcript Step 3: &#39;Extracted names: John Smith, Sarah Johnson&#39;&quot;
+    },
+    {
+      &quot;text&quot;: &quot;The spreadsheet has a SUM formula in cell B10&quot;,
+      &quot;passed&quot;: false,
+      &quot;evidence&quot;: &quot;No spreadsheet was created. The output was a text file.&quot;
+    }
+  ],
+  &quot;summary&quot;: {
+    &quot;passed&quot;: 2,
+    &quot;failed&quot;: 1,
+    &quot;total&quot;: 3,
+    &quot;pass_rate&quot;: 0.67
+  },
+  &quot;execution_metrics&quot;: {
+    &quot;tool_calls&quot;: {
+      &quot;Read&quot;: 5,
+      &quot;Write&quot;: 2,
+      &quot;Bash&quot;: 8
+    },
+    &quot;total_tool_calls&quot;: 15,
+    &quot;total_steps&quot;: 6,
+    &quot;errors_encountered&quot;: 0,
+    &quot;output_chars&quot;: 12450,
+    &quot;transcript_chars&quot;: 3200
+  },
+  &quot;timing&quot;: {
+    &quot;executor_duration_seconds&quot;: 165.0,
+    &quot;grader_duration_seconds&quot;: 26.0,
+    &quot;total_duration_seconds&quot;: 191.0
+  },
+  &quot;claims&quot;: [
+    {
+      &quot;claim&quot;: &quot;The form has 12 fillable fields&quot;,
+      &quot;type&quot;: &quot;factual&quot;,
+      &quot;verified&quot;: true,
+      &quot;evidence&quot;: &quot;Counted 12 fields in field_info.json&quot;
+    }
+  ],
+  &quot;user_notes_summary&quot;: {
+    &quot;uncertainties&quot;: [&quot;Used 2023 data, may be stale&quot;],
+    &quot;needs_review&quot;: [],
+    &quot;workarounds&quot;: [&quot;Fell back to text overlay for non-fillable fields&quot;]
+  },
+  &quot;eval_feedback&quot;: {
+    &quot;suggestions&quot;: [
+      {
+        &quot;assertion&quot;: &quot;The output includes the name &#39;John Smith&#39;&quot;,
+        &quot;reason&quot;: &quot;A hallucinated document that mentions the name would also pass&quot;
+      }
+    ],
+    &quot;overall&quot;: &quot;Assertions check presence but not correctness.&quot;
+  }
+}
+</code></pre>
+<p><strong>Fields:</strong></p>
+<ul>
+<li><code>expectations[]</code>: Graded expectations with evidence</li>
+<li><code>summary</code>: Aggregate pass/fail counts</li>
+<li><code>execution_metrics</code>: Tool usage and output size (from executor&#39;s metrics.json)</li>
+<li><code>timing</code>: Wall clock timing (from timing.json)</li>
+<li><code>claims</code>: Extracted and verified claims from the output</li>
+<li><code>user_notes_summary</code>: Issues flagged by the executor</li>
+<li><code>eval_feedback</code>: (optional) Improvement suggestions for the evals, only present when the grader identifies issues worth raising</li>
+</ul>
+<hr>
+<h2>metrics.json</h2>
+<p>Output from the executor agent. Located at <code>&lt;run-dir&gt;/outputs/metrics.json</code>.</p>
+<pre><code class="language-json">{
+  &quot;tool_calls&quot;: {
+    &quot;Read&quot;: 5,
+    &quot;Write&quot;: 2,
+    &quot;Bash&quot;: 8,
+    &quot;Edit&quot;: 1,
+    &quot;Glob&quot;: 2,
+    &quot;Grep&quot;: 0
+  },
+  &quot;total_tool_calls&quot;: 18,
+  &quot;total_steps&quot;: 6,
+  &quot;files_created&quot;: [&quot;filled_form.pdf&quot;, &quot;field_values.json&quot;],
+  &quot;errors_encountered&quot;: 0,
+  &quot;output_chars&quot;: 12450,
+  &quot;transcript_chars&quot;: 3200
+}
+</code></pre>
+<p><strong>Fields:</strong></p>
+<ul>
+<li><code>tool_calls</code>: Count per tool type</li>
+<li><code>total_tool_calls</code>: Sum of all tool calls</li>
+<li><code>total_steps</code>: Number of major execution steps</li>
+<li><code>files_created</code>: List of output files created</li>
+<li><code>errors_encountered</code>: Number of errors during execution</li>
+<li><code>output_chars</code>: Total character count of output files</li>
+<li><code>transcript_chars</code>: Character count of transcript</li>
+</ul>
+<hr>
+<h2>timing.json</h2>
+<p>Wall clock timing for a run. Located at <code>&lt;run-dir&gt;/timing.json</code>.</p>
+<p><strong>How to capture:</strong> When a subagent task completes, the task notification includes <code>total_tokens</code> and <code>duration_ms</code>. Save these immediately — they are not persisted anywhere else and cannot be recovered after the fact.</p>
+<pre><code class="language-json">{
+  &quot;total_tokens&quot;: 84852,
+  &quot;duration_ms&quot;: 23332,
+  &quot;total_duration_seconds&quot;: 23.3,
+  &quot;executor_start&quot;: &quot;2026-01-15T10:30:00Z&quot;,
+  &quot;executor_end&quot;: &quot;2026-01-15T10:32:45Z&quot;,
+  &quot;executor_duration_seconds&quot;: 165.0,
+  &quot;grader_start&quot;: &quot;2026-01-15T10:32:46Z&quot;,
+  &quot;grader_end&quot;: &quot;2026-01-15T10:33:12Z&quot;,
+  &quot;grader_duration_seconds&quot;: 26.0
+}
+</code></pre>
+<hr>
+<h2>benchmark.json</h2>
+<p>Output from Benchmark mode. Located at <code>benchmarks/&lt;timestamp&gt;/benchmark.json</code>.</p>
+<pre><code class="language-json">{
+  &quot;metadata&quot;: {
+    &quot;skill_name&quot;: &quot;pdf&quot;,
+    &quot;skill_path&quot;: &quot;/path/to/pdf&quot;,
+    &quot;executor_model&quot;: &quot;claude-sonnet-4-20250514&quot;,
+    &quot;analyzer_model&quot;: &quot;most-capable-model&quot;,
+    &quot;timestamp&quot;: &quot;2026-01-15T10:30:00Z&quot;,
+    &quot;evals_run&quot;: [1, 2, 3],
+    &quot;runs_per_configuration&quot;: 3
+  },
+
+  &quot;runs&quot;: [
+    {
+      &quot;eval_id&quot;: 1,
+      &quot;eval_name&quot;: &quot;Ocean&quot;,
+      &quot;configuration&quot;: &quot;with_skill&quot;,
+      &quot;run_number&quot;: 1,
+      &quot;result&quot;: {
+        &quot;pass_rate&quot;: 0.85,
+        &quot;passed&quot;: 6,
+        &quot;failed&quot;: 1,
+        &quot;total&quot;: 7,
+        &quot;time_seconds&quot;: 42.5,
+        &quot;tokens&quot;: 3800,
+        &quot;tool_calls&quot;: 18,
+        &quot;errors&quot;: 0
+      },
+      &quot;expectations&quot;: [
+        {&quot;text&quot;: &quot;...&quot;, &quot;passed&quot;: true, &quot;evidence&quot;: &quot;...&quot;}
+      ],
+      &quot;notes&quot;: [
+        &quot;Used 2023 data, may be stale&quot;,
+        &quot;Fell back to text overlay for non-fillable fields&quot;
+      ]
+    }
+  ],
+
+  &quot;run_summary&quot;: {
+    &quot;with_skill&quot;: {
+      &quot;pass_rate&quot;: {&quot;mean&quot;: 0.85, &quot;stddev&quot;: 0.05, &quot;min&quot;: 0.80, &quot;max&quot;: 0.90},
+      &quot;time_seconds&quot;: {&quot;mean&quot;: 45.0, &quot;stddev&quot;: 12.0, &quot;min&quot;: 32.0, &quot;max&quot;: 58.0},
+      &quot;tokens&quot;: {&quot;mean&quot;: 3800, &quot;stddev&quot;: 400, &quot;min&quot;: 3200, &quot;max&quot;: 4100}
+    },
+    &quot;without_skill&quot;: {
+      &quot;pass_rate&quot;: {&quot;mean&quot;: 0.35, &quot;stddev&quot;: 0.08, &quot;min&quot;: 0.28, &quot;max&quot;: 0.45},
+      &quot;time_seconds&quot;: {&quot;mean&quot;: 32.0, &quot;stddev&quot;: 8.0, &quot;min&quot;: 24.0, &quot;max&quot;: 42.0},
+      &quot;tokens&quot;: {&quot;mean&quot;: 2100, &quot;stddev&quot;: 300, &quot;min&quot;: 1800, &quot;max&quot;: 2500}
+    },
+    &quot;delta&quot;: {
+      &quot;pass_rate&quot;: &quot;+0.50&quot;,
+      &quot;time_seconds&quot;: &quot;+13.0&quot;,
+      &quot;tokens&quot;: &quot;+1700&quot;
+    }
+  },
+
+  &quot;notes&quot;: [
+    &quot;Assertion &#39;Output is a PDF file&#39; passes 100% in both configurations - may not differentiate skill value&quot;,
+    &quot;Eval 3 shows high variance (50% ± 40%) - may be flaky or model-dependent&quot;,
+    &quot;Without-skill runs consistently fail on table extraction expectations&quot;,
+    &quot;Skill adds 13s average execution time but improves pass rate by 50%&quot;
+  ]
+}
+</code></pre>
+<p><strong>Fields:</strong></p>
+<ul>
+<li><code>metadata</code>: Information about the benchmark run<ul>
+<li><code>skill_name</code>: Name of the skill</li>
+<li><code>timestamp</code>: When the benchmark was run</li>
+<li><code>evals_run</code>: List of eval names or IDs</li>
+<li><code>runs_per_configuration</code>: Number of runs per config (e.g. 3)</li>
+</ul>
+</li>
+<li><code>runs[]</code>: Individual run results<ul>
+<li><code>eval_id</code>: Numeric eval identifier</li>
+<li><code>eval_name</code>: Human-readable eval name (used as section header in the viewer)</li>
+<li><code>configuration</code>: Must be <code>&quot;with_skill&quot;</code> or <code>&quot;without_skill&quot;</code> (the viewer uses this exact string for grouping and color coding)</li>
+<li><code>run_number</code>: Integer run number (1, 2, 3...)</li>
+<li><code>result</code>: Nested object with <code>pass_rate</code>, <code>passed</code>, <code>total</code>, <code>time_seconds</code>, <code>tokens</code>, <code>errors</code></li>
+</ul>
+</li>
+<li><code>run_summary</code>: Statistical aggregates per configuration<ul>
+<li><code>with_skill</code> / <code>without_skill</code>: Each contains <code>pass_rate</code>, <code>time_seconds</code>, <code>tokens</code> objects with <code>mean</code> and <code>stddev</code> fields</li>
+<li><code>delta</code>: Difference strings like <code>&quot;+0.50&quot;</code>, <code>&quot;+13.0&quot;</code>, <code>&quot;+1700&quot;</code></li>
+</ul>
+</li>
+<li><code>notes</code>: Freeform observations from the analyzer</li>
+</ul>
+<p><strong>Important:</strong> The viewer reads these field names exactly. Using <code>config</code> instead of <code>configuration</code>, or putting <code>pass_rate</code> at the top level of a run instead of nested under <code>result</code>, will cause the viewer to show empty/zero values. Always reference this schema when generating benchmark.json manually.</p>
+<hr>
+<h2>comparison.json</h2>
+<p>Output from blind comparator. Located at <code>&lt;grading-dir&gt;/comparison-N.json</code>.</p>
+<pre><code class="language-json">{
+  &quot;winner&quot;: &quot;A&quot;,
+  &quot;reasoning&quot;: &quot;Output A provides a complete solution with proper formatting and all required fields. Output B is missing the date field and has formatting inconsistencies.&quot;,
+  &quot;rubric&quot;: {
+    &quot;A&quot;: {
+      &quot;content&quot;: {
+        &quot;correctness&quot;: 5,
+        &quot;completeness&quot;: 5,
+        &quot;accuracy&quot;: 4
+      },
+      &quot;structure&quot;: {
+        &quot;organization&quot;: 4,
+        &quot;formatting&quot;: 5,
+        &quot;usability&quot;: 4
+      },
+      &quot;content_score&quot;: 4.7,
+      &quot;structure_score&quot;: 4.3,
+      &quot;overall_score&quot;: 9.0
+    },
+    &quot;B&quot;: {
+      &quot;content&quot;: {
+        &quot;correctness&quot;: 3,
+        &quot;completeness&quot;: 2,
+        &quot;accuracy&quot;: 3
+      },
+      &quot;structure&quot;: {
+        &quot;organization&quot;: 3,
+        &quot;formatting&quot;: 2,
+        &quot;usability&quot;: 3
+      },
+      &quot;content_score&quot;: 2.7,
+      &quot;structure_score&quot;: 2.7,
+      &quot;overall_score&quot;: 5.4
+    }
+  },
+  &quot;output_quality&quot;: {
+    &quot;A&quot;: {
+      &quot;score&quot;: 9,
+      &quot;strengths&quot;: [&quot;Complete solution&quot;, &quot;Well-formatted&quot;, &quot;All fields present&quot;],
+      &quot;weaknesses&quot;: [&quot;Minor style inconsistency in header&quot;]
+    },
+    &quot;B&quot;: {
+      &quot;score&quot;: 5,
+      &quot;strengths&quot;: [&quot;Readable output&quot;, &quot;Correct basic structure&quot;],
+      &quot;weaknesses&quot;: [&quot;Missing date field&quot;, &quot;Formatting inconsistencies&quot;, &quot;Partial data extraction&quot;]
+    }
+  },
+  &quot;expectation_results&quot;: {
+    &quot;A&quot;: {
+      &quot;passed&quot;: 4,
+      &quot;total&quot;: 5,
+      &quot;pass_rate&quot;: 0.80,
+      &quot;details&quot;: [
+        {&quot;text&quot;: &quot;Output includes name&quot;, &quot;passed&quot;: true}
+      ]
+    },
+    &quot;B&quot;: {
+      &quot;passed&quot;: 3,
+      &quot;total&quot;: 5,
+      &quot;pass_rate&quot;: 0.60,
+      &quot;details&quot;: [
+        {&quot;text&quot;: &quot;Output includes name&quot;, &quot;passed&quot;: true}
+      ]
+    }
+  }
+}
+</code></pre>
+<hr>
+<h2>analysis.json</h2>
+<p>Output from post-hoc analyzer. Located at <code>&lt;grading-dir&gt;/analysis.json</code>.</p>
+<pre><code class="language-json">{
+  &quot;comparison_summary&quot;: {
+    &quot;winner&quot;: &quot;A&quot;,
+    &quot;winner_skill&quot;: &quot;path/to/winner/skill&quot;,
+    &quot;loser_skill&quot;: &quot;path/to/loser/skill&quot;,
+    &quot;comparator_reasoning&quot;: &quot;Brief summary of why comparator chose winner&quot;
+  },
+  &quot;winner_strengths&quot;: [
+    &quot;Clear step-by-step instructions for handling multi-page documents&quot;,
+    &quot;Included validation script that caught formatting errors&quot;
+  ],
+  &quot;loser_weaknesses&quot;: [
+    &quot;Vague instruction &#39;process the document appropriately&#39; led to inconsistent behavior&quot;,
+    &quot;No script for validation, agent had to improvise&quot;
+  ],
+  &quot;instruction_following&quot;: {
+    &quot;winner&quot;: {
+      &quot;score&quot;: 9,
+      &quot;issues&quot;: [&quot;Minor: skipped optional logging step&quot;]
+    },
+    &quot;loser&quot;: {
+      &quot;score&quot;: 6,
+      &quot;issues&quot;: [
+        &quot;Did not use the skill&#39;s formatting template&quot;,
+        &quot;Invented own approach instead of following step 3&quot;
+      ]
+    }
+  },
+  &quot;improvement_suggestions&quot;: [
+    {
+      &quot;priority&quot;: &quot;high&quot;,
+      &quot;category&quot;: &quot;instructions&quot;,
+      &quot;suggestion&quot;: &quot;Replace &#39;process the document appropriately&#39; with explicit steps&quot;,
+      &quot;expected_impact&quot;: &quot;Would eliminate ambiguity that caused inconsistent behavior&quot;
+    }
+  ],
+  &quot;transcript_insights&quot;: {
+    &quot;winner_execution_pattern&quot;: &quot;Read skill -&gt; Followed 5-step process -&gt; Used validation script&quot;,
+    &quot;loser_execution_pattern&quot;: &quot;Read skill -&gt; Unclear on approach -&gt; Tried 3 different methods&quot;
+  }
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

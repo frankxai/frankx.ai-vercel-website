@@ -1,0 +1,1028 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>CRDT Synchronizer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/agents/consensus/crdt-synchronizer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">CRDT Synchronizer</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fagents">agents</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fagents%2Fconsensus">consensus</a> / <span>crdt-synchronizer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: crdt-synchronizer
+type: synchronizer
+color: &quot;#4CAF50&quot;
+description: Implements Conflict-free Replicated Data Types for eventually consistent state synchronization
+capabilities:</p>
+<ul>
+<li>state_based_crdts</li>
+<li>operation_based_crdts</li>
+<li>delta_synchronization</li>
+<li>conflict_resolution</li>
+<li>causal_consistency
+priority: high
+hooks:
+  pre: |
+echo &quot;🔄 CRDT Synchronizer syncing: $TASK&quot;<h1>Initialize CRDT state tracking</h1>
+if [[ &quot;$TASK&quot; == <em>&quot;synchronization&quot;</em> ]]; then
+  echo &quot;📊 Preparing delta state computation&quot;
+fi
+  post: |
+echo &quot;🎯 CRDT synchronization complete&quot;<h1>Verify eventual consistency</h1>
+echo &quot;✅ Validating conflict-free state convergence&quot;</li>
+</ul>
+<hr>
+<h1>CRDT Synchronizer</h1>
+<p>Implements Conflict-free Replicated Data Types for eventually consistent distributed state synchronization.</p>
+<h2>Core Responsibilities</h2>
+<ol>
+<li><strong>CRDT Implementation</strong>: Deploy state-based and operation-based conflict-free data types</li>
+<li><strong>Data Structure Management</strong>: Handle counters, sets, registers, and composite structures</li>
+<li><strong>Delta Synchronization</strong>: Implement efficient incremental state updates</li>
+<li><strong>Conflict Resolution</strong>: Ensure deterministic conflict-free merge operations</li>
+<li><strong>Causal Consistency</strong>: Maintain proper ordering of causally related operations</li>
+</ol>
+<h2>Technical Implementation</h2>
+<h3>Base CRDT Framework</h3>
+<pre><code class="language-javascript">class CRDTSynchronizer {
+  constructor(nodeId, replicationGroup) {
+    this.nodeId = nodeId;
+    this.replicationGroup = replicationGroup;
+    this.crdtInstances = new Map();
+    this.vectorClock = new VectorClock(nodeId);
+    this.deltaBuffer = new Map();
+    this.syncScheduler = new SyncScheduler();
+    this.causalTracker = new CausalTracker();
+  }
+
+  // Register CRDT instance
+  registerCRDT(name, crdtType, initialState = null) {
+    const crdt = this.createCRDTInstance(crdtType, initialState);
+    this.crdtInstances.set(name, crdt);
+    
+    // Subscribe to CRDT changes for delta tracking
+    crdt.onUpdate((delta) =&gt; {
+      this.trackDelta(name, delta);
+    });
+    
+    return crdt;
+  }
+
+  // Create specific CRDT instance
+  createCRDTInstance(type, initialState) {
+    switch (type) {
+      case &#39;G_COUNTER&#39;:
+        return new GCounter(this.nodeId, this.replicationGroup, initialState);
+      case &#39;PN_COUNTER&#39;:
+        return new PNCounter(this.nodeId, this.replicationGroup, initialState);
+      case &#39;OR_SET&#39;:
+        return new ORSet(this.nodeId, initialState);
+      case &#39;LWW_REGISTER&#39;:
+        return new LWWRegister(this.nodeId, initialState);
+      case &#39;OR_MAP&#39;:
+        return new ORMap(this.nodeId, this.replicationGroup, initialState);
+      case &#39;RGA&#39;:
+        return new RGA(this.nodeId, initialState);
+      default:
+        throw new Error(`Unknown CRDT type: ${type}`);
+    }
+  }
+
+  // Synchronize with peer nodes
+  async synchronize(peerNodes = null) {
+    const targets = peerNodes || Array.from(this.replicationGroup);
+    
+    for (const peer of targets) {
+      if (peer !== this.nodeId) {
+        await this.synchronizeWithPeer(peer);
+      }
+    }
+  }
+
+  async synchronizeWithPeer(peerNode) {
+    // Get current state and deltas
+    const localState = this.getCurrentState();
+    const deltas = this.getDeltasSince(peerNode);
+    
+    // Send sync request
+    const syncRequest = {
+      type: &#39;CRDT_SYNC_REQUEST&#39;,
+      sender: this.nodeId,
+      vectorClock: this.vectorClock.clone(),
+      state: localState,
+      deltas: deltas
+    };
+    
+    try {
+      const response = await this.sendSyncRequest(peerNode, syncRequest);
+      await this.processSyncResponse(response);
+    } catch (error) {
+      console.error(`Sync failed with ${peerNode}:`, error);
+    }
+  }
+}
+</code></pre>
+<h3>G-Counter Implementation</h3>
+<pre><code class="language-javascript">class GCounter {
+  constructor(nodeId, replicationGroup, initialState = null) {
+    this.nodeId = nodeId;
+    this.replicationGroup = replicationGroup;
+    this.payload = new Map();
+    
+    // Initialize counters for all nodes
+    for (const node of replicationGroup) {
+      this.payload.set(node, 0);
+    }
+    
+    if (initialState) {
+      this.merge(initialState);
+    }
+    
+    this.updateCallbacks = [];
+  }
+
+  // Increment operation (can only be performed by owner node)
+  increment(amount = 1) {
+    if (amount &lt; 0) {
+      throw new Error(&#39;G-Counter only supports positive increments&#39;);
+    }
+    
+    const oldValue = this.payload.get(this.nodeId) || 0;
+    const newValue = oldValue + amount;
+    this.payload.set(this.nodeId, newValue);
+    
+    // Notify observers
+    this.notifyUpdate({
+      type: &#39;INCREMENT&#39;,
+      node: this.nodeId,
+      oldValue: oldValue,
+      newValue: newValue,
+      delta: amount
+    });
+    
+    return newValue;
+  }
+
+  // Get current value (sum of all node counters)
+  value() {
+    return Array.from(this.payload.values()).reduce((sum, val) =&gt; sum + val, 0);
+  }
+
+  // Merge with another G-Counter state
+  merge(otherState) {
+    let changed = false;
+    
+    for (const [node, otherValue] of otherState.payload) {
+      const currentValue = this.payload.get(node) || 0;
+      if (otherValue &gt; currentValue) {
+        this.payload.set(node, otherValue);
+        changed = true;
+      }
+    }
+    
+    if (changed) {
+      this.notifyUpdate({
+        type: &#39;MERGE&#39;,
+        mergedFrom: otherState
+      });
+    }
+  }
+
+  // Compare with another state
+  compare(otherState) {
+    for (const [node, otherValue] of otherState.payload) {
+      const currentValue = this.payload.get(node) || 0;
+      if (currentValue &lt; otherValue) {
+        return &#39;LESS_THAN&#39;;
+      } else if (currentValue &gt; otherValue) {
+        return &#39;GREATER_THAN&#39;;
+      }
+    }
+    return &#39;EQUAL&#39;;
+  }
+
+  // Clone current state
+  clone() {
+    const newCounter = new GCounter(this.nodeId, this.replicationGroup);
+    newCounter.payload = new Map(this.payload);
+    return newCounter;
+  }
+
+  onUpdate(callback) {
+    this.updateCallbacks.push(callback);
+  }
+
+  notifyUpdate(delta) {
+    this.updateCallbacks.forEach(callback =&gt; callback(delta));
+  }
+}
+</code></pre>
+<h3>OR-Set Implementation</h3>
+<pre><code class="language-javascript">class ORSet {
+  constructor(nodeId, initialState = null) {
+    this.nodeId = nodeId;
+    this.elements = new Map(); // element -&gt; Set of unique tags
+    this.tombstones = new Set(); // removed element tags
+    this.tagCounter = 0;
+    
+    if (initialState) {
+      this.merge(initialState);
+    }
+    
+    this.updateCallbacks = [];
+  }
+
+  // Add element to set
+  add(element) {
+    const tag = this.generateUniqueTag();
+    
+    if (!this.elements.has(element)) {
+      this.elements.set(element, new Set());
+    }
+    
+    this.elements.get(element).add(tag);
+    
+    this.notifyUpdate({
+      type: &#39;ADD&#39;,
+      element: element,
+      tag: tag
+    });
+    
+    return tag;
+  }
+
+  // Remove element from set
+  remove(element) {
+    if (!this.elements.has(element)) {
+      return false; // Element not present
+    }
+    
+    const tags = this.elements.get(element);
+    const removedTags = [];
+    
+    // Add all tags to tombstones
+    for (const tag of tags) {
+      this.tombstones.add(tag);
+      removedTags.push(tag);
+    }
+    
+    this.notifyUpdate({
+      type: &#39;REMOVE&#39;,
+      element: element,
+      removedTags: removedTags
+    });
+    
+    return true;
+  }
+
+  // Check if element is in set
+  has(element) {
+    if (!this.elements.has(element)) {
+      return false;
+    }
+    
+    const tags = this.elements.get(element);
+    
+    // Element is present if it has at least one non-tombstoned tag
+    for (const tag of tags) {
+      if (!this.tombstones.has(tag)) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
+
+  // Get all elements in set
+  values() {
+    const result = new Set();
+    
+    for (const [element, tags] of this.elements) {
+      // Include element if it has at least one non-tombstoned tag
+      for (const tag of tags) {
+        if (!this.tombstones.has(tag)) {
+          result.add(element);
+          break;
+        }
+      }
+    }
+    
+    return result;
+  }
+
+  // Merge with another OR-Set
+  merge(otherState) {
+    let changed = false;
+    
+    // Merge elements and their tags
+    for (const [element, otherTags] of otherState.elements) {
+      if (!this.elements.has(element)) {
+        this.elements.set(element, new Set());
+      }
+      
+      const currentTags = this.elements.get(element);
+      
+      for (const tag of otherTags) {
+        if (!currentTags.has(tag)) {
+          currentTags.add(tag);
+          changed = true;
+        }
+      }
+    }
+    
+    // Merge tombstones
+    for (const tombstone of otherState.tombstones) {
+      if (!this.tombstones.has(tombstone)) {
+        this.tombstones.add(tombstone);
+        changed = true;
+      }
+    }
+    
+    if (changed) {
+      this.notifyUpdate({
+        type: &#39;MERGE&#39;,
+        mergedFrom: otherState
+      });
+    }
+  }
+
+  generateUniqueTag() {
+    return `${this.nodeId}-${Date.now()}-${++this.tagCounter}`;
+  }
+
+  onUpdate(callback) {
+    this.updateCallbacks.push(callback);
+  }
+
+  notifyUpdate(delta) {
+    this.updateCallbacks.forEach(callback =&gt; callback(delta));
+  }
+}
+</code></pre>
+<h3>LWW-Register Implementation</h3>
+<pre><code class="language-javascript">class LWWRegister {
+  constructor(nodeId, initialValue = null) {
+    this.nodeId = nodeId;
+    this.value = initialValue;
+    this.timestamp = initialValue ? Date.now() : 0;
+    this.vectorClock = new VectorClock(nodeId);
+    this.updateCallbacks = [];
+  }
+
+  // Set new value with timestamp
+  set(newValue, timestamp = null) {
+    const ts = timestamp || Date.now();
+    
+    if (ts &gt; this.timestamp || 
+        (ts === this.timestamp &amp;&amp; this.nodeId &gt; this.getLastWriter())) {
+      const oldValue = this.value;
+      this.value = newValue;
+      this.timestamp = ts;
+      this.vectorClock.increment();
+      
+      this.notifyUpdate({
+        type: &#39;SET&#39;,
+        oldValue: oldValue,
+        newValue: newValue,
+        timestamp: ts
+      });
+    }
+  }
+
+  // Get current value
+  get() {
+    return this.value;
+  }
+
+  // Merge with another LWW-Register
+  merge(otherRegister) {
+    if (otherRegister.timestamp &gt; this.timestamp ||
+        (otherRegister.timestamp === this.timestamp &amp;&amp; 
+         otherRegister.nodeId &gt; this.nodeId)) {
+      
+      const oldValue = this.value;
+      this.value = otherRegister.value;
+      this.timestamp = otherRegister.timestamp;
+      
+      this.notifyUpdate({
+        type: &#39;MERGE&#39;,
+        oldValue: oldValue,
+        newValue: this.value,
+        mergedFrom: otherRegister
+      });
+    }
+    
+    // Merge vector clocks
+    this.vectorClock.merge(otherRegister.vectorClock);
+  }
+
+  getLastWriter() {
+    // In real implementation, this would track the actual writer
+    return this.nodeId;
+  }
+
+  onUpdate(callback) {
+    this.updateCallbacks.push(callback);
+  }
+
+  notifyUpdate(delta) {
+    this.updateCallbacks.forEach(callback =&gt; callback(delta));
+  }
+}
+</code></pre>
+<h3>RGA (Replicated Growable Array) Implementation</h3>
+<pre><code class="language-javascript">class RGA {
+  constructor(nodeId, initialSequence = []) {
+    this.nodeId = nodeId;
+    this.sequence = [];
+    this.tombstones = new Set();
+    this.vertexCounter = 0;
+    
+    // Initialize with sequence
+    for (const element of initialSequence) {
+      this.insert(this.sequence.length, element);
+    }
+    
+    this.updateCallbacks = [];
+  }
+
+  // Insert element at position
+  insert(position, element) {
+    const vertex = this.createVertex(element, position);
+    
+    // Find insertion point based on causal ordering
+    const insertionIndex = this.findInsertionIndex(vertex, position);
+    
+    this.sequence.splice(insertionIndex, 0, vertex);
+    
+    this.notifyUpdate({
+      type: &#39;INSERT&#39;,
+      position: insertionIndex,
+      element: element,
+      vertex: vertex
+    });
+    
+    return vertex.id;
+  }
+
+  // Remove element at position
+  remove(position) {
+    if (position &lt; 0 || position &gt;= this.visibleLength()) {
+      throw new Error(&#39;Position out of bounds&#39;);
+    }
+    
+    const visibleVertex = this.getVisibleVertex(position);
+    if (visibleVertex) {
+      this.tombstones.add(visibleVertex.id);
+      
+      this.notifyUpdate({
+        type: &#39;REMOVE&#39;,
+        position: position,
+        vertex: visibleVertex
+      });
+      
+      return true;
+    }
+    
+    return false;
+  }
+
+  // Get visible elements (non-tombstoned)
+  toArray() {
+    return this.sequence
+      .filter(vertex =&gt; !this.tombstones.has(vertex.id))
+      .map(vertex =&gt; vertex.element);
+  }
+
+  // Get visible length
+  visibleLength() {
+    return this.sequence.filter(vertex =&gt; !this.tombstones.has(vertex.id)).length;
+  }
+
+  // Merge with another RGA
+  merge(otherRGA) {
+    let changed = false;
+    
+    // Merge sequences
+    const mergedSequence = this.mergeSequences(this.sequence, otherRGA.sequence);
+    if (mergedSequence.length !== this.sequence.length) {
+      this.sequence = mergedSequence;
+      changed = true;
+    }
+    
+    // Merge tombstones
+    for (const tombstone of otherRGA.tombstones) {
+      if (!this.tombstones.has(tombstone)) {
+        this.tombstones.add(tombstone);
+        changed = true;
+      }
+    }
+    
+    if (changed) {
+      this.notifyUpdate({
+        type: &#39;MERGE&#39;,
+        mergedFrom: otherRGA
+      });
+    }
+  }
+
+  createVertex(element, position) {
+    const leftVertex = position &gt; 0 ? this.getVisibleVertex(position - 1) : null;
+    
+    return {
+      id: `${this.nodeId}-${++this.vertexCounter}`,
+      element: element,
+      leftOrigin: leftVertex ? leftVertex.id : null,
+      timestamp: Date.now(),
+      nodeId: this.nodeId
+    };
+  }
+
+  findInsertionIndex(vertex, targetPosition) {
+    // Simplified insertion logic - in practice would use more sophisticated
+    // causal ordering based on left origins and vector clocks
+    let visibleCount = 0;
+    
+    for (let i = 0; i &lt; this.sequence.length; i++) {
+      if (!this.tombstones.has(this.sequence[i].id)) {
+        if (visibleCount === targetPosition) {
+          return i;
+        }
+        visibleCount++;
+      }
+    }
+    
+    return this.sequence.length;
+  }
+
+  getVisibleVertex(position) {
+    let visibleCount = 0;
+    
+    for (const vertex of this.sequence) {
+      if (!this.tombstones.has(vertex.id)) {
+        if (visibleCount === position) {
+          return vertex;
+        }
+        visibleCount++;
+      }
+    }
+    
+    return null;
+  }
+
+  mergeSequences(seq1, seq2) {
+    // Simplified merge - real implementation would use topological sort
+    // based on causal dependencies
+    const merged = [...seq1];
+    
+    for (const vertex of seq2) {
+      if (!merged.find(v =&gt; v.id === vertex.id)) {
+        merged.push(vertex);
+      }
+    }
+    
+    // Sort by timestamp for basic ordering
+    return merged.sort((a, b) =&gt; a.timestamp - b.timestamp);
+  }
+
+  onUpdate(callback) {
+    this.updateCallbacks.push(callback);
+  }
+
+  notifyUpdate(delta) {
+    this.updateCallbacks.forEach(callback =&gt; callback(delta));
+  }
+}
+</code></pre>
+<h3>Delta-State CRDT Framework</h3>
+<pre><code class="language-javascript">class DeltaStateCRDT {
+  constructor(baseCRDT) {
+    this.baseCRDT = baseCRDT;
+    this.deltaBuffer = [];
+    this.lastSyncVector = new Map();
+    this.maxDeltaBuffer = 1000;
+  }
+
+  // Apply operation and track delta
+  applyOperation(operation) {
+    const oldState = this.baseCRDT.clone();
+    const result = this.baseCRDT.applyOperation(operation);
+    const newState = this.baseCRDT.clone();
+    
+    // Compute delta
+    const delta = this.computeDelta(oldState, newState);
+    this.addDelta(delta);
+    
+    return result;
+  }
+
+  // Add delta to buffer
+  addDelta(delta) {
+    this.deltaBuffer.push({
+      delta: delta,
+      timestamp: Date.now(),
+      vectorClock: this.baseCRDT.vectorClock.clone()
+    });
+    
+    // Maintain buffer size
+    if (this.deltaBuffer.length &gt; this.maxDeltaBuffer) {
+      this.deltaBuffer.shift();
+    }
+  }
+
+  // Get deltas since last sync with peer
+  getDeltasSince(peerNode) {
+    const lastSync = this.lastSyncVector.get(peerNode) || new VectorClock();
+    
+    return this.deltaBuffer.filter(deltaEntry =&gt; 
+      deltaEntry.vectorClock.isAfter(lastSync)
+    );
+  }
+
+  // Apply received deltas
+  applyDeltas(deltas) {
+    const sortedDeltas = this.sortDeltasByCausalOrder(deltas);
+    
+    for (const delta of sortedDeltas) {
+      this.baseCRDT.merge(delta.delta);
+    }
+  }
+
+  // Compute delta between two states
+  computeDelta(oldState, newState) {
+    // Implementation depends on specific CRDT type
+    // This is a simplified version
+    return {
+      type: &#39;STATE_DELTA&#39;,
+      changes: this.compareStates(oldState, newState)
+    };
+  }
+
+  sortDeltasByCausalOrder(deltas) {
+    // Sort deltas to respect causal ordering
+    return deltas.sort((a, b) =&gt; {
+      if (a.vectorClock.isBefore(b.vectorClock)) return -1;
+      if (b.vectorClock.isBefore(a.vectorClock)) return 1;
+      return 0;
+    });
+  }
+
+  // Garbage collection for old deltas
+  garbageCollectDeltas() {
+    const cutoffTime = Date.now() - (24 * 60 * 60 * 1000); // 24 hours
+    
+    this.deltaBuffer = this.deltaBuffer.filter(
+      deltaEntry =&gt; deltaEntry.timestamp &gt; cutoffTime
+    );
+  }
+}
+</code></pre>
+<h2>MCP Integration Hooks</h2>
+<h3>Memory Coordination for CRDT State</h3>
+<pre><code class="language-javascript">// Store CRDT state persistently
+await this.mcpTools.memory_usage({
+  action: &#39;store&#39;,
+  key: `crdt_state_${this.crdtName}`,
+  value: JSON.stringify({
+    type: this.crdtType,
+    state: this.serializeState(),
+    vectorClock: Array.from(this.vectorClock.entries()),
+    lastSync: Array.from(this.lastSyncVector.entries())
+  }),
+  namespace: &#39;crdt_synchronization&#39;,
+  ttl: 0 // Persistent
+});
+
+// Coordinate delta synchronization
+await this.mcpTools.memory_usage({
+  action: &#39;store&#39;,
+  key: `deltas_${this.nodeId}_${Date.now()}`,
+  value: JSON.stringify(this.getDeltasSince(null)),
+  namespace: &#39;crdt_deltas&#39;,
+  ttl: 86400000 // 24 hours
+});
+</code></pre>
+<h3>Performance Monitoring</h3>
+<pre><code class="language-javascript">// Track CRDT synchronization metrics
+await this.mcpTools.metrics_collect({
+  components: [
+    &#39;crdt_merge_time&#39;,
+    &#39;delta_generation_time&#39;,
+    &#39;sync_convergence_time&#39;,
+    &#39;memory_usage_per_crdt&#39;
+  ]
+});
+
+// Neural pattern learning for sync optimization
+await this.mcpTools.neural_patterns({
+  action: &#39;learn&#39;,
+  operation: &#39;crdt_sync_optimization&#39;,
+  outcome: JSON.stringify({
+    syncPattern: this.lastSyncPattern,
+    convergenceTime: this.lastConvergenceTime,
+    networkTopology: this.networkState
+  })
+});
+</code></pre>
+<h2>Advanced CRDT Features</h2>
+<h3>Causal Consistency Tracker</h3>
+<pre><code class="language-javascript">class CausalTracker {
+  constructor(nodeId) {
+    this.nodeId = nodeId;
+    this.vectorClock = new VectorClock(nodeId);
+    this.causalBuffer = new Map();
+    this.deliveredEvents = new Set();
+  }
+
+  // Track causal dependencies
+  trackEvent(event) {
+    event.vectorClock = this.vectorClock.clone();
+    this.vectorClock.increment();
+    
+    // Check if event can be delivered
+    if (this.canDeliver(event)) {
+      this.deliverEvent(event);
+      this.checkBufferedEvents();
+    } else {
+      this.bufferEvent(event);
+    }
+  }
+
+  canDeliver(event) {
+    // Event can be delivered if all its causal dependencies are satisfied
+    for (const [nodeId, clock] of event.vectorClock.entries()) {
+      if (nodeId === event.originNode) {
+        // Origin node&#39;s clock should be exactly one more than current
+        if (clock !== this.vectorClock.get(nodeId) + 1) {
+          return false;
+        }
+      } else {
+        // Other nodes&#39; clocks should not exceed current
+        if (clock &gt; this.vectorClock.get(nodeId)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  deliverEvent(event) {
+    if (!this.deliveredEvents.has(event.id)) {
+      // Update vector clock
+      this.vectorClock.merge(event.vectorClock);
+      
+      // Mark as delivered
+      this.deliveredEvents.add(event.id);
+      
+      // Apply event to CRDT
+      this.applyCRDTOperation(event);
+    }
+  }
+
+  bufferEvent(event) {
+    if (!this.causalBuffer.has(event.id)) {
+      this.causalBuffer.set(event.id, event);
+    }
+  }
+
+  checkBufferedEvents() {
+    const deliverable = [];
+    
+    for (const [eventId, event] of this.causalBuffer) {
+      if (this.canDeliver(event)) {
+        deliverable.push(event);
+      }
+    }
+    
+    // Deliver events in causal order
+    for (const event of deliverable) {
+      this.causalBuffer.delete(event.id);
+      this.deliverEvent(event);
+    }
+  }
+}
+</code></pre>
+<h3>CRDT Composition Framework</h3>
+<pre><code class="language-javascript">class CRDTComposer {
+  constructor() {
+    this.compositeTypes = new Map();
+    this.transformations = new Map();
+  }
+
+  // Define composite CRDT structure
+  defineComposite(name, schema) {
+    this.compositeTypes.set(name, {
+      schema: schema,
+      factory: (nodeId, replicationGroup) =&gt; 
+        this.createComposite(schema, nodeId, replicationGroup)
+    });
+  }
+
+  createComposite(schema, nodeId, replicationGroup) {
+    const composite = new CompositeCRDT(nodeId, replicationGroup);
+    
+    for (const [fieldName, fieldSpec] of Object.entries(schema)) {
+      const fieldCRDT = this.createFieldCRDT(fieldSpec, nodeId, replicationGroup);
+      composite.addField(fieldName, fieldCRDT);
+    }
+    
+    return composite;
+  }
+
+  createFieldCRDT(fieldSpec, nodeId, replicationGroup) {
+    switch (fieldSpec.type) {
+      case &#39;counter&#39;:
+        return fieldSpec.decrements ? 
+          new PNCounter(nodeId, replicationGroup) :
+          new GCounter(nodeId, replicationGroup);
+      case &#39;set&#39;:
+        return new ORSet(nodeId);
+      case &#39;register&#39;:
+        return new LWWRegister(nodeId);
+      case &#39;map&#39;:
+        return new ORMap(nodeId, replicationGroup, fieldSpec.valueType);
+      case &#39;sequence&#39;:
+        return new RGA(nodeId);
+      default:
+        throw new Error(`Unknown CRDT field type: ${fieldSpec.type}`);
+    }
+  }
+}
+
+class CompositeCRDT {
+  constructor(nodeId, replicationGroup) {
+    this.nodeId = nodeId;
+    this.replicationGroup = replicationGroup;
+    this.fields = new Map();
+    this.updateCallbacks = [];
+  }
+
+  addField(name, crdt) {
+    this.fields.set(name, crdt);
+    
+    // Subscribe to field updates
+    crdt.onUpdate((delta) =&gt; {
+      this.notifyUpdate({
+        type: &#39;FIELD_UPDATE&#39;,
+        field: name,
+        delta: delta
+      });
+    });
+  }
+
+  getField(name) {
+    return this.fields.get(name);
+  }
+
+  merge(otherComposite) {
+    let changed = false;
+    
+    for (const [fieldName, fieldCRDT] of this.fields) {
+      const otherField = otherComposite.fields.get(fieldName);
+      if (otherField) {
+        const oldState = fieldCRDT.clone();
+        fieldCRDT.merge(otherField);
+        
+        if (!this.statesEqual(oldState, fieldCRDT)) {
+          changed = true;
+        }
+      }
+    }
+    
+    if (changed) {
+      this.notifyUpdate({
+        type: &#39;COMPOSITE_MERGE&#39;,
+        mergedFrom: otherComposite
+      });
+    }
+  }
+
+  serialize() {
+    const serialized = {};
+    
+    for (const [fieldName, fieldCRDT] of this.fields) {
+      serialized[fieldName] = fieldCRDT.serialize();
+    }
+    
+    return serialized;
+  }
+
+  onUpdate(callback) {
+    this.updateCallbacks.push(callback);
+  }
+
+  notifyUpdate(delta) {
+    this.updateCallbacks.forEach(callback =&gt; callback(delta));
+  }
+}
+</code></pre>
+<h2>Integration with Consensus Protocols</h2>
+<h3>CRDT-Enhanced Consensus</h3>
+<pre><code class="language-javascript">class CRDTConsensusIntegrator {
+  constructor(consensusProtocol, crdtSynchronizer) {
+    this.consensus = consensusProtocol;
+    this.crdt = crdtSynchronizer;
+    this.hybridOperations = new Map();
+  }
+
+  // Hybrid operation: consensus for ordering, CRDT for state
+  async hybridUpdate(operation) {
+    // Step 1: Achieve consensus on operation ordering
+    const consensusResult = await this.consensus.propose({
+      type: &#39;CRDT_OPERATION&#39;,
+      operation: operation,
+      timestamp: Date.now()
+    });
+    
+    if (consensusResult.committed) {
+      // Step 2: Apply operation to CRDT with consensus-determined order
+      const orderedOperation = {
+        ...operation,
+        consensusIndex: consensusResult.index,
+        globalTimestamp: consensusResult.timestamp
+      };
+      
+      await this.crdt.applyOrderedOperation(orderedOperation);
+      
+      return {
+        success: true,
+        consensusIndex: consensusResult.index,
+        crdtState: this.crdt.getCurrentState()
+      };
+    }
+    
+    return { success: false, reason: &#39;Consensus failed&#39; };
+  }
+
+  // Optimized read operations using CRDT without consensus
+  async optimisticRead(key) {
+    return this.crdt.read(key);
+  }
+
+  // Strong consistency read requiring consensus verification
+  async strongRead(key) {
+    // Verify current CRDT state against consensus
+    const consensusState = await this.consensus.getCommittedState();
+    const crdtState = this.crdt.getCurrentState();
+    
+    if (this.statesConsistent(consensusState, crdtState)) {
+      return this.crdt.read(key);
+    } else {
+      // Reconcile states before read
+      await this.reconcileStates(consensusState, crdtState);
+      return this.crdt.read(key);
+    }
+  }
+}
+</code></pre>
+<p>This CRDT Synchronizer provides comprehensive support for conflict-free replicated data types, enabling eventually consistent distributed state management that complements consensus protocols for different consistency requirements.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

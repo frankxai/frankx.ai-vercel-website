@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Feature Development</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/feature-dev/commands/feature-dev.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Feature Development</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>feature-dev.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <hr>
+<h2>description: Guided feature development with codebase understanding and architecture focus
+argument-hint: Optional feature description</h2>
+<h1>Feature Development</h1>
+<p>You are helping a developer implement a new feature. Follow a systematic approach: understand the codebase deeply, identify and ask about all underspecified details, design elegant architectures, then implement.</p>
+<h2>Core Principles</h2>
+<ul>
+<li><strong>Ask clarifying questions</strong>: Identify all ambiguities, edge cases, and underspecified behaviors. Ask specific, concrete questions rather than making assumptions. Wait for user answers before proceeding with implementation. Ask questions early (after understanding the codebase, before designing architecture).</li>
+<li><strong>Understand before acting</strong>: Read and comprehend existing code patterns first</li>
+<li><strong>Read files identified by agents</strong>: When launching agents, ask them to return lists of the most important files to read. After agents complete, read those files to build detailed context before proceeding.</li>
+<li><strong>Simple and elegant</strong>: Prioritize readable, maintainable, architecturally sound code</li>
+<li><strong>Use TodoWrite</strong>: Track all progress throughout</li>
+</ul>
+<hr>
+<h2>Phase 1: Discovery</h2>
+<p><strong>Goal</strong>: Understand what needs to be built</p>
+<p>Initial request: $ARGUMENTS</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Create todo list with all phases</li>
+<li>If feature unclear, ask user for:<ul>
+<li>What problem are they solving?</li>
+<li>What should the feature do?</li>
+<li>Any constraints or requirements?</li>
+</ul>
+</li>
+<li>Summarize understanding and confirm with user</li>
+</ol>
+<hr>
+<h2>Phase 2: Codebase Exploration</h2>
+<p><strong>Goal</strong>: Understand relevant existing code and patterns at both high and low levels</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li><p>Launch 2-3 code-explorer agents in parallel. Each agent should:</p>
+<ul>
+<li>Trace through the code comprehensively and focus on getting a comprehensive understanding of abstractions, architecture and flow of control</li>
+<li>Target a different aspect of the codebase (eg. similar features, high level understanding, architectural understanding, user experience, etc)</li>
+<li>Include a list of 5-10 key files to read</li>
+</ul>
+<p><strong>Example agent prompts</strong>:</p>
+<ul>
+<li>&quot;Find features similar to [feature] and trace through their implementation comprehensively&quot;</li>
+<li>&quot;Map the architecture and abstractions for [feature area], tracing through the code comprehensively&quot;</li>
+<li>&quot;Analyze the current implementation of [existing feature/area], tracing through the code comprehensively&quot;</li>
+<li>&quot;Identify UI patterns, testing approaches, or extension points relevant to [feature]&quot;</li>
+</ul>
+</li>
+<li><p>Once the agents return, please read all files identified by agents to build deep understanding</p>
+</li>
+<li><p>Present comprehensive summary of findings and patterns discovered</p>
+</li>
+</ol>
+<hr>
+<h2>Phase 3: Clarifying Questions</h2>
+<p><strong>Goal</strong>: Fill in gaps and resolve all ambiguities before designing</p>
+<p><strong>CRITICAL</strong>: This is one of the most important phases. DO NOT SKIP.</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Review the codebase findings and original feature request</li>
+<li>Identify underspecified aspects: edge cases, error handling, integration points, scope boundaries, design preferences, backward compatibility, performance needs</li>
+<li><strong>Present all questions to the user in a clear, organized list</strong></li>
+<li><strong>Wait for answers before proceeding to architecture design</strong></li>
+</ol>
+<p>If the user says &quot;whatever you think is best&quot;, provide your recommendation and get explicit confirmation.</p>
+<hr>
+<h2>Phase 4: Architecture Design</h2>
+<p><strong>Goal</strong>: Design multiple implementation approaches with different trade-offs</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Launch 2-3 code-architect agents in parallel with different focuses: minimal changes (smallest change, maximum reuse), clean architecture (maintainability, elegant abstractions), or pragmatic balance (speed + quality)</li>
+<li>Review all approaches and form your opinion on which fits best for this specific task (consider: small fix vs large feature, urgency, complexity, team context)</li>
+<li>Present to user: brief summary of each approach, trade-offs comparison, <strong>your recommendation with reasoning</strong>, concrete implementation differences</li>
+<li><strong>Ask user which approach they prefer</strong></li>
+</ol>
+<hr>
+<h2>Phase 5: Implementation</h2>
+<p><strong>Goal</strong>: Build the feature</p>
+<p><strong>DO NOT START WITHOUT USER APPROVAL</strong></p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Wait for explicit user approval</li>
+<li>Read all relevant files identified in previous phases</li>
+<li>Implement following chosen architecture</li>
+<li>Follow codebase conventions strictly</li>
+<li>Write clean, well-documented code</li>
+<li>Update todos as you progress</li>
+</ol>
+<hr>
+<h2>Phase 6: Quality Review</h2>
+<p><strong>Goal</strong>: Ensure code is simple, DRY, elegant, easy to read, and functionally correct</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Launch 3 code-reviewer agents in parallel with different focuses: simplicity/DRY/elegance, bugs/functional correctness, project conventions/abstractions</li>
+<li>Consolidate findings and identify highest severity issues that you recommend fixing</li>
+<li><strong>Present findings to user and ask what they want to do</strong> (fix now, fix later, or proceed as-is)</li>
+<li>Address issues based on user decision</li>
+</ol>
+<hr>
+<h2>Phase 7: Summary</h2>
+<p><strong>Goal</strong>: Document what was accomplished</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Mark all todos complete</li>
+<li>Summarize:<ul>
+<li>What was built</li>
+<li>Key decisions made</li>
+<li>Files modified</li>
+<li>Suggested next steps</li>
+</ul>
+</li>
+</ol>
+<hr>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

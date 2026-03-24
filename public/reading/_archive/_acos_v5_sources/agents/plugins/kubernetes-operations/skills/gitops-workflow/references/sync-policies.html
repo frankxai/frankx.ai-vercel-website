@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitOps Sync Policies</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/kubernetes-operations/skills/gitops-workflow/references/sync-policies.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitOps Sync Policies</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fkubernetes-operations">kubernetes-operations</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fkubernetes-operations%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fkubernetes-operations%2Fskills%2Fgitops-workflow">gitops-workflow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fkubernetes-operations%2Fskills%2Fgitops-workflow%2Freferences">references</a> / <span>sync-policies.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>GitOps Sync Policies</h1>
+<h2>ArgoCD Sync Policies</h2>
+<h3>Automated Sync</h3>
+<pre><code class="language-yaml">syncPolicy:
+  automated:
+    prune: true # Delete resources removed from Git
+    selfHeal: true # Reconcile manual changes
+    allowEmpty: false # Prevent empty sync
+</code></pre>
+<h3>Manual Sync</h3>
+<pre><code class="language-yaml">syncPolicy:
+  syncOptions:
+    - PrunePropagationPolicy=foreground
+    - CreateNamespace=true
+</code></pre>
+<h3>Sync Windows</h3>
+<pre><code class="language-yaml">syncWindows:
+  - kind: allow
+    schedule: &quot;0 8 * * *&quot;
+    duration: 1h
+    applications:
+      - my-app
+  - kind: deny
+    schedule: &quot;0 22 * * *&quot;
+    duration: 8h
+    applications:
+      - &quot;*&quot;
+</code></pre>
+<h3>Retry Policy</h3>
+<pre><code class="language-yaml">syncPolicy:
+  retry:
+    limit: 5
+    backoff:
+      duration: 5s
+      factor: 2
+      maxDuration: 3m
+</code></pre>
+<h2>Flux Sync Policies</h2>
+<h3>Kustomization Sync</h3>
+<pre><code class="language-yaml">apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: my-app
+spec:
+  interval: 5m
+  prune: true
+  wait: true
+  timeout: 5m
+  retryInterval: 1m
+  force: false
+</code></pre>
+<h3>Source Sync Interval</h3>
+<pre><code class="language-yaml">apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: my-app
+spec:
+  interval: 1m
+  timeout: 60s
+</code></pre>
+<h2>Health Assessment</h2>
+<h3>Custom Health Checks</h3>
+<pre><code class="language-yaml"># ArgoCD
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+data:
+  resource.customizations.health.MyCustomResource: |
+    hs = {}
+    if obj.status ~= nil then
+      if obj.status.conditions ~= nil then
+        for i, condition in ipairs(obj.status.conditions) do
+          if condition.type == &quot;Ready&quot; and condition.status == &quot;False&quot; then
+            hs.status = &quot;Degraded&quot;
+            hs.message = condition.message
+            return hs
+          end
+          if condition.type == &quot;Ready&quot; and condition.status == &quot;True&quot; then
+            hs.status = &quot;Healthy&quot;
+            hs.message = condition.message
+            return hs
+          end
+        end
+      end
+    end
+    hs.status = &quot;Progressing&quot;
+    hs.message = &quot;Waiting for status&quot;
+    return hs
+</code></pre>
+<h2>Sync Options</h2>
+<h3>Common Sync Options</h3>
+<ul>
+<li><code>PrunePropagationPolicy=foreground</code> - Wait for pruned resources to be deleted</li>
+<li><code>CreateNamespace=true</code> - Auto-create namespace</li>
+<li><code>Validate=false</code> - Skip kubectl validation</li>
+<li><code>PruneLast=true</code> - Prune resources after sync</li>
+<li><code>RespectIgnoreDifferences=true</code> - Honor ignore differences</li>
+<li><code>ApplyOutOfSyncOnly=true</code> - Only apply out-of-sync resources</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li>Use automated sync for non-production</li>
+<li>Require manual approval for production</li>
+<li>Configure sync windows for maintenance</li>
+<li>Implement health checks for custom resources</li>
+<li>Use selective sync for large applications</li>
+<li>Configure appropriate retry policies</li>
+<li>Monitor sync failures with alerts</li>
+<li>Use prune with caution in production</li>
+<li>Test sync policies in staging</li>
+<li>Document sync behavior for teams</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/mcp-optimize — MCP Server Load Optimization</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/mcp-optimize.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/mcp-optimize — MCP Server Load Optimization</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>mcp-optimize.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/mcp-optimize — MCP Server Load Optimization</h1>
+<p><strong>Purpose</strong>: Audit MCP server load per session, identify redundant/unused servers, and recommend configuration changes to cut per-session memory from ~1.5GB to ~400MB.</p>
+<hr>
+<h2>Input</h2>
+<ul>
+<li><strong>Mode</strong>: $ARGUMENTS (default: audit | <code>audit</code> | <code>profiles</code> | <code>apply-light</code> | <code>apply-full</code>)<ul>
+<li><code>audit</code> — show current MCP server load and per-plugin memory usage</li>
+<li><code>profiles</code> — show recommended profiles for different task types</li>
+<li><code>apply-light</code> — suggest disabling unused plugins (non-destructive)</li>
+<li><code>apply-full</code> — restructure MCP config for optimal per-task loading</li>
+<li>(no args) — full audit + profiles + recommendations</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>MCP Architecture Knowledge</h2>
+<h3>Three Layers of MCP Servers</h3>
+<p>Every Claude Code session loads servers from three layers:</p>
+<pre><code>Layer 1: Project-scoped (~/.claude.json)     ← LOCAL processes
+  memory, resend, sequential-thinking, v0,
+  nanobanana, n8n-mcp, mcp-doctor
+  = 7 servers × ~40MB each = ~280MB
+
+Layer 2: Plugins (installed_plugins.json)    ← LOCAL processes
+  claude-mem (chroma-mcp: 200-300MB!)
+  6× agentic-creator-skills sub-plugins
+    each spawns: Notion KB + Slack + Resend
+  = ~8-15 servers × ~40MB + chroma ~250MB = ~600-900MB
+
+Layer 3: Claude.ai built-in MCP              ← SERVER-SIDE (free!)
+  Figma, Vercel, Notion, Slack, Zapier, Miro
+  = 0MB local (runs on Anthropic infrastructure)
+</code></pre>
+<p><strong>Total per session: ~880-1,180MB</strong> of local processes.
+<strong>With 5 sessions: ~4.4-5.9GB</strong> just for MCP.</p>
+<h3>The Duplication Problem</h3>
+<p>The <code>agentic-creator-skills</code> plugins are the worst offenders:</p>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Notion KB</th>
+<th>Slack</th>
+<th>Resend</th>
+<th>Unique Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>core</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>Base routing</td>
+</tr>
+<tr>
+<td>content-engine</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Content creation</td>
+</tr>
+<tr>
+<td>brand-architect</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Brand voice</td>
+</tr>
+<tr>
+<td>intelligence</td>
+<td>No (graph)</td>
+<td>Yes</td>
+<td>No</td>
+<td>Graph memory</td>
+</tr>
+<tr>
+<td>music-lab</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+<td>Music context</td>
+</tr>
+<tr>
+<td>product-launcher</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Product launch</td>
+</tr>
+<tr>
+<td>visual-studio</td>
+<td>No</td>
+<td>No</td>
+<td>No</td>
+<td>Image gen</td>
+</tr>
+</tbody></table>
+<p>5 plugins load Notion. 4 load Slack. 2 load Resend.
+That&#39;s <strong>11 redundant connections</strong> — each spawning a separate process.</p>
+<p>Meanwhile, Claude.ai already provides Notion + Slack built-in (Layer 3) at zero local cost.</p>
+<hr>
+<h2>Task Profiles</h2>
+<h3>Profile: Web Dev (default for FrankX)</h3>
+<p><strong>Need</strong>: Vercel, Figma, nanobanana (images), v0
+<strong>Don&#39;t need</strong>: n8n, Resend, music-lab, product-launcher</p>
+<p>Servers to keep enabled:</p>
+<ul>
+<li>Layer 1: memory, sequential-thinking, nanobanana, v0, mcp-doctor</li>
+<li>Layer 2: claude-mem (for context), core (for routing)</li>
+<li>Layer 3: Figma, Vercel, Notion (all free)</li>
+</ul>
+<p>Servers to disable:</p>
+<ul>
+<li>Layer 1: n8n-mcp, resend</li>
+<li>Layer 2: content-engine, brand-architect, music-lab, product-launcher, visual-studio, intelligence</li>
+</ul>
+<p><strong>Est. savings</strong>: ~400-600MB per session</p>
+<h3>Profile: Automation (n8n workflows)</h3>
+<p><strong>Need</strong>: n8n-mcp, Slack
+<strong>Don&#39;t need</strong>: Figma, v0, nanobanana, Resend, visual-studio</p>
+<p>Servers to keep:</p>
+<ul>
+<li>Layer 1: memory, sequential-thinking, n8n-mcp, mcp-doctor</li>
+<li>Layer 2: claude-mem, core (Slack)</li>
+<li>Layer 3: Slack, Notion</li>
+</ul>
+<p><strong>Est. savings</strong>: ~500-700MB per session</p>
+<h3>Profile: Content (blog, newsletter)</h3>
+<p><strong>Need</strong>: Resend (email), Notion (content management)
+<strong>Don&#39;t need</strong>: Figma, n8n, v0, visual-studio</p>
+<p>Servers to keep:</p>
+<ul>
+<li>Layer 1: memory, sequential-thinking, resend, nanobanana, mcp-doctor</li>
+<li>Layer 2: claude-mem, content-engine</li>
+<li>Layer 3: Notion, Slack</li>
+</ul>
+<p><strong>Est. savings</strong>: ~400-600MB per session</p>
+<h3>Profile: Minimal (planning, writing, research)</h3>
+<p><strong>Need</strong>: Just memory and thinking
+<strong>Don&#39;t need</strong>: Everything else</p>
+<p>Servers to keep:</p>
+<ul>
+<li>Layer 1: memory, sequential-thinking, mcp-doctor</li>
+<li>Layer 2: claude-mem</li>
+</ul>
+<p><strong>Est. savings</strong>: ~700-900MB per session</p>
+<hr>
+<h2>Audit Phase</h2>
+<p>Run these diagnostics:</p>
+<pre><code class="language-bash"># Count running MCP-related processes
+echo &quot;MCP process count:&quot;
+ps aux | grep -cE &quot;(chroma-mcp|mcp-server|uvx|npx.*mcp)&quot;
+
+# Memory usage per MCP type
+echo &quot;chroma-mcp instances and memory:&quot;
+ps aux | grep &quot;[c]hroma-mcp&quot; | awk &#39;{sum+=$6; count++} END {print count, &quot;instances,&quot;, int(sum/1024), &quot;MB total&quot;}&#39;
+
+echo &quot;Node MCP servers:&quot;
+ps aux | grep &quot;[n]ode&quot; | grep -i mcp | awk &#39;{sum+=$6; count++} END {print count, &quot;processes,&quot;, int(sum/1024), &quot;MB total&quot;}&#39;
+</code></pre>
+<hr>
+<h2>Optimization Actions</h2>
+<h3>Quick Win: Disable Unused Plugins</h3>
+<p>Run in Claude Code:</p>
+<pre><code>/plugins
+</code></pre>
+<p>Then disable these if not actively using them:</p>
+<ul>
+<li><code>music-lab@agentic-creator-skills</code> (unless making music)</li>
+<li><code>visual-studio@agentic-creator-skills</code> (nanobanana handles images)</li>
+<li><code>product-launcher@agentic-creator-skills</code> (unless launching a product)</li>
+<li><code>brand-architect@agentic-creator-skills</code> (brand rules in SKILL.md instead)</li>
+</ul>
+<p>Each disabled plugin saves ~80-160MB per session.</p>
+<h3>Medium Win: Restructure Global Config</h3>
+<p>Move situational servers from global (<code>~/.claude.json</code>) to project <code>.mcp.json</code> with <code>&quot;disabled&quot;: true</code>:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;n8n-mcp&quot;: {
+      &quot;command&quot;: &quot;/home/frankx/.nvm/versions/node/v24.12.0/bin/n8n-mcp&quot;,
+      &quot;disabled&quot;: true,
+      &quot;_note&quot;: &quot;Enable with: claude mcp enable n8n-mcp&quot;
+    },
+    &quot;resend&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@resend/mcp&quot;],
+      &quot;disabled&quot;: true,
+      &quot;_note&quot;: &quot;Enable for newsletter/email work&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Big Win: Fix chroma-mcp Duplication</h3>
+<p>The claude-mem worker-service.cjs spawns a new <code>chroma-mcp</code> per session connection via <code>uv tool uvx --python 3.13 chroma-mcp --client-type persistent</code>.</p>
+<p><strong>Option A</strong>: Set environment variable for HTTP mode (shared server):</p>
+<pre><code class="language-bash">export CLAUDE_MEM_CHROMA_HOST=localhost
+export CLAUDE_MEM_CHROMA_PORT=8000
+# Then run chroma server separately: chroma run --port 8000
+</code></pre>
+<p><strong>Option B</strong>: Report bug to thedotmack/claude-mem repo.</p>
+<p><strong>Option C</strong>: Periodically clean zombie chroma-mcp processes:</p>
+<pre><code class="language-bash"># Kill chroma-mcp processes older than 2 hours with 0% CPU
+ps -eo pid,etimes,pcpu,comm | awk &#39;$4==&quot;python&quot; &amp;&amp; $2&gt;7200 &amp;&amp; $3==0.0 {print $1}&#39; | xargs -r kill 2&gt;/dev/null
+</code></pre>
+<hr>
+<h2>Session Budget Calculator</h2>
+<pre><code>Available WSL RAM:     12 GB
+Linux kernel overhead: -1 GB
+Available for apps:    11 GB
+Swap (penalty zone):   12 GB (100x slower)
+
+Per-session costs:
+  Claude main process:    300-700 MB
+  chroma-mcp (claude-mem): 200-300 MB
+  Layer 1 MCP servers:     280 MB (7 servers × 40MB)
+  Layer 2 plugin MCPs:     300-600 MB (varies by plugin count)
+  ────────────────────────────────────
+  Full session total:      1,080-1,880 MB
+
+Optimized session (profile applied):
+  Claude main process:    300-700 MB
+  chroma-mcp:              200-300 MB (can&#39;t avoid)
+  Essential MCPs only:     120 MB (3 servers × 40MB)
+  ────────────────────────────────────
+  Optimized total:         620-1,120 MB
+
+                     Full Load    Optimized
+  3 sessions:        3.2-5.6 GB   1.9-3.4 GB   ✓ Fits in RAM
+  4 sessions:        4.3-7.5 GB   2.5-4.5 GB   ✓ Light swap
+  5 sessions:        5.4-9.4 GB   3.1-5.6 GB   ⚠ Moderate swap
+  7 sessions:        7.6-13.2 GB  4.3-7.8 GB   ✗ Heavy swap
+</code></pre>
+<hr>
+<h2>Safety Rules</h2>
+<ol>
+<li><strong>Never remove a server without checking if current session uses it</strong></li>
+<li><strong><code>disabled: true</code> is always preferred over removing config entries</strong></li>
+<li><strong>Layer 3 (claude.ai built-in) is free</strong> — use Notion/Slack/Figma from there instead of plugins</li>
+<li><strong>Always run <code>/mcp</code> after config changes</strong> to verify server status</li>
+<li><strong>Plugin disabling requires <code>/plugins</code> command</strong> — can&#39;t be done via file edits</li>
+<li><strong>Test one change at a time</strong> — disable one plugin, verify session still works</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

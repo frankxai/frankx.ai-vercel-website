@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/providers</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/providers/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/providers</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fproviders">providers</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/providers</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/providers"><img src="https://img.shields.io/npm/v/@claude-flow/providers.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/providers"><img src="https://img.shields.io/npm/dm/@claude-flow/providers.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0+-blue.svg" alt="TypeScript"></a>
+<a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/Providers-6+-orange.svg" alt="Providers"></a></p>
+<blockquote>
+<p>Multi-LLM Provider System for Claude Flow V3 - unified interface for Anthropic, OpenAI, Google, Cohere, Ollama, and RuVector with intelligent load balancing, automatic failover, and cost optimization.</p>
+</blockquote>
+<h2>Features</h2>
+<ul>
+<li><strong>6+ LLM Providers</strong> - Anthropic, OpenAI, Google, Cohere, Ollama, RuVector</li>
+<li><strong>Load Balancing</strong> - Round-robin, latency-based, least-loaded, cost-based strategies</li>
+<li><strong>Automatic Failover</strong> - Seamless provider switching on failures</li>
+<li><strong>Request Caching</strong> - LRU cache with configurable TTL</li>
+<li><strong>Cost Optimization</strong> - Up to 85%+ savings with intelligent routing</li>
+<li><strong>Streaming Support</strong> - Full streaming for all providers</li>
+<li><strong>Tool Calling</strong> - Unified tool/function calling interface</li>
+<li><strong>Health Monitoring</strong> - Real-time provider health checks</li>
+<li><strong>Cost Tracking</strong> - Per-request and aggregate cost metrics</li>
+</ul>
+<h2>Supported Providers &amp; Models</h2>
+<h3>Anthropic (Claude)</h3>
+<ul>
+<li><code>claude-3-5-sonnet-20241022</code>, <code>claude-3-5-sonnet-latest</code></li>
+<li><code>claude-3-opus-20240229</code></li>
+<li><code>claude-3-sonnet-20240229</code></li>
+<li><code>claude-3-haiku-20240307</code></li>
+</ul>
+<h3>OpenAI (GPT)</h3>
+<ul>
+<li><code>gpt-4o</code>, <code>gpt-4o-mini</code></li>
+<li><code>gpt-4-turbo</code>, <code>gpt-4</code></li>
+<li><code>gpt-3.5-turbo</code></li>
+<li><code>o1-preview</code>, <code>o1-mini</code>, <code>o3-mini</code></li>
+</ul>
+<h3>Google (Gemini)</h3>
+<ul>
+<li><code>gemini-2.0-flash</code></li>
+<li><code>gemini-1.5-pro</code>, <code>gemini-1.5-flash</code></li>
+<li><code>gemini-pro</code></li>
+</ul>
+<h3>Cohere</h3>
+<ul>
+<li><code>command-r-plus</code>, <code>command-r</code></li>
+<li><code>command-light</code>, <code>command</code></li>
+</ul>
+<h3>Ollama (Local)</h3>
+<ul>
+<li><code>llama3.2</code>, <code>llama3.1</code></li>
+<li><code>mistral</code>, <code>mixtral</code></li>
+<li><code>codellama</code>, <code>phi-4</code></li>
+<li><code>deepseek-coder</code></li>
+</ul>
+<h3>RuVector</h3>
+<ul>
+<li>Custom models via @ruvector/ruvllm</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install @claude-flow/providers
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">import { createProviderManager } from &#39;@claude-flow/providers&#39;;
+
+// Create provider manager with multiple providers
+const manager = await createProviderManager({
+  providers: [
+    {
+      provider: &#39;anthropic&#39;,
+      apiKey: process.env.ANTHROPIC_API_KEY!,
+      model: &#39;claude-3-5-sonnet-latest&#39;,
+    },
+    {
+      provider: &#39;openai&#39;,
+      apiKey: process.env.OPENAI_API_KEY!,
+      model: &#39;gpt-4o&#39;,
+    },
+  ],
+  loadBalancing: {
+    enabled: true,
+    strategy: &#39;cost-based&#39;,
+  },
+  fallback: {
+    enabled: true,
+    maxAttempts: 2,
+  },
+  cache: {
+    enabled: true,
+    ttl: 300000,
+    maxSize: 1000,
+  },
+});
+
+// Make a completion request
+const response = await manager.complete({
+  messages: [
+    { role: &#39;user&#39;, content: &#39;Hello, how are you?&#39; }
+  ],
+  maxTokens: 100,
+});
+
+console.log(&#39;Response:&#39;, response.content);
+console.log(&#39;Provider:&#39;, response.provider);
+console.log(&#39;Cost:&#39;, response.cost?.totalCost);
+</code></pre>
+<h2>API Reference</h2>
+<h3>ProviderManager</h3>
+<pre><code class="language-typescript">import { ProviderManager, createProviderManager } from &#39;@claude-flow/providers&#39;;
+
+// Create and initialize
+const manager = await createProviderManager(config);
+
+// Or manually initialize
+const manager = new ProviderManager(config);
+await manager.initialize();
+</code></pre>
+<h4>Methods</h4>
+<pre><code class="language-typescript">// Complete a request
+const response = await manager.complete(request, preferredProvider?);
+
+// Stream completion
+for await (const event of manager.streamComplete(request, preferredProvider?)) {
+  if (event.type === &#39;content&#39;) {
+    process.stdout.write(event.delta?.content || &#39;&#39;);
+  }
+}
+
+// Health check all providers
+const health = await manager.healthCheck();
+health.forEach((result, provider) =&gt; {
+  console.log(`${provider}: ${result.healthy ? &#39;OK&#39; : &#39;FAIL&#39;}`);
+});
+
+// Estimate costs across providers
+const estimates = await manager.estimateCost(request);
+estimates.forEach((estimate, provider) =&gt; {
+  console.log(`${provider}: $${estimate.estimatedCost.total.toFixed(4)}`);
+});
+
+// Get aggregated usage
+const usage = await manager.getUsage(&#39;day&#39;);
+console.log(`Total cost: $${usage.cost.total}`);
+
+// Get provider metrics
+const metrics = manager.getMetrics();
+metrics.forEach((m, provider) =&gt; {
+  console.log(`${provider}: ${m.latency}ms avg, ${m.errorRate * 100}% errors`);
+});
+
+// List available providers
+const providers = manager.listProviders();
+
+// Get specific provider
+const anthropic = manager.getProvider(&#39;anthropic&#39;);
+
+// Clear cache
+manager.clearCache();
+
+// Shutdown
+manager.destroy();
+</code></pre>
+<h3>Individual Providers</h3>
+<pre><code class="language-typescript">import {
+  AnthropicProvider,
+  OpenAIProvider,
+  GoogleProvider,
+  CohereProvider,
+  OllamaProvider,
+  RuVectorProvider,
+} from &#39;@claude-flow/providers&#39;;
+
+// Create provider directly
+const anthropic = new AnthropicProvider({
+  config: {
+    provider: &#39;anthropic&#39;,
+    apiKey: process.env.ANTHROPIC_API_KEY!,
+    model: &#39;claude-3-5-sonnet-latest&#39;,
+    temperature: 0.7,
+    maxTokens: 1000,
+  },
+});
+
+await anthropic.initialize();
+
+const response = await anthropic.complete({
+  messages: [{ role: &#39;user&#39;, content: &#39;Hello!&#39; }],
+});
+
+// Stream response
+for await (const event of anthropic.streamComplete({
+  messages: [{ role: &#39;user&#39;, content: &#39;Tell me a story&#39; }],
+})) {
+  if (event.type === &#39;content&#39;) {
+    process.stdout.write(event.delta?.content || &#39;&#39;);
+  }
+}
+</code></pre>
+<h3>Load Balancing Strategies</h3>
+<pre><code class="language-typescript">const manager = await createProviderManager({
+  providers: [...],
+  loadBalancing: {
+    enabled: true,
+    strategy: &#39;round-robin&#39;, // or &#39;least-loaded&#39;, &#39;latency-based&#39;, &#39;cost-based&#39;
+  },
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Description</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>round-robin</code></td>
+<td>Rotate through providers</td>
+<td>Even distribution</td>
+</tr>
+<tr>
+<td><code>least-loaded</code></td>
+<td>Use provider with lowest load</td>
+<td>High throughput</td>
+</tr>
+<tr>
+<td><code>latency-based</code></td>
+<td>Use fastest provider</td>
+<td>Low latency</td>
+</tr>
+<tr>
+<td><code>cost-based</code></td>
+<td>Use cheapest provider</td>
+<td>Cost optimization</td>
+</tr>
+</tbody></table>
+<h3>Automatic Failover</h3>
+<pre><code class="language-typescript">const manager = await createProviderManager({
+  providers: [...],
+  fallback: {
+    enabled: true,
+    maxAttempts: 3,  // Try up to 3 providers
+  },
+});
+
+// Events for monitoring
+manager.on(&#39;fallback_success&#39;, ({ originalProvider, fallbackProvider, attempts }) =&gt; {
+  console.log(`Fallback from ${originalProvider} to ${fallbackProvider}`);
+});
+
+manager.on(&#39;fallback_exhausted&#39;, ({ originalProvider, attempts }) =&gt; {
+  console.error(`All ${attempts} fallback attempts failed`);
+});
+</code></pre>
+<h3>Request Caching</h3>
+<pre><code class="language-typescript">const manager = await createProviderManager({
+  providers: [...],
+  cache: {
+    enabled: true,
+    ttl: 300000,     // 5 minutes
+    maxSize: 1000,   // Max cached responses
+  },
+});
+
+// Cache is keyed by: messages + model + temperature + maxTokens
+// Identical requests return cached responses
+
+// Clear cache when needed
+manager.clearCache();
+</code></pre>
+<h3>Cost Optimization</h3>
+<pre><code class="language-typescript">const manager = await createProviderManager({
+  providers: [...],
+  costOptimization: {
+    enabled: true,
+    maxCostPerRequest: 0.10,  // Max $0.10 per request
+  },
+});
+
+// Request with cost constraints
+const response = await manager.complete({
+  messages: [...],
+  costConstraints: {
+    maxCost: 0.05,
+    preferredModels: [&#39;gpt-4o-mini&#39;, &#39;claude-3-haiku-20240307&#39;],
+  },
+});
+
+// Get cost breakdown
+console.log(&#39;Cost:&#39;, {
+  prompt: response.cost?.promptCost,
+  completion: response.cost?.completionCost,
+  total: response.cost?.totalCost,
+  currency: response.cost?.currency,
+});
+</code></pre>
+<h3>Tool Calling</h3>
+<pre><code class="language-typescript">const response = await manager.complete({
+  messages: [
+    { role: &#39;user&#39;, content: &#39;What is the weather in San Francisco?&#39; }
+  ],
+  tools: [
+    {
+      type: &#39;function&#39;,
+      function: {
+        name: &#39;get_weather&#39;,
+        description: &#39;Get weather for a location&#39;,
+        parameters: {
+          type: &#39;object&#39;,
+          properties: {
+            location: { type: &#39;string&#39;, description: &#39;City name&#39; },
+            unit: { type: &#39;string&#39;, enum: [&#39;celsius&#39;, &#39;fahrenheit&#39;] },
+          },
+          required: [&#39;location&#39;],
+        },
+      },
+    },
+  ],
+  toolChoice: &#39;auto&#39;,
+});
+
+// Check for tool calls
+if (response.toolCalls) {
+  for (const call of response.toolCalls) {
+    console.log(&#39;Tool:&#39;, call.function.name);
+    console.log(&#39;Args:&#39;, JSON.parse(call.function.arguments));
+  }
+}
+</code></pre>
+<h3>Streaming</h3>
+<pre><code class="language-typescript">// Async iterator streaming
+for await (const event of manager.streamComplete(request)) {
+  switch (event.type) {
+    case &#39;content&#39;:
+      process.stdout.write(event.delta?.content || &#39;&#39;);
+      break;
+    case &#39;tool_call&#39;:
+      console.log(&#39;Tool call:&#39;, event.delta?.toolCall);
+      break;
+    case &#39;error&#39;:
+      console.error(&#39;Error:&#39;, event.error);
+      break;
+    case &#39;done&#39;:
+      console.log(&#39;\nUsage:&#39;, event.usage);
+      console.log(&#39;Cost:&#39;, event.cost);
+      break;
+  }
+}
+</code></pre>
+<h3>Multimodal (Vision/Audio)</h3>
+<pre><code class="language-typescript">// Image input (OpenAI, Anthropic, Google)
+const response = await manager.complete({
+  messages: [
+    {
+      role: &#39;user&#39;,
+      content: [
+        { type: &#39;text&#39;, text: &#39;What is in this image?&#39; },
+        { type: &#39;image&#39;, imageUrl: &#39;https://example.com/image.jpg&#39; },
+        // or imageBase64: &#39;base64-encoded-image&#39;
+      ],
+    },
+  ],
+});
+</code></pre>
+<h2>TypeScript Types</h2>
+<pre><code class="language-typescript">import type {
+  // Provider types
+  LLMProvider,
+  LLMModel,
+  LLMProviderConfig,
+  ILLMProvider,
+  ProviderCapabilities,
+
+  // Message types
+  LLMMessage,
+  LLMContentPart,
+  LLMToolCall,
+  LLMTool,
+
+  // Request/Response
+  LLMRequest,
+  LLMResponse,
+  LLMStreamEvent,
+
+  // Manager types
+  ProviderManagerConfig,
+  LoadBalancingStrategy,
+
+  // Status types
+  HealthCheckResult,
+  ProviderStatus,
+  CostEstimate,
+  UsageStats,
+
+  // Error types
+  LLMProviderError,
+  RateLimitError,
+  AuthenticationError,
+  ModelNotFoundError,
+  ProviderUnavailableError,
+} from &#39;@claude-flow/providers&#39;;
+</code></pre>
+<h2>Error Handling</h2>
+<pre><code class="language-typescript">import {
+  LLMProviderError,
+  RateLimitError,
+  AuthenticationError,
+  isLLMProviderError,
+  isRateLimitError,
+} from &#39;@claude-flow/providers&#39;;
+
+try {
+  const response = await manager.complete(request);
+} catch (error) {
+  if (isRateLimitError(error)) {
+    console.log(`Rate limited. Retry after: ${error.retryAfter}ms`);
+  } else if (isLLMProviderError(error)) {
+    console.log(`Provider error: ${error.code}`);
+    console.log(`Retryable: ${error.retryable}`);
+  }
+}
+</code></pre>
+<h3>Error Types</h3>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Code</th>
+<th>HTTP</th>
+<th>Retryable</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>RateLimitError</code></td>
+<td><code>RATE_LIMIT</code></td>
+<td>429</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>AuthenticationError</code></td>
+<td><code>AUTHENTICATION</code></td>
+<td>401</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>ModelNotFoundError</code></td>
+<td><code>MODEL_NOT_FOUND</code></td>
+<td>404</td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>ProviderUnavailableError</code></td>
+<td><code>PROVIDER_UNAVAILABLE</code></td>
+<td>503</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h2>Environment Variables</h2>
+<pre><code class="language-bash"># API Keys
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=...
+COHERE_API_KEY=...
+
+# Ollama (local)
+OLLAMA_BASE_URL=http://localhost:11434
+
+# Optional overrides
+ANTHROPIC_BASE_URL=https://api.anthropic.com
+OPENAI_BASE_URL=https://api.openai.com/v1
+</code></pre>
+<h2>Provider Configuration</h2>
+<h3>Anthropic</h3>
+<pre><code class="language-typescript">{
+  provider: &#39;anthropic&#39;,
+  apiKey: process.env.ANTHROPIC_API_KEY!,
+  model: &#39;claude-3-5-sonnet-latest&#39;,
+  temperature: 0.7,
+  maxTokens: 4096,
+  timeout: 60000,
+  retryAttempts: 3,
+}
+</code></pre>
+<h3>OpenAI</h3>
+<pre><code class="language-typescript">{
+  provider: &#39;openai&#39;,
+  apiKey: process.env.OPENAI_API_KEY!,
+  model: &#39;gpt-4o&#39;,
+  temperature: 0.7,
+  maxTokens: 4096,
+  frequencyPenalty: 0,
+  presencePenalty: 0,
+}
+</code></pre>
+<h3>Google</h3>
+<pre><code class="language-typescript">{
+  provider: &#39;google&#39;,
+  apiKey: process.env.GOOGLE_API_KEY!,
+  model: &#39;gemini-1.5-pro&#39;,
+  temperature: 0.7,
+  maxTokens: 8192,
+  topK: 40,
+}
+</code></pre>
+<h3>Cohere</h3>
+<pre><code class="language-typescript">{
+  provider: &#39;cohere&#39;,
+  apiKey: process.env.COHERE_API_KEY!,
+  model: &#39;command-r-plus&#39;,
+  temperature: 0.7,
+  maxTokens: 4000,
+}
+</code></pre>
+<h3>Ollama (Local)</h3>
+<pre><code class="language-typescript">{
+  provider: &#39;ollama&#39;,
+  apiUrl: &#39;http://localhost:11434&#39;,
+  model: &#39;llama3.2&#39;,
+  temperature: 0.7,
+  maxTokens: 4096,
+}
+</code></pre>
+<h2>Performance</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provider initialization</td>
+<td>&lt;500ms</td>
+</tr>
+<tr>
+<td>Request routing</td>
+<td>&lt;5ms</td>
+</tr>
+<tr>
+<td>Cache lookup</td>
+<td>&lt;1ms</td>
+</tr>
+<tr>
+<td>Health check</td>
+<td>&lt;2s</td>
+</tr>
+</tbody></table>
+<h2>Integration with Claude Flow</h2>
+<pre><code class="language-typescript">import { createProviderManager } from &#39;@claude-flow/providers&#39;;
+import { createUnifiedSwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+
+// Create provider manager
+const providers = await createProviderManager({
+  providers: [
+    { provider: &#39;anthropic&#39;, apiKey: &#39;...&#39;, model: &#39;claude-3-5-sonnet-latest&#39; },
+    { provider: &#39;openai&#39;, apiKey: &#39;...&#39;, model: &#39;gpt-4o&#39; },
+  ],
+  loadBalancing: { enabled: true, strategy: &#39;cost-based&#39; },
+});
+
+// Use with swarm coordinator
+const coordinator = createUnifiedSwarmCoordinator({
+  // Agents can use provider manager for LLM calls
+  extensions: {
+    providers,
+  },
+});
+</code></pre>
+<h2>Related Packages</h2>
+<ul>
+<li><a href="../embeddings">@claude-flow/embeddings</a> - Embedding generation</li>
+<li><a href="../memory">@claude-flow/memory</a> - Vector storage and retrieval</li>
+<li><a href="../swarm">@claude-flow/swarm</a> - Multi-agent coordination</li>
+<li><a href="../neural">@claude-flow/neural</a> - SONA learning integration</li>
+</ul>
+<h2>License</h2>
+<p>MIT</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

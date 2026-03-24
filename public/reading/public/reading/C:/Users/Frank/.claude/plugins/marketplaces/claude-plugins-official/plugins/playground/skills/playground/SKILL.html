@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-30" />
+  <title>Playground Builder</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/playground/skills/playground/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Playground Builder</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-30 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-30</strong></div>
+      <hr>
+<h2>name: playground
+description: Creates interactive HTML playgrounds — self-contained single-file explorers that let users configure something visually through controls, see a live preview, and copy out a prompt. Use when the user asks to make a playground, explorer, or interactive tool for a topic.</h2>
+<h1>Playground Builder</h1>
+<p>A playground is a self-contained HTML file with interactive controls on one side, a live preview on the other, and a prompt output at the bottom with a copy button. The user adjusts controls, explores visually, then copies the generated prompt back into Claude.</p>
+<h2>When to use this skill</h2>
+<p>When the user asks for an interactive playground, explorer, or visual tool for a topic — especially when the input space is large, visual, or structural and hard to express as plain text.</p>
+<h2>How to use this skill</h2>
+<ol>
+<li><strong>Identify the playground type</strong> from the user&#39;s request</li>
+<li><strong>Load the matching template</strong> from <code>templates/</code>:<ul>
+<li><code>templates/design-playground.md</code> — Visual design decisions (components, layouts, spacing, color, typography)</li>
+<li><code>templates/data-explorer.md</code> — Data and query building (SQL, APIs, pipelines, regex)</li>
+<li><code>templates/concept-map.md</code> — Learning and exploration (concept maps, knowledge gaps, scope mapping)</li>
+<li><code>templates/document-critique.md</code> — Document review (suggestions with approve/reject/comment workflow)</li>
+<li><code>templates/diff-review.md</code> — Code review (git diffs, commits, PRs with line-by-line commenting)</li>
+<li><code>templates/code-map.md</code> — Codebase architecture (component relationships, data flow, layer diagrams)</li>
+</ul>
+</li>
+<li><strong>Follow the template</strong> to build the playground. If the topic doesn&#39;t fit any template cleanly, use the one closest and adapt.</li>
+<li><strong>Open in browser.</strong> After writing the HTML file, run <code>open &lt;filename&gt;.html</code> to launch it in the user&#39;s default browser.</li>
+</ol>
+<h2>Core requirements (every playground)</h2>
+<ul>
+<li><strong>Single HTML file.</strong> Inline all CSS and JS. No external dependencies.</li>
+<li><strong>Live preview.</strong> Updates instantly on every control change. No &quot;Apply&quot; button.</li>
+<li><strong>Prompt output.</strong> Natural language, not a value dump. Only mentions non-default choices. Includes enough context to act on without seeing the playground. Updates live.</li>
+<li><strong>Copy button.</strong> Clipboard copy with brief &quot;Copied!&quot; feedback.</li>
+<li><strong>Sensible defaults + presets.</strong> Looks good on first load. Include 3-5 named presets that snap all controls to a cohesive combination.</li>
+<li><strong>Dark theme.</strong> System font for UI, monospace for code/values. Minimal chrome.</li>
+</ul>
+<h2>State management pattern</h2>
+<p>Keep a single state object. Every control writes to it, every render reads from it.</p>
+<pre><code class="language-javascript">const state = { /* all configurable values */ };
+
+function updateAll() {
+  renderPreview(); // update the visual
+  updatePrompt();  // rebuild the prompt text
+}
+// Every control calls updateAll() on change
+</code></pre>
+<h2>Prompt output pattern</h2>
+<pre><code class="language-javascript">function updatePrompt() {
+  const parts = [];
+
+  // Only mention non-default values
+  if (state.borderRadius !== DEFAULTS.borderRadius) {
+    parts.push(`border-radius of ${state.borderRadius}px`);
+  }
+
+  // Use qualitative language alongside numbers
+  if (state.shadowBlur &gt; 16) parts.push(&#39;a pronounced shadow&#39;);
+  else if (state.shadowBlur &gt; 0) parts.push(&#39;a subtle shadow&#39;);
+
+  prompt.textContent = `Update the card to use ${parts.join(&#39;, &#39;)}.`;
+}
+</code></pre>
+<h2>Common mistakes to avoid</h2>
+<ul>
+<li>Prompt output is just a value dump → write it as a natural instruction</li>
+<li>Too many controls at once → group by concern, hide advanced in a collapsible section</li>
+<li>Preview doesn&#39;t update instantly → every control change must trigger immediate re-render</li>
+<li>No defaults or presets → starts empty or broken on load</li>
+<li>External dependencies → if CDN is down, playground is dead</li>
+<li>Prompt lacks context → include enough that it&#39;s actionable without the playground</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

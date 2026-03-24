@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Email Sequences Integration Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/app/admin/email-sequences/INTEGRATION_GUIDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Email Sequences Integration Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.worktrees">.worktrees</a> / <a href="../../../index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <a href="../../index.html#.worktrees%2Fvercel-ui-ux%2Fapp">app</a> / <a href="../index.html#.worktrees%2Fvercel-ui-ux%2Fapp%2Fadmin">admin</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux%2Fapp%2Fadmin%2Femail-sequences">email-sequences</a> / <span>INTEGRATION_GUIDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Email Sequences Integration Guide</h1>
+<p>Complete system for automated email campaigns with Resend integration.</p>
+<hr>
+<h2>System Overview</h2>
+<pre><code>Subscriber signs up
+        ↓
+API creates subscriber + enrolls in welcome sequence
+        ↓
+Scheduler creates 5 email deliveries (Day 0, 3, 7, 14, 30)
+        ↓
+Cron job runs every 15 minutes
+        ↓
+Processes pending deliveries → Sends via Resend
+        ↓
+Tracks opens, clicks, conversions
+</code></pre>
+<hr>
+<h2>Architecture</h2>
+<h3>1. Data Layer</h3>
+<p><strong>Location</strong>: <code>data/email-sequences/email-sequences.json</code></p>
+<p><strong>Structure</strong>:</p>
+<pre><code class="language-json">{
+  &quot;subscribers&quot;: [/* Subscriber objects */],
+  &quot;sequences&quot;: [/* Sequence configurations */],
+  &quot;templates&quot;: [/* Email templates */],
+  &quot;deliveries&quot;: [/* Scheduled/sent emails */],
+  &quot;lastUpdated&quot;: &quot;ISO date&quot;
+}
+</code></pre>
+<h3>2. Type System</h3>
+<p><strong>Location</strong>: <code>types/email-sequences.ts</code></p>
+<p><strong>Key Types</strong>:</p>
+<ul>
+<li><code>Subscriber</code> - Email, source, tags, engagement metrics</li>
+<li><code>EmailSequence</code> - Steps, triggers, targeting rules</li>
+<li><code>EmailDelivery</code> - Scheduled/sent emails with tracking</li>
+<li><code>EmailTemplate</code> - HTML content with variable support</li>
+</ul>
+<h3>3. Library Functions</h3>
+<p><strong>Location</strong>: <code>lib/email-sequences/</code></p>
+<p><strong>Modules</strong>:</p>
+<ul>
+<li><code>subscribers.ts</code> - CRUD operations, enrollment, tags</li>
+<li><code>sequences.ts</code> - Sequence management, analytics</li>
+<li><code>sender.ts</code> - Template rendering, Resend integration</li>
+<li><code>scheduler.ts</code> - Delivery processing, automation</li>
+</ul>
+<h3>4. API Routes</h3>
+<p><strong>Endpoints</strong>:</p>
+<ul>
+<li><code>GET /api/email-sequences/subscribers</code> - List/filter subscribers</li>
+<li><code>POST /api/email-sequences/subscribers</code> - Create + auto-enroll</li>
+<li><code>GET /api/email-sequences/sequences</code> - List sequences + analytics</li>
+<li><code>POST /api/email-sequences/process</code> - Process pending deliveries (cron)</li>
+</ul>
+<h3>5. Dashboard</h3>
+<p><strong>Location</strong>: <code>/admin/email-sequences</code></p>
+<p><strong>Features</strong>:</p>
+<ul>
+<li>Subscriber stats (total, active, churn rate)</li>
+<li>Sequence performance (open rate, click rate)</li>
+<li>Recent activity feed</li>
+<li>Email step breakdown</li>
+</ul>
+<hr>
+<h2>Resend MCP Integration</h2>
+<h3>Current State</h3>
+<p>The <code>sender.ts</code> file has a <strong>mock implementation</strong>:</p>
+<pre><code class="language-typescript">// TODO: Call Resend MCP
+console.log(&#39;[Email Sender] Would send email:&#39;, {...})
+</code></pre>
+<h3>Integration Steps</h3>
+<p><strong>1. Install Resend MCP</strong> (if not already configured)</p>
+<p>Check if Resend MCP is available:</p>
+<pre><code class="language-bash">claude mcp list | grep resend
+</code></pre>
+<p>If not installed:</p>
+<pre><code class="language-bash"># Add Resend MCP (exact command may vary based on MCP setup)
+claude mcp add resend
+</code></pre>
+<p><strong>2. Update <code>lib/email-sequences/sender.ts</code></strong></p>
+<p>Replace the mock section with actual Resend MCP call:</p>
+<pre><code class="language-typescript">import { ToolSearch } from &#39;@/tools/mcp&#39;
+
+export async function sendEmail({
+  subscriber,
+  template,
+  step,
+  sequenceId
+}: SendEmailParams): Promise&lt;SendEmailResult&gt; {
+  try {
+    const { subject, bodyHtml, bodyText } = renderTemplate(template, subscriber, step)
+    
+    // Load Resend MCP tool
+    const resendTools = await ToolSearch({ query: &#39;select:mcp__resend__send-email&#39; })
+    
+    if (!resendTools || resendTools.length === 0) {
+      throw new Error(&#39;Resend MCP not available&#39;)
+    }
+    
+    // Send via Resend MCP
+    const result = await resendTools[0].call({
+      from: &#39;frank@mail.frankx.ai&#39;,
+      to: subscriber.email,
+      subject,
+      html: bodyHtml,
+      text: bodyText,
+      tags: [
+        { name: &#39;sequence&#39;, value: sequenceId },
+        { name: &#39;step&#39;, value: step.id }
+      ]
+    })
+    
+    return {
+      success: true,
+      providerId: result.id
+    }
+  } catch (error) {
+    console.error(&#39;[Email Sender] Error:&#39;, error)
+    
+    return {
+      success: false,
+      error: {
+        code: &#39;SEND_FAILED&#39;,
+        message: error instanceof Error ? error.message : &#39;Unknown error&#39;
+      }
+    }
+  }
+}
+</code></pre>
+<p><strong>3. Configure Resend API Key</strong></p>
+<p>Add to <code>.env.local</code>:</p>
+<pre><code class="language-bash">RESEND_API_KEY=re_your_api_key_here
+</code></pre>
+<p><strong>4. Verify Domain</strong></p>
+<p>Ensure <code>mail.frankx.ai</code> is verified in Resend dashboard:</p>
+<ul>
+<li>Go to resend.com/domains</li>
+<li>Add <code>mail.frankx.ai</code></li>
+<li>Add DNS records (MX, TXT, DKIM)</li>
+<li>Wait for verification (5-30 minutes)</li>
+</ul>
+<p><strong>5. Set Up Webhooks</strong> (for tracking opens/clicks)</p>
+<p>In Resend dashboard:</p>
+<ul>
+<li>Go to Webhooks → Create Webhook</li>
+<li>URL: <code>https://frankx.ai/api/email-sequences/webhook</code></li>
+<li>Events: <code>email.opened</code>, <code>email.clicked</code>, <code>email.bounced</code></li>
+</ul>
+<p>Create the webhook handler:</p>
+<pre><code class="language-typescript">// app/api/email-sequences/webhook/route.ts
+import { NextRequest, NextResponse } from &#39;next/server&#39;
+import { markDeliveryAsOpened, markDeliveryAsClicked } from &#39;@/lib/email-sequences/sequences&#39;
+
+export async function POST(request: NextRequest) {
+  const body = await request.json()
+  const { type, data } = body
+  
+  // Find delivery by provider ID
+  const deliveryId = data.tags?.find(t =&gt; t.name === &#39;delivery&#39;)?.value
+  
+  if (!deliveryId) {
+    return NextResponse.json({ error: &#39;Delivery ID not found&#39; }, { status: 400 })
+  }
+  
+  switch (type) {
+    case &#39;email.opened&#39;:
+      await markDeliveryAsOpened(deliveryId)
+      break
+    
+    case &#39;email.clicked&#39;:
+      await markDeliveryAsClicked(deliveryId, data.url)
+      break
+    
+    case &#39;email.bounced&#39;:
+      // TODO: Handle bounces
+      break
+  }
+  
+  return NextResponse.json({ success: true })
+}
+</code></pre>
+<hr>
+<h2>Vercel Cron Setup</h2>
+<p><strong>File</strong>: <code>vercel.json</code> (create in project root)</p>
+<pre><code class="language-json">{
+  &quot;crons&quot;: [{
+    &quot;path&quot;: &quot;/api/email-sequences/process&quot;,
+    &quot;schedule&quot;: &quot;*/15 * * * *&quot;
+  }]
+}
+</code></pre>
+<p><strong>Schedule Explanation</strong>:</p>
+<ul>
+<li><code>*/15 * * * *</code> = Every 15 minutes</li>
+<li>Adjust frequency based on volume (e.g., <code>*/5</code> for every 5 minutes)</li>
+</ul>
+<p><strong>Environment Variable</strong>:</p>
+<pre><code class="language-bash">CRON_SECRET=random_string_here
+</code></pre>
+<p>Set in Vercel dashboard: Settings → Environment Variables</p>
+<hr>
+<h2>HTML Email Templates</h2>
+<h3>Current State</h3>
+<p>Templates in <code>content/email-templates/welcome-series.md</code> are <strong>plain text</strong>.</p>
+<h3>Converting to HTML</h3>
+<p><strong>Option 1: Use React Email</strong> (recommended)</p>
+<pre><code class="language-bash">npm install react-email @react-email/components
+</code></pre>
+<p>Create template:</p>
+<pre><code class="language-tsx">// emails/WelcomeEmail.tsx
+import { Html, Body, Container, Heading, Text, Link } from &#39;@react-email/components&#39;
+
+export default function WelcomeEmail({ firstName, downloadLink }) {
+  return (
+    &lt;Html&gt;
+      &lt;Body style={{ fontFamily: &#39;sans-serif&#39;, backgroundColor: &#39;#f4f4f4&#39; }}&gt;
+        &lt;Container style={{ maxWidth: &#39;600px&#39;, margin: &#39;0 auto&#39;, padding: &#39;40px 20px&#39; }}&gt;
+          &lt;Heading&gt;Hey {firstName},&lt;/Heading&gt;
+          &lt;Text&gt;Welcome. I&#39;m Frank.&lt;/Text&gt;
+          &lt;Text&gt;You just signed up. Here&#39;s what you requested:&lt;/Text&gt;
+          &lt;Link href={downloadLink}&gt;Download your resource&lt;/Link&gt;
+        &lt;/Container&gt;
+      &lt;/Body&gt;
+    &lt;/Html&gt;
+  )
+}
+</code></pre>
+<p>Render to HTML:</p>
+<pre><code class="language-typescript">import { render } from &#39;@react-email/render&#39;
+import WelcomeEmail from &#39;@/emails/WelcomeEmail&#39;
+
+const html = render(&lt;WelcomeEmail firstName=&quot;John&quot; downloadLink=&quot;...&quot; /&gt;)
+</code></pre>
+<p><strong>Option 2: MJML</strong> (more advanced)</p>
+<pre><code class="language-bash">npm install mjml
+</code></pre>
+<p>Create <code>.mjml</code> template and compile to HTML.</p>
+<p><strong>Option 3: Plain HTML</strong> (quickest)</p>
+<p>Store HTML directly in <code>templates[].bodyHtml</code> in the JSON data.</p>
+<hr>
+<h2>Adding Subscribers</h2>
+<h3>Via API</h3>
+<pre><code class="language-typescript">const response = await fetch(&#39;/api/email-sequences/subscribers&#39;, {
+  method: &#39;POST&#39;,
+  headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+  body: JSON.stringify({
+    email: &#39;user@example.com&#39;,
+    firstName: &#39;John&#39;,
+    source: &#39;blog&#39;,
+    tags: [&#39;ai-architect&#39;],
+    enrollInWelcome: true
+  })
+})
+</code></pre>
+<h3>Via Form</h3>
+<p>Create signup form:</p>
+<pre><code class="language-tsx">// components/EmailSignup.tsx
+&#39;use client&#39;
+
+export default function EmailSignup({ source = &#39;blog&#39; }) {
+  const [email, setEmail] = useState(&#39;&#39;)
+  const [loading, setLoading] = useState(false)
+  
+  const handleSubmit = async (e: React.FormEvent) =&gt; {
+    e.preventDefault()
+    setLoading(true)
+    
+    await fetch(&#39;/api/email-sequences/subscribers&#39;, {
+      method: &#39;POST&#39;,
+      headers: { &#39;Content-Type&#39;: &#39;application/json&#39; },
+      body: JSON.stringify({
+        email,
+        source,
+        enrollInWelcome: true
+      })
+    })
+    
+    setLoading(false)
+    setEmail(&#39;&#39;)
+  }
+  
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input
+        type=&quot;email&quot;
+        value={email}
+        onChange={(e) =&gt; setEmail(e.target.value)}
+        placeholder=&quot;your@email.com&quot;
+        required
+      /&gt;
+      &lt;button type=&quot;submit&quot; disabled={loading}&gt;
+        {loading ? &#39;Subscribing...&#39; : &#39;Get Updates&#39;}
+      &lt;/button&gt;
+    &lt;/form&gt;
+  )
+}
+</code></pre>
+<hr>
+<h2>Testing</h2>
+<h3>Manual Testing</h3>
+<p><strong>1. Create Test Subscriber</strong>:</p>
+<pre><code class="language-bash">curl -X POST https://frankx.ai/api/email-sequences/subscribers \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{
+    &quot;email&quot;: &quot;test@example.com&quot;,
+    &quot;firstName&quot;: &quot;Test&quot;,
+    &quot;source&quot;: &quot;blog&quot;,
+    &quot;enrollInWelcome&quot;: true
+  }&#39;
+</code></pre>
+<p><strong>2. Trigger Delivery Processing</strong> (dev mode):</p>
+<pre><code class="language-bash">curl http://localhost:3000/api/email-sequences/process
+</code></pre>
+<p><strong>3. Check Logs</strong>:
+Look for <code>[Email Sender] Would send email:</code> in console.</p>
+<h3>Production Testing</h3>
+<p><strong>1. Use Test Email</strong>:</p>
+<ul>
+<li>Subscribe with your own email</li>
+<li>Check inbox for emails</li>
+<li>Verify timing (Day 3 email arrives 72 hours later)</li>
+</ul>
+<p><strong>2. Monitor Analytics</strong>:</p>
+<ul>
+<li>Go to <code>/admin/email-sequences</code></li>
+<li>Check open rates, click rates</li>
+<li>Verify step progression</li>
+</ul>
+<p><strong>3. Test Unsubscribe</strong>:</p>
+<ul>
+<li>Click unsubscribe link in email</li>
+<li>Verify subscriber status changes to <code>unsubscribed</code></li>
+<li>Confirm no more emails sent</li>
+</ul>
+<hr>
+<h2>Performance Goals</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Open Rate</td>
+<td>&gt;40%</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Click Rate</td>
+<td>&gt;8%</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Unsubscribe Rate</td>
+<td>&lt;2%</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Delivery Rate</td>
+<td>&gt;98%</td>
+<td>TBD</td>
+</tr>
+<tr>
+<td>Conversion Rate</td>
+<td>&gt;3%</td>
+<td>TBD</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Next Steps</h2>
+<ol>
+<li><strong>Integrate Resend MCP</strong> - Replace mock sender with actual API calls</li>
+<li><strong>Convert templates to HTML</strong> - Use React Email or MJML</li>
+<li><strong>Set up Vercel Cron</strong> - Deploy <code>vercel.json</code> config</li>
+<li><strong>Configure webhooks</strong> - Track opens/clicks via Resend webhooks</li>
+<li><strong>Add signup forms</strong> - Embed <code>EmailSignup</code> component on key pages</li>
+<li><strong>Test welcome sequence</strong> - Subscribe with test email, verify full flow</li>
+<li><strong>Monitor performance</strong> - Check <code>/admin/email-sequences</code> dashboard</li>
+<li><strong>Build Phase 2</strong> - Nurture campaigns, re-engagement flows</li>
+</ol>
+<hr>
+<h2>File Structure Summary</h2>
+<pre><code>.
+├── app/
+│   ├── admin/email-sequences/
+│   │   ├── page.tsx                          # Dashboard
+│   │   └── INTEGRATION_GUIDE.md             # This file
+│   └── api/email-sequences/
+│       ├── subscribers/route.ts              # Subscriber management
+│       ├── sequences/route.ts                # Sequence analytics
+│       └── process/route.ts                  # Cron delivery processor
+├── lib/email-sequences/
+│   ├── subscribers.ts                        # Subscriber CRUD
+│   ├── sequences.ts                          # Sequence + delivery ops
+│   ├── sender.ts                             # Email sending (TODO: Resend)
+│   └── scheduler.ts                          # Automation engine
+├── types/email-sequences.ts                  # TypeScript definitions
+├── data/email-sequences/
+│   └── email-sequences.json                  # JSON storage
+├── content/email-templates/
+│   └── welcome-series.md                     # Email copy (plain text)
+└── vercel.json                               # Cron config (TODO)
+</code></pre>
+<hr>
+<p><strong>Status</strong>: Infrastructure complete, Resend integration pending.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

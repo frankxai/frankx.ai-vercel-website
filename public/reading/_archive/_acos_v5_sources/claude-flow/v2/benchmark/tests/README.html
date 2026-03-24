@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Benchmark Test Suite</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/tests/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Benchmark Test Suite</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Ftests">tests</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Benchmark Test Suite</h1>
+<p>Comprehensive test suite for the Claude Flow benchmark enhancement project, providing thorough validation of all new functionality including MLE-STAR integration, automation systems, advanced metrics, collective intelligence, and CLAUDE.md optimization.</p>
+<h2>🎯 Test Coverage</h2>
+<p>The test suite is organized into multiple layers to ensure comprehensive validation:</p>
+<h3>Unit Tests (95% coverage target)</h3>
+<ul>
+<li><p><strong>MLE-STAR Integration</strong> (<code>test_mle_star.py</code>)</p>
+<ul>
+<li>Ensemble executor functionality</li>
+<li>Voting strategies (majority, weighted, stacking, bayesian)</li>
+<li>Model coordination and performance tracking</li>
+<li>Integration with Claude Flow MCP tools</li>
+</ul>
+</li>
+<li><p><strong>Automation Systems</strong> (<code>test_automation.py</code>)</p>
+<ul>
+<li>Batch processor with resource pooling</li>
+<li>Pipeline manager with dependency resolution</li>
+<li>Workflow executor for autonomous execution</li>
+<li>Error handling and retry mechanisms</li>
+</ul>
+</li>
+<li><p><strong>Advanced Metrics</strong> (<code>test_metrics.py</code>)</p>
+<ul>
+<li>Token optimization tracker</li>
+<li>Memory persistence profiler</li>
+<li>Neural processing benchmarks</li>
+<li>Performance analysis and optimization</li>
+</ul>
+</li>
+<li><p><strong>Collective Intelligence</strong> (<code>test_collective.py</code>)</p>
+<ul>
+<li>Hive mind benchmark system</li>
+<li>Swarm coordination and consensus mechanisms</li>
+<li>Knowledge sharing across agents</li>
+<li>Emergent behavior detection</li>
+</ul>
+</li>
+<li><p><strong>CLAUDE.md Optimizer</strong> (<code>test_claude_optimizer.py</code>)</p>
+<ul>
+<li>Configuration generation for different use cases</li>
+<li>Optimization rules engine</li>
+<li>Effectiveness benchmarking</li>
+<li>Project context handling</li>
+</ul>
+</li>
+</ul>
+<h3>Integration Tests</h3>
+<ul>
+<li><strong>Full Pipeline Workflows</strong> (<code>test_full_pipeline.py</code>)<ul>
+<li>End-to-end scenario testing</li>
+<li>Component interaction validation</li>
+<li>Real-world use case simulation</li>
+<li>Cross-system coordination</li>
+</ul>
+</li>
+</ul>
+<h3>Performance Tests</h3>
+<ul>
+<li><strong>Benchmark Suite</strong> (<code>test_benchmarks.py</code>)<ul>
+<li>Performance baseline establishment</li>
+<li>Regression detection and alerting</li>
+<li>Scalability testing under load</li>
+<li>Memory leak detection</li>
+<li>Stress testing scenarios</li>
+</ul>
+</li>
+</ul>
+<h2>🚀 Quick Start</h2>
+<h3>Prerequisites</h3>
+<pre><code class="language-bash">cd benchmark
+pip install -r requirements.txt
+pip install -r tests/requirements-test.txt
+</code></pre>
+<h3>Running Tests</h3>
+<h4>Fast Tests (recommended for development)</h4>
+<pre><code class="language-bash">python tests/run_tests.py fast
+</code></pre>
+<h4>All Tests</h4>
+<pre><code class="language-bash">python tests/run_tests.py all --coverage
+</code></pre>
+<h4>Specific Test Categories</h4>
+<pre><code class="language-bash"># Unit tests only
+python tests/run_tests.py unit --coverage
+
+# Integration tests
+python tests/run_tests.py integration
+
+# Performance tests  
+python tests/run_tests.py performance
+
+# Specific module
+python tests/run_tests.py module --module mle_star
+</code></pre>
+<h4>Parallel Execution</h4>
+<pre><code class="language-bash">python tests/run_tests.py parallel --workers 4
+</code></pre>
+<h2>📊 Test Markers</h2>
+<p>Tests are categorized using pytest markers:</p>
+<ul>
+<li><code>@pytest.mark.unit</code> - Unit tests</li>
+<li><code>@pytest.mark.integration</code> - Integration tests  </li>
+<li><code>@pytest.mark.performance</code> - Performance tests</li>
+<li><code>@pytest.mark.slow</code> - Slow-running tests</li>
+<li><code>@pytest.mark.stress</code> - Stress tests</li>
+<li><code>@pytest.mark.regression</code> - Regression tests</li>
+</ul>
+<h3>Running Specific Categories</h3>
+<pre><code class="language-bash"># Run only fast tests
+pytest -m &quot;not slow&quot;
+
+# Run performance tests
+pytest -m &quot;performance&quot;
+
+# Run integration tests
+pytest -m &quot;integration&quot;
+</code></pre>
+<h2>🔧 Test Configuration</h2>
+<h3>Pytest Configuration (<code>pytest.ini</code>)</h3>
+<ul>
+<li>Test discovery patterns</li>
+<li>Marker definitions</li>
+<li>Output formatting</li>
+<li>Coverage settings</li>
+<li>Timeout configuration</li>
+</ul>
+<h3>Fixtures (<code>conftest.py</code>)</h3>
+<ul>
+<li>Shared test fixtures for all modules</li>
+<li>Mock data generators</li>
+<li>Temporary file management</li>
+<li>Performance monitoring utilities</li>
+</ul>
+<h2>📈 Performance Testing</h2>
+<h3>Baseline Establishment</h3>
+<p>The test suite establishes performance baselines for:</p>
+<ul>
+<li>CPU-intensive operations</li>
+<li>Memory usage patterns</li>
+<li>Async operation throughput</li>
+<li>Batch processing efficiency</li>
+<li>Concurrent execution scaling</li>
+</ul>
+<h3>Regression Detection</h3>
+<p>Automated regression detection with:</p>
+<ul>
+<li>20% regression threshold</li>
+<li>Historical performance tracking</li>
+<li>Alerting on significant degradations</li>
+<li>Performance improvement recognition</li>
+</ul>
+<h3>Scalability Testing</h3>
+<ul>
+<li>Load testing under various conditions</li>
+<li>Concurrent execution validation</li>
+<li>Memory pressure testing</li>
+<li>Resource contention handling</li>
+</ul>
+<h2>🤖 Continuous Integration</h2>
+<p>The test suite integrates with GitHub Actions for:</p>
+<ul>
+<li>Automated testing on push/PR</li>
+<li>Daily regression testing</li>
+<li>Performance monitoring</li>
+<li>Security scanning</li>
+<li>Code quality checks</li>
+</ul>
+<h3>Workflow Jobs</h3>
+<ol>
+<li><strong>Fast Tests</strong> - Quick feedback on all Python versions</li>
+<li><strong>Unit Tests</strong> - Comprehensive unit testing with coverage</li>
+<li><strong>Integration Tests</strong> - End-to-end workflow validation</li>
+<li><strong>Performance Tests</strong> - Performance regression detection</li>
+<li><strong>Stress Tests</strong> - Load and stress testing</li>
+<li><strong>Code Quality</strong> - Linting and formatting checks</li>
+</ol>
+<h2>📋 Test Data and Fixtures</h2>
+<h3>Mock Components</h3>
+<p>Comprehensive mock implementations for:</p>
+<ul>
+<li>MLE-STAR ensemble executors</li>
+<li>Batch processing systems</li>
+<li>Memory profilers</li>
+<li>Swarm coordination systems</li>
+<li>CLAUDE.md optimizers</li>
+</ul>
+<h3>Test Data Generators</h3>
+<p>Realistic test data for:</p>
+<ul>
+<li>Project structures (web API, ML, data pipeline)</li>
+<li>Performance scenarios</li>
+<li>Code samples for analysis</li>
+<li>Time series data for metrics</li>
+</ul>
+<h3>Fixtures Categories</h3>
+<ul>
+<li><strong>Component Fixtures</strong> - Mock systems and components</li>
+<li><strong>Data Fixtures</strong> - Sample data and configurations</li>
+<li><strong>Environment Fixtures</strong> - Temporary directories and databases</li>
+<li><strong>Performance Fixtures</strong> - Baseline metrics and monitors</li>
+</ul>
+<h2>🎖️ Best Practices</h2>
+<h3>Test Design Principles</h3>
+<ol>
+<li><strong>Isolation</strong> - Tests don&#39;t depend on each other</li>
+<li><strong>Repeatability</strong> - Same results on every run</li>
+<li><strong>Fast Feedback</strong> - Quick tests for development workflow</li>
+<li><strong>Comprehensive Coverage</strong> - All code paths tested</li>
+<li><strong>Realistic Scenarios</strong> - Tests mirror real usage</li>
+</ol>
+<h3>Mock Strategy</h3>
+<ul>
+<li>Mock external dependencies (file systems, networks)</li>
+<li>Use realistic data and behaviors</li>
+<li>Verify component interactions</li>
+<li>Test error conditions and edge cases</li>
+</ul>
+<h3>Performance Testing</h3>
+<ul>
+<li>Establish baselines early</li>
+<li>Test under realistic conditions</li>
+<li>Monitor for regressions continuously</li>
+<li>Test scalability characteristics</li>
+</ul>
+<h2>📝 Writing New Tests</h2>
+<h3>Unit Test Template</h3>
+<pre><code class="language-python">import pytest
+from unittest.mock import Mock, AsyncMock
+
+class TestMyComponent:
+    @pytest.fixture
+    def mock_component(self):
+        return Mock()
+    
+    def test_basic_functionality(self, mock_component):
+        # Arrange
+        mock_component.setup_method.return_value = &quot;expected&quot;
+        
+        # Act
+        result = mock_component.method_under_test()
+        
+        # Assert
+        assert result == &quot;expected&quot;
+        mock_component.setup_method.assert_called_once()
+    
+    @pytest.mark.asyncio
+    async def test_async_functionality(self, mock_component):
+        # Test async behavior
+        pass
+    
+    @pytest.mark.slow
+    def test_performance_scenario(self, mock_component):
+        # Test performance characteristics
+        pass
+</code></pre>
+<h3>Integration Test Template</h3>
+<pre><code class="language-python">@pytest.mark.integration
+class TestIntegratedWorkflow:
+    @pytest.mark.asyncio
+    async def test_end_to_end_workflow(self):
+        # Test complete workflow
+        pass
+</code></pre>
+<h2>📊 Coverage Reports</h2>
+<p>Coverage reports are generated in multiple formats:</p>
+<ul>
+<li><strong>Terminal</strong> - Quick summary during test runs</li>
+<li><strong>HTML</strong> - Detailed interactive reports (<code>htmlcov/index.html</code>)</li>
+<li><strong>XML</strong> - CI/CD integration (<code>coverage.xml</code>)</li>
+</ul>
+<h3>Coverage Targets</h3>
+<ul>
+<li><strong>Unit Tests</strong>: 95% minimum</li>
+<li><strong>Integration Tests</strong>: 80% minimum</li>
+<li><strong>Overall Project</strong>: 85% minimum</li>
+</ul>
+<h2>🔍 Debugging Tests</h2>
+<h3>Common Issues</h3>
+<ol>
+<li><strong>Async Test Failures</strong> - Use proper <code>@pytest.mark.asyncio</code></li>
+<li><strong>Mock Assertions</strong> - Verify mock calls and return values</li>
+<li><strong>Fixture Dependencies</strong> - Check fixture scope and lifecycle</li>
+<li><strong>Performance Flakiness</strong> - Use appropriate timeouts and retries</li>
+</ol>
+<h3>Debug Commands</h3>
+<pre><code class="language-bash"># Run with detailed output
+pytest -vvv --tb=long
+
+# Run specific test
+pytest tests/unit/test_mle_star.py::TestMLEStarEnsembleExecutor::test_ensemble_initialization
+
+# Run with debugging
+pytest --pdb tests/unit/test_automation.py
+
+# Profile test performance
+pytest --profile tests/performance/
+</code></pre>
+<h2>📞 Support</h2>
+<p>For test-related issues:</p>
+<ol>
+<li>Check the test output and logs</li>
+<li>Verify fixture and mock setup</li>
+<li>Run tests with increased verbosity</li>
+<li>Refer to existing test examples</li>
+<li>Check GitHub Actions workflow results</li>
+</ol>
+<hr>
+<p>This test suite ensures the benchmark enhancement project meets the highest quality standards with comprehensive validation, performance monitoring, and continuous integration.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

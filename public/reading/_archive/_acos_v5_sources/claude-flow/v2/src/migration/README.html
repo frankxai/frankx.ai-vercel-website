@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow Migration System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/migration/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow Migration System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fmigration">migration</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude-Flow Migration System</h1>
+<p>A comprehensive migration system for existing claude-flow projects to adopt optimized prompts and configurations.</p>
+<h2>Overview</h2>
+<p>The migration system provides tools to:</p>
+<ul>
+<li>Analyze existing projects for migration readiness</li>
+<li>Migrate projects using different strategies (full, selective, merge)</li>
+<li>Create automatic backups for safe rollback</li>
+<li>Validate successful migrations</li>
+<li>Handle edge cases and conflicts gracefully</li>
+</ul>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Analyze your project
+npx claude-flow migrate analyze
+
+# Run migration with dry-run preview
+npx claude-flow migrate --dry-run --verbose
+
+# Migrate with selective strategy (recommended)
+npx claude-flow migrate --strategy selective --preserve-custom
+
+# Rollback if needed
+npx claude-flow migrate rollback
+</code></pre>
+<h2>Architecture</h2>
+<h3>Core Components</h3>
+<ol>
+<li><strong>MigrationAnalyzer</strong> - Analyzes project structure and detects conflicts</li>
+<li><strong>MigrationRunner</strong> - Executes migration strategies</li>
+<li><strong>RollbackManager</strong> - Handles backup creation and restoration</li>
+<li><strong>MigrationValidator</strong> - Validates successful migrations</li>
+<li><strong>ProgressReporter</strong> - Provides visual feedback during operations</li>
+</ol>
+<h3>Migration Strategies</h3>
+<h4>Full Strategy</h4>
+<ul>
+<li><strong>Use Case</strong>: New projects or complete overhaul</li>
+<li><strong>Behavior</strong>: Replaces entire <code>.claude</code> folder</li>
+<li><strong>Risk Level</strong>: High (with backup)</li>
+<li><strong>Command</strong>: <code>--strategy full</code></li>
+</ul>
+<h4>Selective Strategy</h4>
+<ul>
+<li><strong>Use Case</strong>: Projects with custom commands (default)</li>
+<li><strong>Behavior</strong>: Updates core files, preserves customizations</li>
+<li><strong>Risk Level</strong>: Medium</li>
+<li><strong>Command</strong>: <code>--strategy selective --preserve-custom</code></li>
+</ul>
+<h4>Merge Strategy</h4>
+<ul>
+<li><strong>Use Case</strong>: Complex projects with custom configurations</li>
+<li><strong>Behavior</strong>: Merges configurations, preserves custom commands</li>
+<li><strong>Risk Level</strong>: Low</li>
+<li><strong>Command</strong>: <code>--strategy merge</code></li>
+</ul>
+<h2>CLI Commands</h2>
+<h3>Analysis Commands</h3>
+<pre><code class="language-bash"># Basic analysis
+claude-flow migrate analyze
+
+# Detailed analysis with output file
+claude-flow migrate analyze --detailed --output analysis.json
+
+# Check specific project
+claude-flow migrate analyze /path/to/project
+</code></pre>
+<h3>Migration Commands</h3>
+<pre><code class="language-bash"># Preview changes (safe)
+claude-flow migrate --dry-run --verbose
+
+# Full migration
+claude-flow migrate --strategy full
+
+# Selective migration (recommended)
+claude-flow migrate --strategy selective --preserve-custom
+
+# Merge migration for complex projects
+claude-flow migrate --strategy merge
+
+# Force migration without prompts
+claude-flow migrate --force
+
+# Skip post-migration validation
+claude-flow migrate --skip-validation
+</code></pre>
+<h3>Backup &amp; Rollback Commands</h3>
+<pre><code class="language-bash"># List available backups
+claude-flow migrate rollback --list
+
+# Rollback to latest backup
+claude-flow migrate rollback
+
+# Rollback to specific backup
+claude-flow migrate rollback --timestamp 2024-01-01T12:00:00
+
+# Force rollback without confirmation
+claude-flow migrate rollback --force
+</code></pre>
+<h3>Validation Commands</h3>
+<pre><code class="language-bash"># Validate migration
+claude-flow migrate validate
+
+# Detailed validation report
+claude-flow migrate validate --verbose
+
+# Check project status
+claude-flow migrate status
+</code></pre>
+<h2>Configuration</h2>
+<h3>Migration Manifest</h3>
+<p>The system uses a manifest file (<code>migration-manifest.json</code>) to define:</p>
+<ul>
+<li>File mappings and transformations</li>
+<li>Strategy configurations</li>
+<li>Validation requirements</li>
+<li>Rollback settings</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;files&quot;: {
+    &quot;commands&quot;: {
+      &quot;sparc.md&quot;: {
+        &quot;source&quot;: &quot;.claude/commands/sparc.md&quot;,
+        &quot;target&quot;: &quot;.claude/commands/sparc.md&quot;,
+        &quot;transform&quot;: &quot;replace&quot;,
+        &quot;priority&quot;: 1
+      }
+    }
+  },
+  &quot;strategies&quot;: {
+    &quot;selective&quot;: {
+      &quot;preserveCustom&quot;: true,
+      &quot;backupRequired&quot;: true,
+      &quot;riskLevel&quot;: &quot;medium&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Project Configuration</h3>
+<p>Projects can include migration preferences in <code>CLAUDE.md</code>:</p>
+<pre><code class="language-markdown">## Migration Configuration
+
+- strategy: selective
+- preserveCustom: true
+- customCommands: [&#39;my-command&#39;, &#39;special-workflow&#39;]
+</code></pre>
+<h2>API Usage</h2>
+<h3>Programmatic Migration</h3>
+<pre><code class="language-typescript">import { MigrationRunner, MigrationAnalyzer } from &#39;claude-flow/migration&#39;;
+
+// Analyze project
+const analyzer = new MigrationAnalyzer();
+const analysis = await analyzer.analyze(&#39;./my-project&#39;);
+
+// Run migration
+const runner = new MigrationRunner({
+  projectPath: &#39;./my-project&#39;,
+  strategy: &#39;selective&#39;,
+  preserveCustom: true,
+  dryRun: false,
+});
+
+const result = await runner.run();
+console.log(`Migration ${result.success ? &#39;succeeded&#39; : &#39;failed&#39;}`);
+</code></pre>
+<h3>Backup Management</h3>
+<pre><code class="language-typescript">import { RollbackManager } from &#39;claude-flow/migration&#39;;
+
+const rollback = new RollbackManager(&#39;./my-project&#39;);
+
+// Create backup
+const backup = await rollback.createBackup({
+  type: &#39;pre-migration&#39;,
+  description: &#39;Before optimization update&#39;,
+});
+
+// List backups
+const backups = await rollback.listBackups();
+
+// Rollback
+await rollback.rollback(backup.metadata.backupId);
+</code></pre>
+<h2>Migration Scenarios</h2>
+<h3>Scenario 1: Fresh Project Setup</h3>
+<pre><code class="language-bash"># For new projects without existing customizations
+claude-flow migrate --strategy full
+</code></pre>
+<p><strong>Result</strong>: Clean installation of all optimized prompts and configurations.</p>
+<h3>Scenario 2: Existing Project with Custom Commands</h3>
+<pre><code class="language-bash"># Analyze first
+claude-flow migrate analyze --detailed
+
+# Selective migration preserving customizations
+claude-flow migrate --strategy selective --preserve-custom
+</code></pre>
+<p><strong>Result</strong>: Core files updated, custom commands preserved.</p>
+<h3>Scenario 3: Complex Project with Configurations</h3>
+<pre><code class="language-bash"># Use merge strategy for complex setups
+claude-flow migrate --strategy merge --preserve-custom
+
+# Validate after migration
+claude-flow migrate validate --verbose
+</code></pre>
+<p><strong>Result</strong>: Configurations merged, custom content preserved.</p>
+<h3>Scenario 4: Safe Preview Before Migration</h3>
+<pre><code class="language-bash"># Preview all changes
+claude-flow migrate --dry-run --verbose
+
+# Run actual migration if satisfied
+claude-flow migrate --strategy selective
+</code></pre>
+<p><strong>Result</strong>: Risk-free preview of all changes before applying.</p>
+<h3>Scenario 5: Batch Migration</h3>
+<pre><code class="language-bash"># Find and migrate multiple projects
+find . -name &quot;.claude&quot; -type d | while read dir; do
+  project_path=$(dirname &quot;$dir&quot;)
+  echo &quot;Migrating $project_path&quot;
+  claude-flow migrate &quot;$project_path&quot; --strategy selective --force
+done
+</code></pre>
+<p><strong>Result</strong>: Multiple projects migrated with consistent strategy.</p>
+<h2>Risk Management</h2>
+<h3>Automatic Backups</h3>
+<p>Every migration creates automatic backups:</p>
+<ul>
+<li><strong>Location</strong>: <code>.claude-backup/</code> directory</li>
+<li><strong>Format</strong>: Timestamped folders with full file content</li>
+<li><strong>Retention</strong>: Configurable (default: 30 days, max 10 backups)</li>
+<li><strong>Validation</strong>: Checksums for integrity verification</li>
+</ul>
+<h3>Conflict Detection</h3>
+<p>The analyzer detects potential conflicts:</p>
+<ul>
+<li><strong>Custom Commands</strong>: Commands not in standard set</li>
+<li><strong>Modified Files</strong>: Files with custom modifications</li>
+<li><strong>Configuration Conflicts</strong>: Incompatible settings</li>
+<li><strong>Permission Issues</strong>: Read-only files or directories</li>
+</ul>
+<h3>Rollback Safety</h3>
+<p>Multiple rollback options:</p>
+<ul>
+<li><strong>Automatic</strong>: Failed migrations auto-rollback</li>
+<li><strong>Manual</strong>: User-initiated rollback to any backup</li>
+<li><strong>Validation</strong>: Checksum verification during restore</li>
+<li><strong>Recovery</strong>: Pre-rollback backups for safety</li>
+</ul>
+<h2>Troubleshooting</h2>
+<h3>Common Issues</h3>
+<h4>Migration Fails with Permission Errors</h4>
+<pre><code class="language-bash"># Check and fix permissions
+chmod -R u+w .claude/
+claude-flow migrate --strategy selective
+</code></pre>
+<h4>Custom Commands Not Preserved</h4>
+<pre><code class="language-bash"># Use preserve-custom flag
+claude-flow migrate --strategy selective --preserve-custom
+</code></pre>
+<h4>Validation Failures</h4>
+<pre><code class="language-bash"># Run detailed validation
+claude-flow migrate validate --verbose
+
+# Check for missing files or corruption
+ls -la .claude/commands/
+</code></pre>
+<h4>Rollback Not Working</h4>
+<pre><code class="language-bash"># List available backups
+claude-flow migrate rollback --list
+
+# Check backup integrity
+cat .claude-backup/*/backup-manifest.json
+</code></pre>
+<h3>Debug Mode</h3>
+<p>Enable detailed logging:</p>
+<pre><code class="language-bash">export DEBUG=true
+claude-flow migrate --verbose
+</code></pre>
+<h3>Log Files</h3>
+<p>Migration logs are stored in:</p>
+<ul>
+<li><strong>Development</strong>: Console output</li>
+<li><strong>Production</strong>: <code>logs/migration.log</code></li>
+</ul>
+<h2>Advanced Usage</h2>
+<h3>Custom Migration Scripts</h3>
+<p>Create custom migration scripts using the API:</p>
+<pre><code class="language-typescript">import { MigrationRunner } from &#39;claude-flow/migration&#39;;
+
+class CustomMigration extends MigrationRunner {
+  async customTransform(content: string): Promise&lt;string&gt; {
+    // Apply custom transformations
+    return content.replace(/old-pattern/g, &#39;new-pattern&#39;);
+  }
+}
+</code></pre>
+<h3>Extending Validation</h3>
+<p>Add custom validation rules:</p>
+<pre><code class="language-typescript">import { MigrationValidator } from &#39;claude-flow/migration&#39;;
+
+class ProjectValidator extends MigrationValidator {
+  async validateCustomRules(projectPath: string): Promise&lt;ValidationResult&gt; {
+    // Custom validation logic
+    return super.validate(projectPath);
+  }
+}
+</code></pre>
+<h3>Integration with CI/CD</h3>
+<p>Automate migrations in CI/CD pipelines:</p>
+<pre><code class="language-yaml"># .github/workflows/migrate.yml
+steps:
+  - name: Analyze Migration
+    run: claude-flow migrate analyze --output analysis.json
+
+  - name: Run Migration
+    run: claude-flow migrate --strategy selective --force
+
+  - name: Validate Migration
+    run: claude-flow migrate validate
+</code></pre>
+<h2>Performance Considerations</h2>
+<h3>Optimization Tips</h3>
+<ol>
+<li><strong>Use Selective Strategy</strong>: Faster than full migration</li>
+<li><strong>Skip Validation</strong>: Use <code>--skip-validation</code> for speed (not recommended for production)</li>
+<li><strong>Dry Run First</strong>: Preview changes without file I/O</li>
+<li><strong>Batch Operations</strong>: Group multiple small migrations</li>
+</ol>
+<h3>Benchmarks</h3>
+<p>Typical performance metrics:</p>
+<ul>
+<li><strong>Analysis</strong>: ~100ms for standard project</li>
+<li><strong>Full Migration</strong>: ~500ms for complete replacement</li>
+<li><strong>Selective Migration</strong>: ~200ms preserving customizations</li>
+<li><strong>Validation</strong>: ~150ms for standard checks</li>
+<li><strong>Backup Creation</strong>: ~100ms for typical project</li>
+</ul>
+<h2>Security Considerations</h2>
+<h3>File Safety</h3>
+<ul>
+<li><strong>Checksums</strong>: All files verified with SHA-256</li>
+<li><strong>Permissions</strong>: Original permissions preserved</li>
+<li><strong>Isolation</strong>: Migrations run in project scope only</li>
+<li><strong>Validation</strong>: Content integrity verified</li>
+</ul>
+<h3>Backup Security</h3>
+<ul>
+<li><strong>Local Storage</strong>: Backups stored locally only</li>
+<li><strong>No Network</strong>: No external dependencies</li>
+<li><strong>Encryption</strong>: Optional backup encryption available</li>
+<li><strong>Access Control</strong>: Respects file system permissions</li>
+</ul>
+<h2>Contributing</h2>
+<h3>Development Setup</h3>
+<pre><code class="language-bash"># Clone and setup
+git clone https://github.com/ruvnet/claude-code-flow
+cd claude-code-flow
+npm install
+
+# Run migration tests
+npm test src/migration/
+
+# Build migration system
+npm run build:migration
+</code></pre>
+<h3>Testing</h3>
+<pre><code class="language-bash"># Unit tests
+npm test src/migration/tests/
+
+# Integration tests
+npm run test:integration
+
+# End-to-end tests
+npm run test:e2e
+</code></pre>
+<h3>Adding New Features</h3>
+<ol>
+<li><strong>Analyzers</strong>: Extend <code>MigrationAnalyzer</code> for new detection rules</li>
+<li><strong>Strategies</strong>: Add new migration strategies to <code>MigrationRunner</code></li>
+<li><strong>Validators</strong>: Create custom validation rules in <code>MigrationValidator</code></li>
+<li><strong>Transformers</strong>: Add file transformation logic</li>
+</ol>
+<h2>License</h2>
+<p>This migration system is part of claude-code-flow and follows the same license terms.</p>
+<h2>Support</h2>
+<ul>
+<li><strong>Documentation</strong>: Full API docs available</li>
+<li><strong>Issues</strong>: Report bugs via GitHub issues</li>
+<li><strong>Community</strong>: Join discussions in project forums</li>
+<li><strong>Enterprise</strong>: Commercial support available</li>
+</ul>
+<hr>
+<p>For more information, see the <a href="../../README.md">main claude-code-flow documentation</a>.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

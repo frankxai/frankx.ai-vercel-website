@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-27" />
+  <title>Agent Triggering Examples: Best Practices</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/plugin-dev/skills/agent-development/references/triggering-examples.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Agent Triggering Examples: Best Practices</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-27 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>triggering-examples.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-27</strong></div>
+      <h1>Agent Triggering Examples: Best Practices</h1>
+<p>Complete guide to writing effective <code>&lt;example&gt;</code> blocks in agent descriptions for reliable triggering.</p>
+<h2>Example Block Format</h2>
+<p>The standard format for triggering examples:</p>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: [Describe the situation - what led to this interaction]
+user: &quot;[Exact user message or request]&quot;
+assistant: &quot;[How Claude should respond before triggering]&quot;
+&lt;commentary&gt;
+[Explanation of why this agent should be triggered in this scenario]
+&lt;/commentary&gt;
+assistant: &quot;[How Claude triggers the agent - usually &#39;I&#39;ll use the [agent-name] agent...&#39;]&quot;
+&lt;/example&gt;
+</code></pre>
+<h2>Anatomy of a Good Example</h2>
+<h3>Context</h3>
+<p><strong>Purpose:</strong> Set the scene - what happened before the user&#39;s message</p>
+<p><strong>Good contexts:</strong></p>
+<pre><code>Context: User just implemented a new authentication feature
+Context: User has created a PR and wants it reviewed
+Context: User is debugging a test failure
+Context: After writing several functions without documentation
+</code></pre>
+<p><strong>Bad contexts:</strong></p>
+<pre><code>Context: User needs help (too vague)
+Context: Normal usage (not specific)
+</code></pre>
+<h3>User Message</h3>
+<p><strong>Purpose:</strong> Show the exact phrasing that should trigger the agent</p>
+<p><strong>Good user messages:</strong></p>
+<pre><code>user: &quot;I&#39;ve added the OAuth flow, can you check it?&quot;
+user: &quot;Review PR #123&quot;
+user: &quot;Why is this test failing?&quot;
+user: &quot;Add docs for these functions&quot;
+</code></pre>
+<p><strong>Vary the phrasing:</strong>
+Include multiple examples with different phrasings for the same intent:</p>
+<pre><code>Example 1: user: &quot;Review my code&quot;
+Example 2: user: &quot;Can you check this implementation?&quot;
+Example 3: user: &quot;Look over my changes&quot;
+</code></pre>
+<h3>Assistant Response (Before Triggering)</h3>
+<p><strong>Purpose:</strong> Show what Claude says before launching the agent</p>
+<p><strong>Good responses:</strong></p>
+<pre><code>assistant: &quot;I&#39;ll analyze your OAuth implementation.&quot;
+assistant: &quot;Let me review that PR for you.&quot;
+assistant: &quot;I&#39;ll investigate the test failure.&quot;
+</code></pre>
+<p><strong>Proactive example:</strong></p>
+<pre><code>assistant: &quot;Great! Now let me review the code quality.&quot;
+&lt;commentary&gt;
+Code was just written, proactively trigger review agent.
+&lt;/commentary&gt;
+</code></pre>
+<h3>Commentary</h3>
+<p><strong>Purpose:</strong> Explain the reasoning - WHY this agent should trigger</p>
+<p><strong>Good commentary:</strong></p>
+<pre><code>&lt;commentary&gt;
+User explicitly requested code review, trigger the code-reviewer agent.
+&lt;/commentary&gt;
+
+&lt;commentary&gt;
+After code implementation, proactively use review agent to check quality.
+&lt;/commentary&gt;
+
+&lt;commentary&gt;
+PR analysis request matches pr-analyzer agent&#39;s expertise.
+&lt;/commentary&gt;
+</code></pre>
+<p><strong>Include decision logic:</strong></p>
+<pre><code>&lt;commentary&gt;
+User wrote tests (Test tool used). The test-analyzer agent should check
+test quality and coverage before continuing.
+&lt;/commentary&gt;
+</code></pre>
+<h3>Assistant Response (Triggering)</h3>
+<p><strong>Purpose:</strong> Show how Claude invokes the agent</p>
+<p><strong>Standard pattern:</strong></p>
+<pre><code>assistant: &quot;I&#39;ll use the [agent-name] agent to [what it will do].&quot;
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code>assistant: &quot;I&#39;ll use the code-reviewer agent to analyze the changes.&quot;
+assistant: &quot;Let me use the test-generator agent to create comprehensive tests.&quot;
+assistant: &quot;I&#39;ll use the security-analyzer agent to check for vulnerabilities.&quot;
+</code></pre>
+<h2>Example Types</h2>
+<h3>Type 1: Explicit Request</h3>
+<p>User directly asks for what the agent does:</p>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User explicitly requests security analysis
+user: &quot;Check my code for security vulnerabilities&quot;
+assistant: &quot;I&#39;ll use the security-analyzer agent to perform a thorough security review.&quot;
+&lt;commentary&gt;
+Direct security analysis request triggers the security-analyzer agent.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h3>Type 2: Proactive Triggering</h3>
+<p>Agent triggers after relevant work without explicit request:</p>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User just implemented database queries
+user: &quot;I&#39;ve added the user search functionality&quot;
+assistant: &quot;Great! Let me review it for security.&quot;
+&lt;commentary&gt;
+Database code written. Proactively trigger security-analyzer to check
+for SQL injection and other database security issues.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the security-analyzer agent to check the database code.&quot;
+&lt;/example&gt;
+</code></pre>
+<h3>Type 3: Implicit Request</h3>
+<p>User implies need without stating it directly:</p>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User mentions code is hard to understand
+user: &quot;This code is confusing and hard to follow&quot;
+assistant: &quot;I can help improve the code clarity.&quot;
+&lt;commentary&gt;
+User indicates complexity issues. Trigger code-simplifier agent to refactor
+for better readability.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the code-simplifier agent to suggest improvements.&quot;
+&lt;/example&gt;
+</code></pre>
+<h3>Type 4: Tool Usage Pattern</h3>
+<p>Agent triggers based on prior tool usage:</p>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User made multiple edits to test files
+user: &quot;I&#39;ve updated all the tests&quot;
+assistant: &quot;Great! Let me verify test quality.&quot;
+&lt;commentary&gt;
+Multiple Edit tools used on test files. Proactively trigger test-quality-analyzer
+to ensure tests follow best practices.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the test-quality-analyzer agent to review the tests.&quot;
+&lt;/example&gt;
+</code></pre>
+<h2>Multiple Examples Strategy</h2>
+<h3>Cover Different Phrasings</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+user: &quot;Review my code&quot;
+[...]
+&lt;/example&gt;
+
+&lt;example&gt;
+user: &quot;Can you check my implementation?&quot;
+[...]
+&lt;/example&gt;
+
+&lt;example&gt;
+user: &quot;Look over these changes&quot;
+[...]
+&lt;/example&gt;
+</code></pre>
+<h3>Cover Proactive and Reactive</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User explicitly requests review
+user: &quot;Review my code for issues&quot;
+[...]
+&lt;/example&gt;
+
+&lt;example&gt;
+Context: After user writes code
+user: &quot;I&#39;ve implemented the feature&quot;
+assistant: &quot;Great! Now let me review it.&quot;
+&lt;commentary&gt;
+Code written, proactively review.
+&lt;/commentary&gt;
+[...]
+&lt;/example&gt;
+</code></pre>
+<h3>Cover Edge Cases</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: Typical usage
+user: &quot;Check my PR&quot;
+[...]
+&lt;/example&gt;
+
+&lt;example&gt;
+Context: Large PR that needs thorough analysis
+user: &quot;This is a big PR, can you do a deep review?&quot;
+[...]
+&lt;commentary&gt;
+Large PR mentioned, use thorough analysis mode.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h2>Common Mistakes</h2>
+<h3>❌ Missing Context</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+user: &quot;Review my code&quot;
+assistant: &quot;I&#39;ll use the code-reviewer agent.&quot;
+&lt;/example&gt;
+</code></pre>
+<p><strong>Why bad:</strong> No context about what led to this request.</p>
+<h3>✅ With Context</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User just finished implementing authentication
+user: &quot;Review my code&quot;
+assistant: &quot;I&#39;ll use the code-reviewer agent to analyze the auth implementation.&quot;
+&lt;commentary&gt;
+Auth code written, review for security and best practices.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h3>❌ No Commentary</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User requests review
+user: &quot;Check my changes&quot;
+assistant: &quot;I&#39;ll use the reviewer agent.&quot;
+&lt;/example&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Doesn&#39;t explain WHY agent triggers.</p>
+<h3>✅ With Commentary</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User requests review after making changes
+user: &quot;Check my changes&quot;
+assistant: &quot;I&#39;ll use the code-reviewer agent to analyze the modifications.&quot;
+&lt;commentary&gt;
+Code review request triggers agent to check quality, security, and adherence to standards.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h3>❌ Agent Responds Directly</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+user: &quot;Review my code&quot;
+assistant: &quot;I found the following issues: [lists issues]&quot;
+&lt;/example&gt;
+</code></pre>
+<p><strong>Why bad:</strong> Shows agent&#39;s output, not triggering.</p>
+<h3>✅ Shows Triggering</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+user: &quot;Review my code&quot;
+assistant: &quot;I&#39;ll use the code-reviewer agent to perform the review.&quot;
+&lt;commentary&gt;
+Review request triggers the agent.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h2>How Many Examples?</h2>
+<h3>Minimum: 2 Examples</h3>
+<p>Cover at least:</p>
+<ol>
+<li>Explicit request</li>
+<li>One variation or proactive trigger</li>
+</ol>
+<h3>Recommended: 3-4 Examples</h3>
+<p>Cover:</p>
+<ol>
+<li>Explicit request (direct ask)</li>
+<li>Implicit request (user implies need)</li>
+<li>Proactive trigger (after relevant work)</li>
+<li>Edge case or specific scenario</li>
+</ol>
+<h3>Maximum: 6 Examples</h3>
+<p>More than 6 makes description too long. Focus on most important scenarios.</p>
+<h2>Template Library</h2>
+<h3>Code Review Agent</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User just implemented a new feature
+user: &quot;I&#39;ve added the user registration feature&quot;
+assistant: &quot;Great! Let me review the code quality.&quot;
+&lt;commentary&gt;
+Code written, proactively trigger code-reviewer agent.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the code-reviewer agent to analyze the implementation.&quot;
+&lt;/example&gt;
+
+&lt;example&gt;
+Context: User explicitly requests review
+user: &quot;Can you review my changes for issues?&quot;
+assistant: &quot;I&#39;ll use the code-reviewer agent to perform a thorough review.&quot;
+&lt;commentary&gt;
+Explicit review request triggers the agent.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h3>Test Generation Agent</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User implemented functions without tests
+user: &quot;I&#39;ve added the data processing functions&quot;
+assistant: &quot;Great! Let me generate tests for these.&quot;
+&lt;commentary&gt;
+New code without tests, proactively trigger test-generator agent.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the test-generator agent to create comprehensive tests.&quot;
+&lt;/example&gt;
+
+&lt;example&gt;
+Context: User explicitly asks for tests
+user: &quot;Generate tests for my code&quot;
+assistant: &quot;I&#39;ll use the test-generator agent to create a complete test suite.&quot;
+&lt;commentary&gt;
+Direct test generation request triggers the agent.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h3>Documentation Agent</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User added new API endpoints
+user: &quot;I&#39;ve implemented the REST API endpoints&quot;
+assistant: &quot;I&#39;ll document these endpoints.&quot;
+&lt;commentary&gt;
+New API code, proactively generate documentation.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the api-docs-writer agent to create comprehensive documentation.&quot;
+&lt;/example&gt;
+
+&lt;example&gt;
+Context: User requests documentation
+user: &quot;Write docs for this API&quot;
+assistant: &quot;I&#39;ll use the api-docs-writer agent to generate clear documentation.&quot;
+&lt;commentary&gt;
+Documentation request triggers the agent.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h3>Validation Agent</h3>
+<pre><code class="language-markdown">&lt;example&gt;
+Context: User ready to commit changes
+user: &quot;I&#39;m ready to commit this code&quot;
+assistant: &quot;Let me validate it first.&quot;
+&lt;commentary&gt;
+Before commit, proactively validate with validation-agent.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the code-validator agent to check for issues.&quot;
+&lt;/example&gt;
+
+&lt;example&gt;
+Context: User asks for validation
+user: &quot;Validate my implementation&quot;
+assistant: &quot;I&#39;ll use the code-validator agent to verify correctness.&quot;
+&lt;commentary&gt;
+Explicit validation request triggers the agent.
+&lt;/commentary&gt;
+&lt;/example&gt;
+</code></pre>
+<h2>Debugging Triggering Issues</h2>
+<h3>Agent Not Triggering</h3>
+<p><strong>Check:</strong></p>
+<ol>
+<li>Examples include relevant keywords from user message</li>
+<li>Context matches actual usage scenarios</li>
+<li>Commentary explains triggering logic clearly</li>
+<li>Assistant shows use of Agent tool in examples</li>
+</ol>
+<p><strong>Fix:</strong>
+Add more examples covering different phrasings.</p>
+<h3>Agent Triggers Too Often</h3>
+<p><strong>Check:</strong></p>
+<ol>
+<li>Examples are too broad or generic</li>
+<li>Triggering conditions overlap with other agents</li>
+<li>Commentary doesn&#39;t distinguish when NOT to use</li>
+</ol>
+<p><strong>Fix:</strong>
+Make examples more specific, add negative examples.</p>
+<h3>Agent Triggers in Wrong Scenarios</h3>
+<p><strong>Check:</strong></p>
+<ol>
+<li>Examples don&#39;t match actual intended use</li>
+<li>Commentary suggests inappropriate triggering</li>
+</ol>
+<p><strong>Fix:</strong>
+Revise examples to show only correct triggering scenarios.</p>
+<h2>Best Practices Summary</h2>
+<p>✅ <strong>DO:</strong></p>
+<ul>
+<li>Include 2-4 concrete, specific examples</li>
+<li>Show both explicit and proactive triggering</li>
+<li>Provide clear context for each example</li>
+<li>Explain reasoning in commentary</li>
+<li>Vary user message phrasing</li>
+<li>Show Claude using Agent tool</li>
+</ul>
+<p>❌ <strong>DON&#39;T:</strong></p>
+<ul>
+<li>Use generic, vague examples</li>
+<li>Omit context or commentary</li>
+<li>Show only one type of triggering</li>
+<li>Skip the agent invocation step</li>
+<li>Make examples too similar</li>
+<li>Forget to explain why agent triggers</li>
+</ul>
+<h2>Conclusion</h2>
+<p>Well-crafted examples are crucial for reliable agent triggering. Invest time in creating diverse, specific examples that clearly demonstrate when and why the agent should be used.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

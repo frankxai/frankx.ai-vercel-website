@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Query Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-plugins-fcakyon/plugins/supabase-tools/skills/supabase-usage/references/query-patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Query Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#.claude-plugins-fcakyon">.claude-plugins-fcakyon</a> / <a href="../../../../index.html#.claude-plugins-fcakyon%2Fplugins">plugins</a> / <a href="../../../index.html#.claude-plugins-fcakyon%2Fplugins%2Fsupabase-tools">supabase-tools</a> / <a href="../../index.html#.claude-plugins-fcakyon%2Fplugins%2Fsupabase-tools%2Fskills">skills</a> / <a href="../index.html#.claude-plugins-fcakyon%2Fplugins%2Fsupabase-tools%2Fskills%2Fsupabase-usage">supabase-usage</a> / <a href="index.html#.claude-plugins-fcakyon%2Fplugins%2Fsupabase-tools%2Fskills%2Fsupabase-usage%2Freferences">references</a> / <span>query-patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Query Patterns</h1>
+<h2>Filtering</h2>
+<p><strong>JavaScript:</strong></p>
+<pre><code class="language-javascript">// Equality
+const { data } = await supabase
+  .from(&quot;users&quot;)
+  .select(&quot;*&quot;)
+  .eq(&quot;status&quot;, &quot;active&quot;);
+
+// Comparison
+const { data } = await supabase
+  .from(&quot;users&quot;)
+  .select(&quot;*&quot;)
+  .gte(&quot;age&quot;, 18)
+  .lt(&quot;age&quot;, 65);
+
+// Pattern matching
+const { data } = await supabase
+  .from(&quot;users&quot;)
+  .select(&quot;*&quot;)
+  .ilike(&quot;name&quot;, &quot;%john%&quot;);
+
+// IN operator
+const { data } = await supabase
+  .from(&quot;users&quot;)
+  .select(&quot;*&quot;)
+  .in(&quot;role&quot;, [&quot;admin&quot;, &quot;moderator&quot;]);
+
+// OR conditions
+const { data } = await supabase
+  .from(&quot;posts&quot;)
+  .select(&quot;*&quot;)
+  .or(&quot;status.eq.featured,priority.gte.5&quot;);
+
+// NOT
+const { data } = await supabase
+  .from(&quot;users&quot;)
+  .select(&quot;*&quot;)
+  .not(&quot;status&quot;, &quot;eq&quot;, &quot;banned&quot;);
+
+// NULL check
+const { data } = await supabase
+  .from(&quot;users&quot;)
+  .select(&quot;*&quot;)
+  .is(&quot;deleted_at&quot;, null);
+
+// Array contains
+const { data } = await supabase
+  .from(&quot;posts&quot;)
+  .select(&quot;*&quot;)
+  .contains(&quot;tags&quot;, [&quot;javascript&quot;]);
+
+// Full-text search
+const { data } = await supabase
+  .from(&quot;posts&quot;)
+  .select(&quot;*&quot;)
+  .textSearch(&quot;content&quot;, &quot;supabase &amp; database&quot;);
+</code></pre>
+<p><strong>Python:</strong></p>
+<pre><code class="language-python"># Equality
+response = supabase.table(&quot;users&quot;).select(&quot;*&quot;).eq(&quot;status&quot;, &quot;active&quot;).execute()
+
+# Comparison
+response = supabase.table(&quot;users&quot;).select(&quot;*&quot;).gte(&quot;age&quot;, 18).lt(&quot;age&quot;, 65).execute()
+
+# Pattern matching (case-insensitive)
+response = supabase.table(&quot;users&quot;).select(&quot;*&quot;).ilike(&quot;name&quot;, &quot;%john%&quot;).execute()
+
+# IN operator
+response = supabase.table(&quot;users&quot;).select(&quot;*&quot;).in_(&quot;role&quot;, [&quot;admin&quot;, &quot;moderator&quot;]).execute()
+
+# OR conditions
+response = supabase.table(&quot;posts&quot;).select(&quot;*&quot;).or_(&quot;status.eq.featured,priority.gte.5&quot;).execute()
+
+# NOT
+response = supabase.table(&quot;users&quot;).select(&quot;*&quot;).neq(&quot;status&quot;, &quot;banned&quot;).execute()
+
+# NULL check
+response = supabase.table(&quot;users&quot;).select(&quot;*&quot;).is_(&quot;deleted_at&quot;, &quot;null&quot;).execute()
+</code></pre>
+<h2>Pagination</h2>
+<p><strong>Offset-based (simple, less efficient for large datasets):</strong></p>
+<pre><code class="language-javascript">// JavaScript
+const { data } = await supabase
+  .from(&quot;posts&quot;)
+  .select(&quot;*&quot;)
+  .order(&quot;created_at&quot;, { ascending: false })
+  .range(0, 9); // rows 0-9 (first 10)
+
+// Next page
+const { data } = await supabase
+  .from(&quot;posts&quot;)
+  .select(&quot;*&quot;)
+  .order(&quot;created_at&quot;, { ascending: false })
+  .range(10, 19);
+</code></pre>
+<pre><code class="language-python"># Python
+response = supabase.table(&quot;posts&quot;).select(&quot;*&quot;).order(&quot;created_at&quot;, desc=True).range(0, 9).execute()
+</code></pre>
+<p><strong>Cursor-based (efficient for large datasets):</strong></p>
+<pre><code class="language-javascript">// JavaScript - use last item&#39;s id/timestamp as cursor
+const { data } = await supabase
+  .from(&quot;posts&quot;)
+  .select(&quot;*&quot;)
+  .order(&quot;created_at&quot;, { ascending: false })
+  .lt(&quot;created_at&quot;, lastTimestamp)
+  .limit(10);
+</code></pre>
+<pre><code class="language-python"># Python
+response = (
+    supabase.table(&quot;posts&quot;)
+    .select(&quot;*&quot;)
+    .order(&quot;created_at&quot;, desc=True)
+    .lt(&quot;created_at&quot;, last_timestamp)
+    .limit(10)
+    .execute()
+)
+</code></pre>
+<h2>Counting Rows</h2>
+<pre><code class="language-javascript">// JavaScript - exact count
+const { count } = await supabase
+  .from(&quot;users&quot;)
+  .select(&quot;*&quot;, { count: &quot;exact&quot;, head: true })
+  .eq(&quot;status&quot;, &quot;active&quot;);
+
+console.log(`Active users: ${count}`);
+</code></pre>
+<pre><code class="language-python"># Python
+response = supabase.table(&quot;users&quot;).select(&quot;*&quot;, count=&quot;exact&quot;, head=True).eq(&quot;status&quot;, &quot;active&quot;).execute()
+
+print(f&quot;Active users: {response.count}&quot;)
+</code></pre>
+<h2>Index Recommendations</h2>
+<p>Add indexes for frequently filtered/sorted columns:</p>
+<pre><code class="language-sql">-- Single column index
+create index idx_posts_status on posts (status);
+
+-- Composite index for common filter combinations
+create index idx_posts_user_status on posts (user_id, status);
+
+-- Partial index for specific conditions
+create index idx_active_posts on posts (created_at) where status = &#39;active&#39;;
+
+-- Use index_advisor for recommendations
+select * from index_advisor(&#39;SELECT * FROM posts WHERE status = &#39;&#39;active&#39;&#39; ORDER BY created_at&#39;);
+</code></pre>
+<h2>Query Performance Analysis</h2>
+<pre><code class="language-sql">-- Analyze query execution plan
+explain analyze select * from posts where status = &#39;active&#39; order by created_at limit 10;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

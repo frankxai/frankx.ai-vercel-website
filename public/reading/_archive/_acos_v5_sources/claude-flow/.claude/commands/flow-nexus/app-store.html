@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Flow Nexus App Store</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/flow-nexus/app-store.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Flow Nexus App Store</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands%2Fflow-nexus">flow-nexus</a> / <span>app-store.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: flow-nexus-app-store
+description: Browse, publish, and deploy applications</h2>
+<h1>Flow Nexus App Store</h1>
+<p>Browse templates, publish apps, and deploy solutions.</p>
+<h2>Browse Apps</h2>
+<pre><code class="language-javascript">// Search apps
+mcp__flow-nexus__app_search({
+  search: &quot;authentication&quot;,
+  category: &quot;backend&quot;,
+  featured: true,
+  limit: 20
+})
+
+// Get app details
+mcp__flow-nexus__app_get({ app_id: &quot;app_id&quot; })
+
+// List templates
+mcp__flow-nexus__app_store_list_templates({
+  category: &quot;web-api&quot;,
+  tags: [&quot;express&quot;, &quot;jwt&quot;],
+  limit: 20
+})
+</code></pre>
+<h2>Publish App</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__app_store_publish_app({
+  name: &quot;My Auth Service&quot;,
+  description: &quot;JWT-based authentication microservice&quot;,
+  category: &quot;backend&quot;,
+  version: &quot;1.0.0&quot;,
+  source_code: sourceCode,
+  tags: [&quot;auth&quot;, &quot;jwt&quot;, &quot;express&quot;],
+  metadata: {
+    author: &quot;Your Name&quot;,
+    license: &quot;MIT&quot;,
+    repository: &quot;github.com/user/repo&quot;
+  }
+})
+</code></pre>
+<h2>Deploy Templates</h2>
+<pre><code class="language-javascript">// Get template details
+mcp__flow-nexus__template_get({
+  template_name: &quot;express-api-starter&quot;
+})
+
+// Deploy template
+mcp__flow-nexus__template_deploy({
+  template_name: &quot;express-api-starter&quot;,
+  deployment_name: &quot;my-api&quot;,
+  variables: {
+    api_key: &quot;your_key&quot;,
+    database_url: &quot;postgres://...&quot;
+  },
+  env_vars: {
+    NODE_ENV: &quot;production&quot;
+  }
+})
+</code></pre>
+<h2>Analytics</h2>
+<pre><code class="language-javascript">// Get app analytics
+mcp__flow-nexus__app_analytics({
+  app_id: &quot;your_app_id&quot;,
+  timeframe: &quot;30d&quot; // 24h, 7d, 30d, 90d
+})
+
+// View installed apps
+mcp__flow-nexus__app_installed({
+  user_id: &quot;your_id&quot;
+})
+</code></pre>
+<h2>Update App</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__app_update({
+  app_id: &quot;app_id&quot;,
+  updates: {
+    version: &quot;1.1.0&quot;,
+    description: &quot;Updated description&quot;,
+    tags: [&quot;new&quot;, &quot;tags&quot;]
+  }
+})
+</code></pre>
+<h2>Market Data</h2>
+<pre><code class="language-javascript">// Get market statistics
+mcp__flow-nexus__market_data()
+</code></pre>
+<h2>Template Categories</h2>
+<ul>
+<li><strong>web-api</strong>: RESTful APIs and microservices</li>
+<li><strong>frontend</strong>: React, Vue, Angular apps</li>
+<li><strong>full-stack</strong>: Complete applications</li>
+<li><strong>cli-tools</strong>: Command-line utilities</li>
+<li><strong>data-processing</strong>: ETL and analytics</li>
+<li><strong>ml-models</strong>: Pre-trained models</li>
+<li><strong>blockchain</strong>: Web3 applications</li>
+<li><strong>mobile</strong>: React Native apps</li>
+</ul>
+<h2>Publishing Best Practices</h2>
+<ol>
+<li>Include comprehensive documentation</li>
+<li>Add example usage and configuration</li>
+<li>Include tests and CI/CD setup</li>
+<li>Use semantic versioning</li>
+<li>Add clear license information</li>
+<li>Include docker/deployment configs</li>
+<li>Provide migration guides for updates</li>
+</ol>
+<h2>Revenue Sharing</h2>
+<ul>
+<li>Earn rUv credits when others use your templates</li>
+<li>Set pricing (0 for free templates)</li>
+<li>Track usage and earnings in analytics</li>
+<li>Withdraw credits or use for Flow Nexus services</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

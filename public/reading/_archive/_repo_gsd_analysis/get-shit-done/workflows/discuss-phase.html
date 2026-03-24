@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Match both zero-padded (05-*) and unpadded (5-*) folders</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/workflows/discuss-phase.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Match both zero-padded (05-*) and unpadded (5-*) folders</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Fworkflows">workflows</a> / <span>discuss-phase.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <purpose>
+Extract implementation decisions that downstream agents need. Analyze the phase to identify gray areas, let the user choose what to discuss, then deep-dive each selected area until satisfied.
+
+<p>You are a thinking partner, not an interviewer. The user is the visionary — you are the builder. Your job is to capture decisions that will guide research and planning, not to figure out implementation yourself.
+</purpose></p>
+<downstream_awareness>
+**CONTEXT.md feeds into:**
+
+<ol>
+<li><p><strong>gsd-phase-researcher</strong> — Reads CONTEXT.md to know WHAT to research</p>
+<ul>
+<li>&quot;User wants card-based layout&quot; → researcher investigates card component patterns</li>
+<li>&quot;Infinite scroll decided&quot; → researcher looks into virtualization libraries</li>
+</ul>
+</li>
+<li><p><strong>gsd-planner</strong> — Reads CONTEXT.md to know WHAT decisions are locked</p>
+<ul>
+<li>&quot;Pull-to-refresh on mobile&quot; → planner includes that in task specs</li>
+<li>&quot;Claude&#39;s Discretion: loading skeleton&quot; → planner can decide approach</li>
+</ul>
+</li>
+</ol>
+<p><strong>Your job:</strong> Capture decisions clearly enough that downstream agents can act on them without asking the user again.</p>
+<p><strong>Not your job:</strong> Figure out HOW to implement. That&#39;s what research and planning do with the decisions you capture.
+</downstream_awareness></p>
+<philosophy>
+**User = founder/visionary. Claude = builder.**
+
+<p>The user knows:</p>
+<ul>
+<li>How they imagine it working</li>
+<li>What it should look/feel like</li>
+<li>What&#39;s essential vs nice-to-have</li>
+<li>Specific behaviors or references they have in mind</li>
+</ul>
+<p>The user doesn&#39;t know (and shouldn&#39;t be asked):</p>
+<ul>
+<li>Codebase patterns (researcher reads the code)</li>
+<li>Technical risks (researcher identifies these)</li>
+<li>Implementation approach (planner figures this out)</li>
+<li>Success metrics (inferred from the work)</li>
+</ul>
+<p>Ask about vision and implementation choices. Capture decisions for downstream agents.
+</philosophy></p>
+<scope_guardrail>
+**CRITICAL: No scope creep.**
+
+<p>The phase boundary comes from ROADMAP.md and is FIXED. Discussion clarifies HOW to implement what&#39;s scoped, never WHETHER to add new capabilities.</p>
+<p><strong>Allowed (clarifying ambiguity):</strong></p>
+<ul>
+<li>&quot;How should posts be displayed?&quot; (layout, density, info shown)</li>
+<li>&quot;What happens on empty state?&quot; (within the feature)</li>
+<li>&quot;Pull to refresh or manual?&quot; (behavior choice)</li>
+</ul>
+<p><strong>Not allowed (scope creep):</strong></p>
+<ul>
+<li>&quot;Should we also add comments?&quot; (new capability)</li>
+<li>&quot;What about search/filtering?&quot; (new capability)</li>
+<li>&quot;Maybe include bookmarking?&quot; (new capability)</li>
+</ul>
+<p><strong>The heuristic:</strong> Does this clarify how we implement what&#39;s already in the phase, or does it add a new capability that could be its own phase?</p>
+<p><strong>When user suggests scope creep:</strong></p>
+<pre><code>&quot;[Feature X] would be a new capability — that&#39;s its own phase.
+Want me to note it for the roadmap backlog?
+
+For now, let&#39;s focus on [phase domain].&quot;
+</code></pre>
+<p>Capture the idea in a &quot;Deferred Ideas&quot; section. Don&#39;t lose it, don&#39;t act on it.
+</scope_guardrail></p>
+<gray_area_identification>
+Gray areas are **implementation decisions the user cares about** — things that could go multiple ways and would change the result.
+
+<p><strong>How to identify gray areas:</strong></p>
+<ol>
+<li><strong>Read the phase goal</strong> from ROADMAP.md</li>
+<li><strong>Understand the domain</strong> — What kind of thing is being built?<ul>
+<li>Something users SEE → visual presentation, interactions, states matter</li>
+<li>Something users CALL → interface contracts, responses, errors matter</li>
+<li>Something users RUN → invocation, output, behavior modes matter</li>
+<li>Something users READ → structure, tone, depth, flow matter</li>
+<li>Something being ORGANIZED → criteria, grouping, handling exceptions matter</li>
+</ul>
+</li>
+<li><strong>Generate phase-specific gray areas</strong> — Not generic categories, but concrete decisions for THIS phase</li>
+</ol>
+<p><strong>Don&#39;t use generic category labels</strong> (UI, UX, Behavior). Generate specific gray areas:</p>
+<pre><code>Phase: &quot;User authentication&quot;
+→ Session handling, Error responses, Multi-device policy, Recovery flow
+
+Phase: &quot;Organize photo library&quot;
+→ Grouping criteria, Duplicate handling, Naming convention, Folder structure
+
+Phase: &quot;CLI for database backups&quot;
+→ Output format, Flag design, Progress reporting, Error recovery
+
+Phase: &quot;API documentation&quot;
+→ Structure/navigation, Code examples depth, Versioning approach, Interactive elements
+</code></pre>
+<p><strong>The key question:</strong> What decisions would change the outcome that the user should weigh in on?</p>
+<p><strong>Claude handles these (don&#39;t ask):</strong></p>
+<ul>
+<li>Technical implementation details</li>
+<li>Architecture patterns</li>
+<li>Performance optimization</li>
+<li>Scope (roadmap defines this)</gray_area_identification></li>
+</ul>
+<process>
+
+<step name="validate_phase" priority="first">
+Phase number from argument (required).
+
+<p>Load and validate:</p>
+<ul>
+<li>Read <code>.planning/ROADMAP.md</code></li>
+<li>Find phase entry</li>
+<li>Extract: number, name, description, status</li>
+</ul>
+<p><strong>If phase not found:</strong></p>
+<pre><code>Phase [X] not found in roadmap.
+
+Use /gsd:progress to see available phases.
+</code></pre>
+<p>Exit workflow.</p>
+<p><strong>If phase found:</strong> Continue to analyze_phase.
+</step></p>
+<step name="check_existing">
+Check if CONTEXT.md already exists:
+
+<pre><code class="language-bash"># Match both zero-padded (05-*) and unpadded (5-*) folders
+PADDED_PHASE=$(printf &quot;%02d&quot; ${PHASE})
+ls .planning/phases/${PADDED_PHASE}-*/CONTEXT.md .planning/phases/${PADDED_PHASE}-*/${PADDED_PHASE}-CONTEXT.md .planning/phases/${PHASE}-*/CONTEXT.md .planning/phases/${PHASE}-*/${PHASE}-CONTEXT.md 2&gt;/dev/null
+</code></pre>
+<p><strong>If exists:</strong>
+Use AskUserQuestion:</p>
+<ul>
+<li>header: &quot;Existing context&quot;</li>
+<li>question: &quot;Phase [X] already has context. What do you want to do?&quot;</li>
+<li>options:<ul>
+<li>&quot;Update it&quot; — Review and revise existing context</li>
+<li>&quot;View it&quot; — Show me what&#39;s there</li>
+<li>&quot;Skip&quot; — Use existing context as-is</li>
+</ul>
+</li>
+</ul>
+<p>If &quot;Update&quot;: Load existing, continue to analyze_phase
+If &quot;View&quot;: Display CONTEXT.md, then offer update/skip
+If &quot;Skip&quot;: Exit workflow</p>
+<p><strong>If doesn&#39;t exist:</strong> Continue to analyze_phase.
+</step></p>
+<step name="analyze_phase">
+Analyze the phase to identify gray areas worth discussing.
+
+<p><strong>Read the phase description from ROADMAP.md and determine:</strong></p>
+<ol>
+<li><p><strong>Domain boundary</strong> — What capability is this phase delivering? State it clearly.</p>
+</li>
+<li><p><strong>Gray areas by category</strong> — For each relevant category (UI, UX, Behavior, Empty States, Content), identify 1-2 specific ambiguities that would change implementation.</p>
+</li>
+<li><p><strong>Skip assessment</strong> — If no meaningful gray areas exist (pure infrastructure, clear-cut implementation), the phase may not need discussion.</p>
+</li>
+</ol>
+<p><strong>Output your analysis internally, then present to user.</strong></p>
+<p>Example analysis for &quot;Post Feed&quot; phase:</p>
+<pre><code>Domain: Displaying posts from followed users
+Gray areas:
+- UI: Layout style (cards vs timeline vs grid)
+- UI: Information density (full posts vs previews)
+- Behavior: Loading pattern (infinite scroll vs pagination)
+- Empty State: What shows when no posts exist
+- Content: What metadata displays (time, author, reactions count)
+</code></pre>
+</step>
+
+<step name="present_gray_areas">
+Present the domain boundary and gray areas to user.
+
+<p><strong>First, state the boundary:</strong></p>
+<pre><code>Phase [X]: [Name]
+Domain: [What this phase delivers — from your analysis]
+
+We&#39;ll clarify HOW to implement this.
+(New capabilities belong in other phases.)
+</code></pre>
+<p><strong>Then use AskUserQuestion (multiSelect: true):</strong></p>
+<ul>
+<li>header: &quot;Discuss&quot;</li>
+<li>question: &quot;Which areas do you want to discuss for [phase name]?&quot;</li>
+<li>options: Generate 3-4 phase-specific gray areas, each formatted as:<ul>
+<li>&quot;[Specific area]&quot; (label) — concrete, not generic</li>
+<li>[1-2 questions this covers] (description)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Do NOT include a &quot;skip&quot; or &quot;you decide&quot; option.</strong> User ran this command to discuss — give them real choices.</p>
+<p><strong>Examples by domain:</strong></p>
+<p>For &quot;Post Feed&quot; (visual feature):</p>
+<pre><code>☐ Layout style — Cards vs list vs timeline? Information density?
+☐ Loading behavior — Infinite scroll or pagination? Pull to refresh?
+☐ Content ordering — Chronological, algorithmic, or user choice?
+☐ Post metadata — What info per post? Timestamps, reactions, author?
+</code></pre>
+<p>For &quot;Database backup CLI&quot; (command-line tool):</p>
+<pre><code>☐ Output format — JSON, table, or plain text? Verbosity levels?
+☐ Flag design — Short flags, long flags, or both? Required vs optional?
+☐ Progress reporting — Silent, progress bar, or verbose logging?
+☐ Error recovery — Fail fast, retry, or prompt for action?
+</code></pre>
+<p>For &quot;Organize photo library&quot; (organization task):</p>
+<pre><code>☐ Grouping criteria — By date, location, faces, or events?
+☐ Duplicate handling — Keep best, keep all, or prompt each time?
+☐ Naming convention — Original names, dates, or descriptive?
+☐ Folder structure — Flat, nested by year, or by category?
+</code></pre>
+<p>Continue to discuss_areas with selected areas.
+</step></p>
+<step name="discuss_areas">
+For each selected area, conduct a focused discussion loop.
+
+<p><strong>Philosophy: 4 questions, then check.</strong></p>
+<p>Ask 4 questions per area before offering to continue or move on. Each answer often reveals the next question.</p>
+<p><strong>For each area:</strong></p>
+<ol>
+<li><p><strong>Announce the area:</strong></p>
+<pre><code>Let&#39;s talk about [Area].
+</code></pre>
+</li>
+<li><p><strong>Ask 4 questions using AskUserQuestion:</strong></p>
+<ul>
+<li>header: &quot;[Area]&quot;</li>
+<li>question: Specific decision for this area</li>
+<li>options: 2-3 concrete choices (AskUserQuestion adds &quot;Other&quot; automatically)</li>
+<li>Include &quot;You decide&quot; as an option when reasonable — captures Claude discretion</li>
+</ul>
+</li>
+<li><p><strong>After 4 questions, check:</strong></p>
+<ul>
+<li>header: &quot;[Area]&quot;</li>
+<li>question: &quot;More questions about [area], or move to next?&quot;</li>
+<li>options: &quot;More questions&quot; / &quot;Next area&quot;</li>
+</ul>
+<p>If &quot;More questions&quot; → ask 4 more, then check again
+If &quot;Next area&quot; → proceed to next selected area</p>
+</li>
+<li><p><strong>After all areas complete:</strong></p>
+<ul>
+<li>header: &quot;Done&quot;</li>
+<li>question: &quot;That covers [list areas]. Ready to create context?&quot;</li>
+<li>options: &quot;Create context&quot; / &quot;Revisit an area&quot;</li>
+</ul>
+</li>
+</ol>
+<p><strong>Question design:</strong></p>
+<ul>
+<li>Options should be concrete, not abstract (&quot;Cards&quot; not &quot;Option A&quot;)</li>
+<li>Each answer should inform the next question</li>
+<li>If user picks &quot;Other&quot;, receive their input, reflect it back, confirm</li>
+</ul>
+<p><strong>Scope creep handling:</strong>
+If user mentions something outside the phase domain:</p>
+<pre><code>&quot;[Feature] sounds like a new capability — that belongs in its own phase.
+I&#39;ll note it as a deferred idea.
+
+Back to [current area]: [return to current question]&quot;
+</code></pre>
+<p>Track deferred ideas internally.
+</step></p>
+<step name="write_context">
+Create CONTEXT.md capturing decisions made.
+
+<p><strong>Find or create phase directory:</strong></p>
+<pre><code class="language-bash"># Match existing directory (padded or unpadded)
+PADDED_PHASE=$(printf &quot;%02d&quot; ${PHASE})
+PHASE_DIR=$(ls -d .planning/phases/${PADDED_PHASE}-* .planning/phases/${PHASE}-* 2&gt;/dev/null | head -1)
+if [ -z &quot;$PHASE_DIR&quot; ]; then
+  # Create from roadmap name (lowercase, hyphens)
+  PHASE_NAME=$(grep &quot;Phase ${PHASE}:&quot; .planning/ROADMAP.md | sed &#39;s/.*Phase [0-9]*: //&#39; | tr &#39;[:upper:]&#39; &#39;[:lower:]&#39; | tr &#39; &#39; &#39;-&#39;)
+  mkdir -p &quot;.planning/phases/${PADDED_PHASE}-${PHASE_NAME}&quot;
+  PHASE_DIR=&quot;.planning/phases/${PADDED_PHASE}-${PHASE_NAME}&quot;
+fi
+</code></pre>
+<p><strong>File location:</strong> <code>${PHASE_DIR}/${PADDED_PHASE}-CONTEXT.md</code></p>
+<p><strong>Structure the content by what was discussed:</strong></p>
+<pre><code class="language-markdown"># Phase [X]: [Name] - Context
+
+**Gathered:** [date]
+**Status:** Ready for planning
+
+&lt;domain&gt;
+## Phase Boundary
+
+[Clear statement of what this phase delivers — the scope anchor]
+
+&lt;/domain&gt;
+
+&lt;decisions&gt;
+## Implementation Decisions
+
+### [Category 1 that was discussed]
+- [Decision or preference captured]
+- [Another decision if applicable]
+
+### [Category 2 that was discussed]
+- [Decision or preference captured]
+
+### Claude&#39;s Discretion
+[Areas where user said &quot;you decide&quot; — note that Claude has flexibility here]
+
+&lt;/decisions&gt;
+
+&lt;specifics&gt;
+## Specific Ideas
+
+[Any particular references, examples, or &quot;I want it like X&quot; moments from discussion]
+
+[If none: &quot;No specific requirements — open to standard approaches&quot;]
+
+&lt;/specifics&gt;
+
+&lt;deferred&gt;
+## Deferred Ideas
+
+[Ideas that came up but belong in other phases. Don&#39;t lose them.]
+
+[If none: &quot;None — discussion stayed within phase scope&quot;]
+
+&lt;/deferred&gt;
+
+---
+
+*Phase: XX-name*
+*Context gathered: [date]*
+</code></pre>
+<p>Write file.
+</step></p>
+<step name="confirm_creation">
+Present summary and next steps:
+
+<pre><code>Created: .planning/phases/${PADDED_PHASE}-${SLUG}/${PADDED_PHASE}-CONTEXT.md
+
+## Decisions Captured
+
+### [Category]
+- [Key decision]
+
+### [Category]
+- [Key decision]
+
+[If deferred ideas exist:]
+## Noted for Later
+- [Deferred idea] — future phase
+
+---
+
+## ▶ Next Up
+
+**Phase ${PHASE}: [Name]** — [Goal from ROADMAP.md]
+
+`/gsd:plan-phase ${PHASE}`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+---
+
+**Also available:**
+- `/gsd:plan-phase ${PHASE} --skip-research` — plan without research
+- Review/edit CONTEXT.md before continuing
+
+---
+</code></pre>
+</step>
+
+<step name="git_commit">
+Commit phase context:
+
+<p><strong>Check planning config:</strong></p>
+<pre><code class="language-bash">COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;commit_docs&quot;[[:space:]]*:[[:space:]]*[^,}]*&#39; | grep -o &#39;true\|false&#39; || echo &quot;true&quot;)
+git check-ignore -q .planning 2&gt;/dev/null &amp;&amp; COMMIT_PLANNING_DOCS=false
+</code></pre>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=false</code>:</strong> Skip git operations</p>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=true</code> (default):</strong></p>
+<pre><code class="language-bash">git add &quot;${PHASE_DIR}/${PADDED_PHASE}-CONTEXT.md&quot;
+git commit -m &quot;$(cat &lt;&lt;&#39;EOF&#39;
+docs(${PADDED_PHASE}): capture phase context
+
+Phase ${PADDED_PHASE}: ${PHASE_NAME}
+- Implementation decisions documented
+- Phase boundary established
+EOF
+)&quot;
+</code></pre>
+<p>Confirm: &quot;Committed: docs(${PADDED_PHASE}): capture phase context&quot;
+</step></p>
+</process>
+
+<success_criteria>
+- Phase validated against roadmap
+- Gray areas identified through intelligent analysis (not generic questions)
+- User selected which areas to discuss
+- Each selected area explored until user satisfied
+- Scope creep redirected to deferred ideas
+- CONTEXT.md captures actual decisions, not vague vision
+- Deferred ideas preserved for future phases
+- User knows next steps
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

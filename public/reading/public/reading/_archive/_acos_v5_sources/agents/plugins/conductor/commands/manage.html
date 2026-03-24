@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Track Manager</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/commands/manage.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Track Manager</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fcommands">commands</a> / <span>manage.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: &quot;Manage track lifecycle: archive, restore, delete, rename, and cleanup&quot;
+argument-hint: &quot;[--archive | --restore | --delete | --rename | --list | --cleanup]&quot;</h2>
+<h1>Track Manager</h1>
+<p>Manage the complete track lifecycle including archiving, restoring, deleting, renaming, and cleaning up orphaned artifacts.</p>
+<h2>Pre-flight Checks</h2>
+<ol>
+<li><p>Verify Conductor is initialized:</p>
+<ul>
+<li>Check <code>conductor/product.md</code> exists</li>
+<li>Check <code>conductor/tracks.md</code> exists</li>
+<li>Check <code>conductor/tracks/</code> directory exists</li>
+<li>If missing: Display error and suggest running <code>/conductor:setup</code> first</li>
+</ul>
+</li>
+<li><p>Ensure archive directory exists (for archive/restore operations):</p>
+<ul>
+<li>Check if <code>conductor/tracks/_archive/</code> exists</li>
+<li>Create if needed when performing archive operation</li>
+</ul>
+</li>
+</ol>
+<h2>Mode Detection</h2>
+<p>Parse arguments to determine operation mode:</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Mode</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--list [filter]</code></td>
+<td>List</td>
+<td>Show all tracks (optional: active, completed, archived)</td>
+</tr>
+<tr>
+<td><code>--archive &lt;id&gt;</code></td>
+<td>Archive</td>
+<td>Move completed track to archive</td>
+</tr>
+<tr>
+<td><code>--archive --bulk</code></td>
+<td>Bulk Archive</td>
+<td>Multi-select completed tracks</td>
+</tr>
+<tr>
+<td><code>--restore &lt;id&gt;</code></td>
+<td>Restore</td>
+<td>Restore archived track to active</td>
+</tr>
+<tr>
+<td><code>--delete &lt;id&gt;</code></td>
+<td>Delete</td>
+<td>Permanently remove a track</td>
+</tr>
+<tr>
+<td><code>--rename &lt;old&gt; &lt;new&gt;</code></td>
+<td>Rename</td>
+<td>Change track ID</td>
+</tr>
+<tr>
+<td><code>--cleanup</code></td>
+<td>Cleanup</td>
+<td>Detect and fix orphaned artifacts</td>
+</tr>
+<tr>
+<td>(none)</td>
+<td>Interactive</td>
+<td>Menu-driven operation selection</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Interactive Mode (no argument)</h2>
+<p>When invoked without arguments, display the main menu:</p>
+<h3>1. Gather Quick Stats</h3>
+<p>Read <code>conductor/tracks.md</code> and scan directories:</p>
+<ul>
+<li>Count active tracks (status <code>[ ]</code> or <code>[~]</code>)</li>
+<li>Count completed tracks (status <code>[x]</code>, not archived)</li>
+<li>Count archived tracks (in <code>_archive/</code> directory)</li>
+</ul>
+<h3>2. Display Main Menu</h3>
+<pre><code>================================================================================
+                          TRACK MANAGER
+================================================================================
+
+What would you like to do?
+
+1. List all tracks
+2. Archive a completed track
+3. Restore an archived track
+4. Delete a track permanently
+5. Rename a track
+6. Cleanup orphaned artifacts
+7. Exit
+
+Quick stats:
+- {N} active tracks
+- {M} completed (ready to archive)
+- {P} archived
+
+Select option:
+</code></pre>
+<h3>3. Handle Selection</h3>
+<ul>
+<li>Option 1: Execute List Mode</li>
+<li>Option 2: Execute Archive Mode (without argument)</li>
+<li>Option 3: Execute Restore Mode (without argument)</li>
+<li>Option 4: Execute Delete Mode (without argument)</li>
+<li>Option 5: Execute Rename Mode (without argument)</li>
+<li>Option 6: Execute Cleanup Mode</li>
+<li>Option 7: Exit with &quot;Track management cancelled.&quot;</li>
+</ul>
+<hr>
+<h2>List Mode (<code>--list</code>)</h2>
+<p>Display comprehensive track overview with optional filtering.</p>
+<h3>1. Data Collection</h3>
+<p><strong>For Active Tracks:</strong></p>
+<ul>
+<li>Read <code>conductor/tracks.md</code></li>
+<li>For each track with status <code>[ ]</code> or <code>[~]</code>:<ul>
+<li>Read <code>conductor/tracks/{trackId}/metadata.json</code> for type, dates</li>
+<li>Read <code>conductor/tracks/{trackId}/plan.md</code> for task counts</li>
+<li>Calculate progress percentage</li>
+</ul>
+</li>
+</ul>
+<p><strong>For Completed Tracks:</strong></p>
+<ul>
+<li>Find tracks with status <code>[x]</code> not in <code>_archive/</code></li>
+<li>Read metadata for completion dates</li>
+</ul>
+<p><strong>For Archived Tracks:</strong></p>
+<ul>
+<li>Scan <code>conductor/tracks/_archive/</code> directory</li>
+<li>Read each <code>metadata.json</code> for archive reason and date</li>
+</ul>
+<h3>2. Output Format</h3>
+<p><strong>Full list (no filter):</strong></p>
+<pre><code>================================================================================
+                          TRACK MANAGER
+================================================================================
+
+ACTIVE TRACKS ({count})
+| Status | Track ID           | Type    | Progress    | Updated    |
+|--------|-------------------|---------|-------------|------------|
+| [~]    | dashboard_20250112| feature | 7/15 (47%)  | 2025-01-15 |
+| [ ]    | nav-fix_20250114  | bug     | 0/4 (0%)    | 2025-01-14 |
+
+COMPLETED TRACKS ({count})
+| Track ID           | Type    | Completed  | Duration |
+|-------------------|---------|------------|----------|
+| auth_20250110     | feature | 2025-01-12 | 2 days   |
+
+ARCHIVED TRACKS ({count})
+| Track ID              | Type    | Reason     | Archived   |
+|-----------------------|---------|------------|------------|
+| old-feature_20241201  | feature | Superseded | 2025-01-05 |
+
+================================================================================
+Commands: /conductor:manage --archive | --restore | --delete | --rename | --cleanup
+================================================================================
+</code></pre>
+<p><strong>Filtered list (<code>--list active</code>, <code>--list completed</code>, <code>--list archived</code>):</strong></p>
+<p>Show only the requested section with the same format.</p>
+<h3>3. Empty States</h3>
+<p><strong>No tracks at all:</strong></p>
+<pre><code>================================================================================
+                          TRACK MANAGER
+================================================================================
+
+No tracks found.
+
+To create your first track: /conductor:new-track
+
+================================================================================
+</code></pre>
+<p><strong>No tracks in filter:</strong></p>
+<pre><code>================================================================================
+                          TRACK MANAGER
+================================================================================
+
+No {filter} tracks found.
+
+================================================================================
+</code></pre>
+<hr>
+<h2>Archive Mode (<code>--archive</code>)</h2>
+<p>Move completed tracks to the archive directory.</p>
+<h3>With Argument (<code>--archive &lt;track-id&gt;</code>)</h3>
+<h4>1. Validate Track</h4>
+<ul>
+<li><p>Check track exists in <code>conductor/tracks/{track-id}/</code></p>
+</li>
+<li><p>If not found, display error with available tracks:</p>
+<pre><code>ERROR: Track not found: {track-id}
+
+Available tracks:
+- auth_20250110 (completed)
+- dashboard_20250112 (in progress)
+
+Usage: /conductor:manage --archive &lt;track-id&gt;
+</code></pre>
+</li>
+<li><p>Check track is not already archived (not in <code>_archive/</code>)</p>
+</li>
+<li><p>If archived:</p>
+<pre><code>ERROR: Track &#39;{track-id}&#39; is already archived.
+
+Archived: {archived_at}
+Reason:   {archive_reason}
+Location: conductor/tracks/_archive/{track-id}/
+
+To restore: /conductor:manage --restore {track-id}
+</code></pre>
+</li>
+</ul>
+<h4>2. Verify Completion Status</h4>
+<p>Read <code>conductor/tracks/{track-id}/metadata.json</code> and <code>plan.md</code>:</p>
+<ul>
+<li><p>If status is not <code>completed</code> or <code>[x]</code>:</p>
+<pre><code>Track &#39;{track-id}&#39; is not marked as complete.
+
+Current status: {status}
+Tasks: {completed}/{total} complete
+
+Options:
+1. Archive anyway (not recommended)
+2. Cancel and complete the track first
+3. View track status
+
+Select option:
+</code></pre>
+</li>
+<li><p>If option 1 selected, proceed with warning</p>
+</li>
+<li><p>If option 2 or 3 selected, exit or show status</p>
+</li>
+</ul>
+<h4>3. Prompt for Archive Reason</h4>
+<pre><code>Why are you archiving this track?
+
+1. Completed - Work finished successfully
+2. Superseded - Replaced by another track
+3. Abandoned - No longer needed
+4. Other (specify)
+
+Select reason:
+</code></pre>
+<p>If &quot;Other&quot; selected, prompt for custom reason.</p>
+<h4>4. Display Confirmation</h4>
+<pre><code>================================================================================
+                          ARCHIVE CONFIRMATION
+================================================================================
+
+Track:    {track-id} - {title}
+Type:     {type}
+Status:   {status}
+Tasks:    {completed}/{total} complete
+Reason:   {reason}
+
+Actions:
+- Move conductor/tracks/{track-id}/ to conductor/tracks/_archive/{track-id}/
+- Update conductor/tracks.md (move to Archived Tracks section)
+- Update metadata.json with archive info
+- Create git commit: chore(conductor): Archive track &#39;{title}&#39;
+
+================================================================================
+
+Type &#39;YES&#39; to proceed, or anything else to cancel:
+</code></pre>
+<p><strong>CRITICAL: Require explicit &#39;YES&#39; confirmation.</strong></p>
+<h4>5. Execute Archive</h4>
+<ol>
+<li><p>Create <code>conductor/tracks/_archive/</code> if not exists:</p>
+<pre><code class="language-bash">mkdir -p conductor/tracks/_archive
+</code></pre>
+</li>
+<li><p>Move track directory:</p>
+<pre><code class="language-bash">mv conductor/tracks/{track-id} conductor/tracks/_archive/
+</code></pre>
+</li>
+<li><p>Update <code>conductor/tracks/_archive/{track-id}/metadata.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;archived&quot;: true,
+  &quot;archived_at&quot;: &quot;ISO_TIMESTAMP&quot;,
+  &quot;archive_reason&quot;: &quot;{reason}&quot;,
+  &quot;status&quot;: &quot;archived&quot;
+}
+</code></pre>
+</li>
+<li><p>Update <code>conductor/tracks.md</code>:</p>
+<ul>
+<li><p>Remove entry from Active Tracks or Completed Tracks section</p>
+</li>
+<li><p>Add entry to Archived Tracks section with format:</p>
+<pre><code class="language-markdown">### {track-id}: {title}
+
+**Reason:** {reason}
+**Archived:** YYYY-MM-DD
+**Folder:** [./tracks/\_archive/{track-id}/](./tracks/_archive/{track-id}/)
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Git commit:</p>
+<pre><code class="language-bash">git add conductor/tracks/_archive/{track-id} conductor/tracks.md
+git commit -m &quot;chore(conductor): Archive track &#39;{title}&#39;&quot;
+</code></pre>
+</li>
+</ol>
+<h4>6. Success Output</h4>
+<pre><code>================================================================================
+                          ARCHIVE COMPLETE
+================================================================================
+
+Track archived: {track-id} - {title}
+
+Location:  conductor/tracks/_archive/{track-id}/
+Reason:    {reason}
+Commit:    {sha}
+
+To restore: /conductor:manage --restore {track-id}
+To list:    /conductor:manage --list archived
+
+================================================================================
+</code></pre>
+<h3>Without Argument (<code>--archive</code>)</h3>
+<h4>1. Find Archivable Tracks</h4>
+<p>Scan for completed tracks not yet archived:</p>
+<ul>
+<li>Status <code>[x]</code> in tracks.md</li>
+<li>Not in <code>_archive/</code> directory</li>
+</ul>
+<h4>2. Display Selection Menu</h4>
+<pre><code>================================================================================
+                          ARCHIVE TRACKS
+================================================================================
+
+Completed tracks available for archiving:
+
+1. [x] auth_20250110 - User Authentication (completed 2025-01-12)
+2. [x] setup-ci_20250108 - CI Pipeline Setup (completed 2025-01-09)
+
+Already archived: {N} tracks
+
+--------------------------------------------------------------------------------
+
+Options:
+1-{N}. Select a track to archive
+A.     Archive all completed tracks
+C.     Cancel
+
+Select option:
+</code></pre>
+<ul>
+<li>If numeric, proceed with single archive flow</li>
+<li>If &#39;A&#39;, proceed with bulk archive</li>
+<li>If &#39;C&#39;, exit</li>
+</ul>
+<h4>3. No Archivable Tracks</h4>
+<pre><code>================================================================================
+                          ARCHIVE TRACKS
+================================================================================
+
+No completed tracks available for archiving.
+
+Current tracks:
+- [~] nav-fix_20250114 - In progress
+- [ ] api-v2_20250115 - Pending
+
+Already archived: {N} tracks (use --list archived to view)
+
+================================================================================
+</code></pre>
+<h3>Bulk Archive (<code>--archive --bulk</code>)</h3>
+<h4>1. Display Multi-Select</h4>
+<pre><code>================================================================================
+                       BULK ARCHIVE SELECTION
+================================================================================
+
+Select tracks to archive (comma-separated numbers, or &#39;all&#39;):
+
+Completed Tracks:
+[ ] 1. auth_20250110 - User Authentication (completed 2025-01-12)
+[ ] 2. setup-ci_20250108 - CI Pipeline Setup (completed 2025-01-09)
+[ ] 3. docs-update_20250105 - Documentation Update (completed 2025-01-06)
+
+Enter selection (e.g., &quot;1,3&quot; or &quot;all&quot;):
+</code></pre>
+<h4>2. Confirm Selection</h4>
+<pre><code>================================================================================
+                       BULK ARCHIVE CONFIRMATION
+================================================================================
+
+Tracks to archive:
+
+1. auth_20250110 - User Authentication
+2. setup-ci_20250108 - CI Pipeline Setup
+
+Archive reason for all: Completed
+
+Actions:
+- Move 2 track directories to conductor/tracks/_archive/
+- Update conductor/tracks.md
+- Create git commit: chore(conductor): Archive 2 completed tracks
+
+================================================================================
+
+Type &#39;YES&#39; to proceed, or anything else to cancel:
+</code></pre>
+<h4>3. Execute Bulk Archive</h4>
+<ul>
+<li>Archive each track sequentially</li>
+<li>Single git commit for all:<pre><code class="language-bash">git add conductor/tracks/_archive/ conductor/tracks.md
+git commit -m &quot;chore(conductor): Archive {N} completed tracks&quot;
+</code></pre>
+</li>
+</ul>
+<hr>
+<h2>Restore Mode (<code>--restore</code>)</h2>
+<p>Restore archived tracks back to active status.</p>
+<h3>With Argument (<code>--restore &lt;track-id&gt;</code>)</h3>
+<h4>1. Validate Track</h4>
+<ul>
+<li><p>Check track exists in <code>conductor/tracks/_archive/{track-id}/</code></p>
+</li>
+<li><p>If not found:</p>
+<pre><code>ERROR: Archived track not found: {track-id}
+
+Available archived tracks:
+- old-feature_20241201 (archived 2025-01-05)
+
+Usage: /conductor:manage --restore &lt;track-id&gt;
+</code></pre>
+</li>
+</ul>
+<h4>2. Check for Conflicts</h4>
+<ul>
+<li><p>Verify no active track with same ID exists in <code>conductor/tracks/</code></p>
+</li>
+<li><p>If conflict:</p>
+<pre><code>ERROR: Cannot restore &#39;{track-id}&#39; - a track with this ID already exists.
+
+Active track: conductor/tracks/{track-id}/
+
+Options:
+1. Delete existing track first
+2. Restore with different ID (will prompt for new ID)
+3. Cancel
+
+Select option:
+</code></pre>
+</li>
+</ul>
+<h4>3. Display Confirmation</h4>
+<pre><code>================================================================================
+                          RESTORE CONFIRMATION
+================================================================================
+
+Restoring archived track:
+
+Track:    {track-id} - {title}
+Type:     {type}
+Archived: {archived_at}
+Reason:   {archive_reason}
+
+Actions:
+- Move conductor/tracks/_archive/{track-id}/ to conductor/tracks/{track-id}/
+- Update conductor/tracks.md (move to Completed Tracks section)
+- Update metadata.json
+- Create git commit: chore(conductor): Restore track &#39;{title}&#39;
+
+Note: Track will be restored with status &#39;completed&#39;. Use /conductor:implement
+to resume work if needed.
+
+================================================================================
+
+Type &#39;YES&#39; to proceed, or anything else to cancel:
+</code></pre>
+<h4>4. Execute Restore</h4>
+<ol>
+<li><p>Move track directory:</p>
+<pre><code class="language-bash">mv conductor/tracks/_archive/{track-id} conductor/tracks/
+</code></pre>
+</li>
+<li><p>Update <code>conductor/tracks/{track-id}/metadata.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;archived&quot;: false,
+  &quot;restored_at&quot;: &quot;ISO_TIMESTAMP&quot;,
+  &quot;status&quot;: &quot;completed&quot;
+}
+</code></pre>
+</li>
+<li><p>Update <code>conductor/tracks.md</code>:</p>
+<ul>
+<li>Remove entry from Archived Tracks section</li>
+<li>Add entry to Completed Tracks section</li>
+</ul>
+</li>
+<li><p>Git commit:</p>
+<pre><code class="language-bash">git add conductor/tracks/{track-id} conductor/tracks.md
+git commit -m &quot;chore(conductor): Restore track &#39;{title}&#39;&quot;
+</code></pre>
+</li>
+</ol>
+<h4>5. Success Output</h4>
+<pre><code>================================================================================
+                          RESTORE COMPLETE
+================================================================================
+
+Track restored: {track-id} - {title}
+
+Location:  conductor/tracks/{track-id}/
+Status:    completed
+
+Next steps:
+- Run /conductor:status {track-id} to see track details
+- Run /conductor:implement {track-id} to resume work (if needed)
+
+================================================================================
+</code></pre>
+<h3>Without Argument (<code>--restore</code>)</h3>
+<p>Display menu of archived tracks for selection:</p>
+<pre><code>================================================================================
+                          RESTORE TRACKS
+================================================================================
+
+Archived tracks available for restoration:
+
+1. old-feature_20241201 - Old Feature (archived 2025-01-05, reason: Superseded)
+2. cleanup-api_20241215 - API Cleanup (archived 2025-01-10, reason: Completed)
+
+--------------------------------------------------------------------------------
+
+Options:
+1-{N}. Select a track to restore
+C.     Cancel
+
+Select option:
+</code></pre>
+<hr>
+<h2>Delete Mode (<code>--delete</code>)</h2>
+<p>Permanently remove tracks with safety confirmations.</p>
+<h3>With Argument (<code>--delete &lt;track-id&gt;</code>)</h3>
+<h4>1. Find Track</h4>
+<p>Search for track in:</p>
+<ol>
+<li><code>conductor/tracks/{track-id}/</code> (active/completed)</li>
+<li><code>conductor/tracks/_archive/{track-id}/</code> (archived)</li>
+</ol>
+<p>If not found:</p>
+<pre><code>ERROR: Track not found: {track-id}
+
+Available tracks:
+Active:
+- dashboard_20250112
+
+Archived:
+- old-feature_20241201
+
+Usage: /conductor:manage --delete &lt;track-id&gt;
+</code></pre>
+<h4>2. Check In-Progress Status</h4>
+<p>If track status is <code>[~]</code> (in progress):</p>
+<pre><code>================================================================================
+                          !! WARNING !!
+================================================================================
+
+Track &#39;{track-id}&#39; is currently IN PROGRESS.
+
+Current task: Task 2.3 - {description}
+Progress:     7/15 tasks (47%)
+
+Deleting an in-progress track may result in lost work.
+
+Options:
+1. Delete anyway (use --force to skip this warning)
+2. Archive instead (recommended)
+3. Cancel
+
+Select option:
+</code></pre>
+<p>Without <code>--force</code> flag, require explicit selection.</p>
+<h4>3. Display Full Warning</h4>
+<pre><code>================================================================================
+                     !! PERMANENT DELETION WARNING !!
+================================================================================
+
+Track:    {track-id} - {title}
+Type:     {type}
+Status:   {status}
+Location: conductor/tracks/{track-id}/ (or _archive/)
+Created:  {created_date}
+Files:    {count} (spec.md, plan.md, metadata.json, index.md)
+Commits:  {count} related commits (will NOT be deleted)
+
+This action CANNOT be undone. The track directory and all contents
+will be permanently removed.
+
+Consider archiving instead: /conductor:manage --archive {track-id}
+
+================================================================================
+
+Type &#39;DELETE&#39; to permanently remove, or anything else to cancel:
+</code></pre>
+<p><strong>CRITICAL: Require exact &#39;DELETE&#39; string, not &#39;yes&#39; or &#39;y&#39;.</strong></p>
+<h4>4. Execute Delete</h4>
+<ol>
+<li><p>Remove track directory:</p>
+<pre><code class="language-bash">rm -rf conductor/tracks/{track-id}
+# or
+rm -rf conductor/tracks/_archive/{track-id}
+</code></pre>
+</li>
+<li><p>Update <code>conductor/tracks.md</code>:</p>
+<ul>
+<li>Remove entry from appropriate section (Active, Completed, or Archived)</li>
+</ul>
+</li>
+<li><p>Git commit:</p>
+<pre><code class="language-bash">git add conductor/tracks.md
+git commit -m &quot;chore(conductor): Delete track &#39;{title}&#39;&quot;
+</code></pre>
+</li>
+</ol>
+<p>Note: The git commit records the deletion but does not remove historical commits.</p>
+<h4>5. Success Output</h4>
+<pre><code>================================================================================
+                          DELETE COMPLETE
+================================================================================
+
+Track permanently deleted: {track-id} - {title}
+
+Note: Git history still contains commits referencing this track.
+      The track directory and registry entry have been removed.
+
+================================================================================
+</code></pre>
+<h3>Without Argument (<code>--delete</code>)</h3>
+<p>Display menu of all tracks for selection:</p>
+<pre><code>================================================================================
+                          DELETE TRACKS
+================================================================================
+
+!! This will PERMANENTLY delete a track !!
+
+Select a track to delete:
+
+Active/Completed:
+1. [ ] nav-fix_20250114 - Navigation Bug Fix
+2. [x] auth_20250110 - User Authentication
+
+Archived:
+3. old-feature_20241201 - Old Feature
+
+--------------------------------------------------------------------------------
+
+Options:
+1-{N}. Select a track to delete
+C.     Cancel
+
+Select option:
+</code></pre>
+<hr>
+<h2>Rename Mode (<code>--rename</code>)</h2>
+<p>Change track IDs with full reference updates.</p>
+<h3>With Arguments (<code>--rename &lt;old-id&gt; &lt;new-id&gt;</code>)</h3>
+<h4>1. Validate Old Track Exists</h4>
+<p>Check track exists in:</p>
+<ul>
+<li><code>conductor/tracks/{old-id}/</code></li>
+<li><code>conductor/tracks/_archive/{old-id}/</code></li>
+</ul>
+<p>If not found:</p>
+<pre><code>ERROR: Track not found: {old-id}
+
+Available tracks:
+- auth_20250110
+- dashboard_20250112
+
+Usage: /conductor:manage --rename &lt;old-id&gt; &lt;new-id&gt;
+</code></pre>
+<h4>2. Validate New ID</h4>
+<p><strong>Check format</strong> (must match <code>{shortname}_{YYYYMMDD}</code>):</p>
+<pre><code>ERROR: Invalid track ID format: {new-id}
+
+Track IDs must follow the pattern: {shortname}_{YYYYMMDD}
+Examples:
+- user-auth_20250115
+- fix-login_20250114
+- api-v2_20250110
+</code></pre>
+<p><strong>Check no conflict:</strong></p>
+<pre><code>ERROR: Track &#39;{new-id}&#39; already exists.
+
+Choose a different ID or delete the existing track first.
+</code></pre>
+<h4>3. Display Confirmation</h4>
+<pre><code>================================================================================
+                          RENAME TRACK
+================================================================================
+
+Current:  {old-id} - {title}
+New ID:   {new-id}
+
+Changes:
+- Rename conductor/tracks/{old-id}/ to {new-id}/
+- Update tracks.md entry
+- Update metadata.json id field
+- Update plan.md track ID header
+
+Note: Git commit history will retain original track ID references.
+      Related commits cannot be renamed.
+
+================================================================================
+
+Type &#39;YES&#39; to proceed, or anything else to cancel:
+</code></pre>
+<h4>4. Execute Rename</h4>
+<ol>
+<li><p>Rename directory:</p>
+<pre><code class="language-bash">mv conductor/tracks/{old-id} conductor/tracks/{new-id}
+# or for archived:
+mv conductor/tracks/_archive/{old-id} conductor/tracks/_archive/{new-id}
+</code></pre>
+</li>
+<li><p>Update <code>conductor/tracks/{new-id}/metadata.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;{new-id}&quot;,
+  &quot;previous_ids&quot;: [&quot;{old-id}&quot;],
+  &quot;renamed_at&quot;: &quot;ISO_TIMESTAMP&quot;
+}
+</code></pre>
+<p>If <code>previous_ids</code> already exists, append the old ID.</p>
+</li>
+<li><p>Update <code>conductor/tracks/{new-id}/plan.md</code>:</p>
+<ul>
+<li>Change track ID in header line</li>
+</ul>
+</li>
+<li><p>Update <code>conductor/tracks.md</code>:</p>
+<ul>
+<li>Update the track ID in the appropriate section</li>
+<li>Update folder link path</li>
+</ul>
+</li>
+<li><p>Git commit:</p>
+<pre><code class="language-bash">git add conductor/tracks/{new-id} conductor/tracks.md
+git commit -m &quot;chore(conductor): Rename track &#39;{old-id}&#39; to &#39;{new-id}&#39;&quot;
+</code></pre>
+</li>
+</ol>
+<h4>5. Success Output</h4>
+<pre><code>================================================================================
+                          RENAME COMPLETE
+================================================================================
+
+Track renamed: {old-id} → {new-id}
+
+New location: conductor/tracks/{new-id}/
+
+Note: Historical git commits still reference &#39;{old-id}&#39;.
+
+================================================================================
+</code></pre>
+<h3>Without Arguments (<code>--rename</code>)</h3>
+<p>Interactive mode:</p>
+<pre><code>================================================================================
+                          RENAME TRACK
+================================================================================
+
+Select a track to rename:
+
+1. auth_20250110 - User Authentication
+2. dashboard_20250112 - Dashboard Feature
+3. nav-fix_20250114 - Navigation Bug Fix
+
+--------------------------------------------------------------------------------
+
+Options:
+1-{N}. Select a track
+C.     Cancel
+
+Select option:
+</code></pre>
+<p>After selection:</p>
+<pre><code>Enter new track ID for &#39;{old-id}&#39;:
+
+Format: {shortname}_{YYYYMMDD}
+Current: {old-id}
+
+New ID:
+</code></pre>
+<hr>
+<h2>Cleanup Mode (<code>--cleanup</code>)</h2>
+<p>Detect and fix orphaned track artifacts.</p>
+<h3>1. Scan for Issues</h3>
+<p><strong>Directory Orphans:</strong></p>
+<ul>
+<li>Scan <code>conductor/tracks/</code> for directories</li>
+<li>Check each against tracks.md entries</li>
+<li>Flag directories not in registry</li>
+</ul>
+<p><strong>Registry Orphans:</strong></p>
+<ul>
+<li>Parse tracks.md for all track entries</li>
+<li>Check each has a corresponding directory</li>
+<li>Flag entries without directories</li>
+</ul>
+<p><strong>Incomplete Tracks:</strong></p>
+<ul>
+<li>For each track directory, verify required files exist:<ul>
+<li><code>spec.md</code></li>
+<li><code>plan.md</code></li>
+<li><code>metadata.json</code></li>
+</ul>
+</li>
+<li>Flag tracks missing required files</li>
+</ul>
+<p><strong>Stale In-Progress:</strong></p>
+<ul>
+<li>Find tracks with status <code>[~]</code></li>
+<li>Check <code>metadata.json</code> <code>updated</code> timestamp</li>
+<li>Flag if untouched for &gt; 7 days</li>
+</ul>
+<h3>2. Display Results</h3>
+<pre><code>================================================================================
+                          TRACK CLEANUP
+================================================================================
+
+Scanning for issues...
+
+ORPHANED DIRECTORIES (not in tracks.md):
+  1. conductor/tracks/test-feature_20241201/
+  2. conductor/tracks/experiment_20241220/
+
+REGISTRY ORPHANS (no matching folder):
+  3. broken-track_20250101 (listed in tracks.md)
+
+INCOMPLETE TRACKS (missing files):
+  4. partial_20250105/ - missing: metadata.json, index.md
+
+STALE IN-PROGRESS (untouched &gt;7 days):
+  5. old-work_20250101 - last updated: 2025-01-02
+
+================================================================================
+
+Found {N} issues.
+
+Actions:
+1. Add orphaned directories to tracks.md
+2. Remove registry orphans from tracks.md
+3. Create missing files from templates
+4. Archive stale tracks
+A. Fix all issues automatically
+S. Skip and review manually
+C. Cancel
+
+Select action:
+</code></pre>
+<h3>3. Handle No Issues</h3>
+<pre><code>================================================================================
+                          TRACK CLEANUP
+================================================================================
+
+Scanning for issues...
+
+No issues found.
+
+All tracks are properly registered and complete.
+
+================================================================================
+</code></pre>
+<h3>4. Execute Fixes</h3>
+<p><strong>For Directory Orphans (Action 1):</strong></p>
+<pre><code>Adding orphaned directories to tracks.md...
+
+For each directory:
+- Read metadata.json if exists for track info
+- If no metadata, prompt for track details:
+
+  Found: conductor/tracks/test-feature_20241201/
+
+  Enter track title (or &#39;skip&#39; to ignore):
+  Enter track type (feature/bug/chore/refactor):
+
+- Add entry to appropriate section in tracks.md
+- Create metadata.json if missing
+</code></pre>
+<p><strong>For Registry Orphans (Action 2):</strong></p>
+<pre><code>Removing registry orphans from tracks.md...
+
+Removed entries:
+- broken-track_20250101
+
+Note: No files were deleted, only tracks.md was updated.
+</code></pre>
+<p><strong>For Incomplete Tracks (Action 3):</strong></p>
+<pre><code>Creating missing files from templates...
+
+partial_20250105/:
+- Created metadata.json from template
+- Created index.md from template
+
+Note: You may need to populate these files with actual content.
+</code></pre>
+<p><strong>For Stale In-Progress (Action 4):</strong></p>
+<pre><code>Archiving stale tracks...
+
+old-work_20250101:
+- Archived with reason: Stale (untouched since 2025-01-02)
+</code></pre>
+<p><strong>For All Issues (Action A):</strong></p>
+<p>Execute all applicable fixes in sequence, then:</p>
+<pre><code class="language-bash">git add conductor/
+git commit -m &quot;chore(conductor): Clean up {N} orphaned track artifacts&quot;
+</code></pre>
+<h3>5. Completion Output</h3>
+<pre><code>================================================================================
+                          CLEANUP COMPLETE
+================================================================================
+
+Fixed {N} issues:
+- Added {X} orphaned directories to tracks.md
+- Removed {Y} registry orphans
+- Created missing files for {Z} incomplete tracks
+- Archived {W} stale tracks
+
+Commit: {sha}
+
+================================================================================
+</code></pre>
+<hr>
+<h2>Error Handling</h2>
+<h3>Git Operation Failures</h3>
+<pre><code>GIT ERROR: {error message}
+
+The operation partially completed:
+- Directory moved: Yes/No
+- tracks.md updated: Yes/No
+- Commit created: No
+
+You may need to manually:
+1. Complete the git commit
+2. Restore files from their current locations
+
+Current state:
+- Track location: {path}
+- tracks.md: {status}
+
+To retry the commit:
+  git add conductor/tracks.md conductor/tracks/{track-id}
+  git commit -m &quot;{intended message}&quot;
+</code></pre>
+<h3>File System Errors</h3>
+<pre><code>ERROR: Failed to {operation}: {error}
+
+Possible causes:
+- Permission denied
+- Disk full
+- File in use
+
+No changes were made. Please resolve the issue and try again.
+</code></pre>
+<h3>Invalid Arguments</h3>
+<pre><code>ERROR: Invalid argument: {argument}
+
+Usage: /conductor:manage [--archive | --restore | --delete | --rename | --list | --cleanup]
+
+Examples:
+  /conductor:manage                     # Interactive mode
+  /conductor:manage --list              # List all tracks
+  /conductor:manage --list archived     # List archived tracks only
+  /conductor:manage --archive track-id  # Archive specific track
+  /conductor:manage --restore track-id  # Restore archived track
+  /conductor:manage --delete track-id   # Delete track permanently
+  /conductor:manage --rename old new    # Rename track ID
+  /conductor:manage --cleanup           # Fix orphaned artifacts
+</code></pre>
+<hr>
+<h2>Critical Rules</h2>
+<ol>
+<li><strong>ALWAYS verify track existence</strong> before any operation</li>
+<li><strong>REQUIRE explicit confirmation</strong> for destructive operations:<ul>
+<li>&#39;YES&#39; for archive, restore, rename</li>
+<li>&#39;DELETE&#39; for permanent deletion</li>
+</ul>
+</li>
+<li><strong>HALT on any error</strong> - Do not attempt to continue past failures</li>
+<li><strong>UPDATE tracks.md</strong> - Keep registry in sync with file system</li>
+<li><strong>COMMIT changes</strong> - Create git commits for traceability</li>
+<li><strong>PRESERVE history</strong> - Git commits are never modified or deleted</li>
+<li><strong>WARN for in-progress</strong> - Extra caution when modifying active work</li>
+<li><strong>OFFER alternatives</strong> - Suggest archive before delete</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

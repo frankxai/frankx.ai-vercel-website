@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/security</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/security/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/security</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fsecurity">security</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/security</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/security"><img src="https://img.shields.io/npm/v/@claude-flow/security.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/security"><img src="https://img.shields.io/npm/dm/@claude-flow/security.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0+-blue.svg" alt="TypeScript"></a>
+<a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/Security-Audited-green.svg" alt="Security Audit"></a></p>
+<blockquote>
+<p>Comprehensive security module for Claude Flow V3 - CVE fixes, input validation, path security, and secure credential management.</p>
+</blockquote>
+<h2>Features</h2>
+<ul>
+<li><strong>CVE Remediation</strong> - Fixes for CVE-2 (Weak Password Hashing), CVE-3 (Hardcoded Credentials), HIGH-1 (Command Injection), HIGH-2 (Path Traversal)</li>
+<li><strong>Password Hashing</strong> - Secure bcrypt-based password hashing with configurable rounds (12+ recommended)</li>
+<li><strong>Credential Generation</strong> - Cryptographically secure credential and API key generation</li>
+<li><strong>Safe Command Execution</strong> - Allowlist-based command execution preventing injection attacks</li>
+<li><strong>Path Validation</strong> - Protection against path traversal and symlink attacks</li>
+<li><strong>Input Validation</strong> - Zod-based schema validation for all input types</li>
+<li><strong>Token Generation</strong> - Secure token creation with HMAC signing</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install @claude-flow/security
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">import { createSecurityModule } from &#39;@claude-flow/security&#39;;
+
+// Create a complete security module
+const security = createSecurityModule({
+  projectRoot: &#39;/workspaces/project&#39;,
+  hmacSecret: process.env.HMAC_SECRET!,
+  bcryptRounds: 12,
+  allowedCommands: [&#39;git&#39;, &#39;npm&#39;, &#39;npx&#39;, &#39;node&#39;]
+});
+
+// Hash a password
+const hash = await security.passwordHasher.hash(&#39;userPassword123&#39;);
+
+// Validate a path
+const pathResult = await security.pathValidator.validate(&#39;/workspaces/project/src/file.ts&#39;);
+
+// Execute command safely
+const output = await security.safeExecutor.execute(&#39;git&#39;, [&#39;status&#39;]);
+
+// Generate secure credentials
+const creds = await security.credentialGenerator.generate();
+</code></pre>
+<h2>API Reference</h2>
+<h3>Password Hashing (CVE-2 Fix)</h3>
+<pre><code class="language-typescript">import { PasswordHasher, createPasswordHasher } from &#39;@claude-flow/security&#39;;
+
+const hasher = createPasswordHasher({ rounds: 12 });
+
+// Hash password
+const hash = await hasher.hash(&#39;password&#39;);
+
+// Verify password
+const isValid = await hasher.verify(&#39;password&#39;, hash);
+
+// Check if hash needs rehashing
+const needsRehash = hasher.needsRehash(hash);
+</code></pre>
+<h3>Credential Generation (CVE-3 Fix)</h3>
+<pre><code class="language-typescript">import { CredentialGenerator, generateCredentials } from &#39;@claude-flow/security&#39;;
+
+const generator = new CredentialGenerator();
+
+// Generate API key
+const apiKey = await generator.generateApiKey({
+  prefix: &#39;cf&#39;,
+  length: 32
+});
+
+// Generate complete credentials
+const creds = generateCredentials({
+  includeApiKey: true,
+  includeSecret: true
+});
+</code></pre>
+<h3>Safe Command Execution (HIGH-1 Fix)</h3>
+<pre><code class="language-typescript">import { SafeExecutor, createDevelopmentExecutor } from &#39;@claude-flow/security&#39;;
+
+const executor = createDevelopmentExecutor();
+
+// Execute allowed command
+const result = await executor.execute(&#39;git&#39;, [&#39;status&#39;]);
+
+// With timeout
+const result2 = await executor.execute(&#39;npm&#39;, [&#39;install&#39;], {
+  timeout: 60000,
+  cwd: &#39;/workspaces/project&#39;
+});
+</code></pre>
+<h3>Path Validation (HIGH-2 Fix)</h3>
+<pre><code class="language-typescript">import { PathValidator, createProjectPathValidator } from &#39;@claude-flow/security&#39;;
+
+const validator = createProjectPathValidator(&#39;/workspaces/project&#39;);
+
+// Validate path
+const result = await validator.validate(&#39;../../../etc/passwd&#39;);
+// { valid: false, reason: &#39;Path traversal detected&#39; }
+
+// Safe path
+const result2 = await validator.validate(&#39;/workspaces/project/src/index.ts&#39;);
+// { valid: true, normalized: &#39;/workspaces/project/src/index.ts&#39; }
+</code></pre>
+<h3>Input Validation</h3>
+<pre><code class="language-typescript">import {
+  InputValidator,
+  SafeStringSchema,
+  EmailSchema,
+  PasswordSchema,
+  SpawnAgentSchema
+} from &#39;@claude-flow/security&#39;;
+
+// Validate email
+const email = EmailSchema.parse(&#39;user@example.com&#39;);
+
+// Validate password
+const password = PasswordSchema.parse(&#39;SecurePass123!&#39;);
+
+// Validate agent spawn request
+const agentRequest = SpawnAgentSchema.parse({
+  type: &#39;coder&#39;,
+  name: &#39;code-agent-1&#39;
+});
+
+// Sanitize HTML
+import { sanitizeHtml } from &#39;@claude-flow/security&#39;;
+const safe = sanitizeHtml(&#39;&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;Hello&#39;);
+// &#39;Hello&#39;
+</code></pre>
+<h3>Token Generation</h3>
+<pre><code class="language-typescript">import { TokenGenerator, quickGenerate } from &#39;@claude-flow/security&#39;;
+
+const generator = new TokenGenerator({
+  hmacSecret: process.env.HMAC_SECRET!
+});
+
+// Generate signed token
+const token = await generator.generate({
+  type: &#39;session&#39;,
+  expiresIn: 3600
+});
+
+// Verify token
+const verified = await generator.verify(token);
+
+// Quick generation
+const sessionToken = quickGenerate.sessionToken();
+const verificationCode = quickGenerate.verificationCode();
+</code></pre>
+<h2>Security Constants</h2>
+<pre><code class="language-typescript">import {
+  MIN_BCRYPT_ROUNDS,      // 12
+  MAX_BCRYPT_ROUNDS,      // 14
+  MIN_PASSWORD_LENGTH,    // 8
+  MAX_PASSWORD_LENGTH,    // 72 (bcrypt limit)
+  DEFAULT_TOKEN_EXPIRATION,   // 3600 (1 hour)
+  DEFAULT_SESSION_EXPIRATION  // 86400 (24 hours)
+} from &#39;@claude-flow/security&#39;;
+</code></pre>
+<h2>Security Audit</h2>
+<pre><code class="language-typescript">import { auditSecurityConfig } from &#39;@claude-flow/security&#39;;
+
+const warnings = auditSecurityConfig({
+  bcryptRounds: 10,
+  hmacSecret: &#39;short&#39;
+});
+
+// [&#39;bcryptRounds (10) below recommended minimum (12)&#39;,
+//  &#39;hmacSecret should be at least 32 characters&#39;]
+</code></pre>
+<h2>Validation Schemas</h2>
+<table>
+<thead>
+<tr>
+<th>Schema</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SafeStringSchema</code></td>
+<td>Basic safe string with length limits</td>
+</tr>
+<tr>
+<td><code>IdentifierSchema</code></td>
+<td>Alphanumeric identifiers</td>
+</tr>
+<tr>
+<td><code>FilenameSchema</code></td>
+<td>Safe filenames</td>
+</tr>
+<tr>
+<td><code>EmailSchema</code></td>
+<td>Email addresses</td>
+</tr>
+<tr>
+<td><code>PasswordSchema</code></td>
+<td>Secure passwords</td>
+</tr>
+<tr>
+<td><code>UUIDSchema</code></td>
+<td>UUID v4 format</td>
+</tr>
+<tr>
+<td><code>HttpsUrlSchema</code></td>
+<td>HTTPS URLs only</td>
+</tr>
+<tr>
+<td><code>SemverSchema</code></td>
+<td>Semantic versions</td>
+</tr>
+<tr>
+<td><code>PortSchema</code></td>
+<td>Valid port numbers</td>
+</tr>
+<tr>
+<td><code>IPv4Schema</code></td>
+<td>IPv4 addresses</td>
+</tr>
+<tr>
+<td><code>SpawnAgentSchema</code></td>
+<td>Agent spawn requests</td>
+</tr>
+<tr>
+<td><code>TaskInputSchema</code></td>
+<td>Task definitions</td>
+</tr>
+<tr>
+<td><code>SecurityConfigSchema</code></td>
+<td>Security configuration</td>
+</tr>
+</tbody></table>
+<h2>Dependencies</h2>
+<ul>
+<li><code>bcrypt</code> - Password hashing</li>
+<li><code>zod</code> - Schema validation</li>
+</ul>
+<h2>Related Packages</h2>
+<ul>
+<li><a href="../shared">@claude-flow/shared</a> - Shared types and utilities</li>
+<li><a href="../swarm">@claude-flow/swarm</a> - Swarm coordination (secure agent spawning)</li>
+</ul>
+<h2>License</h2>
+<p>MIT</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>UAT Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/UAT.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">UAT Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <span>UAT.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>UAT Template</h1>
+<p>Template for <code>.planning/phases/XX-name/{phase}-UAT.md</code> — persistent UAT session tracking.</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown">---
+status: testing | complete | diagnosed
+phase: XX-name
+source: [list of SUMMARY.md files tested]
+started: [ISO timestamp]
+updated: [ISO timestamp]
+---
+
+## Current Test
+&lt;!-- OVERWRITE each test - shows where we are --&gt;
+
+number: [N]
+name: [test name]
+expected: |
+  [what user should observe]
+awaiting: user response
+
+## Tests
+
+### 1. [Test Name]
+expected: [observable behavior - what user should see]
+result: [pending]
+
+### 2. [Test Name]
+expected: [observable behavior]
+result: pass
+
+### 3. [Test Name]
+expected: [observable behavior]
+result: issue
+reported: &quot;[verbatim user response]&quot;
+severity: major
+
+### 4. [Test Name]
+expected: [observable behavior]
+result: skipped
+reason: [why skipped]
+
+...
+
+## Summary
+
+total: [N]
+passed: [N]
+issues: [N]
+pending: [N]
+skipped: [N]
+
+## Gaps
+
+&lt;!-- YAML format for plan-phase --gaps consumption --&gt;
+- truth: &quot;[expected behavior from test]&quot;
+  status: failed
+  reason: &quot;User reported: [verbatim response]&quot;
+  severity: blocker | major | minor | cosmetic
+  test: [N]
+  root_cause: &quot;&quot;     # Filled by diagnosis
+  artifacts: []      # Filled by diagnosis
+  missing: []        # Filled by diagnosis
+  debug_session: &quot;&quot;  # Filled by diagnosis
+</code></pre>
+<hr>
+<section_rules>
+
+<p><strong>Frontmatter:</strong></p>
+<ul>
+<li><code>status</code>: OVERWRITE - &quot;testing&quot; or &quot;complete&quot;</li>
+<li><code>phase</code>: IMMUTABLE - set on creation</li>
+<li><code>source</code>: IMMUTABLE - SUMMARY files being tested</li>
+<li><code>started</code>: IMMUTABLE - set on creation</li>
+<li><code>updated</code>: OVERWRITE - update on every change</li>
+</ul>
+<p><strong>Current Test:</strong></p>
+<ul>
+<li>OVERWRITE entirely on each test transition</li>
+<li>Shows which test is active and what&#39;s awaited</li>
+<li>On completion: &quot;[testing complete]&quot;</li>
+</ul>
+<p><strong>Tests:</strong></p>
+<ul>
+<li>Each test: OVERWRITE result field when user responds</li>
+<li><code>result</code> values: [pending], pass, issue, skipped</li>
+<li>If issue: add <code>reported</code> (verbatim) and <code>severity</code> (inferred)</li>
+<li>If skipped: add <code>reason</code> if provided</li>
+</ul>
+<p><strong>Summary:</strong></p>
+<ul>
+<li>OVERWRITE counts after each response</li>
+<li>Tracks: total, passed, issues, pending, skipped</li>
+</ul>
+<p><strong>Gaps:</strong></p>
+<ul>
+<li>APPEND only when issue found (YAML format)</li>
+<li>After diagnosis: fill <code>root_cause</code>, <code>artifacts</code>, <code>missing</code>, <code>debug_session</code></li>
+<li>This section feeds directly into /gsd:plan-phase --gaps</li>
+</ul>
+</section_rules>
+
+<diagnosis_lifecycle>
+
+<p><strong>After testing complete (status: complete), if gaps exist:</strong></p>
+<ol>
+<li>User runs diagnosis (from verify-work offer or manually)</li>
+<li>diagnose-issues workflow spawns parallel debug agents</li>
+<li>Each agent investigates one gap, returns root cause</li>
+<li>UAT.md Gaps section updated with diagnosis:<ul>
+<li>Each gap gets <code>root_cause</code>, <code>artifacts</code>, <code>missing</code>, <code>debug_session</code> filled</li>
+</ul>
+</li>
+<li>status → &quot;diagnosed&quot;</li>
+<li>Ready for /gsd:plan-phase --gaps with root causes</li>
+</ol>
+<p><strong>After diagnosis:</strong></p>
+<pre><code class="language-yaml">## Gaps
+
+- truth: &quot;Comment appears immediately after submission&quot;
+  status: failed
+  reason: &quot;User reported: works but doesn&#39;t show until I refresh the page&quot;
+  severity: major
+  test: 2
+  root_cause: &quot;useEffect in CommentList.tsx missing commentCount dependency&quot;
+  artifacts:
+    - path: &quot;src/components/CommentList.tsx&quot;
+      issue: &quot;useEffect missing dependency&quot;
+  missing:
+    - &quot;Add commentCount to useEffect dependency array&quot;
+  debug_session: &quot;.planning/debug/comment-not-refreshing.md&quot;
+</code></pre>
+</diagnosis_lifecycle>
+
+<lifecycle>
+
+<p><strong>Creation:</strong> When /gsd:verify-work starts new session</p>
+<ul>
+<li>Extract tests from SUMMARY.md files</li>
+<li>Set status to &quot;testing&quot;</li>
+<li>Current Test points to test 1</li>
+<li>All tests have result: [pending]</li>
+</ul>
+<p><strong>During testing:</strong></p>
+<ul>
+<li>Present test from Current Test section</li>
+<li>User responds with pass confirmation or issue description</li>
+<li>Update test result (pass/issue/skipped)</li>
+<li>Update Summary counts</li>
+<li>If issue: append to Gaps section (YAML format), infer severity</li>
+<li>Move Current Test to next pending test</li>
+</ul>
+<p><strong>On completion:</strong></p>
+<ul>
+<li>status → &quot;complete&quot;</li>
+<li>Current Test → &quot;[testing complete]&quot;</li>
+<li>Commit file</li>
+<li>Present summary with next steps</li>
+</ul>
+<p><strong>Resume after /clear:</strong></p>
+<ol>
+<li>Read frontmatter → know phase and status</li>
+<li>Read Current Test → know where we are</li>
+<li>Find first [pending] result → continue from there</li>
+<li>Summary shows progress so far</li>
+</ol>
+</lifecycle>
+
+<severity_guide>
+
+<p>Severity is INFERRED from user&#39;s natural language, never asked.</p>
+<table>
+<thead>
+<tr>
+<th>User describes</th>
+<th>Infer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Crash, error, exception, fails completely, unusable</td>
+<td>blocker</td>
+</tr>
+<tr>
+<td>Doesn&#39;t work, nothing happens, wrong behavior, missing</td>
+<td>major</td>
+</tr>
+<tr>
+<td>Works but..., slow, weird, minor, small issue</td>
+<td>minor</td>
+</tr>
+<tr>
+<td>Color, font, spacing, alignment, visual, looks off</td>
+<td>cosmetic</td>
+</tr>
+</tbody></table>
+<p>Default: <strong>major</strong> (safe default, user can clarify if wrong)</p>
+</severity_guide>
+
+<good_example>
+```markdown
+---
+status: diagnosed
+phase: 04-comments
+source: 04-01-SUMMARY.md, 04-02-SUMMARY.md
+started: 2025-01-15T10:30:00Z
+updated: 2025-01-15T10:45:00Z
+---
+
+<h2>Current Test</h2>
+<p>[testing complete]</p>
+<h2>Tests</h2>
+<h3>1. View Comments on Post</h3>
+<p>expected: Comments section expands, shows count and comment list
+result: pass</p>
+<h3>2. Create Top-Level Comment</h3>
+<p>expected: Submit comment via rich text editor, appears in list with author info
+result: issue
+reported: &quot;works but doesn&#39;t show until I refresh the page&quot;
+severity: major</p>
+<h3>3. Reply to a Comment</h3>
+<p>expected: Click Reply, inline composer appears, submit shows nested reply
+result: pass</p>
+<h3>4. Visual Nesting</h3>
+<p>expected: 3+ level thread shows indentation, left borders, caps at reasonable depth
+result: pass</p>
+<h3>5. Delete Own Comment</h3>
+<p>expected: Click delete on own comment, removed or shows [deleted] if has replies
+result: pass</p>
+<h3>6. Comment Count</h3>
+<p>expected: Post shows accurate count, increments when adding comment
+result: pass</p>
+<h2>Summary</h2>
+<p>total: 6
+passed: 5
+issues: 1
+pending: 0
+skipped: 0</p>
+<h2>Gaps</h2>
+<ul>
+<li>truth: &quot;Comment appears immediately after submission in list&quot;
+status: failed
+reason: &quot;User reported: works but doesn&#39;t show until I refresh the page&quot;
+severity: major
+test: 2
+root_cause: &quot;useEffect in CommentList.tsx missing commentCount dependency&quot;
+artifacts:<ul>
+<li>path: &quot;src/components/CommentList.tsx&quot;
+issue: &quot;useEffect missing dependency&quot;
+missing:</li>
+<li>&quot;Add commentCount to useEffect dependency array&quot;
+debug_session: &quot;.planning/debug/comment-not-refreshing.md&quot;</li>
+</ul>
+</li>
+</ul>
+<pre><code>&lt;/good_example&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

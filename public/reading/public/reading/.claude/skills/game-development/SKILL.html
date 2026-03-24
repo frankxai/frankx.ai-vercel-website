@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ACOS Game Development Skill v1.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/game-development/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">ACOS Game Development Skill v1.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fgame-development">game-development</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ACOS Game Development Skill v1.0</h1>
+<h2>Purpose</h2>
+<p>Intelligence layer for FrankX&#39;s Games Lab (frankx.ai/games). Encodes world-class browser game design principles — animation choreography, feedback systems, quality gates, and per-genre templates. Any agent loading this skill produces games at AAA studio quality, not &quot;indie jam&quot; quality.</p>
+<h2>Activation</h2>
+<p>Auto-activates when session involves: game development, Canvas2D rendering, game feel tuning, particle effects, game loop optimization, or any <code>/games/</code> route work.</p>
+<p><strong>Triggers</strong>: <code>game</code>, <code>canvas</code>, <code>particle</code>, <code>collision</code>, <code>sprite</code>, <code>dungeon</code>, <code>puzzle game</code>, <code>roguelike</code>, <code>game loop</code>, <code>game feel</code></p>
+<hr>
+<h2>Game Registry (7 Games)</h2>
+<h3>1. Crystal Match</h3>
+<ul>
+<li><strong>Slug</strong>: <code>crystal-match</code></li>
+<li><strong>Engine</strong>: React DOM (CSS animations)</li>
+<li><strong>Genre</strong>: Puzzle (match-3)</li>
+<li><strong>Quality Baseline</strong>: Bejeweled 3, Candy Crush Saga</li>
+<li><strong>Key Feel</strong>: Satisfying cascades, escalating combos, gems feel alive</li>
+<li><strong>File</strong>: <code>app/games/crystal-match/page.tsx</code></li>
+</ul>
+<h3>2. Neon Depths</h3>
+<ul>
+<li><strong>Slug</strong>: <code>neon-depths</code></li>
+<li><strong>Engine</strong>: Canvas2D</li>
+<li><strong>Genre</strong>: Roguelike (turn-based dungeon crawler)</li>
+<li><strong>Quality Baseline</strong>: Brogue, Hoplite, Into the Breach</li>
+<li><strong>Key Feel</strong>: Tense exploration, impactful combat, atmospheric dungeon</li>
+<li><strong>File</strong>: <code>app/games/neon-depths/page.tsx</code></li>
+</ul>
+<h3>3. Neon Runner</h3>
+<ul>
+<li><strong>Slug</strong>: <code>neon-runner</code></li>
+<li><strong>Engine</strong>: Canvas2D</li>
+<li><strong>Genre</strong>: Action (endless runner)</li>
+<li><strong>Quality Baseline</strong>: Subway Surfers, Alto&#39;s Odyssey</li>
+<li><strong>Key Feel</strong>: Speed sensation, near-miss drama, fluid lane changes</li>
+<li><strong>File</strong>: <code>app/games/neon-runner/page.tsx</code></li>
+</ul>
+<h3>4. Snake Neon</h3>
+<ul>
+<li><strong>Slug</strong>: <code>snake-neon</code></li>
+<li><strong>Engine</strong>: Canvas2D</li>
+<li><strong>Genre</strong>: Arcade (snake)</li>
+<li><strong>Quality Baseline</strong>: Snake.io, Slither.io</li>
+<li><strong>Key Feel</strong>: Fluid movement, satisfying growth, dramatic death</li>
+<li><strong>File</strong>: <code>app/games/snake-neon/page.tsx</code></li>
+</ul>
+<h3>5. 2048 Neon</h3>
+<ul>
+<li><strong>Slug</strong>: <code>neon-2048</code></li>
+<li><strong>Engine</strong>: React DOM (CSS animations)</li>
+<li><strong>Genre</strong>: Puzzle (sliding tiles)</li>
+<li><strong>Quality Baseline</strong>: Original 2048, Threes!</li>
+<li><strong>Key Feel</strong>: Satisfying merges, tile weight, big-merge celebration</li>
+<li><strong>File</strong>: <code>app/games/neon-2048/page.tsx</code></li>
+</ul>
+<h3>6. Word Forge</h3>
+<ul>
+<li><strong>Slug</strong>: <code>word-forge</code></li>
+<li><strong>Engine</strong>: React DOM (CSS animations)</li>
+<li><strong>Genre</strong>: Word (Wordle-style)</li>
+<li><strong>Quality Baseline</strong>: Wordle, Spelling Bee</li>
+<li><strong>Key Feel</strong>: Letter reveal drama, keyboard feedback, win celebration</li>
+<li><strong>File</strong>: <code>app/games/word-forge/page.tsx</code></li>
+</ul>
+<h3>7. Memory Match</h3>
+<ul>
+<li><strong>Slug</strong>: <code>memory-match</code></li>
+<li><strong>Engine</strong>: React DOM (Framer Motion)</li>
+<li><strong>Genre</strong>: Puzzle (card matching)</li>
+<li><strong>Quality Baseline</strong>: Concentration, Memrise</li>
+<li><strong>Key Feel</strong>: Card flip satisfaction, match celebration, mismatch clarity</li>
+<li><strong>File</strong>: <code>app/games/memory-match/page.tsx</code></li>
+</ul>
+<hr>
+<h2>10 Quality Gates (MANDATORY)</h2>
+<p>Every game MUST pass ALL gates before deploy. No exceptions.</p>
+<h3>Gate 1: No Instant State Changes</h3>
+<p>Every visual change must be animated. Position changes use eased interpolation. Color changes use transitions. Size changes use scale animations. If a value snaps from A to B without interpolation, the game fails this gate.</p>
+<h3>Gate 2: Three-Stage Feedback</h3>
+<p>Every primary player action has: anticipation (50-100ms buildup) → action (the actual change) → follow-through (100-300ms settle/overshoot). A swap in Crystal Match: gems lean toward target → cross positions → bounce into place. A move in Neon Depths: player leans → slides → settles.</p>
+<h3>Gate 3: Idle Animations</h3>
+<p>Nothing is ever static. Every visible entity has subtle movement when idle:</p>
+<ul>
+<li>Player characters: breathing glow, gentle scale oscillation (0.97-1.03, 2-3s)</li>
+<li>Items: floating hover (±2px, 2s sine), glow pulse</li>
+<li>Enemies: slow sway, faint glow flicker</li>
+<li>UI elements: subtle shimmer, particle drift</li>
+<li>Board/background: ambient dust motes, gradient shift</li>
+</ul>
+<h3>Gate 4: Environmental Depth</h3>
+<p>The world feels alive beyond the player&#39;s actions:</p>
+<ul>
+<li>Ambient particles (dust, energy motes, sparkles) — 1-3 per frame, capped at 30</li>
+<li>Background has subtle movement (gradient shift, star drift, grid pulse)</li>
+<li>Lighting responds to events (flash on impact, dim on death, warm on reward)</li>
+</ul>
+<h3>Gate 5: Impact Feedback (Hitstop + Layered Effects)</h3>
+<p>Every collision or significant event uses layered feedback:</p>
+<ul>
+<li>Hitstop: 2-5 frame freeze to emphasize the moment</li>
+<li>Particles: burst from impact point in relevant colors</li>
+<li>Screen shake: intensity proportional to significance</li>
+<li>Flash: brief color overlay (red=damage, gold=reward, white=hit)</li>
+<li>Sound hook: even if muted, the code path exists for future audio</li>
+</ul>
+<h3>Gate 6: Eased Movement (NEVER Linear)</h3>
+<p>All movement uses easing functions from effects.ts:</p>
+<ul>
+<li>Position changes: outCubic (smooth deceleration)</li>
+<li>Bouncy effects: outElastic or outBounce</li>
+<li>UI transitions: inOutCubic</li>
+<li>Decay effects: outQuad</li>
+<li>NEVER <code>transition: all</code> — always specify exact properties</li>
+<li>NEVER <code>animation: linear</code> — always use cubic-bezier or named easings</li>
+</ul>
+<h3>Gate 7: Death/Failure Sequence</h3>
+<p>Failure is NEVER just a text overlay. Every game has a multi-stage death sequence:</p>
+<ol>
+<li>Freeze frame / hitstop (50-100ms)</li>
+<li>Dramatic visual (explosion, shatter, dim, collapse)</li>
+<li>Screen response (shake, flash, zoom)</li>
+<li>Particle aftermath (debris, fade, dissolve)</li>
+<li>Score/stats reveal with dramatic timing</li>
+<li>Retry prompt with clear call-to-action</li>
+</ol>
+<h3>Gate 8: Victory/Win Celebration</h3>
+<p>Winning is NEVER just a score display. Every game has:</p>
+<ol>
+<li>Moment of recognition (brief pause, glow)</li>
+<li>Celebration burst (confetti, particles, flash)</li>
+<li>Score dramatic count-up (not instant display)</li>
+<li>Achievement/stats with satisfying reveal timing</li>
+<li>Play-again prompt that feels inviting</li>
+</ol>
+<h3>Gate 9: Color Storytelling</h3>
+<p>Colors communicate game state consistently:</p>
+<ul>
+<li><strong>Cyan/Blue</strong> (#43BFE3): Player, safe, neutral, UI</li>
+<li><strong>Gold/Amber</strong> (#F59E0B): Reward, score, items, positive</li>
+<li><strong>Red/Rose</strong> (#F43F5E): Danger, damage, error, negative</li>
+<li><strong>Green/Emerald</strong> (#10B981): Health, success, growth</li>
+<li><strong>Purple/Violet</strong> (#8B5CF6): Special, rare, magic, combo</li>
+<li><strong>White/Silver</strong> (#E2E8F0): Impact, flash, emphasis
+Color intensity scales with significance (bigger combo = brighter).</li>
+</ul>
+<h3>Gate 10: Mobile-First Input</h3>
+<p>Touch controls must feel as good as keyboard:</p>
+<ul>
+<li>Touch targets minimum 48px (WCAG)</li>
+<li>Swipe dead zone 30px (prevent accidental)</li>
+<li>Visual feedback on touch (ripple, press state) within 16ms</li>
+<li>D-pad buttons for games needing directional input</li>
+<li>Input buffering (2 frames) — never drop player input</li>
+</ul>
+<hr>
+<h2>Animation Principles (Disney&#39;s 12, Adapted)</h2>
+<h3>From Disney</h3>
+<ol>
+<li><strong>Squash &amp; Stretch</strong>: Gems compress on impact, tiles stretch on fast moves</li>
+<li><strong>Anticipation</strong>: Brief windup before every action (lean, glow, scale down)</li>
+<li><strong>Follow-Through</strong>: Overshoot + settle after movement completes</li>
+<li><strong>Slow In, Slow Out</strong>: Ease into and out of all movement (outCubic default)</li>
+<li><strong>Arcs</strong>: Natural curved motion paths, not straight lines</li>
+<li><strong>Secondary Action</strong>: Supporting animations reinforce primary (particles on move, glow on select)</li>
+<li><strong>Staging</strong>: Draw player attention to what matters (dim background during key events)</li>
+<li><strong>Appeal</strong>: Everything should look good. Clean shapes, consistent sizes, brand colors.</li>
+</ol>
+<h3>Game-Specific</h3>
+<ol start="9">
+<li><strong>Hitstop</strong>: 2-5 frame pause on significant impacts. Makes hits feel powerful.</li>
+<li><strong>Juice Escalation</strong>: Effects intensify with combos/streaks. 1x normal → 2x particles → 3x shake + flash.</li>
+<li><strong>Telegraph</strong>: Enemies/hazards signal intent before acting. Red pulse = about to attack. Glow = about to move.</li>
+<li><strong>Weight</strong>: Heavy objects move slowly with strong follow-through. Light objects move fast with minimal overshoot.</li>
+</ol>
+<hr>
+<h2>Genre Templates</h2>
+<h3>Puzzle (Crystal Match, 2048)</h3>
+<ul>
+<li><strong>Primary loop</strong>: Select → action → cascade → score</li>
+<li><strong>Key animation</strong>: Match celebration must escalate with chain length</li>
+<li><strong>Idle</strong>: Board should ripple subtly, individual pieces shimmer</li>
+<li><strong>Signature moment</strong>: Long cascade with escalating particles + screen shake</li>
+<li><strong>Anti-pattern</strong>: Instant gem removal without pop animation</li>
+</ul>
+<h3>Action/Runner (Neon Runner)</h3>
+<ul>
+<li><strong>Primary loop</strong>: Dodge → collect → speed up → survive</li>
+<li><strong>Key animation</strong>: Speed sensation through FOV, speed lines, ground acceleration</li>
+<li><strong>Idle</strong>: N/A (always moving), but player character has micro-animations</li>
+<li><strong>Signature moment</strong>: Near-miss with slow-motion + dramatic zoom</li>
+<li><strong>Anti-pattern</strong>: Flat perspective with no depth cues</li>
+</ul>
+<h3>Roguelike (Neon Depths)</h3>
+<ul>
+<li><strong>Primary loop</strong>: Explore → encounter → combat → loot → descend</li>
+<li><strong>Key animation</strong>: Combat hitstop is the most important single animation</li>
+<li><strong>Idle</strong>: Dungeon atmosphere — dust, flicker, enemy sway</li>
+<li><strong>Signature moment</strong>: Room reveal with radial light expansion</li>
+<li><strong>Anti-pattern</strong>: Instant teleport between tiles, instant damage numbers</li>
+</ul>
+<h3>Word (Word Forge)</h3>
+<ul>
+<li><strong>Primary loop</strong>: Type → submit → reveal → learn</li>
+<li><strong>Key animation</strong>: Sequential letter reveal with staggered timing</li>
+<li><strong>Idle</strong>: Gentle keyboard glow, submitted rows have subtle shimmer</li>
+<li><strong>Signature moment</strong>: Winning guess with all-green cascade + celebration</li>
+<li><strong>Anti-pattern</strong>: All letters revealed simultaneously</li>
+</ul>
+<h3>Arcade (Snake)</h3>
+<ul>
+<li><strong>Primary loop</strong>: Move → grow → avoid → survive</li>
+<li><strong>Key animation</strong>: Fluid interpolated movement (never grid-snap)</li>
+<li><strong>Idle</strong>: Body segments sway slightly, head has directional lean</li>
+<li><strong>Signature moment</strong>: Death sequence rippling from head to tail</li>
+<li><strong>Anti-pattern</strong>: Stepped movement where snake teleports between cells</li>
+</ul>
+<hr>
+<h2>Technical Standards</h2>
+<h3>Canvas Games (Neon Depths, Neon Runner, Snake)</h3>
+<ul>
+<li><strong>Game loop</strong>: <code>requestAnimationFrame</code> with delta-time tracking</li>
+<li><strong>Rendering</strong>: Clear → draw background → draw entities → draw effects → draw HUD</li>
+<li><strong>Effects pipeline</strong>: <code>ctx.save()</code> → apply shake offset → draw scene → <code>ctx.restore()</code> → draw flash overlay</li>
+<li><strong>Particle budget</strong>: Mobile 100 max, desktop 200 max (enforced by ParticleSystem)</li>
+<li><strong>State</strong>: Game state in <code>useRef</code> (not <code>useState</code>) to avoid React re-renders in loop</li>
+<li><strong>Resolution</strong>: Canvas sized to container, CSS handles responsive scaling</li>
+</ul>
+<h3>DOM Games (Crystal Match, 2048, Word Forge, Memory Match)</h3>
+<ul>
+<li><strong>Animations</strong>: CSS <code>@keyframes</code> injected via <code>&lt;style&gt;</code> tag, or Framer Motion</li>
+<li><strong>Timing</strong>: CSS <code>cubic-bezier(0.33, 1, 0.68, 1)</code> = outCubic, <code>cubic-bezier(0.34, 1.56, 0.64, 1)</code> = outBack</li>
+<li><strong>Stagger</strong>: CSS custom property <code>--delay</code> with <code>animation-delay: var(--delay)</code> for sequential reveals</li>
+<li><strong>State management</strong>: React useState for UI state, useRef for animation state</li>
+<li><strong>Performance</strong>: <code>will-change: transform</code> on animated elements, <code>transform</code> over <code>top/left</code></li>
+</ul>
+<h3>Shared Engine (<code>lib/games/effects.ts</code>)</h3>
+<ul>
+<li>ParticleSystem: burst, sparkle, floatingText</li>
+<li>ScreenShake: intensity decay via outQuad</li>
+<li>FlashEffect: color overlay with fade</li>
+<li>AnimatedValue: smooth numeric transitions</li>
+<li>GameTimer: frame-based callbacks and sequences</li>
+<li>Hitstop: freeze-frame for impact emphasis</li>
+<li>GameAudio: Web Audio API oscillator stubs</li>
+<li>Easing: outQuad, outCubic, outElastic, outBounce, inOutCubic</li>
+<li>Colors: NEON brand palette, hexToRGBA, lerpColor, pulseAlpha</li>
+</ul>
+<hr>
+<h2>Anti-Patterns (NEVER DO)</h2>
+<table>
+<thead>
+<tr>
+<th>Anti-Pattern</th>
+<th>Why It&#39;s Bad</th>
+<th>Do This Instead</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Instant state change</td>
+<td>Feels like a bug, not a game</td>
+<td>Animate everything with easing</td>
+</tr>
+<tr>
+<td><code>transition: all 0.3s</code></td>
+<td>Transitions wrong properties, looks sloppy</td>
+<td>Specify exact properties and durations</td>
+</tr>
+<tr>
+<td><code>animation: linear</code></td>
+<td>Robotic, unnatural movement</td>
+<td>Use cubic-bezier easing curves</td>
+</tr>
+<tr>
+<td>Static entities</td>
+<td>Dead, lifeless world</td>
+<td>Add idle animations to everything</td>
+</tr>
+<tr>
+<td>Text-only game over</td>
+<td>Anticlimactic, cheap feeling</td>
+<td>Multi-stage death sequence with effects</td>
+</tr>
+<tr>
+<td>Score instant display</td>
+<td>No satisfaction, no drama</td>
+<td>Score count-up with accelerating pace</td>
+</tr>
+<tr>
+<td>Uniform particle bursts</td>
+<td>Looks like a default particle emitter</td>
+<td>Vary size, speed, color, gravity per context</td>
+</tr>
+<tr>
+<td>Grid-snap movement</td>
+<td>Characters teleport, feels jarring</td>
+<td>Interpolate position over 60-80% of tick</td>
+</tr>
+<tr>
+<td>Same shake for everything</td>
+<td>Loses meaning, becomes noise</td>
+<td>Scale shake intensity to event significance</td>
+</tr>
+<tr>
+<td>Ignoring mobile</td>
+<td>Half the audience can&#39;t play</td>
+<td>Touch-first, keyboard-enhanced</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Shared Resources</h2>
+<ul>
+<li><strong>Effects Engine</strong>: <code>lib/games/effects.ts</code> — import { ParticleSystem, ScreenShake, FlashEffect, AnimatedValue, GameTimer, Hitstop, GameAudio, ease, NEON, NEON_BURST }</li>
+<li><strong>Game Registry</strong>: <code>lib/games/registry.ts</code> — GameEntry, GameQualityMetrics, getGameBySlug, getQualityReport</li>
+<li><strong>Brand Colors</strong>: NEON object (cyan, violet, purple, amber, emerald, rose, fuchsia, lime, white)</li>
+<li><strong>Production Path</strong>: <code>.worktrees/vercel-ui-ux/app/games/</code></li>
+</ul>
+<hr>
+<p><em>Every frame is a chance to delight. Build like Supergiant, polish like Nintendo.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

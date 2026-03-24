@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Flow Nexus Platform Management</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/skills/flow-nexus-platform/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Flow Nexus Platform Management</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fskills%2Fflow-nexus-platform">flow-nexus-platform</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: flow-nexus-platform
+description: Comprehensive Flow Nexus platform management - authentication, sandboxes, app deployment, payments, and challenges
+category: platform
+version: 1.0.0
+author: Flow Nexus
+tags: [authentication, sandboxes, deployment, payments, gamification, cloud]</h2>
+<h1>Flow Nexus Platform Management</h1>
+<p>Comprehensive platform management for Flow Nexus - covering authentication, sandbox execution, app deployment, credit management, and coding challenges.</p>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#authentication--user-management">Authentication &amp; User Management</a></li>
+<li><a href="#sandbox-management">Sandbox Management</a></li>
+<li><a href="#app-store--deployment">App Store &amp; Deployment</a></li>
+<li><a href="#payments--credits">Payments &amp; Credits</a></li>
+<li><a href="#challenges--achievements">Challenges &amp; Achievements</a></li>
+<li><a href="#storage--real-time">Storage &amp; Real-time</a></li>
+<li><a href="#system-utilities">System Utilities</a></li>
+</ol>
+<hr>
+<h2>Authentication &amp; User Management</h2>
+<h3>Registration &amp; Login</h3>
+<p><strong>Register New Account</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_register({
+  email: &quot;user@example.com&quot;,
+  password: &quot;secure_password&quot;,
+  full_name: &quot;Your Name&quot;,
+  username: &quot;unique_username&quot; // optional
+})
+</code></pre>
+<p><strong>Login</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_login({
+  email: &quot;user@example.com&quot;,
+  password: &quot;your_password&quot;
+})
+</code></pre>
+<p><strong>Check Authentication Status</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__auth_status({ detailed: true })
+</code></pre>
+<p><strong>Logout</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_logout()
+</code></pre>
+<h3>Password Management</h3>
+<p><strong>Request Password Reset</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_reset_password({
+  email: &quot;user@example.com&quot;
+})
+</code></pre>
+<p><strong>Update Password with Token</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_update_password({
+  token: &quot;reset_token_from_email&quot;,
+  new_password: &quot;new_secure_password&quot;
+})
+</code></pre>
+<p><strong>Verify Email</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_verify_email({
+  token: &quot;verification_token_from_email&quot;
+})
+</code></pre>
+<h3>Profile Management</h3>
+<p><strong>Get User Profile</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_profile({
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<p><strong>Update Profile</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_update_profile({
+  user_id: &quot;your_user_id&quot;,
+  updates: {
+    full_name: &quot;Updated Name&quot;,
+    bio: &quot;AI Developer and researcher&quot;,
+    github_username: &quot;yourusername&quot;,
+    twitter_handle: &quot;@yourhandle&quot;
+  }
+})
+</code></pre>
+<p><strong>Get User Statistics</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_stats({
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<p><strong>Upgrade User Tier</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__user_upgrade({
+  user_id: &quot;your_user_id&quot;,
+  tier: &quot;pro&quot; // pro, enterprise
+})
+</code></pre>
+<hr>
+<h2>Sandbox Management</h2>
+<h3>Create &amp; Configure Sandboxes</h3>
+<p><strong>Create Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_create({
+  template: &quot;node&quot;, // node, python, react, nextjs, vanilla, base, claude-code
+  name: &quot;my-sandbox&quot;,
+  env_vars: {
+    API_KEY: &quot;your_api_key&quot;,
+    NODE_ENV: &quot;development&quot;,
+    DATABASE_URL: &quot;postgres://...&quot;
+  },
+  install_packages: [&quot;express&quot;, &quot;cors&quot;, &quot;dotenv&quot;],
+  startup_script: &quot;npm run dev&quot;,
+  timeout: 3600, // seconds
+  metadata: {
+    project: &quot;my-project&quot;,
+    environment: &quot;staging&quot;
+  }
+})
+</code></pre>
+<p><strong>Configure Existing Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_configure({
+  sandbox_id: &quot;sandbox_id&quot;,
+  env_vars: {
+    NEW_VAR: &quot;value&quot;
+  },
+  install_packages: [&quot;axios&quot;, &quot;lodash&quot;],
+  run_commands: [&quot;npm run migrate&quot;, &quot;npm run seed&quot;],
+  anthropic_key: &quot;sk-ant-...&quot; // For Claude Code integration
+})
+</code></pre>
+<h3>Execute Code</h3>
+<p><strong>Run Code in Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_execute({
+  sandbox_id: &quot;sandbox_id&quot;,
+  code: `
+    console.log(&#39;Hello from sandbox!&#39;);
+    const result = await fetch(&#39;https://api.example.com/data&#39;);
+    const data = await result.json();
+    return data;
+  `,
+  language: &quot;javascript&quot;,
+  capture_output: true,
+  timeout: 60, // seconds
+  working_dir: &quot;/app&quot;,
+  env_vars: {
+    TEMP_VAR: &quot;override&quot;
+  }
+})
+</code></pre>
+<h3>Manage Sandboxes</h3>
+<p><strong>List Sandboxes</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_list({
+  status: &quot;running&quot; // running, stopped, all
+})
+</code></pre>
+<p><strong>Get Sandbox Status</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_status({
+  sandbox_id: &quot;sandbox_id&quot;
+})
+</code></pre>
+<p><strong>Upload File to Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_upload({
+  sandbox_id: &quot;sandbox_id&quot;,
+  file_path: &quot;/app/config/database.json&quot;,
+  content: JSON.stringify(databaseConfig, null, 2)
+})
+</code></pre>
+<p><strong>Get Sandbox Logs</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_logs({
+  sandbox_id: &quot;sandbox_id&quot;,
+  lines: 100 // max 1000
+})
+</code></pre>
+<p><strong>Stop Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_stop({
+  sandbox_id: &quot;sandbox_id&quot;
+})
+</code></pre>
+<p><strong>Delete Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_delete({
+  sandbox_id: &quot;sandbox_id&quot;
+})
+</code></pre>
+<h3>Sandbox Templates</h3>
+<ul>
+<li><strong>node</strong>: Node.js environment with npm</li>
+<li><strong>python</strong>: Python 3.x with pip</li>
+<li><strong>react</strong>: React development setup</li>
+<li><strong>nextjs</strong>: Next.js full-stack framework</li>
+<li><strong>vanilla</strong>: Basic HTML/CSS/JS</li>
+<li><strong>base</strong>: Minimal Linux environment</li>
+<li><strong>claude-code</strong>: Claude Code integrated environment</li>
+</ul>
+<h3>Common Sandbox Patterns</h3>
+<p><strong>API Development Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_create({
+  template: &quot;node&quot;,
+  name: &quot;api-development&quot;,
+  install_packages: [
+    &quot;express&quot;,
+    &quot;cors&quot;,
+    &quot;helmet&quot;,
+    &quot;dotenv&quot;,
+    &quot;jsonwebtoken&quot;,
+    &quot;bcrypt&quot;
+  ],
+  env_vars: {
+    PORT: &quot;3000&quot;,
+    NODE_ENV: &quot;development&quot;
+  },
+  startup_script: &quot;npm run dev&quot;
+})
+</code></pre>
+<p><strong>Machine Learning Sandbox</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_create({
+  template: &quot;python&quot;,
+  name: &quot;ml-training&quot;,
+  install_packages: [
+    &quot;numpy&quot;,
+    &quot;pandas&quot;,
+    &quot;scikit-learn&quot;,
+    &quot;matplotlib&quot;,
+    &quot;tensorflow&quot;
+  ],
+  env_vars: {
+    CUDA_VISIBLE_DEVICES: &quot;0&quot;
+  }
+})
+</code></pre>
+<p><strong>Full-Stack Development</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_create({
+  template: &quot;nextjs&quot;,
+  name: &quot;fullstack-app&quot;,
+  install_packages: [
+    &quot;prisma&quot;,
+    &quot;@prisma/client&quot;,
+    &quot;next-auth&quot;,
+    &quot;zod&quot;
+  ],
+  env_vars: {
+    DATABASE_URL: &quot;postgresql://...&quot;,
+    NEXTAUTH_SECRET: &quot;secret&quot;
+  }
+})
+</code></pre>
+<hr>
+<h2>App Store &amp; Deployment</h2>
+<h3>Browse &amp; Search</h3>
+<p><strong>Search Applications</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_search({
+  search: &quot;authentication api&quot;,
+  category: &quot;backend&quot;,
+  featured: true,
+  limit: 20
+})
+</code></pre>
+<p><strong>Get App Details</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_get({
+  app_id: &quot;app_id&quot;
+})
+</code></pre>
+<p><strong>List Templates</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_store_list_templates({
+  category: &quot;web-api&quot;,
+  tags: [&quot;express&quot;, &quot;jwt&quot;, &quot;typescript&quot;],
+  limit: 20
+})
+</code></pre>
+<p><strong>Get Template Details</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__template_get({
+  template_name: &quot;express-api-starter&quot;,
+  template_id: &quot;template_id&quot; // alternative
+})
+</code></pre>
+<p><strong>List All Available Templates</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__template_list({
+  category: &quot;backend&quot;,
+  template_type: &quot;starter&quot;,
+  featured: true,
+  limit: 50
+})
+</code></pre>
+<h3>Publish Applications</h3>
+<p><strong>Publish App to Store</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_store_publish_app({
+  name: &quot;JWT Authentication Service&quot;,
+  description: &quot;Production-ready JWT authentication microservice with refresh tokens&quot;,
+  category: &quot;backend&quot;,
+  version: &quot;1.0.0&quot;,
+  source_code: sourceCodeString,
+  tags: [&quot;auth&quot;, &quot;jwt&quot;, &quot;express&quot;, &quot;typescript&quot;, &quot;security&quot;],
+  metadata: {
+    author: &quot;Your Name&quot;,
+    license: &quot;MIT&quot;,
+    repository: &quot;github.com/username/repo&quot;,
+    homepage: &quot;https://yourapp.com&quot;,
+    documentation: &quot;https://docs.yourapp.com&quot;
+  }
+})
+</code></pre>
+<p><strong>Update Application</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_update({
+  app_id: &quot;app_id&quot;,
+  updates: {
+    version: &quot;1.1.0&quot;,
+    description: &quot;Added OAuth2 support&quot;,
+    tags: [&quot;auth&quot;, &quot;jwt&quot;, &quot;oauth2&quot;, &quot;express&quot;],
+    source_code: updatedSourceCode
+  }
+})
+</code></pre>
+<h3>Deploy Templates</h3>
+<p><strong>Deploy Template</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__template_deploy({
+  template_name: &quot;express-api-starter&quot;,
+  deployment_name: &quot;my-production-api&quot;,
+  variables: {
+    api_key: &quot;your_api_key&quot;,
+    database_url: &quot;postgres://user:pass@host:5432/db&quot;,
+    redis_url: &quot;redis://localhost:6379&quot;
+  },
+  env_vars: {
+    NODE_ENV: &quot;production&quot;,
+    PORT: &quot;8080&quot;,
+    LOG_LEVEL: &quot;info&quot;
+  }
+})
+</code></pre>
+<h3>Analytics &amp; Management</h3>
+<p><strong>Get App Analytics</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_analytics({
+  app_id: &quot;your_app_id&quot;,
+  timeframe: &quot;30d&quot; // 24h, 7d, 30d, 90d
+})
+</code></pre>
+<p><strong>View Installed Apps</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_installed({
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<p><strong>Get Market Statistics</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__market_data()
+</code></pre>
+<h3>App Categories</h3>
+<ul>
+<li><strong>web-api</strong>: RESTful APIs and microservices</li>
+<li><strong>frontend</strong>: React, Vue, Angular applications</li>
+<li><strong>full-stack</strong>: Complete end-to-end applications</li>
+<li><strong>cli-tools</strong>: Command-line utilities</li>
+<li><strong>data-processing</strong>: ETL pipelines and analytics</li>
+<li><strong>ml-models</strong>: Pre-trained machine learning models</li>
+<li><strong>blockchain</strong>: Web3 and blockchain applications</li>
+<li><strong>mobile</strong>: React Native and mobile apps</li>
+</ul>
+<h3>Publishing Best Practices</h3>
+<ol>
+<li><strong>Documentation</strong>: Include comprehensive README with setup instructions</li>
+<li><strong>Examples</strong>: Provide usage examples and sample configurations</li>
+<li><strong>Testing</strong>: Include test suite and CI/CD configuration</li>
+<li><strong>Versioning</strong>: Use semantic versioning (MAJOR.MINOR.PATCH)</li>
+<li><strong>Licensing</strong>: Add clear license information (MIT, Apache, etc.)</li>
+<li><strong>Deployment</strong>: Include Docker/docker-compose configurations</li>
+<li><strong>Migrations</strong>: Provide upgrade guides for version updates</li>
+<li><strong>Security</strong>: Document security considerations and best practices</li>
+</ol>
+<h3>Revenue Sharing</h3>
+<ul>
+<li>Earn rUv credits when others deploy your templates</li>
+<li>Set pricing (0 for free, or credits for premium)</li>
+<li>Track usage and earnings via analytics</li>
+<li>Withdraw credits or use for Flow Nexus services</li>
+</ul>
+<hr>
+<h2>Payments &amp; Credits</h2>
+<h3>Balance &amp; Credits</h3>
+<p><strong>Check Credit Balance</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__check_balance()
+</code></pre>
+<p><strong>Check rUv Balance</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__ruv_balance({
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<p><strong>View Transaction History</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__ruv_history({
+  user_id: &quot;your_user_id&quot;,
+  limit: 100
+})
+</code></pre>
+<p><strong>Get Payment History</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__get_payment_history({
+  limit: 50
+})
+</code></pre>
+<h3>Purchase Credits</h3>
+<p><strong>Create Payment Link</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__create_payment_link({
+  amount: 50 // USD, minimum $10
+})
+// Returns secure Stripe payment URL
+</code></pre>
+<h3>Auto-Refill Configuration</h3>
+<p><strong>Enable Auto-Refill</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__configure_auto_refill({
+  enabled: true,
+  threshold: 100,  // Refill when credits drop below 100
+  amount: 50       // Purchase $50 worth of credits
+})
+</code></pre>
+<p><strong>Disable Auto-Refill</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__configure_auto_refill({
+  enabled: false
+})
+</code></pre>
+<h3>Credit Pricing</h3>
+<p><strong>Service Costs:</strong></p>
+<ul>
+<li><strong>Swarm Operations</strong>: 1-10 credits/hour</li>
+<li><strong>Sandbox Execution</strong>: 0.5-5 credits/hour</li>
+<li><strong>Neural Training</strong>: 5-50 credits/job</li>
+<li><strong>Workflow Runs</strong>: 0.1-1 credit/execution</li>
+<li><strong>Storage</strong>: 0.01 credits/GB/day</li>
+<li><strong>API Calls</strong>: 0.001-0.01 credits/request</li>
+</ul>
+<h3>Earning Credits</h3>
+<p><strong>Ways to Earn:</strong></p>
+<ol>
+<li><strong>Complete Challenges</strong>: 10-500 credits per challenge</li>
+<li><strong>Publish Templates</strong>: Earn when others deploy (you set pricing)</li>
+<li><strong>Referral Program</strong>: Bonus credits for user invites</li>
+<li><strong>Daily Login</strong>: Small daily bonus (5-10 credits)</li>
+<li><strong>Achievements</strong>: Unlock milestone rewards (50-1000 credits)</li>
+<li><strong>App Store Sales</strong>: Revenue share from paid templates</li>
+</ol>
+<p><strong>Earn Credits Programmatically</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_store_earn_ruv({
+  user_id: &quot;your_user_id&quot;,
+  amount: 100,
+  reason: &quot;Completed expert algorithm challenge&quot;,
+  source: &quot;challenge&quot; // challenge, app_usage, referral, etc.
+})
+</code></pre>
+<h3>Subscription Tiers</h3>
+<p><strong>Free Tier</strong></p>
+<ul>
+<li>100 free credits monthly</li>
+<li>Basic sandbox access (2 concurrent)</li>
+<li>Limited swarm agents (3 max)</li>
+<li>Community support</li>
+<li>1GB storage</li>
+</ul>
+<p><strong>Pro Tier ($29/month)</strong></p>
+<ul>
+<li>1000 credits monthly</li>
+<li>Priority sandbox access (10 concurrent)</li>
+<li>Unlimited swarm agents</li>
+<li>Advanced workflows</li>
+<li>Email support</li>
+<li>10GB storage</li>
+<li>Early access to features</li>
+</ul>
+<p><strong>Enterprise Tier (Custom Pricing)</strong></p>
+<ul>
+<li>Unlimited credits</li>
+<li>Dedicated compute resources</li>
+<li>Custom neural models</li>
+<li>99.9% SLA guarantee</li>
+<li>Priority 24/7 support</li>
+<li>Unlimited storage</li>
+<li>White-label options</li>
+<li>On-premise deployment</li>
+</ul>
+<h3>Cost Optimization Tips</h3>
+<ol>
+<li><strong>Use Smaller Sandboxes</strong>: Choose appropriate templates (base vs full-stack)</li>
+<li><strong>Optimize Neural Training</strong>: Tune hyperparameters, reduce epochs</li>
+<li><strong>Batch Operations</strong>: Group workflow executions together</li>
+<li><strong>Clean Up Resources</strong>: Delete unused sandboxes and storage</li>
+<li><strong>Monitor Usage</strong>: Check <code>user_stats</code> regularly</li>
+<li><strong>Use Free Templates</strong>: Leverage community templates</li>
+<li><strong>Schedule Off-Peak</strong>: Run heavy jobs during low-cost periods</li>
+</ol>
+<hr>
+<h2>Challenges &amp; Achievements</h2>
+<h3>Browse Challenges</h3>
+<p><strong>List Available Challenges</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__challenges_list({
+  difficulty: &quot;intermediate&quot;, // beginner, intermediate, advanced, expert
+  category: &quot;algorithms&quot;,
+  status: &quot;active&quot;, // active, completed, locked
+  limit: 20
+})
+</code></pre>
+<p><strong>Get Challenge Details</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__challenge_get({
+  challenge_id: &quot;two-sum-problem&quot;
+})
+</code></pre>
+<h3>Submit Solutions</h3>
+<p><strong>Submit Challenge Solution</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__challenge_submit({
+  challenge_id: &quot;challenge_id&quot;,
+  user_id: &quot;your_user_id&quot;,
+  solution_code: `
+    function twoSum(nums, target) {
+      const map = new Map();
+      for (let i = 0; i &lt; nums.length; i++) {
+        const complement = target - nums[i];
+        if (map.has(complement)) {
+          return [map.get(complement), i];
+        }
+        map.set(nums[i], i);
+      }
+      return [];
+    }
+  `,
+  language: &quot;javascript&quot;,
+  execution_time: 45 // milliseconds (optional)
+})
+</code></pre>
+<p><strong>Mark Challenge as Complete</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__app_store_complete_challenge({
+  challenge_id: &quot;challenge_id&quot;,
+  user_id: &quot;your_user_id&quot;,
+  submission_data: {
+    passed_tests: 10,
+    total_tests: 10,
+    execution_time: 45,
+    memory_usage: 2048 // KB
+  }
+})
+</code></pre>
+<h3>Leaderboards</h3>
+<p><strong>Global Leaderboard</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__leaderboard_get({
+  type: &quot;global&quot;, // global, weekly, monthly, challenge
+  limit: 100
+})
+</code></pre>
+<p><strong>Challenge-Specific Leaderboard</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__leaderboard_get({
+  type: &quot;challenge&quot;,
+  challenge_id: &quot;specific_challenge_id&quot;,
+  limit: 50
+})
+</code></pre>
+<h3>Achievements &amp; Badges</h3>
+<p><strong>List User Achievements</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__achievements_list({
+  user_id: &quot;your_user_id&quot;,
+  category: &quot;speed_demon&quot; // Optional filter
+})
+</code></pre>
+<h3>Challenge Categories</h3>
+<ul>
+<li><strong>algorithms</strong>: Classic algorithm problems (sorting, searching, graphs)</li>
+<li><strong>data-structures</strong>: DS implementation (trees, heaps, tries)</li>
+<li><strong>system-design</strong>: Architecture and scalability challenges</li>
+<li><strong>optimization</strong>: Performance and efficiency problems</li>
+<li><strong>security</strong>: Security-focused vulnerabilities and fixes</li>
+<li><strong>ml-basics</strong>: Machine learning fundamentals</li>
+<li><strong>distributed-systems</strong>: Concurrency and distributed computing</li>
+<li><strong>databases</strong>: Query optimization and schema design</li>
+</ul>
+<h3>Challenge Difficulty Rewards</h3>
+<ul>
+<li><strong>Beginner</strong>: 10-25 credits</li>
+<li><strong>Intermediate</strong>: 50-100 credits</li>
+<li><strong>Advanced</strong>: 150-300 credits</li>
+<li><strong>Expert</strong>: 400-500 credits</li>
+<li><strong>Master</strong>: 600-1000 credits</li>
+</ul>
+<h3>Achievement Types</h3>
+<ul>
+<li><strong>Speed Demon</strong>: Complete challenges in record time</li>
+<li><strong>Code Golf</strong>: Minimize code length</li>
+<li><strong>Perfect Score</strong>: 100% test pass rate</li>
+<li><strong>Streak Master</strong>: Complete challenges N days in a row</li>
+<li><strong>Polyglot</strong>: Solve in multiple languages</li>
+<li><strong>Debugger</strong>: Fix broken code challenges</li>
+<li><strong>Optimizer</strong>: Achieve top performance benchmarks</li>
+</ul>
+<h3>Tips for Success</h3>
+<ol>
+<li><strong>Start Simple</strong>: Begin with beginner challenges to build confidence</li>
+<li><strong>Review Solutions</strong>: Study top solutions after completing</li>
+<li><strong>Optimize</strong>: Aim for both correctness and performance</li>
+<li><strong>Daily Practice</strong>: Complete daily challenges for bonus credits</li>
+<li><strong>Community</strong>: Engage with discussions and learn from others</li>
+<li><strong>Track Progress</strong>: Monitor achievements and leaderboard position</li>
+<li><strong>Experiment</strong>: Try multiple approaches to problems</li>
+</ol>
+<hr>
+<h2>Storage &amp; Real-time</h2>
+<h3>File Storage</h3>
+<p><strong>Upload File</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__storage_upload({
+  bucket: &quot;my-bucket&quot;, // public, private, shared, temp
+  path: &quot;data/users.json&quot;,
+  content: JSON.stringify(userData, null, 2),
+  content_type: &quot;application/json&quot;
+})
+</code></pre>
+<p><strong>List Files</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__storage_list({
+  bucket: &quot;my-bucket&quot;,
+  path: &quot;data/&quot;, // prefix filter
+  limit: 100
+})
+</code></pre>
+<p><strong>Get Public URL</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__storage_get_url({
+  bucket: &quot;my-bucket&quot;,
+  path: &quot;data/report.pdf&quot;,
+  expires_in: 3600 // seconds (default: 1 hour)
+})
+</code></pre>
+<p><strong>Delete File</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__storage_delete({
+  bucket: &quot;my-bucket&quot;,
+  path: &quot;data/old-file.json&quot;
+})
+</code></pre>
+<h3>Storage Buckets</h3>
+<ul>
+<li><strong>public</strong>: Publicly accessible files (CDN-backed)</li>
+<li><strong>private</strong>: User-only access with authentication</li>
+<li><strong>shared</strong>: Team collaboration with ACL</li>
+<li><strong>temp</strong>: Auto-deleted after 24 hours</li>
+</ul>
+<h3>Real-time Subscriptions</h3>
+<p><strong>Subscribe to Database Changes</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__realtime_subscribe({
+  table: &quot;tasks&quot;,
+  event: &quot;INSERT&quot;, // INSERT, UPDATE, DELETE, *
+  filter: &quot;status=eq.pending AND priority=eq.high&quot;
+})
+</code></pre>
+<p><strong>List Active Subscriptions</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__realtime_list()
+</code></pre>
+<p><strong>Unsubscribe</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__realtime_unsubscribe({
+  subscription_id: &quot;subscription_id&quot;
+})
+</code></pre>
+<h3>Execution Monitoring</h3>
+<p><strong>Subscribe to Execution Stream</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__execution_stream_subscribe({
+  stream_type: &quot;claude-flow-swarm&quot;, // claude-code, claude-flow-swarm, claude-flow-hive-mind, github-integration
+  deployment_id: &quot;deployment_id&quot;,
+  sandbox_id: &quot;sandbox_id&quot; // alternative
+})
+</code></pre>
+<p><strong>Get Stream Status</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__execution_stream_status({
+  stream_id: &quot;stream_id&quot;
+})
+</code></pre>
+<p><strong>List Generated Files</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__execution_files_list({
+  stream_id: &quot;stream_id&quot;,
+  created_by: &quot;claude-flow&quot;, // claude-code, claude-flow, git-clone, user
+  file_type: &quot;javascript&quot; // filter by extension
+})
+</code></pre>
+<p><strong>Get File Content from Execution</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__execution_file_get({
+  file_id: &quot;file_id&quot;,
+  file_path: &quot;/path/to/file.js&quot; // alternative
+})
+</code></pre>
+<hr>
+<h2>System Utilities</h2>
+<h3>Queen Seraphina AI Assistant</h3>
+<p><strong>Seek Guidance from Seraphina</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__seraphina_chat({
+  message: &quot;How should I architect a distributed microservices system?&quot;,
+  enable_tools: true, // Allow her to create swarms, deploy code, etc.
+  conversation_history: [
+    { role: &quot;user&quot;, content: &quot;I need help with system architecture&quot; },
+    { role: &quot;assistant&quot;, content: &quot;I can help you design that. What are your requirements?&quot; }
+  ]
+})
+</code></pre>
+<p>Queen Seraphina is an advanced AI assistant with:</p>
+<ul>
+<li>Deep expertise in distributed systems</li>
+<li>Ability to create swarms and orchestrate agents</li>
+<li>Code deployment and architecture design</li>
+<li>Multi-turn conversation with context retention</li>
+<li>Tool usage for hands-on assistance</li>
+</ul>
+<h3>System Health &amp; Monitoring</h3>
+<p><strong>Check System Health</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__system_health()
+</code></pre>
+<p><strong>View Audit Logs</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__audit_log({
+  user_id: &quot;your_user_id&quot;, // optional filter
+  limit: 100
+})
+</code></pre>
+<h3>Authentication Management</h3>
+<p><strong>Initialize Authentication</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__auth_init({
+  mode: &quot;user&quot; // user, service
+})
+</code></pre>
+<hr>
+<h2>Quick Start Guide</h2>
+<h3>Step 1: Register &amp; Login</h3>
+<pre><code class="language-javascript">// Register
+mcp__flow-nexus__user_register({
+  email: &quot;dev@example.com&quot;,
+  password: &quot;SecurePass123!&quot;,
+  full_name: &quot;Developer Name&quot;
+})
+
+// Login
+mcp__flow-nexus__user_login({
+  email: &quot;dev@example.com&quot;,
+  password: &quot;SecurePass123!&quot;
+})
+
+// Check auth status
+mcp__flow-nexus__auth_status({ detailed: true })
+</code></pre>
+<h3>Step 2: Configure Billing</h3>
+<pre><code class="language-javascript">// Check current balance
+mcp__flow-nexus__check_balance()
+
+// Add credits
+const paymentLink = mcp__flow-nexus__create_payment_link({
+  amount: 50 // $50
+})
+
+// Setup auto-refill
+mcp__flow-nexus__configure_auto_refill({
+  enabled: true,
+  threshold: 100,
+  amount: 50
+})
+</code></pre>
+<h3>Step 3: Create Your First Sandbox</h3>
+<pre><code class="language-javascript">// Create development sandbox
+const sandbox = mcp__flow-nexus__sandbox_create({
+  template: &quot;node&quot;,
+  name: &quot;dev-environment&quot;,
+  install_packages: [&quot;express&quot;, &quot;dotenv&quot;],
+  env_vars: {
+    NODE_ENV: &quot;development&quot;
+  }
+})
+
+// Execute code
+mcp__flow-nexus__sandbox_execute({
+  sandbox_id: sandbox.id,
+  code: &#39;console.log(&quot;Hello Flow Nexus!&quot;)&#39;,
+  language: &quot;javascript&quot;
+})
+</code></pre>
+<h3>Step 4: Deploy an App</h3>
+<pre><code class="language-javascript">// Browse templates
+mcp__flow-nexus__template_list({
+  category: &quot;backend&quot;,
+  featured: true
+})
+
+// Deploy template
+mcp__flow-nexus__template_deploy({
+  template_name: &quot;express-api-starter&quot;,
+  deployment_name: &quot;my-api&quot;,
+  variables: {
+    database_url: &quot;postgres://...&quot;
+  }
+})
+</code></pre>
+<h3>Step 5: Complete a Challenge</h3>
+<pre><code class="language-javascript">// Find challenges
+mcp__flow-nexus__challenges_list({
+  difficulty: &quot;beginner&quot;,
+  category: &quot;algorithms&quot;
+})
+
+// Submit solution
+mcp__flow-nexus__challenge_submit({
+  challenge_id: &quot;fizzbuzz&quot;,
+  user_id: &quot;your_id&quot;,
+  solution_code: &quot;...&quot;,
+  language: &quot;javascript&quot;
+})
+</code></pre>
+<hr>
+<h2>Best Practices</h2>
+<h3>Security</h3>
+<ol>
+<li>Never hardcode API keys - use environment variables</li>
+<li>Enable 2FA when available</li>
+<li>Regularly rotate passwords and tokens</li>
+<li>Use private buckets for sensitive data</li>
+<li>Review audit logs periodically</li>
+<li>Set appropriate file expiration times</li>
+</ol>
+<h3>Performance</h3>
+<ol>
+<li>Clean up unused sandboxes to save credits</li>
+<li>Use smaller sandbox templates when possible</li>
+<li>Optimize storage by deleting old files</li>
+<li>Batch operations to reduce API calls</li>
+<li>Monitor usage via <code>user_stats</code></li>
+<li>Use temp buckets for transient data</li>
+</ol>
+<h3>Development</h3>
+<ol>
+<li>Start with sandbox testing before deployment</li>
+<li>Version your applications semantically</li>
+<li>Document all templates thoroughly</li>
+<li>Include tests in published apps</li>
+<li>Use execution monitoring for debugging</li>
+<li>Leverage real-time subscriptions for live updates</li>
+</ol>
+<h3>Cost Management</h3>
+<ol>
+<li>Set auto-refill thresholds carefully</li>
+<li>Monitor credit usage regularly</li>
+<li>Complete daily challenges for bonus credits</li>
+<li>Publish templates to earn passive credits</li>
+<li>Use free-tier resources when appropriate</li>
+<li>Schedule heavy jobs during off-peak times</li>
+</ol>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>Authentication Issues</h3>
+<ul>
+<li><strong>Login Failed</strong>: Check email/password, verify email first</li>
+<li><strong>Token Expired</strong>: Re-login to get fresh tokens</li>
+<li><strong>Permission Denied</strong>: Check tier limits, upgrade if needed</li>
+</ul>
+<h3>Sandbox Issues</h3>
+<ul>
+<li><strong>Sandbox Won&#39;t Start</strong>: Check template compatibility, verify credits</li>
+<li><strong>Execution Timeout</strong>: Increase timeout parameter or optimize code</li>
+<li><strong>Out of Memory</strong>: Use larger template or optimize memory usage</li>
+<li><strong>Package Install Failed</strong>: Check package name, verify npm/pip availability</li>
+</ul>
+<h3>Payment Issues</h3>
+<ul>
+<li><strong>Payment Failed</strong>: Check payment method, sufficient funds</li>
+<li><strong>Credits Not Applied</strong>: Allow 5-10 minutes for processing</li>
+<li><strong>Auto-refill Not Working</strong>: Verify payment method on file</li>
+</ul>
+<h3>Challenge Issues</h3>
+<ul>
+<li><strong>Submission Rejected</strong>: Check code syntax, ensure all tests pass</li>
+<li><strong>Wrong Answer</strong>: Review test cases, check edge cases</li>
+<li><strong>Performance Too Slow</strong>: Optimize algorithm complexity</li>
+</ul>
+<hr>
+<h2>Support &amp; Resources</h2>
+<ul>
+<li><strong>Documentation</strong>: <a href="https://docs.flow-nexus.ruv.io">https://docs.flow-nexus.ruv.io</a></li>
+<li><strong>API Reference</strong>: <a href="https://api.flow-nexus.ruv.io/docs">https://api.flow-nexus.ruv.io/docs</a></li>
+<li><strong>Status Page</strong>: <a href="https://status.flow-nexus.ruv.io">https://status.flow-nexus.ruv.io</a></li>
+<li><strong>Community Forum</strong>: <a href="https://community.flow-nexus.ruv.io">https://community.flow-nexus.ruv.io</a></li>
+<li><strong>GitHub Issues</strong>: <a href="https://github.com/ruvnet/flow-nexus/issues">https://github.com/ruvnet/flow-nexus/issues</a></li>
+<li><strong>Discord</strong>: <a href="https://discord.gg/flow-nexus">https://discord.gg/flow-nexus</a></li>
+<li><strong>Email Support</strong>: <a href="mailto:support@flow-nexus.ruv.io">support@flow-nexus.ruv.io</a> (Pro/Enterprise only)</li>
+</ul>
+<hr>
+<h2>Progressive Disclosure</h2>
+<details>
+<summary><strong>Advanced Sandbox Configuration</strong></summary>
+
+<h3>Custom Docker Images</h3>
+<pre><code class="language-javascript">mcp__flow-nexus__sandbox_create({
+  template: &quot;base&quot;,
+  name: &quot;custom-environment&quot;,
+  startup_script: `
+    apt-get update
+    apt-get install -y custom-package
+    git clone https://github.com/user/repo
+    cd repo &amp;&amp; npm install
+  `
+})
+</code></pre>
+<h3>Multi-Stage Execution</h3>
+<pre><code class="language-javascript">// Stage 1: Setup
+mcp__flow-nexus__sandbox_execute({
+  sandbox_id: &quot;id&quot;,
+  code: &quot;npm install &amp;&amp; npm run build&quot;
+})
+
+// Stage 2: Run
+mcp__flow-nexus__sandbox_execute({
+  sandbox_id: &quot;id&quot;,
+  code: &quot;npm start&quot;,
+  working_dir: &quot;/app/dist&quot;
+})
+</code></pre>
+</details>
+
+<details>
+<summary><strong>Advanced Storage Patterns</strong></summary>
+
+<h3>Large File Upload (Chunked)</h3>
+<pre><code class="language-javascript">const chunkSize = 5 * 1024 * 1024 // 5MB chunks
+for (let i = 0; i &lt; chunks.length; i++) {
+  await mcp__flow-nexus__storage_upload({
+    bucket: &quot;private&quot;,
+    path: `large-file.bin.part${i}`,
+    content: chunks[i]
+  })
+}
+</code></pre>
+<h3>Storage Lifecycle</h3>
+<pre><code class="language-javascript">// Upload to temp for processing
+mcp__flow-nexus__storage_upload({
+  bucket: &quot;temp&quot;,
+  path: &quot;processing/data.json&quot;,
+  content: data
+})
+
+// Move to permanent storage after processing
+mcp__flow-nexus__storage_upload({
+  bucket: &quot;private&quot;,
+  path: &quot;archive/processed-data.json&quot;,
+  content: processedData
+})
+</code></pre>
+</details>
+
+<details>
+<summary><strong>Advanced Real-time Patterns</strong></summary>
+
+<h3>Multi-Table Sync</h3>
+<pre><code class="language-javascript">const tables = [&quot;users&quot;, &quot;tasks&quot;, &quot;notifications&quot;]
+tables.forEach(table =&gt; {
+  mcp__flow-nexus__realtime_subscribe({
+    table,
+    event: &quot;*&quot;,
+    filter: `user_id=eq.${userId}`
+  })
+})
+</code></pre>
+<h3>Event-Driven Workflows</h3>
+<pre><code class="language-javascript">// Subscribe to task completion
+mcp__flow-nexus__realtime_subscribe({
+  table: &quot;tasks&quot;,
+  event: &quot;UPDATE&quot;,
+  filter: &quot;status=eq.completed&quot;
+})
+
+// Trigger notification workflow on event
+// (handled by your application logic)
+</code></pre>
+</details>
+
+<hr>
+<h2>Version History</h2>
+<ul>
+<li><strong>v1.0.0</strong> (2025-10-19): Initial comprehensive platform skill<ul>
+<li>Authentication &amp; user management</li>
+<li>Sandbox creation and execution</li>
+<li>App store and deployment</li>
+<li>Payments and credits</li>
+<li>Challenges and achievements</li>
+<li>Storage and real-time features</li>
+<li>System utilities and Queen Seraphina integration</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><em>This skill consolidates 6 Flow Nexus command modules into a single comprehensive platform management interface.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

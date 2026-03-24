@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/browser</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/browser/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/browser</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fbrowser">browser</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/browser</h1>
+<div align="center">
+
+<p><a href="https://www.npmjs.com/package/@claude-flow/browser"><img src="https://img.shields.io/npm/v/@claude-flow/browser?style=for-the-badge&logo=npm&color=blue" alt="npm version"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.3+-blue?style=for-the-badge&logo=typescript" alt="TypeScript"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge" alt="License: MIT"></a>
+<a href="./tests"><img src="https://img.shields.io/badge/Tests-128%20passing-green?style=for-the-badge&logo=vitest" alt="Tests"></a></p>
+<p><strong>AI-Optimized Browser Automation for Claude-Flow Swarms</strong></p>
+<p><em>Integrate <a href="https://github.com/AugmentCode/agent-browser">agent-browser</a> with claude-flow for intelligent web automation, trajectory learning, security scanning, and multi-agent browser coordination.</em></p>
+</div>
+
+<hr>
+<h2>Overview</h2>
+<p><code>@claude-flow/browser</code> provides a comprehensive browser automation layer for AI agents, combining Vercel Labs&#39; <code>agent-browser</code> CLI with claude-flow&#39;s learning, memory, and security capabilities. It enables agents to navigate websites, fill forms, extract data, and learn from successful interaction patterns.</p>
+<h3>Architecture</h3>
+<pre><code>Agent Request → Security Scan → Browser Adapter → agent-browser CLI → Playwright
+                    ↓                                      ↓
+              URL/PII Check                          Element Refs (@e1, @e2)
+                    ↓                                      ↓
+              Memory Store ← Trajectory ← Snapshot ← AI-Optimized DOM
+</code></pre>
+<h3>Key Features</h3>
+<p>🌐 <strong>59 MCP Browser Tools</strong> - Complete browser automation via MCP protocol with element refs, snapshots, forms, navigation, and JavaScript execution.</p>
+<p>🔒 <strong>Security-First Design</strong> - Built-in URL validation, phishing detection, PII scanning, XSS/SQL injection prevention, and domain blocking.</p>
+<p>🧠 <strong>Trajectory Learning</strong> - Records browser interactions for ReasoningBank/SONA learning. Successful patterns are stored and reused.</p>
+<p>📊 <strong>AI-Optimized Snapshots</strong> - 93% context reduction using element refs (<code>@e1</code>, <code>@e2</code>) instead of full CSS selectors.</p>
+<p>🐝 <strong>Swarm Coordination</strong> - Multi-session browser coordination for parallel scraping, testing, and validation tasks.</p>
+<p>📋 <strong>9 Workflow Templates</strong> - Pre-built automation patterns for login, OAuth, scraping, form submission, and monitoring.</p>
+<hr>
+<h2>Installation</h2>
+<pre><code class="language-bash"># Install the package
+npm install @claude-flow/browser
+
+# Peer dependency (if not already installed)
+npm install @claude-flow/cli@^3.0.0-alpha
+
+# agent-browser CLI (required)
+npm install -g agent-browser
+</code></pre>
+<h3>Requirements</h3>
+<ul>
+<li>Node.js 18+</li>
+<li><code>agent-browser</code> CLI installed globally</li>
+<li>Playwright browsers (installed automatically by agent-browser)</li>
+</ul>
+<hr>
+<h2>Quick Start</h2>
+<h3>Basic Usage</h3>
+<pre><code class="language-typescript">import { createBrowserService, browserTools } from &#39;@claude-flow/browser&#39;;
+
+// Create a browser service with security and memory enabled
+const browser = createBrowserService({
+  sessionId: &#39;my-session&#39;,
+  enableSecurity: true,  // URL validation, PII detection
+  enableMemory: true,    // Trajectory storage for learning
+});
+
+// Start tracking for learning
+const trajectoryId = browser.startTrajectory(&#39;Login to dashboard&#39;);
+
+// Navigate (automatically security-scanned)
+await browser.open(&#39;https://example.com/login&#39;);
+
+// Get AI-optimized snapshot with element refs
+const snapshot = await browser.snapshot({ interactive: true });
+// Returns: { refs: { &#39;@e1&#39;: {role: &#39;textbox&#39;, name: &#39;Email&#39;}, &#39;@e2&#39;: ... } }
+
+// Fill form using refs (93% less context than CSS selectors)
+await browser.fill(&#39;@e1&#39;, &#39;user@example.com&#39;);
+await browser.fill(&#39;@e2&#39;, &#39;password&#39;);
+await browser.click(&#39;@e3&#39;); // Submit button
+
+// End trajectory and store for learning
+const trajectory = await browser.endTrajectory(true, &#39;Login successful&#39;);
+
+// Close browser
+await browser.close();
+</code></pre>
+<h3>MCP Integration</h3>
+<p>Register browser tools with claude-flow&#39;s MCP server:</p>
+<pre><code class="language-typescript">import { browserTools } from &#39;@claude-flow/browser&#39;;
+
+// browserTools contains 59 MCP-compatible tools
+// Register with your MCP server
+mcpServer.registerTools(browserTools);
+</code></pre>
+<p>Available MCP tools:</p>
+<ul>
+<li><code>browser/open</code> - Navigate to URL</li>
+<li><code>browser/snapshot</code> - Get AI-optimized accessibility tree</li>
+<li><code>browser/click</code> - Click element by ref or selector</li>
+<li><code>browser/fill</code> - Fill input field</li>
+<li><code>browser/type</code> - Type text with keyboard events</li>
+<li><code>browser/screenshot</code> - Capture page screenshot</li>
+<li><code>browser/wait</code> - Wait for element/condition</li>
+<li><code>browser/eval</code> - Execute JavaScript</li>
+<li>And 51 more...</li>
+</ul>
+<hr>
+<details>
+<summary><strong>🎯 Core Concepts</strong></summary>
+
+<h3>Element Refs (<code>@e1</code>, <code>@e2</code>, etc.)</h3>
+<p>agent-browser generates AI-optimized element references that reduce context by 93%:</p>
+<pre><code class="language-typescript">// Traditional (verbose)
+await page.click(&#39;body &gt; div.container &gt; form#login &gt; button[type=&quot;submit&quot;].btn.btn-primary&#39;);
+
+// With element refs (compact)
+await browser.click(&#39;@e3&#39;);
+</code></pre>
+<p>Refs are generated from accessibility tree snapshots and map to interactive elements.</p>
+<h3>Trajectory Tracking</h3>
+<p>Every browser session can record a trajectory for learning:</p>
+<pre><code class="language-typescript">// Start tracking
+const id = browser.startTrajectory(&#39;Complete checkout flow&#39;);
+
+// All actions are recorded: open, click, fill, type, etc.
+await browser.open(&#39;https://shop.example.com/cart&#39;);
+await browser.click(&#39;@e1&#39;); // Checkout button
+await browser.fill(&#39;@e2&#39;, &#39;4111111111111111&#39;); // Card number
+// ...
+
+// End with verdict
+const trajectory = await browser.endTrajectory(true, &#39;Checkout completed successfully&#39;);
+
+// Trajectory contains:
+// - goal: &#39;Complete checkout flow&#39;
+// - steps: [{action: &#39;open&#39;, input: {...}, result: {...}, snapshot: {...}}, ...]
+// - success: true
+// - verdict: &#39;Checkout completed successfully&#39;
+</code></pre>
+<p>Trajectories are automatically stored in memory and used by ReasoningBank for pattern learning.</p>
+<h3>Security Scanning</h3>
+<p>All URLs are scanned before navigation:</p>
+<pre><code class="language-typescript">// Automatic scanning (enabled by default)
+const result = await browser.open(&#39;http://suspicious-login.xyz&#39;);
+// Returns: { success: false, error: &#39;Security scan failed: phishing detected&#39; }
+
+// Manual scanning
+const scanResult = await browser.scanUrl(&#39;https://example.com&#39;);
+// Returns: { safe: true, score: 1.0, threats: [], pii: [] }
+
+// PII detection in form values
+const piiResult = browser.scanForPII(&#39;SSN: 123-45-6789&#39;);
+// Returns: { pii: [{type: &#39;ssn&#39;, masked: &#39;***-**-6789&#39;, confidence: 0.95}] }
+</code></pre>
+</details>
+
+<hr>
+<details>
+<summary><strong>🔌 Integrations</strong></summary>
+
+<h3>Memory Integration</h3>
+<p>Store and search browser patterns using HNSW-indexed memory:</p>
+<pre><code class="language-typescript">import { createMemoryManager } from &#39;@claude-flow/browser&#39;;
+
+const memory = createMemoryManager(&#39;session-1&#39;);
+
+// Store a pattern
+await memory.storePattern(&#39;login-github&#39;, &#39;Login to GitHub&#39;, [
+  { action: &#39;fill&#39;, selector: &#39;#login_field&#39;, value: &#39;${username}&#39; },
+  { action: &#39;fill&#39;, selector: &#39;#password&#39;, value: &#39;${password}&#39; },
+  { action: &#39;click&#39;, selector: &#39;[type=&quot;submit&quot;]&#39; },
+], true);
+
+// Find similar patterns (semantic search)
+const similar = await memory.findSimilarTrajectories(&#39;Sign in to GitHub&#39;);
+
+// Get session statistics
+const stats = await memory.getSessionStats();
+// { trajectories: 5, patterns: 12, snapshots: 23, errors: 1, successRate: 0.83 }
+</code></pre>
+<h3>Security Integration</h3>
+<p>Comprehensive threat detection:</p>
+<pre><code class="language-typescript">import { getSecurityScanner, isUrlSafe, containsPII } from &#39;@claude-flow/browser&#39;;
+
+const scanner = getSecurityScanner({
+  requireHttps: true,
+  blockedDomains: [&#39;bit.ly&#39;, &#39;tinyurl.com&#39;],
+  allowedDomains: [&#39;github.com&#39;, &#39;google.com&#39;],
+});
+
+// URL scanning
+const urlResult = await scanner.scanUrl(&#39;https://paypa1-secure.xyz/login&#39;);
+// Detects: phishing (lookalike domain), suspicious TLD
+
+// Content scanning
+const contentResult = scanner.scanContent(&#39;Email: test@example.com, Card: 4111-1111-1111-1111&#39;);
+// Detects: email, credit-card with masking
+
+// Input validation (XSS, SQL injection)
+const inputResult = scanner.validateInput(&#39;&lt;script&gt;alert(1)&lt;/script&gt;&#39;, &#39;comment&#39;);
+// Detects: xss threat
+
+// Quick checks
+await isUrlSafe(&#39;https://example.com&#39;); // true
+containsPII(&#39;My SSN is 123-45-6789&#39;); // true
+</code></pre>
+<h3>Workflow Templates</h3>
+<p>Pre-built automation workflows:</p>
+<pre><code class="language-typescript">import { listWorkflows, getWorkflow, getWorkflowManager } from &#39;@claude-flow/browser&#39;;
+
+// List all templates
+const workflows = listWorkflows();
+// [&#39;login-basic&#39;, &#39;login-oauth&#39;, &#39;logout&#39;, &#39;scrape-table&#39;, &#39;scrape-list&#39;,
+//  &#39;contact-form&#39;, &#39;visual-regression&#39;, &#39;smoke-test&#39;, &#39;uptime-check&#39;]
+
+// Get specific template
+const loginTemplate = getWorkflow(&#39;login-basic&#39;);
+// {
+//   id: &#39;login-basic&#39;,
+//   name: &#39;Basic Login&#39;,
+//   category: &#39;authentication&#39;,
+//   variables: [{name: &#39;url&#39;, required: true}, {name: &#39;username&#39;}, ...],
+//   steps: [{action: &#39;open&#39;, target: &#39;${url}&#39;}, {action: &#39;fill&#39;, ...}, ...]
+// }
+
+// Validate variables
+const manager = getWorkflowManager();
+const validation = manager.validateVariables(&#39;login-basic&#39;, {
+  url: &#39;https://example.com/login&#39;,
+  username: &#39;user&#39;,
+  password: &#39;pass&#39;,
+});
+// { valid: true, errors: [] }
+</code></pre>
+<h4>Available Templates</h4>
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>Category</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>login-basic</code></td>
+<td>authentication</td>
+<td>Standard username/password login</td>
+</tr>
+<tr>
+<td><code>login-oauth</code></td>
+<td>authentication</td>
+<td>OAuth/SSO login flow (Google, GitHub)</td>
+</tr>
+<tr>
+<td><code>logout</code></td>
+<td>authentication</td>
+<td>Standard logout flow</td>
+</tr>
+<tr>
+<td><code>scrape-table</code></td>
+<td>data-extraction</td>
+<td>Extract data from HTML tables</td>
+</tr>
+<tr>
+<td><code>scrape-list</code></td>
+<td>data-extraction</td>
+<td>Extract items from repeated elements</td>
+</tr>
+<tr>
+<td><code>contact-form</code></td>
+<td>form-submission</td>
+<td>Fill and submit contact forms</td>
+</tr>
+<tr>
+<td><code>visual-regression</code></td>
+<td>testing</td>
+<td>Screenshot-based visual testing</td>
+</tr>
+<tr>
+<td><code>smoke-test</code></td>
+<td>testing</td>
+<td>Basic page load verification</td>
+</tr>
+<tr>
+<td><code>uptime-check</code></td>
+<td>monitoring</td>
+<td>Page availability monitoring</td>
+</tr>
+</tbody></table>
+<h3>Hooks Integration</h3>
+<p>Pre-browse and post-browse hooks for learning:</p>
+<pre><code class="language-typescript">import { preBrowseHook, postBrowseHook, browserHooks } from &#39;@claude-flow/browser&#39;;
+
+// Before browsing - get recommendations
+const preResult = await preBrowseHook({
+  goal: &#39;Login to admin panel&#39;,
+  url: &#39;https://example.com/admin&#39;,
+});
+// {
+//   recommendedSteps: [{action: &#39;fill&#39;, selector: &#39;#username&#39;}, ...],
+//   similarPatterns: 3,
+//   suggestedModel: &#39;sonnet&#39;,
+//   estimatedDuration: 5000,
+//   warnings: [&#39;URL is not HTTPS - authentication data may be at risk&#39;]
+// }
+
+// After browsing - record outcome
+const postResult = await postBrowseHook({
+  trajectoryId: &#39;traj-123&#39;,
+  success: true,
+  verdict: &#39;Login successful&#39;,
+  duration: 4500,
+  stepsCompleted: 5,
+});
+// { patternStored: true, patternId: &#39;pattern-traj-123&#39;, learnedFrom: true }
+</code></pre>
+</details>
+
+<hr>
+<details>
+<summary><strong>🐝 Swarm Coordination</strong></summary>
+
+<p>Coordinate multiple browser sessions for parallel tasks:</p>
+<pre><code class="language-typescript">import { createBrowserSwarm } from &#39;@claude-flow/browser&#39;;
+
+// Create a swarm coordinator
+const swarm = createBrowserSwarm({
+  topology: &#39;hierarchical&#39;,
+  maxSessions: 5,
+  sessionPrefix: &#39;scraper&#39;,
+});
+
+// Spawn browser agents with specific roles
+const navigator = await swarm.spawnAgent(&#39;navigator&#39;);
+const scraper1 = await swarm.spawnAgent(&#39;scraper&#39;);
+const scraper2 = await swarm.spawnAgent(&#39;scraper&#39;);
+const validator = await swarm.spawnAgent(&#39;validator&#39;);
+
+// Share data between agents
+swarm.shareData(&#39;targetUrls&#39;, [&#39;https://example.com/page1&#39;, &#39;https://example.com/page2&#39;]);
+
+// Each agent can access shared data
+const urls = swarm.getSharedData&lt;string[]&gt;(&#39;targetUrls&#39;);
+
+// Get swarm stats
+const stats = swarm.getStats();
+// { activeSessions: 4, maxSessions: 5, topology: &#39;hierarchical&#39; }
+
+// Close all sessions
+await swarm.closeAll();
+</code></pre>
+<h3>Agent Roles</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Capabilities</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>navigator</code></td>
+<td>Navigation, authentication, session management</td>
+<td>Login, navigate to pages</td>
+</tr>
+<tr>
+<td><code>scraper</code></td>
+<td>Snapshots, extraction, pagination</td>
+<td>Data collection</td>
+</tr>
+<tr>
+<td><code>validator</code></td>
+<td>Assertions, state checks, screenshots</td>
+<td>Verify results</td>
+</tr>
+<tr>
+<td><code>tester</code></td>
+<td>Forms, interactions, assertions</td>
+<td>E2E testing</td>
+</tr>
+<tr>
+<td><code>monitor</code></td>
+<td>Network, console, errors</td>
+<td>Performance monitoring</td>
+</tr>
+</tbody></table>
+</details>
+
+<hr>
+<details>
+<summary><strong>📚 API Reference</strong></summary>
+
+<h3>BrowserService</h3>
+<pre><code class="language-typescript">interface BrowserServiceConfig {
+  sessionId?: string;          // Browser session ID
+  enableMemory?: boolean;      // Enable trajectory storage (default: true)
+  enableSecurity?: boolean;    // Enable URL/PII scanning (default: true)
+  requireHttps?: boolean;      // Require HTTPS URLs
+  blockedDomains?: string[];   // Block specific domains
+  allowedDomains?: string[];   // Allow only specific domains
+  defaultTimeout?: number;     // Default operation timeout
+  headless?: boolean;          // Run headless (default: true)
+}
+
+class BrowserService {
+  // Trajectory tracking
+  startTrajectory(goal: string): string;
+  endTrajectory(success: boolean, verdict?: string): Promise&lt;BrowserTrajectory | null&gt;;
+  getCurrentTrajectory(): TrajectoryTracker | null;
+
+  // Navigation
+  open(url: string, options?: OpenOptions): Promise&lt;ActionResult&gt;;
+  close(): Promise&lt;ActionResult&gt;;
+
+  // Snapshots
+  snapshot(options?: SnapshotOptions): Promise&lt;ActionResult&lt;Snapshot&gt;&gt;;
+  getLatestSnapshot(): Snapshot | null;
+
+  // Interactions
+  click(target: string, options?: ClickOptions): Promise&lt;ActionResult&gt;;
+  fill(target: string, value: string, options?: FillOptions): Promise&lt;ActionResult&gt;;
+  type(target: string, text: string, options?: TypeOptions): Promise&lt;ActionResult&gt;;
+  press(key: string, delay?: number): Promise&lt;ActionResult&gt;;
+
+  // Waiting
+  wait(options: WaitOptions): Promise&lt;ActionResult&gt;;
+
+  // Data extraction
+  getText(target: string): Promise&lt;ActionResult&lt;string&gt;&gt;;
+  eval&lt;T&gt;(script: string): Promise&lt;ActionResult&lt;T&gt;&gt;;
+  extractData(refs: string[]): Promise&lt;Record&lt;string, string&gt;&gt;;
+
+  // Screenshots
+  screenshot(options?: ScreenshotOptions): Promise&lt;ActionResult&lt;string&gt;&gt;;
+
+  // Security
+  scanUrl(url: string): Promise&lt;ThreatScanResult&gt;;
+  scanForPII(content: string, context?: string): ThreatScanResult;
+
+  // Memory
+  findSimilarTrajectories(goal: string, topK?: number): Promise&lt;BrowserTrajectory[]&gt;;
+  getMemoryStats(): Promise&lt;MemoryStats | null&gt;;
+
+  // High-level operations
+  submitForm(fields: Array&lt;{target: string, value: string}&gt;, submitButton: string): Promise&lt;ActionResult&gt;;
+  navigateAndWait(url: string, selector: string, timeout?: number): Promise&lt;ActionResult&gt;;
+  authenticateWithHeaders(url: string, headers: Record&lt;string, string&gt;): Promise&lt;ActionResult&gt;;
+}
+</code></pre>
+<h3>Security Scanner</h3>
+<pre><code class="language-typescript">interface SecurityConfig {
+  enableUrlValidation: boolean;
+  enablePIIDetection: boolean;
+  enableThreatScanning: boolean;
+  blockedDomains: string[];
+  allowedDomains: string[];
+  maxRedirects: number;
+  requireHttps: boolean;
+  piiMaskingEnabled: boolean;
+}
+
+class BrowserSecurityScanner {
+  scanUrl(url: string): Promise&lt;ThreatScanResult&gt;;
+  scanContent(content: string, context?: string): ThreatScanResult;
+  validateInput(value: string, fieldType: string): ThreatScanResult;
+  sanitizeInput(value: string): string;
+  maskPII(value: string, type: PIIType): string;
+}
+
+interface ThreatScanResult {
+  safe: boolean;
+  threats: Threat[];
+  pii: PIIMatch[];
+  score: number;  // 0-1 (1 = safe)
+  scanDuration: number;
+}
+</code></pre>
+<h3>Memory Manager</h3>
+<pre><code class="language-typescript">class BrowserMemoryManager {
+  storeTrajectory(trajectory: BrowserTrajectory): Promise&lt;void&gt;;
+  storePattern(id: string, goal: string, steps: PatternStep[], success: boolean): Promise&lt;void&gt;;
+  storeSnapshot(id: string, snapshot: Snapshot): Promise&lt;void&gt;;
+  storeError(id: string, error: Error, context: object): Promise&lt;void&gt;;
+  findSimilarTrajectories(goal: string, topK?: number): Promise&lt;BrowserTrajectory[]&gt;;
+  findPatterns(goal: string, successfulOnly?: boolean): Promise&lt;MemorySearchResult[]&gt;;
+  getSessionStats(): Promise&lt;SessionStats&gt;;
+}
+</code></pre>
+</details>
+
+<hr>
+<details>
+<summary><strong>🧪 Testing</strong></summary>
+
+<h3>Unit Tests</h3>
+<pre><code class="language-bash"># Run all tests
+npm test
+
+# Run with watch mode
+npm run test:watch
+
+# Run specific test file
+npm test -- tests/security-integration.test.ts
+</code></pre>
+<h3>E2E Tests (Docker)</h3>
+<pre><code class="language-bash"># Navigate to docker directory
+cd docker
+
+# Run E2E tests with browser
+docker compose --profile e2e up browser-e2e
+
+# Run in debug mode (keeps container running)
+docker compose --profile debug up browser-debug
+</code></pre>
+<h3>Test Coverage</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Tests</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BrowserService</td>
+<td>18</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>AgentBrowserAdapter</td>
+<td>27</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>SecurityScanner</td>
+<td>30</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>MemoryManager</td>
+<td>16</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>WorkflowTemplates</td>
+<td>25</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>ReasoningBankAdapter</td>
+<td>12</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>128</strong></td>
+<td>✅</td>
+</tr>
+</tbody></table>
+</details>
+
+<hr>
+<details>
+<summary><strong>⚙️ Configuration</strong></summary>
+
+<h3>TypeScript</h3>
+<pre><code class="language-typescript">// tsconfig.json
+{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2022&quot;,
+    &quot;module&quot;: &quot;NodeNext&quot;,
+    &quot;moduleResolution&quot;: &quot;NodeNext&quot;,
+    &quot;esModuleInterop&quot;: true,
+    &quot;strict&quot;: true
+  }
+}
+</code></pre>
+<h3>Environment Variables</h3>
+<pre><code class="language-bash"># Browser settings
+BROWSER_HEADLESS=true
+BROWSER_DEFAULT_TIMEOUT=30000
+
+# Security settings
+BROWSER_REQUIRE_HTTPS=true
+BROWSER_BLOCKED_DOMAINS=bit.ly,tinyurl.com
+
+# Memory settings
+BROWSER_ENABLE_MEMORY=true
+BROWSER_MEMORY_NAMESPACE=browser
+</code></pre>
+</details>
+
+<hr>
+<details>
+<summary><strong>💡 Examples</strong></summary>
+
+<h3>Login and Extract Data</h3>
+<pre><code class="language-typescript">import { createBrowserService } from &#39;@claude-flow/browser&#39;;
+
+const browser = createBrowserService();
+
+async function loginAndExtract() {
+  browser.startTrajectory(&#39;Login and extract user data&#39;);
+
+  // Login
+  await browser.open(&#39;https://app.example.com/login&#39;);
+  await browser.fill(&#39;#email&#39;, &#39;user@example.com&#39;);
+  await browser.fill(&#39;#password&#39;, &#39;secretpassword&#39;);
+  await browser.click(&#39;#login-button&#39;);
+
+  // Wait for dashboard
+  await browser.wait({ selector: &#39;.dashboard&#39; });
+
+  // Get snapshot and extract data
+  const snapshot = await browser.snapshot({ interactive: true });
+  const data = await browser.extractData([&#39;@e1&#39;, &#39;@e2&#39;, &#39;@e3&#39;]);
+
+  await browser.endTrajectory(true, &#39;Data extracted successfully&#39;);
+  await browser.close();
+
+  return data;
+}
+</code></pre>
+<h3>Parallel Scraping</h3>
+<pre><code class="language-typescript">import { createBrowserSwarm } from &#39;@claude-flow/browser&#39;;
+
+async function parallelScrape(urls: string[]) {
+  const swarm = createBrowserSwarm({ maxSessions: 5 });
+  const results: any[] = [];
+
+  // Spawn scrapers for each URL
+  const promises = urls.map(async (url) =&gt; {
+    const scraper = await swarm.spawnAgent(&#39;scraper&#39;);
+    await scraper.open(url);
+    const snapshot = await scraper.snapshot();
+    const text = await scraper.getText(&#39;main&#39;);
+    return { url, content: text.data };
+  });
+
+  const data = await Promise.all(promises);
+  await swarm.closeAll();
+
+  return data;
+}
+</code></pre>
+<h3>Security-First Automation</h3>
+<pre><code class="language-typescript">import { createBrowserService, getSecurityScanner } from &#39;@claude-flow/browser&#39;;
+
+async function secureAutomation(url: string, formData: Record&lt;string, string&gt;) {
+  const scanner = getSecurityScanner({ requireHttps: true });
+
+  // Pre-scan URL
+  const urlScan = await scanner.scanUrl(url);
+  if (!urlScan.safe) {
+    throw new Error(`Unsafe URL: ${urlScan.threats.map(t =&gt; t.description).join(&#39;, &#39;)}`);
+  }
+
+  // Scan form data for sensitive info
+  for (const [field, value] of Object.entries(formData)) {
+    const piiScan = scanner.scanContent(value, field);
+    if (piiScan.pii.length &gt; 0) {
+      console.log(`Warning: PII detected in ${field}:`, piiScan.pii.map(p =&gt; p.type));
+    }
+  }
+
+  // Proceed with automation
+  const browser = createBrowserService({ enableSecurity: true });
+  await browser.open(url);
+
+  for (const [selector, value] of Object.entries(formData)) {
+    await browser.fill(selector, value);
+  }
+
+  await browser.close();
+}
+</code></pre>
+</details>
+
+<hr>
+<details>
+<summary><strong>🔧 Troubleshooting</strong></summary>
+
+<h3>Common Issues</h3>
+<p><strong>agent-browser not found</strong></p>
+<pre><code class="language-bash">npm install -g agent-browser
+</code></pre>
+<p><strong>Playwright browsers missing</strong></p>
+<pre><code class="language-bash">npx playwright install
+</code></pre>
+<p><strong>Security scan blocking legitimate URLs</strong></p>
+<pre><code class="language-typescript">const browser = createBrowserService({
+  allowedDomains: [&#39;trusted-domain.com&#39;],
+  // Or disable for specific navigations
+});
+await browser.open(&#39;http://trusted-domain.com&#39;, { skipSecurityCheck: true });
+</code></pre>
+<p><strong>Memory not persisting</strong></p>
+<pre><code class="language-typescript">// Ensure endTrajectory is called
+const trajectory = await browser.endTrajectory(true); // Must await!
+</code></pre>
+</details>
+
+<hr>
+<h2>Contributing</h2>
+<p>See <a href="../../CONTRIBUTING.md">CONTRIBUTING.md</a> in the root repository.</p>
+<h2>License</h2>
+<p>MIT License - see <a href="../../LICENSE">LICENSE</a> for details.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://github.com/ruvnet/claude-flow">GitHub Repository</a></li>
+<li><a href="https://github.com/AugmentCode/agent-browser">agent-browser</a></li>
+<li><a href="https://github.com/ruvnet/claude-flow#readme">Claude-Flow Documentation</a></li>
+<li><a href="https://modelcontextprotocol.io">MCP Protocol</a></li>
+</ul>
+<hr>
+<div align="center">
+
+<p><strong>Part of the <a href="https://github.com/ruvnet/claude-flow">Claude-Flow</a> ecosystem</strong></p>
+<p>Made with ❤️ by <a href="https://github.com/ruvnet">ruvnet</a></p>
+</div>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

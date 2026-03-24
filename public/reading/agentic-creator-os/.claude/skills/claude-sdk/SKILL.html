@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude SDK Expert Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/claude-sdk/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude SDK Expert Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fclaude-sdk">claude-sdk</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Claude SDK Expert
+description: Build autonomous AI agents using Claude Agent SDK with computer use, tool calling, MCP integration, and production best practices for Anthropic models
+version: 1.0.0</h2>
+<h1>Claude SDK Expert Skill</h1>
+<h2>Purpose</h2>
+<p>This skill provides comprehensive guidance on building autonomous AI agents using the Claude Agent SDK (formerly Claude Code SDK), leveraging computer use capabilities, tool orchestration, and MCP integration for production deployments.</p>
+<h2>SDK Overview</h2>
+<h3>Claude Agent SDK (2025)</h3>
+<p>The Claude Agent SDK enables building autonomous agents that can interact with computers, write files, run commands, and iterate on their work.</p>
+<p><strong>Evolution:</strong> Renamed from &quot;Claude Code SDK&quot; to reflect broader capabilities beyond coding.</p>
+<p><strong>Core Philosophy:</strong> Give Claude a computer to unlock agent effectiveness beyond chat-based interactions.</p>
+<h2>Key Capabilities</h2>
+<h3>1. Computer Use</h3>
+<p><strong>Revolutionary Feature:</strong> Claude can control a computer environment to complete tasks.</p>
+<p><strong>What This Enables:</strong></p>
+<ul>
+<li>File system operations (read, write, edit)</li>
+<li>Terminal command execution</li>
+<li>Iterative debugging and refinement</li>
+<li>Multi-step autonomous workflows</li>
+<li>Real-world task completion</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>Finance agents analyzing portfolios</li>
+<li>Personal assistants booking travel</li>
+<li>Customer support handling complex requests</li>
+<li>Development agents building software</li>
+<li>Research agents gathering and analyzing data</li>
+</ul>
+<h3>2. Built-in Tools</h3>
+<p><strong>File Operations:</strong></p>
+<ul>
+<li><code>Read</code> - Read file contents</li>
+<li><code>Write</code> - Create or overwrite files</li>
+<li><code>Edit</code> - Make targeted edits to existing files</li>
+</ul>
+<p><strong>Command Execution:</strong></p>
+<ul>
+<li><code>Bash</code> - Run shell commands and scripts</li>
+</ul>
+<p><strong>Search &amp; Discovery:</strong></p>
+<ul>
+<li><code>Grep</code> - Search file contents with regex</li>
+<li><code>Glob</code> - Find files by pattern</li>
+</ul>
+<p><strong>Web Access:</strong></p>
+<ul>
+<li><code>WebFetch</code> - Retrieve and analyze web pages</li>
+<li><code>WebSearch</code> - Search the internet for information</li>
+</ul>
+<p><strong>All tools are production-tested and optimized for agent use.</strong></p>
+<h3>3. MCP Integration</h3>
+<p><strong>Model Context Protocol Support:</strong> Define custom tools via MCP servers.</p>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Standardized tool interface</li>
+<li>Reusable across different agents</li>
+<li>Community ecosystem of MCP servers</li>
+<li>Enterprise data source connectivity</li>
+</ul>
+<p><strong>Example MCP Servers:</strong></p>
+<ul>
+<li>GitHub, Slack, Google Drive</li>
+<li>PostgreSQL, MongoDB</li>
+<li>Stripe, Salesforce</li>
+<li>Custom internal APIs</li>
+</ul>
+<h2>Architecture Patterns</h2>
+<h3>Pattern 1: Autonomous Task Completion</h3>
+<p><strong>Scenario:</strong> Agent completes multi-step task without human intervention</p>
+<p><strong>Flow:</strong></p>
+<pre><code>User Request
+    ↓
+Claude analyzes task
+    ↓
+Breaks into subtasks
+    ↓
+Executes via tools (Read, Bash, Write, etc.)
+    ↓
+Iterates on failures
+    ↓
+Returns result
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python">from anthropic import Anthropic
+
+client = Anthropic()
+
+response = client.messages.create(
+    model=&quot;claude-sonnet-4-5&quot;,
+    max_tokens=4096,
+    tools=[
+        {&quot;type&quot;: &quot;computer_use&quot;},
+        {&quot;type&quot;: &quot;bash&quot;},
+        {&quot;type&quot;: &quot;file_operations&quot;}
+    ],
+    messages=[{
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;Analyze the last 30 days of sales data and create a summary report&quot;
+    }]
+)
+
+# Claude autonomously:
+# 1. Reads sales data files
+# 2. Runs analysis scripts
+# 3. Generates report
+# 4. Saves to file
+</code></pre>
+<h3>Pattern 2: Human-in-the-Loop Approval</h3>
+<p><strong>Scenario:</strong> Agent proposes actions, waits for approval before executing</p>
+<p><strong>Flow:</strong></p>
+<pre><code>Task → Plan → Show to Human → Approve? → Execute → Result
+                                ↓ No
+                            Revise Plan
+</code></pre>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-python"># Step 1: Generate plan
+plan_response = client.messages.create(
+    model=&quot;claude-sonnet-4-5&quot;,
+    messages=[{
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;Create a plan to refactor the authentication system&quot;
+    }]
+)
+
+# Step 2: Human reviews plan
+if human_approves(plan_response.content):
+    # Step 3: Execute with tools
+    execution_response = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=all_tools,
+        messages=[{
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;content&quot;: f&quot;Execute this plan: {plan_response.content}&quot;
+        }]
+    )
+</code></pre>
+<h3>Pattern 3: Iterative Refinement</h3>
+<p><strong>Scenario:</strong> Agent iterates on work based on feedback/errors</p>
+<p><strong>Flow:</strong></p>
+<pre><code>Attempt 1 → Error → Analyze → Attempt 2 → Error → Analyze → Attempt 3 → Success
+</code></pre>
+<p><strong>Built-in:</strong> Claude SDK naturally supports this through computer use - agents can see command outputs and adjust.</p>
+<h2>Tool Design Best Practices</h2>
+<h3>Custom Tool Creation</h3>
+<p><strong>Good Tool Design:</strong></p>
+<pre><code class="language-python"># Clear, focused tool
+{
+    &quot;name&quot;: &quot;get_customer_orders&quot;,
+    &quot;description&quot;: &quot;Retrieve all orders for a specific customer ID&quot;,
+    &quot;input_schema&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;customer_id&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;description&quot;: &quot;The unique customer identifier&quot;
+            },
+            &quot;since_date&quot;: {
+                &quot;type&quot;: &quot;string&quot;,
+                &quot;description&quot;: &quot;ISO date to filter orders from (optional)&quot;
+            }
+        },
+        &quot;required&quot;: [&quot;customer_id&quot;]
+    }
+}
+</code></pre>
+<p><strong>Poor Tool Design:</strong></p>
+<pre><code class="language-python"># Too broad, unclear purpose
+{
+    &quot;name&quot;: &quot;do_customer_stuff&quot;,
+    &quot;description&quot;: &quot;Does various things with customers&quot;,
+    &quot;input_schema&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+            &quot;action&quot;: {&quot;type&quot;: &quot;string&quot;},
+            &quot;data&quot;: {&quot;type&quot;: &quot;object&quot;}
+        }
+    }
+}
+</code></pre>
+<h3>Tool Selection Principles</h3>
+<p><strong>DO:</strong>
+✅ Provide tools relevant to the task
+✅ Use clear, descriptive names
+✅ Write detailed descriptions (Claude reads these!)
+✅ Define strict input schemas
+✅ Implement error handling in tools
+✅ Return structured, parseable outputs</p>
+<p><strong>DON&#39;T:</strong>
+❌ Give agents tools they don&#39;t need (increases confusion)
+❌ Use ambiguous names like &quot;handler&quot; or &quot;processor&quot;
+❌ Skip input validation
+❌ Return raw error messages without context
+❌ Make tools with side effects unclear</p>
+<h2>MCP Integration Patterns</h2>
+<h3>Connecting MCP Servers</h3>
+<pre><code class="language-python"># Define MCP server connection
+mcp_config = {
+    &quot;servers&quot;: {
+        &quot;github&quot;: {
+            &quot;command&quot;: &quot;npx&quot;,
+            &quot;args&quot;: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-github&quot;],
+            &quot;env&quot;: {
+                &quot;GITHUB_TOKEN&quot;: os.getenv(&quot;GITHUB_TOKEN&quot;)
+            }
+        },
+        &quot;postgres&quot;: {
+            &quot;command&quot;: &quot;docker&quot;,
+            &quot;args&quot;: [&quot;run&quot;, &quot;mcp-postgres-server&quot;],
+            &quot;env&quot;: {
+                &quot;DATABASE_URL&quot;: os.getenv(&quot;DATABASE_URL&quot;)
+            }
+        }
+    }
+}
+
+# Claude automatically discovers tools from MCP servers
+response = client.messages.create(
+    model=&quot;claude-sonnet-4-5&quot;,
+    mcp_servers=mcp_config,
+    messages=[{
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;Find all GitHub issues assigned to me and update the project database&quot;
+    }]
+)
+# Claude uses both github and postgres MCP tools
+</code></pre>
+<h3>Custom MCP Server</h3>
+<pre><code class="language-python"># Create custom MCP server for internal API
+from mcp import Server, Tool
+
+server = Server(&quot;internal-crm&quot;)
+
+@server.tool()
+def get_customer_data(customer_id: str):
+    &quot;&quot;&quot;Retrieve customer information from internal CRM&quot;&quot;&quot;
+    return crm_api.get_customer(customer_id)
+
+@server.tool()
+def update_customer_notes(customer_id: str, notes: str):
+    &quot;&quot;&quot;Add notes to customer record&quot;&quot;&quot;
+    return crm_api.update(customer_id, {&quot;notes&quot;: notes})
+
+# Deploy and connect to Claude
+</code></pre>
+<h2>Production Best Practices</h2>
+<h3>1. Streaming for UX</h3>
+<p><strong>Why:</strong> Show user progress in real-time, build trust in agent actions</p>
+<pre><code class="language-python">with client.messages.stream(
+    model=&quot;claude-sonnet-4-5&quot;,
+    max_tokens=4096,
+    tools=tools,
+    messages=messages
+) as stream:
+    for event in stream:
+        if event.type == &quot;content_block_delta&quot;:
+            print(event.delta.text, end=&quot;&quot;, flush=True)
+        elif event.type == &quot;tool_use&quot;:
+            print(f&quot;\nUsing tool: {event.name}&quot;)
+</code></pre>
+<h3>2. Error Handling</h3>
+<p><strong>Robust Error Management:</strong></p>
+<pre><code class="language-python">try:
+    response = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=tools,
+        messages=messages
+    )
+except anthropic.APIError as e:
+    # Handle API errors
+    log_error(f&quot;API Error: {e}&quot;)
+    return fallback_response()
+except anthropic.RateLimitError:
+    # Handle rate limits
+    time.sleep(60)
+    retry()
+except Exception as e:
+    # Handle tool execution errors
+    log_error(f&quot;Tool Error: {e}&quot;)
+    return safe_error_message()
+</code></pre>
+<h3>3. Cost Optimization</h3>
+<p><strong>Strategies:</strong></p>
+<ul>
+<li>Use Claude Haiku for simple tasks, Sonnet for complex reasoning</li>
+<li>Implement caching for repetitive contexts</li>
+<li>Batch similar requests when possible</li>
+<li>Limit max_tokens appropriately</li>
+<li>Monitor token usage via callbacks</li>
+</ul>
+<pre><code class="language-python"># Use appropriate model for task
+simple_task_response = client.messages.create(
+    model=&quot;claude-haiku-4&quot;,  # Cheaper, faster
+    messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Format this JSON&quot;}]
+)
+
+complex_task_response = client.messages.create(
+    model=&quot;claude-sonnet-4-5&quot;,  # More capable
+    messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Analyze architectural trade-offs&quot;}]
+)
+</code></pre>
+<h3>4. Security</h3>
+<p><strong>Critical Security Measures:</strong></p>
+<p><strong>Tool Permissions:</strong></p>
+<pre><code class="language-python"># Restrict file access
+safe_file_tools = {
+    &quot;read&quot;: {
+        &quot;allowed_paths&quot;: [&quot;/data/public&quot;],
+        &quot;denied_paths&quot;: [&quot;/etc&quot;, &quot;/secrets&quot;]
+    },
+    &quot;write&quot;: {
+        &quot;allowed_paths&quot;: [&quot;/output&quot;],
+        &quot;denied_paths&quot;: [&quot;/&quot;]
+    }
+}
+</code></pre>
+<p><strong>Input Sanitization:</strong></p>
+<pre><code class="language-python">def sanitize_bash_command(cmd: str) -&gt; str:
+    &quot;&quot;&quot;Prevent dangerous commands&quot;&quot;&quot;
+    dangerous = [&quot;rm -rf&quot;, &quot;:(){ :|:&amp; };:&quot;, &quot;dd if=&quot;]
+    for danger in dangerous:
+        if danger in cmd:
+            raise SecurityError(f&quot;Dangerous command blocked: {danger}&quot;)
+    return cmd
+</code></pre>
+<p><strong>Audit Logging:</strong></p>
+<pre><code class="language-python">def log_agent_action(action: dict):
+    &quot;&quot;&quot;Track all agent actions for security audit&quot;&quot;&quot;
+    audit_log.write({
+        &quot;timestamp&quot;: datetime.now(),
+        &quot;tool&quot;: action[&quot;tool_name&quot;],
+        &quot;input&quot;: action[&quot;input&quot;],
+        &quot;user&quot;: action[&quot;user_id&quot;],
+        &quot;result&quot;: action[&quot;result&quot;]
+    })
+</code></pre>
+<h2>Performance Optimization</h2>
+<h3>Parallel Tool Calls</h3>
+<p>Claude can use multiple tools simultaneously when appropriate:</p>
+<pre><code class="language-python"># Claude automatically parallelizes when possible
+response = client.messages.create(
+    model=&quot;claude-sonnet-4-5&quot;,
+    tools=[weather_api, stock_api, news_api],
+    messages=[{
+        &quot;role&quot;: &quot;user&quot;,
+        &quot;content&quot;: &quot;Give me weather, stock prices, and news for San Francisco&quot;
+    }]
+)
+# Claude calls all 3 APIs in parallel
+</code></pre>
+<h3>Caching Strategies</h3>
+<pre><code class="language-python"># Cache system prompts and large contexts
+response = client.messages.create(
+    model=&quot;claude-sonnet-4-5&quot;,
+    system=[{
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;text&quot;: large_system_prompt,
+        &quot;cache_control&quot;: {&quot;type&quot;: &quot;ephemeral&quot;}
+    }],
+    messages=messages
+)
+# System prompt cached for ~5 minutes
+</code></pre>
+<h2>Testing Agents</h2>
+<h3>Unit Testing Tools</h3>
+<pre><code class="language-python">def test_customer_lookup_tool():
+    &quot;&quot;&quot;Test individual tool behavior&quot;&quot;&quot;
+    result = get_customer_orders(&quot;CUST123&quot;)
+    assert result[&quot;customer_id&quot;] == &quot;CUST123&quot;
+    assert isinstance(result[&quot;orders&quot;], list)
+</code></pre>
+<h3>Integration Testing</h3>
+<pre><code class="language-python">def test_agent_workflow():
+    &quot;&quot;&quot;Test agent using multiple tools&quot;&quot;&quot;
+    response = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=[tool1, tool2, tool3],
+        messages=[{
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;content&quot;: &quot;Process order #12345&quot;
+        }]
+    )
+
+    # Verify expected tool usage
+    tool_calls = extract_tool_calls(response)
+    assert &quot;verify_order&quot; in tool_calls
+    assert &quot;process_payment&quot; in tool_calls
+</code></pre>
+<h3>Evaluation Framework</h3>
+<pre><code class="language-python"># Use Claude&#39;s built-in evaluation
+from anthropic import Anthropic
+
+eval_client = Anthropic()
+
+eval_results = eval_client.evaluate(
+    agent=my_agent,
+    test_cases=[
+        {&quot;input&quot;: &quot;...&quot;, &quot;expected_output&quot;: &quot;...&quot;},
+        # More test cases
+    ],
+    metrics=[&quot;accuracy&quot;, &quot;latency&quot;, &quot;tool_efficiency&quot;]
+)
+</code></pre>
+<h2>Common Patterns</h2>
+<h3>Pattern: Multi-Step Research</h3>
+<pre><code class="language-python">async def research_agent(query: str):
+    &quot;&quot;&quot;Agent researches topic using multiple sources&quot;&quot;&quot;
+    response = await client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=[web_search, web_fetch, summarize],
+        messages=[{
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;content&quot;: f&quot;Research &#39;{query}&#39; and provide comprehensive summary&quot;
+        }]
+    )
+    # Claude: searches → fetches articles → summarizes → synthesizes
+    return response.content
+</code></pre>
+<h3>Pattern: Code Generation &amp; Testing</h3>
+<pre><code class="language-python">def code_agent(requirements: str):
+    &quot;&quot;&quot;Agent writes and tests code&quot;&quot;&quot;
+    response = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=[write_file, bash, read_file],
+        messages=[{
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;content&quot;: f&quot;Write and test code for: {requirements}&quot;
+        }]
+    )
+    # Claude: writes code → saves file → runs tests → fixes errors → retries
+    return response.content
+</code></pre>
+<h3>Pattern: Data Pipeline</h3>
+<pre><code class="language-python">def data_pipeline_agent(source: str, destination: str):
+    &quot;&quot;&quot;Agent ETL pipeline&quot;&quot;&quot;
+    response = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=[read_file, bash, postgres_insert],
+        messages=[{
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;content&quot;: f&quot;Extract data from {source}, transform it, and load to {destination}&quot;
+        }]
+    )
+    # Claude orchestrates full ETL
+    return response.content
+</code></pre>
+<h2>Model Selection</h2>
+<h3>Claude Sonnet 4.5 (claude-sonnet-4-5)</h3>
+<p><strong>Best For:</strong></p>
+<ul>
+<li>Complex reasoning and analysis</li>
+<li>Multi-step autonomous tasks</li>
+<li>Code generation and debugging</li>
+<li>Research and synthesis</li>
+<li>High-stakes decisions</li>
+</ul>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Highest capability</li>
+<li>Best for computer use</li>
+<li>More expensive</li>
+<li>Slower than Haiku</li>
+</ul>
+<h3>Claude Haiku 4 (claude-haiku-4)</h3>
+<p><strong>Best For:</strong></p>
+<ul>
+<li>Simple, well-defined tasks</li>
+<li>Format conversions</li>
+<li>Quick classifications</li>
+<li>High-throughput scenarios</li>
+<li>Cost-sensitive applications</li>
+</ul>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Fast responses</li>
+<li>Lower cost</li>
+<li>Good for structured tasks</li>
+<li>Limited complex reasoning</li>
+</ul>
+<h2>Integration Examples</h2>
+<h3>With FastAPI</h3>
+<pre><code class="language-python">from fastapi import FastAPI
+from anthropic import Anthropic
+
+app = FastAPI()
+client = Anthropic()
+
+@app.post(&quot;/agent/task&quot;)
+async def run_agent_task(task: dict):
+    response = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=load_tools_for_task(task),
+        messages=[{
+            &quot;role&quot;: &quot;user&quot;,
+            &quot;content&quot;: task[&quot;description&quot;]
+        }]
+    )
+    return {&quot;result&quot;: response.content}
+</code></pre>
+<h3>With LangChain (via LangChain-Anthropic)</h3>
+<pre><code class="language-python">from langchain_anthropic import ChatAnthropic
+from langchain.agents import initialize_agent
+
+llm = ChatAnthropic(model=&quot;claude-sonnet-4-5&quot;)
+agent = initialize_agent(
+    tools=[tool1, tool2],
+    llm=llm,
+    agent_type=&quot;structured-chat-zero-shot-react-description&quot;
+)
+result = agent.run(&quot;Complete this task&quot;)
+</code></pre>
+<h2>Monitoring &amp; Observability</h2>
+<h3>Key Metrics</h3>
+<ul>
+<li><strong>Tool Call Success Rate</strong> - % of tool invocations that succeed</li>
+<li><strong>Task Completion Rate</strong> - % of user requests fully resolved</li>
+<li><strong>Average Iterations</strong> - How many tool calls per task</li>
+<li><strong>Latency</strong> - Time to complete requests</li>
+<li><strong>Token Usage</strong> - Input + output tokens per request</li>
+<li><strong>Error Rate</strong> - % of requests with errors</li>
+</ul>
+<h3>Logging Best Practices</h3>
+<pre><code class="language-python">import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(&quot;claude-agent&quot;)
+
+def run_agent_with_logging(task):
+    logger.info(f&quot;Starting task: {task}&quot;)
+
+    response = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        tools=tools,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: task}]
+    )
+
+    logger.info(f&quot;Tools used: {extract_tools(response)}&quot;)
+    logger.info(f&quot;Token usage: {response.usage}&quot;)
+
+    return response
+</code></pre>
+<h2>Decision Framework</h2>
+<p><strong>Use Claude SDK when:</strong></p>
+<ul>
+<li>Building on Anthropic models (Claude family)</li>
+<li>Need computer use capabilities (file, bash, iteration)</li>
+<li>Want production-ready agent framework</li>
+<li>Require MCP integration for data sources</li>
+<li>Building autonomous task completion agents</li>
+</ul>
+<p><strong>Consider alternatives when:</strong></p>
+<ul>
+<li>Committed to OpenAI ecosystem (use AgentKit)</li>
+<li>Need visual agent builder (use AgentKit)</li>
+<li>Require complex state machines (use LangGraph)</li>
+<li>Want full OSS control (use AutoGen/LangGraph)</li>
+</ul>
+<h2>Resources</h2>
+<p><strong>Official Documentation:</strong></p>
+<ul>
+<li>Agent SDK Docs: <a href="https://docs.claude.com/en/api/agent-sdk">https://docs.claude.com/en/api/agent-sdk</a></li>
+<li>Computer Use Guide: <a href="https://docs.anthropic.com/en/docs/agents/computer-use">https://docs.anthropic.com/en/docs/agents/computer-use</a></li>
+<li>MCP Integration: <a href="https://modelcontextprotocol.io">https://modelcontextprotocol.io</a></li>
+</ul>
+<p><strong>GitHub:</strong></p>
+<ul>
+<li>Python SDK: <a href="https://github.com/anthropics/claude-agent-sdk-python">https://github.com/anthropics/claude-agent-sdk-python</a></li>
+<li>TypeScript SDK: <a href="https://github.com/anthropics/claude-agent-sdk-typescript">https://github.com/anthropics/claude-agent-sdk-typescript</a></li>
+</ul>
+<h2>Final Principles</h2>
+<ol>
+<li><strong>Computer Use is Game-Changing</strong> - Leverage file/bash capabilities fully</li>
+<li><strong>Tools are First-Class</strong> - Design tools as carefully as prompts</li>
+<li><strong>MCP for Data</strong> - Use MCP servers for enterprise data connectivity</li>
+<li><strong>Stream for UX</strong> - Real-time feedback builds user trust</li>
+<li><strong>Security Always</strong> - Validate inputs, restrict permissions, audit actions</li>
+<li><strong>Right Model for Task</strong> - Haiku for simple, Sonnet for complex</li>
+</ol>
+<hr>
+<p><em>This skill ensures you build powerful, autonomous agents using Claude&#39;s cutting-edge capabilities in 2025.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

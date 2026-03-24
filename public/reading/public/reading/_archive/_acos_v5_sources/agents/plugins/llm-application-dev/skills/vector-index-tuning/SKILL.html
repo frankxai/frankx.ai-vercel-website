@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Vector Index Tuning</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/llm-application-dev/skills/vector-index-tuning/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Vector Index Tuning</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev">llm-application-dev</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills%2Fvector-index-tuning">vector-index-tuning</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: vector-index-tuning
+description: Optimize vector index performance for latency, recall, and memory. Use when tuning HNSW parameters, selecting quantization strategies, or scaling vector search infrastructure.</h2>
+<h1>Vector Index Tuning</h1>
+<p>Guide to optimizing vector indexes for production performance.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Tuning HNSW parameters</li>
+<li>Implementing quantization</li>
+<li>Optimizing memory usage</li>
+<li>Reducing search latency</li>
+<li>Balancing recall vs speed</li>
+<li>Scaling to billions of vectors</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Index Type Selection</h3>
+<pre><code>Data Size           Recommended Index
+────────────────────────────────────────
+&lt; 10K vectors  →    Flat (exact search)
+10K - 1M       →    HNSW
+1M - 100M      →    HNSW + Quantization
+&gt; 100M         →    IVF + PQ or DiskANN
+</code></pre>
+<h3>2. HNSW Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>M</strong></td>
+<td>16</td>
+<td>Connections per node, ↑ = better recall, more memory</td>
+</tr>
+<tr>
+<td><strong>efConstruction</strong></td>
+<td>100</td>
+<td>Build quality, ↑ = better index, slower build</td>
+</tr>
+<tr>
+<td><strong>efSearch</strong></td>
+<td>50</td>
+<td>Search quality, ↑ = better recall, slower search</td>
+</tr>
+</tbody></table>
+<h3>3. Quantization Types</h3>
+<pre><code>Full Precision (FP32): 4 bytes × dimensions
+Half Precision (FP16): 2 bytes × dimensions
+INT8 Scalar:           1 byte × dimensions
+Product Quantization:  ~32-64 bytes total
+Binary:                dimensions/8 bytes
+</code></pre>
+<h2>Templates</h2>
+<h3>Template 1: HNSW Parameter Tuning</h3>
+<pre><code class="language-python">import numpy as np
+from typing import List, Tuple
+import time
+
+def benchmark_hnsw_parameters(
+    vectors: np.ndarray,
+    queries: np.ndarray,
+    ground_truth: np.ndarray,
+    m_values: List[int] = [8, 16, 32, 64],
+    ef_construction_values: List[int] = [64, 128, 256],
+    ef_search_values: List[int] = [32, 64, 128, 256]
+) -&gt; List[dict]:
+    &quot;&quot;&quot;Benchmark different HNSW configurations.&quot;&quot;&quot;
+    import hnswlib
+
+    results = []
+    dim = vectors.shape[1]
+    n = vectors.shape[0]
+
+    for m in m_values:
+        for ef_construction in ef_construction_values:
+            # Build index
+            index = hnswlib.Index(space=&#39;cosine&#39;, dim=dim)
+            index.init_index(max_elements=n, M=m, ef_construction=ef_construction)
+
+            build_start = time.time()
+            index.add_items(vectors)
+            build_time = time.time() - build_start
+
+            # Get memory usage
+            memory_bytes = index.element_count * (
+                dim * 4 +  # Vector storage
+                m * 2 * 4  # Graph edges (approximate)
+            )
+
+            for ef_search in ef_search_values:
+                index.set_ef(ef_search)
+
+                # Measure search
+                search_start = time.time()
+                labels, distances = index.knn_query(queries, k=10)
+                search_time = time.time() - search_start
+
+                # Calculate recall
+                recall = calculate_recall(labels, ground_truth, k=10)
+
+                results.append({
+                    &quot;M&quot;: m,
+                    &quot;ef_construction&quot;: ef_construction,
+                    &quot;ef_search&quot;: ef_search,
+                    &quot;build_time_s&quot;: build_time,
+                    &quot;search_time_ms&quot;: search_time * 1000 / len(queries),
+                    &quot;recall@10&quot;: recall,
+                    &quot;memory_mb&quot;: memory_bytes / 1024 / 1024
+                })
+
+    return results
+
+
+def calculate_recall(predictions: np.ndarray, ground_truth: np.ndarray, k: int) -&gt; float:
+    &quot;&quot;&quot;Calculate recall@k.&quot;&quot;&quot;
+    correct = 0
+    for pred, truth in zip(predictions, ground_truth):
+        correct += len(set(pred[:k]) &amp; set(truth[:k]))
+    return correct / (len(predictions) * k)
+
+
+def recommend_hnsw_params(
+    num_vectors: int,
+    target_recall: float = 0.95,
+    max_latency_ms: float = 10,
+    available_memory_gb: float = 8
+) -&gt; dict:
+    &quot;&quot;&quot;Recommend HNSW parameters based on requirements.&quot;&quot;&quot;
+
+    # Base recommendations
+    if num_vectors &lt; 100_000:
+        m = 16
+        ef_construction = 100
+    elif num_vectors &lt; 1_000_000:
+        m = 32
+        ef_construction = 200
+    else:
+        m = 48
+        ef_construction = 256
+
+    # Adjust ef_search based on recall target
+    if target_recall &gt;= 0.99:
+        ef_search = 256
+    elif target_recall &gt;= 0.95:
+        ef_search = 128
+    else:
+        ef_search = 64
+
+    return {
+        &quot;M&quot;: m,
+        &quot;ef_construction&quot;: ef_construction,
+        &quot;ef_search&quot;: ef_search,
+        &quot;notes&quot;: f&quot;Estimated for {num_vectors:,} vectors, {target_recall:.0%} recall&quot;
+    }
+</code></pre>
+<h3>Template 2: Quantization Strategies</h3>
+<pre><code class="language-python">import numpy as np
+from typing import Optional
+
+class VectorQuantizer:
+    &quot;&quot;&quot;Quantization strategies for vector compression.&quot;&quot;&quot;
+
+    @staticmethod
+    def scalar_quantize_int8(
+        vectors: np.ndarray,
+        min_val: Optional[float] = None,
+        max_val: Optional[float] = None
+    ) -&gt; Tuple[np.ndarray, dict]:
+        &quot;&quot;&quot;Scalar quantization to INT8.&quot;&quot;&quot;
+        if min_val is None:
+            min_val = vectors.min()
+        if max_val is None:
+            max_val = vectors.max()
+
+        # Scale to 0-255 range
+        scale = 255.0 / (max_val - min_val)
+        quantized = np.clip(
+            np.round((vectors - min_val) * scale),
+            0, 255
+        ).astype(np.uint8)
+
+        params = {&quot;min_val&quot;: min_val, &quot;max_val&quot;: max_val, &quot;scale&quot;: scale}
+        return quantized, params
+
+    @staticmethod
+    def dequantize_int8(
+        quantized: np.ndarray,
+        params: dict
+    ) -&gt; np.ndarray:
+        &quot;&quot;&quot;Dequantize INT8 vectors.&quot;&quot;&quot;
+        return quantized.astype(np.float32) / params[&quot;scale&quot;] + params[&quot;min_val&quot;]
+
+    @staticmethod
+    def product_quantize(
+        vectors: np.ndarray,
+        n_subvectors: int = 8,
+        n_centroids: int = 256
+    ) -&gt; Tuple[np.ndarray, dict]:
+        &quot;&quot;&quot;Product quantization for aggressive compression.&quot;&quot;&quot;
+        from sklearn.cluster import KMeans
+
+        n, dim = vectors.shape
+        assert dim % n_subvectors == 0
+        subvector_dim = dim // n_subvectors
+
+        codebooks = []
+        codes = np.zeros((n, n_subvectors), dtype=np.uint8)
+
+        for i in range(n_subvectors):
+            start = i * subvector_dim
+            end = (i + 1) * subvector_dim
+            subvectors = vectors[:, start:end]
+
+            kmeans = KMeans(n_clusters=n_centroids, random_state=42)
+            codes[:, i] = kmeans.fit_predict(subvectors)
+            codebooks.append(kmeans.cluster_centers_)
+
+        params = {
+            &quot;codebooks&quot;: codebooks,
+            &quot;n_subvectors&quot;: n_subvectors,
+            &quot;subvector_dim&quot;: subvector_dim
+        }
+        return codes, params
+
+    @staticmethod
+    def binary_quantize(vectors: np.ndarray) -&gt; np.ndarray:
+        &quot;&quot;&quot;Binary quantization (sign of each dimension).&quot;&quot;&quot;
+        # Convert to binary: positive = 1, negative = 0
+        binary = (vectors &gt; 0).astype(np.uint8)
+
+        # Pack bits into bytes
+        n, dim = vectors.shape
+        packed_dim = (dim + 7) // 8
+
+        packed = np.zeros((n, packed_dim), dtype=np.uint8)
+        for i in range(dim):
+            byte_idx = i // 8
+            bit_idx = i % 8
+            packed[:, byte_idx] |= (binary[:, i] &lt;&lt; bit_idx)
+
+        return packed
+
+
+def estimate_memory_usage(
+    num_vectors: int,
+    dimensions: int,
+    quantization: str = &quot;fp32&quot;,
+    index_type: str = &quot;hnsw&quot;,
+    hnsw_m: int = 16
+) -&gt; dict:
+    &quot;&quot;&quot;Estimate memory usage for different configurations.&quot;&quot;&quot;
+
+    # Vector storage
+    bytes_per_dimension = {
+        &quot;fp32&quot;: 4,
+        &quot;fp16&quot;: 2,
+        &quot;int8&quot;: 1,
+        &quot;pq&quot;: 0.05,  # Approximate
+        &quot;binary&quot;: 0.125
+    }
+
+    vector_bytes = num_vectors * dimensions * bytes_per_dimension[quantization]
+
+    # Index overhead
+    if index_type == &quot;hnsw&quot;:
+        # Each node has ~M*2 edges, each edge is 4 bytes (int32)
+        index_bytes = num_vectors * hnsw_m * 2 * 4
+    elif index_type == &quot;ivf&quot;:
+        # Inverted lists + centroids
+        index_bytes = num_vectors * 8 + 65536 * dimensions * 4
+    else:
+        index_bytes = 0
+
+    total_bytes = vector_bytes + index_bytes
+
+    return {
+        &quot;vector_storage_mb&quot;: vector_bytes / 1024 / 1024,
+        &quot;index_overhead_mb&quot;: index_bytes / 1024 / 1024,
+        &quot;total_mb&quot;: total_bytes / 1024 / 1024,
+        &quot;total_gb&quot;: total_bytes / 1024 / 1024 / 1024
+    }
+</code></pre>
+<h3>Template 3: Qdrant Index Configuration</h3>
+<pre><code class="language-python">from qdrant_client import QdrantClient
+from qdrant_client.http import models
+
+def create_optimized_collection(
+    client: QdrantClient,
+    collection_name: str,
+    vector_size: int,
+    num_vectors: int,
+    optimize_for: str = &quot;balanced&quot;  # &quot;recall&quot;, &quot;speed&quot;, &quot;memory&quot;
+) -&gt; None:
+    &quot;&quot;&quot;Create collection with optimized settings.&quot;&quot;&quot;
+
+    # HNSW configuration based on optimization target
+    hnsw_configs = {
+        &quot;recall&quot;: models.HnswConfigDiff(m=32, ef_construct=256),
+        &quot;speed&quot;: models.HnswConfigDiff(m=16, ef_construct=64),
+        &quot;balanced&quot;: models.HnswConfigDiff(m=16, ef_construct=128),
+        &quot;memory&quot;: models.HnswConfigDiff(m=8, ef_construct=64)
+    }
+
+    # Quantization configuration
+    quantization_configs = {
+        &quot;recall&quot;: None,  # No quantization for max recall
+        &quot;speed&quot;: models.ScalarQuantization(
+            scalar=models.ScalarQuantizationConfig(
+                type=models.ScalarType.INT8,
+                quantile=0.99,
+                always_ram=True
+            )
+        ),
+        &quot;balanced&quot;: models.ScalarQuantization(
+            scalar=models.ScalarQuantizationConfig(
+                type=models.ScalarType.INT8,
+                quantile=0.99,
+                always_ram=False
+            )
+        ),
+        &quot;memory&quot;: models.ProductQuantization(
+            product=models.ProductQuantizationConfig(
+                compression=models.CompressionRatio.X16,
+                always_ram=False
+            )
+        )
+    }
+
+    # Optimizer configuration
+    optimizer_configs = {
+        &quot;recall&quot;: models.OptimizersConfigDiff(
+            indexing_threshold=10000,
+            memmap_threshold=50000
+        ),
+        &quot;speed&quot;: models.OptimizersConfigDiff(
+            indexing_threshold=5000,
+            memmap_threshold=20000
+        ),
+        &quot;balanced&quot;: models.OptimizersConfigDiff(
+            indexing_threshold=20000,
+            memmap_threshold=50000
+        ),
+        &quot;memory&quot;: models.OptimizersConfigDiff(
+            indexing_threshold=50000,
+            memmap_threshold=10000  # Use disk sooner
+        )
+    }
+
+    client.create_collection(
+        collection_name=collection_name,
+        vectors_config=models.VectorParams(
+            size=vector_size,
+            distance=models.Distance.COSINE
+        ),
+        hnsw_config=hnsw_configs[optimize_for],
+        quantization_config=quantization_configs[optimize_for],
+        optimizers_config=optimizer_configs[optimize_for]
+    )
+
+
+def tune_search_parameters(
+    client: QdrantClient,
+    collection_name: str,
+    target_recall: float = 0.95
+) -&gt; dict:
+    &quot;&quot;&quot;Tune search parameters for target recall.&quot;&quot;&quot;
+
+    # Search parameter recommendations
+    if target_recall &gt;= 0.99:
+        search_params = models.SearchParams(
+            hnsw_ef=256,
+            exact=False,
+            quantization=models.QuantizationSearchParams(
+                ignore=True,  # Don&#39;t use quantization for search
+                rescore=True
+            )
+        )
+    elif target_recall &gt;= 0.95:
+        search_params = models.SearchParams(
+            hnsw_ef=128,
+            exact=False,
+            quantization=models.QuantizationSearchParams(
+                ignore=False,
+                rescore=True,
+                oversampling=2.0
+            )
+        )
+    else:
+        search_params = models.SearchParams(
+            hnsw_ef=64,
+            exact=False,
+            quantization=models.QuantizationSearchParams(
+                ignore=False,
+                rescore=False
+            )
+        )
+
+    return search_params
+</code></pre>
+<h3>Template 4: Performance Monitoring</h3>
+<pre><code class="language-python">import time
+from dataclasses import dataclass
+from typing import List
+import numpy as np
+
+@dataclass
+class SearchMetrics:
+    latency_p50_ms: float
+    latency_p95_ms: float
+    latency_p99_ms: float
+    recall: float
+    qps: float
+
+
+class VectorSearchMonitor:
+    &quot;&quot;&quot;Monitor vector search performance.&quot;&quot;&quot;
+
+    def __init__(self, ground_truth_fn=None):
+        self.latencies = []
+        self.recalls = []
+        self.ground_truth_fn = ground_truth_fn
+
+    def measure_search(
+        self,
+        search_fn,
+        query_vectors: np.ndarray,
+        k: int = 10,
+        num_iterations: int = 100
+    ) -&gt; SearchMetrics:
+        &quot;&quot;&quot;Benchmark search performance.&quot;&quot;&quot;
+        latencies = []
+
+        for _ in range(num_iterations):
+            for query in query_vectors:
+                start = time.perf_counter()
+                results = search_fn(query, k=k)
+                latency = (time.perf_counter() - start) * 1000
+                latencies.append(latency)
+
+        latencies = np.array(latencies)
+        total_queries = num_iterations * len(query_vectors)
+        total_time = sum(latencies) / 1000  # seconds
+
+        return SearchMetrics(
+            latency_p50_ms=np.percentile(latencies, 50),
+            latency_p95_ms=np.percentile(latencies, 95),
+            latency_p99_ms=np.percentile(latencies, 99),
+            recall=self._calculate_recall(search_fn, query_vectors, k) if self.ground_truth_fn else 0,
+            qps=total_queries / total_time
+        )
+
+    def _calculate_recall(self, search_fn, queries: np.ndarray, k: int) -&gt; float:
+        &quot;&quot;&quot;Calculate recall against ground truth.&quot;&quot;&quot;
+        if not self.ground_truth_fn:
+            return 0
+
+        correct = 0
+        total = 0
+
+        for query in queries:
+            predicted = set(search_fn(query, k=k))
+            actual = set(self.ground_truth_fn(query, k=k))
+            correct += len(predicted &amp; actual)
+            total += k
+
+        return correct / total
+
+
+def profile_index_build(
+    build_fn,
+    vectors: np.ndarray,
+    batch_sizes: List[int] = [1000, 10000, 50000]
+) -&gt; dict:
+    &quot;&quot;&quot;Profile index build performance.&quot;&quot;&quot;
+    results = {}
+
+    for batch_size in batch_sizes:
+        times = []
+        for i in range(0, len(vectors), batch_size):
+            batch = vectors[i:i + batch_size]
+            start = time.perf_counter()
+            build_fn(batch)
+            times.append(time.perf_counter() - start)
+
+        results[batch_size] = {
+            &quot;avg_batch_time_s&quot;: np.mean(times),
+            &quot;vectors_per_second&quot;: batch_size / np.mean(times)
+        }
+
+    return results
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Benchmark with real queries</strong> - Synthetic may not represent production</li>
+<li><strong>Monitor recall continuously</strong> - Can degrade with data drift</li>
+<li><strong>Start with defaults</strong> - Tune only when needed</li>
+<li><strong>Use quantization</strong> - Significant memory savings</li>
+<li><strong>Consider tiered storage</strong> - Hot/cold data separation</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t over-optimize early</strong> - Profile first</li>
+<li><strong>Don&#39;t ignore build time</strong> - Index updates have cost</li>
+<li><strong>Don&#39;t forget reindexing</strong> - Plan for maintenance</li>
+<li><strong>Don&#39;t skip warming</strong> - Cold indexes are slow</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/1603.09320">HNSW Paper</a></li>
+<li><a href="https://github.com/facebookresearch/faiss/wiki">Faiss Wiki</a></li>
+<li><a href="https://ann-benchmarks.com/">ANN Benchmarks</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

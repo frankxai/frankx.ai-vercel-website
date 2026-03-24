@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Hookify - Create Hooks from Unwanted Behaviors</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/hookify/commands/hookify.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Hookify - Create Hooks from Unwanted Behaviors</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>hookify.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <hr>
+<h2>description: Create hooks to prevent unwanted behaviors from conversation analysis or explicit instructions
+argument-hint: Optional specific behavior to address
+allowed-tools: [&quot;Read&quot;, &quot;Write&quot;, &quot;AskUserQuestion&quot;, &quot;Task&quot;, &quot;Grep&quot;, &quot;TodoWrite&quot;, &quot;Skill&quot;]</h2>
+<h1>Hookify - Create Hooks from Unwanted Behaviors</h1>
+<p><strong>FIRST: Load the hookify:writing-rules skill</strong> using the Skill tool to understand rule file format and syntax.</p>
+<p>Create hook rules to prevent problematic behaviors by analyzing the conversation or from explicit user instructions.</p>
+<h2>Your Task</h2>
+<p>You will help the user create hookify rules to prevent unwanted behaviors. Follow these steps:</p>
+<h3>Step 1: Gather Behavior Information</h3>
+<p><strong>If $ARGUMENTS is provided:</strong></p>
+<ul>
+<li>User has given specific instructions: <code>$ARGUMENTS</code></li>
+<li>Still analyze recent conversation (last 10-15 user messages) for additional context</li>
+<li>Look for examples of the behavior happening</li>
+</ul>
+<p><strong>If $ARGUMENTS is empty:</strong></p>
+<ul>
+<li>Launch the conversation-analyzer agent to find problematic behaviors</li>
+<li>Agent will scan user prompts for frustration signals</li>
+<li>Agent will return structured findings</li>
+</ul>
+<p><strong>To analyze conversation:</strong>
+Use the Task tool to launch conversation-analyzer agent:</p>
+<pre><code>{
+  &quot;subagent_type&quot;: &quot;general-purpose&quot;,
+  &quot;description&quot;: &quot;Analyze conversation for unwanted behaviors&quot;,
+  &quot;prompt&quot;: &quot;You are analyzing a Claude Code conversation to find behaviors the user wants to prevent.
+
+Read user messages in the current conversation and identify:
+1. Explicit requests to avoid something (\&quot;don&#39;t do X\&quot;, \&quot;stop doing Y\&quot;)
+2. Corrections or reversions (user fixing Claude&#39;s actions)
+3. Frustrated reactions (\&quot;why did you do X?\&quot;, \&quot;I didn&#39;t ask for that\&quot;)
+4. Repeated issues (same problem multiple times)
+
+For each issue found, extract:
+- What tool was used (Bash, Edit, Write, etc.)
+- Specific pattern or command
+- Why it was problematic
+- User&#39;s stated reason
+
+Return findings as a structured list with:
+- category: Type of issue
+- tool: Which tool was involved
+- pattern: Regex or literal pattern to match
+- context: What happened
+- severity: high/medium/low
+
+Focus on the most recent issues (last 20-30 messages). Don&#39;t go back further unless explicitly asked.&quot;
+}
+</code></pre>
+<h3>Step 2: Present Findings to User</h3>
+<p>After gathering behaviors (from arguments or agent), present to user using AskUserQuestion:</p>
+<p><strong>Question 1: Which behaviors to hookify?</strong></p>
+<ul>
+<li>Header: &quot;Create Rules&quot;</li>
+<li>multiSelect: true</li>
+<li>Options: List each detected behavior (max 4)<ul>
+<li>Label: Short description (e.g., &quot;Block rm -rf&quot;)</li>
+<li>Description: Why it&#39;s problematic</li>
+</ul>
+</li>
+</ul>
+<p><strong>Question 2: For each selected behavior, ask about action:</strong></p>
+<ul>
+<li>&quot;Should this block the operation or just warn?&quot;</li>
+<li>Options:<ul>
+<li>&quot;Just warn&quot; (action: warn - shows message but allows)</li>
+<li>&quot;Block operation&quot; (action: block - prevents execution)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Question 3: Ask for example patterns:</strong></p>
+<ul>
+<li>&quot;What patterns should trigger this rule?&quot;</li>
+<li>Show detected patterns</li>
+<li>Allow user to refine or add more</li>
+</ul>
+<h3>Step 3: Generate Rule Files</h3>
+<p>For each confirmed behavior, create a <code>.claude/hookify.{rule-name}.local.md</code> file:</p>
+<p><strong>Rule naming convention:</strong></p>
+<ul>
+<li>Use kebab-case</li>
+<li>Be descriptive: <code>block-dangerous-rm</code>, <code>warn-console-log</code>, <code>require-tests-before-stop</code></li>
+<li>Start with action verb: block, warn, prevent, require</li>
+</ul>
+<p><strong>File format:</strong></p>
+<pre><code class="language-markdown">---
+name: {rule-name}
+enabled: true
+event: {bash|file|stop|prompt|all}
+pattern: {regex pattern}
+action: {warn|block}
+---
+
+{Message to show Claude when rule triggers}
+</code></pre>
+<p><strong>Action values:</strong></p>
+<ul>
+<li><code>warn</code>: Show message but allow operation (default)</li>
+<li><code>block</code>: Prevent operation or stop session</li>
+</ul>
+<p><strong>For more complex rules (multiple conditions):</strong></p>
+<pre><code class="language-markdown">---
+name: {rule-name}
+enabled: true
+event: file
+conditions:
+  - field: file_path
+    operator: regex_match
+    pattern: \.env$
+  - field: new_text
+    operator: contains
+    pattern: API_KEY
+---
+
+{Warning message}
+</code></pre>
+<h3>Step 4: Create Files and Confirm</h3>
+<p><strong>IMPORTANT</strong>: Rule files must be created in the current working directory&#39;s <code>.claude/</code> folder, NOT the plugin directory.</p>
+<p>Use the current working directory (where Claude Code was started) as the base path.</p>
+<ol>
+<li><p>Check if <code>.claude/</code> directory exists in current working directory</p>
+<ul>
+<li>If not, create it first with: <code>mkdir -p .claude</code></li>
+</ul>
+</li>
+<li><p>Use Write tool to create each <code>.claude/hookify.{name}.local.md</code> file</p>
+<ul>
+<li>Use relative path from current working directory: <code>.claude/hookify.{name}.local.md</code></li>
+<li>The path should resolve to the project&#39;s .claude directory, not the plugin&#39;s</li>
+</ul>
+</li>
+<li><p>Show user what was created:</p>
+<pre><code>Created 3 hookify rules:
+- .claude/hookify.dangerous-rm.local.md
+- .claude/hookify.console-log.local.md
+- .claude/hookify.sensitive-files.local.md
+
+These rules will trigger on:
+- dangerous-rm: Bash commands matching &quot;rm -rf&quot;
+- console-log: Edits adding console.log statements
+- sensitive-files: Edits to .env or credentials files
+</code></pre>
+</li>
+<li><p>Verify files were created in the correct location by listing them</p>
+</li>
+<li><p>Inform user: <strong>&quot;Rules are active immediately - no restart needed!&quot;</strong></p>
+<p>The hookify hooks are already loaded and will read your new rules on the next tool use.</p>
+</li>
+</ol>
+<h2>Event Types Reference</h2>
+<ul>
+<li><strong>bash</strong>: Matches Bash tool commands</li>
+<li><strong>file</strong>: Matches Edit, Write, MultiEdit tools</li>
+<li><strong>stop</strong>: Matches when agent wants to stop (use for completion checks)</li>
+<li><strong>prompt</strong>: Matches when user submits prompts</li>
+<li><strong>all</strong>: Matches all events</li>
+</ul>
+<h2>Pattern Writing Tips</h2>
+<p><strong>Bash patterns:</strong></p>
+<ul>
+<li>Match dangerous commands: <code>rm\s+-rf|chmod\s+777|dd\s+if=</code></li>
+<li>Match specific tools: <code>npm\s+install\s+|pip\s+install</code></li>
+</ul>
+<p><strong>File patterns:</strong></p>
+<ul>
+<li>Match code patterns: <code>console\.log\(|eval\(|innerHTML\s*=</code></li>
+<li>Match file paths: <code>\.env$|\.git/|node_modules/</code></li>
+</ul>
+<p><strong>Stop patterns:</strong></p>
+<ul>
+<li>Check for missing steps: (check transcript or completion criteria)</li>
+</ul>
+<h2>Example Workflow</h2>
+<p><strong>User says</strong>: &quot;/hookify Don&#39;t use rm -rf without asking me first&quot;</p>
+<p><strong>Your response</strong>:</p>
+<ol>
+<li>Analyze: User wants to prevent rm -rf commands</li>
+<li>Ask: &quot;Should I block this command or just warn you?&quot;</li>
+<li>User selects: &quot;Just warn&quot;</li>
+<li>Create <code>.claude/hookify.dangerous-rm.local.md</code>:<pre><code class="language-markdown">---
+name: warn-dangerous-rm
+enabled: true
+event: bash
+pattern: rm\s+-rf
+---
+
+⚠️ **Dangerous rm command detected**
+
+You requested to be warned before using rm -rf.
+Please verify the path is correct.
+</code></pre>
+</li>
+<li>Confirm: &quot;Created hookify rule. It&#39;s active immediately - try triggering it!&quot;</li>
+</ol>
+<h2>Important Notes</h2>
+<ul>
+<li><strong>No restart needed</strong>: Rules take effect immediately on the next tool use</li>
+<li><strong>File location</strong>: Create files in project&#39;s <code>.claude/</code> directory (current working directory), NOT the plugin&#39;s .claude/</li>
+<li><strong>Regex syntax</strong>: Use Python regex syntax (raw strings, no need to escape in YAML)</li>
+<li><strong>Action types</strong>: Rules can <code>warn</code> (default) or <code>block</code> operations</li>
+<li><strong>Testing</strong>: Test rules immediately after creating them</li>
+</ul>
+<h2>Troubleshooting</h2>
+<p><strong>If rule file creation fails:</strong></p>
+<ol>
+<li>Check current working directory with pwd</li>
+<li>Ensure <code>.claude/</code> directory exists (create with mkdir if needed)</li>
+<li>Use absolute path if needed: <code>{cwd}/.claude/hookify.{name}.local.md</code></li>
+<li>Verify file was created with Glob or ls</li>
+</ol>
+<p><strong>If rule doesn&#39;t trigger after creation:</strong></p>
+<ol>
+<li>Verify file is in project <code>.claude/</code> not plugin <code>.claude/</code></li>
+<li>Check file with Read tool to ensure pattern is correct</li>
+<li>Test pattern with: <code>python3 -c &quot;import re; print(re.search(r&#39;pattern&#39;, &#39;test text&#39;))&quot;</code></li>
+<li>Verify <code>enabled: true</code> in frontmatter</li>
+<li>Remember: Rules work immediately, no restart needed</li>
+</ol>
+<p><strong>If blocking seems too strict:</strong></p>
+<ol>
+<li>Change <code>action: block</code> to <code>action: warn</code> in the rule file</li>
+<li>Or adjust the pattern to be more specific</li>
+<li>Changes take effect on next tool use</li>
+</ol>
+<p>Use TodoWrite to track your progress through the steps.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

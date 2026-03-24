@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ui-ux-pro-max</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/.github/prompts/ui-ux-pro-max.prompt.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ui-ux-pro-max</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.worktrees">.worktrees</a> / <a href="../../index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <a href="../index.html#.worktrees%2Fvercel-ui-ux%2F.github">.github</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux%2F.github%2Fprompts">prompts</a> / <span>ui-ux-pro-max.prompt.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: ui-ux-pro-max
+description: &#39;UI/UX design intelligence with 50 styles, 21 palettes, 50 font pairings, and stack-specific best practices&#39;
+agent: &#39;agent&#39;</h2>
+<h1>ui-ux-pro-max</h1>
+<p>Searchable database of UI styles, color palettes, font pairings, chart types, product recommendations, UX guidelines, and stack-specific best practices.</p>
+<h2>Prerequisites</h2>
+<p>Check if Python is installed:</p>
+<pre><code class="language-bash">python3 --version || python --version
+</code></pre>
+<p>If Python is not installed, install it based on user&#39;s OS:</p>
+<p><strong>macOS:</strong></p>
+<pre><code class="language-bash">brew install python3
+</code></pre>
+<p><strong>Ubuntu/Debian:</strong></p>
+<pre><code class="language-bash">sudo apt update &amp;&amp; sudo apt install python3
+</code></pre>
+<p><strong>Windows:</strong></p>
+<pre><code class="language-powershell">winget install Python.Python.3.12
+</code></pre>
+<hr>
+<h2>How to Use This Workflow</h2>
+<p>When user requests UI/UX work (design, build, create, implement, review, fix, improve), follow this workflow:</p>
+<h3>Step 1: Analyze User Requirements</h3>
+<p>Extract key information from user request:</p>
+<ul>
+<li><strong>Product type</strong>: SaaS, e-commerce, portfolio, dashboard, landing page, etc.</li>
+<li><strong>Style keywords</strong>: minimal, playful, professional, elegant, dark mode, etc.</li>
+<li><strong>Industry</strong>: healthcare, fintech, gaming, education, etc.</li>
+<li><strong>Stack</strong>: React, Vue, Next.js, or default to <code>html-tailwind</code></li>
+</ul>
+<h3>Step 2: Search Relevant Domains</h3>
+<p>Use <code>search.py</code> multiple times to gather comprehensive information. Search until you have enough context.</p>
+<pre><code class="language-bash">python3 .shared/ui-ux-pro-max/scripts/search.py &quot;&lt;keyword&gt;&quot; --domain &lt;domain&gt; [-n &lt;max_results&gt;]
+</code></pre>
+<p><strong>Recommended search order:</strong></p>
+<ol>
+<li><strong>Product</strong> - Get style recommendations for product type</li>
+<li><strong>Style</strong> - Get detailed style guide (colors, effects, frameworks)</li>
+<li><strong>Typography</strong> - Get font pairings with Google Fonts imports</li>
+<li><strong>Color</strong> - Get color palette (Primary, Secondary, CTA, Background, Text, Border)</li>
+<li><strong>Landing</strong> - Get page structure (if landing page)</li>
+<li><strong>Chart</strong> - Get chart recommendations (if dashboard/analytics)</li>
+<li><strong>UX</strong> - Get best practices and anti-patterns</li>
+<li><strong>Stack</strong> - Get stack-specific guidelines (default: html-tailwind)</li>
+</ol>
+<h3>Step 3: Stack Guidelines (Default: html-tailwind)</h3>
+<p>If user doesn&#39;t specify a stack, <strong>default to <code>html-tailwind</code></strong>.</p>
+<pre><code class="language-bash">python3 .shared/ui-ux-pro-max/scripts/search.py &quot;&lt;keyword&gt;&quot; --stack html-tailwind
+</code></pre>
+<p>Available stacks: <code>html-tailwind</code>, <code>react</code>, <code>nextjs</code>, <code>vue</code>, <code>svelte</code>, <code>swiftui</code>, <code>react-native</code>, <code>flutter</code></p>
+<hr>
+<h2>Search Reference</h2>
+<h3>Available Domains</h3>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Use For</th>
+<th>Example Keywords</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>product</code></td>
+<td>Product type recommendations</td>
+<td>SaaS, e-commerce, portfolio, healthcare, beauty, service</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>UI styles, colors, effects</td>
+<td>glassmorphism, minimalism, dark mode, brutalism</td>
+</tr>
+<tr>
+<td><code>typography</code></td>
+<td>Font pairings, Google Fonts</td>
+<td>elegant, playful, professional, modern</td>
+</tr>
+<tr>
+<td><code>color</code></td>
+<td>Color palettes by product type</td>
+<td>saas, ecommerce, healthcare, beauty, fintech, service</td>
+</tr>
+<tr>
+<td><code>landing</code></td>
+<td>Page structure, CTA strategies</td>
+<td>hero, hero-centric, testimonial, pricing, social-proof</td>
+</tr>
+<tr>
+<td><code>chart</code></td>
+<td>Chart types, library recommendations</td>
+<td>trend, comparison, timeline, funnel, pie</td>
+</tr>
+<tr>
+<td><code>ux</code></td>
+<td>Best practices, anti-patterns</td>
+<td>animation, accessibility, z-index, loading</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>AI prompts, CSS keywords</td>
+<td>(style name)</td>
+</tr>
+</tbody></table>
+<h3>Available Stacks</h3>
+<table>
+<thead>
+<tr>
+<th>Stack</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>html-tailwind</code></td>
+<td>Tailwind utilities, responsive, a11y (DEFAULT)</td>
+</tr>
+<tr>
+<td><code>react</code></td>
+<td>State, hooks, performance, patterns</td>
+</tr>
+<tr>
+<td><code>nextjs</code></td>
+<td>SSR, routing, images, API routes</td>
+</tr>
+<tr>
+<td><code>vue</code></td>
+<td>Composition API, Pinia, Vue Router</td>
+</tr>
+<tr>
+<td><code>svelte</code></td>
+<td>Runes, stores, SvelteKit</td>
+</tr>
+<tr>
+<td><code>swiftui</code></td>
+<td>Views, State, Navigation, Animation</td>
+</tr>
+<tr>
+<td><code>react-native</code></td>
+<td>Components, Navigation, Lists</td>
+</tr>
+<tr>
+<td><code>flutter</code></td>
+<td>Widgets, State, Layout, Theming</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Example Workflow</h2>
+<p><strong>User request:</strong> &quot;Build a landing page for a skincare service&quot;</p>
+<p><strong>AI should:</strong></p>
+<pre><code class="language-bash"># 1. Search product type
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;beauty spa wellness service&quot; --domain product
+
+# 2. Search style (based on industry: beauty, elegant)
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;elegant minimal soft&quot; --domain style
+
+# 3. Search typography
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;elegant luxury&quot; --domain typography
+
+# 4. Search color palette
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;beauty spa wellness&quot; --domain color
+
+# 5. Search landing page structure
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;hero-centric social-proof&quot; --domain landing
+
+# 6. Search UX guidelines
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;animation&quot; --domain ux
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;accessibility&quot; --domain ux
+
+# 7. Search stack guidelines (default: html-tailwind)
+python3 .shared/ui-ux-pro-max/scripts/search.py &quot;layout responsive&quot; --stack html-tailwind
+</code></pre>
+<p><strong>Then:</strong> Synthesize all search results and implement the design.</p>
+<hr>
+<h2>Tips for Better Results</h2>
+<ol>
+<li><strong>Be specific with keywords</strong> - &quot;healthcare SaaS dashboard&quot; &gt; &quot;app&quot;</li>
+<li><strong>Search multiple times</strong> - Different keywords reveal different insights</li>
+<li><strong>Combine domains</strong> - Style + Typography + Color = Complete design system</li>
+<li><strong>Always check UX</strong> - Search &quot;animation&quot;, &quot;z-index&quot;, &quot;accessibility&quot; for common issues</li>
+<li><strong>Use stack flag</strong> - Get implementation-specific best practices</li>
+<li><strong>Iterate</strong> - If first search doesn&#39;t match, try different keywords</li>
+<li><strong>Split Into Multiple Files</strong> - For better maintainability:<ul>
+<li>Separate components into individual files (e.g., <code>Header.tsx</code>, <code>Footer.tsx</code>)</li>
+<li>Extract reusable styles into dedicated files</li>
+<li>Keep each file focused and under 200-300 lines</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Common Rules for Professional UI</h2>
+<p>These are frequently overlooked issues that make UI look unprofessional:</p>
+<h3>Icons &amp; Visual Elements</h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Do</th>
+<th>Don&#39;t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>No emoji icons</strong></td>
+<td>Use SVG icons (Heroicons, Lucide, Simple Icons)</td>
+<td>Use emojis like 🎨 🚀 ⚙️ as UI icons</td>
+</tr>
+<tr>
+<td><strong>Stable hover states</strong></td>
+<td>Use color/opacity transitions on hover</td>
+<td>Use scale transforms that shift layout</td>
+</tr>
+<tr>
+<td><strong>Correct brand logos</strong></td>
+<td>Research official SVG from Simple Icons</td>
+<td>Guess or use incorrect logo paths</td>
+</tr>
+<tr>
+<td><strong>Consistent icon sizing</strong></td>
+<td>Use fixed viewBox (24x24) with w-6 h-6</td>
+<td>Mix different icon sizes randomly</td>
+</tr>
+</tbody></table>
+<h3>Interaction &amp; Cursor</h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Do</th>
+<th>Don&#39;t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cursor pointer</strong></td>
+<td>Add <code>cursor-pointer</code> to all clickable/hoverable cards</td>
+<td>Leave default cursor on interactive elements</td>
+</tr>
+<tr>
+<td><strong>Hover feedback</strong></td>
+<td>Provide visual feedback (color, shadow, border)</td>
+<td>No indication element is interactive</td>
+</tr>
+<tr>
+<td><strong>Smooth transitions</strong></td>
+<td>Use <code>transition-colors duration-200</code></td>
+<td>Instant state changes or too slow (&gt;500ms)</td>
+</tr>
+</tbody></table>
+<h3>Light/Dark Mode Contrast</h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Do</th>
+<th>Don&#39;t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Glass card light mode</strong></td>
+<td>Use <code>bg-white/80</code> or higher opacity</td>
+<td>Use <code>bg-white/10</code> (too transparent)</td>
+</tr>
+<tr>
+<td><strong>Text contrast light</strong></td>
+<td>Use <code>#0F172A</code> (slate-900) for text</td>
+<td>Use <code>#94A3B8</code> (slate-400) for body text</td>
+</tr>
+<tr>
+<td><strong>Muted text light</strong></td>
+<td>Use <code>#475569</code> (slate-600) minimum</td>
+<td>Use gray-400 or lighter</td>
+</tr>
+<tr>
+<td><strong>Border visibility</strong></td>
+<td>Use <code>border-gray-200</code> in light mode</td>
+<td>Use <code>border-white/10</code> (invisible)</td>
+</tr>
+</tbody></table>
+<h3>Layout &amp; Spacing</h3>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th>Do</th>
+<th>Don&#39;t</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Floating navbar</strong></td>
+<td>Add <code>top-4 left-4 right-4</code> spacing</td>
+<td>Stick navbar to <code>top-0 left-0 right-0</code></td>
+</tr>
+<tr>
+<td><strong>Content padding</strong></td>
+<td>Account for fixed navbar height</td>
+<td>Let content hide behind fixed elements</td>
+</tr>
+<tr>
+<td><strong>Consistent max-width</strong></td>
+<td>Use same <code>max-w-6xl</code> or <code>max-w-7xl</code></td>
+<td>Mix different container widths</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Pre-Delivery Checklist</h2>
+<p>Before delivering UI code, verify these items:</p>
+<h3>Visual Quality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> No emojis used as icons (use SVG instead)</li>
+<li><input disabled="" type="checkbox"> All icons from consistent icon set (Heroicons/Lucide)</li>
+<li><input disabled="" type="checkbox"> Brand logos are correct (verified from Simple Icons)</li>
+<li><input disabled="" type="checkbox"> Hover states don&#39;t cause layout shift</li>
+<li><input disabled="" type="checkbox"> Use theme colors directly (bg-primary) not var() wrapper</li>
+</ul>
+<h3>Interaction</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All clickable elements have <code>cursor-pointer</code></li>
+<li><input disabled="" type="checkbox"> Hover states provide clear visual feedback</li>
+<li><input disabled="" type="checkbox"> Transitions are smooth (150-300ms)</li>
+<li><input disabled="" type="checkbox"> Focus states visible for keyboard navigation</li>
+</ul>
+<h3>Light/Dark Mode</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Light mode text has sufficient contrast (4.5:1 minimum)</li>
+<li><input disabled="" type="checkbox"> Glass/transparent elements visible in light mode</li>
+<li><input disabled="" type="checkbox"> Borders visible in both modes</li>
+<li><input disabled="" type="checkbox"> Test both modes before delivery</li>
+</ul>
+<h3>Layout</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Floating elements have proper spacing from edges</li>
+<li><input disabled="" type="checkbox"> No content hidden behind fixed navbars</li>
+<li><input disabled="" type="checkbox"> Responsive at 320px, 768px, 1024px, 1440px</li>
+<li><input disabled="" type="checkbox"> No horizontal scroll on mobile</li>
+</ul>
+<h3>Accessibility</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All images have alt text</li>
+<li><input disabled="" type="checkbox"> Form inputs have labels</li>
+<li><input disabled="" type="checkbox"> Color is not the only indicator</li>
+<li><input disabled="" type="checkbox"> <code>prefers-reduced-motion</code> respected</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

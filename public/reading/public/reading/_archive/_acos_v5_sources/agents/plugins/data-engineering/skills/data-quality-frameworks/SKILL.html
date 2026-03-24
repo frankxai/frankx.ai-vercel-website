@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Data Quality Frameworks</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/data-engineering/skills/data-quality-frameworks/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Data Quality Frameworks</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdata-engineering">data-engineering</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdata-engineering%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdata-engineering%2Fskills%2Fdata-quality-frameworks">data-quality-frameworks</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: data-quality-frameworks
+description: Implement data quality validation with Great Expectations, dbt tests, and data contracts. Use when building data quality pipelines, implementing validation rules, or establishing data contracts.</h2>
+<h1>Data Quality Frameworks</h1>
+<p>Production patterns for implementing data quality with Great Expectations, dbt tests, and data contracts to ensure reliable data pipelines.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Implementing data quality checks in pipelines</li>
+<li>Setting up Great Expectations validation</li>
+<li>Building comprehensive dbt test suites</li>
+<li>Establishing data contracts between teams</li>
+<li>Monitoring data quality metrics</li>
+<li>Automating data validation in CI/CD</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Data Quality Dimensions</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Description</th>
+<th>Example Check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Completeness</strong></td>
+<td>No missing values</td>
+<td><code>expect_column_values_to_not_be_null</code></td>
+</tr>
+<tr>
+<td><strong>Uniqueness</strong></td>
+<td>No duplicates</td>
+<td><code>expect_column_values_to_be_unique</code></td>
+</tr>
+<tr>
+<td><strong>Validity</strong></td>
+<td>Values in expected range</td>
+<td><code>expect_column_values_to_be_in_set</code></td>
+</tr>
+<tr>
+<td><strong>Accuracy</strong></td>
+<td>Data matches reality</td>
+<td>Cross-reference validation</td>
+</tr>
+<tr>
+<td><strong>Consistency</strong></td>
+<td>No contradictions</td>
+<td><code>expect_column_pair_values_A_to_be_greater_than_B</code></td>
+</tr>
+<tr>
+<td><strong>Timeliness</strong></td>
+<td>Data is recent</td>
+<td><code>expect_column_max_to_be_between</code></td>
+</tr>
+</tbody></table>
+<h3>2. Testing Pyramid for Data</h3>
+<pre><code>          /\
+         /  \     Integration Tests (cross-table)
+        /────\
+       /      \   Unit Tests (single column)
+      /────────\
+     /          \ Schema Tests (structure)
+    /────────────\
+</code></pre>
+<h2>Quick Start</h2>
+<h3>Great Expectations Setup</h3>
+<pre><code class="language-bash"># Install
+pip install great_expectations
+
+# Initialize project
+great_expectations init
+
+# Create datasource
+great_expectations datasource new
+</code></pre>
+<pre><code class="language-python"># great_expectations/checkpoints/daily_validation.yml
+import great_expectations as gx
+
+# Create context
+context = gx.get_context()
+
+# Create expectation suite
+suite = context.add_expectation_suite(&quot;orders_suite&quot;)
+
+# Add expectations
+suite.add_expectation(
+    gx.expectations.ExpectColumnValuesToNotBeNull(column=&quot;order_id&quot;)
+)
+suite.add_expectation(
+    gx.expectations.ExpectColumnValuesToBeUnique(column=&quot;order_id&quot;)
+)
+
+# Validate
+results = context.run_checkpoint(checkpoint_name=&quot;daily_orders&quot;)
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: Great Expectations Suite</h3>
+<pre><code class="language-python"># expectations/orders_suite.py
+import great_expectations as gx
+from great_expectations.core import ExpectationSuite
+from great_expectations.core.expectation_configuration import ExpectationConfiguration
+
+def build_orders_suite() -&gt; ExpectationSuite:
+    &quot;&quot;&quot;Build comprehensive orders expectation suite&quot;&quot;&quot;
+
+    suite = ExpectationSuite(expectation_suite_name=&quot;orders_suite&quot;)
+
+    # Schema expectations
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_table_columns_to_match_set&quot;,
+        kwargs={
+            &quot;column_set&quot;: [&quot;order_id&quot;, &quot;customer_id&quot;, &quot;amount&quot;, &quot;status&quot;, &quot;created_at&quot;],
+            &quot;exact_match&quot;: False  # Allow additional columns
+        }
+    ))
+
+    # Primary key
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_values_to_not_be_null&quot;,
+        kwargs={&quot;column&quot;: &quot;order_id&quot;}
+    ))
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_values_to_be_unique&quot;,
+        kwargs={&quot;column&quot;: &quot;order_id&quot;}
+    ))
+
+    # Foreign key
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_values_to_not_be_null&quot;,
+        kwargs={&quot;column&quot;: &quot;customer_id&quot;}
+    ))
+
+    # Categorical values
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_values_to_be_in_set&quot;,
+        kwargs={
+            &quot;column&quot;: &quot;status&quot;,
+            &quot;value_set&quot;: [&quot;pending&quot;, &quot;processing&quot;, &quot;shipped&quot;, &quot;delivered&quot;, &quot;cancelled&quot;]
+        }
+    ))
+
+    # Numeric ranges
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_values_to_be_between&quot;,
+        kwargs={
+            &quot;column&quot;: &quot;amount&quot;,
+            &quot;min_value&quot;: 0,
+            &quot;max_value&quot;: 100000,
+            &quot;strict_min&quot;: True  # amount &gt; 0
+        }
+    ))
+
+    # Date validity
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_values_to_be_dateutil_parseable&quot;,
+        kwargs={&quot;column&quot;: &quot;created_at&quot;}
+    ))
+
+    # Freshness - data should be recent
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_max_to_be_between&quot;,
+        kwargs={
+            &quot;column&quot;: &quot;created_at&quot;,
+            &quot;min_value&quot;: {&quot;$PARAMETER&quot;: &quot;now - timedelta(days=1)&quot;},
+            &quot;max_value&quot;: {&quot;$PARAMETER&quot;: &quot;now&quot;}
+        }
+    ))
+
+    # Row count sanity
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_table_row_count_to_be_between&quot;,
+        kwargs={
+            &quot;min_value&quot;: 1000,  # Expect at least 1000 rows
+            &quot;max_value&quot;: 10000000
+        }
+    ))
+
+    # Statistical expectations
+    suite.add_expectation(ExpectationConfiguration(
+        expectation_type=&quot;expect_column_mean_to_be_between&quot;,
+        kwargs={
+            &quot;column&quot;: &quot;amount&quot;,
+            &quot;min_value&quot;: 50,
+            &quot;max_value&quot;: 500
+        }
+    ))
+
+    return suite
+</code></pre>
+<h3>Pattern 2: Great Expectations Checkpoint</h3>
+<pre><code class="language-yaml"># great_expectations/checkpoints/orders_checkpoint.yml
+name: orders_checkpoint
+config_version: 1.0
+class_name: Checkpoint
+run_name_template: &quot;%Y%m%d-%H%M%S-orders-validation&quot;
+
+validations:
+  - batch_request:
+      datasource_name: warehouse
+      data_connector_name: default_inferred_data_connector_name
+      data_asset_name: orders
+      data_connector_query:
+        index: -1 # Latest batch
+    expectation_suite_name: orders_suite
+
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+
+  - name: store_evaluation_parameters
+    action:
+      class_name: StoreEvaluationParametersAction
+
+  - name: update_data_docs
+    action:
+      class_name: UpdateDataDocsAction
+
+  # Slack notification on failure
+  - name: send_slack_notification
+    action:
+      class_name: SlackNotificationAction
+      slack_webhook: ${SLACK_WEBHOOK}
+      notify_on: failure
+      renderer:
+        module_name: great_expectations.render.renderer.slack_renderer
+        class_name: SlackRenderer
+</code></pre>
+<pre><code class="language-python"># Run checkpoint
+import great_expectations as gx
+
+context = gx.get_context()
+result = context.run_checkpoint(checkpoint_name=&quot;orders_checkpoint&quot;)
+
+if not result.success:
+    failed_expectations = [
+        r for r in result.run_results.values()
+        if not r.success
+    ]
+    raise ValueError(f&quot;Data quality check failed: {failed_expectations}&quot;)
+</code></pre>
+<h3>Pattern 3: dbt Data Tests</h3>
+<pre><code class="language-yaml"># models/marts/core/_core__models.yml
+version: 2
+
+models:
+  - name: fct_orders
+    description: Order fact table
+    tests:
+      # Table-level tests
+      - dbt_utils.recency:
+          datepart: day
+          field: created_at
+          interval: 1
+      - dbt_utils.at_least_one
+      - dbt_utils.expression_is_true:
+          expression: &quot;total_amount &gt;= 0&quot;
+
+    columns:
+      - name: order_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Foreign key to dim_customers
+        tests:
+          - not_null
+          - relationships:
+              to: ref(&#39;dim_customers&#39;)
+              field: customer_id
+
+      - name: order_status
+        tests:
+          - accepted_values:
+              values:
+                [&quot;pending&quot;, &quot;processing&quot;, &quot;shipped&quot;, &quot;delivered&quot;, &quot;cancelled&quot;]
+
+      - name: total_amount
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: &quot;&gt;= 0&quot;
+
+      - name: created_at
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: &quot;&lt;= current_timestamp&quot;
+
+  - name: dim_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+      - name: email
+        tests:
+          - unique
+          - not_null
+          # Custom regex test
+          - dbt_utils.expression_is_true:
+              expression: &quot;email ~ &#39;^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$&#39;&quot;
+</code></pre>
+<h3>Pattern 4: Custom dbt Tests</h3>
+<pre><code class="language-sql">-- tests/generic/test_row_count_in_range.sql
+{% test row_count_in_range(model, min_count, max_count) %}
+
+with row_count as (
+    select count(*) as cnt from {{ model }}
+)
+
+select cnt
+from row_count
+where cnt &lt; {{ min_count }} or cnt &gt; {{ max_count }}
+
+{% endtest %}
+
+-- Usage in schema.yml:
+-- tests:
+--   - row_count_in_range:
+--       min_count: 1000
+--       max_count: 10000000
+</code></pre>
+<pre><code class="language-sql">-- tests/generic/test_sequential_values.sql
+{% test sequential_values(model, column_name, interval=1) %}
+
+with lagged as (
+    select
+        {{ column_name }},
+        lag({{ column_name }}) over (order by {{ column_name }}) as prev_value
+    from {{ model }}
+)
+
+select *
+from lagged
+where {{ column_name }} - prev_value != {{ interval }}
+  and prev_value is not null
+
+{% endtest %}
+</code></pre>
+<pre><code class="language-sql">-- tests/singular/assert_orders_customers_match.sql
+-- Singular test: specific business rule
+
+with orders_customers as (
+    select distinct customer_id from {{ ref(&#39;fct_orders&#39;) }}
+),
+
+dim_customers as (
+    select customer_id from {{ ref(&#39;dim_customers&#39;) }}
+),
+
+orphaned_orders as (
+    select o.customer_id
+    from orders_customers o
+    left join dim_customers c using (customer_id)
+    where c.customer_id is null
+)
+
+select * from orphaned_orders
+-- Test passes if this returns 0 rows
+</code></pre>
+<h3>Pattern 5: Data Contracts</h3>
+<pre><code class="language-yaml"># contracts/orders_contract.yaml
+apiVersion: datacontract.com/v1.0.0
+kind: DataContract
+metadata:
+  name: orders
+  version: 1.0.0
+  owner: data-platform-team
+  contact: data-team@company.com
+
+info:
+  title: Orders Data Contract
+  description: Contract for order event data from the ecommerce platform
+  purpose: Analytics, reporting, and ML features
+
+servers:
+  production:
+    type: snowflake
+    account: company.us-east-1
+    database: ANALYTICS
+    schema: CORE
+
+terms:
+  usage: Internal analytics only
+  limitations: PII must not be exposed in downstream marts
+  billing: Charged per query TB scanned
+
+schema:
+  type: object
+  properties:
+    order_id:
+      type: string
+      format: uuid
+      description: Unique order identifier
+      required: true
+      unique: true
+      pii: false
+
+    customer_id:
+      type: string
+      format: uuid
+      description: Customer identifier
+      required: true
+      pii: true
+      piiClassification: indirect
+
+    total_amount:
+      type: number
+      minimum: 0
+      maximum: 100000
+      description: Order total in USD
+
+    created_at:
+      type: string
+      format: date-time
+      description: Order creation timestamp
+      required: true
+
+    status:
+      type: string
+      enum: [pending, processing, shipped, delivered, cancelled]
+      description: Current order status
+
+quality:
+  type: SodaCL
+  specification:
+    checks for orders:
+      - row_count &gt; 0
+      - missing_count(order_id) = 0
+      - duplicate_count(order_id) = 0
+      - invalid_count(status) = 0:
+          valid values: [pending, processing, shipped, delivered, cancelled]
+      - freshness(created_at) &lt; 24h
+
+sla:
+  availability: 99.9%
+  freshness: 1 hour
+  latency: 5 minutes
+</code></pre>
+<h3>Pattern 6: Automated Quality Pipeline</h3>
+<pre><code class="language-python"># quality_pipeline.py
+from dataclasses import dataclass
+from typing import List, Dict, Any
+import great_expectations as gx
+from datetime import datetime
+
+@dataclass
+class QualityResult:
+    table: str
+    passed: bool
+    total_expectations: int
+    failed_expectations: int
+    details: List[Dict[str, Any]]
+    timestamp: datetime
+
+class DataQualityPipeline:
+    &quot;&quot;&quot;Orchestrate data quality checks across tables&quot;&quot;&quot;
+
+    def __init__(self, context: gx.DataContext):
+        self.context = context
+        self.results: List[QualityResult] = []
+
+    def validate_table(self, table: str, suite: str) -&gt; QualityResult:
+        &quot;&quot;&quot;Validate a single table against expectation suite&quot;&quot;&quot;
+
+        checkpoint_config = {
+            &quot;name&quot;: f&quot;{table}_validation&quot;,
+            &quot;config_version&quot;: 1.0,
+            &quot;class_name&quot;: &quot;Checkpoint&quot;,
+            &quot;validations&quot;: [{
+                &quot;batch_request&quot;: {
+                    &quot;datasource_name&quot;: &quot;warehouse&quot;,
+                    &quot;data_asset_name&quot;: table,
+                },
+                &quot;expectation_suite_name&quot;: suite,
+            }],
+        }
+
+        result = self.context.run_checkpoint(**checkpoint_config)
+
+        # Parse results
+        validation_result = list(result.run_results.values())[0]
+        results = validation_result.results
+
+        failed = [r for r in results if not r.success]
+
+        return QualityResult(
+            table=table,
+            passed=result.success,
+            total_expectations=len(results),
+            failed_expectations=len(failed),
+            details=[{
+                &quot;expectation&quot;: r.expectation_config.expectation_type,
+                &quot;success&quot;: r.success,
+                &quot;observed_value&quot;: r.result.get(&quot;observed_value&quot;),
+            } for r in results],
+            timestamp=datetime.now()
+        )
+
+    def run_all(self, tables: Dict[str, str]) -&gt; Dict[str, QualityResult]:
+        &quot;&quot;&quot;Run validation for all tables&quot;&quot;&quot;
+        results = {}
+
+        for table, suite in tables.items():
+            print(f&quot;Validating {table}...&quot;)
+            results[table] = self.validate_table(table, suite)
+
+        return results
+
+    def generate_report(self, results: Dict[str, QualityResult]) -&gt; str:
+        &quot;&quot;&quot;Generate quality report&quot;&quot;&quot;
+        report = [&quot;# Data Quality Report&quot;, f&quot;Generated: {datetime.now()}&quot;, &quot;&quot;]
+
+        total_passed = sum(1 for r in results.values() if r.passed)
+        total_tables = len(results)
+
+        report.append(f&quot;## Summary: {total_passed}/{total_tables} tables passed&quot;)
+        report.append(&quot;&quot;)
+
+        for table, result in results.items():
+            status = &quot;✅&quot; if result.passed else &quot;❌&quot;
+            report.append(f&quot;### {status} {table}&quot;)
+            report.append(f&quot;- Expectations: {result.total_expectations}&quot;)
+            report.append(f&quot;- Failed: {result.failed_expectations}&quot;)
+
+            if not result.passed:
+                report.append(&quot;- Failed checks:&quot;)
+                for detail in result.details:
+                    if not detail[&quot;success&quot;]:
+                        report.append(f&quot;  - {detail[&#39;expectation&#39;]}: {detail[&#39;observed_value&#39;]}&quot;)
+            report.append(&quot;&quot;)
+
+        return &quot;\n&quot;.join(report)
+
+# Usage
+context = gx.get_context()
+pipeline = DataQualityPipeline(context)
+
+tables_to_validate = {
+    &quot;orders&quot;: &quot;orders_suite&quot;,
+    &quot;customers&quot;: &quot;customers_suite&quot;,
+    &quot;products&quot;: &quot;products_suite&quot;,
+}
+
+results = pipeline.run_all(tables_to_validate)
+report = pipeline.generate_report(results)
+
+# Fail pipeline if any table failed
+if not all(r.passed for r in results.values()):
+    print(report)
+    raise ValueError(&quot;Data quality checks failed!&quot;)
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Test early</strong> - Validate source data before transformations</li>
+<li><strong>Test incrementally</strong> - Add tests as you find issues</li>
+<li><strong>Document expectations</strong> - Clear descriptions for each test</li>
+<li><strong>Alert on failures</strong> - Integrate with monitoring</li>
+<li><strong>Version contracts</strong> - Track schema changes</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t test everything</strong> - Focus on critical columns</li>
+<li><strong>Don&#39;t ignore warnings</strong> - They often precede failures</li>
+<li><strong>Don&#39;t skip freshness</strong> - Stale data is bad data</li>
+<li><strong>Don&#39;t hardcode thresholds</strong> - Use dynamic baselines</li>
+<li><strong>Don&#39;t test in isolation</strong> - Test relationships too</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.greatexpectations.io/">Great Expectations Documentation</a></li>
+<li><a href="https://docs.getdbt.com/docs/build/tests">dbt Testing Documentation</a></li>
+<li><a href="https://datacontract.com/">Data Contract Specification</a></li>
+<li><a href="https://docs.soda.io/soda-core/overview.html">Soda Core</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

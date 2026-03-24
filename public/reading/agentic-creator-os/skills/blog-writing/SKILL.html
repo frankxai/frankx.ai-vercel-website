@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Blog Writing</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/skills/blog-writing/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Blog Writing</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2Fskills%2Fblog-writing">blog-writing</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Blog Writing
+description: Create SEO-optimized blog posts that engage readers and rank in search results
+version: 1.0.0
+triggers:
+  - &quot;blog post&quot;
+  - &quot;write blog&quot;
+  - &quot;create article&quot;
+  - &quot;blog article&quot;
+  - &quot;skill:blog-writing&quot;</h2>
+<h1>Blog Writing</h1>
+<h2>Purpose</h2>
+<p>This skill transforms topics into polished, SEO-optimized blog posts that:</p>
+<ul>
+<li>Engage readers from headline to CTA</li>
+<li>Rank in search engine results</li>
+<li>Establish thought leadership</li>
+<li>Drive organic traffic and conversions</li>
+</ul>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Creating educational how-to guides</li>
+<li>Writing thought leadership pieces</li>
+<li>Producing listicles and comparison posts</li>
+<li>Writing case studies and success stories</li>
+<li>Creating evergreen content for SEO</li>
+<li>Publishing news commentary and analysis</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>SEO-First Structure</h3>
+<pre><code class="language-typescript">interface BlogPost {
+  title: string;           // Keyword-rich, 50-60 chars
+  metaDescription: string; // 150-160 chars, includes CTA
+  headings: H2[];          // 3-7 H2s for readability
+  paragraphs: Paragraph[]; // 2-4 sentences each
+  keywords: string[];      // Primary + 3-5 secondary
+  links: ExternalLink[];   // 2-4 authoritative sources
+}
+</code></pre>
+<h3>The Skyscraper Technique</h3>
+<ol>
+<li>Find top-ranking content for target keyword</li>
+<li>Identify gaps and improvement opportunities</li>
+<li>Create comprehensive content (2x better)</li>
+<li>Reach out for backlinks</li>
+</ol>
+<h3>Content Pillar Strategy</h3>
+<pre><code class="language-markdown">Pillar Page (10,000+ words)
+├── Topic Cluster Content 1 (1,500 words)
+├── Topic Cluster Content 2 (1,500 words)
+├── Topic Cluster Content 3 (1,500 words)
+└── Topic Cluster Content 4 (1,500 words)
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: How-To Guide Structure</h3>
+<pre><code class="language-markdown"># How to [Achieve Desired Outcome]: [Timeframe or Method]
+
+## What You&#39;ll Learn
+- Learning outcome 1
+- Learning outcome 2
+- Learning outcome 3
+
+## Step 1: [First Major Step]
+### What You&#39;re Doing
+[Clear explanation in 2-3 sentences]
+
+### Why It Matters
+[Brief rationale]
+
+### How to Do It
+1. [Sub-step with detail]
+2. [Sub-step with detail]
+3. [Sub-step with detail]
+
+### Pro Tips
+- Insider technique
+- Common mistake to avoid
+
+## Step 2: [Second Major Step]
+[Same structure]
+
+## Common Challenges
+| Challenge | Solution |
+|-----------|----------|
+| [Challenge 1] | [Solution 1] |
+| [Challenge 2] | [Solution 2] |
+
+## FAQ
+**Q: [Common question]**
+A: [Direct answer]
+
+## Your Turn
+[Actionable CTA with next step]
+</code></pre>
+<h3>Pattern 2: Listicle Structure</h3>
+<pre><code class="language-markdown"># [Number] [Powerful Adjective] Ways to [Desired Outcome]
+
+## Why [Desired Outcome] Matters
+[Compelling hook, 2-3 paragraphs]
+
+## The Methods
+1. **[Method 1]**
+   - Description with context
+   - When to use this approach
+   - Example implementation
+
+2. **[Method 2]**
+   - [Same structure]
+
+3. **[Method 3]**
+   - [Same structure]
+
+[...continue through all methods]
+
+## My Top Pick
+[Reasoning for best method with evidence]
+
+## Quick Implementation Checklist
+- [ ] Step 1
+- [ ] Step 2
+- [ ] Step 3
+</code></pre>
+<h2>Step-by-Step Process</h2>
+<ol>
+<li><p><strong>Keyword Research</strong></p>
+<ul>
+<li>Use Ahrefs/Semrush for volume and difficulty</li>
+<li>Find long-tail variations</li>
+<li>Analyze search intent (informational, navigational, transactional)</li>
+</ul>
+</li>
+<li><p><strong>Content Brief Creation</strong></p>
+<ul>
+<li>Define primary keyword</li>
+<li>Identify 3-5 secondary keywords</li>
+<li>Outline H2 structure</li>
+<li>Specify word count target (1,500-3,000 words)</li>
+</ul>
+</li>
+<li><p><strong>Drafting</strong></p>
+<ul>
+<li>Write H2s first as outline</li>
+<li>Expand each section with 2-4 paragraphs</li>
+<li>Include examples, statistics, expert quotes</li>
+</ul>
+</li>
+<li><p><strong>SEO Optimization</strong></p>
+<ul>
+<li>Place primary keyword in title, H1, first paragraph, conclusion</li>
+<li>Add secondary keywords in H2s and naturally throughout</li>
+<li>Include 2-4 external links to authoritative sources</li>
+<li>Add internal links to related content</li>
+</ul>
+</li>
+<li><p><strong>Review and Refine</strong></p>
+<ul>
+<li>Check readability (aim for Grade 6-8)</li>
+<li>Verify all claims have citations</li>
+<li>Test mobile formatting</li>
+<li>Run through SEO checklist</li>
+</ul>
+</li>
+</ol>
+<h2>FrankX Application</h2>
+<pre><code class="language-markdown"># How to Create Transformative Content That Changes Minds
+
+**[FrankX Brand Voice: Provocative, visionary]**
+
+The content landscape has shifted. Yesterday&#39;s SEO tricks won&#39;t work tomorrow.
+
+Here&#39;s how to create content that doesn&#39;t just rank—it transforms.
+
+## Why Traditional Content Fails
+
+Most content gets ignored because it:
+
+- States the obvious
+- Lacks distinct perspective
+- Fails to challenge assumptions
+
+## The FrankX Approach
+
+[Your brand-specific framework with consciousness/transformation themes]
+
+## Quick Implementation
+1. Lead with a provocative premise
+2. Back it with evidence
+3. Connect to transformation
+4. End with actionable framework
+</code></pre>
+<h2>Anti-Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Bad Practice</th>
+<th>Why It&#39;s Bad</th>
+<th>Better Approach</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Keyword stuffing</td>
+<td>Hurts readability, penalized by Google</td>
+<td>Natural keyword integration</td>
+</tr>
+<tr>
+<td>Generic introductions</td>
+<td>Fails to hook readers</td>
+<td>Start with hook, story, or question</td>
+</tr>
+<tr>
+<td>Thin content (&lt;1,000 words)</td>
+<td>Doesn&#39;t satisfy search intent</td>
+<td>Comprehensive 1,500+ words</td>
+</tr>
+<tr>
+<td>No clear CTA</td>
+<td>Misses conversion opportunity</td>
+<td>Specific, actionable next step</td>
+</tr>
+<tr>
+<td>Ignoring featured snippets</td>
+<td>Loses valuable SERP real estate</td>
+<td>Answer question in 50 words</td>
+</tr>
+</tbody></table>
+<h2>Quick Commands</h2>
+<pre><code class="language-bash"># Create blog post from topic
+skill:blog-writing, create a how-to guide about [TOPIC]
+
+# Write thought leadership piece
+skill:blog-writing, write an opinion piece on [TREND]
+
+# Generate listicle
+skill:blog-writing, create a listicle about [CATEGORY]
+
+# SEO audit existing content
+skill:seo-optimization, audit my blog post at [URL]
+</code></pre>
+<h2>Related Skills</h2>
+<ul>
+<li><code>seo-optimization</code> - Optimize content for search engines</li>
+<li><code>content-strategy</code> - Plan content calendar and topics</li>
+<li><code>social-media</code> - Promote blog posts across platforms</li>
+<li><code>newsletter</code> - Distribute via email</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><code>resources/templates.md</code> - Blog post templates for different types</li>
+<li><code>resources/seo-checklist.md</code> - Pre-publication SEO verification</li>
+<li><code>resources/examples.md</code> - High-performing blog post examples</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

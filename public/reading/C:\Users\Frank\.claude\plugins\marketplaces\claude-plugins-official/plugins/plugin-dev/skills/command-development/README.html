@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Command Development Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/plugin-dev/skills/command-development/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Command Development Skill</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <h1>Command Development Skill</h1>
+<p>Comprehensive guidance on creating Claude Code slash commands, including file format, frontmatter options, dynamic arguments, and best practices.</p>
+<h2>Overview</h2>
+<p>This skill provides knowledge about:</p>
+<ul>
+<li>Slash command file format and structure</li>
+<li>YAML frontmatter configuration fields</li>
+<li>Dynamic arguments ($ARGUMENTS, $1, $2, etc.)</li>
+<li>File references with @ syntax</li>
+<li>Bash execution with !` syntax</li>
+<li>Command organization and namespacing</li>
+<li>Best practices for command development</li>
+<li>Plugin-specific features (${CLAUDE_PLUGIN_ROOT}, plugin patterns)</li>
+<li>Integration with plugin components (agents, skills, hooks)</li>
+<li>Validation patterns and error handling</li>
+</ul>
+<h2>Skill Structure</h2>
+<h3>SKILL.md (~2,470 words)</h3>
+<p>Core skill content covering:</p>
+<p><strong>Fundamentals:</strong></p>
+<ul>
+<li>Command basics and locations</li>
+<li>File format (Markdown with optional frontmatter)</li>
+<li>YAML frontmatter fields overview</li>
+<li>Dynamic arguments ($ARGUMENTS and positional)</li>
+<li>File references (@ syntax)</li>
+<li>Bash execution (!` syntax)</li>
+<li>Command organization patterns</li>
+<li>Best practices and common patterns</li>
+<li>Troubleshooting</li>
+</ul>
+<p><strong>Plugin-Specific:</strong></p>
+<ul>
+<li>${CLAUDE_PLUGIN_ROOT} environment variable</li>
+<li>Plugin command discovery and organization</li>
+<li>Plugin command patterns (configuration, template, multi-script)</li>
+<li>Integration with plugin components (agents, skills, hooks)</li>
+<li>Validation patterns (argument, file, resource, error handling)</li>
+</ul>
+<h3>References</h3>
+<p>Detailed documentation:</p>
+<ul>
+<li><p><strong>frontmatter-reference.md</strong>: Complete YAML frontmatter field specifications</p>
+<ul>
+<li>All field descriptions with types and defaults</li>
+<li>When to use each field</li>
+<li>Examples and best practices</li>
+<li>Validation and common errors</li>
+</ul>
+</li>
+<li><p><strong>plugin-features-reference.md</strong>: Plugin-specific command features</p>
+<ul>
+<li>Plugin command discovery and organization</li>
+<li>${CLAUDE_PLUGIN_ROOT} environment variable usage</li>
+<li>Plugin command patterns (configuration, template, multi-script)</li>
+<li>Integration with plugin agents, skills, and hooks</li>
+<li>Validation patterns and error handling</li>
+</ul>
+</li>
+</ul>
+<h3>Examples</h3>
+<p>Practical command examples:</p>
+<ul>
+<li><p><strong>simple-commands.md</strong>: 10 complete command examples</p>
+<ul>
+<li>Code review commands</li>
+<li>Testing commands</li>
+<li>Deployment commands</li>
+<li>Documentation generators</li>
+<li>Git integration commands</li>
+<li>Analysis and research commands</li>
+</ul>
+</li>
+<li><p><strong>plugin-commands.md</strong>: 10 plugin-specific command examples</p>
+<ul>
+<li>Simple plugin commands with scripts</li>
+<li>Multi-script workflows</li>
+<li>Template-based generation</li>
+<li>Configuration-driven deployment</li>
+<li>Agent and skill integration</li>
+<li>Multi-component workflows</li>
+<li>Validated input commands</li>
+<li>Environment-aware commands</li>
+</ul>
+</li>
+</ul>
+<h2>When This Skill Triggers</h2>
+<p>Claude Code activates this skill when users:</p>
+<ul>
+<li>Ask to &quot;create a slash command&quot; or &quot;add a command&quot;</li>
+<li>Need to &quot;write a custom command&quot;</li>
+<li>Want to &quot;define command arguments&quot;</li>
+<li>Ask about &quot;command frontmatter&quot; or YAML configuration</li>
+<li>Need to &quot;organize commands&quot; or use namespacing</li>
+<li>Want to create commands with file references</li>
+<li>Ask about &quot;bash execution in commands&quot;</li>
+<li>Need command development best practices</li>
+</ul>
+<h2>Progressive Disclosure</h2>
+<p>The skill uses progressive disclosure:</p>
+<ol>
+<li><strong>SKILL.md</strong> (~2,470 words): Core concepts, common patterns, and plugin features overview</li>
+<li><strong>References</strong> (~13,500 words total): Detailed specifications<ul>
+<li>frontmatter-reference.md (~1,200 words)</li>
+<li>plugin-features-reference.md (~1,800 words)</li>
+<li>interactive-commands.md (~2,500 words)</li>
+<li>advanced-workflows.md (~1,700 words)</li>
+<li>testing-strategies.md (~2,200 words)</li>
+<li>documentation-patterns.md (~2,000 words)</li>
+<li>marketplace-considerations.md (~2,200 words)</li>
+</ul>
+</li>
+<li><strong>Examples</strong> (~6,000 words total): Complete working command examples<ul>
+<li>simple-commands.md</li>
+<li>plugin-commands.md</li>
+</ul>
+</li>
+</ol>
+<p>Claude loads references and examples as needed based on task.</p>
+<h2>Command Basics Quick Reference</h2>
+<h3>File Format</h3>
+<pre><code class="language-markdown">---
+description: Brief description
+argument-hint: [arg1] [arg2]
+allowed-tools: Read, Bash(git:*)
+---
+
+Command prompt content with:
+- Arguments: $1, $2, or $ARGUMENTS
+- Files: @path/to/file
+- Bash: !`command here`
+</code></pre>
+<h3>Locations</h3>
+<ul>
+<li><strong>Project</strong>: <code>.claude/commands/</code> (shared with team)</li>
+<li><strong>Personal</strong>: <code>~/.claude/commands/</code> (your commands)</li>
+<li><strong>Plugin</strong>: <code>plugin-name/commands/</code> (plugin-specific)</li>
+</ul>
+<h3>Key Features</h3>
+<p><strong>Dynamic arguments:</strong></p>
+<ul>
+<li><code>$ARGUMENTS</code> - All arguments as single string</li>
+<li><code>$1</code>, <code>$2</code>, <code>$3</code> - Positional arguments</li>
+</ul>
+<p><strong>File references:</strong></p>
+<ul>
+<li><code>@path/to/file</code> - Include file contents</li>
+</ul>
+<p><strong>Bash execution:</strong></p>
+<ul>
+<li><code>!</code>command`` - Execute and include output</li>
+</ul>
+<h2>Frontmatter Fields Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>description</code></td>
+<td>Brief description for /help</td>
+<td><code>&quot;Review code for issues&quot;</code></td>
+</tr>
+<tr>
+<td><code>allowed-tools</code></td>
+<td>Restrict tool access</td>
+<td><code>Read, Bash(git:*)</code></td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>Specify model</td>
+<td><code>sonnet</code>, <code>opus</code>, <code>haiku</code></td>
+</tr>
+<tr>
+<td><code>argument-hint</code></td>
+<td>Document arguments</td>
+<td><code>[pr-number] [priority]</code></td>
+</tr>
+<tr>
+<td><code>disable-model-invocation</code></td>
+<td>Manual-only command</td>
+<td><code>true</code></td>
+</tr>
+</tbody></table>
+<h2>Common Patterns</h2>
+<h3>Simple Review Command</h3>
+<pre><code class="language-markdown">---
+description: Review code for issues
+---
+
+Review this code for quality and potential bugs.
+</code></pre>
+<h3>Command with Arguments</h3>
+<pre><code class="language-markdown">---
+description: Deploy to environment
+argument-hint: [environment] [version]
+---
+
+Deploy to $1 environment using version $2
+</code></pre>
+<h3>Command with File Reference</h3>
+<pre><code class="language-markdown">---
+description: Document file
+argument-hint: [file-path]
+---
+
+Generate documentation for @$1
+</code></pre>
+<h3>Command with Bash Execution</h3>
+<pre><code class="language-markdown">---
+description: Show Git status
+allowed-tools: Bash(git:*)
+---
+
+Current status: !`git status`
+Recent commits: !`git log --oneline -5`
+</code></pre>
+<h2>Development Workflow</h2>
+<ol>
+<li><p><strong>Design command:</strong></p>
+<ul>
+<li>Define purpose and scope</li>
+<li>Determine required arguments</li>
+<li>Identify needed tools</li>
+</ul>
+</li>
+<li><p><strong>Create file:</strong></p>
+<ul>
+<li>Choose appropriate location</li>
+<li>Create <code>.md</code> file with command name</li>
+<li>Write basic prompt</li>
+</ul>
+</li>
+<li><p><strong>Add frontmatter:</strong></p>
+<ul>
+<li>Start minimal (just description)</li>
+<li>Add fields as needed (allowed-tools, etc.)</li>
+<li>Document arguments with argument-hint</li>
+</ul>
+</li>
+<li><p><strong>Test command:</strong></p>
+<ul>
+<li>Invoke with <code>/command-name</code></li>
+<li>Verify arguments work</li>
+<li>Check bash execution</li>
+<li>Test file references</li>
+</ul>
+</li>
+<li><p><strong>Refine:</strong></p>
+<ul>
+<li>Improve prompt clarity</li>
+<li>Handle edge cases</li>
+<li>Add examples in comments</li>
+<li>Document requirements</li>
+</ul>
+</li>
+</ol>
+<h2>Best Practices Summary</h2>
+<ol>
+<li><strong>Single responsibility</strong>: One command, one clear purpose</li>
+<li><strong>Clear descriptions</strong>: Make discoverable in <code>/help</code></li>
+<li><strong>Document arguments</strong>: Always use argument-hint</li>
+<li><strong>Minimal tools</strong>: Use most restrictive allowed-tools</li>
+<li><strong>Test thoroughly</strong>: Verify all features work</li>
+<li><strong>Add comments</strong>: Explain complex logic</li>
+<li><strong>Handle errors</strong>: Consider missing arguments/files</li>
+</ol>
+<h2>Status</h2>
+<p><strong>Completed enhancements:</strong></p>
+<ul>
+<li>✓ Plugin command patterns (${CLAUDE_PLUGIN_ROOT}, discovery, organization)</li>
+<li>✓ Integration patterns (agents, skills, hooks coordination)</li>
+<li>✓ Validation patterns (input, file, resource validation, error handling)</li>
+</ul>
+<p><strong>Remaining enhancements (in progress):</strong></p>
+<ul>
+<li>Advanced workflows (multi-step command sequences)</li>
+<li>Testing strategies (how to test commands effectively)</li>
+<li>Documentation patterns (command documentation best practices)</li>
+<li>Marketplace considerations (publishing and distribution)</li>
+</ul>
+<h2>Maintenance</h2>
+<p>To update this skill:</p>
+<ol>
+<li>Keep SKILL.md focused on core fundamentals</li>
+<li>Move detailed specifications to references/</li>
+<li>Add new examples/ for different use cases</li>
+<li>Update frontmatter when new fields added</li>
+<li>Ensure imperative/infinitive form throughout</li>
+<li>Test examples work with current Claude Code</li>
+</ol>
+<h2>Version History</h2>
+<p><strong>v0.1.0</strong> (2025-01-15):</p>
+<ul>
+<li>Initial release with basic command fundamentals</li>
+<li>Frontmatter field reference</li>
+<li>10 simple command examples</li>
+<li>Ready for plugin-specific pattern additions</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Component Architecture Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/design-system-patterns/references/component-architecture.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Component Architecture Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fdesign-system-patterns">design-system-patterns</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fdesign-system-patterns%2Freferences">references</a> / <span>component-architecture.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Component Architecture Patterns</h1>
+<h2>Overview</h2>
+<p>Well-architected components are reusable, composable, and maintainable. This guide covers patterns for building flexible component APIs that scale across design systems.</p>
+<h2>Compound Components</h2>
+<p>Compound components share implicit state through React context, allowing flexible composition.</p>
+<pre><code class="language-tsx">// Compound component pattern
+import * as React from &quot;react&quot;;
+
+interface AccordionContextValue {
+  openItems: Set&lt;string&gt;;
+  toggle: (id: string) =&gt; void;
+  type: &quot;single&quot; | &quot;multiple&quot;;
+}
+
+const AccordionContext = React.createContext&lt;AccordionContextValue | null&gt;(
+  null,
+);
+
+function useAccordionContext() {
+  const context = React.useContext(AccordionContext);
+  if (!context) {
+    throw new Error(&quot;Accordion components must be used within an Accordion&quot;);
+  }
+  return context;
+}
+
+// Root component
+interface AccordionProps {
+  children: React.ReactNode;
+  type?: &quot;single&quot; | &quot;multiple&quot;;
+  defaultOpen?: string[];
+}
+
+function Accordion({
+  children,
+  type = &quot;single&quot;,
+  defaultOpen = [],
+}: AccordionProps) {
+  const [openItems, setOpenItems] = React.useState&lt;Set&lt;string&gt;&gt;(
+    new Set(defaultOpen),
+  );
+
+  const toggle = React.useCallback(
+    (id: string) =&gt; {
+      setOpenItems((prev) =&gt; {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+        } else {
+          if (type === &quot;single&quot;) {
+            next.clear();
+          }
+          next.add(id);
+        }
+        return next;
+      });
+    },
+    [type],
+  );
+
+  return (
+    &lt;AccordionContext.Provider value={{ openItems, toggle, type }}&gt;
+      &lt;div className=&quot;divide-y divide-border&quot;&gt;{children}&lt;/div&gt;
+    &lt;/AccordionContext.Provider&gt;
+  );
+}
+
+// Item component
+interface AccordionItemProps {
+  children: React.ReactNode;
+  id: string;
+}
+
+function AccordionItem({ children, id }: AccordionItemProps) {
+  return (
+    &lt;AccordionItemContext.Provider value={{ id }}&gt;
+      &lt;div className=&quot;py-2&quot;&gt;{children}&lt;/div&gt;
+    &lt;/AccordionItemContext.Provider&gt;
+  );
+}
+
+// Trigger component
+function AccordionTrigger({ children }: { children: React.ReactNode }) {
+  const { toggle, openItems } = useAccordionContext();
+  const { id } = useAccordionItemContext();
+  const isOpen = openItems.has(id);
+
+  return (
+    &lt;button
+      onClick={() =&gt; toggle(id)}
+      className=&quot;flex w-full items-center justify-between py-2 font-medium&quot;
+      aria-expanded={isOpen}
+    &gt;
+      {children}
+      &lt;ChevronDown
+        className={`h-4 w-4 transition-transform ${isOpen ? &quot;rotate-180&quot; : &quot;&quot;}`}
+      /&gt;
+    &lt;/button&gt;
+  );
+}
+
+// Content component
+function AccordionContent({ children }: { children: React.ReactNode }) {
+  const { openItems } = useAccordionContext();
+  const { id } = useAccordionItemContext();
+  const isOpen = openItems.has(id);
+
+  if (!isOpen) return null;
+
+  return &lt;div className=&quot;pb-4 text-muted-foreground&quot;&gt;{children}&lt;/div&gt;;
+}
+
+// Export compound component
+export const AccordionCompound = Object.assign(Accordion, {
+  Item: AccordionItem,
+  Trigger: AccordionTrigger,
+  Content: AccordionContent,
+});
+
+// Usage
+function Example() {
+  return (
+    &lt;AccordionCompound type=&quot;single&quot; defaultOpen={[&quot;item-1&quot;]}&gt;
+      &lt;AccordionCompound.Item id=&quot;item-1&quot;&gt;
+        &lt;AccordionCompound.Trigger&gt;Is it accessible?&lt;/AccordionCompound.Trigger&gt;
+        &lt;AccordionCompound.Content&gt;
+          Yes. It follows WAI-ARIA patterns.
+        &lt;/AccordionCompound.Content&gt;
+      &lt;/AccordionCompound.Item&gt;
+      &lt;AccordionCompound.Item id=&quot;item-2&quot;&gt;
+        &lt;AccordionCompound.Trigger&gt;Is it styled?&lt;/AccordionCompound.Trigger&gt;
+        &lt;AccordionCompound.Content&gt;
+          Yes. It uses Tailwind CSS.
+        &lt;/AccordionCompound.Content&gt;
+      &lt;/AccordionCompound.Item&gt;
+    &lt;/AccordionCompound&gt;
+  );
+}
+</code></pre>
+<h2>Polymorphic Components</h2>
+<p>Polymorphic components can render as different HTML elements or other components.</p>
+<pre><code class="language-tsx">// Polymorphic component with proper TypeScript support
+import * as React from &quot;react&quot;;
+
+type AsProp&lt;C extends React.ElementType&gt; = {
+  as?: C;
+};
+
+type PropsToOmit&lt;C extends React.ElementType, P&gt; = keyof (AsProp&lt;C&gt; &amp; P);
+
+type PolymorphicComponentProp&lt;
+  C extends React.ElementType,
+  Props = {},
+&gt; = React.PropsWithChildren&lt;Props &amp; AsProp&lt;C&gt;&gt; &amp;
+  Omit&lt;React.ComponentPropsWithoutRef&lt;C&gt;, PropsToOmit&lt;C, Props&gt;&gt;;
+
+type PolymorphicRef&lt;C extends React.ElementType&gt; =
+  React.ComponentPropsWithRef&lt;C&gt;[&quot;ref&quot;];
+
+type PolymorphicComponentPropWithRef&lt;
+  C extends React.ElementType,
+  Props = {},
+&gt; = PolymorphicComponentProp&lt;C, Props&gt; &amp; { ref?: PolymorphicRef&lt;C&gt; };
+
+// Button component
+interface ButtonOwnProps {
+  variant?: &quot;default&quot; | &quot;outline&quot; | &quot;ghost&quot;;
+  size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;;
+}
+
+type ButtonProps&lt;C extends React.ElementType = &quot;button&quot;&gt; =
+  PolymorphicComponentPropWithRef&lt;C, ButtonOwnProps&gt;;
+
+const Button = React.forwardRef(
+  &lt;C extends React.ElementType = &quot;button&quot;&gt;(
+    {
+      as,
+      variant = &quot;default&quot;,
+      size = &quot;md&quot;,
+      className,
+      children,
+      ...props
+    }: ButtonProps&lt;C&gt;,
+    ref?: PolymorphicRef&lt;C&gt;,
+  ) =&gt; {
+    const Component = as || &quot;button&quot;;
+
+    const variantClasses = {
+      default: &quot;bg-primary text-primary-foreground hover:bg-primary/90&quot;,
+      outline: &quot;border border-input bg-background hover:bg-accent&quot;,
+      ghost: &quot;hover:bg-accent hover:text-accent-foreground&quot;,
+    };
+
+    const sizeClasses = {
+      sm: &quot;h-8 px-3 text-sm&quot;,
+      md: &quot;h-10 px-4 text-sm&quot;,
+      lg: &quot;h-12 px-6 text-base&quot;,
+    };
+
+    return (
+      &lt;Component
+        ref={ref}
+        className={cn(
+          &quot;inline-flex items-center justify-center rounded-md font-medium transition-colors&quot;,
+          variantClasses[variant],
+          sizeClasses[size],
+          className,
+        )}
+        {...props}
+      &gt;
+        {children}
+      &lt;/Component&gt;
+    );
+  },
+);
+
+Button.displayName = &quot;Button&quot;;
+
+// Usage
+function Example() {
+  return (
+    &lt;&gt;
+      {/* As button (default) */}
+      &lt;Button variant=&quot;default&quot; onClick={() =&gt; {}}&gt;
+        Click me
+      &lt;/Button&gt;
+
+      {/* As anchor link */}
+      &lt;Button as=&quot;a&quot; href=&quot;/page&quot; variant=&quot;outline&quot;&gt;
+        Go to page
+      &lt;/Button&gt;
+
+      {/* As Next.js Link */}
+      &lt;Button as={Link} href=&quot;/dashboard&quot; variant=&quot;ghost&quot;&gt;
+        Dashboard
+      &lt;/Button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h2>Slot Pattern</h2>
+<p>Slots allow users to replace default elements with custom implementations.</p>
+<pre><code class="language-tsx">// Slot pattern for customizable components
+import * as React from &quot;react&quot;;
+import { Slot } from &quot;@radix-ui/react-slot&quot;;
+
+interface ButtonProps extends React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt; {
+  asChild?: boolean;
+  variant?: &quot;default&quot; | &quot;outline&quot;;
+}
+
+const Button = React.forwardRef&lt;HTMLButtonElement, ButtonProps&gt;(
+  ({ asChild = false, variant = &quot;default&quot;, className, ...props }, ref) =&gt; {
+    const Comp = asChild ? Slot : &quot;button&quot;;
+
+    return (
+      &lt;Comp
+        ref={ref}
+        className={cn(
+          &quot;inline-flex items-center justify-center rounded-md font-medium&quot;,
+          variant === &quot;default&quot; &amp;&amp; &quot;bg-primary text-primary-foreground&quot;,
+          variant === &quot;outline&quot; &amp;&amp; &quot;border border-input bg-background&quot;,
+          className,
+        )}
+        {...props}
+      /&gt;
+    );
+  },
+);
+
+// Usage - Button styles applied to child element
+function Example() {
+  return (
+    &lt;Button asChild variant=&quot;outline&quot;&gt;
+      &lt;a href=&quot;/link&quot;&gt;I&#39;m a link that looks like a button&lt;/a&gt;
+    &lt;/Button&gt;
+  );
+}
+</code></pre>
+<h2>Headless Components</h2>
+<p>Headless components provide behavior without styling, enabling complete visual customization.</p>
+<pre><code class="language-tsx">// Headless toggle hook
+import * as React from &quot;react&quot;;
+
+interface UseToggleProps {
+  defaultPressed?: boolean;
+  pressed?: boolean;
+  onPressedChange?: (pressed: boolean) =&gt; void;
+}
+
+function useToggle({
+  defaultPressed = false,
+  pressed: controlledPressed,
+  onPressedChange,
+}: UseToggleProps = {}) {
+  const [uncontrolledPressed, setUncontrolledPressed] =
+    React.useState(defaultPressed);
+
+  const isControlled = controlledPressed !== undefined;
+  const pressed = isControlled ? controlledPressed : uncontrolledPressed;
+
+  const toggle = React.useCallback(() =&gt; {
+    if (!isControlled) {
+      setUncontrolledPressed((prev) =&gt; !prev);
+    }
+    onPressedChange?.(!pressed);
+  }, [isControlled, pressed, onPressedChange]);
+
+  return {
+    pressed,
+    toggle,
+    buttonProps: {
+      role: &quot;switch&quot; as const,
+      &quot;aria-checked&quot;: pressed,
+      onClick: toggle,
+    },
+  };
+}
+
+// Headless listbox hook
+interface UseListboxProps&lt;T&gt; {
+  items: T[];
+  defaultSelectedIndex?: number;
+  onSelect?: (item: T, index: number) =&gt; void;
+}
+
+function useListbox&lt;T&gt;({
+  items,
+  defaultSelectedIndex = -1,
+  onSelect,
+}: UseListboxProps&lt;T&gt;) {
+  const [selectedIndex, setSelectedIndex] =
+    React.useState(defaultSelectedIndex);
+  const [highlightedIndex, setHighlightedIndex] = React.useState(-1);
+
+  const select = React.useCallback(
+    (index: number) =&gt; {
+      setSelectedIndex(index);
+      onSelect?.(items[index], index);
+    },
+    [items, onSelect],
+  );
+
+  const handleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent) =&gt; {
+      switch (event.key) {
+        case &quot;ArrowDown&quot;:
+          event.preventDefault();
+          setHighlightedIndex((prev) =&gt;
+            prev &lt; items.length - 1 ? prev + 1 : prev,
+          );
+          break;
+        case &quot;ArrowUp&quot;:
+          event.preventDefault();
+          setHighlightedIndex((prev) =&gt; (prev &gt; 0 ? prev - 1 : prev));
+          break;
+        case &quot;Enter&quot;:
+        case &quot; &quot;:
+          event.preventDefault();
+          if (highlightedIndex &gt;= 0) {
+            select(highlightedIndex);
+          }
+          break;
+        case &quot;Home&quot;:
+          event.preventDefault();
+          setHighlightedIndex(0);
+          break;
+        case &quot;End&quot;:
+          event.preventDefault();
+          setHighlightedIndex(items.length - 1);
+          break;
+      }
+    },
+    [items.length, highlightedIndex, select],
+  );
+
+  return {
+    selectedIndex,
+    highlightedIndex,
+    select,
+    setHighlightedIndex,
+    listboxProps: {
+      role: &quot;listbox&quot; as const,
+      tabIndex: 0,
+      onKeyDown: handleKeyDown,
+    },
+    getOptionProps: (index: number) =&gt; ({
+      role: &quot;option&quot; as const,
+      &quot;aria-selected&quot;: index === selectedIndex,
+      onClick: () =&gt; select(index),
+      onMouseEnter: () =&gt; setHighlightedIndex(index),
+    }),
+  };
+}
+</code></pre>
+<h2>Variant System with CVA</h2>
+<p>Class Variance Authority (CVA) provides type-safe variant management.</p>
+<pre><code class="language-tsx">import { cva, type VariantProps } from &#39;class-variance-authority&#39;;
+import { cn } from &#39;@/lib/utils&#39;;
+
+// Define variants
+const badgeVariants = cva(
+  // Base classes
+  &#39;inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors&#39;,
+  {
+    variants: {
+      variant: {
+        default: &#39;border-transparent bg-primary text-primary-foreground&#39;,
+        secondary: &#39;border-transparent bg-secondary text-secondary-foreground&#39;,
+        destructive: &#39;border-transparent bg-destructive text-destructive-foreground&#39;,
+        outline: &#39;text-foreground&#39;,
+        success: &#39;border-transparent bg-green-500 text-white&#39;,
+        warning: &#39;border-transparent bg-amber-500 text-white&#39;,
+      },
+      size: {
+        sm: &#39;text-xs px-2 py-0.5&#39;,
+        md: &#39;text-sm px-2.5 py-0.5&#39;,
+        lg: &#39;text-sm px-3 py-1&#39;,
+      },
+    },
+    compoundVariants: [
+      // Outline variant with sizes
+      {
+        variant: &#39;outline&#39;,
+        size: &#39;lg&#39;,
+        className: &#39;border-2&#39;,
+      },
+    ],
+    defaultVariants: {
+      variant: &#39;default&#39;,
+      size: &#39;md&#39;,
+    },
+  }
+);
+
+// Component with variants
+interface BadgeProps
+  extends React.HTMLAttributes&lt;HTMLDivElement&gt;,
+    VariantProps&lt;typeof badgeVariants&gt; {}
+
+function Badge({ className, variant, size, ...props }: BadgeProps) {
+  return (
+    &lt;div className={cn(badgeVariants({ variant, size, className }))} {...props} /&gt;
+  );
+}
+
+// Usage
+&lt;Badge variant=&quot;success&quot; size=&quot;lg&quot;&gt;Active&lt;/Badge&gt;
+&lt;Badge variant=&quot;destructive&quot;&gt;Error&lt;/Badge&gt;
+&lt;Badge variant=&quot;outline&quot;&gt;Draft&lt;/Badge&gt;
+</code></pre>
+<h2>Responsive Variants</h2>
+<pre><code class="language-tsx">import { cva } from &quot;class-variance-authority&quot;;
+
+// Responsive variant configuration
+const containerVariants = cva(&quot;mx-auto w-full px-4&quot;, {
+  variants: {
+    size: {
+      sm: &quot;max-w-screen-sm&quot;,
+      md: &quot;max-w-screen-md&quot;,
+      lg: &quot;max-w-screen-lg&quot;,
+      xl: &quot;max-w-screen-xl&quot;,
+      full: &quot;max-w-full&quot;,
+    },
+    padding: {
+      none: &quot;px-0&quot;,
+      sm: &quot;px-4 md:px-6&quot;,
+      md: &quot;px-4 md:px-8 lg:px-12&quot;,
+      lg: &quot;px-6 md:px-12 lg:px-20&quot;,
+    },
+  },
+  defaultVariants: {
+    size: &quot;lg&quot;,
+    padding: &quot;md&quot;,
+  },
+});
+
+// Responsive prop pattern
+interface ResponsiveValue&lt;T&gt; {
+  base?: T;
+  sm?: T;
+  md?: T;
+  lg?: T;
+  xl?: T;
+}
+
+function getResponsiveClasses&lt;T extends string&gt;(
+  prop: T | ResponsiveValue&lt;T&gt; | undefined,
+  classMap: Record&lt;T, string&gt;,
+  responsiveClassMap: Record&lt;string, Record&lt;T, string&gt;&gt;,
+): string {
+  if (!prop) return &quot;&quot;;
+
+  if (typeof prop === &quot;string&quot;) {
+    return classMap[prop];
+  }
+
+  return Object.entries(prop)
+    .map(([breakpoint, value]) =&gt; {
+      if (breakpoint === &quot;base&quot;) {
+        return classMap[value as T];
+      }
+      return responsiveClassMap[breakpoint]?.[value as T];
+    })
+    .filter(Boolean)
+    .join(&quot; &quot;);
+}
+</code></pre>
+<h2>Composition Patterns</h2>
+<h3>Render Props</h3>
+<pre><code class="language-tsx">interface DataListProps&lt;T&gt; {
+  items: T[];
+  renderItem: (item: T, index: number) =&gt; React.ReactNode;
+  renderEmpty?: () =&gt; React.ReactNode;
+  keyExtractor: (item: T) =&gt; string;
+}
+
+function DataList&lt;T&gt;({
+  items,
+  renderItem,
+  renderEmpty,
+  keyExtractor,
+}: DataListProps&lt;T&gt;) {
+  if (items.length === 0 &amp;&amp; renderEmpty) {
+    return &lt;&gt;{renderEmpty()}&lt;/&gt;;
+  }
+
+  return (
+    &lt;ul className=&quot;space-y-2&quot;&gt;
+      {items.map((item, index) =&gt; (
+        &lt;li key={keyExtractor(item)}&gt;{renderItem(item, index)}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+
+// Usage
+&lt;DataList
+  items={users}
+  keyExtractor={(user) =&gt; user.id}
+  renderItem={(user) =&gt; &lt;UserCard user={user} /&gt;}
+  renderEmpty={() =&gt; &lt;EmptyState message=&quot;No users found&quot; /&gt;}
+/&gt;;
+</code></pre>
+<h3>Children as Function</h3>
+<pre><code class="language-tsx">interface DisclosureProps {
+  children: (props: { isOpen: boolean; toggle: () =&gt; void }) =&gt; React.ReactNode;
+  defaultOpen?: boolean;
+}
+
+function Disclosure({ children, defaultOpen = false }: DisclosureProps) {
+  const [isOpen, setIsOpen] = React.useState(defaultOpen);
+  const toggle = () =&gt; setIsOpen((prev) =&gt; !prev);
+
+  return &lt;&gt;{children({ isOpen, toggle })}&lt;/&gt;;
+}
+
+// Usage
+&lt;Disclosure&gt;
+  {({ isOpen, toggle }) =&gt; (
+    &lt;&gt;
+      &lt;button onClick={toggle}&gt;{isOpen ? &quot;Close&quot; : &quot;Open&quot;}&lt;/button&gt;
+      {isOpen &amp;&amp; &lt;div&gt;Content&lt;/div&gt;}
+    &lt;/&gt;
+  )}
+&lt;/Disclosure&gt;;
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Prefer Composition</strong>: Build complex components from simple primitives</li>
+<li><strong>Use Controlled/Uncontrolled Pattern</strong>: Support both modes for flexibility</li>
+<li><strong>Forward Refs</strong>: Always forward refs to root elements</li>
+<li><strong>Spread Props</strong>: Allow custom props to pass through</li>
+<li><strong>Provide Defaults</strong>: Set sensible defaults for optional props</li>
+<li><strong>Type Everything</strong>: Use TypeScript for prop validation</li>
+<li><strong>Document Variants</strong>: Show all variant combinations in Storybook</li>
+<li><strong>Test Accessibility</strong>: Verify keyboard navigation and screen reader support</li>
+</ol>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.radix-ui.com/primitives">Radix UI Primitives</a></li>
+<li><a href="https://headlessui.com/">Headless UI</a></li>
+<li><a href="https://cva.style/docs">Class Variance Authority</a></li>
+<li><a href="https://react-spectrum.adobe.com/react-aria/">React Aria</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

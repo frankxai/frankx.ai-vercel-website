@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Investment Analysis AI Agent System - System Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="001-FrankX-AI-Investment Team/claude.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Investment Analysis AI Agent System - System Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#001-FrankX-AI-Investment%20Team">001-FrankX-AI-Investment Team</a> / <span>claude.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Investment Analysis AI Agent System - System Architecture</h1>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#system-overview">System Overview</a></li>
+<li><a href="#architecture-philosophy">Architecture Philosophy</a></li>
+<li><a href="#core-components">Core Components</a></li>
+<li><a href="#agent-team-structure">Agent Team Structure</a></li>
+<li><a href="#data-sources--apis">Data Sources &amp; APIs</a></li>
+<li><a href="#database-architecture">Database Architecture</a></li>
+<li><a href="#technology-stack">Technology Stack</a></li>
+<li><a href="#setup-instructions">Setup Instructions</a></li>
+<li><a href="#usage-workflows">Usage Workflows</a></li>
+<li><a href="#scaling-strategy">Scaling Strategy</a></li>
+</ol>
+<hr>
+<h2>System Overview</h2>
+<p>This investment analysis system is a sophisticated multi-agent AI platform designed to provide institutional-grade financial analysis for stocks and cryptocurrencies. The system supports both deep analytical research and quick &quot;vibe check&quot; investment validation.</p>
+<h3>Key Design Principles</h3>
+<ol>
+<li><strong>Conversational First</strong>: Interact with your investment research through natural language</li>
+<li><strong>Multi-Agent Architecture</strong>: Specialized AI agents collaborate like a professional investment team</li>
+<li><strong>Data-Driven</strong>: Real-time market data, fundamental metrics, sentiment analysis, and technical indicators</li>
+<li><strong>Scalable</strong>: Start 100% free, upgrade to premium data as needed</li>
+<li><strong>Transparent</strong>: Every decision includes reasoning and source citations</li>
+<li><strong>Flexible</strong>: Supports both systematic analysis and intuition-based investing</li>
+</ol>
+<h3>System Capabilities</h3>
+<p><strong>Analysis Modes:</strong></p>
+<ul>
+<li>Deep fundamental analysis (company financials, competitive positioning)</li>
+<li>Technical analysis (Fibonacci levels, indicators, chart patterns)</li>
+<li>Sentiment analysis (social media, news, market psychology)</li>
+<li>Portfolio risk management (diversification, position sizing)</li>
+<li>Quick vibe checks (30-second investment validation)</li>
+</ul>
+<p><strong>Asset Coverage:</strong></p>
+<ul>
+<li>Global stocks (all major exchanges)</li>
+<li>Cryptocurrencies (Bitcoin, Ethereum, altcoins)</li>
+<li>ETFs and index funds</li>
+<li>Options (with premium data)</li>
+</ul>
+<hr>
+<h2>Architecture Philosophy</h2>
+<h3>Why Multi-Agent?</h3>
+<p>The system mirrors a professional investment firm with specialized roles:</p>
+<pre><code>Investment Research Firm
+├── Fundamental Analysts → Deep company analysis
+├── Technical Analysts → Chart patterns, indicators
+├── Sentiment Analysts → Market psychology
+├── Risk Managers → Portfolio protection
+├── Portfolio Managers → Asset allocation
+└── Research Director → Synthesis &amp; decisions
+</code></pre>
+<p>Each agent has:</p>
+<ul>
+<li>Specialized knowledge domain</li>
+<li>Specific data sources</li>
+<li>Unique analytical methods</li>
+<li>Clear decision protocols</li>
+</ul>
+<h3>Communication Pattern</h3>
+<p>Agents collaborate through structured workflows:</p>
+<pre><code>User Query → Router → Relevant Agents → Synthesizer → User
+                ↓
+          Data Sources
+          (APIs, DB, MCP)
+</code></pre>
+<p><strong>Example Flow:</strong></p>
+<ol>
+<li>User: &quot;Should I buy Tesla stock?&quot;</li>
+<li>Router assigns to: Fundamental, Technical, Sentiment agents</li>
+<li>Each agent analyzes in parallel</li>
+<li>Synthesizer combines insights</li>
+<li>Response includes: recommendation, confidence, reasoning, data citations</li>
+</ol>
+<hr>
+<h2>Core Components</h2>
+<h3>1. Claude AI (LLM Core)</h3>
+<p><strong>Role</strong>: Central reasoning engine for all agents</p>
+<p><strong>Why Claude:</strong></p>
+<ul>
+<li>Superior analytical reasoning</li>
+<li>Long context window (200k tokens)</li>
+<li>Excellent with financial documents</li>
+<li>Built-in MCP server support</li>
+<li>Structured output capabilities</li>
+</ul>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-yaml">model: claude-sonnet-4
+temperature: 0.3  # Lower for consistent financial analysis
+max_tokens: 4096
+system_prompt: &quot;See agent.md for each agent&#39;s prompt&quot;
+</code></pre>
+<h3>2. MCP (Model Context Protocol) Servers</h3>
+<p><strong>Role</strong>: Connect Claude to external data sources</p>
+<p><strong>Active MCP Servers:</strong></p>
+<pre><code class="language-json">{
+  &quot;financial-datasets&quot;: {
+    &quot;url&quot;: &quot;mcp://financial-datasets&quot;,
+    &quot;description&quot;: &quot;Stock fundamentals, prices, statements&quot;,
+    &quot;capabilities&quot;: [&quot;income_statements&quot;, &quot;balance_sheets&quot;, &quot;price_history&quot;]
+  },
+  &quot;investmcp&quot;: {
+    &quot;url&quot;: &quot;mcp://investmcp&quot;,
+    &quot;description&quot;: &quot;Technical indicators, stock analysis&quot;,
+    &quot;capabilities&quot;: [&quot;technical_analysis&quot;, &quot;fibonacci&quot;, &quot;indicators&quot;]
+  },
+  &quot;polygon-io&quot;: {
+    &quot;url&quot;: &quot;mcp://polygon.io&quot;,
+    &quot;description&quot;: &quot;Real-time market data (premium)&quot;,
+    &quot;capabilities&quot;: [&quot;realtime_prices&quot;, &quot;options_flow&quot;, &quot;market_depth&quot;]
+  },
+  &quot;crypto-data&quot;: {
+    &quot;url&quot;: &quot;mcp://coingecko&quot;,
+    &quot;description&quot;: &quot;Cryptocurrency market data&quot;,
+    &quot;capabilities&quot;: [&quot;crypto_prices&quot;, &quot;market_caps&quot;, &quot;defi_metrics&quot;]
+  }
+}
+</code></pre>
+<h3>3. Database Layer (PostgreSQL + pgvector)</h3>
+<p><strong>Role</strong>: Persistent storage for positions, analysis, and embeddings</p>
+<p><strong>Tables:</strong></p>
+<ul>
+<li><code>portfolios</code> - User accounts and allocations</li>
+<li><code>positions</code> - Current holdings</li>
+<li><code>transactions</code> - Trade history</li>
+<li><code>market_data</code> - Cached price/volume data</li>
+<li><code>analysis_history</code> - AI-generated insights</li>
+<li><code>embeddings</code> - Vector representations for semantic search</li>
+</ul>
+<h3>4. n8n Workflow Automation</h3>
+<p><strong>Role</strong>: Scheduled tasks and automation</p>
+<p><strong>Workflows:</strong></p>
+<ul>
+<li>Daily market data refresh</li>
+<li>Portfolio rebalancing checks</li>
+<li>News/sentiment monitoring</li>
+<li>Report generation</li>
+<li>Alert triggers</li>
+</ul>
+<h3>5. Vector Database (Qdrant)</h3>
+<p><strong>Role</strong>: Semantic search across investment research</p>
+<p><strong>Stored Content:</strong></p>
+<ul>
+<li>News articles (embeddings)</li>
+<li>Earnings call transcripts</li>
+<li>Investment research reports</li>
+<li>Your analysis history</li>
+<li>Market commentary</li>
+</ul>
+<p><strong>Use Cases:</strong></p>
+<ul>
+<li>&quot;Find similar market conditions&quot;</li>
+<li>&quot;What happened when P/E ratios were this high?&quot;</li>
+<li>&quot;Show me crypto projects with similar tokenomics&quot;</li>
+</ul>
+<hr>
+<h2>Agent Team Structure</h2>
+<h3>Core Analysis Agents</h3>
+<h4>1. Fundamental Analyst</h4>
+<p><strong>Specialization</strong>: Company financials and valuation</p>
+<ul>
+<li>Revenue growth trends</li>
+<li>Profitability metrics (margins, ROIC, ROE)</li>
+<li>Balance sheet health</li>
+<li>Cash flow analysis</li>
+<li>Competitive positioning</li>
+<li>Management quality assessment</li>
+</ul>
+<p><strong>Data Sources</strong>: Financial statements, SEC filings, earnings calls</p>
+<h4>2. Technical Analyst</h4>
+<p><strong>Specialization</strong>: Chart patterns and indicators</p>
+<ul>
+<li>Fibonacci retracement levels</li>
+<li>Support/resistance zones</li>
+<li>Moving averages (SMA, EMA)</li>
+<li>Momentum indicators (RSI, MACD, Stochastic)</li>
+<li>Volume analysis</li>
+<li>Trend identification</li>
+</ul>
+<p><strong>Data Sources</strong>: Price/volume history, technical indicator APIs</p>
+<h4>3. Sentiment Analyst</h4>
+<p><strong>Specialization</strong>: Market psychology and social signals</p>
+<ul>
+<li>Social media sentiment (Reddit, Twitter/X)</li>
+<li>News sentiment analysis</li>
+<li>Institutional positioning</li>
+<li>Retail vs. institutional flow</li>
+<li>Fear &amp; Greed Index</li>
+<li>Put/call ratios</li>
+</ul>
+<p><strong>Data Sources</strong>: News APIs, Reddit API, Twitter/X, options data</p>
+<h4>4. Risk Manager</h4>
+<p><strong>Specialization</strong>: Portfolio protection and position sizing</p>
+<ul>
+<li>Value at Risk (VaR) calculations</li>
+<li>Portfolio correlation analysis</li>
+<li>Position sizing recommendations</li>
+<li>Stop-loss placement</li>
+<li>Diversification scoring</li>
+<li>Black swan event assessment</li>
+</ul>
+<p><strong>Data Sources</strong>: Portfolio holdings, market volatility data</p>
+<h4>5. Macro Analyst</h4>
+<p><strong>Specialization</strong>: Economic trends and market cycles</p>
+<ul>
+<li>Interest rate environment</li>
+<li>Economic indicators (GDP, unemployment, inflation)</li>
+<li>Market cycle positioning</li>
+<li>Sector rotation analysis</li>
+<li>Global macro trends</li>
+<li>Fed policy interpretation</li>
+</ul>
+<p><strong>Data Sources</strong>: FRED API, World Bank, economic calendars</p>
+<h3>Specialized Agents</h3>
+<h4>6. Crypto On-Chain Analyst</h4>
+<p><strong>Specialization</strong>: Blockchain data and token metrics</p>
+<ul>
+<li>Whale wallet movements</li>
+<li>Exchange in/outflows</li>
+<li>Network activity (transactions, active addresses)</li>
+<li>Token economics (supply schedules, burn rate)</li>
+<li>DeFi protocol metrics (TVL, yield)</li>
+<li>Network health (hash rate, validator count)</li>
+</ul>
+<p><strong>Data Sources</strong>: Blockchain explorers, DeFi analytics platforms</p>
+<h4>7. Earnings/News Monitor (Stocks)</h4>
+<p><strong>Specialization</strong>: Corporate events and news</p>
+<ul>
+<li>Earnings call analysis</li>
+<li>SEC filing alerts (10-K, 10-Q, 8-K)</li>
+<li>Management guidance changes</li>
+<li>Insider trading activity</li>
+<li>M&amp;A announcements</li>
+<li>Product launches</li>
+</ul>
+<p><strong>Data Sources</strong>: SEC EDGAR, news feeds, company IR sites</p>
+<h3>Strategic Agents</h3>
+<h4>8. Portfolio Manager</h4>
+<p><strong>Specialization</strong>: Asset allocation and optimization</p>
+<ul>
+<li>Portfolio construction</li>
+<li>Rebalancing recommendations</li>
+<li>Tax-loss harvesting</li>
+<li>Diversification optimization</li>
+<li>Risk-adjusted return maximization</li>
+<li>Cash management</li>
+</ul>
+<p><strong>Data Sources</strong>: Portfolio database, market data</p>
+<h4>9. Vibe Validator</h4>
+<p><strong>Specialization</strong>: Quick investment thesis checks</p>
+<ul>
+<li>Rapid multi-factor screening</li>
+<li>Red flag detection</li>
+<li>Sanity check on impulse ideas</li>
+<li>Simple buy/hold/avoid recommendation</li>
+<li>Key metrics at-a-glance</li>
+</ul>
+<p><strong>Data Sources</strong>: All agents (rapid synthesis)</p>
+<h4>10. Report Generator</h4>
+<p><strong>Specialization</strong>: Investment documentation</p>
+<ul>
+<li>Comprehensive investment memos</li>
+<li>Portfolio performance reports</li>
+<li>Risk assessment documents</li>
+<li>HTML/PDF export</li>
+<li>Executive summaries</li>
+</ul>
+<p><strong>Data Sources</strong>: All agent outputs</p>
+<hr>
+<h2>Data Sources &amp; APIs</h2>
+<h3>Free Tier Data Sources</h3>
+<h4>Stock Market APIs</h4>
+<p><strong>Alpha Vantage</strong> (Primary fundamentals)</p>
+<pre><code class="language-yaml">endpoint: https://www.alphavantage.co/query
+rate_limit: 25 calls/day (free tier)
+capabilities:
+  - Fundamental data (income, balance, cash flow)
+  - Daily/intraday prices
+  - Technical indicators
+  - Economic indicators
+api_key: YOUR_KEY_HERE
+</code></pre>
+<p><strong>Finnhub</strong> (Real-time prices)</p>
+<pre><code class="language-yaml">endpoint: https://finnhub.io/api/v1
+rate_limit: 60 calls/minute (free tier)
+capabilities:
+  - Real-time quotes
+  - Company news
+  - Basic fundamentals
+  - Insider trading
+api_key: YOUR_KEY_HERE
+</code></pre>
+<p><strong>Financial Modeling Prep</strong> (Comprehensive data)</p>
+<pre><code class="language-yaml">endpoint: https://financialmodelingprep.com/api/v3
+rate_limit: 250 calls/day (free tier)
+capabilities:
+  - Financial statements
+  - Stock screener
+  - Historical prices
+  - Key metrics
+api_key: YOUR_KEY_HERE
+</code></pre>
+<p><strong>Yahoo Finance</strong> (Backup/supplement)</p>
+<pre><code class="language-yaml">method: yfinance Python library
+rate_limit: Unofficial, use sparingly
+capabilities:
+  - Historical prices
+  - Basic fundamentals
+  - Options data
+  - Dividends
+</code></pre>
+<h4>Cryptocurrency APIs</h4>
+<p><strong>CoinGecko</strong> (Primary crypto data)</p>
+<pre><code class="language-yaml">endpoint: https://api.coingecko.com/api/v3
+rate_limit: 10,000 calls/month (free tier)
+capabilities:
+  - Crypto prices
+  - Market cap data
+  - Volume analysis
+  - DeFi metrics
+  - NFT data
+api_key: Not required (Demo tier)
+</code></pre>
+<p><strong>CoinMarketCap</strong> (Alternative crypto data)</p>
+<pre><code class="language-yaml">endpoint: https://pro-api.coinmarketcap.com/v1
+rate_limit: 10,000 credits/month (free tier)
+capabilities:
+  - Crypto listings
+  - Market metrics
+  - Historical data
+  - Exchange rankings
+api_key: YOUR_KEY_HERE
+</code></pre>
+<p><strong>Blockchain Explorers</strong> (On-chain data)</p>
+<pre><code class="language-yaml">etherscan:
+  endpoint: https://api.etherscan.io/api
+  capabilities: [transactions, balances, contracts, gas]
+bscscan:
+  endpoint: https://api.bscscan.com/api
+  capabilities: [BSC blockchain data]
+</code></pre>
+<h4>News &amp; Sentiment</h4>
+<p><strong>NewsAPI.org</strong></p>
+<pre><code class="language-yaml">endpoint: https://newsapi.org/v2
+rate_limit: 100 requests/day (free tier)
+capabilities:
+  - Business news
+  - Source filtering
+  - Keyword search
+  - Date range queries
+api_key: YOUR_KEY_HERE
+</code></pre>
+<p><strong>Reddit API</strong> (Sentiment source)</p>
+<pre><code class="language-yaml">method: PRAW (Python Reddit API Wrapper)
+capabilities:
+  - r/wallstreetbets posts
+  - r/stocks discussion
+  - r/cryptocurrency sentiment
+  - Comment analysis
+api_key: Reddit developer account
+</code></pre>
+<h4>Economic Data</h4>
+<p><strong>FRED (Federal Reserve Economic Data)</strong></p>
+<pre><code class="language-yaml">endpoint: https://api.stlouisfed.org/fred
+rate_limit: None (free)
+capabilities:
+  - 800,000+ economic time series
+  - GDP, unemployment, inflation
+  - Interest rates
+  - Market indices
+api_key: YOUR_KEY_HERE (free registration)
+</code></pre>
+<h3>Premium Tier Upgrades</h3>
+<p><strong>Polygon.io</strong> ($29-199/month)</p>
+<ul>
+<li>Real-time stock data</li>
+<li>Options flow</li>
+<li>Institutional-grade APIs</li>
+</ul>
+<p><strong>S&amp;P Global Capital IQ</strong> (Enterprise)</p>
+<ul>
+<li>Comprehensive fundamentals</li>
+<li>Earnings call transcripts</li>
+<li>Private company data</li>
+</ul>
+<p><strong>Alternative Data Providers</strong></p>
+<ul>
+<li>Quiver Quantitative (social sentiment)</li>
+<li>LunarCrush (crypto social metrics)</li>
+<li>Santiment (on-chain analytics)</li>
+</ul>
+<hr>
+<h2>Database Architecture</h2>
+<h3>PostgreSQL Schema</h3>
+<h4>Core Tables</h4>
+<p><strong>portfolios</strong></p>
+<pre><code class="language-sql">CREATE TABLE portfolios (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    cash_balance DECIMAL(20, 2) DEFAULT 0,
+    total_value DECIMAL(20, 2),
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+</code></pre>
+<p><strong>positions</strong></p>
+<pre><code class="language-sql">CREATE TABLE positions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    portfolio_id UUID REFERENCES portfolios(id),
+    symbol VARCHAR(20) NOT NULL,
+    asset_type VARCHAR(20) NOT NULL, -- &#39;stock&#39;, &#39;crypto&#39;, &#39;etf&#39;
+    quantity DECIMAL(20, 8) NOT NULL,
+    avg_cost DECIMAL(20, 8) NOT NULL,
+    current_price DECIMAL(20, 8),
+    market_value DECIMAL(20, 2),
+    unrealized_pnl DECIMAL(20, 2),
+    pnl_percentage DECIMAL(10, 4),
+    last_updated TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_positions_portfolio ON positions(portfolio_id);
+CREATE INDEX idx_positions_symbol ON positions(symbol);
+</code></pre>
+<p><strong>transactions</strong></p>
+<pre><code class="language-sql">CREATE TABLE transactions (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    portfolio_id UUID REFERENCES portfolios(id),
+    symbol VARCHAR(20) NOT NULL,
+    transaction_type VARCHAR(10) NOT NULL, -- &#39;buy&#39;, &#39;sell&#39;
+    quantity DECIMAL(20, 8) NOT NULL,
+    price DECIMAL(20, 8) NOT NULL,
+    commission DECIMAL(10, 2) DEFAULT 0,
+    total_amount DECIMAL(20, 2) NOT NULL,
+    notes TEXT,
+    executed_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_transactions_portfolio ON transactions(portfolio_id);
+CREATE INDEX idx_transactions_symbol ON transactions(symbol);
+CREATE INDEX idx_transactions_date ON transactions(executed_at);
+</code></pre>
+<p><strong>market_data</strong> (Cache)</p>
+<pre><code class="language-sql">CREATE TABLE market_data (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    symbol VARCHAR(20) NOT NULL,
+    asset_type VARCHAR(20) NOT NULL,
+    price DECIMAL(20, 8) NOT NULL,
+    volume DECIMAL(20, 2),
+    market_cap DECIMAL(20, 2),
+    change_24h DECIMAL(10, 4),
+    timestamp TIMESTAMP NOT NULL,
+    data_source VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_market_data_symbol_time ON market_data(symbol, timestamp DESC);
+CREATE UNIQUE INDEX idx_market_data_unique ON market_data(symbol, timestamp, data_source);
+</code></pre>
+<p><strong>analysis_history</strong></p>
+<pre><code class="language-sql">CREATE TABLE analysis_history (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    symbol VARCHAR(20) NOT NULL,
+    agent_type VARCHAR(50) NOT NULL, -- &#39;fundamental&#39;, &#39;technical&#39;, etc.
+    analysis_type VARCHAR(50) NOT NULL,
+    input_data JSONB,
+    output_data JSONB NOT NULL,
+    recommendation VARCHAR(20), -- &#39;buy&#39;, &#39;hold&#39;, &#39;sell&#39;, &#39;avoid&#39;
+    confidence_score DECIMAL(5, 2), -- 0-100
+    reasoning TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_analysis_symbol ON analysis_history(symbol);
+CREATE INDEX idx_analysis_agent ON analysis_history(agent_type);
+CREATE INDEX idx_analysis_date ON analysis_history(created_at DESC);
+</code></pre>
+<p><strong>embeddings</strong> (Vector storage)</p>
+<pre><code class="language-sql">CREATE EXTENSION IF NOT EXISTS vector;
+
+CREATE TABLE embeddings (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    content_type VARCHAR(50) NOT NULL, -- &#39;news&#39;, &#39;analysis&#39;, &#39;transcript&#39;
+    symbol VARCHAR(20),
+    content_text TEXT NOT NULL,
+    embedding VECTOR(1536), -- OpenAI ada-002 dimensions
+    metadata JSONB,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX idx_embeddings_symbol ON embeddings(symbol);
+CREATE INDEX idx_embeddings_vector ON embeddings USING ivfflat (embedding vector_cosine_ops);
+</code></pre>
+<h3>Vector Database (Qdrant) Collections</h3>
+<p><strong>financial_news</strong></p>
+<pre><code class="language-yaml">collection_name: financial_news
+vector_size: 1536
+distance: Cosine
+payload_schema:
+  symbol: keyword
+  title: text
+  source: keyword
+  published_at: datetime
+  sentiment_score: float
+</code></pre>
+<p><strong>investment_research</strong></p>
+<pre><code class="language-yaml">collection_name: investment_research
+vector_size: 1536
+distance: Cosine
+payload_schema:
+  symbol: keyword
+  research_type: keyword
+  analyst: keyword
+  created_at: datetime
+  recommendation: keyword
+</code></pre>
+<p><strong>earnings_transcripts</strong></p>
+<pre><code class="language-yaml">collection_name: earnings_transcripts
+vector_size: 1536
+distance: Cosine
+payload_schema:
+  symbol: keyword
+  quarter: keyword
+  year: integer
+  speaker: keyword
+  sentiment: float
+</code></pre>
+<hr>
+<h2>Technology Stack</h2>
+<h3>Core Technologies</h3>
+<p><strong>Backend:</strong></p>
+<ul>
+<li><strong>Python 3.11+</strong>: Primary programming language</li>
+<li><strong>FastAPI</strong>: REST API (if building web interface)</li>
+<li><strong>SQLAlchemy</strong>: ORM for PostgreSQL</li>
+<li><strong>psycopg3</strong>: PostgreSQL adapter</li>
+<li><strong>asyncio</strong>: Async operations</li>
+</ul>
+<p><strong>AI/ML:</strong></p>
+<ul>
+<li><strong>Claude API</strong>: Primary LLM (Anthropic)</li>
+<li><strong>LangChain</strong>: Agent orchestration</li>
+<li><strong>OpenAI Embeddings</strong>: Text vectorization</li>
+<li><strong>scikit-learn</strong>: Statistical analysis</li>
+</ul>
+<p><strong>Data:</strong></p>
+<ul>
+<li><strong>PostgreSQL 15+</strong>: Primary database</li>
+<li><strong>pgvector</strong>: Vector similarity search</li>
+<li><strong>Qdrant</strong>: Advanced vector database</li>
+<li><strong>Redis</strong>: Caching layer (optional)</li>
+</ul>
+<p><strong>APIs &amp; Integration:</strong></p>
+<ul>
+<li><strong>requests</strong>: HTTP client</li>
+<li><strong>aiohttp</strong>: Async HTTP client</li>
+<li><strong>yfinance</strong>: Yahoo Finance wrapper</li>
+<li><strong>python-binance</strong>: Crypto exchange</li>
+<li><strong>praw</strong>: Reddit API</li>
+</ul>
+<p><strong>Automation:</strong></p>
+<ul>
+<li><strong>n8n</strong>: Workflow automation (self-hosted)</li>
+<li><strong>APScheduler</strong>: Python job scheduling</li>
+<li><strong>Celery</strong>: Distributed task queue (advanced)</li>
+</ul>
+<p><strong>Frontend:</strong></p>
+<ul>
+<li><strong>HTML5/CSS3/JavaScript</strong>: Static dashboards</li>
+<li><strong>Chart.js / TradingView</strong>: Data visualization</li>
+<li><strong>Bootstrap</strong>: UI framework</li>
+</ul>
+<h3>Development Tools</h3>
+<p><strong>Version Control:</strong></p>
+<pre><code class="language-bash">git
+GitHub/GitLab for remote hosting
+</code></pre>
+<p><strong>Package Management:</strong></p>
+<pre><code class="language-bash">pip / pipenv / poetry
+requirements.txt for dependencies
+</code></pre>
+<p><strong>Testing:</strong></p>
+<pre><code class="language-bash">pytest - unit tests
+pytest-asyncio - async tests
+</code></pre>
+<p><strong>Code Quality:</strong></p>
+<pre><code class="language-bash">black - code formatting
+flake8 - linting
+mypy - type checking
+</code></pre>
+<hr>
+<h2>Setup Instructions</h2>
+<h3>Prerequisites</h3>
+<p><strong>Required:</strong></p>
+<ul>
+<li>Python 3.11 or higher</li>
+<li>PostgreSQL 15 or higher</li>
+<li>Git</li>
+<li>Claude API key (Anthropic account)</li>
+</ul>
+<p><strong>Optional:</strong></p>
+<ul>
+<li>Docker (for containerization)</li>
+<li>n8n (for workflow automation)</li>
+<li>Qdrant (for advanced vector search)</li>
+</ul>
+<h3>Step-by-Step Setup</h3>
+<h4>1. Clone Repository</h4>
+<pre><code class="language-bash"># Create project directory
+mkdir investment-system
+cd investment-system
+
+# Initialize git
+git init
+
+# Create directory structure
+mkdir -p config database agents workflows reports data web
+</code></pre>
+<h4>2. Python Environment</h4>
+<pre><code class="language-bash"># Create virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+# Install dependencies
+pip install --upgrade pip
+pip install anthropic langchain sqlalchemy psycopg[binary] pgvector
+pip install requests yfinance pandas numpy
+pip install fastapi uvicorn pydantic
+pip install python-dotenv praw newsapi-python
+pip install qdrant-client openai
+</code></pre>
+<h4>3. Database Setup</h4>
+<pre><code class="language-bash"># Install PostgreSQL (Ubuntu/Debian)
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+
+# Create database
+sudo -u postgres psql
+CREATE DATABASE investment_db;
+CREATE USER invest_user WITH PASSWORD &#39;your_secure_password&#39;;
+GRANT ALL PRIVILEGES ON DATABASE investment_db TO invest_user;
+\q
+
+# Enable pgvector extension
+sudo -u postgres psql -d investment_db
+CREATE EXTENSION vector;
+\q
+
+# Run schema
+psql -U invest_user -d investment_db -f database/schema.sql
+</code></pre>
+<h4>4. API Keys Configuration</h4>
+<p>Create <code>.env</code> file:</p>
+<pre><code class="language-bash"># Copy template
+cp config/api_keys.env.example .env
+
+# Edit with your keys
+nano .env
+</code></pre>
+<p><strong>.env content:</strong></p>
+<pre><code class="language-bash"># Claude AI
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+
+# Stock APIs (Free Tier)
+ALPHA_VANTAGE_API_KEY=your-key
+FINNHUB_API_KEY=your-key
+FMP_API_KEY=your-key
+
+# Crypto APIs
+COINGECKO_API_KEY=  # Optional, free tier works without
+COINMARKETCAP_API_KEY=your-key
+
+# News &amp; Sentiment
+NEWSAPI_KEY=your-key
+REDDIT_CLIENT_ID=your-id
+REDDIT_CLIENT_SECRET=your-secret
+REDDIT_USER_AGENT=InvestmentBot/1.0
+
+# Economic Data
+FRED_API_KEY=your-key
+
+# Database
+DATABASE_URL=postgresql://invest_user:your_password@localhost:5432/investment_db
+
+# Vector DB (if using Qdrant)
+QDRANT_URL=http://localhost:6333
+QDRANT_API_KEY=  # Optional for local
+
+# OpenAI (for embeddings)
+OPENAI_API_KEY=sk-your-key  # Optional, for vector search
+</code></pre>
+<h4>5. MCP Server Configuration</h4>
+<p><strong>Create <code>~/.config/claude/mcp_settings.json</code>:</strong></p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;financial-datasets&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;@financial-datasets/mcp-server&quot;]
+    },
+    &quot;investmcp&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;-y&quot;, &quot;investmcp&quot;]
+    }
+  }
+}
+</code></pre>
+<p><strong>Or use Claude Desktop GUI:</strong></p>
+<ol>
+<li>Open Claude Desktop</li>
+<li>Settings → MCP Servers</li>
+<li>Add servers from the list above</li>
+</ol>
+<h4>6. Initialize Database</h4>
+<pre><code class="language-bash"># Run migrations
+python database/migrations/001_initial_schema.py
+
+# Seed sample data (optional)
+python database/seed_data.py
+</code></pre>
+<h4>7. Test Setup</h4>
+<pre><code class="language-bash"># Test database connection
+python -c &quot;from sqlalchemy import create_engine; import os; engine = create_engine(os.getenv(&#39;DATABASE_URL&#39;)); print(&#39;DB Connected!&#39; if engine.connect() else &#39;Failed&#39;)&quot;
+
+# Test Claude API
+python -c &quot;import anthropic; client = anthropic.Anthropic(); print(&#39;Claude API works!&#39;)&quot;
+
+# Test data sources
+python data/test_apis.py
+</code></pre>
+<h4>8. First Agent Test</h4>
+<pre><code class="language-bash"># Test fundamental analyst
+python agents/fundamental.py --symbol AAPL
+
+# Test technical analyst
+python agents/technical.py --symbol NVDA
+
+# Test vibe validator (quick check)
+python agents/vibe_validator.py --symbol BTC-USD
+</code></pre>
+<hr>
+<h2>Usage Workflows</h2>
+<h3>Workflow 1: Deep Stock Analysis</h3>
+<p><strong>User Command:</strong></p>
+<pre><code>&quot;Give me a comprehensive analysis of Tesla (TSLA)&quot;
+</code></pre>
+<p><strong>System Process:</strong></p>
+<ol>
+<li><p><strong>Router</strong> identifies this as deep analysis request</p>
+</li>
+<li><p><strong>Parallel Agent Execution:</strong></p>
+<ul>
+<li>Fundamental Analyst: Fetches financials, calculates metrics</li>
+<li>Technical Analyst: Analyzes chart, identifies levels</li>
+<li>Sentiment Analyst: Scans news, social media</li>
+<li>Macro Analyst: Assesses sector trends, EV market</li>
+<li>Risk Manager: Evaluates volatility, correlations</li>
+</ul>
+</li>
+<li><p><strong>Synthesis:</strong></p>
+<ul>
+<li>Portfolio Manager combines all insights</li>
+<li>Report Generator creates formatted output</li>
+</ul>
+</li>
+<li><p><strong>Output:</strong></p>
+</li>
+</ol>
+<pre><code class="language-markdown"># Tesla (TSLA) Investment Analysis
+**Generated**: 2025-01-15 14:30 UTC
+**Recommendation**: HOLD (Confidence: 75%)
+
+## Executive Summary
+Tesla shows strong fundamentals with growing revenue...
+
+## Fundamental Analysis
+- Revenue Growth: 24% YoY
+- P/E Ratio: 65 (vs. industry avg 18)
+- Free Cash Flow: $12.3B (improving)
+[Full metrics...]
+
+## Technical Analysis
+- Current Price: $242.50
+- Fibonacci Support: $225 (38.2%), $210 (50%)
+- RSI: 58 (neutral)
+- MACD: Bullish crossover pending
+[Chart link...]
+
+## Sentiment Analysis
+- News Sentiment: 68% Positive
+- Reddit r/stocks: Neutral (mixed opinions)
+- Institutional Flow: Net buying (+$450M this week)
+
+## Risk Assessment
+- Volatility: High (beta 2.1)
+- Recommended Position Size: 2-3% of portfolio
+- Stop Loss: $220 (-9%)
+
+## Recommendation
+HOLD current positions. Consider adding on dip to $225 support.
+Wait for technical confirmation before new entries.
+</code></pre>
+<h3>Workflow 2: Quick Vibe Check</h3>
+<p><strong>User Command:</strong></p>
+<pre><code>&quot;Quick vibe check on Ethereum, thinking about buying&quot;
+</code></pre>
+<p><strong>System Process:</strong></p>
+<ol>
+<li><p><strong>Vibe Validator</strong> agent activates (optimized for speed)</p>
+</li>
+<li><p><strong>Rapid Data Fetch:</strong></p>
+<ul>
+<li>Current price from cache/API</li>
+<li>Pre-calculated technical indicators</li>
+<li>Latest sentiment snapshot</li>
+</ul>
+</li>
+<li><p><strong>Output (&lt; 30 seconds):</strong></p>
+</li>
+</ol>
+<pre><code>🎯 VIBE CHECK: Ethereum (ETH)
+
+Quick Take: CAUTIOUSLY BULLISH
+
+Current Price: $2,315
+Fibonacci Levels:
+  🟢 Support: $2,100 (38.2%), $1,950 (50%)
+  🔴 Resistance: $2,500 (23.6%), $2,750
+
+Key Signals:
+  ✅ Above 50-day MA
+  ✅ Positive funding rates (market optimism)
+  ⚠️  High correlation with BTC (0.85)
+  ⚠️  Overbought on 4hr RSI (72)
+
+Sentiment: 71% Bullish (Twitter, Reddit)
+
+One-Line Verdict:
+Solid long-term hold if you believe in Ethereum fundamentals,
+but consider waiting for dip to $2,100 for better risk/reward.
+
+Want deep analysis? (Reply &#39;yes&#39;)
+</code></pre>
+<h3>Workflow 3: Portfolio Rebalancing</h3>
+<p><strong>User Command:</strong></p>
+<pre><code>&quot;Review my portfolio and suggest rebalancing&quot;
+</code></pre>
+<p><strong>System Process:</strong></p>
+<ol>
+<li><p><strong>Fetch Portfolio</strong> from database</p>
+</li>
+<li><p><strong>Portfolio Manager</strong> agent analyzes:</p>
+<ul>
+<li>Current allocation vs. target</li>
+<li>Correlation matrix</li>
+<li>Risk concentration</li>
+<li>Tax implications</li>
+</ul>
+</li>
+<li><p><strong>Output:</strong></p>
+</li>
+</ol>
+<pre><code># Portfolio Rebalancing Recommendation
+
+## Current Allocation
+- US Stocks: 45% (target: 40%)
+- International: 15% (target: 20%)
+- Crypto: 25% (target: 20%)
+- Cash: 15% (target: 20%)
+
+## Risk Metrics
+- Portfolio Beta: 1.3 (moderate-high risk)
+- Sharpe Ratio: 1.8 (good)
+- Max Drawdown: -22% (acceptable)
+- Top 3 Holdings: 35% (concentrated)
+
+## Rebalancing Actions
+1. Reduce: NVDA (-$2,500) → Lock in gains
+2. Reduce: BTC (-$1,000) → Trim overweight
+3. Add: VXUS (+$2,000) → International exposure
+4. Add: Cash (+$1,500) → Dry powder
+
+Tax Impact: +$450 capital gains (short-term)
+
+Proceed with rebalancing? (yes/no)
+</code></pre>
+<h3>Workflow 4: Daily Market Summary</h3>
+<p><strong>Automated (n8n workflow):</strong></p>
+<p>Every day at 9:00 AM:</p>
+<ol>
+<li>Fetch overnight market moves</li>
+<li>Scan portfolio for significant changes</li>
+<li>Check for earnings/news on holdings</li>
+<li>Generate summary email/notification</li>
+</ol>
+<p><strong>Example Output:</strong></p>
+<pre><code>📊 Daily Investment Briefing - Jan 15, 2025
+
+Market Overview:
+- S&amp;P 500: +0.8% (bullish continuation)
+- Nasdaq: +1.2% (tech strength)
+- Bitcoin: -2.1% (profit taking)
+
+Your Portfolio: +0.5% ($1,250)
+Top Movers:
+  🚀 NVDA: +3.2% ($450)
+  📉 ETH: -2.8% (-$320)
+
+Alerts:
+⚠️  Apple earnings tomorrow after close
+⚠️  Fed speaks at 2pm - expect volatility
+✅ Tesla hit your $240 buy alert
+
+Actions Needed:
+- Consider taking profits on NVDA (up 45% since purchase)
+- Review Apple position before earnings
+
+Full report: [link]
+</code></pre>
+<h3>Workflow 5: Research Question</h3>
+<p><strong>User Command:</strong></p>
+<pre><code>&quot;What are the best semiconductor stocks for AI growth?&quot;
+</code></pre>
+<p><strong>System Process:</strong></p>
+<ol>
+<li><p><strong>Research Mode</strong> activated</p>
+</li>
+<li><p><strong>Multi-step process:</strong></p>
+<ul>
+<li>Screen semiconductor stocks (data APIs)</li>
+<li>Filter for AI exposure (fundamental analysis)</li>
+<li>Rank by metrics (technical + fundamental scores)</li>
+<li>Vector search for similar past analyses</li>
+</ul>
+</li>
+<li><p><strong>Output:</strong></p>
+</li>
+</ol>
+<pre><code># Top Semiconductor Stocks for AI Growth
+
+## Screening Criteria
+- Exposure to AI chip market
+- Revenue growth &gt; 15%
+- Gross margins &gt; 50%
+- Technical strength (above 200-day MA)
+
+## Top 5 Picks
+
+### 1. NVIDIA (NVDA) - Score: 92/100
+✅ Dominant AI GPU market share (95%)
+✅ Strong fundamentals (60% revenue growth)
+⚠️  Valuation stretched (P/E: 65)
+Entry: Wait for dip to $120 (Fibonacci support)
+
+### 2. AMD (AMD) - Score: 85/100
+✅ Growing data center revenue
+✅ Competitive AI chips (MI300)
+✅ More attractive valuation vs NVDA
+Entry: Current levels or $140 support
+
+### 3. ASML (ASML) - Score: 82/100
+✅ Essential for chip manufacturing
+✅ Near-monopoly on EUV lithography
+⚠️  Exposure to China regulation risk
+Entry: $900-950 range
+
+[More picks...]
+
+## Portfolio Allocation Suggestion
+- 40% NVDA (core holding)
+- 30% AMD (growth + value)
+- 20% ASML (infrastructure play)
+- 10% TSM (diversification)
+
+Risk Level: Moderate-High (sector concentration)
+</code></pre>
+<hr>
+<h2>Scaling Strategy</h2>
+<h3>Phase 1: Free Tier (Current)</h3>
+<p><strong>Capabilities:</strong></p>
+<ul>
+<li>Manual analysis on-demand</li>
+<li>Free API data sources</li>
+<li>Local database</li>
+<li>Basic automation</li>
+<li>HTML reports</li>
+</ul>
+<p><strong>Cost:</strong> $0-20/month (Claude API usage only)</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>API rate limits</li>
+<li>No real-time data</li>
+<li>Manual report generation</li>
+<li>Limited historical data</li>
+</ul>
+<h3>Phase 2: Enhanced ($50-100/month)</h3>
+<p><strong>Upgrades:</strong></p>
+<ul>
+<li>Polygon.io real-time data ($29/mo)</li>
+<li>Premium crypto data (CoinGecko Analyst $129/mo)</li>
+<li>Automated daily reports</li>
+<li>Cloud database (Supabase/Railway)</li>
+<li>Slack/email notifications</li>
+</ul>
+<p><strong>New Capabilities:</strong></p>
+<ul>
+<li>Intraday trading signals</li>
+<li>Real-time portfolio tracking</li>
+<li>Options analysis</li>
+<li>Enhanced sentiment data</li>
+</ul>
+<h3>Phase 3: Professional ($300-500/month)</h3>
+<p><strong>Upgrades:</strong></p>
+<ul>
+<li>Alternative data sources</li>
+<li>Backtesting infrastructure</li>
+<li>Broker API integration (Alpaca)</li>
+<li>Advanced technical indicators</li>
+<li>Dedicated server/VPS</li>
+</ul>
+<p><strong>New Capabilities:</strong></p>
+<ul>
+<li>Automated trade execution</li>
+<li>Quantitative strategies</li>
+<li>Advanced portfolio optimization</li>
+<li>Tax optimization</li>
+</ul>
+<h3>Phase 4: Institutional ($1000+/month)</h3>
+<p><strong>Upgrades:</strong></p>
+<ul>
+<li>S&amp;P Global Capital IQ</li>
+<li>FactSet integration</li>
+<li>Bloomberg Terminal data</li>
+<li>Dedicated infrastructure</li>
+<li>Multi-user support</li>
+</ul>
+<p><strong>New Capabilities:</strong></p>
+<ul>
+<li>Institutional-grade research</li>
+<li>Complex derivatives analysis</li>
+<li>Private market intelligence</li>
+<li>Custom factor models</li>
+</ul>
+<hr>
+<h2>Security &amp; Best Practices</h2>
+<h3>API Key Management</h3>
+<pre><code class="language-bash"># Never commit .env to git
+echo &quot;.env&quot; &gt;&gt; .gitignore
+
+# Use environment variables
+export $(cat .env | xargs)
+
+# Rotate keys quarterly
+# Store in password manager (1Password, Bitwarden)
+</code></pre>
+<h3>Database Security</h3>
+<pre><code class="language-sql">-- Use strong passwords
+-- Enable SSL connections
+-- Regular backups
+-- Principle of least privilege
+</code></pre>
+<h3>Trade Execution Safety</h3>
+<pre><code class="language-python"># NEVER auto-execute without:
+# 1. Paper trading first (6+ months)
+# 2. Position size limits
+# 3. Daily loss limits
+# 4. Manual approval for large trades
+# 5. Comprehensive logging
+</code></pre>
+<h3>Compliance</h3>
+<ul>
+<li>This system is for PERSONAL USE only</li>
+<li>Not financial advice</li>
+<li>Backtesting ≠ future performance</li>
+<li>Understand regulations in your jurisdiction</li>
+</ul>
+<hr>
+<h2>Monitoring &amp; Maintenance</h2>
+<h3>Daily Tasks</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Check API rate limit usage</li>
+<li><input disabled="" type="checkbox"> Review overnight market moves</li>
+<li><input disabled="" type="checkbox"> Verify data freshness</li>
+<li><input disabled="" type="checkbox"> Check for agent errors</li>
+</ul>
+<h3>Weekly Tasks</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Backup database</li>
+<li><input disabled="" type="checkbox"> Review agent performance</li>
+<li><input disabled="" type="checkbox"> Update market data cache</li>
+<li><input disabled="" type="checkbox"> Check for API changes</li>
+</ul>
+<h3>Monthly Tasks</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Rotate API keys</li>
+<li><input disabled="" type="checkbox"> Review and optimize prompts</li>
+<li><input disabled="" type="checkbox"> Update financial data</li>
+<li><input disabled="" type="checkbox"> Performance analysis</li>
+</ul>
+<h3>Quarterly Tasks</h3>
+<ul>
+<li><input disabled="" type="checkbox"> System architecture review</li>
+<li><input disabled="" type="checkbox"> Cost optimization</li>
+<li><input disabled="" type="checkbox"> Feature prioritization</li>
+<li><input disabled="" type="checkbox"> Security audit</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<ol>
+<li><strong>Read <code>agent.md</code></strong> for detailed agent specifications</li>
+<li><strong>Set up free API accounts</strong> (see Data Sources section)</li>
+<li><strong>Configure MCP servers</strong> in Claude Desktop</li>
+<li><strong>Initialize database</strong> with provided schema</li>
+<li><strong>Test first analysis</strong> with a stock you know well</li>
+<li><strong>Iterate and improve</strong> based on results</li>
+</ol>
+<hr>
+<h2>Support &amp; Community</h2>
+<p><strong>Official Resources:</strong></p>
+<ul>
+<li>Claude Documentation: <a href="https://docs.anthropic.com">https://docs.anthropic.com</a></li>
+<li>MCP Protocol: <a href="https://modelcontextprotocol.io">https://modelcontextprotocol.io</a></li>
+<li>PostgreSQL: <a href="https://postgresql.org/docs">https://postgresql.org/docs</a></li>
+</ul>
+<p><strong>GitHub Projects for Inspiration:</strong></p>
+<ul>
+<li>FinRobot: <a href="https://github.com/AI4Finance-Foundation/FinRobot">https://github.com/AI4Finance-Foundation/FinRobot</a></li>
+<li>TradingAgents: <a href="https://github.com/TauricResearch/TradingAgents">https://github.com/TauricResearch/TradingAgents</a></li>
+<li>InvestMCP: <a href="https://github.com/arrpitk/InvestMCP">https://github.com/arrpitk/InvestMCP</a></li>
+</ul>
+<p><strong>Financial Data APIs:</strong></p>
+<ul>
+<li>Alpha Vantage: <a href="https://www.alphavantage.co">https://www.alphavantage.co</a></li>
+<li>CoinGecko: <a href="https://www.coingecko.com/en/api">https://www.coingecko.com/en/api</a></li>
+<li>FRED: <a href="https://fred.stlouisfed.org/docs/api">https://fred.stlouisfed.org/docs/api</a></li>
+</ul>
+<hr>
+<h2>Disclaimer</h2>
+<p>This system is for EDUCATIONAL and RESEARCH purposes only. It does NOT constitute financial advice. All investment decisions carry risk. Past performance does not guarantee future results. Always do your own research and consult with licensed financial advisors before making investment decisions.</p>
+<p><strong>USE AT YOUR OWN RISK.</strong></p>
+<hr>
+<p><em>Version: 1.0</em>
+<em>Last Updated: 2025-01-15</em>
+<em>Maintained by: Your Name</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

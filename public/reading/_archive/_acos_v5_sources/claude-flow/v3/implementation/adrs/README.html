@@ -1,0 +1,1407 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Architecture Decision Records (ADRs)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/adrs/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Architecture Decision Records (ADRs)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fadrs">adrs</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>V3 Architecture Decision Records (ADRs)</h1>
+<p>This directory contains all Architecture Decision Records for Claude-Flow v3.</p>
+<p><strong>Status:</strong> ✅ <strong>BETA READY</strong> (22 ADRs Complete)
+<strong>Version:</strong> 3.0.0-alpha.84
+<strong>Last Updated:</strong> 2026-01-13</p>
+<h2>ADR Index</h2>
+<h3>Core Architecture (ADR-001 to ADR-010)</h3>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Title</th>
+<th>Status</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADR-001</td>
+<td>Adopt agentic-flow as Core Foundation</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-001-AGENT-IMPLEMENTATION.md">ADR-001-AGENT-IMPLEMENTATION.md</a></td>
+</tr>
+<tr>
+<td>ADR-002</td>
+<td>Implement Domain-Driven Design Structure</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-002-DDD-STRUCTURE.md">ADR-002-DDD-STRUCTURE.md</a></td>
+</tr>
+<tr>
+<td>ADR-003</td>
+<td>Single Coordination Engine</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-003-CONSOLIDATION-COMPLETE.md">ADR-003-CONSOLIDATION-COMPLETE.md</a></td>
+</tr>
+<tr>
+<td>ADR-004</td>
+<td>Plugin-Based Architecture</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-004-PLUGIN-ARCHITECTURE.md">ADR-004-PLUGIN-ARCHITECTURE.md</a></td>
+</tr>
+<tr>
+<td>ADR-005</td>
+<td>MCP-First API Design</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-005-implementation-summary.md">ADR-005-implementation-summary.md</a></td>
+</tr>
+<tr>
+<td>ADR-006</td>
+<td>Unified Memory Service</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-006-UNIFIED-MEMORY.md">ADR-006-UNIFIED-MEMORY.md</a></td>
+</tr>
+<tr>
+<td>ADR-007</td>
+<td>Event Sourcing for State Changes</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-007-EVENT-SOURCING.md">ADR-007-EVENT-SOURCING.md</a></td>
+</tr>
+<tr>
+<td>ADR-008</td>
+<td>Vitest Over Jest</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-008-VITEST.md">ADR-008-VITEST.md</a></td>
+</tr>
+<tr>
+<td>ADR-009</td>
+<td>Hybrid Memory Backend as Default</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-009-IMPLEMENTATION.md">ADR-009-IMPLEMENTATION.md</a></td>
+</tr>
+<tr>
+<td>ADR-010</td>
+<td>Remove Deno Support</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-010-NODE-ONLY.md">ADR-010-NODE-ONLY.md</a></td>
+</tr>
+</tbody></table>
+<h3>Providers &amp; Security (ADR-011 to ADR-017)</h3>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Title</th>
+<th>Status</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADR-011</td>
+<td>LLM Provider System</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-011-llm-provider-system.md">ADR-011-llm-provider-system.md</a></td>
+</tr>
+<tr>
+<td>ADR-012</td>
+<td>MCP Security Features</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-012-mcp-security-features.md">ADR-012-mcp-security-features.md</a></td>
+</tr>
+<tr>
+<td>ADR-013</td>
+<td>Core Security Module</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-013-core-security-module.md">ADR-013-core-security-module.md</a></td>
+</tr>
+<tr>
+<td>ADR-014</td>
+<td>Workers System</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-014-workers-system.md">ADR-014-workers-system.md</a></td>
+</tr>
+<tr>
+<td>ADR-015</td>
+<td>Unified Plugin System</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-015-unified-plugin-system.md">ADR-015-unified-plugin-system.md</a></td>
+</tr>
+<tr>
+<td>ADR-016</td>
+<td>Collaborative Issue Claims</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-016-collaborative-issue-claims.md">ADR-016-collaborative-issue-claims.md</a></td>
+</tr>
+<tr>
+<td>ADR-017</td>
+<td>RuVector Integration</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-017-ruvector-integration.md">ADR-017-ruvector-integration.md</a></td>
+</tr>
+</tbody></table>
+<h3>Advanced Features (ADR-018 to ADR-025)</h3>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Title</th>
+<th>Status</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADR-018</td>
+<td>Claude Code Integration</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-018-claude-code-integration.md">ADR-018-claude-code-integration.md</a></td>
+</tr>
+<tr>
+<td>ADR-019</td>
+<td>Headless Runtime Package</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-019-headless-runtime-package.md">ADR-019-headless-runtime-package.md</a></td>
+</tr>
+<tr>
+<td>ADR-020</td>
+<td>Headless Worker Integration</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-020-headless-worker-integration.md">ADR-020-headless-worker-integration.md</a></td>
+</tr>
+<tr>
+<td>ADR-021</td>
+<td>Transfer Hook IPFS Pattern Sharing</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-021-transfer-hook-ipfs-pattern-sharing.md">ADR-021-transfer-hook-ipfs-pattern-sharing.md</a></td>
+</tr>
+<tr>
+<td>ADR-022</td>
+<td>AIDefence Integration</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-022-aidefence-integration.md">ADR-022-aidefence-integration.md</a></td>
+</tr>
+<tr>
+<td>ADR-023</td>
+<td>ONNX Hyperbolic Embeddings Init</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-023-onnx-hyperbolic-embeddings-init.md">ADR-023-onnx-hyperbolic-embeddings-init.md</a></td>
+</tr>
+<tr>
+<td>ADR-024</td>
+<td>Embeddings MCP Tools</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-024-embeddings-mcp-tools.md">ADR-024-embeddings-mcp-tools.md</a></td>
+</tr>
+<tr>
+<td>ADR-025</td>
+<td>Auto-Update System</td>
+<td>✅ Implemented</td>
+<td><a href="./ADR-025-auto-update-system.md">ADR-025-auto-update-system.md</a></td>
+</tr>
+</tbody></table>
+<h2>Implementation Progress</h2>
+<p><strong>Last Updated:</strong> 2026-01-13 (Beta Ready Audit)
+<strong>Status:</strong> ✅ <strong>READY FOR 3.0.0-beta.1</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Status</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DDD Modules</td>
+<td>✅ 100%</td>
+<td>16 packages, 419 TS files</td>
+</tr>
+<tr>
+<td>CLI Commands</td>
+<td>✅ 100%</td>
+<td>28 commands, 140+ subcommands</td>
+</tr>
+<tr>
+<td>MCP Tools</td>
+<td>✅ 100%</td>
+<td>119 tools (exceeds V2)</td>
+</tr>
+<tr>
+<td>Hooks System</td>
+<td>✅ 100%</td>
+<td>20 CLI + 60 MCP hook tools</td>
+</tr>
+<tr>
+<td>Test Coverage</td>
+<td>✅ 85%+</td>
+<td>85+ test files (ADR-008)</td>
+</tr>
+<tr>
+<td>Service Integration</td>
+<td>✅ Complete</td>
+<td>agentic-flow@alpha integration</td>
+</tr>
+<tr>
+<td>RuVector Integration</td>
+<td>✅ Complete</td>
+<td>Q-Learning, AST, Diff, Coverage (ADR-017)</td>
+</tr>
+<tr>
+<td>Performance Benchmarks</td>
+<td>✅ Complete</td>
+<td>Full benchmark suite</td>
+</tr>
+<tr>
+<td>Auto-Update System</td>
+<td>✅ Complete</td>
+<td>Rate-limited startup checks (ADR-025)</td>
+</tr>
+<tr>
+<td>Production Hardening</td>
+<td>✅ Complete</td>
+<td>Real metrics, labeled examples, fallback warnings</td>
+</tr>
+</tbody></table>
+<p><strong>Overall V3 Implementation: 100% Complete</strong></p>
+<h3>Beta Readiness Checklist</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Real ONNX embeddings</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Real performance metrics</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Real security scanning</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Fallback warnings</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Auto-update system</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Claims MCP tools</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Production hardening</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Windows validated</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h2>Quick Summary</h2>
+<h3>Core Decisions</h3>
+<ol>
+<li><strong>ADR-001</strong>: Build on agentic-flow@alpha instead of duplicating (eliminates 10,000+ lines)</li>
+<li><strong>ADR-002</strong>: Domain-Driven Design with bounded contexts for clean architecture</li>
+<li><strong>ADR-003</strong>: Single UnifiedSwarmCoordinator as canonical coordination engine</li>
+<li><strong>ADR-004</strong>: Microkernel with plugins for optional features (HiveMind, Neural, etc.)</li>
+<li><strong>ADR-005</strong>: MCP tools as primary API, CLI as thin wrapper</li>
+</ol>
+<h3>Technical Decisions</h3>
+<ol start="6">
+<li><strong>ADR-006</strong>: Single MemoryService with SQLite, AgentDB, or Hybrid backends</li>
+<li><strong>ADR-007</strong>: Event sourcing for audit trail and state reconstruction</li>
+<li><strong>ADR-008</strong>: Vitest for 10x faster testing with native ESM</li>
+<li><strong>ADR-009</strong>: Hybrid backend (SQLite + AgentDB) as default for best performance</li>
+<li><strong>ADR-010</strong>: Node.js 20+ only, removing Deno complexity</li>
+</ol>
+<h2>Additional Files</h2>
+<ul>
+<li><a href="./v3-adrs.md">v3-adrs.md</a> - Complete ADR master document with all decisions</li>
+<li><a href="./ADR-003-implementation-status.md">ADR-003-implementation-status.md</a> - Detailed implementation tracking</li>
+</ul>
+<h2>Performance Targets (from ADRs)</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>ADR Reference</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Code reduction</td>
+<td>&lt;5,000 lines vs 15,000+</td>
+<td>ADR-001</td>
+</tr>
+<tr>
+<td>HNSW search</td>
+<td>150x-12,500x faster</td>
+<td>ADR-009</td>
+</tr>
+<tr>
+<td>Flash Attention</td>
+<td>2.49x-7.47x speedup</td>
+<td>ADR-001</td>
+</tr>
+<tr>
+<td>Test execution</td>
+<td>&lt;5s (10x improvement)</td>
+<td>ADR-008</td>
+</tr>
+<tr>
+<td>Startup time</td>
+<td>&lt;500ms</td>
+<td>ADR-004</td>
+</tr>
+<tr>
+<td>Query latency</td>
+<td>&lt;100ms</td>
+<td>ADR-006</td>
+</tr>
+</tbody></table>
+<h2>Security Improvements</h2>
+<p>All ADRs consider security:</p>
+<ul>
+<li>CVE-1: Command injection prevention (ADR-005 input validation)</li>
+<li>CVE-2: Path traversal prevention (ADR-006 memory sandboxing)</li>
+<li>CVE-3: Credential generation (secure random with rejection sampling)</li>
+</ul>
+<hr>
+<p><strong>Last Updated:</strong> 2026-01-13
+<strong>Project:</strong> Claude-Flow V3
+<strong>Version:</strong> 3.0.0-alpha.84 (Beta Ready)</p>
+<h3>Recent Updates (2026-01-13)</h3>
+<h4>Release: @claude-flow/<a href="mailto:cli@3.0.0-alpha.84">cli@3.0.0-alpha.84</a> (Beta Ready)</h4>
+<p><strong>All Audit Issues Resolved:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Fix</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Profile metrics</td>
+<td>Hardcoded 23%, 145MB</td>
+<td>Real: process.memoryUsage(), process.cpuUsage()</td>
+</tr>
+<tr>
+<td>CVE data</td>
+<td>Unmarked fake data</td>
+<td>Labeled as examples with warnings</td>
+</tr>
+<tr>
+<td>Demo mode warnings</td>
+<td>Silent fallback</td>
+<td>⚠ DEMO MODE / OFFLINE MODE warnings</td>
+</tr>
+</tbody></table>
+<p><strong>Auto-Update System (ADR-025):</strong></p>
+<pre><code class="language-bash">npx claude-flow update check      # Check for updates
+npx claude-flow update all        # Update all packages
+npx claude-flow update history    # View update history
+npx claude-flow update rollback   # Rollback last update
+</code></pre>
+<hr>
+<h3>Previous Updates (2026-01-07)</h3>
+<h4>Release: @claude-flow/<a href="mailto:cli@3.0.0-alpha.15">cli@3.0.0-alpha.15</a> (Latest)</h4>
+<p><strong>Doctor Command Enhancements</strong>:</p>
+<ul>
+<li><strong>Claude Code CLI Check</strong>: Verifies <code>@anthropic-ai/claude-code</code> installation</li>
+<li><strong>Auto-Install</strong>: <code>--install</code> flag to auto-install missing Claude Code CLI</li>
+<li><strong>Fixed Package Paths</strong>: Corrected <code>dist/src/</code> paths for proper npm resolution</li>
+</ul>
+<pre><code class="language-bash"># Check system health including Claude Code CLI
+npx claude-flow@v3alpha doctor
+
+# Auto-install Claude Code CLI if missing
+npx claude-flow@v3alpha doctor --install
+
+# Check only Claude Code CLI
+npx claude-flow@v3alpha doctor -c claude
+</code></pre>
+<p><strong>Package Resolution Fix</strong>: Fixed Windows module resolution issue where <code>@claude-flow/cli</code> exports pointed to wrong paths (<code>dist/index.js</code> → <code>dist/src/index.js</code>).</p>
+<h4>Release: @claude-flow/<a href="mailto:cli@3.0.0-alpha.7">cli@3.0.0-alpha.7</a></h4>
+<ul>
+<li><strong>Hive-Mind CLI</strong>: All MCP tools now exposed via CLI subcommands:<ul>
+<li><code>hive-mind join &lt;agent-id&gt;</code> - Join agent to hive</li>
+<li><code>hive-mind leave &lt;agent-id&gt;</code> - Remove agent from hive</li>
+<li><code>hive-mind consensus</code> - Manage consensus proposals and voting</li>
+<li><code>hive-mind broadcast -m &lt;msg&gt;</code> - Broadcast messages to workers</li>
+<li><code>hive-mind memory</code> - Access shared memory (get/set/delete/list)</li>
+</ul>
+</li>
+<li><strong>Bug Fix</strong>: Fixed positional argument parsing for subcommands in CLI parser</li>
+<li><strong>File Persistence</strong>: All MCP tools use file-based persistence in <code>.claude-flow/</code> directories</li>
+<li><strong>ADR-014</strong>: Node.js Worker Daemon - cross-platform TypeScript daemon replaces shell helpers</li>
+<li><strong>CLI</strong>: <code>daemon</code> command with start/stop/status/trigger/enable subcommands</li>
+<li><strong>Session Integration</strong>: Auto-start daemon on SessionStart, auto-stop on SessionEnd</li>
+</ul>
+<h4>CLI MCP Tool Coverage</h4>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Tools</th>
+<th>CLI Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent</td>
+<td>spawn, terminate, status, list, pool, health, update</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Hive-Mind</td>
+<td>init, spawn, status, task, join, leave, consensus, broadcast, memory, optimize-memory, shutdown</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>create, status, list, complete, cancel</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Session</td>
+<td>save, restore, list, delete, export</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>get, set, list, reset, export, import</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>store, retrieve, list, delete, search</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>create, execute, list, status, delete</td>
+<td>✅ Complete</td>
+</tr>
+</tbody></table>
+<h4>Install</h4>
+<pre><code class="language-bash">npx @claude-flow/cli@v3alpha --help
+</code></pre>
+<h3>Release: @claude-flow/<a href="mailto:cli@3.0.0-alpha.11">cli@3.0.0-alpha.11</a> (2026-01-07)</h3>
+<h4>New V3 Advanced CLI Commands</h4>
+<p>All commands include subcommand help and &quot;Created with ❤️ by ruv.io&quot; branding.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Subcommands</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>neural</code></td>
+<td>Neural pattern training, MoE, Flash Attention</td>
+<td>train, status, patterns, predict, optimize</td>
+</tr>
+<tr>
+<td><code>security</code></td>
+<td>Security scanning, CVE detection, threat modeling</td>
+<td>scan, cve, threats, audit, secrets</td>
+</tr>
+<tr>
+<td><code>performance</code></td>
+<td>Performance profiling, benchmarking, optimization</td>
+<td>benchmark, profile, metrics, optimize, bottleneck</td>
+</tr>
+<tr>
+<td><code>providers</code></td>
+<td>AI provider management, models, configurations</td>
+<td>list, configure, test, models, usage</td>
+</tr>
+<tr>
+<td><code>plugins</code></td>
+<td>Plugin management, installation, lifecycle</td>
+<td>list, install, uninstall, toggle, info, create</td>
+</tr>
+<tr>
+<td><code>deployment</code></td>
+<td>Deployment management, environments, rollbacks</td>
+<td>deploy, status, rollback, history, environments, logs</td>
+</tr>
+<tr>
+<td><code>claims</code></td>
+<td>Claims-based authorization, access control</td>
+<td>list, check, grant, revoke, roles, policies</td>
+</tr>
+<tr>
+<td><code>embeddings</code></td>
+<td>Vector embeddings, semantic search</td>
+<td>generate, search, compare, collections, index, providers</td>
+</tr>
+<tr>
+<td><code>doctor</code></td>
+<td>System diagnostics</td>
+<td>Node version, config, daemon, memory, API keys, MCP, disk</td>
+</tr>
+<tr>
+<td><code>completions</code></td>
+<td>Shell completions</td>
+<td>bash, zsh, fish, powershell</td>
+</tr>
+</tbody></table>
+<h3>P0 Features Completed (alpha.12)</h3>
+<p><strong>Smart Error Suggestions</strong>: Typo detection with Levenshtein distance</p>
+<pre><code class="language-bash">$ claude-flow swram
+[ERROR] Unknown command: swram
+  Did you mean one of these?
+  - swarm
+  - neural
+  - start
+
+$ claude-flow memroy
+[ERROR] Unknown command: memroy
+  Did you mean &quot;memory&quot;?
+</code></pre>
+<p><strong>Doctor Command</strong>: System health diagnostics</p>
+<pre><code class="language-bash">$ claude-flow doctor
+Claude Flow Doctor
+──────────────────────────────────────────────────
+✓ Node.js Version: v22.21.1 (&gt;= 20 required)
+✓ npm Version: v10.9.4
+✓ Git: v2.52.0
+✓ Git Repository: In a git repository
+⚠ Config File: No config file (using defaults)
+⚠ Daemon Status: Not running
+⚠ Memory Database: Not initialized
+⚠ API Keys: No API keys found
+⚠ MCP Servers: No MCP config found
+✓ Disk Space: 73G available
+✓ TypeScript: v5.9.3
+──────────────────────────────────────────────────
+Summary: 6 passed, 5 warnings
+</code></pre>
+<p><strong>Shell Completions</strong>: Tab completion for all shells</p>
+<pre><code class="language-bash"># Install bash completions
+claude-flow completions bash &gt; ~/.bash_completion.d/claude-flow
+
+# Install zsh completions
+claude-flow completions zsh &gt; ~/.zfunc/_claude-flow
+
+# Install fish completions
+claude-flow completions fish &gt; ~/.config/fish/completions/claude-flow.fish
+
+# Install PowerShell completions
+claude-flow completions powershell &gt;&gt; $PROFILE
+</code></pre>
+<h2>CLI Roadmap</h2>
+<h3>Priority Recommendations</h3>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🔴 P0</td>
+<td>Add <code>doctor</code> command</td>
+<td>✅ Done</td>
+<td>System diagnostics, dependency checks, config validation</td>
+</tr>
+<tr>
+<td>🔴 P0</td>
+<td>Add <code>completions</code> command</td>
+<td>✅ Done</td>
+<td>Shell completions for bash, zsh, fish, powershell</td>
+</tr>
+<tr>
+<td>🔴 P0</td>
+<td>Add smart error suggestions</td>
+<td>✅ Done</td>
+<td>Levenshtein distance for typo corrections</td>
+</tr>
+<tr>
+<td>🟡 P1</td>
+<td>Resolve provider config overlap</td>
+<td>Pending</td>
+<td>Unify provider configs across embeddings/providers commands</td>
+</tr>
+<tr>
+<td>🟡 P1</td>
+<td>Add unified <code>logs</code> command</td>
+<td>Pending</td>
+<td>Centralized log viewing across daemon, agents, swarms</td>
+</tr>
+<tr>
+<td>🟢 P2</td>
+<td>Add <code>upgrade</code> command</td>
+<td>Pending</td>
+<td>Self-update CLI to latest version</td>
+</tr>
+<tr>
+<td>🟢 P2</td>
+<td>Add interactive shell/REPL mode</td>
+<td>Pending</td>
+<td><code>claude-flow shell</code> for interactive command execution</td>
+</tr>
+</tbody></table>
+<h3>Implementation Plan</h3>
+<p><strong>P0 - Critical (Next Release)</strong></p>
+<pre><code class="language-bash"># Doctor command - diagnose system health
+claude-flow doctor              # Full system check
+claude-flow doctor --fix        # Auto-fix issues where possible
+claude-flow doctor --component mcp  # Check specific component
+
+# Shell completions
+claude-flow completions bash &gt; ~/.bash_completion.d/claude-flow
+claude-flow completions zsh &gt; ~/.zfunc/_claude-flow
+claude-flow completions fish &gt; ~/.config/fish/completions/claude-flow.fish
+</code></pre>
+<p><strong>P1 - High Priority</strong></p>
+<pre><code class="language-bash"># Unified logs command
+claude-flow logs                # All logs
+claude-flow logs --follow       # Tail logs
+claude-flow logs --component daemon
+claude-flow logs --level error
+</code></pre>
+<p><strong>P2 - Nice to Have</strong></p>
+<pre><code class="language-bash"># Self-update
+claude-flow upgrade             # Upgrade to latest
+claude-flow upgrade --check     # Check for updates
+claude-flow upgrade --version 3.1.0
+
+# Interactive shell
+claude-flow shell               # Enter REPL
+&gt; swarm init mesh
+&gt; agent spawn coder
+&gt; memory search &quot;patterns&quot;
+</code></pre>
+<hr>
+<h2>agentic-flow vs claude-flow Feature Comparison</h2>
+<h3>Feature Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>agentic-flow</th>
+<th>claude-flow</th>
+<th>Integration Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Core Agent System</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Specialized Agents</td>
+<td>66+</td>
+<td>15 (hierarchical)</td>
+<td>🟡</td>
+</tr>
+<tr>
+<td>Agent Spawning</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Agent Pool/Scaling</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Orchestration</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Swarm Coordination</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Hive-Mind Consensus</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Federation Hub</td>
+<td>✅</td>
+<td>❌</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td>Ephemeral Agents</td>
+<td>✅</td>
+<td>❌</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td><strong>Transport</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HTTP/SSE</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>QUIC (UDP)</td>
+<td>✅</td>
+<td>❌</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td>WebSocket</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>AI Providers</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Multi-Provider</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Model Optimization</td>
+<td>✅</td>
+<td>❌</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td>Provider Fallback</td>
+<td>✅</td>
+<td>❌</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td>Cost Tracking</td>
+<td>✅</td>
+<td>❌</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td>Proxy Server</td>
+<td>✅</td>
+<td>❌</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td><strong>Memory/Learning</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ReasoningBank (WASM)</td>
+<td>✅</td>
+<td>❌</td>
+<td>🔴 High</td>
+</tr>
+<tr>
+<td>Embeddings CLI</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>HNSW Indexing</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Memory Persistence</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>DevOps</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Doctor Command</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Shell Completions</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Smart Errors</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Background Workers</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Worker Dispatch</td>
+<td>✅</td>
+<td>❌</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Security Scanning</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>CVE Detection</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Claims/RBAC</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Advanced</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Neural Patterns</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Self-Learning Hooks</td>
+<td>✅</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Deployment Mgmt</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Plugin System</td>
+<td>❌</td>
+<td>✅</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3>High-Value Integration Opportunities</h3>
+<h4>🔴 Tier 1: Highest Impact (Unique to agentic-flow)</h4>
+<p><strong>1. QUIC Transport (50-70% faster)</strong></p>
+<pre><code class="language-bash"># Integration target:
+claude-flow transport quic --port 4433
+claude-flow swarm start --transport quic  # 50-70% faster agent comms
+</code></pre>
+<p><strong>2. Federation Hub (Ephemeral Agents)</strong></p>
+<pre><code class="language-bash"># Integration target:
+claude-flow federation start --port 9443
+claude-flow federation spawn --tenant acme --lifetime 600
+</code></pre>
+<p><em>Value: Agents die but memories persist → learning across agent generations</em></p>
+<p><strong>3. Model Optimization (85% cost savings)</strong></p>
+<pre><code class="language-bash"># Integration target:
+claude-flow agent spawn -t coder --optimize --priority cost
+claude-flow providers optimize --task &quot;Build API&quot; --budget 0.01
+</code></pre>
+<p><strong>4. Provider Fallback (Enterprise resilience)</strong></p>
+<pre><code class="language-bash"># Integration target:
+claude-flow providers fallback configure --primary anthropic --fallback openrouter,onnx
+</code></pre>
+<p><strong>5. ReasoningBank (WASM Learning Memory)</strong></p>
+<pre><code class="language-bash"># Integration target:
+claude-flow reasoningbank store &quot;pattern&quot; --reasoning &quot;...&quot;
+claude-flow reasoningbank search &quot;authentication patterns&quot;
+</code></pre>
+<p><em>Value: 10-100x faster reasoning pattern storage vs JSON</em></p>
+<h4>🟡 Tier 2: Medium Impact</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>Complexity</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Proxy Server</td>
+<td>Use any model with Claude Code via local proxy</td>
+<td>🟡 Medium</td>
+</tr>
+<tr>
+<td>Worker Dispatch</td>
+<td>More granular worker control</td>
+<td>🟢 Low</td>
+</tr>
+<tr>
+<td>Embeddings Management</td>
+<td>Better model management</td>
+<td>🟢 Low</td>
+</tr>
+</tbody></table>
+<h3>Integration Roadmap</h3>
+<h4>Phase 1: Quick Wins (1 week) → 9.3 → 9.5</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Effort</th>
+<th>Impact</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Model Optimization flags</td>
+<td>🟢 Low</td>
+<td>🔴 High</td>
+<td>New command</td>
+</tr>
+<tr>
+<td>Provider fallback config</td>
+<td>🟢 Low</td>
+<td>🔴 High</td>
+<td>New subcommand</td>
+</tr>
+<tr>
+<td>Embeddings download/benchmark</td>
+<td>🟢 Low</td>
+<td>🟡 Med</td>
+<td>Enhance existing</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash"># After Phase 1:
+claude-flow agent spawn -t coder --optimize --priority cost
+claude-flow providers fallback configure --primary anthropic --fallback openrouter,onnx
+claude-flow embeddings download all-MiniLM-L6-v2
+</code></pre>
+<h4>Phase 2: Core Integration (2-3 weeks) → 9.5 → 9.7</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Effort</th>
+<th>Impact</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Federation Hub</td>
+<td>🟡 Med</td>
+<td>🔴 High</td>
+<td>Port from agentic-flow</td>
+</tr>
+<tr>
+<td>Ephemeral agents</td>
+<td>🟡 Med</td>
+<td>🔴 High</td>
+<td>Part of federation</td>
+</tr>
+<tr>
+<td>Proxy server</td>
+<td>🟡 Med</td>
+<td>🟡 Med</td>
+<td>Port from agentic-flow</td>
+</tr>
+<tr>
+<td>Worker dispatch triggers</td>
+<td>🟢 Low</td>
+<td>🟡 Med</td>
+<td>Enhance daemon</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash"># After Phase 2:
+claude-flow federation start --port 9443
+claude-flow federation spawn --lifetime 300 --task &quot;Quick analysis&quot;
+claude-flow proxy start --provider openrouter
+claude-flow daemon dispatch security-audit
+</code></pre>
+<h4>Phase 3: Advanced (4-6 weeks) → 9.7 → 9.9</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Effort</th>
+<th>Impact</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QUIC Transport</td>
+<td>🔴 High</td>
+<td>🔴 High</td>
+<td>Port QUIC module</td>
+</tr>
+<tr>
+<td>ReasoningBank (WASM)</td>
+<td>🔴 High</td>
+<td>🔴 High</td>
+<td>Port + WASM build</td>
+</tr>
+<tr>
+<td>66 Agent configs</td>
+<td>🟡 Med</td>
+<td>🟡 Med</td>
+<td>Copy + adapt</td>
+</tr>
+</tbody></table>
+<pre><code class="language-bash"># After Phase 3:
+claude-flow swarm start --transport quic  # 50-70% faster
+claude-flow reasoningbank store &quot;pattern&quot; --reasoning &quot;...&quot;
+claude-flow agent spawn -t security-analyst  # One of 66 types
+</code></pre>
+<h3>Recommended Integration Approach</h3>
+<p><strong>Option A: Dependency Approach (Fastest)</strong></p>
+<pre><code class="language-json">// claude-flow/package.json
+{
+  &quot;dependencies&quot;: {
+    &quot;agentic-flow&quot;: &quot;^2.0.3&quot;
+  }
+}
+</code></pre>
+<p><strong>Option B: Port Code (More Control)</strong></p>
+<pre><code class="language-bash"># Copy specific modules:
+- agentic-flow/src/transport/quic.ts → claude-flow/src/transport/
+- agentic-flow/src/federation/ → claude-flow/src/federation/
+- agentic-flow/src/reasoningbank/ → claude-flow/src/reasoningbank/
+</code></pre>
+<p><strong>Option C: Unified Package (Long-term)</strong></p>
+<pre><code class="language-bash">@claude-flow/core      # Shared primitives
+@claude-flow/cli       # CLI (current)
+@claude-flow/agents    # From agentic-flow&#39;s 66 agents
+@claude-flow/transport # QUIC + HTTP + WebSocket
+</code></pre>
+<hr>
+<h2>ruvector Integration Analysis</h2>
+<h3>Package Overview</h3>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ruvector</code></td>
+<td>0.1.95</td>
+<td>Main CLI + unified interface</td>
+</tr>
+<tr>
+<td><code>@ruvector/core</code></td>
+<td>0.1.30</td>
+<td>Rust-native vector DB (52K+ inserts/sec)</td>
+</tr>
+<tr>
+<td><code>@ruvector/attention</code></td>
+<td>0.1.4</td>
+<td>Flash Attention mechanisms</td>
+</tr>
+<tr>
+<td><code>@ruvector/sona</code></td>
+<td>0.1.5</td>
+<td>Self-Optimizing Neural Architecture (LoRA, EWC++)</td>
+</tr>
+<tr>
+<td><code>@ruvector/gnn</code></td>
+<td>0.1.22</td>
+<td>Graph Neural Networks</td>
+</tr>
+</tbody></table>
+<h3>Feature Overlap Analysis</h3>
+<p><strong>claude-flow ALREADY HAS</strong> (via @claude-flow/embeddings):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>claude-flow</th>
+<th>ruvector</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ONNX Embeddings</td>
+<td>✅ agentic-flow (~3ms)</td>
+<td>✅ @ruvector/core</td>
+<td><strong>Equivalent</strong></td>
+</tr>
+<tr>
+<td>Local Embeddings</td>
+<td>✅ all-MiniLM-L6-v2</td>
+<td>✅ all-MiniLM-L6-v2</td>
+<td><strong>Equivalent</strong></td>
+</tr>
+<tr>
+<td>HNSW Indexing</td>
+<td>✅ @claude-flow/memory</td>
+<td>✅ @ruvector/core</td>
+<td><strong>Equivalent</strong></td>
+</tr>
+<tr>
+<td>Persistent Cache</td>
+<td>✅ SQLite + LRU</td>
+<td>✅ Memory cache</td>
+<td><strong>Equivalent</strong></td>
+</tr>
+<tr>
+<td>Hyperbolic Embeddings</td>
+<td>✅ Poincaré ball</td>
+<td>❌</td>
+<td><strong>claude-flow ahead</strong></td>
+</tr>
+<tr>
+<td>Document Chunking</td>
+<td>✅ 4 strategies</td>
+<td>❌</td>
+<td><strong>claude-flow ahead</strong></td>
+</tr>
+<tr>
+<td>Normalization</td>
+<td>✅ L2, L1, min-max, z-score</td>
+<td>❌</td>
+<td><strong>claude-flow ahead</strong></td>
+</tr>
+<tr>
+<td>Neural Substrate</td>
+<td>✅ Drift, memory physics</td>
+<td>❌</td>
+<td><strong>claude-flow ahead</strong></td>
+</tr>
+</tbody></table>
+<h3>Unique ruvector Features (Integration Candidates)</h3>
+<h4>🔴 Tier 1: High Value (claude-flow lacks these)</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ruvector Source</th>
+<th>Integration Target</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Q-Learning Agent Router</td>
+<td><code>hooks_route</code></td>
+<td><code>hooks route --task</code></td>
+<td>80%+ accuracy, learns patterns</td>
+</tr>
+<tr>
+<td>AST Analysis</td>
+<td><code>hooks_ast_analyze</code></td>
+<td><code>analyze --ast</code></td>
+<td>Symbol extraction, complexity</td>
+</tr>
+<tr>
+<td>Diff Classification</td>
+<td><code>hooks_diff_analyze</code></td>
+<td><code>analyze --diff --risk</code></td>
+<td>Change risk scoring</td>
+</tr>
+<tr>
+<td>Coverage Routing</td>
+<td><code>hooks_coverage_route</code></td>
+<td><code>hooks route --coverage-aware</code></td>
+<td>Test-aware agent selection</td>
+</tr>
+</tbody></table>
+<h4>🟡 Tier 2: Medium Value</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ruvector Source</th>
+<th>Integration Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Co-edit Prediction</td>
+<td>Git history analysis</td>
+<td><code>predict --coedits</code></td>
+</tr>
+<tr>
+<td>Security Patterns</td>
+<td><code>hooks_security_scan</code></td>
+<td><code>security scan --patterns</code></td>
+</tr>
+</tbody></table>
+<h4>🟢 Tier 3: Nice to Have</h4>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>ruvector Source</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MinCut Boundaries</td>
+<td><code>hooks_graph_mincut</code></td>
+<td>Code organization</td>
+</tr>
+<tr>
+<td>Louvain Communities</td>
+<td><code>hooks_graph_cluster</code></td>
+<td>Module detection</td>
+</tr>
+<tr>
+<td>GNN Layers</td>
+<td><code>@ruvector/gnn</code></td>
+<td>Graph analysis</td>
+</tr>
+</tbody></table>
+<p><em>Note: Flash Attention, SONA Learning, HNSW, and ONNX embeddings are already in claude-flow via agentic-flow.</em></p>
+<h3>MCP Tools from ruvector (Unique Only)</h3>
+<pre><code class="language-bash"># Add ruvector MCP server (for unique features)
+claude mcp add ruvector-mcp -- npx ruvector mcp-server
+</code></pre>
+<p><strong>Unique Tools Worth Integrating:</strong></p>
+<ul>
+<li><code>hooks_route</code>, <code>hooks_route_enhanced</code> — Q-Learning agent routing (80%+ accuracy) ✅</li>
+<li><code>hooks_ast_analyze</code>, <code>hooks_ast_complexity</code> — Code structure analysis ✅</li>
+<li><code>hooks_diff_analyze</code>, <code>hooks_diff_classify</code> — Change classification ✅</li>
+<li><code>hooks_coverage_route</code>, <code>hooks_coverage_suggest</code> — Test-aware routing ✅</li>
+<li><code>hooks_graph_mincut</code>, <code>hooks_graph_cluster</code> — Code boundaries ✅</li>
+</ul>
+<p><strong>Already in claude-flow (skip):</strong></p>
+<ul>
+<li><code>hooks_rag_context</code> — Use @claude-flow/memory instead</li>
+<li><code>hooks_attention_info</code> — Use @claude-flow/neural instead</li>
+<li>Embeddings tools — Use @claude-flow/embeddings instead</li>
+</ul>
+<h3>Integration Approach</h3>
+<p><strong>Recommended: Option A - Add as Optional Dependency (for unique features only)</strong></p>
+<pre><code class="language-json">// @claude-flow/cli/package.json
+{
+  &quot;optionalDependencies&quot;: {
+    &quot;ruvector&quot;: &quot;^0.1.95&quot;
+  }
+}
+</code></pre>
+<p><strong>CLI Wrappers (unique ruvector features):</strong></p>
+<pre><code class="language-bash"># Q-Learning agent routing (unique to ruvector)
+claude-flow route &quot;task&quot; --q-learning          # Uses hooks_route
+
+# AST analysis (unique to ruvector)
+claude-flow analyze ast src/                   # Uses hooks_ast_analyze
+
+# Diff classification (unique to ruvector)
+claude-flow analyze diff --risk                # Uses hooks_diff_analyze
+
+# Coverage-aware routing (unique to ruvector)
+claude-flow route &quot;task&quot; --coverage-aware      # Uses hooks_coverage_route
+</code></pre>
+<p><strong>Already in claude-flow (DO NOT import from ruvector):</strong></p>
+<pre><code class="language-bash">claude-flow embeddings generate --local        # Uses @claude-flow/embeddings (ONNX)
+claude-flow memory search --semantic &quot;query&quot;   # Uses @claude-flow/memory (HNSW)
+</code></pre>
+<h3>ruvector Integration Roadmap</h3>
+<h4>Phase 1: Q-Learning Router (1-2 days)</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Add ruvector as optional dependency</li>
+<li><input disabled="" type="checkbox"> Implement <code>hooks route --q-learning</code> wrapper</li>
+<li><input disabled="" type="checkbox"> Add <code>info --ruvector</code> command for capability detection</li>
+</ul>
+<h4>Phase 2: Code Intelligence (1 week)</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Integrate AST analysis commands (<code>analyze ast</code>)</li>
+<li><input disabled="" type="checkbox"> Implement diff classification (<code>analyze diff --risk</code>)</li>
+<li><input disabled="" type="checkbox"> Add coverage-aware routing (<code>route --coverage-aware</code>)</li>
+</ul>
+<h4>Phase 3: Graph Analysis (2 weeks)</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Implement MinCut boundaries (<code>analyze --boundaries</code>)</li>
+<li><input disabled="" type="checkbox"> Add Louvain community detection (<code>analyze --modules</code>)</li>
+<li><input disabled="" type="checkbox"> Integrate GNN layers for dependency graphs</li>
+</ul>
+<p><em>Note: SONA, Flash Attention, HNSW already in claude-flow - no need to import.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>CLAUDE.md Improver</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/claude-md-management/skills/claude-md-improver/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">CLAUDE.md Improver</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <hr>
+<h2>name: claude-md-improver
+description: Audit and improve CLAUDE.md files in repositories. Use when user asks to check, audit, update, improve, or fix CLAUDE.md files. Scans for all CLAUDE.md files, evaluates quality against templates, outputs quality report, then makes targeted updates. Also use when the user mentions &quot;CLAUDE.md maintenance&quot; or &quot;project memory optimization&quot;.
+tools: Read, Glob, Grep, Bash, Edit</h2>
+<h1>CLAUDE.md Improver</h1>
+<p>Audit, evaluate, and improve CLAUDE.md files across a codebase to ensure Claude Code has optimal project context.</p>
+<p><strong>This skill can write to CLAUDE.md files.</strong> After presenting a quality report and getting user approval, it updates CLAUDE.md files with targeted improvements.</p>
+<h2>Workflow</h2>
+<h3>Phase 1: Discovery</h3>
+<p>Find all CLAUDE.md files in the repository:</p>
+<pre><code class="language-bash">find . -name &quot;CLAUDE.md&quot; -o -name &quot;.claude.md&quot; -o -name &quot;.claude.local.md&quot; 2&gt;/dev/null | head -50
+</code></pre>
+<p><strong>File Types &amp; Locations:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Location</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Project root</td>
+<td><code>./CLAUDE.md</code></td>
+<td>Primary project context (checked into git, shared with team)</td>
+</tr>
+<tr>
+<td>Local overrides</td>
+<td><code>./.claude.local.md</code></td>
+<td>Personal/local settings (gitignored, not shared)</td>
+</tr>
+<tr>
+<td>Global defaults</td>
+<td><code>~/.claude/CLAUDE.md</code></td>
+<td>User-wide defaults across all projects</td>
+</tr>
+<tr>
+<td>Package-specific</td>
+<td><code>./packages/*/CLAUDE.md</code></td>
+<td>Module-level context in monorepos</td>
+</tr>
+<tr>
+<td>Subdirectory</td>
+<td>Any nested location</td>
+<td>Feature/domain-specific context</td>
+</tr>
+</tbody></table>
+<p><strong>Note:</strong> Claude auto-discovers CLAUDE.md files in parent directories, making monorepo setups work automatically.</p>
+<h3>Phase 2: Quality Assessment</h3>
+<p>For each CLAUDE.md file, evaluate against quality criteria. See <a href="references/quality-criteria.md">references/quality-criteria.md</a> for detailed rubrics.</p>
+<p><strong>Quick Assessment Checklist:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Weight</th>
+<th>Check</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Commands/workflows documented</td>
+<td>High</td>
+<td>Are build/test/deploy commands present?</td>
+</tr>
+<tr>
+<td>Architecture clarity</td>
+<td>High</td>
+<td>Can Claude understand the codebase structure?</td>
+</tr>
+<tr>
+<td>Non-obvious patterns</td>
+<td>Medium</td>
+<td>Are gotchas and quirks documented?</td>
+</tr>
+<tr>
+<td>Conciseness</td>
+<td>Medium</td>
+<td>No verbose explanations or obvious info?</td>
+</tr>
+<tr>
+<td>Currency</td>
+<td>High</td>
+<td>Does it reflect current codebase state?</td>
+</tr>
+<tr>
+<td>Actionability</td>
+<td>High</td>
+<td>Are instructions executable, not vague?</td>
+</tr>
+</tbody></table>
+<p><strong>Quality Scores:</strong></p>
+<ul>
+<li><strong>A (90-100)</strong>: Comprehensive, current, actionable</li>
+<li><strong>B (70-89)</strong>: Good coverage, minor gaps</li>
+<li><strong>C (50-69)</strong>: Basic info, missing key sections</li>
+<li><strong>D (30-49)</strong>: Sparse or outdated</li>
+<li><strong>F (0-29)</strong>: Missing or severely outdated</li>
+</ul>
+<h3>Phase 3: Quality Report Output</h3>
+<p><strong>ALWAYS output the quality report BEFORE making any updates.</strong></p>
+<p>Format:</p>
+<pre><code>## CLAUDE.md Quality Report
+
+### Summary
+- Files found: X
+- Average score: X/100
+- Files needing update: X
+
+### File-by-File Assessment
+
+#### 1. ./CLAUDE.md (Project Root)
+**Score: XX/100 (Grade: X)**
+
+| Criterion | Score | Notes |
+|-----------|-------|-------|
+| Commands/workflows | X/20 | ... |
+| Architecture clarity | X/20 | ... |
+| Non-obvious patterns | X/15 | ... |
+| Conciseness | X/15 | ... |
+| Currency | X/15 | ... |
+| Actionability | X/15 | ... |
+
+**Issues:**
+- [List specific problems]
+
+**Recommended additions:**
+- [List what should be added]
+
+#### 2. ./packages/api/CLAUDE.md (Package-specific)
+...
+</code></pre>
+<h3>Phase 4: Targeted Updates</h3>
+<p>After outputting the quality report, ask user for confirmation before updating.</p>
+<p><strong>Update Guidelines (Critical):</strong></p>
+<ol>
+<li><p><strong>Propose targeted additions only</strong> - Focus on genuinely useful info:</p>
+<ul>
+<li>Commands or workflows discovered during analysis</li>
+<li>Gotchas or non-obvious patterns found in code</li>
+<li>Package relationships that weren&#39;t clear</li>
+<li>Testing approaches that work</li>
+<li>Configuration quirks</li>
+</ul>
+</li>
+<li><p><strong>Keep it minimal</strong> - Avoid:</p>
+<ul>
+<li>Restating what&#39;s obvious from the code</li>
+<li>Generic best practices already covered</li>
+<li>One-off fixes unlikely to recur</li>
+<li>Verbose explanations when a one-liner suffices</li>
+</ul>
+</li>
+<li><p><strong>Show diffs</strong> - For each change, show:</p>
+<ul>
+<li>Which CLAUDE.md file to update</li>
+<li>The specific addition (as a diff or quoted block)</li>
+<li>Brief explanation of why this helps future sessions</li>
+</ul>
+</li>
+</ol>
+<p><strong>Diff Format:</strong></p>
+<pre><code class="language-markdown">### Update: ./CLAUDE.md
+
+**Why:** Build command was missing, causing confusion about how to run the project.
+
+```diff
++ ## Quick Start
++
++ ```bash
++ npm install
++ npm run dev  # Start development server on port 3000
++ ```
+</code></pre>
+<pre><code>
+### Phase 5: Apply Updates
+
+After user approval, apply changes using the Edit tool. Preserve existing content structure.
+
+## Templates
+
+See [references/templates.md](references/templates.md) for CLAUDE.md templates by project type.
+
+## Common Issues to Flag
+
+1. **Stale commands**: Build commands that no longer work
+2. **Missing dependencies**: Required tools not mentioned
+3. **Outdated architecture**: File structure that&#39;s changed
+4. **Missing environment setup**: Required env vars or config
+5. **Broken test commands**: Test scripts that have changed
+6. **Undocumented gotchas**: Non-obvious patterns not captured
+
+## User Tips to Share
+
+When presenting recommendations, remind users:
+
+- **`#` key shortcut**: During a Claude session, press `#` to have Claude auto-incorporate learnings into CLAUDE.md
+- **Keep it concise**: CLAUDE.md should be human-readable; dense is better than verbose
+- **Actionable commands**: All documented commands should be copy-paste ready
+- **Use `.claude.local.md`**: For personal preferences not shared with team (add to `.gitignore`)
+- **Global defaults**: Put user-wide preferences in `~/.claude/CLAUDE.md`
+
+## What Makes a Great CLAUDE.md
+
+**Key principles:**
+- Concise and human-readable
+- Actionable commands that can be copy-pasted
+- Project-specific patterns, not generic advice
+- Non-obvious gotchas and warnings
+
+**Recommended sections** (use only what&#39;s relevant):
+- Commands (build, test, dev, lint)
+- Architecture (directory structure)
+- Key Files (entry points, config)
+- Code Style (project conventions)
+- Environment (required vars, setup)
+- Testing (commands, patterns)
+- Gotchas (quirks, common mistakes)
+- Workflow (when to do what)
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

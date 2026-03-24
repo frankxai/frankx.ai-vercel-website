@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Normalize phase number (8 → 08, but preserve decimals like 2.1 → 02.1)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/commands/gsd/research-phase.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Normalize phase number (8 → 08, but preserve decimals like 2.1 → 02.1)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fcommands">commands</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fcommands%2Fgsd">gsd</a> / <span>research-phase.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: gsd:research-phase
+description: Research how to implement a phase (standalone - usually use /gsd:plan-phase instead)
+argument-hint: &quot;[phase]&quot;
+allowed-tools:
+  - Read
+  - Bash
+  - Task</h2>
+<objective>
+Research how to implement a phase. Spawns gsd-phase-researcher agent with phase context.
+
+<p><strong>Note:</strong> This is a standalone research command. For most workflows, use <code>/gsd:plan-phase</code> which integrates research automatically.</p>
+<p><strong>Use this command when:</strong></p>
+<ul>
+<li>You want to research without planning yet</li>
+<li>You want to re-research after planning is complete</li>
+<li>You need to investigate before deciding if a phase is feasible</li>
+</ul>
+<p><strong>Orchestrator role:</strong> Parse phase, validate against roadmap, check existing research, gather context, spawn researcher agent, present results.</p>
+<p><strong>Why subagent:</strong> Research burns context fast (WebSearch, Context7 queries, source verification). Fresh 200k context for investigation. Main context stays lean for user interaction.
+</objective></p>
+<context>
+Phase number: $ARGUMENTS (required)
+
+<p>Normalize phase input in step 1 before any directory lookups.
+</context></p>
+<process>
+
+<h2>0. Resolve Model Profile</h2>
+<p>Read model profile for agent spawning:</p>
+<pre><code class="language-bash">MODEL_PROFILE=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;model_profile&quot;[[:space:]]*:[[:space:]]*&quot;[^&quot;]*&quot;&#39; | grep -o &#39;&quot;[^&quot;]*&quot;$&#39; | tr -d &#39;&quot;&#39; || echo &quot;balanced&quot;)
+</code></pre>
+<p>Default to &quot;balanced&quot; if not set.</p>
+<p><strong>Model lookup table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>quality</th>
+<th>balanced</th>
+<th>budget</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gsd-phase-researcher</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+</tbody></table>
+<p>Store resolved model for use in Task calls below.</p>
+<h2>1. Normalize and Validate Phase</h2>
+<pre><code class="language-bash"># Normalize phase number (8 → 08, but preserve decimals like 2.1 → 02.1)
+if [[ &quot;$ARGUMENTS&quot; =~ ^[0-9]+$ ]]; then
+  PHASE=$(printf &quot;%02d&quot; &quot;$ARGUMENTS&quot;)
+elif [[ &quot;$ARGUMENTS&quot; =~ ^([0-9]+)\.([0-9]+)$ ]]; then
+  PHASE=$(printf &quot;%02d.%s&quot; &quot;${BASH_REMATCH[1]}&quot; &quot;${BASH_REMATCH[2]}&quot;)
+else
+  PHASE=&quot;$ARGUMENTS&quot;
+fi
+
+grep -A5 &quot;Phase ${PHASE}:&quot; .planning/ROADMAP.md 2&gt;/dev/null
+</code></pre>
+<p><strong>If not found:</strong> Error and exit. <strong>If found:</strong> Extract phase number, name, description.</p>
+<h2>2. Check Existing Research</h2>
+<pre><code class="language-bash">ls .planning/phases/${PHASE}-*/RESEARCH.md 2&gt;/dev/null
+</code></pre>
+<p><strong>If exists:</strong> Offer: 1) Update research, 2) View existing, 3) Skip. Wait for response.</p>
+<p><strong>If doesn&#39;t exist:</strong> Continue.</p>
+<h2>3. Gather Phase Context</h2>
+<pre><code class="language-bash">grep -A20 &quot;Phase ${PHASE}:&quot; .planning/ROADMAP.md
+cat .planning/REQUIREMENTS.md 2&gt;/dev/null
+cat .planning/phases/${PHASE}-*/${PHASE}-CONTEXT.md 2&gt;/dev/null
+grep -A30 &quot;### Decisions Made&quot; .planning/STATE.md 2&gt;/dev/null
+</code></pre>
+<p>Present summary with phase description, requirements, prior decisions.</p>
+<h2>4. Spawn gsd-phase-researcher Agent</h2>
+<p>Research modes: ecosystem (default), feasibility, implementation, comparison.</p>
+<pre><code class="language-markdown">&lt;research_type&gt;
+Phase Research — investigating HOW to implement a specific phase well.
+&lt;/research_type&gt;
+
+&lt;key_insight&gt;
+The question is NOT &quot;which library should I use?&quot;
+
+The question is: &quot;What do I not know that I don&#39;t know?&quot;
+
+For this phase, discover:
+- What&#39;s the established architecture pattern?
+- What libraries form the standard stack?
+- What problems do people commonly hit?
+- What&#39;s SOTA vs what Claude&#39;s training thinks is SOTA?
+- What should NOT be hand-rolled?
+&lt;/key_insight&gt;
+
+&lt;objective&gt;
+Research implementation approach for Phase {phase_number}: {phase_name}
+Mode: ecosystem
+&lt;/objective&gt;
+
+&lt;context&gt;
+**Phase description:** {phase_description}
+**Requirements:** {requirements_list}
+**Prior decisions:** {decisions_if_any}
+**Phase context:** {context_md_content}
+&lt;/context&gt;
+
+&lt;downstream_consumer&gt;
+Your RESEARCH.md will be loaded by `/gsd:plan-phase` which uses specific sections:
+- `## Standard Stack` → Plans use these libraries
+- `## Architecture Patterns` → Task structure follows these
+- `## Don&#39;t Hand-Roll` → Tasks NEVER build custom solutions for listed problems
+- `## Common Pitfalls` → Verification steps check for these
+- `## Code Examples` → Task actions reference these patterns
+
+Be prescriptive, not exploratory. &quot;Use X&quot; not &quot;Consider X or Y.&quot;
+&lt;/downstream_consumer&gt;
+
+&lt;quality_gate&gt;
+Before declaring complete, verify:
+- [ ] All domains investigated (not just some)
+- [ ] Negative claims verified with official docs
+- [ ] Multiple sources for critical claims
+- [ ] Confidence levels assigned honestly
+- [ ] Section names match what plan-phase expects
+&lt;/quality_gate&gt;
+
+&lt;output&gt;
+Write to: .planning/phases/${PHASE}-{slug}/${PHASE}-RESEARCH.md
+&lt;/output&gt;
+</code></pre>
+<pre><code>Task(
+  prompt=filled_prompt,
+  subagent_type=&quot;gsd-phase-researcher&quot;,
+  model=&quot;{researcher_model}&quot;,
+  description=&quot;Research Phase {phase}&quot;
+)
+</code></pre>
+<h2>5. Handle Agent Return</h2>
+<p><strong><code>## RESEARCH COMPLETE</code>:</strong> Display summary, offer: Plan phase, Dig deeper, Review full, Done.</p>
+<p><strong><code>## CHECKPOINT REACHED</code>:</strong> Present to user, get response, spawn continuation.</p>
+<p><strong><code>## RESEARCH INCONCLUSIVE</code>:</strong> Show what was attempted, offer: Add context, Try different mode, Manual.</p>
+<h2>6. Spawn Continuation Agent</h2>
+<pre><code class="language-markdown">&lt;objective&gt;
+Continue research for Phase {phase_number}: {phase_name}
+&lt;/objective&gt;
+
+&lt;prior_state&gt;
+Research file: @.planning/phases/${PHASE}-{slug}/${PHASE}-RESEARCH.md
+&lt;/prior_state&gt;
+
+&lt;checkpoint_response&gt;
+**Type:** {checkpoint_type}
+**Response:** {user_response}
+&lt;/checkpoint_response&gt;
+</code></pre>
+<pre><code>Task(
+  prompt=continuation_prompt,
+  subagent_type=&quot;gsd-phase-researcher&quot;,
+  model=&quot;{researcher_model}&quot;,
+  description=&quot;Continue research Phase {phase}&quot;
+)
+</code></pre>
+</process>
+
+<success_criteria>
+- [ ] Phase validated against roadmap
+- [ ] Existing research checked
+- [ ] gsd-phase-researcher spawned with context
+- [ ] Checkpoints handled correctly
+- [ ] User knows next steps
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

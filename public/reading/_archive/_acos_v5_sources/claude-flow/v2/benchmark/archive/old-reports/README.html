@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude Flow Benchmark System v2.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/archive/old-reports/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Flow Benchmark System v2.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Farchive">archive</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Farchive%2Fold-reports">old-reports</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude Flow Benchmark System v2.0</h1>
+<p>A production-ready benchmarking system for Claude Flow that executes <strong>real commands</strong> and measures <strong>actual performance metrics</strong>.</p>
+<h2>🚀 Quick Start</h2>
+<pre><code class="language-bash"># Install dependencies
+cd benchmark
+pip install -e .
+
+# Run real benchmark
+python examples/real_swarm_benchmark.py &quot;Build REST API&quot;
+
+# Run comprehensive suite
+python run_real_benchmarks.py --mode comprehensive
+</code></pre>
+<h2>✨ Key Features</h2>
+<ul>
+<li><strong>Real Command Execution</strong>: Executes actual <code>./claude-flow</code> commands via subprocess</li>
+<li><strong>Stream JSON Parsing</strong>: Real-time parsing of <code>--non-interactive --output-format stream-json</code></li>
+<li><strong>Authentic Metrics</strong>: Token usage, execution time, and resource consumption from real runs</li>
+<li><strong>No Simulations</strong>: 100% real execution, no mocks or placeholders</li>
+<li><strong>MLE-STAR Integration</strong>: Ensemble learning benchmarks</li>
+<li><strong>CLAUDE.md Optimizer</strong>: Generate optimized configurations for specific use cases</li>
+</ul>
+<h2>📊 Supported Commands</h2>
+<h3>Swarm Benchmarking</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;objective&quot; --non-interactive --output-format stream-json
+</code></pre>
+<h3>Hive-Mind Benchmarking</h3>
+<pre><code class="language-bash">./claude-flow hive-mind spawn &quot;task&quot; --non-interactive
+</code></pre>
+<h3>SPARC Mode Benchmarking</h3>
+<pre><code class="language-bash">./claude-flow sparc run code &quot;task&quot; --non-interactive
+</code></pre>
+<h2>🏗️ Architecture</h2>
+<pre><code>benchmark/
+├── src/swarm_benchmark/
+│   ├── core/
+│   │   ├── claude_flow_real_executor.py  # Real command executor
+│   │   ├── real_benchmark_engine_v2.py   # Production benchmark engine
+│   │   └── benchmark_engine.py           # Core engine with real support
+│   ├── scenarios/
+│   │   └── real_benchmarks.py            # Real benchmark scenarios
+│   ├── mle_star/                         # MLE-STAR ensemble integration
+│   ├── claude_optimizer/                 # CLAUDE.md optimization
+│   ├── automation/                       # Batch processing &amp; pipelines
+│   └── advanced_metrics/                 # Token &amp; performance metrics
+├── examples/                              # Working examples
+├── tests/                                 # Comprehensive test suite
+└── tools/                                 # Utility scripts
+</code></pre>
+<h2>📈 Real Metrics Captured</h2>
+<ul>
+<li><strong>Token Usage</strong>: Input/output tokens from Claude API</li>
+<li><strong>Execution Time</strong>: Real command runtime</li>
+<li><strong>Agent Activity</strong>: Spawned agents, completed tasks</li>
+<li><strong>Resource Usage</strong>: CPU, memory, disk I/O</li>
+<li><strong>Error Rates</strong>: Command failures and recovery</li>
+<li><strong>Consensus Metrics</strong>: Hive-mind decision quality</li>
+</ul>
+<h2>🧪 Testing</h2>
+<pre><code class="language-bash"># Quick validation
+python test_real_benchmarks.py --quick
+
+# Integration tests
+pytest tests/integration/test_real_claude_flow_integration.py
+
+# Verify real integration
+python examples/verify_real_integration.py
+</code></pre>
+<h2>📚 Documentation</h2>
+<ul>
+<li><a href="docs/api_reference.md">API Reference</a></li>
+<li><a href="docs/claude_optimizer_guide.md">CLAUDE.md Optimizer Guide</a></li>
+<li><a href="REAL_BENCHMARKS_README.md">Real Benchmarks Guide</a></li>
+<li><a href="docs/real-benchmark-architecture.md">Architecture Overview</a></li>
+</ul>
+<h2>🎯 Example Usage</h2>
+<pre><code class="language-python">from swarm_benchmark import BenchmarkEngine
+
+# Create engine with real executor
+engine = BenchmarkEngine(use_real_executor=True)
+
+# Run real benchmark
+result = await engine.run_real_benchmark(
+    objective=&quot;Build microservices architecture&quot;,
+    strategy=&quot;development&quot;,
+    mode=&quot;distributed&quot;,
+    max_agents=5
+)
+
+# Access real metrics
+print(f&quot;Tokens used: {result.metrics[&#39;total_tokens&#39;]}&quot;)
+print(f&quot;Execution time: {result.metrics[&#39;duration_seconds&#39;]}s&quot;)
+print(f&quot;Agents spawned: {result.metrics[&#39;agents_spawned&#39;]}&quot;)
+</code></pre>
+<h2>🔧 Configuration</h2>
+<p>The system uses real Claude Flow commands with these flags:</p>
+<ul>
+<li><code>--non-interactive</code>: Automation mode</li>
+<li><code>--output-format stream-json</code>: Structured output</li>
+<li><code>--dangerously-skip-permissions</code>: Skip prompts</li>
+<li><code>--verbose</code>: Detailed logging</li>
+</ul>
+<h2>📊 Performance</h2>
+<p>Validated with Claude Flow v2.0.0-alpha.87:</p>
+<ul>
+<li>Real token usage tracking</li>
+<li>Actual execution timing</li>
+<li>Live resource monitoring</li>
+<li>Genuine error rates</li>
+</ul>
+<h2>🤝 Contributing</h2>
+<p>This is a production system designed for real benchmarking. All contributions must:</p>
+<ol>
+<li>Use real Claude Flow commands</li>
+<li>Parse actual responses</li>
+<li>Measure genuine metrics</li>
+<li>Include comprehensive tests</li>
+</ol>
+<h2>📄 License</h2>
+<p>MIT License - See LICENSE file for details</p>
+<hr>
+<p><strong>Version</strong>: 2.0.0<br><strong>Status</strong>: Production Ready<br><strong>Real Execution</strong>: Yes<br><strong>Simulations</strong>: None</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

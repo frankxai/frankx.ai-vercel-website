@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Verification and Truth Enforcement Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/verification/architecture.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Verification and Truth Enforcement Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fverification">verification</a> / <span>architecture.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Verification and Truth Enforcement Architecture</h1>
+<h2>Executive Summary</h2>
+<p>This document outlines a comprehensive verification and truth enforcement architecture for the Claude-Flow multi-agent system. The architecture ensures high-fidelity execution through mandatory checkpoints, truth scoring with a 0.95 minimum threshold, cross-agent integration testing, state management with rollback capabilities, and full GitHub Actions CI/CD integration.</p>
+<h2>1. Architecture Overview</h2>
+<h3>1.1 Core Principles</h3>
+<ul>
+<li><strong>Truth First</strong>: All agent claims must be verified against reality with 95%+ accuracy</li>
+<li><strong>Fail Fast</strong>: Early detection and correction of discrepancies</li>
+<li><strong>State Safety</strong>: Complete rollback capabilities for failed operations</li>
+<li><strong>Continuous Verification</strong>: Real-time monitoring and validation</li>
+<li><strong>Evidence-Based</strong>: All decisions backed by measurable evidence</li>
+</ul>
+<h3>1.2 System Components</h3>
+<pre><code class="language-mermaid">graph TB
+    A[Agent Claims] --&gt; B[Verification Pipeline]
+    B --&gt; C[Truth Scoring Engine]
+    C --&gt; D[Evidence Collection]
+    D --&gt; E[Checkpoint System]
+    E --&gt; F[State Manager]
+    F --&gt; G[Rollback Engine]
+    
+    H[Integration Tests] --&gt; B
+    I[CI/CD Integration] --&gt; B
+    J[Cross-Agent Validator] --&gt; C
+    K[Memory Store] --&gt; F
+    L[GitHub Actions] --&gt; I
+</code></pre>
+<h2>2. Verification Pipeline</h2>
+<h3>2.1 Mandatory Checkpoints</h3>
+<p>The verification pipeline enforces mandatory checkpoints at critical stages:</p>
+<h4>Pre-Execution Checkpoints</h4>
+<ul>
+<li><strong>Agent Capability Validation</strong>: Verify agent has required capabilities</li>
+<li><strong>Resource Availability</strong>: Ensure necessary resources are accessible</li>
+<li><strong>Dependency Verification</strong>: Validate all dependencies are met</li>
+<li><strong>State Consistency</strong>: Confirm system state is consistent</li>
+</ul>
+<h4>During-Execution Checkpoints</h4>
+<ul>
+<li><strong>Progress Validation</strong>: Verify intermediate results against expectations</li>
+<li><strong>Resource Monitoring</strong>: Track resource usage and availability</li>
+<li><strong>Cross-Agent Consistency</strong>: Ensure coordination between agents</li>
+<li><strong>Real-time Truth Scoring</strong>: Continuous verification of claims</li>
+</ul>
+<h4>Post-Execution Checkpoints</h4>
+<ul>
+<li><strong>Result Verification</strong>: Validate final outputs against specifications</li>
+<li><strong>System Integrity</strong>: Ensure no system corruption</li>
+<li><strong>Performance Metrics</strong>: Collect and validate performance data</li>
+<li><strong>Truth Score Calculation</strong>: Final truth score assessment</li>
+</ul>
+<h3>2.2 Checkpoint Implementation</h3>
+<pre><code class="language-typescript">interface Checkpoint {
+  id: string;
+  type: &#39;pre&#39; | &#39;during&#39; | &#39;post&#39;;
+  agent_id: string;
+  task_id: string;
+  timestamp: number;
+  required: boolean;
+  validations: Validation[];
+  state_snapshot: StateSnapshot;
+}
+
+interface Validation {
+  name: string;
+  type: &#39;test&#39; | &#39;lint&#39; | &#39;type&#39; | &#39;build&#39; | &#39;integration&#39; | &#39;performance&#39;;
+  command: string;
+  expected_result: any;
+  actual_result?: any;
+  passed: boolean;
+  weight: number;
+}
+</code></pre>
+<h3>2.3 Pipeline Flow</h3>
+<pre><code class="language-yaml">verification_pipeline:
+  stages:
+    - name: &quot;pre_execution&quot;
+      checkpoints:
+        - capability_check
+        - resource_validation
+        - dependency_verification
+        - state_consistency
+      failure_action: &quot;abort&quot;
+      
+    - name: &quot;execution_monitoring&quot;
+      checkpoints:
+        - progress_validation
+        - resource_monitoring
+        - cross_agent_sync
+        - truth_scoring
+      failure_action: &quot;escalate&quot;
+      
+    - name: &quot;post_execution&quot;
+      checkpoints:
+        - result_verification
+        - system_integrity
+        - performance_validation
+        - final_truth_score
+      failure_action: &quot;rollback&quot;
+</code></pre>
+<h2>3. Truth Scoring System</h2>
+<h3>3.1 Enhanced Truth Score Calculation</h3>
+<p>The truth scoring system evaluates agent claims against reality with enhanced precision:</p>
+<pre><code class="language-typescript">interface TruthScoreConfig {
+  minimum_threshold: 0.95;
+  weights: {
+    tests: 0.30;
+    integration_tests: 0.25;
+    lint: 0.15;
+    type_check: 0.15;
+    build: 0.10;
+    performance: 0.05;
+  };
+  evidence_requirements: {
+    automated_tests: true;
+    manual_verification: true;
+    cross_agent_validation: true;
+    system_integration: true;
+  };
+}
+</code></pre>
+<h3>3.2 Evidence Collection Framework</h3>
+<pre><code class="language-typescript">interface Evidence {
+  test_results: {
+    unit_tests: TestResults;
+    integration_tests: TestResults;
+    e2e_tests: TestResults;
+    cross_agent_tests: TestResults;
+  };
+  code_quality: {
+    lint_results: LintResults;
+    type_results: TypeResults;
+    complexity_metrics: ComplexityMetrics;
+    security_scan: SecurityResults;
+  };
+  system_health: {
+    build_results: BuildResults;
+    deployment_status: DeploymentStatus;
+    performance_metrics: PerformanceMetrics;
+    resource_usage: ResourceMetrics;
+  };
+  agent_coordination: {
+    communication_logs: CommunicationLogs;
+    state_consistency: StateValidation;
+    task_dependencies: DependencyValidation;
+  };
+}
+</code></pre>
+<h3>3.3 Truth Score Calculation Algorithm</h3>
+<pre><code class="language-typescript">class EnhancedTruthScoreCalculator {
+  calculateTruthScore(evidence: Evidence, claims: AgentClaims): TruthScore {
+    const weights = this.config.weights;
+    let score = 0;
+    const discrepancies: Discrepancy[] = [];
+    
+    // Test verification (30%)
+    const testScore = this.verifyTestClaims(evidence.test_results, claims.test_claims);
+    score += testScore.score * weights.tests;
+    discrepancies.push(...testScore.discrepancies);
+    
+    // Integration verification (25%)
+    const integrationScore = this.verifyIntegrationClaims(
+      evidence.test_results.integration_tests, 
+      claims.integration_claims
+    );
+    score += integrationScore.score * weights.integration_tests;
+    discrepancies.push(...integrationScore.discrepancies);
+    
+    // Code quality verification (30%)
+    const qualityScore = this.verifyQualityClaims(evidence.code_quality, claims.quality_claims);
+    score += qualityScore.score * (weights.lint + weights.type_check);
+    discrepancies.push(...qualityScore.discrepancies);
+    
+    // Build and deployment verification (10%)
+    const buildScore = this.verifyBuildClaims(evidence.system_health, claims.build_claims);
+    score += buildScore.score * weights.build;
+    discrepancies.push(...buildScore.discrepancies);
+    
+    // Performance verification (5%)
+    const perfScore = this.verifyPerformanceClaims(
+      evidence.system_health.performance_metrics, 
+      claims.performance_claims
+    );
+    score += perfScore.score * weights.performance;
+    discrepancies.push(...perfScore.discrepancies);
+    
+    return {
+      score: Math.round(score * 1000) / 1000,
+      threshold: this.config.minimum_threshold,
+      passed: score &gt;= this.config.minimum_threshold,
+      discrepancies,
+      evidence_quality: this.assessEvidenceQuality(evidence),
+      timestamp: Date.now()
+    };
+  }
+}
+</code></pre>
+<h2>4. Cross-Agent Integration Testing Framework</h2>
+<h3>4.1 Agent Interaction Validation</h3>
+<pre><code class="language-typescript">interface CrossAgentTest {
+  id: string;
+  name: string;
+  participating_agents: string[];
+  scenario: TestScenario;
+  expected_outcomes: ExpectedOutcome[];
+  validation_rules: ValidationRule[];
+  dependencies: string[];
+}
+
+interface TestScenario {
+  description: string;
+  setup: SetupStep[];
+  interactions: AgentInteraction[];
+  teardown: CleanupStep[];
+}
+
+interface AgentInteraction {
+  from_agent: string;
+  to_agent: string;
+  message_type: string;
+  payload: any;
+  expected_response: any;
+  timeout_ms: number;
+}
+</code></pre>
+<h3>4.2 Integration Test Suite</h3>
+<pre><code class="language-yaml">cross_agent_tests:
+  - name: &quot;coordination_handoff&quot;
+    agents: [&quot;coordinator&quot;, &quot;coder&quot;, &quot;tester&quot;]
+    scenario:
+      - coordinator_assigns_task
+      - coder_implements_solution
+      - tester_validates_implementation
+      - coordinator_verifies_completion
+    validations:
+      - message_delivery_time &lt; 1000ms
+      - task_state_consistency
+      - agent_response_accuracy &gt; 95%
+      
+  - name: &quot;parallel_execution&quot;
+    agents: [&quot;researcher&quot;, &quot;analyst&quot;, &quot;optimizer&quot;]
+    scenario:
+      - parallel_task_assignment
+      - concurrent_execution
+      - result_synchronization
+    validations:
+      - no_resource_conflicts
+      - data_consistency
+      - completion_within_timeout
+      
+  - name: &quot;error_recovery&quot;
+    agents: [&quot;coordinator&quot;, &quot;monitor&quot;, &quot;recovery&quot;]
+    scenario:
+      - inject_error_condition
+      - monitor_detects_failure
+      - recovery_initiates_rollback
+      - coordinator_reassigns_task
+    validations:
+      - error_detection_time &lt; 5000ms
+      - successful_rollback
+      - task_reassignment_successful
+</code></pre>
+<h3>4.3 Test Execution Engine</h3>
+<pre><code class="language-typescript">class CrossAgentTestExecutor {
+  async executeTestSuite(suite: CrossAgentTestSuite): Promise&lt;TestResults&gt; {
+    const results: TestResults = {
+      total_tests: suite.tests.length,
+      passed: 0,
+      failed: 0,
+      test_details: []
+    };
+    
+    for (const test of suite.tests) {
+      const result = await this.executeTest(test);
+      results.test_details.push(result);
+      
+      if (result.passed) {
+        results.passed++;
+      } else {
+        results.failed++;
+      }
+    }
+    
+    return results;
+  }
+  
+  private async executeTest(test: CrossAgentTest): Promise&lt;TestResult&gt; {
+    const testContext = await this.setupTestContext(test);
+    
+    try {
+      // Execute scenario
+      await this.executeScenario(test.scenario, testContext);
+      
+      // Validate outcomes
+      const validationResults = await this.validateOutcomes(
+        test.expected_outcomes,
+        test.validation_rules,
+        testContext
+      );
+      
+      return {
+        test_id: test.id,
+        passed: validationResults.all_passed,
+        details: validationResults.details,
+        execution_time_ms: testContext.execution_time,
+        evidence: testContext.evidence
+      };
+    } catch (error) {
+      return {
+        test_id: test.id,
+        passed: false,
+        error: error.message,
+        execution_time_ms: testContext.execution_time
+      };
+    } finally {
+      await this.cleanupTestContext(testContext);
+    }
+  }
+}
+</code></pre>
+<h2>5. State Management and Rollback Capabilities</h2>
+<h3>5.1 State Snapshot System</h3>
+<pre><code class="language-typescript">interface StateSnapshot {
+  id: string;
+  timestamp: number;
+  agent_states: Map&lt;string, AgentState&gt;;
+  system_state: SystemState;
+  task_states: Map&lt;string, TaskState&gt;;
+  memory_state: MemoryState;
+  file_system_state: FileSystemState;
+  database_state: DatabaseState;
+  checksum: string;
+}
+
+interface AgentState {
+  id: string;
+  status: &#39;idle&#39; | &#39;active&#39; | &#39;error&#39; | &#39;suspended&#39;;
+  current_task: string | null;
+  capabilities: string[];
+  memory: AgentMemory;
+  configuration: AgentConfig;
+  performance_metrics: PerformanceMetrics;
+}
+</code></pre>
+<h3>5.2 Rollback Engine</h3>
+<pre><code class="language-typescript">class RollbackEngine {
+  async createCheckpoint(
+    description: string,
+    agents: string[],
+    scope: &#39;local&#39; | &#39;system&#39; | &#39;global&#39;
+  ): Promise&lt;string&gt; {
+    const checkpoint_id = generateId();
+    const snapshot = await this.captureSystemState(agents, scope);
+    
+    await this.stateStore.saveSnapshot(checkpoint_id, snapshot);
+    await this.auditLogger.logCheckpoint(checkpoint_id, description, agents);
+    
+    return checkpoint_id;
+  }
+  
+  async rollbackToCheckpoint(
+    checkpoint_id: string,
+    verification_mode: &#39;strict&#39; | &#39;partial&#39; | &#39;force&#39;
+  ): Promise&lt;RollbackResult&gt; {
+    const snapshot = await this.stateStore.getSnapshot(checkpoint_id);
+    
+    if (!snapshot) {
+      throw new Error(`Checkpoint ${checkpoint_id} not found`);
+    }
+    
+    // Verify rollback is safe
+    if (verification_mode === &#39;strict&#39;) {
+      const safetyCheck = await this.verifySafeRollback(snapshot);
+      if (!safetyCheck.safe) {
+        throw new Error(`Unsafe rollback: ${safetyCheck.reasons.join(&#39;, &#39;)}`);
+      }
+    }
+    
+    // Execute rollback
+    const rollback_start = Date.now();
+    
+    try {
+      // Suspend all agents
+      await this.suspendAllAgents();
+      
+      // Restore states
+      await this.restoreAgentStates(snapshot.agent_states);
+      await this.restoreSystemState(snapshot.system_state);
+      await this.restoreTaskStates(snapshot.task_states);
+      await this.restoreMemoryState(snapshot.memory_state);
+      await this.restoreFileSystemState(snapshot.file_system_state);
+      await this.restoreDatabaseState(snapshot.database_state);
+      
+      // Resume agents
+      await this.resumeAllAgents();
+      
+      // Verify rollback success
+      const verification = await this.verifyRollbackSuccess(snapshot);
+      
+      return {
+        success: verification.verified,
+        checkpoint_id,
+        rollback_time_ms: Date.now() - rollback_start,
+        verification_details: verification.details
+      };
+    } catch (error) {
+      // Emergency recovery
+      await this.emergencyRecovery();
+      throw new Error(`Rollback failed: ${error.message}`);
+    }
+  }
+}
+</code></pre>
+<h3>5.3 State Consistency Validation</h3>
+<pre><code class="language-typescript">class StateConsistencyValidator {
+  async validateSystemConsistency(): Promise&lt;ConsistencyReport&gt; {
+    const checks = await Promise.all([
+      this.validateAgentConsistency(),
+      this.validateTaskConsistency(),
+      this.validateMemoryConsistency(),
+      this.validateFileSystemConsistency(),
+      this.validateDatabaseConsistency()
+    ]);
+    
+    const inconsistencies = checks.flatMap(check =&gt; check.inconsistencies);
+    
+    return {
+      consistent: inconsistencies.length === 0,
+      inconsistencies,
+      checked_at: new Date().toISOString(),
+      repair_suggestions: this.generateRepairSuggestions(inconsistencies)
+    };
+  }
+  
+  private async validateAgentConsistency(): Promise&lt;ConsistencyCheck&gt; {
+    const agents = await this.agentManager.getAllAgents();
+    const inconsistencies: Inconsistency[] = [];
+    
+    for (const agent of agents) {
+      // Validate agent state
+      if (agent.current_task &amp;&amp; !await this.taskExists(agent.current_task)) {
+        inconsistencies.push({
+          type: &#39;orphaned_task_reference&#39;,
+          agent_id: agent.id,
+          details: `Agent references non-existent task: ${agent.current_task}`
+        });
+      }
+      
+      // Validate memory consistency
+      if (!await this.validateAgentMemory(agent)) {
+        inconsistencies.push({
+          type: &#39;memory_corruption&#39;,
+          agent_id: agent.id,
+          details: &#39;Agent memory state is corrupted&#39;
+        });
+      }
+    }
+    
+    return {
+      component: &#39;agents&#39;,
+      inconsistencies
+    };
+  }
+}
+</code></pre>
+<h2>6. GitHub Actions and CI/CD Integration</h2>
+<h3>6.1 CI/CD Pipeline Configuration</h3>
+<pre><code class="language-yaml"># .github/workflows/verification.yml
+name: Verification and Truth Enforcement
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  pre_verification:
+    name: Pre-Execution Verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: &#39;20&#39;
+          cache: &#39;npm&#39;
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run capability verification
+        run: npx claude-flow verification check-capabilities
+      
+      - name: Validate agent configurations
+        run: npx claude-flow verification validate-agents
+      
+      - name: Check system prerequisites
+        run: npx claude-flow verification check-prerequisites
+
+  truth_scoring:
+    name: Truth Score Validation
+    needs: pre_verification
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run unit tests
+        run: npm test
+      
+      - name: Run integration tests
+        run: npm run test:integration
+      
+      - name: Run cross-agent tests
+        run: npx claude-flow verification run-cross-agent-tests
+      
+      - name: Calculate truth score
+        id: truth_score
+        run: |
+          SCORE=$(npx claude-flow verification calculate-truth-score)
+          echo &quot;score=$SCORE&quot; &gt;&gt; $GITHUB_OUTPUT
+      
+      - name: Validate truth threshold
+        run: |
+          if (( $(echo &quot;${{ steps.truth_score.outputs.score }} &lt; 0.95&quot; | bc -l) )); then
+            echo &quot;Truth score ${{ steps.truth_score.outputs.score }} below threshold 0.95&quot;
+            exit 1
+          fi
+
+  state_management:
+    name: State Management Validation
+    needs: truth_scoring
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Create test checkpoint
+        run: npx claude-flow verification create-checkpoint &quot;ci_test&quot;
+      
+      - name: Simulate state changes
+        run: npx claude-flow verification simulate-changes
+      
+      - name: Test rollback capability
+        run: npx claude-flow verification test-rollback &quot;ci_test&quot;
+      
+      - name: Validate state consistency
+        run: npx claude-flow verification validate-consistency
+
+  deployment_verification:
+    name: Deployment Verification
+    needs: [truth_scoring, state_management]
+    runs-on: ubuntu-latest
+    if: github.ref == &#39;refs/heads/main&#39;
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Deploy to staging
+        run: npx claude-flow deploy staging
+      
+      - name: Run end-to-end verification
+        run: npx claude-flow verification run-e2e-tests staging
+      
+      - name: Validate production readiness
+        run: npx claude-flow verification validate-production-readiness
+      
+      - name: Generate verification report
+        run: npx claude-flow verification generate-report
+        
+      - name: Upload verification artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: verification-report
+          path: reports/verification-*.json
+</code></pre>
+<h3>6.2 GitHub Actions Integration Points</h3>
+<pre><code class="language-typescript">class GitHubActionsIntegration {
+  async setupVerificationWorkflow(repo: string, config: VerificationConfig): Promise&lt;void&gt; {
+    const workflow = this.generateWorkflow(config);
+    await this.githubAPI.createWorkflow(repo, &#39;.github/workflows/verification.yml&#39;, workflow);
+    
+    // Setup required checks
+    await this.githubAPI.updateBranchProtection(repo, &#39;main&#39;, {
+      required_status_checks: {
+        strict: true,
+        contexts: [
+          &#39;Pre-Execution Verification&#39;,
+          &#39;Truth Score Validation&#39;,
+          &#39;State Management Validation&#39;
+        ]
+      },
+      enforce_admins: true,
+      required_pull_request_reviews: {
+        required_approving_review_count: 2,
+        dismiss_stale_reviews: true
+      }
+    });
+  }
+  
+  async triggerVerificationOnPR(pr: PullRequest): Promise&lt;VerificationResult&gt; {
+    // Trigger verification workflow
+    const workflow_run = await this.githubAPI.triggerWorkflow(
+      pr.repository,
+      &#39;verification.yml&#39;,
+      {
+        ref: pr.head.ref,
+        inputs: {
+          pr_number: pr.number.toString(),
+          verification_mode: &#39;strict&#39;
+        }
+      }
+    );
+    
+    // Wait for completion and collect results
+    const result = await this.waitForWorkflowCompletion(workflow_run.id);
+    
+    // Update PR with verification status
+    await this.updatePRStatus(pr, result);
+    
+    return result;
+  }
+}
+</code></pre>
+<h2>7. Component Interfaces and APIs</h2>
+<h3>7.1 Verification Manager Interface</h3>
+<pre><code class="language-typescript">interface VerificationManager {
+  // Checkpoint management
+  createCheckpoint(description: string, scope: CheckpointScope): Promise&lt;string&gt;;
+  listCheckpoints(filter?: CheckpointFilter): Promise&lt;Checkpoint[]&gt;;
+  deleteCheckpoint(id: string): Promise&lt;void&gt;;
+  
+  // Truth scoring
+  calculateTruthScore(evidence: Evidence, claims: AgentClaims): Promise&lt;TruthScore&gt;;
+  storeTruthScore(score: TruthScore): Promise&lt;void&gt;;
+  getAgentReliability(agent_id: string): Promise&lt;ReliabilityReport&gt;;
+  
+  // State management
+  captureSystemState(scope: StateScope): Promise&lt;StateSnapshot&gt;;
+  rollbackToCheckpoint(checkpoint_id: string, mode: RollbackMode): Promise&lt;RollbackResult&gt;;
+  validateStateConsistency(): Promise&lt;ConsistencyReport&gt;;
+  
+  // Integration testing
+  runCrossAgentTests(suite?: string): Promise&lt;TestResults&gt;;
+  validateAgentCommunication(): Promise&lt;CommunicationReport&gt;;
+  
+  // Reporting
+  generateVerificationReport(format: &#39;json&#39; | &#39;html&#39; | &#39;markdown&#39;): Promise&lt;string&gt;;
+  exportMetrics(timeframe: string): Promise&lt;MetricsExport&gt;;
+}
+</code></pre>
+<h3>7.2 Agent Integration Interface</h3>
+<pre><code class="language-typescript">interface AgentVerificationInterface {
+  // Required by all agents
+  validateCapabilities(): Promise&lt;CapabilityValidation&gt;;
+  reportTaskClaims(task_id: string, claims: TaskClaims): Promise&lt;void&gt;;
+  provideEvidence(task_id: string): Promise&lt;Evidence&gt;;
+  
+  // State management
+  saveState(): Promise&lt;AgentState&gt;;
+  restoreState(state: AgentState): Promise&lt;void&gt;;
+  validateState(): Promise&lt;StateValidation&gt;;
+  
+  // Communication verification
+  validateMessage(message: AgentMessage): Promise&lt;MessageValidation&gt;;
+  reportCommunicationMetrics(): Promise&lt;CommunicationMetrics&gt;;
+}
+</code></pre>
+<h2>8. Data Flow Diagrams</h2>
+<h3>8.1 Verification Pipeline Data Flow</h3>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant A as Agent
+    participant VP as Verification Pipeline
+    participant TS as Truth Scorer
+    participant SM as State Manager
+    participant ES as Evidence Store
+    participant CI as CI/CD
+
+    A-&gt;&gt;VP: Submit task claims
+    VP-&gt;&gt;SM: Create checkpoint
+    VP-&gt;&gt;ES: Collect evidence
+    ES-&gt;&gt;TS: Provide evidence
+    TS-&gt;&gt;VP: Calculate truth score
+    
+    alt Score &gt;= 0.95
+        VP-&gt;&gt;A: Approve task
+        VP-&gt;&gt;CI: Update success metrics
+    else Score &lt; 0.95
+        VP-&gt;&gt;SM: Trigger rollback
+        VP-&gt;&gt;A: Reject task with evidence
+        VP-&gt;&gt;CI: Report failure
+    end
+</code></pre>
+<h3>8.2 Cross-Agent Integration Flow</h3>
+<pre><code class="language-mermaid">graph LR
+    A1[Agent 1] --&gt; CT[Cross-Agent Tester]
+    A2[Agent 2] --&gt; CT
+    A3[Agent 3] --&gt; CT
+    
+    CT --&gt; VE[Validation Engine]
+    VE --&gt; TS[Truth Scorer]
+    TS --&gt; SM[State Manager]
+    
+    SM --&gt; RB[Rollback Engine]
+    SM --&gt; CP[Checkpoint Store]
+    
+    VE --&gt; RP[Report Generator]
+    RP --&gt; CI[CI/CD Integration]
+</code></pre>
+<h2>9. Implementation Roadmap</h2>
+<h3>Phase 1: Core Infrastructure (Weeks 1-2)</h3>
+<ul>
+<li>Implement basic verification pipeline</li>
+<li>Create truth scoring engine</li>
+<li>Setup checkpoint system</li>
+<li>Basic state management</li>
+</ul>
+<h3>Phase 2: Integration Testing (Weeks 3-4)</h3>
+<ul>
+<li>Cross-agent test framework</li>
+<li>Agent communication validation</li>
+<li>Integration with existing agents</li>
+<li>Performance optimization</li>
+</ul>
+<h3>Phase 3: Advanced Features (Weeks 5-6)</h3>
+<ul>
+<li>Advanced rollback capabilities</li>
+<li>State consistency validation</li>
+<li>Evidence collection automation</li>
+<li>GitHub Actions integration</li>
+</ul>
+<h3>Phase 4: Production Hardening (Weeks 7-8)</h3>
+<ul>
+<li>Security auditing</li>
+<li>Performance tuning</li>
+<li>Documentation completion</li>
+<li>Production deployment</li>
+</ul>
+<h2>10. Security Considerations</h2>
+<h3>10.1 Verification Security</h3>
+<ul>
+<li>All verification processes run in isolated environments</li>
+<li>Evidence collection uses read-only access where possible</li>
+<li>State snapshots are encrypted at rest</li>
+<li>Rollback operations require multi-factor authorization</li>
+</ul>
+<h3>10.2 Truth Score Integrity</h3>
+<ul>
+<li>Truth scores are cryptographically signed</li>
+<li>Evidence provenance is tracked and verified</li>
+<li>Audit logs are immutable and distributed</li>
+<li>Regular integrity checks on stored data</li>
+</ul>
+<h2>11. Monitoring and Alerting</h2>
+<h3>11.1 Key Metrics</h3>
+<ul>
+<li>Truth score distribution across agents</li>
+<li>Verification pipeline latency</li>
+<li>Rollback frequency and success rate</li>
+<li>State consistency violation frequency</li>
+<li>Cross-agent test pass rates</li>
+</ul>
+<h3>11.2 Alert Conditions</h3>
+<ul>
+<li>Truth score below threshold (0.95)</li>
+<li>Verification pipeline failure</li>
+<li>State inconsistency detected</li>
+<li>Rollback operation required</li>
+<li>Cross-agent communication failure</li>
+</ul>
+<h2>12. Conclusion</h2>
+<p>This verification and truth enforcement architecture provides a robust foundation for ensuring high-fidelity execution in the Claude-Flow multi-agent system. By implementing mandatory checkpoints, rigorous truth scoring, comprehensive integration testing, and reliable state management, the system can maintain exceptional reliability and trust.</p>
+<p>The architecture is designed to be:</p>
+<ul>
+<li><strong>Scalable</strong>: Handles increasing numbers of agents and tasks</li>
+<li><strong>Reliable</strong>: Comprehensive error detection and recovery</li>
+<li><strong>Secure</strong>: Protected against various attack vectors</li>
+<li><strong>Observable</strong>: Rich monitoring and reporting capabilities</li>
+<li><strong>Maintainable</strong>: Clear interfaces and modular design</li>
+</ul>
+<p>Implementation should follow the phased approach outlined, with continuous testing and validation at each stage to ensure the system meets its stringent reliability requirements.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

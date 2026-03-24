@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/hooks</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/hooks/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/hooks</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fhooks">hooks</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/hooks</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/hooks"><img src="https://img.shields.io/npm/v/@claude-flow/hooks.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/hooks"><img src="https://img.shields.io/npm/dm/@claude-flow/hooks.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.3+-blue.svg" alt="TypeScript"></a>
+<a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-20+-green.svg" alt="Node.js"></a></p>
+<blockquote>
+<p>Event-driven lifecycle hooks with ReasoningBank learning integration for Claude Flow V3</p>
+</blockquote>
+<p>The <code>@claude-flow/hooks</code> package provides a comprehensive hooks system for intercepting and extending Claude Flow operations. It enables intelligent task routing, pattern learning, background metrics collection, and real-time statusline integration.</p>
+<h2>Features</h2>
+<ul>
+<li>🎣 <strong>Hook Registry</strong> - Priority-based hook registration with filtering and management</li>
+<li>⚡ <strong>Hook Executor</strong> - Timeout handling, error recovery, and result aggregation</li>
+<li>🤖 <strong>Background Daemons</strong> - Metrics collection, swarm monitoring, pattern learning</li>
+<li>👷 <strong>Background Workers</strong> - 12 specialized workers for analysis, optimization, and automation</li>
+<li>📊 <strong>Statusline Integration</strong> - Real-time status display for Claude Code</li>
+<li>🧠 <strong>ReasoningBank Learning</strong> - Intelligent task routing based on learned patterns</li>
+<li>🔧 <strong>MCP Tools</strong> - 13 MCP tools for programmatic hooks access</li>
+<li>🔄 <strong>V2 Compatibility</strong> - Backward compatible with V2 hook commands</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash"># Using npm
+npm install @claude-flow/hooks
+
+# Using pnpm
+pnpm add @claude-flow/hooks
+
+# Using yarn
+yarn add @claude-flow/hooks
+</code></pre>
+<h2>Quick Start</h2>
+<h3>Basic Usage</h3>
+<pre><code class="language-typescript">import {
+  HookRegistry,
+  HookExecutor,
+  HookEvent,
+  HookPriority,
+} from &#39;@claude-flow/hooks&#39;;
+
+// Create registry and executor
+const registry = new HookRegistry();
+const executor = new HookExecutor(registry);
+
+// Register a pre-edit hook
+registry.register(
+  HookEvent.PreEdit,
+  async (context) =&gt; {
+    console.log(`Editing file: ${context.file?.path}`);
+    return { success: true };
+  },
+  HookPriority.Normal,
+  { name: &#39;log-edits&#39; }
+);
+
+// Execute hooks
+const result = await executor.preEdit(&#39;src/app.ts&#39;, &#39;modify&#39;);
+console.log(`Hooks executed: ${result.hooksExecuted}`);
+</code></pre>
+<h3>Initialize with Daemons</h3>
+<pre><code class="language-typescript">import { initializeHooks } from &#39;@claude-flow/hooks&#39;;
+
+// Initialize full system with background daemons
+const { registry, executor, statusline } = await initializeHooks({
+  enableDaemons: true,
+  enableStatusline: true,
+});
+
+// Generate statusline
+console.log(statusline.generateStatusline());
+</code></pre>
+<h3>Using MCP Tools</h3>
+<pre><code class="language-typescript">import { hooksMCPTools, getHooksTool } from &#39;@claude-flow/hooks&#39;;
+
+// Get specific tool
+const routeTool = getHooksTool(&#39;hooks/route&#39;);
+
+// Execute routing
+const result = await routeTool.handler({
+  task: &#39;Implement user authentication&#39;,
+  includeExplanation: true,
+});
+
+console.log(`Recommended agent: ${result.recommendedAgent}`);
+console.log(`Confidence: ${result.confidence}%`);
+</code></pre>
+<h2>CLI Commands</h2>
+<h3>Hooks Daemon</h3>
+<p>Manage background daemon processes for metrics and learning.</p>
+<pre><code class="language-bash"># Start daemon with default 60s interval
+hooks-daemon start
+
+# Start with custom interval (30 seconds)
+hooks-daemon start 30
+
+# Stop daemon
+hooks-daemon stop
+
+# Check status
+hooks-daemon status
+
+# Run pattern consolidation
+hooks-daemon consolidate
+
+# Export learned patterns
+hooks-daemon export json
+
+# Rebuild HNSW index
+hooks-daemon rebuild-index
+
+# Notify activity (for hook integration)
+hooks-daemon notify-activity
+</code></pre>
+<h3>Statusline</h3>
+<p>Generate statusline output for Claude Code integration.</p>
+<pre><code class="language-bash"># Display formatted statusline
+statusline
+
+# Output JSON data
+statusline --json
+
+# Compact JSON (single line)
+statusline --compact
+
+# Show help
+statusline --help
+</code></pre>
+<p><strong>Example Output:</strong></p>
+<pre><code>▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3
+─────────────────────────────────────────────────────
+🏗️  DDD Domains    [●●●●●]  5/5    ⚡ 1.0x → 2.49x-7.47x
+🤖 Swarm Agents    ◉ [ 5/15]      🟢 CVE 3/3    💾 156 patterns
+🔧 Architecture    DDD ●93%  │  Security ●CLEAN  │  Hooks ●ACTIVE
+📊 Routing         89% accuracy │  Avg 4.2ms │  1547 operations
+─────────────────────────────────────────────────────
+</code></pre>
+<h2>Hook Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PreToolUse</code></td>
+<td>Before any tool execution</td>
+</tr>
+<tr>
+<td><code>PostToolUse</code></td>
+<td>After tool execution completes</td>
+</tr>
+<tr>
+<td><code>PreEdit</code></td>
+<td>Before file modification</td>
+</tr>
+<tr>
+<td><code>PostEdit</code></td>
+<td>After file modification</td>
+</tr>
+<tr>
+<td><code>PreRead</code></td>
+<td>Before file read</td>
+</tr>
+<tr>
+<td><code>PostRead</code></td>
+<td>After file read</td>
+</tr>
+<tr>
+<td><code>PreCommand</code></td>
+<td>Before shell command execution</td>
+</tr>
+<tr>
+<td><code>PostCommand</code></td>
+<td>After shell command completes</td>
+</tr>
+<tr>
+<td><code>PreTask</code></td>
+<td>Before task starts</td>
+</tr>
+<tr>
+<td><code>PostTask</code></td>
+<td>After task completes</td>
+</tr>
+<tr>
+<td><code>TaskProgress</code></td>
+<td>During task execution</td>
+</tr>
+<tr>
+<td><code>SessionStart</code></td>
+<td>When session begins</td>
+</tr>
+<tr>
+<td><code>SessionEnd</code></td>
+<td>When session ends</td>
+</tr>
+<tr>
+<td><code>SessionRestore</code></td>
+<td>When restoring previous session</td>
+</tr>
+<tr>
+<td><code>AgentSpawn</code></td>
+<td>When agent is spawned</td>
+</tr>
+<tr>
+<td><code>AgentTerminate</code></td>
+<td>When agent terminates</td>
+</tr>
+<tr>
+<td><code>PreRoute</code></td>
+<td>Before task routing</td>
+</tr>
+<tr>
+<td><code>PostRoute</code></td>
+<td>After routing decision</td>
+</tr>
+<tr>
+<td><code>PatternLearned</code></td>
+<td>When new pattern is learned</td>
+</tr>
+<tr>
+<td><code>PatternConsolidated</code></td>
+<td>When patterns are consolidated</td>
+</tr>
+</tbody></table>
+<h2>Hook Priorities</h2>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Value</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Critical</code></td>
+<td>1000</td>
+<td>Security validation, must run first</td>
+</tr>
+<tr>
+<td><code>High</code></td>
+<td>100</td>
+<td>Pre-processing, preparation</td>
+</tr>
+<tr>
+<td><code>Normal</code></td>
+<td>50</td>
+<td>Standard hooks</td>
+</tr>
+<tr>
+<td><code>Low</code></td>
+<td>10</td>
+<td>Logging, metrics</td>
+</tr>
+<tr>
+<td><code>Background</code></td>
+<td>1</td>
+<td>Async operations, runs last</td>
+</tr>
+</tbody></table>
+<h2>Background Workers</h2>
+<p>The hooks system includes 12 specialized background workers that can be triggered automatically or manually dispatched.</p>
+<h3>Available Workers</h3>
+<table>
+<thead>
+<tr>
+<th>Worker</th>
+<th>Priority</th>
+<th>Est. Time</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ultralearn</code></td>
+<td>normal</td>
+<td>60s</td>
+<td>Deep knowledge acquisition and learning</td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td>high</td>
+<td>30s</td>
+<td>Performance optimization and tuning</td>
+</tr>
+<tr>
+<td><code>consolidate</code></td>
+<td>low</td>
+<td>20s</td>
+<td>Memory consolidation and cleanup</td>
+</tr>
+<tr>
+<td><code>predict</code></td>
+<td>normal</td>
+<td>15s</td>
+<td>Predictive preloading and anticipation</td>
+</tr>
+<tr>
+<td><code>audit</code></td>
+<td>critical</td>
+<td>45s</td>
+<td>Security analysis and vulnerability scanning</td>
+</tr>
+<tr>
+<td><code>map</code></td>
+<td>normal</td>
+<td>30s</td>
+<td>Codebase mapping and architecture analysis</td>
+</tr>
+<tr>
+<td><code>preload</code></td>
+<td>low</td>
+<td>10s</td>
+<td>Resource preloading and cache warming</td>
+</tr>
+<tr>
+<td><code>deepdive</code></td>
+<td>normal</td>
+<td>60s</td>
+<td>Deep code analysis and examination</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td>normal</td>
+<td>45s</td>
+<td>Auto-documentation generation</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>normal</td>
+<td>30s</td>
+<td>Code refactoring suggestions</td>
+</tr>
+<tr>
+<td><code>benchmark</code></td>
+<td>normal</td>
+<td>60s</td>
+<td>Performance benchmarking</td>
+</tr>
+<tr>
+<td><code>testgaps</code></td>
+<td>normal</td>
+<td>30s</td>
+<td>Test coverage analysis</td>
+</tr>
+</tbody></table>
+<h3>Worker CLI Commands</h3>
+<pre><code class="language-bash"># List all available workers
+claude-flow hooks worker list
+
+# Detect triggers from prompt text
+claude-flow hooks worker detect --prompt &quot;optimize performance&quot;
+
+# Auto-dispatch when triggers match (confidence ≥0.6)
+claude-flow hooks worker detect --prompt &quot;deep dive into auth&quot; --auto-dispatch --min-confidence 0.6
+
+# Manually dispatch a worker
+claude-flow hooks worker dispatch --trigger refactor --context &quot;auth module&quot;
+
+# Check worker status
+claude-flow hooks worker status
+
+# Cancel a running worker
+claude-flow hooks worker cancel --id worker_refactor_1_abc123
+</code></pre>
+<h3>Performance Targets</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Trigger detection</td>
+<td>&lt;5ms</td>
+</tr>
+<tr>
+<td>Worker spawn</td>
+<td>&lt;50ms</td>
+</tr>
+<tr>
+<td>Max concurrent</td>
+<td>10</td>
+</tr>
+</tbody></table>
+<h3>UserPromptSubmit Integration</h3>
+<p>Workers are automatically triggered via the <code>UserPromptSubmit</code> hook when prompt patterns match worker triggers with confidence ≥0.6. Add this to your Claude settings:</p>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;UserPromptSubmit&quot;: [{
+      &quot;matcher&quot;: &quot;.*&quot;,
+      &quot;hooks&quot;: [{
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;timeout&quot;: 6000,
+        &quot;command&quot;: &quot;claude-flow hooks worker detect --prompt \&quot;$USER_PROMPT\&quot; --auto-dispatch --min-confidence 0.6&quot;
+      }]
+    }]
+  }
+}
+</code></pre>
+<h2>MCP Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hooks/pre-edit</code></td>
+<td>Get context and suggestions before file edit</td>
+</tr>
+<tr>
+<td><code>hooks/post-edit</code></td>
+<td>Record edit outcome for learning</td>
+</tr>
+<tr>
+<td><code>hooks/route</code></td>
+<td>Route task to optimal agent</td>
+</tr>
+<tr>
+<td><code>hooks/metrics</code></td>
+<td>Query learning metrics</td>
+</tr>
+<tr>
+<td><code>hooks/pre-command</code></td>
+<td>Assess command risk</td>
+</tr>
+<tr>
+<td><code>hooks/post-command</code></td>
+<td>Record command outcome</td>
+</tr>
+<tr>
+<td><code>hooks/daemon-status</code></td>
+<td>Get daemon status</td>
+</tr>
+<tr>
+<td><code>hooks/statusline</code></td>
+<td>Get statusline data</td>
+</tr>
+<tr>
+<td><code>hooks/worker-list</code></td>
+<td>List all 12 background workers</td>
+</tr>
+<tr>
+<td><code>hooks/worker-dispatch</code></td>
+<td>Dispatch a worker by trigger type</td>
+</tr>
+<tr>
+<td><code>hooks/worker-status</code></td>
+<td>Get status of running workers</td>
+</tr>
+<tr>
+<td><code>hooks/worker-detect</code></td>
+<td>Detect worker triggers from prompt text</td>
+</tr>
+<tr>
+<td><code>hooks/worker-cancel</code></td>
+<td>Cancel a running worker</td>
+</tr>
+</tbody></table>
+<h2>API Reference</h2>
+<h3>HookRegistry</h3>
+<pre><code class="language-typescript">class HookRegistry {
+  // Register a hook
+  register(
+    event: HookEvent,
+    handler: HookHandler,
+    priority: HookPriority,
+    options?: HookRegistrationOptions
+  ): string;
+
+  // Unregister a hook
+  unregister(hookId: string): boolean;
+
+  // Get hooks for event
+  getForEvent(event: HookEvent, enabledOnly?: boolean): HookEntry[];
+
+  // Enable/disable hooks
+  enable(hookId: string): boolean;
+  disable(hookId: string): boolean;
+
+  // List hooks with filtering
+  list(filter?: HookListFilter): HookEntry[];
+
+  // Get statistics
+  getStats(): HookRegistryStats;
+}
+</code></pre>
+<h3>HookExecutor</h3>
+<pre><code class="language-typescript">class HookExecutor {
+  // Execute hooks for any event
+  execute&lt;T&gt;(
+    event: HookEvent,
+    context: Partial&lt;HookContext&lt;T&gt;&gt;,
+    options?: HookExecutionOptions
+  ): Promise&lt;HookExecutionResult&gt;;
+
+  // Convenience methods
+  preToolUse(toolName: string, parameters: Record&lt;string, unknown&gt;): Promise&lt;HookExecutionResult&gt;;
+  postToolUse(toolName: string, parameters: Record&lt;string, unknown&gt;, duration: number): Promise&lt;HookExecutionResult&gt;;
+  preEdit(filePath: string, operation: &#39;create&#39; | &#39;modify&#39; | &#39;delete&#39;): Promise&lt;HookExecutionResult&gt;;
+  postEdit(filePath: string, operation: &#39;create&#39; | &#39;modify&#39; | &#39;delete&#39;, duration: number): Promise&lt;HookExecutionResult&gt;;
+  preCommand(command: string, workingDirectory?: string): Promise&lt;HookExecutionResult&gt;;
+  postCommand(command: string, exitCode: number, output?: string, error?: string): Promise&lt;HookExecutionResult&gt;;
+  sessionStart(sessionId: string): Promise&lt;HookExecutionResult&gt;;
+  sessionEnd(sessionId: string): Promise&lt;HookExecutionResult&gt;;
+  agentSpawn(agentId: string, agentType: string): Promise&lt;HookExecutionResult&gt;;
+  agentTerminate(agentId: string, agentType: string, status: string): Promise&lt;HookExecutionResult&gt;;
+}
+</code></pre>
+<h3>DaemonManager</h3>
+<pre><code class="language-typescript">class DaemonManager {
+  // Register and manage daemons
+  register(config: DaemonConfig, task: () =&gt; Promise&lt;void&gt;): void;
+  start(name: string): Promise&lt;void&gt;;
+  stop(name: string): Promise&lt;void&gt;;
+  restart(name: string): Promise&lt;void&gt;;
+
+  // Bulk operations
+  startAll(): Promise&lt;void&gt;;
+  stopAll(): Promise&lt;void&gt;;
+
+  // Status
+  getState(name: string): DaemonState | undefined;
+  getAllStates(): DaemonState[];
+  isRunning(name: string): boolean;
+}
+</code></pre>
+<h3>StatuslineGenerator</h3>
+<pre><code class="language-typescript">class StatuslineGenerator {
+  // Register data sources
+  registerDataSources(sources: StatuslineDataSources): void;
+
+  // Generate output
+  generateData(): StatuslineData;
+  generateStatusline(): string;
+  generateJSON(): string;
+  generateCompactJSON(): string;
+
+  // Configuration
+  updateConfig(config: Partial&lt;StatuslineConfig&gt;): void;
+  invalidateCache(): void;
+}
+</code></pre>
+<h2>Environment Variables</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CLAUDE_FLOW_HOOK_TIMEOUT</code></td>
+<td>Hook execution timeout (ms)</td>
+<td><code>5000</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_REASONINGBANK_ENABLED</code></td>
+<td>Enable ReasoningBank</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_HOOKS_NAMESPACE</code></td>
+<td>Learning namespace</td>
+<td><code>hooks-learning</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_HOOKS_LOG_LEVEL</code></td>
+<td>Logging level</td>
+<td><code>info</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_SHOW_HOOKS_METRICS</code></td>
+<td>Show hooks in statusline</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_SHOW_SWARM_ACTIVITY</code></td>
+<td>Show swarm in statusline</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_SHOW_PERFORMANCE</code></td>
+<td>Show performance targets</td>
+<td><code>true</code></td>
+</tr>
+</tbody></table>
+<h2>Integration with Claude Code</h2>
+<p>Add to your Claude settings (<code>~/.claude/settings.json</code>):</p>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;SessionStart&quot;: [{
+      &quot;hooks&quot;: [{
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;timeout&quot;: 5000,
+        &quot;command&quot;: &quot;hooks-daemon start&quot;
+      }]
+    }],
+    &quot;SessionEnd&quot;: [{
+      &quot;hooks&quot;: [{
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;timeout&quot;: 3000,
+        &quot;command&quot;: &quot;hooks-daemon stop&quot;
+      }]
+    }],
+    &quot;PreToolUse&quot;: [{
+      &quot;hooks&quot;: [{
+        &quot;type&quot;: &quot;command&quot;,
+        &quot;timeout&quot;: 100,
+        &quot;command&quot;: &quot;hooks-daemon notify-activity&quot;
+      }]
+    }]
+  },
+  &quot;statusLine&quot;: {
+    &quot;type&quot;: &quot;command&quot;,
+    &quot;command&quot;: &quot;statusline&quot;
+  }
+}
+</code></pre>
+<h2>Related Packages</h2>
+<ul>
+<li><a href="../shared">@claude-flow/shared</a> - Shared utilities and types</li>
+<li><a href="../neural">@claude-flow/neural</a> - Neural network and SONA learning</li>
+<li><a href="../swarm">@claude-flow/swarm</a> - Multi-agent coordination</li>
+<li><a href="../memory">@claude-flow/memory</a> - AgentDB memory system</li>
+</ul>
+<h2>License</h2>
+<p>MIT © <a href="https://github.com/ruvnet/claude-flow">Claude Flow Team</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

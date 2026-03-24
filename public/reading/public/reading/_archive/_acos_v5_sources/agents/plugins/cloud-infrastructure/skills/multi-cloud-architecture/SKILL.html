@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Multi-Cloud Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cloud-infrastructure/skills/multi-cloud-architecture/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Multi-Cloud Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure">cloud-infrastructure</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills%2Fmulti-cloud-architecture">multi-cloud-architecture</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: multi-cloud-architecture
+description: Design multi-cloud architectures using a decision framework to select and integrate services across AWS, Azure, and GCP. Use when building multi-cloud systems, avoiding vendor lock-in, or leveraging best-of-breed services from multiple providers.</h2>
+<h1>Multi-Cloud Architecture</h1>
+<p>Decision framework and patterns for architecting applications across AWS, Azure, and GCP.</p>
+<h2>Purpose</h2>
+<p>Design cloud-agnostic architectures and make informed decisions about service selection across cloud providers.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Design multi-cloud strategies</li>
+<li>Migrate between cloud providers</li>
+<li>Select cloud services for specific workloads</li>
+<li>Implement cloud-agnostic architectures</li>
+<li>Optimize costs across providers</li>
+</ul>
+<h2>Cloud Service Comparison</h2>
+<h3>Compute Services</h3>
+<table>
+<thead>
+<tr>
+<th>AWS</th>
+<th>Azure</th>
+<th>GCP</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>EC2</td>
+<td>Virtual Machines</td>
+<td>Compute Engine</td>
+<td>IaaS VMs</td>
+</tr>
+<tr>
+<td>ECS</td>
+<td>Container Instances</td>
+<td>Cloud Run</td>
+<td>Containers</td>
+</tr>
+<tr>
+<td>EKS</td>
+<td>AKS</td>
+<td>GKE</td>
+<td>Kubernetes</td>
+</tr>
+<tr>
+<td>Lambda</td>
+<td>Functions</td>
+<td>Cloud Functions</td>
+<td>Serverless</td>
+</tr>
+<tr>
+<td>Fargate</td>
+<td>Container Apps</td>
+<td>Cloud Run</td>
+<td>Managed containers</td>
+</tr>
+</tbody></table>
+<h3>Storage Services</h3>
+<table>
+<thead>
+<tr>
+<th>AWS</th>
+<th>Azure</th>
+<th>GCP</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S3</td>
+<td>Blob Storage</td>
+<td>Cloud Storage</td>
+<td>Object storage</td>
+</tr>
+<tr>
+<td>EBS</td>
+<td>Managed Disks</td>
+<td>Persistent Disk</td>
+<td>Block storage</td>
+</tr>
+<tr>
+<td>EFS</td>
+<td>Azure Files</td>
+<td>Filestore</td>
+<td>File storage</td>
+</tr>
+<tr>
+<td>Glacier</td>
+<td>Archive Storage</td>
+<td>Archive Storage</td>
+<td>Cold storage</td>
+</tr>
+</tbody></table>
+<h3>Database Services</h3>
+<table>
+<thead>
+<tr>
+<th>AWS</th>
+<th>Azure</th>
+<th>GCP</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>RDS</td>
+<td>SQL Database</td>
+<td>Cloud SQL</td>
+<td>Managed SQL</td>
+</tr>
+<tr>
+<td>DynamoDB</td>
+<td>Cosmos DB</td>
+<td>Firestore</td>
+<td>NoSQL</td>
+</tr>
+<tr>
+<td>Aurora</td>
+<td>PostgreSQL/MySQL</td>
+<td>Cloud Spanner</td>
+<td>Distributed SQL</td>
+</tr>
+<tr>
+<td>ElastiCache</td>
+<td>Cache for Redis</td>
+<td>Memorystore</td>
+<td>Caching</td>
+</tr>
+</tbody></table>
+<p><strong>Reference:</strong> See <code>references/service-comparison.md</code> for complete comparison</p>
+<h2>Multi-Cloud Patterns</h2>
+<h3>Pattern 1: Single Provider with DR</h3>
+<ul>
+<li>Primary workload in one cloud</li>
+<li>Disaster recovery in another</li>
+<li>Database replication across clouds</li>
+<li>Automated failover</li>
+</ul>
+<h3>Pattern 2: Best-of-Breed</h3>
+<ul>
+<li>Use best service from each provider</li>
+<li>AI/ML on GCP</li>
+<li>Enterprise apps on Azure</li>
+<li>General compute on AWS</li>
+</ul>
+<h3>Pattern 3: Geographic Distribution</h3>
+<ul>
+<li>Serve users from nearest cloud region</li>
+<li>Data sovereignty compliance</li>
+<li>Global load balancing</li>
+<li>Regional failover</li>
+</ul>
+<h3>Pattern 4: Cloud-Agnostic Abstraction</h3>
+<ul>
+<li>Kubernetes for compute</li>
+<li>PostgreSQL for database</li>
+<li>S3-compatible storage (MinIO)</li>
+<li>Open source tools</li>
+</ul>
+<h2>Cloud-Agnostic Architecture</h2>
+<h3>Use Cloud-Native Alternatives</h3>
+<ul>
+<li><strong>Compute:</strong> Kubernetes (EKS/AKS/GKE)</li>
+<li><strong>Database:</strong> PostgreSQL/MySQL (RDS/SQL Database/Cloud SQL)</li>
+<li><strong>Message Queue:</strong> Apache Kafka (MSK/Event Hubs/Confluent)</li>
+<li><strong>Cache:</strong> Redis (ElastiCache/Azure Cache/Memorystore)</li>
+<li><strong>Object Storage:</strong> S3-compatible API</li>
+<li><strong>Monitoring:</strong> Prometheus/Grafana</li>
+<li><strong>Service Mesh:</strong> Istio/Linkerd</li>
+</ul>
+<h3>Abstraction Layers</h3>
+<pre><code>Application Layer
+    ↓
+Infrastructure Abstraction (Terraform)
+    ↓
+Cloud Provider APIs
+    ↓
+AWS / Azure / GCP
+</code></pre>
+<h2>Cost Comparison</h2>
+<h3>Compute Pricing Factors</h3>
+<ul>
+<li><strong>AWS:</strong> On-demand, Reserved, Spot, Savings Plans</li>
+<li><strong>Azure:</strong> Pay-as-you-go, Reserved, Spot</li>
+<li><strong>GCP:</strong> On-demand, Committed use, Preemptible</li>
+</ul>
+<h3>Cost Optimization Strategies</h3>
+<ol>
+<li>Use reserved/committed capacity (30-70% savings)</li>
+<li>Leverage spot/preemptible instances</li>
+<li>Right-size resources</li>
+<li>Use serverless for variable workloads</li>
+<li>Optimize data transfer costs</li>
+<li>Implement lifecycle policies</li>
+<li>Use cost allocation tags</li>
+<li>Monitor with cloud cost tools</li>
+</ol>
+<p><strong>Reference:</strong> See <code>references/multi-cloud-patterns.md</code></p>
+<h2>Migration Strategy</h2>
+<h3>Phase 1: Assessment</h3>
+<ul>
+<li>Inventory current infrastructure</li>
+<li>Identify dependencies</li>
+<li>Assess cloud compatibility</li>
+<li>Estimate costs</li>
+</ul>
+<h3>Phase 2: Pilot</h3>
+<ul>
+<li>Select pilot workload</li>
+<li>Implement in target cloud</li>
+<li>Test thoroughly</li>
+<li>Document learnings</li>
+</ul>
+<h3>Phase 3: Migration</h3>
+<ul>
+<li>Migrate workloads incrementally</li>
+<li>Maintain dual-run period</li>
+<li>Monitor performance</li>
+<li>Validate functionality</li>
+</ul>
+<h3>Phase 4: Optimization</h3>
+<ul>
+<li>Right-size resources</li>
+<li>Implement cloud-native services</li>
+<li>Optimize costs</li>
+<li>Enhance security</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Use infrastructure as code</strong> (Terraform/OpenTofu)</li>
+<li><strong>Implement CI/CD pipelines</strong> for deployments</li>
+<li><strong>Design for failure</strong> across clouds</li>
+<li><strong>Use managed services</strong> when possible</li>
+<li><strong>Implement comprehensive monitoring</strong></li>
+<li><strong>Automate cost optimization</strong></li>
+<li><strong>Follow security best practices</strong></li>
+<li><strong>Document cloud-specific configurations</strong></li>
+<li><strong>Test disaster recovery</strong> procedures</li>
+<li><strong>Train teams</strong> on multiple clouds</li>
+</ol>
+<h2>Reference Files</h2>
+<ul>
+<li><code>references/service-comparison.md</code> - Complete service comparison</li>
+<li><code>references/multi-cloud-patterns.md</code> - Architecture patterns</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>terraform-module-library</code> - For IaC implementation</li>
+<li><code>cost-optimization</code> - For cost management</li>
+<li><code>hybrid-cloud-networking</code> - For connectivity</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

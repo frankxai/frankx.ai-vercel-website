@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Systematic Debugging</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/systematic-debugging/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Systematic Debugging</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fsystematic-debugging">systematic-debugging</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Systematic Debugging
+description: Four-phase root cause analysis for reliable bug fixes
+version: 1.0.0
+source: Adapted from obra/superpowers</h2>
+<h1>Systematic Debugging</h1>
+<h2>The Fundamental Rule</h2>
+<p><strong>NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST.</strong></p>
+<p>Quick patches create technical debt. Symptoms mask deeper issues. Every fix must address the actual root cause.</p>
+<h2>The Four Phases</h2>
+<h3>Phase 1: Root Cause Investigation</h3>
+<p>Before touching code, gather evidence:</p>
+<ol>
+<li><p><strong>Read the error carefully</strong></p>
+<pre><code>Error: Cannot read properties of undefined (reading &#39;map&#39;)
+    at ProductList (src/components/ProductList.tsx:15:24)
+    at renderWithHooks (node_modules/react-dom/...)
+</code></pre>
+<ul>
+<li>What exactly failed?</li>
+<li>Where in the stack trace?</li>
+<li>What data was involved?</li>
+</ul>
+</li>
+<li><p><strong>Reproduce consistently</strong></p>
+<pre><code class="language-bash"># Document exact reproduction steps
+1. Navigate to /products
+2. Click &quot;Filter by category&quot;
+3. Select &quot;Electronics&quot;
+4. Error appears
+</code></pre>
+</li>
+<li><p><strong>Check recent changes</strong></p>
+<pre><code class="language-bash">git log --oneline -10
+git diff HEAD~3 -- src/components/ProductList.tsx
+</code></pre>
+</li>
+<li><p><strong>Add instrumentation at boundaries</strong></p>
+<pre><code class="language-typescript">// Before the failing line
+console.log(&#39;products:&#39;, JSON.stringify(products, null, 2));
+console.log(&#39;type:&#39;, typeof products);
+console.log(&#39;isArray:&#39;, Array.isArray(products));
+</code></pre>
+</li>
+</ol>
+<h3>Phase 2: Pattern Analysis</h3>
+<p>Find working examples and compare:</p>
+<pre><code class="language-typescript">// Working component
+const WorkingList = ({ items }) =&gt; {
+  if (!items || items.length === 0) return &lt;Empty /&gt;;
+  return items.map(item =&gt; &lt;Item key={item.id} {...item} /&gt;);
+};
+
+// Broken component - what&#39;s different?
+const BrokenList = ({ items }) =&gt; {
+  return items.map(item =&gt; &lt;Item key={item.id} {...item} /&gt;);
+  // Missing: null check before .map()
+};
+</code></pre>
+<p><strong>Key questions:</strong></p>
+<ul>
+<li>What does working code do that broken code doesn&#39;t?</li>
+<li>What assumptions does broken code make?</li>
+<li>Where do the data flows diverge?</li>
+</ul>
+<h3>Phase 3: Hypothesis and Testing</h3>
+<p>Apply the scientific method:</p>
+<ol>
+<li><p><strong>Form specific hypothesis</strong></p>
+<blockquote>
+<p>&quot;The error occurs because <code>products</code> is undefined on initial render before the API response arrives.&quot;</p>
+</blockquote>
+</li>
+<li><p><strong>Test with minimal change</strong></p>
+<pre><code class="language-typescript">// Test hypothesis: add early return
+if (!products) return &lt;Loading /&gt;;
+</code></pre>
+</li>
+<li><p><strong>One variable at a time</strong></p>
+<ul>
+<li>Don&#39;t bundle multiple fixes</li>
+<li>Change one thing, test, observe</li>
+<li>Document what you learned</li>
+</ul>
+</li>
+</ol>
+<h3>Phase 4: Implementation</h3>
+<ol>
+<li><p><strong>Write failing test FIRST</strong></p>
+<pre><code class="language-typescript">it(&#39;should handle undefined products gracefully&#39;, () =&gt; {
+  render(&lt;ProductList products={undefined} /&gt;);
+  expect(screen.getByText(&#39;Loading...&#39;)).toBeInTheDocument();
+});
+</code></pre>
+</li>
+<li><p><strong>Implement root cause fix</strong></p>
+<pre><code class="language-typescript">// Fix at the source, not symptoms
+const ProductList = ({ products }: Props) =&gt; {
+  if (!products) return &lt;Loading /&gt;;
+  if (products.length === 0) return &lt;Empty /&gt;;
+  return (
+    &lt;ul&gt;
+      {products.map(product =&gt; (
+        &lt;ProductItem key={product.id} product={product} /&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+};
+</code></pre>
+</li>
+<li><p><strong>Verify without bundling</strong></p>
+<ul>
+<li>Only the fix, nothing else</li>
+<li>Run full test suite</li>
+<li>Confirm original issue resolved</li>
+</ul>
+</li>
+</ol>
+<h2>Red Flags - Stop and Reassess</h2>
+<table>
+<thead>
+<tr>
+<th>Warning Sign</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Proposing fix before understanding</td>
+<td>Go back to Phase 1</td>
+</tr>
+<tr>
+<td>Multiple simultaneous changes</td>
+<td>Isolate to one change</td>
+</tr>
+<tr>
+<td>Third fix attempt failing</td>
+<td>Question the architecture</td>
+</tr>
+<tr>
+<td>&quot;It works but I don&#39;t know why&quot;</td>
+<td>Keep investigating</td>
+</tr>
+</tbody></table>
+<h2>The Three-Fix Rule</h2>
+<p>If you&#39;ve tried 3 fixes without success:</p>
+<ol>
+<li><strong>STOP</strong> - More fixes won&#39;t help</li>
+<li><strong>Step back</strong> - Is the architecture flawed?</li>
+<li><strong>Document</strong> - What did each attempt reveal?</li>
+<li><strong>Reconsider</strong> - Is this the right approach at all?</li>
+</ol>
+<h2>Debugging Toolkit</h2>
+<h3>Console Methods</h3>
+<pre><code class="language-typescript">console.log()      // Basic output
+console.table()    // Tabular data
+console.trace()    // Stack trace
+console.time()     // Performance timing
+console.group()    // Grouped logs
+</code></pre>
+<h3>React DevTools</h3>
+<ul>
+<li>Component props inspection</li>
+<li>State timeline</li>
+<li>Profiler for performance</li>
+</ul>
+<h3>Network Tab</h3>
+<ul>
+<li>Request/response payloads</li>
+<li>Timing analysis</li>
+<li>Failed requests</li>
+</ul>
+<h3>Breakpoints</h3>
+<pre><code class="language-typescript">// Conditional breakpoint
+debugger; // Only when condition met
+
+// Logpoint (VS Code)
+// Right-click line → Add Logpoint
+</code></pre>
+<h2>FrankX-Specific Patterns</h2>
+<h3>Next.js Server Components</h3>
+<pre><code class="language-typescript">// Common issue: using client hooks in server components
+// Phase 1: Check if component has &#39;use client&#39;
+// Phase 2: Compare with working client components
+// Phase 3: Add &#39;use client&#39; or restructure
+</code></pre>
+<h3>API Route Debugging</h3>
+<pre><code class="language-typescript">// Add request logging
+export async function POST(request: Request) {
+  console.log(&#39;=== API DEBUG ===&#39;);
+  const body = await request.json();
+  console.log(&#39;Body:&#39;, JSON.stringify(body, null, 2));
+  console.log(&#39;Headers:&#39;, Object.fromEntries(request.headers));
+  // ... rest of handler
+}
+</code></pre>
+<h3>Hydration Mismatches</h3>
+<pre><code class="language-typescript">// Phase 1: Check for Date.now(), Math.random(), or browser APIs
+// Phase 2: Find server vs client render differences
+// Phase 3: Use useEffect for client-only code
+// Phase 4: Verify with &#39;suppressHydrationWarning&#39; as last resort
+</code></pre>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Any bug that isn&#39;t immediately obvious</li>
+<li>Bugs that &quot;shouldn&#39;t be possible&quot;</li>
+<li>Issues that keep coming back</li>
+<li>Problems others have already attempted to fix</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>test-driven-development</code> - Write test for bug first</li>
+<li><code>webapp-testing</code> - E2E debugging with Playwright</li>
+<li><code>verification-before-completion</code> - Ensure fix actually works</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

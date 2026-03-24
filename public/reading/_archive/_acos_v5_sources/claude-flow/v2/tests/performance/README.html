@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>AgentDB Performance Testing Suite</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/tests/performance/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">AgentDB Performance Testing Suite</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Ftests">tests</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Ftests%2Fperformance">performance</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>AgentDB Performance Testing Suite</h1>
+<p>Comprehensive performance testing and optimization tools for AgentDB v1.3.9 integration.</p>
+<h2>Overview</h2>
+<p>This suite validates the claimed performance improvements of AgentDB over the current claude-flow memory system:</p>
+<ul>
+<li><strong>150x faster</strong> search with HNSW indexing</li>
+<li><strong>500x faster</strong> batch inserts</li>
+<li><strong>12,500x faster</strong> large-scale queries</li>
+<li><strong>4-32x</strong> memory reduction with quantization</li>
+</ul>
+<h2>Test Suites</h2>
+<h3>1. Baseline Performance (<code>baseline/current-system.js</code>)</h3>
+<p>Measures current system performance to establish baselines:</p>
+<ul>
+<li>Pattern search latency (linear scan)</li>
+<li>Batch insert throughput</li>
+<li>Large-scale query performance (10K-100K vectors)</li>
+<li>Memory usage patterns</li>
+</ul>
+<p><strong>Run:</strong></p>
+<pre><code class="language-bash">node tests/performance/baseline/current-system.js
+</code></pre>
+<p><strong>Output:</strong> <code>docs/agentdb/benchmarks/baseline-report.json</code></p>
+<h3>2. AgentDB Performance Validation (<code>agentdb/agentdb-perf.js</code>)</h3>
+<p>Validates AgentDB performance claims:</p>
+<ul>
+<li>HNSW search performance (&lt;100µs target)</li>
+<li>Batch insert performance (&lt;2ms for 100 vectors)</li>
+<li>Large-scale queries (&lt;10ms for 1M vectors)</li>
+<li>Quantization memory efficiency</li>
+</ul>
+<p><strong>Run:</strong></p>
+<pre><code class="language-bash">node tests/performance/agentdb/agentdb-perf.js
+</code></pre>
+<p><strong>Output:</strong> <code>docs/agentdb/benchmarks/agentdb-report.json</code></p>
+<p><strong>Prerequisites:</strong> Agent 1 must complete AgentDB implementation first.</p>
+<h3>3. HNSW Optimization (<code>agentdb/hnsw-optimizer.js</code>)</h3>
+<p>Analyzes HNSW configurations to find optimal settings:</p>
+<ul>
+<li>Tests different M, efConstruction, efSearch values</li>
+<li>Measures build time vs search accuracy trade-offs</li>
+<li>Calculates recall@K for accuracy validation</li>
+<li>Recommends configurations for different use cases</li>
+</ul>
+<p><strong>Run:</strong></p>
+<pre><code class="language-bash">node tests/performance/agentdb/hnsw-optimizer.js
+</code></pre>
+<p><strong>Output:</strong> <code>docs/agentdb/benchmarks/hnsw-optimization.json</code></p>
+<p><strong>Recommendations:</strong></p>
+<ul>
+<li>Fastest search</li>
+<li>Highest recall</li>
+<li>Best balance</li>
+<li>Fastest build</li>
+<li>Most efficient (QPS/Memory)</li>
+</ul>
+<h3>4. Load Testing (<code>agentdb/load-test.js</code>)</h3>
+<p>Tests system under realistic production loads:</p>
+<ul>
+<li><strong>Scalability</strong>: 1K → 1M vectors</li>
+<li><strong>Concurrent Access</strong>: 1-50 simultaneous queries</li>
+<li><strong>Stress Test</strong>: Sustained high load (30s+)</li>
+<li><strong>Resource Limits</strong>: CPU and memory constraints</li>
+</ul>
+<p><strong>Run:</strong></p>
+<pre><code class="language-bash">node tests/performance/agentdb/load-test.js
+</code></pre>
+<p><strong>Output:</strong> <code>docs/agentdb/benchmarks/load-test-report.json</code></p>
+<p><strong>Tests:</strong></p>
+<ul>
+<li>Insertion throughput at scale</li>
+<li>Query latency under load</li>
+<li>Concurrent query handling</li>
+<li>System stability over time</li>
+</ul>
+<h3>5. Memory Profiling (<code>agentdb/memory-profile.js</code>)</h3>
+<p>Analyzes memory usage patterns and efficiency:</p>
+<ul>
+<li>Baseline memory usage</li>
+<li>Quantization impact (binary, scalar, product)</li>
+<li>Memory leak detection</li>
+<li>Peak memory under load</li>
+</ul>
+<p><strong>Run with GC exposure for accurate profiling:</strong></p>
+<pre><code class="language-bash">node --expose-gc tests/performance/agentdb/memory-profile.js
+</code></pre>
+<p><strong>Output:</strong> <code>docs/agentdb/benchmarks/memory-profile-report.json</code></p>
+<p><strong>Analysis:</strong></p>
+<ul>
+<li>Bytes per vector</li>
+<li>Memory scaling (100K, 1M, 10M vectors)</li>
+<li>Quantization savings percentages</li>
+<li>Leak detection (trend analysis)</li>
+</ul>
+<h2>Running All Tests</h2>
+<h3>Sequential Execution</h3>
+<pre><code class="language-bash"># 1. Baseline (run first, before AgentDB implementation)
+node tests/performance/baseline/current-system.js
+
+# 2. Wait for Agent 1 to complete AgentDB implementation
+
+# 3. Run AgentDB benchmarks
+node tests/performance/agentdb/agentdb-perf.js
+node tests/performance/agentdb/hnsw-optimizer.js
+node tests/performance/agentdb/load-test.js
+node --expose-gc tests/performance/agentdb/memory-profile.js
+</code></pre>
+<h3>Automated Suite</h3>
+<pre><code class="language-bash"># Create test runner script
+npm run benchmark:all
+</code></pre>
+<h2>Results &amp; Reports</h2>
+<p>All benchmark results are saved to <code>docs/agentdb/benchmarks/</code>:</p>
+<pre><code>docs/agentdb/benchmarks/
+├── baseline-report.json        # Current system baseline
+├── agentdb-report.json         # AgentDB performance validation
+├── hnsw-optimization.json      # HNSW configuration analysis
+├── load-test-report.json       # Load testing results
+└── memory-profile-report.json  # Memory profiling analysis
+</code></pre>
+<h2>Interpreting Results</h2>
+<h3>Performance Metrics</h3>
+<p><strong>Query Latency:</strong></p>
+<ul>
+<li><strong>Target</strong>: &lt;100µs (0.1ms) for HNSW search</li>
+<li><strong>Current</strong>: ~15ms for 10K vectors (linear scan)</li>
+<li><strong>Improvement</strong>: Should be 150x faster</li>
+</ul>
+<p><strong>Batch Insert:</strong></p>
+<ul>
+<li><strong>Target</strong>: &lt;2ms for 100 vectors</li>
+<li><strong>Current</strong>: ~1000ms for 100 vectors</li>
+<li><strong>Improvement</strong>: Should be 500x faster</li>
+</ul>
+<p><strong>Large Queries:</strong></p>
+<ul>
+<li><strong>Target</strong>: &lt;10ms for 1M vectors</li>
+<li><strong>Current</strong>: ~125 seconds for 1M vectors</li>
+<li><strong>Improvement</strong>: Should be 12,500x faster</li>
+</ul>
+<h3>Memory Metrics</h3>
+<p><strong>Quantization Savings:</strong></p>
+<ul>
+<li><strong>None</strong>: Baseline</li>
+<li><strong>Binary</strong>: ~75% savings (4x capacity)</li>
+<li><strong>Scalar</strong>: ~87.5% savings (8x capacity)</li>
+<li><strong>Product</strong>: ~96.875% savings (32x capacity)</li>
+</ul>
+<h3>Quality Metrics</h3>
+<p><strong>Recall@K:</strong></p>
+<ul>
+<li><strong>Target</strong>: &gt;95% for production</li>
+<li><strong>Acceptable</strong>: &gt;90% for most use cases</li>
+<li><strong>Trade-off</strong>: Higher M and efSearch = better recall but slower</li>
+</ul>
+<h2>Configuration Recommendations</h2>
+<p>Based on benchmark results, choose configuration:</p>
+<h3>Development</h3>
+<pre><code class="language-javascript">{ M: 16, efConstruction: 200, efSearch: 50, quantization: null }
+</code></pre>
+<h3>Production (Small-Medium)</h3>
+<pre><code class="language-javascript">{ M: 16, efConstruction: 200, efSearch: 100, quantization: &#39;binary&#39; }
+</code></pre>
+<h3>Production (Large Scale)</h3>
+<pre><code class="language-javascript">{ M: 32, efConstruction: 400, efSearch: 200, quantization: &#39;product&#39; }
+</code></pre>
+<h3>High Performance (Low Latency)</h3>
+<pre><code class="language-javascript">{ M: 64, efConstruction: 800, efSearch: 400, quantization: null }
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>&quot;AgentDB not available&quot; Error</h3>
+<p><strong>Cause:</strong> Agent 1 hasn&#39;t completed implementation yet.</p>
+<p><strong>Solution:</strong> Wait for Agent 1 to implement core AgentDB integration, then run tests.</p>
+<h3>High Memory Usage</h3>
+<p><strong>Cause:</strong> Testing with large datasets without quantization.</p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>Enable quantization: <code>quantization: { type: &#39;binary&#39; }</code></li>
+<li>Reduce test dataset sizes</li>
+<li>Run with <code>--max-old-space-size=8192</code> for Node.js</li>
+</ol>
+<h3>&quot;Garbage collection not exposed&quot; Warning</h3>
+<p><strong>Cause:</strong> Running memory profiler without <code>--expose-gc</code> flag.</p>
+<p><strong>Solution:</strong> Run with: <code>node --expose-gc tests/performance/agentdb/memory-profile.js</code></p>
+<h3>Benchmark Timeouts</h3>
+<p><strong>Cause:</strong> Large-scale tests taking too long.</p>
+<p><strong>Solution:</strong></p>
+<ol>
+<li>Reduce dataset sizes in test configuration</li>
+<li>Increase Node.js timeout</li>
+<li>Run on more powerful hardware</li>
+</ol>
+<h2>Contributing</h2>
+<p>When adding new benchmarks:</p>
+<ol>
+<li>Follow existing patterns for consistency</li>
+<li>Generate JSON reports for automated analysis</li>
+<li>Include clear console output for human readability</li>
+<li>Document new metrics and thresholds</li>
+<li>Update this README</li>
+</ol>
+<h2>References</h2>
+<ul>
+<li>AgentDB Documentation: <a href="https://github.com/rUv-Swarm/agentdb">https://github.com/rUv-Swarm/agentdb</a></li>
+<li>HNSW Algorithm: <a href="https://arxiv.org/abs/1603.09320">https://arxiv.org/abs/1603.09320</a></li>
+<li>Vector Quantization: <a href="https://en.wikipedia.org/wiki/Vector_quantization">https://en.wikipedia.org/wiki/Vector_quantization</a></li>
+<li>Claude-Flow Integration Plan: <code>/docs/AGENTDB_INTEGRATION_PLAN.md</code></li>
+<li>Production Readiness: <code>/docs/agentdb/PRODUCTION_READINESS.md</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

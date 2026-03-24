@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>AI Agents Directory</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/AGENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">AI Agents Directory</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#_archive">_archive</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <span>AGENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>AI Agents Directory</h1>
+<blockquote>
+<p>Complete listing of all agents available across Claude Code, OpenCode, and the Agentic Creator OS ecosystem.</p>
+</blockquote>
+<h2>Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Platform</th>
+<th>Purpose</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Creation Engine</td>
+<td>Claude</td>
+<td>Content &amp; product development</td>
+<td><code>claude/plugins/creator-tools/agents/</code></td>
+</tr>
+<tr>
+<td>Workshop Builder</td>
+<td>OpenCode</td>
+<td>Technical workshop creation</td>
+<td><code>opencode/agents/</code></td>
+</tr>
+<tr>
+<td>Content Strategist</td>
+<td>OpenCode</td>
+<td>Content planning &amp; calendars</td>
+<td><code>opencode/agents/</code></td>
+</tr>
+<tr>
+<td>Code Architect</td>
+<td>OpenCode</td>
+<td>Software architecture design</td>
+<td><code>opencode/agents/</code></td>
+</tr>
+<tr>
+<td>SEO Specialist</td>
+<td>OpenCode</td>
+<td>Search &amp; AEO optimization</td>
+<td><code>opencode/agents/</code></td>
+</tr>
+<tr>
+<td>Sisyphus (FrankX)</td>
+<td>OpenCode</td>
+<td>Master orchestrator</td>
+<td><code>opencode/oh-my-opencode.json</code></td>
+</tr>
+<tr>
+<td>Librarian</td>
+<td>OpenCode</td>
+<td>Research &amp; documentation</td>
+<td><code>opencode/oh-my-opencode.json</code></td>
+</tr>
+<tr>
+<td>Explorer</td>
+<td>OpenCode</td>
+<td>Codebase exploration</td>
+<td><code>opencode/oh-my-opencode.json</code></td>
+</tr>
+<tr>
+<td>Oracle</td>
+<td>OpenCode</td>
+<td>Architecture decisions</td>
+<td><code>opencode/oh-my-opencode.json</code></td>
+</tr>
+<tr>
+<td>Frontend Engineer</td>
+<td>OpenCode</td>
+<td>UI/UX implementation</td>
+<td><code>opencode/oh-my-opencode.json</code></td>
+</tr>
+<tr>
+<td>Document Writer</td>
+<td>OpenCode</td>
+<td>Documentation creation</td>
+<td><code>opencode/oh-my-opencode.json</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Claude Code Agents</h2>
+<h3>Creation Engine</h3>
+<p><strong>File</strong>: <code>claude/plugins/creator-tools/agents/creation-engine.md</code></p>
+<p>The Creation Engine is responsible for transforming concepts into profitable content and products. It balances authenticity with marketing effectiveness.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Multi-format content creation</li>
+<li>Course and product development</li>
+<li>Community building</li>
+<li>Email marketing campaigns</li>
+<li>Product launches</li>
+</ul>
+<p><strong>Activation</strong>:</p>
+<pre><code>&quot;Engage Creation Engine for content development&quot;
+</code></pre>
+<hr>
+<h2>OpenCode Agents</h2>
+<h3>Workshop Builder</h3>
+<p><strong>File</strong>: <code>opencode/agents/workshop-builder.md</code></p>
+<p>Specialized agent for creating comprehensive, hands-on technical workshops that transform complex topics into structured learning journeys.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Workshop structure design</li>
+<li>Module content creation</li>
+<li>Hands-on labs and exercises</li>
+<li>Assessment generation</li>
+<li>Quality gate validation</li>
+</ul>
+<p><strong>Commands</strong>:</p>
+<pre><code class="language-bash">/workshop create [name] --type [quickstart|deepdive|full]
+/workshop module [name] --number [N]
+/workshop validate [name]
+</code></pre>
+<hr>
+<h3>Content Strategist</h3>
+<p><strong>File</strong>: <code>opencode/agents/content-strategist.md</code></p>
+<p>Plans and optimizes content strategies by analyzing audiences, identifying content gaps, and creating comprehensive content calendars.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Audience persona development</li>
+<li>Content pillar identification</li>
+<li>Editorial calendar creation</li>
+<li>Competitor analysis</li>
+<li>Keyword opportunity mapping</li>
+</ul>
+<p><strong>Commands</strong>:</p>
+<pre><code class="language-bash">/content strategy [project] --audience [persona]
+/content audit [url]
+/content calendar --weeks [N]
+</code></pre>
+<hr>
+<h3>Code Architect</h3>
+<p><strong>File</strong>: <code>opencode/agents/code-architect.md</code></p>
+<p>Designs and implements software architectures using systems thinking, proven patterns, and best practices.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>System design and diagramming</li>
+<li>Technology selection</li>
+<li>API and database design</li>
+<li>Code review and refactoring</li>
+<li>Architecture Decision Records (ADRs)</li>
+</ul>
+<p><strong>Commands</strong>:</p>
+<pre><code class="language-bash">/architect design [system] --requirements [file]
+/architect review [path]
+/architect adr [decision-title]
+</code></pre>
+<hr>
+<h3>SEO Specialist</h3>
+<p><strong>File</strong>: <code>opencode/agents/seo-specialist.md</code></p>
+<p>Handles search engine optimization and AI Engine Optimization (AEO) to ensure content ranks well and gets cited by AI assistants.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Keyword research and mapping</li>
+<li>On-page and technical SEO</li>
+<li>AEO (TL;DR, FAQ, schema)</li>
+<li>Content gap analysis</li>
+<li>Featured snippet targeting</li>
+</ul>
+<p><strong>Commands</strong>:</p>
+<pre><code class="language-bash">/seo audit [url]
+/seo keywords [topic]
+/seo optimize [file]
+/seo aeo [file]
+</code></pre>
+<hr>
+<h2>oh-my-opencode Agents</h2>
+<p>These agents are configured in <code>opencode/oh-my-opencode.json</code> and automatically enhance OpenCode&#39;s built-in agents.</p>
+<h3>Sisyphus (FrankX Override)</h3>
+<p>The master orchestrator that coordinates all agent work. Configured to always identify as &quot;FrankX&quot; rather than &quot;Sisyphus&quot;.</p>
+<p><strong>Role</strong>: Creator Transformation Architect
+<strong>Mission</strong>: Turn overwhelmed creators into confident, AI-empowered artists</p>
+<h3>Librarian</h3>
+<p>Enhanced for creator-friendly implementations. Researches patterns, finds real-world examples, and notes accessibility considerations.</p>
+<h3>Explorer</h3>
+<p>Enhanced for codebase exploration with focus on:</p>
+<ul>
+<li>Creator-facing vs internal patterns</li>
+<li>Brand consistency (colors, typography, voice)</li>
+<li>Reusable components</li>
+<li>UX improvement opportunities</li>
+</ul>
+<h3>Oracle</h3>
+<p>Enhanced for architecture decisions with:</p>
+<ul>
+<li>Creator-first thinking</li>
+<li>Soul + Systems balance</li>
+<li>Studio energy guidance</li>
+<li>Long-term vision alignment</li>
+</ul>
+<h3>Frontend UI/UX Engineer</h3>
+<p>Enhanced with the complete design system:</p>
+<ul>
+<li>Color palette (deep navy, cosmic purple, aurora blue)</li>
+<li>Typography (Poppins, Inter, JetBrains Mono)</li>
+<li>Style guidelines (glassmorphism, aurora gradients)</li>
+<li>WCAG AA contrast requirements</li>
+</ul>
+<h3>Document Writer</h3>
+<p>Enhanced with brand voice guidelines for documentation:</p>
+<ul>
+<li>Lead with &#39;why&#39; before &#39;how&#39;</li>
+<li>Use studio/music analogies</li>
+<li>End sections with clear next steps</li>
+<li>Maintain encouraging, mentor-like tone</li>
+</ul>
+<hr>
+<h2>Agent Activation Patterns</h2>
+<h3>Claude Code</h3>
+<p>In Claude Code, activate agents by referencing them in your prompt:</p>
+<pre><code>&quot;Engage the Creation Engine to develop a course outline&quot;
+&quot;Use the Technical Translator to explain this API&quot;
+</code></pre>
+<h3>OpenCode</h3>
+<p>In OpenCode, agents are activated through:</p>
+<ol>
+<li><strong>Slash commands</strong>: <code>/workshop create</code>, <code>/content strategy</code></li>
+<li><strong>Natural language</strong>: &quot;Help me build a workshop&quot;</li>
+<li><strong>oh-my-opencode</strong>: Automatic enhancement of built-in agents</li>
+</ol>
+<h3>Magic Words (OpenCode)</h3>
+<ul>
+<li><strong>ultrawork / ulw</strong>: Fire ALL agents in parallel for maximum throughput</li>
+<li><strong>ultracode / ulc</strong>: Parallel coding agents (architect + coder + reviewer)</li>
+</ul>
+<hr>
+<h2>Creating New Agents</h2>
+<h3>Claude Code Agent Template</h3>
+<pre><code class="language-markdown"># [Agent Name] Agent
+**Version**: 1.0.0
+
+## Identity
+[Description of who this agent is]
+
+## Personality
+- [Trait 1]
+- [Trait 2]
+
+## Core Capabilities
+- [Capability 1]
+- [Capability 2]
+
+## Behaviors
+### On [Trigger]
+1. [Step 1]
+2. [Step 2]
+
+## Response Format
+[Template for outputs]
+
+## Tools Available
+- [Tool 1]
+- [Tool 2]
+
+## Activation Commands
+```bash
+/command [args]
+</code></pre>
+<pre><code>
+### OpenCode Agent Enhancement
+Add to `oh-my-opencode.json`:
+```json
+{
+  &quot;agents&quot;: {
+    &quot;new-agent&quot;: {
+      &quot;prompt_append&quot;: &quot;\n\n## Enhancement\n\n[Instructions here]&quot;
+    }
+  }
+}
+</code></pre>
+<hr>
+<h2>Agent Collaboration</h2>
+<p>Agents can work together through the orchestration patterns:</p>
+<h3>Sequential Collaboration</h3>
+<pre><code>Research Agent &gt; Content Agent &gt; SEO Agent &gt; Publish
+</code></pre>
+<h3>Parallel Collaboration</h3>
+<pre><code>Design Agent ─┐
+Content Agent ├─&gt; Integration &gt; Publish
+Dev Agent ────┘
+</code></pre>
+<h3>Hierarchical Collaboration</h3>
+<pre><code>Orchestrator (Sisyphus/FrankX)
+├── Content Team
+│   ├── Researcher
+│   └── Writer
+├── Dev Team
+│   └── Code Architect
+└── Marketing Team
+    └── SEO Specialist
+</code></pre>
+<hr>
+<h2>Related Resources</h2>
+<ul>
+<li><code>/agentic-orchestration</code> - Multi-agent coordination</li>
+<li><code>/agentic-creator-os</code> - Department system</li>
+<li><code>/creator-intelligence-system</code> - Personal AI brain</li>
+<li><code>opencode/oh-my-opencode.json</code> - Agent configurations</li>
+</ul>
+<hr>
+<p><em>Agents are the building blocks of the Agentic Creator OS. Build teams, not tools.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

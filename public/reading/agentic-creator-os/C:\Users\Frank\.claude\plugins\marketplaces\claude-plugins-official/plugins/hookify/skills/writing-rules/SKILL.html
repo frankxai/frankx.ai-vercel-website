@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-27" />
+  <title>Writing Hookify Rules</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/hookify/skills/writing-rules/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Writing Hookify Rules</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-27 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-27</strong></div>
+      <hr>
+<h2>name: Writing Hookify Rules
+description: This skill should be used when the user asks to &quot;create a hookify rule&quot;, &quot;write a hook rule&quot;, &quot;configure hookify&quot;, &quot;add a hookify rule&quot;, or needs guidance on hookify rule syntax and patterns.
+version: 0.1.0</h2>
+<h1>Writing Hookify Rules</h1>
+<h2>Overview</h2>
+<p>Hookify rules are markdown files with YAML frontmatter that define patterns to watch for and messages to show when those patterns match. Rules are stored in <code>.claude/hookify.{rule-name}.local.md</code> files.</p>
+<h2>Rule File Format</h2>
+<h3>Basic Structure</h3>
+<pre><code class="language-markdown">---
+name: rule-identifier
+enabled: true
+event: bash|file|stop|prompt|all
+pattern: regex-pattern-here
+---
+
+Message to show Claude when this rule triggers.
+Can include markdown formatting, warnings, suggestions, etc.
+</code></pre>
+<h3>Frontmatter Fields</h3>
+<p><strong>name</strong> (required): Unique identifier for the rule</p>
+<ul>
+<li>Use kebab-case: <code>warn-dangerous-rm</code>, <code>block-console-log</code></li>
+<li>Be descriptive and action-oriented</li>
+<li>Start with verb: warn, prevent, block, require, check</li>
+</ul>
+<p><strong>enabled</strong> (required): Boolean to activate/deactivate</p>
+<ul>
+<li><code>true</code>: Rule is active</li>
+<li><code>false</code>: Rule is disabled (won&#39;t trigger)</li>
+<li>Can toggle without deleting rule</li>
+</ul>
+<p><strong>event</strong> (required): Which hook event to trigger on</p>
+<ul>
+<li><code>bash</code>: Bash tool commands</li>
+<li><code>file</code>: Edit, Write, MultiEdit tools</li>
+<li><code>stop</code>: When agent wants to stop</li>
+<li><code>prompt</code>: When user submits a prompt</li>
+<li><code>all</code>: All events</li>
+</ul>
+<p><strong>action</strong> (optional): What to do when rule matches</p>
+<ul>
+<li><code>warn</code>: Show message but allow operation (default)</li>
+<li><code>block</code>: Prevent operation (PreToolUse) or stop session (Stop events)</li>
+<li>If omitted, defaults to <code>warn</code></li>
+</ul>
+<p><strong>pattern</strong> (simple format): Regex pattern to match</p>
+<ul>
+<li>Used for simple single-condition rules</li>
+<li>Matches against command (bash) or new_text (file)</li>
+<li>Python regex syntax</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-yaml">event: bash
+pattern: rm\s+-rf
+</code></pre>
+<h3>Advanced Format (Multiple Conditions)</h3>
+<p>For complex rules with multiple conditions:</p>
+<pre><code class="language-markdown">---
+name: warn-env-file-edits
+enabled: true
+event: file
+conditions:
+  - field: file_path
+    operator: regex_match
+    pattern: \.env$
+  - field: new_text
+    operator: contains
+    pattern: API_KEY
+---
+
+You&#39;re adding an API key to a .env file. Ensure this file is in .gitignore!
+</code></pre>
+<p><strong>Condition fields:</strong></p>
+<ul>
+<li><code>field</code>: Which field to check<ul>
+<li>For bash: <code>command</code></li>
+<li>For file: <code>file_path</code>, <code>new_text</code>, <code>old_text</code>, <code>content</code></li>
+</ul>
+</li>
+<li><code>operator</code>: How to match<ul>
+<li><code>regex_match</code>: Regex pattern matching</li>
+<li><code>contains</code>: Substring check</li>
+<li><code>equals</code>: Exact match</li>
+<li><code>not_contains</code>: Substring must NOT be present</li>
+<li><code>starts_with</code>: Prefix check</li>
+<li><code>ends_with</code>: Suffix check</li>
+</ul>
+</li>
+<li><code>pattern</code>: Pattern or string to match</li>
+</ul>
+<p><strong>All conditions must match for rule to trigger.</strong></p>
+<h2>Message Body</h2>
+<p>The markdown content after frontmatter is shown to Claude when the rule triggers.</p>
+<p><strong>Good messages:</strong></p>
+<ul>
+<li>Explain what was detected</li>
+<li>Explain why it&#39;s problematic</li>
+<li>Suggest alternatives or best practices</li>
+<li>Use formatting for clarity (bold, lists, etc.)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-markdown">⚠️ **Console.log detected!**
+
+You&#39;re adding console.log to production code.
+
+**Why this matters:**
+- Debug logs shouldn&#39;t ship to production
+- Console.log can expose sensitive data
+- Impacts browser performance
+
+**Alternatives:**
+- Use a proper logging library
+- Remove before committing
+- Use conditional debug builds
+</code></pre>
+<h2>Event Type Guide</h2>
+<h3>bash Events</h3>
+<p>Match Bash command patterns:</p>
+<pre><code class="language-markdown">---
+event: bash
+pattern: sudo\s+|rm\s+-rf|chmod\s+777
+---
+
+Dangerous command detected!
+</code></pre>
+<p><strong>Common patterns:</strong></p>
+<ul>
+<li>Dangerous commands: <code>rm\s+-rf</code>, <code>dd\s+if=</code>, <code>mkfs</code></li>
+<li>Privilege escalation: <code>sudo\s+</code>, <code>su\s+</code></li>
+<li>Permission issues: <code>chmod\s+777</code>, <code>chown\s+root</code></li>
+</ul>
+<h3>file Events</h3>
+<p>Match Edit/Write/MultiEdit operations:</p>
+<pre><code class="language-markdown">---
+event: file
+pattern: console\.log\(|eval\(|innerHTML\s*=
+---
+
+Potentially problematic code pattern detected!
+</code></pre>
+<p><strong>Match on different fields:</strong></p>
+<pre><code class="language-markdown">---
+event: file
+conditions:
+  - field: file_path
+    operator: regex_match
+    pattern: \.tsx?$
+  - field: new_text
+    operator: regex_match
+    pattern: console\.log\(
+---
+
+Console.log in TypeScript file!
+</code></pre>
+<p><strong>Common patterns:</strong></p>
+<ul>
+<li>Debug code: <code>console\.log\(</code>, <code>debugger</code>, <code>print\(</code></li>
+<li>Security risks: <code>eval\(</code>, <code>innerHTML\s*=</code>, <code>dangerouslySetInnerHTML</code></li>
+<li>Sensitive files: <code>\.env$</code>, <code>credentials</code>, <code>\.pem$</code></li>
+<li>Generated files: <code>node_modules/</code>, <code>dist/</code>, <code>build/</code></li>
+</ul>
+<h3>stop Events</h3>
+<p>Match when agent wants to stop (completion checks):</p>
+<pre><code class="language-markdown">---
+event: stop
+pattern: .*
+---
+
+Before stopping, verify:
+- [ ] Tests were run
+- [ ] Build succeeded
+- [ ] Documentation updated
+</code></pre>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Reminders about required steps</li>
+<li>Completion checklists</li>
+<li>Process enforcement</li>
+</ul>
+<h3>prompt Events</h3>
+<p>Match user prompt content (advanced):</p>
+<pre><code class="language-markdown">---
+event: prompt
+conditions:
+  - field: user_prompt
+    operator: contains
+    pattern: deploy to production
+---
+
+Production deployment checklist:
+- [ ] Tests passing?
+- [ ] Reviewed by team?
+- [ ] Monitoring ready?
+</code></pre>
+<h2>Pattern Writing Tips</h2>
+<h3>Regex Basics</h3>
+<p><strong>Literal characters:</strong> Most characters match themselves</p>
+<ul>
+<li><code>rm</code> matches &quot;rm&quot;</li>
+<li><code>console.log</code> matches &quot;console.log&quot;</li>
+</ul>
+<p><strong>Special characters need escaping:</strong></p>
+<ul>
+<li><code>.</code> (any char) → <code>\.</code> (literal dot)</li>
+<li><code>(</code> <code>)</code> → <code>\(</code> <code>\)</code> (literal parens)</li>
+<li><code>[</code> <code>]</code> → <code>\[</code> <code>\]</code> (literal brackets)</li>
+</ul>
+<p><strong>Common metacharacters:</strong></p>
+<ul>
+<li><code>\s</code> - whitespace (space, tab, newline)</li>
+<li><code>\d</code> - digit (0-9)</li>
+<li><code>\w</code> - word character (a-z, A-Z, 0-9, _)</li>
+<li><code>.</code> - any character</li>
+<li><code>+</code> - one or more</li>
+<li><code>*</code> - zero or more</li>
+<li><code>?</code> - zero or one</li>
+<li><code>|</code> - OR</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code>rm\s+-rf         Matches: rm -rf, rm  -rf
+console\.log\(   Matches: console.log(
+(eval|exec)\(    Matches: eval( or exec(
+chmod\s+777      Matches: chmod 777, chmod  777
+API_KEY\s*=      Matches: API_KEY=, API_KEY =
+</code></pre>
+<h3>Testing Patterns</h3>
+<p>Test regex patterns before using:</p>
+<pre><code class="language-bash">python3 -c &quot;import re; print(re.search(r&#39;your_pattern&#39;, &#39;test text&#39;))&quot;
+</code></pre>
+<p>Or use online regex testers (regex101.com with Python flavor).</p>
+<h3>Common Pitfalls</h3>
+<p><strong>Too broad:</strong></p>
+<pre><code class="language-yaml">pattern: log    # Matches &quot;log&quot;, &quot;login&quot;, &quot;dialog&quot;, &quot;catalog&quot;
+</code></pre>
+<p>Better: <code>console\.log\(|logger\.</code></p>
+<p><strong>Too specific:</strong></p>
+<pre><code class="language-yaml">pattern: rm -rf /tmp  # Only matches exact path
+</code></pre>
+<p>Better: <code>rm\s+-rf</code></p>
+<p><strong>Escaping issues:</strong></p>
+<ul>
+<li>YAML quoted strings: <code>&quot;pattern&quot;</code> requires double backslashes <code>\\s</code></li>
+<li>YAML unquoted: <code>pattern: \s</code> works as-is</li>
+<li><strong>Recommendation</strong>: Use unquoted patterns in YAML</li>
+</ul>
+<h2>File Organization</h2>
+<p><strong>Location:</strong> All rules in <code>.claude/</code> directory
+<strong>Naming:</strong> <code>.claude/hookify.{descriptive-name}.local.md</code>
+<strong>Gitignore:</strong> Add <code>.claude/*.local.md</code> to <code>.gitignore</code></p>
+<p><strong>Good names:</strong></p>
+<ul>
+<li><code>hookify.dangerous-rm.local.md</code></li>
+<li><code>hookify.console-log.local.md</code></li>
+<li><code>hookify.require-tests.local.md</code></li>
+<li><code>hookify.sensitive-files.local.md</code></li>
+</ul>
+<p><strong>Bad names:</strong></p>
+<ul>
+<li><code>hookify.rule1.local.md</code> (not descriptive)</li>
+<li><code>hookify.md</code> (missing .local)</li>
+<li><code>danger.local.md</code> (missing hookify prefix)</li>
+</ul>
+<h2>Workflow</h2>
+<h3>Creating a Rule</h3>
+<ol>
+<li>Identify unwanted behavior</li>
+<li>Determine which tool is involved (Bash, Edit, etc.)</li>
+<li>Choose event type (bash, file, stop, etc.)</li>
+<li>Write regex pattern</li>
+<li>Create <code>.claude/hookify.{name}.local.md</code> file in project root</li>
+<li>Test immediately - rules are read dynamically on next tool use</li>
+</ol>
+<h3>Refining a Rule</h3>
+<ol>
+<li>Edit the <code>.local.md</code> file</li>
+<li>Adjust pattern or message</li>
+<li>Test immediately - changes take effect on next tool use</li>
+</ol>
+<h3>Disabling a Rule</h3>
+<p><strong>Temporary:</strong> Set <code>enabled: false</code> in frontmatter
+<strong>Permanent:</strong> Delete the <code>.local.md</code> file</p>
+<h2>Examples</h2>
+<p>See <code>${CLAUDE_PLUGIN_ROOT}/examples/</code> for complete examples:</p>
+<ul>
+<li><code>dangerous-rm.local.md</code> - Block dangerous rm commands</li>
+<li><code>console-log-warning.local.md</code> - Warn about console.log</li>
+<li><code>sensitive-files-warning.local.md</code> - Warn about editing .env files</li>
+</ul>
+<h2>Quick Reference</h2>
+<p><strong>Minimum viable rule:</strong></p>
+<pre><code class="language-markdown">---
+name: my-rule
+enabled: true
+event: bash
+pattern: dangerous_command
+---
+
+Warning message here
+</code></pre>
+<p><strong>Rule with conditions:</strong></p>
+<pre><code class="language-markdown">---
+name: my-rule
+enabled: true
+event: file
+conditions:
+  - field: file_path
+    operator: regex_match
+    pattern: \.ts$
+  - field: new_text
+    operator: contains
+    pattern: any
+---
+
+Warning message
+</code></pre>
+<p><strong>Event types:</strong></p>
+<ul>
+<li><code>bash</code> - Bash commands</li>
+<li><code>file</code> - File edits</li>
+<li><code>stop</code> - Completion checks</li>
+<li><code>prompt</code> - User input</li>
+<li><code>all</code> - All events</li>
+</ul>
+<p><strong>Field options:</strong></p>
+<ul>
+<li>Bash: <code>command</code></li>
+<li>File: <code>file_path</code>, <code>new_text</code>, <code>old_text</code>, <code>content</code></li>
+<li>Prompt: <code>user_prompt</code></li>
+</ul>
+<p><strong>Operators:</strong></p>
+<ul>
+<li><code>regex_match</code>, <code>contains</code>, <code>equals</code>, <code>not_contains</code>, <code>starts_with</code>, <code>ends_with</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

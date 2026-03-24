@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX AI Agents v3.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/agents/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX AI Agents v3.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fagents">agents</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX AI Agents v3.0</h1>
+<p>Specialized agents for the FrankX creator ecosystem. Each agent has specific expertise, workflows, and skill integrations.</p>
+<hr>
+<h2>Agent Architecture Overview</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    STARLIGHT ORCHESTRATOR                       │
+│            Meta-Intelligence &amp; Workflow Coordination            │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        ▼                     ▼                     ▼
+┌───────────────┐   ┌───────────────┐   ┌───────────────┐
+│   TECHNICAL   │   │   CREATIVE    │   │   BUSINESS    │
+│    DOMAIN     │   │    DOMAIN     │   │    DOMAIN     │
+├───────────────┤   ├───────────────┤   ├───────────────┤
+│ • Tech Arch   │   │ • Music Prod  │   │ • SEO Intel   │
+│ • Backend Dev │   │ • Content Eng │   │ • Analytics   │
+│ • Frontend    │   │ • Design      │   │ • Strategy    │
+└───────────────┘   └───────────────┘   └───────────────┘
+</code></pre>
+<hr>
+<h2>Core Agents</h2>
+<h3>1. Technical Architect</h3>
+<pre><code class="language-yaml">name: Technical Architect
+role: AI Systems Designer
+skills:
+  - vercel-react-best-practices    # 40+ React/Next.js optimization rules
+  - next-best-practices            # Next.js App Router patterns
+  - next-cache-components          # Next.js 16 Cache Components &amp; PPR
+  - next-upgrade                   # Migration between Next.js versions
+  - architecture-patterns          # System design patterns
+  - ai-agents-architect            # Multi-agent system design
+  - api-design-principles          # REST/GraphQL API design
+specialty:
+  - Enterprise AI systems
+  - Oracle Cloud integration
+  - Agentic orchestration
+  - Multi-agent workflows
+triggers:
+  - &quot;architecture&quot;, &quot;system design&quot;, &quot;backend&quot;, &quot;API&quot;
+  - Files: `app/**/*.ts`, `lib/**/*.ts`, `api/**/*.ts`
+</code></pre>
+<h3>2. Music Producer</h3>
+<pre><code class="language-yaml">name: Music Producer
+role: AI Music Creation Specialist
+skills:
+  - suno-ai-mastery               # Suno v4.5+ generation
+  - suno-prompt-architect         # Advanced prompt engineering
+specialty:
+  - Advanced Suno prompt crafting
+  - Genre-specific production
+  - Commercial licensing
+  - Audio engineering
+triggers:
+  - &quot;suno&quot;, &quot;music&quot;, &quot;song&quot;, &quot;audio&quot;, &quot;beat&quot;
+</code></pre>
+<h3>3. Content Engine</h3>
+<pre><code class="language-yaml">name: Content Engine
+role: Content &amp; Product Developer
+skills:
+  - frankx-brand                  # Brand voice &amp; standards
+  - seo-content-writer            # SEO-optimized content
+  - schema-markup                 # Structured data
+  - web-artifacts-builder         # Multi-component artifacts
+specialty:
+  - Blog articles &amp; tutorials
+  - Course development
+  - Product launches
+  - Digital products
+triggers:
+  - &quot;article&quot;, &quot;blog&quot;, &quot;content&quot;, &quot;post&quot;
+  - Files: `content/**/*.mdx`
+</code></pre>
+<h3>4. SEO Intelligence</h3>
+<pre><code class="language-yaml">name: SEO Intelligence
+role: Search &amp; Discovery Optimizer
+skills:
+  - seo-fundamentals              # Core SEO principles
+  - seo-content-auditor           # Content analysis
+  - seo-keyword-strategist        # Keyword research
+  - seo-meta-optimizer            # Meta tags optimization
+  - seo-structure-architect       # Site architecture
+  - schema-markup                 # Structured data
+specialty:
+  - AI citation optimization
+  - Topic clustering
+  - Schema markup
+  - Performance analysis
+triggers:
+  - &quot;seo&quot;, &quot;keywords&quot;, &quot;rankings&quot;, &quot;search&quot;
+</code></pre>
+<h3>5. Frontend Designer</h3>
+<pre><code class="language-yaml">name: Frontend Designer
+role: UI/UX Development Specialist
+skills:
+  - vercel-react-best-practices   # React patterns
+  - web-design-guidelines         # Design principles
+  - baseline-ui                   # UI component patterns
+  - shadcn-ui                     # shadcn/ui components
+  - tailwind-css-patterns         # Tailwind best practices
+  - fixing-accessibility          # WCAG compliance
+  - fixing-metadata               # Meta &amp; OG tags
+  - fixing-motion-performance     # Animation optimization
+  - react-patterns                # React architecture
+specialty:
+  - Glassmorphic design system
+  - Responsive layouts
+  - Accessibility (WCAG 2.2)
+  - Performance optimization
+triggers:
+  - &quot;component&quot;, &quot;design&quot;, &quot;ui&quot;, &quot;ux&quot;, &quot;style&quot;
+  - Files: `components/**/*.tsx`, `app/**/*.tsx`
+</code></pre>
+<h3>6. DevOps Engineer</h3>
+<pre><code class="language-yaml">name: DevOps Engineer
+role: Deployment &amp; Infrastructure
+skills:
+  - vercel-deployment             # Vercel deployments
+  - docker-expert                 # Container patterns
+  - github-actions-templates      # CI/CD workflows
+  - deployment-procedures         # Release management
+specialty:
+  - Vercel deployments
+  - CI/CD pipelines
+  - Environment management
+  - Performance monitoring
+triggers:
+  - &quot;deploy&quot;, &quot;build&quot;, &quot;ci&quot;, &quot;pipeline&quot;
+</code></pre>
+<hr>
+<h2>Prompt Library Agents</h2>
+<h3>prompt-harvester</h3>
+<pre><code class="language-yaml">role: Elite Pattern Research
+purpose: Scans GitHub, AI labs, research papers for prompt innovations
+output: Raw prompt patterns for architect review
+skills:
+  - deep-research
+  - context7-auto-research
+</code></pre>
+<h3>prompt-architect</h3>
+<pre><code class="language-yaml">role: Advanced Prompt Design
+purpose: Creates patterns using CoT, ToT, ReAct, AoT frameworks
+output: Production-ready prompts with documentation
+skills:
+  - prompt-engineering-patterns
+  - prompt-library
+</code></pre>
+<h3>prompt-tester</h3>
+<pre><code class="language-yaml">role: Quality Assurance
+purpose: Validates quality, brand consistency, effectiveness
+output: Test reports with improvement recommendations
+</code></pre>
+<h3>prompt-evolver</h3>
+<pre><code class="language-yaml">role: Continuous Improvement
+purpose: Iterates based on feedback and research
+output: Enhanced prompt versions
+</code></pre>
+<hr>
+<h2>Skills Integration</h2>
+<h3>Globally Installed Skills (500+)</h3>
+<p><strong>Vercel/Next.js Stack:</strong></p>
+<ul>
+<li><code>vercel-react-best-practices</code> - 40+ React optimization rules</li>
+<li><code>vercel-composition-patterns</code> - Component composition</li>
+<li><code>next-best-practices</code> - App Router fundamentals</li>
+<li><code>next-cache-components</code> - Cache &amp; PPR patterns</li>
+<li><code>next-upgrade</code> - Version migration</li>
+<li><code>nextjs-advanced-routing</code> - Complex routing</li>
+<li><code>nextjs-server-client-components</code> - RSC patterns</li>
+<li><code>vercel-ai-sdk</code> - AI SDK integration</li>
+</ul>
+<p><strong>Design &amp; UI:</strong></p>
+<ul>
+<li><code>web-design-guidelines</code> - Visual design principles</li>
+<li><code>baseline-ui</code> - UI components</li>
+<li><code>shadcn-ui</code> - shadcn patterns</li>
+<li><code>tailwind-css-patterns</code> - Utility-first CSS</li>
+<li><code>react-patterns</code> - Component architecture</li>
+<li><code>fixing-accessibility</code> - WCAG compliance</li>
+<li><code>fixing-motion-performance</code> - Animation perf</li>
+</ul>
+<p><strong>Development Patterns:</strong></p>
+<ul>
+<li><code>typescript-docs</code> - TypeScript best practices</li>
+<li><code>nestjs</code> - Backend patterns</li>
+<li><code>api-design-principles</code> - API architecture</li>
+<li><code>architecture-patterns</code> - System design</li>
+<li><code>clean-code</code> - Code quality</li>
+</ul>
+<p><strong>AI &amp; Agents:</strong></p>
+<ul>
+<li><code>ai-agents-architect</code> - Agent design</li>
+<li><code>autonomous-agents</code> - Autonomous patterns</li>
+<li><code>agent-memory-systems</code> - Memory management</li>
+<li><code>langgraph-patterns</code> - Graph workflows</li>
+<li><code>prompt-engineering-patterns</code> - Prompt design</li>
+</ul>
+<p><strong>SEO &amp; Content:</strong></p>
+<ul>
+<li><code>seo-fundamentals</code> - Core SEO</li>
+<li><code>seo-content-writer</code> - Content optimization</li>
+<li><code>schema-markup</code> - Structured data</li>
+<li><code>programmatic-seo</code> - Scaled SEO</li>
+</ul>
+<hr>
+<h2>Agent Activation</h2>
+<h3>Automatic Triggers</h3>
+<p>Agents activate via <code>.claude/skills/skill-rules.json</code>:</p>
+<ul>
+<li><strong>Keyword matching</strong> - Intent-based activation</li>
+<li><strong>File patterns</strong> - Context-aware loading</li>
+<li><strong>Task type</strong> - Workflow-based routing</li>
+</ul>
+<h3>Manual Invocation</h3>
+<pre><code class="language-bash">/frankx-ai-build      # Full build session
+/frankx-ai-blog       # Blog creation
+/frankx-ai-deploy     # Production deployment
+/frankx-ai-components # UI development
+</code></pre>
+<h3>Task Delegation</h3>
+<pre><code class="language-markdown">Agent A → Agent B handoff:
+1. Summarize completed work
+2. Pass relevant context
+3. Specify expected output
+4. Maintain conversation thread
+</code></pre>
+<hr>
+<h2>Agent Configuration</h2>
+<p>Each agent requires:</p>
+<ul>
+<li><strong>Mission</strong> - Clear scope and purpose</li>
+<li><strong>Skills</strong> - Auto-loaded capabilities</li>
+<li><strong>Tools</strong> - Whitelisted permissions</li>
+<li><strong>Memory</strong> - Context window limits</li>
+<li><strong>Handoffs</strong> - Inter-agent protocols</li>
+</ul>
+<hr>
+<h2>Decision Framework (CRITICAL)</h2>
+<p><strong>Before ANY agent proposes structural changes:</strong></p>
+<h3>Pre-Action Checklist</h3>
+<ol>
+<li>Load <code>.claude/context/decision-framework.md</code></li>
+<li>Ask: &quot;What specific problem are we solving?&quot;</li>
+<li>Prefer minimal intervention over impressive restructuring</li>
+<li>Get approval for irreversible changes</li>
+</ol>
+<h3>Red Flags to Pause On</h3>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;Delete&quot;</td>
+<td>Almost always wrong. Hide instead.</td>
+</tr>
+<tr>
+<td>&quot;Rename URL&quot;</td>
+<td>Costs more than it gains.</td>
+</tr>
+<tr>
+<td>&quot;Consolidate&quot;</td>
+<td>Fix nav, not pages.</td>
+</tr>
+<tr>
+<td>&quot;For consistency&quot;</td>
+<td>Not worth SEO loss.</td>
+</tr>
+</tbody></table>
+<h3>The Prime Directive</h3>
+<p><strong>Don&#39;t optimize for impressive metrics. Optimize for actual outcomes.</strong></p>
+<p><strong>When in doubt: Ask Frank before acting.</strong></p>
+<hr>
+<h2>Adding New Agents</h2>
+<ol>
+<li>Create agent definition in this directory</li>
+<li>Add skill rules to <code>.claude/skills/skill-rules.json</code></li>
+<li>Define trigger patterns (keywords, files, intents)</li>
+<li>Test with sample tasks</li>
+<li>Document handoff procedures</li>
+<li>Add to this README</li>
+</ol>
+<hr>
+<p><em>Excellence in execution. Let the work speak.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

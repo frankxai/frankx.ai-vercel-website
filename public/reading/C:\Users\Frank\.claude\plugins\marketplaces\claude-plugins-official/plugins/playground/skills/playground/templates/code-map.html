@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-30" />
+  <title>Code Map Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/playground/skills/playground/templates/code-map.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Code Map Template</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-30 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>code-map.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-30</strong></div>
+      <h1>Code Map Template</h1>
+<p>Use this template when the playground is about visualizing codebase architecture: component relationships, data flow, layer diagrams, system architecture with interactive commenting for feedback.</p>
+<h2>Layout</h2>
+<pre><code>+-------------------+----------------------------------+
+|                   |                                  |
+|  Controls:        |  SVG Canvas                      |
+|  • View presets   |  (nodes + connections)           |
+|  • Layer toggles  |  with zoom controls              |
+|  • Connection     |                                  |
+|    type filters   |  Legend (bottom-left)            |
+|                   |                                  |
+|  Comments (n):    +----------------------------------+
+|  • List of user   |  Prompt output                   |
+|    comments with  |  [ Copy Prompt ]                 |
+|    delete buttons |                                  |
++-------------------+----------------------------------+
+</code></pre>
+<p>Code map playgrounds use an SVG canvas for the architecture diagram. Users click components to add comments, which become part of the generated prompt. Layer and connection filters let users focus on specific parts of the system.</p>
+<h2>Control types for code maps</h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Control</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>System view</td>
+<td>Preset buttons</td>
+<td>Full System, Chat Flow, Data Flow, Agent System</td>
+</tr>
+<tr>
+<td>Visible layers</td>
+<td>Checkboxes</td>
+<td>Client, Server, SDK, Data, External</td>
+</tr>
+<tr>
+<td>Connection types</td>
+<td>Checkboxes with color indicators</td>
+<td>Data Flow (blue), Tool Calls (green), Events (red)</td>
+</tr>
+<tr>
+<td>Component feedback</td>
+<td>Click-to-comment modal</td>
+<td>Opens modal with textarea for feedback</td>
+</tr>
+<tr>
+<td>Zoom level</td>
+<td>+/−/reset buttons</td>
+<td>Scale SVG for detail</td>
+</tr>
+</tbody></table>
+<h2>Canvas rendering</h2>
+<p>Use an <code>&lt;svg&gt;</code> element with dynamically generated nodes and paths. Key patterns:</p>
+<ul>
+<li><strong>Nodes:</strong> Rounded rectangles with title and subtitle (file path)</li>
+<li><strong>Connections:</strong> Curved paths (bezier) with arrow markers, styled by type</li>
+<li><strong>Layer organization:</strong> Group nodes by Y-position bands (e.g., y: 30-80 = Client, y: 130-180 = Server)</li>
+<li><strong>Click-to-comment:</strong> Click node → open modal → save comment → node gets visual indicator</li>
+<li><strong>Filtering:</strong> Toggle visibility of nodes by layer, connections by type</li>
+</ul>
+<pre><code class="language-javascript">const nodes = [
+  { id: &#39;api-client&#39;, label: &#39;API Client&#39;, subtitle: &#39;src/api/client.ts&#39;,
+    x: 100, y: 50, w: 140, h: 45, layer: &#39;client&#39;, color: &#39;#dbeafe&#39; },
+  // ...
+];
+
+const connections = [
+  { from: &#39;api-client&#39;, to: &#39;server&#39;, type: &#39;data-flow&#39;, label: &#39;HTTP&#39; },
+  { from: &#39;server&#39;, to: &#39;db&#39;, type: &#39;data-flow&#39; },
+  // ...
+];
+
+function renderDiagram() {
+  const visibleNodes = nodes.filter(n =&gt; state.layers[n.layer]);
+  // Draw connections first (under nodes), then nodes
+  connections.forEach(c =&gt; drawConnection(c));
+  visibleNodes.forEach(n =&gt; drawNode(n));
+}
+</code></pre>
+<h2>Connection types and styling</h2>
+<p>Define 3-5 connection types with distinct visual styles:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Color</th>
+<th>Style</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data-flow</code></td>
+<td>Blue (#3b82f6)</td>
+<td>Solid line</td>
+<td>Request/response, data passing</td>
+</tr>
+<tr>
+<td><code>tool-call</code></td>
+<td>Green (#10b981)</td>
+<td>Dashed (6,3)</td>
+<td>Function calls, API invocations</td>
+</tr>
+<tr>
+<td><code>event</code></td>
+<td>Red (#ef4444)</td>
+<td>Short dash (4,4)</td>
+<td>Async events, pub/sub</td>
+</tr>
+<tr>
+<td><code>skill-invoke</code></td>
+<td>Orange (#f97316)</td>
+<td>Long dash (8,4)</td>
+<td>Plugin/skill activation</td>
+</tr>
+<tr>
+<td><code>dependency</code></td>
+<td>Gray (#6b7280)</td>
+<td>Dotted</td>
+<td>Import/require relationships</td>
+</tr>
+</tbody></table>
+<p>Use SVG markers for arrowheads:</p>
+<pre><code class="language-html">&lt;marker id=&quot;arrowhead-blue&quot; markerWidth=&quot;8&quot; markerHeight=&quot;6&quot; refX=&quot;7&quot; refY=&quot;3&quot; orient=&quot;auto&quot;&gt;
+  &lt;polygon points=&quot;0 0, 8 3, 0 6&quot; fill=&quot;#3b82f6&quot;/&gt;
+&lt;/marker&gt;
+</code></pre>
+<h2>Comment system</h2>
+<p>The key differentiator for code maps is click-to-comment functionality:</p>
+<ol>
+<li><strong>Click node</strong> → Open modal with component name, file path, textarea</li>
+<li><strong>Save comment</strong> → Add to comments list, mark node with visual indicator (colored border)</li>
+<li><strong>View comments</strong> → Sidebar list with component name, comment preview, delete button</li>
+<li><strong>Delete comment</strong> → Remove from list, update node visual, regenerate prompt</li>
+</ol>
+<p>Comments should include the component context:</p>
+<pre><code class="language-javascript">state.comments.push({
+  id: Date.now(),
+  target: node.id,
+  targetLabel: node.label,
+  targetFile: node.subtitle,
+  text: userInput
+});
+</code></pre>
+<h2>Prompt output for code maps</h2>
+<p>The prompt combines system context with user comments:</p>
+<pre><code>This is the [PROJECT NAME] architecture, focusing on the [visible layers].
+
+Feedback on specific components:
+
+**API Client** (src/api/client.ts):
+I want to add retry logic with exponential backoff here.
+
+**Database Manager** (src/db/manager.ts):
+Can we add connection pooling? Current implementation creates new connections per request.
+
+**Auth Middleware** (src/middleware/auth.ts):
+This should validate JWT tokens and extract user context.
+</code></pre>
+<p>Only include comments the user added. Mention which layers are visible if not showing the full system.</p>
+<h2>Pre-populating with real data</h2>
+<p>For a specific codebase, pre-populate with:</p>
+<ul>
+<li><strong>Nodes:</strong> 15-25 key components with real file paths</li>
+<li><strong>Connections:</strong> 20-40 relationships based on actual imports/calls</li>
+<li><strong>Layers:</strong> Logical groupings (UI, API, Business Logic, Data, External)</li>
+<li><strong>Presets:</strong> &quot;Full System&quot;, &quot;Frontend Only&quot;, &quot;Backend Only&quot;, &quot;Data Flow&quot;</li>
+</ul>
+<p>Organize nodes in horizontal bands by layer, with consistent spacing.</p>
+<h2>Layer color palette (light theme)</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Node fill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Client/UI</td>
+<td>#dbeafe (blue-100)</td>
+<td>React components, hooks, pages</td>
+</tr>
+<tr>
+<td>Server/API</td>
+<td>#fef3c7 (amber-100)</td>
+<td>Express routes, middleware, handlers</td>
+</tr>
+<tr>
+<td>SDK/Core</td>
+<td>#f3e8ff (purple-100)</td>
+<td>Core libraries, SDK wrappers</td>
+</tr>
+<tr>
+<td>Agent/Logic</td>
+<td>#dcfce7 (green-100)</td>
+<td>Business logic, agents, processors</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>#fce7f3 (pink-100)</td>
+<td>Database, cache, storage</td>
+</tr>
+<tr>
+<td>External</td>
+<td>#fbcfe8 (pink-200)</td>
+<td>Third-party services, APIs</td>
+</tr>
+</tbody></table>
+<h2>Example topics</h2>
+<ul>
+<li>Codebase architecture explorer (modules, imports, data flow)</li>
+<li>Microservices map (services, queues, databases, API gateways)</li>
+<li>React component tree (components, hooks, context, state)</li>
+<li>API architecture (routes, middleware, controllers, models)</li>
+<li>Agent system (prompts, tools, skills, subagents)</li>
+<li>Data pipeline (sources, transforms, sinks, scheduling)</li>
+<li>Plugin/extension architecture (core, plugins, hooks, events)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Command Frontmatter Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/command-development/references/frontmatter-reference.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Command Frontmatter Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../../../../../../../../../index.html#agentic-creator-os%2FC%3A">C:</a> / <a href="../../../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills">skills</a> / <a href="../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fcommand-development">command-development</a> / <a href="index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fcommand-development%2Freferences">references</a> / <span>frontmatter-reference.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Command Frontmatter Reference</h1>
+<p>Complete reference for YAML frontmatter fields in slash commands.</p>
+<h2>Frontmatter Overview</h2>
+<p>YAML frontmatter is optional metadata at the start of command files:</p>
+<pre><code class="language-markdown">---
+description: Brief description
+allowed-tools: Read, Write
+model: sonnet
+argument-hint: [arg1] [arg2]
+---
+
+Command prompt content here...
+</code></pre>
+<p>All fields are optional. Commands work without any frontmatter.</p>
+<h2>Field Specifications</h2>
+<h3>description</h3>
+<p><strong>Type:</strong> String
+<strong>Required:</strong> No
+<strong>Default:</strong> First line of command prompt
+<strong>Max Length:</strong> ~60 characters recommended for <code>/help</code> display</p>
+<p><strong>Purpose:</strong> Describes what the command does, shown in <code>/help</code> output</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-yaml">description: Review code for security issues
+</code></pre>
+<pre><code class="language-yaml">description: Deploy to staging environment
+</code></pre>
+<pre><code class="language-yaml">description: Generate API documentation
+</code></pre>
+<p><strong>Best practices:</strong></p>
+<ul>
+<li>Keep under 60 characters for clean display</li>
+<li>Start with verb (Review, Deploy, Generate)</li>
+<li>Be specific about what command does</li>
+<li>Avoid redundant &quot;command&quot; or &quot;slash command&quot;</li>
+</ul>
+<p><strong>Good:</strong></p>
+<ul>
+<li>✅ &quot;Review PR for code quality and security&quot;</li>
+<li>✅ &quot;Deploy application to specified environment&quot;</li>
+<li>✅ &quot;Generate comprehensive API documentation&quot;</li>
+</ul>
+<p><strong>Bad:</strong></p>
+<ul>
+<li>❌ &quot;This command reviews PRs&quot; (unnecessary &quot;This command&quot;)</li>
+<li>❌ &quot;Review&quot; (too vague)</li>
+<li>❌ &quot;A command that reviews pull requests for code quality, security issues, and best practices&quot; (too long)</li>
+</ul>
+<h3>allowed-tools</h3>
+<p><strong>Type:</strong> String or Array of strings
+<strong>Required:</strong> No
+<strong>Default:</strong> Inherits from conversation permissions</p>
+<p><strong>Purpose:</strong> Restrict or specify which tools command can use</p>
+<p><strong>Formats:</strong></p>
+<p><strong>Single tool:</strong></p>
+<pre><code class="language-yaml">allowed-tools: Read
+</code></pre>
+<p><strong>Multiple tools (comma-separated):</strong></p>
+<pre><code class="language-yaml">allowed-tools: Read, Write, Edit
+</code></pre>
+<p><strong>Multiple tools (array):</strong></p>
+<pre><code class="language-yaml">allowed-tools:
+  - Read
+  - Write
+  - Bash(git:*)
+</code></pre>
+<p><strong>Tool Patterns:</strong></p>
+<p><strong>Specific tools:</strong></p>
+<pre><code class="language-yaml">allowed-tools: Read, Grep, Edit
+</code></pre>
+<p><strong>Bash with command filter:</strong></p>
+<pre><code class="language-yaml">allowed-tools: Bash(git:*)           # Only git commands
+allowed-tools: Bash(npm:*)           # Only npm commands
+allowed-tools: Bash(docker:*)        # Only docker commands
+</code></pre>
+<p><strong>All tools (not recommended):</strong></p>
+<pre><code class="language-yaml">allowed-tools: &quot;*&quot;
+</code></pre>
+<p><strong>When to use:</strong></p>
+<ol>
+<li><p><strong>Security:</strong> Restrict command to safe operations</p>
+<pre><code class="language-yaml">allowed-tools: Read, Grep  # Read-only command
+</code></pre>
+</li>
+<li><p><strong>Clarity:</strong> Document required tools</p>
+<pre><code class="language-yaml">allowed-tools: Bash(git:*), Read
+</code></pre>
+</li>
+<li><p><strong>Bash execution:</strong> Enable bash command output</p>
+<pre><code class="language-yaml">allowed-tools: Bash(git status:*), Bash(git diff:*)
+</code></pre>
+</li>
+</ol>
+<p><strong>Best practices:</strong></p>
+<ul>
+<li>Be as restrictive as possible</li>
+<li>Use command filters for Bash (e.g., <code>git:*</code> not <code>*</code>)</li>
+<li>Only specify when different from conversation permissions</li>
+<li>Document why specific tools are needed</li>
+</ul>
+<h3>model</h3>
+<p><strong>Type:</strong> String
+<strong>Required:</strong> No
+<strong>Default:</strong> Inherits from conversation
+<strong>Values:</strong> <code>sonnet</code>, <code>opus</code>, <code>haiku</code></p>
+<p><strong>Purpose:</strong> Specify which Claude model executes the command</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-yaml">model: haiku    # Fast, efficient for simple tasks
+</code></pre>
+<pre><code class="language-yaml">model: sonnet   # Balanced performance (default)
+</code></pre>
+<pre><code class="language-yaml">model: opus     # Maximum capability for complex tasks
+</code></pre>
+<p><strong>When to use:</strong></p>
+<p><strong>Use <code>haiku</code> for:</strong></p>
+<ul>
+<li>Simple, formulaic commands</li>
+<li>Fast execution needed</li>
+<li>Low complexity tasks</li>
+<li>Frequent invocations</li>
+</ul>
+<pre><code class="language-yaml">---
+description: Format code file
+model: haiku
+---
+</code></pre>
+<p><strong>Use <code>sonnet</code> for:</strong></p>
+<ul>
+<li>Standard commands (default)</li>
+<li>Balanced speed/quality</li>
+<li>Most common use cases</li>
+</ul>
+<pre><code class="language-yaml">---
+description: Review code changes
+model: sonnet
+---
+</code></pre>
+<p><strong>Use <code>opus</code> for:</strong></p>
+<ul>
+<li>Complex analysis</li>
+<li>Architectural decisions</li>
+<li>Deep code understanding</li>
+<li>Critical tasks</li>
+</ul>
+<pre><code class="language-yaml">---
+description: Analyze system architecture
+model: opus
+---
+</code></pre>
+<p><strong>Best practices:</strong></p>
+<ul>
+<li>Omit unless specific need</li>
+<li>Use <code>haiku</code> for speed when possible</li>
+<li>Reserve <code>opus</code> for genuinely complex tasks</li>
+<li>Test with different models to find right balance</li>
+</ul>
+<h3>argument-hint</h3>
+<p><strong>Type:</strong> String
+<strong>Required:</strong> No
+<strong>Default:</strong> None</p>
+<p><strong>Purpose:</strong> Document expected arguments for users and autocomplete</p>
+<p><strong>Format:</strong></p>
+<pre><code class="language-yaml">argument-hint: [arg1] [arg2] [optional-arg]
+</code></pre>
+<p><strong>Examples:</strong></p>
+<p><strong>Single argument:</strong></p>
+<pre><code class="language-yaml">argument-hint: [pr-number]
+</code></pre>
+<p><strong>Multiple required arguments:</strong></p>
+<pre><code class="language-yaml">argument-hint: [environment] [version]
+</code></pre>
+<p><strong>Optional arguments:</strong></p>
+<pre><code class="language-yaml">argument-hint: [file-path] [options]
+</code></pre>
+<p><strong>Descriptive names:</strong></p>
+<pre><code class="language-yaml">argument-hint: [source-branch] [target-branch] [commit-message]
+</code></pre>
+<p><strong>Best practices:</strong></p>
+<ul>
+<li>Use square brackets <code>[]</code> for each argument</li>
+<li>Use descriptive names (not <code>arg1</code>, <code>arg2</code>)</li>
+<li>Indicate optional vs required in description</li>
+<li>Match order to positional arguments in command</li>
+<li>Keep concise but clear</li>
+</ul>
+<p><strong>Examples by pattern:</strong></p>
+<p><strong>Simple command:</strong></p>
+<pre><code class="language-yaml">---
+description: Fix issue by number
+argument-hint: [issue-number]
+---
+
+Fix issue #$1...
+</code></pre>
+<p><strong>Multi-argument:</strong></p>
+<pre><code class="language-yaml">---
+description: Deploy to environment
+argument-hint: [app-name] [environment] [version]
+---
+
+Deploy $1 to $2 using version $3...
+</code></pre>
+<p><strong>With options:</strong></p>
+<pre><code class="language-yaml">---
+description: Run tests with options
+argument-hint: [test-pattern] [options]
+---
+
+Run tests matching $1 with options: $2
+</code></pre>
+<h3>disable-model-invocation</h3>
+<p><strong>Type:</strong> Boolean
+<strong>Required:</strong> No
+<strong>Default:</strong> false</p>
+<p><strong>Purpose:</strong> Prevent SlashCommand tool from programmatically invoking command</p>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-yaml">disable-model-invocation: true
+</code></pre>
+<p><strong>When to use:</strong></p>
+<ol>
+<li><p><strong>Manual-only commands:</strong> Commands requiring user judgment</p>
+<pre><code class="language-yaml">---
+description: Approve deployment to production
+disable-model-invocation: true
+---
+</code></pre>
+</li>
+<li><p><strong>Destructive operations:</strong> Commands with irreversible effects</p>
+<pre><code class="language-yaml">---
+description: Delete all test data
+disable-model-invocation: true
+---
+</code></pre>
+</li>
+<li><p><strong>Interactive workflows:</strong> Commands needing user input</p>
+<pre><code class="language-yaml">---
+description: Walk through setup wizard
+disable-model-invocation: true
+---
+</code></pre>
+</li>
+</ol>
+<p><strong>Default behavior (false):</strong></p>
+<ul>
+<li>Command available to SlashCommand tool</li>
+<li>Claude can invoke programmatically</li>
+<li>Still available for manual invocation</li>
+</ul>
+<p><strong>When true:</strong></p>
+<ul>
+<li>Command only invokable by user typing <code>/command</code></li>
+<li>Not available to SlashCommand tool</li>
+<li>Safer for sensitive operations</li>
+</ul>
+<p><strong>Best practices:</strong></p>
+<ul>
+<li>Use sparingly (limits Claude&#39;s autonomy)</li>
+<li>Document why in command comments</li>
+<li>Consider if command should exist if always manual</li>
+</ul>
+<h2>Complete Examples</h2>
+<h3>Minimal Command</h3>
+<p>No frontmatter needed:</p>
+<pre><code class="language-markdown">Review this code for common issues and suggest improvements.
+</code></pre>
+<h3>Simple Command</h3>
+<p>Just description:</p>
+<pre><code class="language-markdown">---
+description: Review code for issues
+---
+
+Review this code for common issues and suggest improvements.
+</code></pre>
+<h3>Standard Command</h3>
+<p>Description and tools:</p>
+<pre><code class="language-markdown">---
+description: Review Git changes
+allowed-tools: Bash(git:*), Read
+---
+
+Current changes: !`git diff --name-only`
+
+Review each changed file for:
+- Code quality
+- Potential bugs
+- Best practices
+</code></pre>
+<h3>Complex Command</h3>
+<p>All common fields:</p>
+<pre><code class="language-markdown">---
+description: Deploy application to environment
+argument-hint: [app-name] [environment] [version]
+allowed-tools: Bash(kubectl:*), Bash(helm:*), Read
+model: sonnet
+---
+
+Deploy $1 to $2 environment using version $3
+
+Pre-deployment checks:
+- Verify $2 configuration
+- Check cluster status: !`kubectl cluster-info`
+- Validate version $3 exists
+
+Proceed with deployment following deployment runbook.
+</code></pre>
+<h3>Manual-Only Command</h3>
+<p>Restricted invocation:</p>
+<pre><code class="language-markdown">---
+description: Approve production deployment
+argument-hint: [deployment-id]
+disable-model-invocation: true
+allowed-tools: Bash(gh:*)
+---
+
+&lt;!--
+MANUAL APPROVAL REQUIRED
+This command requires human judgment and cannot be automated.
+--&gt;
+
+Review deployment $1 for production approval:
+
+Deployment details: !`gh api /deployments/$1`
+
+Verify:
+- All tests passed
+- Security scan clean
+- Stakeholder approval
+- Rollback plan ready
+
+Type &quot;APPROVED&quot; to confirm deployment.
+</code></pre>
+<h2>Validation</h2>
+<h3>Common Errors</h3>
+<p><strong>Invalid YAML syntax:</strong></p>
+<pre><code class="language-yaml">---
+description: Missing quote
+allowed-tools: Read, Write
+model: sonnet
+---  # ❌ Missing closing quote above
+</code></pre>
+<p><strong>Fix:</strong> Validate YAML syntax</p>
+<p><strong>Incorrect tool specification:</strong></p>
+<pre><code class="language-yaml">allowed-tools: Bash  # ❌ Missing command filter
+</code></pre>
+<p><strong>Fix:</strong> Use <code>Bash(git:*)</code> format</p>
+<p><strong>Invalid model name:</strong></p>
+<pre><code class="language-yaml">model: gpt4  # ❌ Not a valid Claude model
+</code></pre>
+<p><strong>Fix:</strong> Use <code>sonnet</code>, <code>opus</code>, or <code>haiku</code></p>
+<h3>Validation Checklist</h3>
+<p>Before committing command:</p>
+<ul>
+<li><input disabled="" type="checkbox"> YAML syntax valid (no errors)</li>
+<li><input disabled="" type="checkbox"> Description under 60 characters</li>
+<li><input disabled="" type="checkbox"> allowed-tools uses proper format</li>
+<li><input disabled="" type="checkbox"> model is valid value if specified</li>
+<li><input disabled="" type="checkbox"> argument-hint matches positional arguments</li>
+<li><input disabled="" type="checkbox"> disable-model-invocation used appropriately</li>
+</ul>
+<h2>Best Practices Summary</h2>
+<ol>
+<li><strong>Start minimal:</strong> Add frontmatter only when needed</li>
+<li><strong>Document arguments:</strong> Always use argument-hint with arguments</li>
+<li><strong>Restrict tools:</strong> Use most restrictive allowed-tools that works</li>
+<li><strong>Choose right model:</strong> Use haiku for speed, opus for complexity</li>
+<li><strong>Manual-only sparingly:</strong> Only use disable-model-invocation when necessary</li>
+<li><strong>Clear descriptions:</strong> Make commands discoverable in <code>/help</code></li>
+<li><strong>Test thoroughly:</strong> Verify frontmatter works as expected</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

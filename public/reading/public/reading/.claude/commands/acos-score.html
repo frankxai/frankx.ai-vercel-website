@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/acos-score — Intelligence Score Report</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/acos-score.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/acos-score — Intelligence Score Report</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>acos-score.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/acos-score — Intelligence Score Report</h1>
+<h2>Purpose</h2>
+<p>Display the ACOS unified intelligence score by combining trajectory learning data with Starlight Intelligence System analysis.</p>
+<h2>Execution</h2>
+<h3>Step 1: Gather Data Sources</h3>
+<ol>
+<li>Read trajectory stats from <code>.claude/trajectories/patterns.json</code></li>
+<li>Run <code>bash .claude-flow/hooks/starlight-bridge.sh score</code> for SIS 4-component report</li>
+<li>Read circuit breaker status: <code>bash .claude-flow/hooks/circuit-breaker.sh status</code></li>
+<li>Count completed trajectories in <code>.claude/trajectories/</code> (exclude <code>_active.json</code>, <code>_operations.jsonl</code>, <code>patterns.json</code>)</li>
+</ol>
+<h3>Step 2: Calculate Component Scores</h3>
+<p><strong>4-Component Intelligence Report (25 points each, 100 total):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Source</th>
+<th>Scoring</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Memory Depth</td>
+<td>SIS memory.json entry count + trajectory count</td>
+<td>0-10 entries = 5pt, 11-50 = 10pt, 51-100 = 15pt, 101-200 = 20pt, 200+ = 25pt</td>
+</tr>
+<tr>
+<td>Pattern Quality</td>
+<td>patterns.json avg success rate</td>
+<td>&lt;50% = 5pt, 50-65% = 10pt, 66-75% = 15pt, 76-85% = 20pt, 86%+ = 25pt</td>
+</tr>
+<tr>
+<td>Operational History</td>
+<td>Total trajectories + tool breakdown diversity</td>
+<td>&lt;10 traj = 5pt, 10-30 = 10pt, 31-60 = 15pt, 61-100 = 20pt, 100+ = 25pt</td>
+</tr>
+<tr>
+<td>Learning Velocity</td>
+<td>Pattern count growth + success trend (last 10 vs first 10)</td>
+<td>Declining = 5pt, Flat = 10pt, Slight growth = 15pt, Strong growth = 20pt, Accelerating = 25pt</td>
+</tr>
+</tbody></table>
+<h3>Step 3: Display Report</h3>
+<p>Output format:</p>
+<pre><code>═══════════════════════════════════════════════════
+  ACOS Intelligence Report — v10.1
+═══════════════════════════════════════════════════
+
+  Memory Depth        ████████████████████░░░░░  20/25
+  Pattern Quality     ██████████████████████░░░  22/25
+  Operational History ████████████████████████░  24/25
+  Learning Velocity   ████████████████░░░░░░░░░  16/25
+
+  ─────────────────────────────────────────────────
+  Total Score: 82/100
+  ─────────────────────────────────────────────────
+
+  Trajectories: 102 completed | 50 patterns learned
+  Top Pattern: &quot;Edit &gt; Read &gt; Bash&quot; (89% success, 3x)
+  Circuit Breaker: All clear
+  Starlight Memory: 109 entries synced
+
+  Recommendation: Focus on pattern diversity — most
+  trajectories follow similar Edit&gt;Read&gt;Bash sequences.
+═══════════════════════════════════════════════════
+</code></pre>
+<h3>Step 4: Improvement Suggestions</h3>
+<p>Based on the lowest scoring component, provide 1-2 specific suggestions:</p>
+<ul>
+<li><strong>Low Memory Depth</strong>: &quot;Run more sessions to build trajectory history&quot;</li>
+<li><strong>Low Pattern Quality</strong>: &quot;Review failing patterns in patterns.json and adjust approaches&quot;</li>
+<li><strong>Low Operational History</strong>: &quot;Diversify task types — try content creation, deployment, or SEO tasks&quot;</li>
+<li><strong>Low Learning Velocity</strong>: &quot;Recent sessions show declining success — review recent failures&quot;</li>
+</ul>
+<h2>Output</h2>
+<ul>
+<li>Display the formatted intelligence report in the conversation</li>
+<li>No files created or modified</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

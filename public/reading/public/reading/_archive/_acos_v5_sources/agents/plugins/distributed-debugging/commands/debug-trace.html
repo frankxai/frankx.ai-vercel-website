@@ -1,0 +1,1380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Debug and Trace Configuration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/distributed-debugging/commands/debug-trace.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Debug and Trace Configuration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdistributed-debugging">distributed-debugging</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdistributed-debugging%2Fcommands">commands</a> / <span>debug-trace.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Debug and Trace Configuration</h1>
+<p>You are a debugging expert specializing in setting up comprehensive debugging environments, distributed tracing, and diagnostic tools. Configure debugging workflows, implement tracing solutions, and establish troubleshooting practices for development and production environments.</p>
+<h2>Context</h2>
+<p>The user needs to set up debugging and tracing capabilities to efficiently diagnose issues, track down bugs, and understand system behavior. Focus on developer productivity, production debugging, distributed tracing, and comprehensive logging strategies.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. Development Environment Debugging</h3>
+<p>Set up comprehensive debugging environments:</p>
+<p><strong>VS Code Debug Configuration</strong></p>
+<pre><code class="language-json">// .vscode/launch.json
+{
+  &quot;version&quot;: &quot;0.2.0&quot;,
+  &quot;configurations&quot;: [
+    {
+      &quot;name&quot;: &quot;Debug Node.js App&quot;,
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;runtimeExecutable&quot;: &quot;node&quot;,
+      &quot;runtimeArgs&quot;: [&quot;--inspect-brk&quot;, &quot;--enable-source-maps&quot;],
+      &quot;program&quot;: &quot;${workspaceFolder}/src/index.js&quot;,
+      &quot;env&quot;: {
+        &quot;NODE_ENV&quot;: &quot;development&quot;,
+        &quot;DEBUG&quot;: &quot;*&quot;,
+        &quot;NODE_OPTIONS&quot;: &quot;--max-old-space-size=4096&quot;
+      },
+      &quot;sourceMaps&quot;: true,
+      &quot;resolveSourceMapLocations&quot;: [
+        &quot;${workspaceFolder}/**&quot;,
+        &quot;!**/node_modules/**&quot;
+      ],
+      &quot;skipFiles&quot;: [&quot;&lt;node_internals&gt;/**&quot;, &quot;node_modules/**&quot;],
+      &quot;console&quot;: &quot;integratedTerminal&quot;,
+      &quot;outputCapture&quot;: &quot;std&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Debug TypeScript&quot;,
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;program&quot;: &quot;${workspaceFolder}/src/index.ts&quot;,
+      &quot;preLaunchTask&quot;: &quot;tsc: build - tsconfig.json&quot;,
+      &quot;outFiles&quot;: [&quot;${workspaceFolder}/dist/**/*.js&quot;],
+      &quot;sourceMaps&quot;: true,
+      &quot;smartStep&quot;: true,
+      &quot;internalConsoleOptions&quot;: &quot;openOnSessionStart&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Debug Jest Tests&quot;,
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;program&quot;: &quot;${workspaceFolder}/node_modules/.bin/jest&quot;,
+      &quot;args&quot;: [
+        &quot;--runInBand&quot;,
+        &quot;--no-cache&quot;,
+        &quot;--watchAll=false&quot;,
+        &quot;--detectOpenHandles&quot;
+      ],
+      &quot;console&quot;: &quot;integratedTerminal&quot;,
+      &quot;internalConsoleOptions&quot;: &quot;neverOpen&quot;,
+      &quot;env&quot;: {
+        &quot;NODE_ENV&quot;: &quot;test&quot;
+      }
+    },
+    {
+      &quot;name&quot;: &quot;Attach to Process&quot;,
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;attach&quot;,
+      &quot;processId&quot;: &quot;${command:PickProcess}&quot;,
+      &quot;protocol&quot;: &quot;inspector&quot;,
+      &quot;restart&quot;: true,
+      &quot;sourceMaps&quot;: true
+    }
+  ],
+  &quot;compounds&quot;: [
+    {
+      &quot;name&quot;: &quot;Full Stack Debug&quot;,
+      &quot;configurations&quot;: [&quot;Debug Backend&quot;, &quot;Debug Frontend&quot;],
+      &quot;stopAll&quot;: true
+    }
+  ]
+}
+</code></pre>
+<p><strong>Chrome DevTools Configuration</strong></p>
+<pre><code class="language-javascript">// debug-helpers.js
+class DebugHelper {
+  constructor() {
+    this.setupDevTools();
+    this.setupConsoleHelpers();
+    this.setupPerformanceMarkers();
+  }
+
+  setupDevTools() {
+    if (typeof window !== &quot;undefined&quot;) {
+      // Add debug namespace
+      window.DEBUG = window.DEBUG || {};
+
+      // Store references to important objects
+      window.DEBUG.store = () =&gt; window.__REDUX_STORE__;
+      window.DEBUG.router = () =&gt; window.__ROUTER__;
+      window.DEBUG.components = new Map();
+
+      // Performance debugging
+      window.DEBUG.measureRender = (componentName) =&gt; {
+        performance.mark(`${componentName}-start`);
+        return () =&gt; {
+          performance.mark(`${componentName}-end`);
+          performance.measure(
+            componentName,
+            `${componentName}-start`,
+            `${componentName}-end`,
+          );
+        };
+      };
+
+      // Memory debugging
+      window.DEBUG.heapSnapshot = async () =&gt; {
+        if (&quot;memory&quot; in performance) {
+          const snapshot = await performance.measureUserAgentSpecificMemory();
+          console.table(snapshot);
+          return snapshot;
+        }
+      };
+    }
+  }
+
+  setupConsoleHelpers() {
+    // Enhanced console logging
+    const styles = {
+      error: &quot;color: #ff0000; font-weight: bold;&quot;,
+      warn: &quot;color: #ff9800; font-weight: bold;&quot;,
+      info: &quot;color: #2196f3; font-weight: bold;&quot;,
+      debug: &quot;color: #4caf50; font-weight: bold;&quot;,
+      trace: &quot;color: #9c27b0; font-weight: bold;&quot;,
+    };
+
+    Object.entries(styles).forEach(([level, style]) =&gt; {
+      const original = console[level];
+      console[level] = function (...args) {
+        if (process.env.NODE_ENV === &quot;development&quot;) {
+          const timestamp = new Date().toISOString();
+          original.call(
+            console,
+            `%c[${timestamp}] ${level.toUpperCase()}:`,
+            style,
+            ...args,
+          );
+        }
+      };
+    });
+  }
+}
+
+// React DevTools integration
+if (process.env.NODE_ENV === &quot;development&quot;) {
+  // Expose React internals
+  window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = {
+    ...window.__REACT_DEVTOOLS_GLOBAL_HOOK__,
+    onCommitFiberRoot: (id, root) =&gt; {
+      // Custom commit logging
+      console.debug(&quot;React commit:&quot;, root);
+    },
+  };
+}
+</code></pre>
+<h3>2. Remote Debugging Setup</h3>
+<p>Configure remote debugging capabilities:</p>
+<p><strong>Remote Debug Server</strong></p>
+<pre><code class="language-javascript">// remote-debug-server.js
+const inspector = require(&#39;inspector&#39;);
+const WebSocket = require(&#39;ws&#39;);
+const http = require(&#39;http&#39;);
+
+class RemoteDebugServer {
+    constructor(options = {}) {
+        this.port = options.port || 9229;
+        this.host = options.host || &#39;0.0.0.0&#39;;
+        this.wsPort = options.wsPort || 9230;
+        this.sessions = new Map();
+    }
+
+    start() {
+        // Open inspector
+        inspector.open(this.port, this.host, true);
+
+        // Create WebSocket server for remote connections
+        this.wss = new WebSocket.Server({ port: this.wsPort });
+
+        this.wss.on(&#39;connection&#39;, (ws) =&gt; {
+            const sessionId = this.generateSessionId();
+            this.sessions.set(sessionId, ws);
+
+            ws.on(&#39;message&#39;, (message) =&gt; {
+                this.handleDebugCommand(sessionId, message);
+            });
+
+            ws.on(&#39;close&#39;, () =&gt; {
+                this.sessions.delete(sessionId);
+            });
+
+            // Send initial session info
+            ws.send(JSON.stringify({
+                type: &#39;session&#39;,
+                sessionId,
+                debugUrl: `chrome-devtools://devtools/bundled/inspector.html?ws=${this.host}:${this.port}`
+            }));
+        });
+
+        console.log(`Remote debug server listening on ws://${this.host}:${this.wsPort}`);
+    }
+
+    handleDebugCommand(sessionId, message) {
+        const command = JSON.parse(message);
+
+        switch (command.type) {
+            case &#39;evaluate&#39;:
+                this.evaluateExpression(sessionId, command.expression);
+                break;
+            case &#39;setBreakpoint&#39;:
+                this.setBreakpoint(command.file, command.line);
+                break;
+            case &#39;heapSnapshot&#39;:
+                this.takeHeapSnapshot(sessionId);
+                break;
+            case &#39;profile&#39;:
+                this.startProfiling(sessionId, command.duration);
+                break;
+        }
+    }
+
+    evaluateExpression(sessionId, expression) {
+        const session = new inspector.Session();
+        session.connect();
+
+        session.post(&#39;Runtime.evaluate&#39;, {
+            expression,
+            generatePreview: true,
+            includeCommandLineAPI: true
+        }, (error, result) =&gt; {
+            const ws = this.sessions.get(sessionId);
+            if (ws) {
+                ws.send(JSON.stringify({
+                    type: &#39;evaluateResult&#39;,
+                    result: result || error
+                }));
+            }
+        });
+
+        session.disconnect();
+    }
+}
+
+// Docker remote debugging setup
+FROM node:18
+RUN apt-get update &amp;&amp; apt-get install -y \
+    chromium \
+    gdb \
+    strace \
+    tcpdump \
+    vim
+
+EXPOSE 9229 9230
+ENV NODE_OPTIONS=&quot;--inspect=0.0.0.0:9229&quot;
+CMD [&quot;node&quot;, &quot;--inspect-brk=0.0.0.0:9229&quot;, &quot;index.js&quot;]
+</code></pre>
+<h3>3. Distributed Tracing</h3>
+<p>Implement comprehensive distributed tracing:</p>
+<p><strong>OpenTelemetry Setup</strong></p>
+<pre><code class="language-javascript">// tracing.js
+const { NodeSDK } = require(&quot;@opentelemetry/sdk-node&quot;);
+const {
+  getNodeAutoInstrumentations,
+} = require(&quot;@opentelemetry/auto-instrumentations-node&quot;);
+const { Resource } = require(&quot;@opentelemetry/resources&quot;);
+const {
+  SemanticResourceAttributes,
+} = require(&quot;@opentelemetry/semantic-conventions&quot;);
+const { JaegerExporter } = require(&quot;@opentelemetry/exporter-jaeger&quot;);
+const { BatchSpanProcessor } = require(&quot;@opentelemetry/sdk-trace-base&quot;);
+
+class TracingSystem {
+  constructor(serviceName) {
+    this.serviceName = serviceName;
+    this.sdk = null;
+  }
+
+  initialize() {
+    const jaegerExporter = new JaegerExporter({
+      endpoint:
+        process.env.JAEGER_ENDPOINT || &quot;http://localhost:14268/api/traces&quot;,
+    });
+
+    const resource = Resource.default().merge(
+      new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]: this.serviceName,
+        [SemanticResourceAttributes.SERVICE_VERSION]:
+          process.env.SERVICE_VERSION || &quot;1.0.0&quot;,
+        [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]:
+          process.env.NODE_ENV || &quot;development&quot;,
+      }),
+    );
+
+    this.sdk = new NodeSDK({
+      resource,
+      spanProcessor: new BatchSpanProcessor(jaegerExporter),
+      instrumentations: [
+        getNodeAutoInstrumentations({
+          &quot;@opentelemetry/instrumentation-fs&quot;: {
+            enabled: false, // Too noisy
+          },
+          &quot;@opentelemetry/instrumentation-http&quot;: {
+            requestHook: (span, request) =&gt; {
+              span.setAttribute(
+                &quot;http.request.body&quot;,
+                JSON.stringify(request.body),
+              );
+            },
+            responseHook: (span, response) =&gt; {
+              span.setAttribute(&quot;http.response.size&quot;, response.length);
+            },
+          },
+          &quot;@opentelemetry/instrumentation-express&quot;: {
+            requestHook: (span, req) =&gt; {
+              span.setAttribute(&quot;user.id&quot;, req.user?.id);
+              span.setAttribute(&quot;session.id&quot;, req.session?.id);
+            },
+          },
+        }),
+      ],
+    });
+
+    this.sdk.start();
+
+    // Graceful shutdown
+    process.on(&quot;SIGTERM&quot;, () =&gt; {
+      this.sdk
+        .shutdown()
+        .then(() =&gt; console.log(&quot;Tracing terminated&quot;))
+        .catch((error) =&gt; console.error(&quot;Error terminating tracing&quot;, error))
+        .finally(() =&gt; process.exit(0));
+    });
+  }
+
+  // Custom span creation
+  createSpan(name, fn, attributes = {}) {
+    const tracer = trace.getTracer(this.serviceName);
+    return tracer.startActiveSpan(name, async (span) =&gt; {
+      try {
+        // Add custom attributes
+        Object.entries(attributes).forEach(([key, value]) =&gt; {
+          span.setAttribute(key, value);
+        });
+
+        // Execute function
+        const result = await fn(span);
+
+        span.setStatus({ code: SpanStatusCode.OK });
+        return result;
+      } catch (error) {
+        span.recordException(error);
+        span.setStatus({
+          code: SpanStatusCode.ERROR,
+          message: error.message,
+        });
+        throw error;
+      } finally {
+        span.end();
+      }
+    });
+  }
+}
+
+// Distributed tracing middleware
+class TracingMiddleware {
+  constructor() {
+    this.tracer = trace.getTracer(&quot;http-middleware&quot;);
+  }
+
+  express() {
+    return (req, res, next) =&gt; {
+      const span = this.tracer.startSpan(`${req.method} ${req.path}`, {
+        kind: SpanKind.SERVER,
+        attributes: {
+          &quot;http.method&quot;: req.method,
+          &quot;http.url&quot;: req.url,
+          &quot;http.target&quot;: req.path,
+          &quot;http.host&quot;: req.hostname,
+          &quot;http.scheme&quot;: req.protocol,
+          &quot;http.user_agent&quot;: req.get(&quot;user-agent&quot;),
+          &quot;http.request_content_length&quot;: req.get(&quot;content-length&quot;),
+        },
+      });
+
+      // Inject trace context into request
+      req.span = span;
+      req.traceId = span.spanContext().traceId;
+
+      // Add trace ID to response headers
+      res.setHeader(&quot;X-Trace-Id&quot;, req.traceId);
+
+      // Override res.end to capture response data
+      const originalEnd = res.end;
+      res.end = function (...args) {
+        span.setAttribute(&quot;http.status_code&quot;, res.statusCode);
+        span.setAttribute(
+          &quot;http.response_content_length&quot;,
+          res.get(&quot;content-length&quot;),
+        );
+
+        if (res.statusCode &gt;= 400) {
+          span.setStatus({
+            code: SpanStatusCode.ERROR,
+            message: `HTTP ${res.statusCode}`,
+          });
+        }
+
+        span.end();
+        originalEnd.apply(res, args);
+      };
+
+      next();
+    };
+  }
+}
+</code></pre>
+<h3>4. Debug Logging Framework</h3>
+<p>Implement structured debug logging:</p>
+<p><strong>Advanced Logger</strong></p>
+<pre><code class="language-javascript">// debug-logger.js
+const winston = require(&quot;winston&quot;);
+const { ElasticsearchTransport } = require(&quot;winston-elasticsearch&quot;);
+
+class DebugLogger {
+  constructor(options = {}) {
+    this.service = options.service || &quot;app&quot;;
+    this.level = process.env.LOG_LEVEL || &quot;debug&quot;;
+    this.logger = this.createLogger();
+  }
+
+  createLogger() {
+    const formats = [
+      winston.format.timestamp(),
+      winston.format.errors({ stack: true }),
+      winston.format.splat(),
+      winston.format.json(),
+    ];
+
+    if (process.env.NODE_ENV === &quot;development&quot;) {
+      formats.push(winston.format.colorize());
+      formats.push(winston.format.printf(this.devFormat));
+    }
+
+    const transports = [
+      new winston.transports.Console({
+        level: this.level,
+        handleExceptions: true,
+        handleRejections: true,
+      }),
+    ];
+
+    // Add file transport for debugging
+    if (process.env.DEBUG_LOG_FILE) {
+      transports.push(
+        new winston.transports.File({
+          filename: process.env.DEBUG_LOG_FILE,
+          level: &quot;debug&quot;,
+          maxsize: 10485760, // 10MB
+          maxFiles: 5,
+        }),
+      );
+    }
+
+    // Add Elasticsearch for production
+    if (process.env.ELASTICSEARCH_URL) {
+      transports.push(
+        new ElasticsearchTransport({
+          level: &quot;info&quot;,
+          clientOpts: {
+            node: process.env.ELASTICSEARCH_URL,
+          },
+          index: `logs-${this.service}`,
+        }),
+      );
+    }
+
+    return winston.createLogger({
+      level: this.level,
+      format: winston.format.combine(...formats),
+      defaultMeta: {
+        service: this.service,
+        environment: process.env.NODE_ENV,
+        hostname: require(&quot;os&quot;).hostname(),
+        pid: process.pid,
+      },
+      transports,
+    });
+  }
+
+  devFormat(info) {
+    const { timestamp, level, message, ...meta } = info;
+    const metaString = Object.keys(meta).length
+      ? &quot;\n&quot; + JSON.stringify(meta, null, 2)
+      : &quot;&quot;;
+
+    return `${timestamp} [${level}]: ${message}${metaString}`;
+  }
+
+  // Debug-specific methods
+  trace(message, meta = {}) {
+    const stack = new Error().stack;
+    this.logger.debug(message, {
+      ...meta,
+      trace: stack,
+      timestamp: Date.now(),
+    });
+  }
+
+  timing(label, fn) {
+    const start = process.hrtime.bigint();
+    const result = fn();
+    const end = process.hrtime.bigint();
+    const duration = Number(end - start) / 1000000; // Convert to ms
+
+    this.logger.debug(`Timing: ${label}`, {
+      duration,
+      unit: &quot;ms&quot;,
+    });
+
+    return result;
+  }
+
+  memory() {
+    const usage = process.memoryUsage();
+    this.logger.debug(&quot;Memory usage&quot;, {
+      rss: `${Math.round(usage.rss / 1024 / 1024)}MB`,
+      heapTotal: `${Math.round(usage.heapTotal / 1024 / 1024)}MB`,
+      heapUsed: `${Math.round(usage.heapUsed / 1024 / 1024)}MB`,
+      external: `${Math.round(usage.external / 1024 / 1024)}MB`,
+    });
+  }
+}
+
+// Debug context manager
+class DebugContext {
+  constructor() {
+    this.contexts = new Map();
+  }
+
+  create(id, metadata = {}) {
+    const context = {
+      id,
+      startTime: Date.now(),
+      metadata,
+      logs: [],
+      spans: [],
+    };
+
+    this.contexts.set(id, context);
+    return context;
+  }
+
+  log(contextId, level, message, data = {}) {
+    const context = this.contexts.get(contextId);
+    if (context) {
+      context.logs.push({
+        timestamp: Date.now(),
+        level,
+        message,
+        data,
+      });
+    }
+  }
+
+  export(contextId) {
+    const context = this.contexts.get(contextId);
+    if (!context) return null;
+
+    return {
+      ...context,
+      duration: Date.now() - context.startTime,
+      logCount: context.logs.length,
+    };
+  }
+}
+</code></pre>
+<h3>5. Source Map Configuration</h3>
+<p>Set up source map support for production debugging:</p>
+<p><strong>Source Map Setup</strong></p>
+<pre><code class="language-javascript">// webpack.config.js
+module.exports = {
+  mode: &quot;production&quot;,
+  devtool: &quot;hidden-source-map&quot;, // Generate source maps but don&#39;t reference them
+
+  output: {
+    filename: &quot;[name].[contenthash].js&quot;,
+    sourceMapFilename: &quot;sourcemaps/[name].[contenthash].js.map&quot;,
+  },
+
+  plugins: [
+    // Upload source maps to error tracking service
+    new SentryWebpackPlugin({
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      org: &quot;your-org&quot;,
+      project: &quot;your-project&quot;,
+      include: &quot;./dist&quot;,
+      ignore: [&quot;node_modules&quot;],
+      urlPrefix: &quot;~/&quot;,
+      release: process.env.RELEASE_VERSION,
+      deleteAfterCompile: true,
+    }),
+  ],
+};
+
+// Runtime source map support
+require(&quot;source-map-support&quot;).install({
+  environment: &quot;node&quot;,
+  handleUncaughtExceptions: false,
+  retrieveSourceMap(source) {
+    // Custom source map retrieval for production
+    if (process.env.NODE_ENV === &quot;production&quot;) {
+      const sourceMapUrl = getSourceMapUrl(source);
+      if (sourceMapUrl) {
+        const map = fetchSourceMap(sourceMapUrl);
+        return {
+          url: source,
+          map: map,
+        };
+      }
+    }
+    return null;
+  },
+});
+
+// Stack trace enhancement
+Error.prepareStackTrace = (error, stack) =&gt; {
+  const mapped = stack.map((frame) =&gt; {
+    const fileName = frame.getFileName();
+    const lineNumber = frame.getLineNumber();
+    const columnNumber = frame.getColumnNumber();
+
+    // Try to get original position
+    const original = getOriginalPosition(fileName, lineNumber, columnNumber);
+
+    return {
+      function: frame.getFunctionName() || &quot;&lt;anonymous&gt;&quot;,
+      file: original?.source || fileName,
+      line: original?.line || lineNumber,
+      column: original?.column || columnNumber,
+      native: frame.isNative(),
+      async: frame.isAsync(),
+    };
+  });
+
+  return {
+    message: error.message,
+    stack: mapped,
+  };
+};
+</code></pre>
+<h3>6. Performance Profiling</h3>
+<p>Implement performance profiling tools:</p>
+<p><strong>Performance Profiler</strong></p>
+<pre><code class="language-javascript">// performance-profiler.js
+const v8Profiler = require(&quot;v8-profiler-next&quot;);
+const fs = require(&quot;fs&quot;);
+const path = require(&quot;path&quot;);
+
+class PerformanceProfiler {
+  constructor(options = {}) {
+    this.outputDir = options.outputDir || &quot;./profiles&quot;;
+    this.profiles = new Map();
+
+    // Ensure output directory exists
+    if (!fs.existsSync(this.outputDir)) {
+      fs.mkdirSync(this.outputDir, { recursive: true });
+    }
+  }
+
+  startCPUProfile(id, options = {}) {
+    const title = options.title || `cpu-profile-${id}`;
+    v8Profiler.startProfiling(title, true);
+
+    this.profiles.set(id, {
+      type: &quot;cpu&quot;,
+      title,
+      startTime: Date.now(),
+    });
+
+    return id;
+  }
+
+  stopCPUProfile(id) {
+    const profileInfo = this.profiles.get(id);
+    if (!profileInfo || profileInfo.type !== &quot;cpu&quot;) {
+      throw new Error(`CPU profile ${id} not found`);
+    }
+
+    const profile = v8Profiler.stopProfiling(profileInfo.title);
+    const duration = Date.now() - profileInfo.startTime;
+
+    // Export profile
+    const fileName = `${profileInfo.title}-${Date.now()}.cpuprofile`;
+    const filePath = path.join(this.outputDir, fileName);
+
+    profile.export((error, result) =&gt; {
+      if (!error) {
+        fs.writeFileSync(filePath, result);
+        console.log(`CPU profile saved to ${filePath}`);
+      }
+      profile.delete();
+    });
+
+    this.profiles.delete(id);
+
+    return {
+      id,
+      duration,
+      filePath,
+    };
+  }
+
+  takeHeapSnapshot(tag = &quot;&quot;) {
+    const fileName = `heap-${tag}-${Date.now()}.heapsnapshot`;
+    const filePath = path.join(this.outputDir, fileName);
+
+    const snapshot = v8Profiler.takeSnapshot();
+
+    // Export snapshot
+    snapshot.export((error, result) =&gt; {
+      if (!error) {
+        fs.writeFileSync(filePath, result);
+        console.log(`Heap snapshot saved to ${filePath}`);
+      }
+      snapshot.delete();
+    });
+
+    return filePath;
+  }
+
+  measureFunction(fn, name = &quot;anonymous&quot;) {
+    const measurements = {
+      name,
+      executions: 0,
+      totalTime: 0,
+      minTime: Infinity,
+      maxTime: 0,
+      avgTime: 0,
+      lastExecution: null,
+    };
+
+    return new Proxy(fn, {
+      apply(target, thisArg, args) {
+        const start = process.hrtime.bigint();
+
+        try {
+          const result = target.apply(thisArg, args);
+
+          if (result instanceof Promise) {
+            return result.finally(() =&gt; {
+              this.recordExecution(start);
+            });
+          }
+
+          this.recordExecution(start);
+          return result;
+        } catch (error) {
+          this.recordExecution(start);
+          throw error;
+        }
+      },
+
+      recordExecution(start) {
+        const end = process.hrtime.bigint();
+        const duration = Number(end - start) / 1000000; // Convert to ms
+
+        measurements.executions++;
+        measurements.totalTime += duration;
+        measurements.minTime = Math.min(measurements.minTime, duration);
+        measurements.maxTime = Math.max(measurements.maxTime, duration);
+        measurements.avgTime = measurements.totalTime / measurements.executions;
+        measurements.lastExecution = new Date();
+
+        // Log slow executions
+        if (duration &gt; 100) {
+          console.warn(`Slow function execution: ${name} took ${duration}ms`);
+        }
+      },
+
+      get(target, prop) {
+        if (prop === &quot;measurements&quot;) {
+          return measurements;
+        }
+        return target[prop];
+      },
+    });
+  }
+}
+
+// Memory leak detector
+class MemoryLeakDetector {
+  constructor() {
+    this.snapshots = [];
+    this.threshold = 50 * 1024 * 1024; // 50MB
+  }
+
+  start(interval = 60000) {
+    this.interval = setInterval(() =&gt; {
+      this.checkMemory();
+    }, interval);
+  }
+
+  checkMemory() {
+    const usage = process.memoryUsage();
+    const snapshot = {
+      timestamp: Date.now(),
+      heapUsed: usage.heapUsed,
+      external: usage.external,
+      rss: usage.rss,
+    };
+
+    this.snapshots.push(snapshot);
+
+    // Keep only last 10 snapshots
+    if (this.snapshots.length &gt; 10) {
+      this.snapshots.shift();
+    }
+
+    // Check for memory leak pattern
+    if (this.snapshots.length &gt;= 5) {
+      const trend = this.calculateTrend();
+      if (trend.increasing &amp;&amp; trend.delta &gt; this.threshold) {
+        console.error(&quot;Potential memory leak detected!&quot;, {
+          trend,
+          current: snapshot,
+        });
+
+        // Take heap snapshot for analysis
+        const profiler = new PerformanceProfiler();
+        profiler.takeHeapSnapshot(&quot;leak-detection&quot;);
+      }
+    }
+  }
+
+  calculateTrend() {
+    const recent = this.snapshots.slice(-5);
+    const first = recent[0];
+    const last = recent[recent.length - 1];
+
+    const delta = last.heapUsed - first.heapUsed;
+    const increasing = recent.every(
+      (s, i) =&gt; i === 0 || s.heapUsed &gt; recent[i - 1].heapUsed,
+    );
+
+    return {
+      increasing,
+      delta,
+      rate: (delta / (last.timestamp - first.timestamp)) * 1000 * 60, // MB per minute
+    };
+  }
+}
+</code></pre>
+<h3>7. Debug Configuration Management</h3>
+<p>Centralize debug configurations:</p>
+<p><strong>Debug Configuration</strong></p>
+<pre><code class="language-javascript">// debug-config.js
+class DebugConfiguration {
+  constructor() {
+    this.config = {
+      // Debug levels
+      levels: {
+        error: 0,
+        warn: 1,
+        info: 2,
+        debug: 3,
+        trace: 4,
+      },
+
+      // Feature flags
+      features: {
+        remoteDebugging: process.env.ENABLE_REMOTE_DEBUG === &quot;true&quot;,
+        tracing: process.env.ENABLE_TRACING === &quot;true&quot;,
+        profiling: process.env.ENABLE_PROFILING === &quot;true&quot;,
+        memoryMonitoring: process.env.ENABLE_MEMORY_MONITORING === &quot;true&quot;,
+      },
+
+      // Debug endpoints
+      endpoints: {
+        jaeger: process.env.JAEGER_ENDPOINT || &quot;http://localhost:14268&quot;,
+        elasticsearch: process.env.ELASTICSEARCH_URL || &quot;http://localhost:9200&quot;,
+        sentry: process.env.SENTRY_DSN,
+      },
+
+      // Sampling rates
+      sampling: {
+        traces: parseFloat(process.env.TRACE_SAMPLING_RATE || &quot;0.1&quot;),
+        profiles: parseFloat(process.env.PROFILE_SAMPLING_RATE || &quot;0.01&quot;),
+        logs: parseFloat(process.env.LOG_SAMPLING_RATE || &quot;1.0&quot;),
+      },
+    };
+  }
+
+  isEnabled(feature) {
+    return this.config.features[feature] || false;
+  }
+
+  getLevel() {
+    const level = process.env.DEBUG_LEVEL || &quot;info&quot;;
+    return this.config.levels[level] || 2;
+  }
+
+  shouldSample(type) {
+    const rate = this.config.sampling[type] || 1.0;
+    return Math.random() &lt; rate;
+  }
+}
+
+// Debug middleware factory
+class DebugMiddlewareFactory {
+  static create(app, config) {
+    const middlewares = [];
+
+    if (config.isEnabled(&quot;tracing&quot;)) {
+      const tracingMiddleware = new TracingMiddleware();
+      middlewares.push(tracingMiddleware.express());
+    }
+
+    if (config.isEnabled(&quot;profiling&quot;)) {
+      middlewares.push(this.profilingMiddleware());
+    }
+
+    if (config.isEnabled(&quot;memoryMonitoring&quot;)) {
+      const detector = new MemoryLeakDetector();
+      detector.start();
+    }
+
+    // Debug routes
+    if (process.env.NODE_ENV === &quot;development&quot;) {
+      app.get(&quot;/debug/heap&quot;, (req, res) =&gt; {
+        const profiler = new PerformanceProfiler();
+        const path = profiler.takeHeapSnapshot(&quot;manual&quot;);
+        res.json({ heapSnapshot: path });
+      });
+
+      app.get(&quot;/debug/profile&quot;, async (req, res) =&gt; {
+        const profiler = new PerformanceProfiler();
+        const id = profiler.startCPUProfile(&quot;manual&quot;);
+
+        setTimeout(() =&gt; {
+          const result = profiler.stopCPUProfile(id);
+          res.json(result);
+        }, 10000);
+      });
+
+      app.get(&quot;/debug/metrics&quot;, (req, res) =&gt; {
+        res.json({
+          memory: process.memoryUsage(),
+          cpu: process.cpuUsage(),
+          uptime: process.uptime(),
+        });
+      });
+    }
+
+    return middlewares;
+  }
+
+  static profilingMiddleware() {
+    const profiler = new PerformanceProfiler();
+
+    return (req, res, next) =&gt; {
+      if (Math.random() &lt; 0.01) {
+        // 1% sampling
+        const id = profiler.startCPUProfile(`request-${Date.now()}`);
+
+        res.on(&quot;finish&quot;, () =&gt; {
+          profiler.stopCPUProfile(id);
+        });
+      }
+
+      next();
+    };
+  }
+}
+</code></pre>
+<h3>8. Production Debugging</h3>
+<p>Enable safe production debugging:</p>
+<p><strong>Production Debug Tools</strong></p>
+<pre><code class="language-javascript">// production-debug.js
+class ProductionDebugger {
+  constructor(options = {}) {
+    this.enabled = process.env.PRODUCTION_DEBUG === &quot;true&quot;;
+    this.authToken = process.env.DEBUG_AUTH_TOKEN;
+    this.allowedIPs = (process.env.DEBUG_ALLOWED_IPS || &quot;&quot;).split(&quot;,&quot;);
+  }
+
+  middleware() {
+    return (req, res, next) =&gt; {
+      if (!this.enabled) {
+        return next();
+      }
+
+      // Check authorization
+      const token = req.headers[&quot;x-debug-token&quot;];
+      const ip = req.ip || req.connection.remoteAddress;
+
+      if (token !== this.authToken || !this.allowedIPs.includes(ip)) {
+        return next();
+      }
+
+      // Add debug headers
+      res.setHeader(&quot;X-Debug-Enabled&quot;, &quot;true&quot;);
+
+      // Enable debug mode for this request
+      req.debugMode = true;
+      req.debugContext = new DebugContext().create(req.id);
+
+      // Override console for this request
+      const originalConsole = { ...console };
+      [&quot;log&quot;, &quot;debug&quot;, &quot;info&quot;, &quot;warn&quot;, &quot;error&quot;].forEach((method) =&gt; {
+        console[method] = (...args) =&gt; {
+          req.debugContext.log(req.id, method, args[0], args.slice(1));
+          originalConsole[method](...args);
+        };
+      });
+
+      // Restore console on response
+      res.on(&quot;finish&quot;, () =&gt; {
+        Object.assign(console, originalConsole);
+
+        // Send debug info if requested
+        if (req.headers[&quot;x-debug-response&quot;] === &quot;true&quot;) {
+          const debugInfo = req.debugContext.export(req.id);
+          res.setHeader(&quot;X-Debug-Info&quot;, JSON.stringify(debugInfo));
+        }
+      });
+
+      next();
+    };
+  }
+}
+
+// Conditional breakpoints in production
+class ConditionalBreakpoint {
+  constructor(condition, callback) {
+    this.condition = condition;
+    this.callback = callback;
+    this.hits = 0;
+  }
+
+  check(context) {
+    if (this.condition(context)) {
+      this.hits++;
+
+      // Log breakpoint hit
+      console.debug(&quot;Conditional breakpoint hit&quot;, {
+        condition: this.condition.toString(),
+        hits: this.hits,
+        context,
+      });
+
+      // Execute callback
+      if (this.callback) {
+        this.callback(context);
+      }
+
+      // In production, don&#39;t actually break
+      if (process.env.NODE_ENV === &quot;production&quot;) {
+        // Take snapshot instead
+        const profiler = new PerformanceProfiler();
+        profiler.takeHeapSnapshot(`breakpoint-${Date.now()}`);
+      } else {
+        // In development, use debugger
+        debugger;
+      }
+    }
+  }
+}
+
+// Usage
+const breakpoints = new Map();
+
+// Set conditional breakpoint
+breakpoints.set(
+  &quot;high-memory&quot;,
+  new ConditionalBreakpoint(
+    (context) =&gt; context.memoryUsage &gt; 500 * 1024 * 1024, // 500MB
+    (context) =&gt; {
+      console.error(&quot;High memory usage detected&quot;, context);
+      // Send alert
+      alerting.send(&quot;high-memory&quot;, context);
+    },
+  ),
+);
+
+// Check breakpoints in code
+function checkBreakpoints(context) {
+  breakpoints.forEach((breakpoint) =&gt; {
+    breakpoint.check(context);
+  });
+}
+</code></pre>
+<h3>9. Debug Dashboard</h3>
+<p>Create a debug dashboard for monitoring:</p>
+<p><strong>Debug Dashboard</strong></p>
+<pre><code class="language-html">&lt;!-- debug-dashboard.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Debug Dashboard&lt;/title&gt;
+    &lt;style&gt;
+      body {
+        font-family: monospace;
+        background: #1e1e1e;
+        color: #d4d4d4;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .metric {
+        background: #252526;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+      }
+      .metric h3 {
+        margin: 0 0 10px 0;
+        color: #569cd6;
+      }
+      .chart {
+        height: 200px;
+        background: #1e1e1e;
+        margin: 10px 0;
+      }
+      .log-entry {
+        padding: 5px;
+        border-bottom: 1px solid #3e3e3e;
+      }
+      .error {
+        color: #f44747;
+      }
+      .warn {
+        color: #ff9800;
+      }
+      .info {
+        color: #4fc3f7;
+      }
+      .debug {
+        color: #4caf50;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class=&quot;container&quot;&gt;
+      &lt;h1&gt;Debug Dashboard&lt;/h1&gt;
+
+      &lt;div class=&quot;metric&quot;&gt;
+        &lt;h3&gt;System Metrics&lt;/h3&gt;
+        &lt;div id=&quot;metrics&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;metric&quot;&gt;
+        &lt;h3&gt;Memory Usage&lt;/h3&gt;
+        &lt;canvas id=&quot;memoryChart&quot; class=&quot;chart&quot;&gt;&lt;/canvas&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;metric&quot;&gt;
+        &lt;h3&gt;Request Traces&lt;/h3&gt;
+        &lt;div id=&quot;traces&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;metric&quot;&gt;
+        &lt;h3&gt;Debug Logs&lt;/h3&gt;
+        &lt;div id=&quot;logs&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+      // WebSocket connection for real-time updates
+      const ws = new WebSocket(&quot;ws://localhost:9231/debug&quot;);
+
+      ws.onmessage = (event) =&gt; {
+        const data = JSON.parse(event.data);
+
+        switch (data.type) {
+          case &quot;metrics&quot;:
+            updateMetrics(data.payload);
+            break;
+          case &quot;trace&quot;:
+            addTrace(data.payload);
+            break;
+          case &quot;log&quot;:
+            addLog(data.payload);
+            break;
+        }
+      };
+
+      function updateMetrics(metrics) {
+        const container = document.getElementById(&quot;metrics&quot;);
+        container.innerHTML = `
+                &lt;div&gt;CPU: ${metrics.cpu.percent}%&lt;/div&gt;
+                &lt;div&gt;Memory: ${metrics.memory.used}MB / ${metrics.memory.total}MB&lt;/div&gt;
+                &lt;div&gt;Uptime: ${metrics.uptime}s&lt;/div&gt;
+                &lt;div&gt;Active Requests: ${metrics.activeRequests}&lt;/div&gt;
+            `;
+      }
+
+      function addTrace(trace) {
+        const container = document.getElementById(&quot;traces&quot;);
+        const entry = document.createElement(&quot;div&quot;);
+        entry.className = &quot;log-entry&quot;;
+        entry.innerHTML = `
+                &lt;span&gt;${trace.timestamp}&lt;/span&gt;
+                &lt;span&gt;${trace.method} ${trace.path}&lt;/span&gt;
+                &lt;span&gt;${trace.duration}ms&lt;/span&gt;
+                &lt;span&gt;${trace.status}&lt;/span&gt;
+            `;
+        container.insertBefore(entry, container.firstChild);
+      }
+
+      function addLog(log) {
+        const container = document.getElementById(&quot;logs&quot;);
+        const entry = document.createElement(&quot;div&quot;);
+        entry.className = `log-entry ${log.level}`;
+        entry.innerHTML = `
+                &lt;span&gt;${log.timestamp}&lt;/span&gt;
+                &lt;span&gt;[${log.level.toUpperCase()}]&lt;/span&gt;
+                &lt;span&gt;${log.message}&lt;/span&gt;
+            `;
+        container.insertBefore(entry, container.firstChild);
+
+        // Keep only last 100 logs
+        while (container.children.length &gt; 100) {
+          container.removeChild(container.lastChild);
+        }
+      }
+
+      // Memory usage chart
+      const memoryChart = document
+        .getElementById(&quot;memoryChart&quot;)
+        .getContext(&quot;2d&quot;);
+      const memoryData = [];
+
+      function updateMemoryChart(usage) {
+        memoryData.push({
+          time: new Date(),
+          value: usage,
+        });
+
+        // Keep last 50 points
+        if (memoryData.length &gt; 50) {
+          memoryData.shift();
+        }
+
+        // Draw chart
+        // ... chart drawing logic
+      }
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h3>10. IDE Integration</h3>
+<p>Configure IDE debugging features:</p>
+<p><strong>IDE Debug Extensions</strong></p>
+<pre><code class="language-json">// .vscode/extensions.json
+{
+    &quot;recommendations&quot;: [
+        &quot;ms-vscode.vscode-js-debug&quot;,
+        &quot;msjsdiag.debugger-for-chrome&quot;,
+        &quot;ms-vscode.vscode-typescript-tslint-plugin&quot;,
+        &quot;dbaeumer.vscode-eslint&quot;,
+        &quot;ms-azuretools.vscode-docker&quot;,
+        &quot;humao.rest-client&quot;,
+        &quot;eamodio.gitlens&quot;,
+        &quot;usernamehw.errorlens&quot;,
+        &quot;wayou.vscode-todo-highlight&quot;,
+        &quot;formulahendry.code-runner&quot;
+    ]
+}
+
+// .vscode/tasks.json
+{
+    &quot;version&quot;: &quot;2.0.0&quot;,
+    &quot;tasks&quot;: [
+        {
+            &quot;label&quot;: &quot;Start Debug Server&quot;,
+            &quot;type&quot;: &quot;npm&quot;,
+            &quot;script&quot;: &quot;debug&quot;,
+            &quot;problemMatcher&quot;: [],
+            &quot;presentation&quot;: {
+                &quot;reveal&quot;: &quot;always&quot;,
+                &quot;panel&quot;: &quot;dedicated&quot;
+            }
+        },
+        {
+            &quot;label&quot;: &quot;Profile Application&quot;,
+            &quot;type&quot;: &quot;shell&quot;,
+            &quot;command&quot;: &quot;node --inspect-brk --cpu-prof --cpu-prof-dir=./profiles ${workspaceFolder}/src/index.js&quot;,
+            &quot;problemMatcher&quot;: []
+        },
+        {
+            &quot;label&quot;: &quot;Memory Snapshot&quot;,
+            &quot;type&quot;: &quot;shell&quot;,
+            &quot;command&quot;: &quot;node --inspect --expose-gc ${workspaceFolder}/scripts/heap-snapshot.js&quot;,
+            &quot;problemMatcher&quot;: []
+        }
+    ]
+}
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>Debug Configuration</strong>: Complete setup for all debugging tools</li>
+<li><strong>Integration Guide</strong>: Step-by-step integration instructions</li>
+<li><strong>Troubleshooting Playbook</strong>: Common debugging scenarios and solutions</li>
+<li><strong>Performance Baselines</strong>: Metrics for comparison</li>
+<li><strong>Debug Scripts</strong>: Automated debugging utilities</li>
+<li><strong>Dashboard Setup</strong>: Real-time debugging interface</li>
+<li><strong>Documentation</strong>: Team debugging guidelines</li>
+<li><strong>Emergency Procedures</strong>: Production debugging protocols</li>
+</ol>
+<p>Focus on creating a comprehensive debugging environment that enhances developer productivity and enables rapid issue resolution in all environments.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

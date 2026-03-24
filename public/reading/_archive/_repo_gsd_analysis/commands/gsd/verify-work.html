@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>verify work</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/commands/gsd/verify-work.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">verify work</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fcommands">commands</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fcommands%2Fgsd">gsd</a> / <span>verify-work.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: gsd:verify-work
+description: Validate built features through conversational UAT
+argument-hint: &quot;[phase number, e.g., &#39;4&#39;]&quot;
+allowed-tools:
+  - Read
+  - Bash
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Task</h2>
+<objective>
+Validate built features through conversational testing with persistent state.
+
+<p>Purpose: Confirm what Claude built actually works from user&#39;s perspective. One test at a time, plain text responses, no interrogation. When issues are found, automatically diagnose, plan fixes, and prepare for execution.</p>
+<p>Output: {phase}-UAT.md tracking all test results. If issues found: diagnosed gaps, verified fix plans ready for /gsd:execute-phase
+</objective></p>
+<execution_context>
+@~/.claude/get-shit-done/workflows/verify-work.md
+@~/.claude/get-shit-done/templates/UAT.md
+</execution_context>
+
+<context>
+Phase: $ARGUMENTS (optional)
+- If provided: Test specific phase (e.g., "4")
+- If not provided: Check for active sessions or prompt for phase
+
+<p>@.planning/STATE.md
+@.planning/ROADMAP.md
+</context></p>
+<process>
+1. Check for active UAT sessions (resume or start new)
+2. Find SUMMARY.md files for the phase
+3. Extract testable deliverables (user-observable outcomes)
+4. Create {phase}-UAT.md with test list
+5. Present tests one at a time:
+   - Show expected behavior
+   - Wait for plain text response
+   - "yes/y/next" = pass, anything else = issue (severity inferred)
+6. Update UAT.md after each response
+7. On completion: commit, present summary
+8. If issues found:
+   - Spawn parallel debug agents to diagnose root causes
+   - Spawn gsd-planner in --gaps mode to create fix plans
+   - Spawn gsd-plan-checker to verify fix plans
+   - Iterate planner ↔ checker until plans pass (max 3)
+   - Present ready status with `/clear` then `/gsd:execute-phase`
+</process>
+
+<anti_patterns>
+- Don't use AskUserQuestion for test responses — plain text conversation
+- Don't ask severity — infer from description
+- Don't present full checklist upfront — one test at a time
+- Don't run automated tests — this is manual user validation
+- Don't fix issues during testing — log as gaps, diagnose after all tests complete
+</anti_patterns>
+
+<offer_next>
+Output this markdown directly (not as a code block). Route based on UAT results:
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Route</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>All tests pass + more phases</td>
+<td>Route A (next phase)</td>
+</tr>
+<tr>
+<td>All tests pass + last phase</td>
+<td>Route B (milestone complete)</td>
+</tr>
+<tr>
+<td>Issues found + fix plans ready</td>
+<td>Route C (execute fixes)</td>
+</tr>
+<tr>
+<td>Issues found + planning blocked</td>
+<td>Route D (manual intervention)</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Route A: All tests pass, more phases remain</strong></p>
+<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► PHASE {Z} VERIFIED ✓
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+<p><strong>Phase {Z}: {Name}</strong></p>
+<p>{N}/{N} tests passed
+UAT complete ✓</p>
+<p>───────────────────────────────────────────────────────────────</p>
+<h2>▶ Next Up</h2>
+<p><strong>Phase {Z+1}: {Name}</strong> — {Goal from ROADMAP.md}</p>
+<p>/gsd:discuss-phase {Z+1} — gather context and clarify approach</p>
+<p><sub>/clear first → fresh context window</sub></p>
+<p>───────────────────────────────────────────────────────────────</p>
+<p><strong>Also available:</strong></p>
+<ul>
+<li>/gsd:plan-phase {Z+1} — skip discussion, plan directly</li>
+<li>/gsd:execute-phase {Z+1} — skip to execution (if already planned)</li>
+</ul>
+<p>───────────────────────────────────────────────────────────────</p>
+<hr>
+<p><strong>Route B: All tests pass, milestone complete</strong></p>
+<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► PHASE {Z} VERIFIED ✓
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+<p><strong>Phase {Z}: {Name}</strong></p>
+<p>{N}/{N} tests passed
+Final phase verified ✓</p>
+<p>───────────────────────────────────────────────────────────────</p>
+<h2>▶ Next Up</h2>
+<p><strong>Audit milestone</strong> — verify requirements, cross-phase integration, E2E flows</p>
+<p>/gsd:audit-milestone</p>
+<p><sub>/clear first → fresh context window</sub></p>
+<p>───────────────────────────────────────────────────────────────</p>
+<p><strong>Also available:</strong></p>
+<ul>
+<li>/gsd:complete-milestone — skip audit, archive directly</li>
+</ul>
+<p>───────────────────────────────────────────────────────────────</p>
+<hr>
+<p><strong>Route C: Issues found, fix plans ready</strong></p>
+<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► PHASE {Z} ISSUES FOUND ⚠
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+<p><strong>Phase {Z}: {Name}</strong></p>
+<p>{N}/{M} tests passed
+{X} issues diagnosed
+Fix plans verified ✓</p>
+<h3>Issues Found</h3>
+<p>{List issues with severity from UAT.md}</p>
+<p>───────────────────────────────────────────────────────────────</p>
+<h2>▶ Next Up</h2>
+<p><strong>Execute fix plans</strong> — run diagnosed fixes</p>
+<p>/gsd:execute-phase {Z} --gaps-only</p>
+<p><sub>/clear first → fresh context window</sub></p>
+<p>───────────────────────────────────────────────────────────────</p>
+<p><strong>Also available:</strong></p>
+<ul>
+<li>cat .planning/phases/{phase_dir}/*-PLAN.md — review fix plans</li>
+<li>/gsd:plan-phase {Z} --gaps — regenerate fix plans</li>
+</ul>
+<p>───────────────────────────────────────────────────────────────</p>
+<hr>
+<p><strong>Route D: Issues found, planning blocked</strong></p>
+<p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► PHASE {Z} BLOCKED ✗
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+<p><strong>Phase {Z}: {Name}</strong></p>
+<p>{N}/{M} tests passed
+Fix planning blocked after {X} iterations</p>
+<h3>Unresolved Issues</h3>
+<p>{List blocking issues from planner/checker output}</p>
+<p>───────────────────────────────────────────────────────────────</p>
+<h2>▶ Next Up</h2>
+<p><strong>Manual intervention required</strong></p>
+<p>Review the issues above and either:</p>
+<ol>
+<li>Provide guidance for fix planning</li>
+<li>Manually address blockers</li>
+<li>Accept current state and continue</li>
+</ol>
+<p>───────────────────────────────────────────────────────────────</p>
+<p><strong>Options:</strong></p>
+<ul>
+<li>/gsd:plan-phase {Z} --gaps — retry fix planning with guidance</li>
+<li>/gsd:discuss-phase {Z} — gather more context before replanning</li>
+</ul>
+<p>───────────────────────────────────────────────────────────────
+</offer_next></p>
+<success_criteria>
+- [ ] UAT.md created with tests from SUMMARY.md
+- [ ] Tests presented one at a time with expected behavior
+- [ ] Plain text responses (no structured forms)
+- [ ] Severity inferred, never asked
+- [ ] Batched writes: on issue, every 5 passes, or completion
+- [ ] Committed on completion
+- [ ] If issues: parallel debug agents diagnose root causes
+- [ ] If issues: gsd-planner creates fix plans from diagnosed gaps
+- [ ] If issues: gsd-plan-checker verifies fix plans (max 3 iterations)
+- [ ] Ready for `/gsd:execute-phase` when complete
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

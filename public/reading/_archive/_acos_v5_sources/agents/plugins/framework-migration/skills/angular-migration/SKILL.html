@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Angular Migration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/framework-migration/skills/angular-migration/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Angular Migration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration">framework-migration</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration%2Fskills%2Fangular-migration">angular-migration</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: angular-migration
+description: Migrate from AngularJS to Angular using hybrid mode, incremental component rewriting, and dependency injection updates. Use when upgrading AngularJS applications, planning framework migrations, or modernizing legacy Angular code.</h2>
+<h1>Angular Migration</h1>
+<p>Master AngularJS to Angular migration, including hybrid apps, component conversion, dependency injection changes, and routing migration.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Migrating AngularJS (1.x) applications to Angular (2+)</li>
+<li>Running hybrid AngularJS/Angular applications</li>
+<li>Converting directives to components</li>
+<li>Modernizing dependency injection</li>
+<li>Migrating routing systems</li>
+<li>Updating to latest Angular versions</li>
+<li>Implementing Angular best practices</li>
+</ul>
+<h2>Migration Strategies</h2>
+<h3>1. Big Bang (Complete Rewrite)</h3>
+<ul>
+<li>Rewrite entire app in Angular</li>
+<li>Parallel development</li>
+<li>Switch over at once</li>
+<li><strong>Best for:</strong> Small apps, green field projects</li>
+</ul>
+<h3>2. Incremental (Hybrid Approach)</h3>
+<ul>
+<li>Run AngularJS and Angular side-by-side</li>
+<li>Migrate feature by feature</li>
+<li>ngUpgrade for interop</li>
+<li><strong>Best for:</strong> Large apps, continuous delivery</li>
+</ul>
+<h3>3. Vertical Slice</h3>
+<ul>
+<li>Migrate one feature completely</li>
+<li>New features in Angular, maintain old in AngularJS</li>
+<li>Gradually replace</li>
+<li><strong>Best for:</strong> Medium apps, distinct features</li>
+</ul>
+<h2>Hybrid App Setup</h2>
+<pre><code class="language-typescript">// main.ts - Bootstrap hybrid app
+import { platformBrowserDynamic } from &quot;@angular/platform-browser-dynamic&quot;;
+import { UpgradeModule } from &quot;@angular/upgrade/static&quot;;
+import { AppModule } from &quot;./app/app.module&quot;;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .then((platformRef) =&gt; {
+    const upgrade = platformRef.injector.get(UpgradeModule);
+    // Bootstrap AngularJS
+    upgrade.bootstrap(document.body, [&quot;myAngularJSApp&quot;], { strictDi: true });
+  });
+</code></pre>
+<pre><code class="language-typescript">// app.module.ts
+import { NgModule } from &quot;@angular/core&quot;;
+import { BrowserModule } from &quot;@angular/platform-browser&quot;;
+import { UpgradeModule } from &quot;@angular/upgrade/static&quot;;
+
+@NgModule({
+  imports: [BrowserModule, UpgradeModule],
+})
+export class AppModule {
+  constructor(private upgrade: UpgradeModule) {}
+
+  ngDoBootstrap() {
+    // Bootstrapped manually in main.ts
+  }
+}
+</code></pre>
+<h2>Component Migration</h2>
+<h3>AngularJS Controller → Angular Component</h3>
+<pre><code class="language-javascript">// Before: AngularJS controller
+angular
+  .module(&quot;myApp&quot;)
+  .controller(&quot;UserController&quot;, function ($scope, UserService) {
+    $scope.user = {};
+
+    $scope.loadUser = function (id) {
+      UserService.getUser(id).then(function (user) {
+        $scope.user = user;
+      });
+    };
+
+    $scope.saveUser = function () {
+      UserService.saveUser($scope.user);
+    };
+  });
+</code></pre>
+<pre><code class="language-typescript">// After: Angular component
+import { Component, OnInit } from &quot;@angular/core&quot;;
+import { UserService } from &quot;./user.service&quot;;
+
+@Component({
+  selector: &quot;app-user&quot;,
+  template: `
+    &lt;div&gt;
+      &lt;h2&gt;{{ user.name }}&lt;/h2&gt;
+      &lt;button (click)=&quot;saveUser()&quot;&gt;Save&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+})
+export class UserComponent implements OnInit {
+  user: any = {};
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit() {
+    this.loadUser(1);
+  }
+
+  loadUser(id: number) {
+    this.userService.getUser(id).subscribe((user) =&gt; {
+      this.user = user;
+    });
+  }
+
+  saveUser() {
+    this.userService.saveUser(this.user);
+  }
+}
+</code></pre>
+<h3>AngularJS Directive → Angular Component</h3>
+<pre><code class="language-javascript">// Before: AngularJS directive
+angular.module(&quot;myApp&quot;).directive(&quot;userCard&quot;, function () {
+  return {
+    restrict: &quot;E&quot;,
+    scope: {
+      user: &quot;=&quot;,
+      onDelete: &quot;&amp;&quot;,
+    },
+    template: `
+      &lt;div class=&quot;card&quot;&gt;
+        &lt;h3&gt;{{ user.name }}&lt;/h3&gt;
+        &lt;button ng-click=&quot;onDelete()&quot;&gt;Delete&lt;/button&gt;
+      &lt;/div&gt;
+    `,
+  };
+});
+</code></pre>
+<pre><code class="language-typescript">// After: Angular component
+import { Component, Input, Output, EventEmitter } from &quot;@angular/core&quot;;
+
+@Component({
+  selector: &quot;app-user-card&quot;,
+  template: `
+    &lt;div class=&quot;card&quot;&gt;
+      &lt;h3&gt;{{ user.name }}&lt;/h3&gt;
+      &lt;button (click)=&quot;delete.emit()&quot;&gt;Delete&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+})
+export class UserCardComponent {
+  @Input() user: any;
+  @Output() delete = new EventEmitter&lt;void&gt;();
+}
+
+// Usage: &lt;app-user-card [user]=&quot;user&quot; (delete)=&quot;handleDelete()&quot;&gt;&lt;/app-user-card&gt;
+</code></pre>
+<h2>Service Migration</h2>
+<pre><code class="language-javascript">// Before: AngularJS service
+angular.module(&quot;myApp&quot;).factory(&quot;UserService&quot;, function ($http) {
+  return {
+    getUser: function (id) {
+      return $http.get(&quot;/api/users/&quot; + id);
+    },
+    saveUser: function (user) {
+      return $http.post(&quot;/api/users&quot;, user);
+    },
+  };
+});
+</code></pre>
+<pre><code class="language-typescript">// After: Angular service
+import { Injectable } from &quot;@angular/core&quot;;
+import { HttpClient } from &quot;@angular/common/http&quot;;
+import { Observable } from &quot;rxjs&quot;;
+
+@Injectable({
+  providedIn: &quot;root&quot;,
+})
+export class UserService {
+  constructor(private http: HttpClient) {}
+
+  getUser(id: number): Observable&lt;any&gt; {
+    return this.http.get(`/api/users/${id}`);
+  }
+
+  saveUser(user: any): Observable&lt;any&gt; {
+    return this.http.post(&quot;/api/users&quot;, user);
+  }
+}
+</code></pre>
+<h2>Dependency Injection Changes</h2>
+<h3>Downgrading Angular → AngularJS</h3>
+<pre><code class="language-typescript">// Angular service
+import { Injectable } from &quot;@angular/core&quot;;
+
+@Injectable({ providedIn: &quot;root&quot; })
+export class NewService {
+  getData() {
+    return &quot;data from Angular&quot;;
+  }
+}
+
+// Make available to AngularJS
+import { downgradeInjectable } from &quot;@angular/upgrade/static&quot;;
+
+angular.module(&quot;myApp&quot;).factory(&quot;newService&quot;, downgradeInjectable(NewService));
+
+// Use in AngularJS
+angular.module(&quot;myApp&quot;).controller(&quot;OldController&quot;, function (newService) {
+  console.log(newService.getData());
+});
+</code></pre>
+<h3>Upgrading AngularJS → Angular</h3>
+<pre><code class="language-typescript">// AngularJS service
+angular.module(&#39;myApp&#39;).factory(&#39;oldService&#39;, function() {
+  return {
+    getData: function() {
+      return &#39;data from AngularJS&#39;;
+    }
+  };
+});
+
+// Make available to Angular
+import { InjectionToken } from &#39;@angular/core&#39;;
+
+export const OLD_SERVICE = new InjectionToken&lt;any&gt;(&#39;oldService&#39;);
+
+@NgModule({
+  providers: [
+    {
+      provide: OLD_SERVICE,
+      useFactory: (i: any) =&gt; i.get(&#39;oldService&#39;),
+      deps: [&#39;$injector&#39;]
+    }
+  ]
+})
+
+// Use in Angular
+@Component({...})
+export class NewComponent {
+  constructor(@Inject(OLD_SERVICE) private oldService: any) {
+    console.log(this.oldService.getData());
+  }
+}
+</code></pre>
+<h2>Routing Migration</h2>
+<pre><code class="language-javascript">// Before: AngularJS routing
+angular.module(&quot;myApp&quot;).config(function ($routeProvider) {
+  $routeProvider
+    .when(&quot;/users&quot;, {
+      template: &quot;&lt;user-list&gt;&lt;/user-list&gt;&quot;,
+    })
+    .when(&quot;/users/:id&quot;, {
+      template: &quot;&lt;user-detail&gt;&lt;/user-detail&gt;&quot;,
+    });
+});
+</code></pre>
+<pre><code class="language-typescript">// After: Angular routing
+import { NgModule } from &quot;@angular/core&quot;;
+import { RouterModule, Routes } from &quot;@angular/router&quot;;
+
+const routes: Routes = [
+  { path: &quot;users&quot;, component: UserListComponent },
+  { path: &quot;users/:id&quot;, component: UserDetailComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+</code></pre>
+<h2>Forms Migration</h2>
+<pre><code class="language-html">&lt;!-- Before: AngularJS --&gt;
+&lt;form name=&quot;userForm&quot; ng-submit=&quot;saveUser()&quot;&gt;
+  &lt;input type=&quot;text&quot; ng-model=&quot;user.name&quot; required /&gt;
+  &lt;input type=&quot;email&quot; ng-model=&quot;user.email&quot; required /&gt;
+  &lt;button ng-disabled=&quot;userForm.$invalid&quot;&gt;Save&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<pre><code class="language-typescript">// After: Angular (Template-driven)
+@Component({
+  template: `
+    &lt;form #userForm=&quot;ngForm&quot; (ngSubmit)=&quot;saveUser()&quot;&gt;
+      &lt;input type=&quot;text&quot; [(ngModel)]=&quot;user.name&quot; name=&quot;name&quot; required&gt;
+      &lt;input type=&quot;email&quot; [(ngModel)]=&quot;user.email&quot; name=&quot;email&quot; required&gt;
+      &lt;button [disabled]=&quot;userForm.invalid&quot;&gt;Save&lt;/button&gt;
+    &lt;/form&gt;
+  `
+})
+
+// Or Reactive Forms (preferred)
+import { FormBuilder, FormGroup, Validators } from &#39;@angular/forms&#39;;
+
+@Component({
+  template: `
+    &lt;form [formGroup]=&quot;userForm&quot; (ngSubmit)=&quot;saveUser()&quot;&gt;
+      &lt;input formControlName=&quot;name&quot;&gt;
+      &lt;input formControlName=&quot;email&quot;&gt;
+      &lt;button [disabled]=&quot;userForm.invalid&quot;&gt;Save&lt;/button&gt;
+    &lt;/form&gt;
+  `
+})
+export class UserFormComponent {
+  userForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.userForm = this.fb.group({
+      name: [&#39;&#39;, Validators.required],
+      email: [&#39;&#39;, [Validators.required, Validators.email]]
+    });
+  }
+
+  saveUser() {
+    console.log(this.userForm.value);
+  }
+}
+</code></pre>
+<h2>Migration Timeline</h2>
+<pre><code>Phase 1: Setup (1-2 weeks)
+- Install Angular CLI
+- Set up hybrid app
+- Configure build tools
+- Set up testing
+
+Phase 2: Infrastructure (2-4 weeks)
+- Migrate services
+- Migrate utilities
+- Set up routing
+- Migrate shared components
+
+Phase 3: Feature Migration (varies)
+- Migrate feature by feature
+- Test thoroughly
+- Deploy incrementally
+
+Phase 4: Cleanup (1-2 weeks)
+- Remove AngularJS code
+- Remove ngUpgrade
+- Optimize bundle
+- Final testing
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/hybrid-mode.md</strong>: Hybrid app patterns</li>
+<li><strong>references/component-migration.md</strong>: Component conversion guide</li>
+<li><strong>references/dependency-injection.md</strong>: DI migration strategies</li>
+<li><strong>references/routing.md</strong>: Routing migration</li>
+<li><strong>assets/hybrid-bootstrap.ts</strong>: Hybrid app template</li>
+<li><strong>assets/migration-timeline.md</strong>: Project planning</li>
+<li><strong>scripts/analyze-angular-app.sh</strong>: App analysis script</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Start with Services</strong>: Migrate services first (easier)</li>
+<li><strong>Incremental Approach</strong>: Feature-by-feature migration</li>
+<li><strong>Test Continuously</strong>: Test at every step</li>
+<li><strong>Use TypeScript</strong>: Migrate to TypeScript early</li>
+<li><strong>Follow Style Guide</strong>: Angular style guide from day 1</li>
+<li><strong>Optimize Later</strong>: Get it working, then optimize</li>
+<li><strong>Document</strong>: Keep migration notes</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li>Not setting up hybrid app correctly</li>
+<li>Migrating UI before logic</li>
+<li>Ignoring change detection differences</li>
+<li>Not handling scope properly</li>
+<li>Mixing patterns (AngularJS + Angular)</li>
+<li>Inadequate testing</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

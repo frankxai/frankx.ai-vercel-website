@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Changelog Automation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/documentation-generation/skills/changelog-automation/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Changelog Automation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdocumentation-generation">documentation-generation</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdocumentation-generation%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdocumentation-generation%2Fskills%2Fchangelog-automation">changelog-automation</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: changelog-automation
+description: Automate changelog generation from commits, PRs, and releases following Keep a Changelog format. Use when setting up release workflows, generating release notes, or standardizing commit conventions.</h2>
+<h1>Changelog Automation</h1>
+<p>Patterns and tools for automating changelog generation, release notes, and version management following industry standards.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Setting up automated changelog generation</li>
+<li>Implementing Conventional Commits</li>
+<li>Creating release note workflows</li>
+<li>Standardizing commit message formats</li>
+<li>Generating GitHub/GitLab release notes</li>
+<li>Managing semantic versioning</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Keep a Changelog Format</h3>
+<pre><code class="language-markdown"># Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Added
+
+- New feature X
+
+## [1.2.0] - 2024-01-15
+
+### Added
+
+- User profile avatars
+- Dark mode support
+
+### Changed
+
+- Improved loading performance by 40%
+
+### Deprecated
+
+- Old authentication API (use v2)
+
+### Removed
+
+- Legacy payment gateway
+
+### Fixed
+
+- Login timeout issue (#123)
+
+### Security
+
+- Updated dependencies for CVE-2024-1234
+
+[Unreleased]: https://github.com/user/repo/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/user/repo/compare/v1.1.0...v1.2.0
+</code></pre>
+<h3>2. Conventional Commits</h3>
+<pre><code>&lt;type&gt;[optional scope]: &lt;description&gt;
+
+[optional body]
+
+[optional footer(s)]
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Changelog Section</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>feat</code></td>
+<td>New feature</td>
+<td>Added</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>Bug fix</td>
+<td>Fixed</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>Documentation</td>
+<td>(usually excluded)</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>Formatting</td>
+<td>(usually excluded)</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>Code restructure</td>
+<td>Changed</td>
+</tr>
+<tr>
+<td><code>perf</code></td>
+<td>Performance</td>
+<td>Changed</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Tests</td>
+<td>(usually excluded)</td>
+</tr>
+<tr>
+<td><code>chore</code></td>
+<td>Maintenance</td>
+<td>(usually excluded)</td>
+</tr>
+<tr>
+<td><code>ci</code></td>
+<td>CI changes</td>
+<td>(usually excluded)</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>Build system</td>
+<td>(usually excluded)</td>
+</tr>
+<tr>
+<td><code>revert</code></td>
+<td>Revert commit</td>
+<td>Removed</td>
+</tr>
+</tbody></table>
+<h3>3. Semantic Versioning</h3>
+<pre><code>MAJOR.MINOR.PATCH
+
+MAJOR: Breaking changes (feat! or BREAKING CHANGE)
+MINOR: New features (feat)
+PATCH: Bug fixes (fix)
+</code></pre>
+<h2>Implementation</h2>
+<h3>Method 1: Conventional Changelog (Node.js)</h3>
+<pre><code class="language-bash"># Install tools
+npm install -D @commitlint/cli @commitlint/config-conventional
+npm install -D husky
+npm install -D standard-version
+# or
+npm install -D semantic-release
+
+# Setup commitlint
+cat &gt; commitlint.config.js &lt;&lt; &#39;EOF&#39;
+module.exports = {
+  extends: [&#39;@commitlint/config-conventional&#39;],
+  rules: {
+    &#39;type-enum&#39;: [
+      2,
+      &#39;always&#39;,
+      [
+        &#39;feat&#39;,
+        &#39;fix&#39;,
+        &#39;docs&#39;,
+        &#39;style&#39;,
+        &#39;refactor&#39;,
+        &#39;perf&#39;,
+        &#39;test&#39;,
+        &#39;chore&#39;,
+        &#39;ci&#39;,
+        &#39;build&#39;,
+        &#39;revert&#39;,
+      ],
+    ],
+    &#39;subject-case&#39;: [2, &#39;never&#39;, [&#39;start-case&#39;, &#39;pascal-case&#39;, &#39;upper-case&#39;]],
+    &#39;subject-max-length&#39;: [2, &#39;always&#39;, 72],
+  },
+};
+EOF
+
+# Setup husky
+npx husky init
+echo &quot;npx --no -- commitlint --edit \$1&quot; &gt; .husky/commit-msg
+</code></pre>
+<h3>Method 2: standard-version Configuration</h3>
+<pre><code class="language-javascript">// .versionrc.js
+module.exports = {
+  types: [
+    { type: &quot;feat&quot;, section: &quot;Features&quot; },
+    { type: &quot;fix&quot;, section: &quot;Bug Fixes&quot; },
+    { type: &quot;perf&quot;, section: &quot;Performance Improvements&quot; },
+    { type: &quot;revert&quot;, section: &quot;Reverts&quot; },
+    { type: &quot;docs&quot;, section: &quot;Documentation&quot;, hidden: true },
+    { type: &quot;style&quot;, section: &quot;Styles&quot;, hidden: true },
+    { type: &quot;chore&quot;, section: &quot;Miscellaneous&quot;, hidden: true },
+    { type: &quot;refactor&quot;, section: &quot;Code Refactoring&quot;, hidden: true },
+    { type: &quot;test&quot;, section: &quot;Tests&quot;, hidden: true },
+    { type: &quot;build&quot;, section: &quot;Build System&quot;, hidden: true },
+    { type: &quot;ci&quot;, section: &quot;CI/CD&quot;, hidden: true },
+  ],
+  commitUrlFormat: &quot;{{host}}/{{owner}}/{{repository}}/commit/{{hash}}&quot;,
+  compareUrlFormat:
+    &quot;{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}&quot;,
+  issueUrlFormat: &quot;{{host}}/{{owner}}/{{repository}}/issues/{{id}}&quot;,
+  userUrlFormat: &quot;{{host}}/{{user}}&quot;,
+  releaseCommitMessageFormat: &quot;chore(release): {{currentTag}}&quot;,
+  scripts: {
+    prebump: &#39;echo &quot;Running prebump&quot;&#39;,
+    postbump: &#39;echo &quot;Running postbump&quot;&#39;,
+    prechangelog: &#39;echo &quot;Running prechangelog&quot;&#39;,
+    postchangelog: &#39;echo &quot;Running postchangelog&quot;&#39;,
+  },
+};
+</code></pre>
+<pre><code class="language-json">// package.json scripts
+{
+  &quot;scripts&quot;: {
+    &quot;release&quot;: &quot;standard-version&quot;,
+    &quot;release:minor&quot;: &quot;standard-version --release-as minor&quot;,
+    &quot;release:major&quot;: &quot;standard-version --release-as major&quot;,
+    &quot;release:patch&quot;: &quot;standard-version --release-as patch&quot;,
+    &quot;release:dry&quot;: &quot;standard-version --dry-run&quot;
+  }
+}
+</code></pre>
+<h3>Method 3: semantic-release (Full Automation)</h3>
+<pre><code class="language-javascript">// release.config.js
+module.exports = {
+  branches: [
+    &quot;main&quot;,
+    { name: &quot;beta&quot;, prerelease: true },
+    { name: &quot;alpha&quot;, prerelease: true },
+  ],
+  plugins: [
+    &quot;@semantic-release/commit-analyzer&quot;,
+    &quot;@semantic-release/release-notes-generator&quot;,
+    [
+      &quot;@semantic-release/changelog&quot;,
+      {
+        changelogFile: &quot;CHANGELOG.md&quot;,
+      },
+    ],
+    [
+      &quot;@semantic-release/npm&quot;,
+      {
+        npmPublish: true,
+      },
+    ],
+    [
+      &quot;@semantic-release/github&quot;,
+      {
+        assets: [&quot;dist/**/*.js&quot;, &quot;dist/**/*.css&quot;],
+      },
+    ],
+    [
+      &quot;@semantic-release/git&quot;,
+      {
+        assets: [&quot;CHANGELOG.md&quot;, &quot;package.json&quot;],
+        message:
+          &quot;chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}&quot;,
+      },
+    ],
+  ],
+};
+</code></pre>
+<h3>Method 4: GitHub Actions Workflow</h3>
+<pre><code class="language-yaml"># .github/workflows/release.yml
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: &quot;Release type&quot;
+        required: true
+        default: &quot;patch&quot;
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: &quot;20&quot;
+          cache: &quot;npm&quot;
+
+      - run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config user.name &quot;github-actions[bot]&quot;
+          git config user.email &quot;github-actions[bot]@users.noreply.github.com&quot;
+
+      - name: Run semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
+
+  # Alternative: manual release with standard-version
+  manual-release:
+    if: github.event_name == &#39;workflow_dispatch&#39;
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: &quot;20&quot;
+
+      - run: npm ci
+
+      - name: Configure Git
+        run: |
+          git config user.name &quot;github-actions[bot]&quot;
+          git config user.email &quot;github-actions[bot]@users.noreply.github.com&quot;
+
+      - name: Bump version and generate changelog
+        run: npx standard-version --release-as ${{ inputs.release_type }}
+
+      - name: Push changes
+        run: git push --follow-tags origin main
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          body_path: RELEASE_NOTES.md
+          generate_release_notes: true
+</code></pre>
+<h3>Method 5: git-cliff (Rust-based, Fast)</h3>
+<pre><code class="language-toml"># cliff.toml
+[changelog]
+header = &quot;&quot;&quot;
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+&quot;&quot;&quot;
+body = &quot;&quot;&quot;
+{% if version %}\
+    ## [{{ version | trim_start_matches(pat=&quot;v&quot;) }}] - {{ timestamp | date(format=&quot;%Y-%m-%d&quot;) }}
+{% else %}\
+    ## [Unreleased]
+{% endif %}\
+{% for group, commits in commits | group_by(attribute=&quot;group&quot;) %}
+    ### {{ group | upper_first }}
+    {% for commit in commits %}
+        - {% if commit.scope %}**{{ commit.scope }}:** {% endif %}\
+            {{ commit.message | upper_first }}\
+            {% if commit.github.pr_number %} ([#{{ commit.github.pr_number }}](https://github.com/owner/repo/pull/{{ commit.github.pr_number }})){% endif %}\
+    {% endfor %}
+{% endfor %}
+&quot;&quot;&quot;
+footer = &quot;&quot;&quot;
+{% for release in releases -%}
+    {% if release.version -%}
+        {% if release.previous.version -%}
+            [{{ release.version | trim_start_matches(pat=&quot;v&quot;) }}]: \
+                https://github.com/owner/repo/compare/{{ release.previous.version }}...{{ release.version }}
+        {% endif -%}
+    {% else -%}
+        [unreleased]: https://github.com/owner/repo/compare/{{ release.previous.version }}...HEAD
+    {% endif -%}
+{% endfor %}
+&quot;&quot;&quot;
+trim = true
+
+[git]
+conventional_commits = true
+filter_unconventional = true
+split_commits = false
+commit_parsers = [
+    { message = &quot;^feat&quot;, group = &quot;Features&quot; },
+    { message = &quot;^fix&quot;, group = &quot;Bug Fixes&quot; },
+    { message = &quot;^doc&quot;, group = &quot;Documentation&quot; },
+    { message = &quot;^perf&quot;, group = &quot;Performance&quot; },
+    { message = &quot;^refactor&quot;, group = &quot;Refactoring&quot; },
+    { message = &quot;^style&quot;, group = &quot;Styling&quot; },
+    { message = &quot;^test&quot;, group = &quot;Testing&quot; },
+    { message = &quot;^chore\\(release\\)&quot;, skip = true },
+    { message = &quot;^chore&quot;, group = &quot;Miscellaneous&quot; },
+]
+filter_commits = false
+tag_pattern = &quot;v[0-9]*&quot;
+skip_tags = &quot;&quot;
+ignore_tags = &quot;&quot;
+topo_order = false
+sort_commits = &quot;oldest&quot;
+
+[github]
+owner = &quot;owner&quot;
+repo = &quot;repo&quot;
+</code></pre>
+<pre><code class="language-bash"># Generate changelog
+git cliff -o CHANGELOG.md
+
+# Generate for specific range
+git cliff v1.0.0..v2.0.0 -o RELEASE_NOTES.md
+
+# Preview without writing
+git cliff --unreleased --dry-run
+</code></pre>
+<h3>Method 6: Python (commitizen)</h3>
+<pre><code class="language-toml"># pyproject.toml
+[tool.commitizen]
+name = &quot;cz_conventional_commits&quot;
+version = &quot;1.0.0&quot;
+version_files = [
+    &quot;pyproject.toml:version&quot;,
+    &quot;src/__init__.py:__version__&quot;,
+]
+tag_format = &quot;v$version&quot;
+update_changelog_on_bump = true
+changelog_incremental = true
+changelog_start_rev = &quot;v0.1.0&quot;
+
+[tool.commitizen.customize]
+message_template = &quot;{{change_type}}{% if scope %}({{scope}}){% endif %}: {{message}}&quot;
+schema = &quot;&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;&quot;
+schema_pattern = &quot;^(feat|fix|docs|style|refactor|perf|test|chore)(\\(\\w+\\))?:\\s.*&quot;
+bump_pattern = &quot;^(feat|fix|perf|refactor)&quot;
+bump_map = {&quot;feat&quot; = &quot;MINOR&quot;, &quot;fix&quot; = &quot;PATCH&quot;, &quot;perf&quot; = &quot;PATCH&quot;, &quot;refactor&quot; = &quot;PATCH&quot;}
+</code></pre>
+<pre><code class="language-bash"># Install
+pip install commitizen
+
+# Create commit interactively
+cz commit
+
+# Bump version and update changelog
+cz bump --changelog
+
+# Check commits
+cz check --rev-range HEAD~5..HEAD
+</code></pre>
+<h2>Release Notes Templates</h2>
+<h3>GitHub Release Template</h3>
+<pre><code class="language-markdown">## What&#39;s Changed
+
+### 🚀 Features
+
+{{ range .Features }}
+
+- {{ .Title }} by @{{ .Author }} in #{{ .PR }}
+  {{ end }}
+
+### 🐛 Bug Fixes
+
+{{ range .Fixes }}
+
+- {{ .Title }} by @{{ .Author }} in #{{ .PR }}
+  {{ end }}
+
+### 📚 Documentation
+
+{{ range .Docs }}
+
+- {{ .Title }} by @{{ .Author }} in #{{ .PR }}
+  {{ end }}
+
+### 🔧 Maintenance
+
+{{ range .Chores }}
+
+- {{ .Title }} by @{{ .Author }} in #{{ .PR }}
+  {{ end }}
+
+## New Contributors
+
+{{ range .NewContributors }}
+
+- @{{ .Username }} made their first contribution in #{{ .PR }}
+  {{ end }}
+
+**Full Changelog**: https://github.com/owner/repo/compare/v{{ .Previous }}...v{{ .Current }}
+</code></pre>
+<h3>Internal Release Notes</h3>
+<pre><code class="language-markdown"># Release v2.1.0 - January 15, 2024
+
+## Summary
+
+This release introduces dark mode support and improves checkout performance
+by 40%. It also includes important security updates.
+
+## Highlights
+
+### 🌙 Dark Mode
+
+Users can now switch to dark mode from settings. The preference is
+automatically saved and synced across devices.
+
+### ⚡ Performance
+
+- Checkout flow is 40% faster
+- Reduced bundle size by 15%
+
+## Breaking Changes
+
+None in this release.
+
+## Upgrade Guide
+
+No special steps required. Standard deployment process applies.
+
+## Known Issues
+
+- Dark mode may flicker on initial load (fix scheduled for v2.1.1)
+
+## Dependencies Updated
+
+| Package | From    | To      | Reason                   |
+| ------- | ------- | ------- | ------------------------ |
+| react   | 18.2.0  | 18.3.0  | Performance improvements |
+| lodash  | 4.17.20 | 4.17.21 | Security patch           |
+</code></pre>
+<h2>Commit Message Examples</h2>
+<pre><code class="language-bash"># Feature with scope
+feat(auth): add OAuth2 support for Google login
+
+# Bug fix with issue reference
+fix(checkout): resolve race condition in payment processing
+
+Closes #123
+
+# Breaking change
+feat(api)!: change user endpoint response format
+
+BREAKING CHANGE: The user endpoint now returns `userId` instead of `id`.
+Migration guide: Update all API consumers to use the new field name.
+
+# Multiple paragraphs
+fix(database): handle connection timeouts gracefully
+
+Previously, connection timeouts would cause the entire request to fail
+without retry. This change implements exponential backoff with up to
+3 retries before failing.
+
+The timeout threshold has been increased from 5s to 10s based on p99
+latency analysis.
+
+Fixes #456
+Reviewed-by: @alice
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Follow Conventional Commits</strong> - Enables automation</li>
+<li><strong>Write clear messages</strong> - Future you will thank you</li>
+<li><strong>Reference issues</strong> - Link commits to tickets</li>
+<li><strong>Use scopes consistently</strong> - Define team conventions</li>
+<li><strong>Automate releases</strong> - Reduce manual errors</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t mix changes</strong> - One logical change per commit</li>
+<li><strong>Don&#39;t skip validation</strong> - Use commitlint</li>
+<li><strong>Don&#39;t manual edit</strong> - Generated changelogs only</li>
+<li><strong>Don&#39;t forget breaking changes</strong> - Mark with <code>!</code> or footer</li>
+<li><strong>Don&#39;t ignore CI</strong> - Validate commits in pipeline</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://keepachangelog.com/">Keep a Changelog</a></li>
+<li><a href="https://www.conventionalcommits.org/">Conventional Commits</a></li>
+<li><a href="https://semver.org/">Semantic Versioning</a></li>
+<li><a href="https://semantic-release.gitbook.io/">semantic-release</a></li>
+<li><a href="https://git-cliff.org/">git-cliff</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

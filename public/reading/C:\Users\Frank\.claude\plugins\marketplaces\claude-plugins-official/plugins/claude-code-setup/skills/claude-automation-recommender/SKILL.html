@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Claude Automation Recommender</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/claude-code-setup/skills/claude-automation-recommender/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Automation Recommender</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <hr>
+<h2>name: claude-automation-recommender
+description: Analyze a codebase and recommend Claude Code automations (hooks, subagents, skills, plugins, MCP servers). Use when user asks for automation recommendations, wants to optimize their Claude Code setup, mentions improving Claude Code workflows, asks how to first set up Claude Code for a project, or wants to know what Claude Code features they should use.
+tools: Read, Glob, Grep, Bash</h2>
+<h1>Claude Automation Recommender</h1>
+<p>Analyze codebase patterns to recommend tailored Claude Code automations across all extensibility options.</p>
+<p><strong>This skill is read-only.</strong> It analyzes the codebase and outputs recommendations. It does NOT create or modify any files. Users implement the recommendations themselves or ask Claude separately to help build them.</p>
+<h2>Output Guidelines</h2>
+<ul>
+<li><strong>Recommend 1-2 of each type</strong>: Don&#39;t overwhelm - surface the top 1-2 most valuable automations per category</li>
+<li><strong>If user asks for a specific type</strong>: Focus only on that type and provide more options (3-5 recommendations)</li>
+<li><strong>Go beyond the reference lists</strong>: The reference files contain common patterns, but use web search to find recommendations specific to the codebase&#39;s tools, frameworks, and libraries</li>
+<li><strong>Tell users they can ask for more</strong>: End by noting they can request more recommendations for any specific category</li>
+</ul>
+<h2>Automation Types Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Hooks</strong></td>
+<td>Automatic actions on tool events (format on save, lint, block edits)</td>
+</tr>
+<tr>
+<td><strong>Subagents</strong></td>
+<td>Specialized reviewers/analyzers that run in parallel</td>
+</tr>
+<tr>
+<td><strong>Skills</strong></td>
+<td>Packaged expertise, workflows, and repeatable tasks (invoked by Claude or user via <code>/skill-name</code>)</td>
+</tr>
+<tr>
+<td><strong>Plugins</strong></td>
+<td>Collections of skills that can be installed</td>
+</tr>
+<tr>
+<td><strong>MCP Servers</strong></td>
+<td>External tool integrations (databases, APIs, browsers, docs)</td>
+</tr>
+</tbody></table>
+<h2>Workflow</h2>
+<h3>Phase 1: Codebase Analysis</h3>
+<p>Gather project context:</p>
+<pre><code class="language-bash"># Detect project type and tools
+ls -la package.json pyproject.toml Cargo.toml go.mod pom.xml 2&gt;/dev/null
+cat package.json 2&gt;/dev/null | head -50
+
+# Check dependencies for MCP server recommendations
+cat package.json 2&gt;/dev/null | grep -E &#39;&quot;(react|vue|angular|next|express|fastapi|django|prisma|supabase|stripe)&quot;&#39;
+
+# Check for existing Claude Code config
+ls -la .claude/ CLAUDE.md 2&gt;/dev/null
+
+# Analyze project structure
+ls -la src/ app/ lib/ tests/ components/ pages/ api/ 2&gt;/dev/null
+</code></pre>
+<p><strong>Key Indicators to Capture:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>What to Look For</th>
+<th>Informs Recommendations For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Language/Framework</td>
+<td>package.json, pyproject.toml, import patterns</td>
+<td>Hooks, MCP servers</td>
+</tr>
+<tr>
+<td>Frontend stack</td>
+<td>React, Vue, Angular, Next.js</td>
+<td>Playwright MCP, frontend skills</td>
+</tr>
+<tr>
+<td>Backend stack</td>
+<td>Express, FastAPI, Django</td>
+<td>API documentation tools</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>Prisma, Supabase, raw SQL</td>
+<td>Database MCP servers</td>
+</tr>
+<tr>
+<td>External APIs</td>
+<td>Stripe, OpenAI, AWS SDKs</td>
+<td>context7 MCP for docs</td>
+</tr>
+<tr>
+<td>Testing</td>
+<td>Jest, pytest, Playwright configs</td>
+<td>Testing hooks, subagents</td>
+</tr>
+<tr>
+<td>CI/CD</td>
+<td>GitHub Actions, CircleCI</td>
+<td>GitHub MCP server</td>
+</tr>
+<tr>
+<td>Issue tracking</td>
+<td>Linear, Jira references</td>
+<td>Issue tracker MCP</td>
+</tr>
+<tr>
+<td>Docs patterns</td>
+<td>OpenAPI, JSDoc, docstrings</td>
+<td>Documentation skills</td>
+</tr>
+</tbody></table>
+<h3>Phase 2: Generate Recommendations</h3>
+<p>Based on analysis, generate recommendations across all categories:</p>
+<h4>A. MCP Server Recommendations</h4>
+<p>See <a href="references/mcp-servers.md">references/mcp-servers.md</a> for detailed patterns.</p>
+<table>
+<thead>
+<tr>
+<th>Codebase Signal</th>
+<th>Recommended MCP Server</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Uses popular libraries (React, Express, etc.)</td>
+<td><strong>context7</strong> - Live documentation lookup</td>
+</tr>
+<tr>
+<td>Frontend with UI testing needs</td>
+<td><strong>Playwright</strong> - Browser automation/testing</td>
+</tr>
+<tr>
+<td>Uses Supabase</td>
+<td><strong>Supabase MCP</strong> - Direct database operations</td>
+</tr>
+<tr>
+<td>PostgreSQL/MySQL database</td>
+<td><strong>Database MCP</strong> - Query and schema tools</td>
+</tr>
+<tr>
+<td>GitHub repository</td>
+<td><strong>GitHub MCP</strong> - Issues, PRs, actions</td>
+</tr>
+<tr>
+<td>Uses Linear for issues</td>
+<td><strong>Linear MCP</strong> - Issue management</td>
+</tr>
+<tr>
+<td>AWS infrastructure</td>
+<td><strong>AWS MCP</strong> - Cloud resource management</td>
+</tr>
+<tr>
+<td>Slack workspace</td>
+<td><strong>Slack MCP</strong> - Team notifications</td>
+</tr>
+<tr>
+<td>Memory/context persistence</td>
+<td><strong>Memory MCP</strong> - Cross-session memory</td>
+</tr>
+<tr>
+<td>Sentry error tracking</td>
+<td><strong>Sentry MCP</strong> - Error investigation</td>
+</tr>
+<tr>
+<td>Docker containers</td>
+<td><strong>Docker MCP</strong> - Container management</td>
+</tr>
+</tbody></table>
+<h4>B. Skills Recommendations</h4>
+<p>See <a href="references/skills-reference.md">references/skills-reference.md</a> for details.</p>
+<p>Create skills in <code>.claude/skills/&lt;name&gt;/SKILL.md</code>. Some are also available via plugins:</p>
+<table>
+<thead>
+<tr>
+<th>Codebase Signal</th>
+<th>Skill</th>
+<th>Plugin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Building plugins</td>
+<td>skill-development</td>
+<td>plugin-dev</td>
+</tr>
+<tr>
+<td>Git commits</td>
+<td>commit</td>
+<td>commit-commands</td>
+</tr>
+<tr>
+<td>React/Vue/Angular</td>
+<td>frontend-design</td>
+<td>frontend-design</td>
+</tr>
+<tr>
+<td>Automation rules</td>
+<td>writing-rules</td>
+<td>hookify</td>
+</tr>
+<tr>
+<td>Feature planning</td>
+<td>feature-dev</td>
+<td>feature-dev</td>
+</tr>
+</tbody></table>
+<p><strong>Custom skills to create</strong> (with templates, scripts, examples):</p>
+<table>
+<thead>
+<tr>
+<th>Codebase Signal</th>
+<th>Skill to Create</th>
+<th>Invocation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>API routes</td>
+<td><strong>api-doc</strong> (with OpenAPI template)</td>
+<td>Both</td>
+</tr>
+<tr>
+<td>Database project</td>
+<td><strong>create-migration</strong> (with validation script)</td>
+<td>User-only</td>
+</tr>
+<tr>
+<td>Test suite</td>
+<td><strong>gen-test</strong> (with example tests)</td>
+<td>User-only</td>
+</tr>
+<tr>
+<td>Component library</td>
+<td><strong>new-component</strong> (with templates)</td>
+<td>User-only</td>
+</tr>
+<tr>
+<td>PR workflow</td>
+<td><strong>pr-check</strong> (with checklist)</td>
+<td>User-only</td>
+</tr>
+<tr>
+<td>Releases</td>
+<td><strong>release-notes</strong> (with git context)</td>
+<td>User-only</td>
+</tr>
+<tr>
+<td>Code style</td>
+<td><strong>project-conventions</strong></td>
+<td>Claude-only</td>
+</tr>
+<tr>
+<td>Onboarding</td>
+<td><strong>setup-dev</strong> (with prereq script)</td>
+<td>User-only</td>
+</tr>
+</tbody></table>
+<h4>C. Hooks Recommendations</h4>
+<p>See <a href="references/hooks-patterns.md">references/hooks-patterns.md</a> for configurations.</p>
+<table>
+<thead>
+<tr>
+<th>Codebase Signal</th>
+<th>Recommended Hook</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prettier configured</td>
+<td>PostToolUse: auto-format on edit</td>
+</tr>
+<tr>
+<td>ESLint/Ruff configured</td>
+<td>PostToolUse: auto-lint on edit</td>
+</tr>
+<tr>
+<td>TypeScript project</td>
+<td>PostToolUse: type-check on edit</td>
+</tr>
+<tr>
+<td>Tests directory exists</td>
+<td>PostToolUse: run related tests</td>
+</tr>
+<tr>
+<td><code>.env</code> files present</td>
+<td>PreToolUse: block <code>.env</code> edits</td>
+</tr>
+<tr>
+<td>Lock files present</td>
+<td>PreToolUse: block lock file edits</td>
+</tr>
+<tr>
+<td>Security-sensitive code</td>
+<td>PreToolUse: require confirmation</td>
+</tr>
+</tbody></table>
+<h4>D. Subagent Recommendations</h4>
+<p>See <a href="references/subagent-templates.md">references/subagent-templates.md</a> for templates.</p>
+<table>
+<thead>
+<tr>
+<th>Codebase Signal</th>
+<th>Recommended Subagent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Large codebase (&gt;500 files)</td>
+<td><strong>code-reviewer</strong> - Parallel code review</td>
+</tr>
+<tr>
+<td>Auth/payments code</td>
+<td><strong>security-reviewer</strong> - Security audits</td>
+</tr>
+<tr>
+<td>API project</td>
+<td><strong>api-documenter</strong> - OpenAPI generation</td>
+</tr>
+<tr>
+<td>Performance critical</td>
+<td><strong>performance-analyzer</strong> - Bottleneck detection</td>
+</tr>
+<tr>
+<td>Frontend heavy</td>
+<td><strong>ui-reviewer</strong> - Accessibility review</td>
+</tr>
+<tr>
+<td>Needs more tests</td>
+<td><strong>test-writer</strong> - Test generation</td>
+</tr>
+</tbody></table>
+<h4>E. Plugin Recommendations</h4>
+<p>See <a href="references/plugins-reference.md">references/plugins-reference.md</a> for available plugins.</p>
+<table>
+<thead>
+<tr>
+<th>Codebase Signal</th>
+<th>Recommended Plugin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>General productivity</td>
+<td><strong>anthropic-agent-skills</strong> - Core skills bundle</td>
+</tr>
+<tr>
+<td>Document workflows</td>
+<td>Install docx, xlsx, pdf skills</td>
+</tr>
+<tr>
+<td>Frontend development</td>
+<td><strong>frontend-design</strong> plugin</td>
+</tr>
+<tr>
+<td>Building AI tools</td>
+<td><strong>mcp-builder</strong> for MCP development</td>
+</tr>
+</tbody></table>
+<h3>Phase 3: Output Recommendations Report</h3>
+<p>Format recommendations clearly. <strong>Only include 1-2 recommendations per category</strong> - the most valuable ones for this specific codebase. Skip categories that aren&#39;t relevant.</p>
+<pre><code class="language-markdown">## Claude Code Automation Recommendations
+
+I&#39;ve analyzed your codebase and identified the top automations for each category. Here are my top 1-2 recommendations per type:
+
+### Codebase Profile
+- **Type**: [detected language/runtime]
+- **Framework**: [detected framework]
+- **Key Libraries**: [relevant libraries detected]
+
+---
+
+### 🔌 MCP Servers
+
+#### context7
+**Why**: [specific reason based on detected libraries]
+**Install**: `claude mcp add context7`
+
+---
+
+### 🎯 Skills
+
+#### [skill name]
+**Why**: [specific reason]
+**Create**: `.claude/skills/[name]/SKILL.md`
+**Invocation**: User-only / Both / Claude-only
+**Also available in**: [plugin-name] plugin (if applicable)
+```yaml
+---
+name: [skill-name]
+description: [what it does]
+disable-model-invocation: true  # for user-only
+---
+</code></pre>
+<hr>
+<h3>⚡ Hooks</h3>
+<h4>[hook name]</h4>
+<p><strong>Why</strong>: [specific reason based on detected config]
+<strong>Where</strong>: <code>.claude/settings.json</code></p>
+<hr>
+<h3>🤖 Subagents</h3>
+<h4>[agent name]</h4>
+<p><strong>Why</strong>: [specific reason based on codebase patterns]
+<strong>Where</strong>: <code>.claude/agents/[name].md</code></p>
+<hr>
+<p><strong>Want more?</strong> Ask for additional recommendations for any specific category (e.g., &quot;show me more MCP server options&quot; or &quot;what other hooks would help?&quot;).</p>
+<p><strong>Want help implementing any of these?</strong> Just ask and I can help you set up any of the recommendations above.</p>
+<pre><code>
+## Decision Framework
+
+### When to Recommend MCP Servers
+- External service integration needed (databases, APIs)
+- Documentation lookup for libraries/SDKs
+- Browser automation or testing
+- Team tool integration (GitHub, Linear, Slack)
+- Cloud infrastructure management
+
+### When to Recommend Skills
+
+- Document generation (docx, xlsx, pptx, pdf — also in plugins)
+- Frequently repeated prompts or workflows
+- Project-specific tasks with arguments
+- Applying templates or scripts to tasks (skills can bundle supporting files)
+- Quick actions invoked with `/skill-name`
+- Workflows that should run in isolation (`context: fork`)
+
+**Invocation control:**
+- `disable-model-invocation: true` — User-only (for side effects: deploy, commit, send)
+- `user-invocable: false` — Claude-only (for background knowledge)
+- Default (omit both) — Both can invoke
+
+### When to Recommend Hooks
+- Repetitive post-edit actions (formatting, linting)
+- Protection rules (block sensitive file edits)
+- Validation checks (tests, type checks)
+
+### When to Recommend Subagents
+- Specialized expertise needed (security, performance)
+- Parallel review workflows
+- Background quality checks
+
+### When to Recommend Plugins
+- Need multiple related skills
+- Want pre-packaged automation bundles
+- Team-wide standardization
+
+---
+
+## Configuration Tips
+
+### MCP Server Setup
+
+**Team sharing**: Check `.mcp.json` into repo so entire team gets same MCP servers
+
+**Debugging**: Use `--mcp-debug` flag to identify configuration issues
+
+**Prerequisites to recommend:**
+- GitHub CLI (`gh`) - enables native GitHub operations
+- Puppeteer/Playwright CLI - for browser MCP servers
+
+### Headless Mode (for CI/Automation)
+
+Recommend headless Claude for automated pipelines:
+
+```bash
+# Pre-commit hook example
+claude -p &quot;fix lint errors in src/&quot; --allowedTools Edit,Write
+
+# CI pipeline with structured output
+claude -p &quot;&lt;prompt&gt;&quot; --output-format stream-json | your_command
+</code></pre>
+<h3>Permissions for Hooks</h3>
+<p>Configure allowed tools in <code>.claude/settings.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: {
+    &quot;allow&quot;: [&quot;Edit&quot;, &quot;Write&quot;, &quot;Bash(npm test:*)&quot;, &quot;Bash(git commit:*)&quot;]
+  }
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

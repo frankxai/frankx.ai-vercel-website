@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SwiftUI Component Library</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/mobile-ios-design/references/swiftui-components.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SwiftUI Component Library</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fmobile-ios-design">mobile-ios-design</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fmobile-ios-design%2Freferences">references</a> / <span>swiftui-components.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>SwiftUI Component Library</h1>
+<h2>Lists and Collections</h2>
+<h3>Basic List</h3>
+<pre><code class="language-swift">struct ItemListView: View {
+    @State private var items: [Item] = []
+
+    var body: some View {
+        List {
+            ForEach(items) { item in
+                ItemRow(item: item)
+            }
+            .onDelete(perform: deleteItems)
+            .onMove(perform: moveItems)
+        }
+        .listStyle(.insetGrouped)
+        .refreshable {
+            await loadItems()
+        }
+    }
+
+    private func deleteItems(at offsets: IndexSet) {
+        items.remove(atOffsets: offsets)
+    }
+
+    private func moveItems(from source: IndexSet, to destination: Int) {
+        items.move(fromOffsets: source, toOffset: destination)
+    }
+}
+</code></pre>
+<h3>Sectioned List</h3>
+<pre><code class="language-swift">struct SectionedListView: View {
+    let groupedItems: [String: [Item]]
+
+    var body: some View {
+        List {
+            ForEach(groupedItems.keys.sorted(), id: \.self) { key in
+                Section(header: Text(key)) {
+                    ForEach(groupedItems[key] ?? []) { item in
+                        ItemRow(item: item)
+                    }
+                }
+            }
+        }
+        .listStyle(.sidebar)
+    }
+}
+</code></pre>
+<h3>Search Integration</h3>
+<pre><code class="language-swift">struct SearchableListView: View {
+    @State private var searchText = &quot;&quot;
+    @State private var items: [Item] = []
+
+    var filteredItems: [Item] {
+        if searchText.isEmpty {
+            return items
+        }
+        return items.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+    }
+
+    var body: some View {
+        NavigationStack {
+            List(filteredItems) { item in
+                ItemRow(item: item)
+            }
+            .searchable(text: $searchText, prompt: &quot;Search items&quot;)
+            .searchSuggestions {
+                ForEach(searchSuggestions, id: \.self) { suggestion in
+                    Text(suggestion)
+                        .searchCompletion(suggestion)
+                }
+            }
+            .navigationTitle(&quot;Items&quot;)
+        }
+    }
+}
+</code></pre>
+<h2>Forms and Input</h2>
+<h3>Settings Form</h3>
+<pre><code class="language-swift">struct SettingsView: View {
+    @AppStorage(&quot;notifications&quot;) private var notificationsEnabled = true
+    @AppStorage(&quot;soundEnabled&quot;) private var soundEnabled = true
+    @State private var selectedTheme = Theme.system
+    @State private var username = &quot;&quot;
+
+    var body: some View {
+        Form {
+            Section(&quot;Account&quot;) {
+                TextField(&quot;Username&quot;, text: $username)
+                    .textContentType(.username)
+                    .autocorrectionDisabled()
+            }
+
+            Section(&quot;Preferences&quot;) {
+                Toggle(&quot;Enable Notifications&quot;, isOn: $notificationsEnabled)
+                Toggle(&quot;Sound Effects&quot;, isOn: $soundEnabled)
+
+                Picker(&quot;Theme&quot;, selection: $selectedTheme) {
+                    ForEach(Theme.allCases) { theme in
+                        Text(theme.rawValue).tag(theme)
+                    }
+                }
+            }
+
+            Section(&quot;About&quot;) {
+                LabeledContent(&quot;Version&quot;, value: &quot;1.0.0&quot;)
+
+                Link(destination: URL(string: &quot;https://example.com/privacy&quot;)!) {
+                    Text(&quot;Privacy Policy&quot;)
+                }
+            }
+        }
+        .navigationTitle(&quot;Settings&quot;)
+    }
+}
+</code></pre>
+<h3>Custom Input Fields</h3>
+<pre><code class="language-swift">struct ValidatedTextField: View {
+    let title: String
+    @Binding var text: String
+    let validation: (String) -&gt; Bool
+
+    @State private var isValid = true
+    @FocusState private var isFocused: Bool
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            TextField(title, text: $text)
+                .textFieldStyle(.roundedBorder)
+                .focused($isFocused)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(borderColor, lineWidth: 1)
+                )
+                .onChange(of: text) { _, newValue in
+                    isValid = validation(newValue)
+                }
+
+            if !isValid &amp;&amp; !text.isEmpty {
+                Text(&quot;Invalid input&quot;)
+                    .font(.caption)
+                    .foregroundStyle(.red)
+            }
+        }
+    }
+
+    private var borderColor: Color {
+        if isFocused {
+            return isValid ? .blue : .red
+        }
+        return .clear
+    }
+}
+</code></pre>
+<h2>Buttons and Actions</h2>
+<h3>Button Styles</h3>
+<pre><code class="language-swift">// Primary filled button
+Button(&quot;Continue&quot;) {
+    // action
+}
+.buttonStyle(.borderedProminent)
+.controlSize(.large)
+
+// Secondary button
+Button(&quot;Cancel&quot;) {
+    // action
+}
+.buttonStyle(.bordered)
+
+// Destructive button
+Button(&quot;Delete&quot;, role: .destructive) {
+    // action
+}
+.buttonStyle(.bordered)
+
+// Custom button style
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -&gt; some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
+            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
+    }
+}
+</code></pre>
+<h3>Menu and Context Menu</h3>
+<pre><code class="language-swift">// Menu button
+Menu {
+    Button(&quot;Edit&quot;, systemImage: &quot;pencil&quot;) { }
+    Button(&quot;Duplicate&quot;, systemImage: &quot;doc.on.doc&quot;) { }
+    Divider()
+    Button(&quot;Delete&quot;, systemImage: &quot;trash&quot;, role: .destructive) { }
+} label: {
+    Image(systemName: &quot;ellipsis.circle&quot;)
+}
+
+// Context menu on any view
+Text(&quot;Long press me&quot;)
+    .contextMenu {
+        Button(&quot;Copy&quot;, systemImage: &quot;doc.on.doc&quot;) { }
+        Button(&quot;Share&quot;, systemImage: &quot;square.and.arrow.up&quot;) { }
+    } preview: {
+        ItemPreviewView()
+    }
+</code></pre>
+<h2>Sheets and Modals</h2>
+<h3>Sheet Presentation</h3>
+<pre><code class="language-swift">struct ParentView: View {
+    @State private var showSettings = false
+    @State private var selectedItem: Item?
+
+    var body: some View {
+        VStack {
+            Button(&quot;Settings&quot;) {
+                showSettings = true
+            }
+        }
+        .sheet(isPresented: $showSettings) {
+            SettingsSheet()
+                .presentationDetents([.medium, .large])
+                .presentationDragIndicator(.visible)
+        }
+        .sheet(item: $selectedItem) { item in
+            ItemDetailSheet(item: item)
+                .presentationDetents([.height(300), .large])
+                .presentationCornerRadius(24)
+        }
+    }
+}
+
+struct SettingsSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            SettingsContent()
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button(&quot;Done&quot;) {
+                            dismiss()
+                        }
+                    }
+                }
+        }
+    }
+}
+</code></pre>
+<h3>Confirmation Dialog</h3>
+<pre><code class="language-swift">struct DeleteConfirmationView: View {
+    @State private var showConfirmation = false
+
+    var body: some View {
+        Button(&quot;Delete Account&quot;, role: .destructive) {
+            showConfirmation = true
+        }
+        .confirmationDialog(
+            &quot;Delete Account&quot;,
+            isPresented: $showConfirmation,
+            titleVisibility: .visible
+        ) {
+            Button(&quot;Delete&quot;, role: .destructive) {
+                deleteAccount()
+            }
+            Button(&quot;Cancel&quot;, role: .cancel) { }
+        } message: {
+            Text(&quot;This action cannot be undone.&quot;)
+        }
+    }
+}
+</code></pre>
+<h2>Loading and Progress</h2>
+<h3>Progress Indicators</h3>
+<pre><code class="language-swift">// Indeterminate spinner
+ProgressView()
+    .progressViewStyle(.circular)
+
+// Determinate progress
+ProgressView(value: downloadProgress, total: 1.0) {
+    Text(&quot;Downloading...&quot;)
+} currentValueLabel: {
+    Text(&quot;\(Int(downloadProgress * 100))%&quot;)
+}
+
+// Custom loading view
+struct LoadingOverlay: View {
+    let message: String
+
+    var body: some View {
+        ZStack {
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+
+            VStack(spacing: 16) {
+                ProgressView()
+                    .scaleEffect(1.5)
+                    .tint(.white)
+
+                Text(message)
+                    .font(.subheadline)
+                    .foregroundStyle(.white)
+            }
+            .padding(24)
+            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
+        }
+    }
+}
+</code></pre>
+<h3>Skeleton Loading</h3>
+<pre><code class="language-swift">struct SkeletonRow: View {
+    @State private var isAnimating = false
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Circle()
+                .fill(.gray.opacity(0.3))
+                .frame(width: 44, height: 44)
+
+            VStack(alignment: .leading, spacing: 8) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(.gray.opacity(0.3))
+                    .frame(height: 14)
+                    .frame(maxWidth: 200)
+
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(.gray.opacity(0.2))
+                    .frame(height: 12)
+                    .frame(maxWidth: 150)
+            }
+        }
+        .opacity(isAnimating ? 0.5 : 1.0)
+        .animation(.easeInOut(duration: 0.8).repeatForever(), value: isAnimating)
+        .onAppear { isAnimating = true }
+    }
+}
+</code></pre>
+<h2>Async Content Loading</h2>
+<h3>AsyncImage</h3>
+<pre><code class="language-swift">AsyncImage(url: imageURL) { phase in
+    switch phase {
+    case .empty:
+        ProgressView()
+    case .success(let image):
+        image
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+    case .failure:
+        Image(systemName: &quot;photo&quot;)
+            .foregroundStyle(.secondary)
+    @unknown default:
+        EmptyView()
+    }
+}
+.frame(width: 100, height: 100)
+.clipShape(RoundedRectangle(cornerRadius: 8))
+</code></pre>
+<h3>Task-Based Loading</h3>
+<pre><code class="language-swift">struct AsyncContentView: View {
+    @State private var items: [Item] = []
+    @State private var isLoading = true
+    @State private var error: Error?
+
+    var body: some View {
+        Group {
+            if isLoading {
+                ProgressView(&quot;Loading...&quot;)
+            } else if let error {
+                ContentUnavailableView(
+                    &quot;Failed to Load&quot;,
+                    systemImage: &quot;exclamationmark.triangle&quot;,
+                    description: Text(error.localizedDescription)
+                )
+            } else if items.isEmpty {
+                ContentUnavailableView(
+                    &quot;No Items&quot;,
+                    systemImage: &quot;tray&quot;,
+                    description: Text(&quot;Add your first item to get started.&quot;)
+                )
+            } else {
+                List(items) { item in
+                    ItemRow(item: item)
+                }
+            }
+        }
+        .task {
+            await loadItems()
+        }
+    }
+
+    private func loadItems() async {
+        do {
+            items = try await api.fetchItems()
+            isLoading = false
+        } catch {
+            self.error = error
+            isLoading = false
+        }
+    }
+}
+</code></pre>
+<h2>Animations</h2>
+<h3>Implicit Animations</h3>
+<pre><code class="language-swift">struct AnimatedCard: View {
+    @State private var isExpanded = false
+
+    var body: some View {
+        VStack {
+            Text(&quot;Tap to expand&quot;)
+
+            if isExpanded {
+                Text(&quot;Additional content here&quot;)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(.blue.opacity(0.1), in: RoundedRectangle(cornerRadius: 12))
+        .onTapGesture {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                isExpanded.toggle()
+            }
+        }
+    }
+}
+</code></pre>
+<h3>Custom Transitions</h3>
+<pre><code class="language-swift">extension AnyTransition {
+    static var slideAndFade: AnyTransition {
+        .asymmetric(
+            insertion: .move(edge: .trailing).combined(with: .opacity),
+            removal: .move(edge: .leading).combined(with: .opacity)
+        )
+    }
+
+    static var scaleAndFade: AnyTransition {
+        .scale(scale: 0.8).combined(with: .opacity)
+    }
+}
+</code></pre>
+<h3>Phase Animator (iOS 17+)</h3>
+<pre><code class="language-swift">struct PulsingButton: View {
+    var body: some View {
+        Button(&quot;Tap Me&quot;) { }
+            .buttonStyle(.borderedProminent)
+            .phaseAnimator([false, true]) { content, phase in
+                content
+                    .scaleEffect(phase ? 1.05 : 1.0)
+            } animation: { _ in
+                .easeInOut(duration: 0.5)
+            }
+    }
+}
+</code></pre>
+<h2>Gestures</h2>
+<h3>Drag Gesture</h3>
+<pre><code class="language-swift">struct DraggableCard: View {
+    @State private var offset = CGSize.zero
+    @State private var isDragging = false
+
+    var body: some View {
+        RoundedRectangle(cornerRadius: 16)
+            .fill(.blue)
+            .frame(width: 200, height: 150)
+            .offset(offset)
+            .scaleEffect(isDragging ? 1.05 : 1.0)
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        offset = value.translation
+                        isDragging = true
+                    }
+                    .onEnded { _ in
+                        withAnimation(.spring()) {
+                            offset = .zero
+                            isDragging = false
+                        }
+                    }
+            )
+    }
+}
+</code></pre>
+<h3>Simultaneous Gestures</h3>
+<pre><code class="language-swift">struct ZoomableImage: View {
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+
+    var body: some View {
+        Image(&quot;photo&quot;)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .scaleEffect(scale)
+            .gesture(
+                MagnificationGesture()
+                    .onChanged { value in
+                        scale = lastScale * value
+                    }
+                    .onEnded { _ in
+                        lastScale = scale
+                    }
+            )
+            .gesture(
+                TapGesture(count: 2)
+                    .onEnded {
+                        withAnimation {
+                            scale = 1.0
+                            lastScale = 1.0
+                        }
+                    }
+            )
+    }
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

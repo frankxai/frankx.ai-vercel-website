@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Visual Design Foundations</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/visual-design-foundations/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Visual Design Foundations</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fvisual-design-foundations">visual-design-foundations</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: visual-design-foundations
+description: Apply typography, color theory, spacing systems, and iconography principles to create cohesive visual designs. Use when establishing design tokens, building style guides, or improving visual hierarchy and consistency.</h2>
+<h1>Visual Design Foundations</h1>
+<p>Build cohesive, accessible visual systems using typography, color, spacing, and iconography fundamentals.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Establishing design tokens for a new project</li>
+<li>Creating or refining a spacing and sizing system</li>
+<li>Selecting and pairing typefaces</li>
+<li>Building accessible color palettes</li>
+<li>Designing icon systems and visual assets</li>
+<li>Improving visual hierarchy and readability</li>
+<li>Auditing designs for visual consistency</li>
+<li>Implementing dark mode or theming</li>
+</ul>
+<h2>Core Systems</h2>
+<h3>1. Typography Scale</h3>
+<p><strong>Modular Scale</strong> (ratio-based sizing):</p>
+<pre><code class="language-css">:root {
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+}
+</code></pre>
+<p><strong>Line Height Guidelines</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Text Type</th>
+<th>Line Height</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Headings</td>
+<td>1.1 - 1.3</td>
+</tr>
+<tr>
+<td>Body text</td>
+<td>1.5 - 1.7</td>
+</tr>
+<tr>
+<td>UI labels</td>
+<td>1.2 - 1.4</td>
+</tr>
+</tbody></table>
+<h3>2. Spacing System</h3>
+<p><strong>8-point grid</strong> (industry standard):</p>
+<pre><code class="language-css">:root {
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+}
+</code></pre>
+<h3>3. Color System</h3>
+<p><strong>Semantic color tokens</strong>:</p>
+<pre><code class="language-css">:root {
+  /* Brand */
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-active: #1e40af;
+
+  /* Semantic */
+  --color-success: #16a34a;
+  --color-warning: #ca8a04;
+  --color-error: #dc2626;
+  --color-info: #0891b2;
+
+  /* Neutral */
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+}
+</code></pre>
+<h2>Quick Start: Design Tokens in Tailwind</h2>
+<pre><code class="language-js">// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: [&quot;Inter&quot;, &quot;system-ui&quot;, &quot;sans-serif&quot;],
+        mono: [&quot;JetBrains Mono&quot;, &quot;monospace&quot;],
+      },
+      fontSize: {
+        xs: [&quot;0.75rem&quot;, { lineHeight: &quot;1rem&quot; }],
+        sm: [&quot;0.875rem&quot;, { lineHeight: &quot;1.25rem&quot; }],
+        base: [&quot;1rem&quot;, { lineHeight: &quot;1.5rem&quot; }],
+        lg: [&quot;1.125rem&quot;, { lineHeight: &quot;1.75rem&quot; }],
+        xl: [&quot;1.25rem&quot;, { lineHeight: &quot;1.75rem&quot; }],
+        &quot;2xl&quot;: [&quot;1.5rem&quot;, { lineHeight: &quot;2rem&quot; }],
+      },
+      colors: {
+        brand: {
+          50: &quot;#eff6ff&quot;,
+          500: &quot;#3b82f6&quot;,
+          600: &quot;#2563eb&quot;,
+          700: &quot;#1d4ed8&quot;,
+        },
+      },
+      spacing: {
+        // Extends default with custom values
+        18: &quot;4.5rem&quot;,
+        88: &quot;22rem&quot;,
+      },
+    },
+  },
+};
+</code></pre>
+<h2>Typography Best Practices</h2>
+<h3>Font Pairing</h3>
+<p><strong>Safe combinations</strong>:</p>
+<ul>
+<li>Heading: <strong>Inter</strong> / Body: <strong>Inter</strong> (single family)</li>
+<li>Heading: <strong>Playfair Display</strong> / Body: <strong>Source Sans Pro</strong> (contrast)</li>
+<li>Heading: <strong>Space Grotesk</strong> / Body: <strong>IBM Plex Sans</strong> (geometric)</li>
+</ul>
+<h3>Responsive Typography</h3>
+<pre><code class="language-css">/* Fluid typography using clamp() */
+h1 {
+  font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
+  line-height: 1.1;
+}
+
+p {
+  font-size: clamp(1rem, 2vw + 0.5rem, 1.125rem);
+  line-height: 1.6;
+  max-width: 65ch; /* Optimal reading width */
+}
+</code></pre>
+<h3>Font Loading</h3>
+<pre><code class="language-css">/* Prevent layout shift */
+@font-face {
+  font-family: &quot;Inter&quot;;
+  src: url(&quot;/fonts/Inter.woff2&quot;) format(&quot;woff2&quot;);
+  font-display: swap;
+  font-weight: 400 700;
+}
+</code></pre>
+<h2>Color Theory</h2>
+<h3>Contrast Requirements (WCAG)</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Minimum Ratio</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Body text</td>
+<td>4.5:1 (AA)</td>
+</tr>
+<tr>
+<td>Large text (18px+)</td>
+<td>3:1 (AA)</td>
+</tr>
+<tr>
+<td>UI components</td>
+<td>3:1 (AA)</td>
+</tr>
+<tr>
+<td>Enhanced</td>
+<td>7:1 (AAA)</td>
+</tr>
+</tbody></table>
+<h3>Dark Mode Strategy</h3>
+<pre><code class="language-css">:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+}
+
+[data-theme=&quot;dark&quot;] {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #9ca3af;
+  --border: #374151;
+}
+</code></pre>
+<h3>Color Accessibility</h3>
+<pre><code class="language-tsx">// Check contrast programmatically
+function getContrastRatio(foreground: string, background: string): number {
+  const getLuminance = (hex: string) =&gt; {
+    const rgb = hexToRgb(hex);
+    const [r, g, b] = rgb.map((c) =&gt; {
+      c = c / 255;
+      return c &lt;= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+
+  const l1 = getLuminance(foreground);
+  const l2 = getLuminance(background);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+
+  return (lighter + 0.05) / (darker + 0.05);
+}
+</code></pre>
+<h2>Spacing Guidelines</h2>
+<h3>Component Spacing</h3>
+<pre><code>Card padding:      16-24px (--space-4 to --space-6)
+Section gap:       32-64px (--space-8 to --space-16)
+Form field gap:    16-24px (--space-4 to --space-6)
+Button padding:    8-16px vertical, 16-24px horizontal
+Icon-text gap:     8px (--space-2)
+</code></pre>
+<h3>Visual Rhythm</h3>
+<pre><code class="language-css">/* Consistent vertical rhythm */
+.prose &gt; * + * {
+  margin-top: var(--space-4);
+}
+
+.prose &gt; h2 + * {
+  margin-top: var(--space-2);
+}
+
+.prose &gt; * + h2 {
+  margin-top: var(--space-8);
+}
+</code></pre>
+<h2>Iconography</h2>
+<h3>Icon Sizing System</h3>
+<pre><code class="language-css">:root {
+  --icon-xs: 12px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+  --icon-xl: 32px;
+}
+</code></pre>
+<h3>Icon Component</h3>
+<pre><code class="language-tsx">interface IconProps {
+  name: string;
+  size?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;xl&quot;;
+  className?: string;
+}
+
+const sizeMap = {
+  xs: 12,
+  sm: 16,
+  md: 20,
+  lg: 24,
+  xl: 32,
+};
+
+export function Icon({ name, size = &quot;md&quot;, className }: IconProps) {
+  return (
+    &lt;svg
+      width={sizeMap[size]}
+      height={sizeMap[size]}
+      className={cn(&quot;inline-block flex-shrink-0&quot;, className)}
+      aria-hidden=&quot;true&quot;
+    &gt;
+      &lt;use href={`/icons.svg#${name}`} /&gt;
+    &lt;/svg&gt;
+  );
+}
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Establish Constraints</strong>: Limit choices to maintain consistency</li>
+<li><strong>Document Decisions</strong>: Create a living style guide</li>
+<li><strong>Test Accessibility</strong>: Verify contrast, sizing, touch targets</li>
+<li><strong>Use Semantic Tokens</strong>: Name by purpose, not appearance</li>
+<li><strong>Design Mobile-First</strong>: Start with constraints, add complexity</li>
+<li><strong>Maintain Vertical Rhythm</strong>: Consistent spacing creates harmony</li>
+<li><strong>Limit Font Weights</strong>: 2-3 weights per family is sufficient</li>
+</ol>
+<h2>Common Issues</h2>
+<ul>
+<li><strong>Inconsistent Spacing</strong>: Not using a defined scale</li>
+<li><strong>Poor Contrast</strong>: Failing WCAG requirements</li>
+<li><strong>Font Overload</strong>: Too many families or weights</li>
+<li><strong>Magic Numbers</strong>: Arbitrary values instead of tokens</li>
+<li><strong>Missing States</strong>: Forgetting hover, focus, disabled</li>
+<li><strong>No Dark Mode Plan</strong>: Retrofitting is harder than planning</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://tailwindcss.com/docs">Tailwind CSS Documentation</a></li>
+<li><a href="https://typescale.com/">Type Scale Calculator</a></li>
+<li><a href="https://webaim.org/resources/contrastchecker/">Contrast Checker</a></li>
+<li><a href="https://m3.material.io/styles/color/overview">Material Design Color System</a></li>
+<li><a href="https://www.radix-ui.com/colors">Radix Colors</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

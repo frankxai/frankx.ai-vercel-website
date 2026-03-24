@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Real-World Plugin Settings Examples</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-plugins-fcakyon/plugins/plugin-dev/skills/plugin-settings/references/real-world-examples.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Real-World Plugin Settings Examples</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#.claude-plugins-fcakyon">.claude-plugins-fcakyon</a> / <a href="../../../../index.html#.claude-plugins-fcakyon%2Fplugins">plugins</a> / <a href="../../../index.html#.claude-plugins-fcakyon%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="../../index.html#.claude-plugins-fcakyon%2Fplugins%2Fplugin-dev%2Fskills">skills</a> / <a href="../index.html#.claude-plugins-fcakyon%2Fplugins%2Fplugin-dev%2Fskills%2Fplugin-settings">plugin-settings</a> / <a href="index.html#.claude-plugins-fcakyon%2Fplugins%2Fplugin-dev%2Fskills%2Fplugin-settings%2Freferences">references</a> / <span>real-world-examples.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Real-World Plugin Settings Examples</h1>
+<p>Detailed analysis of how production plugins use the <code>.claude/plugin-name.local.md</code> pattern.</p>
+<h2>multi-agent-swarm Plugin</h2>
+<h3>Settings File Structure</h3>
+<p><strong>.claude/multi-agent-swarm.local.md:</strong></p>
+<pre><code class="language-markdown">---
+agent_name: auth-implementation
+task_number: 3.5
+pr_number: 1234
+coordinator_session: team-leader
+enabled: true
+dependencies: [&quot;Task 3.4&quot;]
+additional_instructions: &quot;Use JWT tokens, not sessions&quot;
+---
+
+# Task: Implement Authentication
+
+Build JWT-based authentication for the REST API.
+
+## Requirements
+- JWT token generation and validation
+- Refresh token flow
+- Secure password hashing
+
+## Success Criteria
+- Auth endpoints implemented
+- Tests passing (100% coverage)
+- PR created and CI green
+- Documentation updated
+
+## Coordination
+Depends on Task 3.4 (user model).
+Report status to &#39;team-leader&#39; session.
+</code></pre>
+<h3>How It&#39;s Used</h3>
+<p><strong>File:</strong> <code>hooks/agent-stop-notification.sh</code></p>
+<p><strong>Purpose:</strong> Send notifications to coordinator when agent becomes idle</p>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+SWARM_STATE_FILE=&quot;.claude/multi-agent-swarm.local.md&quot;
+
+# Quick exit if no swarm active
+if [[ ! -f &quot;$SWARM_STATE_FILE&quot; ]]; then
+  exit 0
+fi
+
+# Parse frontmatter
+FRONTMATTER=$(sed -n &#39;/^---$/,/^---$/{ /^---$/d; p; }&#39; &quot;$SWARM_STATE_FILE&quot;)
+
+# Extract configuration
+COORDINATOR_SESSION=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^coordinator_session:&#39; | sed &#39;s/coordinator_session: *//&#39; | sed &#39;s/^&quot;\(.*\)&quot;$/\1/&#39;)
+AGENT_NAME=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^agent_name:&#39; | sed &#39;s/agent_name: *//&#39; | sed &#39;s/^&quot;\(.*\)&quot;$/\1/&#39;)
+TASK_NUMBER=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^task_number:&#39; | sed &#39;s/task_number: *//&#39; | sed &#39;s/^&quot;\(.*\)&quot;$/\1/&#39;)
+PR_NUMBER=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^pr_number:&#39; | sed &#39;s/pr_number: *//&#39; | sed &#39;s/^&quot;\(.*\)&quot;$/\1/&#39;)
+ENABLED=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^enabled:&#39; | sed &#39;s/enabled: *//&#39;)
+
+# Check if enabled
+if [[ &quot;$ENABLED&quot; != &quot;true&quot; ]]; then
+  exit 0
+fi
+
+# Send notification to coordinator
+NOTIFICATION=&quot;🤖 Agent ${AGENT_NAME} (Task ${TASK_NUMBER}, PR #${PR_NUMBER}) is idle.&quot;
+
+if tmux has-session -t &quot;$COORDINATOR_SESSION&quot; 2&gt;/dev/null; then
+  tmux send-keys -t &quot;$COORDINATOR_SESSION&quot; &quot;$NOTIFICATION&quot; Enter
+  sleep 0.5
+  tmux send-keys -t &quot;$COORDINATOR_SESSION&quot; Enter
+fi
+
+exit 0
+</code></pre>
+<p><strong>Key patterns:</strong></p>
+<ol>
+<li><strong>Quick exit</strong> (line 7-9): Returns immediately if file doesn&#39;t exist</li>
+<li><strong>Field extraction</strong> (lines 11-17): Parses each frontmatter field</li>
+<li><strong>Enabled check</strong> (lines 19-21): Respects enabled flag</li>
+<li><strong>Action based on settings</strong> (lines 23-29): Uses coordinator_session to send notification</li>
+</ol>
+<h3>Creation</h3>
+<p><strong>File:</strong> <code>commands/launch-swarm.md</code></p>
+<p>Settings files are created during swarm launch with:</p>
+<pre><code class="language-bash">cat &gt; &quot;$WORKTREE_PATH/.claude/multi-agent-swarm.local.md&quot; &lt;&lt;EOF
+---
+agent_name: $AGENT_NAME
+task_number: $TASK_ID
+pr_number: TBD
+coordinator_session: $COORDINATOR_SESSION
+enabled: true
+dependencies: [$DEPENDENCIES]
+additional_instructions: &quot;$EXTRA_INSTRUCTIONS&quot;
+---
+
+# Task: $TASK_DESCRIPTION
+
+$TASK_DETAILS
+EOF
+</code></pre>
+<h3>Updates</h3>
+<p>PR number updated after PR creation:</p>
+<pre><code class="language-bash"># Update pr_number field
+sed &quot;s/^pr_number: .*/pr_number: $PR_NUM/&quot; \
+  &quot;.claude/multi-agent-swarm.local.md&quot; &gt; temp.md
+mv temp.md &quot;.claude/multi-agent-swarm.local.md&quot;
+</code></pre>
+<h2>ralph-wiggum Plugin</h2>
+<h3>Settings File Structure</h3>
+<p><strong>.claude/ralph-loop.local.md:</strong></p>
+<pre><code class="language-markdown">---
+iteration: 1
+max_iterations: 10
+completion_promise: &quot;All tests passing and build successful&quot;
+started_at: &quot;2025-01-15T14:30:00Z&quot;
+---
+
+Fix all the linting errors in the project.
+Make sure tests pass after each fix.
+Document any changes needed in CLAUDE.md.
+</code></pre>
+<h3>How It&#39;s Used</h3>
+<p><strong>File:</strong> <code>hooks/stop-hook.sh</code></p>
+<p><strong>Purpose:</strong> Prevent session exit and loop Claude&#39;s output back as input</p>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+set -euo pipefail
+
+RALPH_STATE_FILE=&quot;.claude/ralph-loop.local.md&quot;
+
+# Quick exit if no active loop
+if [[ ! -f &quot;$RALPH_STATE_FILE&quot; ]]; then
+  exit 0
+fi
+
+# Parse frontmatter
+FRONTMATTER=$(sed -n &#39;/^---$/,/^---$/{ /^---$/d; p; }&#39; &quot;$RALPH_STATE_FILE&quot;)
+
+# Extract configuration
+ITERATION=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^iteration:&#39; | sed &#39;s/iteration: *//&#39;)
+MAX_ITERATIONS=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^max_iterations:&#39; | sed &#39;s/max_iterations: *//&#39;)
+COMPLETION_PROMISE=$(echo &quot;$FRONTMATTER&quot; | grep &#39;^completion_promise:&#39; | sed &#39;s/completion_promise: *//&#39; | sed &#39;s/^&quot;\(.*\)&quot;$/\1/&#39;)
+
+# Check max iterations
+if [[ $MAX_ITERATIONS -gt 0 ]] &amp;&amp; [[ $ITERATION -ge $MAX_ITERATIONS ]]; then
+  echo &quot;🛑 Ralph loop: Max iterations ($MAX_ITERATIONS) reached.&quot;
+  rm &quot;$RALPH_STATE_FILE&quot;
+  exit 0
+fi
+
+# Get transcript and check for completion promise
+TRANSCRIPT_PATH=$(echo &quot;$HOOK_INPUT&quot; | jq -r &#39;.transcript_path&#39;)
+LAST_OUTPUT=$(grep &#39;&quot;role&quot;:&quot;assistant&quot;&#39; &quot;$TRANSCRIPT_PATH&quot; | tail -1 | jq -r &#39;.message.content | map(select(.type == &quot;text&quot;)) | map(.text) | join(&quot;\n&quot;)&#39;)
+
+# Check for completion
+if [[ &quot;$COMPLETION_PROMISE&quot; != &quot;null&quot; ]] &amp;&amp; [[ -n &quot;$COMPLETION_PROMISE&quot; ]]; then
+  PROMISE_TEXT=$(echo &quot;$LAST_OUTPUT&quot; | perl -0777 -pe &#39;s/.*?&lt;promise&gt;(.*?)&lt;\/promise&gt;.*/$1/s; s/^\s+|\s+$//g&#39;)
+
+  if [[ &quot;$PROMISE_TEXT&quot; = &quot;$COMPLETION_PROMISE&quot; ]]; then
+    echo &quot;✅ Ralph loop: Detected completion&quot;
+    rm &quot;$RALPH_STATE_FILE&quot;
+    exit 0
+  fi
+fi
+
+# Continue loop - increment iteration
+NEXT_ITERATION=$((ITERATION + 1))
+
+# Extract prompt from markdown body
+PROMPT_TEXT=$(awk &#39;/^---$/{i++; next} i&gt;=2&#39; &quot;$RALPH_STATE_FILE&quot;)
+
+# Update iteration counter
+TEMP_FILE=&quot;${RALPH_STATE_FILE}.tmp.$$&quot;
+sed &quot;s/^iteration: .*/iteration: $NEXT_ITERATION/&quot; &quot;$RALPH_STATE_FILE&quot; &gt; &quot;$TEMP_FILE&quot;
+mv &quot;$TEMP_FILE&quot; &quot;$RALPH_STATE_FILE&quot;
+
+# Block exit and feed prompt back
+jq -n \
+  --arg prompt &quot;$PROMPT_TEXT&quot; \
+  --arg msg &quot;🔄 Ralph iteration $NEXT_ITERATION&quot; \
+  &#39;{
+    &quot;decision&quot;: &quot;block&quot;,
+    &quot;reason&quot;: $prompt,
+    &quot;systemMessage&quot;: $msg
+  }&#39;
+
+exit 0
+</code></pre>
+<p><strong>Key patterns:</strong></p>
+<ol>
+<li><strong>Quick exit</strong> (line 7-9): Skip if not active</li>
+<li><strong>Iteration tracking</strong> (lines 11-20): Count and enforce max iterations</li>
+<li><strong>Promise detection</strong> (lines 25-33): Check for completion signal in output</li>
+<li><strong>Prompt extraction</strong> (line 38): Read markdown body as next prompt</li>
+<li><strong>State update</strong> (lines 40-43): Increment iteration atomically</li>
+<li><strong>Loop continuation</strong> (lines 45-53): Block exit and feed prompt back</li>
+</ol>
+<h3>Creation</h3>
+<p><strong>File:</strong> <code>scripts/setup-ralph-loop.sh</code></p>
+<pre><code class="language-bash">#!/bin/bash
+PROMPT=&quot;$1&quot;
+MAX_ITERATIONS=&quot;${2:-0}&quot;
+COMPLETION_PROMISE=&quot;${3:-}&quot;
+
+# Create state file
+cat &gt; &quot;.claude/ralph-loop.local.md&quot; &lt;&lt;EOF
+---
+iteration: 1
+max_iterations: $MAX_ITERATIONS
+completion_promise: &quot;$COMPLETION_PROMISE&quot;
+started_at: &quot;$(date -Iseconds)&quot;
+---
+
+$PROMPT
+EOF
+
+echo &quot;Ralph loop initialized: .claude/ralph-loop.local.md&quot;
+</code></pre>
+<h2>Pattern Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>multi-agent-swarm</th>
+<th>ralph-wiggum</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>File</strong></td>
+<td><code>.claude/multi-agent-swarm.local.md</code></td>
+<td><code>.claude/ralph-loop.local.md</code></td>
+</tr>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Agent coordination state</td>
+<td>Loop iteration state</td>
+</tr>
+<tr>
+<td><strong>Frontmatter</strong></td>
+<td>Agent metadata</td>
+<td>Loop configuration</td>
+</tr>
+<tr>
+<td><strong>Body</strong></td>
+<td>Task assignment</td>
+<td>Prompt to loop</td>
+</tr>
+<tr>
+<td><strong>Updates</strong></td>
+<td>PR number, status</td>
+<td>Iteration counter</td>
+</tr>
+<tr>
+<td><strong>Deletion</strong></td>
+<td>Manual or on completion</td>
+<td>On loop exit</td>
+</tr>
+<tr>
+<td><strong>Hook</strong></td>
+<td>Stop (notifications)</td>
+<td>Stop (loop control)</td>
+</tr>
+</tbody></table>
+<h2>Best Practices from Real Plugins</h2>
+<h3>1. Quick Exit Pattern</h3>
+<p>Both plugins check file existence first:</p>
+<pre><code class="language-bash">if [[ ! -f &quot;$STATE_FILE&quot; ]]; then
+  exit 0  # Not active
+fi
+</code></pre>
+<p><strong>Why:</strong> Avoids errors when plugin isn&#39;t configured and performs fast.</p>
+<h3>2. Enabled Flag</h3>
+<p>Both use an <code>enabled</code> field for explicit control:</p>
+<pre><code class="language-yaml">enabled: true
+</code></pre>
+<p><strong>Why:</strong> Allows temporary deactivation without deleting file.</p>
+<h3>3. Atomic Updates</h3>
+<p>Both use temp file + atomic move:</p>
+<pre><code class="language-bash">TEMP_FILE=&quot;${FILE}.tmp.$$&quot;
+sed &quot;s/^field: .*/field: $NEW_VALUE/&quot; &quot;$FILE&quot; &gt; &quot;$TEMP_FILE&quot;
+mv &quot;$TEMP_FILE&quot; &quot;$FILE&quot;
+</code></pre>
+<p><strong>Why:</strong> Prevents corruption if process is interrupted.</p>
+<h3>4. Quote Handling</h3>
+<p>Both strip surrounding quotes from YAML values:</p>
+<pre><code class="language-bash">sed &#39;s/^&quot;\(.*\)&quot;$/\1/&#39;
+</code></pre>
+<p><strong>Why:</strong> YAML allows both <code>field: value</code> and <code>field: &quot;value&quot;</code>.</p>
+<h3>5. Error Handling</h3>
+<p>Both handle missing/corrupt files gracefully:</p>
+<pre><code class="language-bash">if [[ ! -f &quot;$FILE&quot; ]]; then
+  exit 0  # No error, just not configured
+fi
+
+if [[ -z &quot;$CRITICAL_FIELD&quot; ]]; then
+  echo &quot;Settings file corrupt&quot; &gt;&amp;2
+  rm &quot;$FILE&quot;  # Clean up
+  exit 0
+fi
+</code></pre>
+<p><strong>Why:</strong> Fails gracefully instead of crashing.</p>
+<h2>Anti-Patterns to Avoid</h2>
+<h3>❌ Hardcoded Paths</h3>
+<pre><code class="language-bash"># BAD
+FILE=&quot;/Users/alice/.claude/my-plugin.local.md&quot;
+
+# GOOD
+FILE=&quot;.claude/my-plugin.local.md&quot;
+</code></pre>
+<h3>❌ Unquoted Variables</h3>
+<pre><code class="language-bash"># BAD
+echo $VALUE
+
+# GOOD
+echo &quot;$VALUE&quot;
+</code></pre>
+<h3>❌ Non-Atomic Updates</h3>
+<pre><code class="language-bash"># BAD: Can corrupt file if interrupted
+sed -i &quot;s/field: .*/field: $VALUE/&quot; &quot;$FILE&quot;
+
+# GOOD: Atomic
+TEMP_FILE=&quot;${FILE}.tmp.$$&quot;
+sed &quot;s/field: .*/field: $VALUE/&quot; &quot;$FILE&quot; &gt; &quot;$TEMP_FILE&quot;
+mv &quot;$TEMP_FILE&quot; &quot;$FILE&quot;
+</code></pre>
+<h3>❌ No Default Values</h3>
+<pre><code class="language-bash"># BAD: Fails if field missing
+if [[ $MAX -gt 100 ]]; then
+  # MAX might be empty!
+fi
+
+# GOOD: Provide default
+MAX=${MAX:-10}
+</code></pre>
+<h3>❌ Ignoring Edge Cases</h3>
+<pre><code class="language-bash"># BAD: Assumes exactly 2 --- markers
+sed -n &#39;/^---$/,/^---$/{ /^---$/d; p; }&#39;
+
+# GOOD: Handles --- in body
+awk &#39;/^---$/{i++; next} i&gt;=2&#39;  # For body
+</code></pre>
+<h2>Conclusion</h2>
+<p>The <code>.claude/plugin-name.local.md</code> pattern provides:</p>
+<ul>
+<li>Simple, human-readable configuration</li>
+<li>Version-control friendly (gitignored)</li>
+<li>Per-project settings</li>
+<li>Easy parsing with standard bash tools</li>
+<li>Supports both structured config (YAML) and freeform content (markdown)</li>
+</ul>
+<p>Use this pattern for any plugin that needs user-configurable behavior or state persistence.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

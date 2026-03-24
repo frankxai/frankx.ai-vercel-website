@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ACOS Swarm - Multi-Agent Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/commands/acos-swarm.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ACOS Swarm - Multi-Agent Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fcommands">commands</a> / <span>acos-swarm.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ACOS Swarm - Multi-Agent Orchestration</h1>
+<p>Initialize a coordinated swarm of agents for complex, multi-file tasks.</p>
+<h2>When to Use</h2>
+<p>Auto-invoke swarm when the task involves:</p>
+<ul>
+<li>3+ files changing</li>
+<li>New feature implementation</li>
+<li>Cross-module refactoring</li>
+<li>Full-stack changes (frontend + backend + tests)</li>
+<li>Performance optimization across multiple areas</li>
+</ul>
+<h2>Anti-Drift Configuration (Default)</h2>
+<p>Use hierarchical topology with specialized strategy for maximum coherence:</p>
+<pre><code>Topology: hierarchical (coordinator validates each output)
+Max Agents: 6-8 (smaller team = less drift)
+Strategy: specialized (clear roles, no overlap)
+</code></pre>
+<h2>Swarm Patterns</h2>
+<h3>Feature Development (Most Common)</h3>
+<p>Spawn these agents concurrently using the Task tool:</p>
+<ol>
+<li><strong>Researcher</strong> - Analyze requirements and existing code patterns</li>
+<li><strong>Architect</strong> - Design implementation approach</li>
+<li><strong>Coder</strong> - Implement the solution</li>
+<li><strong>Tester</strong> - Write tests</li>
+<li><strong>Reviewer</strong> - Review code quality</li>
+</ol>
+<h3>Bug Fix</h3>
+<ol>
+<li><strong>Researcher</strong> - Reproduce and trace the bug</li>
+<li><strong>Coder</strong> - Implement the fix</li>
+<li><strong>Tester</strong> - Write regression test</li>
+</ol>
+<h3>Content Pipeline</h3>
+<ol>
+<li><strong>Researcher</strong> - Research topic and keywords</li>
+<li><strong>Writer</strong> - Draft content</li>
+<li><strong>SEO Specialist</strong> - Optimize for search</li>
+<li><strong>Designer</strong> - Create visual assets</li>
+</ol>
+<h3>Deployment</h3>
+<ol>
+<li><strong>Validator</strong> - Pre-deploy checks</li>
+<li><strong>Deployer</strong> - Sync and push to production</li>
+<li><strong>Monitor</strong> - Verify deployment success</li>
+</ol>
+<h2>Execution</h2>
+<p>When this command is invoked:</p>
+<ol>
+<li>Identify the task type from user&#39;s request</li>
+<li>Select the appropriate swarm pattern above</li>
+<li>Spawn ALL agents concurrently in ONE message using Task tool</li>
+<li>Each agent gets clear, non-overlapping instructions</li>
+<li>Create checkpoints after each agent completes</li>
+<li>Swarm hooks track communication between agents</li>
+</ol>
+<h2>CLI Alternative</h2>
+<pre><code class="language-bash">npx claude-flow@v3alpha swarm init --topology hierarchical --max-agents 8 --strategy specialized
+</code></pre>
+<p>Remember: Claude Code&#39;s Task tool does the ACTUAL work. Swarm coordination is about organizing the work efficiently.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

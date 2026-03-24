@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Migrating from Basic to Advanced Hooks</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/plugin-dev/skills/hook-development/references/migration.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Migrating from Basic to Advanced Hooks</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>migration.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <h1>Migrating from Basic to Advanced Hooks</h1>
+<p>This guide shows how to migrate from basic command hooks to advanced prompt-based hooks for better maintainability and flexibility.</p>
+<h2>Why Migrate?</h2>
+<p>Prompt-based hooks offer several advantages:</p>
+<ul>
+<li><strong>Natural language reasoning</strong>: LLM understands context and intent</li>
+<li><strong>Better edge case handling</strong>: Adapts to unexpected scenarios</li>
+<li><strong>No bash scripting required</strong>: Simpler to write and maintain</li>
+<li><strong>More flexible validation</strong>: Can handle complex logic without coding</li>
+</ul>
+<h2>Migration Example: Bash Command Validation</h2>
+<h3>Before (Basic Command Hook)</h3>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash validate-bash.sh&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Script (validate-bash.sh):</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+input=$(cat)
+command=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.command&#39;)
+
+# Hard-coded validation logic
+if [[ &quot;$command&quot; == *&quot;rm -rf&quot;* ]]; then
+  echo &quot;Dangerous command detected&quot; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>Problems:</strong></p>
+<ul>
+<li>Only checks for exact &quot;rm -rf&quot; pattern</li>
+<li>Doesn&#39;t catch variations like <code>rm -fr</code> or <code>rm -r -f</code></li>
+<li>Misses other dangerous commands (<code>dd</code>, <code>mkfs</code>, etc.)</li>
+<li>No context awareness</li>
+<li>Requires bash scripting knowledge</li>
+</ul>
+<h3>After (Advanced Prompt Hook)</h3>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Command: $TOOL_INPUT.command. Analyze for: 1) Destructive operations (rm -rf, dd, mkfs, etc) 2) Privilege escalation (sudo) 3) Network operations without user consent. Return &#39;approve&#39; or &#39;deny&#39; with explanation.&quot;,
+          &quot;timeout&quot;: 15
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Catches all variations and patterns</li>
+<li>Understands intent, not just literal strings</li>
+<li>No script file needed</li>
+<li>Easy to extend with new criteria</li>
+<li>Context-aware decisions</li>
+<li>Natural language explanation in denial</li>
+</ul>
+<h2>Migration Example: File Write Validation</h2>
+<h3>Before (Basic Command Hook)</h3>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Write&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash validate-write.sh&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Script (validate-write.sh):</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+input=$(cat)
+file_path=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.file_path&#39;)
+
+# Check for path traversal
+if [[ &quot;$file_path&quot; == *&quot;..&quot;* ]]; then
+  echo &#39;{&quot;decision&quot;: &quot;deny&quot;, &quot;reason&quot;: &quot;Path traversal detected&quot;}&#39; &gt;&amp;2
+  exit 2
+fi
+
+# Check for system paths
+if [[ &quot;$file_path&quot; == &quot;/etc/&quot;* ]] || [[ &quot;$file_path&quot; == &quot;/sys/&quot;* ]]; then
+  echo &#39;{&quot;decision&quot;: &quot;deny&quot;, &quot;reason&quot;: &quot;System file&quot;}&#39; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>Problems:</strong></p>
+<ul>
+<li>Hard-coded path patterns</li>
+<li>Doesn&#39;t understand symlinks</li>
+<li>Missing edge cases (e.g., <code>/etc</code> vs <code>/etc/</code>)</li>
+<li>No consideration of file content</li>
+</ul>
+<h3>After (Advanced Prompt Hook)</h3>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Write|Edit&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;File path: $TOOL_INPUT.file_path. Content preview: $TOOL_INPUT.content (first 200 chars). Verify: 1) Not system directories (/etc, /sys, /usr) 2) Not credentials (.env, tokens, secrets) 3) No path traversal 4) Content doesn&#39;t expose secrets. Return &#39;approve&#39; or &#39;deny&#39;.&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Context-aware (considers content too)</li>
+<li>Handles symlinks and edge cases</li>
+<li>Natural understanding of &quot;system directories&quot;</li>
+<li>Can detect secrets in content</li>
+<li>Easy to extend criteria</li>
+</ul>
+<h2>When to Keep Command Hooks</h2>
+<p>Command hooks still have their place:</p>
+<h3>1. Deterministic Performance Checks</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Check file size quickly
+file_path=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.file_path&#39;)
+size=$(stat -f%z &quot;$file_path&quot; 2&gt;/dev/null || stat -c%s &quot;$file_path&quot; 2&gt;/dev/null)
+
+if [ &quot;$size&quot; -gt 10000000 ]; then
+  echo &#39;{&quot;decision&quot;: &quot;deny&quot;, &quot;reason&quot;: &quot;File too large&quot;}&#39; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>Use command hooks when:</strong> Validation is purely mathematical or deterministic.</p>
+<h3>2. External Tool Integration</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Run security scanner
+file_path=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.file_path&#39;)
+scan_result=$(security-scanner &quot;$file_path&quot;)
+
+if [ &quot;$?&quot; -ne 0 ]; then
+  echo &quot;Security scan failed: $scan_result&quot; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>Use command hooks when:</strong> Integrating with external tools that provide yes/no answers.</p>
+<h3>3. Very Fast Checks (&lt; 50ms)</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Quick regex check
+command=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.command&#39;)
+
+if [[ &quot;$command&quot; =~ ^(ls|pwd|echo)$ ]]; then
+  exit 0  # Safe commands
+fi
+</code></pre>
+<p><strong>Use command hooks when:</strong> Performance is critical and logic is simple.</p>
+<h2>Hybrid Approach</h2>
+<p>Combine both for multi-stage validation:</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/scripts/quick-check.sh&quot;,
+          &quot;timeout&quot;: 5
+        },
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Deep analysis of bash command: $TOOL_INPUT&quot;,
+          &quot;timeout&quot;: 15
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>The command hook does fast deterministic checks, while the prompt hook handles complex reasoning.</p>
+<h2>Migration Checklist</h2>
+<p>When migrating hooks:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Identify the validation logic in the command hook</li>
+<li><input disabled="" type="checkbox"> Convert hard-coded patterns to natural language criteria</li>
+<li><input disabled="" type="checkbox"> Test with edge cases the old hook missed</li>
+<li><input disabled="" type="checkbox"> Verify LLM understands the intent</li>
+<li><input disabled="" type="checkbox"> Set appropriate timeout (usually 15-30s for prompt hooks)</li>
+<li><input disabled="" type="checkbox"> Document the new hook in README</li>
+<li><input disabled="" type="checkbox"> Remove or archive old script files</li>
+</ul>
+<h2>Migration Tips</h2>
+<ol>
+<li><strong>Start with one hook</strong>: Don&#39;t migrate everything at once</li>
+<li><strong>Test thoroughly</strong>: Verify prompt hook catches what command hook caught</li>
+<li><strong>Look for improvements</strong>: Use migration as opportunity to enhance validation</li>
+<li><strong>Keep scripts for reference</strong>: Archive old scripts in case you need to reference the logic</li>
+<li><strong>Document reasoning</strong>: Explain why prompt hook is better in README</li>
+</ol>
+<h2>Complete Migration Example</h2>
+<h3>Original Plugin Structure</h3>
+<pre><code>my-plugin/
+├── .claude-plugin/plugin.json
+├── hooks/hooks.json
+└── scripts/
+    ├── validate-bash.sh
+    ├── validate-write.sh
+    └── check-tests.sh
+</code></pre>
+<h3>After Migration</h3>
+<pre><code>my-plugin/
+├── .claude-plugin/plugin.json
+├── hooks/hooks.json      # Now uses prompt hooks
+└── scripts/              # Archive or delete
+    └── archive/
+        ├── validate-bash.sh
+        ├── validate-write.sh
+        └── check-tests.sh
+</code></pre>
+<h3>Updated hooks.json</h3>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Validate bash command safety: destructive ops, privilege escalation, network access&quot;
+        }
+      ]
+    },
+    {
+      &quot;matcher&quot;: &quot;Write|Edit&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Validate file write safety: system paths, credentials, path traversal, content secrets&quot;
+        }
+      ]
+    }
+  ],
+  &quot;Stop&quot;: [
+    {
+      &quot;matcher&quot;: &quot;*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Verify tests were run if code was modified&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Result:</strong> Simpler, more maintainable, more powerful.</p>
+<h2>Common Migration Patterns</h2>
+<h3>Pattern: String Contains → Natural Language</h3>
+<p><strong>Before:</strong></p>
+<pre><code class="language-bash">if [[ &quot;$command&quot; == *&quot;sudo&quot;* ]]; then
+  echo &quot;Privilege escalation&quot; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>After:</strong></p>
+<pre><code>&quot;Check for privilege escalation (sudo, su, etc)&quot;
+</code></pre>
+<h3>Pattern: Regex → Intent</h3>
+<p><strong>Before:</strong></p>
+<pre><code class="language-bash">if [[ &quot;$file&quot; =~ \.(env|secret|key|token)$ ]]; then
+  echo &quot;Credential file&quot; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>After:</strong></p>
+<pre><code>&quot;Verify not writing to credential files (.env, secrets, keys, tokens)&quot;
+</code></pre>
+<h3>Pattern: Multiple Conditions → Criteria List</h3>
+<p><strong>Before:</strong></p>
+<pre><code class="language-bash">if [ condition1 ] || [ condition2 ] || [ condition3 ]; then
+  echo &quot;Invalid&quot; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>After:</strong></p>
+<pre><code>&quot;Check: 1) condition1 2) condition2 3) condition3. Deny if any fail.&quot;
+</code></pre>
+<h2>Conclusion</h2>
+<p>Migrating to prompt-based hooks makes plugins more maintainable, flexible, and powerful. Reserve command hooks for deterministic checks and external tool integration.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

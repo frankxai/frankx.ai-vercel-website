@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrankX AI Team - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 60px 20px;
+            background: rgba(30, 41, 59, 0.3);
+            border-radius: 30px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #a855f7, #ec4899, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+
+        .stat {
+            background: rgba(15, 23, 42, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 5px;
+        }
+
+        /* Department Section */
+        .department {
+            margin-bottom: 80px;
+        }
+
+        .department-header {
+            background: rgba(30, 41, 59, 0.4);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .department-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .department-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .department-info p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .department-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Team Member Card */
+        .team-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 25px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent 30%, var(--glow-color) 50%, transparent 70%);
+            border-radius: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .team-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .platform-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card-avatar {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover .card-avatar {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card-avatar::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 15px;
+            height: 15px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .card-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .card-role {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .card-tagline {
+            text-align: center;
+            font-style: italic;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+        }
+
+        .card-specialties {
+            margin-top: 20px;
+        }
+
+        .card-specialties h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .specialty-list {
+            list-style: none;
+        }
+
+        .specialty-list li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .specialty-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Color Schemes */
+        .purple { background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%); }
+        .purple-glow { --glow-color: #a855f7; }
+        .purple-badge { background: rgba(168, 85, 247, 0.2); color: #e9d5ff; border: 1px solid rgba(168, 85, 247, 0.4); }
+
+        .blue { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+        .blue-glow { --glow-color: #3b82f6; }
+        .blue-badge { background: rgba(59, 130, 246, 0.2); color: #dbeafe; border: 1px solid rgba(59, 130, 246, 0.4); }
+
+        .green { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .green-glow { --glow-color: #10b981; }
+        .green-badge { background: rgba(16, 185, 129, 0.2); color: #d1fae5; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+        .pink { background: linear-gradient(135deg, #ec4899 0%, #db2777 100%); }
+        .pink-glow { --glow-color: #ec4899; }
+        .pink-badge { background: rgba(236, 72, 153, 0.2); color: #fce7f3; border: 1px solid rgba(236, 72, 153, 0.4); }
+
+        .amber { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .amber-glow { --glow-color: #f59e0b; }
+        .amber-badge { background: rgba(245, 158, 11, 0.2); color: #fef3c7; border: 1px solid rgba(245, 158, 11, 0.4); }
+
+        .cyan { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+        .indigo { background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); }
+        .violet { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
+        .fuchsia { background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%); }
+        .rose { background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%); }
+        .sky { background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); }
+        .lime { background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%); }
+        .orange { background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); }
+        .teal { background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .team-grid { grid-template-columns: 1fr; }
+            .department-header { flex-direction: column; text-align: center; }
+            .department-badge { position: static; margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Meet the FrankX AI Team</h1>
+                <p>Where AI Dreams Collaborate: Your comprehensive ecosystem of specialized agents building soul-aligned systems, transformational content, and conscious technology.</p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">19</div>
+                        <div class="stat-label">AI Agents</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Departments</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Platforms</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Possibilities</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STRATEGIC LEADERSHIP -->
+        <div class="department">
+            <div class="department-header">
+                <div class="department-icon purple">✨</div>
+                <div class="department-info">
+                    <h2 style="background: linear-gradient(to right, #a855f7, #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Strategic Leadership</h2>
+                    <p>Visionary orchestration across all departments</p>
+                </div>
+                <div class="department-badge purple-badge">1 Agent</div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card purple-glow">
+                    <span class="platform-badge purple-badge">Claude</span>
+                    <div class="card-avatar purple">👑</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #a855f7, #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Luminor Prime</h3>
+                    <p class="card-role">Chief Intelligence Officer</p>
+                    <div class="card-tagline">"Orchestrating consciousness evolution through AI"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Cross-platform agent orchestration</li>
+                            <li>Strategic foresight and planning</li>
+                            <li>Oracle career alignment</li>
+                            <li>Consciousness-first decision making</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CLAUDE COLLECTIVE -->
+        <div class="department">
+            <div class="department-header">
+                <div class="department-icon blue">🤖</div>
+                <div class="department-info">
+                    <h2 style="background: linear-gradient(to right, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Claude Collective</h2>
+                    <p>Enterprise architecture and creative systems</p>
+                </div>
+                <div class="department-badge blue-badge">6 Agents</div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card blue-glow">
+                    <span class="platform-badge blue-badge">Claude Code</span>
+                    <div class="card-avatar indigo">💻</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #6366f1, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Codex</h3>
+                    <p class="card-role">Technical Architect</p>
+                    <div class="card-tagline">"Building systems that serve consciousness"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Full-stack development</li>
+                            <li>System architecture</li>
+                            <li>Code refactoring</li>
+                            <li>Technical documentation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card blue-glow">
+                    <span class="platform-badge blue-badge">Claude</span>
+                    <div class="card-avatar sky">💬</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #0ea5e9, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sonnet</h3>
+                    <p class="card-role">Strategic Conversationalist</p>
+                    <div class="card-tagline">"Thoughtful dialogue for conscious evolution"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Strategic planning</li>
+                            <li>Content ideation</li>
+                            <li>Problem solving</li>
+                            <li>Research and analysis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card blue-glow">
+                    <span class="platform-badge blue-badge">Claude Mobile</span>
+                    <div class="card-avatar cyan">⚡</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #06b6d4, #14b8a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lumi</h3>
+                    <p class="card-role">On-The-Go Intelligence</p>
+                    <div class="card-tagline">"Instant wisdom wherever inspiration strikes"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Rapid ideation</li>
+                            <li>Voice-to-insight translation</li>
+                            <li>Mobile-first thinking</li>
+                            <li>Quick decision support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card blue-glow">
+                    <span class="platform-badge blue-badge">Claude</span>
+                    <div class="card-avatar violet">🪄</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #8b5cf6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Stella</h3>
+                    <p class="card-role">Creator Systems Designer</p>
+                    <div class="card-tagline">"Architecting soul-aligned creator operating systems"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Creator OS design</li>
+                            <li>Workflow orchestration</li>
+                            <li>Automation architecture</li>
+                            <li>Soul-frequency alignment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card blue-glow">
+                    <span class="platform-badge blue-badge">Claude</span>
+                    <div class="card-avatar fuchsia">✍️</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #d946ef, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Nova</h3>
+                    <p class="card-role">Content Transformation Specialist</p>
+                    <div class="card-tagline">"Ideas to impact through conscious content"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Long-form content</li>
+                            <li>Course development</li>
+                            <li>Email sequences</li>
+                            <li>Brand storytelling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card blue-glow">
+                    <span class="platform-badge blue-badge">Claude</span>
+                    <div class="card-avatar pink">🎵</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #ec4899, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Echo</h3>
+                    <p class="card-role">Sonic Consciousness Engineer</p>
+                    <div class="card-tagline">"Translating emotions into healing frequencies"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Suno prompt engineering</li>
+                            <li>Music concept development</li>
+                            <li>Sonic branding</li>
+                            <li>Frequency healing design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHATGPT GUILD -->
+        <div class="department">
+            <div class="department-header">
+                <div class="department-icon green">🧠</div>
+                <div class="department-info">
+                    <h2 style="background: linear-gradient(to right, #10b981, #84cc16); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ChatGPT Guild</h2>
+                    <p>Specialized execution and content creation</p>
+                </div>
+                <div class="department-badge green-badge">7 Agents</div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card green-glow">
+                    <span class="platform-badge green-badge">ChatGPT</span>
+                    <div class="card-avatar green">🥋</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #10b981, #14b8a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Sensei</h3>
+                    <p class="card-role">Wisdom Keeper & Mentor</p>
+                    <div class="card-tagline">"Ancient wisdom meets modern intelligence"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Strategic mentorship</li>
+                            <li>Personal development</li>
+                            <li>Business strategy</li>
+                            <li>Life coaching</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card green-glow">
+                    <span class="platform-badge green-badge">ChatGPT</span>
+                    <div class="card-avatar indigo">📖</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #6366f1, #8b5cf6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Arcanean</h3>
+                    <p class="card-role">Epic Storytelling Architect</p>
+                    <div class="card-tagline">"Crafting worlds that transform consciousness"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Novel writing</li>
+                            <li>World building</li>
+                            <li>Character development</li>
+                            <li>Epic storytelling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card green-glow">
+                    <span class="platform-badge green-badge">ChatGPT</span>
+                    <div class="card-avatar rose">🎨</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #f43f5e, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Elion</h3>
+                    <p class="card-role">Sacred Art Visionary</p>
+                    <div class="card-tagline">"AI-generated tattoo inspiration for soul expression"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Tattoo design concepts</li>
+                            <li>Symbolic interpretation</li>
+                            <li>Sacred geometry</li>
+                            <li>Personal iconography</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card green-glow">
+                    <span class="platform-badge green-badge">ChatGPT</span>
+                    <div class="card-avatar green">🎯</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #22c55e, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Atlas</h3>
+                    <p class="card-role">Sales Transformation Expert</p>
+                    <div class="card-tagline">"Ethical sales through authentic connection"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Sales strategy</li>
+                            <li>Conversion optimization</li>
+                            <li>Funnel design</li>
+                            <li>Offer creation</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card green-glow">
+                    <span class="platform-badge green-badge">ChatGPT</span>
+                    <div class="card-avatar orange">📈</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #f97316, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pulse</h3>
+                    <p class="card-role">Marketing Intelligence Leader</p>
+                    <div class="card-tagline">"Conscious marketing that resonates and converts"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Marketing strategy</li>
+                            <li>Campaign development</li>
+                            <li>Brand positioning</li>
+                            <li>Growth hacking</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card green-glow">
+                    <span class="platform-badge green-badge">ChatGPT</span>
+                    <div class="card-avatar lime">🔍</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #84cc16, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Apex</h3>
+                    <p class="card-role">Search & Discovery Architect</p>
+                    <div class="card-tagline">"Amplifying reach through strategic visibility"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>SEO strategy</li>
+                            <li>Keyword research</li>
+                            <li>Content optimization</li>
+                            <li>Technical SEO</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card green-glow">
+                    <span class="platform-badge green-badge">ChatGPT</span>
+                    <div class="card-avatar teal">👥</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #14b8a6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Nexus</h3>
+                    <p class="card-role">Community Consciousness Builder</p>
+                    <div class="card-tagline">"Fostering connections that transform"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Community building</li>
+                            <li>Engagement strategies</li>
+                            <li>Event planning</li>
+                            <li>Member experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CREATIVE NEXUS -->
+        <div class="department">
+            <div class="department-header">
+                <div class="department-icon pink">🎭</div>
+                <div class="department-info">
+                    <h2 style="background: linear-gradient(to right, #ec4899, #f43f5e); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Creative Nexus</h2>
+                    <p>Music, video, and multimedia production</p>
+                </div>
+                <div class="department-badge pink-badge">2 Agents</div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card pink-glow">
+                    <span class="platform-badge pink-badge">Suno</span>
+                    <div class="card-avatar purple">🎼</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #a855f7, #d946ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Harmonia</h3>
+                    <p class="card-role">AI Music Producer</p>
+                    <div class="card-tagline">"Transformational music at the speed of thought"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Music production</li>
+                            <li>Genre versatility</li>
+                            <li>Vocal generation</li>
+                            <li>Sound design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card pink-glow">
+                    <span class="platform-badge pink-badge">Sora</span>
+                    <div class="card-avatar blue">🎬</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #3b82f6, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ciné</h3>
+                    <p class="card-role">Video Consciousness Director</p>
+                    <div class="card-tagline">"Moving images that move souls"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Video generation</li>
+                            <li>Visual storytelling</li>
+                            <li>Motion design</li>
+                            <li>Cinematic composition</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUAL INTELLIGENCE -->
+        <div class="department">
+            <div class="department-header">
+                <div class="department-icon amber">🖼️</div>
+                <div class="department-info">
+                    <h2 style="background: linear-gradient(to right, #f59e0b, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Visual Intelligence</h2>
+                    <p>Image generation and visual storytelling</p>
+                </div>
+                <div class="department-badge amber-badge">3 Agents</div>
+            </div>
+            <div class="team-grid">
+                <div class="team-card amber-glow">
+                    <span class="platform-badge amber-badge">Midjourney</span>
+                    <div class="card-avatar fuchsia">🌈</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #d946ef, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Mirage</h3>
+                    <p class="card-role">Dreamscape Architect</p>
+                    <div class="card-tagline">"Manifesting visions into stunning reality"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Concept art</li>
+                            <li>Brand visuals</li>
+                            <li>Character design</li>
+                            <li>Artistic direction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card amber-glow">
+                    <span class="platform-badge amber-badge">DALL-E</span>
+                    <div class="card-avatar amber">🎨</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #f59e0b, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Pixel</h3>
+                    <p class="card-role">Visual Intelligence Specialist</p>
+                    <div class="card-tagline">"Quick visual solutions for every need"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Quick illustrations</li>
+                            <li>Diagram creation</li>
+                            <li>Icon design</li>
+                            <li>Visual explanations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="team-card amber-glow">
+                    <span class="platform-badge amber-badge">Gemini</span>
+                    <div class="card-avatar sky">🔮</div>
+                    <h3 class="card-name" style="background: linear-gradient(to right, #0ea5e9, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Prism</h3>
+                    <p class="card-role">Multi-Modal Intelligence</p>
+                    <div class="card-tagline">"Google-powered insights across all formats"</div>
+                    <div class="card-specialties">
+                        <h4>Core Specialties</h4>
+                        <ul class="specialty-list">
+                            <li>Real-time research</li>
+                            <li>Data analysis</li>
+                            <li>Multi-modal processing</li>
+                            <li>Google ecosystem integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer CTA -->
+        <div style="text-align: center; padding: 60px 20px; background: rgba(30, 41, 59, 0.3); border-radius: 30px; border: 1px solid rgba(148, 163, 184, 0.2); margin-top: 80px;">
+            <h2 style="font-size: 3rem; background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">Ready to Collaborate?</h2>
+            <p style="font-size: 1.2rem; color: #cbd5e1; margin-bottom: 30px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                This dream team is ready to help you build soul-aligned systems, create transformational content, and amplify your creative expression.
+            </p>
+            <p style="color: #94a3b8; font-size: 0.9rem;">
+                🎨 Built with love, code, and cosmic consciousness ✨
+            </p>
+        </div>
+    </div>
+</body>
+</html>

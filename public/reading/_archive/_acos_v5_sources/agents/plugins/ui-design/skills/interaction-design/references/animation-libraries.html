@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Animation Libraries Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/interaction-design/references/animation-libraries.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Animation Libraries Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Finteraction-design">interaction-design</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Finteraction-design%2Freferences">references</a> / <span>animation-libraries.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Animation Libraries Reference</h1>
+<h2>Framer Motion</h2>
+<p>The most popular React animation library with declarative API.</p>
+<h3>Basic Animations</h3>
+<pre><code class="language-tsx">import { motion, AnimatePresence } from &quot;framer-motion&quot;;
+
+// Simple animation
+function FadeIn({ children }) {
+  return (
+    &lt;motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+    &gt;
+      {children}
+    &lt;/motion.div&gt;
+  );
+}
+
+// Gesture animations
+function InteractiveCard() {
+  return (
+    &lt;motion.div
+      whileHover={{ scale: 1.02, y: -4 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: &quot;spring&quot;, stiffness: 400, damping: 17 }}
+      className=&quot;p-6 bg-white rounded-lg shadow&quot;
+    &gt;
+      Hover or tap me
+    &lt;/motion.div&gt;
+  );
+}
+
+// Keyframes animation
+function PulseButton() {
+  return (
+    &lt;motion.button
+      animate={{
+        scale: [1, 1.05, 1],
+        boxShadow: [
+          &quot;0 0 0 0 rgba(59, 130, 246, 0.5)&quot;,
+          &quot;0 0 0 10px rgba(59, 130, 246, 0)&quot;,
+          &quot;0 0 0 0 rgba(59, 130, 246, 0)&quot;,
+        ],
+      }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className=&quot;px-4 py-2 bg-blue-600 text-white rounded&quot;
+    &gt;
+      Click me
+    &lt;/motion.button&gt;
+  );
+}
+</code></pre>
+<h3>Layout Animations</h3>
+<pre><code class="language-tsx">import { motion, LayoutGroup } from &quot;framer-motion&quot;;
+
+// Shared layout animation
+function TabIndicator({ activeTab, tabs }) {
+  return (
+    &lt;div className=&quot;flex border-b&quot;&gt;
+      {tabs.map((tab) =&gt; (
+        &lt;button
+          key={tab.id}
+          onClick={() =&gt; setActiveTab(tab.id)}
+          className=&quot;relative px-4 py-2&quot;
+        &gt;
+          {tab.label}
+          {activeTab === tab.id &amp;&amp; (
+            &lt;motion.div
+              layoutId=&quot;activeTab&quot;
+              className=&quot;absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600&quot;
+              transition={{ type: &quot;spring&quot;, stiffness: 500, damping: 30 }}
+            /&gt;
+          )}
+        &lt;/button&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+// Auto-layout reordering
+function ReorderableList({ items, setItems }) {
+  return (
+    &lt;Reorder.Group axis=&quot;y&quot; values={items} onReorder={setItems}&gt;
+      {items.map((item) =&gt; (
+        &lt;Reorder.Item
+          key={item.id}
+          value={item}
+          className=&quot;bg-white p-4 rounded-lg shadow mb-2 cursor-grab active:cursor-grabbing&quot;
+        &gt;
+          {item.title}
+        &lt;/Reorder.Item&gt;
+      ))}
+    &lt;/Reorder.Group&gt;
+  );
+}
+</code></pre>
+<h3>Orchestration</h3>
+<pre><code class="language-tsx">// Staggered children
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3 },
+  },
+};
+
+function StaggeredList({ items }) {
+  return (
+    &lt;motion.ul variants={containerVariants} initial=&quot;hidden&quot; animate=&quot;visible&quot;&gt;
+      {items.map((item) =&gt; (
+        &lt;motion.li key={item.id} variants={itemVariants}&gt;
+          {item.content}
+        &lt;/motion.li&gt;
+      ))}
+    &lt;/motion.ul&gt;
+  );
+}
+</code></pre>
+<h3>Page Transitions</h3>
+<pre><code class="language-tsx">import { AnimatePresence, motion } from &quot;framer-motion&quot;;
+import { useRouter } from &quot;next/router&quot;;
+
+const pageVariants = {
+  initial: { opacity: 0, x: -20 },
+  enter: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 20 },
+};
+
+function PageTransition({ children }) {
+  const router = useRouter();
+
+  return (
+    &lt;AnimatePresence mode=&quot;wait&quot; initial={false}&gt;
+      &lt;motion.div
+        key={router.pathname}
+        variants={pageVariants}
+        initial=&quot;initial&quot;
+        animate=&quot;enter&quot;
+        exit=&quot;exit&quot;
+        transition={{ duration: 0.3 }}
+      &gt;
+        {children}
+      &lt;/motion.div&gt;
+    &lt;/AnimatePresence&gt;
+  );
+}
+</code></pre>
+<h2>GSAP (GreenSock)</h2>
+<p>Industry-standard animation library for complex, performant animations.</p>
+<h3>Basic Timeline</h3>
+<pre><code class="language-tsx">import { useRef, useLayoutEffect } from &quot;react&quot;;
+import gsap from &quot;gsap&quot;;
+
+function AnimatedHero() {
+  const containerRef = useRef&lt;HTMLDivElement&gt;(null);
+  const titleRef = useRef&lt;HTMLHeadingElement&gt;(null);
+  const subtitleRef = useRef&lt;HTMLParagraphElement&gt;(null);
+
+  useLayoutEffect(() =&gt; {
+    const ctx = gsap.context(() =&gt; {
+      const tl = gsap.timeline({ defaults: { ease: &quot;power3.out&quot; } });
+
+      tl.from(titleRef.current, {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+      })
+        .from(
+          subtitleRef.current,
+          {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+          },
+          &quot;-=0.4&quot;, // Start 0.4s before previous ends
+        )
+        .from(&quot;.cta-button&quot;, {
+          scale: 0.8,
+          opacity: 0,
+          duration: 0.4,
+        });
+    }, containerRef);
+
+    return () =&gt; ctx.revert(); // Cleanup
+  }, []);
+
+  return (
+    &lt;div ref={containerRef}&gt;
+      &lt;h1 ref={titleRef}&gt;Welcome&lt;/h1&gt;
+      &lt;p ref={subtitleRef}&gt;Discover amazing things&lt;/p&gt;
+      &lt;button className=&quot;cta-button&quot;&gt;Get Started&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>ScrollTrigger</h3>
+<pre><code class="language-tsx">import { useLayoutEffect, useRef } from &quot;react&quot;;
+import gsap from &quot;gsap&quot;;
+import { ScrollTrigger } from &quot;gsap/ScrollTrigger&quot;;
+
+gsap.registerPlugin(ScrollTrigger);
+
+function ParallaxSection() {
+  const sectionRef = useRef&lt;HTMLDivElement&gt;(null);
+  const imageRef = useRef&lt;HTMLImageElement&gt;(null);
+
+  useLayoutEffect(() =&gt; {
+    const ctx = gsap.context(() =&gt; {
+      // Parallax image
+      gsap.to(imageRef.current, {
+        yPercent: -20,
+        ease: &quot;none&quot;,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: &quot;top bottom&quot;,
+          end: &quot;bottom top&quot;,
+          scrub: true,
+        },
+      });
+
+      // Fade in content
+      gsap.from(&quot;.content-block&quot;, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: &quot;top 80%&quot;,
+          end: &quot;top 20%&quot;,
+          scrub: 1,
+        },
+      });
+    }, sectionRef);
+
+    return () =&gt; ctx.revert();
+  }, []);
+
+  return (
+    &lt;section ref={sectionRef} className=&quot;relative overflow-hidden&quot;&gt;
+      &lt;img ref={imageRef} src=&quot;/hero.jpg&quot; alt=&quot;&quot; className=&quot;absolute inset-0&quot; /&gt;
+      &lt;div className=&quot;relative z-10&quot;&gt;
+        &lt;div className=&quot;content-block&quot;&gt;Block 1&lt;/div&gt;
+        &lt;div className=&quot;content-block&quot;&gt;Block 2&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  );
+}
+</code></pre>
+<h3>Text Animation</h3>
+<pre><code class="language-tsx">import { useLayoutEffect, useRef } from &quot;react&quot;;
+import gsap from &quot;gsap&quot;;
+import { SplitText } from &quot;gsap/SplitText&quot;;
+
+gsap.registerPlugin(SplitText);
+
+function AnimatedHeadline({ text }) {
+  const textRef = useRef&lt;HTMLHeadingElement&gt;(null);
+
+  useLayoutEffect(() =&gt; {
+    const split = new SplitText(textRef.current, {
+      type: &quot;chars,words&quot;,
+      charsClass: &quot;char&quot;,
+    });
+
+    gsap.from(split.chars, {
+      opacity: 0,
+      y: 50,
+      rotateX: -90,
+      stagger: 0.02,
+      duration: 0.8,
+      ease: &quot;back.out(1.7)&quot;,
+    });
+
+    return () =&gt; split.revert();
+  }, [text]);
+
+  return &lt;h1 ref={textRef}&gt;{text}&lt;/h1&gt;;
+}
+</code></pre>
+<h2>CSS Spring Physics</h2>
+<pre><code class="language-tsx">// spring.ts - Custom spring physics
+interface SpringConfig {
+  stiffness: number; // Higher = snappier
+  damping: number; // Higher = less bouncy
+  mass: number;
+}
+
+const presets: Record&lt;string, SpringConfig&gt; = {
+  default: { stiffness: 170, damping: 26, mass: 1 },
+  gentle: { stiffness: 120, damping: 14, mass: 1 },
+  wobbly: { stiffness: 180, damping: 12, mass: 1 },
+  stiff: { stiffness: 210, damping: 20, mass: 1 },
+  slow: { stiffness: 280, damping: 60, mass: 1 },
+  molasses: { stiffness: 280, damping: 120, mass: 1 },
+};
+
+function springToCss(config: SpringConfig): string {
+  // Convert spring parameters to CSS timing function approximation
+  const { stiffness, damping } = config;
+  const duration = Math.sqrt(stiffness) / damping;
+  const bounce = 1 - damping / (2 * Math.sqrt(stiffness));
+
+  // Map to cubic-bezier (approximation)
+  if (bounce &lt;= 0) {
+    return `cubic-bezier(0.25, 0.1, 0.25, 1)`;
+  }
+  return `cubic-bezier(0.34, 1.56, 0.64, 1)`;
+}
+</code></pre>
+<h2>Web Animations API</h2>
+<p>Native browser animation API for simple animations.</p>
+<pre><code class="language-tsx">function useWebAnimation(
+  ref: RefObject&lt;HTMLElement&gt;,
+  keyframes: Keyframe[],
+  options: KeyframeAnimationOptions,
+) {
+  useEffect(() =&gt; {
+    if (!ref.current) return;
+
+    const animation = ref.current.animate(keyframes, options);
+
+    return () =&gt; animation.cancel();
+  }, [ref, keyframes, options]);
+}
+
+// Usage
+function SlideIn({ children }) {
+  const elementRef = useRef&lt;HTMLDivElement&gt;(null);
+
+  useWebAnimation(
+    elementRef,
+    [
+      { transform: &quot;translateX(-100%)&quot;, opacity: 0 },
+      { transform: &quot;translateX(0)&quot;, opacity: 1 },
+    ],
+    {
+      duration: 300,
+      easing: &quot;cubic-bezier(0.16, 1, 0.3, 1)&quot;,
+      fill: &quot;forwards&quot;,
+    },
+  );
+
+  return &lt;div ref={elementRef}&gt;{children}&lt;/div&gt;;
+}
+</code></pre>
+<h2>View Transitions API</h2>
+<p>Native browser API for page transitions.</p>
+<pre><code class="language-tsx">// Check support
+const supportsViewTransitions = &quot;startViewTransition&quot; in document;
+
+// Simple page transition
+async function navigateTo(url: string) {
+  if (!document.startViewTransition) {
+    window.location.href = url;
+    return;
+  }
+
+  document.startViewTransition(async () =&gt; {
+    await fetch(url);
+    // Update DOM
+  });
+}
+
+// Named elements for morphing
+function ProductCard({ product }) {
+  return (
+    &lt;Link href={`/product/${product.id}`}&gt;
+      &lt;img
+        src={product.image}
+        style={{ viewTransitionName: `product-${product.id}` }}
+      /&gt;
+    &lt;/Link&gt;
+  );
+}
+
+// CSS for view transitions
+/*
+::view-transition-old(root) {
+  animation: fade-out 0.25s ease-out;
+}
+
+::view-transition-new(root) {
+  animation: fade-in 0.25s ease-in;
+}
+
+::view-transition-group(product-*) {
+  animation-duration: 0.3s;
+}
+*/
+</code></pre>
+<h2>Performance Tips</h2>
+<h3>GPU Acceleration</h3>
+<pre><code class="language-css">/* Properties that trigger GPU acceleration */
+.animated-element {
+  transform: translateZ(0); /* Force GPU layer */
+  will-change: transform, opacity; /* Hint to browser */
+}
+
+/* Only animate transform and opacity for 60fps */
+.smooth {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Avoid animating these (cause reflow) */
+.avoid {
+  /* Don&#39;t animate: width, height, top, left, margin, padding */
+}
+</code></pre>
+<h3>Reduced Motion</h3>
+<pre><code class="language-tsx">function useReducedMotion() {
+  const [prefersReduced, setPrefersReduced] = useState(false);
+
+  useEffect(() =&gt; {
+    const mq = window.matchMedia(&quot;(prefers-reduced-motion: reduce)&quot;);
+    setPrefersReduced(mq.matches);
+
+    const handler = (e: MediaQueryListEvent) =&gt; setPrefersReduced(e.matches);
+    mq.addEventListener(&quot;change&quot;, handler);
+    return () =&gt; mq.removeEventListener(&quot;change&quot;, handler);
+  }, []);
+
+  return prefersReduced;
+}
+
+// Usage
+function AnimatedComponent() {
+  const prefersReduced = useReducedMotion();
+
+  return (
+    &lt;motion.div
+      initial={{ opacity: 0, y: prefersReduced ? 0 : 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: prefersReduced ? 0 : 0.3 }}
+    &gt;
+      Content
+    &lt;/motion.div&gt;
+  );
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

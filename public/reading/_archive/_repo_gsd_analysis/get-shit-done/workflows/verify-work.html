@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Find phase directory (match both zero-padded and unpadded)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/workflows/verify-work.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Find phase directory (match both zero-padded and unpadded)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Fworkflows">workflows</a> / <span>verify-work.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <purpose>
+Validate built features through conversational testing with persistent state. Creates UAT.md that tracks test progress, survives /clear, and feeds gaps into /gsd:plan-phase --gaps.
+
+<p>User tests, Claude records. One test at a time. Plain text responses.
+</purpose></p>
+<philosophy>
+**Show expected, ask if reality matches.**
+
+<p>Claude presents what SHOULD happen. User confirms or describes what&#39;s different.</p>
+<ul>
+<li>&quot;yes&quot; / &quot;y&quot; / &quot;next&quot; / empty → pass</li>
+<li>Anything else → logged as issue, severity inferred</li>
+</ul>
+<p>No Pass/Fail buttons. No severity questions. Just: &quot;Here&#39;s what should happen. Does it?&quot;
+</philosophy></p>
+<template>
+@~/.claude/get-shit-done/templates/UAT.md
+</template>
+
+<process>
+
+<step name="resolve_model_profile" priority="first">
+Read model profile for agent spawning:
+
+<pre><code class="language-bash">MODEL_PROFILE=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;model_profile&quot;[[:space:]]*:[[:space:]]*&quot;[^&quot;]*&quot;&#39; | grep -o &#39;&quot;[^&quot;]*&quot;$&#39; | tr -d &#39;&quot;&#39; || echo &quot;balanced&quot;)
+</code></pre>
+<p>Default to &quot;balanced&quot; if not set.</p>
+<p><strong>Model lookup table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>quality</th>
+<th>balanced</th>
+<th>budget</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gsd-planner</td>
+<td>opus</td>
+<td>opus</td>
+<td>sonnet</td>
+</tr>
+<tr>
+<td>gsd-plan-checker</td>
+<td>sonnet</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+</tbody></table>
+<p>Store resolved models for use in Task calls below.
+</step></p>
+<step name="check_active_session">
+**First: Check for active UAT sessions**
+
+<pre><code class="language-bash">find .planning/phases -name &quot;*-UAT.md&quot; -type f 2&gt;/dev/null | head -5
+</code></pre>
+<p><strong>If active sessions exist AND no $ARGUMENTS provided:</strong></p>
+<p>Read each file&#39;s frontmatter (status, phase) and Current Test section.</p>
+<p>Display inline:</p>
+<pre><code>## Active UAT Sessions
+
+| # | Phase | Status | Current Test | Progress |
+|---|-------|--------|--------------|----------|
+| 1 | 04-comments | testing | 3. Reply to Comment | 2/6 |
+| 2 | 05-auth | testing | 1. Login Form | 0/4 |
+
+Reply with a number to resume, or provide a phase number to start new.
+</code></pre>
+<p>Wait for user response.</p>
+<ul>
+<li>If user replies with number (1, 2) → Load that file, go to <code>resume_from_file</code></li>
+<li>If user replies with phase number → Treat as new session, go to <code>create_uat_file</code></li>
+</ul>
+<p><strong>If active sessions exist AND $ARGUMENTS provided:</strong></p>
+<p>Check if session exists for that phase. If yes, offer to resume or restart.
+If no, continue to <code>create_uat_file</code>.</p>
+<p><strong>If no active sessions AND no $ARGUMENTS:</strong></p>
+<pre><code>No active UAT sessions.
+
+Provide a phase number to start testing (e.g., /gsd:verify-work 4)
+</code></pre>
+<p><strong>If no active sessions AND $ARGUMENTS provided:</strong></p>
+<p>Continue to <code>create_uat_file</code>.
+</step></p>
+<step name="find_summaries">
+**Find what to test:**
+
+<p>Parse $ARGUMENTS as phase number (e.g., &quot;4&quot;) or plan number (e.g., &quot;04-02&quot;).</p>
+<pre><code class="language-bash"># Find phase directory (match both zero-padded and unpadded)
+PADDED_PHASE=$(printf &quot;%02d&quot; ${PHASE_ARG} 2&gt;/dev/null || echo &quot;${PHASE_ARG}&quot;)
+PHASE_DIR=$(ls -d .planning/phases/${PADDED_PHASE}-* .planning/phases/${PHASE_ARG}-* 2&gt;/dev/null | head -1)
+
+# Find SUMMARY files
+ls &quot;$PHASE_DIR&quot;/*-SUMMARY.md 2&gt;/dev/null
+</code></pre>
+<p>Read each SUMMARY.md to extract testable deliverables.
+</step></p>
+<step name="extract_tests">
+**Extract testable deliverables from SUMMARY.md:**
+
+<p>Parse for:</p>
+<ol>
+<li><strong>Accomplishments</strong> - Features/functionality added</li>
+<li><strong>User-facing changes</strong> - UI, workflows, interactions</li>
+</ol>
+<p>Focus on USER-OBSERVABLE outcomes, not implementation details.</p>
+<p>For each deliverable, create a test:</p>
+<ul>
+<li>name: Brief test name</li>
+<li>expected: What the user should see/experience (specific, observable)</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>Accomplishment: &quot;Added comment threading with infinite nesting&quot;
+→ Test: &quot;Reply to a Comment&quot;
+→ Expected: &quot;Clicking Reply opens inline composer below comment. Submitting shows reply nested under parent with visual indentation.&quot;</li>
+</ul>
+<p>Skip internal/non-observable items (refactors, type changes, etc.).
+</step></p>
+<step name="create_uat_file">
+**Create UAT file with all tests:**
+
+<pre><code class="language-bash">mkdir -p &quot;$PHASE_DIR&quot;
+</code></pre>
+<p>Build test list from extracted deliverables.</p>
+<p>Create file:</p>
+<pre><code class="language-markdown">---
+status: testing
+phase: XX-name
+source: [list of SUMMARY.md files]
+started: [ISO timestamp]
+updated: [ISO timestamp]
+---
+
+## Current Test
+&lt;!-- OVERWRITE each test - shows where we are --&gt;
+
+number: 1
+name: [first test name]
+expected: |
+  [what user should observe]
+awaiting: user response
+
+## Tests
+
+### 1. [Test Name]
+expected: [observable behavior]
+result: [pending]
+
+### 2. [Test Name]
+expected: [observable behavior]
+result: [pending]
+
+...
+
+## Summary
+
+total: [N]
+passed: 0
+issues: 0
+pending: [N]
+skipped: 0
+
+## Gaps
+
+[none yet]
+</code></pre>
+<p>Write to <code>.planning/phases/XX-name/{phase}-UAT.md</code></p>
+<p>Proceed to <code>present_test</code>.
+</step></p>
+<step name="present_test">
+**Present current test to user:**
+
+<p>Read Current Test section from UAT file.</p>
+<p>Display using checkpoint box format:</p>
+<pre><code>╔══════════════════════════════════════════════════════════════╗
+║  CHECKPOINT: Verification Required                           ║
+╚══════════════════════════════════════════════════════════════╝
+
+**Test {number}: {name}**
+
+{expected}
+
+──────────────────────────────────────────────────────────────
+→ Type &quot;pass&quot; or describe what&#39;s wrong
+──────────────────────────────────────────────────────────────
+</code></pre>
+<p>Wait for user response (plain text, no AskUserQuestion).
+</step></p>
+<step name="process_response">
+**Process user response and update file:**
+
+<p><strong>If response indicates pass:</strong></p>
+<ul>
+<li>Empty response, &quot;yes&quot;, &quot;y&quot;, &quot;ok&quot;, &quot;pass&quot;, &quot;next&quot;, &quot;approved&quot;, &quot;✓&quot;</li>
+</ul>
+<p>Update Tests section:</p>
+<pre><code>### {N}. {name}
+expected: {expected}
+result: pass
+</code></pre>
+<p><strong>If response indicates skip:</strong></p>
+<ul>
+<li>&quot;skip&quot;, &quot;can&#39;t test&quot;, &quot;n/a&quot;</li>
+</ul>
+<p>Update Tests section:</p>
+<pre><code>### {N}. {name}
+expected: {expected}
+result: skipped
+reason: [user&#39;s reason if provided]
+</code></pre>
+<p><strong>If response is anything else:</strong></p>
+<ul>
+<li>Treat as issue description</li>
+</ul>
+<p>Infer severity from description:</p>
+<ul>
+<li>Contains: crash, error, exception, fails, broken, unusable → blocker</li>
+<li>Contains: doesn&#39;t work, wrong, missing, can&#39;t → major</li>
+<li>Contains: slow, weird, off, minor, small → minor</li>
+<li>Contains: color, font, spacing, alignment, visual → cosmetic</li>
+<li>Default if unclear: major</li>
+</ul>
+<p>Update Tests section:</p>
+<pre><code>### {N}. {name}
+expected: {expected}
+result: issue
+reported: &quot;{verbatim user response}&quot;
+severity: {inferred}
+</code></pre>
+<p>Append to Gaps section (structured YAML for plan-phase --gaps):</p>
+<pre><code class="language-yaml">- truth: &quot;{expected behavior from test}&quot;
+  status: failed
+  reason: &quot;User reported: {verbatim user response}&quot;
+  severity: {inferred}
+  test: {N}
+  artifacts: []  # Filled by diagnosis
+  missing: []    # Filled by diagnosis
+</code></pre>
+<p><strong>After any response:</strong></p>
+<p>Update Summary counts.
+Update frontmatter.updated timestamp.</p>
+<p>If more tests remain → Update Current Test, go to <code>present_test</code>
+If no more tests → Go to <code>complete_session</code>
+</step></p>
+<step name="resume_from_file">
+**Resume testing from UAT file:**
+
+<p>Read the full UAT file.</p>
+<p>Find first test with <code>result: [pending]</code>.</p>
+<p>Announce:</p>
+<pre><code>Resuming: Phase {phase} UAT
+Progress: {passed + issues + skipped}/{total}
+Issues found so far: {issues count}
+
+Continuing from Test {N}...
+</code></pre>
+<p>Update Current Test section with the pending test.
+Proceed to <code>present_test</code>.
+</step></p>
+<step name="complete_session">
+**Complete testing and commit:**
+
+<p>Update frontmatter:</p>
+<ul>
+<li>status: complete</li>
+<li>updated: [now]</li>
+</ul>
+<p>Clear Current Test section:</p>
+<pre><code>## Current Test
+
+[testing complete]
+</code></pre>
+<p><strong>Check planning config:</strong></p>
+<pre><code class="language-bash">COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;commit_docs&quot;[[:space:]]*:[[:space:]]*[^,}]*&#39; | grep -o &#39;true\|false&#39; || echo &quot;true&quot;)
+git check-ignore -q .planning 2&gt;/dev/null &amp;&amp; COMMIT_PLANNING_DOCS=false
+</code></pre>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=false</code>:</strong> Skip git operations</p>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=true</code> (default):</strong></p>
+<p>Commit the UAT file:</p>
+<pre><code class="language-bash">git add &quot;.planning/phases/XX-name/{phase}-UAT.md&quot;
+git commit -m &quot;test({phase}): complete UAT - {passed} passed, {issues} issues&quot;
+</code></pre>
+<p>Present summary:</p>
+<pre><code>## UAT Complete: Phase {phase}
+
+| Result | Count |
+|--------|-------|
+| Passed | {N}   |
+| Issues | {N}   |
+| Skipped| {N}   |
+
+[If issues &gt; 0:]
+### Issues Found
+
+[List from Issues section]
+</code></pre>
+<p><strong>If issues &gt; 0:</strong> Proceed to <code>diagnose_issues</code></p>
+<p><strong>If issues == 0:</strong></p>
+<pre><code>All tests passed. Ready to continue.
+
+- `/gsd:plan-phase {next}` — Plan next phase
+- `/gsd:execute-phase {next}` — Execute next phase
+</code></pre>
+</step>
+
+<step name="diagnose_issues">
+**Diagnose root causes before planning fixes:**
+
+<pre><code>---
+
+{N} issues found. Diagnosing root causes...
+
+Spawning parallel debug agents to investigate each issue.
+</code></pre>
+<ul>
+<li>Load diagnose-issues workflow</li>
+<li>Follow @~/.claude/get-shit-done/workflows/diagnose-issues.md</li>
+<li>Spawn parallel debug agents for each issue</li>
+<li>Collect root causes</li>
+<li>Update UAT.md with root causes</li>
+<li>Proceed to <code>plan_gap_closure</code></li>
+</ul>
+<p>Diagnosis runs automatically - no user prompt. Parallel agents investigate simultaneously, so overhead is minimal and fixes are more accurate.
+</step></p>
+<step name="plan_gap_closure">
+**Auto-plan fixes from diagnosed gaps:**
+
+<p>Display:</p>
+<pre><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► PLANNING FIXES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+◆ Spawning planner for gap closure...
+</code></pre>
+<p>Spawn gsd-planner in --gaps mode:</p>
+<pre><code>Task(
+  prompt=&quot;&quot;&quot;
+&lt;planning_context&gt;
+
+**Phase:** {phase_number}
+**Mode:** gap_closure
+
+**UAT with diagnoses:**
+@.planning/phases/{phase_dir}/{phase}-UAT.md
+
+**Project State:**
+@.planning/STATE.md
+
+**Roadmap:**
+@.planning/ROADMAP.md
+
+&lt;/planning_context&gt;
+
+&lt;downstream_consumer&gt;
+Output consumed by /gsd:execute-phase
+Plans must be executable prompts.
+&lt;/downstream_consumer&gt;
+&quot;&quot;&quot;,
+  subagent_type=&quot;gsd-planner&quot;,
+  model=&quot;{planner_model}&quot;,
+  description=&quot;Plan gap fixes for Phase {phase}&quot;
+)
+</code></pre>
+<p>On return:</p>
+<ul>
+<li><strong>PLANNING COMPLETE:</strong> Proceed to <code>verify_gap_plans</code></li>
+<li><strong>PLANNING INCONCLUSIVE:</strong> Report and offer manual intervention</step></li>
+</ul>
+<step name="verify_gap_plans">
+**Verify fix plans with checker:**
+
+<p>Display:</p>
+<pre><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► VERIFYING FIX PLANS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+◆ Spawning plan checker...
+</code></pre>
+<p>Initialize: <code>iteration_count = 1</code></p>
+<p>Spawn gsd-plan-checker:</p>
+<pre><code>Task(
+  prompt=&quot;&quot;&quot;
+&lt;verification_context&gt;
+
+**Phase:** {phase_number}
+**Phase Goal:** Close diagnosed gaps from UAT
+
+**Plans to verify:**
+@.planning/phases/{phase_dir}/*-PLAN.md
+
+&lt;/verification_context&gt;
+
+&lt;expected_output&gt;
+Return one of:
+- ## VERIFICATION PASSED — all checks pass
+- ## ISSUES FOUND — structured issue list
+&lt;/expected_output&gt;
+&quot;&quot;&quot;,
+  subagent_type=&quot;gsd-plan-checker&quot;,
+  model=&quot;{checker_model}&quot;,
+  description=&quot;Verify Phase {phase} fix plans&quot;
+)
+</code></pre>
+<p>On return:</p>
+<ul>
+<li><strong>VERIFICATION PASSED:</strong> Proceed to <code>present_ready</code></li>
+<li><strong>ISSUES FOUND:</strong> Proceed to <code>revision_loop</code></step></li>
+</ul>
+<step name="revision_loop">
+**Iterate planner ↔ checker until plans pass (max 3):**
+
+<p><strong>If iteration_count &lt; 3:</strong></p>
+<p>Display: <code>Sending back to planner for revision... (iteration {N}/3)</code></p>
+<p>Spawn gsd-planner with revision context:</p>
+<pre><code>Task(
+  prompt=&quot;&quot;&quot;
+&lt;revision_context&gt;
+
+**Phase:** {phase_number}
+**Mode:** revision
+
+**Existing plans:**
+@.planning/phases/{phase_dir}/*-PLAN.md
+
+**Checker issues:**
+{structured_issues_from_checker}
+
+&lt;/revision_context&gt;
+
+&lt;instructions&gt;
+Read existing PLAN.md files. Make targeted updates to address checker issues.
+Do NOT replan from scratch unless issues are fundamental.
+&lt;/instructions&gt;
+&quot;&quot;&quot;,
+  subagent_type=&quot;gsd-planner&quot;,
+  model=&quot;{planner_model}&quot;,
+  description=&quot;Revise Phase {phase} plans&quot;
+)
+</code></pre>
+<p>After planner returns → spawn checker again (verify_gap_plans logic)
+Increment iteration_count</p>
+<p><strong>If iteration_count &gt;= 3:</strong></p>
+<p>Display: <code>Max iterations reached. {N} issues remain.</code></p>
+<p>Offer options:</p>
+<ol>
+<li>Force proceed (execute despite issues)</li>
+<li>Provide guidance (user gives direction, retry)</li>
+<li>Abandon (exit, user runs /gsd:plan-phase manually)</li>
+</ol>
+<p>Wait for user response.
+</step></p>
+<step name="present_ready">
+**Present completion and next steps:**
+
+<pre><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► FIXES READY ✓
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+**Phase {X}: {Name}** — {N} gap(s) diagnosed, {M} fix plan(s) created
+
+| Gap | Root Cause | Fix Plan |
+|-----|------------|----------|
+| {truth 1} | {root_cause} | {phase}-04 |
+| {truth 2} | {root_cause} | {phase}-04 |
+
+Plans verified and ready for execution.
+
+───────────────────────────────────────────────────────────────
+
+## ▶ Next Up
+
+**Execute fixes** — run fix plans
+
+`/clear` then `/gsd:execute-phase {phase} --gaps-only`
+
+───────────────────────────────────────────────────────────────
+</code></pre>
+</step>
+
+</process>
+
+<update_rules>
+**Batched writes for efficiency:**
+
+<p>Keep results in memory. Write to file only when:</p>
+<ol>
+<li><strong>Issue found</strong> — Preserve the problem immediately</li>
+<li><strong>Session complete</strong> — Final write before commit</li>
+<li><strong>Checkpoint</strong> — Every 5 passed tests (safety net)</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Rule</th>
+<th>When Written</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Frontmatter.status</td>
+<td>OVERWRITE</td>
+<td>Start, complete</td>
+</tr>
+<tr>
+<td>Frontmatter.updated</td>
+<td>OVERWRITE</td>
+<td>On any file write</td>
+</tr>
+<tr>
+<td>Current Test</td>
+<td>OVERWRITE</td>
+<td>On any file write</td>
+</tr>
+<tr>
+<td>Tests.{N}.result</td>
+<td>OVERWRITE</td>
+<td>On any file write</td>
+</tr>
+<tr>
+<td>Summary</td>
+<td>OVERWRITE</td>
+<td>On any file write</td>
+</tr>
+<tr>
+<td>Gaps</td>
+<td>APPEND</td>
+<td>When issue found</td>
+</tr>
+</tbody></table>
+<p>On context reset: File shows last checkpoint. Resume from there.
+</update_rules></p>
+<severity_inference>
+**Infer severity from user's natural language:**
+
+<table>
+<thead>
+<tr>
+<th>User says</th>
+<th>Infer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;crashes&quot;, &quot;error&quot;, &quot;exception&quot;, &quot;fails completely&quot;</td>
+<td>blocker</td>
+</tr>
+<tr>
+<td>&quot;doesn&#39;t work&quot;, &quot;nothing happens&quot;, &quot;wrong behavior&quot;</td>
+<td>major</td>
+</tr>
+<tr>
+<td>&quot;works but...&quot;, &quot;slow&quot;, &quot;weird&quot;, &quot;minor issue&quot;</td>
+<td>minor</td>
+</tr>
+<tr>
+<td>&quot;color&quot;, &quot;spacing&quot;, &quot;alignment&quot;, &quot;looks off&quot;</td>
+<td>cosmetic</td>
+</tr>
+</tbody></table>
+<p>Default to <strong>major</strong> if unclear. User can correct if needed.</p>
+<p><strong>Never ask &quot;how severe is this?&quot;</strong> - just infer and move on.
+</severity_inference></p>
+<success_criteria>
+- [ ] UAT file created with all tests from SUMMARY.md
+- [ ] Tests presented one at a time with expected behavior
+- [ ] User responses processed as pass/issue/skip
+- [ ] Severity inferred from description (never asked)
+- [ ] Batched writes: on issue, every 5 passes, or completion
+- [ ] Committed on completion
+- [ ] If issues: parallel debug agents diagnose root causes
+- [ ] If issues: gsd-planner creates fix plans (gap_closure mode)
+- [ ] If issues: gsd-plan-checker verifies fix plans
+- [ ] If issues: revision loop until plans pass (max 3 iterations)
+- [ ] Ready for `/gsd:execute-phase --gaps-only` when complete
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

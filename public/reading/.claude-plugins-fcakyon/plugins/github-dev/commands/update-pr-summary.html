@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude Command: Update PR Summary</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-plugins-fcakyon/plugins/github-dev/commands/update-pr-summary.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Command: Update PR Summary</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude-plugins-fcakyon">.claude-plugins-fcakyon</a> / <a href="../../index.html#.claude-plugins-fcakyon%2Fplugins">plugins</a> / <a href="../index.html#.claude-plugins-fcakyon%2Fplugins%2Fgithub-dev">github-dev</a> / <a href="index.html#.claude-plugins-fcakyon%2Fplugins%2Fgithub-dev%2Fcommands">commands</a> / <span>update-pr-summary.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude Command: Update PR Summary</h1>
+<p>Update PR description with automatically generated summary based on complete changeset.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">/update-pr-summary &lt;pr_number&gt;    # Update PR description
+/update-pr-summary 131            # Example: update PR #131
+</code></pre>
+<h2>Workflow Steps</h2>
+<ol>
+<li><p><strong>Fetch PR Information</strong>:</p>
+<ul>
+<li>Get PR details using <code>gh pr view &lt;pr_number&gt; --json title,body,baseRefName,headRefName</code></li>
+<li>Identify base branch and head branch from PR metadata</li>
+</ul>
+</li>
+<li><p><strong>Analyze Complete Changeset</strong>:</p>
+<ul>
+<li><strong>IMPORTANT</strong>: Analyze ALL committed changes in the branch using <code>git diff &lt;base-branch&gt;...HEAD</code></li>
+<li>PR description must describe the complete changeset across all commits, not just the latest commit</li>
+<li>Focus on what changed from the perspective of someone reviewing the entire branch</li>
+<li>Ignore unstaged changes</li>
+</ul>
+</li>
+<li><p><strong>Generate PR Description</strong>:</p>
+<ul>
+<li>Create brief summary (1 sentence or few words)</li>
+<li>Add few bullet points of key changes</li>
+<li>For significant changes, include before/after code examples in PR body</li>
+<li>Include inline markdown links to relevant code lines when helpful (format: <code>[src/auth.py:42](src/auth.py#L42)</code>)</li>
+<li>For config/API changes, use <code>mcp__tavily__tavily_search</code> to verify information and include source links inline</li>
+<li>Never include test plans in PR descriptions</li>
+</ul>
+</li>
+<li><p><strong>Update PR Title</strong> (if needed):</p>
+<ul>
+<li>Title should start with capital letter and verb</li>
+<li>Should NOT start with conventional commit prefixes (e.g. &quot;fix:&quot;, &quot;feat:&quot;)</li>
+</ul>
+</li>
+<li><p><strong>Update PR</strong>:</p>
+<ul>
+<li>Use <code>gh pr edit &lt;pr_number&gt;</code> with <code>--body</code> (and optionally <code>--title</code>) to update the PR</li>
+<li>Use HEREDOC for proper formatting:</li>
+</ul>
+<pre><code class="language-bash">gh pr edit &quot;$(
+  cat &lt;&lt; &#39;EOF&#39;
+[PR description here]
+EOF
+)&quot; &lt; pr_number &gt; --body
+</code></pre>
+</li>
+</ol>
+<h2>PR Description Format</h2>
+<pre><code class="language-markdown">[Brief summary in 1 sentence or few words]
+
+- [Key change 1 with inline code reference if helpful]
+- [Key change 2 with source link if config/API change]
+- [Key change 3]
+
+[Optional: Before/after code examples for significant changes]
+</code></pre>
+<h2>Examples</h2>
+<h3>Example 1: Config/API Change with Source Links</h3>
+<pre><code class="language-markdown">Update Claude Haiku to version 4.5
+
+- Model ID: claude-3-haiku-20240307 → claude-haiku-4-5-20251001 ([source](https://docs.anthropic.com/en/docs/about-claude/models/overview))
+- Pricing: $0.80/$4.00 → $1.00/$5.00 per MTok ([source](https://docs.anthropic.com/en/docs/about-claude/pricing))
+- Max output: 4,096 → 64,000 tokens ([source](https://docs.anthropic.com/en/docs/about-claude/models/overview))
+</code></pre>
+<h3>Example 2: Code Changes with File Links</h3>
+<pre><code class="language-markdown">Refactor authentication to use async context manager
+
+- Replace synchronous auth flow with async/await pattern in [src/auth.py:15-42](src/auth.py#L15-L42)
+- Add context manager support for automatic cleanup
+
+Before:
+
+```python
+def authenticate(token):
+    session = create_session(token)
+    return session
+```
+
+After:
+
+```python
+async def authenticate(token):
+    async with create_session(token) as session:
+        return session
+```
+</code></pre>
+<h3>Example 3: Simple Feature Addition</h3>
+<pre><code class="language-markdown">Add user profile export functionality
+
+- Export user data to JSON format in [src/export.py:45-78](src/export.py#L45-L78)
+- Add CLI command `/export-profile` in [src/cli.py:123](src/cli.py#L123)
+- Include email, preferences, and activity history in export
+</code></pre>
+<h2>Error Handling</h2>
+<p><strong>Pre-Analysis Verification</strong>:</p>
+<ul>
+<li>Verify PR exists and is accessible</li>
+<li>Check tool availability (<code>gh auth status</code>)</li>
+<li>Confirm authentication status</li>
+</ul>
+<p><strong>Common Issues</strong>:</p>
+<ul>
+<li>Invalid PR number → List available PRs</li>
+<li>Missing tools → Provide setup instructions</li>
+<li>Auth issues → Guide through authentication</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

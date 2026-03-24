@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Supabase Database Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-plugins-fcakyon/plugins/supabase-tools/skills/supabase-usage/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Supabase Database Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.claude-plugins-fcakyon">.claude-plugins-fcakyon</a> / <a href="../../../index.html#.claude-plugins-fcakyon%2Fplugins">plugins</a> / <a href="../../index.html#.claude-plugins-fcakyon%2Fplugins%2Fsupabase-tools">supabase-tools</a> / <a href="../index.html#.claude-plugins-fcakyon%2Fplugins%2Fsupabase-tools%2Fskills">skills</a> / <a href="index.html#.claude-plugins-fcakyon%2Fplugins%2Fsupabase-tools%2Fskills%2Fsupabase-usage">supabase-usage</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: supabase-usage
+description: This skill should be used when user asks to &quot;query Supabase&quot;, &quot;list Supabase tables&quot;, &quot;get Supabase schema&quot;, &quot;search Supabase records&quot;, &quot;check Supabase database&quot;, &quot;Supabase auth&quot;, &quot;Supabase authentication&quot;, &quot;RLS policy&quot;, &quot;row level security&quot;, &quot;Supabase foreign key&quot;, &quot;table relationships&quot;, &quot;Supabase join&quot;, &quot;Supabase filter&quot;, &quot;Supabase pagination&quot;, or needs guidance on Supabase database patterns, auth flows, RLS policies, or query best practices.</h2>
+<h1>Supabase Database Patterns</h1>
+<p>Patterns for working with Supabase databases including Auth, Row Level Security, table relationships, and query best practices.</p>
+<h2>Overview</h2>
+<ul>
+<li><strong>MCP Tools</strong>: Query and explore database structure</li>
+<li><strong>Authentication</strong>: User management, sessions, auth tables</li>
+<li><strong>Row Level Security</strong>: Policy patterns for data access control</li>
+<li><strong>Table Relationships</strong>: Foreign keys, joins, nested queries</li>
+<li><strong>Query Patterns</strong>: Filtering, pagination, performance</li>
+</ul>
+<h2>MCP Tools</h2>
+<p>Available tools for database exploration:</p>
+<ul>
+<li><code>mcp__supabase__list_tables</code> - List all tables in the database</li>
+<li><code>mcp__supabase__get_table_schema</code> - Get schema for a specific table</li>
+<li><code>mcp__supabase__execute_sql</code> - Run read-only SQL queries</li>
+</ul>
+<p><strong>Workflow:</strong></p>
+<ol>
+<li>Start with <code>list_tables</code> to understand database structure</li>
+<li>Use <code>get_table_schema</code> to inspect columns and types</li>
+<li>Use <code>execute_sql</code> for custom queries (read-only)</li>
+</ol>
+<hr>
+<h2>Best Practices</h2>
+<h3>DO</h3>
+<ul>
+<li>✓ Enable RLS on all public tables</li>
+<li>✓ Use <code>(select auth.uid())</code> in RLS policies for performance</li>
+<li>✓ Add indexes on RLS-checked columns</li>
+<li>✓ Specify roles with <code>TO authenticated</code> in policies</li>
+<li>✓ Use <code>on delete cascade</code> for foreign keys to auth.users</li>
+<li>✓ Use cursor-based pagination for large datasets</li>
+<li>✓ Select only needed columns: <code>.select(&#39;id, name&#39;)</code> not <code>.select(&#39;*&#39;)</code></li>
+</ul>
+<h3>DON&#39;T</h3>
+<ul>
+<li>✗ Store sensitive data without RLS</li>
+<li>✗ Use <code>auth.uid()</code> directly in policies (use <code>(select auth.uid())</code>)</li>
+<li>✗ Create policies without specifying roles</li>
+<li>✗ Forget indexes on frequently filtered columns</li>
+<li>✗ Use offset pagination for deep pages (&gt;1000 rows)</li>
+<li>✗ Expose auth.users directly via API (use public profiles table)</li>
+</ul>
+<hr>
+<h2>Quick Reference</h2>
+<h3>Common Filters</h3>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>JavaScript</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Equals</td>
+<td><code>.eq(&#39;col&#39;, val)</code></td>
+<td><code>.eq(&quot;col&quot;, val)</code></td>
+</tr>
+<tr>
+<td>Not equals</td>
+<td><code>.neq(&#39;col&#39;, val)</code></td>
+<td><code>.neq(&quot;col&quot;, val)</code></td>
+</tr>
+<tr>
+<td>Greater than</td>
+<td><code>.gt(&#39;col&#39;, val)</code></td>
+<td><code>.gt(&quot;col&quot;, val)</code></td>
+</tr>
+<tr>
+<td>Greater or equal</td>
+<td><code>.gte(&#39;col&#39;, val)</code></td>
+<td><code>.gte(&quot;col&quot;, val)</code></td>
+</tr>
+<tr>
+<td>Less than</td>
+<td><code>.lt(&#39;col&#39;, val)</code></td>
+<td><code>.lt(&quot;col&quot;, val)</code></td>
+</tr>
+<tr>
+<td>Less or equal</td>
+<td><code>.lte(&#39;col&#39;, val)</code></td>
+<td><code>.lte(&quot;col&quot;, val)</code></td>
+</tr>
+<tr>
+<td>Pattern match</td>
+<td><code>.ilike(&#39;col&#39;, &#39;%val%&#39;)</code></td>
+<td><code>.ilike(&quot;col&quot;, &quot;%val%&quot;)</code></td>
+</tr>
+<tr>
+<td>In list</td>
+<td><code>.in(&#39;col&#39;, [a,b])</code></td>
+<td><code>.in_(&quot;col&quot;, [a,b])</code></td>
+</tr>
+<tr>
+<td>Is null</td>
+<td><code>.is(&#39;col&#39;, null)</code></td>
+<td><code>.is_(&quot;col&quot;, &quot;null&quot;)</code></td>
+</tr>
+<tr>
+<td>OR</td>
+<td><code>.or(&#39;a.eq.1,b.eq.2&#39;)</code></td>
+<td><code>.or_(&quot;a.eq.1,b.eq.2&quot;)</code></td>
+</tr>
+</tbody></table>
+<h3>Auth Tables Quick Reference</h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Key Columns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>auth.users</code></td>
+<td>id, email, phone, created_at, last_sign_in_at, raw_user_meta_data</td>
+</tr>
+<tr>
+<td><code>auth.sessions</code></td>
+<td>id, user_id, created_at, updated_at</td>
+</tr>
+<tr>
+<td><code>auth.identities</code></td>
+<td>id, user_id, provider, identity_data</td>
+</tr>
+</tbody></table>
+<h3>RLS Policy Template</h3>
+<pre><code class="language-sql">create policy &quot;policy_name&quot; on table_name
+to authenticated  -- or anon, or specific role
+for select        -- select, insert, update, delete, or all
+using ( (select auth.uid()) = user_id )
+with check ( (select auth.uid()) = user_id );  -- for insert/update
+</code></pre>
+<hr>
+<h2>Additional Resources</h2>
+<p>For detailed patterns and code examples, consult:</p>
+<ul>
+<li><strong><code>references/auth.md</code></strong> - Authentication with JS/Python SDK, user profiles</li>
+<li><strong><code>references/rls.md</code></strong> - Row Level Security policies and performance tips</li>
+<li><strong><code>references/relationships.md</code></strong> - Table relationships and nested queries</li>
+<li><strong><code>references/query-patterns.md</code></strong> - Filtering, pagination, counting, indexes</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

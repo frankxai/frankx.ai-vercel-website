@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Community CRM</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="community/crm/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Community CRM</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#community">community</a> / <a href="index.html#community%2Fcrm">crm</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Community CRM</h1>
+<p><strong>Purpose</strong>: Track audience members, customers, and community relationships</p>
+<hr>
+<h2>What is This?</h2>
+<p>This is a lightweight CRM (Customer Relationship Management) system for tracking:</p>
+<ul>
+<li><strong>Audience Segments</strong> - Who follows FrankX across platforms</li>
+<li><strong>Customer Journeys</strong> - How people move through the funnel</li>
+<li><strong>VIP Relationships</strong> - Power users, evangelists, key supporters</li>
+<li><strong>Community Members</strong> - Inner Circle, Discord, email list</li>
+</ul>
+<hr>
+<h2>CRM Structure</h2>
+<h3>Tier 1: General Audience</h3>
+<p><strong>Platform</strong>: Email list (ConvertKit), social media followers
+<strong>Size</strong>: 10K+ people
+<strong>Engagement</strong>: Occasional (newsletters, social posts)
+<strong>Value</strong>: Awareness and reach</p>
+<p><strong>Track in</strong>: <code>crm/audience-segments.md</code></p>
+<hr>
+<h3>Tier 2: Engaged Community</h3>
+<p><strong>Platform</strong>: Newsletter subscribers who open + click, active social engagers
+<strong>Size</strong>: 1K-2K people
+<strong>Engagement</strong>: Regular (weekly emails, frequent replies)
+<strong>Value</strong>: Word of mouth, feedback, early adopters</p>
+<p><strong>Track in</strong>: <code>crm/engaged-community.md</code></p>
+<hr>
+<h3>Tier 3: Customers</h3>
+<p><strong>Platform</strong>: Anyone who&#39;s purchased a FrankX product
+<strong>Size</strong>: 100-500 people (growing)
+<strong>Engagement</strong>: Transactional + occasional check-ins
+<strong>Value</strong>: Revenue, testimonials, case studies</p>
+<p><strong>Track in</strong>: <code>crm/customers.md</code></p>
+<hr>
+<h3>Tier 4: VIPs &amp; Evangelists</h3>
+<p><strong>Platform</strong>: Power users, affiliates, evangelists, collaborators
+<strong>Size</strong>: 20-50 people
+<strong>Engagement</strong>: Personal (DMs, 1-on-1s, regular check-ins)
+<strong>Value</strong>: Word of mouth, referrals, partnerships</p>
+<p><strong>Track in</strong>: <code>crm/vip-list.md</code></p>
+<hr>
+<h3>Tier 5: Inner Circle</h3>
+<p><strong>Platform</strong>: Premium community members (Discord, private channels)
+<strong>Size</strong>: 10-30 people (exclusive)
+<strong>Engagement</strong>: Daily (live sessions, direct access to Frank)
+<strong>Value</strong>: Deep connection, co-creation, high LTV</p>
+<p><strong>Track in</strong>: <code>crm/inner-circle.md</code></p>
+<hr>
+<h2>Data We Track</h2>
+<h3>Basic Profile</h3>
+<ul>
+<li><strong>Name</strong>: Full name</li>
+<li><strong>Handle/Email</strong>: Primary contact method</li>
+<li><strong>Platform</strong>: Where we connected</li>
+<li><strong>Date Added</strong>: When they joined our world</li>
+<li><strong>Source</strong>: How they found FrankX (SEO, social, referral, etc.)</li>
+</ul>
+<h3>Engagement Data</h3>
+<ul>
+<li><strong>Engagement Level</strong>: Tier 1-5 (see above)</li>
+<li><strong>Last Interaction</strong>: Date and type</li>
+<li><strong>Interaction History</strong>: Key touchpoints</li>
+<li><strong>Content Interests</strong>: AI, music, spirituality, tech, etc.</li>
+<li><strong>Product Interests</strong>: Vibe OS, Creator OS, Inner Circle, etc.</li>
+</ul>
+<h3>Relationship Data</h3>
+<ul>
+<li><strong>Stage</strong>: Awareness → Consideration → Customer → Advocate</li>
+<li><strong>Lifetime Value (LTV)</strong>: Total $ spent</li>
+<li><strong>Referrals</strong>: Number of people they&#39;ve referred</li>
+<li><strong>Testimonial</strong>: Have they provided social proof?</li>
+<li><strong>Case Study</strong>: Potential for success story?</li>
+</ul>
+<h3>Personalization Data</h3>
+<ul>
+<li><strong>Creator Type</strong>: Musician, writer, developer, coach, etc.</li>
+<li><strong>AI Experience</strong>: Beginner, intermediate, advanced</li>
+<li><strong>Goals</strong>: What they&#39;re trying to achieve</li>
+<li><strong>Pain Points</strong>: What they struggle with</li>
+<li><strong>Win Moments</strong>: Successes we&#39;ve helped them achieve</li>
+</ul>
+<hr>
+<h2>CRM Workflows</h2>
+<h3>New Subscriber (Tier 1)</h3>
+<ol>
+<li><strong>Capture</strong>: Subscribe via frankx.ai, social, or lead magnet</li>
+<li><strong>Welcome</strong>: Automated email with Creative AI Toolkit</li>
+<li><strong>Segment</strong>: Tag based on signup source and interests</li>
+<li><strong>Nurture</strong>: Weekly Creation Chronicles newsletter</li>
+<li><strong>Engage</strong>: Monitor opens, clicks, replies</li>
+</ol>
+<h3>Engaged Community (Tier 2)</h3>
+<ol>
+<li><strong>Identify</strong>: 3+ email opens in last month OR social engagement</li>
+<li><strong>Personalize</strong>: Send targeted content based on interests</li>
+<li><strong>Invite</strong>: Offer to join private community or early access</li>
+<li><strong>Survey</strong>: Ask about goals, challenges, ideal products</li>
+<li><strong>Move</strong>: Push toward Tier 3 (customer) with relevant offer</li>
+</ol>
+<h3>New Customer (Tier 3)</h3>
+<ol>
+<li><strong>Welcome</strong>: Personal email from Frank within 24h</li>
+<li><strong>Onboard</strong>: Ensure they get value immediately</li>
+<li><strong>Check-in</strong>: Follow up at 7 days, 30 days, 90 days</li>
+<li><strong>Testimonial Request</strong>: Ask for feedback/review at 30 days</li>
+<li><strong>Upsell</strong>: Offer next-level product when appropriate</li>
+</ol>
+<h3>VIP Cultivation (Tier 4)</h3>
+<ol>
+<li><strong>Identify</strong>: High engagement + evangelism + multiple purchases</li>
+<li><strong>Recognize</strong>: Send personal thank you gift/note</li>
+<li><strong>Access</strong>: Offer early access to new products</li>
+<li><strong>Collaborate</strong>: Invite to co-create content or features</li>
+<li><strong>Reward</strong>: Affiliate program, special perks, recognition</li>
+</ol>
+<h3>Inner Circle (Tier 5)</h3>
+<ol>
+<li><strong>Application</strong>: Vet carefully (fit, energy, commitment)</li>
+<li><strong>Onboard</strong>: Personal welcome call with Frank</li>
+<li><strong>Integrate</strong>: Add to private Discord/Slack channels</li>
+<li><strong>Engage</strong>: Daily interaction, weekly live sessions</li>
+<li><strong>Co-create</strong>: Involve in product development decisions</li>
+</ol>
+<hr>
+<h2>Tools We Use</h2>
+<h3>Email Marketing: ConvertKit</h3>
+<ul>
+<li>Tag-based segmentation</li>
+<li>Automated sequences</li>
+<li>Broadcast newsletters</li>
+<li>Landing pages + forms</li>
+</ul>
+<h3>Community: Discord</h3>
+<ul>
+<li>Inner Circle private channels</li>
+<li>Public community (future)</li>
+<li>Voice/video for live sessions</li>
+<li>Integration with Whop/Patreon</li>
+</ul>
+<h3>Analytics: PostHog</h3>
+<ul>
+<li>Track user journeys</li>
+<li>Conversion funnels</li>
+<li>Product analytics</li>
+<li>Session recordings</li>
+</ul>
+<h3>Payments: Whop + Patreon</h3>
+<ul>
+<li>Customer data (purchases, subscriptions)</li>
+<li>Affiliate tracking</li>
+<li>Membership tiers</li>
+<li>Recurring revenue</li>
+</ul>
+<h3>Manual Tracking: Markdown Files (This Folder)</h3>
+<ul>
+<li>VIP list with personal notes</li>
+<li>Dream 100 relationship tracking</li>
+<li>Key customer case studies</li>
+<li>Partnership opportunities</li>
+</ul>
+<hr>
+<h2>Weekly CRM Routine</h2>
+<h3>Monday: Review &amp; Plan (30 min)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Review new subscribers from last week</li>
+<li><input disabled="" type="checkbox"> Check customer onboarding progress</li>
+<li><input disabled="" type="checkbox"> Identify VIPs who need personal outreach</li>
+<li><input disabled="" type="checkbox"> Plan this week&#39;s email + content</li>
+</ul>
+<h3>Wednesday: Engage (45 min)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Reply to all customer emails</li>
+<li><input disabled="" type="checkbox"> Send 3-5 personal check-ins to VIPs</li>
+<li><input disabled="" type="checkbox"> Update engagement data in CRM</li>
+<li><input disabled="" type="checkbox"> Tag new subscribers based on activity</li>
+</ul>
+<h3>Friday: Analyze &amp; Optimize (30 min)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Review email open/click rates</li>
+<li><input disabled="" type="checkbox"> Check conversion funnel metrics</li>
+<li><input disabled="" type="checkbox"> Identify drop-off points</li>
+<li><input disabled="" type="checkbox"> Plan experiments for next week</li>
+</ul>
+<hr>
+<h2>Metrics We Track</h2>
+<h3>Audience Growth</h3>
+<ul>
+<li>Email list growth rate (goal: +5% monthly)</li>
+<li>Social follower growth (goal: +10% monthly)</li>
+<li>Website traffic (goal: +15% monthly)</li>
+</ul>
+<h3>Engagement</h3>
+<ul>
+<li>Email open rate (goal: &gt;40%)</li>
+<li>Email click rate (goal: &gt;10%)</li>
+<li>Reply rate (goal: &gt;2%)</li>
+<li>Social engagement rate (goal: &gt;5%)</li>
+</ul>
+<h3>Conversion</h3>
+<ul>
+<li>Lead → Customer rate (goal: &gt;5%)</li>
+<li>Customer → VIP rate (goal: &gt;10%)</li>
+<li>VIP → Inner Circle rate (goal: &gt;20%)</li>
+</ul>
+<h3>Retention</h3>
+<ul>
+<li>Customer churn rate (goal: &lt;5% monthly for subscriptions)</li>
+<li>Email unsubscribe rate (goal: &lt;0.5%)</li>
+<li>Product repurchase rate (goal: &gt;30%)</li>
+</ul>
+<h3>Revenue</h3>
+<ul>
+<li>Average order value (AOV)</li>
+<li>Customer lifetime value (LTV)</li>
+<li>Monthly recurring revenue (MRR)</li>
+<li>Annual recurring revenue (ARR)</li>
+</ul>
+<hr>
+<h2>Files in This Folder</h2>
+<pre><code>crm/
+├── README.md (this file)
+├── audience-segments.md (Tier 1 tracking)
+├── engaged-community.md (Tier 2 tracking)
+├── customers.md (Tier 3 tracking)
+├── vip-list.md (Tier 4 tracking)
+├── inner-circle.md (Tier 5 tracking)
+├── email-sequences.md (Automated workflows)
+└── case-studies.md (Customer success stories)
+</code></pre>
+<hr>
+<h2>Integration with Other Systems</h2>
+<h3>← Dream 100</h3>
+<p>When a Dream 100 relationship warms up and they join the audience, move them to CRM tracking.</p>
+<h3>↔ Monetization</h3>
+<p>CRM data informs which products to create, which platforms to use, which price points work.</p>
+<h3>→ Content Strategy</h3>
+<p>CRM insights drive what content to create (blog topics, music styles, product features).</p>
+<h3>⟲ Feedback Loop</h3>
+<ul>
+<li>Survey customers → Build products they want</li>
+<li>Track engagement → Create content that resonates</li>
+<li>Monitor churn → Fix product/experience gaps</li>
+</ul>
+<hr>
+<h2>Privacy &amp; Ethics</h2>
+<p><strong>We Respect Privacy:</strong></p>
+<ul>
+<li>Only collect data necessary for relationship management</li>
+<li>Never sell or share personal information</li>
+<li>Offer easy unsubscribe/data deletion</li>
+<li>Use data to provide value, not manipulate</li>
+</ul>
+<p><strong>We Build Trust:</strong></p>
+<ul>
+<li>Transparent about how we use data</li>
+<li>Personal touch, not mass automation</li>
+<li>Value-first approach, not pushy sales</li>
+<li>Long-term relationships, not one-time transactions</li>
+</ul>
+<hr>
+<h2>Next Actions</h2>
+<ol>
+<li><strong>Set up ConvertKit tags</strong> for audience segmentation (Priority 1)</li>
+<li><strong>Create VIP list</strong> with first 20 names (Priority 1)</li>
+<li><strong>Write customer check-in templates</strong> (Priority 2)</li>
+<li><strong>Set up PostHog funnels</strong> for conversion tracking (Priority 2)</li>
+<li><strong>Block weekly CRM time</strong> on calendar (Priority 1)</li>
+</ol>
+<hr>
+<p><strong>Remember</strong>: CRM is about relationships, not just data. Every person in this system is a real human with dreams, challenges, and goals. Treat them as such. Build genuine connections, provide real value, and the business results will follow.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

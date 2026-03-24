@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Monitoring and Observability Setup</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/observability-monitoring/commands/monitor-setup.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Monitoring and Observability Setup</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fobservability-monitoring">observability-monitoring</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fobservability-monitoring%2Fcommands">commands</a> / <span>monitor-setup.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Monitoring and Observability Setup</h1>
+<p>You are a monitoring and observability expert specializing in implementing comprehensive monitoring solutions. Set up metrics collection, distributed tracing, log aggregation, and create insightful dashboards that provide full visibility into system health and performance.</p>
+<h2>Context</h2>
+<p>The user needs to implement or improve monitoring and observability. Focus on the three pillars of observability (metrics, logs, traces), setting up monitoring infrastructure, creating actionable dashboards, and establishing effective alerting strategies.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. Prometheus &amp; Metrics Setup</h3>
+<p><strong>Prometheus Configuration</strong></p>
+<pre><code class="language-yaml"># prometheus.yml
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: &quot;production&quot;
+    region: &quot;us-east-1&quot;
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: [&quot;alertmanager:9093&quot;]
+
+rule_files:
+  - &quot;alerts/*.yml&quot;
+  - &quot;recording_rules/*.yml&quot;
+
+scrape_configs:
+  - job_name: &quot;prometheus&quot;
+    static_configs:
+      - targets: [&quot;localhost:9090&quot;]
+
+  - job_name: &quot;node&quot;
+    static_configs:
+      - targets: [&quot;node-exporter:9100&quot;]
+
+  - job_name: &quot;application&quot;
+    kubernetes_sd_configs:
+      - role: pod
+    relabel_configs:
+      - source_labels: [__meta_kubernetes_pod_annotation_prometheus_io_scrape]
+        action: keep
+        regex: true
+</code></pre>
+<p><strong>Custom Metrics Implementation</strong></p>
+<pre><code class="language-typescript">// metrics.ts
+import { Counter, Histogram, Gauge, Registry } from &quot;prom-client&quot;;
+
+export class MetricsCollector {
+  private registry: Registry;
+  private httpRequestDuration: Histogram&lt;string&gt;;
+  private httpRequestTotal: Counter&lt;string&gt;;
+
+  constructor() {
+    this.registry = new Registry();
+    this.initializeMetrics();
+  }
+
+  private initializeMetrics() {
+    this.httpRequestDuration = new Histogram({
+      name: &quot;http_request_duration_seconds&quot;,
+      help: &quot;Duration of HTTP requests in seconds&quot;,
+      labelNames: [&quot;method&quot;, &quot;route&quot;, &quot;status_code&quot;],
+      buckets: [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1, 2, 5],
+    });
+
+    this.httpRequestTotal = new Counter({
+      name: &quot;http_requests_total&quot;,
+      help: &quot;Total number of HTTP requests&quot;,
+      labelNames: [&quot;method&quot;, &quot;route&quot;, &quot;status_code&quot;],
+    });
+
+    this.registry.registerMetric(this.httpRequestDuration);
+    this.registry.registerMetric(this.httpRequestTotal);
+  }
+
+  httpMetricsMiddleware() {
+    return (req: Request, res: Response, next: NextFunction) =&gt; {
+      const start = Date.now();
+      const route = req.route?.path || req.path;
+
+      res.on(&quot;finish&quot;, () =&gt; {
+        const duration = (Date.now() - start) / 1000;
+        const labels = {
+          method: req.method,
+          route,
+          status_code: res.statusCode.toString(),
+        };
+
+        this.httpRequestDuration.observe(labels, duration);
+        this.httpRequestTotal.inc(labels);
+      });
+
+      next();
+    };
+  }
+
+  async getMetrics(): Promise&lt;string&gt; {
+    return this.registry.metrics();
+  }
+}
+</code></pre>
+<h3>2. Grafana Dashboard Setup</h3>
+<p><strong>Dashboard Configuration</strong></p>
+<pre><code class="language-typescript">// dashboards/service-dashboard.ts
+export const createServiceDashboard = (serviceName: string) =&gt; {
+  return {
+    title: `${serviceName} Service Dashboard`,
+    uid: `${serviceName}-overview`,
+    tags: [&quot;service&quot;, serviceName],
+    time: { from: &quot;now-6h&quot;, to: &quot;now&quot; },
+    refresh: &quot;30s&quot;,
+
+    panels: [
+      // Golden Signals
+      {
+        title: &quot;Request Rate&quot;,
+        type: &quot;graph&quot;,
+        gridPos: { x: 0, y: 0, w: 6, h: 8 },
+        targets: [
+          {
+            expr: `sum(rate(http_requests_total{service=&quot;${serviceName}&quot;}[5m])) by (method)`,
+            legendFormat: &quot;{{method}}&quot;,
+          },
+        ],
+      },
+      {
+        title: &quot;Error Rate&quot;,
+        type: &quot;graph&quot;,
+        gridPos: { x: 6, y: 0, w: 6, h: 8 },
+        targets: [
+          {
+            expr: `sum(rate(http_requests_total{service=&quot;${serviceName}&quot;,status_code=~&quot;5..&quot;}[5m])) / sum(rate(http_requests_total{service=&quot;${serviceName}&quot;}[5m]))`,
+            legendFormat: &quot;Error %&quot;,
+          },
+        ],
+      },
+      {
+        title: &quot;Latency Percentiles&quot;,
+        type: &quot;graph&quot;,
+        gridPos: { x: 12, y: 0, w: 12, h: 8 },
+        targets: [
+          {
+            expr: `histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket{service=&quot;${serviceName}&quot;}[5m])) by (le))`,
+            legendFormat: &quot;p50&quot;,
+          },
+          {
+            expr: `histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{service=&quot;${serviceName}&quot;}[5m])) by (le))`,
+            legendFormat: &quot;p95&quot;,
+          },
+          {
+            expr: `histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{service=&quot;${serviceName}&quot;}[5m])) by (le))`,
+            legendFormat: &quot;p99&quot;,
+          },
+        ],
+      },
+    ],
+  };
+};
+</code></pre>
+<h3>3. Distributed Tracing</h3>
+<p><strong>OpenTelemetry Configuration</strong></p>
+<pre><code class="language-typescript">// tracing.ts
+import { NodeSDK } from &quot;@opentelemetry/sdk-node&quot;;
+import { getNodeAutoInstrumentations } from &quot;@opentelemetry/auto-instrumentations-node&quot;;
+import { Resource } from &quot;@opentelemetry/resources&quot;;
+import { SemanticResourceAttributes } from &quot;@opentelemetry/semantic-conventions&quot;;
+import { JaegerExporter } from &quot;@opentelemetry/exporter-jaeger&quot;;
+import { BatchSpanProcessor } from &quot;@opentelemetry/sdk-trace-base&quot;;
+
+export class TracingSetup {
+  private sdk: NodeSDK;
+
+  constructor(serviceName: string, environment: string) {
+    const jaegerExporter = new JaegerExporter({
+      endpoint:
+        process.env.JAEGER_ENDPOINT || &quot;http://localhost:14268/api/traces&quot;,
+    });
+
+    this.sdk = new NodeSDK({
+      resource: new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]: serviceName,
+        [SemanticResourceAttributes.SERVICE_VERSION]:
+          process.env.SERVICE_VERSION || &quot;1.0.0&quot;,
+        [SemanticResourceAttributes.DEPLOYMENT_ENVIRONMENT]: environment,
+      }),
+
+      traceExporter: jaegerExporter,
+      spanProcessor: new BatchSpanProcessor(jaegerExporter),
+
+      instrumentations: [
+        getNodeAutoInstrumentations({
+          &quot;@opentelemetry/instrumentation-fs&quot;: { enabled: false },
+        }),
+      ],
+    });
+  }
+
+  start() {
+    this.sdk
+      .start()
+      .then(() =&gt; console.log(&quot;Tracing initialized&quot;))
+      .catch((error) =&gt; console.error(&quot;Error initializing tracing&quot;, error));
+  }
+
+  shutdown() {
+    return this.sdk.shutdown();
+  }
+}
+</code></pre>
+<h3>4. Log Aggregation</h3>
+<p><strong>Fluentd Configuration</strong></p>
+<pre><code class="language-yaml"># fluent.conf
+&lt;source&gt;
+@type tail
+path /var/log/containers/*.log
+pos_file /var/log/fluentd-containers.log.pos
+tag kubernetes.*
+&lt;parse&gt;
+@type json
+time_format %Y-%m-%dT%H:%M:%S.%NZ
+&lt;/parse&gt;
+&lt;/source&gt;
+
+&lt;filter kubernetes.**&gt;
+@type kubernetes_metadata
+kubernetes_url &quot;#{ENV[&#39;KUBERNETES_SERVICE_HOST&#39;]}&quot;
+&lt;/filter&gt;
+
+&lt;filter kubernetes.**&gt;
+@type record_transformer
+&lt;record&gt;
+cluster_name ${ENV[&#39;CLUSTER_NAME&#39;]}
+environment ${ENV[&#39;ENVIRONMENT&#39;]}
+@timestamp ${time.strftime(&#39;%Y-%m-%dT%H:%M:%S.%LZ&#39;)}
+&lt;/record&gt;
+&lt;/filter&gt;
+
+&lt;match kubernetes.**&gt;
+@type elasticsearch
+host &quot;#{ENV[&#39;FLUENT_ELASTICSEARCH_HOST&#39;]}&quot;
+port &quot;#{ENV[&#39;FLUENT_ELASTICSEARCH_PORT&#39;]}&quot;
+index_name logstash
+logstash_format true
+&lt;buffer&gt;
+@type file
+path /var/log/fluentd-buffers/kubernetes.buffer
+flush_interval 5s
+chunk_limit_size 2M
+&lt;/buffer&gt;
+&lt;/match&gt;
+</code></pre>
+<p><strong>Structured Logging Library</strong></p>
+<pre><code class="language-python"># structured_logging.py
+import json
+import logging
+from datetime import datetime
+from typing import Any, Dict, Optional
+
+class StructuredLogger:
+    def __init__(self, name: str, service: str, version: str):
+        self.logger = logging.getLogger(name)
+        self.service = service
+        self.version = version
+        self.default_context = {
+            &#39;service&#39;: service,
+            &#39;version&#39;: version,
+            &#39;environment&#39;: os.getenv(&#39;ENVIRONMENT&#39;, &#39;development&#39;)
+        }
+
+    def _format_log(self, level: str, message: str, context: Dict[str, Any]) -&gt; str:
+        log_entry = {
+            &#39;@timestamp&#39;: datetime.utcnow().isoformat() + &#39;Z&#39;,
+            &#39;level&#39;: level,
+            &#39;message&#39;: message,
+            **self.default_context,
+            **context
+        }
+
+        trace_context = self._get_trace_context()
+        if trace_context:
+            log_entry[&#39;trace&#39;] = trace_context
+
+        return json.dumps(log_entry)
+
+    def info(self, message: str, **context):
+        log_msg = self._format_log(&#39;INFO&#39;, message, context)
+        self.logger.info(log_msg)
+
+    def error(self, message: str, error: Optional[Exception] = None, **context):
+        if error:
+            context[&#39;error&#39;] = {
+                &#39;type&#39;: type(error).__name__,
+                &#39;message&#39;: str(error),
+                &#39;stacktrace&#39;: traceback.format_exc()
+            }
+
+        log_msg = self._format_log(&#39;ERROR&#39;, message, context)
+        self.logger.error(log_msg)
+</code></pre>
+<h3>5. Alert Configuration</h3>
+<p><strong>Alert Rules</strong></p>
+<pre><code class="language-yaml"># alerts/application.yml
+groups:
+  - name: application
+    interval: 30s
+    rules:
+      - alert: HighErrorRate
+        expr: |
+          sum(rate(http_requests_total{status_code=~&quot;5..&quot;}[5m])) by (service)
+          / sum(rate(http_requests_total[5m])) by (service) &gt; 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: &quot;High error rate on {{ $labels.service }}&quot;
+          description: &quot;Error rate is {{ $value | humanizePercentage }}&quot;
+
+      - alert: SlowResponseTime
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le)
+          ) &gt; 1
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: &quot;Slow response time on {{ $labels.service }}&quot;
+
+  - name: infrastructure
+    rules:
+      - alert: HighCPUUsage
+        expr: avg(rate(container_cpu_usage_seconds_total[5m])) by (pod) &gt; 0.8
+        for: 15m
+        labels:
+          severity: warning
+
+      - alert: HighMemoryUsage
+        expr: |
+          container_memory_working_set_bytes / container_spec_memory_limit_bytes &gt; 0.9
+        for: 10m
+        labels:
+          severity: critical
+</code></pre>
+<p><strong>Alertmanager Configuration</strong></p>
+<pre><code class="language-yaml"># alertmanager.yml
+global:
+  resolve_timeout: 5m
+  slack_api_url: &quot;$SLACK_API_URL&quot;
+
+route:
+  group_by: [&quot;alertname&quot;, &quot;cluster&quot;, &quot;service&quot;]
+  group_wait: 10s
+  group_interval: 10s
+  repeat_interval: 12h
+  receiver: &quot;default&quot;
+
+  routes:
+    - match:
+        severity: critical
+      receiver: pagerduty
+      continue: true
+
+    - match_re:
+        severity: critical|warning
+      receiver: slack
+
+receivers:
+  - name: &quot;slack&quot;
+    slack_configs:
+      - channel: &quot;#alerts&quot;
+        title: &quot;{{ .GroupLabels.alertname }}&quot;
+        text: &quot;{{ range .Alerts }}{{ .Annotations.description }}{{ end }}&quot;
+        send_resolved: true
+
+  - name: &quot;pagerduty&quot;
+    pagerduty_configs:
+      - service_key: &quot;$PAGERDUTY_SERVICE_KEY&quot;
+        description: &quot;{{ .GroupLabels.alertname }}: {{ .Annotations.summary }}&quot;
+</code></pre>
+<h3>6. SLO Implementation</h3>
+<p><strong>SLO Configuration</strong></p>
+<pre><code class="language-typescript">// slo-manager.ts
+interface SLO {
+  name: string;
+  target: number; // e.g., 99.9
+  window: string; // e.g., &#39;30d&#39;
+  burnRates: BurnRate[];
+}
+
+export class SLOManager {
+  private slos: SLO[] = [
+    {
+      name: &quot;API Availability&quot;,
+      target: 99.9,
+      window: &quot;30d&quot;,
+      burnRates: [
+        { window: &quot;1h&quot;, threshold: 14.4, severity: &quot;critical&quot; },
+        { window: &quot;6h&quot;, threshold: 6, severity: &quot;critical&quot; },
+        { window: &quot;1d&quot;, threshold: 3, severity: &quot;warning&quot; },
+      ],
+    },
+  ];
+
+  generateSLOQueries(): string {
+    return this.slos.map((slo) =&gt; this.generateSLOQuery(slo)).join(&quot;\n\n&quot;);
+  }
+
+  private generateSLOQuery(slo: SLO): string {
+    const errorBudget = 1 - slo.target / 100;
+
+    return `
+# ${slo.name} SLO
+- record: slo:${this.sanitizeName(slo.name)}:error_budget
+  expr: ${errorBudget}
+
+- record: slo:${this.sanitizeName(slo.name)}:consumed_error_budget
+  expr: |
+    1 - (sum(rate(successful_requests[${slo.window}])) / sum(rate(total_requests[${slo.window}])))
+        `;
+  }
+}
+</code></pre>
+<h3>7. Infrastructure as Code</h3>
+<p><strong>Terraform Configuration</strong></p>
+<pre><code class="language-hcl"># monitoring.tf
+module &quot;prometheus&quot; {
+  source = &quot;./modules/prometheus&quot;
+
+  namespace = &quot;monitoring&quot;
+  storage_size = &quot;100Gi&quot;
+  retention_days = 30
+
+  external_labels = {
+    cluster = var.cluster_name
+    region  = var.region
+  }
+}
+
+module &quot;grafana&quot; {
+  source = &quot;./modules/grafana&quot;
+
+  namespace = &quot;monitoring&quot;
+  admin_password = var.grafana_admin_password
+
+  datasources = [
+    {
+      name = &quot;Prometheus&quot;
+      type = &quot;prometheus&quot;
+      url  = &quot;http://prometheus:9090&quot;
+    }
+  ]
+}
+
+module &quot;alertmanager&quot; {
+  source = &quot;./modules/alertmanager&quot;
+
+  namespace = &quot;monitoring&quot;
+
+  config = templatefile(&quot;${path.module}/alertmanager.yml&quot;, {
+    slack_webhook = var.slack_webhook
+    pagerduty_key = var.pagerduty_service_key
+  })
+}
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>Infrastructure Assessment</strong>: Current monitoring capabilities analysis</li>
+<li><strong>Monitoring Architecture</strong>: Complete monitoring stack design</li>
+<li><strong>Implementation Plan</strong>: Step-by-step deployment guide</li>
+<li><strong>Metric Definitions</strong>: Comprehensive metrics catalog</li>
+<li><strong>Dashboard Templates</strong>: Ready-to-use Grafana dashboards</li>
+<li><strong>Alert Runbooks</strong>: Detailed alert response procedures</li>
+<li><strong>SLO Definitions</strong>: Service level objectives and error budgets</li>
+<li><strong>Integration Guide</strong>: Service instrumentation instructions</li>
+</ol>
+<p>Focus on creating a monitoring system that provides actionable insights, reduces MTTR, and enables proactive issue detection.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

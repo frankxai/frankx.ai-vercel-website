@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ACOS - Agentic Creator OS v10.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/acos.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ACOS - Agentic Creator OS v10.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>acos.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ACOS - Agentic Creator OS v10.0</h1>
+<p><strong>Autonomous Intelligence</strong> — Self-improving with safety guarantees.</p>
+<h2>System Status</h2>
+<p>Run diagnostic and display:</p>
+<ol>
+<li>Count <code>.claude/trajectories/*.json</code> (exclude _active, _operations, patterns)</li>
+<li>Read <code>.claude/trajectories/patterns.json</code> for pattern count</li>
+<li>Read <code>.claude-flow/metrics/learning-status.json</code> for learning state</li>
+</ol>
+<pre><code>+================================================================+
+|                    AGENTIC CREATOR OS v10.0                      |
+|         &quot;Autonomous Intelligence. One Command.&quot;                  |
++================================================================+
+|  Skills: 22 curated | Agents: 8 specialist | Profiles: 6 IAM   |
+|  Hooks: 7 events | Intelligence: 93/100 | MCP: 6 servers       |
+|  Trajectories: [N] | Avg Success: [N%] | Patterns: [N]         |
+|  Learning: Active | Audit: Immutable | Circuit Breaker: Armed  |
++================================================================+
+</code></pre>
+<h2>v10 Intelligence Systems</h2>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Experience Replay</td>
+<td>Injects top-2 similar successful trajectories as context</td>
+</tr>
+<tr>
+<td>Agent IAM</td>
+<td>Per-profile tool/directory scoping with least-privilege</td>
+</tr>
+<tr>
+<td>Immutable Audit Trail</td>
+<td>Append-only JSONL logging all tool use and decisions</td>
+</tr>
+<tr>
+<td>Confidence Circuit Breaker</td>
+<td>WARN at 3, RESTRICT at 5, BREAK at 8 failures per file</td>
+</tr>
+<tr>
+<td>Conservative Self-Modify Gate</td>
+<td>Snapshots config, auto-reverts if score drops &gt;5 points</td>
+</tr>
+</tbody></table>
+<h2>How It Works</h2>
+<p>You just talk. ACOS handles routing automatically.</p>
+<pre><code>Your request
+    |
+    v
+ACOS Auto-Router (this command)
+    |
+    +-- &quot;build a component&quot;     --&gt; Frontend Designer agent
+    +-- &quot;write a blog post&quot;     --&gt; Content Engine + SEO
+    +-- &quot;deploy to production&quot;  --&gt; DevOps pipeline
+    +-- &quot;create music&quot;          --&gt; Frequency Alchemist
+    +-- &quot;research AI trends&quot;    --&gt; Deep Research swarm
+    +-- &quot;build Arcanea world&quot;   --&gt; /ultraworld swarm
+    +-- &quot;write chapter 5&quot;       --&gt; /ultraworld Story Weaver
+    +-- &quot;review this PR&quot;        --&gt; Code Reviewer agent
+    +-- &quot;optimize performance&quot;  --&gt; Performance analysis swarm
+    +-- &quot;complex multi-file&quot;    --&gt; Auto-spawns swarm (3+ files)
+    +-- anything else           --&gt; Smart routing via hooks
+</code></pre>
+<p>No need to remember specific commands. No need to type /claude-flow-* anything.
+ACOS IS the interface. Everything else is internal infrastructure.</p>
+<h2>Auto-Routing Rules</h2>
+<p>The system detects intent from your words:</p>
+<table>
+<thead>
+<tr>
+<th>Keywords Detected</th>
+<th>Route</th>
+<th>Agents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>build, component, ui, design</td>
+<td>Frontend Designer</td>
+<td>1 agent</td>
+</tr>
+<tr>
+<td>blog, article, content, write, seo</td>
+<td>Content Engine</td>
+<td>1-2 agents</td>
+</tr>
+<tr>
+<td>deploy, push, production, vercel</td>
+<td>DevOps Engineer</td>
+<td>1 agent</td>
+</tr>
+<tr>
+<td>music, suno, song, track</td>
+<td>Music Producer</td>
+<td>1 agent</td>
+</tr>
+<tr>
+<td>research, investigate, analyze</td>
+<td>Deep Research</td>
+<td>2-3 agents</td>
+</tr>
+<tr>
+<td>architecture, system, oracle</td>
+<td>Technical Architect</td>
+<td>1 agent</td>
+</tr>
+<tr>
+<td>image, visual, infographic, thumbnail</td>
+<td>Image Ops Router</td>
+<td>1-2 agents</td>
+</tr>
+<tr>
+<td>grok image, chatgpt image, replicate</td>
+<td>Image Ops Router</td>
+<td>1-2 agents</td>
+</tr>
+<tr>
+<td>arcanea, gate, realm, guardian, seeker</td>
+<td>Ultraworld</td>
+<td>3-7 agents</td>
+</tr>
+<tr>
+<td>book, chapter, story, character</td>
+<td>Ultraworld Story</td>
+<td>2-4 agents</td>
+</tr>
+<tr>
+<td>game, mechanics, progression</td>
+<td>Ultraworld Game</td>
+<td>2-3 agents</td>
+</tr>
+<tr>
+<td>complex, refactor, overhaul, redesign</td>
+<td>Full Swarm</td>
+<td>5-8 agents</td>
+</tr>
+</tbody></table>
+<h2>What Runs Automatically (You Never Touch These)</h2>
+<p>7 hook events fire every session (optimized from 15 to 7 for performance):</p>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>What It Does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SessionStart</td>
+<td>Trajectory created, learning restored, Starlight context</td>
+</tr>
+<tr>
+<td>UserPromptSubmit</td>
+<td>Skills activated, routing hints, domain classification</td>
+</tr>
+<tr>
+<td>PreToolUse</td>
+<td>Agent IAM enforcement, circuit breaker checks</td>
+</tr>
+<tr>
+<td>PostToolUse</td>
+<td>Operations tracked, audit trail, success scoring</td>
+</tr>
+<tr>
+<td>Stop</td>
+<td>Trajectory scored, patterns extracted, Starlight sync</td>
+</tr>
+<tr>
+<td>PreCompact</td>
+<td>Context preserved when window compresses</td>
+</tr>
+</tbody></table>
+<h2>Self-Learning (Agentic Jujutsu)</h2>
+<p>Every session makes ACOS smarter:</p>
+<ul>
+<li>Operations recorded as trajectories (60+ stored)</li>
+<li>Success auto-scored on session end (67% avg)</li>
+<li>Patterns extracted from successful workflows (50+ n-grams)</li>
+<li>Experience Replay injects top-2 similar past successes</li>
+<li>Starlight Intelligence System syncs patterns across sessions</li>
+<li>Intelligence score: 93/100 (up from 72 in v9.3)</li>
+</ul>
+<h2>Quick Reference</h2>
+<h3>Primary Commands (Use These)</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/acos</td>
+<td>THIS. The auto-router. Start here.</td>
+</tr>
+<tr>
+<td>/ultraworld</td>
+<td>Arcanea creative swarm world-building</td>
+</tr>
+<tr>
+<td>/frankx-ai-build</td>
+<td>Full FrankX build session</td>
+</tr>
+<tr>
+<td>/frankx-ai-deploy</td>
+<td>Deploy to frankx.ai</td>
+</tr>
+<tr>
+<td>/starlight-architect</td>
+<td>Strategic meta-orchestration</td>
+</tr>
+<tr>
+<td>/superintelligence</td>
+<td>Maximum reasoning depth</td>
+</tr>
+</tbody></table>
+<h3>Specialized (Auto-Routed, Rarely Need Directly)</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/acos-swarm</td>
+<td>Manual swarm init (auto-detected usually)</td>
+</tr>
+<tr>
+<td>/acos-flow</td>
+<td>System dashboard + metrics</td>
+</tr>
+<tr>
+<td>/acos-agents</td>
+<td>Agent registry reference</td>
+</tr>
+<tr>
+<td>/acos-memory</td>
+<td>Memory layer operations</td>
+</tr>
+<tr>
+<td>/acos-checkpoint</td>
+<td>Manual checkpoint management</td>
+</tr>
+<tr>
+<td>/agentic-jujutsu</td>
+<td>Learning system status</td>
+</tr>
+</tbody></table>
+<h3>Image Ops Routing (New)</h3>
+<p>For image tasks in ACOS, use the shared routing policy:</p>
+<ul>
+<li>Policy: <code>data/ai-ops/image-model-router.json</code></li>
+<li>Planner: <code>npm run image:plan -- --intent &lt;intent&gt;</code></li>
+<li>Generator: <code>npm run image:generate -- --provider &lt;openai|xai|replicate&gt; --prompt &quot;...&quot;</code></li>
+<li>Matrix test: <code>npm run image:matrix -- --prompt &quot;...&quot; --intent &lt;intent&gt;</code></li>
+</ul>
+<p>Nano Banana remains first-class for Claude sessions via MCP (<code>mcp__nanobanana__generate_image</code>).</p>
+<h3>Internal Infrastructure (Never Type These)</h3>
+<p>All 83 /claude-flow-* commands are absorbed into ACOS.
+They still exist for backwards compatibility but you never need them.
+ACOS invokes them internally when appropriate.</p>
+<h2>Architecture</h2>
+<pre><code>                           /acos v10
+                              |
+                 +------------+------------+
+                 |            |            |
+            FrankX AI    Ultraworld    Intelligence
+            (Build)      (Create)      (Think)
+                 |            |            |
+            +---+---+   +---+---+   +---+---+
+            |   |   |   |   |   |   |   |   |
+           Blog UI SEO World Book Game Star Super
+           Eng Des Int  Arch Weav Des light intel
+
+  +---------------- Safety Layer -----------------+
+  |  Agent IAM | Circuit Breaker | Audit Trail    |
+  +-----------------------------------------------+
+  +------------- Intelligence Layer ---------------+
+  |  Experience Replay | Starlight Sync | Score 93 |
+  +-----------------------------------------------+
+</code></pre>
+<p>Just describe what you want. ACOS handles the rest.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Web Component Design</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/web-component-design/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Web Component Design</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fweb-component-design">web-component-design</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: web-component-design
+description: Master React, Vue, and Svelte component patterns including CSS-in-JS, composition strategies, and reusable component architecture. Use when building UI component libraries, designing component APIs, or implementing frontend design systems.</h2>
+<h1>Web Component Design</h1>
+<p>Build reusable, maintainable UI components using modern frameworks with clean composition patterns and styling approaches.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Designing reusable component libraries or design systems</li>
+<li>Implementing complex component composition patterns</li>
+<li>Choosing and applying CSS-in-JS solutions</li>
+<li>Building accessible, responsive UI components</li>
+<li>Creating consistent component APIs across a codebase</li>
+<li>Refactoring legacy components into modern patterns</li>
+<li>Implementing compound components or render props</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Component Composition Patterns</h3>
+<p><strong>Compound Components</strong>: Related components that work together</p>
+<pre><code class="language-tsx">// Usage
+&lt;Select value={value} onChange={setValue}&gt;
+  &lt;Select.Trigger&gt;Choose option&lt;/Select.Trigger&gt;
+  &lt;Select.Options&gt;
+    &lt;Select.Option value=&quot;a&quot;&gt;Option A&lt;/Select.Option&gt;
+    &lt;Select.Option value=&quot;b&quot;&gt;Option B&lt;/Select.Option&gt;
+  &lt;/Select.Options&gt;
+&lt;/Select&gt;
+</code></pre>
+<p><strong>Render Props</strong>: Delegate rendering to parent</p>
+<pre><code class="language-tsx">&lt;DataFetcher url=&quot;/api/users&quot;&gt;
+  {({ data, loading, error }) =&gt;
+    loading ? &lt;Spinner /&gt; : &lt;UserList users={data} /&gt;
+  }
+&lt;/DataFetcher&gt;
+</code></pre>
+<p><strong>Slots (Vue/Svelte)</strong>: Named content injection points</p>
+<pre><code class="language-vue">&lt;template&gt;
+  &lt;Card&gt;
+    &lt;template #header&gt;Title&lt;/template&gt;
+    &lt;template #content&gt;Body text&lt;/template&gt;
+    &lt;template #footer&gt;&lt;Button&gt;Action&lt;/Button&gt;&lt;/template&gt;
+  &lt;/Card&gt;
+&lt;/template&gt;
+</code></pre>
+<h3>2. CSS-in-JS Approaches</h3>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Approach</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tailwind CSS</strong></td>
+<td>Utility classes</td>
+<td>Rapid prototyping, design systems</td>
+</tr>
+<tr>
+<td><strong>CSS Modules</strong></td>
+<td>Scoped CSS files</td>
+<td>Existing CSS, gradual adoption</td>
+</tr>
+<tr>
+<td><strong>styled-components</strong></td>
+<td>Template literals</td>
+<td>React, dynamic styling</td>
+</tr>
+<tr>
+<td><strong>Emotion</strong></td>
+<td>Object/template styles</td>
+<td>Flexible, SSR-friendly</td>
+</tr>
+<tr>
+<td><strong>Vanilla Extract</strong></td>
+<td>Zero-runtime</td>
+<td>Performance-critical apps</td>
+</tr>
+</tbody></table>
+<h3>3. Component API Design</h3>
+<pre><code class="language-tsx">interface ButtonProps {
+  variant?: &quot;primary&quot; | &quot;secondary&quot; | &quot;ghost&quot;;
+  size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;;
+  isLoading?: boolean;
+  isDisabled?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  children: React.ReactNode;
+  onClick?: () =&gt; void;
+}
+</code></pre>
+<p><strong>Principles</strong>:</p>
+<ul>
+<li>Use semantic prop names (<code>isLoading</code> vs <code>loading</code>)</li>
+<li>Provide sensible defaults</li>
+<li>Support composition via <code>children</code></li>
+<li>Allow style overrides via <code>className</code> or <code>style</code></li>
+</ul>
+<h2>Quick Start: React Component with Tailwind</h2>
+<pre><code class="language-tsx">import { forwardRef, type ComponentPropsWithoutRef } from &quot;react&quot;;
+import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
+import { cn } from &quot;@/lib/utils&quot;;
+
+const buttonVariants = cva(
+  &quot;inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50&quot;,
+  {
+    variants: {
+      variant: {
+        primary: &quot;bg-blue-600 text-white hover:bg-blue-700&quot;,
+        secondary: &quot;bg-gray-100 text-gray-900 hover:bg-gray-200&quot;,
+        ghost: &quot;hover:bg-gray-100 hover:text-gray-900&quot;,
+      },
+      size: {
+        sm: &quot;h-8 px-3 text-sm&quot;,
+        md: &quot;h-10 px-4 text-sm&quot;,
+        lg: &quot;h-12 px-6 text-base&quot;,
+      },
+    },
+    defaultVariants: {
+      variant: &quot;primary&quot;,
+      size: &quot;md&quot;,
+    },
+  },
+);
+
+interface ButtonProps
+  extends
+    ComponentPropsWithoutRef&lt;&quot;button&quot;&gt;,
+    VariantProps&lt;typeof buttonVariants&gt; {
+  isLoading?: boolean;
+}
+
+export const Button = forwardRef&lt;HTMLButtonElement, ButtonProps&gt;(
+  ({ className, variant, size, isLoading, children, ...props }, ref) =&gt; (
+    &lt;button
+      ref={ref}
+      className={cn(buttonVariants({ variant, size }), className)}
+      disabled={isLoading || props.disabled}
+      {...props}
+    &gt;
+      {isLoading &amp;&amp; &lt;Spinner className=&quot;mr-2 h-4 w-4&quot; /&gt;}
+      {children}
+    &lt;/button&gt;
+  ),
+);
+Button.displayName = &quot;Button&quot;;
+</code></pre>
+<h2>Framework Patterns</h2>
+<h3>React: Compound Components</h3>
+<pre><code class="language-tsx">import { createContext, useContext, useState, type ReactNode } from &quot;react&quot;;
+
+interface AccordionContextValue {
+  openItems: Set&lt;string&gt;;
+  toggle: (id: string) =&gt; void;
+}
+
+const AccordionContext = createContext&lt;AccordionContextValue | null&gt;(null);
+
+function useAccordion() {
+  const context = useContext(AccordionContext);
+  if (!context) throw new Error(&quot;Must be used within Accordion&quot;);
+  return context;
+}
+
+export function Accordion({ children }: { children: ReactNode }) {
+  const [openItems, setOpenItems] = useState&lt;Set&lt;string&gt;&gt;(new Set());
+
+  const toggle = (id: string) =&gt; {
+    setOpenItems((prev) =&gt; {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  };
+
+  return (
+    &lt;AccordionContext.Provider value={{ openItems, toggle }}&gt;
+      &lt;div className=&quot;divide-y&quot;&gt;{children}&lt;/div&gt;
+    &lt;/AccordionContext.Provider&gt;
+  );
+}
+
+Accordion.Item = function AccordionItem({
+  id,
+  title,
+  children,
+}: {
+  id: string;
+  title: string;
+  children: ReactNode;
+}) {
+  const { openItems, toggle } = useAccordion();
+  const isOpen = openItems.has(id);
+
+  return (
+    &lt;div&gt;
+      &lt;button onClick={() =&gt; toggle(id)} className=&quot;w-full text-left py-3&quot;&gt;
+        {title}
+      &lt;/button&gt;
+      {isOpen &amp;&amp; &lt;div className=&quot;pb-3&quot;&gt;{children}&lt;/div&gt;}
+    &lt;/div&gt;
+  );
+};
+</code></pre>
+<h3>Vue 3: Composables</h3>
+<pre><code class="language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import { ref, computed, provide, inject, type InjectionKey } from &quot;vue&quot;;
+
+interface TabsContext {
+  activeTab: Ref&lt;string&gt;;
+  setActive: (id: string) =&gt; void;
+}
+
+const TabsKey: InjectionKey&lt;TabsContext&gt; = Symbol(&quot;tabs&quot;);
+
+// Parent component
+const activeTab = ref(&quot;tab-1&quot;);
+provide(TabsKey, {
+  activeTab,
+  setActive: (id: string) =&gt; {
+    activeTab.value = id;
+  },
+});
+
+// Child component usage
+const tabs = inject(TabsKey);
+const isActive = computed(() =&gt; tabs?.activeTab.value === props.id);
+&lt;/script&gt;
+</code></pre>
+<h3>Svelte 5: Runes</h3>
+<pre><code class="language-svelte">&lt;script lang=&quot;ts&quot;&gt;
+  interface Props {
+    variant?: &#39;primary&#39; | &#39;secondary&#39;;
+    size?: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;;
+    onclick?: () =&gt; void;
+    children: import(&#39;svelte&#39;).Snippet;
+  }
+
+  let { variant = &#39;primary&#39;, size = &#39;md&#39;, onclick, children }: Props = $props();
+
+  const classes = $derived(
+    `btn btn-${variant} btn-${size}`
+  );
+&lt;/script&gt;
+
+&lt;button class={classes} {onclick}&gt;
+  {@render children()}
+&lt;/button&gt;
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Single Responsibility</strong>: Each component does one thing well</li>
+<li><strong>Prop Drilling Prevention</strong>: Use context for deeply nested data</li>
+<li><strong>Accessible by Default</strong>: Include ARIA attributes, keyboard support</li>
+<li><strong>Controlled vs Uncontrolled</strong>: Support both patterns when appropriate</li>
+<li><strong>Forward Refs</strong>: Allow parent access to DOM nodes</li>
+<li><strong>Memoization</strong>: Use <code>React.memo</code>, <code>useMemo</code> for expensive renders</li>
+<li><strong>Error Boundaries</strong>: Wrap components that may fail</li>
+</ol>
+<h2>Common Issues</h2>
+<ul>
+<li><strong>Prop Explosion</strong>: Too many props - consider composition instead</li>
+<li><strong>Style Conflicts</strong>: Use scoped styles or CSS Modules</li>
+<li><strong>Re-render Cascades</strong>: Profile with React DevTools, memo appropriately</li>
+<li><strong>Accessibility Gaps</strong>: Test with screen readers and keyboard navigation</li>
+<li><strong>Bundle Size</strong>: Tree-shake unused component variants</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://reactpatterns.com/">React Component Patterns</a></li>
+<li><a href="https://vuejs.org/guide/reusability/composables.html">Vue Composition API Guide</a></li>
+<li><a href="https://svelte.dev/docs/svelte-components">Svelte Component Documentation</a></li>
+<li><a href="https://www.radix-ui.com/primitives">Radix UI Primitives</a></li>
+<li><a href="https://ui.shadcn.com/">shadcn/ui Components</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

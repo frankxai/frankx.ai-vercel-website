@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Conductor Hub</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/templates/index.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Conductor Hub</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates">templates</a> / <span>index.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Conductor Hub</h1>
+<h2>Project: {{PROJECT_NAME}}</h2>
+<p>Central navigation for all Conductor artifacts and development tracks.</p>
+<h2>Quick Links</h2>
+<h3>Core Documents</h3>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="./product.md">Product Vision</a></td>
+<td>Product overview and goals</td>
+<td>{{STATUS}}</td>
+</tr>
+<tr>
+<td><a href="./product-guidelines.md">Product Guidelines</a></td>
+<td>Voice, tone, and standards</td>
+<td>{{STATUS}}</td>
+</tr>
+<tr>
+<td><a href="./tech-stack.md">Tech Stack</a></td>
+<td>Technology decisions</td>
+<td>{{STATUS}}</td>
+</tr>
+<tr>
+<td><a href="./workflow.md">Workflow</a></td>
+<td>Development process</td>
+<td>{{STATUS}}</td>
+</tr>
+</tbody></table>
+<h3>Track Management</h3>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="./tracks.md">Track Registry</a></td>
+<td>All development tracks</td>
+</tr>
+<tr>
+<td><a href="#active-tracks">Active Tracks</a></td>
+<td>Currently in progress</td>
+</tr>
+</tbody></table>
+<h3>Style Guides</h3>
+<table>
+<thead>
+<tr>
+<th>Guide</th>
+<th>Language/Domain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="./code_styleguides/general.md">General</a></td>
+<td>Universal principles</td>
+</tr>
+<tr>
+<td><a href="./code_styleguides/typescript.md">TypeScript</a></td>
+<td>TypeScript conventions</td>
+</tr>
+<tr>
+<td><a href="./code_styleguides/javascript.md">JavaScript</a></td>
+<td>JavaScript best practices</td>
+</tr>
+<tr>
+<td><a href="./code_styleguides/python.md">Python</a></td>
+<td>Python standards</td>
+</tr>
+<tr>
+<td><a href="./code_styleguides/go.md">Go</a></td>
+<td>Go idioms</td>
+</tr>
+<tr>
+<td><a href="./code_styleguides/csharp.md">C#</a></td>
+<td>C# conventions</td>
+</tr>
+<tr>
+<td><a href="./code_styleguides/dart.md">Dart</a></td>
+<td>Dart/Flutter patterns</td>
+</tr>
+<tr>
+<td><a href="./code_styleguides/html-css.md">HTML/CSS</a></td>
+<td>Web standards</td>
+</tr>
+</tbody></table>
+<h2>Active Tracks</h2>
+<table>
+<thead>
+<tr>
+<th>Track</th>
+<th>Status</th>
+<th>Priority</th>
+<th>Spec</th>
+<th>Plan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{TRACK_NAME}}</td>
+<td>{{STATUS}}</td>
+<td>{{PRIORITY}}</td>
+<td><a href="./tracks/%7B%7BTRACK_ID%7D%7D/spec.md">spec</a></td>
+<td><a href="./tracks/%7B%7BTRACK_ID%7D%7D/plan.md">plan</a></td>
+</tr>
+</tbody></table>
+<h2>Recent Activity</h2>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Track</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{DATE}}</td>
+<td>{{TRACK}}</td>
+<td>{{ACTION}}</td>
+</tr>
+</tbody></table>
+<h2>Project Status</h2>
+<p><strong>Current Phase:</strong> {{CURRENT_PHASE}}
+<strong>Overall Progress:</strong> {{PROGRESS_PERCENTAGE}}%</p>
+<h3>Milestone Tracker</h3>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Target Date</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{MILESTONE_1}}</td>
+<td>{{DATE_1}}</td>
+<td>{{STATUS_1}}</td>
+</tr>
+<tr>
+<td>{{MILESTONE_2}}</td>
+<td>{{DATE_2}}</td>
+<td>{{STATUS_2}}</td>
+</tr>
+<tr>
+<td>{{MILESTONE_3}}</td>
+<td>{{DATE_3}}</td>
+<td>{{STATUS_3}}</td>
+</tr>
+</tbody></table>
+<h2>Getting Started</h2>
+<ol>
+<li>Review <a href="./product.md">Product Vision</a> for project context</li>
+<li>Check <a href="./tech-stack.md">Tech Stack</a> for technology decisions</li>
+<li>Read <a href="./workflow.md">Workflow</a> for development process</li>
+<li>Find your track in <a href="./tracks.md">Track Registry</a></li>
+<li>Follow track spec and plan</li>
+</ol>
+<h2>Commands Reference</h2>
+<pre><code class="language-bash"># Setup
+{{SETUP_COMMAND}}
+
+# Development
+{{DEV_COMMAND}}
+
+# Testing
+{{TEST_COMMAND}}
+
+# Build
+{{BUILD_COMMAND}}
+</code></pre>
+<hr>
+<p><strong>Last Updated:</strong> {{LAST_UPDATED}}
+<strong>Maintained By:</strong> {{MAINTAINER}}</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

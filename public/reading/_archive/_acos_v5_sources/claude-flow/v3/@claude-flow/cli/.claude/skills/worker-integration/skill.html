@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Worker-Agent Integration Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/skills/worker-integration/skill.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Worker-Agent Integration Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fskills%2Fworker-integration">worker-integration</a> / <span>skill.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: worker-integration
+description: Worker-Agent integration for intelligent task dispatch and performance tracking
+version: 1.0.0
+invocable: true
+author: agentic-flow
+capabilities:
+  - agent_selection
+  - performance_tracking
+  - memory_coordination
+  - self_learning</h2>
+<h1>Worker-Agent Integration Skill</h1>
+<p>Intelligent coordination between background workers and specialized agents.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># View agent recommendations for a trigger
+npx agentic-flow workers agents ultralearn
+npx agentic-flow workers agents optimize
+
+# View performance metrics
+npx agentic-flow workers metrics
+
+# View integration stats
+npx agentic-flow workers stats --integration
+</code></pre>
+<h2>Agent Mappings</h2>
+<p>Workers automatically dispatch to optimal agents based on trigger type:</p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Primary Agents</th>
+<th>Fallback</th>
+<th>Pipeline Phases</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ultralearn</code></td>
+<td>researcher, coder</td>
+<td>planner</td>
+<td>discovery → patterns → vectorization → summary</td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td>performance-analyzer, coder</td>
+<td>researcher</td>
+<td>static-analysis → performance → patterns</td>
+</tr>
+<tr>
+<td><code>audit</code></td>
+<td>security-analyst, tester</td>
+<td>reviewer</td>
+<td>security → secrets → vulnerability-scan</td>
+</tr>
+<tr>
+<td><code>benchmark</code></td>
+<td>performance-analyzer</td>
+<td>coder, tester</td>
+<td>performance → metrics → report</td>
+</tr>
+<tr>
+<td><code>testgaps</code></td>
+<td>tester</td>
+<td>coder</td>
+<td>discovery → coverage → gaps</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td>documenter, researcher</td>
+<td>coder</td>
+<td>api-discovery → patterns → indexing</td>
+</tr>
+<tr>
+<td><code>deepdive</code></td>
+<td>researcher, security-analyst</td>
+<td>coder</td>
+<td>call-graph → deps → trace</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>coder, reviewer</td>
+<td>researcher</td>
+<td>complexity → smells → patterns</td>
+</tr>
+</tbody></table>
+<h2>Performance-Based Selection</h2>
+<p>The system learns from execution history to improve agent selection:</p>
+<pre><code class="language-typescript">// Agent selection considers:
+// 1. Quality score (0-1)
+// 2. Success rate
+// 3. Average latency
+// 4. Execution count
+
+const { agent, confidence, reasoning } = selectBestAgent(&#39;optimize&#39;);
+// agent: &quot;performance-analyzer&quot;
+// confidence: 0.87
+// reasoning: &quot;Selected based on 45 executions with 94.2% success&quot;
+</code></pre>
+<h2>Memory Key Patterns</h2>
+<p>Workers store results using consistent patterns:</p>
+<pre><code>{trigger}/{topic}/{phase}
+
+Examples:
+- ultralearn/auth-module/analysis
+- optimize/database/performance
+- audit/payment/vulnerabilities
+- benchmark/api/metrics
+</code></pre>
+<h2>Benchmark Thresholds</h2>
+<p>Agents are monitored against performance thresholds:</p>
+<pre><code class="language-json">{
+  &quot;researcher&quot;: {
+    &quot;p95_latency&quot;: &quot;&lt;500ms&quot;,
+    &quot;memory_mb&quot;: &quot;&lt;256MB&quot;
+  },
+  &quot;coder&quot;: {
+    &quot;p95_latency&quot;: &quot;&lt;300ms&quot;,
+    &quot;quality_score&quot;: &quot;&gt;0.85&quot;
+  },
+  &quot;security-analyst&quot;: {
+    &quot;scan_coverage&quot;: &quot;&gt;95%&quot;,
+    &quot;p95_latency&quot;: &quot;&lt;1000ms&quot;
+  }
+}
+</code></pre>
+<h2>Feedback Loop</h2>
+<p>Workers provide feedback for continuous improvement:</p>
+<pre><code class="language-typescript">import { workerAgentIntegration } from &#39;agentic-flow/workers/worker-agent-integration&#39;;
+
+// Record execution feedback
+workerAgentIntegration.recordFeedback(
+  &#39;optimize&#39;,           // trigger
+  &#39;coder&#39;,              // agent
+  true,                 // success
+  245,                  // latency ms
+  0.92                  // quality score
+);
+
+// Check compliance
+const { compliant, violations } = workerAgentIntegration.checkBenchmarkCompliance(&#39;coder&#39;);
+</code></pre>
+<h2>Integration Statistics</h2>
+<pre><code class="language-bash">$ npx agentic-flow workers stats --integration
+
+Worker-Agent Integration Stats
+══════════════════════════════
+Total Agents:       6
+Tracked Agents:     4
+Total Feedback:     156
+Avg Quality Score:  0.89
+
+Model Cache Stats
+─────────────────
+Hits:     1,234
+Misses:   45
+Hit Rate: 96.5%
+</code></pre>
+<h2>Configuration</h2>
+<p>Enable integration features in <code>.claude/settings.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;workers&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;parallel&quot;: true,
+    &quot;memoryDepositEnabled&quot;: true,
+    &quot;agentMappings&quot;: {
+      &quot;ultralearn&quot;: [&quot;researcher&quot;, &quot;coder&quot;],
+      &quot;optimize&quot;: [&quot;performance-analyzer&quot;, &quot;coder&quot;]
+    }
+  }
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

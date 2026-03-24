@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Oracle AI Architect - Extended Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/oracle-ai-architect/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Oracle AI Architect - Extended Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Foracle-ai-architect">oracle-ai-architect</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Oracle AI Architect - Extended Reference</h1>
+<p>This document provides extended reference material for the Oracle AI Architect skill.</p>
+<h2>OCI Generative AI API Examples</h2>
+<h3>Chat Completion</h3>
+<pre><code class="language-python">import oci
+from oci.generative_ai_inference import GenerativeAiInferenceClient
+from oci.generative_ai_inference.models import (
+    ChatDetails,
+    CohereChatRequest,
+    OnDemandServingMode
+)
+
+config = oci.config.from_file()
+client = GenerativeAiInferenceClient(config)
+
+chat_request = CohereChatRequest(
+    message=&quot;Explain Oracle AI Vector Search&quot;,
+    max_tokens=500,
+    temperature=0.7
+)
+
+response = client.chat(
+    chat_details=ChatDetails(
+        compartment_id=compartment_id,
+        serving_mode=OnDemandServingMode(model_id=&quot;cohere.command-a&quot;),
+        chat_request=chat_request
+    )
+)
+
+print(response.data.chat_response.text)
+</code></pre>
+<h3>Embeddings</h3>
+<pre><code class="language-python">from oci.generative_ai_inference.models import (
+    EmbedTextDetails,
+    OnDemandServingMode
+)
+
+embed_request = EmbedTextDetails(
+    inputs=[&quot;Document text to embed&quot;],
+    serving_mode=OnDemandServingMode(model_id=&quot;cohere.embed-english-v3.0&quot;),
+    compartment_id=compartment_id
+)
+
+response = client.embed_text(embed_request)
+embeddings = response.data.embeddings
+</code></pre>
+<h2>Database 26ai AI Vector Search Examples</h2>
+<h3>Creating Vector Tables</h3>
+<pre><code class="language-sql">-- Basic vector column
+CREATE TABLE docs (
+    id NUMBER GENERATED ALWAYS AS IDENTITY,
+    content CLOB,
+    embedding VECTOR(1536, FLOAT32),
+    CONSTRAINT docs_pk PRIMARY KEY (id)
+);
+
+-- With automatic embedding generation
+CREATE TABLE smart_docs (
+    id NUMBER GENERATED ALWAYS AS IDENTITY,
+    content CLOB,
+    embedding VECTOR GENERATED ALWAYS AS (
+        VECTOR_EMBEDDING(content USING &#39;doc-embed-model&#39;)
+    ) VIRTUAL
+);
+</code></pre>
+<h3>Vector Search Queries</h3>
+<pre><code class="language-sql">-- Cosine similarity search
+SELECT id, content,
+       VECTOR_DISTANCE(embedding, :query_vec, COSINE) AS distance
+FROM docs
+WHERE VECTOR_DISTANCE(embedding, :query_vec, COSINE) &lt; 0.3
+ORDER BY distance
+FETCH FIRST 10 ROWS ONLY;
+
+-- Euclidean distance
+SELECT id, content
+FROM docs
+ORDER BY VECTOR_DISTANCE(embedding, :query_vec, EUCLIDEAN)
+FETCH FIRST 5 ROWS ONLY;
+
+-- Dot product (for normalized vectors)
+SELECT id, content
+FROM docs
+ORDER BY VECTOR_DISTANCE(embedding, :query_vec, DOT) DESC
+FETCH FIRST 5 ROWS ONLY;
+</code></pre>
+<h3>Hybrid Search (Vector + Traditional)</h3>
+<pre><code class="language-sql">-- Combine vector similarity with filters
+SELECT id, content,
+       VECTOR_DISTANCE(embedding, :query_vec, COSINE) AS semantic_score
+FROM docs
+WHERE category = &#39;technical&#39;
+  AND created_date &gt; SYSDATE - 30
+ORDER BY semantic_score
+FETCH FIRST 10 ROWS ONLY;
+</code></pre>
+<h2>Select AI Configuration</h2>
+<h3>Setup</h3>
+<pre><code class="language-sql">-- Enable Select AI for a schema
+BEGIN
+    DBMS_CLOUD_AI.CREATE_PROFILE(
+        profile_name =&gt; &#39;GENAI_PROFILE&#39;,
+        attributes =&gt; JSON(&#39;{
+            &quot;provider&quot;: &quot;oci&quot;,
+            &quot;credential_name&quot;: &quot;OCI_CRED&quot;,
+            &quot;model&quot;: &quot;cohere.command-a&quot;,
+            &quot;object_list&quot;: [
+                {&quot;owner&quot;: &quot;SALES&quot;, &quot;name&quot;: &quot;CUSTOMERS&quot;},
+                {&quot;owner&quot;: &quot;SALES&quot;, &quot;name&quot;: &quot;ORDERS&quot;},
+                {&quot;owner&quot;: &quot;SALES&quot;, &quot;name&quot;: &quot;PRODUCTS&quot;}
+            ]
+        }&#39;)
+    );
+END;
+/
+
+-- Set as default
+BEGIN
+    DBMS_CLOUD_AI.SET_PROFILE(&#39;GENAI_PROFILE&#39;);
+END;
+/
+</code></pre>
+<h3>Natural Language Queries</h3>
+<pre><code class="language-sql">-- Simple query
+SELECT AI &#39;Show me top 10 customers by revenue&#39;;
+
+-- Complex analysis
+SELECT AI &#39;What is the month-over-month growth rate for each product category?&#39;;
+
+-- With context
+SELECT AI &#39;Compare Q3 and Q4 sales performance by region,
+           highlighting regions with declining trends&#39;;
+</code></pre>
+<h2>NVIDIA NIM Deployment on OCI</h2>
+<h3>Terraform Configuration</h3>
+<pre><code class="language-hcl"># NVIDIA NIM deployment on OCI
+resource &quot;oci_core_instance&quot; &quot;nim_instance&quot; {
+  availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
+  compartment_id      = var.compartment_id
+  display_name        = &quot;nvidia-nim-inference&quot;
+  shape               = &quot;BM.GPU.H100.8&quot;  # 8x H100 GPUs
+
+  source_details {
+    source_type = &quot;image&quot;
+    source_id   = var.nvidia_image_ocid
+  }
+
+  metadata = {
+    ssh_authorized_keys = var.ssh_public_key
+    user_data = base64encode(templatefile(&quot;nim-setup.sh&quot;, {
+      nim_model = var.nim_model_name
+    }))
+  }
+}
+</code></pre>
+<h3>NIM API Usage</h3>
+<pre><code class="language-python">import requests
+
+NIM_ENDPOINT = &quot;http://nim-instance:8000/v1&quot;
+
+# Chat completion
+response = requests.post(
+    f&quot;{NIM_ENDPOINT}/chat/completions&quot;,
+    json={
+        &quot;model&quot;: &quot;meta/llama-3.1-8b-instruct&quot;,
+        &quot;messages&quot;: [
+            {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Explain RAG architecture&quot;}
+        ],
+        &quot;max_tokens&quot;: 500
+    }
+)
+
+# Embeddings
+response = requests.post(
+    f&quot;{NIM_ENDPOINT}/embeddings&quot;,
+    json={
+        &quot;model&quot;: &quot;nvidia/nv-embedqa-e5-v5&quot;,
+        &quot;input&quot;: [&quot;Text to embed&quot;]
+    }
+)
+</code></pre>
+<h2>AI Data Platform Workbench Examples</h2>
+<h3>Spark Data Processing</h3>
+<pre><code class="language-python">from pyspark.sql import SparkSession
+from oci.ai_data_platform import AIDataPlatformClient
+
+spark = SparkSession.builder \
+    .appName(&quot;AIDP Processing&quot;) \
+    .config(&quot;spark.oracle.datasource.enabled&quot;, &quot;true&quot;) \
+    .getOrCreate()
+
+# Read from bronze layer (Object Storage)
+raw_df = spark.read.parquet(&quot;oci://bronze-bucket@namespace/raw-data/&quot;)
+
+# Transform to silver
+cleaned_df = raw_df \
+    .dropDuplicates() \
+    .filter(&quot;quality_score &gt; 0.8&quot;) \
+    .withColumn(&quot;processed_date&quot;, current_timestamp())
+
+# Write to silver layer
+cleaned_df.write \
+    .mode(&quot;overwrite&quot;) \
+    .parquet(&quot;oci://silver-bucket@namespace/cleaned-data/&quot;)
+
+# Load to gold (Autonomous DB)
+cleaned_df.write \
+    .format(&quot;oracle&quot;) \
+    .option(&quot;adbId&quot;, adb_ocid) \
+    .option(&quot;user&quot;, &quot;ADMIN&quot;) \
+    .option(&quot;password&quot;, password) \
+    .option(&quot;dbtable&quot;, &quot;GOLD.PROCESSED_DATA&quot;) \
+    .save()
+</code></pre>
+<h2>Oracle ADK Complete Example</h2>
+<h3>Multi-Agent Sales Assistant</h3>
+<pre><code class="language-python">from oci_adk import Agent, FunctionTool, Workflow, Step
+import oci
+
+# Initialize OCI config
+config = oci.config.from_file()
+
+# Define tools
+@FunctionTool(
+    name=&quot;query_sales_data&quot;,
+    description=&quot;Query sales data from Autonomous Database&quot;,
+    parameters={
+        &quot;query_type&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;revenue&quot;, &quot;orders&quot;, &quot;customers&quot;]},
+        &quot;time_period&quot;: {&quot;type&quot;: &quot;string&quot;},
+        &quot;region&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;required&quot;: False}
+    }
+)
+def query_sales_data(query_type: str, time_period: str, region: str = None):
+    # ADB connection and query logic
+    return execute_adb_query(query_type, time_period, region)
+
+@FunctionTool(
+    name=&quot;generate_report&quot;,
+    description=&quot;Generate formatted report from analysis&quot;,
+    parameters={
+        &quot;data&quot;: {&quot;type&quot;: &quot;object&quot;},
+        &quot;format&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;summary&quot;, &quot;detailed&quot;, &quot;executive&quot;]}
+    }
+)
+def generate_report(data: dict, format: str):
+    return format_report(data, format)
+
+# Create specialized agents
+data_analyst = Agent(
+    name=&quot;data_analyst&quot;,
+    model=&quot;cohere.command-a&quot;,
+    system_prompt=&quot;&quot;&quot;You are a data analyst specializing in sales analytics.
+    Query the database to gather relevant data for analysis requests.&quot;&quot;&quot;,
+    tools=[query_sales_data],
+    oci_config=config
+)
+
+report_writer = Agent(
+    name=&quot;report_writer&quot;,
+    model=&quot;cohere.command-a&quot;,
+    system_prompt=&quot;&quot;&quot;You are a business report writer.
+    Create clear, actionable reports from data analysis.&quot;&quot;&quot;,
+    tools=[generate_report],
+    oci_config=config
+)
+
+# Create orchestrated workflow
+sales_workflow = Workflow([
+    Step(&quot;analyze&quot;, data_analyst),
+    Step(&quot;report&quot;, report_writer)
+])
+
+# Execute
+result = sales_workflow.execute(
+    &quot;Analyze Q4 sales performance by region and create an executive summary&quot;
+)
+print(result.output)
+</code></pre>
+<h2>Cost Optimization Strategies</h2>
+<h3>Model Selection by Use Case</h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Recommended Model</th>
+<th>Cost Tier</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Simple chat</td>
+<td>Cohere Command Light</td>
+<td>$</td>
+</tr>
+<tr>
+<td>Complex reasoning</td>
+<td>Cohere Command A</td>
+<td>$$</td>
+</tr>
+<tr>
+<td>Fine-tuned tasks</td>
+<td>Llama 3.3 + LoRA</td>
+<td>$$</td>
+</tr>
+<tr>
+<td>Embeddings</td>
+<td>Cohere Embed 4</td>
+<td>$</td>
+</tr>
+<tr>
+<td>Private inference</td>
+<td>NVIDIA NIM</td>
+<td>$$$</td>
+</tr>
+</tbody></table>
+<h3>Caching Strategy</h3>
+<pre><code class="language-python">from functools import lru_cache
+import hashlib
+
+@lru_cache(maxsize=10000)
+def cached_embedding(text_hash: str):
+    &quot;&quot;&quot;Cache embeddings to reduce API calls&quot;&quot;&quot;
+    return generate_embedding(text)
+
+def get_embedding(text: str):
+    text_hash = hashlib.sha256(text.encode()).hexdigest()
+    return cached_embedding(text_hash)
+</code></pre>
+<h3>Reserved Capacity</h3>
+<pre><code class="language-hcl"># Terraform for reserved GPU capacity
+resource &quot;oci_core_compute_capacity_reservation&quot; &quot;gpu_reservation&quot; {
+  compartment_id = var.compartment_id
+  availability_domain = var.ad
+
+  instance_reservation_configs {
+    instance_shape = &quot;BM.GPU.H100.8&quot;
+    reserved_count = 2
+  }
+}
+</code></pre>
+<h2>Security Best Practices</h2>
+<h3>IAM Policies for AI Services</h3>
+<pre><code># Allow data scientists to use Generative AI
+Allow group DataScientists to use generative-ai-family in compartment AI-Workloads
+
+# Allow agents to access database
+Allow dynamic-group AgentInstances to use autonomous-database-family in compartment Data
+
+# Allow NIM instances to read model storage
+Allow dynamic-group NIMInstances to read object-family in compartment Models
+</code></pre>
+<h3>Data Encryption</h3>
+<pre><code class="language-python"># Use OCI Vault for API keys
+from oci.secrets import SecretsClient
+
+secrets_client = SecretsClient(config)
+secret = secrets_client.get_secret_bundle(secret_id=vault_secret_ocid)
+api_key = base64.b64decode(secret.data.secret_bundle_content.content)
+</code></pre>
+<h2>Monitoring and Observability</h2>
+<h3>Metrics to Track</h3>
+<pre><code class="language-python"># Custom metrics for AI workloads
+from oci.monitoring import MonitoringClient
+
+def post_ai_metrics(agent_id: str, metrics: dict):
+    monitoring_client.post_metric_data(
+        post_metric_data_details={
+            &quot;metric_data&quot;: [{
+                &quot;namespace&quot;: &quot;ai_agents&quot;,
+                &quot;compartment_id&quot;: compartment_id,
+                &quot;name&quot;: &quot;inference_latency&quot;,
+                &quot;dimensions&quot;: {&quot;agent_id&quot;: agent_id},
+                &quot;datapoints&quot;: [{&quot;timestamp&quot;: now, &quot;value&quot;: metrics[&quot;latency_ms&quot;]}]
+            }, {
+                &quot;namespace&quot;: &quot;ai_agents&quot;,
+                &quot;name&quot;: &quot;tokens_used&quot;,
+                &quot;dimensions&quot;: {&quot;agent_id&quot;: agent_id},
+                &quot;datapoints&quot;: [{&quot;timestamp&quot;: now, &quot;value&quot;: metrics[&quot;tokens&quot;]}]
+            }]
+        }
+    )
+</code></pre>
+<h3>Logging</h3>
+<pre><code class="language-python">import oci.loggingingestion
+
+def log_agent_action(agent_id: str, action: str, result: str):
+    logging_client.put_logs(
+        log_id=log_ocid,
+        put_logs_details={
+            &quot;specversion&quot;: &quot;1.0&quot;,
+            &quot;log_entry_batches&quot;: [{
+                &quot;entries&quot;: [{
+                    &quot;data&quot;: json.dumps({
+                        &quot;agent_id&quot;: agent_id,
+                        &quot;action&quot;: action,
+                        &quot;result&quot;: result,
+                        &quot;timestamp&quot;: datetime.utcnow().isoformat()
+                    }),
+                    &quot;id&quot;: str(uuid.uuid4())
+                }]
+            }]
+        }
+    )
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

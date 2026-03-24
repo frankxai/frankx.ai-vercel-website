@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Security Overhaul</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/v3-security-overhaul/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Security Overhaul</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fv3-security-overhaul">v3-security-overhaul</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: &quot;V3 Security Overhaul&quot;
+description: &quot;Complete security architecture overhaul for claude-flow v3. Addresses critical CVEs (CVE-1, CVE-2, CVE-3) and implements secure-by-default patterns. Use for security-first v3 implementation.&quot;</h2>
+<h1>V3 Security Overhaul</h1>
+<h2>What This Skill Does</h2>
+<p>Orchestrates comprehensive security overhaul for claude-flow v3, addressing critical vulnerabilities and establishing security-first development practices using specialized v3 security agents.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Initialize V3 security domain (parallel)
+Task(&quot;Security architecture&quot;, &quot;Design v3 threat model and security boundaries&quot;, &quot;v3-security-architect&quot;)
+Task(&quot;CVE remediation&quot;, &quot;Fix CVE-1, CVE-2, CVE-3 critical vulnerabilities&quot;, &quot;security-auditor&quot;)
+Task(&quot;Security testing&quot;, &quot;Implement TDD London School security framework&quot;, &quot;test-architect&quot;)
+</code></pre>
+<h2>Critical Security Fixes</h2>
+<h3>CVE-1: Vulnerable Dependencies</h3>
+<pre><code class="language-bash">npm update @anthropic-ai/claude-code@^2.0.31
+npm audit --audit-level high
+</code></pre>
+<h3>CVE-2: Weak Password Hashing</h3>
+<pre><code class="language-typescript">// ❌ Old: SHA-256 with hardcoded salt
+const hash = crypto.createHash(&#39;sha256&#39;).update(password + salt).digest(&#39;hex&#39;);
+
+// ✅ New: bcrypt with 12 rounds
+import bcrypt from &#39;bcrypt&#39;;
+const hash = await bcrypt.hash(password, 12);
+</code></pre>
+<h3>CVE-3: Hardcoded Credentials</h3>
+<pre><code class="language-typescript">// ✅ Generate secure random credentials
+const apiKey = crypto.randomBytes(32).toString(&#39;hex&#39;);
+</code></pre>
+<h2>Security Patterns</h2>
+<h3>Input Validation (Zod)</h3>
+<pre><code class="language-typescript">import { z } from &#39;zod&#39;;
+
+const TaskSchema = z.object({
+  taskId: z.string().uuid(),
+  content: z.string().max(10000),
+  agentType: z.enum([&#39;security&#39;, &#39;core&#39;, &#39;integration&#39;])
+});
+</code></pre>
+<h3>Path Sanitization</h3>
+<pre><code class="language-typescript">function securePath(userPath: string, allowedPrefix: string): string {
+  const resolved = path.resolve(allowedPrefix, userPath);
+  if (!resolved.startsWith(path.resolve(allowedPrefix))) {
+    throw new SecurityError(&#39;Path traversal detected&#39;);
+  }
+  return resolved;
+}
+</code></pre>
+<h3>Safe Command Execution</h3>
+<pre><code class="language-typescript">import { execFile } from &#39;child_process&#39;;
+
+// ✅ Safe: No shell interpretation
+const { stdout } = await execFile(&#39;git&#39;, [userInput], { shell: false });
+</code></pre>
+<h2>Success Metrics</h2>
+<ul>
+<li><strong>Security Score</strong>: 90/100 (npm audit + custom scans)</li>
+<li><strong>CVE Resolution</strong>: 100% of critical vulnerabilities fixed</li>
+<li><strong>Test Coverage</strong>: &gt;95% security-critical code</li>
+<li><strong>Implementation</strong>: All secure patterns documented and tested</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

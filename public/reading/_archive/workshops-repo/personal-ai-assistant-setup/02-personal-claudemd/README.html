@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Module 2: Personal CLAUDE.md</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/personal-ai-assistant-setup/02-personal-claudemd/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Module 2: Personal CLAUDE.md</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="../index.html#_archive%2Fworkshops-repo%2Fpersonal-ai-assistant-setup">personal-ai-assistant-setup</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fpersonal-ai-assistant-setup%2F02-personal-claudemd">02-personal-claudemd</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Module 2: Personal CLAUDE.md</h1>
+<p><strong>Duration</strong>: 1 hour
+<strong>Level</strong>: Beginner
+<strong>Prerequisites</strong>: Completed Module 1</p>
+<hr>
+<h2>Learning Objectives</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Understand the CLAUDE.md system and its power</li>
+<li>Create your personal global CLAUDE.md</li>
+<li>Design effective project-specific CLAUDE.md files</li>
+<li>Master context layering for maximum effectiveness</li>
+<li>Build templates for different project types</li>
+</ol>
+<hr>
+<h2>What is CLAUDE.md?</h2>
+<p>CLAUDE.md is the configuration file that tells your AI assistant WHO you are, HOW you work, and WHAT you expect.</p>
+<pre><code>Without CLAUDE.md:
+&quot;Write a function&quot; → Generic code
+
+With CLAUDE.md:
+&quot;Write a function&quot; → Code in YOUR style,
+                     following YOUR conventions,
+                     formatted YOUR way
+</code></pre>
+<h3>The Context Hierarchy</h3>
+<pre><code>~/.claude/CLAUDE.md (Global)
+         ↓ overridden by
+~/projects/myapp/CLAUDE.md (Project)
+         ↓ overridden by
+~/projects/myapp/src/CLAUDE.md (Directory)
+         ↓ overridden by
+Conversation context
+</code></pre>
+<p>Each level adds specificity. Global defines your identity; project defines the codebase.</p>
+<hr>
+<h2>2.1 Global CLAUDE.md: Your AI Identity</h2>
+<h3>Location</h3>
+<pre><code>~/.claude/CLAUDE.md
+</code></pre>
+<h3>Essential Sections</h3>
+<p>Your global CLAUDE.md should include:</p>
+<pre><code class="language-markdown"># Personal AI Configuration
+
+## About Me
+I&#39;m [Your Name], a [role] working primarily with [technologies].
+I have [X] years of experience in [domains].
+
+## Communication Preferences
+- Be direct and concise
+- Explain your reasoning when asked
+- Ask clarifying questions when requirements are ambiguous
+- Prefer practical solutions over theoretical perfection
+
+## Coding Style
+- Language: [TypeScript/Python/etc.]
+- Formatting: [Prettier/Black/etc.] with [specific settings]
+- Naming: [camelCase/snake_case/etc.]
+- Comments: [Style preference]
+
+## Technical Preferences
+- State Management: [Redux/Zustand/etc.]
+- Testing: [Jest/Vitest/pytest/etc.]
+- Database: [PostgreSQL/MongoDB/etc.]
+- Architecture: [Patterns you prefer]
+
+## Workflow Conventions
+- Git: [Conventional Commits/etc.]
+- PR Size: [Preference]
+- Documentation: [JSDoc/etc.]
+
+## Avoid
+- [Patterns you dislike]
+- [Technologies you want to avoid]
+- [Coding practices to skip]
+</code></pre>
+<h3>Example: Complete Global CLAUDE.md</h3>
+<pre><code class="language-markdown"># Personal AI Configuration
+
+## About Me
+I&#39;m Sarah, a senior full-stack developer specializing in TypeScript and React.
+10 years of experience building scalable web applications.
+Currently focused on AI-powered developer tools.
+
+## Communication Style
+- Be direct and skip unnecessary preamble
+- When I ask &quot;why&quot;, explain the reasoning concisely
+- If something is unclear, ask ONE focused question
+- Prefer showing code over describing it
+- Use technical terms freely - I understand them
+
+## Coding Style Preferences
+
+### TypeScript
+- Strict mode always
+- Prefer explicit types over inference for function parameters
+- Use type guards over type assertions
+- Functional programming patterns when appropriate
+- Named exports over default exports
+
+### React
+- Functional components only
+- Custom hooks for shared logic
+- Props interfaces, not types
+- Avoid prop drilling - use context or composition
+
+### Formatting
+- Prettier with: singleQuote, trailingComma: &#39;es5&#39;, semi: false
+- 100 character line width
+- 2 space indentation
+
+### Naming Conventions
+- Components: PascalCase
+- Hooks: use* prefix
+- Utils: camelCase
+- Constants: SCREAMING_SNAKE_CASE
+- Files: kebab-case except components
+
+## Technical Stack Preferences
+- Runtime: Bun &gt; Node
+- Framework: Next.js App Router
+- Styling: Tailwind CSS
+- State: Zustand for global, React state for local
+- Forms: react-hook-form + zod
+- Testing: Vitest + Testing Library
+- Database: PostgreSQL + Drizzle ORM
+
+## Git Conventions
+- Conventional Commits (feat:, fix:, chore:, etc.)
+- Small, focused PRs (&lt;400 lines)
+- Squash merge to main
+- Branch naming: type/description (feat/user-auth)
+
+## What I Don&#39;t Want
+- Class components
+- Redux (unless specifically requested)
+- CSS-in-JS (styled-components, emotion)
+- Excessive comments - code should be self-documenting
+- Over-engineering simple solutions
+
+## Quality Standards
+- All code must have types
+- Functions over 20 lines should be reviewed for splitting
+- Error handling must be explicit
+- No console.log in production code
+- Tests for business logic
+</code></pre>
+<h3>Exercise 2.1.1: Create Your Global CLAUDE.md</h3>
+<ol>
+<li>Create the file at <code>~/.claude/CLAUDE.md</code></li>
+<li>Include all sections from the template</li>
+<li>Customize based on YOUR preferences</li>
+<li>Test by starting a new Claude Code session</li>
+</ol>
+<p><strong>Verification</strong>: Ask Claude to write a simple function and verify it matches your style.</p>
+<hr>
+<h2>2.2 Project CLAUDE.md: Codebase Context</h2>
+<h3>Location</h3>
+<pre><code>your-project/CLAUDE.md
+</code></pre>
+<h3>Purpose</h3>
+<p>Teach Claude about THIS specific codebase:</p>
+<ul>
+<li>Architecture decisions</li>
+<li>File structure</li>
+<li>Naming patterns</li>
+<li>Key abstractions</li>
+<li>Common tasks</li>
+</ul>
+<h3>Essential Sections for Projects</h3>
+<pre><code class="language-markdown"># Project: [Name]
+
+## Overview
+[What this project does in 2-3 sentences]
+
+## Tech Stack
+- Frontend: [specific versions]
+- Backend: [specific technologies]
+- Database: [type and version]
+- Infrastructure: [cloud/deployment]
+
+## Architecture
+
+### Directory Structure
+</code></pre>
+<p>src/
+├── app/           # Next.js app router pages
+├── components/    # React components
+│   ├── ui/        # Design system primitives
+│   └── features/  # Feature-specific components
+├── lib/           # Utilities and helpers
+├── hooks/         # Custom React hooks
+├── types/         # TypeScript types
+└── services/      # API and external services</p>
+<pre><code>
+### Key Patterns
+[Describe the patterns used in this codebase]
+
+### Important Files
+- `src/lib/db.ts` - Database connection
+- `src/lib/auth.ts` - Authentication logic
+- `src/components/ui/` - Design system
+
+## Conventions for This Project
+
+### Component Structure
+[Project-specific component patterns]
+
+### State Management
+[How state is managed in this project]
+
+### API Patterns
+[How API calls are made]
+
+## Common Tasks
+
+### Adding a New Page
+1. Create file in `app/page-name/page.tsx`
+2. Add to navigation in `components/navigation.tsx`
+3. Create tests in `__tests__/`
+
+### Adding a New API Endpoint
+1. Create handler in `app/api/endpoint/route.ts`
+2. Add types in `types/api.ts`
+3. Update client services
+
+## Database Schema
+[Key tables/collections and their relationships]
+
+## Environment Variables
+[List required env vars without sensitive values]
+
+## Known Issues / Tech Debt
+[Current limitations the AI should know about]
+</code></pre>
+<h3>Example: Complete Project CLAUDE.md</h3>
+<pre><code class="language-markdown"># Project: TaskFlow
+
+## Overview
+TaskFlow is a project management SaaS for small teams. Built with Next.js 14,
+PostgreSQL, and deployed on Vercel. ~50k MAU.
+
+## Tech Stack
+- Frontend: Next.js 14.1, React 18, TypeScript 5.3
+- Styling: Tailwind CSS 3.4, shadcn/ui
+- State: Zustand 4.5, TanStack Query 5
+- Backend: Next.js API routes, tRPC 11
+- Database: PostgreSQL 16 via Neon, Drizzle ORM
+- Auth: NextAuth.js 5 with GitHub/Google OAuth
+- Hosting: Vercel (frontend), Neon (database)
+
+## Architecture
+
+### Directory Structure
+</code></pre>
+<p>src/
+├── app/
+│   ├── (auth)/           # Auth pages (login, signup)
+│   ├── (dashboard)/      # Authenticated app pages
+│   │   ├── projects/
+│   │   ├── tasks/
+│   │   └── settings/
+│   └── api/
+│       └── trpc/         # tRPC API
+├── components/
+│   ├── ui/               # shadcn/ui components
+│   ├── forms/            # Form components
+│   └── features/         # Feature components
+│       ├── projects/
+│       ├── tasks/
+│       └── teams/
+├── lib/
+│   ├── db/               # Database schema &amp; queries
+│   ├── trpc/             # tRPC router &amp; procedures
+│   └── utils/            # Utility functions
+├── hooks/                # Custom React hooks
+└── types/                # Shared TypeScript types</p>
+<pre><code>
+### Key Patterns
+
+**Data Fetching**: All data fetching uses TanStack Query via tRPC.
+```typescript
+// Pattern for queries
+const { data, isLoading } = trpc.projects.list.useQuery()
+
+// Pattern for mutations
+const mutation = trpc.projects.create.useMutation({
+  onSuccess: () =&gt; utils.projects.list.invalidate()
+})
+</code></pre>
+<p><strong>Components</strong>: Feature components in <code>components/features/[feature]/</code>.
+Each feature folder contains:</p>
+<ul>
+<li><code>[feature]-list.tsx</code> - List view</li>
+<li><code>[feature]-card.tsx</code> - Card/item view</li>
+<li><code>[feature]-form.tsx</code> - Create/edit form</li>
+<li><code>[feature]-actions.tsx</code> - Action menu</li>
+<li><code>index.ts</code> - Barrel export</li>
+</ul>
+<p><strong>Forms</strong>: All forms use react-hook-form + zod.</p>
+<pre><code class="language-typescript">const schema = z.object({ ... })
+const form = useForm({ resolver: zodResolver(schema) })
+</code></pre>
+<h3>Important Files</h3>
+<ul>
+<li><code>src/lib/db/schema.ts</code> - Drizzle schema (source of truth)</li>
+<li><code>src/lib/trpc/router.ts</code> - tRPC router definition</li>
+<li><code>src/lib/auth/config.ts</code> - NextAuth configuration</li>
+<li><code>src/components/ui/</code> - Design system (don&#39;t modify)</li>
+</ul>
+<h2>Conventions</h2>
+<h3>Naming</h3>
+<ul>
+<li>tRPC procedures: <code>resource.action</code> (projects.create, tasks.update)</li>
+<li>Hooks: <code>use[Resource][Action]</code> (useProjectsList, useTaskCreate)</li>
+<li>Components: <code>[Resource][Type]</code> (ProjectCard, TaskForm)</li>
+</ul>
+<h3>Error Handling</h3>
+<p>All tRPC procedures use this pattern:</p>
+<pre><code class="language-typescript">.mutation(async ({ input, ctx }) =&gt; {
+  if (!ctx.user) throw new TRPCError({ code: &#39;UNAUTHORIZED&#39; })
+  // ... logic
+})
+</code></pre>
+<h3>Testing</h3>
+<ul>
+<li>Unit tests for utils: <code>*.test.ts</code></li>
+<li>Component tests: <code>*.test.tsx</code> with Testing Library</li>
+<li>E2E tests: Playwright in <code>/e2e</code></li>
+</ul>
+<h2>Database Schema</h2>
+<h3>Core Tables</h3>
+<ul>
+<li><code>users</code> - User accounts (id, email, name, avatar)</li>
+<li><code>teams</code> - Team workspaces (id, name, owner_id)</li>
+<li><code>projects</code> - Projects (id, team_id, name, status)</li>
+<li><code>tasks</code> - Tasks (id, project_id, title, status, assignee_id)</li>
+</ul>
+<h3>Key Relations</h3>
+<ul>
+<li>User → many Teams (through team_members)</li>
+<li>Team → many Projects</li>
+<li>Project → many Tasks</li>
+<li>Task → one User (assignee)</li>
+</ul>
+<h2>Environment Variables</h2>
+<p>Required (see <code>.env.example</code>):</p>
+<ul>
+<li>DATABASE_URL</li>
+<li>NEXTAUTH_SECRET</li>
+<li>GITHUB_ID / GITHUB_SECRET</li>
+<li>GOOGLE_ID / GOOGLE_SECRET</li>
+</ul>
+<h2>Common Tasks</h2>
+<h3>Adding a New Feature</h3>
+<ol>
+<li>Add schema in <code>lib/db/schema.ts</code></li>
+<li>Run <code>bun db:push</code> to update database</li>
+<li>Add tRPC router in <code>lib/trpc/routers/</code></li>
+<li>Add to main router in <code>lib/trpc/router.ts</code></li>
+<li>Create components in <code>components/features/</code></li>
+<li>Add page in <code>app/(dashboard)/</code></li>
+</ol>
+<h3>Deploying</h3>
+<ol>
+<li>Push to main (auto-deploys to Vercel)</li>
+<li>Migrations run automatically via Drizzle</li>
+</ol>
+<h2>Known Issues / Tech Debt</h2>
+<ul>
+<li>Task drag-and-drop needs optimization for large lists</li>
+<li>Email notifications not yet implemented</li>
+<li>Search is basic string matching (should use pg_trgm)</li>
+<li>Mobile responsive is incomplete in dashboard</li>
+</ul>
+<h2>Active Development</h2>
+<p>Currently working on:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Real-time updates via WebSockets</li>
+<li><input disabled="" type="checkbox"> File attachments for tasks</li>
+</ul>
+<pre><code>
+### Exercise 2.2.1: Create Your Project CLAUDE.md
+
+1. Choose a real project you work on
+2. Document its architecture, patterns, and conventions
+3. Include common tasks and known issues
+4. Test by asking Claude about the project
+
+---
+
+## 2.3 Directory-Level Context
+
+For large projects, add CLAUDE.md files to specific directories:
+
+### Example: Component Directory CLAUDE.md
+
+`src/components/CLAUDE.md`:
+```markdown
+# Components Directory
+
+## Structure
+- `ui/` - Base UI components (buttons, inputs, etc.)
+- `forms/` - Form components with validation
+- `features/` - Feature-specific components
+- `layouts/` - Page layouts and wrappers
+
+## Component Guidelines
+- Use shadcn/ui as base when possible
+- Props interface must be exported
+- Use `forwardRef` for form components
+- Include displayName for debugging
+
+## Creating New Components
+```typescript
+// Template for new components
+import { forwardRef } from &#39;react&#39;
+import { cn } from &#39;@/lib/utils&#39;
+
+interface MyComponentProps {
+  // props
+}
+
+export const MyComponent = forwardRef&lt;HTMLDivElement, MyComponentProps&gt;(
+  ({ className, ...props }, ref) =&gt; {
+    return (
+      &lt;div ref={ref} className={cn(&#39;base-styles&#39;, className)} {...props} /&gt;
+    )
+  }
+)
+MyComponent.displayName = &#39;MyComponent&#39;
+</code></pre>
+<pre><code>
+### Example: API Directory CLAUDE.md
+
+`src/app/api/CLAUDE.md`:
+```markdown
+# API Routes
+
+## Pattern
+All API routes use Next.js App Router route handlers.
+
+## Structure
+</code></pre>
+<p>api/
+├── auth/         # NextAuth routes (don&#39;t modify)
+├── trpc/         # tRPC handler (don&#39;t modify)
+├── webhooks/     # External webhooks
+└── public/       # Unauthenticated endpoints</p>
+<pre><code>
+## Creating New Endpoints
+Most new endpoints should be tRPC procedures, not route handlers.
+Only use route handlers for:
+- Webhooks (need raw body)
+- Public APIs
+- File uploads
+
+## Authentication
+All routes (except /public) require authentication.
+Use `getServerSession` to get current user.
+</code></pre>
+<hr>
+<h2>2.4 Templates for Different Project Types</h2>
+<h3>Template: Next.js Project</h3>
+<pre><code class="language-markdown"># Next.js Project Configuration
+
+## Stack
+- Next.js [version] with App Router
+- [Styling solution]
+- [State management]
+- [Database]
+
+## File Conventions
+- Pages in `app/` using file-system routing
+- API routes in `app/api/`
+- Components in `components/`
+- Utilities in `lib/`
+
+## Data Fetching
+- Server Components for initial data
+- Client Components with [SWR/TanStack Query] for dynamic data
+
+## Key Files
+- `middleware.ts` - Request middleware
+- `next.config.js` - Next.js configuration
+- `tailwind.config.ts` - Tailwind configuration
+</code></pre>
+<h3>Template: Python/FastAPI Project</h3>
+<pre><code class="language-markdown"># Python FastAPI Project Configuration
+
+## Stack
+- Python [version]
+- FastAPI
+- SQLAlchemy / Pydantic
+- PostgreSQL
+
+## File Conventions
+- Routes in `app/routes/`
+- Models in `app/models/`
+- Schemas in `app/schemas/`
+- Services in `app/services/`
+
+## Code Style
+- Black formatter
+- isort for imports
+- Type hints required
+- Docstrings for public functions
+
+## Testing
+- pytest
+- Factory Boy for fixtures
+- Coverage &gt; 80%
+</code></pre>
+<h3>Template: CLI Tool Project</h3>
+<pre><code class="language-markdown"># CLI Tool Configuration
+
+## Stack
+- [Language]
+- [CLI framework]
+
+## Structure
+- `src/commands/` - Individual commands
+- `src/utils/` - Shared utilities
+- `src/config/` - Configuration handling
+
+## Conventions
+- Subcommand pattern (tool command subcommand)
+- Help text for all commands
+- Error messages to stderr
+- JSON output option for scripting
+</code></pre>
+<hr>
+<h2>Lab: Build Your CLAUDE.md Library</h2>
+<p><strong>Duration</strong>: 30 minutes</p>
+<h3>Objective</h3>
+<p>Create a complete CLAUDE.md setup for your development environment.</p>
+<h3>Requirements</h3>
+<ol>
+<li><p><strong>Global CLAUDE.md</strong> (<code>~/.claude/CLAUDE.md</code>)</p>
+<ul>
+<li>Your identity and preferences</li>
+<li>Communication style</li>
+<li>Technical preferences</li>
+<li>Coding conventions</li>
+</ul>
+</li>
+<li><p><strong>Project CLAUDE.md</strong> (at least one)</p>
+<ul>
+<li>For a real project you work on</li>
+<li>Complete architecture documentation</li>
+<li>Common tasks documented</li>
+</ul>
+</li>
+<li><p><strong>Template Library</strong></p>
+<ul>
+<li>At least 2 templates for project types you commonly use</li>
+</ul>
+</li>
+</ol>
+<h3>Deliverable</h3>
+<p>A working CLAUDE.md system that makes Claude immediately effective on your projects.</p>
+<hr>
+<h2>Assessment Checklist</h2>
+<p>Before moving to Module 3, verify:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Global CLAUDE.md is created and working</li>
+<li><input disabled="" type="checkbox"> You understand the context hierarchy</li>
+<li><input disabled="" type="checkbox"> You can create project-specific CLAUDE.md files</li>
+<li><input disabled="" type="checkbox"> You have templates for your common project types</li>
+<li><input disabled="" type="checkbox"> Claude&#39;s output matches your preferences</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<p>You&#39;ve defined your AI identity. In <strong>Module 3: Custom Skills</strong>, you&#39;ll learn to package your expertise into reusable skill files that give Claude domain-specific knowledge.</p>
+<p><a href="../03-custom-skills/">Continue to Module 3 →</a></p>
+<hr>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.anthropic.com/claude-code">Claude Code Documentation</a></li>
+<li><a href="https://docs.anthropic.com/claude-code/claude-md">CLAUDE.md Best Practices</a></li>
+<li><a href="https://github.com/anthropics/claude-code-examples">Example CLAUDE.md Files</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

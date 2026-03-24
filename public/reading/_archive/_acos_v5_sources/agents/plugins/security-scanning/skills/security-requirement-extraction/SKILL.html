@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Security Requirement Extraction</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/security-scanning/skills/security-requirement-extraction/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Security Requirement Extraction</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning">security-scanning</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning%2Fskills%2Fsecurity-requirement-extraction">security-requirement-extraction</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: security-requirement-extraction
+description: Derive security requirements from threat models and business context. Use when translating threats into actionable requirements, creating security user stories, or building security test cases.</h2>
+<h1>Security Requirement Extraction</h1>
+<p>Transform threat analysis into actionable security requirements.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Converting threat models to requirements</li>
+<li>Writing security user stories</li>
+<li>Creating security test cases</li>
+<li>Building security acceptance criteria</li>
+<li>Compliance requirement mapping</li>
+<li>Security architecture documentation</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Requirement Categories</h3>
+<pre><code>Business Requirements → Security Requirements → Technical Controls
+         ↓                       ↓                      ↓
+  &quot;Protect customer    &quot;Encrypt PII at rest&quot;   &quot;AES-256 encryption
+   data&quot;                                        with KMS key rotation&quot;
+</code></pre>
+<h3>2. Security Requirement Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Focus</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Functional</strong></td>
+<td>What system must do</td>
+<td>&quot;System must authenticate users&quot;</td>
+</tr>
+<tr>
+<td><strong>Non-functional</strong></td>
+<td>How system must perform</td>
+<td>&quot;Authentication must complete in &lt;2s&quot;</td>
+</tr>
+<tr>
+<td><strong>Constraint</strong></td>
+<td>Limitations imposed</td>
+<td>&quot;Must use approved crypto libraries&quot;</td>
+</tr>
+</tbody></table>
+<h3>3. Requirement Attributes</h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Traceability</strong></td>
+<td>Links to threats/compliance</td>
+</tr>
+<tr>
+<td><strong>Testability</strong></td>
+<td>Can be verified</td>
+</tr>
+<tr>
+<td><strong>Priority</strong></td>
+<td>Business importance</td>
+</tr>
+<tr>
+<td><strong>Risk Level</strong></td>
+<td>Impact if not met</td>
+</tr>
+</tbody></table>
+<h2>Templates</h2>
+<h3>Template 1: Security Requirement Model</h3>
+<pre><code class="language-python">from dataclasses import dataclass, field
+from enum import Enum
+from typing import List, Dict, Optional, Set
+from datetime import datetime
+
+class RequirementType(Enum):
+    FUNCTIONAL = &quot;functional&quot;
+    NON_FUNCTIONAL = &quot;non_functional&quot;
+    CONSTRAINT = &quot;constraint&quot;
+
+
+class Priority(Enum):
+    CRITICAL = 1
+    HIGH = 2
+    MEDIUM = 3
+    LOW = 4
+
+
+class SecurityDomain(Enum):
+    AUTHENTICATION = &quot;authentication&quot;
+    AUTHORIZATION = &quot;authorization&quot;
+    DATA_PROTECTION = &quot;data_protection&quot;
+    AUDIT_LOGGING = &quot;audit_logging&quot;
+    INPUT_VALIDATION = &quot;input_validation&quot;
+    ERROR_HANDLING = &quot;error_handling&quot;
+    SESSION_MANAGEMENT = &quot;session_management&quot;
+    CRYPTOGRAPHY = &quot;cryptography&quot;
+    NETWORK_SECURITY = &quot;network_security&quot;
+    AVAILABILITY = &quot;availability&quot;
+
+
+class ComplianceFramework(Enum):
+    PCI_DSS = &quot;pci_dss&quot;
+    HIPAA = &quot;hipaa&quot;
+    GDPR = &quot;gdpr&quot;
+    SOC2 = &quot;soc2&quot;
+    NIST_CSF = &quot;nist_csf&quot;
+    ISO_27001 = &quot;iso_27001&quot;
+    OWASP = &quot;owasp&quot;
+
+
+@dataclass
+class SecurityRequirement:
+    id: str
+    title: str
+    description: str
+    req_type: RequirementType
+    domain: SecurityDomain
+    priority: Priority
+    rationale: str = &quot;&quot;
+    acceptance_criteria: List[str] = field(default_factory=list)
+    test_cases: List[str] = field(default_factory=list)
+    threat_refs: List[str] = field(default_factory=list)
+    compliance_refs: List[str] = field(default_factory=list)
+    dependencies: List[str] = field(default_factory=list)
+    status: str = &quot;draft&quot;
+    owner: str = &quot;&quot;
+    created_date: datetime = field(default_factory=datetime.now)
+
+    def to_user_story(self) -&gt; str:
+        &quot;&quot;&quot;Convert to user story format.&quot;&quot;&quot;
+        return f&quot;&quot;&quot;
+**{self.id}: {self.title}**
+
+As a security-conscious system,
+I need to {self.description.lower()},
+So that {self.rationale.lower()}.
+
+**Acceptance Criteria:**
+{chr(10).join(f&#39;- [ ] {ac}&#39; for ac in self.acceptance_criteria)}
+
+**Priority:** {self.priority.name}
+**Domain:** {self.domain.value}
+**Threat References:** {&#39;, &#39;.join(self.threat_refs)}
+&quot;&quot;&quot;
+
+    def to_test_spec(self) -&gt; str:
+        &quot;&quot;&quot;Convert to test specification.&quot;&quot;&quot;
+        return f&quot;&quot;&quot;
+## Test Specification: {self.id}
+
+### Requirement
+{self.description}
+
+### Test Cases
+{chr(10).join(f&#39;{i+1}. {tc}&#39; for i, tc in enumerate(self.test_cases))}
+
+### Acceptance Criteria Verification
+{chr(10).join(f&#39;- {ac}&#39; for ac in self.acceptance_criteria)}
+&quot;&quot;&quot;
+
+
+@dataclass
+class RequirementSet:
+    name: str
+    version: str
+    requirements: List[SecurityRequirement] = field(default_factory=list)
+
+    def add(self, req: SecurityRequirement) -&gt; None:
+        self.requirements.append(req)
+
+    def get_by_domain(self, domain: SecurityDomain) -&gt; List[SecurityRequirement]:
+        return [r for r in self.requirements if r.domain == domain]
+
+    def get_by_priority(self, priority: Priority) -&gt; List[SecurityRequirement]:
+        return [r for r in self.requirements if r.priority == priority]
+
+    def get_by_threat(self, threat_id: str) -&gt; List[SecurityRequirement]:
+        return [r for r in self.requirements if threat_id in r.threat_refs]
+
+    def get_critical_requirements(self) -&gt; List[SecurityRequirement]:
+        return [r for r in self.requirements if r.priority == Priority.CRITICAL]
+
+    def export_markdown(self) -&gt; str:
+        &quot;&quot;&quot;Export all requirements as markdown.&quot;&quot;&quot;
+        lines = [f&quot;# Security Requirements: {self.name}\n&quot;]
+        lines.append(f&quot;Version: {self.version}\n&quot;)
+
+        for domain in SecurityDomain:
+            domain_reqs = self.get_by_domain(domain)
+            if domain_reqs:
+                lines.append(f&quot;\n## {domain.value.replace(&#39;_&#39;, &#39; &#39;).title()}\n&quot;)
+                for req in domain_reqs:
+                    lines.append(req.to_user_story())
+
+        return &quot;\n&quot;.join(lines)
+
+    def traceability_matrix(self) -&gt; Dict[str, List[str]]:
+        &quot;&quot;&quot;Generate threat-to-requirement traceability.&quot;&quot;&quot;
+        matrix = {}
+        for req in self.requirements:
+            for threat_id in req.threat_refs:
+                if threat_id not in matrix:
+                    matrix[threat_id] = []
+                matrix[threat_id].append(req.id)
+        return matrix
+</code></pre>
+<h3>Template 2: Threat-to-Requirement Extractor</h3>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import List, Dict, Tuple
+
+@dataclass
+class ThreatInput:
+    id: str
+    category: str  # STRIDE category
+    title: str
+    description: str
+    target: str
+    impact: str
+    likelihood: str
+
+
+class RequirementExtractor:
+    &quot;&quot;&quot;Extract security requirements from threats.&quot;&quot;&quot;
+
+    # Mapping of STRIDE categories to security domains and requirement patterns
+    STRIDE_MAPPINGS = {
+        &quot;SPOOFING&quot;: {
+            &quot;domains&quot;: [SecurityDomain.AUTHENTICATION, SecurityDomain.SESSION_MANAGEMENT],
+            &quot;patterns&quot;: [
+                (&quot;Implement strong authentication for {target}&quot;,
+                 &quot;Ensure {target} authenticates all users before granting access&quot;),
+                (&quot;Validate identity tokens for {target}&quot;,
+                 &quot;All authentication tokens must be cryptographically verified&quot;),
+                (&quot;Implement session management for {target}&quot;,
+                 &quot;Sessions must be securely managed with proper expiration&quot;),
+            ]
+        },
+        &quot;TAMPERING&quot;: {
+            &quot;domains&quot;: [SecurityDomain.INPUT_VALIDATION, SecurityDomain.DATA_PROTECTION],
+            &quot;patterns&quot;: [
+                (&quot;Validate all input to {target}&quot;,
+                 &quot;All input must be validated against expected formats&quot;),
+                (&quot;Implement integrity checks for {target}&quot;,
+                 &quot;Data integrity must be verified using cryptographic signatures&quot;),
+                (&quot;Protect {target} from modification&quot;,
+                 &quot;Implement controls to prevent unauthorized data modification&quot;),
+            ]
+        },
+        &quot;REPUDIATION&quot;: {
+            &quot;domains&quot;: [SecurityDomain.AUDIT_LOGGING],
+            &quot;patterns&quot;: [
+                (&quot;Log all security events for {target}&quot;,
+                 &quot;Security-relevant events must be logged for audit purposes&quot;),
+                (&quot;Implement non-repudiation for {target}&quot;,
+                 &quot;Critical actions must have cryptographic proof of origin&quot;),
+                (&quot;Protect audit logs for {target}&quot;,
+                 &quot;Audit logs must be tamper-evident and protected&quot;),
+            ]
+        },
+        &quot;INFORMATION_DISCLOSURE&quot;: {
+            &quot;domains&quot;: [SecurityDomain.DATA_PROTECTION, SecurityDomain.CRYPTOGRAPHY],
+            &quot;patterns&quot;: [
+                (&quot;Encrypt sensitive data in {target}&quot;,
+                 &quot;Sensitive data must be encrypted at rest and in transit&quot;),
+                (&quot;Implement access controls for {target}&quot;,
+                 &quot;Data access must be restricted based on need-to-know&quot;),
+                (&quot;Prevent information leakage from {target}&quot;,
+                 &quot;Error messages and logs must not expose sensitive information&quot;),
+            ]
+        },
+        &quot;DENIAL_OF_SERVICE&quot;: {
+            &quot;domains&quot;: [SecurityDomain.AVAILABILITY, SecurityDomain.INPUT_VALIDATION],
+            &quot;patterns&quot;: [
+                (&quot;Implement rate limiting for {target}&quot;,
+                 &quot;Requests must be rate-limited to prevent resource exhaustion&quot;),
+                (&quot;Ensure availability of {target}&quot;,
+                 &quot;System must remain available under high load conditions&quot;),
+                (&quot;Implement resource quotas for {target}&quot;,
+                 &quot;Resource consumption must be bounded and monitored&quot;),
+            ]
+        },
+        &quot;ELEVATION_OF_PRIVILEGE&quot;: {
+            &quot;domains&quot;: [SecurityDomain.AUTHORIZATION],
+            &quot;patterns&quot;: [
+                (&quot;Enforce authorization for {target}&quot;,
+                 &quot;All actions must be authorized based on user permissions&quot;),
+                (&quot;Implement least privilege for {target}&quot;,
+                 &quot;Users must only have minimum necessary permissions&quot;),
+                (&quot;Validate permissions for {target}&quot;,
+                 &quot;Permission checks must be performed server-side&quot;),
+            ]
+        },
+    }
+
+    def extract_requirements(
+        self,
+        threats: List[ThreatInput],
+        project_name: str
+    ) -&gt; RequirementSet:
+        &quot;&quot;&quot;Extract security requirements from threats.&quot;&quot;&quot;
+        req_set = RequirementSet(
+            name=f&quot;{project_name} Security Requirements&quot;,
+            version=&quot;1.0&quot;
+        )
+
+        req_counter = 1
+        for threat in threats:
+            reqs = self._threat_to_requirements(threat, req_counter)
+            for req in reqs:
+                req_set.add(req)
+            req_counter += len(reqs)
+
+        return req_set
+
+    def _threat_to_requirements(
+        self,
+        threat: ThreatInput,
+        start_id: int
+    ) -&gt; List[SecurityRequirement]:
+        &quot;&quot;&quot;Convert a single threat to requirements.&quot;&quot;&quot;
+        requirements = []
+        mapping = self.STRIDE_MAPPINGS.get(threat.category, {})
+        domains = mapping.get(&quot;domains&quot;, [])
+        patterns = mapping.get(&quot;patterns&quot;, [])
+
+        priority = self._calculate_priority(threat.impact, threat.likelihood)
+
+        for i, (title_pattern, desc_pattern) in enumerate(patterns):
+            req = SecurityRequirement(
+                id=f&quot;SR-{start_id + i:03d}&quot;,
+                title=title_pattern.format(target=threat.target),
+                description=desc_pattern.format(target=threat.target),
+                req_type=RequirementType.FUNCTIONAL,
+                domain=domains[i % len(domains)] if domains else SecurityDomain.DATA_PROTECTION,
+                priority=priority,
+                rationale=f&quot;Mitigates threat: {threat.title}&quot;,
+                threat_refs=[threat.id],
+                acceptance_criteria=self._generate_acceptance_criteria(
+                    threat.category, threat.target
+                ),
+                test_cases=self._generate_test_cases(
+                    threat.category, threat.target
+                )
+            )
+            requirements.append(req)
+
+        return requirements
+
+    def _calculate_priority(self, impact: str, likelihood: str) -&gt; Priority:
+        &quot;&quot;&quot;Calculate requirement priority from threat attributes.&quot;&quot;&quot;
+        score_map = {&quot;LOW&quot;: 1, &quot;MEDIUM&quot;: 2, &quot;HIGH&quot;: 3, &quot;CRITICAL&quot;: 4}
+        impact_score = score_map.get(impact.upper(), 2)
+        likelihood_score = score_map.get(likelihood.upper(), 2)
+
+        combined = impact_score * likelihood_score
+
+        if combined &gt;= 12:
+            return Priority.CRITICAL
+        elif combined &gt;= 6:
+            return Priority.HIGH
+        elif combined &gt;= 3:
+            return Priority.MEDIUM
+        return Priority.LOW
+
+    def _generate_acceptance_criteria(
+        self,
+        category: str,
+        target: str
+    ) -&gt; List[str]:
+        &quot;&quot;&quot;Generate acceptance criteria for requirement.&quot;&quot;&quot;
+        criteria_templates = {
+            &quot;SPOOFING&quot;: [
+                f&quot;Users must authenticate before accessing {target}&quot;,
+                &quot;Authentication failures are logged and monitored&quot;,
+                &quot;Multi-factor authentication is available for sensitive operations&quot;,
+            ],
+            &quot;TAMPERING&quot;: [
+                f&quot;All input to {target} is validated&quot;,
+                &quot;Data integrity is verified before processing&quot;,
+                &quot;Modification attempts trigger alerts&quot;,
+            ],
+            &quot;REPUDIATION&quot;: [
+                f&quot;All actions on {target} are logged with user identity&quot;,
+                &quot;Logs cannot be modified by regular users&quot;,
+                &quot;Log retention meets compliance requirements&quot;,
+            ],
+            &quot;INFORMATION_DISCLOSURE&quot;: [
+                f&quot;Sensitive data in {target} is encrypted&quot;,
+                &quot;Access to sensitive data is logged&quot;,
+                &quot;Error messages do not reveal sensitive information&quot;,
+            ],
+            &quot;DENIAL_OF_SERVICE&quot;: [
+                f&quot;Rate limiting is enforced on {target}&quot;,
+                &quot;System degrades gracefully under load&quot;,
+                &quot;Resource exhaustion triggers alerts&quot;,
+            ],
+            &quot;ELEVATION_OF_PRIVILEGE&quot;: [
+                f&quot;Authorization is checked for all {target} operations&quot;,
+                &quot;Users cannot access resources beyond their permissions&quot;,
+                &quot;Privilege changes are logged and monitored&quot;,
+            ],
+        }
+        return criteria_templates.get(category, [])
+
+    def _generate_test_cases(
+        self,
+        category: str,
+        target: str
+    ) -&gt; List[str]:
+        &quot;&quot;&quot;Generate test cases for requirement.&quot;&quot;&quot;
+        test_templates = {
+            &quot;SPOOFING&quot;: [
+                f&quot;Test: Unauthenticated access to {target} is denied&quot;,
+                &quot;Test: Invalid credentials are rejected&quot;,
+                &quot;Test: Session tokens cannot be forged&quot;,
+            ],
+            &quot;TAMPERING&quot;: [
+                f&quot;Test: Invalid input to {target} is rejected&quot;,
+                &quot;Test: Tampered data is detected and rejected&quot;,
+                &quot;Test: SQL injection attempts are blocked&quot;,
+            ],
+            &quot;REPUDIATION&quot;: [
+                &quot;Test: Security events are logged&quot;,
+                &quot;Test: Logs include sufficient detail for forensics&quot;,
+                &quot;Test: Log integrity is protected&quot;,
+            ],
+            &quot;INFORMATION_DISCLOSURE&quot;: [
+                f&quot;Test: {target} data is encrypted in transit&quot;,
+                f&quot;Test: {target} data is encrypted at rest&quot;,
+                &quot;Test: Error messages are sanitized&quot;,
+            ],
+            &quot;DENIAL_OF_SERVICE&quot;: [
+                f&quot;Test: Rate limiting on {target} works correctly&quot;,
+                &quot;Test: System handles burst traffic gracefully&quot;,
+                &quot;Test: Resource limits are enforced&quot;,
+            ],
+            &quot;ELEVATION_OF_PRIVILEGE&quot;: [
+                f&quot;Test: Unauthorized access to {target} is denied&quot;,
+                &quot;Test: Privilege escalation attempts are blocked&quot;,
+                &quot;Test: IDOR vulnerabilities are not present&quot;,
+            ],
+        }
+        return test_templates.get(category, [])
+</code></pre>
+<h3>Template 3: Compliance Mapping</h3>
+<pre><code class="language-python">from typing import Dict, List, Set
+
+class ComplianceMapper:
+    &quot;&quot;&quot;Map security requirements to compliance frameworks.&quot;&quot;&quot;
+
+    FRAMEWORK_CONTROLS = {
+        ComplianceFramework.PCI_DSS: {
+            SecurityDomain.AUTHENTICATION: [&quot;8.1&quot;, &quot;8.2&quot;, &quot;8.3&quot;],
+            SecurityDomain.AUTHORIZATION: [&quot;7.1&quot;, &quot;7.2&quot;],
+            SecurityDomain.DATA_PROTECTION: [&quot;3.4&quot;, &quot;3.5&quot;, &quot;4.1&quot;],
+            SecurityDomain.AUDIT_LOGGING: [&quot;10.1&quot;, &quot;10.2&quot;, &quot;10.3&quot;],
+            SecurityDomain.NETWORK_SECURITY: [&quot;1.1&quot;, &quot;1.2&quot;, &quot;1.3&quot;],
+            SecurityDomain.CRYPTOGRAPHY: [&quot;3.5&quot;, &quot;3.6&quot;, &quot;4.1&quot;],
+        },
+        ComplianceFramework.HIPAA: {
+            SecurityDomain.AUTHENTICATION: [&quot;164.312(d)&quot;],
+            SecurityDomain.AUTHORIZATION: [&quot;164.312(a)(1)&quot;],
+            SecurityDomain.DATA_PROTECTION: [&quot;164.312(a)(2)(iv)&quot;, &quot;164.312(e)(2)(ii)&quot;],
+            SecurityDomain.AUDIT_LOGGING: [&quot;164.312(b)&quot;],
+        },
+        ComplianceFramework.GDPR: {
+            SecurityDomain.DATA_PROTECTION: [&quot;Art. 32&quot;, &quot;Art. 25&quot;],
+            SecurityDomain.AUDIT_LOGGING: [&quot;Art. 30&quot;],
+            SecurityDomain.AUTHORIZATION: [&quot;Art. 25&quot;],
+        },
+        ComplianceFramework.OWASP: {
+            SecurityDomain.AUTHENTICATION: [&quot;V2.1&quot;, &quot;V2.2&quot;, &quot;V2.3&quot;],
+            SecurityDomain.SESSION_MANAGEMENT: [&quot;V3.1&quot;, &quot;V3.2&quot;, &quot;V3.3&quot;],
+            SecurityDomain.INPUT_VALIDATION: [&quot;V5.1&quot;, &quot;V5.2&quot;, &quot;V5.3&quot;],
+            SecurityDomain.CRYPTOGRAPHY: [&quot;V6.1&quot;, &quot;V6.2&quot;],
+            SecurityDomain.ERROR_HANDLING: [&quot;V7.1&quot;, &quot;V7.2&quot;],
+            SecurityDomain.DATA_PROTECTION: [&quot;V8.1&quot;, &quot;V8.2&quot;, &quot;V8.3&quot;],
+            SecurityDomain.AUDIT_LOGGING: [&quot;V7.1&quot;, &quot;V7.2&quot;],
+        },
+    }
+
+    def map_requirement_to_compliance(
+        self,
+        requirement: SecurityRequirement,
+        frameworks: List[ComplianceFramework]
+    ) -&gt; Dict[str, List[str]]:
+        &quot;&quot;&quot;Map a requirement to compliance controls.&quot;&quot;&quot;
+        mapping = {}
+        for framework in frameworks:
+            controls = self.FRAMEWORK_CONTROLS.get(framework, {})
+            domain_controls = controls.get(requirement.domain, [])
+            if domain_controls:
+                mapping[framework.value] = domain_controls
+        return mapping
+
+    def get_requirements_for_control(
+        self,
+        requirement_set: RequirementSet,
+        framework: ComplianceFramework,
+        control_id: str
+    ) -&gt; List[SecurityRequirement]:
+        &quot;&quot;&quot;Find requirements that satisfy a compliance control.&quot;&quot;&quot;
+        matching = []
+        framework_controls = self.FRAMEWORK_CONTROLS.get(framework, {})
+
+        for domain, controls in framework_controls.items():
+            if control_id in controls:
+                matching.extend(requirement_set.get_by_domain(domain))
+
+        return matching
+
+    def generate_compliance_matrix(
+        self,
+        requirement_set: RequirementSet,
+        frameworks: List[ComplianceFramework]
+    ) -&gt; Dict[str, Dict[str, List[str]]]:
+        &quot;&quot;&quot;Generate compliance traceability matrix.&quot;&quot;&quot;
+        matrix = {}
+
+        for framework in frameworks:
+            matrix[framework.value] = {}
+            framework_controls = self.FRAMEWORK_CONTROLS.get(framework, {})
+
+            for domain, controls in framework_controls.items():
+                for control in controls:
+                    reqs = self.get_requirements_for_control(
+                        requirement_set, framework, control
+                    )
+                    if reqs:
+                        matrix[framework.value][control] = [r.id for r in reqs]
+
+        return matrix
+
+    def gap_analysis(
+        self,
+        requirement_set: RequirementSet,
+        framework: ComplianceFramework
+    ) -&gt; Dict[str, List[str]]:
+        &quot;&quot;&quot;Identify compliance gaps.&quot;&quot;&quot;
+        gaps = {&quot;missing_controls&quot;: [], &quot;weak_coverage&quot;: []}
+        framework_controls = self.FRAMEWORK_CONTROLS.get(framework, {})
+
+        for domain, controls in framework_controls.items():
+            domain_reqs = requirement_set.get_by_domain(domain)
+            for control in controls:
+                matching = self.get_requirements_for_control(
+                    requirement_set, framework, control
+                )
+                if not matching:
+                    gaps[&quot;missing_controls&quot;].append(f&quot;{framework.value}:{control}&quot;)
+                elif len(matching) &lt; 2:
+                    gaps[&quot;weak_coverage&quot;].append(f&quot;{framework.value}:{control}&quot;)
+
+        return gaps
+</code></pre>
+<h3>Template 4: Security User Story Generator</h3>
+<pre><code class="language-python">class SecurityUserStoryGenerator:
+    &quot;&quot;&quot;Generate security-focused user stories.&quot;&quot;&quot;
+
+    STORY_TEMPLATES = {
+        SecurityDomain.AUTHENTICATION: {
+            &quot;as_a&quot;: &quot;security-conscious user&quot;,
+            &quot;so_that&quot;: &quot;my identity is protected from impersonation&quot;,
+        },
+        SecurityDomain.AUTHORIZATION: {
+            &quot;as_a&quot;: &quot;system administrator&quot;,
+            &quot;so_that&quot;: &quot;users can only access resources appropriate to their role&quot;,
+        },
+        SecurityDomain.DATA_PROTECTION: {
+            &quot;as_a&quot;: &quot;data owner&quot;,
+            &quot;so_that&quot;: &quot;my sensitive information remains confidential&quot;,
+        },
+        SecurityDomain.AUDIT_LOGGING: {
+            &quot;as_a&quot;: &quot;security analyst&quot;,
+            &quot;so_that&quot;: &quot;I can investigate security incidents&quot;,
+        },
+        SecurityDomain.INPUT_VALIDATION: {
+            &quot;as_a&quot;: &quot;application developer&quot;,
+            &quot;so_that&quot;: &quot;the system is protected from malicious input&quot;,
+        },
+    }
+
+    def generate_story(self, requirement: SecurityRequirement) -&gt; str:
+        &quot;&quot;&quot;Generate a user story from requirement.&quot;&quot;&quot;
+        template = self.STORY_TEMPLATES.get(
+            requirement.domain,
+            {&quot;as_a&quot;: &quot;user&quot;, &quot;so_that&quot;: &quot;the system is secure&quot;}
+        )
+
+        story = f&quot;&quot;&quot;
+## {requirement.id}: {requirement.title}
+
+**User Story:**
+As a {template[&#39;as_a&#39;]},
+I want the system to {requirement.description.lower()},
+So that {template[&#39;so_that&#39;]}.
+
+**Priority:** {requirement.priority.name}
+**Type:** {requirement.req_type.value}
+**Domain:** {requirement.domain.value}
+
+**Acceptance Criteria:**
+{self._format_acceptance_criteria(requirement.acceptance_criteria)}
+
+**Definition of Done:**
+- [ ] Implementation complete
+- [ ] Security tests pass
+- [ ] Code review complete
+- [ ] Security review approved
+- [ ] Documentation updated
+
+**Security Test Cases:**
+{self._format_test_cases(requirement.test_cases)}
+
+**Traceability:**
+- Threats: {&#39;, &#39;.join(requirement.threat_refs) or &#39;N/A&#39;}
+- Compliance: {&#39;, &#39;.join(requirement.compliance_refs) or &#39;N/A&#39;}
+&quot;&quot;&quot;
+        return story
+
+    def _format_acceptance_criteria(self, criteria: List[str]) -&gt; str:
+        return &quot;\n&quot;.join(f&quot;- [ ] {c}&quot; for c in criteria) if criteria else &quot;- [ ] TBD&quot;
+
+    def _format_test_cases(self, tests: List[str]) -&gt; str:
+        return &quot;\n&quot;.join(f&quot;- {t}&quot; for t in tests) if tests else &quot;- TBD&quot;
+
+    def generate_epic(
+        self,
+        requirement_set: RequirementSet,
+        domain: SecurityDomain
+    ) -&gt; str:
+        &quot;&quot;&quot;Generate an epic for a security domain.&quot;&quot;&quot;
+        reqs = requirement_set.get_by_domain(domain)
+
+        epic = f&quot;&quot;&quot;
+# Security Epic: {domain.value.replace(&#39;_&#39;, &#39; &#39;).title()}
+
+## Overview
+This epic covers all security requirements related to {domain.value.replace(&#39;_&#39;, &#39; &#39;)}.
+
+## Business Value
+- Protect against {domain.value.replace(&#39;_&#39;, &#39; &#39;)} related threats
+- Meet compliance requirements
+- Reduce security risk
+
+## Stories in this Epic
+{chr(10).join(f&#39;- [{r.id}] {r.title}&#39; for r in reqs)}
+
+## Acceptance Criteria
+- All stories complete
+- Security tests passing
+- Security review approved
+- Compliance requirements met
+
+## Risk if Not Implemented
+- Vulnerability to {domain.value.replace(&#39;_&#39;, &#39; &#39;)} attacks
+- Compliance violations
+- Potential data breach
+
+## Dependencies
+{chr(10).join(f&#39;- {d}&#39; for r in reqs for d in r.dependencies) or &#39;- None identified&#39;}
+&quot;&quot;&quot;
+        return epic
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Trace to threats</strong> - Every requirement should map to threats</li>
+<li><strong>Be specific</strong> - Vague requirements can&#39;t be tested</li>
+<li><strong>Include acceptance criteria</strong> - Define &quot;done&quot;</li>
+<li><strong>Consider compliance</strong> - Map to frameworks early</li>
+<li><strong>Review regularly</strong> - Requirements evolve with threats</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t be generic</strong> - &quot;Be secure&quot; is not a requirement</li>
+<li><strong>Don&#39;t skip rationale</strong> - Explain why it matters</li>
+<li><strong>Don&#39;t ignore priorities</strong> - Not all requirements are equal</li>
+<li><strong>Don&#39;t forget testability</strong> - If you can&#39;t test it, you can&#39;t verify it</li>
+<li><strong>Don&#39;t work in isolation</strong> - Involve stakeholders</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a></li>
+<li><a href="https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final">NIST SP 800-53</a></li>
+<li><a href="https://www.oreilly.com/library/view/agile-application-security/9781491938836/">Security User Stories</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

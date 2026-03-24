@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Integration Test Suite</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/__tests__/integration/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Integration Test Suite</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F__tests__">__tests__</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F__tests__%2Fintegration">integration</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>V3 Integration Test Suite</h1>
+<p>Comprehensive cross-module integration tests for claude-flow V3 architecture.</p>
+<h2>Test Files Overview</h2>
+<h3>1. memory-integration.test.ts (15 tests)</h3>
+<p>Tests for HybridBackend with SQLite + AgentDB integration:</p>
+<ul>
+<li>✅ Store and retrieve memory from hybrid backend</li>
+<li>✅ Cross-backend queries by agent ID</li>
+<li>✅ Query memories by type across backends</li>
+<li>✅ Persist memory across backend reinitialization</li>
+<li>✅ Vector search in AgentDB backend</li>
+<li>✅ Update existing memory in both backends</li>
+<li>✅ Delete memory from both backends</li>
+<li>✅ Bulk memory storage</li>
+<li>✅ Query memories with time range filter</li>
+<li>✅ Memory metadata queries</li>
+<li>✅ Concurrent memory operations</li>
+<li>✅ Clear all memories for an agent</li>
+<li>✅ Hybrid search combining SQL and vector search</li>
+<li>✅ Memory search with pagination</li>
+<li>✅ Data consistency across backends during failures</li>
+</ul>
+<p><strong>Key Features Tested:</strong></p>
+<ul>
+<li>SQLite + AgentDB hybrid backend</li>
+<li>Vector search (150x-12,500x faster)</li>
+<li>Cross-backend query coordination</li>
+<li>Transaction consistency</li>
+<li>Concurrent operations</li>
+</ul>
+<h3>2. swarm-integration.test.ts (15 tests)</h3>
+<p>Tests for agent spawn, coordination, and multi-agent communication:</p>
+<ul>
+<li>✅ Spawn multiple agents in swarm</li>
+<li>✅ Coordinate task distribution across agents</li>
+<li>✅ Multi-agent communication</li>
+<li>✅ Maintain swarm state across operations</li>
+<li>✅ Handle agent failures gracefully</li>
+<li>✅ Hierarchical agent topology</li>
+<li>✅ Mesh topology coordination</li>
+<li>✅ Dynamic agent scaling</li>
+<li>✅ Persist swarm state to memory</li>
+<li>✅ Concurrent task execution</li>
+<li>✅ Consensus mechanism for critical decisions</li>
+<li>✅ Agent termination and cleanup</li>
+<li>✅ Task dependency resolution</li>
+<li>✅ Monitor agent health and performance</li>
+<li>✅ Swarm reconfiguration on the fly</li>
+</ul>
+<p><strong>Key Features Tested:</strong></p>
+<ul>
+<li>Hierarchical and mesh topologies</li>
+<li>Load balancing</li>
+<li>Agent lifecycle management</li>
+<li>Consensus mechanisms</li>
+<li>Dynamic scaling</li>
+</ul>
+<h3>3. mcp-integration.test.ts (15 tests)</h3>
+<p>Tests for MCP tools integration with agent, memory, and config:</p>
+<ul>
+<li>✅ Spawn agent via MCP agent tools</li>
+<li>✅ List agents via MCP agent tools</li>
+<li>✅ Terminate agent via MCP agent tools</li>
+<li>✅ Get agent metrics via MCP agent tools</li>
+<li>✅ Store memory via MCP memory tools</li>
+<li>✅ Search memory via MCP memory tools</li>
+<li>✅ Vector search via MCP memory tools</li>
+<li>✅ Load config via MCP config tools</li>
+<li>✅ Save config via MCP config tools</li>
+<li>✅ Validate config via MCP config tools</li>
+<li>✅ Handle MCP tool execution errors</li>
+<li>✅ Chained MCP tool operations</li>
+<li>✅ Concurrent MCP tool requests</li>
+<li>✅ MCP tool introspection</li>
+<li>✅ Complete MCP workflow integration</li>
+</ul>
+<p><strong>Key Features Tested:</strong></p>
+<ul>
+<li>Agent tools (spawn, list, terminate, metrics)</li>
+<li>Memory tools (store, search, vector search)</li>
+<li>Config tools (load, save, validate)</li>
+<li>Error handling</li>
+<li>Tool chaining</li>
+</ul>
+<h3>4. plugin-integration.test.ts (15 tests)</h3>
+<p>Tests for plugin loading, initialization, and extension points:</p>
+<ul>
+<li>✅ Load and initialize plugin</li>
+<li>✅ Register and invoke extension points</li>
+<li>✅ Handle plugin lifecycle correctly</li>
+<li>✅ Multiple plugins with same extension point</li>
+<li>✅ Handle plugin dependencies</li>
+<li>✅ Emit plugin lifecycle events</li>
+<li>✅ Validate plugin configuration</li>
+<li>✅ Plugin hot reloading</li>
+<li>✅ Isolate plugin errors</li>
+<li>✅ Plugin priority ordering</li>
+<li>✅ Plugin metadata access</li>
+<li>✅ Plugin communication via shared context</li>
+<li>✅ Plugin resource cleanup</li>
+<li>✅ Plugin versioning and compatibility checks</li>
+<li>✅ Integrate plugins with core workflow</li>
+</ul>
+<p><strong>Key Features Tested:</strong></p>
+<ul>
+<li>Plugin microkernel architecture (ADR-004)</li>
+<li>Extension point system</li>
+<li>Dependency management</li>
+<li>Hot reloading</li>
+<li>Error isolation</li>
+</ul>
+<h3>5. workflow-integration.test.ts (15 tests)</h3>
+<p>Tests for end-to-end agent workflows and task execution:</p>
+<ul>
+<li>✅ End-to-end agent workflow execution</li>
+<li>✅ Persist task execution pipeline to memory</li>
+<li>✅ Memory persistence across multiple operations</li>
+<li>✅ Multi-agent parallel execution</li>
+<li>✅ Complex workflow with dependencies</li>
+<li>✅ Integrate plugins into workflow execution</li>
+<li>✅ Workflow failures and rollback</li>
+<li>✅ Workflow resume after interruption</li>
+<li>✅ Monitor and report workflow metrics</li>
+<li>✅ Event-driven architecture integration</li>
+<li>✅ Distributed workflow execution</li>
+<li>✅ Persist complete workflow state across restarts</li>
+<li>✅ Concurrent workflow executions</li>
+<li>✅ Workflow composition and nesting</li>
+<li>✅ Comprehensive workflow debugging</li>
+</ul>
+<p><strong>Key Features Tested:</strong></p>
+<ul>
+<li>Task dependency resolution</li>
+<li>Event sourcing (ADR-007)</li>
+<li>Rollback mechanisms</li>
+<li>Distributed execution</li>
+<li>State persistence</li>
+</ul>
+<h2>Running the Tests</h2>
+<h3>Run all integration tests</h3>
+<pre><code class="language-bash">npm run test:integration
+</code></pre>
+<h3>Run specific test file</h3>
+<pre><code class="language-bash">npm run test -- v3/__tests__/integration/memory-integration.test.ts
+npm run test -- v3/__tests__/integration/swarm-integration.test.ts
+npm run test -- v3/__tests__/integration/mcp-integration.test.ts
+npm run test -- v3/__tests__/integration/plugin-integration.test.ts
+npm run test -- v3/__tests__/integration/workflow-integration.test.ts
+</code></pre>
+<h3>Run with coverage</h3>
+<pre><code class="language-bash">npm run test:coverage -- v3/__tests__/integration
+</code></pre>
+<h3>Watch mode for development</h3>
+<pre><code class="language-bash">npm run test:watch -- v3/__tests__/integration
+</code></pre>
+<h2>Test Architecture</h2>
+<h3>Mocking Strategy</h3>
+<ul>
+<li><strong>External Dependencies</strong>: Mocked (file system, network)</li>
+<li><strong>Module Interactions</strong>: Real (test actual integration)</li>
+<li><strong>Database</strong>: In-memory SQLite for tests</li>
+<li><strong>Event Bus</strong>: Real EventEmitter for event testing</li>
+</ul>
+<h3>Test Isolation</h3>
+<ul>
+<li>Each test file creates fresh instances</li>
+<li>Database files are created with unique timestamps</li>
+<li>Cleanup in <code>afterEach</code> hooks</li>
+<li>No shared state between tests</li>
+</ul>
+<h3>Performance Considerations</h3>
+<ul>
+<li>Tests use in-memory databases when possible</li>
+<li>Concurrent operations tested with realistic timeouts</li>
+<li>Cleanup is non-blocking where safe</li>
+</ul>
+<h2>Architecture Decision Records (ADRs) Tested</h2>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Description</th>
+<th>Test Coverage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADR-001</td>
+<td>Agentic-flow core foundation</td>
+<td>Workflow integration</td>
+</tr>
+<tr>
+<td>ADR-002</td>
+<td>Domain-Driven Design</td>
+<td>All test files (bounded contexts)</td>
+</tr>
+<tr>
+<td>ADR-003</td>
+<td>Single coordination engine</td>
+<td>Swarm integration</td>
+</tr>
+<tr>
+<td>ADR-004</td>
+<td>Plugin architecture</td>
+<td>Plugin integration</td>
+</tr>
+<tr>
+<td>ADR-005</td>
+<td>MCP-first API</td>
+<td>MCP integration</td>
+</tr>
+<tr>
+<td>ADR-006</td>
+<td>Unified memory service</td>
+<td>Memory integration</td>
+</tr>
+<tr>
+<td>ADR-007</td>
+<td>Event sourcing</td>
+<td>Workflow integration</td>
+</tr>
+<tr>
+<td>ADR-008</td>
+<td>Vitest over Jest</td>
+<td>All tests use Vitest</td>
+</tr>
+<tr>
+<td>ADR-009</td>
+<td>Hybrid memory backend</td>
+<td>Memory integration</td>
+</tr>
+</tbody></table>
+<h2>Test Coverage Goals</h2>
+<ul>
+<li><strong>Line Coverage</strong>: &gt;80%</li>
+<li><strong>Branch Coverage</strong>: &gt;75%</li>
+<li><strong>Function Coverage</strong>: &gt;80%</li>
+<li><strong>Integration Points</strong>: 100%</li>
+</ul>
+<h2>CI/CD Integration</h2>
+<p>These integration tests are designed to run in CI/CD pipelines:</p>
+<ul>
+<li>Fast execution (&lt;5 minutes total)</li>
+<li>Reliable (deterministic, no flaky tests)</li>
+<li>Isolated (no external dependencies)</li>
+<li>Self-cleaning (automatic cleanup)</li>
+</ul>
+<h2>Debugging Integration Tests</h2>
+<h3>Enable verbose logging</h3>
+<pre><code class="language-bash">DEBUG=claude-flow:* npm run test:integration
+</code></pre>
+<h3>Run single test</h3>
+<pre><code class="language-bash">npm run test -- -t &quot;should execute end-to-end agent workflow&quot;
+</code></pre>
+<h3>Generate detailed coverage report</h3>
+<pre><code class="language-bash">npm run test:coverage -- v3/__tests__/integration --reporter=html
+</code></pre>
+<h2>Contributing</h2>
+<p>When adding new integration tests:</p>
+<ol>
+<li>Follow the existing structure (15 tests per file)</li>
+<li>Test real module interactions (not just mocks)</li>
+<li>Include setup and teardown</li>
+<li>Add meaningful descriptions</li>
+<li>Update this README with new test coverage</li>
+</ol>
+<h2>Performance Targets (from V3 Goals)</h2>
+<p>Integration tests verify these targets:</p>
+<ul>
+<li>⚡ Flash Attention: 2.49x-7.47x speedup</li>
+<li>🔍 AgentDB Search: 150x-12,500x improvement</li>
+<li>💾 Memory Reduction: 50-75%</li>
+<li>🚀 Startup Time: &lt;500ms</li>
+</ul>
+<h2>Security Testing</h2>
+<p>Integration tests include:</p>
+<ul>
+<li>Input validation</li>
+<li>Error isolation</li>
+<li>Resource cleanup</li>
+<li>Safe concurrent operations</li>
+<li>No credential exposure</li>
+</ul>
+<h2>Related Documentation</h2>
+<ul>
+<li><code>/v3/docs/architecture/</code> - Architecture decision records</li>
+<li><code>/v3/docs/testing/</code> - Testing strategy</li>
+<li><code>/v3/README.md</code> - V3 overview</li>
+<li><code>/CLAUDE.md</code> - Development guidelines</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

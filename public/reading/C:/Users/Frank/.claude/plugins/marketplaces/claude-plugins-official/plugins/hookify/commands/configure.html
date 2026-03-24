@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Configure Hookify Rules</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/hookify/commands/configure.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Configure Hookify Rules</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fhookify">hookify</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fhookify%2Fcommands">commands</a> / <span>configure.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Enable or disable hookify rules interactively
+allowed-tools: [&quot;Glob&quot;, &quot;Read&quot;, &quot;Edit&quot;, &quot;AskUserQuestion&quot;, &quot;Skill&quot;]</h2>
+<h1>Configure Hookify Rules</h1>
+<p><strong>Load hookify:writing-rules skill first</strong> to understand rule format.</p>
+<p>Enable or disable existing hookify rules using an interactive interface.</p>
+<h2>Steps</h2>
+<h3>1. Find Existing Rules</h3>
+<p>Use Glob tool to find all hookify rule files:</p>
+<pre><code>pattern: &quot;.claude/hookify.*.local.md&quot;
+</code></pre>
+<p>If no rules found, inform user:</p>
+<pre><code>No hookify rules configured yet. Use `/hookify` to create your first rule.
+</code></pre>
+<h3>2. Read Current State</h3>
+<p>For each rule file:</p>
+<ul>
+<li>Read the file</li>
+<li>Extract <code>name</code> and <code>enabled</code> fields from frontmatter</li>
+<li>Build list of rules with current state</li>
+</ul>
+<h3>3. Ask User Which Rules to Toggle</h3>
+<p>Use AskUserQuestion to let user select rules:</p>
+<pre><code class="language-json">{
+  &quot;questions&quot;: [
+    {
+      &quot;question&quot;: &quot;Which rules would you like to enable or disable?&quot;,
+      &quot;header&quot;: &quot;Configure&quot;,
+      &quot;multiSelect&quot;: true,
+      &quot;options&quot;: [
+        {
+          &quot;label&quot;: &quot;warn-dangerous-rm (currently enabled)&quot;,
+          &quot;description&quot;: &quot;Warns about rm -rf commands&quot;
+        },
+        {
+          &quot;label&quot;: &quot;warn-console-log (currently disabled)&quot;,
+          &quot;description&quot;: &quot;Warns about console.log in code&quot;
+        },
+        {
+          &quot;label&quot;: &quot;require-tests (currently enabled)&quot;,
+          &quot;description&quot;: &quot;Requires tests before stopping&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Option format:</strong></p>
+<ul>
+<li>Label: <code>{rule-name} (currently {enabled|disabled})</code></li>
+<li>Description: Brief description from rule&#39;s message or pattern</li>
+</ul>
+<h3>4. Parse User Selection</h3>
+<p>For each selected rule:</p>
+<ul>
+<li>Determine current state from label (enabled/disabled)</li>
+<li>Toggle state: enabled → disabled, disabled → enabled</li>
+</ul>
+<h3>5. Update Rule Files</h3>
+<p>For each rule to toggle:</p>
+<ul>
+<li>Use Read tool to read current content</li>
+<li>Use Edit tool to change <code>enabled: true</code> to <code>enabled: false</code> (or vice versa)</li>
+<li>Handle both with and without quotes</li>
+</ul>
+<p><strong>Edit pattern for enabling:</strong></p>
+<pre><code>old_string: &quot;enabled: false&quot;
+new_string: &quot;enabled: true&quot;
+</code></pre>
+<p><strong>Edit pattern for disabling:</strong></p>
+<pre><code>old_string: &quot;enabled: true&quot;
+new_string: &quot;enabled: false&quot;
+</code></pre>
+<h3>6. Confirm Changes</h3>
+<p>Show user what was changed:</p>
+<pre><code>## Hookify Rules Updated
+
+**Enabled:**
+- warn-console-log
+
+**Disabled:**
+- warn-dangerous-rm
+
+**Unchanged:**
+- require-tests
+
+Changes apply immediately - no restart needed
+</code></pre>
+<h2>Important Notes</h2>
+<ul>
+<li>Changes take effect immediately on next tool use</li>
+<li>You can also manually edit .claude/hookify.*.local.md files</li>
+<li>To permanently remove a rule, delete its .local.md file</li>
+<li>Use <code>/hookify:list</code> to see all configured rules</li>
+</ul>
+<h2>Edge Cases</h2>
+<p><strong>No rules to configure:</strong></p>
+<ul>
+<li>Show message about using <code>/hookify</code> to create rules first</li>
+</ul>
+<p><strong>User selects no rules:</strong></p>
+<ul>
+<li>Inform that no changes were made</li>
+</ul>
+<p><strong>File read/write errors:</strong></p>
+<ul>
+<li>Inform user of specific error</li>
+<li>Suggest manual editing as fallback</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

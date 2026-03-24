@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Swarm Coordination Agents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/agents/swarm/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Swarm Coordination Agents</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fagents">agents</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fagents%2Fswarm">swarm</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Swarm Coordination
+type: documentation
+category: swarm
+description: Specialized swarm coordination agents for claude-code-flow hive-mind system with different topologies</h2>
+<h1>Swarm Coordination Agents</h1>
+<p>This directory contains specialized swarm coordination agents designed to work with the claude-code-flow hive-mind system. Each agent implements a different coordination topology and strategy.</p>
+<h2>Available Agents</h2>
+<h3>1. Hierarchical Coordinator (<code>hierarchical-coordinator.md</code>)</h3>
+<p><strong>Architecture</strong>: Queen-led hierarchy with specialized workers</p>
+<ul>
+<li><strong>Use Cases</strong>: Complex projects requiring central coordination</li>
+<li><strong>Strengths</strong>: Clear command structure, efficient resource allocation</li>
+<li><strong>Best For</strong>: Large-scale development, multi-team coordination</li>
+</ul>
+<h3>2. Mesh Coordinator (<code>mesh-coordinator.md</code>)</h3>
+<p><strong>Architecture</strong>: Peer-to-peer distributed network</p>
+<ul>
+<li><strong>Use Cases</strong>: Fault-tolerant distributed processing</li>
+<li><strong>Strengths</strong>: High resilience, no single point of failure</li>
+<li><strong>Best For</strong>: Critical systems, high-availability requirements</li>
+</ul>
+<h3>3. Adaptive Coordinator (<code>adaptive-coordinator.md</code>)</h3>
+<p><strong>Architecture</strong>: Dynamic topology switching with ML optimization</p>
+<ul>
+<li><strong>Use Cases</strong>: Variable workloads requiring optimization</li>
+<li><strong>Strengths</strong>: Self-optimizing, learns from experience</li>
+<li><strong>Best For</strong>: Production systems, long-running processes</li>
+</ul>
+<h2>Coordination Patterns</h2>
+<h3>Topology Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Hierarchical</th>
+<th>Mesh</th>
+<th>Adaptive</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Fault Tolerance</strong></td>
+<td>Medium</td>
+<td>High</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>High</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>Coordination Overhead</strong></td>
+<td>Low</td>
+<td>High</td>
+<td>Variable</td>
+</tr>
+<tr>
+<td><strong>Learning Capability</strong></td>
+<td>Low</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>Setup Complexity</strong></td>
+<td>Low</td>
+<td>High</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><strong>Best Use Case</strong></td>
+<td>Structured projects</td>
+<td>Critical systems</td>
+<td>Variable workloads</td>
+</tr>
+</tbody></table>
+<h3>Performance Characteristics</h3>
+<pre><code>Hierarchical: ⭐⭐⭐⭐⭐ Coordination Efficiency
+              ⭐⭐⭐⭐   Fault Tolerance  
+              ⭐⭐⭐⭐⭐ Scalability
+
+Mesh:         ⭐⭐⭐     Coordination Efficiency
+              ⭐⭐⭐⭐⭐ Fault Tolerance
+              ⭐⭐⭐     Scalability
+
+Adaptive:     ⭐⭐⭐⭐⭐ Coordination Efficiency  
+              ⭐⭐⭐⭐⭐ Fault Tolerance
+              ⭐⭐⭐⭐⭐ Scalability
+</code></pre>
+<h2>MCP Tool Integration</h2>
+<p>All swarm coordinators leverage the following MCP tools:</p>
+<h3>Core Coordination Tools</h3>
+<ul>
+<li><code>mcp__claude-flow__swarm_init</code> - Initialize swarm topology</li>
+<li><code>mcp__claude-flow__agent_spawn</code> - Create specialized worker agents  </li>
+<li><code>mcp__claude-flow__task_orchestrate</code> - Coordinate complex workflows</li>
+<li><code>mcp__claude-flow__swarm_monitor</code> - Real-time performance monitoring</li>
+</ul>
+<h3>Advanced Features</h3>
+<ul>
+<li><code>mcp__claude-flow__neural_patterns</code> - Pattern recognition and learning</li>
+<li><code>mcp__claude-flow__daa_consensus</code> - Distributed decision making</li>
+<li><code>mcp__claude-flow__topology_optimize</code> - Dynamic topology optimization</li>
+<li><code>mcp__claude-flow__performance_report</code> - Comprehensive analytics</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Hierarchical Coordination</h3>
+<pre><code class="language-bash"># Initialize hierarchical swarm for development project
+claude-flow agent spawn hierarchical-coordinator &quot;Build authentication microservice&quot;
+
+# Agents will automatically:
+# 1. Decompose project into tasks
+# 2. Spawn specialized workers (research, code, test, docs)
+# 3. Coordinate execution with central oversight
+# 4. Generate comprehensive reports
+</code></pre>
+<h3>Mesh Coordination</h3>
+<pre><code class="language-bash"># Initialize mesh network for distributed processing
+claude-flow agent spawn mesh-coordinator &quot;Process user analytics data&quot;
+
+# Network will automatically:
+# 1. Establish peer-to-peer connections
+# 2. Distribute work across available nodes
+# 3. Handle node failures gracefully
+# 4. Maintain consensus on results
+</code></pre>
+<h3>Adaptive Coordination</h3>
+<pre><code class="language-bash"># Initialize adaptive swarm for production optimization
+claude-flow agent spawn adaptive-coordinator &quot;Optimize system performance&quot;
+
+# System will automatically:
+# 1. Analyze current workload patterns
+# 2. Select optimal topology (hierarchical/mesh/ring)
+# 3. Learn from performance outcomes
+# 4. Continuously adapt to changing conditions
+</code></pre>
+<h2>Architecture Decision Framework</h2>
+<h3>When to Use Hierarchical</h3>
+<ul>
+<li>✅ Well-defined project structure</li>
+<li>✅ Clear resource hierarchy </li>
+<li>✅ Need for centralized decision making</li>
+<li>✅ Large team coordination required</li>
+<li>❌ High fault tolerance critical</li>
+<li>❌ Network partitioning likely</li>
+</ul>
+<h3>When to Use Mesh</h3>
+<ul>
+<li>✅ High availability requirements</li>
+<li>✅ Distributed processing needs</li>
+<li>✅ Network reliability concerns</li>
+<li>✅ Peer collaboration model</li>
+<li>❌ Simple coordination sufficient</li>
+<li>❌ Resource constraints exist</li>
+</ul>
+<h3>When to Use Adaptive</h3>
+<ul>
+<li>✅ Variable workload patterns</li>
+<li>✅ Long-running production systems</li>
+<li>✅ Performance optimization critical</li>
+<li>✅ Machine learning acceptable</li>
+<li>❌ Predictable, stable workloads</li>
+<li>❌ Simple requirements</li>
+</ul>
+<h2>Performance Monitoring</h2>
+<p>Each coordinator provides comprehensive metrics:</p>
+<h3>Key Performance Indicators</h3>
+<ul>
+<li><strong>Task Completion Rate</strong>: Percentage of successful task completion</li>
+<li><strong>Agent Utilization</strong>: Efficiency of resource usage</li>
+<li><strong>Coordination Overhead</strong>: Communication and management costs</li>
+<li><strong>Fault Recovery Time</strong>: Speed of recovery from failures</li>
+<li><strong>Learning Convergence</strong>: Adaptation effectiveness (adaptive only)</li>
+</ul>
+<h3>Monitoring Dashboards</h3>
+<p>Real-time visibility into:</p>
+<ul>
+<li>Swarm topology and agent status</li>
+<li>Task queues and execution pipelines  </li>
+<li>Performance metrics and trends</li>
+<li>Error rates and failure patterns</li>
+<li>Resource utilization and capacity</li>
+</ul>
+<h2>Best Practices</h2>
+<h3>Design Principles</h3>
+<ol>
+<li><strong>Start Simple</strong>: Begin with hierarchical for well-understood problems</li>
+<li><strong>Scale Gradually</strong>: Add complexity as requirements grow</li>
+<li><strong>Monitor Continuously</strong>: Track performance and adapt strategies</li>
+<li><strong>Plan for Failure</strong>: Design fault tolerance from the beginning</li>
+</ol>
+<h3>Operational Guidelines</h3>
+<ol>
+<li><strong>Agent Sizing</strong>: Right-size swarms for workload (5-15 agents typical)</li>
+<li><strong>Resource Planning</strong>: Ensure adequate compute/memory for coordination overhead</li>
+<li><strong>Network Design</strong>: Consider latency and bandwidth for distributed topologies</li>
+<li><strong>Security</strong>: Implement proper authentication and authorization</li>
+</ol>
+<h3>Troubleshooting</h3>
+<ul>
+<li><strong>Poor Performance</strong>: Check agent capability matching and load distribution</li>
+<li><strong>Coordination Failures</strong>: Verify network connectivity and consensus thresholds</li>
+<li><strong>Resource Exhaustion</strong>: Monitor and scale agent pools proactively</li>
+<li><strong>Learning Issues</strong>: Validate training data quality and model convergence</li>
+</ul>
+<h2>Integration with Claude-Flow</h2>
+<p>These agents integrate seamlessly with the broader claude-flow ecosystem:</p>
+<ul>
+<li><strong>Memory System</strong>: All coordination state persisted in claude-flow memory bank</li>
+<li><strong>Terminal Management</strong>: Agents can spawn and manage multiple terminal sessions</li>
+<li><strong>MCP Integration</strong>: Full access to claude-flow&#39;s MCP tool ecosystem</li>
+<li><strong>Event System</strong>: Real-time coordination through claude-flow event bus</li>
+<li><strong>Configuration</strong>: Managed through claude-flow configuration system</li>
+</ul>
+<p>For implementation details, see individual agent files and the claude-flow documentation.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

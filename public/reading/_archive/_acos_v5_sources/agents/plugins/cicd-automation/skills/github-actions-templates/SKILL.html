@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitHub Actions Templates</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cicd-automation/skills/github-actions-templates/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitHub Actions Templates</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation">cicd-automation</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation%2Fskills%2Fgithub-actions-templates">github-actions-templates</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: github-actions-templates
+description: Create production-ready GitHub Actions workflows for automated testing, building, and deploying applications. Use when setting up CI/CD with GitHub Actions, automating development workflows, or creating reusable workflow templates.</h2>
+<h1>GitHub Actions Templates</h1>
+<p>Production-ready GitHub Actions workflow patterns for testing, building, and deploying applications.</p>
+<h2>Purpose</h2>
+<p>Create efficient, secure GitHub Actions workflows for continuous integration and deployment across various tech stacks.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Automate testing and deployment</li>
+<li>Build Docker images and push to registries</li>
+<li>Deploy to Kubernetes clusters</li>
+<li>Run security scans</li>
+<li>Implement matrix builds for multiple environments</li>
+</ul>
+<h2>Common Workflow Patterns</h2>
+<h3>Pattern 1: Test Workflow</h3>
+<pre><code class="language-yaml">name: Test
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: &quot;npm&quot;
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage/lcov.info
+</code></pre>
+<p><strong>Reference:</strong> See <code>assets/test-workflow.yml</code></p>
+<h3>Pattern 2: Build and Push Docker Image</h3>
+<pre><code class="language-yaml">name: Build and Push
+
+on:
+  push:
+    branches: [main]
+    tags: [&quot;v*&quot;]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+</code></pre>
+<p><strong>Reference:</strong> See <code>assets/deploy-workflow.yml</code></p>
+<h3>Pattern 3: Deploy to Kubernetes</h3>
+<pre><code class="language-yaml">name: Deploy to Kubernetes
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
+
+      - name: Update kubeconfig
+        run: |
+          aws eks update-kubeconfig --name production-cluster --region us-west-2
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s/
+          kubectl rollout status deployment/my-app -n production
+          kubectl get services -n production
+
+      - name: Verify deployment
+        run: |
+          kubectl get pods -n production
+          kubectl describe deployment my-app -n production
+</code></pre>
+<h3>Pattern 4: Matrix Build</h3>
+<pre><code class="language-yaml">name: Matrix Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: [&quot;3.9&quot;, &quot;3.10&quot;, &quot;3.11&quot;, &quot;3.12&quot;]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest
+</code></pre>
+<p><strong>Reference:</strong> See <code>assets/matrix-build.yml</code></p>
+<h2>Workflow Best Practices</h2>
+<ol>
+<li><strong>Use specific action versions</strong> (@v4, not @latest)</li>
+<li><strong>Cache dependencies</strong> to speed up builds</li>
+<li><strong>Use secrets</strong> for sensitive data</li>
+<li><strong>Implement status checks</strong> on PRs</li>
+<li><strong>Use matrix builds</strong> for multi-version testing</li>
+<li><strong>Set appropriate permissions</strong></li>
+<li><strong>Use reusable workflows</strong> for common patterns</li>
+<li><strong>Implement approval gates</strong> for production</li>
+<li><strong>Add notification steps</strong> for failures</li>
+<li><strong>Use self-hosted runners</strong> for sensitive workloads</li>
+</ol>
+<h2>Reusable Workflows</h2>
+<pre><code class="language-yaml"># .github/workflows/reusable-test.yml
+name: Reusable Test Workflow
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
+    secrets:
+      NPM_TOKEN:
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.node-version }}
+      - run: npm ci
+      - run: npm test
+</code></pre>
+<p><strong>Use reusable workflow:</strong></p>
+<pre><code class="language-yaml">jobs:
+  call-test:
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      node-version: &quot;20.x&quot;
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+</code></pre>
+<h2>Security Scanning</h2>
+<pre><code class="language-yaml">name: Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: &quot;fs&quot;
+          scan-ref: &quot;.&quot;
+          format: &quot;sarif&quot;
+          output: &quot;trivy-results.sarif&quot;
+
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: &quot;trivy-results.sarif&quot;
+
+      - name: Run Snyk Security Scan
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+</code></pre>
+<h2>Deployment with Approvals</h2>
+<pre><code class="language-yaml">name: Deploy to Production
+
+on:
+  push:
+    tags: [&quot;v*&quot;]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://app.example.com
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy application
+        run: |
+          echo &quot;Deploying to production...&quot;
+          # Deployment commands here
+
+      - name: Notify Slack
+        if: success()
+        uses: slackapi/slack-github-action@v1
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          payload: |
+            {
+              &quot;text&quot;: &quot;Deployment to production completed successfully!&quot;
+            }
+</code></pre>
+<h2>Reference Files</h2>
+<ul>
+<li><code>assets/test-workflow.yml</code> - Testing workflow template</li>
+<li><code>assets/deploy-workflow.yml</code> - Deployment workflow template</li>
+<li><code>assets/matrix-build.yml</code> - Matrix build template</li>
+<li><code>references/common-workflows.md</code> - Common workflow patterns</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>gitlab-ci-patterns</code> - For GitLab CI workflows</li>
+<li><code>deployment-pipeline-design</code> - For pipeline architecture</li>
+<li><code>secrets-management</code> - For secrets handling</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

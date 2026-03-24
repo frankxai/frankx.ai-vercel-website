@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Git Worktree Commands</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/slash-commands/create-worktrees/create-worktrees.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Git Worktree Commands</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands">slash-commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands%2Fcreate-worktrees">create-worktrees</a> / <span>create-worktrees.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Git Worktree Commands</h1>
+<h2>Create Worktrees for All Open PRs</h2>
+<p>This command fetches all open pull requests using GitHub CLI, then creates a git worktree for each PR&#39;s branch in the <code>./tree/&lt;BRANCH_NAME&gt;</code> directory.</p>
+<pre><code class="language-bash"># Ensure GitHub CLI is installed and authenticated
+gh auth status || (echo &quot;Please run &#39;gh auth login&#39; first&quot; &amp;&amp; exit 1)
+
+# Create the tree directory if it doesn&#39;t exist
+mkdir -p ./tree
+
+# List all open PRs and create worktrees for each branch
+gh pr list --json headRefName --jq &#39;.[].headRefName&#39; | while read branch; do
+  # Handle branch names with slashes (like &quot;feature/foo&quot;)
+  branch_path=&quot;./tree/${branch}&quot;
+  
+  # For branches with slashes, create the directory structure
+  if [[ &quot;$branch&quot; == */* ]]; then
+    dir_path=$(dirname &quot;$branch_path&quot;)
+    mkdir -p &quot;$dir_path&quot;
+  fi
+
+  # Check if worktree already exists
+  if [ ! -d &quot;$branch_path&quot; ]; then
+    echo &quot;Creating worktree for $branch&quot;
+    git worktree add &quot;$branch_path&quot; &quot;$branch&quot;
+  else
+    echo &quot;Worktree for $branch already exists&quot;
+  fi
+done
+
+# Display all created worktrees
+echo &quot;\nWorktree list:&quot;
+git worktree list
+</code></pre>
+<h3>Example Output</h3>
+<pre><code>Creating worktree for fix-bug-123
+HEAD is now at a1b2c3d Fix bug 123
+Creating worktree for feature/new-feature
+HEAD is now at e4f5g6h Add new feature
+Worktree for documentation-update already exists
+
+Worktree list:
+/path/to/repo                      abc1234 [main]
+/path/to/repo/tree/fix-bug-123     a1b2c3d [fix-bug-123]
+/path/to/repo/tree/feature/new-feature e4f5g6h [feature/new-feature]
+/path/to/repo/tree/documentation-update d5e6f7g [documentation-update]
+</code></pre>
+<h3>Cleanup Stale Worktrees (Optional)</h3>
+<p>You can add this to remove stale worktrees for branches that no longer exist:</p>
+<pre><code class="language-bash"># Get current branches
+current_branches=$(git branch -a | grep -v HEAD | grep -v main | sed &#39;s/^[ *]*//&#39; | sed &#39;s|remotes/origin/||&#39; | sort | uniq)
+
+# Get existing worktrees (excluding main worktree)
+worktree_paths=$(git worktree list | tail -n +2 | awk &#39;{print $1}&#39;)
+
+for path in $worktree_paths; do
+  # Extract branch name from path
+  branch_name=$(basename &quot;$path&quot;)
+  
+  # Skip special cases
+  if [[ &quot;$branch_name&quot; == &quot;main&quot; ]]; then
+    continue
+  fi
+  
+  # Check if branch still exists
+  if ! echo &quot;$current_branches&quot; | grep -q &quot;^$branch_name$&quot;; then
+    echo &quot;Removing stale worktree for deleted branch: $branch_name&quot;
+    git worktree remove --force &quot;$path&quot;
+  fi
+done
+</code></pre>
+<h2>Create New Branch and Worktree</h2>
+<p>This interactive command creates a new git branch and sets up a worktree for it:</p>
+<pre><code class="language-bash">#!/bin/bash
+
+# Ensure we&#39;re in a git repository
+if ! git rev-parse --is-inside-work-tree &gt; /dev/null 2&gt;&amp;1; then
+  echo &quot;Error: Not in a git repository&quot;
+  exit 1
+fi
+
+# Get the repository root
+repo_root=$(git rev-parse --show-toplevel)
+
+# Prompt for branch name
+read -p &quot;Enter new branch name: &quot; branch_name
+
+# Validate branch name (basic validation)
+if [[ -z &quot;$branch_name&quot; ]]; then
+  echo &quot;Error: Branch name cannot be empty&quot;
+  exit 1
+fi
+
+if git show-ref --verify --quiet &quot;refs/heads/$branch_name&quot;; then
+  echo &quot;Warning: Branch &#39;$branch_name&#39; already exists&quot;
+  read -p &quot;Do you want to use the existing branch? (y/n): &quot; use_existing
+  if [[ &quot;$use_existing&quot; != &quot;y&quot; ]]; then
+    exit 1
+  fi
+fi
+
+# Create branch directory
+branch_path=&quot;$repo_root/tree/$branch_name&quot;
+
+# Handle branch names with slashes (like &quot;feature/foo&quot;)
+if [[ &quot;$branch_name&quot; == */* ]]; then
+  dir_path=$(dirname &quot;$branch_path&quot;)
+  mkdir -p &quot;$dir_path&quot;
+fi
+
+# Make sure parent directory exists
+mkdir -p &quot;$(dirname &quot;$branch_path&quot;)&quot;
+
+# Check if a worktree already exists
+if [ -d &quot;$branch_path&quot; ]; then
+  echo &quot;Error: Worktree directory already exists: $branch_path&quot;
+  exit 1
+fi
+
+# Create branch and worktree
+if git show-ref --verify --quiet &quot;refs/heads/$branch_name&quot;; then
+  # Branch exists, create worktree
+  echo &quot;Creating worktree for existing branch &#39;$branch_name&#39;...&quot;
+  git worktree add &quot;$branch_path&quot; &quot;$branch_name&quot;
+else
+  # Create new branch and worktree
+  echo &quot;Creating new branch &#39;$branch_name&#39; and worktree...&quot;
+  git worktree add -b &quot;$branch_name&quot; &quot;$branch_path&quot;
+fi
+
+echo &quot;Success! New worktree created at: $branch_path&quot;
+echo &quot;To start working on this branch, run: cd $branch_path&quot;
+</code></pre>
+<h3>Example Usage</h3>
+<pre><code>$ ./create-branch-worktree.sh
+Enter new branch name: feature/user-authentication
+Creating new branch &#39;feature/user-authentication&#39; and worktree...
+Preparing worktree (creating new branch &#39;feature/user-authentication&#39;)
+HEAD is now at abc1234 Previous commit message
+Success! New worktree created at: /path/to/repo/tree/feature/user-authentication
+To start working on this branch, run: cd /path/to/repo/tree/feature/user-authentication
+</code></pre>
+<h3>Creating a New Branch from a Different Base</h3>
+<p>If you want to start your branch from a different base (not the current HEAD), you can modify the script:</p>
+<pre><code class="language-bash">read -p &quot;Enter new branch name: &quot; branch_name
+read -p &quot;Enter base branch/commit (default: HEAD): &quot; base_commit
+base_commit=${base_commit:-HEAD}
+
+# Then use the specified base when creating the worktree
+git worktree add -b &quot;$branch_name&quot; &quot;$branch_path&quot; &quot;$base_commit&quot;
+</code></pre>
+<p>This will allow you to specify any commit, tag, or branch name as the starting point for your new branch.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

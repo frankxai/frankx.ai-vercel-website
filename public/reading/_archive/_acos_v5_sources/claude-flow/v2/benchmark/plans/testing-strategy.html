@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agent Swarm Benchmarking Tool - Testing Strategy</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/plans/testing-strategy.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Agent Swarm Benchmarking Tool - Testing Strategy</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Fplans">plans</a> / <span>testing-strategy.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Agent Swarm Benchmarking Tool - Testing Strategy</h1>
+<h2>🧪 Test-Driven Development (TDD) Approach</h2>
+<h3>TDD Cycle</h3>
+<ol>
+<li><strong>RED</strong> - Write a failing test</li>
+<li><strong>GREEN</strong> - Write minimal code to pass the test</li>
+<li><strong>REFACTOR</strong> - Improve code while keeping tests green</li>
+<li><strong>REPEAT</strong> - Continue until feature is complete</li>
+</ol>
+<h3>TDD Benefits</h3>
+<ul>
+<li>Ensures code correctness from the start</li>
+<li>Provides living documentation</li>
+<li>Enables confident refactoring</li>
+<li>Catches regressions early</li>
+<li>Improves code design</li>
+</ul>
+<h2>📋 Testing Pyramid</h2>
+<pre><code>                    ▲
+                   / \
+                  /   \
+                 /  E2E \
+                /       \
+               /─────────\
+              /Integration\
+             /             \
+            /───────────────\
+           /      Unit       \
+          /                   \
+         /─────────────────────\
+</code></pre>
+<h3>Test Distribution</h3>
+<ul>
+<li><strong>70% Unit Tests</strong> - Fast, isolated, comprehensive</li>
+<li><strong>20% Integration Tests</strong> - Component interactions</li>
+<li><strong>10% E2E Tests</strong> - Complete workflows</li>
+</ul>
+<h2>🔬 Test Categories</h2>
+<h3>1. Unit Tests (<code>tests/unit/</code>)</h3>
+<p>Test individual components in isolation.</p>
+<h4>Core Components</h4>
+<pre><code class="language-python"># tests/unit/core/test_benchmark_engine.py
+def test_benchmark_engine_initialization():
+    engine = BenchmarkEngine()
+    assert engine.status == EngineStatus.READY
+    assert engine.task_queue.is_empty()
+
+def test_benchmark_engine_task_submission():
+    engine = BenchmarkEngine()
+    task = Task(id=&quot;1&quot;, objective=&quot;test&quot;, strategy=&quot;auto&quot;)
+    engine.submit_task(task)
+    assert len(engine.task_queue) == 1
+</code></pre>
+<h4>Strategy Tests</h4>
+<pre><code class="language-python"># tests/unit/strategies/test_auto_strategy.py
+def test_auto_strategy_selection():
+    strategy = AutoStrategy()
+    task = Task(objective=&quot;analyze data&quot;, parameters={})
+    selected = strategy.select_strategy(task)
+    assert selected == &quot;analysis&quot;
+
+def test_auto_strategy_execution():
+    strategy = AutoStrategy()
+    task = create_test_task()
+    result = await strategy.execute(task)
+    assert result.status == ResultStatus.SUCCESS
+</code></pre>
+<h4>Coordination Mode Tests</h4>
+<pre><code class="language-python"># tests/unit/modes/test_centralized_mode.py
+def test_centralized_mode_agent_assignment():
+    mode = CentralizedMode()
+    agents = create_test_agents(5)
+    tasks = create_test_tasks(10)
+    assignments = mode.assign_tasks(agents, tasks)
+    assert len(assignments) == 10
+</code></pre>
+<h3>2. Integration Tests (<code>tests/integration/</code>)</h3>
+<p>Test component interactions and data flow.</p>
+<h4>Strategy-Mode Integration</h4>
+<pre><code class="language-python"># tests/integration/test_strategy_mode_integration.py
+async def test_research_strategy_with_distributed_mode():
+    strategy = ResearchStrategy()
+    mode = DistributedMode()
+    task = create_research_task()
+    
+    result = await mode.execute_with_strategy(strategy, task)
+    assert result.status == ResultStatus.SUCCESS
+    assert result.coordination_metrics[&quot;overhead&quot;] &lt; 0.1
+</code></pre>
+<h4>Output Integration</h4>
+<pre><code class="language-python"># tests/integration/test_output_integration.py
+def test_json_sqlite_consistency():
+    results = create_test_results()
+    
+    json_writer = JSONWriter()
+    sqlite_manager = SQLiteManager()
+    
+    json_data = json_writer.export(results)
+    sqlite_manager.store(results)
+    
+    sqlite_data = sqlite_manager.query_all()
+    assert normalize_data(json_data) == normalize_data(sqlite_data)
+</code></pre>
+<h3>3. Performance Tests (<code>tests/performance/</code>)</h3>
+<p>Validate system performance under various conditions.</p>
+<h4>Load Testing</h4>
+<pre><code class="language-python"># tests/performance/test_load_handling.py
+async def test_high_task_volume():
+    engine = BenchmarkEngine()
+    tasks = create_test_tasks(1000)
+    
+    start_time = time.time()
+    results = await engine.execute_batch(tasks)
+    execution_time = time.time() - start_time
+    
+    assert len(results) == 1000
+    assert execution_time &lt; 60  # Should complete within 1 minute
+    assert all(r.status == ResultStatus.SUCCESS for r in results)
+</code></pre>
+<h4>Stress Testing</h4>
+<pre><code class="language-python"># tests/performance/test_resource_limits.py
+def test_memory_usage_under_load():
+    with resource_monitor() as monitor:
+        engine = BenchmarkEngine()
+        tasks = create_memory_intensive_tasks(100)
+        engine.execute_batch(tasks)
+    
+    assert monitor.peak_memory &lt; 1024 * 1024 * 1024  # &lt; 1GB
+</code></pre>
+<h3>4. End-to-End Tests (<code>tests/e2e/</code>)</h3>
+<p>Test complete user workflows through the CLI.</p>
+<h4>CLI Workflow Tests</h4>
+<pre><code class="language-python"># tests/e2e/test_cli_workflows.py
+def test_complete_benchmark_workflow():
+    # Execute via CLI
+    result = subprocess.run([
+        &quot;python&quot;, &quot;-m&quot;, &quot;swarm_benchmark&quot;,
+        &quot;run&quot;, &quot;test-benchmark&quot;,
+        &quot;--strategy&quot;, &quot;research&quot;,
+        &quot;--mode&quot;, &quot;distributed&quot;,
+        &quot;--output&quot;, &quot;json,sqlite&quot;
+    ], capture_output=True, text=True)
+    
+    assert result.returncode == 0
+    assert &quot;Benchmark completed successfully&quot; in result.stdout
+    
+    # Verify outputs exist
+    assert os.path.exists(&quot;reports/test-benchmark.json&quot;)
+    assert os.path.exists(&quot;reports/test-benchmark.db&quot;)
+</code></pre>
+<h2>🛠️ Test Infrastructure</h2>
+<h3>Test Fixtures (<code>tests/fixtures/</code>)</h3>
+<p>Reusable test data and objects.</p>
+<pre><code class="language-python"># tests/fixtures/tasks.py
+def create_test_task(**kwargs):
+    defaults = {
+        &quot;id&quot;: str(uuid.uuid4()),
+        &quot;objective&quot;: &quot;test objective&quot;,
+        &quot;strategy&quot;: &quot;auto&quot;,
+        &quot;mode&quot;: &quot;centralized&quot;,
+        &quot;timeout&quot;: 60,
+        &quot;max_retries&quot;: 3
+    }
+    defaults.update(kwargs)
+    return Task(**defaults)
+
+def create_test_tasks(count: int) -&gt; List[Task]:
+    return [create_test_task(id=str(i)) for i in range(count)]
+</code></pre>
+<h3>Mock Objects (<code>tests/mocks/</code>)</h3>
+<p>Mock external dependencies for isolated testing.</p>
+<pre><code class="language-python"># tests/mocks/claude_flow_client.py
+class MockClaudeFlowClient:
+    def __init__(self):
+        self.calls = []
+    
+    async def execute_swarm(self, objective: str, **kwargs):
+        self.calls.append((&quot;execute_swarm&quot;, objective, kwargs))
+        return MockResult(success=True, output=&quot;mock output&quot;)
+</code></pre>
+<h3>Test Utilities (<code>tests/utils/</code>)</h3>
+<p>Helper functions for testing.</p>
+<pre><code class="language-python"># tests/utils/assertions.py
+def assert_result_valid(result: Result):
+    assert result.task_id is not None
+    assert result.status in [ResultStatus.SUCCESS, ResultStatus.FAILURE]
+    assert result.execution_time &gt;= 0
+    assert isinstance(result.metrics, dict)
+
+def assert_metrics_complete(metrics: Dict[str, Any]):
+    required_keys = [&quot;execution_time&quot;, &quot;resource_usage&quot;, &quot;quality_score&quot;]
+    for key in required_keys:
+        assert key in metrics
+</code></pre>
+<h2>📊 Test Coverage Strategy</h2>
+<h3>Coverage Goals</h3>
+<ul>
+<li><strong>Overall Coverage</strong>: ≥ 95%</li>
+<li><strong>Unit Tests</strong>: ≥ 98%</li>
+<li><strong>Integration Tests</strong>: ≥ 90%</li>
+<li><strong>Critical Paths</strong>: 100%</li>
+</ul>
+<h3>Coverage Measurement</h3>
+<pre><code class="language-bash"># Run tests with coverage
+pytest --cov=src --cov-report=html --cov-report=term
+
+# Coverage requirements in pytest.ini
+[tool:pytest]
+addopts = --cov=src --cov-fail-under=95
+</code></pre>
+<h3>Coverage Exclusions</h3>
+<ul>
+<li>Configuration files</li>
+<li>CLI entry points</li>
+<li>Error handling for unreachable states</li>
+<li>Development/debug utilities</li>
+</ul>
+<h2>🔄 Continuous Testing</h2>
+<h3>Pre-commit Hooks</h3>
+<pre><code class="language-yaml"># .pre-commit-config.yaml
+repos:
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: python
+        stages: [commit]
+        types: [python]
+</code></pre>
+<h3>GitHub Actions</h3>
+<pre><code class="language-yaml"># .github/workflows/test.yml
+name: Test Suite
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    - name: Run tests
+      run: pytest --cov=src --cov-report=xml
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1
+</code></pre>
+<h2>🎯 Test Data Management</h2>
+<h3>Test Data Strategy</h3>
+<ul>
+<li><strong>Synthetic Data</strong> - Generated test data for consistency</li>
+<li><strong>Fixtures</strong> - Predefined test scenarios</li>
+<li><strong>Factories</strong> - Dynamic test data generation</li>
+<li><strong>Snapshots</strong> - Golden master testing for outputs</li>
+</ul>
+<h3>Data Generation</h3>
+<pre><code class="language-python"># tests/data/generators.py
+class TaskGenerator:
+    @staticmethod
+    def simple_task() -&gt; Task:
+        return Task(
+            id=&quot;simple-001&quot;,
+            objective=&quot;Simple test task&quot;,
+            strategy=&quot;auto&quot;,
+            mode=&quot;centralized&quot;
+        )
+    
+    @staticmethod
+    def complex_workflow() -&gt; List[Task]:
+        return [
+            Task(id=f&quot;complex-{i}&quot;, objective=f&quot;Step {i}&quot;)
+            for i in range(10)
+        ]
+</code></pre>
+<h2>🚨 Test Environment Setup</h2>
+<h3>Local Development</h3>
+<pre><code class="language-bash"># Setup test environment
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements-dev.txt
+
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=src
+
+# Run specific test category
+pytest tests/unit/
+pytest tests/integration/
+pytest tests/performance/
+</code></pre>
+<h3>Docker Testing</h3>
+<pre><code class="language-dockerfile"># Dockerfile.test
+FROM python:3.9-slim
+
+WORKDIR /app
+COPY requirements*.txt ./
+RUN pip install -r requirements-dev.txt
+
+COPY . .
+CMD [&quot;pytest&quot;, &quot;--cov=src&quot;, &quot;--cov-report=html&quot;]
+</code></pre>
+<h2>📈 Test Metrics and Reporting</h2>
+<h3>Key Metrics</h3>
+<ul>
+<li><strong>Test Coverage</strong> - Code coverage percentage</li>
+<li><strong>Test Execution Time</strong> - Performance of test suite</li>
+<li><strong>Test Reliability</strong> - Flaky test detection</li>
+<li><strong>Bug Detection</strong> - Tests catching real issues</li>
+</ul>
+<h3>Reporting Tools</h3>
+<ul>
+<li><strong>Coverage.py</strong> - Code coverage measurement</li>
+<li><strong>pytest-html</strong> - HTML test reports</li>
+<li><strong>pytest-benchmark</strong> - Performance benchmarking</li>
+<li><strong>allure-pytest</strong> - Advanced test reporting</li>
+</ul>
+<h2>🔍 Test Quality Assurance</h2>
+<h3>Test Review Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tests follow naming conventions</li>
+<li><input disabled="" type="checkbox"> Tests are independent and isolated</li>
+<li><input disabled="" type="checkbox"> Tests have clear assertions</li>
+<li><input disabled="" type="checkbox"> Tests cover edge cases</li>
+<li><input disabled="" type="checkbox"> Tests are maintainable</li>
+<li><input disabled="" type="checkbox"> Tests execute quickly</li>
+<li><input disabled="" type="checkbox"> Tests are deterministic</li>
+</ul>
+<h3>Code Quality Tools</h3>
+<pre><code class="language-bash"># Linting
+flake8 tests/
+pylint tests/
+
+# Type checking
+mypy tests/
+
+# Security scanning
+bandit -r tests/
+</code></pre>
+<p>This comprehensive testing strategy ensures robust, reliable, and maintainable code through systematic test-driven development practices.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

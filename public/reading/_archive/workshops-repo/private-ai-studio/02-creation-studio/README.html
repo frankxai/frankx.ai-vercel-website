@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Module 2: Creation Studio</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/private-ai-studio/02-creation-studio/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Module 2: Creation Studio</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="../index.html#_archive%2Fworkshops-repo%2Fprivate-ai-studio">private-ai-studio</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fprivate-ai-studio%2F02-creation-studio">02-creation-studio</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Module 2: Creation Studio</h1>
+<p><strong>Build Your Visual AI Production Environment</strong></p>
+<p><em>Part of GenCreator Labs by Frank</em></p>
+<hr>
+<h2>🎯 What You&#39;ll Learn</h2>
+<ul>
+<li>Deploy ComfyUI for node-based visual workflows</li>
+<li>Integrate LobeChat for multimodal creation with TTS/STT</li>
+<li>Connect FLUX and Stable Diffusion for image generation</li>
+<li>Build reusable workflow templates</li>
+<li>Set up API access for programmatic generation</li>
+<li>Create video and audio generation pipelines</li>
+</ul>
+<hr>
+<h2>📁 Module Structure</h2>
+<pre><code>02-creation-studio/
+├── README.md                      # This file
+├── 01-comfyui-deployment/         # ComfyUI setup
+├── 02-lobechat-integration/       # LobeChat + ComfyUI
+├── 03-image-workflows/            # FLUX, SDXL workflows
+└── 04-video-audio-pipelines/      # Video and audio generation
+</code></pre>
+<hr>
+<h2>🛠️ Deployment Options</h2>
+<h3>Option A: ComfyUI Only</h3>
+<pre><code class="language-bash"># GPU-enabled (NVIDIA)
+docker run -d --name comfyui \
+  -p 8188:8188 \
+  -v comfyui:/home/user/comfyui \
+  --gpus all \
+  comfyanonymous/comfyui:latest
+
+# Access: http://localhost:8188
+</code></pre>
+<h3>Option B: Full Creation Stack</h3>
+<pre><code class="language-bash">cd docker
+docker compose -f docker-compose.creation.yml up -d
+</code></pre>
+<p><strong>Services</strong>:</p>
+<ul>
+<li>ComfyUI (port 8188) - Visual workflow editor</li>
+<li>LobeChat (port 3210) - Chat interface with TTS/STT</li>
+<li>Automatic1111 (port 7860) - SD WebUI alternative</li>
+<li>FLUX API (port 8000) - FLUX.1 generation API</li>
+</ul>
+<hr>
+<h2>🎨 ComfyUI Workflows</h2>
+<h3>Understanding the Node Graph</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    COMFYUI NODE ARCHITECTURE                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐        │
+│  │   Load Checkpoint    │    │   CLIP Text    │    │   KSampler  │        │
+│  │   (Model)            │    │   (Prompt)     │    │   (Sampling)│        │
+│  └────────┬────────┘    └───────┬───────┘    └──────┬────────┘        │
+│           │                     │                    │                 │
+│           └─────────────────────┼────────────────────┘                 │
+│                                 │                                      │
+│                                 ▼                                      │
+│  ┌───────────────────────────────────────────────────────────────┐   │
+│  │                     DATA FLOW                                 │   │
+│  │                                                                │   │
+│  │   CLIP Tokenizer ──────► Encode Prompts ──────► Sample       │   │
+│  │        ▲                                        │            │   │
+│  │        │                                        ▼            │   │
+│  │   Positive Prompt                    ┌─────────────────┐      │   │
+│  │   Negative Prompt                    │  VAE Decode     │      │   │
+│  │                                      └────────┬────────┘      │   │
+│  │                                               │               │   │
+│  │                                               ▼               │   │
+│  │                                      ┌─────────────────┐      │   │
+│  │                                      │  Save Image     │      │   │
+│  │                                      └─────────────────┘      │   │
+│  │                                                                │   │
+│  └───────────────────────────────────────────────────────────────┘   │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Essential Workflow Templates</h3>
+<h4>FLUX.1 Dev Workflow</h4>
+<pre><code class="language-json">{
+  &quot;nodes&quot;: [
+    {
+      &quot;class_type&quot;: &quot;FluxDevLoader&quot;,
+      &quot;inputs&quot;: {
+        &quot;name&quot;: &quot;flux.1-dev&quot;,
+        &quot;weight_dtype&quot;: &quot;fp16&quot;
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;inputs&quot;: {
+        &quot;text&quot;: &quot;Cinematic photograph of a lone wolf at sunset, dramatic lighting, 8k resolution, detailed fur, epic composition&quot;,
+        &quot;clip&quot;: [&quot;FluxDevLoader&quot;, 0]
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;inputs&quot;: {
+        &quot;text&quot;: &quot;blurry, low quality, distorted, deformed, ugly, disfigured&quot;,
+        &quot;clip&quot;: [&quot;FluxDevLoader&quot;, 0]
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;SamplerCustomAdvanced&quot;,
+      &quot;inputs&quot;: {
+        &quot;noise&quot;: [&quot;BasicGuider&quot;, 0],
+        &quot; guider&quot;: [&quot;FluxGuidance&quot;, 0],
+        &quot;sampler&quot;: [&quot;SamplerScheduler&quot;, 0],
+        &quot;sigmas&quot;: [&quot;SigmaScheduler&quot;, 0],
+        &quot;latent_image&quot;: [&quot;EmptyLatentImage&quot;, 0]
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;VAEDecode&quot;,
+      &quot;inputs&quot;: {
+        &quot;samples&quot;: [&quot;SamplerCustomAdvanced&quot;, 0],
+        &quot;vae&quot;: [&quot;FluxDevLoader&quot;, 2]
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;SaveImage&quot;,
+      &quot;inputs&quot;: {
+        &quot;filename_prefix&quot;: &quot;FLUX/&quot;,
+        &quot;images&quot;: [&quot;VAEDecode&quot;, 0]
+      }
+    }
+  ]
+}
+</code></pre>
+<h4>FLUX.1 Schnell (Fast Generation)</h4>
+<pre><code>Use for: Rapid prototyping, quick iterations
+Steps: 4-8
+Guidance: 3.0-5.0
+Speed: ~2 seconds on 20GB VRAM
+</code></pre>
+<h4>FLUX.1 Dev (High Quality)</h4>
+<pre><code>Use for: Final outputs, detailed compositions
+Steps: 20-50
+Guidance: 7.0-10.0
+Speed: ~15 seconds on 20GB VRAM
+</code></pre>
+<h3>Image-to-Image Workflow</h3>
+<pre><code>INPUT IMAGE
+     │
+     ▼
+┌─────────────────┐
+│ Load Image      │ ← Upload your reference
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐     ┌─────────────────┐
+│ Resize/Scale    │────►│ CLIP Text Encode│
+└────────┬────────┘     └─────────────────┘
+         │                      │
+         │                      ▼
+         │              ┌─────────────────┐
+         │              │ KSampler        │
+         │              │ • Denoise: 0.7  │
+         │              │ • Steps: 20     │
+         └──────────────►│ • Scheduler:    │
+                        │   karras        │
+                        └────────┬────────┘
+                                 │
+                                 ▼
+                        ┌─────────────────┐
+                        │ Save Image      │
+                        └─────────────────┘
+</code></pre>
+<h3>ControlNet Workflow</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                 CONTROLNET WORKFLOW                              │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  REFERENCE IMAGE           PROMPT                                │
+│       │                        │                                 │
+│       ▼                        ▼                                 │
+│  ┌──────────┐          ┌──────────────┐                         │
+│  │ Load     │          │ CLIP Text    │                         │
+│  │ Image    │          │ Encode       │                         │
+│  └────┬─────┘          └──────┬───────┘                         │
+│       │                       │                                 │
+│       ▼                       │                                 │
+│  ┌──────────┐                 │                                 │
+│  │ Control  │◄────────────────┘                                 │
+│  │ Net      │                                                  │
+│  │ (Canny/  │                                                  │
+│  │  Depth/  │                                                  │
+│  │  Pose)   │                                                  │
+│  └────┬─────┘                                                  │
+│       │                                                        │
+│       ▼                                                        │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                      KSampler                           │   │
+│  │                                                         │   │
+│  │  • Control Net Weight: 0.8-1.0                          │   │
+│  │  • Control Net Start: 0.0-0.3                           │   │
+│  │  • Control Net End: 0.6-1.0                             │   │
+│  │                                                         │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│       │                                                        │
+│       ▼                                                        │
+│  ┌──────────┐                                                  │
+│  │ Save     │                                                  │
+│  │ Image    │                                                  │
+│  └──────────┘                                                  │
+│                                                                  │
+│  USE CASES:                                                     │
+│  • Canny: Preserve composition from reference                   │
+│  • Depth: Maintain spatial structure                            │
+│  • Pose: Transfer human poses                                   │
+│  • SoftEdge: Flexible line guidance                             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>🎙️ LobeChat Integration</h2>
+<h3>ComfyUI + LobeChat Setup</h3>
+<pre><code class="language-yaml"># docker/docker-compose.creation.yml (partial)
+lobechat:
+  image: lobehub/lobe-chat:latest
+  ports:
+    - &quot;3210:3210&quot;
+  environment:
+    # OpenAI-compatible endpoint for ComfyUI API
+    OPENAI_API_KEY: &quot;sk-placeholder&quot;
+    OPENAI_PROXY_URL: &quot;http://comfyui:8000/v1&quot;
+    # ComfyUI Image Generation
+    IMAGE_GENERATION_API_KEY: &quot;sk-placeholder&quot;
+    IMAGE_GENERATION_PROXY_URL: &quot;http://comfyui:8000/image/generate&quot;
+    # TTS Settings
+    NEXT_TTS_SERVICE: &quot;openai&quot;
+    OPENAI_TTS_API_KEY: &quot;${OPENAI_API_KEY}&quot;
+    NEXT_TTS_OPENAI_MODEL: &quot;tts-1&quot;
+  volumes:
+    - ./lobechat/.env.production.local:/app/.env.production.local
+</code></pre>
+<h3>LobeChat Plugins for Creation</h3>
+<table>
+<thead>
+<tr>
+<th>Plugin</th>
+<th>Purpose</th>
+<th>Installation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ComfyUI Workflow</td>
+<td>Direct workflow execution</td>
+<td>Plugin Store</td>
+</tr>
+<tr>
+<td>Midjourney</td>
+<td>Bridge to Midjourney</td>
+<td>Plugin Store</td>
+</tr>
+<tr>
+<td>DALL-E 3</td>
+<td>Alternative image gen</td>
+<td>Built-in</td>
+</tr>
+<tr>
+<td>Suno</td>
+<td>Music generation</td>
+<td>Plugin Store</td>
+</tr>
+<tr>
+<td>Code Runner</td>
+<td>Execute generation code</td>
+<td>Plugin Store</td>
+</tr>
+</tbody></table>
+<h3>Voice Settings (TTS/STT)</h3>
+<pre><code class="language-yaml"># LobeChat Environment Variables
+NEXT_TTS_SERVICE: &quot;openai&quot;  # or: microsoft, edge-tts,ElevenLabs
+OPENAI_TTS_API_KEY: &quot;${OPENAI_API_KEY}&quot;
+NEXT_TTS_OPENAI_MODEL: &quot;tts-1&quot;
+NEXT_TTS_OPENAI_VOICE: &quot;alloy&quot;
+NEXT_TTS_OPENAI_SPEED: 1.0
+
+# Speech-to-Text
+NEXT_STT_SERVICE: &quot;openai&quot;  # or: google, azure, whisper
+OPENAI_WHISPER_API_KEY: &quot;${OPENAI_API_KEY}&quot;
+</code></pre>
+<hr>
+<h2>🎬 Video Generation Pipeline</h2>
+<h3>ComfyUI Video Workflow</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                 VIDEO GENERATION PIPELINE                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  IMAGE FRAMES                  AUDIO TRACK                      │
+│       │                             │                           │
+│       ▼                             ▼                           │
+│  ┌─────────────┐             ┌─────────────┐                   │
+│  │ Video       │             │ Audio       │                   │
+│  │ Assembly    │◄────────────│ Sync        │                   │
+│  │ (FPS, codec)│             │ (Lip sync?) │                   │
+│  └──────┬──────┘             └─────────────┘                   │
+│         │                                                   │
+│         ▼                                                   │
+│  ┌─────────────┐                                           │
+│  │ Render      │                                           │
+│  │ (H.264/AV1) │                                           │
+│  └─────────────┘                                           │
+│                                                                  │
+│  TOOLS:                                                         │
+│  • ComfyUI-VideoHelperSuite                                   │
+│  • AnimateDiff for animation                                  │
+│  • SVD (Stable Video Diffusion)                               │
+│  • Frame Interpolation for slow-mo                            │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>AnimateDiff Setup</h3>
+<pre><code class="language-json">{
+  &quot;nodes&quot;: [
+    {
+      &quot;class_type&quot;: &quot;AnimateDiffLoader&quot;,
+      &quot;inputs&quot;: {
+        &quot;model&quot;: &quot;stable-video-diffusion-img2vid-xt-1-1&quot;,
+        &quot;context_length&quot;: 25,
+        &quot;context_overlap&quot;: 5
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;CLIPTextEncode&quot;,
+      &quot;inputs&quot;: {
+        &quot;text&quot;: &quot;Cinematic camera movement, sunset over ocean, gentle waves, golden hour lighting&quot;,
+        &quot;clip&quot;: [&quot;AnimateDiffLoader&quot;, 0]
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;LoadImage&quot;,
+      &quot;inputs&quot;: {
+        &quot;image&quot;: &quot;input_frame_0001.png&quot;
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;KSampler&quot;,
+      &quot;inputs&quot;: {
+        &quot;steps&quot;: 30,
+        &quot;cfg&quot;: 1.5,
+        &quot;sampler_name&quot;: &quot;euler&quot;,
+        &quot;scheduler&quot;: &quot;normal&quot;,
+        &quot;denoise&quot;: 0.65
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;VAEDecode&quot;,
+      &quot;inputs&quot;: {
+        &quot;samples&quot;: [&quot;KSampler&quot;, 0],
+        &quot;vae&quot;: &quot;auto&quot;
+      }
+    },
+    {
+      &quot;class_type&quot;: &quot;VideoCombine&quot;,
+      &quot;inputs&quot;: {
+        &quot;frame_rate&quot;: 24,
+        &quot;format&quot;: &quot;mp4&quot;,
+        &quot;images&quot;: [&quot;VAEDecode&quot;, 0]
+      }
+    }
+  ]
+}
+</code></pre>
+<hr>
+<h2>🎵 Audio Generation</h2>
+<h3>Suno via LobeChat</h3>
+<pre><code class="language-yaml"># LobeChat Environment for Suno
+SUNO_API_KEY: &quot;${SUNO_API_KEY}&quot;
+SUNO_ORG_KEY: &quot;${SUNO_ORG_KEY}&quot;
+
+# Prompt template for Suno in LobeChat
+system_prompt: |
+  When generating music prompts, use:
+  1. Genre/Style: [e.g., Cinematic orchestral]
+  2. Mood: [e.g., Powerful and uplifting]
+  3. Instruments: [e.g., Soaring strings, epic brass]
+  4. Production: [e.g., Wide stereo, film-quality]
+  5. Intention: [e.g., Courage to pursue bold dreams]
+  
+  Example: &quot;Cinematic orchestral, powerful and uplifting, with soaring strings, epic brass, thunderous drums, intention: courage to pursue bold dreams, building to dramatic crescendo&quot;
+</code></pre>
+<h3>Voice Cloning Setup</h3>
+<pre><code>AVAILABLE SERVICES:
+• ElevenLabs: Best quality, voice cloning
+• OpenAI TTS: Cost-effective, 6 voices
+• Microsoft Edge TTS: Free, 400+ voices
+• Coqui TTS: Open-source, local deployment
+</code></pre>
+<hr>
+<h2>📡 API Configuration</h2>
+<h3>Expose ComfyUI as API</h3>
+<pre><code class="language-python"># api/comfyui-client.py
+import base64
+import requests
+
+class ComfyUIClient:
+    def __init__(self, host=&quot;http://localhost:8000&quot;):
+        self.host = host
+        self.client_id = &quot;studio-client&quot;
+    
+    def queue_prompt(self, workflow):
+        &quot;&quot;&quot;Submit a workflow for execution&quot;&quot;&quot;
+        response = requests.post(
+            f&quot;{self.host}/api/prompt&quot;,
+            json={&quot;prompt&quot;: workflow, &quot;client_id&quot;: self.client_id}
+        )
+        return response.json()
+    
+    def get_history(self, prompt_id):
+        &quot;&quot;&quot;Get execution history&quot;&quot;&quot;
+        response = requests.get(f&quot;{self.host}/api/history/{prompt_id}&quot;)
+        return response.json()
+    
+    def get_image(self, filename, subfolder, folder_type):
+        &quot;&quot;&quot;Retrieve generated image&quot;&quot;&quot;
+        response = requests.get(
+            f&quot;{self.host}/api/view&quot;,
+            params={
+                &quot;filename&quot;: filename,
+                &quot;subfolder&quot;: subfolder,
+                &quot;type&quot;: folder_type
+            }
+        )
+        return response.content
+    
+    def generate_image(self, prompt, negative=&quot;&quot;):
+        &quot;&quot;&quot;Simple text-to-image generation&quot;&quot;&quot;
+        workflow = {
+            &quot;3&quot;: {&quot;inputs&quot;: {&quot;text&quot;: prompt, &quot;clip&quot;: [&quot;4&quot;, 0]}},
+            &quot;4&quot;: {&quot;inputs&quot;: {&quot;ckpt_name&quot;: &quot;flux.1-dev.safetensors&quot;}},
+            &quot;5&quot;: {&quot;inputs&quot;: {&quot;text&quot;: negative, &quot;clip&quot;: [&quot;4&quot;, 0]}},
+            &quot;6&quot;: {&quot;inputs&quot;: {&quot;samples&quot;: [&quot;7&quot;, 0], &quot;vae&quot;: [&quot;4&quot;, 2]}},
+            &quot;7&quot;: {&quot;inputs&quot;: {&quot;steps&quot;: 25, &quot;cfg&quot;: 7.0, &quot;sampler_name&quot;: &quot;euler&quot;, 
+                           &quot;scheduler&quot;: &quot;simple&quot;, &quot;denoise&quot;: 1.0, &quot;model&quot;: [&quot;4&quot;, 0],
+                           &quot;positive&quot;: [&quot;3&quot;, 0], &quot;negative&quot;: [&quot;5&quot;, 0],
+                           &quot;latent_image&quot;: [&quot;8&quot;, 0]}},
+            &quot;8&quot;: {&quot;inputs&quot;: {&quot;width&quot;: 1024, &quot;height&quot;: 1024, &quot;batch_size&quot;: 1}},
+            &quot;9&quot;: {&quot;inputs&quot;: {&quot;filename_prefix&quot;: &quot;API_Output/&quot;, &quot;images&quot;: [&quot;6&quot;, 0]}}
+        }
+        return self.queue_prompt(workflow)
+
+# Usage
+client = ComfyUIClient()
+result = client.generate_image(
+    &quot;A cyberpunk city at night, neon lights, rain-slicked streets, 8k&quot;
+)
+</code></pre>
+<hr>
+<h2>🚀 Quick Start</h2>
+<pre><code class="language-bash"># Start Creation Studio
+cd docker
+docker compose -f docker-compose.creation.yml up -d
+
+# Access:
+# - ComfyUI: http://localhost:8188
+# - LobeChat: http://localhost:3210
+
+# In LobeChat:
+# 1. Settings → Agents → Enable ComfyUI plugin
+# 2. Configure API endpoint: http://comfyui:8000
+# 3. Start generating!
+</code></pre>
+<hr>
+<h2>📚 Next Steps</h2>
+<p><strong><a href="../03-infrastructure/">→ Module 3: Infrastructure →</a></strong></p>
+<hr>
+<p><em>Part of <a href="https://frankx.ai/gencreator">GenCreator Labs</a> by Frank</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

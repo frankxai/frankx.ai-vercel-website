@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Developer Experience Subagents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code-subagents/categories/06-developer-experience/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Developer Experience Subagents</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents">awesome-claude-code-subagents</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents%2Fcategories">categories</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents%2Fcategories%2F06-developer-experience">06-developer-experience</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Developer Experience Subagents</h1>
+<p>Developer Experience subagents are your productivity multipliers, focusing on making development faster, easier, and more enjoyable. These specialists handle everything from code refactoring to documentation, from build optimization to Git workflows. They remove friction from the development process, automate repetitive tasks, and help teams work more efficiently with better tools and practices.</p>
+<h2>When to Use Developer Experience Subagents</h2>
+<p>Use these subagents when you need to:</p>
+<ul>
+<li><strong>Refactor legacy code</strong> for better maintainability</li>
+<li><strong>Optimize build systems</strong> for faster development</li>
+<li><strong>Create developer tools</strong> and CLI applications</li>
+<li><strong>Write technical documentation</strong> that developers love</li>
+<li><strong>Manage dependencies</strong> and package updates</li>
+<li><strong>Streamline Git workflows</strong> and branching strategies</li>
+<li><strong>Modernize codebases</strong> with latest practices</li>
+<li><strong>Improve developer productivity</strong> across teams</li>
+</ul>
+<h2>Available Subagents</h2>
+<h3><a href="build-engineer.md"><strong>build-engineer</strong></a> - Build system specialist</h3>
+<p>Build optimization expert making compilation and bundling lightning fast. Masters various build tools, optimization techniques, and caching strategies. Reduces build times from minutes to seconds.</p>
+<p><strong>Use when:</strong> Optimizing build times, configuring build tools, implementing build caching, setting up monorepo builds, or troubleshooting build issues.</p>
+<h3><a href="cli-developer.md"><strong>cli-developer</strong></a> - Command-line tools and automation specialist</h3>
+<p>Senior CLI engineer building intuitive, efficient command-line tools for both developers and operators. Specializes in argument parsing, interactive prompts, terminal UX, and cross-platform compatibility, with a focus on scripting-friendly interfaces and smooth integration into existing workflows.</p>
+<p><strong>Use when:</strong> Designing or refactoring internal tools, DevOps/ops CLIs, PowerShell/Bash wrappers, or any command-line experience that needs to be discoverable, ergonomic, and easy to automate in pipelines.</p>
+<h3><a href="dependency-manager.md"><strong>dependency-manager</strong></a> - Package and dependency specialist</h3>
+<p>Dependency expert managing complex package ecosystems. Masters version resolution, security updates, and dependency optimization. Keeps dependencies secure and up-to-date without breaking things.</p>
+<p><strong>Use when:</strong> Managing dependencies, resolving version conflicts, implementing security updates, optimizing package sizes, or setting up dependency automation.</p>
+<h3><a href="documentation-engineer.md"><strong>documentation-engineer</strong></a> - Technical documentation expert</h3>
+<p>Documentation specialist creating clear, comprehensive technical docs. Masters API documentation, tutorials, and developer guides. Makes complex systems understandable through great documentation.</p>
+<p><strong>Use when:</strong> Writing API documentation, creating developer guides, building documentation sites, improving existing docs, or setting up documentation workflows.</p>
+<h3><a href="dx-optimizer.md"><strong>dx-optimizer</strong></a> - Developer experience optimization specialist</h3>
+<p>DX expert identifying and eliminating developer friction. Analyzes workflows, tools, and processes to improve productivity. Makes development feel effortless and enjoyable.</p>
+<p><strong>Use when:</strong> Improving developer workflows, analyzing productivity bottlenecks, selecting developer tools, optimizing development environments, or measuring developer experience.</p>
+<h3><a href="git-workflow-manager.md"><strong>git-workflow-manager</strong></a> - Git workflow and branching expert</h3>
+<p>Git specialist designing efficient version control workflows. Masters branching strategies, merge conflict resolution, and Git automation. Ensures smooth collaboration through Git best practices.</p>
+<p><strong>Use when:</strong> Designing Git workflows, implementing branching strategies, resolving complex merges, automating Git processes, or training teams on Git.</p>
+<h3><a href="legacy-modernizer.md"><strong>legacy-modernizer</strong></a> - Legacy code modernization specialist</h3>
+<p>Modernization expert breathing new life into old codebases. Masters incremental refactoring, dependency updates, and architecture improvements. Transforms legacy code without breaking functionality.</p>
+<p><strong>Use when:</strong> Modernizing legacy applications, planning refactoring strategies, updating old frameworks, migrating to new technologies, or improving code maintainability.</p>
+<h3><a href="mcp-developer.md"><strong>mcp-developer</strong></a> - Model Context Protocol specialist</h3>
+<p>MCP expert building servers and clients that connect AI systems with external tools and data sources. Masters protocol specification, SDK implementation, and production-ready integrations. Creates seamless bridges between AI and external services.</p>
+<p><strong>Use when:</strong> Building MCP servers, creating AI tool integrations, implementing Model Context Protocol clients, connecting AI systems to external APIs, or developing AI-powered applications with external data sources.</p>
+<h3><a href="powershell-module-architect.md"><strong>powershell-module-architect</strong></a> - PowerShell modules and profile architecture expert</h3>
+<p>PowerShell architecture specialist who turns ad-hoc scripts into clean, reusable modules and fast-loading profiles. Focuses on clear public/private function boundaries, robust parameter design, DRY helper libraries, and cross-version compatibility between Windows PowerShell 5.1 and PowerShell 7+.</p>
+<p><strong>Use when:</strong> Structuring or refactoring PowerShell modules, slimming down slow profiles, designing function/parameter conventions, or organizing shared infra tooling for sysadmins and helpdesk.</p>
+<h3><a href="powershell-ui-architect.md"><strong>powershell-ui-architect</strong></a> - PowerShell GUIs and TUIs specialist</h3>
+<p>UI and UX architect for PowerShell-based tools, designing WinForms, WPF, Metro-style dashboards (MahApps.Metro/Elysium), and terminal UIs on top of automation modules. Focuses on layering clean interfaces over reusable PowerShell/.NET logic without sacrificing maintainability.</p>
+<p><strong>Use when:</strong> You need a graphical or terminal UI for PowerShell tooling, want to choose between WinForms/WPF/TUI/Metro approaches, or need help structuring XAML and event handlers around existing PowerShell modules and scripts.</p>
+<h3><a href="refactoring-specialist.md"><strong>refactoring-specialist</strong></a> - Code refactoring expert</h3>
+<p>Refactoring master improving code structure without changing behavior. Expert in design patterns, code smells, and safe refactoring techniques. Makes code cleaner and more maintainable.</p>
+<p><strong>Use when:</strong> Refactoring complex code, eliminating code smells, implementing design patterns, improving code structure, or preparing code for new features.</p>
+<h3><a href="slack-expert.md"><strong>slack-expert</strong></a> - Slack platform and @slack/bolt specialist</h3>
+<p>Elite Slack Platform Expert with deep expertise in @slack/bolt, Slack Web API, Events API, Block Kit UI, and OAuth flows. Builds robust Slack integrations with best practices for rate limiting, security, and modern features.</p>
+<p><strong>Use when:</strong> Building Slack bots, implementing slash commands, creating Block Kit interfaces, reviewing Slack code, setting up OAuth flows, or integrating with Slack&#39;s Events API.</p>
+<h3><a href="tooling-engineer.md"><strong>tooling-engineer</strong></a> - Developer tooling specialist</h3>
+<p>Tooling expert building and integrating developer tools. Masters IDE configurations, linters, formatters, and custom tooling. Creates development environments that boost productivity.</p>
+<p><strong>Use when:</strong> Setting up development tools, creating custom tooling, configuring IDEs, implementing code quality tools, or building developer platforms.</p>
+<h2>Quick Selection Guide</h2>
+<table>
+<thead>
+<tr>
+<th>If you need to...</th>
+<th>Use this subagent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Speed up builds</td>
+<td><strong>build-engineer</strong></td>
+</tr>
+<tr>
+<td>Create CLI tools</td>
+<td><strong>cli-developer</strong></td>
+</tr>
+<tr>
+<td>Manage packages</td>
+<td><strong>dependency-manager</strong></td>
+</tr>
+<tr>
+<td>Write documentation</td>
+<td><strong>documentation-engineer</strong></td>
+</tr>
+<tr>
+<td>Improve workflows</td>
+<td><strong>dx-optimizer</strong></td>
+</tr>
+<tr>
+<td>Design Git strategies</td>
+<td><strong>git-workflow-manager</strong></td>
+</tr>
+<tr>
+<td>Modernize legacy code</td>
+<td><strong>legacy-modernizer</strong></td>
+</tr>
+<tr>
+<td>Build MCP integrations</td>
+<td><strong>mcp-developer</strong></td>
+</tr>
+<tr>
+<td>Refactor code</td>
+<td><strong>refactoring-specialist</strong></td>
+</tr>
+<tr>
+<td>Build Slack integrations</td>
+<td><strong>slack-expert</strong></td>
+</tr>
+<tr>
+<td>Build dev tools</td>
+<td><strong>tooling-engineer</strong></td>
+</tr>
+</tbody></table>
+<h2>Common DX Patterns</h2>
+<p><strong>Legacy Modernization:</strong></p>
+<ul>
+<li><strong>legacy-modernizer</strong> for strategy</li>
+<li><strong>refactoring-specialist</strong> for code improvement</li>
+<li><strong>dependency-manager</strong> for package updates</li>
+<li><strong>documentation-engineer</strong> for new docs</li>
+</ul>
+<p><strong>Developer Productivity:</strong></p>
+<ul>
+<li><strong>dx-optimizer</strong> for workflow analysis</li>
+<li><strong>tooling-engineer</strong> for tool setup</li>
+<li><strong>build-engineer</strong> for build optimization</li>
+<li><strong>git-workflow-manager</strong> for version control</li>
+</ul>
+<p><strong>Tool Development:</strong></p>
+<ul>
+<li><strong>cli-developer</strong> for command-line tools</li>
+<li><strong>tooling-engineer</strong> for IDE integration</li>
+<li><strong>documentation-engineer</strong> for tool docs</li>
+<li><strong>build-engineer</strong> for tool packaging</li>
+</ul>
+<p><strong>Code Quality:</strong></p>
+<ul>
+<li><strong>refactoring-specialist</strong> for code structure</li>
+<li><strong>dependency-manager</strong> for package health</li>
+<li><strong>git-workflow-manager</strong> for code review</li>
+<li><strong>documentation-engineer</strong> for standards</li>
+</ul>
+<h2>Getting Started</h2>
+<ol>
+<li><strong>Identify pain points</strong> in your development process</li>
+<li><strong>Choose relevant specialists</strong> for improvement</li>
+<li><strong>Analyze current state</strong> of tools and workflows</li>
+<li><strong>Implement improvements</strong> incrementally</li>
+<li><strong>Measure impact</strong> on developer productivity</li>
+</ol>
+<h2>Best Practices</h2>
+<ul>
+<li><strong>Automate repetitive tasks:</strong> Time saved compounds</li>
+<li><strong>Document everything:</strong> Future developers will thank you</li>
+<li><strong>Incremental improvements:</strong> Small changes add up</li>
+<li><strong>Measure impact:</strong> Track productivity gains</li>
+<li><strong>Tool standardization:</strong> Consistency reduces friction</li>
+<li><strong>Developer feedback:</strong> Listen to your users</li>
+<li><strong>Continuous improvement:</strong> DX is never &quot;done&quot;</li>
+<li><strong>Share knowledge:</strong> Spread best practices</li>
+</ul>
+<p>Choose your developer experience specialist and make development a joy!</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

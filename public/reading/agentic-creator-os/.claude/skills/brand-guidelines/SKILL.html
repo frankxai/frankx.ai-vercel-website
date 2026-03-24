@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Anthropic Brand Styling</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/brand-guidelines/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Anthropic Brand Styling</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fbrand-guidelines">brand-guidelines</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: brand-guidelines
+description: Applies Anthropic&#39;s official brand colors and typography to any sort of artifact that may benefit from having Anthropic&#39;s look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.
+license: Complete terms in LICENSE.txt</h2>
+<h1>Anthropic Brand Styling</h1>
+<h2>Overview</h2>
+<p>To access Anthropic&#39;s official brand identity and style resources, use this skill.</p>
+<p><strong>Keywords</strong>: branding, corporate identity, visual identity, post-processing, styling, brand colors, typography, Anthropic brand, visual formatting, visual design</p>
+<h2>Brand Guidelines</h2>
+<h3>Colors</h3>
+<p><strong>Main Colors:</strong></p>
+<ul>
+<li>Dark: <code>#141413</code> - Primary text and dark backgrounds</li>
+<li>Light: <code>#faf9f5</code> - Light backgrounds and text on dark</li>
+<li>Mid Gray: <code>#b0aea5</code> - Secondary elements</li>
+<li>Light Gray: <code>#e8e6dc</code> - Subtle backgrounds</li>
+</ul>
+<p><strong>Accent Colors:</strong></p>
+<ul>
+<li>Orange: <code>#d97757</code> - Primary accent</li>
+<li>Blue: <code>#6a9bcc</code> - Secondary accent</li>
+<li>Green: <code>#788c5d</code> - Tertiary accent</li>
+</ul>
+<h3>Typography</h3>
+<ul>
+<li><strong>Headings</strong>: Poppins (with Arial fallback)</li>
+<li><strong>Body Text</strong>: Lora (with Georgia fallback)</li>
+<li><strong>Note</strong>: Fonts should be pre-installed in your environment for best results</li>
+</ul>
+<h2>Features</h2>
+<h3>Smart Font Application</h3>
+<ul>
+<li>Applies Poppins font to headings (24pt and larger)</li>
+<li>Applies Lora font to body text</li>
+<li>Automatically falls back to Arial/Georgia if custom fonts unavailable</li>
+<li>Preserves readability across all systems</li>
+</ul>
+<h3>Text Styling</h3>
+<ul>
+<li>Headings (24pt+): Poppins font</li>
+<li>Body text: Lora font</li>
+<li>Smart color selection based on background</li>
+<li>Preserves text hierarchy and formatting</li>
+</ul>
+<h3>Shape and Accent Colors</h3>
+<ul>
+<li>Non-text shapes use accent colors</li>
+<li>Cycles through orange, blue, and green accents</li>
+<li>Maintains visual interest while staying on-brand</li>
+</ul>
+<h2>Technical Details</h2>
+<h3>Font Management</h3>
+<ul>
+<li>Uses system-installed Poppins and Lora fonts when available</li>
+<li>Provides automatic fallback to Arial (headings) and Georgia (body)</li>
+<li>No font installation required - works with existing system fonts</li>
+<li>For best results, pre-install Poppins and Lora fonts in your environment</li>
+</ul>
+<h3>Color Application</h3>
+<ul>
+<li>Uses RGB color values for precise brand matching</li>
+<li>Applied via python-pptx&#39;s RGBColor class</li>
+<li>Maintains color fidelity across different systems</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

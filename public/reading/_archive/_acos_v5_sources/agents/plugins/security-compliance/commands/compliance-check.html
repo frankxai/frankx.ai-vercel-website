@@ -1,0 +1,961 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Regulatory Compliance Check</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/security-compliance/commands/compliance-check.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Regulatory Compliance Check</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-compliance">security-compliance</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-compliance%2Fcommands">commands</a> / <span>compliance-check.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Regulatory Compliance Check</h1>
+<p>You are a compliance expert specializing in regulatory requirements for software systems including GDPR, HIPAA, SOC2, PCI-DSS, and other industry standards. Perform comprehensive compliance audits and provide implementation guidance for achieving and maintaining compliance.</p>
+<h2>Context</h2>
+<p>The user needs to ensure their application meets regulatory requirements and industry standards. Focus on practical implementation of compliance controls, automated monitoring, and audit trail generation.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. Compliance Framework Analysis</h3>
+<p>Identify applicable regulations and standards:</p>
+<p><strong>Regulatory Mapping</strong></p>
+<pre><code class="language-python">class ComplianceAnalyzer:
+    def __init__(self):
+        self.regulations = {
+            &#39;GDPR&#39;: {
+                &#39;scope&#39;: &#39;EU data protection&#39;,
+                &#39;applies_if&#39;: [
+                    &#39;Processing EU residents data&#39;,
+                    &#39;Offering goods/services to EU&#39;,
+                    &#39;Monitoring EU residents behavior&#39;
+                ],
+                &#39;key_requirements&#39;: [
+                    &#39;Privacy by design&#39;,
+                    &#39;Data minimization&#39;,
+                    &#39;Right to erasure&#39;,
+                    &#39;Data portability&#39;,
+                    &#39;Consent management&#39;,
+                    &#39;DPO appointment&#39;,
+                    &#39;Privacy notices&#39;,
+                    &#39;Data breach notification (72hrs)&#39;
+                ]
+            },
+            &#39;HIPAA&#39;: {
+                &#39;scope&#39;: &#39;Healthcare data protection (US)&#39;,
+                &#39;applies_if&#39;: [
+                    &#39;Healthcare providers&#39;,
+                    &#39;Health plan providers&#39;,
+                    &#39;Healthcare clearinghouses&#39;,
+                    &#39;Business associates&#39;
+                ],
+                &#39;key_requirements&#39;: [
+                    &#39;PHI encryption&#39;,
+                    &#39;Access controls&#39;,
+                    &#39;Audit logs&#39;,
+                    &#39;Business Associate Agreements&#39;,
+                    &#39;Risk assessments&#39;,
+                    &#39;Employee training&#39;,
+                    &#39;Incident response&#39;,
+                    &#39;Physical safeguards&#39;
+                ]
+            },
+            &#39;SOC2&#39;: {
+                &#39;scope&#39;: &#39;Service organization controls&#39;,
+                &#39;applies_if&#39;: [
+                    &#39;SaaS providers&#39;,
+                    &#39;Data processors&#39;,
+                    &#39;Cloud services&#39;
+                ],
+                &#39;trust_principles&#39;: [
+                    &#39;Security&#39;,
+                    &#39;Availability&#39;,
+                    &#39;Processing integrity&#39;,
+                    &#39;Confidentiality&#39;,
+                    &#39;Privacy&#39;
+                ]
+            },
+            &#39;PCI-DSS&#39;: {
+                &#39;scope&#39;: &#39;Payment card data security&#39;,
+                &#39;applies_if&#39;: [
+                    &#39;Accept credit/debit cards&#39;,
+                    &#39;Process card payments&#39;,
+                    &#39;Store card data&#39;,
+                    &#39;Transmit card data&#39;
+                ],
+                &#39;compliance_levels&#39;: {
+                    &#39;Level 1&#39;: &#39;&gt;6M transactions/year&#39;,
+                    &#39;Level 2&#39;: &#39;1M-6M transactions/year&#39;,
+                    &#39;Level 3&#39;: &#39;20K-1M transactions/year&#39;,
+                    &#39;Level 4&#39;: &#39;&lt;20K transactions/year&#39;
+                }
+            }
+        }
+
+    def determine_applicable_regulations(self, business_info):
+        &quot;&quot;&quot;
+        Determine which regulations apply based on business context
+        &quot;&quot;&quot;
+        applicable = []
+
+        # Check each regulation
+        for reg_name, reg_info in self.regulations.items():
+            if self._check_applicability(business_info, reg_info):
+                applicable.append({
+                    &#39;regulation&#39;: reg_name,
+                    &#39;reason&#39;: self._get_applicability_reason(business_info, reg_info),
+                    &#39;priority&#39;: self._calculate_priority(business_info, reg_name)
+                })
+
+        return sorted(applicable, key=lambda x: x[&#39;priority&#39;], reverse=True)
+</code></pre>
+<h3>2. Data Privacy Compliance</h3>
+<p>Implement privacy controls:</p>
+<p><strong>GDPR Implementation</strong></p>
+<pre><code class="language-python">class GDPRCompliance:
+    def implement_privacy_controls(self):
+        &quot;&quot;&quot;
+        Implement GDPR-required privacy controls
+        &quot;&quot;&quot;
+        controls = {}
+
+        # 1. Consent Management
+        controls[&#39;consent_management&#39;] = &#39;&#39;&#39;
+class ConsentManager:
+    def __init__(self):
+        self.consent_types = [
+            &#39;marketing_emails&#39;,
+            &#39;analytics_tracking&#39;,
+            &#39;third_party_sharing&#39;,
+            &#39;profiling&#39;
+        ]
+
+    def record_consent(self, user_id, consent_type, granted):
+        &quot;&quot;&quot;
+        Record user consent with full audit trail
+        &quot;&quot;&quot;
+        consent_record = {
+            &#39;user_id&#39;: user_id,
+            &#39;consent_type&#39;: consent_type,
+            &#39;granted&#39;: granted,
+            &#39;timestamp&#39;: datetime.utcnow(),
+            &#39;ip_address&#39;: request.remote_addr,
+            &#39;user_agent&#39;: request.headers.get(&#39;User-Agent&#39;),
+            &#39;version&#39;: self.get_current_privacy_policy_version(),
+            &#39;method&#39;: &#39;explicit_checkbox&#39;  # Not pre-ticked
+        }
+
+        # Store in append-only audit log
+        self.consent_audit_log.append(consent_record)
+
+        # Update current consent status
+        self.update_user_consents(user_id, consent_type, granted)
+
+        return consent_record
+
+    def verify_consent(self, user_id, consent_type):
+        &quot;&quot;&quot;
+        Verify if user has given consent for specific processing
+        &quot;&quot;&quot;
+        consent = self.get_user_consent(user_id, consent_type)
+        return consent and consent[&#39;granted&#39;] and not consent.get(&#39;withdrawn&#39;)
+&#39;&#39;&#39;
+
+        # 2. Right to Erasure (Right to be Forgotten)
+        controls[&#39;right_to_erasure&#39;] = &#39;&#39;&#39;
+class DataErasureService:
+    def process_erasure_request(self, user_id, verification_token):
+        &quot;&quot;&quot;
+        Process GDPR Article 17 erasure request
+        &quot;&quot;&quot;
+        # Verify request authenticity
+        if not self.verify_erasure_token(user_id, verification_token):
+            raise ValueError(&quot;Invalid erasure request&quot;)
+
+        erasure_log = {
+            &#39;user_id&#39;: user_id,
+            &#39;requested_at&#39;: datetime.utcnow(),
+            &#39;data_categories&#39;: []
+        }
+
+        # 1. Personal data
+        self.erase_user_profile(user_id)
+        erasure_log[&#39;data_categories&#39;].append(&#39;profile&#39;)
+
+        # 2. User-generated content (anonymize instead of delete)
+        self.anonymize_user_content(user_id)
+        erasure_log[&#39;data_categories&#39;].append(&#39;content_anonymized&#39;)
+
+        # 3. Analytics data
+        self.remove_from_analytics(user_id)
+        erasure_log[&#39;data_categories&#39;].append(&#39;analytics&#39;)
+
+        # 4. Backup data (schedule deletion)
+        self.schedule_backup_deletion(user_id)
+        erasure_log[&#39;data_categories&#39;].append(&#39;backups_scheduled&#39;)
+
+        # 5. Notify third parties
+        self.notify_processors_of_erasure(user_id)
+
+        # Keep minimal record for legal compliance
+        self.store_erasure_record(erasure_log)
+
+        return {
+            &#39;status&#39;: &#39;completed&#39;,
+            &#39;erasure_id&#39;: erasure_log[&#39;id&#39;],
+            &#39;categories_erased&#39;: erasure_log[&#39;data_categories&#39;]
+        }
+&#39;&#39;&#39;
+
+        # 3. Data Portability
+        controls[&#39;data_portability&#39;] = &#39;&#39;&#39;
+class DataPortabilityService:
+    def export_user_data(self, user_id, format=&#39;json&#39;):
+        &quot;&quot;&quot;
+        GDPR Article 20 - Data portability
+        &quot;&quot;&quot;
+        user_data = {
+            &#39;export_date&#39;: datetime.utcnow().isoformat(),
+            &#39;user_id&#39;: user_id,
+            &#39;format_version&#39;: &#39;2.0&#39;,
+            &#39;data&#39;: {}
+        }
+
+        # Collect all user data
+        user_data[&#39;data&#39;][&#39;profile&#39;] = self.get_user_profile(user_id)
+        user_data[&#39;data&#39;][&#39;preferences&#39;] = self.get_user_preferences(user_id)
+        user_data[&#39;data&#39;][&#39;content&#39;] = self.get_user_content(user_id)
+        user_data[&#39;data&#39;][&#39;activity&#39;] = self.get_user_activity(user_id)
+        user_data[&#39;data&#39;][&#39;consents&#39;] = self.get_consent_history(user_id)
+
+        # Format based on request
+        if format == &#39;json&#39;:
+            return json.dumps(user_data, indent=2)
+        elif format == &#39;csv&#39;:
+            return self.convert_to_csv(user_data)
+        elif format == &#39;xml&#39;:
+            return self.convert_to_xml(user_data)
+&#39;&#39;&#39;
+
+        return controls
+
+**Privacy by Design**
+```python
+# Implement privacy by design principles
+class PrivacyByDesign:
+    def implement_data_minimization(self):
+        &quot;&quot;&quot;
+        Collect only necessary data
+        &quot;&quot;&quot;
+        # Before (collecting too much)
+        bad_user_model = {
+            &#39;email&#39;: str,
+            &#39;password&#39;: str,
+            &#39;full_name&#39;: str,
+            &#39;date_of_birth&#39;: date,
+            &#39;ssn&#39;: str,  # Unnecessary
+            &#39;address&#39;: str,  # Unnecessary for basic service
+            &#39;phone&#39;: str,  # Unnecessary
+            &#39;gender&#39;: str,  # Unnecessary
+            &#39;income&#39;: int  # Unnecessary
+        }
+
+        # After (data minimization)
+        good_user_model = {
+            &#39;email&#39;: str,  # Required for authentication
+            &#39;password_hash&#39;: str,  # Never store plain text
+            &#39;display_name&#39;: str,  # Optional, user-provided
+            &#39;created_at&#39;: datetime,
+            &#39;last_login&#39;: datetime
+        }
+
+        return good_user_model
+
+    def implement_pseudonymization(self):
+        &quot;&quot;&quot;
+        Replace identifying fields with pseudonyms
+        &quot;&quot;&quot;
+        def pseudonymize_record(record):
+            # Generate consistent pseudonym
+            user_pseudonym = hashlib.sha256(
+                f&quot;{record[&#39;user_id&#39;]}{SECRET_SALT}&quot;.encode()
+            ).hexdigest()[:16]
+
+            return {
+                &#39;pseudonym&#39;: user_pseudonym,
+                &#39;data&#39;: {
+                    # Remove direct identifiers
+                    &#39;age_group&#39;: self._get_age_group(record[&#39;age&#39;]),
+                    &#39;region&#39;: self._get_region(record[&#39;ip_address&#39;]),
+                    &#39;activity&#39;: record[&#39;activity_data&#39;]
+                }
+            }
+</code></pre>
+<h3>3. Security Compliance</h3>
+<p>Implement security controls for various standards:</p>
+<p><strong>SOC2 Security Controls</strong></p>
+<pre><code class="language-python">class SOC2SecurityControls:
+    def implement_access_controls(self):
+        &quot;&quot;&quot;
+        SOC2 CC6.1 - Logical and physical access controls
+        &quot;&quot;&quot;
+        controls = {
+            &#39;authentication&#39;: &#39;&#39;&#39;
+# Multi-factor authentication
+class MFAEnforcement:
+    def enforce_mfa(self, user, resource_sensitivity):
+        if resource_sensitivity == &#39;high&#39;:
+            return self.require_mfa(user)
+        elif resource_sensitivity == &#39;medium&#39; and user.is_admin:
+            return self.require_mfa(user)
+        return self.standard_auth(user)
+
+    def require_mfa(self, user):
+        factors = []
+
+        # Factor 1: Password (something you know)
+        factors.append(self.verify_password(user))
+
+        # Factor 2: TOTP/SMS (something you have)
+        if user.mfa_method == &#39;totp&#39;:
+            factors.append(self.verify_totp(user))
+        elif user.mfa_method == &#39;sms&#39;:
+            factors.append(self.verify_sms_code(user))
+
+        # Factor 3: Biometric (something you are) - optional
+        if user.biometric_enabled:
+            factors.append(self.verify_biometric(user))
+
+        return all(factors)
+&#39;&#39;&#39;,
+            &#39;authorization&#39;: &#39;&#39;&#39;
+# Role-based access control
+class RBACAuthorization:
+    def __init__(self):
+        self.roles = {
+            &#39;admin&#39;: [&#39;read&#39;, &#39;write&#39;, &#39;delete&#39;, &#39;admin&#39;],
+            &#39;user&#39;: [&#39;read&#39;, &#39;write:own&#39;],
+            &#39;viewer&#39;: [&#39;read&#39;]
+        }
+
+    def check_permission(self, user, resource, action):
+        user_permissions = self.get_user_permissions(user)
+
+        # Check explicit permissions
+        if action in user_permissions:
+            return True
+
+        # Check ownership-based permissions
+        if f&quot;{action}:own&quot; in user_permissions:
+            return self.user_owns_resource(user, resource)
+
+        # Log denied access attempt
+        self.log_access_denied(user, resource, action)
+        return False
+&#39;&#39;&#39;,
+            &#39;encryption&#39;: &#39;&#39;&#39;
+# Encryption at rest and in transit
+class EncryptionControls:
+    def __init__(self):
+        self.kms = KeyManagementService()
+
+    def encrypt_at_rest(self, data, classification):
+        if classification == &#39;sensitive&#39;:
+            # Use envelope encryption
+            dek = self.kms.generate_data_encryption_key()
+            encrypted_data = self.encrypt_with_key(data, dek)
+            encrypted_dek = self.kms.encrypt_key(dek)
+
+            return {
+                &#39;data&#39;: encrypted_data,
+                &#39;encrypted_key&#39;: encrypted_dek,
+                &#39;algorithm&#39;: &#39;AES-256-GCM&#39;,
+                &#39;key_id&#39;: self.kms.get_current_key_id()
+            }
+
+    def configure_tls(self):
+        return {
+            &#39;min_version&#39;: &#39;TLS1.2&#39;,
+            &#39;ciphers&#39;: [
+                &#39;ECDHE-RSA-AES256-GCM-SHA384&#39;,
+                &#39;ECDHE-RSA-AES128-GCM-SHA256&#39;
+            ],
+            &#39;hsts&#39;: &#39;max-age=31536000; includeSubDomains&#39;,
+            &#39;certificate_pinning&#39;: True
+        }
+&#39;&#39;&#39;
+        }
+
+        return controls
+</code></pre>
+<h3>4. Audit Logging and Monitoring</h3>
+<p>Implement comprehensive audit trails:</p>
+<p><strong>Audit Log System</strong></p>
+<pre><code class="language-python">class ComplianceAuditLogger:
+    def __init__(self):
+        self.required_events = {
+            &#39;authentication&#39;: [
+                &#39;login_success&#39;,
+                &#39;login_failure&#39;,
+                &#39;logout&#39;,
+                &#39;password_change&#39;,
+                &#39;mfa_enabled&#39;,
+                &#39;mfa_disabled&#39;
+            ],
+            &#39;authorization&#39;: [
+                &#39;access_granted&#39;,
+                &#39;access_denied&#39;,
+                &#39;permission_changed&#39;,
+                &#39;role_assigned&#39;,
+                &#39;role_revoked&#39;
+            ],
+            &#39;data_access&#39;: [
+                &#39;data_viewed&#39;,
+                &#39;data_exported&#39;,
+                &#39;data_modified&#39;,
+                &#39;data_deleted&#39;,
+                &#39;bulk_operation&#39;
+            ],
+            &#39;compliance&#39;: [
+                &#39;consent_given&#39;,
+                &#39;consent_withdrawn&#39;,
+                &#39;data_request&#39;,
+                &#39;data_erasure&#39;,
+                &#39;privacy_settings_changed&#39;
+            ]
+        }
+
+    def log_event(self, event_type, details):
+        &quot;&quot;&quot;
+        Create tamper-proof audit log entry
+        &quot;&quot;&quot;
+        log_entry = {
+            &#39;id&#39;: str(uuid.uuid4()),
+            &#39;timestamp&#39;: datetime.utcnow().isoformat(),
+            &#39;event_type&#39;: event_type,
+            &#39;user_id&#39;: details.get(&#39;user_id&#39;),
+            &#39;ip_address&#39;: self._get_ip_address(),
+            &#39;user_agent&#39;: request.headers.get(&#39;User-Agent&#39;),
+            &#39;session_id&#39;: session.get(&#39;id&#39;),
+            &#39;details&#39;: details,
+            &#39;compliance_flags&#39;: self._get_compliance_flags(event_type)
+        }
+
+        # Add integrity check
+        log_entry[&#39;checksum&#39;] = self._calculate_checksum(log_entry)
+
+        # Store in immutable log
+        self._store_audit_log(log_entry)
+
+        # Real-time alerting for critical events
+        if self._is_critical_event(event_type):
+            self._send_security_alert(log_entry)
+
+        return log_entry
+
+    def _calculate_checksum(self, entry):
+        &quot;&quot;&quot;
+        Create tamper-evident checksum
+        &quot;&quot;&quot;
+        # Include previous entry hash for blockchain-like integrity
+        previous_hash = self._get_previous_entry_hash()
+
+        content = json.dumps(entry, sort_keys=True)
+        return hashlib.sha256(
+            f&quot;{previous_hash}{content}{SECRET_KEY}&quot;.encode()
+        ).hexdigest()
+</code></pre>
+<p><strong>Compliance Reporting</strong></p>
+<pre><code class="language-python">def generate_compliance_report(self, regulation, period):
+    &quot;&quot;&quot;
+    Generate compliance report for auditors
+    &quot;&quot;&quot;
+    report = {
+        &#39;regulation&#39;: regulation,
+        &#39;period&#39;: period,
+        &#39;generated_at&#39;: datetime.utcnow(),
+        &#39;sections&#39;: {}
+    }
+
+    if regulation == &#39;GDPR&#39;:
+        report[&#39;sections&#39;] = {
+            &#39;data_processing_activities&#39;: self._get_processing_activities(period),
+            &#39;consent_metrics&#39;: self._get_consent_metrics(period),
+            &#39;data_requests&#39;: {
+                &#39;access_requests&#39;: self._count_access_requests(period),
+                &#39;erasure_requests&#39;: self._count_erasure_requests(period),
+                &#39;portability_requests&#39;: self._count_portability_requests(period),
+                &#39;response_times&#39;: self._calculate_response_times(period)
+            },
+            &#39;data_breaches&#39;: self._get_breach_reports(period),
+            &#39;third_party_processors&#39;: self._list_processors(),
+            &#39;privacy_impact_assessments&#39;: self._get_dpias(period)
+        }
+
+    elif regulation == &#39;HIPAA&#39;:
+        report[&#39;sections&#39;] = {
+            &#39;access_controls&#39;: self._audit_access_controls(period),
+            &#39;phi_access_log&#39;: self._get_phi_access_log(period),
+            &#39;risk_assessments&#39;: self._get_risk_assessments(period),
+            &#39;training_records&#39;: self._get_training_compliance(period),
+            &#39;business_associates&#39;: self._list_bas_with_agreements(),
+            &#39;incident_response&#39;: self._get_incident_reports(period)
+        }
+
+    return report
+</code></pre>
+<h3>5. Healthcare Compliance (HIPAA)</h3>
+<p>Implement HIPAA-specific controls:</p>
+<p><strong>PHI Protection</strong></p>
+<pre><code class="language-python">class HIPAACompliance:
+    def protect_phi(self):
+        &quot;&quot;&quot;
+        Implement HIPAA safeguards for Protected Health Information
+        &quot;&quot;&quot;
+        # Technical Safeguards
+        technical_controls = {
+            &#39;access_control&#39;: &#39;&#39;&#39;
+class PHIAccessControl:
+    def __init__(self):
+        self.minimum_necessary_rule = True
+
+    def grant_phi_access(self, user, patient_id, purpose):
+        &quot;&quot;&quot;
+        Implement minimum necessary standard
+        &quot;&quot;&quot;
+        # Verify legitimate purpose
+        if not self._verify_treatment_relationship(user, patient_id, purpose):
+            self._log_denied_access(user, patient_id, purpose)
+            raise PermissionError(&quot;No treatment relationship&quot;)
+
+        # Grant limited access based on role and purpose
+        access_scope = self._determine_access_scope(user.role, purpose)
+
+        # Time-limited access
+        access_token = {
+            &#39;user_id&#39;: user.id,
+            &#39;patient_id&#39;: patient_id,
+            &#39;scope&#39;: access_scope,
+            &#39;purpose&#39;: purpose,
+            &#39;expires_at&#39;: datetime.utcnow() + timedelta(hours=24),
+            &#39;audit_id&#39;: str(uuid.uuid4())
+        }
+
+        # Log all access
+        self._log_phi_access(access_token)
+
+        return access_token
+&#39;&#39;&#39;,
+            &#39;encryption&#39;: &#39;&#39;&#39;
+class PHIEncryption:
+    def encrypt_phi_at_rest(self, phi_data):
+        &quot;&quot;&quot;
+        HIPAA-compliant encryption for PHI
+        &quot;&quot;&quot;
+        # Use FIPS 140-2 validated encryption
+        encryption_config = {
+            &#39;algorithm&#39;: &#39;AES-256-CBC&#39;,
+            &#39;key_derivation&#39;: &#39;PBKDF2&#39;,
+            &#39;iterations&#39;: 100000,
+            &#39;validation&#39;: &#39;FIPS-140-2-Level-2&#39;
+        }
+
+        # Encrypt PHI fields
+        encrypted_phi = {}
+        for field, value in phi_data.items():
+            if self._is_phi_field(field):
+                encrypted_phi[field] = self._encrypt_field(value, encryption_config)
+            else:
+                encrypted_phi[field] = value
+
+        return encrypted_phi
+
+    def secure_phi_transmission(self):
+        &quot;&quot;&quot;
+        Secure PHI during transmission
+        &quot;&quot;&quot;
+        return {
+            &#39;protocols&#39;: [&#39;TLS 1.2+&#39;],
+            &#39;vpn_required&#39;: True,
+            &#39;email_encryption&#39;: &#39;S/MIME or PGP required&#39;,
+            &#39;fax_alternative&#39;: &#39;Secure messaging portal&#39;
+        }
+&#39;&#39;&#39;
+        }
+
+        # Administrative Safeguards
+        admin_controls = {
+            &#39;workforce_training&#39;: &#39;&#39;&#39;
+class HIPAATraining:
+    def track_training_compliance(self, employee):
+        &quot;&quot;&quot;
+        Ensure workforce HIPAA training compliance
+        &quot;&quot;&quot;
+        required_modules = [
+            &#39;HIPAA Privacy Rule&#39;,
+            &#39;HIPAA Security Rule&#39;,
+            &#39;PHI Handling Procedures&#39;,
+            &#39;Breach Notification&#39;,
+            &#39;Patient Rights&#39;,
+            &#39;Minimum Necessary Standard&#39;
+        ]
+
+        training_status = {
+            &#39;employee_id&#39;: employee.id,
+            &#39;completed_modules&#39;: [],
+            &#39;pending_modules&#39;: [],
+            &#39;last_training_date&#39;: None,
+            &#39;next_due_date&#39;: None
+        }
+
+        for module in required_modules:
+            completion = self._check_module_completion(employee.id, module)
+            if completion and completion[&#39;date&#39;] &gt; datetime.now() - timedelta(days=365):
+                training_status[&#39;completed_modules&#39;].append(module)
+            else:
+                training_status[&#39;pending_modules&#39;].append(module)
+
+        return training_status
+&#39;&#39;&#39;
+        }
+
+        return {
+            &#39;technical&#39;: technical_controls,
+            &#39;administrative&#39;: admin_controls
+        }
+</code></pre>
+<h3>6. Payment Card Compliance (PCI-DSS)</h3>
+<p>Implement PCI-DSS requirements:</p>
+<p><strong>PCI-DSS Controls</strong></p>
+<pre><code class="language-python">class PCIDSSCompliance:
+    def implement_pci_controls(self):
+        &quot;&quot;&quot;
+        Implement PCI-DSS v4.0 requirements
+        &quot;&quot;&quot;
+        controls = {
+            &#39;cardholder_data_protection&#39;: &#39;&#39;&#39;
+class CardDataProtection:
+    def __init__(self):
+        # Never store these
+        self.prohibited_data = [&#39;cvv&#39;, &#39;cvv2&#39;, &#39;cvc2&#39;, &#39;cid&#39;, &#39;pin&#39;, &#39;pin_block&#39;]
+
+    def handle_card_data(self, card_info):
+        &quot;&quot;&quot;
+        PCI-DSS compliant card data handling
+        &quot;&quot;&quot;
+        # Immediately tokenize
+        token = self.tokenize_card(card_info)
+
+        # If must store, only store allowed fields
+        stored_data = {
+            &#39;token&#39;: token,
+            &#39;last_four&#39;: card_info[&#39;number&#39;][-4:],
+            &#39;exp_month&#39;: card_info[&#39;exp_month&#39;],
+            &#39;exp_year&#39;: card_info[&#39;exp_year&#39;],
+            &#39;cardholder_name&#39;: self._encrypt(card_info[&#39;name&#39;])
+        }
+
+        # Never log full card number
+        self._log_transaction(token, &#39;XXXX-XXXX-XXXX-&#39; + stored_data[&#39;last_four&#39;])
+
+        return stored_data
+
+    def tokenize_card(self, card_info):
+        &quot;&quot;&quot;
+        Replace PAN with token
+        &quot;&quot;&quot;
+        # Use payment processor tokenization
+        response = payment_processor.tokenize({
+            &#39;number&#39;: card_info[&#39;number&#39;],
+            &#39;exp_month&#39;: card_info[&#39;exp_month&#39;],
+            &#39;exp_year&#39;: card_info[&#39;exp_year&#39;]
+        })
+
+        return response[&#39;token&#39;]
+&#39;&#39;&#39;,
+            &#39;network_segmentation&#39;: &#39;&#39;&#39;
+# Network segmentation for PCI compliance
+class PCINetworkSegmentation:
+    def configure_network_zones(self):
+        &quot;&quot;&quot;
+        Implement network segmentation
+        &quot;&quot;&quot;
+        zones = {
+            &#39;cde&#39;: {  # Cardholder Data Environment
+                &#39;description&#39;: &#39;Systems that process, store, or transmit CHD&#39;,
+                &#39;controls&#39;: [
+                    &#39;Firewall required&#39;,
+                    &#39;IDS/IPS monitoring&#39;,
+                    &#39;No direct internet access&#39;,
+                    &#39;Quarterly vulnerability scans&#39;,
+                    &#39;Annual penetration testing&#39;
+                ]
+            },
+            &#39;dmz&#39;: {
+                &#39;description&#39;: &#39;Public-facing systems&#39;,
+                &#39;controls&#39;: [
+                    &#39;Web application firewall&#39;,
+                    &#39;No CHD storage allowed&#39;,
+                    &#39;Regular security scanning&#39;
+                ]
+            },
+            &#39;internal&#39;: {
+                &#39;description&#39;: &#39;Internal corporate network&#39;,
+                &#39;controls&#39;: [
+                    &#39;Segmented from CDE&#39;,
+                    &#39;Limited CDE access&#39;,
+                    &#39;Standard security controls&#39;
+                ]
+            }
+        }
+
+        return zones
+&#39;&#39;&#39;,
+            &#39;vulnerability_management&#39;: &#39;&#39;&#39;
+class PCIVulnerabilityManagement:
+    def quarterly_scan_requirements(self):
+        &quot;&quot;&quot;
+        PCI-DSS quarterly scan requirements
+        &quot;&quot;&quot;
+        scan_config = {
+            &#39;internal_scans&#39;: {
+                &#39;frequency&#39;: &#39;quarterly&#39;,
+                &#39;scope&#39;: &#39;all CDE systems&#39;,
+                &#39;tool&#39;: &#39;PCI-approved scanning vendor&#39;,
+                &#39;passing_criteria&#39;: &#39;No high-risk vulnerabilities&#39;
+            },
+            &#39;external_scans&#39;: {
+                &#39;frequency&#39;: &#39;quarterly&#39;,
+                &#39;performed_by&#39;: &#39;ASV (Approved Scanning Vendor)&#39;,
+                &#39;scope&#39;: &#39;All external-facing IP addresses&#39;,
+                &#39;passing_criteria&#39;: &#39;Clean scan with no failures&#39;
+            },
+            &#39;remediation_timeline&#39;: {
+                &#39;critical&#39;: &#39;24 hours&#39;,
+                &#39;high&#39;: &#39;7 days&#39;,
+                &#39;medium&#39;: &#39;30 days&#39;,
+                &#39;low&#39;: &#39;90 days&#39;
+            }
+        }
+
+        return scan_config
+&#39;&#39;&#39;
+        }
+
+        return controls
+</code></pre>
+<h3>7. Continuous Compliance Monitoring</h3>
+<p>Set up automated compliance monitoring:</p>
+<p><strong>Compliance Dashboard</strong></p>
+<pre><code class="language-python">class ComplianceDashboard:
+    def generate_realtime_dashboard(self):
+        &quot;&quot;&quot;
+        Real-time compliance status dashboard
+        &quot;&quot;&quot;
+        dashboard = {
+            &#39;timestamp&#39;: datetime.utcnow(),
+            &#39;overall_compliance_score&#39;: 0,
+            &#39;regulations&#39;: {}
+        }
+
+        # GDPR Compliance Metrics
+        dashboard[&#39;regulations&#39;][&#39;GDPR&#39;] = {
+            &#39;score&#39;: self.calculate_gdpr_score(),
+            &#39;status&#39;: &#39;COMPLIANT&#39;,
+            &#39;metrics&#39;: {
+                &#39;consent_rate&#39;: &#39;87%&#39;,
+                &#39;data_requests_sla&#39;: &#39;98% within 30 days&#39;,
+                &#39;privacy_policy_version&#39;: &#39;2.1&#39;,
+                &#39;last_dpia&#39;: &#39;2025-06-15&#39;,
+                &#39;encryption_coverage&#39;: &#39;100%&#39;,
+                &#39;third_party_agreements&#39;: &#39;12/12 signed&#39;
+            },
+            &#39;issues&#39;: [
+                {
+                    &#39;severity&#39;: &#39;medium&#39;,
+                    &#39;issue&#39;: &#39;Cookie consent banner update needed&#39;,
+                    &#39;due_date&#39;: &#39;2025-08-01&#39;
+                }
+            ]
+        }
+
+        # HIPAA Compliance Metrics
+        dashboard[&#39;regulations&#39;][&#39;HIPAA&#39;] = {
+            &#39;score&#39;: self.calculate_hipaa_score(),
+            &#39;status&#39;: &#39;NEEDS_ATTENTION&#39;,
+            &#39;metrics&#39;: {
+                &#39;risk_assessment_current&#39;: True,
+                &#39;workforce_training_compliance&#39;: &#39;94%&#39;,
+                &#39;baa_agreements&#39;: &#39;8/8 current&#39;,
+                &#39;encryption_status&#39;: &#39;All PHI encrypted&#39;,
+                &#39;access_reviews&#39;: &#39;Completed 2025-06-30&#39;,
+                &#39;incident_response_tested&#39;: &#39;2025-05-15&#39;
+            },
+            &#39;issues&#39;: [
+                {
+                    &#39;severity&#39;: &#39;high&#39;,
+                    &#39;issue&#39;: &#39;3 employees overdue for training&#39;,
+                    &#39;due_date&#39;: &#39;2025-07-25&#39;
+                }
+            ]
+        }
+
+        return dashboard
+</code></pre>
+<p><strong>Automated Compliance Checks</strong></p>
+<pre><code class="language-yaml"># .github/workflows/compliance-check.yml
+name: Compliance Checks
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+  schedule:
+    - cron: &quot;0 0 * * *&quot; # Daily compliance check
+
+jobs:
+  compliance-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: GDPR Compliance Check
+        run: |
+          python scripts/compliance/gdpr_checker.py
+
+      - name: Security Headers Check
+        run: |
+          python scripts/compliance/security_headers.py
+
+      - name: Dependency License Check
+        run: |
+          license-checker --onlyAllow &#39;MIT;Apache-2.0;BSD-3-Clause;ISC&#39;
+
+      - name: PII Detection Scan
+        run: |
+          # Scan for hardcoded PII
+          python scripts/compliance/pii_scanner.py
+
+      - name: Encryption Verification
+        run: |
+          # Verify all sensitive data is encrypted
+          python scripts/compliance/encryption_checker.py
+
+      - name: Generate Compliance Report
+        if: always()
+        run: |
+          python scripts/compliance/generate_report.py &gt; compliance-report.json
+
+      - name: Upload Compliance Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: compliance-report
+          path: compliance-report.json
+</code></pre>
+<h3>8. Compliance Documentation</h3>
+<p>Generate required documentation:</p>
+<p><strong>Privacy Policy Generator</strong></p>
+<pre><code class="language-python">def generate_privacy_policy(company_info, data_practices):
+    &quot;&quot;&quot;
+    Generate GDPR-compliant privacy policy
+    &quot;&quot;&quot;
+    policy = f&quot;&quot;&quot;
+# Privacy Policy
+
+**Last Updated**: {datetime.now().strftime(&#39;%B %d, %Y&#39;)}
+
+## 1. Data Controller
+{company_info[&#39;name&#39;]}
+{company_info[&#39;address&#39;]}
+Email: {company_info[&#39;privacy_email&#39;]}
+DPO: {company_info.get(&#39;dpo_contact&#39;, &#39;privacy@company.com&#39;)}
+
+## 2. Data We Collect
+{generate_data_collection_section(data_practices[&#39;data_types&#39;])}
+
+## 3. Legal Basis for Processing
+{generate_legal_basis_section(data_practices[&#39;purposes&#39;])}
+
+## 4. Your Rights
+Under GDPR, you have the following rights:
+- Right to access your personal data
+- Right to rectification
+- Right to erasure (&#39;right to be forgotten&#39;)
+- Right to restrict processing
+- Right to data portability
+- Right to object
+- Rights related to automated decision making
+
+## 5. Data Retention
+{generate_retention_policy(data_practices[&#39;retention_periods&#39;])}
+
+## 6. International Transfers
+{generate_transfer_section(data_practices[&#39;international_transfers&#39;])}
+
+## 7. Contact Us
+To exercise your rights, contact: {company_info[&#39;privacy_email&#39;]}
+&quot;&quot;&quot;
+
+    return policy
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>Compliance Assessment</strong>: Current compliance status across all applicable regulations</li>
+<li><strong>Gap Analysis</strong>: Specific areas needing attention with severity ratings</li>
+<li><strong>Implementation Plan</strong>: Prioritized roadmap for achieving compliance</li>
+<li><strong>Technical Controls</strong>: Code implementations for required controls</li>
+<li><strong>Policy Templates</strong>: Privacy policies, consent forms, and notices</li>
+<li><strong>Audit Procedures</strong>: Scripts for continuous compliance monitoring</li>
+<li><strong>Documentation</strong>: Required records and evidence for auditors</li>
+<li><strong>Training Materials</strong>: Workforce compliance training resources</li>
+</ol>
+<p>Focus on practical implementation that balances compliance requirements with business operations and user experience.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Hooks Recommendations</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/claude-code-setup/skills/claude-automation-recommender/references/hooks-patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Hooks Recommendations</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup">claude-code-setup</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup%2Fskills">skills</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup%2Fskills%2Fclaude-automation-recommender">claude-automation-recommender</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup%2Fskills%2Fclaude-automation-recommender%2Freferences">references</a> / <span>hooks-patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Hooks Recommendations</h1>
+<p>Hooks automatically run commands in response to Claude Code events. They&#39;re ideal for enforcement and automation that should happen consistently.</p>
+<p><strong>Note</strong>: These are common patterns. Use web search to find hooks for tools/frameworks not listed here to recommend the best hooks for the user.</p>
+<h2>Auto-Formatting Hooks</h2>
+<h3>Prettier (JavaScript/TypeScript)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.prettierrc</code>, <code>.prettierrc.json</code>, <code>prettier.config.js</code></td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook on Edit/Write to auto-format
+<strong>Value</strong>: Code stays formatted without thinking about it</p>
+<h3>ESLint (JavaScript/TypeScript)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.eslintrc</code>, <code>.eslintrc.json</code>, <code>eslint.config.js</code></td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook on Edit/Write to auto-fix
+<strong>Value</strong>: Lint errors fixed automatically</p>
+<h3>Black/isort (Python)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pyproject.toml</code> with black/isort, <code>.black</code>, <code>setup.cfg</code></td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook to format Python files
+<strong>Value</strong>: Consistent Python formatting</p>
+<h3>Ruff (Python - Modern)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ruff.toml</code>, <code>pyproject.toml</code> with <code>[tool.ruff]</code></td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook for lint + format
+<strong>Value</strong>: Fast, comprehensive Python linting</p>
+<h3>gofmt (Go)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>go.mod</code></td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook to run gofmt
+<strong>Value</strong>: Standard Go formatting</p>
+<h3>rustfmt (Rust)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Cargo.toml</code></td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook to run rustfmt
+<strong>Value</strong>: Standard Rust formatting</p>
+<hr>
+<h2>Type Checking Hooks</h2>
+<h3>TypeScript</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tsconfig.json</code></td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook to run tsc --noEmit
+<strong>Value</strong>: Catch type errors immediately</p>
+<h3>mypy/pyright (Python)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>File Exists</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mypy.ini</code>, <code>pyrightconfig.json</code>, pyproject.toml with mypy</td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook for type checking
+<strong>Value</strong>: Catch type errors in Python</p>
+<hr>
+<h2>Protection Hooks</h2>
+<h3>Block Sensitive File Edits</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>Presence Of</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.env</code>, <code>.env.local</code>, <code>.env.production</code></td>
+<td>Environment files</td>
+</tr>
+<tr>
+<td><code>credentials.json</code>, <code>secrets.yaml</code></td>
+<td>Secret files</td>
+</tr>
+<tr>
+<td><code>.git/</code> directory</td>
+<td>Git internals</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PreToolUse hook that blocks Edit/Write to these paths
+<strong>Value</strong>: Prevent accidental secret exposure or git corruption</p>
+<h3>Block Lock File Edits</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>Presence Of</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>package-lock.json</code>, <code>yarn.lock</code>, <code>pnpm-lock.yaml</code></td>
+<td>JS lock files</td>
+</tr>
+<tr>
+<td><code>Cargo.lock</code>, <code>poetry.lock</code>, <code>Pipfile.lock</code></td>
+<td>Other lock files</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PreToolUse hook that blocks direct edits
+<strong>Value</strong>: Lock files should only change via package manager</p>
+<hr>
+<h2>Test Runner Hooks</h2>
+<h3>Jest (JavaScript/TypeScript)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>Presence Of</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>jest.config.js</code>, <code>jest</code> in package.json</td>
+<td>Jest configured</td>
+</tr>
+<tr>
+<td><code>__tests__/</code>, <code>*.test.ts</code>, <code>*.spec.ts</code></td>
+<td>Test files exist</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook to run related tests after edit
+<strong>Value</strong>: Immediate test feedback on changes</p>
+<h3>pytest (Python)</h3>
+<table>
+<thead>
+<tr>
+<th>Detection</th>
+<th>Presence Of</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pytest.ini</code>, <code>pyproject.toml</code> with pytest</td>
+<td>pytest configured</td>
+</tr>
+<tr>
+<td><code>tests/</code>, <code>test_*.py</code></td>
+<td>Test files exist</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: PostToolUse hook to run pytest on changed files
+<strong>Value</strong>: Immediate test feedback</p>
+<hr>
+<h2>Quick Reference: Detection → Recommendation</h2>
+<table>
+<thead>
+<tr>
+<th>If You See</th>
+<th>Recommend This Hook</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prettier config</td>
+<td>Auto-format on Edit/Write</td>
+</tr>
+<tr>
+<td>ESLint config</td>
+<td>Auto-lint on Edit/Write</td>
+</tr>
+<tr>
+<td>Ruff/Black config</td>
+<td>Auto-format Python</td>
+</tr>
+<tr>
+<td>tsconfig.json</td>
+<td>Type-check on Edit</td>
+</tr>
+<tr>
+<td>Test directory</td>
+<td>Run related tests on Edit</td>
+</tr>
+<tr>
+<td>.env files</td>
+<td>Block .env edits</td>
+</tr>
+<tr>
+<td>Lock files</td>
+<td>Block lock file edits</td>
+</tr>
+<tr>
+<td>Go project</td>
+<td>gofmt on Edit</td>
+</tr>
+<tr>
+<td>Rust project</td>
+<td>rustfmt on Edit</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Notification Hooks</h2>
+<p>Notification hooks run when Claude Code sends notifications. Use matchers to filter by notification type.</p>
+<h3>Permission Alerts</h3>
+<table>
+<thead>
+<tr>
+<th>Matcher</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>permission_prompt</code></td>
+<td>Alert when Claude requests permissions</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: Play sound, send desktop notification, or log permission requests
+<strong>Value</strong>: Never miss permission prompts when multitasking</p>
+<h3>Idle Notifications</h3>
+<table>
+<thead>
+<tr>
+<th>Matcher</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>idle_prompt</code></td>
+<td>Alert when Claude is waiting for input (60+ seconds idle)</td>
+</tr>
+</tbody></table>
+<p><strong>Recommend</strong>: Play sound or send notification when Claude needs attention
+<strong>Value</strong>: Know when Claude is ready for your input</p>
+<h3>Example Configuration</h3>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;Notification&quot;: [
+      {
+        &quot;matcher&quot;: &quot;permission_prompt&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;afplay /System/Library/Sounds/Ping.aiff&quot;
+          }
+        ]
+      },
+      {
+        &quot;matcher&quot;: &quot;idle_prompt&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;osascript -e &#39;display notification \&quot;Claude is waiting\&quot; with title \&quot;Claude Code\&quot;&#39;&quot;
+          }
+        ]
+      }
+    ]
+  }
+}
+</code></pre>
+<h3>Available Matchers</h3>
+<table>
+<thead>
+<tr>
+<th>Matcher</th>
+<th>Triggers When</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>permission_prompt</code></td>
+<td>Claude needs permission for a tool</td>
+</tr>
+<tr>
+<td><code>idle_prompt</code></td>
+<td>Claude waiting for input (60+ seconds)</td>
+</tr>
+<tr>
+<td><code>auth_success</code></td>
+<td>Authentication succeeds</td>
+</tr>
+<tr>
+<td><code>elicitation_dialog</code></td>
+<td>MCP tool needs input</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Quick Reference: Detection → Recommendation</h2>
+<table>
+<thead>
+<tr>
+<th>If You See</th>
+<th>Recommend This Hook</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prettier config</td>
+<td>Auto-format on Edit/Write</td>
+</tr>
+<tr>
+<td>ESLint config</td>
+<td>Auto-lint on Edit/Write</td>
+</tr>
+<tr>
+<td>Ruff/Black config</td>
+<td>Auto-format Python</td>
+</tr>
+<tr>
+<td>tsconfig.json</td>
+<td>Type-check on Edit</td>
+</tr>
+<tr>
+<td>Test directory</td>
+<td>Run related tests on Edit</td>
+</tr>
+<tr>
+<td>.env files</td>
+<td>Block .env edits</td>
+</tr>
+<tr>
+<td>Lock files</td>
+<td>Block lock file edits</td>
+</tr>
+<tr>
+<td>Go project</td>
+<td>gofmt on Edit</td>
+</tr>
+<tr>
+<td>Rust project</td>
+<td>rustfmt on Edit</td>
+</tr>
+<tr>
+<td>Multitasking workflow</td>
+<td>Notification hooks for alerts</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Hook Placement</h2>
+<p>Hooks go in <code>.claude/settings.json</code>:</p>
+<pre><code>.claude/
+└── settings.json  ← Hook configurations here
+</code></pre>
+<p>Recommend creating the <code>.claude/</code> directory if it doesn&#39;t exist.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

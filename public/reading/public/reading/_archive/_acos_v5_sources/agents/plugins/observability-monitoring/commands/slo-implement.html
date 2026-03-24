@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SLO Implementation Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/observability-monitoring/commands/slo-implement.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">SLO Implementation Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fobservability-monitoring">observability-monitoring</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fobservability-monitoring%2Fcommands">commands</a> / <span>slo-implement.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>SLO Implementation Guide</h1>
+<p>You are an SLO (Service Level Objective) expert specializing in implementing reliability standards and error budget-based engineering practices. Design comprehensive SLO frameworks, establish meaningful SLIs, and create monitoring systems that balance reliability with feature velocity.</p>
+<h2>Context</h2>
+<p>The user needs to implement SLOs to establish reliability targets, measure service performance, and make data-driven decisions about reliability vs. feature development. Focus on practical SLO implementation that aligns with business objectives.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. SLO Foundation</h3>
+<p>Establish SLO fundamentals and framework:</p>
+<p><strong>SLO Framework Designer</strong></p>
+<pre><code class="language-python">import numpy as np
+from datetime import datetime, timedelta
+from typing import Dict, List, Optional
+
+class SLOFramework:
+    def __init__(self, service_name: str):
+        self.service = service_name
+        self.slos = []
+        self.error_budget = None
+
+    def design_slo_framework(self):
+        &quot;&quot;&quot;
+        Design comprehensive SLO framework
+        &quot;&quot;&quot;
+        framework = {
+            &#39;service_context&#39;: self._analyze_service_context(),
+            &#39;user_journeys&#39;: self._identify_user_journeys(),
+            &#39;sli_candidates&#39;: self._identify_sli_candidates(),
+            &#39;slo_targets&#39;: self._calculate_slo_targets(),
+            &#39;error_budgets&#39;: self._define_error_budgets(),
+            &#39;measurement_strategy&#39;: self._design_measurement_strategy()
+        }
+
+        return self._generate_slo_specification(framework)
+
+    def _analyze_service_context(self):
+        &quot;&quot;&quot;Analyze service characteristics for SLO design&quot;&quot;&quot;
+        return {
+            &#39;service_tier&#39;: self._determine_service_tier(),
+            &#39;user_expectations&#39;: self._assess_user_expectations(),
+            &#39;business_impact&#39;: self._evaluate_business_impact(),
+            &#39;technical_constraints&#39;: self._identify_constraints(),
+            &#39;dependencies&#39;: self._map_dependencies()
+        }
+
+    def _determine_service_tier(self):
+        &quot;&quot;&quot;Determine appropriate service tier and SLO targets&quot;&quot;&quot;
+        tiers = {
+            &#39;critical&#39;: {
+                &#39;description&#39;: &#39;Revenue-critical or safety-critical services&#39;,
+                &#39;availability_target&#39;: 99.95,
+                &#39;latency_p99&#39;: 100,
+                &#39;error_rate&#39;: 0.001,
+                &#39;examples&#39;: [&#39;payment processing&#39;, &#39;authentication&#39;]
+            },
+            &#39;essential&#39;: {
+                &#39;description&#39;: &#39;Core business functionality&#39;,
+                &#39;availability_target&#39;: 99.9,
+                &#39;latency_p99&#39;: 500,
+                &#39;error_rate&#39;: 0.01,
+                &#39;examples&#39;: [&#39;search&#39;, &#39;product catalog&#39;]
+            },
+            &#39;standard&#39;: {
+                &#39;description&#39;: &#39;Standard features&#39;,
+                &#39;availability_target&#39;: 99.5,
+                &#39;latency_p99&#39;: 1000,
+                &#39;error_rate&#39;: 0.05,
+                &#39;examples&#39;: [&#39;recommendations&#39;, &#39;analytics&#39;]
+            },
+            &#39;best_effort&#39;: {
+                &#39;description&#39;: &#39;Non-critical features&#39;,
+                &#39;availability_target&#39;: 99.0,
+                &#39;latency_p99&#39;: 2000,
+                &#39;error_rate&#39;: 0.1,
+                &#39;examples&#39;: [&#39;batch processing&#39;, &#39;reporting&#39;]
+            }
+        }
+
+        # Analyze service characteristics to determine tier
+        characteristics = self._analyze_service_characteristics()
+        recommended_tier = self._match_tier(characteristics, tiers)
+
+        return {
+            &#39;recommended&#39;: recommended_tier,
+            &#39;rationale&#39;: self._explain_tier_selection(characteristics),
+            &#39;all_tiers&#39;: tiers
+        }
+
+    def _identify_user_journeys(self):
+        &quot;&quot;&quot;Map critical user journeys for SLI selection&quot;&quot;&quot;
+        journeys = []
+
+        # Example user journey mapping
+        journey_template = {
+            &#39;name&#39;: &#39;User Login&#39;,
+            &#39;description&#39;: &#39;User authenticates and accesses dashboard&#39;,
+            &#39;steps&#39;: [
+                {
+                    &#39;step&#39;: &#39;Load login page&#39;,
+                    &#39;sli_type&#39;: &#39;availability&#39;,
+                    &#39;threshold&#39;: &#39;&lt; 2s load time&#39;
+                },
+                {
+                    &#39;step&#39;: &#39;Submit credentials&#39;,
+                    &#39;sli_type&#39;: &#39;latency&#39;,
+                    &#39;threshold&#39;: &#39;&lt; 500ms response&#39;
+                },
+                {
+                    &#39;step&#39;: &#39;Validate authentication&#39;,
+                    &#39;sli_type&#39;: &#39;error_rate&#39;,
+                    &#39;threshold&#39;: &#39;&lt; 0.1% auth failures&#39;
+                },
+                {
+                    &#39;step&#39;: &#39;Load dashboard&#39;,
+                    &#39;sli_type&#39;: &#39;latency&#39;,
+                    &#39;threshold&#39;: &#39;&lt; 3s full render&#39;
+                }
+            ],
+            &#39;critical_path&#39;: True,
+            &#39;business_impact&#39;: &#39;high&#39;
+        }
+
+        return journeys
+</code></pre>
+<h3>2. SLI Selection and Measurement</h3>
+<p>Choose and implement appropriate SLIs:</p>
+<p><strong>SLI Implementation</strong></p>
+<pre><code class="language-python">class SLIImplementation:
+    def __init__(self):
+        self.sli_types = {
+            &#39;availability&#39;: AvailabilitySLI,
+            &#39;latency&#39;: LatencySLI,
+            &#39;error_rate&#39;: ErrorRateSLI,
+            &#39;throughput&#39;: ThroughputSLI,
+            &#39;quality&#39;: QualitySLI
+        }
+
+    def implement_slis(self, service_type):
+        &quot;&quot;&quot;Implement SLIs based on service type&quot;&quot;&quot;
+        if service_type == &#39;api&#39;:
+            return self._api_slis()
+        elif service_type == &#39;web&#39;:
+            return self._web_slis()
+        elif service_type == &#39;batch&#39;:
+            return self._batch_slis()
+        elif service_type == &#39;streaming&#39;:
+            return self._streaming_slis()
+
+    def _api_slis(self):
+        &quot;&quot;&quot;SLIs for API services&quot;&quot;&quot;
+        return {
+            &#39;availability&#39;: {
+                &#39;definition&#39;: &#39;Percentage of successful requests&#39;,
+                &#39;formula&#39;: &#39;successful_requests / total_requests * 100&#39;,
+                &#39;implementation&#39;: &#39;&#39;&#39;
+# Prometheus query for API availability
+api_availability = &quot;&quot;&quot;
+sum(rate(http_requests_total{status!~&quot;5..&quot;}[5m])) /
+sum(rate(http_requests_total[5m])) * 100
+&quot;&quot;&quot;
+
+# Implementation
+class APIAvailabilitySLI:
+    def __init__(self, prometheus_client):
+        self.prom = prometheus_client
+
+    def calculate(self, time_range=&#39;5m&#39;):
+        query = f&quot;&quot;&quot;
+        sum(rate(http_requests_total{{status!~&quot;5..&quot;}}[{time_range}])) /
+        sum(rate(http_requests_total[{time_range}])) * 100
+        &quot;&quot;&quot;
+        result = self.prom.query(query)
+        return float(result[0][&#39;value&#39;][1])
+
+    def calculate_with_exclusions(self, time_range=&#39;5m&#39;):
+        &quot;&quot;&quot;Calculate availability excluding certain endpoints&quot;&quot;&quot;
+        query = f&quot;&quot;&quot;
+        sum(rate(http_requests_total{{
+            status!~&quot;5..&quot;,
+            endpoint!~&quot;/health|/metrics&quot;
+        }}[{time_range}])) /
+        sum(rate(http_requests_total{{
+            endpoint!~&quot;/health|/metrics&quot;
+        }}[{time_range}])) * 100
+        &quot;&quot;&quot;
+        return self.prom.query(query)
+&#39;&#39;&#39;
+            },
+            &#39;latency&#39;: {
+                &#39;definition&#39;: &#39;Percentage of requests faster than threshold&#39;,
+                &#39;formula&#39;: &#39;fast_requests / total_requests * 100&#39;,
+                &#39;implementation&#39;: &#39;&#39;&#39;
+# Latency SLI with multiple thresholds
+class LatencySLI:
+    def __init__(self, thresholds_ms):
+        self.thresholds = thresholds_ms  # e.g., {&#39;p50&#39;: 100, &#39;p95&#39;: 500, &#39;p99&#39;: 1000}
+
+    def calculate_latency_sli(self, time_range=&#39;5m&#39;):
+        slis = {}
+
+        for percentile, threshold in self.thresholds.items():
+            query = f&quot;&quot;&quot;
+            sum(rate(http_request_duration_seconds_bucket{{
+                le=&quot;{threshold/1000}&quot;
+            }}[{time_range}])) /
+            sum(rate(http_request_duration_seconds_count[{time_range}])) * 100
+            &quot;&quot;&quot;
+
+            slis[f&#39;latency_{percentile}&#39;] = {
+                &#39;value&#39;: self.execute_query(query),
+                &#39;threshold&#39;: threshold,
+                &#39;unit&#39;: &#39;ms&#39;
+            }
+
+        return slis
+
+    def calculate_user_centric_latency(self):
+        &quot;&quot;&quot;Calculate latency from user perspective&quot;&quot;&quot;
+        # Include client-side metrics
+        query = &quot;&quot;&quot;
+        histogram_quantile(0.95,
+            sum(rate(user_request_duration_bucket[5m])) by (le)
+        )
+        &quot;&quot;&quot;
+        return self.execute_query(query)
+&#39;&#39;&#39;
+            },
+            &#39;error_rate&#39;: {
+                &#39;definition&#39;: &#39;Percentage of successful requests&#39;,
+                &#39;formula&#39;: &#39;(1 - error_requests / total_requests) * 100&#39;,
+                &#39;implementation&#39;: &#39;&#39;&#39;
+class ErrorRateSLI:
+    def calculate_error_rate(self, time_range=&#39;5m&#39;):
+        &quot;&quot;&quot;Calculate error rate with categorization&quot;&quot;&quot;
+
+        # Different error categories
+        error_categories = {
+            &#39;client_errors&#39;: &#39;status=~&quot;4..&quot;&#39;,
+            &#39;server_errors&#39;: &#39;status=~&quot;5..&quot;&#39;,
+            &#39;timeout_errors&#39;: &#39;status=&quot;504&quot;&#39;,
+            &#39;business_errors&#39;: &#39;error_type=&quot;business_logic&quot;&#39;
+        }
+
+        results = {}
+        for category, filter_expr in error_categories.items():
+            query = f&quot;&quot;&quot;
+            sum(rate(http_requests_total{{{filter_expr}}}[{time_range}])) /
+            sum(rate(http_requests_total[{time_range}])) * 100
+            &quot;&quot;&quot;
+            results[category] = self.execute_query(query)
+
+        # Overall error rate (excluding 4xx)
+        overall_query = f&quot;&quot;&quot;
+        (1 - sum(rate(http_requests_total{{status=~&quot;5..&quot;}}[{time_range}])) /
+        sum(rate(http_requests_total[{time_range}]))) * 100
+        &quot;&quot;&quot;
+        results[&#39;overall_success_rate&#39;] = self.execute_query(overall_query)
+
+        return results
+&#39;&#39;&#39;
+            }
+        }
+</code></pre>
+<h3>3. Error Budget Calculation</h3>
+<p>Implement error budget tracking:</p>
+<p><strong>Error Budget Manager</strong></p>
+<pre><code class="language-python">class ErrorBudgetManager:
+    def __init__(self, slo_target: float, window_days: int):
+        self.slo_target = slo_target
+        self.window_days = window_days
+        self.error_budget_minutes = self._calculate_total_budget()
+
+    def _calculate_total_budget(self):
+        &quot;&quot;&quot;Calculate total error budget in minutes&quot;&quot;&quot;
+        total_minutes = self.window_days * 24 * 60
+        allowed_downtime_ratio = 1 - (self.slo_target / 100)
+        return total_minutes * allowed_downtime_ratio
+
+    def calculate_error_budget_status(self, start_date, end_date):
+        &quot;&quot;&quot;Calculate current error budget status&quot;&quot;&quot;
+        # Get actual performance
+        actual_uptime = self._get_actual_uptime(start_date, end_date)
+
+        # Calculate consumed budget
+        total_time = (end_date - start_date).total_seconds() / 60
+        expected_uptime = total_time * (self.slo_target / 100)
+        consumed_minutes = expected_uptime - actual_uptime
+
+        # Calculate remaining budget
+        remaining_budget = self.error_budget_minutes - consumed_minutes
+        burn_rate = consumed_minutes / self.error_budget_minutes
+
+        # Project exhaustion
+        if burn_rate &gt; 0:
+            days_until_exhaustion = (self.window_days * (1 - burn_rate)) / burn_rate
+        else:
+            days_until_exhaustion = float(&#39;inf&#39;)
+
+        return {
+            &#39;total_budget_minutes&#39;: self.error_budget_minutes,
+            &#39;consumed_minutes&#39;: consumed_minutes,
+            &#39;remaining_minutes&#39;: remaining_budget,
+            &#39;burn_rate&#39;: burn_rate,
+            &#39;budget_percentage_remaining&#39;: (remaining_budget / self.error_budget_minutes) * 100,
+            &#39;projected_exhaustion_days&#39;: days_until_exhaustion,
+            &#39;status&#39;: self._determine_status(remaining_budget, burn_rate)
+        }
+
+    def _determine_status(self, remaining_budget, burn_rate):
+        &quot;&quot;&quot;Determine error budget status&quot;&quot;&quot;
+        if remaining_budget &lt;= 0:
+            return &#39;exhausted&#39;
+        elif burn_rate &gt; 2:
+            return &#39;critical&#39;
+        elif burn_rate &gt; 1.5:
+            return &#39;warning&#39;
+        elif burn_rate &gt; 1:
+            return &#39;attention&#39;
+        else:
+            return &#39;healthy&#39;
+
+    def generate_burn_rate_alerts(self):
+        &quot;&quot;&quot;Generate multi-window burn rate alerts&quot;&quot;&quot;
+        return {
+            &#39;fast_burn&#39;: {
+                &#39;description&#39;: &#39;14.4x burn rate over 1 hour&#39;,
+                &#39;condition&#39;: &#39;burn_rate &gt;= 14.4 AND window = 1h&#39;,
+                &#39;action&#39;: &#39;page&#39;,
+                &#39;budget_consumed&#39;: &#39;2% in 1 hour&#39;
+            },
+            &#39;slow_burn&#39;: {
+                &#39;description&#39;: &#39;3x burn rate over 6 hours&#39;,
+                &#39;condition&#39;: &#39;burn_rate &gt;= 3 AND window = 6h&#39;,
+                &#39;action&#39;: &#39;ticket&#39;,
+                &#39;budget_consumed&#39;: &#39;10% in 6 hours&#39;
+            }
+        }
+</code></pre>
+<h3>4. SLO Monitoring Setup</h3>
+<p>Implement comprehensive SLO monitoring:</p>
+<p><strong>SLO Monitoring Implementation</strong></p>
+<pre><code class="language-yaml"># Prometheus recording rules for SLO
+groups:
+  - name: slo_rules
+    interval: 30s
+    rules:
+      # Request rate
+      - record: service:request_rate
+        expr: |
+          sum(rate(http_requests_total[5m])) by (service, method, route)
+
+      # Success rate
+      - record: service:success_rate_5m
+        expr: |
+          (
+            sum(rate(http_requests_total{status!~&quot;5..&quot;}[5m])) by (service)
+            /
+            sum(rate(http_requests_total[5m])) by (service)
+          ) * 100
+
+      # Multi-window success rates
+      - record: service:success_rate_30m
+        expr: |
+          (
+            sum(rate(http_requests_total{status!~&quot;5..&quot;}[30m])) by (service)
+            /
+            sum(rate(http_requests_total[30m])) by (service)
+          ) * 100
+
+      - record: service:success_rate_1h
+        expr: |
+          (
+            sum(rate(http_requests_total{status!~&quot;5..&quot;}[1h])) by (service)
+            /
+            sum(rate(http_requests_total[1h])) by (service)
+          ) * 100
+
+      # Latency percentiles
+      - record: service:latency_p50_5m
+        expr: |
+          histogram_quantile(0.50,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le)
+          )
+
+      - record: service:latency_p95_5m
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le)
+          )
+
+      - record: service:latency_p99_5m
+        expr: |
+          histogram_quantile(0.99,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le)
+          )
+
+      # Error budget burn rate
+      - record: service:error_budget_burn_rate_1h
+        expr: |
+          (
+            1 - (
+              sum(increase(http_requests_total{status!~&quot;5..&quot;}[1h])) by (service)
+              /
+              sum(increase(http_requests_total[1h])) by (service)
+            )
+          ) / (1 - 0.999) # 99.9% SLO
+</code></pre>
+<p><strong>Alert Configuration</strong></p>
+<pre><code class="language-yaml"># Multi-window multi-burn-rate alerts
+groups:
+  - name: slo_alerts
+    rules:
+      # Fast burn alert (2% budget in 1 hour)
+      - alert: ErrorBudgetFastBurn
+        expr: |
+          (
+            service:error_budget_burn_rate_5m{service=&quot;api&quot;} &gt; 14.4
+            AND
+            service:error_budget_burn_rate_1h{service=&quot;api&quot;} &gt; 14.4
+          )
+        for: 2m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: &quot;Fast error budget burn for {{ $labels.service }}&quot;
+          description: |
+            Service {{ $labels.service }} is burning error budget at 14.4x rate.
+            Current burn rate: {{ $value }}x
+            This will exhaust 2% of monthly budget in 1 hour.
+
+      # Slow burn alert (10% budget in 6 hours)
+      - alert: ErrorBudgetSlowBurn
+        expr: |
+          (
+            service:error_budget_burn_rate_30m{service=&quot;api&quot;} &gt; 3
+            AND
+            service:error_budget_burn_rate_6h{service=&quot;api&quot;} &gt; 3
+          )
+        for: 15m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: &quot;Slow error budget burn for {{ $labels.service }}&quot;
+          description: |
+            Service {{ $labels.service }} is burning error budget at 3x rate.
+            Current burn rate: {{ $value }}x
+            This will exhaust 10% of monthly budget in 6 hours.
+</code></pre>
+<h3>5. SLO Dashboard</h3>
+<p>Create comprehensive SLO dashboards:</p>
+<p><strong>Grafana Dashboard Configuration</strong></p>
+<pre><code class="language-python">def create_slo_dashboard():
+    &quot;&quot;&quot;Generate Grafana dashboard for SLO monitoring&quot;&quot;&quot;
+    return {
+        &quot;dashboard&quot;: {
+            &quot;title&quot;: &quot;Service SLO Dashboard&quot;,
+            &quot;panels&quot;: [
+                {
+                    &quot;title&quot;: &quot;SLO Summary&quot;,
+                    &quot;type&quot;: &quot;stat&quot;,
+                    &quot;gridPos&quot;: {&quot;h&quot;: 4, &quot;w&quot;: 6, &quot;x&quot;: 0, &quot;y&quot;: 0},
+                    &quot;targets&quot;: [{
+                        &quot;expr&quot;: &quot;service:success_rate_30d{service=\&quot;$service\&quot;}&quot;,
+                        &quot;legendFormat&quot;: &quot;30-day SLO&quot;
+                    }],
+                    &quot;fieldConfig&quot;: {
+                        &quot;defaults&quot;: {
+                            &quot;thresholds&quot;: {
+                                &quot;mode&quot;: &quot;absolute&quot;,
+                                &quot;steps&quot;: [
+                                    {&quot;color&quot;: &quot;red&quot;, &quot;value&quot;: None},
+                                    {&quot;color&quot;: &quot;yellow&quot;, &quot;value&quot;: 99.5},
+                                    {&quot;color&quot;: &quot;green&quot;, &quot;value&quot;: 99.9}
+                                ]
+                            },
+                            &quot;unit&quot;: &quot;percent&quot;
+                        }
+                    }
+                },
+                {
+                    &quot;title&quot;: &quot;Error Budget Status&quot;,
+                    &quot;type&quot;: &quot;gauge&quot;,
+                    &quot;gridPos&quot;: {&quot;h&quot;: 4, &quot;w&quot;: 6, &quot;x&quot;: 6, &quot;y&quot;: 0},
+                    &quot;targets&quot;: [{
+                        &quot;expr&quot;: &#39;&#39;&#39;
+                        100 * (
+                            1 - (
+                                (1 - service:success_rate_30d{service=&quot;$service&quot;}/100) /
+                                (1 - $slo_target/100)
+                            )
+                        )
+                        &#39;&#39;&#39;,
+                        &quot;legendFormat&quot;: &quot;Remaining Budget&quot;
+                    }],
+                    &quot;fieldConfig&quot;: {
+                        &quot;defaults&quot;: {
+                            &quot;min&quot;: 0,
+                            &quot;max&quot;: 100,
+                            &quot;thresholds&quot;: {
+                                &quot;mode&quot;: &quot;absolute&quot;,
+                                &quot;steps&quot;: [
+                                    {&quot;color&quot;: &quot;red&quot;, &quot;value&quot;: None},
+                                    {&quot;color&quot;: &quot;yellow&quot;, &quot;value&quot;: 20},
+                                    {&quot;color&quot;: &quot;green&quot;, &quot;value&quot;: 50}
+                                ]
+                            },
+                            &quot;unit&quot;: &quot;percent&quot;
+                        }
+                    }
+                },
+                {
+                    &quot;title&quot;: &quot;Burn Rate Trend&quot;,
+                    &quot;type&quot;: &quot;graph&quot;,
+                    &quot;gridPos&quot;: {&quot;h&quot;: 8, &quot;w&quot;: 12, &quot;x&quot;: 12, &quot;y&quot;: 0},
+                    &quot;targets&quot;: [
+                        {
+                            &quot;expr&quot;: &quot;service:error_budget_burn_rate_1h{service=\&quot;$service\&quot;}&quot;,
+                            &quot;legendFormat&quot;: &quot;1h burn rate&quot;
+                        },
+                        {
+                            &quot;expr&quot;: &quot;service:error_budget_burn_rate_6h{service=\&quot;$service\&quot;}&quot;,
+                            &quot;legendFormat&quot;: &quot;6h burn rate&quot;
+                        },
+                        {
+                            &quot;expr&quot;: &quot;service:error_budget_burn_rate_24h{service=\&quot;$service\&quot;}&quot;,
+                            &quot;legendFormat&quot;: &quot;24h burn rate&quot;
+                        }
+                    ],
+                    &quot;yaxes&quot;: [{
+                        &quot;format&quot;: &quot;short&quot;,
+                        &quot;label&quot;: &quot;Burn Rate (x)&quot;,
+                        &quot;min&quot;: 0
+                    }],
+                    &quot;alert&quot;: {
+                        &quot;conditions&quot;: [{
+                            &quot;evaluator&quot;: {&quot;params&quot;: [14.4], &quot;type&quot;: &quot;gt&quot;},
+                            &quot;operator&quot;: {&quot;type&quot;: &quot;and&quot;},
+                            &quot;query&quot;: {&quot;params&quot;: [&quot;A&quot;, &quot;5m&quot;, &quot;now&quot;]},
+                            &quot;type&quot;: &quot;query&quot;
+                        }],
+                        &quot;name&quot;: &quot;High burn rate detected&quot;
+                    }
+                }
+            ]
+        }
+    }
+</code></pre>
+<h3>6. SLO Reporting</h3>
+<p>Generate SLO reports and reviews:</p>
+<p><strong>SLO Report Generator</strong></p>
+<pre><code class="language-python">class SLOReporter:
+    def __init__(self, metrics_client):
+        self.metrics = metrics_client
+
+    def generate_monthly_report(self, service, month):
+        &quot;&quot;&quot;Generate comprehensive monthly SLO report&quot;&quot;&quot;
+        report_data = {
+            &#39;service&#39;: service,
+            &#39;period&#39;: month,
+            &#39;slo_performance&#39;: self._calculate_slo_performance(service, month),
+            &#39;incidents&#39;: self._analyze_incidents(service, month),
+            &#39;error_budget&#39;: self._analyze_error_budget(service, month),
+            &#39;trends&#39;: self._analyze_trends(service, month),
+            &#39;recommendations&#39;: self._generate_recommendations(service, month)
+        }
+
+        return self._format_report(report_data)
+
+    def _calculate_slo_performance(self, service, month):
+        &quot;&quot;&quot;Calculate SLO performance metrics&quot;&quot;&quot;
+        slos = {}
+
+        # Availability SLO
+        availability_query = f&quot;&quot;&quot;
+        avg_over_time(
+            service:success_rate_5m{{service=&quot;{service}&quot;}}[{month}]
+        )
+        &quot;&quot;&quot;
+        slos[&#39;availability&#39;] = {
+            &#39;target&#39;: 99.9,
+            &#39;actual&#39;: self.metrics.query(availability_query),
+            &#39;met&#39;: self.metrics.query(availability_query) &gt;= 99.9
+        }
+
+        # Latency SLO
+        latency_query = f&quot;&quot;&quot;
+        quantile_over_time(0.95,
+            service:latency_p95_5m{{service=&quot;{service}&quot;}}[{month}]
+        )
+        &quot;&quot;&quot;
+        slos[&#39;latency_p95&#39;] = {
+            &#39;target&#39;: 500,  # ms
+            &#39;actual&#39;: self.metrics.query(latency_query) * 1000,
+            &#39;met&#39;: self.metrics.query(latency_query) * 1000 &lt;= 500
+        }
+
+        return slos
+
+    def _format_report(self, data):
+        &quot;&quot;&quot;Format report as HTML&quot;&quot;&quot;
+        return f&quot;&quot;&quot;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;SLO Report - {data[&#39;service&#39;]} - {data[&#39;period&#39;]}&lt;/title&gt;
+    &lt;style&gt;
+        body {{ font-family: Arial, sans-serif; margin: 40px; }}
+        .summary {{ background: #f0f0f0; padding: 20px; border-radius: 8px; }}
+        .metric {{ margin: 20px 0; }}
+        .good {{ color: green; }}
+        .bad {{ color: red; }}
+        table {{ border-collapse: collapse; width: 100%; }}
+        th, td {{ border: 1px solid #ddd; padding: 8px; text-align: left; }}
+        .chart {{ margin: 20px 0; }}
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;SLO Report: {data[&#39;service&#39;]}&lt;/h1&gt;
+    &lt;h2&gt;Period: {data[&#39;period&#39;]}&lt;/h2&gt;
+
+    &lt;div class=&quot;summary&quot;&gt;
+        &lt;h3&gt;Executive Summary&lt;/h3&gt;
+        &lt;p&gt;Service reliability: {data[&#39;slo_performance&#39;][&#39;availability&#39;][&#39;actual&#39;]:.2f}%&lt;/p&gt;
+        &lt;p&gt;Error budget remaining: {data[&#39;error_budget&#39;][&#39;remaining_percentage&#39;]:.1f}%&lt;/p&gt;
+        &lt;p&gt;Number of incidents: {len(data[&#39;incidents&#39;])}&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;metric&quot;&gt;
+        &lt;h3&gt;SLO Performance&lt;/h3&gt;
+        &lt;table&gt;
+            &lt;tr&gt;
+                &lt;th&gt;SLO&lt;/th&gt;
+                &lt;th&gt;Target&lt;/th&gt;
+                &lt;th&gt;Actual&lt;/th&gt;
+                &lt;th&gt;Status&lt;/th&gt;
+            &lt;/tr&gt;
+            {self._format_slo_table_rows(data[&#39;slo_performance&#39;])}
+        &lt;/table&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;incidents&quot;&gt;
+        &lt;h3&gt;Incident Analysis&lt;/h3&gt;
+        {self._format_incident_analysis(data[&#39;incidents&#39;])}
+    &lt;/div&gt;
+
+    &lt;div class=&quot;recommendations&quot;&gt;
+        &lt;h3&gt;Recommendations&lt;/h3&gt;
+        {self._format_recommendations(data[&#39;recommendations&#39;])}
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&quot;&quot;&quot;
+</code></pre>
+<h3>7. SLO-Based Decision Making</h3>
+<p>Implement SLO-driven engineering decisions:</p>
+<p><strong>SLO Decision Framework</strong></p>
+<pre><code class="language-python">class SLODecisionFramework:
+    def __init__(self, error_budget_policy):
+        self.policy = error_budget_policy
+
+    def make_release_decision(self, service, release_risk):
+        &quot;&quot;&quot;Make release decisions based on error budget&quot;&quot;&quot;
+        budget_status = self.get_error_budget_status(service)
+
+        decision_matrix = {
+            &#39;healthy&#39;: {
+                &#39;low_risk&#39;: &#39;approve&#39;,
+                &#39;medium_risk&#39;: &#39;approve&#39;,
+                &#39;high_risk&#39;: &#39;review&#39;
+            },
+            &#39;attention&#39;: {
+                &#39;low_risk&#39;: &#39;approve&#39;,
+                &#39;medium_risk&#39;: &#39;review&#39;,
+                &#39;high_risk&#39;: &#39;defer&#39;
+            },
+            &#39;warning&#39;: {
+                &#39;low_risk&#39;: &#39;review&#39;,
+                &#39;medium_risk&#39;: &#39;defer&#39;,
+                &#39;high_risk&#39;: &#39;block&#39;
+            },
+            &#39;critical&#39;: {
+                &#39;low_risk&#39;: &#39;defer&#39;,
+                &#39;medium_risk&#39;: &#39;block&#39;,
+                &#39;high_risk&#39;: &#39;block&#39;
+            },
+            &#39;exhausted&#39;: {
+                &#39;low_risk&#39;: &#39;block&#39;,
+                &#39;medium_risk&#39;: &#39;block&#39;,
+                &#39;high_risk&#39;: &#39;block&#39;
+            }
+        }
+
+        decision = decision_matrix[budget_status[&#39;status&#39;]][release_risk]
+
+        return {
+            &#39;decision&#39;: decision,
+            &#39;rationale&#39;: self._explain_decision(budget_status, release_risk),
+            &#39;conditions&#39;: self._get_approval_conditions(decision, budget_status),
+            &#39;alternative_actions&#39;: self._suggest_alternatives(decision, budget_status)
+        }
+
+    def prioritize_reliability_work(self, service):
+        &quot;&quot;&quot;Prioritize reliability improvements based on SLO gaps&quot;&quot;&quot;
+        slo_gaps = self.analyze_slo_gaps(service)
+
+        priorities = []
+        for gap in slo_gaps:
+            priority_score = self.calculate_priority_score(gap)
+
+            priorities.append({
+                &#39;issue&#39;: gap[&#39;issue&#39;],
+                &#39;impact&#39;: gap[&#39;impact&#39;],
+                &#39;effort&#39;: gap[&#39;estimated_effort&#39;],
+                &#39;priority_score&#39;: priority_score,
+                &#39;recommended_actions&#39;: self.recommend_actions(gap)
+            })
+
+        return sorted(priorities, key=lambda x: x[&#39;priority_score&#39;], reverse=True)
+
+    def calculate_toil_budget(self, team_size, slo_performance):
+        &quot;&quot;&quot;Calculate how much toil is acceptable based on SLOs&quot;&quot;&quot;
+        # If meeting SLOs, can afford more toil
+        # If not meeting SLOs, need to reduce toil
+
+        base_toil_percentage = 50  # Google SRE recommendation
+
+        if slo_performance &gt;= 100:
+            # Exceeding SLO, can take on more toil
+            toil_budget = base_toil_percentage + 10
+        elif slo_performance &gt;= 99:
+            # Meeting SLO
+            toil_budget = base_toil_percentage
+        else:
+            # Not meeting SLO, reduce toil
+            toil_budget = base_toil_percentage - (100 - slo_performance) * 5
+
+        return {
+            &#39;toil_percentage&#39;: max(toil_budget, 20),  # Minimum 20%
+            &#39;toil_hours_per_week&#39;: (toil_budget / 100) * 40 * team_size,
+            &#39;automation_hours_per_week&#39;: ((100 - toil_budget) / 100) * 40 * team_size
+        }
+</code></pre>
+<h3>8. SLO Templates</h3>
+<p>Provide SLO templates for common services:</p>
+<p><strong>SLO Template Library</strong></p>
+<pre><code class="language-python">class SLOTemplates:
+    @staticmethod
+    def get_api_service_template():
+        &quot;&quot;&quot;SLO template for API services&quot;&quot;&quot;
+        return {
+            &#39;name&#39;: &#39;API Service SLO Template&#39;,
+            &#39;slos&#39;: [
+                {
+                    &#39;name&#39;: &#39;availability&#39;,
+                    &#39;description&#39;: &#39;The proportion of successful requests&#39;,
+                    &#39;sli&#39;: {
+                        &#39;type&#39;: &#39;ratio&#39;,
+                        &#39;good_events&#39;: &#39;requests with status != 5xx&#39;,
+                        &#39;total_events&#39;: &#39;all requests&#39;
+                    },
+                    &#39;objectives&#39;: [
+                        {&#39;window&#39;: &#39;30d&#39;, &#39;target&#39;: 99.9}
+                    ]
+                },
+                {
+                    &#39;name&#39;: &#39;latency&#39;,
+                    &#39;description&#39;: &#39;The proportion of fast requests&#39;,
+                    &#39;sli&#39;: {
+                        &#39;type&#39;: &#39;ratio&#39;,
+                        &#39;good_events&#39;: &#39;requests faster than 500ms&#39;,
+                        &#39;total_events&#39;: &#39;all requests&#39;
+                    },
+                    &#39;objectives&#39;: [
+                        {&#39;window&#39;: &#39;30d&#39;, &#39;target&#39;: 95.0}
+                    ]
+                }
+            ]
+        }
+
+    @staticmethod
+    def get_data_pipeline_template():
+        &quot;&quot;&quot;SLO template for data pipelines&quot;&quot;&quot;
+        return {
+            &#39;name&#39;: &#39;Data Pipeline SLO Template&#39;,
+            &#39;slos&#39;: [
+                {
+                    &#39;name&#39;: &#39;freshness&#39;,
+                    &#39;description&#39;: &#39;Data is processed within SLA&#39;,
+                    &#39;sli&#39;: {
+                        &#39;type&#39;: &#39;ratio&#39;,
+                        &#39;good_events&#39;: &#39;batches processed within 30 minutes&#39;,
+                        &#39;total_events&#39;: &#39;all batches&#39;
+                    },
+                    &#39;objectives&#39;: [
+                        {&#39;window&#39;: &#39;7d&#39;, &#39;target&#39;: 99.0}
+                    ]
+                },
+                {
+                    &#39;name&#39;: &#39;completeness&#39;,
+                    &#39;description&#39;: &#39;All expected data is processed&#39;,
+                    &#39;sli&#39;: {
+                        &#39;type&#39;: &#39;ratio&#39;,
+                        &#39;good_events&#39;: &#39;records successfully processed&#39;,
+                        &#39;total_events&#39;: &#39;all records&#39;
+                    },
+                    &#39;objectives&#39;: [
+                        {&#39;window&#39;: &#39;7d&#39;, &#39;target&#39;: 99.95}
+                    ]
+                }
+            ]
+        }
+</code></pre>
+<h3>9. SLO Automation</h3>
+<p>Automate SLO management:</p>
+<p><strong>SLO Automation Tools</strong></p>
+<pre><code class="language-python">class SLOAutomation:
+    def __init__(self):
+        self.config = self.load_slo_config()
+
+    def auto_generate_slos(self, service_discovery):
+        &quot;&quot;&quot;Automatically generate SLOs for discovered services&quot;&quot;&quot;
+        services = service_discovery.get_all_services()
+        generated_slos = []
+
+        for service in services:
+            # Analyze service characteristics
+            characteristics = self.analyze_service(service)
+
+            # Select appropriate template
+            template = self.select_template(characteristics)
+
+            # Customize based on observed behavior
+            customized_slo = self.customize_slo(template, service)
+
+            generated_slos.append(customized_slo)
+
+        return generated_slos
+
+    def implement_progressive_slos(self, service):
+        &quot;&quot;&quot;Implement progressively stricter SLOs&quot;&quot;&quot;
+        return {
+            &#39;phase1&#39;: {
+                &#39;duration&#39;: &#39;1 month&#39;,
+                &#39;target&#39;: 99.0,
+                &#39;description&#39;: &#39;Baseline establishment&#39;
+            },
+            &#39;phase2&#39;: {
+                &#39;duration&#39;: &#39;2 months&#39;,
+                &#39;target&#39;: 99.5,
+                &#39;description&#39;: &#39;Initial improvement&#39;
+            },
+            &#39;phase3&#39;: {
+                &#39;duration&#39;: &#39;3 months&#39;,
+                &#39;target&#39;: 99.9,
+                &#39;description&#39;: &#39;Production readiness&#39;
+            },
+            &#39;phase4&#39;: {
+                &#39;duration&#39;: &#39;ongoing&#39;,
+                &#39;target&#39;: 99.95,
+                &#39;description&#39;: &#39;Excellence&#39;
+            }
+        }
+
+    def create_slo_as_code(self):
+        &quot;&quot;&quot;Define SLOs as code&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+# slo_definitions.yaml
+apiVersion: slo.dev/v1
+kind: ServiceLevelObjective
+metadata:
+  name: api-availability
+  namespace: production
+spec:
+  service: api-service
+  description: API service availability SLO
+
+  indicator:
+    type: ratio
+    counter:
+      metric: http_requests_total
+      filters:
+        - status_code != 5xx
+    total:
+      metric: http_requests_total
+
+  objectives:
+    - displayName: 30-day rolling window
+      window: 30d
+      target: 0.999
+
+  alerting:
+    burnRates:
+      - severity: critical
+        shortWindow: 1h
+        longWindow: 5m
+        burnRate: 14.4
+      - severity: warning
+        shortWindow: 6h
+        longWindow: 30m
+        burnRate: 3
+
+  annotations:
+    runbook: https://runbooks.example.com/api-availability
+    dashboard: https://grafana.example.com/d/api-slo
+&#39;&#39;&#39;
+</code></pre>
+<h3>10. SLO Culture and Governance</h3>
+<p>Establish SLO culture:</p>
+<p><strong>SLO Governance Framework</strong></p>
+<pre><code class="language-python">class SLOGovernance:
+    def establish_slo_culture(self):
+        &quot;&quot;&quot;Establish SLO-driven culture&quot;&quot;&quot;
+        return {
+            &#39;principles&#39;: [
+                &#39;SLOs are a shared responsibility&#39;,
+                &#39;Error budgets drive prioritization&#39;,
+                &#39;Reliability is a feature&#39;,
+                &#39;Measure what matters to users&#39;
+            ],
+            &#39;practices&#39;: {
+                &#39;weekly_reviews&#39;: self.weekly_slo_review_template(),
+                &#39;incident_retrospectives&#39;: self.slo_incident_template(),
+                &#39;quarterly_planning&#39;: self.quarterly_slo_planning(),
+                &#39;stakeholder_communication&#39;: self.stakeholder_report_template()
+            },
+            &#39;roles&#39;: {
+                &#39;slo_owner&#39;: {
+                    &#39;responsibilities&#39;: [
+                        &#39;Define and maintain SLO definitions&#39;,
+                        &#39;Monitor SLO performance&#39;,
+                        &#39;Lead SLO reviews&#39;,
+                        &#39;Communicate with stakeholders&#39;
+                    ]
+                },
+                &#39;engineering_team&#39;: {
+                    &#39;responsibilities&#39;: [
+                        &#39;Implement SLI measurements&#39;,
+                        &#39;Respond to SLO breaches&#39;,
+                        &#39;Improve reliability&#39;,
+                        &#39;Participate in reviews&#39;
+                    ]
+                },
+                &#39;product_owner&#39;: {
+                    &#39;responsibilities&#39;: [
+                        &#39;Balance features vs reliability&#39;,
+                        &#39;Approve error budget usage&#39;,
+                        &#39;Set business priorities&#39;,
+                        &#39;Communicate with customers&#39;
+                    ]
+                }
+            }
+        }
+
+    def create_slo_review_process(self):
+        &quot;&quot;&quot;Create structured SLO review process&quot;&quot;&quot;
+        return &#39;&#39;&#39;
+# Weekly SLO Review Template
+
+## Agenda (30 minutes)
+
+### 1. SLO Performance Review (10 min)
+- Current SLO status for all services
+- Error budget consumption rate
+- Trend analysis
+
+### 2. Incident Review (10 min)
+- Incidents impacting SLOs
+- Root cause analysis
+- Action items
+
+### 3. Decision Making (10 min)
+- Release approvals/deferrals
+- Resource allocation
+- Priority adjustments
+
+## Review Checklist
+
+- [ ] All SLOs reviewed
+- [ ] Burn rates analyzed
+- [ ] Incidents discussed
+- [ ] Action items assigned
+- [ ] Decisions documented
+
+## Output Template
+
+### Service: [Service Name]
+- **SLO Status**: [Green/Yellow/Red]
+- **Error Budget**: [XX%] remaining
+- **Key Issues**: [List]
+- **Actions**: [List with owners]
+- **Decisions**: [List]
+&#39;&#39;&#39;
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>SLO Framework</strong>: Comprehensive SLO design and objectives</li>
+<li><strong>SLI Implementation</strong>: Code and queries for measuring SLIs</li>
+<li><strong>Error Budget Tracking</strong>: Calculations and burn rate monitoring</li>
+<li><strong>Monitoring Setup</strong>: Prometheus rules and Grafana dashboards</li>
+<li><strong>Alert Configuration</strong>: Multi-window multi-burn-rate alerts</li>
+<li><strong>Reporting Templates</strong>: Monthly reports and reviews</li>
+<li><strong>Decision Framework</strong>: SLO-based engineering decisions</li>
+<li><strong>Automation Tools</strong>: SLO-as-code and auto-generation</li>
+<li><strong>Governance Process</strong>: Culture and review processes</li>
+</ol>
+<p>Focus on creating meaningful SLOs that balance reliability with feature velocity, providing clear signals for engineering decisions and fostering a culture of reliability.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

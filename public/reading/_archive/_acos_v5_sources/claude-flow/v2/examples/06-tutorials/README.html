@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Tutorials and Guides</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/06-tutorials/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Tutorials and Guides</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F06-tutorials">06-tutorials</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Tutorials and Guides</h1>
+<p>Step-by-step tutorials and comprehensive guides for using Claude Flow features.</p>
+<h2>Directory Structure</h2>
+<pre><code>06-tutorials/
+├── getting-started/    # Beginner tutorials
+├── sparc/              # SPARC methodology guides
+├── workflows/          # Workflow orchestration tutorials
+├── advanced/           # Advanced features and patterns
+└── sparc-batchtool-orchestration.md  # Original BatchTool guide
+</code></pre>
+<h2>Tutorial Categories</h2>
+<h3>Getting Started (<code>getting-started/</code>)</h3>
+<ul>
+<li><strong>01-first-swarm.md</strong>: Create your first swarm and understand basics<ul>
+<li>Swarm creation and execution</li>
+<li>Understanding agent roles</li>
+<li>Customizing behavior</li>
+<li>Running generated applications</li>
+</ul>
+</li>
+</ul>
+<h3>SPARC Methodology (<code>sparc/</code>)</h3>
+<ul>
+<li><strong>sparc-tdd-guide.md</strong>: Complete SPARC TDD workflow guide<ul>
+<li>Specification → Pseudocode → Architecture → Refinement → Completion</li>
+<li>Test-driven development with AI</li>
+<li>Security reviews and integration</li>
+<li>Best practices and patterns</li>
+</ul>
+</li>
+</ul>
+<h3>Workflow Orchestration (<code>workflows/</code>)</h3>
+<ul>
+<li><strong>multi-agent-coordination.md</strong>: Advanced multi-agent coordination<ul>
+<li>Agent specialization and roles</li>
+<li>Dependency management</li>
+<li>Coordination patterns (hub-spoke, mesh, pipeline)</li>
+<li>Performance optimization</li>
+<li>Error handling and recovery</li>
+</ul>
+</li>
+</ul>
+<h2>Legacy Tutorial</h2>
+<h3>sparc-batchtool-orchestration.md</h3>
+<p>Original comprehensive guide to BatchTool with SPARC modes covering:</p>
+<ul>
+<li>Parallel execution patterns</li>
+<li>Dependency management</li>
+<li>CI/CD integration</li>
+</ul>
+<h2>Tutorial Topics</h2>
+<h3>Getting Started</h3>
+<ol>
+<li>System setup and configuration</li>
+<li>First swarm creation</li>
+<li>Understanding agent roles</li>
+<li>Basic task execution</li>
+</ol>
+<h3>Advanced Features</h3>
+<ol>
+<li>Custom agent capabilities</li>
+<li>Memory persistence</li>
+<li>Quality thresholds</li>
+<li>Monitoring and logging</li>
+<li>Error recovery</li>
+</ol>
+<h3>Integration Patterns</h3>
+<ol>
+<li>CI/CD pipelines</li>
+<li>Automated testing</li>
+<li>Code generation workflows</li>
+<li>Documentation automation</li>
+</ol>
+<h3>Best Practices</h3>
+<ol>
+<li>Agent specialization</li>
+<li>Task decomposition</li>
+<li>Resource optimization</li>
+<li>Security considerations</li>
+</ol>
+<h2>Using Tutorials</h2>
+<p>Each tutorial includes:</p>
+<ul>
+<li><strong>Prerequisites</strong>: What you need to know</li>
+<li><strong>Step-by-step instructions</strong>: Clear, numbered steps</li>
+<li><strong>Code examples</strong>: Working demonstrations</li>
+<li><strong>Troubleshooting</strong>: Common issues and solutions</li>
+<li><strong>Next steps</strong>: Where to go from here</li>
+</ul>
+<h2>Contributing Tutorials</h2>
+<p>When writing new tutorials:</p>
+<ol>
+<li>Start with clear objectives</li>
+<li>Include working examples</li>
+<li>Explain the &quot;why&quot; not just &quot;how&quot;</li>
+<li>Add diagrams where helpful</li>
+<li>Test all code examples</li>
+<li>Include common pitfalls</li>
+</ol>
+<h2>Tutorial Format</h2>
+<pre><code class="language-markdown"># Tutorial Title
+
+## Overview
+Brief description of what will be learned
+
+## Prerequisites
+- Required knowledge
+- System requirements
+- Previous tutorials
+
+## Steps
+1. **Step Title**
+   - Explanation
+   - Code example
+   - Expected output
+
+## Troubleshooting
+- Common error: Solution
+- Issue: Resolution
+
+## Summary
+- What was learned
+- Key takeaways
+- Next tutorials
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

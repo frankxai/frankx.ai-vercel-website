@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Research Summary Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/research-project/SUMMARY.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Research Summary Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates%2Fresearch-project">research-project</a> / <span>SUMMARY.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Research Summary Template</h1>
+<p>Template for <code>.planning/research/SUMMARY.md</code> — executive summary of project research with roadmap implications.</p>
+<template>
+
+<pre><code class="language-markdown"># Project Research Summary
+
+**Project:** [name from PROJECT.md]
+**Domain:** [inferred domain type]
+**Researched:** [date]
+**Confidence:** [HIGH/MEDIUM/LOW]
+
+## Executive Summary
+
+[2-3 paragraph overview of research findings]
+
+- What type of product this is and how experts build it
+- The recommended approach based on research
+- Key risks and how to mitigate them
+
+## Key Findings
+
+### Recommended Stack
+
+[Summary from STACK.md — 1-2 paragraphs]
+
+**Core technologies:**
+- [Technology]: [purpose] — [why recommended]
+- [Technology]: [purpose] — [why recommended]
+- [Technology]: [purpose] — [why recommended]
+
+### Expected Features
+
+[Summary from FEATURES.md]
+
+**Must have (table stakes):**
+- [Feature] — users expect this
+- [Feature] — users expect this
+
+**Should have (competitive):**
+- [Feature] — differentiator
+- [Feature] — differentiator
+
+**Defer (v2+):**
+- [Feature] — not essential for launch
+
+### Architecture Approach
+
+[Summary from ARCHITECTURE.md — 1 paragraph]
+
+**Major components:**
+1. [Component] — [responsibility]
+2. [Component] — [responsibility]
+3. [Component] — [responsibility]
+
+### Critical Pitfalls
+
+[Top 3-5 from PITFALLS.md]
+
+1. **[Pitfall]** — [how to avoid]
+2. **[Pitfall]** — [how to avoid]
+3. **[Pitfall]** — [how to avoid]
+
+## Implications for Roadmap
+
+Based on research, suggested phase structure:
+
+### Phase 1: [Name]
+**Rationale:** [why this comes first based on research]
+**Delivers:** [what this phase produces]
+**Addresses:** [features from FEATURES.md]
+**Avoids:** [pitfall from PITFALLS.md]
+
+### Phase 2: [Name]
+**Rationale:** [why this order]
+**Delivers:** [what this phase produces]
+**Uses:** [stack elements from STACK.md]
+**Implements:** [architecture component]
+
+### Phase 3: [Name]
+**Rationale:** [why this order]
+**Delivers:** [what this phase produces]
+
+[Continue for suggested phases...]
+
+### Phase Ordering Rationale
+
+- [Why this order based on dependencies discovered]
+- [Why this grouping based on architecture patterns]
+- [How this avoids pitfalls from research]
+
+### Research Flags
+
+Phases likely needing deeper research during planning:
+- **Phase [X]:** [reason — e.g., &quot;complex integration, needs API research&quot;]
+- **Phase [Y]:** [reason — e.g., &quot;niche domain, sparse documentation&quot;]
+
+Phases with standard patterns (skip research-phase):
+- **Phase [X]:** [reason — e.g., &quot;well-documented, established patterns&quot;]
+
+## Confidence Assessment
+
+| Area | Confidence | Notes |
+|------|------------|-------|
+| Stack | [HIGH/MEDIUM/LOW] | [reason] |
+| Features | [HIGH/MEDIUM/LOW] | [reason] |
+| Architecture | [HIGH/MEDIUM/LOW] | [reason] |
+| Pitfalls | [HIGH/MEDIUM/LOW] | [reason] |
+
+**Overall confidence:** [HIGH/MEDIUM/LOW]
+
+### Gaps to Address
+
+[Any areas where research was inconclusive or needs validation during implementation]
+
+- [Gap]: [how to handle during planning/execution]
+- [Gap]: [how to handle during planning/execution]
+
+## Sources
+
+### Primary (HIGH confidence)
+- [Context7 library ID] — [topics]
+- [Official docs URL] — [what was checked]
+
+### Secondary (MEDIUM confidence)
+- [Source] — [finding]
+
+### Tertiary (LOW confidence)
+- [Source] — [finding, needs validation]
+
+---
+*Research completed: [date]*
+*Ready for roadmap: yes*
+</code></pre>
+</template>
+
+<guidelines>
+
+<p><strong>Executive Summary:</strong></p>
+<ul>
+<li>Write for someone who will only read this section</li>
+<li>Include the key recommendation and main risk</li>
+<li>2-3 paragraphs maximum</li>
+</ul>
+<p><strong>Key Findings:</strong></p>
+<ul>
+<li>Summarize, don&#39;t duplicate full documents</li>
+<li>Link to detailed docs (STACK.md, FEATURES.md, etc.)</li>
+<li>Focus on what matters for roadmap decisions</li>
+</ul>
+<p><strong>Implications for Roadmap:</strong></p>
+<ul>
+<li>This is the most important section</li>
+<li>Directly informs roadmap creation</li>
+<li>Be explicit about phase suggestions and rationale</li>
+<li>Include research flags for each suggested phase</li>
+</ul>
+<p><strong>Confidence Assessment:</strong></p>
+<ul>
+<li>Be honest about uncertainty</li>
+<li>Note gaps that need resolution during planning</li>
+<li>HIGH = verified with official sources</li>
+<li>MEDIUM = community consensus, multiple sources agree</li>
+<li>LOW = single source or inference</li>
+</ul>
+<p><strong>Integration with roadmap creation:</strong></p>
+<ul>
+<li>This file is loaded as context during roadmap creation</li>
+<li>Phase suggestions here become starting point for roadmap</li>
+<li>Research flags inform phase planning</li>
+</ul>
+</guidelines>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/design-gods — Design Excellence Orchestrator v2.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/design-gods.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/design-gods — Design Excellence Orchestrator v2.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>design-gods.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/design-gods — Design Excellence Orchestrator v2.0</h1>
+<p><strong>Purpose</strong>: Invoke the full design excellence swarm for FrankX. Routes requests to the right specialist agent(s) based on task type. Ensures every design decision meets brand, accessibility, and technical standards.</p>
+<p><strong>Power</strong>: 5 specialist agents + 7-layer token system + 5-gate QA + 7-gate visual filter. The equivalent of a 100-person senior design team distilled into an orchestrated swarm.</p>
+<hr>
+<h2>What This Command Does</h2>
+<ol>
+<li><strong>Classifies</strong> the design request into one or more specialist domains</li>
+<li><strong>Invokes</strong> the relevant agents (brand-architect, ui-engineer, design-qa, visual-director, figma-bridge)</li>
+<li><strong>Sequences</strong> work correctly (design → build → QA, never QA → design)</li>
+<li><strong>Synthesizes</strong> outputs into a single actionable response</li>
+<li><strong>Validates</strong> against the full design system before shipping</li>
+</ol>
+<hr>
+<h2>Request Classification</h2>
+<table>
+<thead>
+<tr>
+<th>Request Type</th>
+<th>Primary Agent</th>
+<th>Secondary Agent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Brand audit / copy review</td>
+<td>brand-architect</td>
+<td>design-qa</td>
+</tr>
+<tr>
+<td>New component build</td>
+<td>ui-engineer</td>
+<td>design-qa</td>
+</tr>
+<tr>
+<td>Figma design to implement</td>
+<td>figma-bridge</td>
+<td>ui-engineer</td>
+</tr>
+<tr>
+<td>Image / visual generation</td>
+<td>visual-director</td>
+<td>brand-architect</td>
+</tr>
+<tr>
+<td>Design quality check</td>
+<td>design-qa</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Token / design system update</td>
+<td>ui-engineer</td>
+<td>figma-bridge</td>
+</tr>
+<tr>
+<td>Full page design review</td>
+<td>brand-architect</td>
+<td>design-qa + ui-engineer</td>
+</tr>
+<tr>
+<td>Character placement</td>
+<td>brand-architect</td>
+<td>visual-director</td>
+</tr>
+<tr>
+<td>Token compliance scan</td>
+<td>design-qa</td>
+<td>ui-engineer</td>
+</tr>
+<tr>
+<td>Component migration</td>
+<td>ui-engineer</td>
+<td>design-qa</td>
+</tr>
+<tr>
+<td>Accessibility audit</td>
+<td>design-qa</td>
+<td>ui-engineer</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Invocation Modes</h2>
+<h3><code>/design-gods audit [page or component]</code></h3>
+<p>Full brand + quality audit. Invokes brand-architect → design-qa.
+Output: Brand Audit Report + Design QA Report with file:line fixes.</p>
+<h3><code>/design-gods build [component description]</code></h3>
+<p>New component from design brief. Invokes ui-engineer → design-qa.
+Output: Complete TypeScript component + QA verdict. Zero hardcoded values guaranteed.</p>
+<h3><code>/design-gods figma [URL]</code></h3>
+<p>Implement a Figma design. Invokes figma-bridge → ui-engineer → design-qa.
+Output: Component code mapped to FrankX tokens + QA verdict.</p>
+<h3><code>/design-gods visual [brief]</code></h3>
+<p>Generate visual asset. Invokes visual-director (7-gate) → nanobanana.
+Output: Direction brief + generated image(s) + asset registry entry.</p>
+<h3><code>/design-gods system</code></h3>
+<p>Full design system health check. Comprehensive scan of ALL components.</p>
+<pre><code>SYSTEM HEALTH CHECK PROTOCOL:
+1. Scan all files in components/ and app/ for token violations
+2. Count hardcoded hex, wrong glass opacity, wrong radius, wrong font
+3. Check motion: transition-all, missing reduced-motion, wrong duration
+4. Check accessibility: missing focus rings, small touch targets, missing aria
+5. Check brand: wrong character placement, banned voice terms, weak CTAs
+6. Generate health score (0-100) with breakdown by gate
+7. Rank top 10 files needing fixes (by violation count)
+</code></pre>
+<p>Output: System Health Dashboard + Top 10 priority fixes.</p>
+<h3><code>/design-gods token-audit</code></h3>
+<p>Deep token compliance scan. Finds every hardcoded value in the codebase.</p>
+<pre><code>TOKEN AUDIT PROTOCOL:
+1. Grep all .tsx files for hardcoded hex patterns (#[0-9a-fA-F]{3,8})
+2. Grep for hardcoded rgba() patterns
+3. Grep for bg-white/ with opacity &gt; 0.08
+4. Grep for text-gray-* (should be text-white/ with opacity)
+5. Grep for shadow-lg, shadow-md (should be elevation system)
+6. Grep for rounded-lg on card-like components (should be rounded-4xl)
+7. Grep for transition-all (should be specific property)
+8. Grep for font-poppins on non-heading elements
+9. Output: violation list with exact file:line + suggested fix
+</code></pre>
+<h3><code>/design-gods migrate [file or pattern]</code></h3>
+<p>Migrate existing components to full token compliance.</p>
+<pre><code>MIGRATION PROTOCOL:
+1. Read target file(s)
+2. Identify all token violations (run mini token-audit)
+3. For each violation: apply the correct token replacement
+4. Verify: re-read file, confirm zero violations
+5. Run 5-gate QA on migrated file
+6. Output: diff summary + QA verdict
+</code></pre>
+<h3><code>/design-gods a11y [page or component]</code></h3>
+<p>Focused accessibility audit (WCAG 2.2 + Apple HIG).</p>
+<pre><code>ACCESSIBILITY AUDIT:
+1. Interactive elements: focus-visible ring present?
+2. Touch targets: all ≥44×44px?
+3. Text contrast: ≥4.5:1 (AA) on all text?
+4. Animations: prefers-reduced-motion check?
+5. Images: alt text on non-decorative?
+6. Forms: labels associated with inputs?
+7. Keyboard: all interactive elements reachable?
+8. Screen readers: ARIA landmarks, live regions?
+</code></pre>
+<hr>
+<h2>Agent Invocation Protocol</h2>
+<pre><code>Task: design-gods [mode] [args]
+
+STEP 1 — Classify (orchestrator decision, no agent needed):
+  Read the request → map to classification table → decide routing
+
+STEP 2 — Load Context:
+  Read lib/design/tokens.ts (surface, elevation, stateLayer, focusRing, etc.)
+  Read lib/design/motion.ts (m3Curves, motionDurations, motionSpring, variants)
+  Read the target files
+
+STEP 3 — Invoke Primary Agent (blocking):
+  Use Task tool with subagent_type matching agent name
+  Wait for output
+
+STEP 4 — Invoke Secondary Agent (if applicable):
+  Pass primary output as context
+  Wait for QA verdict or synthesis
+
+STEP 5 — Synthesize (orchestrator):
+  Combine outputs into single response
+  List files created/modified
+  List next actions
+
+STEP 6 — Design QA (always last):
+  If any UI code was written: run design-qa 5-gate validation
+  BLOCKED verdict = do not ship, fix immediately
+  NEEDS REVISION = fix before merge
+  CONDITIONAL = ship with fix ticket
+  PASS = ship it
+</code></pre>
+<hr>
+<h2>Design Standards Enforced</h2>
+<h3>Non-Negotiable Gates</h3>
+<ul>
+<li>✅ All colors via tokens (never hardcoded hex)</li>
+<li>✅ Glass opacity 0.02–0.08 maximum</li>
+<li>✅ Focus rings on all interactive elements (focusRing.default)</li>
+<li>✅ Touch targets ≥44px (Apple HIG, touchTarget.standard)</li>
+<li>✅ M3 state layers on cards/buttons (stateLayer.hover/pressed/focused)</li>
+<li>✅ M3 motion curves (m3Curves.emphasized, NOT css ease-in-out)</li>
+<li>✅ prefers-reduced-motion check on all animations</li>
+<li>✅ Brand character matches page domain (per character-to-domain map)</li>
+<li>✅ Fluid typography (text-fluid-* preferred over fixed breakpoints)</li>
+<li>✅ Elevation system (elevation.sm/md/lg, NOT shadow-lg)</li>
+<li>✅ Semantic gradients (gradients.text.brand, NOT custom bg-gradient)</li>
+</ul>
+<h3>7-Layer Token System</h3>
+<pre><code>Layer 1: Color Primitives    → emerald-500, purple-600, etc.
+Layer 2: Semantic Colors     → --brand-primary, --text-primary, etc.
+Layer 3: Surfaces            → surface.glass, surface.elevated, etc.
+Layer 4: Elevation           → elevation.sm, elevation.md, elevation.brand
+Layer 5: Typography          → font-display, font-sans, text-fluid-*
+Layer 6: Spacing             → 4px grid, sectionSpacing.*, componentPadding.*
+Layer 7: Motion              → m3Curves.*, motionDurations.*, motionSpring.*
+</code></pre>
+<h3>Design System References</h3>
+<ul>
+<li>Tokens: <code>lib/design/tokens.ts</code> — surface, elevation, stateLayer, focusRing, touchTarget, interactiveSurface, contentHierarchy, componentPadding, lineHeight, letterSpacing</li>
+<li>Motion: <code>lib/design/motion.ts</code> — m3Curves, motionDurations, motionSpring, motionEasing, staggerConfig, componentTiming, variants, orchestrationVariants, gesture, reducedMotionVariants</li>
+<li>Gradients: <code>lib/design/gradients.ts</code> — gradientClasses, + gradients.text.brand (tokens.ts)</li>
+<li>CSS: <code>app/globals.css</code> — --motion-_ vars, --surface-_ steps, .glass-<em>, .text-fluid-</em>, .font-nums</li>
+<li>Primitives: <code>components/ui/primitives.tsx</code> — Surface, SectionHeading, Pill, StatBlock, Badge, Divider</li>
+<li>Synthesis doc: <code>docs/design-system/APPLE_MATERIAL_SYNTHESIS.md</code></li>
+<li>Figma file: <code>69bcWBXfAJzKezS31cioHg</code></li>
+</ul>
+<hr>
+<h2>Quick Reference: Common Token Replacements</h2>
+<pre><code>WRONG → RIGHT
+──────────────────────────────────────────────
+#10b981                → text-emerald-500
+bg-white/15            → bg-white/5 (glass) or bg-white/[0.08] (elevated)
+text-gray-400          → text-white/48 (tertiary) or text-white/72 (secondary)
+shadow-lg              → shadow-elevation-2
+rounded-lg (on cards)  → rounded-4xl
+transition-all         → transition-colors / transition-opacity (specific)
+duration-300           → duration-[250ms] or motionDurations.fast
+font-poppins (on body) → font-sans
+ease-in-out            → m3Curves.emphasized
+text-4xl lg:text-5xl   → text-fluid-4xl
+</code></pre>
+<hr>
+<h2>Example Runs</h2>
+<h3>Example 1: New section component</h3>
+<pre><code>/design-gods build &quot;Feature grid section — 3-column card grid for AI architecture features, each card has icon + title + description + CTA button, dark glass, emerald accents&quot;
+→ ui-engineer → design-qa
+→ FeatureGrid.tsx + PASS verdict
+</code></pre>
+<h3>Example 2: Brand audit</h3>
+<pre><code>/design-gods audit app/coaching/page.tsx
+→ brand-architect → design-qa
+→ Brand Report (character: Lumina/Sol, fixes needed) + QA report
+</code></pre>
+<h3>Example 3: Figma to code</h3>
+<pre><code>/design-gods figma https://figma.com/design/69bcWBXfAJzKezS31cioHg/FrankX?node-id=2-45
+→ figma-bridge → ui-engineer → design-qa
+→ MCP call → component code → QA verdict
+</code></pre>
+<h3>Example 4: Token compliance scan</h3>
+<pre><code>/design-gods token-audit
+→ design-qa scans all components
+→ &quot;47 violations across 12 files — top 3: HomePage.tsx (8), Music.tsx (6), Labs.tsx (5)&quot;
+</code></pre>
+<h3>Example 5: Migrate to tokens</h3>
+<pre><code>/design-gods migrate components/home/sections/Projects.tsx
+→ ui-engineer reads file, replaces hardcoded → token-compliant
+→ design-qa confirms PASS
+</code></pre>
+<h3>Example 6: Accessibility audit</h3>
+<pre><code>/design-gods a11y app/music-lab/page.tsx
+→ design-qa checks all 8 a11y criteria
+→ &quot;3 issues: 2 missing focus rings, 1 touch target too small&quot;
+</code></pre>
+<hr>
+<h2>FRANK-Ω Character Design Integration</h2>
+<p>The visual-director agent knows all character variants and their appropriate contexts.</p>
+<h3>Character Palette (locked)</h3>
+<ul>
+<li>Body: dark gunmetal <code>#1a1a1a</code> / charcoal <code>#2a2a2a</code></li>
+<li>Eyes: electric blue <code>#00bfff</code> → <code>#0080ff</code> (the hero accent)</li>
+<li>Core: violet <code>#7c3aed</code> (matches SIS brand color)</li>
+<li>Background: deep navy <code>#0a0f1e</code> with faint hex grid</li>
+</ul>
+<h3>Variant → Context Map</h3>
+<table>
+<thead>
+<tr>
+<th>Variant</th>
+<th>File</th>
+<th>Context</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Primary</td>
+<td><code>frank-omega-pixar-blue-v1</code></td>
+<td>Default hero, main sections</td>
+</tr>
+<tr>
+<td>Hero Flight</td>
+<td><code>frank-omega-hero-v1</code></td>
+<td>Action backgrounds, launches, dynamic pages</td>
+</tr>
+<tr>
+<td>City Chill</td>
+<td><code>frank-omega-chill-v1</code></td>
+<td>Editorial, about, personality moments</td>
+</tr>
+<tr>
+<td>Portrait</td>
+<td><code>frank-omega-portrait-v1</code></td>
+<td>Avatars (80px+), profile images</td>
+</tr>
+<tr>
+<td>Chibi Avatar</td>
+<td><code>frank-omega-chibi-avatar-v1</code></td>
+<td>Icons, small avatars (32-56px)</td>
+</tr>
+<tr>
+<td>Directing</td>
+<td><code>frank-omega-pointing-v1</code></td>
+<td>CTAs, directional callouts</td>
+</tr>
+<tr>
+<td>Deep Work</td>
+<td><code>frank-omega-thinking-v1</code></td>
+<td>AI sections, research, processing</td>
+</tr>
+<tr>
+<td>Chibi Tough</td>
+<td><code>frank-omega-chibi-v1</code></td>
+<td>Social, gaming, playful contexts</td>
+</tr>
+<tr>
+<td>Hey There</td>
+<td><code>frank-omega-pixar-chibi-v1</code></td>
+<td>Onboarding, welcome, first interactions</td>
+</tr>
+<tr>
+<td>Cinematic</td>
+<td><code>frank-omega-v1</code></td>
+<td>OG images, dramatic violet hero shots</td>
+</tr>
+</tbody></table>
+<h3>Usage rules</h3>
+<ol>
+<li>Always use <code>_thumb.jpeg</code> for avatars/thumbnails — 10x smaller, same quality at small sizes</li>
+<li>Use <code>.png</code> only for large hero images where detail matters</li>
+<li>Apply <code>object-position: object-top</code> for chibi variants (head-heavy compositions)</li>
+<li>Add <code>drop-shadow-[0_0_60px_rgba(59,130,246,0.3)]</code> for floating character appearance</li>
+<li>Ghost/watermark use: <code>opacity-10</code> or <code>opacity-15</code> on background decorative placements</li>
+</ol>
+<h3>Invoke for character work</h3>
+<pre><code>/design-gods character hero-section → &quot;Use frank-omega-chill-v1 or frank-omega-hero-v1 as background&quot;
+/design-gods character avatar → &quot;Use frank-omega-chibi-avatar-v1_thumb.jpeg, 40-80px circular&quot;
+/design-gods character cta → &quot;Use frank-omega-pointing-v1 or frank-omega-pixar-chibi-v1&quot;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

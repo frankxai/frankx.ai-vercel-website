@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Flow Nexus Neural Networks</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/.claude/skills/flow-nexus-neural/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Flow Nexus Neural Networks</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fskills%2Fflow-nexus-neural">flow-nexus-neural</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: flow-nexus-neural
+description: Train and deploy neural networks in distributed E2B sandboxes with Flow Nexus
+version: 1.0.0
+category: ai-ml
+tags:
+  - neural-networks
+  - distributed-training
+  - machine-learning
+  - deep-learning
+  - flow-nexus
+  - e2b-sandboxes
+requires_auth: true
+mcp_server: flow-nexus</h2>
+<h1>Flow Nexus Neural Networks</h1>
+<p>Deploy, train, and manage neural networks in distributed E2B sandbox environments. Train custom models with multiple architectures (feedforward, LSTM, GAN, transformer) or use pre-built templates from the marketplace.</p>
+<h2>Prerequisites</h2>
+<pre><code class="language-bash"># Add Flow Nexus MCP server
+claude mcp add flow-nexus npx flow-nexus@latest mcp start
+
+# Register and login
+npx flow-nexus@latest register
+npx flow-nexus@latest login
+</code></pre>
+<h2>Core Capabilities</h2>
+<h3>1. Single-Node Neural Training</h3>
+<p>Train neural networks with custom architectures and configurations.</p>
+<p><strong>Available Architectures:</strong></p>
+<ul>
+<li><code>feedforward</code> - Standard fully-connected networks</li>
+<li><code>lstm</code> - Long Short-Term Memory for sequences</li>
+<li><code>gan</code> - Generative Adversarial Networks</li>
+<li><code>autoencoder</code> - Dimensionality reduction</li>
+<li><code>transformer</code> - Attention-based models</li>
+</ul>
+<p><strong>Training Tiers:</strong></p>
+<ul>
+<li><code>nano</code> - Minimal resources (fast, limited)</li>
+<li><code>mini</code> - Small models</li>
+<li><code>small</code> - Standard models</li>
+<li><code>medium</code> - Complex models</li>
+<li><code>large</code> - Large-scale training</li>
+</ul>
+<h4>Example: Train Custom Classifier</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_train({
+  config: {
+    architecture: {
+      type: &quot;feedforward&quot;,
+      layers: [
+        { type: &quot;dense&quot;, units: 256, activation: &quot;relu&quot; },
+        { type: &quot;dropout&quot;, rate: 0.3 },
+        { type: &quot;dense&quot;, units: 128, activation: &quot;relu&quot; },
+        { type: &quot;dropout&quot;, rate: 0.2 },
+        { type: &quot;dense&quot;, units: 64, activation: &quot;relu&quot; },
+        { type: &quot;dense&quot;, units: 10, activation: &quot;softmax&quot; }
+      ]
+    },
+    training: {
+      epochs: 100,
+      batch_size: 32,
+      learning_rate: 0.001,
+      optimizer: &quot;adam&quot;
+    },
+    divergent: {
+      enabled: true,
+      pattern: &quot;lateral&quot;, // quantum, chaotic, associative, evolutionary
+      factor: 0.5
+    }
+  },
+  tier: &quot;small&quot;,
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<h4>Example: LSTM for Time Series</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_train({
+  config: {
+    architecture: {
+      type: &quot;lstm&quot;,
+      layers: [
+        { type: &quot;lstm&quot;, units: 128, return_sequences: true },
+        { type: &quot;dropout&quot;, rate: 0.2 },
+        { type: &quot;lstm&quot;, units: 64 },
+        { type: &quot;dense&quot;, units: 1, activation: &quot;linear&quot; }
+      ]
+    },
+    training: {
+      epochs: 150,
+      batch_size: 64,
+      learning_rate: 0.01,
+      optimizer: &quot;adam&quot;
+    }
+  },
+  tier: &quot;medium&quot;
+})
+</code></pre>
+<h4>Example: Transformer Architecture</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_train({
+  config: {
+    architecture: {
+      type: &quot;transformer&quot;,
+      layers: [
+        { type: &quot;embedding&quot;, vocab_size: 10000, embedding_dim: 512 },
+        { type: &quot;transformer_encoder&quot;, num_heads: 8, ff_dim: 2048 },
+        { type: &quot;global_average_pooling&quot; },
+        { type: &quot;dense&quot;, units: 128, activation: &quot;relu&quot; },
+        { type: &quot;dense&quot;, units: 2, activation: &quot;softmax&quot; }
+      ]
+    },
+    training: {
+      epochs: 50,
+      batch_size: 16,
+      learning_rate: 0.0001,
+      optimizer: &quot;adam&quot;
+    }
+  },
+  tier: &quot;large&quot;
+})
+</code></pre>
+<h3>2. Model Inference</h3>
+<p>Run predictions on trained models.</p>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_predict({
+  model_id: &quot;model_abc123&quot;,
+  input: [
+    [0.5, 0.3, 0.2, 0.1],
+    [0.8, 0.1, 0.05, 0.05],
+    [0.2, 0.6, 0.15, 0.05]
+  ],
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;predictions&quot;: [
+    [0.12, 0.85, 0.03],
+    [0.89, 0.08, 0.03],
+    [0.05, 0.92, 0.03]
+  ],
+  &quot;inference_time_ms&quot;: 45,
+  &quot;model_version&quot;: &quot;1.0.0&quot;
+}
+</code></pre>
+<h3>3. Template Marketplace</h3>
+<p>Browse and deploy pre-trained models from the marketplace.</p>
+<h4>List Available Templates</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_list_templates({
+  category: &quot;classification&quot;, // timeseries, regression, nlp, vision, anomaly, generative
+  tier: &quot;free&quot;, // or &quot;paid&quot;
+  search: &quot;sentiment&quot;,
+  limit: 20
+})
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;templates&quot;: [
+    {
+      &quot;id&quot;: &quot;sentiment-analysis-v2&quot;,
+      &quot;name&quot;: &quot;Sentiment Analysis Classifier&quot;,
+      &quot;description&quot;: &quot;Pre-trained BERT model for sentiment analysis&quot;,
+      &quot;category&quot;: &quot;nlp&quot;,
+      &quot;accuracy&quot;: 0.94,
+      &quot;downloads&quot;: 1523,
+      &quot;tier&quot;: &quot;free&quot;
+    },
+    {
+      &quot;id&quot;: &quot;image-classifier-resnet&quot;,
+      &quot;name&quot;: &quot;ResNet Image Classifier&quot;,
+      &quot;description&quot;: &quot;ResNet-50 for image classification&quot;,
+      &quot;category&quot;: &quot;vision&quot;,
+      &quot;accuracy&quot;: 0.96,
+      &quot;downloads&quot;: 2341,
+      &quot;tier&quot;: &quot;paid&quot;
+    }
+  ]
+}
+</code></pre>
+<h4>Deploy Template</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_deploy_template({
+  template_id: &quot;sentiment-analysis-v2&quot;,
+  custom_config: {
+    training: {
+      epochs: 50,
+      learning_rate: 0.0001
+    }
+  },
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<h3>4. Distributed Training Clusters</h3>
+<p>Train large models across multiple E2B sandboxes with distributed computing.</p>
+<h4>Initialize Cluster</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_cluster_init({
+  name: &quot;large-model-cluster&quot;,
+  architecture: &quot;transformer&quot;, // transformer, cnn, rnn, gnn, hybrid
+  topology: &quot;mesh&quot;, // mesh, ring, star, hierarchical
+  consensus: &quot;proof-of-learning&quot;, // byzantine, raft, gossip
+  daaEnabled: true, // Decentralized Autonomous Agents
+  wasmOptimization: true
+})
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;cluster_id&quot;: &quot;cluster_xyz789&quot;,
+  &quot;name&quot;: &quot;large-model-cluster&quot;,
+  &quot;status&quot;: &quot;initializing&quot;,
+  &quot;topology&quot;: &quot;mesh&quot;,
+  &quot;max_nodes&quot;: 100,
+  &quot;created_at&quot;: &quot;2025-10-19T10:30:00Z&quot;
+}
+</code></pre>
+<h4>Deploy Worker Nodes</h4>
+<pre><code class="language-javascript">// Deploy parameter server
+mcp__flow-nexus__neural_node_deploy({
+  cluster_id: &quot;cluster_xyz789&quot;,
+  node_type: &quot;parameter_server&quot;,
+  model: &quot;large&quot;,
+  template: &quot;nodejs&quot;,
+  capabilities: [&quot;parameter_management&quot;, &quot;gradient_aggregation&quot;],
+  autonomy: 0.8
+})
+
+// Deploy worker nodes
+mcp__flow-nexus__neural_node_deploy({
+  cluster_id: &quot;cluster_xyz789&quot;,
+  node_type: &quot;worker&quot;,
+  model: &quot;xl&quot;,
+  role: &quot;worker&quot;,
+  capabilities: [&quot;training&quot;, &quot;inference&quot;],
+  layers: [
+    { type: &quot;transformer_encoder&quot;, num_heads: 16 },
+    { type: &quot;feed_forward&quot;, units: 4096 }
+  ],
+  autonomy: 0.9
+})
+
+// Deploy aggregator
+mcp__flow-nexus__neural_node_deploy({
+  cluster_id: &quot;cluster_xyz789&quot;,
+  node_type: &quot;aggregator&quot;,
+  model: &quot;large&quot;,
+  capabilities: [&quot;gradient_aggregation&quot;, &quot;model_synchronization&quot;]
+})
+</code></pre>
+<h4>Connect Cluster Topology</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_cluster_connect({
+  cluster_id: &quot;cluster_xyz789&quot;,
+  topology: &quot;mesh&quot; // Override default if needed
+})
+</code></pre>
+<h4>Start Distributed Training</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_train_distributed({
+  cluster_id: &quot;cluster_xyz789&quot;,
+  dataset: &quot;imagenet&quot;, // or custom dataset identifier
+  epochs: 100,
+  batch_size: 128,
+  learning_rate: 0.001,
+  optimizer: &quot;adam&quot;, // sgd, rmsprop, adagrad
+  federated: true // Enable federated learning
+})
+</code></pre>
+<p><strong>Federated Learning Example:</strong></p>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_train_distributed({
+  cluster_id: &quot;cluster_xyz789&quot;,
+  dataset: &quot;medical_images_distributed&quot;,
+  epochs: 200,
+  batch_size: 64,
+  learning_rate: 0.0001,
+  optimizer: &quot;adam&quot;,
+  federated: true, // Data stays on local nodes
+  aggregation_rounds: 50,
+  min_nodes_per_round: 5
+})
+</code></pre>
+<h4>Monitor Cluster Status</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_cluster_status({
+  cluster_id: &quot;cluster_xyz789&quot;
+})
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;cluster_id&quot;: &quot;cluster_xyz789&quot;,
+  &quot;status&quot;: &quot;training&quot;,
+  &quot;nodes&quot;: [
+    {
+      &quot;node_id&quot;: &quot;node_001&quot;,
+      &quot;type&quot;: &quot;parameter_server&quot;,
+      &quot;status&quot;: &quot;active&quot;,
+      &quot;cpu_usage&quot;: 0.75,
+      &quot;memory_usage&quot;: 0.82
+    },
+    {
+      &quot;node_id&quot;: &quot;node_002&quot;,
+      &quot;type&quot;: &quot;worker&quot;,
+      &quot;status&quot;: &quot;active&quot;,
+      &quot;training_progress&quot;: 0.45
+    }
+  ],
+  &quot;training_metrics&quot;: {
+    &quot;current_epoch&quot;: 45,
+    &quot;total_epochs&quot;: 100,
+    &quot;loss&quot;: 0.234,
+    &quot;accuracy&quot;: 0.891
+  }
+}
+</code></pre>
+<h4>Run Distributed Inference</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_predict_distributed({
+  cluster_id: &quot;cluster_xyz789&quot;,
+  input_data: JSON.stringify([
+    [0.1, 0.2, 0.3],
+    [0.4, 0.5, 0.6]
+  ]),
+  aggregation: &quot;ensemble&quot; // mean, majority, weighted, ensemble
+})
+</code></pre>
+<h4>Terminate Cluster</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_cluster_terminate({
+  cluster_id: &quot;cluster_xyz789&quot;
+})
+</code></pre>
+<h3>5. Model Management</h3>
+<h4>List Your Models</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_list_models({
+  user_id: &quot;your_user_id&quot;,
+  include_public: true
+})
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;models&quot;: [
+    {
+      &quot;model_id&quot;: &quot;model_abc123&quot;,
+      &quot;name&quot;: &quot;Custom Classifier v1&quot;,
+      &quot;architecture&quot;: &quot;feedforward&quot;,
+      &quot;accuracy&quot;: 0.92,
+      &quot;created_at&quot;: &quot;2025-10-15T14:20:00Z&quot;,
+      &quot;status&quot;: &quot;trained&quot;
+    },
+    {
+      &quot;model_id&quot;: &quot;model_def456&quot;,
+      &quot;name&quot;: &quot;LSTM Forecaster&quot;,
+      &quot;architecture&quot;: &quot;lstm&quot;,
+      &quot;mse&quot;: 0.0045,
+      &quot;created_at&quot;: &quot;2025-10-18T09:15:00Z&quot;,
+      &quot;status&quot;: &quot;training&quot;
+    }
+  ]
+}
+</code></pre>
+<h4>Check Training Status</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_training_status({
+  job_id: &quot;job_training_xyz&quot;
+})
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;job_id&quot;: &quot;job_training_xyz&quot;,
+  &quot;status&quot;: &quot;training&quot;,
+  &quot;progress&quot;: 0.67,
+  &quot;current_epoch&quot;: 67,
+  &quot;total_epochs&quot;: 100,
+  &quot;current_loss&quot;: 0.234,
+  &quot;estimated_completion&quot;: &quot;2025-10-19T12:45:00Z&quot;
+}
+</code></pre>
+<h4>Performance Benchmarking</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_performance_benchmark({
+  model_id: &quot;model_abc123&quot;,
+  benchmark_type: &quot;comprehensive&quot; // inference, throughput, memory, comprehensive
+})
+</code></pre>
+<p><strong>Response:</strong></p>
+<pre><code class="language-json">{
+  &quot;model_id&quot;: &quot;model_abc123&quot;,
+  &quot;benchmarks&quot;: {
+    &quot;inference_latency_ms&quot;: 12.5,
+    &quot;throughput_qps&quot;: 8000,
+    &quot;memory_usage_mb&quot;: 245,
+    &quot;gpu_utilization&quot;: 0.78,
+    &quot;accuracy&quot;: 0.92,
+    &quot;f1_score&quot;: 0.89
+  },
+  &quot;timestamp&quot;: &quot;2025-10-19T11:00:00Z&quot;
+}
+</code></pre>
+<h4>Create Validation Workflow</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_validation_workflow({
+  model_id: &quot;model_abc123&quot;,
+  user_id: &quot;your_user_id&quot;,
+  validation_type: &quot;comprehensive&quot; // performance, accuracy, robustness, comprehensive
+})
+</code></pre>
+<h3>6. Publishing and Marketplace</h3>
+<h4>Publish Model as Template</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_publish_template({
+  model_id: &quot;model_abc123&quot;,
+  name: &quot;High-Accuracy Sentiment Classifier&quot;,
+  description: &quot;Fine-tuned BERT model for sentiment analysis with 94% accuracy&quot;,
+  category: &quot;nlp&quot;,
+  price: 0, // 0 for free, or credits amount
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<h4>Rate a Template</h4>
+<pre><code class="language-javascript">mcp__flow-nexus__neural_rate_template({
+  template_id: &quot;sentiment-analysis-v2&quot;,
+  rating: 5,
+  review: &quot;Excellent model! Achieved 95% accuracy on my dataset.&quot;,
+  user_id: &quot;your_user_id&quot;
+})
+</code></pre>
+<h2>Common Use Cases</h2>
+<h3>Image Classification with CNN</h3>
+<pre><code class="language-javascript">// Initialize cluster for large-scale image training
+const cluster = await mcp__flow-nexus__neural_cluster_init({
+  name: &quot;image-classification-cluster&quot;,
+  architecture: &quot;cnn&quot;,
+  topology: &quot;hierarchical&quot;,
+  wasmOptimization: true
+})
+
+// Deploy worker nodes
+await mcp__flow-nexus__neural_node_deploy({
+  cluster_id: cluster.cluster_id,
+  node_type: &quot;worker&quot;,
+  model: &quot;large&quot;,
+  capabilities: [&quot;training&quot;, &quot;data_augmentation&quot;]
+})
+
+// Start training
+await mcp__flow-nexus__neural_train_distributed({
+  cluster_id: cluster.cluster_id,
+  dataset: &quot;custom_images&quot;,
+  epochs: 100,
+  batch_size: 64,
+  learning_rate: 0.001,
+  optimizer: &quot;adam&quot;
+})
+</code></pre>
+<h3>NLP Sentiment Analysis</h3>
+<pre><code class="language-javascript">// Use pre-built template
+const deployment = await mcp__flow-nexus__neural_deploy_template({
+  template_id: &quot;sentiment-analysis-v2&quot;,
+  custom_config: {
+    training: {
+      epochs: 30,
+      batch_size: 16
+    }
+  }
+})
+
+// Run inference
+const result = await mcp__flow-nexus__neural_predict({
+  model_id: deployment.model_id,
+  input: [&quot;This product is amazing!&quot;, &quot;Terrible experience.&quot;]
+})
+</code></pre>
+<h3>Time Series Forecasting</h3>
+<pre><code class="language-javascript">// Train LSTM model
+const training = await mcp__flow-nexus__neural_train({
+  config: {
+    architecture: {
+      type: &quot;lstm&quot;,
+      layers: [
+        { type: &quot;lstm&quot;, units: 128, return_sequences: true },
+        { type: &quot;dropout&quot;, rate: 0.2 },
+        { type: &quot;lstm&quot;, units: 64 },
+        { type: &quot;dense&quot;, units: 1 }
+      ]
+    },
+    training: {
+      epochs: 150,
+      batch_size: 64,
+      learning_rate: 0.01,
+      optimizer: &quot;adam&quot;
+    }
+  },
+  tier: &quot;medium&quot;
+})
+
+// Monitor progress
+const status = await mcp__flow-nexus__neural_training_status({
+  job_id: training.job_id
+})
+</code></pre>
+<h3>Federated Learning for Privacy</h3>
+<pre><code class="language-javascript">// Initialize federated cluster
+const cluster = await mcp__flow-nexus__neural_cluster_init({
+  name: &quot;federated-medical-cluster&quot;,
+  architecture: &quot;transformer&quot;,
+  topology: &quot;mesh&quot;,
+  consensus: &quot;proof-of-learning&quot;,
+  daaEnabled: true
+})
+
+// Deploy nodes across different locations
+for (let i = 0; i &lt; 5; i++) {
+  await mcp__flow-nexus__neural_node_deploy({
+    cluster_id: cluster.cluster_id,
+    node_type: &quot;worker&quot;,
+    model: &quot;large&quot;,
+    autonomy: 0.9
+  })
+}
+
+// Train with federated learning (data never leaves nodes)
+await mcp__flow-nexus__neural_train_distributed({
+  cluster_id: cluster.cluster_id,
+  dataset: &quot;medical_records_distributed&quot;,
+  epochs: 200,
+  federated: true,
+  aggregation_rounds: 100
+})
+</code></pre>
+<h2>Architecture Patterns</h2>
+<h3>Feedforward Networks</h3>
+<p>Best for: Classification, regression, simple pattern recognition</p>
+<pre><code class="language-javascript">{
+  type: &quot;feedforward&quot;,
+  layers: [
+    { type: &quot;dense&quot;, units: 256, activation: &quot;relu&quot; },
+    { type: &quot;dropout&quot;, rate: 0.3 },
+    { type: &quot;dense&quot;, units: 128, activation: &quot;relu&quot; },
+    { type: &quot;dense&quot;, units: 10, activation: &quot;softmax&quot; }
+  ]
+}
+</code></pre>
+<h3>LSTM Networks</h3>
+<p>Best for: Time series, sequences, forecasting</p>
+<pre><code class="language-javascript">{
+  type: &quot;lstm&quot;,
+  layers: [
+    { type: &quot;lstm&quot;, units: 128, return_sequences: true },
+    { type: &quot;lstm&quot;, units: 64 },
+    { type: &quot;dense&quot;, units: 1 }
+  ]
+}
+</code></pre>
+<h3>Transformers</h3>
+<p>Best for: NLP, attention mechanisms, large-scale text</p>
+<pre><code class="language-javascript">{
+  type: &quot;transformer&quot;,
+  layers: [
+    { type: &quot;embedding&quot;, vocab_size: 10000, embedding_dim: 512 },
+    { type: &quot;transformer_encoder&quot;, num_heads: 8, ff_dim: 2048 },
+    { type: &quot;global_average_pooling&quot; },
+    { type: &quot;dense&quot;, units: 2, activation: &quot;softmax&quot; }
+  ]
+}
+</code></pre>
+<h3>GANs</h3>
+<p>Best for: Generative tasks, image synthesis</p>
+<pre><code class="language-javascript">{
+  type: &quot;gan&quot;,
+  generator_layers: [...],
+  discriminator_layers: [...]
+}
+</code></pre>
+<h3>Autoencoders</h3>
+<p>Best for: Dimensionality reduction, anomaly detection</p>
+<pre><code class="language-javascript">{
+  type: &quot;autoencoder&quot;,
+  encoder_layers: [
+    { type: &quot;dense&quot;, units: 128, activation: &quot;relu&quot; },
+    { type: &quot;dense&quot;, units: 64, activation: &quot;relu&quot; }
+  ],
+  decoder_layers: [
+    { type: &quot;dense&quot;, units: 128, activation: &quot;relu&quot; },
+    { type: &quot;dense&quot;, units: input_dim, activation: &quot;sigmoid&quot; }
+  ]
+}
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Start Small</strong>: Begin with <code>nano</code> or <code>mini</code> tiers for experimentation</li>
+<li><strong>Use Templates</strong>: Leverage marketplace templates for common tasks</li>
+<li><strong>Monitor Training</strong>: Check status regularly to catch issues early</li>
+<li><strong>Benchmark Models</strong>: Always benchmark before production deployment</li>
+<li><strong>Distributed Training</strong>: Use clusters for large models (&gt;1B parameters)</li>
+<li><strong>Federated Learning</strong>: Use for privacy-sensitive data</li>
+<li><strong>Version Models</strong>: Publish successful models as templates for reuse</li>
+<li><strong>Validate Thoroughly</strong>: Use validation workflows before deployment</li>
+</ol>
+<h2>Troubleshooting</h2>
+<h3>Training Stalled</h3>
+<pre><code class="language-javascript">// Check cluster status
+const status = await mcp__flow-nexus__neural_cluster_status({
+  cluster_id: &quot;cluster_id&quot;
+})
+
+// Terminate and restart if needed
+await mcp__flow-nexus__neural_cluster_terminate({
+  cluster_id: &quot;cluster_id&quot;
+})
+</code></pre>
+<h3>Low Accuracy</h3>
+<ul>
+<li>Increase epochs</li>
+<li>Adjust learning rate</li>
+<li>Add regularization (dropout)</li>
+<li>Try different optimizer</li>
+<li>Use data augmentation</li>
+</ul>
+<h3>Out of Memory</h3>
+<ul>
+<li>Reduce batch size</li>
+<li>Use smaller model tier</li>
+<li>Enable gradient accumulation</li>
+<li>Use distributed training</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>flow-nexus-sandbox</code> - E2B sandbox management</li>
+<li><code>flow-nexus-swarm</code> - AI swarm orchestration</li>
+<li><code>flow-nexus-workflow</code> - Workflow automation</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li>Flow Nexus Docs: <a href="https://flow-nexus.ruv.io/docs">https://flow-nexus.ruv.io/docs</a></li>
+<li>Neural Network Guide: <a href="https://flow-nexus.ruv.io/docs/neural">https://flow-nexus.ruv.io/docs/neural</a></li>
+<li>Template Marketplace: <a href="https://flow-nexus.ruv.io/templates">https://flow-nexus.ruv.io/templates</a></li>
+<li>API Reference: <a href="https://flow-nexus.ruv.io/api">https://flow-nexus.ruv.io/api</a></li>
+</ul>
+<hr>
+<p><strong>Note</strong>: Distributed training requires authentication. Register at <a href="https://flow-nexus.ruv.io">https://flow-nexus.ruv.io</a> or use <code>npx flow-nexus@latest register</code>.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

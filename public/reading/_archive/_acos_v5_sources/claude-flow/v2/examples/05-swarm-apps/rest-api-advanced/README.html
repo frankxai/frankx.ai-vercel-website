@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Advanced REST API</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/05-swarm-apps/rest-api-advanced/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Advanced REST API</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F05-swarm-apps">05-swarm-apps</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F05-swarm-apps%2Frest-api-advanced">rest-api-advanced</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Advanced REST API</h1>
+<p>A production-ready REST API built with Node.js, Express, and MongoDB, featuring comprehensive authentication, e-commerce functionality, and enterprise-grade security.</p>
+<h2>Features</h2>
+<h3>Core Features</h3>
+<ul>
+<li><strong>RESTful API Design</strong>: Following REST principles and best practices</li>
+<li><strong>Authentication &amp; Authorization</strong>: JWT-based authentication with refresh tokens</li>
+<li><strong>Role-Based Access Control</strong>: User and admin roles with permission-based routing</li>
+<li><strong>Database</strong>: MongoDB with Mongoose ODM</li>
+<li><strong>Caching</strong>: Redis integration for performance optimization</li>
+<li><strong>Validation</strong>: Request validation using Joi and express-validator</li>
+<li><strong>Error Handling</strong>: Centralized error handling with custom error classes</li>
+<li><strong>Logging</strong>: Structured logging with Winston</li>
+<li><strong>Security</strong>: Comprehensive security measures including rate limiting, helmet, CORS, XSS protection</li>
+<li><strong>API Documentation</strong>: Auto-generated Swagger/OpenAPI documentation</li>
+<li><strong>Testing</strong>: Comprehensive unit and integration tests with Jest</li>
+<li><strong>File Upload</strong>: Multer integration for product images and avatars</li>
+<li><strong>Email</strong>: Email service for notifications, verification, and password reset</li>
+<li><strong>Monitoring</strong>: Health checks and readiness endpoints</li>
+</ul>
+<h3>E-commerce Features</h3>
+<ul>
+<li><strong>Product Management</strong>: Full CRUD operations with categories, tags, and specifications</li>
+<li><strong>Inventory Tracking</strong>: Real-time stock management with bulk operations</li>
+<li><strong>Product Reviews</strong>: User reviews with ratings and helpful votes</li>
+<li><strong>Order Processing</strong>: Complete order lifecycle from creation to delivery</li>
+<li><strong>Shopping Cart</strong>: Session-based cart management</li>
+<li><strong>Payment Integration</strong>: Support for multiple payment methods</li>
+<li><strong>Order Tracking</strong>: Shipping information and status updates</li>
+<li><strong>Sales Reports</strong>: Admin analytics and reporting</li>
+</ul>
+<h3>Security Features</h3>
+<ul>
+<li>Helmet.js for security headers</li>
+<li>CORS configuration with whitelisting</li>
+<li>Rate limiting (general: 100/15min, auth: 5/15min)</li>
+<li>MongoDB injection prevention</li>
+<li>XSS protection with input sanitization</li>
+<li>HTTP Parameter Pollution prevention</li>
+<li>JWT token blacklisting</li>
+<li>Bcrypt password hashing with salt rounds</li>
+<li>Password strength validation</li>
+<li>Account lockout after failed attempts</li>
+<li>Email verification</li>
+<li>Two-factor authentication ready</li>
+</ul>
+<h3>Development Features</h3>
+<ul>
+<li>Hot reloading with nodemon</li>
+<li>Environment-based configuration</li>
+<li>Docker support with docker-compose</li>
+<li>ESLint with Airbnb configuration</li>
+<li>Comprehensive error messages</li>
+<li>Request ID tracking</li>
+<li>Graceful shutdown handling</li>
+<li>Database seeders for test data</li>
+<li>Postman collection included</li>
+<li>VSCode debugging configuration</li>
+</ul>
+<h2>Project Structure</h2>
+<pre><code>rest-api-advanced/
+├── src/
+│   ├── config/          # Configuration files
+│   │   ├── database.js  # MongoDB connection
+│   │   ├── redis.js     # Redis connection
+│   │   └── config.js    # App configuration
+│   ├── controllers/     # Route controllers
+│   │   ├── auth.controller.js
+│   │   ├── user.controller.js
+│   │   ├── product.controller.js
+│   │   └── order.controller.js
+│   ├── middleware/      # Custom middleware
+│   │   ├── auth.js      # Authentication middleware
+│   │   ├── errorHandler.js
+│   │   ├── validate.js  # Validation middleware
+│   │   └── upload.js    # File upload middleware
+│   ├── models/          # Mongoose models
+│   │   ├── User.js
+│   │   ├── Product.js
+│   │   ├── Order.js
+│   │   └── Token.js
+│   ├── routes/          # API routes
+│   │   ├── auth.routes.js
+│   │   ├── user.routes.js
+│   │   ├── product.routes.js
+│   │   ├── order.routes.js
+│   │   └── health.routes.js
+│   ├── services/        # Business logic
+│   │   ├── auth.service.js
+│   │   ├── email.service.js
+│   │   ├── cache.service.js
+│   │   └── payment.service.js
+│   ├── utils/           # Utility functions
+│   │   ├── logger.js
+│   │   ├── ApiError.js
+│   │   ├── asyncHandler.js
+│   │   └── helpers.js
+│   └── validators/      # Request validators
+│       ├── auth.validator.js
+│       ├── user.validator.js
+│       └── product.validator.js
+├── tests/               # Test files
+│   ├── unit/           # Unit tests
+│   ├── integration/    # Integration tests
+│   └── setup.js        # Test configuration
+├── docs/               # Documentation
+├── scripts/            # Utility scripts
+├── .env.example        # Environment variables example
+├── .eslintrc.js        # ESLint configuration
+├── .gitignore         # Git ignore file
+├── docker-compose.yml  # Docker compose for local development
+├── Dockerfile         # Docker configuration
+├── jest.config.js     # Jest configuration
+├── package.json       # NPM dependencies
+├── README.md          # Project documentation
+└── server.js          # Application entry point
+</code></pre>
+<h2>Getting Started</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Node.js &gt;= 16.0.0</li>
+<li>MongoDB &gt;= 4.4</li>
+<li>Redis &gt;= 6.0 (optional, but recommended)</li>
+<li>npm or yarn</li>
+</ul>
+<h3>Quick Start</h3>
+<h4>Option 1: Automated Setup (Recommended)</h4>
+<pre><code class="language-bash"># Clone the repository
+git clone &lt;repository-url&gt;
+cd rest-api-advanced
+
+# Run the quick start script
+./scripts/quick-start.sh
+</code></pre>
+<p>This script will:</p>
+<ul>
+<li>Check all prerequisites</li>
+<li>Create .env with secure JWT secret</li>
+<li>Install dependencies</li>
+<li>Start MongoDB and Redis with Docker</li>
+<li>Seed the database</li>
+<li>Start the development server</li>
+</ul>
+<h4>Option 2: Manual Setup</h4>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+<pre><code class="language-bash">git clone &lt;repository-url&gt;
+cd rest-api-advanced
+</code></pre>
+<ol start="2">
+<li>Install dependencies:</li>
+</ol>
+<pre><code class="language-bash">npm install
+</code></pre>
+<ol start="3">
+<li>Set up environment variables:</li>
+</ol>
+<pre><code class="language-bash">cp .env.example .env
+# Edit .env with your configuration
+</code></pre>
+<ol start="4">
+<li>Start services with Docker (recommended):</li>
+</ol>
+<pre><code class="language-bash">docker-compose up -d mongodb redis
+</code></pre>
+<p>Or install MongoDB and Redis locally.</p>
+<ol start="5">
+<li>Create <code>.env</code> file with required variables:</li>
+</ol>
+<pre><code class="language-env"># Server
+PORT=3000
+NODE_ENV=development
+
+# Database
+MONGODB_URI=mongodb://localhost:27017/rest-api-advanced
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key-min-32-chars
+JWT_EXPIRE=7d
+
+# Redis (optional)
+REDIS_HOST=localhost
+REDIS_PORT=6379
+</code></pre>
+<ol start="6">
+<li>Seed the database:</li>
+</ol>
+<pre><code class="language-bash">npm run seed
+</code></pre>
+<p>This creates:</p>
+<ul>
+<li>Admin user: <code>admin@example.com</code> / <code>password123</code></li>
+<li>Test user: <code>user@example.com</code> / <code>password123</code></li>
+<li>Sample products and categories</li>
+</ul>
+<ol start="7">
+<li>Start the development server:</li>
+</ol>
+<pre><code class="language-bash">npm run dev
+</code></pre>
+<p>The API will be available at <code>http://localhost:3000</code></p>
+<h3>Using Docker (All Services)</h3>
+<ol>
+<li>Build and run everything with Docker Compose:</li>
+</ol>
+<pre><code class="language-bash">docker-compose up --build
+</code></pre>
+<p>This will start:</p>
+<ul>
+<li>The API server on port 3000</li>
+<li>MongoDB on port 27017</li>
+<li>Redis on port 6379</li>
+<li>Automatic database seeding</li>
+</ul>
+<ol start="2">
+<li>Access the API:</li>
+</ol>
+<ul>
+<li>API Base URL: <code>http://localhost:3000/api</code></li>
+<li>Swagger Docs: <code>http://localhost:3000/api-docs</code></li>
+<li>Health Check: <code>http://localhost:3000/api/health</code></li>
+</ul>
+<h2>API Documentation</h2>
+<h3>Interactive Documentation</h3>
+<p>Once the server is running, you can access:</p>
+<ul>
+<li><strong>Swagger UI</strong>: <code>http://localhost:3000/api-docs</code></li>
+<li><strong>Postman Collection</strong>: Available in <code>/docs/postman-collection.json</code></li>
+<li><strong>Full API Reference</strong>: See <code>/docs/API.md</code></li>
+</ul>
+<h3>Quick Links</h3>
+<ul>
+<li>Health Check: <code>http://localhost:3000/api/health</code></li>
+<li>API Base URL: <code>http://localhost:3000/api</code></li>
+</ul>
+<h2>API Endpoints</h2>
+<h3>Authentication</h3>
+<ul>
+<li><code>POST /api/auth/register</code> - Register a new user</li>
+<li><code>POST /api/auth/login</code> - Login user</li>
+<li><code>POST /api/auth/logout</code> - Logout user</li>
+<li><code>POST /api/auth/refresh</code> - Refresh access token</li>
+<li><code>POST /api/auth/forgot-password</code> - Request password reset</li>
+<li><code>POST /api/auth/reset-password</code> - Reset password</li>
+<li><code>GET /api/auth/verify-email/:token</code> - Verify email address</li>
+<li><code>POST /api/auth/resend-verification</code> - Resend verification email</li>
+<li><code>GET /api/auth/me</code> - Get current user</li>
+<li><code>POST /api/auth/check-password</code> - Check password strength</li>
+</ul>
+<h3>Users</h3>
+<ul>
+<li><code>GET /api/users</code> - Get all users (admin only)</li>
+<li><code>GET /api/users/profile</code> - Get current user profile</li>
+<li><code>GET /api/users/:id</code> - Get user by ID (admin only)</li>
+<li><code>PUT /api/users/profile</code> - Update current user profile</li>
+<li><code>PUT /api/users/:id</code> - Update user (admin only)</li>
+<li><code>DELETE /api/users/:id</code> - Delete user (admin only)</li>
+<li><code>POST /api/users/avatar</code> - Upload user avatar</li>
+<li><code>PUT /api/users/change-password</code> - Change password</li>
+</ul>
+<h3>Products</h3>
+<ul>
+<li><code>GET /api/products</code> - Get all products (with pagination, filtering, sorting)</li>
+<li><code>GET /api/products/:id</code> - Get product by ID</li>
+<li><code>POST /api/products</code> - Create product (admin only)</li>
+<li><code>PUT /api/products/:id</code> - Update product (admin only)</li>
+<li><code>DELETE /api/products/:id</code> - Delete product (admin only)</li>
+<li><code>POST /api/products/:id/images</code> - Upload product images (admin only)</li>
+<li><code>DELETE /api/products/:id/images/:imageId</code> - Delete product image (admin only)</li>
+<li><code>GET /api/products/category/:category</code> - Get products by category</li>
+<li><code>GET /api/products/featured</code> - Get featured products</li>
+<li><code>GET /api/products/popular</code> - Get popular products</li>
+<li><code>GET /api/products/:id/related</code> - Get related products</li>
+<li><code>POST /api/products/:id/reviews</code> - Add product review</li>
+<li><code>PUT /api/products/:id/reviews</code> - Update product review</li>
+<li><code>DELETE /api/products/:id/reviews</code> - Delete product review</li>
+<li><code>POST /api/products/:id/reviews/:reviewId/helpful</code> - Mark review as helpful</li>
+<li><code>PUT /api/products/:id/inventory</code> - Update inventory (admin only)</li>
+<li><code>PUT /api/products/inventory/bulk</code> - Bulk update inventory (admin only)</li>
+<li><code>GET /api/products/inventory/report</code> - Get inventory report (admin only)</li>
+<li><code>GET /api/products/categories/list</code> - Get all categories</li>
+<li><code>GET /api/products/export/data</code> - Export products (admin only)</li>
+</ul>
+<h3>Orders</h3>
+<ul>
+<li><code>GET /api/orders</code> - Get user orders</li>
+<li><code>GET /api/orders/:id</code> - Get order by ID</li>
+<li><code>POST /api/orders</code> - Create order</li>
+<li><code>DELETE /api/orders/:id</code> - Cancel order</li>
+<li><code>GET /api/orders/admin/all</code> - Get all orders (admin only)</li>
+<li><code>PUT /api/orders/:id/status</code> - Update order status (admin only)</li>
+<li><code>POST /api/orders/:id/tracking</code> - Add tracking info (admin only)</li>
+<li><code>POST /api/orders/:id/refund</code> - Process refund (admin only)</li>
+<li><code>POST /api/orders/:id/note</code> - Add internal note (admin only)</li>
+<li><code>GET /api/orders/statistics/summary</code> - Get order statistics</li>
+<li><code>GET /api/orders/reports/sales</code> - Get sales report (admin only)</li>
+<li><code>GET /api/orders/:id/invoice</code> - Get order invoice</li>
+<li><code>GET /api/orders/export/data</code> - Export orders (admin only)</li>
+</ul>
+<h3>Health</h3>
+<ul>
+<li><code>GET /api/health</code> - Basic health check</li>
+<li><code>GET /api/health/ready</code> - Readiness check</li>
+<li><code>GET /api/health/live</code> - Liveness check</li>
+</ul>
+<h2>Authentication</h2>
+<p>The API uses JWT (JSON Web Tokens) for authentication. Include the token in the Authorization header:</p>
+<pre><code>Authorization: Bearer &lt;your-jwt-token&gt;
+</code></pre>
+<h3>Token Management</h3>
+<ul>
+<li>Access tokens expire in 7 days (configurable)</li>
+<li>Refresh tokens expire in 30 days (configurable)</li>
+<li>Use <code>/api/auth/refresh</code> endpoint to get new access token</li>
+<li>Tokens are blacklisted on logout</li>
+<li>Support for token rotation on refresh</li>
+</ul>
+<h2>Request &amp; Response Format</h2>
+<h3>Request Format</h3>
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;field1&quot;: &quot;value1&quot;,
+    &quot;field2&quot;: &quot;value2&quot;
+  }
+}
+</code></pre>
+<h3>Success Response</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;id&quot;: &quot;123&quot;,
+    &quot;field1&quot;: &quot;value1&quot;,
+    &quot;field2&quot;: &quot;value2&quot;
+  },
+  &quot;message&quot;: &quot;Operation successful&quot;
+}
+</code></pre>
+<h3>Error Response</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: false,
+  &quot;error&quot;: {
+    &quot;code&quot;: &quot;VALIDATION_ERROR&quot;,
+    &quot;message&quot;: &quot;Validation failed&quot;,
+    &quot;details&quot;: [
+      {
+        &quot;field&quot;: &quot;email&quot;,
+        &quot;message&quot;: &quot;Invalid email format&quot;
+      }
+    ]
+  },
+  &quot;requestId&quot;: &quot;550e8400-e29b-41d4-a716-446655440000&quot;
+}
+</code></pre>
+<h3>Pagination Response</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: [...],
+  &quot;pagination&quot;: {
+    &quot;page&quot;: 1,
+    &quot;limit&quot;: 20,
+    &quot;total&quot;: 100,
+    &quot;pages&quot;: 5,
+    &quot;hasNext&quot;: true,
+    &quot;hasPrev&quot;: false
+  }
+}
+</code></pre>
+<h2>Testing</h2>
+<p>The project includes comprehensive test suites for both unit and integration testing.</p>
+<h3>Run all tests</h3>
+<pre><code class="language-bash">npm test
+</code></pre>
+<h3>Run unit tests</h3>
+<pre><code class="language-bash">npm run test:unit
+</code></pre>
+<h3>Run integration tests</h3>
+<pre><code class="language-bash">npm run test:integration
+</code></pre>
+<h3>Run tests with coverage</h3>
+<pre><code class="language-bash">npm run test:coverage
+</code></pre>
+<h3>Test Structure</h3>
+<ul>
+<li><p><strong>Unit Tests</strong>: Located in <code>/tests/unit/</code></p>
+<ul>
+<li>Auth service tests</li>
+<li>Validation tests</li>
+<li>Utility function tests</li>
+</ul>
+</li>
+<li><p><strong>Integration Tests</strong>: Located in <code>/tests/integration/</code></p>
+<ul>
+<li>Authentication endpoints</li>
+<li>Product management</li>
+<li>Order processing</li>
+<li>Full API workflow tests</li>
+</ul>
+</li>
+</ul>
+<h3>Test Data</h3>
+<ul>
+<li>Tests use MongoDB Memory Server for isolation</li>
+<li>Each test suite has its own setup and teardown</li>
+<li>No test data persists between runs</li>
+</ul>
+<h2>Development</h2>
+<h3>Code Style</h3>
+<p>The project uses ESLint with Airbnb base configuration. Run linting:</p>
+<pre><code class="language-bash">npm run lint
+npm run lint:fix
+</code></pre>
+<h3>Environment Variables</h3>
+<p>Key environment variables (see <code>.env.example</code> for complete list):</p>
+<pre><code class="language-env"># Server Configuration
+PORT=3000
+NODE_ENV=development
+API_URL=http://localhost:3000
+
+# Database
+MONGODB_URI=mongodb://localhost:27017/rest-api-advanced
+
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6379
+
+# JWT
+JWT_SECRET=your-super-secret-jwt-key-min-32-chars
+JWT_EXPIRE=7d
+JWT_REFRESH_EXPIRE=30d
+ROTATE_REFRESH_TOKENS=true
+
+# Security
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
+BCRYPT_ROUNDS=10
+
+# Rate Limiting
+RATE_LIMIT_WINDOW=15
+RATE_LIMIT_MAX=100
+AUTH_RATE_LIMIT_MAX=5
+</code></pre>
+<h3>Seeding Data</h3>
+<pre><code class="language-bash"># Seed all data (users, products, orders)
+npm run seed
+
+# Seed specific data
+npm run seed:products
+npm run seed:orders
+
+# Clean and reseed database
+npm run seed:clean
+</code></pre>
+<p>Default seed accounts:</p>
+<ul>
+<li>Admin: <code>admin@example.com</code> / <code>password123</code></li>
+<li>User: <code>user@example.com</code> / <code>password123</code></li>
+</ul>
+<h2>Deployment</h2>
+<h3>Production Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Set <code>NODE_ENV=production</code></li>
+<li><input disabled="" type="checkbox"> Use strong JWT secret</li>
+<li><input disabled="" type="checkbox"> Configure proper CORS origins</li>
+<li><input disabled="" type="checkbox"> Set up SSL/TLS certificates</li>
+<li><input disabled="" type="checkbox"> Configure rate limiting appropriately</li>
+<li><input disabled="" type="checkbox"> Set up monitoring (e.g., Sentry)</li>
+<li><input disabled="" type="checkbox"> Configure log aggregation</li>
+<li><input disabled="" type="checkbox"> Set up database backups</li>
+<li><input disabled="" type="checkbox"> Configure Redis persistence</li>
+<li><input disabled="" type="checkbox"> Set up health monitoring</li>
+<li><input disabled="" type="checkbox"> Configure auto-scaling</li>
+</ul>
+<h3>Docker Deployment</h3>
+<pre><code class="language-bash">docker build -t rest-api-advanced .
+docker run -p 3000:3000 --env-file .env rest-api-advanced
+</code></pre>
+<h3>PM2 Deployment</h3>
+<pre><code class="language-bash">pm2 start ecosystem.config.js --env production
+</code></pre>
+<h2>Performance Optimization</h2>
+<ul>
+<li>Redis caching for frequently accessed data</li>
+<li>Database indexing on commonly queried fields</li>
+<li>Response compression with gzip</li>
+<li>Query optimization with Mongoose lean()</li>
+<li>Pagination for large datasets</li>
+<li>Rate limiting to prevent abuse</li>
+<li>Connection pooling for database</li>
+</ul>
+<h2>Security Best Practices</h2>
+<ul>
+<li>Input validation on all endpoints</li>
+<li>SQL/NoSQL injection prevention</li>
+<li>XSS protection</li>
+<li>CSRF protection</li>
+<li>Security headers with Helmet</li>
+<li>Rate limiting</li>
+<li>JWT token expiration</li>
+<li>Password complexity requirements</li>
+<li>Account lockout after failed attempts</li>
+<li>Audit logging for sensitive operations</li>
+</ul>
+<h2>Contributing</h2>
+<ol>
+<li>Fork the repository</li>
+<li>Create your feature branch (<code>git checkout -b feature/amazing-feature</code>)</li>
+<li>Commit your changes (<code>git commit -m &#39;Add some amazing feature&#39;</code>)</li>
+<li>Push to the branch (<code>git push origin feature/amazing-feature</code>)</li>
+<li>Open a Pull Request</li>
+</ol>
+<h2>License</h2>
+<p>This project is licensed under the MIT License - see the LICENSE file for details.</p>
+<h2>Support</h2>
+<p>For support, email <a href="mailto:support@example.com">support@example.com</a> or create an issue in the repository.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

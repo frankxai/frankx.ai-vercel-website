@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Plugin Structure for Claude Code</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/plugin-structure/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Plugin Structure for Claude Code</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills">skills</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fplugin-structure">plugin-structure</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: plugin-structure
+description: This skill should be used when the user asks to &quot;create a plugin&quot;, &quot;scaffold a plugin&quot;, &quot;understand plugin structure&quot;, &quot;organize plugin components&quot;, &quot;set up plugin.json&quot;, &quot;use ${CLAUDE_PLUGIN_ROOT}&quot;, &quot;add commands/agents/skills/hooks&quot;, &quot;configure auto-discovery&quot;, or needs guidance on plugin directory layout, manifest configuration, component organization, file naming conventions, or Claude Code plugin architecture best practices.
+version: 0.1.0</h2>
+<h1>Plugin Structure for Claude Code</h1>
+<h2>Overview</h2>
+<p>Claude Code plugins follow a standardized directory structure with automatic component discovery. Understanding this structure enables creating well-organized, maintainable plugins that integrate seamlessly with Claude Code.</p>
+<p><strong>Key concepts:</strong></p>
+<ul>
+<li>Conventional directory layout for automatic discovery</li>
+<li>Manifest-driven configuration in <code>.claude-plugin/plugin.json</code></li>
+<li>Component-based organization (commands, agents, skills, hooks)</li>
+<li>Portable path references using <code>${CLAUDE_PLUGIN_ROOT}</code></li>
+<li>Explicit vs. auto-discovered component loading</li>
+</ul>
+<h2>Directory Structure</h2>
+<p>Every Claude Code plugin follows this organizational pattern:</p>
+<pre><code>plugin-name/
+├── .claude-plugin/
+│   └── plugin.json          # Required: Plugin manifest
+├── commands/                 # Slash commands (.md files)
+├── agents/                   # Subagent definitions (.md files)
+├── skills/                   # Agent skills (subdirectories)
+│   └── skill-name/
+│       └── SKILL.md         # Required for each skill
+├── hooks/
+│   └── hooks.json           # Event handler configuration
+├── .mcp.json                # MCP server definitions
+└── scripts/                 # Helper scripts and utilities
+</code></pre>
+<p><strong>Critical rules:</strong></p>
+<ol>
+<li><strong>Manifest location</strong>: The <code>plugin.json</code> manifest MUST be in <code>.claude-plugin/</code> directory</li>
+<li><strong>Component locations</strong>: All component directories (commands, agents, skills, hooks) MUST be at plugin root level, NOT nested inside <code>.claude-plugin/</code></li>
+<li><strong>Optional components</strong>: Only create directories for components the plugin actually uses</li>
+<li><strong>Naming convention</strong>: Use kebab-case for all directory and file names</li>
+</ol>
+<h2>Plugin Manifest (plugin.json)</h2>
+<p>The manifest defines plugin metadata and configuration. Located at <code>.claude-plugin/plugin.json</code>:</p>
+<h3>Required Fields</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;plugin-name&quot;
+}
+</code></pre>
+<p><strong>Name requirements:</strong></p>
+<ul>
+<li>Use kebab-case format (lowercase with hyphens)</li>
+<li>Must be unique across installed plugins</li>
+<li>No spaces or special characters</li>
+<li>Example: <code>code-review-assistant</code>, <code>test-runner</code>, <code>api-docs</code></li>
+</ul>
+<h3>Recommended Metadata</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;plugin-name&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;Brief explanation of plugin purpose&quot;,
+  &quot;author&quot;: {
+    &quot;name&quot;: &quot;Author Name&quot;,
+    &quot;email&quot;: &quot;author@example.com&quot;,
+    &quot;url&quot;: &quot;https://example.com&quot;
+  },
+  &quot;homepage&quot;: &quot;https://docs.example.com&quot;,
+  &quot;repository&quot;: &quot;https://github.com/user/plugin-name&quot;,
+  &quot;license&quot;: &quot;MIT&quot;,
+  &quot;keywords&quot;: [&quot;testing&quot;, &quot;automation&quot;, &quot;ci-cd&quot;]
+}
+</code></pre>
+<p><strong>Version format</strong>: Follow semantic versioning (MAJOR.MINOR.PATCH)
+<strong>Keywords</strong>: Use for plugin discovery and categorization</p>
+<h3>Component Path Configuration</h3>
+<p>Specify custom paths for components (supplements default directories):</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;plugin-name&quot;,
+  &quot;commands&quot;: &quot;./custom-commands&quot;,
+  &quot;agents&quot;: [&quot;./agents&quot;, &quot;./specialized-agents&quot;],
+  &quot;hooks&quot;: &quot;./config/hooks.json&quot;,
+  &quot;mcpServers&quot;: &quot;./.mcp.json&quot;
+}
+</code></pre>
+<p><strong>Important</strong>: Custom paths supplement defaults—they don&#39;t replace them. Components in both default directories and custom paths will load.</p>
+<p><strong>Path rules:</strong></p>
+<ul>
+<li>Must be relative to plugin root</li>
+<li>Must start with <code>./</code></li>
+<li>Cannot use absolute paths</li>
+<li>Support arrays for multiple locations</li>
+</ul>
+<h2>Component Organization</h2>
+<h3>Commands</h3>
+<p><strong>Location</strong>: <code>commands/</code> directory
+<strong>Format</strong>: Markdown files with YAML frontmatter
+<strong>Auto-discovery</strong>: All <code>.md</code> files in <code>commands/</code> load automatically</p>
+<p><strong>Example structure</strong>:</p>
+<pre><code>commands/
+├── review.md        # /review command
+├── test.md          # /test command
+└── deploy.md        # /deploy command
+</code></pre>
+<p><strong>File format</strong>:</p>
+<pre><code class="language-markdown">---
+name: command-name
+description: Command description
+---
+
+Command implementation instructions...
+</code></pre>
+<p><strong>Usage</strong>: Commands integrate as native slash commands in Claude Code</p>
+<h3>Agents</h3>
+<p><strong>Location</strong>: <code>agents/</code> directory
+<strong>Format</strong>: Markdown files with YAML frontmatter
+<strong>Auto-discovery</strong>: All <code>.md</code> files in <code>agents/</code> load automatically</p>
+<p><strong>Example structure</strong>:</p>
+<pre><code>agents/
+├── code-reviewer.md
+├── test-generator.md
+└── refactorer.md
+</code></pre>
+<p><strong>File format</strong>:</p>
+<pre><code class="language-markdown">---
+description: Agent role and expertise
+capabilities:
+  - Specific task 1
+  - Specific task 2
+---
+
+Detailed agent instructions and knowledge...
+</code></pre>
+<p><strong>Usage</strong>: Users can invoke agents manually, or Claude Code selects them automatically based on task context</p>
+<h3>Skills</h3>
+<p><strong>Location</strong>: <code>skills/</code> directory with subdirectories per skill
+<strong>Format</strong>: Each skill in its own directory with <code>SKILL.md</code> file
+<strong>Auto-discovery</strong>: All <code>SKILL.md</code> files in skill subdirectories load automatically</p>
+<p><strong>Example structure</strong>:</p>
+<pre><code>skills/
+├── api-testing/
+│   ├── SKILL.md
+│   ├── scripts/
+│   │   └── test-runner.py
+│   └── references/
+│       └── api-spec.md
+└── database-migrations/
+    ├── SKILL.md
+    └── examples/
+        └── migration-template.sql
+</code></pre>
+<p><strong>SKILL.md format</strong>:</p>
+<pre><code class="language-markdown">---
+name: Skill Name
+description: When to use this skill
+version: 1.0.0
+---
+
+Skill instructions and guidance...
+</code></pre>
+<p><strong>Supporting files</strong>: Skills can include scripts, references, examples, or assets in subdirectories</p>
+<p><strong>Usage</strong>: Claude Code autonomously activates skills based on task context matching the description</p>
+<h3>Hooks</h3>
+<p><strong>Location</strong>: <code>hooks/hooks.json</code> or inline in <code>plugin.json</code>
+<strong>Format</strong>: JSON configuration defining event handlers
+<strong>Registration</strong>: Hooks register automatically when plugin enables</p>
+<p><strong>Example structure</strong>:</p>
+<pre><code>hooks/
+├── hooks.json           # Hook configuration
+└── scripts/
+    ├── validate.sh      # Hook script
+    └── check-style.sh   # Hook script
+</code></pre>
+<p><strong>Configuration format</strong>:</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [{
+    &quot;matcher&quot;: &quot;Write|Edit&quot;,
+    &quot;hooks&quot;: [{
+      &quot;type&quot;: &quot;command&quot;,
+      &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/validate.sh&quot;,
+      &quot;timeout&quot;: 30
+    }]
+  }]
+}
+</code></pre>
+<p><strong>Available events</strong>: PreToolUse, PostToolUse, Stop, SubagentStop, SessionStart, SessionEnd, UserPromptSubmit, PreCompact, Notification</p>
+<p><strong>Usage</strong>: Hooks execute automatically in response to Claude Code events</p>
+<h3>MCP Servers</h3>
+<p><strong>Location</strong>: <code>.mcp.json</code> at plugin root or inline in <code>plugin.json</code>
+<strong>Format</strong>: JSON configuration for MCP server definitions
+<strong>Auto-start</strong>: Servers start automatically when plugin enables</p>
+<p><strong>Example format</strong>:</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;server-name&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;${CLAUDE_PLUGIN_ROOT}/servers/server.js&quot;],
+      &quot;env&quot;: {
+        &quot;API_KEY&quot;: &quot;${API_KEY}&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<p><strong>Usage</strong>: MCP servers integrate seamlessly with Claude Code&#39;s tool system</p>
+<h2>Portable Path References</h2>
+<h3>${CLAUDE_PLUGIN_ROOT}</h3>
+<p>Use <code>${CLAUDE_PLUGIN_ROOT}</code> environment variable for all intra-plugin path references:</p>
+<pre><code class="language-json">{
+  &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/scripts/run.sh&quot;
+}
+</code></pre>
+<p><strong>Why it matters</strong>: Plugins install in different locations depending on:</p>
+<ul>
+<li>User installation method (marketplace, local, npm)</li>
+<li>Operating system conventions</li>
+<li>User preferences</li>
+</ul>
+<p><strong>Where to use it</strong>:</p>
+<ul>
+<li>Hook command paths</li>
+<li>MCP server command arguments</li>
+<li>Script execution references</li>
+<li>Resource file paths</li>
+</ul>
+<p><strong>Never use</strong>:</p>
+<ul>
+<li>Hardcoded absolute paths (<code>/Users/name/plugins/...</code>)</li>
+<li>Relative paths from working directory (<code>./scripts/...</code> in commands)</li>
+<li>Home directory shortcuts (<code>~/plugins/...</code>)</li>
+</ul>
+<h3>Path Resolution Rules</h3>
+<p><strong>In manifest JSON fields</strong> (hooks, MCP servers):</p>
+<pre><code class="language-json">&quot;command&quot;: &quot;${CLAUDE_PLUGIN_ROOT}/scripts/tool.sh&quot;
+</code></pre>
+<p><strong>In component files</strong> (commands, agents, skills):</p>
+<pre><code class="language-markdown">Reference scripts at: ${CLAUDE_PLUGIN_ROOT}/scripts/helper.py
+</code></pre>
+<p><strong>In executed scripts</strong>:</p>
+<pre><code class="language-bash">#!/bin/bash
+# ${CLAUDE_PLUGIN_ROOT} available as environment variable
+source &quot;${CLAUDE_PLUGIN_ROOT}/lib/common.sh&quot;
+</code></pre>
+<h2>File Naming Conventions</h2>
+<h3>Component Files</h3>
+<p><strong>Commands</strong>: Use kebab-case <code>.md</code> files</p>
+<ul>
+<li><code>code-review.md</code> → <code>/code-review</code></li>
+<li><code>run-tests.md</code> → <code>/run-tests</code></li>
+<li><code>api-docs.md</code> → <code>/api-docs</code></li>
+</ul>
+<p><strong>Agents</strong>: Use kebab-case <code>.md</code> files describing role</p>
+<ul>
+<li><code>test-generator.md</code></li>
+<li><code>code-reviewer.md</code></li>
+<li><code>performance-analyzer.md</code></li>
+</ul>
+<p><strong>Skills</strong>: Use kebab-case directory names</p>
+<ul>
+<li><code>api-testing/</code></li>
+<li><code>database-migrations/</code></li>
+<li><code>error-handling/</code></li>
+</ul>
+<h3>Supporting Files</h3>
+<p><strong>Scripts</strong>: Use descriptive kebab-case names with appropriate extensions</p>
+<ul>
+<li><code>validate-input.sh</code></li>
+<li><code>generate-report.py</code></li>
+<li><code>process-data.js</code></li>
+</ul>
+<p><strong>Documentation</strong>: Use kebab-case markdown files</p>
+<ul>
+<li><code>api-reference.md</code></li>
+<li><code>migration-guide.md</code></li>
+<li><code>best-practices.md</code></li>
+</ul>
+<p><strong>Configuration</strong>: Use standard names</p>
+<ul>
+<li><code>hooks.json</code></li>
+<li><code>.mcp.json</code></li>
+<li><code>plugin.json</code></li>
+</ul>
+<h2>Auto-Discovery Mechanism</h2>
+<p>Claude Code automatically discovers and loads components:</p>
+<ol>
+<li><strong>Plugin manifest</strong>: Reads <code>.claude-plugin/plugin.json</code> when plugin enables</li>
+<li><strong>Commands</strong>: Scans <code>commands/</code> directory for <code>.md</code> files</li>
+<li><strong>Agents</strong>: Scans <code>agents/</code> directory for <code>.md</code> files</li>
+<li><strong>Skills</strong>: Scans <code>skills/</code> for subdirectories containing <code>SKILL.md</code></li>
+<li><strong>Hooks</strong>: Loads configuration from <code>hooks/hooks.json</code> or manifest</li>
+<li><strong>MCP servers</strong>: Loads configuration from <code>.mcp.json</code> or manifest</li>
+</ol>
+<p><strong>Discovery timing</strong>:</p>
+<ul>
+<li>Plugin installation: Components register with Claude Code</li>
+<li>Plugin enable: Components become available for use</li>
+<li>No restart required: Changes take effect on next Claude Code session</li>
+</ul>
+<p><strong>Override behavior</strong>: Custom paths in <code>plugin.json</code> supplement (not replace) default directories</p>
+<h2>Best Practices</h2>
+<h3>Organization</h3>
+<ol>
+<li><p><strong>Logical grouping</strong>: Group related components together</p>
+<ul>
+<li>Put test-related commands, agents, and skills together</li>
+<li>Create subdirectories in <code>scripts/</code> for different purposes</li>
+</ul>
+</li>
+<li><p><strong>Minimal manifest</strong>: Keep <code>plugin.json</code> lean</p>
+<ul>
+<li>Only specify custom paths when necessary</li>
+<li>Rely on auto-discovery for standard layouts</li>
+<li>Use inline configuration only for simple cases</li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong>: Include README files</p>
+<ul>
+<li>Plugin root: Overall purpose and usage</li>
+<li>Component directories: Specific guidance</li>
+<li>Script directories: Usage and requirements</li>
+</ul>
+</li>
+</ol>
+<h3>Naming</h3>
+<ol>
+<li><p><strong>Consistency</strong>: Use consistent naming across components</p>
+<ul>
+<li>If command is <code>test-runner</code>, name related agent <code>test-runner-agent</code></li>
+<li>Match skill directory names to their purpose</li>
+</ul>
+</li>
+<li><p><strong>Clarity</strong>: Use descriptive names that indicate purpose</p>
+<ul>
+<li>Good: <code>api-integration-testing/</code>, <code>code-quality-checker.md</code></li>
+<li>Avoid: <code>utils/</code>, <code>misc.md</code>, <code>temp.sh</code></li>
+</ul>
+</li>
+<li><p><strong>Length</strong>: Balance brevity with clarity</p>
+<ul>
+<li>Commands: 2-3 words (<code>review-pr</code>, <code>run-ci</code>)</li>
+<li>Agents: Describe role clearly (<code>code-reviewer</code>, <code>test-generator</code>)</li>
+<li>Skills: Topic-focused (<code>error-handling</code>, <code>api-design</code>)</li>
+</ul>
+</li>
+</ol>
+<h3>Portability</h3>
+<ol>
+<li><strong>Always use ${CLAUDE_PLUGIN_ROOT}</strong>: Never hardcode paths</li>
+<li><strong>Test on multiple systems</strong>: Verify on macOS, Linux, Windows</li>
+<li><strong>Document dependencies</strong>: List required tools and versions</li>
+<li><strong>Avoid system-specific features</strong>: Use portable bash/Python constructs</li>
+</ol>
+<h3>Maintenance</h3>
+<ol>
+<li><strong>Version consistently</strong>: Update version in plugin.json for releases</li>
+<li><strong>Deprecate gracefully</strong>: Mark old components clearly before removal</li>
+<li><strong>Document breaking changes</strong>: Note changes affecting existing users</li>
+<li><strong>Test thoroughly</strong>: Verify all components work after changes</li>
+</ol>
+<h2>Common Patterns</h2>
+<h3>Minimal Plugin</h3>
+<p>Single command with no dependencies:</p>
+<pre><code>my-plugin/
+├── .claude-plugin/
+│   └── plugin.json    # Just name field
+└── commands/
+    └── hello.md       # Single command
+</code></pre>
+<h3>Full-Featured Plugin</h3>
+<p>Complete plugin with all component types:</p>
+<pre><code>my-plugin/
+├── .claude-plugin/
+│   └── plugin.json
+├── commands/          # User-facing commands
+├── agents/            # Specialized subagents
+├── skills/            # Auto-activating skills
+├── hooks/             # Event handlers
+│   ├── hooks.json
+│   └── scripts/
+├── .mcp.json          # External integrations
+└── scripts/           # Shared utilities
+</code></pre>
+<h3>Skill-Focused Plugin</h3>
+<p>Plugin providing only skills:</p>
+<pre><code>my-plugin/
+├── .claude-plugin/
+│   └── plugin.json
+└── skills/
+    ├── skill-one/
+    │   └── SKILL.md
+    └── skill-two/
+        └── SKILL.md
+</code></pre>
+<h2>Troubleshooting</h2>
+<p><strong>Component not loading</strong>:</p>
+<ul>
+<li>Verify file is in correct directory with correct extension</li>
+<li>Check YAML frontmatter syntax (commands, agents, skills)</li>
+<li>Ensure skill has <code>SKILL.md</code> (not <code>README.md</code> or other name)</li>
+<li>Confirm plugin is enabled in Claude Code settings</li>
+</ul>
+<p><strong>Path resolution errors</strong>:</p>
+<ul>
+<li>Replace all hardcoded paths with <code>${CLAUDE_PLUGIN_ROOT}</code></li>
+<li>Verify paths are relative and start with <code>./</code> in manifest</li>
+<li>Check that referenced files exist at specified paths</li>
+<li>Test with <code>echo $CLAUDE_PLUGIN_ROOT</code> in hook scripts</li>
+</ul>
+<p><strong>Auto-discovery not working</strong>:</p>
+<ul>
+<li>Confirm directories are at plugin root (not in <code>.claude-plugin/</code>)</li>
+<li>Check file naming follows conventions (kebab-case, correct extensions)</li>
+<li>Verify custom paths in manifest are correct</li>
+<li>Restart Claude Code to reload plugin configuration</li>
+</ul>
+<p><strong>Conflicts between plugins</strong>:</p>
+<ul>
+<li>Use unique, descriptive component names</li>
+<li>Namespace commands with plugin name if needed</li>
+<li>Document potential conflicts in plugin README</li>
+<li>Consider command prefixes for related functionality</li>
+</ul>
+<hr>
+<p>For detailed examples and advanced patterns, see files in <code>references/</code> and <code>examples/</code> directories.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

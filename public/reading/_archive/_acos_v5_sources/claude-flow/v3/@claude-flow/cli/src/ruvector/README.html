@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>RuVector NPM Package API Documentation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/src/ruvector/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">RuVector NPM Package API Documentation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2Fsrc">src</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2Fsrc%2Fruvector">ruvector</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>RuVector NPM Package API Documentation</h1>
+<p>Version: 0.1.95
+Package: <code>ruvector</code>
+Repository: <a href="https://github.com/ruvnet/ruvector">https://github.com/ruvnet/ruvector</a></p>
+<h2>Overview</h2>
+<p>RuVector is a high-performance vector database for Node.js with automatic native/WASM fallback. It provides self-learning intelligence for Claude Code with Q-learning optimization, vector memory, and automatic agent routing.</p>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install ruvector
+</code></pre>
+<h2>MCP Server Integration</h2>
+<p>Add to Claude Code:</p>
+<pre><code class="language-bash">claude mcp add ruvector-mcp -- npx ruvector mcp-server
+</code></pre>
+<hr>
+<h2>Hooks API Reference</h2>
+<p>The hooks API provides 30+ MCP tools for intelligent agent routing, code analysis, and self-learning capabilities.</p>
+<h3>Core Routing Functions</h3>
+<h4><code>hooks_route</code></h4>
+<p>Routes a task to the best agent based on learned patterns.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>task</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Task description to route</td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td>string</td>
+<td>No</td>
+<td>File path for context-aware routing</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface RouteResult {
+  success: boolean;
+  task: string;
+  file?: string;
+  agent: string;           // Recommended agent (e.g., &quot;typescript-developer&quot;)
+  confidence: number;      // Confidence score 0.0-1.0
+  reason: string;          // Explanation for routing decision
+  alternates?: string[];   // Alternative agent suggestions
+  sonaPatterns?: number;   // Number of SONA patterns used (if engine enabled)
+  engineRouted?: boolean;  // Whether full engine was used
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">// MCP Tool Call
+const result = await mcp.call(&#39;hooks_route&#39;, {
+  task: &#39;implement user authentication&#39;,
+  file: &#39;src/auth/login.ts&#39;
+});
+
+// CLI Usage
+npx ruvector hooks route &quot;implement user login&quot;
+</code></pre>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li>Returns default agent mapping if no patterns learned</li>
+<li>Falls back to file extension-based routing if task unclear</li>
+</ul>
+<hr>
+<h4><code>hooks_route_enhanced</code></h4>
+<p>Enhanced routing using AST complexity, coverage, and diff analysis signals.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>task</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>Task description</td>
+</tr>
+<tr>
+<td><code>file</code></td>
+<td>string</td>
+<td>No</td>
+<td>File context for analysis</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface EnhancedRouteResult {
+  success: boolean;
+  agent: string;
+  confidence: number;
+  signals: {
+    complexity?: number;    // Cyclomatic complexity
+    coverage?: number;      // Test coverage percentage
+    riskScore?: number;     // Change risk assessment
+    diffCategory?: string;  // feature/bugfix/refactor
+  };
+  explanation: string;
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">const result = await mcp.call(&#39;hooks_route_enhanced&#39;, {
+  task: &#39;refactor authentication module&#39;,
+  file: &#39;src/auth/handlers.ts&#39;
+});
+</code></pre>
+<hr>
+<h3>AST Analysis Functions</h3>
+<h4><code>hooks_ast_analyze</code></h4>
+<p>Parses file AST and extracts symbols, imports, and complexity metrics.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>file</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>File path to analyze</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface FileAnalysis {
+  file: string;
+  language: string;           // TypeScript, JavaScript, Python, etc.
+  imports: ImportInfo[];      // Import statements
+  exports: ExportInfo[];      // Export statements
+  functions: FunctionInfo[];  // Function definitions
+  classes: ClassInfo[];       // Class definitions
+  variables: string[];        // Variable declarations
+  types: string[];           // Type definitions
+  complexity: number;        // Overall complexity score
+  lines: number;             // Total lines
+  parseTime: number;         // Parse duration in ms
+}
+
+interface FunctionInfo {
+  name: string;
+  params: string[];
+  returnType?: string;
+  async: boolean;
+  exported: boolean;
+  startLine: number;
+  endLine: number;
+  complexity: number;
+  calls: string[];           // Functions called within
+}
+
+interface ClassInfo {
+  name: string;
+  extends?: string;
+  implements: string[];
+  methods: FunctionInfo[];
+  properties: string[];
+  exported: boolean;
+  startLine: number;
+  endLine: number;
+}
+
+interface ImportInfo {
+  source: string;
+  default?: string;
+  named: string[];
+  namespace?: string;
+  type: &#39;esm&#39; | &#39;commonjs&#39; | &#39;dynamic&#39;;
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">const analysis = await mcp.call(&#39;hooks_ast_analyze&#39;, {
+  file: &#39;src/api/routes.ts&#39;
+});
+
+// CLI Usage
+npx ruvector hooks ast-analyze src/api/routes.ts --json
+</code></pre>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li>Returns <code>{ success: false, error: message }</code> if file not found</li>
+<li>Falls back to regex-based analysis if tree-sitter unavailable</li>
+</ul>
+<hr>
+<h4><code>hooks_ast_complexity</code></h4>
+<p>Calculates cyclomatic and cognitive complexity metrics for files.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>files</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>Array of file paths to analyze</td>
+</tr>
+<tr>
+<td><code>threshold</code></td>
+<td>number</td>
+<td>No</td>
+<td>Warn if complexity exceeds (default: 10)</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface ComplexityResult {
+  success: boolean;
+  files: Array&lt;{
+    file: string;
+    complexity: number;
+    functions: Array&lt;{
+      name: string;
+      complexity: number;
+      exceeds: boolean;
+    }&gt;;
+  }&gt;;
+  warnings: string[];
+  averageComplexity: number;
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">const result = await mcp.call(&#39;hooks_ast_complexity&#39;, {
+  files: [&#39;src/auth/*.ts&#39;],
+  threshold: 15
+});
+</code></pre>
+<hr>
+<h3>Diff Analysis Functions</h3>
+<h4><code>hooks_diff_analyze</code></h4>
+<p>Analyzes git diff with semantic embeddings and risk scoring.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>commit</code></td>
+<td>string</td>
+<td>No</td>
+<td>Commit hash (defaults to staged changes)</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface CommitAnalysis {
+  hash: string;
+  message: string;
+  author: string;
+  date: string;
+  files: DiffAnalysis[];
+  totalAdditions: number;
+  totalDeletions: number;
+  riskScore: number;        // 0.0-1.0 risk assessment
+  embedding?: number[];     // Semantic embedding
+}
+
+interface DiffAnalysis {
+  file: string;
+  hunks: DiffHunk[];
+  totalAdditions: number;
+  totalDeletions: number;
+  complexity: number;
+  riskScore: number;
+  category: &#39;feature&#39; | &#39;bugfix&#39; | &#39;refactor&#39; | &#39;docs&#39; | &#39;test&#39; | &#39;config&#39; | &#39;unknown&#39;;
+  embedding?: number[];
+}
+
+interface DiffHunk {
+  file: string;
+  oldStart: number;
+  oldLines: number;
+  newStart: number;
+  newLines: number;
+  content: string;
+  additions: string[];
+  deletions: string[];
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">// Analyze staged changes
+const staged = await mcp.call(&#39;hooks_diff_analyze&#39;, {});
+
+// Analyze specific commit
+const commit = await mcp.call(&#39;hooks_diff_analyze&#39;, {
+  commit: &#39;abc123&#39;
+});
+
+// CLI Usage
+npx ruvector hooks diff-analyze --json
+npx ruvector hooks diff-analyze abc123 --json
+</code></pre>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li>Returns empty analysis if no changes found</li>
+<li>Handles merge commits and binary files gracefully</li>
+</ul>
+<hr>
+<h4><code>hooks_diff_classify</code></h4>
+<p>Classifies change type based on diff patterns.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>commit</code></td>
+<td>string</td>
+<td>No</td>
+<td>Commit hash (defaults to HEAD)</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface ClassifyResult {
+  success: boolean;
+  category: &#39;feature&#39; | &#39;bugfix&#39; | &#39;refactor&#39; | &#39;docs&#39; | &#39;test&#39; | &#39;config&#39; | &#39;unknown&#39;;
+  confidence: number;
+  indicators: string[];  // Patterns that led to classification
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">const classification = await mcp.call(&#39;hooks_diff_classify&#39;, {
+  commit: &#39;HEAD~1&#39;
+});
+</code></pre>
+<hr>
+<h3>Coverage Analysis Functions</h3>
+<h4><code>hooks_coverage_route</code></h4>
+<p>Gets coverage-aware agent routing for a file.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>file</code></td>
+<td>string</td>
+<td>Yes</td>
+<td>File to analyze</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface CoverageRouteResult {
+  success: boolean;
+  file: string;
+  route: boolean;          // Whether to route to tester
+  reason: string;          // Explanation
+  coverage: number;        // Coverage percentage (0-100)
+  weights: {
+    coder: number;         // Weight for coder agent
+    tester: number;        // Weight for tester agent
+    reviewer: number;      // Weight for reviewer agent
+  };
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">const routing = await mcp.call(&#39;hooks_coverage_route&#39;, {
+  file: &#39;src/services/auth.ts&#39;
+});
+
+// CLI Usage
+npx ruvector hooks coverage-route src/services/auth.ts
+</code></pre>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li>Returns default weights if no coverage report found</li>
+<li>Searches common locations: coverage/, .nyc_output/, lcov.info</li>
+</ul>
+<hr>
+<h4><code>hooks_coverage_suggest</code></h4>
+<p>Suggests tests for files based on coverage data.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>files</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>Files to analyze</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface TestSuggestion {
+  file: string;
+  testFile: string;           // Suggested test file path
+  reason: string;
+  priority: &#39;high&#39; | &#39;medium&#39; | &#39;low&#39;;
+  coverage: number;           // Current coverage %
+  uncoveredFunctions: string[];
+}
+
+interface SuggestResult {
+  success: boolean;
+  suggestions: TestSuggestion[];
+  overall: {
+    lines: number;
+    functions: number;
+    branches: number;
+  };
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">const suggestions = await mcp.call(&#39;hooks_coverage_suggest&#39;, {
+  files: [&#39;src/api/*.ts&#39;, &#39;src/services/*.ts&#39;]
+});
+</code></pre>
+<hr>
+<h3>Graph Analysis Functions</h3>
+<h4><code>hooks_graph_mincut</code></h4>
+<p>Finds optimal code boundaries using MinCut algorithm (Stoer-Wagner).</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>files</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>Files to analyze for module boundaries</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface Partition {
+  groups: string[][];    // Two groups of files
+  cutWeight: number;     // Weight of edges between groups
+  modularity: number;    // Modularity score
+}
+
+interface MinCutResult {
+  success: boolean;
+  partition: Partition;
+  bridges: Array&lt;{       // Critical connections
+    from: string;
+    to: string;
+  }&gt;;
+  articulationPoints: string[];  // Critical nodes
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">const boundaries = await mcp.call(&#39;hooks_graph_mincut&#39;, {
+  files: [&#39;src/**/*.ts&#39;]
+});
+
+// CLI Usage
+npx ruvector hooks graph-mincut src/**/*.ts
+</code></pre>
+<p><strong>Error Handling:</strong></p>
+<ul>
+<li>Requires at least 2 connected files</li>
+<li>Returns empty partition for disconnected graphs</li>
+</ul>
+<hr>
+<h4><code>hooks_graph_cluster</code></h4>
+<p>Detects code communities using spectral or Louvain clustering.</p>
+<p><strong>Input Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>files</code></td>
+<td>string[]</td>
+<td>Yes</td>
+<td>Files to analyze</td>
+</tr>
+<tr>
+<td><code>method</code></td>
+<td>string</td>
+<td>No</td>
+<td>&#39;spectral&#39; or &#39;louvain&#39; (default: &#39;louvain&#39;)</td>
+</tr>
+<tr>
+<td><code>clusters</code></td>
+<td>number</td>
+<td>No</td>
+<td>Number of clusters for spectral (default: 3)</td>
+</tr>
+</tbody></table>
+<p><strong>Return Type:</strong></p>
+<pre><code class="language-typescript">interface ClusterResult {
+  success: boolean;
+  method: string;
+  clusters: Map&lt;string, number&gt;;  // file -&gt; cluster ID
+  numClusters: number;
+  modularity: number;
+  // For spectral method only:
+  eigenvalues?: number[];
+  coordinates?: Map&lt;string, number[]&gt;;
+}
+</code></pre>
+<p><strong>Example Usage:</strong></p>
+<pre><code class="language-javascript">// Louvain community detection (automatic cluster count)
+const louvain = await mcp.call(&#39;hooks_graph_cluster&#39;, {
+  files: [&#39;src/**/*.ts&#39;],
+  method: &#39;louvain&#39;
+});
+
+// Spectral clustering (specify cluster count)
+const spectral = await mcp.call(&#39;hooks_graph_cluster&#39;, {
+  files: [&#39;src/**/*.ts&#39;],
+  method: &#39;spectral&#39;,
+  clusters: 5
+});
+
+// CLI Usage
+npx ruvector hooks graph-cluster src/**/*.ts --method louvain
+npx ruvector hooks graph-cluster src/**/*.ts --method spectral --clusters 5
+</code></pre>
+<hr>
+<h2>Additional MCP Tools</h2>
+<h3>Memory Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hooks_remember</code></td>
+<td>Store context in vector memory</td>
+</tr>
+<tr>
+<td><code>hooks_recall</code></td>
+<td>Search vector memory for relevant context</td>
+</tr>
+</tbody></table>
+<h3>Learning Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hooks_learn</code></td>
+<td>Combined learning: record experience and get recommendation</td>
+</tr>
+<tr>
+<td><code>hooks_batch_learn</code></td>
+<td>Record multiple experiences in batch</td>
+</tr>
+<tr>
+<td><code>hooks_learning_config</code></td>
+<td>Configure learning algorithms (9 algorithms available)</td>
+</tr>
+<tr>
+<td><code>hooks_learning_stats</code></td>
+<td>Get learning statistics</td>
+</tr>
+</tbody></table>
+<h3>Trajectory Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hooks_trajectory_begin</code></td>
+<td>Begin tracking execution trajectory</td>
+</tr>
+<tr>
+<td><code>hooks_trajectory_step</code></td>
+<td>Add step to current trajectory</td>
+</tr>
+<tr>
+<td><code>hooks_trajectory_end</code></td>
+<td>End trajectory with quality score</td>
+</tr>
+</tbody></table>
+<h3>Security Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hooks_security_scan</code></td>
+<td>Parallel vulnerability pattern detection</td>
+</tr>
+</tbody></table>
+<h3>Neural Functions</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hooks_attention_info</code></td>
+<td>Get available attention mechanisms</td>
+</tr>
+<tr>
+<td><code>hooks_gnn_info</code></td>
+<td>Get GNN layer capabilities</td>
+</tr>
+<tr>
+<td><code>hooks_rag_context</code></td>
+<td>RAG-enhanced context retrieval</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Programmatic API</h2>
+<h3>VectorDB</h3>
+<pre><code class="language-typescript">import { VectorDb } from &#39;ruvector&#39;;
+
+const db = new VectorDb({
+  dimensions: 384,           // Must match embedding model
+  maxElements: 10000,
+  storagePath: &#39;./vectors.db&#39;
+});
+
+// Insert
+await db.insert({
+  id: &#39;doc1&#39;,
+  vector: new Float32Array(384),
+  metadata: { title: &#39;Document 1&#39; }
+});
+
+// Search
+const results = await db.search({
+  vector: queryVector,
+  k: 5,
+  threshold: 0.7
+});
+
+// Get
+const doc = await db.get(&#39;doc1&#39;);
+
+// Delete
+await db.delete(&#39;doc1&#39;);
+</code></pre>
+<h3>Core Modules</h3>
+<pre><code class="language-typescript">// AST Parser
+import { getCodeParser } from &#39;ruvector/dist/core/ast-parser&#39;;
+const parser = getCodeParser();
+await parser.init();
+const analysis = await parser.analyze(&#39;file.ts&#39;);
+
+// Diff Embeddings
+import diffEmbeddings from &#39;ruvector/dist/core/diff-embeddings&#39;;
+const commit = await diffEmbeddings.analyzeCommit(&#39;HEAD&#39;);
+const similar = await diffEmbeddings.findSimilarCommits(diff, 50, 5);
+
+// Coverage Router
+import coverage from &#39;ruvector/dist/core/coverage-router&#39;;
+const data = coverage.getFileCoverage(&#39;file.ts&#39;);
+const tests = coverage.suggestTests([&#39;file.ts&#39;]);
+
+// Graph Algorithms
+import graph from &#39;ruvector/dist/core/graph-algorithms&#39;;
+const g = graph.buildGraph(nodes, edges);
+const partition = graph.minCut(g);
+const clusters = graph.louvainCommunities(g);
+</code></pre>
+<hr>
+<h2>Performance Characteristics</h2>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Latency</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ONNX inference</td>
+<td>~400ms</td>
+<td>Initial embedding</td>
+</tr>
+<tr>
+<td>HNSW search</td>
+<td>~0.045ms</td>
+<td>8,800x faster than inference</td>
+</tr>
+<tr>
+<td>Memory cache</td>
+<td>~0.01ms</td>
+<td>40,000x speedup</td>
+</tr>
+<tr>
+<td>Native Rust</td>
+<td>&lt;0.5ms</td>
+<td>p50 latency</td>
+</tr>
+<tr>
+<td>WASM fallback</td>
+<td>10-50ms</td>
+<td>Universal compatibility</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Environment Variables</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>RUVECTOR_INTELLIGENCE_ENABLED</code></td>
+<td><code>true</code></td>
+<td>Enable/disable intelligence</td>
+</tr>
+<tr>
+<td><code>RUVECTOR_LEARNING_RATE</code></td>
+<td><code>0.1</code></td>
+<td>Q-learning rate (0.0-1.0)</td>
+</tr>
+<tr>
+<td><code>RUVECTOR_MEMORY_BACKEND</code></td>
+<td><code>rvlite</code></td>
+<td>Memory storage backend</td>
+</tr>
+<tr>
+<td><code>INTELLIGENCE_MODE</code></td>
+<td><code>treatment</code></td>
+<td>A/B testing mode</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>CLI Commands</h2>
+<pre><code class="language-bash"># Initialize hooks
+npx ruvector hooks init --pretrain --build-agents quality
+
+# Verify setup
+npx ruvector hooks verify
+npx ruvector hooks doctor --fix
+
+# Analysis
+npx ruvector hooks ast-analyze &lt;file&gt; --json
+npx ruvector hooks ast-complexity &lt;files&gt; --threshold 10
+npx ruvector hooks diff-analyze [commit] --json
+npx ruvector hooks diff-classify [commit]
+npx ruvector hooks coverage-route &lt;file&gt;
+npx ruvector hooks coverage-suggest &lt;files&gt;
+npx ruvector hooks graph-mincut &lt;files&gt;
+npx ruvector hooks graph-cluster &lt;files&gt; --method louvain
+
+# Memory
+npx ruvector hooks remember &quot;context&quot; -t project
+npx ruvector hooks recall &quot;query&quot;
+npx ruvector hooks route &quot;task description&quot;
+
+# Stats and export
+npx ruvector hooks stats
+npx ruvector hooks export -o backup.json
+npx ruvector hooks import backup.json --merge
+</code></pre>
+<hr>
+<h2>Dependencies</h2>
+<ul>
+<li><code>@modelcontextprotocol/sdk</code>: ^1.0.0</li>
+<li><code>@ruvector/attention</code>: ^0.1.3</li>
+<li><code>@ruvector/core</code>: ^0.1.25</li>
+<li><code>@ruvector/gnn</code>: ^0.1.22</li>
+<li><code>@ruvector/sona</code>: ^0.1.4</li>
+<li><code>@xenova/transformers</code>: ^2.17.2</li>
+</ul>
+<hr>
+<h2>Links</h2>
+<ul>
+<li><a href="https://www.npmjs.com/package/ruvector">npm Package</a></li>
+<li><a href="https://github.com/ruvnet/ruvector">GitHub Repository</a></li>
+<li><a href="https://github.com/ruvnet/ruvector/blob/main/npm/packages/ruvector/HOOKS.md">Hooks Documentation</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

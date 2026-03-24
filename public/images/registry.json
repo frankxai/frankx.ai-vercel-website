@@ -1,0 +1,163 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-01-27",
+  "totalAssets": 301,
+  "totalSize": "237MB",
+  "collections": {
+    "blog": {
+      "path": "/images/blog/",
+      "count": 180,
+      "hasThumbnails": true,
+      "status": "production"
+    },
+    "acos": {
+      "path": "/images/acos/",
+      "count": 4,
+      "hasThumbnails": false,
+      "status": "production",
+      "assets": [
+        {"name": "acos-workflow-architecture.png", "use": "ACOS technical documentation"},
+        {"name": "acos-synthesis-pipeline.png", "use": "Skills documentation"},
+        {"name": "acos-3-phase-workflow.png", "use": "Quickstart guides"},
+        {"name": "acos-council-agents.png", "use": "Agent architecture"}
+      ]
+    },
+    "consciousness": {
+      "path": "/images/consciousness/",
+      "count": 6,
+      "hasThumbnails": false,
+      "status": "production",
+      "assets": [
+        {"name": "quantum-neuroplasticity-guide.png", "use": "Consciousness articles"},
+        {"name": "quantum-bridge-framework.png", "use": "Manifestation content"},
+        {"name": "quantum-mechanics-chapter.png", "use": "Book/course content"},
+        {"name": "quantum-jumping-schematic.png", "use": "Deep-dive content"},
+        {"name": "neuro-technical-blueprint.png", "use": "Technical consciousness"},
+        {"name": "alpha-wave-multiverse.png", "use": "Brainwave content"}
+      ]
+    },
+    "vibe-os": {
+      "path": "/images/vibe-os/",
+      "count": 3,
+      "hasThumbnails": false,
+      "status": "production",
+      "assets": [
+        {"name": "vibe-os-sonic-intelligence.png", "use": "Vibe OS landing"},
+        {"name": "vibe-os-neural-sync.png", "use": "Neural sync feature"},
+        {"name": "vibe-os-brainwave-interface.png", "use": "Brainwave content"}
+      ]
+    },
+    "arcanea": {
+      "path": "/images/arcanea/",
+      "count": 7,
+      "hasThumbnails": false,
+      "status": "production",
+      "assets": [
+        {"name": "arcanea-grand-academy.png", "use": "Academy overview"},
+        {"name": "arcanea-hall-of-luminor.png", "use": "Course content"},
+        {"name": "arcanea-campus-map.png", "use": "Navigation/landing"},
+        {"name": "arcanea-cognitive-bridge.png", "use": "Learning concepts"},
+        {"name": "arcanea-latent-space.png", "use": "AI concepts"},
+        {"name": "arcanea-neuro-synthesis.png", "use": "Advanced content"},
+        {"name": "arcanea-ai-classroom.png", "use": "Kid-friendly AI education"}
+      ]
+    },
+    "soulbook": {
+      "path": "/images/soulbook/",
+      "count": 13,
+      "hasThumbnails": false,
+      "status": "production",
+      "assets": [
+        {"name": "seven-pillars.png", "use": "Soulbook overview"},
+        {"name": "pillar-identity.png", "use": "Identity pillar page"},
+        {"name": "pillar-creation.png", "use": "Creation pillar page"},
+        {"name": "pillar-consciousness.png", "use": "Consciousness pillar"},
+        {"name": "pillar-emotional-mastery.png", "use": "Emotional Mastery page"},
+        {"name": "pillar-purpose.png", "use": "Purpose pillar page"},
+        {"name": "pillar-relationships.png", "use": "Relationships page"},
+        {"name": "pillar-vitality.png", "use": "Vitality pillar page"},
+        {"name": "hero-soulbook.png", "use": "Main landing"},
+        {"name": "hero-assessment.png", "use": "Assessment tool"},
+        {"name": "hero-vault.png", "use": "Resource vault"},
+        {"name": "golden-path.png", "use": "Journey visualization"},
+        {"name": "life-symphony.png", "use": "Life integration"}
+      ]
+    },
+    "golden-age": {
+      "path": "/images/golden-age/",
+      "count": 4,
+      "hasThumbnails": false,
+      "status": "production",
+      "assets": [
+        {"name": "hero-golden-age.png", "use": "Book landing"},
+        {"name": "chapter-01-when-creation-calls.png", "use": "Chapter 1"},
+        {"name": "chapter-02-the-orchestration-age.png", "use": "Chapter 2"},
+        {"name": "chapter-03-the-first-gesture.png", "use": "Chapter 3"}
+      ]
+    },
+    "ai-art": {
+      "path": "/images/ai-art/",
+      "count": 20,
+      "hasThumbnails": false,
+      "status": "production",
+      "assets": [
+        {"name": "crystalline-brain-runes.png", "use": "AI hero images"},
+        {"name": "neural-network-brain.png", "use": "AI/tech articles"},
+        {"name": "digital-data-stream.png", "use": "Tech content"},
+        {"name": "digital-knowledge-flow.png", "use": "Education content"},
+        {"name": "future-eco-city.png", "use": "Future/vision content"},
+        {"name": "ai-hologram-boardroom.png", "use": "Enterprise AI"},
+        {"name": "chakra-energy-pillars.png", "use": "Soulbook/energy"},
+        {"name": "life-symphony-conductor.png", "use": "Soulbook"},
+        {"name": "data-explosion-abstract.png", "use": "Tech/disruption"},
+        {"name": "isometric-growth-chart.png", "use": "Business/analytics"},
+        {"name": "isometric-tech-platform.png", "use": "Architecture"},
+        {"name": "balance-trust-ethics.png", "use": "AI ethics/trust"},
+        {"name": "tree-of-life-decorative.png", "use": "Relationships/growth"},
+        {"name": "knowledge-domains-wave.png", "use": "Creator/interdisciplinary"},
+        {"name": "modern-coworking-space.png", "use": "Workspace/collaboration"},
+        {"name": "golden-path-journey.png", "use": "Purpose/journey"},
+        {"name": "grand-wisdom-temple.png", "use": "Knowledge/wisdom"},
+        {"name": "pyramid-hierarchy-layers.png", "use": "Architecture/layers"},
+        {"name": "managed-vs-custom-code.png", "use": "Enterprise decisions"},
+        {"name": "security-dashboard-shield.png", "use": "Security/monitoring"}
+      ]
+    },
+    "team": {
+      "path": "/images/team/",
+      "count": 10,
+      "hasThumbnails": false,
+      "status": "needs-optimization",
+      "note": "Large PNG files, consider WebP conversion"
+    },
+    "partners": {
+      "path": "/images/logos/ + /images/brands/",
+      "count": 23,
+      "format": "SVG",
+      "status": "production"
+    },
+    "general": {
+      "path": "/images/general/",
+      "count": 2,
+      "hasThumbnails": false,
+      "status": "production"
+    }
+  },
+  "missingAssets": [
+    "logo-full.svg",
+    "logo-mark.svg",
+    "logo-dark.svg",
+    "logo-light.svg",
+    "og-template.png"
+  ],
+  "needsThumbnails": [
+    "/images/acos/",
+    "/images/consciousness/",
+    "/images/vibe-os/",
+    "/images/arcanea/",
+    "/images/soulbook/",
+    "/images/golden-age/",
+    "/images/ai-art/",
+    "/images/general/"
+  ]
+}

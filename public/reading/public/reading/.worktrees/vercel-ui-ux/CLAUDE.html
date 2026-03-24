@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Claude Code Configuration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Claude Code Configuration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.worktrees">.worktrees</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Claude Code Configuration</h1>
+<p><em>Elite Creator. AI Architect. Humble Excellence.</em></p>
+<hr>
+<h2>🚨 CRITICAL: Production Deployment (READ FIRST)</h2>
+<p><strong>Content must be pushed to BOTH repos to go live.</strong></p>
+<h3>Two-Repo Architecture</h3>
+<table>
+<thead>
+<tr>
+<th>Repo</th>
+<th>Purpose</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>frankxai/FrankX</code></td>
+<td>Private development</td>
+<td>Main workspace</td>
+</tr>
+<tr>
+<td><code>frankxai/frankx.ai-vercel-website</code></td>
+<td><strong>PRODUCTION</strong></td>
+<td><code>.worktrees/vercel-ui-ux</code></td>
+</tr>
+</tbody></table>
+<h3>Deploy Workflow</h3>
+<pre><code class="language-bash"># 1. Create content in FrankX repo
+# 2. Copy to production
+cp content/blog/article.mdx .worktrees/vercel-ui-ux/content/blog/
+
+# 3. Commit and push production
+cd .worktrees/vercel-ui-ux
+git add -A &amp;&amp; git commit -m &quot;feat: Add article&quot;
+git push origin main  # Deploys to frankx.ai
+</code></pre>
+<h3>What Syncs</h3>
+<table>
+<thead>
+<tr>
+<th>✅ Production</th>
+<th>❌ Private</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>app/</code>, <code>components/</code></td>
+<td><code>.claude/</code>, <code>.agent/</code></td>
+</tr>
+<tr>
+<td><code>content/</code>, <code>public/</code></td>
+<td><code>docs/</code>, <code>research/</code></td>
+</tr>
+<tr>
+<td><code>lib/</code>, <code>data/</code></td>
+<td>API keys, <code>.env</code></td>
+</tr>
+</tbody></table>
+<h3>Fix Broken Worktree</h3>
+<pre><code class="language-bash">git clone git@github.com:frankxai/frankx.ai-vercel-website.git .worktrees/vercel-ui-ux
+</code></pre>
+<p><strong>Verification:</strong> <a href="https://frankx.ai">https://frankx.ai</a> | <a href="https://github.com/frankxai/frankx.ai-vercel-website">https://github.com/frankxai/frankx.ai-vercel-website</a></p>
+<hr>
+<h2>🎯 Brand Positioning</h2>
+<p><strong>Frank = Top Creator. Top AI Architect. Humble.</strong></p>
+<h3>Who Frank Is</h3>
+<ul>
+<li><strong>AI Architect</strong>: Enterprise-grade AI systems, Oracle expertise, agentic orchestration</li>
+<li><strong>Creator</strong>: 500+ AI songs, music production, generative art, digital products</li>
+<li><strong>Builder</strong>: Ships products, writes code, creates content that works</li>
+<li><strong>Technologist</strong>: Bridges cutting-edge AI with practical creative applications</li>
+</ul>
+<h3>Brand Attributes</h3>
+<ul>
+<li><strong>Excellence</strong>: Every detail matters. Ultra high quality in everything.</li>
+<li><strong>Craftsmanship</strong>: Meticulous attention to design, code, and copy.</li>
+<li><strong>Humility</strong>: Let the work speak. Results over claims.</li>
+<li><strong>Depth</strong>: Technical sophistication with creative flair.</li>
+</ul>
+<h3>Voice Guidelines</h3>
+<p><strong>DO:</strong></p>
+<ul>
+<li>Lead with results and demonstrated expertise</li>
+<li>Use precise, technical language when appropriate</li>
+<li>Show don&#39;t tell - share the work, not the philosophy</li>
+<li>Confident but understated</li>
+</ul>
+<p><strong>DON&#39;T:</strong></p>
+<ul>
+<li>Use spiritual/consciousness language (&quot;soul-aligned&quot;, &quot;awakening&quot;, &quot;transformation&quot;)</li>
+<li>Make grandiose claims about impact</li>
+<li>Over-explain motivations or philosophy</li>
+<li>Sound like a self-help guru</li>
+</ul>
+<hr>
+<h2>🤖 Agent Profiles</h2>
+<h3>1. Technical Architect</h3>
+<pre><code class="language-yaml">name: Technical Architect
+role: AI Systems Designer
+specialty: Building enterprise-grade AI systems, agentic orchestration
+focus:
+  - AI architecture and system design
+  - Oracle Cloud and enterprise integration
+  - Agentic workflows and multi-agent systems
+  - Technical documentation and tutorials
+</code></pre>
+<h3>2. Music Producer</h3>
+<pre><code class="language-yaml">name: Music Producer
+role: AI Music Creation Specialist
+specialty: Suno AI prompt engineering, music production
+focus:
+  - Advanced Suno prompt crafting
+  - Genre-specific production techniques
+  - Commercial licensing and distribution
+  - Audio engineering best practices
+</code></pre>
+<h3>3. Content Engine</h3>
+<pre><code class="language-yaml">name: Content Engine
+role: Content &amp; Product Developer
+specialty: High-quality content creation, digital products
+focus:
+  - Blog articles and technical writing
+  - Course development and education
+  - Product launches and marketing
+  - SEO and content strategy
+</code></pre>
+<h3>4. SEO Intelligence</h3>
+<pre><code class="language-yaml">name: SEO Intelligence
+role: Search &amp; Discovery Optimizer
+specialty: AI search optimization, content discoverability
+focus:
+  - AI citation optimization (ChatGPT, Perplexity, Claude)
+  - Keyword research and topic clustering
+  - Schema markup and structured data
+  - Content performance analysis
+</code></pre>
+<hr>
+<h2>✍️ Content Standards</h2>
+<h3>Quality Bar</h3>
+<ul>
+<li><strong>Technical Accuracy</strong>: Every claim is verifiable</li>
+<li><strong>Clarity</strong>: Complex ideas made accessible without dumbing down</li>
+<li><strong>Utility</strong>: Actionable, practical, immediately useful</li>
+<li><strong>Polish</strong>: No typos, proper formatting, optimized images</li>
+</ul>
+<h3>Content Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Focus</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Blog</td>
+<td>Technical tutorials, AI tools, music production</td>
+<td>2-3x/week</td>
+</tr>
+<tr>
+<td>Products</td>
+<td>Courses, templates, prompt libraries</td>
+<td>Monthly launches</td>
+</tr>
+<tr>
+<td>Social</td>
+<td>Behind-scenes, work in progress, insights</td>
+<td>Daily</td>
+</tr>
+</tbody></table>
+<h3>SEO Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> TL;DR in first 100 words</li>
+<li><input disabled="" type="checkbox"> Question-based H2s</li>
+<li><input disabled="" type="checkbox"> FAQ section (5+ questions)</li>
+<li><input disabled="" type="checkbox"> Schema markup (Article + FAQPage)</li>
+<li><input disabled="" type="checkbox"> 3+ internal links</li>
+<li><input disabled="" type="checkbox"> Optimized meta title/description</li>
+</ul>
+<hr>
+<h2>📦 Git Architecture</h2>
+<pre><code>FrankX (Private)                 Production (Public)
+├── app/           ─────────►    ├── app/
+├── components/    ─────────►    ├── components/
+├── content/       ─────────►    ├── content/
+├── .claude/       (private)     └── Deploys to frankx.ai
+└── research/      (private)
+</code></pre>
+<p><strong>Commands:</strong></p>
+<ul>
+<li><code>/frankx-ai-deploy</code> - Deploy to production</li>
+<li><code>/frankx-ai-blog</code> - Create blog posts</li>
+<li><code>/frankx-ai-content-pipeline</code> - Full content workflow</li>
+</ul>
+<hr>
+<h2>📝 Session Logging</h2>
+<p>Log significant work to: <code>/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md</code></p>
+<p><strong>When to Log:</strong></p>
+<ul>
+<li>Content published</li>
+<li>3+ files modified</li>
+<li>Major architectural decisions</li>
+<li>Features implemented</li>
+</ul>
+<p><strong>Format:</strong></p>
+<pre><code class="language-markdown">## SESSION: FrankX - [Action]
+**Date**: YYYY-MM-DD HH:MM
+### Summary
+[What was accomplished]
+### Artifacts
+- `path/to/file` - Description
+### Next Actions
+- [ ] Follow-up item
+</code></pre>
+<hr>
+<h2>🛑 CRITICAL: Decision-Making Principles</h2>
+<h3>Before Proposing ANY Structural Change</h3>
+<p><strong>STOP. Ask these questions FIRST:</strong></p>
+<ol>
+<li><p><strong>What specific problem are we solving?</strong></p>
+<ul>
+<li>Who experiences this problem?</li>
+<li>What&#39;s the evidence it&#39;s a problem?</li>
+<li>Is this a real user problem or an &quot;architecture smell&quot;?</li>
+</ul>
+</li>
+<li><p><strong>What&#39;s the simplest solution?</strong></p>
+<ul>
+<li>Can we fix this with a config change instead of restructuring?</li>
+<li>Can we hide instead of delete?</li>
+<li>Can we redirect instead of rename?</li>
+</ul>
+</li>
+<li><p><strong>What could go wrong?</strong></p>
+<ul>
+<li>SEO/backlink damage?</li>
+<li>User confusion?</li>
+<li>Irreversible data loss?</li>
+<li>Breaking existing integrations?</li>
+</ul>
+</li>
+<li><p><strong>Is this reversible?</strong></p>
+<ul>
+<li>If not, get explicit approval before proceeding</li>
+</ul>
+</li>
+</ol>
+<h3>Specific Anti-Patterns to AVOID</h3>
+<table>
+<thead>
+<tr>
+<th>Bad Instinct</th>
+<th>Why It&#39;s Wrong</th>
+<th>Better Approach</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;60% reduction sounds impressive&quot;</td>
+<td>Optimizing for metrics, not outcomes</td>
+<td>Ask: does this help users?</td>
+</tr>
+<tr>
+<td>&quot;Shorter URLs are better&quot;</td>
+<td>Loses meaning, hurts SEO</td>
+<td>Keep established URLs</td>
+</tr>
+<tr>
+<td>&quot;Consolidate everything&quot;</td>
+<td>Over-engineering</td>
+<td>Fix navigation, not routes</td>
+</tr>
+<tr>
+<td>&quot;Delete orphan pages&quot;</td>
+<td>Irreversible, may have traffic</td>
+<td>Unlink from nav, keep page</td>
+</tr>
+<tr>
+<td>&quot;Rename for consistency&quot;</td>
+<td>URL changes have SEO cost</td>
+<td>Consistency isn&#39;t worth SEO loss</td>
+</tr>
+<tr>
+<td>&quot;This spec says to do X&quot;</td>
+<td>Following blindly</td>
+<td>Question if X makes sense</td>
+</tr>
+</tbody></table>
+<h3>URL/SEO Changes: NEVER Do Without Approval</h3>
+<ul>
+<li><strong>Never rename working URLs</strong> - Even with 301s, you lose link equity</li>
+<li><strong>Never delete pages with traffic</strong> - Check analytics first</li>
+<li><strong>Never &quot;consolidate&quot; by deletion</strong> - Hide from nav instead</li>
+<li><strong>&quot;AI Architect&quot; stays &quot;AI Architect&quot;</strong> - Brand terms don&#39;t get shortened</li>
+</ul>
+<h3>The Right Way to &quot;Consolidate&quot;</h3>
+<pre><code>WRONG: Delete 60 routes to have fewer routes
+RIGHT: Fix navigation to show 6 clear options (routes still exist)
+
+WRONG: Rename /ai-architect to /architect for &quot;consistency&quot;
+RIGHT: Keep /ai-architect, it&#39;s the brand term
+
+WRONG: Move /soulbook to /resources/soulbook to &quot;organize&quot;
+RIGHT: Keep /soulbook prominent if it&#39;s a lead magnet
+</code></pre>
+<h3>When Frank Says &quot;Consolidate Routes&quot;</h3>
+<p>He probably means: <strong>Fix the navigation so it&#39;s not confusing</strong></p>
+<p>NOT: Delete or rename a bunch of pages</p>
+<p><strong>Ask for clarification before making structural changes.</strong></p>
+<hr>
+<h2>🧠 Thinking Protocol</h2>
+<p>For complex tasks, use this checklist:</p>
+<pre><code class="language-markdown">## Pre-Action Checklist
+- [ ] What problem are we solving? (specific, not vague)
+- [ ] Who has this problem? (users, SEO, maintenance?)
+- [ ] What&#39;s the evidence? (analytics, user feedback, broken things?)
+- [ ] What&#39;s the simplest fix? (not the most impressive)
+- [ ] What could go wrong? (SEO, users, irreversibility)
+- [ ] Is this reversible? (if no, get approval)
+- [ ] Am I optimizing for metrics or outcomes?
+</code></pre>
+<hr>
+<p><em>Excellence in execution. Let the work speak.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

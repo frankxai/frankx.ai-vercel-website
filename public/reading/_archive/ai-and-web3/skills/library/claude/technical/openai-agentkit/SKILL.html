@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>OpenAI AgentKit Expert Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/openai-agentkit/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">OpenAI AgentKit Expert Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fopenai-agentkit">openai-agentkit</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: OpenAI AgentKit Expert
+description: Build production-ready multi-agent systems using OpenAI AgentKit and Agents SDK with best practices for agent orchestration, handoffs, and routines
+version: 1.0.0</h2>
+<h1>OpenAI AgentKit Expert Skill</h1>
+<h2>Purpose</h2>
+<p>This skill provides comprehensive guidance on building production-ready multi-agent systems using OpenAI&#39;s AgentKit platform and Agents SDK, following 2025 best practices.</p>
+<h2>Platform Overview</h2>
+<h3>OpenAI AgentKit (2025)</h3>
+<p>Complete platform for building, deploying, and optimizing agents with enterprise-grade tooling.</p>
+<p><strong>Core Components:</strong></p>
+<ul>
+<li><strong>Agent Builder</strong> - Visual canvas for creating and versioning multi-agent workflows</li>
+<li><strong>Connector Registry</strong> - Central management for data and tool connections</li>
+<li><strong>ChatKit</strong> - Embeddable customizable chat-based agent experiences</li>
+<li><strong>Evaluation Suite</strong> - Datasets, trace grading, automated prompt optimization</li>
+<li><strong>Multi-Model Support</strong> - Third-party model integration capabilities</li>
+</ul>
+<h3>Agents SDK (Production-Ready)</h3>
+<p>The Agents SDK is the production evolution of the experimental Swarm framework. <strong>Use Agents SDK for all production work</strong> - Swarm is educational only.</p>
+<p><strong>Migration Note:</strong> If you encounter legacy Swarm code, migrate to Agents SDK immediately.</p>
+<h2>Core Concepts</h2>
+<h3>1. Agents</h3>
+<p>An Agent encapsulates:</p>
+<ul>
+<li>A set of instructions (system prompt)</li>
+<li>A set of functions/tools</li>
+<li>The capability to hand off execution to another Agent</li>
+</ul>
+<p><strong>Design Principle:</strong> Agents should be <strong>lightweight and specialized</strong> rather than monolithic and general-purpose.</p>
+<h3>2. Routines</h3>
+<p>A <strong>routine</strong> is a sequence of actions an agent can perform:</p>
+<ul>
+<li>Natural language instructions (via system prompt)</li>
+<li>Available tools needed to execute</li>
+<li>Context and state management</li>
+<li>Success criteria</li>
+</ul>
+<p><strong>Think of it as:</strong> A mini-workflow that an agent owns and executes autonomously.</p>
+<h3>3. Handoffs</h3>
+<p><strong>Handoffs</strong> enable agent-to-agent transitions in execution flow.</p>
+<p><strong>Key Pattern:</strong> When an agent encounters a task outside its specialization, it hands off to a more appropriate agent.</p>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python"># Triage agent determines which specialist to use
+if task.type == &quot;refund&quot;:
+    handoff_to(refund_agent)
+elif task.type == &quot;sales&quot;:
+    handoff_to(sales_agent)
+</code></pre>
+<h2>Architectural Patterns</h2>
+<h3>Pattern 1: Triage Pattern</h3>
+<p><strong>Use Case:</strong> Routing requests to specialized sub-agents</p>
+<p><strong>Structure:</strong></p>
+<pre><code>User Request → Triage Agent → [Determines Category] → Specialist Agent
+</code></pre>
+<p><strong>Example Implementation:</strong></p>
+<pre><code class="language-python"># Triage agent with handoff capabilities
+triage_agent = Agent(
+    name=&quot;Customer Service Triage&quot;,
+    instructions=&quot;Analyze customer requests and route to appropriate specialist&quot;,
+    functions=[analyze_request],
+    handoffs=[refund_agent, sales_agent, support_agent]
+)
+</code></pre>
+<p><strong>When to Use:</strong></p>
+<ul>
+<li>Multiple distinct capability domains</li>
+<li>Clear categorization logic</li>
+<li>Different agents need different tools/context</li>
+</ul>
+<h3>Pattern 2: Sequential Orchestration</h3>
+<p><strong>Use Case:</strong> Multi-step workflows where each step has a specialist</p>
+<p><strong>Structure:</strong></p>
+<pre><code>Step 1 Agent → [Complete] → Handoff → Step 2 Agent → ... → Final Agent
+</code></pre>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python"># Research → Analysis → Report Generation pipeline
+research_agent → analysis_agent → report_agent
+</code></pre>
+<p><strong>When to Use:</strong></p>
+<ul>
+<li>Clear sequential dependencies</li>
+<li>Each step requires specialized expertise</li>
+<li>Output of one step feeds the next</li>
+</ul>
+<h3>Pattern 3: Parallel Decomposition</h3>
+<p><strong>Use Case:</strong> Breaking complex tasks into parallel subtasks</p>
+<p><strong>Structure:</strong></p>
+<pre><code>Coordinator Agent
+    ↓
+    ├─→ Subtask Agent 1
+    ├─→ Subtask Agent 2
+    └─→ Subtask Agent 3
+    ↓
+Synthesis Agent (combines results)
+</code></pre>
+<p><strong>When to Use:</strong></p>
+<ul>
+<li>Independent subtasks can run concurrently</li>
+<li>Need to aggregate multiple perspectives</li>
+<li>Performance optimization through parallelization</li>
+</ul>
+<h2>Best Practices</h2>
+<h3>Agent Design</h3>
+<p><strong>DO:</strong>
+✅ Keep agents focused on single responsibilities
+✅ Provide clear, specific instructions in system prompts
+✅ Define explicit handoff conditions
+✅ Use descriptive agent names (helps with debugging)
+✅ Test agents in isolation before integration</p>
+<p><strong>DON&#39;T:</strong>
+❌ Create monolithic &quot;do-everything&quot; agents
+❌ Allow agents to communicate directly (use handoffs)
+❌ Over-engineer with too many specialized agents
+❌ Ignore error handling in handoffs
+❌ Skip agent boundary testing</p>
+<h3>Routine Design</h3>
+<p><strong>Effective Routines:</strong></p>
+<ul>
+<li>Have clear entry and exit conditions</li>
+<li>Include error handling paths</li>
+<li>Specify required context/state</li>
+<li>Document expected inputs/outputs</li>
+<li>Define success metrics</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python">routine = {
+    &quot;name&quot;: &quot;Process Refund&quot;,
+    &quot;entry&quot;: &quot;User requests refund&quot;,
+    &quot;steps&quot;: [
+        &quot;Verify order exists&quot;,
+        &quot;Check refund eligibility&quot;,
+        &quot;Calculate refund amount&quot;,
+        &quot;Process payment reversal&quot;,
+        &quot;Send confirmation&quot;
+    ],
+    &quot;exit&quot;: &quot;Refund confirmed or rejection reason provided&quot;,
+    &quot;error_handling&quot;: &quot;Escalate to human agent if verification fails&quot;
+}
+</code></pre>
+<h3>Handoff Design</h3>
+<p><strong>Critical Elements:</strong></p>
+<ul>
+<li><strong>Clear Trigger Conditions</strong> - When should handoff occur?</li>
+<li><strong>Context Passing</strong> - What information transfers?</li>
+<li><strong>Return Path</strong> - Can control return to originating agent?</li>
+<li><strong>Failure Handling</strong> - What if target agent unavailable?</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python">def handoff_condition(state):
+    &quot;&quot;&quot;Determine if handoff needed&quot;&quot;&quot;
+    if state.requires_specialized_knowledge:
+        return specialist_agent
+    if state.exceeds_authority_level:
+        return supervisor_agent
+    return None  # Continue with current agent
+</code></pre>
+<h2>Performance Optimization</h2>
+<h3>Minimize LLM Calls</h3>
+<p><strong>Principle:</strong> Frameworks that limit LLM involvement and rely on predefined or direct execution flows operate more efficiently.</p>
+<p><strong>Strategies:</strong></p>
+<ul>
+<li>Use deterministic logic where possible</li>
+<li>Cache common responses</li>
+<li>Batch similar requests</li>
+<li>Pre-compute decision trees</li>
+<li>Use smaller models for simple tasks</li>
+</ul>
+<h3>Efficient Tool Use</h3>
+<p><strong>Principle:</strong> Give agents only the tools they need for their specialty.</p>
+<p><strong>Pattern:</strong></p>
+<pre><code class="language-python"># Specialized agents get targeted toolsets
+refund_agent.tools = [verify_order, calculate_refund, process_payment]
+sales_agent.tools = [check_inventory, create_quote, process_order]
+# NOT: both agents get all 6 tools
+</code></pre>
+<h3>Latency Reduction</h3>
+<ul>
+<li>Prefer single-agent solutions when possible</li>
+<li>Use async operations for I/O-bound tasks</li>
+<li>Implement request coalescing</li>
+<li>Monitor and optimize hot paths</li>
+</ul>
+<h2>Common Anti-Patterns</h2>
+<h3>1. Over-Decomposition</h3>
+<p><strong>Problem:</strong> Too many agents for simple tasks creates overhead</p>
+<p><strong>Solution:</strong> Start simple, add agents only when complexity demands it</p>
+<h3>2. Circular Handoffs</h3>
+<p><strong>Problem:</strong> Agent A → Agent B → Agent A creates loops</p>
+<p><strong>Solution:</strong> Design clear hierarchy or state-based termination</p>
+<h3>3. Stateless Agents</h3>
+<p><strong>Problem:</strong> Agents lose context across handoffs</p>
+<p><strong>Solution:</strong> Implement proper state management and context passing</p>
+<h3>4. Unclear Boundaries</h3>
+<p><strong>Problem:</strong> Overlapping agent responsibilities cause conflicts</p>
+<p><strong>Solution:</strong> Define explicit agent domains and decision criteria</p>
+<h2>Evaluation &amp; Testing</h2>
+<h3>Key Metrics</h3>
+<p><strong>Agent-Level:</strong></p>
+<ul>
+<li>Task completion rate</li>
+<li>Average response time</li>
+<li>Tool usage efficiency</li>
+<li>Handoff accuracy</li>
+</ul>
+<p><strong>System-Level:</strong></p>
+<ul>
+<li>End-to-end success rate</li>
+<li>Total latency</li>
+<li>Cost per interaction</li>
+<li>User satisfaction scores</li>
+</ul>
+<h3>Testing Strategy</h3>
+<p><strong>Unit Testing:</strong></p>
+<pre><code class="language-python"># Test individual agent behaviors
+def test_refund_agent():
+    result = refund_agent.process(valid_refund_request)
+    assert result.status == &quot;approved&quot;
+    assert result.amount &gt; 0
+</code></pre>
+<p><strong>Integration Testing:</strong></p>
+<pre><code class="language-python"># Test agent handoffs
+def test_triage_to_refund():
+    initial_state = {&quot;request&quot;: &quot;I want a refund&quot;}
+    final_state = orchestrator.run(initial_state)
+    assert final_state.handling_agent == &quot;refund_agent&quot;
+    assert final_state.completed == True
+</code></pre>
+<p><strong>End-to-End Testing:</strong></p>
+<pre><code class="language-python"># Test full user journeys
+def test_customer_journey():
+    scenarios = load_test_scenarios()
+    for scenario in scenarios:
+        result = system.execute(scenario)
+        assert result.meets_requirements()
+</code></pre>
+<h2>Production Deployment</h2>
+<h3>Monitoring</h3>
+<p><strong>Essential Observability:</strong></p>
+<ul>
+<li>Agent invocation traces</li>
+<li>Handoff decision logs</li>
+<li>Tool call success rates</li>
+<li>Error patterns and frequencies</li>
+<li>Latency distributions</li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li>AgentKit built-in evaluation suite</li>
+<li>Custom logging to centralized system</li>
+<li>Real-time alerting on failures</li>
+<li>Performance dashboards</li>
+</ul>
+<h3>Security</h3>
+<p><strong>Agent Security:</strong></p>
+<ul>
+<li>Scope tools to minimum required permissions</li>
+<li>Validate all tool inputs</li>
+<li>Sanitize user inputs before agent processing</li>
+<li>Implement rate limiting per agent</li>
+<li>Audit trail for all agent actions</li>
+</ul>
+<p><strong>Data Protection:</strong></p>
+<ul>
+<li>Never expose sensitive data in prompts unnecessarily</li>
+<li>Use secure credential management</li>
+<li>Encrypt state/context storage</li>
+<li>Implement PII detection and masking</li>
+</ul>
+<h3>Scaling Strategies</h3>
+<p><strong>Horizontal Scaling:</strong></p>
+<ul>
+<li>Deploy agent instances across multiple servers</li>
+<li>Use load balancing for agent requests</li>
+<li>Implement agent pools for high-volume scenarios</li>
+</ul>
+<p><strong>Vertical Optimization:</strong></p>
+<ul>
+<li>Profile and optimize slow agents</li>
+<li>Use caching strategically</li>
+<li>Batch similar requests</li>
+<li>Upgrade to more powerful models selectively</li>
+</ul>
+<h2>Code Examples</h2>
+<h3>Basic Agent Structure</h3>
+<pre><code class="language-python">from openai import OpenAI
+
+client = OpenAI()
+
+# Define specialized agent
+support_agent = {
+    &quot;name&quot;: &quot;Technical Support Agent&quot;,
+    &quot;model&quot;: &quot;gpt-4o&quot;,
+    &quot;instructions&quot;: &quot;&quot;&quot;You are a technical support specialist.
+    Help users troubleshoot technical issues.
+    If issue requires refund, hand off to refund agent.
+    If issue is sales-related, hand off to sales agent.&quot;&quot;&quot;,
+    &quot;tools&quot;: [
+        {&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: troubleshooting_guide},
+        {&quot;type&quot;: &quot;function&quot;, &quot;function&quot;: escalate_to_human}
+    ]
+}
+</code></pre>
+<h3>Handoff Implementation</h3>
+<pre><code class="language-python">def execute_agent_workflow(initial_request):
+    current_agent = triage_agent
+    context = {&quot;request&quot;: initial_request, &quot;history&quot;: []}
+
+    while not is_complete(context):
+        # Execute current agent
+        response = client.chat.completions.create(
+            model=current_agent.model,
+            messages=build_messages(context, current_agent),
+            tools=current_agent.tools
+        )
+
+        # Check for handoff
+        next_agent = determine_handoff(response)
+        if next_agent:
+            context[&quot;history&quot;].append({
+                &quot;from&quot;: current_agent.name,
+                &quot;to&quot;: next_agent.name
+            })
+            current_agent = next_agent
+        else:
+            context[&quot;result&quot;] = response
+            break
+
+    return context
+</code></pre>
+<h2>Integration with Other Systems</h2>
+<h3>With Claude SDK</h3>
+<p>Use AgentKit for OpenAI-based workflows, Claude SDK for Anthropic-based workflows, and MCP to bridge data sources to both.</p>
+<h3>With LangGraph</h3>
+<p>LangGraph provides more fine-grained control flow. Use AgentKit for simpler workflows, LangGraph for complex state machines.</p>
+<h3>With MCP</h3>
+<p>AgentKit agents can consume MCP servers as tools, standardizing data source connections.</p>
+<h2>Migration Guide</h2>
+<h3>From Swarm to Agents SDK</h3>
+<p><strong>Key Changes:</strong></p>
+<ol>
+<li>Replace <code>swarm.run()</code> with Agents SDK orchestration</li>
+<li>Update agent definitions to new schema</li>
+<li>Migrate handoff logic to production patterns</li>
+<li>Add proper error handling</li>
+<li>Implement monitoring and observability</li>
+</ol>
+<p><strong>Timeline:</strong> Swarm is maintenance-only. Migrate all production code by Q2 2025.</p>
+<h2>Decision Framework</h2>
+<p><strong>Use OpenAI AgentKit when:</strong></p>
+<ul>
+<li>Building on OpenAI models (GPT-4, etc.)</li>
+<li>Need visual agent builder for non-technical stakeholders</li>
+<li>Want integrated evaluation and monitoring</li>
+<li>Prefer managed platform over open-source frameworks</li>
+</ul>
+<p><strong>Consider alternatives when:</strong></p>
+<ul>
+<li>Need model flexibility (use LangGraph)</li>
+<li>Require complex state machines (use LangGraph)</li>
+<li>Want full control over orchestration (use custom solution)</li>
+<li>Working with Anthropic models (use Claude SDK)</li>
+</ul>
+<h2>Resources</h2>
+<p><strong>Official Documentation:</strong></p>
+<ul>
+<li>AgentKit Platform: <a href="https://platform.openai.com/docs/agents">https://platform.openai.com/docs/agents</a></li>
+<li>Agents SDK: <a href="https://github.com/openai/agents-sdk">https://github.com/openai/agents-sdk</a></li>
+<li>Best Practices: <a href="https://platform.openai.com/docs/guides/agents-best-practices">https://platform.openai.com/docs/guides/agents-best-practices</a></li>
+</ul>
+<p><strong>Community:</strong></p>
+<ul>
+<li>OpenAI Developer Forum</li>
+<li>AgentKit Discord</li>
+<li>GitHub Discussions</li>
+</ul>
+<h2>Final Principles</h2>
+<ol>
+<li><strong>Simplicity First</strong> - Start with single agents, add complexity only when needed</li>
+<li><strong>Specialization Over Generalization</strong> - Focused agents perform better</li>
+<li><strong>Explicit Handoffs</strong> - Clear routing beats implicit behavior</li>
+<li><strong>Production-Ready</strong> - Use Agents SDK, not Swarm, for real applications</li>
+<li><strong>Measure Everything</strong> - Observability is critical for multi-agent systems</li>
+</ol>
+<hr>
+<p><em>This skill ensures you build robust, scalable, production-ready multi-agent systems using OpenAI&#39;s latest platform capabilities in 2025.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

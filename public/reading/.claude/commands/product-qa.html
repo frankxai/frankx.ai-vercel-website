@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Product QA — Quality Assurance Cycle</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/product-qa.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Product QA — Quality Assurance Cycle</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>product-qa.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Product QA — Quality Assurance Cycle</h1>
+<p>Run the full QA checklist from <code>.claude/agents/product-teams/quality-assurance.md</code> against a target page or component.</p>
+<h2>Input</h2>
+<ul>
+<li><strong>Target</strong>: $ARGUMENTS (page URL path, e.g., &quot;/vibe/producer&quot; or &quot;/products&quot;)</li>
+</ul>
+<h2>Step 1: Read the Target</h2>
+<ol>
+<li>Find and read all files related to the target route</li>
+<li>Read the QA agent definition: <code>.claude/agents/product-teams/quality-assurance.md</code></li>
+<li>Identify the page&#39;s components, data sources, and API calls</li>
+</ol>
+<h2>Step 2: Static Analysis</h2>
+<p>Run in parallel:</p>
+<ul>
+<li><code>npx tsc --noEmit</code> — TypeScript type checking</li>
+<li>Review code for security issues (XSS, exposed secrets, unvalidated input)</li>
+<li>Check for accessibility issues in JSX (missing alt, missing labels, heading hierarchy)</li>
+<li>Check for performance anti-patterns (unnecessary <code>&quot;use client&quot;</code>, missing lazy loading, oversized images)</li>
+</ul>
+<h2>Step 3: Quality Gate Checklist</h2>
+<h3>Design Alignment</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Colors match brand (#0F172A, #AB47C7, #43BFE3, #F59E0B, #10B981)</li>
+<li><input disabled="" type="checkbox"> Glass opacity is 0.03 (not 0.15)</li>
+<li><input disabled="" type="checkbox"> Typography correct (Playfair h1/h2, Inter body)</li>
+<li><input disabled="" type="checkbox"> Icons are Heroicons (24px, 1.5px stroke)</li>
+<li><input disabled="" type="checkbox"> Responsive at 375px, 768px, 1440px</li>
+</ul>
+<h3>Functional</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Page renders without errors</li>
+<li><input disabled="" type="checkbox"> All links resolve (no broken hrefs)</li>
+<li><input disabled="" type="checkbox"> CTAs are functional and clear</li>
+<li><input disabled="" type="checkbox"> Forms validate input</li>
+<li><input disabled="" type="checkbox"> Error states handled (loading, empty, error)</li>
+</ul>
+<h3>Accessibility (WCAG 2.2 AAA)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Color contrast at least 7:1 on text</li>
+<li><input disabled="" type="checkbox"> All images have descriptive alt text</li>
+<li><input disabled="" type="checkbox"> Heading hierarchy correct (h1, h2, h3 in order)</li>
+<li><input disabled="" type="checkbox"> Keyboard navigation works (no traps)</li>
+<li><input disabled="" type="checkbox"> Focus indicators visible</li>
+<li><input disabled="" type="checkbox"> Motion respects prefers-reduced-motion</li>
+</ul>
+<h3>Performance</h3>
+<ul>
+<li><input disabled="" type="checkbox"> No render-blocking client components at top level</li>
+<li><input disabled="" type="checkbox"> Images use Next.js Image with sizes</li>
+<li><input disabled="" type="checkbox"> Large components code-split where appropriate</li>
+<li><input disabled="" type="checkbox"> No unused imports or dead code</li>
+</ul>
+<h3>SEO</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Meta title present (under 60 chars)</li>
+<li><input disabled="" type="checkbox"> Meta description present (120-160 chars)</li>
+<li><input disabled="" type="checkbox"> OpenGraph image configured</li>
+<li><input disabled="" type="checkbox"> 3+ internal links</li>
+<li><input disabled="" type="checkbox"> Schema markup if applicable</li>
+</ul>
+<h3>Security</h3>
+<ul>
+<li><input disabled="" type="checkbox"> No secrets in client code</li>
+<li><input disabled="" type="checkbox"> Inputs validated (client + server)</li>
+<li><input disabled="" type="checkbox"> No raw HTML injection with user-provided data</li>
+<li><input disabled="" type="checkbox"> API routes check auth where needed</li>
+</ul>
+<h2>Step 4: Report</h2>
+<p>Output a QA report:</p>
+<pre><code>## QA Report: [target]
+
+**Status**: PASSED / FAILED (X/Y gates)
+
+### Passed
+- [check] — [detail]
+
+### Failed
+- [check] — [what&#39;s wrong] — [how to fix]
+
+### Recommendations
+- [improvement suggestions]
+</code></pre>
+<p>If critical issues found, fix them inline and re-verify.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

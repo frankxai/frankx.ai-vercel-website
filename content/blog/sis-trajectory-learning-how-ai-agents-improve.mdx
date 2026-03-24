@@ -1,0 +1,207 @@
+---
+title: "How the Starlight Intelligence System Learns"
+description: "The architecture behind AI agents that get smarter every session — trajectory learning, pattern recognition, and compound intelligence."
+date: "2026-03-21"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags: ["SIS", "AI Learning", "Agent Intelligence", "ACOS", "Memory"]
+image: "/images/golden-age/starlight-intelligence-v2.png"
+featured: false
+keywords:
+  [
+    "ai agent learning system",
+    "starlight intelligence",
+    "ai pattern recognition",
+    "agent improvement",
+    "compound ai intelligence",
+  ]
+readingGoal: "You will understand how to build AI agents that improve over time through trajectory learning, pattern tracking, and federated intelligence."
+tldr: 'The Starlight Intelligence System (SIS) is the learning layer of ACOS. It tracks tool sequences across sessions, identifies successful patterns, scores agent performance, and feeds insights back into future sessions. After 276 trajectory entries, the system surfaces patterns like "Edit > Read > Bash achieves 89% success in code development" — compound intelligence that makes every session smarter than the last.'
+schema: ["Article", "FAQPage"]
+---
+
+**TL;DR:** The Starlight Intelligence System (SIS) is the learning layer of [ACOS](/acos). It tracks tool sequences across sessions, identifies successful patterns, scores agent performance, and feeds insights back into future sessions. After 276 trajectory entries, the system surfaces patterns like "Edit > Read > Bash achieves 89% success in code development" — compound intelligence that makes every session smarter than the last.
+
+---
+
+## What Most AI Agents Get Wrong About Learning
+
+Most people treat AI sessions as isolated events. You open a session, do work, close it. The agent has no memory of what succeeded. No record of which approach reached the right answer in three moves versus fourteen. No pattern recognition across time.
+
+That is the equivalent of a surgeon who performs thousands of procedures but keeps no outcome data. Technically skilled. Systemically blind.
+
+I built the Starlight Intelligence System to fix this. It is the learning layer inside [ACOS](/acos) — the Agentic Creator OS I run to manage a Next.js site, 65+ music tracks, 9 n8n workflows, and an agent orchestration stack. SIS does one thing: it watches what agents do, measures what works, and feeds that knowledge back into future sessions.
+
+After running this for 14 weeks across hundreds of sessions, the numbers are concrete.
+
+---
+
+## What SIS Actually Is
+
+SIS is not a model. It is not a fine-tuned LLM. It is a behavioral observation and pattern extraction system built on three components:
+
+**1. Trajectory Logger** — Records every tool call sequence in a session, tagged with task domain and outcome.
+
+**2. Pattern Extractor** — Runs n-gram analysis (3-gram and 4-gram) over accumulated trajectories to surface repeating tool chains with associated success rates.
+
+**3. Intelligence Feed** — Injects the top patterns into each new session via the statusline and CLAUDE.md, so the agent starts with learned priors instead of starting from zero.
+
+The system stores data in structured JSON. The format is simple: session ID, task domain, tool sequence as an ordered array, and outcome (success, partial, failed). That simplicity is intentional. Observable data compounds. Opaque data does not.
+
+---
+
+## Trajectory Learning: How Sessions Become Data
+
+Every ACOS session runs through a hook system. On session end, the hook fires a logger that writes a trajectory entry. One entry looks like this:
+
+```json
+{
+  "sessionId": "ses_20260314_1423",
+  "domain": "code-development",
+  "toolChain": ["Read", "Edit", "Bash", "Read", "Edit"],
+  "outcome": "success",
+  "turnsToCompletion": 5,
+  "timestamp": "2026-03-14T14:23:11Z"
+}
+```
+
+That single entry is not useful. 276 entries across 14 weeks are.
+
+The pattern extractor runs nightly. It groups trajectory entries by domain, extracts 3-gram and 4-gram subsequences, and calculates a success rate for each subsequence — percentage of times that sequence appeared in sessions marked "success" versus "partial" or "failed."
+
+The output is a ranked pattern table. The top patterns from the code-development domain after 276 entries:
+
+| Tool Chain                | Occurrences | Success Rate |
+| ------------------------- | ----------- | ------------ |
+| Edit → Read → Bash        | 47          | 89%          |
+| Read → Edit → Read → Bash | 31          | 84%          |
+| Glob → Read → Edit        | 28          | 79%          |
+| Bash → Read → Edit → Bash | 22          | 73%          |
+| Read → Bash → Read        | 19          | 61%          |
+
+The "Edit → Read → Bash" pattern at 89% success is the most important finding. It means: make a targeted code change, verify it reads correctly in context, then run validation. Agents that skip the middle Read — going directly Edit → Bash — succeed only 54% of the time. That gap is measurable, repeatable, and now encoded.
+
+---
+
+## Pattern Recognition: 3-Grams and 4-Grams
+
+The choice of 3-gram and 4-gram analysis is deliberate. Single-tool frequency tells you which tools get used most. That is not useful — Read and Edit will always top the list because everything involves reading and editing. The signal is in sequences.
+
+3-gram analysis captures the minimal meaningful unit of agent behavior: a 3-step tool chain that either moves toward resolution or doesn't. 4-gram analysis catches branching — where the agent needed an additional verification step before committing.
+
+Anything longer than 4-grams starts to capture session-specific noise rather than generalizable patterns. I tested 5-gram and 6-gram analysis. The success rate distributions flatten out — patterns appear only 2-3 times across the full corpus, which is not statistically meaningful.
+
+The 3/4 split gives signal-to-noise ratios I can act on.
+
+For content creation (a different domain in the dataset), the top pattern is `Read → Edit → Read → Edit` at 81% success — iterate, verify, iterate, verify. No Bash. No Glob. Pure text refinement. The agent has learned that content tasks and code tasks require structurally different approaches.
+
+---
+
+## The Intelligence Score System
+
+SIS produces a session-level intelligence score — a composite metric that feeds into the statusline displayed with every agent response. The score runs from 0 to 100.
+
+The components:
+
+- **Pattern adherence** (35 points): Is the agent using known high-success tool chains?
+- **Domain accuracy** (25 points): Is the agent correctly identifying the task domain and applying domain-specific patterns?
+- **Turn efficiency** (20 points): Is the agent reaching outcomes in fewer turns than baseline?
+- **Memory utilization** (20 points): Is the agent loading and applying relevant CLAUDE.md context?
+
+Sessions with a score below 60 get flagged. SIS writes a brief post-session diagnosis: which component dropped, what the agent did instead, and what the high-success alternative was. That feedback goes into the CLAUDE.md next-session injection.
+
+The system started at an average score of 64 in week one. By week fourteen it was running at 88. Not because I changed the scoring rubric — because the agent patterns genuinely improved as the injection content accumulated.
+
+---
+
+## How Insights Feed Back Into Sessions
+
+The feedback loop is the critical piece. Collecting data without acting on it produces an archive, not intelligence.
+
+SIS injects three things into every new session:
+
+**1. Domain priors** — The top 3 tool chains for the most likely task domain, loaded into the session via CLAUDE.md context. The agent starts with a prior on what works.
+
+**2. Anti-patterns** — The 2 most common low-success sequences, explicitly listed as patterns to avoid. Negative examples are as instructive as positive ones.
+
+**3. Intelligence summary** — A one-line status: current average score, trend direction, and the domain that needs the most attention. Visible in the statusline every session.
+
+The statusline entry looks like this:
+
+```
+[SIS v4.1] Score: 88/100 ↑ | Domain: code-dev | Pattern: Edit→Read→Bash (89%) | Flag: none
+```
+
+The agent sees this at session start. It is not prescriptive — the agent does not mechanically follow the pattern. It is calibrating. A new session starts with inherited knowledge rather than a blank slate.
+
+---
+
+## Federation: Sharing Intelligence Across Projects
+
+The single-project version of SIS is useful. The federated version is where compound intelligence becomes serious.
+
+Federation means running SIS across multiple projects and sharing the learned patterns. My setup: the ACOS instance on the frankx.ai Next.js site, a separate ACOS instance on the Arcanea platform project, and a third on the music catalog system. Three distinct codebases, three distinct task distributions.
+
+The federation layer identifies patterns that generalize across all three — tool chains that achieve high success regardless of project context. These go into a global pattern set loaded into every project's session, not just the project that discovered them.
+
+The music catalog and the website share almost no content tasks. But both projects use similar code-development patterns. The Edit → Read → Bash pattern, discovered on the website project, now accelerates coding tasks on both other projects.
+
+Cross-project federation requires one discipline: domain classification must be consistent. If "code-development" means something different in project A versus project B, the patterns do not transfer cleanly. The SIS domain taxonomy is the same across all three instances: `code-development`, `content-creation`, `data-ops`, `infrastructure`, `research`.
+
+---
+
+## What the Data Reveals About Agent Failure
+
+After 276 trajectory entries, the failure patterns are as instructive as the success patterns.
+
+**Failure mode 1: Domain misclassification.** The agent treats a data-ops task (JSON manipulation, script execution) as a code-development task and uses a code-development tool chain. Success rate drops to 41%. Domain classification matters more than any individual tool choice.
+
+**Failure mode 2: Skipping the verification Read.** The most common error in code-development tasks. Agent makes an edit, immediately runs Bash validation without re-reading what it wrote. Success rate is 54% — versus 89% when the intermediate Read is present. One extra tool call, 35-point difference in success rate.
+
+**Failure mode 3: Over-fetching context.** Running Glob before every task regardless of whether a file search is needed. This adds turns without adding information. Sessions with unnecessary Glob calls average 2.3 additional turns to completion.
+
+None of these failures were obvious without trajectory data. They felt like random variation. With 276 data points they are repeatable, measurable, and correctable.
+
+The full write-up on how memory systems support this kind of learning is in the [AI agent memory architecture post](/blog/ai-agent-memory-persistent-systems). The specific ACOS setup that houses SIS is covered in [the ACOS Claude Code setup guide](/blog/ultimate-ai-coding-agent-setup-acos-claude-code-mcp).
+
+---
+
+## Building Your Own Trajectory System
+
+The architecture is not proprietary. The components are simple enough that any Claude Code user can implement a version.
+
+**Step 1: Define a trajectory schema.** Session ID, domain (pick 5 max, stay consistent), tool chain as array, outcome (3 states: success / partial / failed), timestamp.
+
+**Step 2: Build a session-end hook.** In Claude Code, hooks fire via the hooks system in `.claude/settings.json`. Write a small Node script that appends the trajectory entry to a JSON file.
+
+**Step 3: Run pattern extraction.** Weekly is sufficient to start. Count 3-gram occurrences by domain, calculate success rates. Anything with fewer than 10 occurrences is noise — exclude it.
+
+**Step 4: Inject top patterns.** Add the top 3 success patterns and top 2 failure patterns into your CLAUDE.md as a "Session Priors" section. Update it weekly after extraction runs.
+
+**Step 5: Track the score over time.** Define a simple composite metric. Four components is enough. Trend direction matters more than the absolute number.
+
+The full ACOS system that houses SIS — including the hooks, the schema, and the extraction scripts — is documented at [/acos](/acos). The [personal AI CoE research hub](/research/personal-ai-coe) has the conceptual framework that motivated the design.
+
+---
+
+## FAQ
+
+### What is the Starlight Intelligence System?
+
+SIS is the behavioral learning layer of ACOS. It records tool sequences across sessions, extracts high-success patterns using n-gram analysis, scores agent performance, and injects learned priors into future sessions. The result is an agent that compounds knowledge over time instead of resetting with each session.
+
+### How many sessions do you need before patterns become meaningful?
+
+In practice, domain-level patterns stabilize around 40-50 sessions per domain. Below that, success rates fluctuate too much to act on. The 276-entry corpus covers multiple domains — individual domains each had 50-90 entries by week six.
+
+### Does this require custom model training?
+
+No. SIS operates entirely on behavioral data — what tools the agent uses, in what sequence, with what outcome. The underlying model (Claude) is unchanged. SIS is a wrapper system, not a fine-tuning approach.
+
+### What is the difference between SIS and just writing good CLAUDE.md files?
+
+CLAUDE.md is static context. You write it once (or update it manually) and it persists. SIS is dynamic — it observes actual agent behavior, measures outcomes, and updates the injected context automatically based on evidence. A good CLAUDE.md is still essential; SIS makes it self-updating.
+
+### Can the federation approach work across completely different project types?
+
+Partially. Domain-specific patterns (content creation, code development) transfer well when the domain taxonomy is consistent. Project-specific patterns (how to navigate a particular codebase) do not transfer and should stay local. The rule: federate at the domain level, keep project-specific patterns scoped.

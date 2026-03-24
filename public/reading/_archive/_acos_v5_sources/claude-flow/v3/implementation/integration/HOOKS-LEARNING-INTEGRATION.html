@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow v3: Hooks &amp; Learning Integration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/integration/HOOKS-LEARNING-INTEGRATION.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow v3: Hooks &amp; Learning Integration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fintegration">integration</a> / <span>HOOKS-LEARNING-INTEGRATION.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude-Flow v3: Hooks &amp; Learning Integration</h1>
+<h2>Executive Summary</h2>
+<p><strong>Key Finding</strong>: <code>agentic-flow@alpha</code> provides nearly everything needed for a self-optimizing learning system. Combined with Claude Code&#39;s hooks API, we have a complete solution.</p>
+<h3>What agentic-flow@alpha Already Provides</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Status</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9 RL Algorithms</td>
+<td>✓ Ready</td>
+<td>Double-Q, SARSA, Actor-Critic, PPO, etc.</td>
+</tr>
+<tr>
+<td>Trajectory Tracking</td>
+<td>✓ Ready</td>
+<td>SQLite-backed, cross-session</td>
+</tr>
+<tr>
+<td>Pattern Storage</td>
+<td>✓ Ready</td>
+<td>TensorCompress tiered storage</td>
+</tr>
+<tr>
+<td>Parallel Learning</td>
+<td>✓ Ready</td>
+<td>7 workers, batch processing</td>
+</tr>
+<tr>
+<td>Attention Mechanisms</td>
+<td>✓ Ready</td>
+<td>MoE, Flash, Graph, Hyperbolic</td>
+</tr>
+<tr>
+<td>Memory Compression</td>
+<td>✓ Ready</td>
+<td>50-97% memory savings</td>
+</tr>
+</tbody></table>
+<h3>What Claude Code Provides</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Status</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10 Hook Events</td>
+<td>✓ Ready</td>
+<td>PreToolUse, PostToolUse, Session*, etc.</td>
+</tr>
+<tr>
+<td>OpenTelemetry</td>
+<td>✓ Ready</td>
+<td>Prometheus export, custom metrics</td>
+</tr>
+<tr>
+<td>Extended Thinking</td>
+<td>✓ Ready</td>
+<td>Up to 31,999 tokens for reasoning</td>
+</tr>
+<tr>
+<td>MCP Integration</td>
+<td>✓ Ready</td>
+<td>50+ coordination tools</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>1. agentic-flow@alpha Hook Inventory</h2>
+<h3>1.1 Original Hook Tools (10)</h3>
+<pre><code class="language-typescript">// MCP Tool Names
+hook_pre_edit      // Before file edits
+hook_post_edit     // After file edits (pattern extraction)
+hook_pre_command   // Before bash commands (safety check)
+hook_post_command  // After commands (outcome learning)
+hook_route         // Intelligent task routing
+hook_explain       // XAI explanations
+hook_pretrain      // Pattern pre-training
+hook_build_agents  // Agent construction
+hook_metrics       // Performance tracking
+hook_transfer      // Cross-task learning
+</code></pre>
+<h3>1.2 Intelligence Bridge Tools (9)</h3>
+<pre><code class="language-typescript">// High-performance learning tools
+intelligence_route               // SONA + MoE routing (~0.05ms)
+intelligence_trajectory_start    // Begin trajectory tracking
+intelligence_trajectory_step     // Record step with reward
+intelligence_trajectory_end      // Complete with verdict
+intelligence_pattern_store       // Store successful patterns
+intelligence_pattern_search      // Find similar patterns (HNSW)
+intelligence_stats               // Learning statistics
+intelligence_learn               // Force learning cycle
+intelligence_attention           // Attention similarity compute
+</code></pre>
+<h3>1.3 Parallel Learning Functions (12)</h3>
+<pre><code class="language-typescript">// From intelligence-bridge.js
+queueEpisode()              // Batch Q-learning (3-4x faster)
+flushEpisodeBatch()         // Process with 7 workers
+matchPatternsParallel()     // Parallel pattern matching
+indexMemoriesBackground()   // Non-blocking memory indexing
+searchParallel()            // Sharded similarity search
+analyzeFilesParallel()      // Multi-file analysis
+analyzeCommitsParallel()    // Git history learning
+speculativeEmbed()          // Pre-embed likely files
+analyzeAST()                // Parallel AST extraction
+analyzeComplexity()         // Code quality metrics
+buildDependencyGraph()      // Import graph building
+securityScan()              // Parallel SAST
+</code></pre>
+<hr>
+<h2>2. Multi-Algorithm Learning Engine</h2>
+<p>agentic-flow@alpha includes 9 specialized RL algorithms automatically selected by task type:</p>
+<table>
+<thead>
+<tr>
+<th>Task Type</th>
+<th>Algorithm</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>agent-routing</code></td>
+<td>Double-Q</td>
+<td>Reduces overestimation bias</td>
+</tr>
+<tr>
+<td><code>error-avoidance</code></td>
+<td>SARSA</td>
+<td>Conservative on-policy learning</td>
+</tr>
+<tr>
+<td><code>confidence-scoring</code></td>
+<td>Actor-Critic</td>
+<td>Continuous 0-1 scores</td>
+</tr>
+<tr>
+<td><code>context-ranking</code></td>
+<td>PPO</td>
+<td>Stable preference learning</td>
+</tr>
+<tr>
+<td><code>trajectory-learning</code></td>
+<td>Decision Transformer</td>
+<td>Sequence patterns</td>
+</tr>
+<tr>
+<td><code>memory-recall</code></td>
+<td>TD-Lambda</td>
+<td>Long-term credit assignment</td>
+</tr>
+<tr>
+<td><code>pattern-matching</code></td>
+<td>Q-Learning</td>
+<td>Fast value-based matching</td>
+</tr>
+<tr>
+<td><code>exploration</code></td>
+<td>REINFORCE</td>
+<td>Policy gradient for novel tasks</td>
+</tr>
+<tr>
+<td><code>multi-agent</code></td>
+<td>A2C</td>
+<td>Advantage for coordination</td>
+</tr>
+</tbody></table>
+<h3>Usage</h3>
+<pre><code class="language-typescript">import { learnFromEpisode, getAlgorithmForTask } from &#39;agentic-flow/hooks&#39;;
+
+// Automatic algorithm selection
+const { algorithm, reason } = getAlgorithmForTask(&#39;agent-routing&#39;);
+// → { algorithm: &#39;double-q&#39;, reason: &#39;Reduces overestimation bias&#39; }
+
+// Learn from execution
+await learnFromEpisode(
+  &#39;agent-routing&#39;,      // Task type
+  stateEmbedding,       // Current state
+  &#39;select-coder&#39;,       // Action taken
+  0.85,                 // Reward (success)
+  nextStateEmbedding,   // Result state
+  true                  // Episode done
+);
+</code></pre>
+<hr>
+<h2>3. Claude Code Hook Integration</h2>
+<h3>3.1 Hook Event Mapping</h3>
+<table>
+<thead>
+<tr>
+<th>Claude Code Event</th>
+<th>agentic-flow Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PreToolUse</code></td>
+<td><code>hook_pre_command</code>, <code>hook_pre_edit</code></td>
+<td>Predict &amp; prevent errors</td>
+</tr>
+<tr>
+<td><code>PostToolUse</code></td>
+<td><code>hook_post_command</code>, <code>hook_post_edit</code></td>
+<td>Learn from outcomes</td>
+</tr>
+<tr>
+<td><code>SessionStart</code></td>
+<td><code>intelligence_trajectory_start</code></td>
+<td>Begin session trajectory</td>
+</tr>
+<tr>
+<td><code>SessionEnd</code></td>
+<td><code>intelligence_trajectory_end</code></td>
+<td>Complete with verdict</td>
+</tr>
+<tr>
+<td><code>UserPromptSubmit</code></td>
+<td><code>hook_route</code></td>
+<td>Intelligent task routing</td>
+</tr>
+<tr>
+<td><code>Stop</code></td>
+<td><code>intelligence_pattern_store</code></td>
+<td>Store successful patterns</td>
+</tr>
+</tbody></table>
+<h3>3.2 Complete Hook Configuration</h3>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;hooks&quot;: [{
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;npx agentic-flow@alpha hooks pre-command --validate --predict --cache&quot;
+        }]
+      },
+      {
+        &quot;matcher&quot;: &quot;Edit|Write&quot;,
+        &quot;hooks&quot;: [{
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;npx agentic-flow@alpha hooks pre-edit --analyze-impact --check-patterns&quot;
+        }]
+      }
+    ],
+    &quot;PostToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;hooks&quot;: [{
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;npx agentic-flow@alpha hooks post-command --learn --store-pattern --batch&quot;
+        }]
+      },
+      {
+        &quot;matcher&quot;: &quot;Edit|Write&quot;,
+        &quot;hooks&quot;: [{
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;npx agentic-flow@alpha hooks post-edit --extract-patterns --train-neural&quot;
+        }]
+      }
+    ],
+    &quot;SessionStart&quot;: [
+      {
+        &quot;hooks&quot;: [{
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;npx agentic-flow@alpha hooks session-start --restore-memory --warm-cache&quot;
+        }]
+      }
+    ],
+    &quot;SessionEnd&quot;: [
+      {
+        &quot;hooks&quot;: [{
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;npx agentic-flow@alpha hooks session-end --consolidate --export-metrics&quot;
+        }]
+      }
+    ]
+  }
+}
+</code></pre>
+<hr>
+<h2>4. TensorCompress Tiered Storage</h2>
+<p>agentic-flow@alpha includes automatic memory optimization:</p>
+<table>
+<thead>
+<tr>
+<th>Access Frequency</th>
+<th>Compression Tier</th>
+<th>Memory Savings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hot (&gt;0.8)</td>
+<td>none</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>Warm (&gt;0.4)</td>
+<td>half</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>Cool (&gt;0.1)</td>
+<td>pq8</td>
+<td>87.5%</td>
+</tr>
+<tr>
+<td>Cold (&gt;0.01)</td>
+<td>pq4</td>
+<td>93.75%</td>
+</tr>
+<tr>
+<td>Archive (≤0.01)</td>
+<td>binary</td>
+<td>96.9%</td>
+</tr>
+</tbody></table>
+<p><strong>Automatic recompression</strong> every 5 minutes based on access patterns.</p>
+<hr>
+<h2>5. Self-Optimizing Learning Loop</h2>
+<h3>5.1 Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    Claude Code Hook Events                       │
+│  PreToolUse → SessionStart → UserPrompt → PostToolUse → Stop    │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+┌───────────────────────────▼─────────────────────────────────────┐
+│              agentic-flow@alpha Intelligence Bridge              │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
+│  │ 9 RL Algos  │  │ Trajectory  │  │ Pattern     │             │
+│  │ Auto-Select │  │ Tracking    │  │ Storage     │             │
+│  └─────────────┘  └─────────────┘  └─────────────┘             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
+│  │ 7 Workers   │  │ HNSW Index  │  │ Tensor      │             │
+│  │ Parallel    │  │ 150x faster │  │ Compress    │             │
+│  └─────────────┘  └─────────────┘  └─────────────┘             │
+└───────────────────────────┬─────────────────────────────────────┘
+                            │
+┌───────────────────────────▼─────────────────────────────────────┐
+│                    SQLite Persistence                            │
+│  Patterns │ Trajectories │ Episodes │ Metrics │ Compressions    │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>5.2 Learning Flow</h3>
+<pre><code class="language-typescript">// SessionStart: Restore context
+SessionStart → {
+  restoreMemory()           // Load relevant patterns
+  warmCache()               // Pre-embed likely files
+  beginTrajectory()         // Start session tracking
+}
+
+// PreToolUse: Predict &amp; Prevent
+PreToolUse → {
+  findSimilarPatterns()     // Query past successes
+  predictOutcome()          // RL prediction
+  blockIfRisky()            // Safety gate (0.85 threshold)
+}
+
+// PostToolUse: Learn
+PostToolUse → {
+  recordTrajectoryStep()    // Track action/reward
+  learnFromEpisode()        // Update RL policy
+  queueEpisode()            // Batch for parallel learning
+}
+
+// SessionEnd: Consolidate
+SessionEnd → {
+  endTrajectory()           // Complete with verdict
+  storePattern()            // Save successful patterns
+  flushEpisodeBatch()       // Process queued episodes
+  consolidateMemory()       // Compress cold patterns
+}
+</code></pre>
+<hr>
+<h2>6. Telemetry Integration</h2>
+<h3>6.1 OpenTelemetry Metrics</h3>
+<pre><code class="language-bash"># Enable export
+export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
+
+# Metrics available:
+cf_learning_episodes_total      # Total episodes processed
+cf_learning_success_rate        # Success percentage
+cf_pattern_storage_bytes        # Pattern storage size
+cf_compression_ratio            # Memory savings
+cf_trajectory_duration_ms       # Learning latency
+cf_rl_algorithm_usage           # Algorithm selection frequency
+</code></pre>
+<h3>6.2 Built-in Dashboard</h3>
+<pre><code class="language-bash">npx agentic-flow@alpha metrics --format prometheus
+npx agentic-flow@alpha stats --learning
+</code></pre>
+<hr>
+<h2>7. Installation &amp; Setup</h2>
+<h3>7.1 Minimal Setup (Learning Only)</h3>
+<pre><code class="language-bash">npm install agentic-flow@alpha
+npx agentic-flow@alpha hooks install --learning
+</code></pre>
+<h3>7.2 Full Setup (All Features)</h3>
+<pre><code class="language-bash">npm install agentic-flow@alpha
+npx agentic-flow@alpha hooks install --all --parallel
+
+# Configure Claude Code hooks
+cat &gt;&gt; ~/.claude/settings.json &lt;&lt; &#39;EOF&#39;
+{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [{&quot;matcher&quot;: &quot;Bash|Edit&quot;, &quot;hooks&quot;: [{&quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;npx agentic-flow@alpha hooks pre-task&quot;}]}],
+    &quot;PostToolUse&quot;: [{&quot;matcher&quot;: &quot;Bash|Edit&quot;, &quot;hooks&quot;: [{&quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;npx agentic-flow@alpha hooks post-task --learn&quot;}]}]
+  }
+}
+EOF
+</code></pre>
+<hr>
+<h2>8. What agentic-flow@alpha Provides (Summary)</h2>
+<h3>Already Implemented:</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 19 hook tools (10 original + 9 intelligence)</li>
+<li><input checked="" disabled="" type="checkbox"> 9 RL algorithms with auto-selection</li>
+<li><input checked="" disabled="" type="checkbox"> Trajectory tracking with SQLite persistence</li>
+<li><input checked="" disabled="" type="checkbox"> Pattern storage with tiered compression (50-97% savings)</li>
+<li><input checked="" disabled="" type="checkbox"> Parallel learning with 7 workers (3-4x faster)</li>
+<li><input checked="" disabled="" type="checkbox"> HNSW index for 150x faster pattern search</li>
+<li><input checked="" disabled="" type="checkbox"> Attention mechanisms (MoE, Flash, Graph, Hyperbolic)</li>
+<li><input checked="" disabled="" type="checkbox"> Extended worker pool for parallel operations</li>
+<li><input checked="" disabled="" type="checkbox"> Speculative embedding for related files</li>
+<li><input checked="" disabled="" type="checkbox"> AST analysis, complexity metrics, security scanning</li>
+</ul>
+<h3>Claude-Flow v3 Needs to Add:</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Claude Code hook configuration adapter</li>
+<li><input disabled="" type="checkbox"> OpenTelemetry metric export wrapper</li>
+<li><input disabled="" type="checkbox"> Cross-session learning persistence</li>
+<li><input disabled="" type="checkbox"> Swarm coordination integration</li>
+<li><input disabled="" type="checkbox"> User-configurable learning parameters</li>
+</ul>
+<hr>
+<h2>9. Recommendation</h2>
+<p><strong>Use agentic-flow@alpha as the learning backbone for Claude-Flow v3.</strong></p>
+<p>The package already provides:</p>
+<ul>
+<li>Complete RL learning system (9 algorithms)</li>
+<li>Efficient pattern storage (tiered compression)</li>
+<li>Fast retrieval (HNSW 150x faster)</li>
+<li>Parallel processing (7 workers)</li>
+<li>SQLite persistence (cross-session)</li>
+</ul>
+<p>Claude-Flow v3 should focus on:</p>
+<ol>
+<li><strong>Thin integration layer</strong> - Connect Claude Code hooks to agentic-flow hooks</li>
+<li><strong>Configuration UI</strong> - Let users customize learning parameters</li>
+<li><strong>Swarm coordination</strong> - Use learning to optimize swarm topology selection</li>
+<li><strong>Metrics dashboard</strong> - Visualize learning progress</li>
+</ol>
+<hr>
+<p><em>Document created: 2026-01-03</em>
+<em>agentic-flow version: 2.0.1-alpha.50</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

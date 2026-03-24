@@ -1,0 +1,1279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Migration Guide: v2 → v3</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/v3-migration/MIGRATION.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Migration Guide: v2 → v3</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fv3-migration">v3-migration</a> / <span>MIGRATION.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Migration Guide: v2 → v3</h1>
+<p>Complete guide for upgrading from Claude Flow v2 to v3.0.0-alpha.1</p>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#pre-migration-checklist">Pre-Migration Checklist</a></li>
+<li><a href="#breaking-changes">Breaking Changes</a></li>
+<li><a href="#step-by-step-migration">Step-by-Step Migration</a></li>
+<li><a href="#module-by-module-guide">Module-by-Module Guide</a></li>
+<li><a href="#configuration-changes">Configuration Changes</a></li>
+<li><a href="#code-updates">Code Updates</a></li>
+<li><a href="#testing-migration">Testing Migration</a></li>
+<li><a href="#rollback-plan">Rollback Plan</a></li>
+<li><a href="#common-issues">Common Issues</a></li>
+</ol>
+<hr>
+<h2>Overview</h2>
+<h3>What&#39;s Changed</h3>
+<p>Claude Flow v3 is a complete architectural overhaul based on 10 Architecture Decision Records (ADRs). The migration involves:</p>
+<ul>
+<li><strong>Code reduction</strong>: 15,000+ lines → &lt;5,000 lines</li>
+<li><strong>Module architecture</strong>: Monolith → 10 @claude-flow modules</li>
+<li><strong>Foundation</strong>: Custom implementation → agentic-flow@alpha core</li>
+<li><strong>Memory</strong>: 6+ fragmented systems → Unified AgentDB</li>
+<li><strong>Testing</strong>: Jest → Vitest (10x faster)</li>
+<li><strong>Platform</strong>: Node.js + Deno → Node.js 20+ only</li>
+</ul>
+<h3>Migration Timeline</h3>
+<ul>
+<li><strong>Small projects</strong>: 1-2 hours</li>
+<li><strong>Medium projects</strong>: 4-8 hours</li>
+<li><strong>Large projects</strong>: 1-2 days</li>
+</ul>
+<h3>Risk Level</h3>
+<p><strong>Medium</strong>: Breaking changes in API, configuration, and dependencies. Follow this guide carefully.</p>
+<hr>
+<h2>Pre-Migration Checklist</h2>
+<h3>1. Backup Current Setup</h3>
+<pre><code class="language-bash"># Backup your v2 installation
+cp -r ~/.claude-flow ~/.claude-flow.v2.backup
+cp -r ./node_modules ./node_modules.v2.backup
+cp package.json package.json.v2.backup
+cp package-lock.json package-lock.json.v2.backup
+
+# Export v2 memory (if using memory features)
+npx agentic-flow memory export --output ./v2-memory-backup.json
+</code></pre>
+<h3>2. Document Current Configuration</h3>
+<pre><code class="language-bash"># Save current configuration
+cat ~/.claude-flow/config.json &gt; v2-config-backup.json
+
+# List installed agents
+npx agentic-flow --list &gt; v2-agents-list.txt
+
+# Export environment variables
+env | grep CLAUDE_FLOW &gt; v2-env-backup.txt
+</code></pre>
+<h3>3. System Requirements Check</h3>
+<pre><code class="language-bash"># Check Node.js version (must be 20.x or higher)
+node --version  # Should be v20.x.x or higher
+
+# Check npm version
+npm --version  # Should be 10.x.x or higher
+
+# Check available disk space (need ~500MB for v3)
+df -h
+
+# Check platform compatibility
+uname -a  # Windows/macOS/Linux
+</code></pre>
+<h3>4. Review Dependencies</h3>
+<pre><code class="language-bash"># Check for conflicting dependencies
+npm list agentic-flow
+npm list agentdb
+npm list @ruvector/attention
+npm list @ruvector/sona
+
+# Check for custom plugins or extensions
+ls ~/.claude-flow/plugins/
+</code></pre>
+<hr>
+<h2>Breaking Changes</h2>
+<h3>1. Removed Features</h3>
+<h4>Deno Support (ADR-010)</h4>
+<pre><code class="language-diff">- # v2: Deno support
+- deno run --allow-all agentic-flow.ts
+
++ # v3: Node.js 20+ only
++ node --version  # Must be v20.x.x+
+</code></pre>
+<p><strong>Action Required</strong>: Migrate all Deno code to Node.js.</p>
+<h4>Jest Testing Framework (ADR-008)</h4>
+<pre><code class="language-diff">- # v2: Jest
+- &quot;test&quot;: &quot;jest&quot;
+- &quot;testMatch&quot;: [&quot;**/*.test.js&quot;]
+
++ # v3: Vitest (10x faster)
++ &quot;test&quot;: &quot;vitest&quot;
++ &quot;testMatch&quot;: [&quot;**/*.test.ts&quot;]
+</code></pre>
+<p><strong>Action Required</strong>: Convert all Jest tests to Vitest format.</p>
+<h4>Legacy Memory Systems (ADR-006)</h4>
+<pre><code class="language-diff">- # v2: Multiple memory backends
+- npx agentic-flow memory --backend filesystem
+- npx agentic-flow memory --backend redis
+- npx agentic-flow memory --backend mongodb
+
++ # v3: Unified AgentDB
++ npx @claude-flow/memory unify --backend agentdb
+</code></pre>
+<p><strong>Action Required</strong>: Migrate all memory data to AgentDB.</p>
+<h4>Multiple Swarm Coordinators (ADR-003)</h4>
+<pre><code class="language-diff">- # v2: 6+ different coordinators
+- import { HierarchicalCoordinator } from &#39;./coordinators/hierarchical&#39;
+- import { MeshCoordinator } from &#39;./coordinators/mesh&#39;
+- import { AdaptiveCoordinator } from &#39;./coordinators/adaptive&#39;
+
++ # v3: Single UnifiedSwarmCoordinator
++ import { SwarmCoordinator } from &#39;@claude-flow/swarm&#39;
+</code></pre>
+<p><strong>Action Required</strong>: Update all coordinator imports and usage.</p>
+<h3>2. API Changes</h3>
+<h4>MCP-First Design (ADR-005)</h4>
+<pre><code class="language-diff">- # v2: Direct function calls
+- const result = await agent.execute(task);
+
++ # v3: MCP protocol
++ const result = await mcp.call(&#39;agent_execute&#39;, { task });
+</code></pre>
+<h4>Event Sourcing (ADR-007)</h4>
+<pre><code class="language-diff">- # v2: Direct state mutation
+- agent.state.status = &#39;running&#39;;
+- agent.save();
+
++ # v3: Event sourcing
++ await agent.emit(&#39;status_changed&#39;, {
++   from: &#39;idle&#39;,
++   to: &#39;running&#39;,
++   timestamp: Date.now()
++ });
+</code></pre>
+<h4>Module-Based Imports (ADR-002)</h4>
+<pre><code class="language-diff">- # v2: Monolithic imports
+- import { Security, Memory, Swarm } from &#39;agentic-flow&#39;;
+
++ # v3: Module imports
++ import { SecurityModule } from &#39;@claude-flow/security&#39;;
++ import { MemoryModule } from &#39;@claude-flow/memory&#39;;
++ import { SwarmModule } from &#39;@claude-flow/swarm&#39;;
+</code></pre>
+<h3>3. Configuration Changes</h3>
+<h4>Memory Configuration</h4>
+<pre><code class="language-diff">- # v2: config.json
+- {
+-   &quot;memory&quot;: {
+-     &quot;backend&quot;: &quot;filesystem&quot;,
+-     &quot;path&quot;: &quot;./memory&quot;
+-   }
+- }
+
++ # v3: config.json
++ {
++   &quot;memory&quot;: {
++     &quot;backend&quot;: &quot;hybrid&quot;,
++     &quot;agentdb&quot;: {
++       &quot;path&quot;: &quot;./data/agentdb&quot;,
++       &quot;hnsw&quot;: { &quot;efConstruction&quot;: 200, &quot;M&quot;: 16 }
++     },
++     &quot;sqlite&quot;: {
++       &quot;path&quot;: &quot;./data/sqlite.db&quot;
++     }
++   }
++ }
+</code></pre>
+<h4>Security Configuration</h4>
+<pre><code class="language-diff">- # v2: Minimal security
+- {
+-   &quot;security&quot;: {
+-     &quot;enabled&quot;: false
+-   }
+- }
+
++ # v3: Security-first (strict by default)
++ {
++   &quot;security&quot;: {
++     &quot;strict&quot;: true,
++     &quot;validation&quot;: { &quot;maxInputSize&quot;: 10000 },
++     &quot;paths&quot;: { &quot;allowedDirectories&quot;: [&quot;./src/&quot;, &quot;./tests/&quot;] },
++     &quot;execution&quot;: { &quot;shell&quot;: false, &quot;timeout&quot;: 30000 }
++   }
++ }
+</code></pre>
+<hr>
+<h2>Step-by-Step Migration</h2>
+<h3>Step 1: Clean Install</h3>
+<pre><code class="language-bash"># 1. Remove v2 (keep backups!)
+npm uninstall agentic-flow
+rm -rf node_modules
+rm package-lock.json
+
+# 2. Install v3 alpha
+npm install agentic-flow@3.0.0-alpha.1
+
+# 3. Install required @claude-flow modules
+npm install @claude-flow/security@latest
+npm install @claude-flow/memory@latest
+npm install @claude-flow/integration@latest
+npm install @claude-flow/performance@latest
+npm install @claude-flow/swarm@latest
+npm install @claude-flow/cli@latest
+
+# 4. Install peer dependencies
+npm install agentdb@2.0.0-alpha.3.4
+npm install @ruvector/attention@0.1.3
+npm install @ruvector/sona@0.1.5
+
+# 5. Install dev dependencies
+npm install --save-dev vitest@^2.1.8
+npm install --save-dev @vitest/ui@^2.1.8
+</code></pre>
+<h3>Step 2: Update Configuration</h3>
+<pre><code class="language-bash"># 1. Initialize v3 configuration
+npx agentic-flow@3.0.0-alpha.1 init --v3
+
+# 2. Migrate v2 configuration (manual merge)
+# Edit ~/.claude-flow/config.json with your v2 settings
+# Follow new schema from v3/config/schema.json
+
+# 3. Set environment variables
+export CLAUDE_FLOW_VERSION=3
+export CLAUDE_FLOW_MODE=production
+export CLAUDE_FLOW_MEMORY_BACKEND=agentdb
+</code></pre>
+<h4>Windows Configuration</h4>
+<pre><code class="language-powershell"># PowerShell
+setx CLAUDE_FLOW_VERSION &quot;3&quot;
+setx CLAUDE_FLOW_MODE &quot;production&quot;
+setx CLAUDE_FLOW_MEMORY_BACKEND &quot;agentdb&quot;
+
+# Update config path
+$env:CLAUDE_FLOW_CONFIG = &quot;$env:APPDATA\claude-flow\config.json&quot;
+</code></pre>
+<h4>macOS/Linux Configuration</h4>
+<pre><code class="language-bash"># Bash/Zsh
+export CLAUDE_FLOW_VERSION=3
+export CLAUDE_FLOW_MODE=production
+export CLAUDE_FLOW_MEMORY_BACKEND=agentdb
+
+# Update config path
+export CLAUDE_FLOW_CONFIG=&quot;$HOME/.claude-flow/config.json&quot;
+
+# Add to ~/.bashrc or ~/.zshrc for persistence
+</code></pre>
+<h3>Step 3: Migrate Memory Data</h3>
+<pre><code class="language-bash"># 1. Export v2 memory
+npx agentic-flow@2.x memory export --output ./v2-memory.json
+
+# 2. Initialize v3 memory backend
+npx @claude-flow/memory init --backend agentdb
+
+# 3. Import v2 memory into v3
+npx @claude-flow/memory import ./v2-memory.json --format v2
+
+# 4. Verify migration
+npx @claude-flow/memory stats
+# Should show: &quot;Migrated X patterns from v2&quot;
+
+# 5. Optimize with HNSW indexing
+npx @claude-flow/memory optimize --hnsw
+</code></pre>
+<h3>Step 4: Update Code</h3>
+<h4>4a. Update Imports</h4>
+<pre><code class="language-typescript">// Before (v2)
+import {
+  Agent,
+  Swarm,
+  Memory,
+  Security
+} from &#39;agentic-flow&#39;;
+
+// After (v3)
+import { Agent } from &#39;agentic-flow&#39;;
+import { SwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+import { MemoryModule } from &#39;@claude-flow/memory&#39;;
+import { SecurityModule } from &#39;@claude-flow/security&#39;;
+</code></pre>
+<h4>4b. Update Agent Initialization</h4>
+<pre><code class="language-typescript">// Before (v2)
+const agent = new Agent({
+  name: &#39;coder&#39;,
+  memory: new FileSystemMemory(),
+  coordinator: new HierarchicalCoordinator()
+});
+
+// After (v3)
+const security = new SecurityModule({ strict: true });
+const memory = new MemoryModule({ backend: &#39;agentdb&#39; });
+const swarm = new SwarmCoordinator({ topology: &#39;hierarchical-mesh&#39; });
+
+const agent = new Agent({
+  name: &#39;coder&#39;,
+  modules: { security, memory, swarm }
+});
+</code></pre>
+<h4>4c. Update Swarm Coordination</h4>
+<pre><code class="language-typescript">// Before (v2)
+const swarm = new HierarchicalCoordinator({
+  agents: [agent1, agent2, agent3]
+});
+await swarm.execute(task);
+
+// After (v3)
+const swarm = new SwarmCoordinator({
+  topology: &#39;hierarchical-mesh&#39;,
+  agents: [agent1, agent2, agent3]
+});
+await swarm.coordinate(task);
+</code></pre>
+<h4>4d. Update Memory Operations</h4>
+<pre><code class="language-typescript">// Before (v2)
+await memory.store(key, value);
+const result = await memory.retrieve(key);
+
+// After (v3)
+await memory.storePattern({
+  sessionId: &#39;session-1&#39;,
+  task: &#39;example&#39;,
+  input: &#39;data&#39;,
+  output: &#39;result&#39;,
+  reward: 0.95
+});
+
+const results = await memory.searchPatterns({
+  task: &#39;example&#39;,
+  k: 5,
+  minReward: 0.8
+});
+</code></pre>
+<h3>Step 5: Update Tests</h3>
+<h4>5a. Migrate Jest to Vitest</h4>
+<pre><code class="language-typescript">// Before (v2) - Jest
+import { describe, it, expect } from &#39;@jest/globals&#39;;
+import { mock } from &#39;jest-mock&#39;;
+
+describe(&#39;Agent Tests&#39;, () =&gt; {
+  it(&#39;should execute task&#39;, async () =&gt; {
+    const agent = new Agent();
+    const result = await agent.execute(task);
+    expect(result).toBeDefined();
+  });
+});
+
+// After (v3) - Vitest
+import { describe, it, expect, vi } from &#39;vitest&#39;;
+
+describe(&#39;Agent Tests&#39;, () =&gt; {
+  it(&#39;should execute task&#39;, async () =&gt; {
+    const agent = new Agent();
+    const result = await agent.execute(task);
+    expect(result).toBeDefined();
+  });
+});
+</code></pre>
+<h4>5b. Update Test Configuration</h4>
+<pre><code class="language-javascript">// Before (v2) - jest.config.js
+module.exports = {
+  testEnvironment: &#39;node&#39;,
+  testMatch: [&#39;**/*.test.js&#39;],
+  collectCoverage: true
+};
+
+// After (v3) - vitest.config.ts
+import { defineConfig } from &#39;vitest/config&#39;;
+
+export default defineConfig({
+  test: {
+    environment: &#39;node&#39;,
+    include: [&#39;**/*.test.ts&#39;],
+    coverage: {
+      provider: &#39;v8&#39;,
+      reporter: [&#39;text&#39;, &#39;json&#39;, &#39;html&#39;]
+    }
+  }
+});
+</code></pre>
+<h4>5c. Update package.json Scripts</h4>
+<pre><code class="language-json">{
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;vitest&quot;,
+    &quot;test:ui&quot;: &quot;vitest --ui&quot;,
+    &quot;test:coverage&quot;: &quot;vitest --coverage&quot;,
+    &quot;test:watch&quot;: &quot;vitest --watch&quot;
+  }
+}
+</code></pre>
+<h3>Step 6: Security Audit</h3>
+<pre><code class="language-bash"># 1. Run v3 security audit
+npx @claude-flow/security audit --strict
+
+# 2. Fix any CVEs automatically
+npx @claude-flow/security fix --auto
+
+# 3. Validate credentials
+npx @claude-flow/security validate-credentials
+
+# 4. Check path security
+npx @claude-flow/security check-paths
+
+# 5. Review security report
+cat ~/.claude-flow/security-report.json
+</code></pre>
+<h3>Step 7: Performance Validation</h3>
+<pre><code class="language-bash"># 1. Run performance benchmarks
+npx @claude-flow/performance benchmark
+
+# 2. Compare with v2 baseline
+npx @claude-flow/performance compare --baseline v2
+
+# 3. Validate targets
+# - Flash Attention: 2.49x-7.47x speedup
+# - Vector Search: 150x-12,500x faster
+# - Memory: 50-75% reduction
+# - CLI Startup: &lt;500ms
+
+# 4. Profile memory usage
+npx @claude-flow/performance profile --memory
+
+# 5. Analyze bottlenecks
+npx @claude-flow/performance analyze
+</code></pre>
+<h3>Step 8: Integration Testing</h3>
+<pre><code class="language-bash"># 1. Test agentic-flow integration
+npx @claude-flow/integration test --agentic-flow-version alpha
+
+# 2. Test all modules
+npm run test:modules
+
+# 3. Test cross-platform (if applicable)
+npm run test:cross-platform
+
+# 4. Test with real agents
+npx agentic-flow --agent coder --task &quot;Hello v3&quot;
+
+# 5. Test swarm coordination
+npx @claude-flow/swarm test --agents 15
+</code></pre>
+<hr>
+<h2>Module-by-Module Guide</h2>
+<h3>@claude-flow/security Migration</h3>
+<h4>Before (v2)</h4>
+<pre><code class="language-typescript">// No dedicated security module
+// Security was ad-hoc
+</code></pre>
+<h4>After (v3)</h4>
+<pre><code class="language-typescript">import { SecurityModule } from &#39;@claude-flow/security&#39;;
+
+const security = new SecurityModule({
+  strict: true,
+  validation: {
+    maxInputSize: 10000,
+    allowedChars: /^[a-zA-Z0-9._\-\s]+$/
+  },
+  paths: {
+    allowedDirectories: [&#39;./src/&#39;, &#39;./tests/&#39;],
+    blockedPatterns: [&#39;../&#39;, &#39;~/&#39;, &#39;/etc/&#39;]
+  }
+});
+
+// Validate input
+await security.validateInput(userInput);
+
+// Sanitize output
+const safe = await security.sanitizeOutput(output);
+
+// Check credentials
+await security.validateCredentials();
+</code></pre>
+<h3>@claude-flow/memory Migration</h3>
+<h4>Before (v2)</h4>
+<pre><code class="language-typescript">import { Memory } from &#39;agentic-flow&#39;;
+
+const memory = new Memory({ backend: &#39;filesystem&#39; });
+await memory.store(&#39;key&#39;, value);
+const result = await memory.retrieve(&#39;key&#39;);
+</code></pre>
+<h4>After (v3)</h4>
+<pre><code class="language-typescript">import { MemoryModule } from &#39;@claude-flow/memory&#39;;
+
+const memory = new MemoryModule({
+  backend: &#39;hybrid&#39;, // SQLite + AgentDB
+  agentdb: {
+    path: &#39;./data/agentdb&#39;,
+    hnsw: { efConstruction: 200, M: 16 }
+  }
+});
+
+// Store with ReasoningBank pattern
+await memory.storePattern({
+  sessionId: &#39;session-1&#39;,
+  task: &#39;code-implementation&#39;,
+  input: requirements,
+  output: code,
+  reward: 0.95,
+  success: true,
+  critique: &#39;Good test coverage&#39;
+});
+
+// Search with vector similarity (150x faster)
+const patterns = await memory.searchPatterns({
+  task: &#39;code-implementation&#39;,
+  k: 5,
+  minReward: 0.85
+});
+
+// GNN-enhanced retrieval (+12.4% accuracy)
+const enhanced = await memory.gnnEnhancedSearch(embedding, {
+  k: 10,
+  graphContext: dependencyGraph
+});
+</code></pre>
+<h3>@claude-flow/swarm Migration</h3>
+<h4>Before (v2)</h4>
+<pre><code class="language-typescript">import {
+  HierarchicalCoordinator,
+  MeshCoordinator,
+  AdaptiveCoordinator
+} from &#39;agentic-flow/coordinators&#39;;
+
+// Multiple coordinator implementations
+const coordinator = new HierarchicalCoordinator({
+  agents: [agent1, agent2]
+});
+</code></pre>
+<h4>After (v3)</h4>
+<pre><code class="language-typescript">import { SwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+
+// Single unified coordinator
+const swarm = new SwarmCoordinator({
+  topology: &#39;hierarchical-mesh&#39;,
+  agents: [agent1, agent2, agent3],
+  consensus: &#39;attention&#39;, // or &#39;byzantine&#39;, &#39;raft&#39;
+  selfHealing: true,
+  autoSpawn: true
+});
+
+// Coordinate with attention mechanisms
+const result = await swarm.coordinate(task, {
+  attentionType: &#39;flash&#39;, // 2.49x-7.47x faster
+  consensusThreshold: 0.8
+});
+
+// Monitor swarm health
+const status = await swarm.getStatus();
+console.log(`Active: ${status.activeAgents}/${status.totalAgents}`);
+</code></pre>
+<h3>@claude-flow/performance Migration</h3>
+<h4>Before (v2)</h4>
+<pre><code class="language-typescript">// No dedicated performance module
+// Manual benchmarking
+</code></pre>
+<h4>After (v3)</h4>
+<pre><code class="language-typescript">import { PerformanceModule } from &#39;@claude-flow/performance&#39;;
+
+const perf = new PerformanceModule({
+  targets: {
+    flashAttention: &#39;2.49x-7.47x&#39;,
+    vectorSearch: &#39;150x-12500x&#39;,
+    memoryReduction: &#39;50-75%&#39;
+  }
+});
+
+// Run benchmarks
+const results = await perf.benchmark({
+  tests: [&#39;flash-attention&#39;, &#39;vector-search&#39;, &#39;memory-usage&#39;],
+  iterations: 100
+});
+
+// Analyze bottlenecks
+const analysis = await perf.analyzeBottlenecks();
+console.log(`Slowest: ${analysis.bottlenecks[0].name}`);
+
+// Profile memory
+const profile = await perf.profileMemory();
+console.log(`Peak usage: ${profile.peakMB}MB`);
+</code></pre>
+<hr>
+<h2>Configuration Changes</h2>
+<h3>v2 Config Structure</h3>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;2.0.1&quot;,
+  &quot;memory&quot;: {
+    &quot;backend&quot;: &quot;filesystem&quot;,
+    &quot;path&quot;: &quot;./memory&quot;
+  },
+  &quot;agents&quot;: {
+    &quot;default&quot;: &quot;coder&quot;
+  },
+  &quot;swarm&quot;: {
+    &quot;coordinator&quot;: &quot;hierarchical&quot;,
+    &quot;maxAgents&quot;: 10
+  }
+}
+</code></pre>
+<h3>v3 Config Structure</h3>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;3.0.0-alpha.1&quot;,
+  &quot;modules&quot;: {
+    &quot;security&quot;: {
+      &quot;strict&quot;: true,
+      &quot;validation&quot;: {
+        &quot;maxInputSize&quot;: 10000,
+        &quot;allowedChars&quot;: &quot;^[a-zA-Z0-9._\\-\\s]+$&quot;
+      },
+      &quot;paths&quot;: {
+        &quot;allowedDirectories&quot;: [&quot;./src/&quot;, &quot;./tests/&quot;],
+        &quot;blockedPatterns&quot;: [&quot;../&quot;, &quot;~/&quot;, &quot;/etc/&quot;, &quot;/tmp/&quot;]
+      },
+      &quot;execution&quot;: {
+        &quot;shell&quot;: false,
+        &quot;timeout&quot;: 30000,
+        &quot;allowedCommands&quot;: [&quot;npm&quot;, &quot;npx&quot;, &quot;node&quot;, &quot;git&quot;]
+      }
+    },
+    &quot;memory&quot;: {
+      &quot;backend&quot;: &quot;hybrid&quot;,
+      &quot;agentdb&quot;: {
+        &quot;path&quot;: &quot;./data/agentdb&quot;,
+        &quot;hnsw&quot;: {
+          &quot;efConstruction&quot;: 200,
+          &quot;M&quot;: 16
+        },
+        &quot;quantization&quot;: {
+          &quot;enabled&quot;: true,
+          &quot;bits&quot;: 8
+        }
+      },
+      &quot;sqlite&quot;: {
+        &quot;path&quot;: &quot;./data/sqlite.db&quot;,
+        &quot;maxSize&quot;: &quot;1GB&quot;
+      }
+    },
+    &quot;swarm&quot;: {
+      &quot;coordinator&quot;: &quot;unified&quot;,
+      &quot;topology&quot;: &quot;hierarchical-mesh&quot;,
+      &quot;maxAgents&quot;: 15,
+      &quot;consensus&quot;: &quot;attention&quot;,
+      &quot;selfHealing&quot;: true,
+      &quot;autoSpawn&quot;: true
+    },
+    &quot;performance&quot;: {
+      &quot;flashAttention&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;runtime&quot;: &quot;auto&quot;
+      },
+      &quot;sona&quot;: {
+        &quot;enabled&quot;: true,
+        &quot;adaptationTime&quot;: &quot;0.05ms&quot;
+      }
+    }
+  },
+  &quot;platform&quot;: {
+    &quot;node&quot;: &quot;20.x&quot;,
+    &quot;os&quot;: [&quot;windows&quot;, &quot;darwin&quot;, &quot;linux&quot;]
+  }
+}
+</code></pre>
+<h3>Environment Variables</h3>
+<h4>v2 Environment Variables</h4>
+<pre><code class="language-bash">CLAUDE_FLOW_VERSION=2
+CLAUDE_FLOW_MEMORY_PATH=./memory
+CLAUDE_FLOW_COORDINATOR=hierarchical
+</code></pre>
+<h4>v3 Environment Variables</h4>
+<pre><code class="language-bash"># Core
+CLAUDE_FLOW_VERSION=3
+CLAUDE_FLOW_MODE=production
+CLAUDE_FLOW_CONFIG=~/.claude-flow/config.json
+
+# Memory
+CLAUDE_FLOW_MEMORY_BACKEND=agentdb
+CLAUDE_FLOW_MEMORY_PATH=./data
+CLAUDE_FLOW_AGENTDB_HNSW=true
+
+# Security
+CLAUDE_FLOW_SECURITY_STRICT=true
+CLAUDE_FLOW_SECURITY_MODE=strict
+
+# Performance
+CLAUDE_FLOW_FLASH_ATTENTION=true
+CLAUDE_FLOW_SONA_LEARNING=true
+
+# Platform-specific (Windows)
+APPDATA=C:\Users\YourName\AppData\Roaming
+CLAUDE_FLOW_CONFIG=%APPDATA%\claude-flow\config.json
+
+# Platform-specific (macOS/Linux)
+HOME=/home/yourname
+CLAUDE_FLOW_CONFIG=$HOME/.claude-flow/config.json
+</code></pre>
+<hr>
+<h2>Code Updates</h2>
+<h3>Pattern 1: Agent Creation</h3>
+<pre><code class="language-typescript">// ❌ v2 Pattern
+import { Agent } from &#39;agentic-flow&#39;;
+
+const agent = new Agent({
+  name: &#39;coder&#39;,
+  role: &#39;implementation&#39;,
+  memory: new FileSystemMemory()
+});
+
+// ✅ v3 Pattern
+import { Agent } from &#39;agentic-flow&#39;;
+import { MemoryModule } from &#39;@claude-flow/memory&#39;;
+import { SecurityModule } from &#39;@claude-flow/security&#39;;
+
+const agent = new Agent({
+  name: &#39;coder&#39;,
+  role: &#39;implementation&#39;,
+  modules: {
+    memory: new MemoryModule({ backend: &#39;agentdb&#39; }),
+    security: new SecurityModule({ strict: true })
+  }
+});
+</code></pre>
+<h3>Pattern 2: Swarm Coordination</h3>
+<pre><code class="language-typescript">// ❌ v2 Pattern
+import { HierarchicalCoordinator } from &#39;agentic-flow/coordinators&#39;;
+
+const swarm = new HierarchicalCoordinator({
+  agents: [coder, reviewer, tester]
+});
+const result = await swarm.execute(task);
+
+// ✅ v3 Pattern
+import { SwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+import { AttentionCoordinator } from &#39;@claude-flow/swarm/attention&#39;;
+
+const swarm = new SwarmCoordinator({
+  topology: &#39;hierarchical-mesh&#39;,
+  agents: [coder, reviewer, tester],
+  consensus: new AttentionCoordinator({
+    type: &#39;flash&#39;, // 2.49x-7.47x faster
+    threshold: 0.8
+  })
+});
+
+const result = await swarm.coordinate(task);
+</code></pre>
+<h3>Pattern 3: Memory Operations</h3>
+<pre><code class="language-typescript">// ❌ v2 Pattern
+import { Memory } from &#39;agentic-flow&#39;;
+
+const memory = new Memory({ backend: &#39;filesystem&#39; });
+await memory.store(&#39;user-123&#39;, userData);
+const user = await memory.retrieve(&#39;user-123&#39;);
+
+// ✅ v3 Pattern
+import { MemoryModule } from &#39;@claude-flow/memory&#39;;
+
+const memory = new MemoryModule({
+  backend: &#39;hybrid&#39;,
+  agentdb: { hnsw: true }
+});
+
+// Store with ReasoningBank pattern
+await memory.storePattern({
+  sessionId: &#39;session-123&#39;,
+  task: &#39;user-management&#39;,
+  input: { userId: &#39;123&#39; },
+  output: userData,
+  reward: 0.95,
+  success: true,
+  critique: &#39;Successful user retrieval&#39;
+});
+
+// Search with vector similarity
+const results = await memory.searchPatterns({
+  task: &#39;user-management&#39;,
+  k: 5,
+  minReward: 0.8
+});
+</code></pre>
+<h3>Pattern 4: Error Handling</h3>
+<pre><code class="language-typescript">// ❌ v2 Pattern
+try {
+  const result = await agent.execute(task);
+} catch (error) {
+  console.error(&#39;Error:&#39;, error);
+  throw error;
+}
+
+// ✅ v3 Pattern (Event Sourcing)
+import { SecurityError, MemoryError } from &#39;@claude-flow/shared&#39;;
+
+try {
+  const result = await agent.execute(task);
+
+  // Emit success event
+  await agent.emit(&#39;task_completed&#39;, {
+    taskId: task.id,
+    result,
+    timestamp: Date.now()
+  });
+} catch (error) {
+  // Emit failure event (audit trail)
+  await agent.emit(&#39;task_failed&#39;, {
+    taskId: task.id,
+    error: error.message,
+    timestamp: Date.now()
+  });
+
+  if (error instanceof SecurityError) {
+    // Handle security-specific errors
+    await security.logSecurityIncident(error);
+  } else if (error instanceof MemoryError) {
+    // Handle memory-specific errors
+    await memory.recover();
+  }
+
+  throw error;
+}
+</code></pre>
+<h3>Pattern 5: Testing</h3>
+<pre><code class="language-typescript">// ❌ v2 Pattern (Jest)
+import { describe, it, expect } from &#39;@jest/globals&#39;;
+import { mock } from &#39;jest-mock&#39;;
+
+describe(&#39;Agent&#39;, () =&gt; {
+  it(&#39;should execute task&#39;, async () =&gt; {
+    const agent = new Agent();
+    const mockTask = mock();
+    const result = await agent.execute(mockTask);
+    expect(result).toBeDefined();
+  });
+});
+
+// ✅ v3 Pattern (Vitest)
+import { describe, it, expect, vi } from &#39;vitest&#39;;
+import { Agent } from &#39;agentic-flow&#39;;
+import { MemoryModule } from &#39;@claude-flow/memory&#39;;
+
+describe(&#39;Agent&#39;, () =&gt; {
+  it(&#39;should execute task with memory&#39;, async () =&gt; {
+    const memory = new MemoryModule({ backend: &#39;agentdb&#39; });
+    const agent = new Agent({
+      name: &#39;test-agent&#39;,
+      modules: { memory }
+    });
+
+    const task = { id: &#39;1&#39;, type: &#39;test&#39; };
+    const result = await agent.execute(task);
+
+    expect(result).toBeDefined();
+    expect(result.success).toBe(true);
+
+    // Verify event was emitted
+    const events = await agent.getEvents();
+    expect(events).toContainEqual(
+      expect.objectContaining({ type: &#39;task_completed&#39; })
+    );
+  });
+});
+</code></pre>
+<hr>
+<h2>Testing Migration</h2>
+<h3>Update Test Suite</h3>
+<pre><code class="language-bash"># 1. Uninstall Jest
+npm uninstall jest @jest/globals jest-mock
+rm jest.config.js
+
+# 2. Install Vitest
+npm install --save-dev vitest @vitest/ui
+
+# 3. Create vitest.config.ts
+cat &gt; vitest.config.ts &lt;&lt;EOF
+import { defineConfig } from &#39;vitest/config&#39;;
+
+export default defineConfig({
+  test: {
+    environment: &#39;node&#39;,
+    include: [&#39;**/*.test.ts&#39;, &#39;**/*.spec.ts&#39;],
+    coverage: {
+      provider: &#39;v8&#39;,
+      reporter: [&#39;text&#39;, &#39;json&#39;, &#39;html&#39;],
+      exclude: [&#39;node_modules/&#39;, &#39;dist/&#39;, &#39;**/*.test.ts&#39;]
+    },
+    globals: true,
+    testTimeout: 30000
+  }
+});
+EOF
+
+# 4. Update package.json
+npm pkg set scripts.test=&quot;vitest&quot;
+npm pkg set scripts.test:ui=&quot;vitest --ui&quot;
+npm pkg set scripts.test:coverage=&quot;vitest --coverage&quot;
+
+# 5. Run tests
+npm test
+</code></pre>
+<h3>Convert Test Files</h3>
+<p>Use this script to batch convert Jest tests to Vitest:</p>
+<pre><code class="language-typescript">// scripts/convert-tests.ts
+import fs from &#39;fs&#39;;
+import path from &#39;path&#39;;
+import { glob } from &#39;glob&#39;;
+
+async function convertJestToVitest(filePath: string) {
+  let content = fs.readFileSync(filePath, &#39;utf-8&#39;);
+
+  // Update imports
+  content = content.replace(
+    /import\s+{\s*([^}]+)\s*}\s+from\s+[&#39;&quot;]@jest\/globals[&#39;&quot;]/g,
+    &quot;import { $1 } from &#39;vitest&#39;&quot;
+  );
+  content = content.replace(
+    /import\s+{\s*mock\s*}\s+from\s+[&#39;&quot;]jest-mock[&#39;&quot;]/g,
+    &quot;import { vi } from &#39;vitest&#39;&quot;
+  );
+
+  // Replace mock with vi
+  content = content.replace(/\bmock\(/g, &#39;vi.fn(&#39;);
+
+  // Save converted file
+  fs.writeFileSync(filePath, content);
+  console.log(`Converted: ${filePath}`);
+}
+
+async function main() {
+  const testFiles = await glob(&#39;**/*.test.{js,ts}&#39;, {
+    ignore: [&#39;node_modules/**&#39;]
+  });
+
+  for (const file of testFiles) {
+    await convertJestToVitest(file);
+  }
+
+  console.log(`Converted ${testFiles.length} test files`);
+}
+
+main();
+</code></pre>
+<p>Run conversion:</p>
+<pre><code class="language-bash">npx ts-node scripts/convert-tests.ts
+</code></pre>
+<hr>
+<h2>Rollback Plan</h2>
+<p>If migration fails, use this rollback procedure:</p>
+<h3>Quick Rollback</h3>
+<pre><code class="language-bash"># 1. Restore v2 package.json
+cp package.json.v2.backup package.json
+cp package-lock.json.v2.backup package-lock.json
+
+# 2. Restore node_modules
+rm -rf node_modules
+cp -r node_modules.v2.backup node_modules
+
+# 3. Restore configuration
+cp v2-config-backup.json ~/.claude-flow/config.json
+
+# 4. Restore memory
+npx agentic-flow@2.x memory import ./v2-memory-backup.json
+
+# 5. Verify v2 works
+npx agentic-flow --version  # Should show v2.x.x
+npx agentic-flow --agent coder --task &quot;Test rollback&quot;
+</code></pre>
+<h3>Full Rollback</h3>
+<pre><code class="language-bash"># 1. Uninstall v3 completely
+npm uninstall agentic-flow
+npm uninstall @claude-flow/security
+npm uninstall @claude-flow/memory
+npm uninstall @claude-flow/swarm
+npm uninstall @claude-flow/integration
+npm uninstall @claude-flow/performance
+npm uninstall agentdb
+npm uninstall @ruvector/attention
+npm uninstall @ruvector/sona
+
+# 2. Restore entire v2 environment
+cp -r ~/.claude-flow.v2.backup ~/.claude-flow
+rm -rf node_modules
+cp package.json.v2.backup package.json
+cp package-lock.json.v2.backup package-lock.json
+
+# 3. Reinstall v2
+npm install
+
+# 4. Verify
+npx agentic-flow --version
+npx agentic-flow --list
+</code></pre>
+<hr>
+<h2>Common Issues</h2>
+<h3>Issue 1: Node.js Version Mismatch</h3>
+<p><strong>Symptoms</strong>:</p>
+<pre><code>Error: Claude Flow v3 requires Node.js 20.x or higher
+Current version: v18.x.x
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># Install Node.js 20.x using nvm
+nvm install 20
+nvm use 20
+nvm alias default 20
+
+# Verify
+node --version  # Should be v20.x.x
+
+# Reinstall v3
+rm -rf node_modules package-lock.json
+npm install
+</code></pre>
+<h3>Issue 2: Memory Migration Fails</h3>
+<p><strong>Symptoms</strong>:</p>
+<pre><code>Error: Failed to migrate v2 memory to AgentDB
+AgentDB not initialized
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># 1. Initialize AgentDB manually
+npx @claude-flow/memory init --backend agentdb --force
+
+# 2. Create data directory
+mkdir -p ./data/agentdb
+
+# 3. Import v2 memory with verbose logging
+npx @claude-flow/memory import ./v2-memory-backup.json \
+  --format v2 \
+  --verbose \
+  --continue-on-error
+
+# 4. Verify
+npx @claude-flow/memory stats
+</code></pre>
+<h3>Issue 3: Security Validation Errors</h3>
+<p><strong>Symptoms</strong>:</p>
+<pre><code>SecurityError: Input validation failed
+Path traversal detected: ../../../etc/passwd
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># 1. Review security configuration
+cat ~/.claude-flow/config.json | grep -A 10 security
+
+# 2. Update allowedDirectories
+npx @claude-flow/security configure \
+  --allowed-dirs &quot;./src/,./tests/,./data/&quot; \
+  --blocked-patterns &quot;../,~/,/etc/,/tmp/&quot;
+
+# 3. Validate paths
+npx @claude-flow/security check-paths --fix
+
+# 4. Re-run with strict mode disabled (temporary)
+export CLAUDE_FLOW_SECURITY_STRICT=false
+</code></pre>
+<h3>Issue 4: Vitest Test Failures</h3>
+<p><strong>Symptoms</strong>:</p>
+<pre><code>Error: Cannot find module &#39;@jest/globals&#39;
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># 1. Remove Jest completely
+npm uninstall jest @jest/globals jest-mock
+rm jest.config.js
+
+# 2. Install Vitest
+npm install --save-dev vitest @vitest/ui
+
+# 3. Convert test imports
+find . -name &quot;*.test.ts&quot; -exec sed -i \
+  &#39;s/@jest\/globals/vitest/g&#39; {} +
+
+# 4. Update mocks
+find . -name &quot;*.test.ts&quot; -exec sed -i \
+  &#39;s/jest-mock/vitest/g&#39; {} +
+find . -name &quot;*.test.ts&quot; -exec sed -i \
+  &#39;s/mock(/vi.fn(/g&#39; {} +
+
+# 5. Run tests
+npm test
+</code></pre>
+<h3>Issue 5: Module Import Errors</h3>
+<p><strong>Symptoms</strong>:</p>
+<pre><code>Error: Cannot find module &#39;@claude-flow/security&#39;
+Module not found
+</code></pre>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># 1. Install all v3 modules
+npm install @claude-flow/security@latest
+npm install @claude-flow/memory@latest
+npm install @claude-flow/swarm@latest
+npm install @claude-flow/integration@latest
+npm install @claude-flow/performance@latest
+
+# 2. Clear npm cache
+npm cache clean --force
+
+# 3. Reinstall node_modules
+rm -rf node_modules package-lock.json
+npm install
+
+# 4. Verify modules
+npm list @claude-flow/security
+npm list @claude-flow/memory
+</code></pre>
+<h3>Issue 6: Platform-Specific Errors</h3>
+<h4>Windows: PowerShell Execution Policy</h4>
+<pre><code class="language-powershell"># Error
+npx : File cannot be loaded because running scripts is disabled
+
+# Solution
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+</code></pre>
+<h4>macOS: Gatekeeper Blocking</h4>
+<pre><code class="language-bash"># Error
+&quot;npx&quot; cannot be opened because the developer cannot be verified
+
+# Solution
+xattr -d com.apple.quarantine /path/to/npx
+spctl --add --label &quot;Claude Flow&quot; /path/to/npx
+</code></pre>
+<h4>Linux: Permission Denied</h4>
+<pre><code class="language-bash"># Error
+EACCES: permission denied, access &#39;/usr/local/lib/node_modules&#39;
+
+# Solution
+sudo chown -R $USER:$USER /usr/local/lib/node_modules
+sudo chown -R $USER:$USER ~/.npm
+</code></pre>
+<hr>
+<h2>Post-Migration Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> v3 installed and running (<code>npx agentic-flow --version</code> shows 3.0.0-alpha.1)</li>
+<li><input disabled="" type="checkbox"> All 10 @claude-flow modules installed</li>
+<li><input disabled="" type="checkbox"> Configuration migrated to v3 format</li>
+<li><input disabled="" type="checkbox"> Memory data imported into AgentDB</li>
+<li><input disabled="" type="checkbox"> Security audit passed</li>
+<li><input disabled="" type="checkbox"> All tests passing with Vitest</li>
+<li><input disabled="" type="checkbox"> Performance benchmarks meet targets</li>
+<li><input disabled="" type="checkbox"> Platform-specific features working (Windows/macOS/Linux)</li>
+<li><input disabled="" type="checkbox"> Environment variables updated</li>
+<li><input disabled="" type="checkbox"> Documentation updated</li>
+<li><input disabled="" type="checkbox"> Team trained on v3 changes</li>
+<li><input disabled="" type="checkbox"> Rollback plan tested and ready</li>
+</ul>
+<hr>
+<h2>Getting Help</h2>
+<h3>Resources</h3>
+<ul>
+<li><strong>Documentation</strong>: <a href="https://github.com/ruvnet/agentic-flow/tree/v3/docs">https://github.com/ruvnet/agentic-flow/tree/v3/docs</a></li>
+<li><strong>GitHub Issues</strong>: <a href="https://github.com/ruvnet/agentic-flow/issues">https://github.com/ruvnet/agentic-flow/issues</a></li>
+<li><strong>ADR Reference</strong>: /workspaces/claude-flow/v3/docs/adr/</li>
+<li><strong>Examples</strong>: /workspaces/claude-flow/v3/examples/</li>
+</ul>
+<h3>Support Channels</h3>
+<ul>
+<li><strong>Bug Reports</strong>: Open issue with <code>migration</code> label</li>
+<li><strong>Questions</strong>: Open discussion on GitHub</li>
+<li><strong>Security Issues</strong>: Email <a href="mailto:security@example.com">security@example.com</a></li>
+</ul>
+<h3>Migration Assistance</h3>
+<p>If you encounter issues not covered in this guide:</p>
+<ol>
+<li><p><strong>Collect diagnostic information</strong>:</p>
+<pre><code class="language-bash">npx agentic-flow diagnose --output diagnostics.json
+npx @claude-flow/security audit --report security-report.json
+</code></pre>
+</li>
+<li><p><strong>Create detailed issue</strong>:</p>
+<ul>
+<li>Include Node.js version</li>
+<li>Include OS and platform</li>
+<li>Attach diagnostics.json</li>
+<li>Describe steps to reproduce</li>
+<li>Include error logs</li>
+</ul>
+</li>
+<li><p><strong>Try safe mode</strong>:</p>
+<pre><code class="language-bash">export CLAUDE_FLOW_SAFE_MODE=true
+npx agentic-flow --agent coder --task &quot;Test safe mode&quot;
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2>Summary</h2>
+<p><strong>Migration Benefits</strong>:</p>
+<ul>
+<li>✅ 2.49x-7.47x faster with Flash Attention</li>
+<li>✅ 150x-12,500x faster vector search</li>
+<li>✅ 83.1% memory reduction</li>
+<li>✅ Security-first design (CVE fixes)</li>
+<li>✅ Clean modular architecture</li>
+<li>✅ 10x faster testing with Vitest</li>
+<li>✅ Cross-platform support</li>
+</ul>
+<p><strong>Migration Time</strong>:</p>
+<ul>
+<li>Small projects: 1-2 hours</li>
+<li>Medium projects: 4-8 hours</li>
+<li>Large projects: 1-2 days</li>
+</ul>
+<p><strong>Recommended Approach</strong>:</p>
+<ol>
+<li>Start with test environment</li>
+<li>Follow step-by-step guide</li>
+<li>Validate each module</li>
+<li>Test thoroughly before production</li>
+<li>Keep v2 backup for 30 days</li>
+</ol>
+<p><strong>Next Steps</strong>:</p>
+<ol>
+<li>Complete migration using this guide</li>
+<li>Run full test suite</li>
+<li>Monitor performance improvements</li>
+<li>Train team on v3 features</li>
+<li>Update documentation</li>
+<li>Plan v3.0.0-beta upgrade</li>
+</ol>
+<hr>
+<p><strong>Happy Migrating! Welcome to Claude Flow v3!</strong> 🚀</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

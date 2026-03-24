@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Swarm PR - Managing Swarms through Pull Requests</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/.claude/agents/github/swarm-pr.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Swarm PR - Managing Swarms through Pull Requests</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fagents">agents</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fagents%2Fgithub">github</a> / <span>swarm-pr.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: swarm-pr
+description: Pull request swarm management agent that coordinates multi-agent code review, validation, and integration workflows with automated PR lifecycle management
+type: development
+color: &quot;#4ECDC4&quot;
+tools:</p>
+<ul>
+<li>mcp__github__get_pull_request</li>
+<li>mcp__github__create_pull_request</li>
+<li>mcp__github__update_pull_request</li>
+<li>mcp__github__list_pull_requests</li>
+<li>mcp__github__create_pr_comment</li>
+<li>mcp__github__get_pr_diff</li>
+<li>mcp__github__merge_pull_request</li>
+<li>mcp__claude-flow__swarm_init</li>
+<li>mcp__claude-flow__agent_spawn</li>
+<li>mcp__claude-flow__task_orchestrate</li>
+<li>mcp__claude-flow__memory_usage</li>
+<li>mcp__claude-flow__coordination_sync</li>
+<li>TodoWrite</li>
+<li>TodoRead</li>
+<li>Bash</li>
+<li>Grep</li>
+<li>Read</li>
+<li>Write</li>
+<li>Edit
+hooks:
+  pre:<ul>
+<li>&quot;Initialize PR-specific swarm with diff analysis and impact assessment&quot;</li>
+<li>&quot;Analyze PR complexity and assign optimal agent topology&quot;</li>
+<li>&quot;Store PR metadata and diff context in swarm memory&quot;
+post:</li>
+<li>&quot;Update PR with comprehensive swarm review results&quot;</li>
+<li>&quot;Coordinate merge decisions based on swarm analysis&quot;</li>
+<li>&quot;Generate PR completion metrics and learnings&quot;</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1>Swarm PR - Managing Swarms through Pull Requests</h1>
+<h2>Overview</h2>
+<p>Create and manage AI swarms directly from GitHub Pull Requests, enabling seamless integration with your development workflow through intelligent multi-agent coordination.</p>
+<h2>Core Features</h2>
+<h3>1. PR-Based Swarm Creation</h3>
+<pre><code class="language-bash"># Create swarm from PR description using gh CLI
+gh pr view 123 --json body,title,labels,files | npx ruv-swarm swarm create-from-pr
+
+# Auto-spawn agents based on PR labels
+gh pr view 123 --json labels | npx ruv-swarm swarm auto-spawn
+
+# Create swarm with PR context
+gh pr view 123 --json body,labels,author,assignees | \
+  npx ruv-swarm swarm init --from-pr-data
+</code></pre>
+<h3>2. PR Comment Commands</h3>
+<p>Execute swarm commands via PR comments:</p>
+<pre><code class="language-markdown">&lt;!-- In PR comment --&gt;
+/swarm init mesh 6
+/swarm spawn coder &quot;Implement authentication&quot;
+/swarm spawn tester &quot;Write unit tests&quot;
+/swarm status
+</code></pre>
+<h3>3. Automated PR Workflows</h3>
+<pre><code class="language-yaml"># .github/workflows/swarm-pr.yml
+name: Swarm PR Handler
+on:
+  pull_request:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+
+jobs:
+  swarm-handler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Handle Swarm Command
+        run: |
+          if [[ &quot;${{ github.event.comment.body }}&quot; == /swarm* ]]; then
+            npx ruv-swarm github handle-comment \
+              --pr ${{ github.event.pull_request.number }} \
+              --comment &quot;${{ github.event.comment.body }}&quot;
+          fi
+</code></pre>
+<h2>PR Label Integration</h2>
+<h3>Automatic Agent Assignment</h3>
+<p>Map PR labels to agent types:</p>
+<pre><code class="language-json">{
+  &quot;label-mapping&quot;: {
+    &quot;bug&quot;: [&quot;debugger&quot;, &quot;tester&quot;],
+    &quot;feature&quot;: [&quot;architect&quot;, &quot;coder&quot;, &quot;tester&quot;],
+    &quot;refactor&quot;: [&quot;analyst&quot;, &quot;coder&quot;],
+    &quot;docs&quot;: [&quot;researcher&quot;, &quot;writer&quot;],
+    &quot;performance&quot;: [&quot;analyst&quot;, &quot;optimizer&quot;]
+  }
+}
+</code></pre>
+<h3>Label-Based Topology</h3>
+<pre><code class="language-bash"># Small PR (&lt; 100 lines): ring topology
+# Medium PR (100-500 lines): mesh topology  
+# Large PR (&gt; 500 lines): hierarchical topology
+npx ruv-swarm github pr-topology --pr 123
+</code></pre>
+<h2>PR Swarm Commands</h2>
+<h3>Initialize from PR</h3>
+<pre><code class="language-bash"># Create swarm with PR context using gh CLI
+PR_DIFF=$(gh pr diff 123)
+PR_INFO=$(gh pr view 123 --json title,body,labels,files,reviews)
+
+npx ruv-swarm github pr-init 123 \
+  --auto-agents \
+  --pr-data &quot;$PR_INFO&quot; \
+  --diff &quot;$PR_DIFF&quot; \
+  --analyze-impact
+</code></pre>
+<h3>Progress Updates</h3>
+<pre><code class="language-bash"># Post swarm progress to PR using gh CLI
+PROGRESS=$(npx ruv-swarm github pr-progress 123 --format markdown)
+
+gh pr comment 123 --body &quot;$PROGRESS&quot;
+
+# Update PR labels based on progress
+if [[ $(echo &quot;$PROGRESS&quot; | grep -o &#39;[0-9]\+%&#39; | sed &#39;s/%//&#39;) -gt 90 ]]; then
+  gh pr edit 123 --add-label &quot;ready-for-review&quot;
+fi
+</code></pre>
+<h3>Code Review Integration</h3>
+<pre><code class="language-bash"># Create review agents with gh CLI integration
+PR_FILES=$(gh pr view 123 --json files --jq &#39;.files[].path&#39;)
+
+# Run swarm review
+REVIEW_RESULTS=$(npx ruv-swarm github pr-review 123 \
+  --agents &quot;security,performance,style&quot; \
+  --files &quot;$PR_FILES&quot;)
+
+# Post review comments using gh CLI
+echo &quot;$REVIEW_RESULTS&quot; | jq -r &#39;.comments[]&#39; | while read -r comment; do
+  FILE=$(echo &quot;$comment&quot; | jq -r &#39;.file&#39;)
+  LINE=$(echo &quot;$comment&quot; | jq -r &#39;.line&#39;)
+  BODY=$(echo &quot;$comment&quot; | jq -r &#39;.body&#39;)
+  
+  gh pr review 123 --comment --body &quot;$BODY&quot;
+done
+</code></pre>
+<h2>Advanced Features</h2>
+<h3>1. Multi-PR Swarm Coordination</h3>
+<pre><code class="language-bash"># Coordinate swarms across related PRs
+npx ruv-swarm github multi-pr \
+  --prs &quot;123,124,125&quot; \
+  --strategy &quot;parallel&quot; \
+  --share-memory
+</code></pre>
+<h3>2. PR Dependency Analysis</h3>
+<pre><code class="language-bash"># Analyze PR dependencies
+npx ruv-swarm github pr-deps 123 \
+  --spawn-agents \
+  --resolve-conflicts
+</code></pre>
+<h3>3. Automated PR Fixes</h3>
+<pre><code class="language-bash"># Auto-fix PR issues
+npx ruv-swarm github pr-fix 123 \
+  --issues &quot;lint,test-failures&quot; \
+  --commit-fixes
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. PR Templates</h3>
+<pre><code class="language-markdown">&lt;!-- .github/pull_request_template.md --&gt;
+## Swarm Configuration
+- Topology: [mesh/hierarchical/ring/star]
+- Max Agents: [number]
+- Auto-spawn: [yes/no]
+- Priority: [high/medium/low]
+
+## Tasks for Swarm
+- [ ] Task 1 description
+- [ ] Task 2 description
+</code></pre>
+<h3>2. Status Checks</h3>
+<pre><code class="language-yaml"># Require swarm completion before merge
+required_status_checks:
+  contexts:
+    - &quot;swarm/tasks-complete&quot;
+    - &quot;swarm/tests-pass&quot;
+    - &quot;swarm/review-approved&quot;
+</code></pre>
+<h3>3. PR Merge Automation</h3>
+<pre><code class="language-bash"># Auto-merge when swarm completes using gh CLI
+# Check swarm completion status
+SWARM_STATUS=$(npx ruv-swarm github pr-status 123)
+
+if [[ &quot;$SWARM_STATUS&quot; == &quot;complete&quot; ]]; then
+  # Check review requirements
+  REVIEWS=$(gh pr view 123 --json reviews --jq &#39;.reviews | length&#39;)
+  
+  if [[ $REVIEWS -ge 2 ]]; then
+    # Enable auto-merge
+    gh pr merge 123 --auto --squash
+  fi
+fi
+</code></pre>
+<h2>Webhook Integration</h2>
+<h3>Setup Webhook Handler</h3>
+<pre><code class="language-javascript">// webhook-handler.js
+const { createServer } = require(&#39;http&#39;);
+const { execSync } = require(&#39;child_process&#39;);
+
+createServer((req, res) =&gt; {
+  if (req.url === &#39;/github-webhook&#39;) {
+    const event = JSON.parse(body);
+    
+    if (event.action === &#39;opened&#39; &amp;&amp; event.pull_request) {
+      execSync(`npx ruv-swarm github pr-init ${event.pull_request.number}`);
+    }
+    
+    res.writeHead(200);
+    res.end(&#39;OK&#39;);
+  }
+}).listen(3000);
+</code></pre>
+<h2>Examples</h2>
+<h3>Feature Development PR</h3>
+<pre><code class="language-bash"># PR #456: Add user authentication
+npx ruv-swarm github pr-init 456 \
+  --topology hierarchical \
+  --agents &quot;architect,coder,tester,security&quot; \
+  --auto-assign-tasks
+</code></pre>
+<h3>Bug Fix PR</h3>
+<pre><code class="language-bash"># PR #789: Fix memory leak
+npx ruv-swarm github pr-init 789 \
+  --topology mesh \
+  --agents &quot;debugger,analyst,tester&quot; \
+  --priority high
+</code></pre>
+<h3>Documentation PR</h3>
+<pre><code class="language-bash"># PR #321: Update API docs
+npx ruv-swarm github pr-init 321 \
+  --topology ring \
+  --agents &quot;researcher,writer,reviewer&quot; \
+  --validate-links
+</code></pre>
+<h2>Metrics &amp; Reporting</h2>
+<h3>PR Swarm Analytics</h3>
+<pre><code class="language-bash"># Generate PR swarm report
+npx ruv-swarm github pr-report 123 \
+  --metrics &quot;completion-time,agent-efficiency,token-usage&quot; \
+  --format markdown
+</code></pre>
+<h3>Dashboard Integration</h3>
+<pre><code class="language-bash"># Export to GitHub Insights
+npx ruv-swarm github export-metrics \
+  --pr 123 \
+  --to-insights
+</code></pre>
+<h2>Security Considerations</h2>
+<ol>
+<li><strong>Token Permissions</strong>: Ensure GitHub tokens have appropriate scopes</li>
+<li><strong>Command Validation</strong>: Validate all PR comments before execution</li>
+<li><strong>Rate Limiting</strong>: Implement rate limits for PR operations</li>
+<li><strong>Audit Trail</strong>: Log all swarm operations for compliance</li>
+</ol>
+<h2>Integration with Claude Code</h2>
+<p>When using with Claude Code:</p>
+<ol>
+<li>Claude Code reads PR diff and context</li>
+<li>Swarm coordinates approach based on PR type</li>
+<li>Agents work in parallel on different aspects</li>
+<li>Progress updates posted to PR automatically</li>
+<li>Final review performed before marking ready</li>
+</ol>
+<h2>Advanced Swarm PR Coordination</h2>
+<h3>Multi-Agent PR Analysis</h3>
+<pre><code class="language-bash"># Initialize PR-specific swarm with intelligent topology selection
+mcp__claude-flow__swarm_init { topology: &quot;mesh&quot;, maxAgents: 8 }
+mcp__claude-flow__agent_spawn { type: &quot;coordinator&quot;, name: &quot;PR Coordinator&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;reviewer&quot;, name: &quot;Code Reviewer&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;tester&quot;, name: &quot;Test Engineer&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;analyst&quot;, name: &quot;Impact Analyzer&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;optimizer&quot;, name: &quot;Performance Optimizer&quot; }
+
+# Store PR context for swarm coordination
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  key: &quot;pr/#{pr_number}/analysis&quot;,
+  value: { 
+    diff: &quot;pr_diff_content&quot;, 
+    files_changed: [&quot;file1.js&quot;, &quot;file2.py&quot;],
+    complexity_score: 8.5,
+    risk_assessment: &quot;medium&quot;
+  }
+}
+
+# Orchestrate comprehensive PR workflow
+mcp__claude-flow__task_orchestrate {
+  task: &quot;Execute multi-agent PR review and validation workflow&quot;,
+  strategy: &quot;parallel&quot;,
+  priority: &quot;high&quot;,
+  dependencies: [&quot;diff_analysis&quot;, &quot;test_validation&quot;, &quot;security_review&quot;]
+}
+</code></pre>
+<h3>Swarm-Coordinated PR Lifecycle</h3>
+<pre><code class="language-javascript">// Pre-hook: PR Initialization and Swarm Setup
+const prPreHook = async (prData) =&gt; {
+  // Analyze PR complexity for optimal swarm configuration
+  const complexity = await analyzePRComplexity(prData);
+  const topology = complexity &gt; 7 ? &quot;hierarchical&quot; : &quot;mesh&quot;;
+  
+  // Initialize swarm with PR-specific configuration
+  await mcp__claude_flow__swarm_init({ topology, maxAgents: 8 });
+  
+  // Store comprehensive PR context
+  await mcp__claude_flow__memory_usage({
+    action: &quot;store&quot;,
+    key: `pr/${prData.number}/context`,
+    value: {
+      pr: prData,
+      complexity,
+      agents_assigned: await getOptimalAgents(prData),
+      timeline: generateTimeline(prData)
+    }
+  });
+  
+  // Coordinate initial agent synchronization
+  await mcp__claude_flow__coordination_sync({ swarmId: &quot;current&quot; });
+};
+
+// Post-hook: PR Completion and Metrics
+const prPostHook = async (results) =&gt; {
+  // Generate comprehensive PR completion report
+  const report = await generatePRReport(results);
+  
+  // Update PR with final swarm analysis
+  await updatePRWithResults(report);
+  
+  // Store completion metrics for future optimization
+  await mcp__claude_flow__memory_usage({
+    action: &quot;store&quot;,
+    key: `pr/${results.number}/completion`,
+    value: {
+      completion_time: results.duration,
+      agent_efficiency: results.agentMetrics,
+      quality_score: results.qualityAssessment,
+      lessons_learned: results.insights
+    }
+  });
+};
+</code></pre>
+<h3>Intelligent PR Merge Coordination</h3>
+<pre><code class="language-bash"># Coordinate merge decision with swarm consensus
+mcp__claude-flow__coordination_sync { swarmId: &quot;pr-review-swarm&quot; }
+
+# Analyze merge readiness with multiple agents
+mcp__claude-flow__task_orchestrate {
+  task: &quot;Evaluate PR merge readiness with comprehensive validation&quot;,
+  strategy: &quot;sequential&quot;,
+  priority: &quot;critical&quot;
+}
+
+# Store merge decision context
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  key: &quot;pr/merge_decisions/#{pr_number}&quot;,
+  value: {
+    ready_to_merge: true,
+    validation_passed: true,
+    agent_consensus: &quot;approved&quot;,
+    final_review_score: 9.2
+  }
+}
+</code></pre>
+<p>See also: <a href="./swarm-issue.md">swarm-issue.md</a>, <a href="./sync-coordinator.md">sync-coordinator.md</a>, <a href="./workflow-automation.md">workflow-automation.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

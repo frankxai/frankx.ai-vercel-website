@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Product Engine - Creation &amp; Packaging Pipeline</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/product-engine/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Product Engine - Creation &amp; Packaging Pipeline</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fproduct-engine">product-engine</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: product-engine
+description: &quot;Product creation and packaging pipeline. Creates premium digital products from FrankX component library, agentic AI systems, and design assets. Actions: create, package, publish, price, bundle. Products: UI kit, dashboard template, SaaS starter, agentic system, content engine, component library. Formats: Next.js, React, Tailwind, shadcn, Python, Notion, Obsidian. Channels: Gumroad, GitHub, frankx.ai.&quot;</h2>
+<h1>Product Engine - Creation &amp; Packaging Pipeline</h1>
+<p>End-to-end system for creating, packaging, and publishing premium digital products that mix design excellence with agentic AI capabilities.</p>
+<h2>Pipeline Overview</h2>
+<pre><code>Idea → Research → Design → Build → Package → Price → Publish → Track
+  |        |         |       |        |        |        |         |
+  v        v         v       v        v        v        v         v
+Market   Comp.    UI/UX    Code    Bundle   Value    Gumroad   Analytics
+Signal   Analysis  Skill   Review   Assets   Ladder  + Store   + Iterate
+</code></pre>
+<h2>Product Categories</h2>
+<h3>Tier 1: Starter Products ($19-47)</h3>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Format</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UI Component Kits</td>
+<td>Next.js + Tailwind + shadcn</td>
+<td>Developers building SaaS</td>
+</tr>
+<tr>
+<td>Prompt Libraries</td>
+<td>PDF + Notion</td>
+<td>Creators using AI tools</td>
+</tr>
+<tr>
+<td>Template Packs</td>
+<td>Next.js pages</td>
+<td>Developers needing landing pages</td>
+</tr>
+</tbody></table>
+<h3>Tier 2: System Products ($97-297)</h3>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Format</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dashboard Templates</td>
+<td>Full Next.js app</td>
+<td>SaaS founders</td>
+</tr>
+<tr>
+<td>Content Engines</td>
+<td>Next.js + AI integrations</td>
+<td>Creator businesses</td>
+</tr>
+<tr>
+<td>Agentic Workflow Kits</td>
+<td>Claude Code skills + Python</td>
+<td>AI developers</td>
+</tr>
+</tbody></table>
+<h3>Tier 3: Premium Products ($497-997)</h3>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Format</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Full SaaS Starters</td>
+<td>Production Next.js app</td>
+<td>Startup teams</td>
+</tr>
+<tr>
+<td>Creator Operating Systems</td>
+<td>Multi-tool ecosystem</td>
+<td>Professional creators</td>
+</tr>
+<tr>
+<td>AI Agent Frameworks</td>
+<td>Python + TypeScript + MCP</td>
+<td>AI architects</td>
+</tr>
+</tbody></table>
+<h3>Tier 4: Enterprise ($4,800+)</h3>
+<table>
+<thead>
+<tr>
+<th>Product</th>
+<th>Format</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Custom Studio Builds</td>
+<td>Bespoke</td>
+<td>Organizations</td>
+</tr>
+<tr>
+<td>Creator Residencies</td>
+<td>Ongoing partnership</td>
+<td>Scaling creators</td>
+</tr>
+</tbody></table>
+<h2>Product Creation Workflow</h2>
+<h3>Step 1: Market Research</h3>
+<pre><code class="language-bash"># What sells in this category?
+# Check: Gumroad trending, v0.dev community, shadcn ecosystem, GitHub stars
+# Deliverable: 1-page brief with target audience, price point, differentiator
+</code></pre>
+<h3>Step 2: Component Audit</h3>
+<p>Review existing FrankX components for reuse:</p>
+<ul>
+<li><code>components/ui/</code> - PremiumCard, AuroraGradient, ShimmerButton, etc.</li>
+<li><code>components/ui/AdvancedAnimations.tsx</code> - MorphingBackground, MagneticHover, etc.</li>
+<li><code>components/ui/CursorSpotlight.tsx</code> - Interactive effects</li>
+<li><code>components/products/</code> - ProductHero, OfferStack, CaseStudyGrid</li>
+<li><code>app/design-lab/</code> - v1, v2, v3 template showcases</li>
+</ul>
+<h3>Step 3: Build Product</h3>
+<p>Follow the agent pipeline (see agents/ directory):</p>
+<ol>
+<li><strong>Product Architect</strong> designs the product structure</li>
+<li><strong>UI Engineer</strong> builds components with ui-ux-pro-max skill</li>
+<li><strong>Agentic Engineer</strong> adds AI integrations where applicable</li>
+<li><strong>Quality Reviewer</strong> runs checklist (see below)</li>
+<li><strong>Package Engineer</strong> bundles for distribution</li>
+</ol>
+<h3>Step 4: Quality Gate</h3>
+<p>Before any product ships:</p>
+<ul>
+<li><input disabled="" type="checkbox"> TypeScript strict mode passes (<code>tsc --noEmit</code>)</li>
+<li><input disabled="" type="checkbox"> No emoji icons (SVG only via Lucide/Heroicons)</li>
+<li><input disabled="" type="checkbox"> Responsive at 320px, 768px, 1024px, 1440px</li>
+<li><input disabled="" type="checkbox"> Dark/light mode working</li>
+<li><input disabled="" type="checkbox"> All interactions have cursor-pointer + hover feedback</li>
+<li><input disabled="" type="checkbox"> README with setup instructions</li>
+<li><input disabled="" type="checkbox"> License file included</li>
+<li><input disabled="" type="checkbox"> Demo screenshots (3+ views)</li>
+<li><input disabled="" type="checkbox"> package.json with correct dependencies</li>
+<li><input disabled="" type="checkbox"> .env.example for any API keys</li>
+</ul>
+<h3>Step 5: Pricing</h3>
+<p>Follow the value ladder:</p>
+<ul>
+<li><strong>$19</strong>: Single component or template</li>
+<li><strong>$27-47</strong>: Small collection or prompt pack</li>
+<li><strong>$97</strong>: Full template with multiple pages</li>
+<li><strong>$197-297</strong>: System with AI integrations</li>
+<li><strong>$497-997</strong>: Complete production-ready product</li>
+<li><strong>$4,800+</strong>: Custom builds and partnerships</li>
+</ul>
+<h3>Step 6: Publishing Channels</h3>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>Commission</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Gumroad</td>
+<td>10%</td>
+<td>Digital products, prompt packs</td>
+</tr>
+<tr>
+<td>GitHub Sponsors</td>
+<td>0%</td>
+<td>Open source with premium tier</td>
+</tr>
+<tr>
+<td>frankx.ai/products</td>
+<td>0%</td>
+<td>Direct sales, full control</td>
+</tr>
+<tr>
+<td>v0.dev marketplace</td>
+<td>TBD</td>
+<td>Component templates</td>
+</tr>
+</tbody></table>
+<h3>Step 7: Product Page</h3>
+<p>Update <code>/data/products.json</code> with product entry.
+Create dedicated page at <code>/app/products/[slug]/page.tsx</code>.
+Components: ProductHero, OfferStack, CaseStudyGrid, FinalCTA.</p>
+<h2>Agentic AI + Design Products (Differentiator)</h2>
+<p>The unique FrankX advantage: products that combine premium design with agentic AI capabilities.</p>
+<h3>What This Means In Practice</h3>
+<p><strong>Standard template</strong>: A dashboard with charts and tables.
+<strong>FrankX product</strong>: A dashboard with charts, tables, AND:</p>
+<ul>
+<li>Claude Code skill that generates new dashboard widgets from natural language</li>
+<li>Python script that connects to analytics APIs automatically</li>
+<li>MCP server config for real-time data updates</li>
+<li>Prompt library for customizing the dashboard</li>
+</ul>
+<h3>Product Ideas That Mix Both</h3>
+<ol>
+<li><p><strong>Aurora UI Kit + Agentic Builder</strong></p>
+<ul>
+<li>30+ premium components (design)</li>
+<li>Claude Code skill that generates new components in the same style (AI)</li>
+<li>Python script for batch-generating variants (automation)</li>
+</ul>
+</li>
+<li><p><strong>Content Command Center</strong></p>
+<ul>
+<li>Dashboard for tracking content pipeline (design)</li>
+<li>AI writing assistant with SEO optimization built in (AI)</li>
+<li>Automated social media distribution (automation)</li>
+</ul>
+</li>
+<li><p><strong>Creator Analytics Dashboard</strong></p>
+<ul>
+<li>Real-time metrics visualization (design)</li>
+<li>AI-powered insights and recommendations (AI)</li>
+<li>Automated reporting and alerts (automation)</li>
+</ul>
+</li>
+</ol>
+<h2>Integration Points</h2>
+<ul>
+<li><strong>ui-ux-pro-max skill</strong>: Design intelligence for all visual products</li>
+<li><strong>ACOS auto-router</strong>: Detects product creation intent, routes to this skill</li>
+<li><strong>frankx-ai-products command</strong>: Product management and updates</li>
+<li><strong>Nano Banana MCP</strong>: Generate product screenshots and marketing images</li>
+<li><strong>Gumroad</strong>: Primary sales channel</li>
+<li><strong>Vercel</strong>: Hosting for demo sites and frankx.ai store</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

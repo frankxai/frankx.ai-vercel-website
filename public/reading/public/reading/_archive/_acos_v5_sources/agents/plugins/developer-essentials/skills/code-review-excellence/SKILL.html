@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Code Review Excellence</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/developer-essentials/skills/code-review-excellence/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Code Review Excellence</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials">developer-essentials</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills%2Fcode-review-excellence">code-review-excellence</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: code-review-excellence
+description: Master effective code review practices to provide constructive feedback, catch bugs early, and foster knowledge sharing while maintaining team morale. Use when reviewing pull requests, establishing review standards, or mentoring developers.</h2>
+<h1>Code Review Excellence</h1>
+<p>Transform code reviews from gatekeeping to knowledge sharing through constructive feedback, systematic analysis, and collaborative improvement.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Reviewing pull requests and code changes</li>
+<li>Establishing code review standards for teams</li>
+<li>Mentoring junior developers through reviews</li>
+<li>Conducting architecture reviews</li>
+<li>Creating review checklists and guidelines</li>
+<li>Improving team collaboration</li>
+<li>Reducing code review cycle time</li>
+<li>Maintaining code quality standards</li>
+</ul>
+<h2>Core Principles</h2>
+<h3>1. The Review Mindset</h3>
+<p><strong>Goals of Code Review:</strong></p>
+<ul>
+<li>Catch bugs and edge cases</li>
+<li>Ensure code maintainability</li>
+<li>Share knowledge across team</li>
+<li>Enforce coding standards</li>
+<li>Improve design and architecture</li>
+<li>Build team culture</li>
+</ul>
+<p><strong>Not the Goals:</strong></p>
+<ul>
+<li>Show off knowledge</li>
+<li>Nitpick formatting (use linters)</li>
+<li>Block progress unnecessarily</li>
+<li>Rewrite to your preference</li>
+</ul>
+<h3>2. Effective Feedback</h3>
+<p><strong>Good Feedback is:</strong></p>
+<ul>
+<li>Specific and actionable</li>
+<li>Educational, not judgmental</li>
+<li>Focused on the code, not the person</li>
+<li>Balanced (praise good work too)</li>
+<li>Prioritized (critical vs nice-to-have)</li>
+</ul>
+<pre><code class="language-markdown">❌ Bad: &quot;This is wrong.&quot;
+✅ Good: &quot;This could cause a race condition when multiple users
+access simultaneously. Consider using a mutex here.&quot;
+
+❌ Bad: &quot;Why didn&#39;t you use X pattern?&quot;
+✅ Good: &quot;Have you considered the Repository pattern? It would
+make this easier to test. Here&#39;s an example: [link]&quot;
+
+❌ Bad: &quot;Rename this variable.&quot;
+✅ Good: &quot;[nit] Consider `userCount` instead of `uc` for
+clarity. Not blocking if you prefer to keep it.&quot;
+</code></pre>
+<h3>3. Review Scope</h3>
+<p><strong>What to Review:</strong></p>
+<ul>
+<li>Logic correctness and edge cases</li>
+<li>Security vulnerabilities</li>
+<li>Performance implications</li>
+<li>Test coverage and quality</li>
+<li>Error handling</li>
+<li>Documentation and comments</li>
+<li>API design and naming</li>
+<li>Architectural fit</li>
+</ul>
+<p><strong>What Not to Review Manually:</strong></p>
+<ul>
+<li>Code formatting (use Prettier, Black, etc.)</li>
+<li>Import organization</li>
+<li>Linting violations</li>
+<li>Simple typos</li>
+</ul>
+<h2>Review Process</h2>
+<h3>Phase 1: Context Gathering (2-3 minutes)</h3>
+<pre><code class="language-markdown">Before diving into code, understand:
+
+1. Read PR description and linked issue
+2. Check PR size (&gt;400 lines? Ask to split)
+3. Review CI/CD status (tests passing?)
+4. Understand the business requirement
+5. Note any relevant architectural decisions
+</code></pre>
+<h3>Phase 2: High-Level Review (5-10 minutes)</h3>
+<pre><code class="language-markdown">1. **Architecture &amp; Design**
+   - Does the solution fit the problem?
+   - Are there simpler approaches?
+   - Is it consistent with existing patterns?
+   - Will it scale?
+
+2. **File Organization**
+   - Are new files in the right places?
+   - Is code grouped logically?
+   - Are there duplicate files?
+
+3. **Testing Strategy**
+   - Are there tests?
+   - Do tests cover edge cases?
+   - Are tests readable?
+</code></pre>
+<h3>Phase 3: Line-by-Line Review (10-20 minutes)</h3>
+<pre><code class="language-markdown">For each file:
+
+1. **Logic &amp; Correctness**
+   - Edge cases handled?
+   - Off-by-one errors?
+   - Null/undefined checks?
+   - Race conditions?
+
+2. **Security**
+   - Input validation?
+   - SQL injection risks?
+   - XSS vulnerabilities?
+   - Sensitive data exposure?
+
+3. **Performance**
+   - N+1 queries?
+   - Unnecessary loops?
+   - Memory leaks?
+   - Blocking operations?
+
+4. **Maintainability**
+   - Clear variable names?
+   - Functions doing one thing?
+   - Complex code commented?
+   - Magic numbers extracted?
+</code></pre>
+<h3>Phase 4: Summary &amp; Decision (2-3 minutes)</h3>
+<pre><code class="language-markdown">1. Summarize key concerns
+2. Highlight what you liked
+3. Make clear decision:
+   - ✅ Approve
+   - 💬 Comment (minor suggestions)
+   - 🔄 Request Changes (must address)
+4. Offer to pair if complex
+</code></pre>
+<h2>Review Techniques</h2>
+<h3>Technique 1: The Checklist Method</h3>
+<pre><code class="language-markdown">## Security Checklist
+
+- [ ] User input validated and sanitized
+- [ ] SQL queries use parameterization
+- [ ] Authentication/authorization checked
+- [ ] Secrets not hardcoded
+- [ ] Error messages don&#39;t leak info
+
+## Performance Checklist
+
+- [ ] No N+1 queries
+- [ ] Database queries indexed
+- [ ] Large lists paginated
+- [ ] Expensive operations cached
+- [ ] No blocking I/O in hot paths
+
+## Testing Checklist
+
+- [ ] Happy path tested
+- [ ] Edge cases covered
+- [ ] Error cases tested
+- [ ] Test names are descriptive
+- [ ] Tests are deterministic
+</code></pre>
+<h3>Technique 2: The Question Approach</h3>
+<p>Instead of stating problems, ask questions to encourage thinking:</p>
+<pre><code class="language-markdown">❌ &quot;This will fail if the list is empty.&quot;
+✅ &quot;What happens if `items` is an empty array?&quot;
+
+❌ &quot;You need error handling here.&quot;
+✅ &quot;How should this behave if the API call fails?&quot;
+
+❌ &quot;This is inefficient.&quot;
+✅ &quot;I see this loops through all users. Have we considered
+the performance impact with 100k users?&quot;
+</code></pre>
+<h3>Technique 3: Suggest, Don&#39;t Command</h3>
+<pre><code class="language-markdown">## Use Collaborative Language
+
+❌ &quot;You must change this to use async/await&quot;
+✅ &quot;Suggestion: async/await might make this more readable:
+`typescript
+    async function fetchUser(id: string) {
+        const user = await db.query(&#39;SELECT * FROM users WHERE id = ?&#39;, id);
+        return user;
+    }
+    `
+What do you think?&quot;
+
+❌ &quot;Extract this into a function&quot;
+✅ &quot;This logic appears in 3 places. Would it make sense to
+extract it into a shared utility function?&quot;
+</code></pre>
+<h3>Technique 4: Differentiate Severity</h3>
+<pre><code class="language-markdown">Use labels to indicate priority:
+
+🔴 [blocking] - Must fix before merge
+🟡 [important] - Should fix, discuss if disagree
+🟢 [nit] - Nice to have, not blocking
+💡 [suggestion] - Alternative approach to consider
+📚 [learning] - Educational comment, no action needed
+🎉 [praise] - Good work, keep it up!
+
+Example:
+&quot;🔴 [blocking] This SQL query is vulnerable to injection.
+Please use parameterized queries.&quot;
+
+&quot;🟢 [nit] Consider renaming `data` to `userData` for clarity.&quot;
+
+&quot;🎉 [praise] Excellent test coverage! This will catch edge cases.&quot;
+</code></pre>
+<h2>Language-Specific Patterns</h2>
+<h3>Python Code Review</h3>
+<pre><code class="language-python"># Check for Python-specific issues
+
+# ❌ Mutable default arguments
+def add_item(item, items=[]):  # Bug! Shared across calls
+    items.append(item)
+    return items
+
+# ✅ Use None as default
+def add_item(item, items=None):
+    if items is None:
+        items = []
+    items.append(item)
+    return items
+
+# ❌ Catching too broad
+try:
+    result = risky_operation()
+except:  # Catches everything, even KeyboardInterrupt!
+    pass
+
+# ✅ Catch specific exceptions
+try:
+    result = risky_operation()
+except ValueError as e:
+    logger.error(f&quot;Invalid value: {e}&quot;)
+    raise
+
+# ❌ Using mutable class attributes
+class User:
+    permissions = []  # Shared across all instances!
+
+# ✅ Initialize in __init__
+class User:
+    def __init__(self):
+        self.permissions = []
+</code></pre>
+<h3>TypeScript/JavaScript Code Review</h3>
+<pre><code class="language-typescript">// Check for TypeScript-specific issues
+
+// ❌ Using any defeats type safety
+function processData(data: any) {  // Avoid any
+    return data.value;
+}
+
+// ✅ Use proper types
+interface DataPayload {
+    value: string;
+}
+function processData(data: DataPayload) {
+    return data.value;
+}
+
+// ❌ Not handling async errors
+async function fetchUser(id: string) {
+    const response = await fetch(`/api/users/${id}`);
+    return response.json();  // What if network fails?
+}
+
+// ✅ Handle errors properly
+async function fetchUser(id: string): Promise&lt;User&gt; {
+    try {
+        const response = await fetch(`/api/users/${id}`);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error(&#39;Failed to fetch user:&#39;, error);
+        throw error;
+    }
+}
+
+// ❌ Mutation of props
+function UserProfile({ user }: Props) {
+    user.lastViewed = new Date();  // Mutating prop!
+    return &lt;div&gt;{user.name}&lt;/div&gt;;
+}
+
+// ✅ Don&#39;t mutate props
+function UserProfile({ user, onView }: Props) {
+    useEffect(() =&gt; {
+        onView(user.id);  // Notify parent to update
+    }, [user.id]);
+    return &lt;div&gt;{user.name}&lt;/div&gt;;
+}
+</code></pre>
+<h2>Advanced Review Patterns</h2>
+<h3>Pattern 1: Architectural Review</h3>
+<pre><code class="language-markdown">When reviewing significant changes:
+
+1. **Design Document First**
+   - For large features, request design doc before code
+   - Review design with team before implementation
+   - Agree on approach to avoid rework
+
+2. **Review in Stages**
+   - First PR: Core abstractions and interfaces
+   - Second PR: Implementation
+   - Third PR: Integration and tests
+   - Easier to review, faster to iterate
+
+3. **Consider Alternatives**
+   - &quot;Have we considered using [pattern/library]?&quot;
+   - &quot;What&#39;s the tradeoff vs. the simpler approach?&quot;
+   - &quot;How will this evolve as requirements change?&quot;
+</code></pre>
+<h3>Pattern 2: Test Quality Review</h3>
+<pre><code class="language-typescript">// ❌ Poor test: Implementation detail testing
+test(&#39;increments counter variable&#39;, () =&gt; {
+    const component = render(&lt;Counter /&gt;);
+    const button = component.getByRole(&#39;button&#39;);
+    fireEvent.click(button);
+    expect(component.state.counter).toBe(1);  // Testing internal state
+});
+
+// ✅ Good test: Behavior testing
+test(&#39;displays incremented count when clicked&#39;, () =&gt; {
+    render(&lt;Counter /&gt;);
+    const button = screen.getByRole(&#39;button&#39;, { name: /increment/i });
+    fireEvent.click(button);
+    expect(screen.getByText(&#39;Count: 1&#39;)).toBeInTheDocument();
+});
+
+// Review questions for tests:
+// - Do tests describe behavior, not implementation?
+// - Are test names clear and descriptive?
+// - Do tests cover edge cases?
+// - Are tests independent (no shared state)?
+// - Can tests run in any order?
+</code></pre>
+<h3>Pattern 3: Security Review</h3>
+<pre><code class="language-markdown">## Security Review Checklist
+
+### Authentication &amp; Authorization
+
+- [ ] Is authentication required where needed?
+- [ ] Are authorization checks before every action?
+- [ ] Is JWT validation proper (signature, expiry)?
+- [ ] Are API keys/secrets properly secured?
+
+### Input Validation
+
+- [ ] All user inputs validated?
+- [ ] File uploads restricted (size, type)?
+- [ ] SQL queries parameterized?
+- [ ] XSS protection (escape output)?
+
+### Data Protection
+
+- [ ] Passwords hashed (bcrypt/argon2)?
+- [ ] Sensitive data encrypted at rest?
+- [ ] HTTPS enforced for sensitive data?
+- [ ] PII handled according to regulations?
+
+### Common Vulnerabilities
+
+- [ ] No eval() or similar dynamic execution?
+- [ ] No hardcoded secrets?
+- [ ] CSRF protection for state-changing operations?
+- [ ] Rate limiting on public endpoints?
+</code></pre>
+<h2>Giving Difficult Feedback</h2>
+<h3>Pattern: The Sandwich Method (Modified)</h3>
+<pre><code class="language-markdown">Traditional: Praise + Criticism + Praise (feels fake)
+
+Better: Context + Specific Issue + Helpful Solution
+
+Example:
+&quot;I noticed the payment processing logic is inline in the
+controller. This makes it harder to test and reuse.
+
+[Specific Issue]
+The calculateTotal() function mixes tax calculation,
+discount logic, and database queries, making it difficult
+to unit test and reason about.
+
+[Helpful Solution]
+Could we extract this into a PaymentService class? That
+would make it testable and reusable. I can pair with you
+on this if helpful.&quot;
+</code></pre>
+<h3>Handling Disagreements</h3>
+<pre><code class="language-markdown">When author disagrees with your feedback:
+
+1. **Seek to Understand**
+   &quot;Help me understand your approach. What led you to
+   choose this pattern?&quot;
+
+2. **Acknowledge Valid Points**
+   &quot;That&#39;s a good point about X. I hadn&#39;t considered that.&quot;
+
+3. **Provide Data**
+   &quot;I&#39;m concerned about performance. Can we add a benchmark
+   to validate the approach?&quot;
+
+4. **Escalate if Needed**
+   &quot;Let&#39;s get [architect/senior dev] to weigh in on this.&quot;
+
+5. **Know When to Let Go**
+   If it&#39;s working and not a critical issue, approve it.
+   Perfection is the enemy of progress.
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Review Promptly</strong>: Within 24 hours, ideally same day</li>
+<li><strong>Limit PR Size</strong>: 200-400 lines max for effective review</li>
+<li><strong>Review in Time Blocks</strong>: 60 minutes max, take breaks</li>
+<li><strong>Use Review Tools</strong>: GitHub, GitLab, or dedicated tools</li>
+<li><strong>Automate What You Can</strong>: Linters, formatters, security scans</li>
+<li><strong>Build Rapport</strong>: Emoji, praise, and empathy matter</li>
+<li><strong>Be Available</strong>: Offer to pair on complex issues</li>
+<li><strong>Learn from Others</strong>: Review others&#39; review comments</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li><strong>Perfectionism</strong>: Blocking PRs for minor style preferences</li>
+<li><strong>Scope Creep</strong>: &quot;While you&#39;re at it, can you also...&quot;</li>
+<li><strong>Inconsistency</strong>: Different standards for different people</li>
+<li><strong>Delayed Reviews</strong>: Letting PRs sit for days</li>
+<li><strong>Ghosting</strong>: Requesting changes then disappearing</li>
+<li><strong>Rubber Stamping</strong>: Approving without actually reviewing</li>
+<li><strong>Bike Shedding</strong>: Debating trivial details extensively</li>
+</ul>
+<h2>Templates</h2>
+<h3>PR Review Comment Template</h3>
+<pre><code class="language-markdown">## Summary
+
+[Brief overview of what was reviewed]
+
+## Strengths
+
+- [What was done well]
+- [Good patterns or approaches]
+
+## Required Changes
+
+🔴 [Blocking issue 1]
+🔴 [Blocking issue 2]
+
+## Suggestions
+
+💡 [Improvement 1]
+💡 [Improvement 2]
+
+## Questions
+
+❓ [Clarification needed on X]
+❓ [Alternative approach consideration]
+
+## Verdict
+
+✅ Approve after addressing required changes
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/code-review-best-practices.md</strong>: Comprehensive review guidelines</li>
+<li><strong>references/common-bugs-checklist.md</strong>: Language-specific bugs to watch for</li>
+<li><strong>references/security-review-guide.md</strong>: Security-focused review checklist</li>
+<li><strong>assets/pr-review-template.md</strong>: Standard review comment template</li>
+<li><strong>assets/review-checklist.md</strong>: Quick reference checklist</li>
+<li><strong>scripts/pr-analyzer.py</strong>: Analyze PR complexity and suggest reviewers</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

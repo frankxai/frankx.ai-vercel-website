@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/ultrawork — Parallel Agent Swarm Execution</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/ultrawork.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/ultrawork — Parallel Agent Swarm Execution</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>ultrawork.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/ultrawork — Parallel Agent Swarm Execution</h1>
+<p>Inspired by <a href="https://github.com/code-yeongyu/oh-my-opencode">oh-my-opencode</a> Sisyphus ultrawork mode.</p>
+<h2>Trigger</h2>
+<ul>
+<li><code>/ultrawork {goal}</code> — full command</li>
+<li>Also activated when keyword detector sees <code>ultrawork</code> or <code>ulw</code> in a prompt</li>
+</ul>
+<h2>Input</h2>
+<ul>
+<li><strong>Goal</strong>: $ARGUMENTS — what needs to be accomplished</li>
+</ul>
+<h2>Execution Model</h2>
+<p>You are <strong>Sisyphus</strong> — you do NOT stop until the goal is 100% complete.</p>
+<h3>Phase 1: Intent Classification (5 seconds)</h3>
+<p>Classify the goal into one of:</p>
+<ul>
+<li><strong>research</strong> → spawn Explore agents in parallel</li>
+<li><strong>implementation</strong> → spawn general-purpose build agents in parallel</li>
+<li><strong>investigation</strong> → spawn Explore + Read-heavy agents</li>
+<li><strong>fix</strong> → spawn targeted fix agents</li>
+</ul>
+<h3>Phase 2: Complexity Assessment</h3>
+<p>Count expected scope:</p>
+<ul>
+<li><strong>Small</strong> (1-3 files) → Direct topology: you do it yourself, no subagents</li>
+<li><strong>Medium</strong> (4-8 files) → Star topology: you orchestrate 2-3 parallel agents</li>
+<li><strong>Large</strong> (9+ files) → Mesh topology: you orchestrate 4-6 parallel agents with dependency ordering</li>
+</ul>
+<h3>Phase 3: Parallel Dispatch</h3>
+<p>Launch ALL independent agents <strong>in a single message</strong> using the Task tool:</p>
+<pre><code>For EACH independent work unit, spawn a Task agent with:
+- subagent_type: &quot;general-purpose&quot; (for implementation)
+- subagent_type: &quot;Explore&quot; (for research)
+- model: &quot;sonnet&quot; (for build work — cost efficient)
+- model: &quot;haiku&quot; (for validation checks)
+- run_in_background: true (for independent long tasks)
+</code></pre>
+<p>Rules for dispatch:</p>
+<ol>
+<li><strong>Maximum parallelism</strong> — if 4 tasks are independent, launch all 4 simultaneously</li>
+<li><strong>Dependency ordering</strong> — if Task B depends on Task A&#39;s output, wait for A before launching B</li>
+<li><strong>Context injection</strong> — each agent gets the goal + its specific scope + relevant file paths</li>
+<li><strong>No hand-holding</strong> — agents are autonomous. Give them the goal, not step-by-step instructions</li>
+</ol>
+<h3>Phase 4: Collect + Verify</h3>
+<p>As agents complete:</p>
+<ol>
+<li>Read their output (don&#39;t trust claims — re-read modified files)</li>
+<li>Accumulate wisdom: what worked, what broke, what patterns emerged</li>
+<li>If an agent failed, fix it yourself or re-dispatch with better context</li>
+<li>Track progress against the original goal</li>
+</ol>
+<h3>Phase 5: Drive to 100%</h3>
+<p><strong>Sisyphus rule: You do NOT stop until the goal is fully achieved.</strong></p>
+<p>After all agents complete:</p>
+<ol>
+<li>Verify ALL files compile: <code>npx tsc --noEmit</code> (if TypeScript project)</li>
+<li>Run any relevant tests</li>
+<li>Check that the original goal is met — not 80%, not &quot;mostly done&quot; — 100%</li>
+<li>If gaps remain, dispatch more agents or fix inline</li>
+<li>Present the final result with a clear summary</li>
+</ol>
+<h2>Agent Templates</h2>
+<h3>Research Swarm (for <code>research</code> intent)</h3>
+<pre><code>Spawn 3 Explore agents in parallel:
+1. &quot;Search the codebase for {relevant patterns}&quot;
+2. &quot;Research {topic} — check docs, web, existing implementations&quot;
+3. &quot;Audit existing {files/components} for reuse opportunities&quot;
+</code></pre>
+<h3>Build Swarm (for <code>implementation</code> intent)</h3>
+<pre><code>Spawn 2-4 general-purpose agents in parallel:
+1. &quot;Build {component/feature A} — files: {paths}&quot;
+2. &quot;Build {component/feature B} — files: {paths}&quot;
+3. &quot;Write content/copy for {feature} following CONTENT_VOICE_DNA.md&quot;
+4. &quot;Configure SEO/schema/metadata for {pages}&quot;
+</code></pre>
+<h3>Fix Swarm (for <code>fix</code> intent)</h3>
+<pre><code>Spawn 2 agents:
+1. &quot;Investigate root cause of {issue} — read error logs, trace the code path&quot;
+2. &quot;Search for similar patterns in codebase that work correctly&quot;
+Then fix inline based on findings.
+</code></pre>
+<h2>Circuit Breaker</h2>
+<ul>
+<li><strong>3+ agent failures</strong> → stop dispatching, fix root cause first</li>
+<li><strong>Context getting full</strong> → summarize progress, save state, continue in next prompt</li>
+<li><strong>Scope creep</strong> → re-assess complexity, don&#39;t let the goal expand mid-execution</li>
+</ul>
+<h2>Output</h2>
+<p>When complete, provide:</p>
+<ol>
+<li>What was accomplished (files created/modified)</li>
+<li>What each agent contributed</li>
+<li>Any issues found and resolved</li>
+<li>Verification results (build passes, tests pass)</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

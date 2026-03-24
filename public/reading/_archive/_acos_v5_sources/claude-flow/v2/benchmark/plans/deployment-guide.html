@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agent Swarm Benchmarking Tool - Deployment Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/plans/deployment-guide.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Agent Swarm Benchmarking Tool - Deployment Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Fplans">plans</a> / <span>deployment-guide.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Agent Swarm Benchmarking Tool - Deployment Guide</h1>
+<h2>🚀 Deployment Overview</h2>
+<p>This guide covers the deployment, distribution, and maintenance of the Agent Swarm Benchmarking Tool across different environments and platforms.</p>
+<h2>📦 Packaging Strategy</h2>
+<h3>Python Package Structure</h3>
+<pre><code>swarm-benchmark/
+├── setup.py                    # Package configuration
+├── setup.cfg                   # Additional metadata
+├── pyproject.toml              # Modern Python packaging
+├── MANIFEST.in                 # Include additional files
+├── requirements.txt            # Runtime dependencies
+├── requirements-dev.txt        # Development dependencies
+├── README.md                   # Package documentation
+├── LICENSE                     # License information
+└── swarm_benchmark/            # Package source
+    ├── __init__.py
+    ├── __main__.py            # CLI entry point
+    └── ...                    # Source modules
+</code></pre>
+<h3>Setup Configuration</h3>
+<pre><code class="language-python"># setup.py
+from setuptools import setup, find_packages
+
+setup(
+    name=&quot;swarm-benchmark&quot;,
+    version=&quot;1.0.0&quot;,
+    description=&quot;Agent swarm benchmarking tool for Claude Flow&quot;,
+    long_description=open(&quot;README.md&quot;).read(),
+    long_description_content_type=&quot;text/markdown&quot;,
+    author=&quot;Claude Flow Team&quot;,
+    author_email=&quot;support@claude-flow.dev&quot;,
+    url=&quot;https://github.com/claude-flow/swarm-benchmark&quot;,
+    packages=find_packages(),
+    classifiers=[
+        &quot;Development Status :: 5 - Production/Stable&quot;,
+        &quot;Intended Audience :: Developers&quot;,
+        &quot;License :: OSI Approved :: MIT License&quot;,
+        &quot;Programming Language :: Python :: 3&quot;,
+        &quot;Programming Language :: Python :: 3.8&quot;,
+        &quot;Programming Language :: Python :: 3.9&quot;,
+        &quot;Programming Language :: Python :: 3.10&quot;,
+        &quot;Programming Language :: Python :: 3.11&quot;,
+    ],
+    python_requires=&quot;&gt;=3.8&quot;,
+    install_requires=[
+        &quot;click&gt;=8.0&quot;,
+        &quot;aiohttp&gt;=3.8&quot;,
+        &quot;psutil&gt;=5.9&quot;,
+        &quot;sqlite3&quot;,  # Built-in
+        &quot;pydantic&gt;=1.10&quot;,
+        &quot;matplotlib&gt;=3.5&quot;,
+        &quot;plotly&gt;=5.0&quot;,
+        &quot;pandas&gt;=1.4&quot;,
+        &quot;numpy&gt;=1.21&quot;,
+    ],
+    extras_require={
+        &quot;dev&quot;: [
+            &quot;pytest&gt;=7.0&quot;,
+            &quot;pytest-cov&gt;=4.0&quot;,
+            &quot;pytest-asyncio&gt;=0.21&quot;,
+            &quot;pytest-benchmark&gt;=4.0&quot;,
+            &quot;black&gt;=22.0&quot;,
+            &quot;flake8&gt;=5.0&quot;,
+            &quot;mypy&gt;=1.0&quot;,
+            &quot;pre-commit&gt;=2.20&quot;,
+        ],
+        &quot;docs&quot;: [
+            &quot;sphinx&gt;=5.0&quot;,
+            &quot;sphinx-rtd-theme&gt;=1.0&quot;,
+            &quot;myst-parser&gt;=0.18&quot;,
+        ],
+        &quot;viz&quot;: [
+            &quot;seaborn&gt;=0.11&quot;,
+            &quot;jupyter&gt;=1.0&quot;,
+            &quot;ipywidgets&gt;=8.0&quot;,
+        ]
+    },
+    entry_points={
+        &quot;console_scripts&quot;: [
+            &quot;swarm-benchmark=swarm_benchmark.__main__:main&quot;,
+            &quot;swarm-bench=swarm_benchmark.__main__:main&quot;,
+        ],
+    },
+    include_package_data=True,
+    zip_safe=False,
+)
+</code></pre>
+<h3>Modern Packaging (pyproject.toml)</h3>
+<pre><code class="language-toml">[build-system]
+requires = [&quot;setuptools&gt;=45&quot;, &quot;wheel&quot;, &quot;setuptools_scm[toml]&gt;=6.2&quot;]
+build-backend = &quot;setuptools.build_meta&quot;
+
+[project]
+name = &quot;swarm-benchmark&quot;
+dynamic = [&quot;version&quot;]
+description = &quot;Agent swarm benchmarking tool for Claude Flow&quot;
+readme = &quot;README.md&quot;
+requires-python = &quot;&gt;=3.8&quot;
+license = {text = &quot;MIT&quot;}
+authors = [
+    {name = &quot;Claude Flow Team&quot;, email = &quot;support@claude-flow.dev&quot;},
+]
+keywords = [&quot;benchmark&quot;, &quot;swarm&quot;, &quot;agents&quot;, &quot;performance&quot;, &quot;testing&quot;]
+classifiers = [
+    &quot;Development Status :: 5 - Production/Stable&quot;,
+    &quot;Intended Audience :: Developers&quot;,
+    &quot;License :: OSI Approved :: MIT License&quot;,
+    &quot;Programming Language :: Python :: 3&quot;,
+    &quot;Programming Language :: Python :: 3.8&quot;,
+    &quot;Programming Language :: Python :: 3.9&quot;,
+    &quot;Programming Language :: Python :: 3.10&quot;,
+    &quot;Programming Language :: Python :: 3.11&quot;,
+]
+
+dependencies = [
+    &quot;click&gt;=8.0&quot;,
+    &quot;aiohttp&gt;=3.8&quot;,
+    &quot;psutil&gt;=5.9&quot;,
+    &quot;pydantic&gt;=1.10&quot;,
+    &quot;matplotlib&gt;=3.5&quot;,
+    &quot;plotly&gt;=5.0&quot;,
+    &quot;pandas&gt;=1.4&quot;,
+    &quot;numpy&gt;=1.21&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;pytest&gt;=7.0&quot;,
+    &quot;pytest-cov&gt;=4.0&quot;,
+    &quot;pytest-asyncio&gt;=0.21&quot;,
+    &quot;pytest-benchmark&gt;=4.0&quot;,
+    &quot;black&gt;=22.0&quot;,
+    &quot;flake8&gt;=5.0&quot;,
+    &quot;mypy&gt;=1.0&quot;,
+    &quot;pre-commit&gt;=2.20&quot;,
+]
+
+[project.scripts]
+swarm-benchmark = &quot;swarm_benchmark.__main__:main&quot;
+swarm-bench = &quot;swarm_benchmark.__main__:main&quot;
+
+[project.urls]
+Homepage = &quot;https://github.com/claude-flow/swarm-benchmark&quot;
+Documentation = &quot;https://swarm-benchmark.readthedocs.io&quot;
+Repository = &quot;https://github.com/claude-flow/swarm-benchmark&quot;
+Issues = &quot;https://github.com/claude-flow/swarm-benchmark/issues&quot;
+</code></pre>
+<h2>🐳 Docker Deployment</h2>
+<h3>Dockerfile</h3>
+<pre><code class="language-dockerfile"># Multi-stage build for optimization
+FROM python:3.11-slim as builder
+
+WORKDIR /app
+
+# Install build dependencies
+RUN apt-get update &amp;&amp; apt-get install -y \
+    gcc \
+    g++ \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Copy requirements and install Python dependencies
+COPY requirements.txt requirements-dev.txt ./
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# Production stage
+FROM python:3.11-slim as production
+
+# Create non-root user
+RUN groupadd -r swarm &amp;&amp; useradd -r -g swarm swarm
+
+# Install runtime dependencies
+RUN apt-get update &amp;&amp; apt-get install -y \
+    curl \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+# Copy Python packages from builder
+COPY --from=builder /root/.local /home/swarm/.local
+
+# Set up application
+WORKDIR /app
+COPY . .
+
+# Change ownership to swarm user
+RUN chown -R swarm:swarm /app
+USER swarm
+
+# Set environment variables
+ENV PATH=&quot;/home/swarm/.local/bin:$PATH&quot;
+ENV PYTHONPATH=&quot;/app&quot;
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD swarm-benchmark --version || exit 1
+
+# Default command
+ENTRYPOINT [&quot;swarm-benchmark&quot;]
+CMD [&quot;--help&quot;]
+</code></pre>
+<h3>Docker Compose</h3>
+<pre><code class="language-yaml">version: &#39;3.8&#39;
+
+services:
+  swarm-benchmark:
+    build: .
+    container_name: swarm-benchmark
+    environment:
+      - BENCHMARK_CONFIG=/app/config/production.json
+      - BENCHMARK_OUTPUT_DIR=/app/reports
+    volumes:
+      - ./config:/app/config:ro
+      - ./reports:/app/reports
+      - ./data:/app/data
+    ports:
+      - &quot;8080:8080&quot;  # If web interface is added
+    networks:
+      - swarm-network
+    restart: unless-stopped
+    
+  database:
+    image: postgres:14-alpine
+    container_name: swarm-db
+    environment:
+      POSTGRES_DB: swarm_benchmark
+      POSTGRES_USER: swarm
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - swarm-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  swarm-network:
+    driver: bridge
+</code></pre>
+<h2>☁️ Cloud Deployment</h2>
+<h3>AWS Deployment</h3>
+<pre><code class="language-yaml"># docker-compose.aws.yml
+version: &#39;3.8&#39;
+
+services:
+  swarm-benchmark:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/swarm-benchmark:latest
+    environment:
+      - AWS_DEFAULT_REGION=${AWS_REGION}
+      - BENCHMARK_CONFIG=s3://swarm-benchmark-config/production.json
+      - BENCHMARK_OUTPUT_DIR=s3://swarm-benchmark-reports/
+    deploy:
+      resources:
+        limits:
+          cpus: &#39;2.0&#39;
+          memory: 4G
+        reservations:
+          cpus: &#39;1.0&#39;
+          memory: 2G
+</code></pre>
+<h3>Kubernetes Deployment</h3>
+<pre><code class="language-yaml"># k8s/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: swarm-benchmark
+  labels:
+    app: swarm-benchmark
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: swarm-benchmark
+  template:
+    metadata:
+      labels:
+        app: swarm-benchmark
+    spec:
+      containers:
+      - name: swarm-benchmark
+        image: swarm-benchmark:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: BENCHMARK_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: swarm-config
+              key: config.json
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 4Gi
+          requests:
+            cpu: 1000m
+            memory: 2Gi
+        livenessProbe:
+          exec:
+            command:
+            - swarm-benchmark
+            - --version
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command:
+            - swarm-benchmark
+            - status
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: swarm-benchmark-service
+spec:
+  selector:
+    app: swarm-benchmark
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
+</code></pre>
+<h2>🔄 CI/CD Pipeline</h2>
+<h3>GitHub Actions</h3>
+<pre><code class="language-yaml"># .github/workflows/deploy.yml
+name: Deploy
+
+on:
+  push:
+    tags:
+      - &#39;v*&#39;
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10, 3.11]
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+    
+    - name: Run tests
+      run: |
+        pytest --cov=swarm_benchmark --cov-report=xml
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+    
+    - name: Build package
+      run: |
+        python -m pip install --upgrade pip build
+        python -m build
+    
+    - name: Store package artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: python-package
+        path: dist/
+
+  publish-pypi:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == &#39;push&#39; &amp;&amp; startsWith(github.ref, &#39;refs/tags/&#39;)
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download package artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: python-package
+        path: dist/
+    
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
+
+  build-docker:
+    needs: test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    
+    - name: Build and push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: |
+          swarmteam/swarm-benchmark:latest
+          swarmteam/swarm-benchmark:${{ github.ref_name }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+</code></pre>
+<h2>📋 Installation Methods</h2>
+<h3>PyPI Installation</h3>
+<pre><code class="language-bash"># Install from PyPI
+pip install swarm-benchmark
+
+# Install with extras
+pip install swarm-benchmark[dev,viz]
+
+# Install from source
+pip install git+https://github.com/claude-flow/swarm-benchmark.git
+</code></pre>
+<h3>Conda Installation</h3>
+<pre><code class="language-yaml"># conda-recipe/meta.yaml
+package:
+  name: swarm-benchmark
+  version: &quot;1.0.0&quot;
+
+source:
+  url: https://pypi.io/packages/source/s/swarm-benchmark/swarm-benchmark-1.0.0.tar.gz
+  sha256: &lt;hash&gt;
+
+build:
+  number: 0
+  script: python -m pip install . -vv
+  entry_points:
+    - swarm-benchmark = swarm_benchmark.__main__:main
+
+requirements:
+  host:
+    - python &gt;=3.8
+    - pip
+  run:
+    - python &gt;=3.8
+    - click &gt;=8.0
+    - aiohttp &gt;=3.8
+    - psutil &gt;=5.9
+
+test:
+  imports:
+    - swarm_benchmark
+  commands:
+    - swarm-benchmark --help
+</code></pre>
+<h3>Homebrew Formula</h3>
+<pre><code class="language-ruby"># Formula/swarm-benchmark.rb
+class SwarmBenchmark &lt; Formula
+  desc &quot;Agent swarm benchmarking tool for Claude Flow&quot;
+  homepage &quot;https://github.com/claude-flow/swarm-benchmark&quot;
+  url &quot;https://github.com/claude-flow/swarm-benchmark/archive/v1.0.0.tar.gz&quot;
+  sha256 &quot;&lt;hash&gt;&quot;
+  license &quot;MIT&quot;
+
+  depends_on &quot;python@3.11&quot;
+
+  def install
+    virtualenv_install_with_resources
+  end
+
+  test do
+    system &quot;#{bin}/swarm-benchmark&quot;, &quot;--version&quot;
+  end
+end
+</code></pre>
+<h2>🔧 Configuration Management</h2>
+<h3>Environment-Specific Configs</h3>
+<pre><code class="language-bash"># Development
+export BENCHMARK_ENV=development
+export BENCHMARK_CONFIG=./config/development.json
+export BENCHMARK_LOG_LEVEL=DEBUG
+
+# Staging
+export BENCHMARK_ENV=staging
+export BENCHMARK_CONFIG=./config/staging.json
+export BENCHMARK_LOG_LEVEL=INFO
+
+# Production
+export BENCHMARK_ENV=production
+export BENCHMARK_CONFIG=./config/production.json
+export BENCHMARK_LOG_LEVEL=WARNING
+</code></pre>
+<h3>Configuration Templates</h3>
+<pre><code class="language-json">{
+  &quot;environment&quot;: &quot;production&quot;,
+  &quot;benchmark&quot;: {
+    &quot;timeout&quot;: 3600,
+    &quot;max_retries&quot;: 3,
+    &quot;parallel_limit&quot;: 20
+  },
+  &quot;output&quot;: {
+    &quot;directory&quot;: &quot;/var/lib/swarm-benchmark/reports&quot;,
+    &quot;formats&quot;: [&quot;json&quot;, &quot;sqlite&quot;],
+    &quot;compression&quot;: true
+  },
+  &quot;logging&quot;: {
+    &quot;level&quot;: &quot;INFO&quot;,
+    &quot;file&quot;: &quot;/var/log/swarm-benchmark.log&quot;,
+    &quot;rotate&quot;: true,
+    &quot;max_size&quot;: &quot;100MB&quot;
+  },
+  &quot;claude_flow&quot;: {
+    &quot;endpoint&quot;: &quot;https://api.claude-flow.com&quot;,
+    &quot;timeout&quot;: 300,
+    &quot;max_concurrent&quot;: 10
+  }
+}
+</code></pre>
+<h2>📊 Monitoring and Observability</h2>
+<h3>Health Checks</h3>
+<pre><code class="language-python"># swarm_benchmark/health.py
+async def health_check():
+    &quot;&quot;&quot;Comprehensive health check endpoint&quot;&quot;&quot;
+    checks = {
+        &quot;database&quot;: await check_database(),
+        &quot;claude_flow&quot;: await check_claude_flow_connection(),
+        &quot;filesystem&quot;: check_filesystem_access(),
+        &quot;memory&quot;: check_memory_usage(),
+        &quot;cpu&quot;: check_cpu_usage()
+    }
+    
+    overall_status = all(checks.values())
+    return {
+        &quot;status&quot;: &quot;healthy&quot; if overall_status else &quot;unhealthy&quot;,
+        &quot;checks&quot;: checks,
+        &quot;timestamp&quot;: datetime.utcnow().isoformat()
+    }
+</code></pre>
+<h3>Metrics Collection</h3>
+<pre><code class="language-python"># Prometheus metrics
+from prometheus_client import Counter, Histogram, Gauge
+
+BENCHMARK_COUNTER = Counter(&#39;benchmark_total&#39;, &#39;Total benchmarks run&#39;)
+BENCHMARK_DURATION = Histogram(&#39;benchmark_duration_seconds&#39;, &#39;Benchmark duration&#39;)
+ACTIVE_BENCHMARKS = Gauge(&#39;benchmark_active&#39;, &#39;Currently active benchmarks&#39;)
+</code></pre>
+<h2>🔐 Security Hardening</h2>
+<h3>Security Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Use non-root user in containers</li>
+<li><input disabled="" type="checkbox"> Scan images for vulnerabilities</li>
+<li><input disabled="" type="checkbox"> Implement resource limits</li>
+<li><input disabled="" type="checkbox"> Use secrets management</li>
+<li><input disabled="" type="checkbox"> Enable audit logging</li>
+<li><input disabled="" type="checkbox"> Regular security updates</li>
+<li><input disabled="" type="checkbox"> Network segmentation</li>
+<li><input disabled="" type="checkbox"> Access control policies</li>
+</ul>
+<h3>Vulnerability Scanning</h3>
+<pre><code class="language-bash"># Scan dependencies
+safety check
+
+# Scan code
+bandit -r swarm_benchmark/
+
+# Scan Docker image
+docker scan swarmteam/swarm-benchmark:latest
+</code></pre>
+<h2>📈 Performance Optimization</h2>
+<h3>Production Optimizations</h3>
+<ul>
+<li>Use production WSGI server (gunicorn)</li>
+<li>Enable connection pooling</li>
+<li>Implement caching strategies</li>
+<li>Optimize database queries</li>
+<li>Use CDN for static assets</li>
+<li>Enable compression</li>
+<li>Monitor and tune JVM parameters</li>
+</ul>
+<h3>Scaling Strategies</h3>
+<ul>
+<li>Horizontal pod autoscaling (Kubernetes)</li>
+<li>Load balancing</li>
+<li>Database read replicas</li>
+<li>Distributed caching</li>
+<li>Async processing queues</li>
+</ul>
+<p>This deployment guide provides comprehensive coverage for deploying the swarm benchmarking tool across various environments and platforms.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

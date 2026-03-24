@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Prompt Optimization Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/llm-application-dev/skills/prompt-engineering-patterns/references/prompt-optimization.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Prompt Optimization Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev">llm-application-dev</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills%2Fprompt-engineering-patterns">prompt-engineering-patterns</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills%2Fprompt-engineering-patterns%2Freferences">references</a> / <span>prompt-optimization.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Prompt Optimization Guide</h1>
+<h2>Systematic Refinement Process</h2>
+<h3>1. Baseline Establishment</h3>
+<pre><code class="language-python">def establish_baseline(prompt, test_cases):
+    results = {
+        &#39;accuracy&#39;: 0,
+        &#39;avg_tokens&#39;: 0,
+        &#39;avg_latency&#39;: 0,
+        &#39;success_rate&#39;: 0
+    }
+
+    for test_case in test_cases:
+        response = llm.complete(prompt.format(**test_case[&#39;input&#39;]))
+
+        results[&#39;accuracy&#39;] += evaluate_accuracy(response, test_case[&#39;expected&#39;])
+        results[&#39;avg_tokens&#39;] += count_tokens(response)
+        results[&#39;avg_latency&#39;] += measure_latency(response)
+        results[&#39;success_rate&#39;] += is_valid_response(response)
+
+    # Average across test cases
+    n = len(test_cases)
+    return {k: v/n for k, v in results.items()}
+</code></pre>
+<h3>2. Iterative Refinement Workflow</h3>
+<pre><code>Initial Prompt → Test → Analyze Failures → Refine → Test → Repeat
+</code></pre>
+<pre><code class="language-python">class PromptOptimizer:
+    def __init__(self, initial_prompt, test_suite):
+        self.prompt = initial_prompt
+        self.test_suite = test_suite
+        self.history = []
+
+    def optimize(self, max_iterations=10):
+        for i in range(max_iterations):
+            # Test current prompt
+            results = self.evaluate_prompt(self.prompt)
+            self.history.append({
+                &#39;iteration&#39;: i,
+                &#39;prompt&#39;: self.prompt,
+                &#39;results&#39;: results
+            })
+
+            # Stop if good enough
+            if results[&#39;accuracy&#39;] &gt; 0.95:
+                break
+
+            # Analyze failures
+            failures = self.analyze_failures(results)
+
+            # Generate refinement suggestions
+            refinements = self.generate_refinements(failures)
+
+            # Apply best refinement
+            self.prompt = self.select_best_refinement(refinements)
+
+        return self.get_best_prompt()
+</code></pre>
+<h3>3. A/B Testing Framework</h3>
+<pre><code class="language-python">class PromptABTest:
+    def __init__(self, variant_a, variant_b):
+        self.variant_a = variant_a
+        self.variant_b = variant_b
+
+    def run_test(self, test_queries, metrics=[&#39;accuracy&#39;, &#39;latency&#39;]):
+        results = {
+            &#39;A&#39;: {m: [] for m in metrics},
+            &#39;B&#39;: {m: [] for m in metrics}
+        }
+
+        for query in test_queries:
+            # Randomly assign variant (50/50 split)
+            variant = &#39;A&#39; if random.random() &lt; 0.5 else &#39;B&#39;
+            prompt = self.variant_a if variant == &#39;A&#39; else self.variant_b
+
+            response, metrics_data = self.execute_with_metrics(
+                prompt.format(query=query[&#39;input&#39;])
+            )
+
+            for metric in metrics:
+                results[variant][metric].append(metrics_data[metric])
+
+        return self.analyze_results(results)
+
+    def analyze_results(self, results):
+        from scipy import stats
+
+        analysis = {}
+        for metric in results[&#39;A&#39;].keys():
+            a_values = results[&#39;A&#39;][metric]
+            b_values = results[&#39;B&#39;][metric]
+
+            # Statistical significance test
+            t_stat, p_value = stats.ttest_ind(a_values, b_values)
+
+            analysis[metric] = {
+                &#39;A_mean&#39;: np.mean(a_values),
+                &#39;B_mean&#39;: np.mean(b_values),
+                &#39;improvement&#39;: (np.mean(b_values) - np.mean(a_values)) / np.mean(a_values),
+                &#39;statistically_significant&#39;: p_value &lt; 0.05,
+                &#39;p_value&#39;: p_value,
+                &#39;winner&#39;: &#39;B&#39; if np.mean(b_values) &gt; np.mean(a_values) else &#39;A&#39;
+            }
+
+        return analysis
+</code></pre>
+<h2>Optimization Strategies</h2>
+<h3>Token Reduction</h3>
+<pre><code class="language-python">def optimize_for_tokens(prompt):
+    optimizations = [
+        # Remove redundant phrases
+        (&#39;in order to&#39;, &#39;to&#39;),
+        (&#39;due to the fact that&#39;, &#39;because&#39;),
+        (&#39;at this point in time&#39;, &#39;now&#39;),
+
+        # Consolidate instructions
+        (&#39;First, ...\\nThen, ...\\nFinally, ...&#39;, &#39;Steps: 1) ... 2) ... 3) ...&#39;),
+
+        # Use abbreviations (after first definition)
+        (&#39;Natural Language Processing (NLP)&#39;, &#39;NLP&#39;),
+
+        # Remove filler words
+        (&#39; actually &#39;, &#39; &#39;),
+        (&#39; basically &#39;, &#39; &#39;),
+        (&#39; really &#39;, &#39; &#39;)
+    ]
+
+    optimized = prompt
+    for old, new in optimizations:
+        optimized = optimized.replace(old, new)
+
+    return optimized
+</code></pre>
+<h3>Latency Reduction</h3>
+<pre><code class="language-python">def optimize_for_latency(prompt):
+    strategies = {
+        &#39;shorter_prompt&#39;: reduce_token_count(prompt),
+        &#39;streaming&#39;: enable_streaming_response(prompt),
+        &#39;caching&#39;: add_cacheable_prefix(prompt),
+        &#39;early_stopping&#39;: add_stop_sequences(prompt)
+    }
+
+    # Test each strategy
+    best_strategy = None
+    best_latency = float(&#39;inf&#39;)
+
+    for name, modified_prompt in strategies.items():
+        latency = measure_average_latency(modified_prompt)
+        if latency &lt; best_latency:
+            best_latency = latency
+            best_strategy = modified_prompt
+
+    return best_strategy
+</code></pre>
+<h3>Accuracy Improvement</h3>
+<pre><code class="language-python">def improve_accuracy(prompt, failure_cases):
+    improvements = []
+
+    # Add constraints for common failures
+    if has_format_errors(failure_cases):
+        improvements.append(&quot;Output must be valid JSON with no additional text.&quot;)
+
+    # Add examples for edge cases
+    edge_cases = identify_edge_cases(failure_cases)
+    if edge_cases:
+        improvements.append(f&quot;Examples of edge cases:\\n{format_examples(edge_cases)}&quot;)
+
+    # Add verification step
+    if has_logical_errors(failure_cases):
+        improvements.append(&quot;Before responding, verify your answer is logically consistent.&quot;)
+
+    # Strengthen instructions
+    if has_ambiguity_errors(failure_cases):
+        improvements.append(clarify_ambiguous_instructions(prompt))
+
+    return integrate_improvements(prompt, improvements)
+</code></pre>
+<h2>Performance Metrics</h2>
+<h3>Core Metrics</h3>
+<pre><code class="language-python">class PromptMetrics:
+    @staticmethod
+    def accuracy(responses, ground_truth):
+        return sum(r == gt for r, gt in zip(responses, ground_truth)) / len(responses)
+
+    @staticmethod
+    def consistency(responses):
+        # Measure how often identical inputs produce identical outputs
+        from collections import defaultdict
+        input_responses = defaultdict(list)
+
+        for inp, resp in responses:
+            input_responses[inp].append(resp)
+
+        consistency_scores = []
+        for inp, resps in input_responses.items():
+            if len(resps) &gt; 1:
+                # Percentage of responses that match the most common response
+                most_common_count = Counter(resps).most_common(1)[0][1]
+                consistency_scores.append(most_common_count / len(resps))
+
+        return np.mean(consistency_scores) if consistency_scores else 1.0
+
+    @staticmethod
+    def token_efficiency(prompt, responses):
+        avg_prompt_tokens = np.mean([count_tokens(prompt.format(**r[&#39;input&#39;])) for r in responses])
+        avg_response_tokens = np.mean([count_tokens(r[&#39;output&#39;]) for r in responses])
+        return avg_prompt_tokens + avg_response_tokens
+
+    @staticmethod
+    def latency_p95(latencies):
+        return np.percentile(latencies, 95)
+</code></pre>
+<h3>Automated Evaluation</h3>
+<pre><code class="language-python">def evaluate_prompt_comprehensively(prompt, test_suite):
+    results = {
+        &#39;accuracy&#39;: [],
+        &#39;consistency&#39;: [],
+        &#39;latency&#39;: [],
+        &#39;tokens&#39;: [],
+        &#39;success_rate&#39;: []
+    }
+
+    # Run each test case multiple times for consistency measurement
+    for test_case in test_suite:
+        runs = []
+        for _ in range(3):  # 3 runs per test case
+            start = time.time()
+            response = llm.complete(prompt.format(**test_case[&#39;input&#39;]))
+            latency = time.time() - start
+
+            runs.append(response)
+            results[&#39;latency&#39;].append(latency)
+            results[&#39;tokens&#39;].append(count_tokens(prompt) + count_tokens(response))
+
+        # Accuracy (best of 3 runs)
+        accuracies = [evaluate_accuracy(r, test_case[&#39;expected&#39;]) for r in runs]
+        results[&#39;accuracy&#39;].append(max(accuracies))
+
+        # Consistency (how similar are the 3 runs?)
+        results[&#39;consistency&#39;].append(calculate_similarity(runs))
+
+        # Success rate (all runs successful?)
+        results[&#39;success_rate&#39;].append(all(is_valid(r) for r in runs))
+
+    return {
+        &#39;avg_accuracy&#39;: np.mean(results[&#39;accuracy&#39;]),
+        &#39;avg_consistency&#39;: np.mean(results[&#39;consistency&#39;]),
+        &#39;p95_latency&#39;: np.percentile(results[&#39;latency&#39;], 95),
+        &#39;avg_tokens&#39;: np.mean(results[&#39;tokens&#39;]),
+        &#39;success_rate&#39;: np.mean(results[&#39;success_rate&#39;])
+    }
+</code></pre>
+<h2>Failure Analysis</h2>
+<h3>Categorizing Failures</h3>
+<pre><code class="language-python">class FailureAnalyzer:
+    def categorize_failures(self, test_results):
+        categories = {
+            &#39;format_errors&#39;: [],
+            &#39;factual_errors&#39;: [],
+            &#39;logic_errors&#39;: [],
+            &#39;incomplete_responses&#39;: [],
+            &#39;hallucinations&#39;: [],
+            &#39;off_topic&#39;: []
+        }
+
+        for result in test_results:
+            if not result[&#39;success&#39;]:
+                category = self.determine_failure_type(
+                    result[&#39;response&#39;],
+                    result[&#39;expected&#39;]
+                )
+                categories[category].append(result)
+
+        return categories
+
+    def generate_fixes(self, categorized_failures):
+        fixes = []
+
+        if categorized_failures[&#39;format_errors&#39;]:
+            fixes.append({
+                &#39;issue&#39;: &#39;Format errors&#39;,
+                &#39;fix&#39;: &#39;Add explicit format examples and constraints&#39;,
+                &#39;priority&#39;: &#39;high&#39;
+            })
+
+        if categorized_failures[&#39;hallucinations&#39;]:
+            fixes.append({
+                &#39;issue&#39;: &#39;Hallucinations&#39;,
+                &#39;fix&#39;: &#39;Add grounding instruction: &quot;Base your answer only on provided context&quot;&#39;,
+                &#39;priority&#39;: &#39;critical&#39;
+            })
+
+        if categorized_failures[&#39;incomplete_responses&#39;]:
+            fixes.append({
+                &#39;issue&#39;: &#39;Incomplete responses&#39;,
+                &#39;fix&#39;: &#39;Add: &quot;Ensure your response fully addresses all parts of the question&quot;&#39;,
+                &#39;priority&#39;: &#39;medium&#39;
+            })
+
+        return fixes
+</code></pre>
+<h2>Versioning and Rollback</h2>
+<h3>Prompt Version Control</h3>
+<pre><code class="language-python">class PromptVersionControl:
+    def __init__(self, storage_path):
+        self.storage = storage_path
+        self.versions = []
+
+    def save_version(self, prompt, metadata):
+        version = {
+            &#39;id&#39;: len(self.versions),
+            &#39;prompt&#39;: prompt,
+            &#39;timestamp&#39;: datetime.now(),
+            &#39;metrics&#39;: metadata.get(&#39;metrics&#39;, {}),
+            &#39;description&#39;: metadata.get(&#39;description&#39;, &#39;&#39;),
+            &#39;parent_id&#39;: metadata.get(&#39;parent_id&#39;)
+        }
+        self.versions.append(version)
+        self.persist()
+        return version[&#39;id&#39;]
+
+    def rollback(self, version_id):
+        if version_id &lt; len(self.versions):
+            return self.versions[version_id][&#39;prompt&#39;]
+        raise ValueError(f&quot;Version {version_id} not found&quot;)
+
+    def compare_versions(self, v1_id, v2_id):
+        v1 = self.versions[v1_id]
+        v2 = self.versions[v2_id]
+
+        return {
+            &#39;diff&#39;: generate_diff(v1[&#39;prompt&#39;], v2[&#39;prompt&#39;]),
+            &#39;metrics_comparison&#39;: {
+                metric: {
+                    &#39;v1&#39;: v1[&#39;metrics&#39;].get(metric),
+                    &#39;v2&#39;: v2[&#39;metrics&#39;].get(metric&#39;),
+                    &#39;change&#39;: v2[&#39;metrics&#39;].get(metric, 0) - v1[&#39;metrics&#39;].get(metric, 0)
+                }
+                for metric in set(v1[&#39;metrics&#39;].keys()) | set(v2[&#39;metrics&#39;].keys())
+            }
+        }
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Establish Baseline</strong>: Always measure initial performance</li>
+<li><strong>Change One Thing</strong>: Isolate variables for clear attribution</li>
+<li><strong>Test Thoroughly</strong>: Use diverse, representative test cases</li>
+<li><strong>Track Metrics</strong>: Log all experiments and results</li>
+<li><strong>Validate Significance</strong>: Use statistical tests for A/B comparisons</li>
+<li><strong>Document Changes</strong>: Keep detailed notes on what and why</li>
+<li><strong>Version Everything</strong>: Enable rollback to previous versions</li>
+<li><strong>Monitor Production</strong>: Continuously evaluate deployed prompts</li>
+</ol>
+<h2>Common Optimization Patterns</h2>
+<h3>Pattern 1: Add Structure</h3>
+<pre><code>Before: &quot;Analyze this text&quot;
+After: &quot;Analyze this text for:\n1. Main topic\n2. Key arguments\n3. Conclusion&quot;
+</code></pre>
+<h3>Pattern 2: Add Examples</h3>
+<pre><code>Before: &quot;Extract entities&quot;
+After: &quot;Extract entities\\n\\nExample:\\nText: Apple released iPhone\\nEntities: {company: Apple, product: iPhone}&quot;
+</code></pre>
+<h3>Pattern 3: Add Constraints</h3>
+<pre><code>Before: &quot;Summarize this&quot;
+After: &quot;Summarize in exactly 3 bullet points, 15 words each&quot;
+</code></pre>
+<h3>Pattern 4: Add Verification</h3>
+<pre><code>Before: &quot;Calculate...&quot;
+After: &quot;Calculate... Then verify your calculation is correct before responding.&quot;
+</code></pre>
+<h2>Tools and Utilities</h2>
+<ul>
+<li>Prompt diff tools for version comparison</li>
+<li>Automated test runners</li>
+<li>Metric dashboards</li>
+<li>A/B testing frameworks</li>
+<li>Token counting utilities</li>
+<li>Latency profilers</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Parallel Agents Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/parallel-agents/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Parallel Agents Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fparallel-agents">parallel-agents</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Parallel Agents Orchestration
+description: Dispatch concurrent agent workflows for independent problems
+version: 1.0.0
+source: Adapted from obra/superpowers with FrankX orchestration patterns</h2>
+<h1>Parallel Agents Orchestration</h1>
+<h2>When to Use Parallel Agents</h2>
+<p>Use this pattern when you have <strong>multiple independent problems</strong> that:</p>
+<ul>
+<li>Don&#39;t share state or dependencies</li>
+<li>Can be understood without context from others</li>
+<li>Won&#39;t interfere with each other</li>
+<li>Would benefit from parallel investigation</li>
+</ul>
+<p><strong>Good candidates:</strong></p>
+<ul>
+<li>Multiple test failures in different files</li>
+<li>Unrelated subsystems broken independently</li>
+<li>Research tasks across different domains</li>
+<li>Code reviews of separate modules</li>
+</ul>
+<p><strong>NOT good candidates:</strong></p>
+<ul>
+<li>Failures that might be related (fix one, fix others)</li>
+<li>Tasks requiring sequential context</li>
+<li>Shared state modifications</li>
+</ul>
+<h2>The Parallel Dispatch Pattern</h2>
+<h3>Step 1: Analyze and Group</h3>
+<pre><code>Problem: 6 failing tests across 3 domains
+
+Analysis:
+├── Authentication (auth.test.ts)
+│   ├── Login failure
+│   └── Session expiry
+├── Products API (products.test.ts)
+│   ├── List filtering
+│   └── Price calculation
+└── UI Components (components.test.ts)
+    ├── Modal rendering
+    └── Form validation
+
+These are INDEPENDENT - parallel dispatch appropriate.
+</code></pre>
+<h3>Step 2: Create Focused Agent Tasks</h3>
+<p>Each agent gets:</p>
+<ol>
+<li><strong>Specific scope</strong> - One domain only</li>
+<li><strong>Full context</strong> - All info needed</li>
+<li><strong>Clear constraints</strong> - What NOT to change</li>
+<li><strong>Expected output</strong> - What to deliver</li>
+</ol>
+<pre><code class="language-typescript">// Agent 1: Authentication
+const authTask = {
+  domain: &quot;Authentication&quot;,
+  files: [&quot;src/auth/&quot;, &quot;tests/auth.test.ts&quot;],
+  failures: [&quot;Login failure&quot;, &quot;Session expiry&quot;],
+  constraints: &quot;Don&#39;t modify product or UI code&quot;,
+  deliverable: &quot;Fixed tests with explanation&quot;
+};
+
+// Agent 2: Products API
+const productsTask = {
+  domain: &quot;Products API&quot;,
+  files: [&quot;src/api/products/&quot;, &quot;tests/products.test.ts&quot;],
+  failures: [&quot;List filtering&quot;, &quot;Price calculation&quot;],
+  constraints: &quot;Don&#39;t modify auth or UI code&quot;,
+  deliverable: &quot;Fixed tests with explanation&quot;
+};
+
+// Agent 3: UI Components
+const uiTask = {
+  domain: &quot;UI Components&quot;,
+  files: [&quot;src/components/&quot;, &quot;tests/components.test.ts&quot;],
+  failures: [&quot;Modal rendering&quot;, &quot;Form validation&quot;],
+  constraints: &quot;Don&#39;t modify auth or API code&quot;,
+  deliverable: &quot;Fixed tests with explanation&quot;
+};
+</code></pre>
+<h3>Step 3: Dispatch Concurrently</h3>
+<p>Using Claude Code&#39;s Task tool:</p>
+<pre><code class="language-typescript">// In Claude Code, dispatch multiple agents in ONE message
+// This runs them concurrently
+
+&lt;Task: &quot;Fix auth tests&quot; agent=&quot;code-fixer&quot;&gt;
+  Investigate and fix authentication test failures in tests/auth.test.ts.
+  Focus ONLY on auth domain. Do not modify product or UI code.
+  Return: Summary of root cause and fix applied.
+&lt;/Task&gt;
+
+&lt;Task: &quot;Fix products tests&quot; agent=&quot;code-fixer&quot;&gt;
+  Investigate and fix products API test failures in tests/products.test.ts.
+  Focus ONLY on products domain. Do not modify auth or UI code.
+  Return: Summary of root cause and fix applied.
+&lt;/Task&gt;
+
+&lt;Task: &quot;Fix UI tests&quot; agent=&quot;code-fixer&quot;&gt;
+  Investigate and fix UI component test failures in tests/components.test.ts.
+  Focus ONLY on UI domain. Do not modify auth or API code.
+  Return: Summary of root cause and fix applied.
+&lt;/Task&gt;
+</code></pre>
+<h3>Step 4: Synthesize Results</h3>
+<p>After all agents complete:</p>
+<ol>
+<li><strong>Review summaries</strong> - Understand each fix</li>
+<li><strong>Check for conflicts</strong> - Any overlapping changes?</li>
+<li><strong>Run full test suite</strong> - Verify all fixes work together</li>
+<li><strong>Commit atomically</strong> - One commit per domain or all together</li>
+</ol>
+<h2>FrankX Orchestration Patterns</h2>
+<h3>Content Pipeline Parallel Dispatch</h3>
+<pre><code>Task: Publish new blog post
+
+Parallel Agents:
+├── SEO Agent
+│   ├── Keyword optimization
+│   ├── Meta description
+│   └── Schema markup
+├── Social Agent
+│   ├── Twitter thread
+│   ├── LinkedIn post
+│   └── Instagram caption
+└── Email Agent
+    ├── Newsletter segment
+    └── Welcome sequence update
+
+Synthesis: Coordinate publish timing
+</code></pre>
+<h3>Multi-Domain Research</h3>
+<pre><code>Task: Research AI agent frameworks
+
+Parallel Agents:
+├── LangGraph Research
+│   └── Patterns, examples, best practices
+├── Claude SDK Research
+│   └── Patterns, examples, best practices
+├── OpenAI AgentKit Research
+│   └── Patterns, examples, best practices
+└── Oracle ADK Research
+    └── Patterns, examples, best practices
+
+Synthesis: Comparison matrix, recommendations
+</code></pre>
+<h3>Codebase Analysis</h3>
+<pre><code>Task: Comprehensive code review
+
+Parallel Agents:
+├── Security Analyst
+│   └── Vulnerabilities, OWASP
+├── Performance Analyst
+│   └── Bottlenecks, optimizations
+├── Accessibility Analyst
+│   └── WCAG compliance
+└── Code Quality Analyst
+    └── Patterns, DRY, complexity
+
+Synthesis: Prioritized action items
+</code></pre>
+<h2>Agent Prompt Template</h2>
+<pre><code class="language-markdown">## Task: [Specific Domain Problem]
+
+### Context
+[All information the agent needs]
+
+### Scope
+- Files to examine: [list]
+- Files to modify: [list]
+- Domain boundaries: [what&#39;s in/out]
+
+### Constraints
+- DO NOT modify: [list of off-limits areas]
+- DO NOT introduce: [breaking changes, new dependencies, etc.]
+- MUST follow: [coding standards, patterns]
+
+### Expected Output
+1. Root cause analysis (2-3 sentences)
+2. Fix applied (file paths and summary)
+3. Verification steps taken
+4. Any concerns or recommendations
+
+### Success Criteria
+- [Specific test passes]
+- [No regressions]
+- [Clean implementation]
+</code></pre>
+<h2>Anti-Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Bad Practice</th>
+<th>Why It Fails</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vague scope</td>
+<td>Agent changes wrong files</td>
+</tr>
+<tr>
+<td>Missing context</td>
+<td>Agent asks questions or guesses</td>
+</tr>
+<tr>
+<td>No constraints</td>
+<td>Agents conflict with each other</td>
+</tr>
+<tr>
+<td>Coupled tasks</td>
+<td>Agents duplicate work or conflict</td>
+</tr>
+<tr>
+<td>No synthesis</td>
+<td>Fixes don&#39;t integrate properly</td>
+</tr>
+</tbody></table>
+<h2>Real Example</h2>
+<pre><code>Input: 6 test failures across 3 files
+
+Sequential approach: ~45 minutes
+- Investigate each failure one by one
+- Context switching between domains
+- Waiting for each fix before next
+
+Parallel approach: ~15 minutes
+- 3 agents work simultaneously
+- Each focuses on one domain
+- Synthesis adds 5 minutes
+- 3x faster overall
+
+Result: 6 failures fixed, 0 conflicts, 3x speedup
+</code></pre>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Multiple independent failures to fix</li>
+<li>Research across several domains</li>
+<li>Code reviews of separate modules</li>
+<li>Content creation across platforms</li>
+<li>Any task naturally decomposable into parallel work</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>implementation-planning</code> - Plan parallel execution</li>
+<li><code>systematic-debugging</code> - Each agent uses this</li>
+<li><code>test-driven-development</code> - Verify fixes with tests</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

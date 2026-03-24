@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Next.js App Router Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/frontend-mobile-development/skills/nextjs-app-router-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Next.js App Router Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development">frontend-mobile-development</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development%2Fskills%2Fnextjs-app-router-patterns">nextjs-app-router-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: nextjs-app-router-patterns
+description: Master Next.js 14+ App Router with Server Components, streaming, parallel routes, and advanced data fetching. Use when building Next.js applications, implementing SSR/SSG, or optimizing React Server Components.</h2>
+<h1>Next.js App Router Patterns</h1>
+<p>Comprehensive patterns for Next.js 14+ App Router architecture, Server Components, and modern full-stack React development.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Building new Next.js applications with App Router</li>
+<li>Migrating from Pages Router to App Router</li>
+<li>Implementing Server Components and streaming</li>
+<li>Setting up parallel and intercepting routes</li>
+<li>Optimizing data fetching and caching</li>
+<li>Building full-stack features with Server Actions</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Rendering Modes</h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Where</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Server Components</strong></td>
+<td>Server only</td>
+<td>Data fetching, heavy computation, secrets</td>
+</tr>
+<tr>
+<td><strong>Client Components</strong></td>
+<td>Browser</td>
+<td>Interactivity, hooks, browser APIs</td>
+</tr>
+<tr>
+<td><strong>Static</strong></td>
+<td>Build time</td>
+<td>Content that rarely changes</td>
+</tr>
+<tr>
+<td><strong>Dynamic</strong></td>
+<td>Request time</td>
+<td>Personalized or real-time data</td>
+</tr>
+<tr>
+<td><strong>Streaming</strong></td>
+<td>Progressive</td>
+<td>Large pages, slow data sources</td>
+</tr>
+</tbody></table>
+<h3>2. File Conventions</h3>
+<pre><code>app/
+├── layout.tsx       # Shared UI wrapper
+├── page.tsx         # Route UI
+├── loading.tsx      # Loading UI (Suspense)
+├── error.tsx        # Error boundary
+├── not-found.tsx    # 404 UI
+├── route.ts         # API endpoint
+├── template.tsx     # Re-mounted layout
+├── default.tsx      # Parallel route fallback
+└── opengraph-image.tsx  # OG image generation
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">// app/layout.tsx
+import { Inter } from &#39;next/font/google&#39;
+import { Providers } from &#39;./providers&#39;
+
+const inter = Inter({ subsets: [&#39;latin&#39;] })
+
+export const metadata = {
+  title: { default: &#39;My App&#39;, template: &#39;%s | My App&#39; },
+  description: &#39;Built with Next.js App Router&#39;,
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    &lt;html lang=&quot;en&quot; suppressHydrationWarning&gt;
+      &lt;body className={inter.className}&gt;
+        &lt;Providers&gt;{children}&lt;/Providers&gt;
+      &lt;/body&gt;
+    &lt;/html&gt;
+  )
+}
+
+// app/page.tsx - Server Component by default
+async function getProducts() {
+  const res = await fetch(&#39;https://api.example.com/products&#39;, {
+    next: { revalidate: 3600 }, // ISR: revalidate every hour
+  })
+  return res.json()
+}
+
+export default async function HomePage() {
+  const products = await getProducts()
+
+  return (
+    &lt;main&gt;
+      &lt;h1&gt;Products&lt;/h1&gt;
+      &lt;ProductGrid products={products} /&gt;
+    &lt;/main&gt;
+  )
+}
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: Server Components with Data Fetching</h3>
+<pre><code class="language-typescript">// app/products/page.tsx
+import { Suspense } from &#39;react&#39;
+import { ProductList, ProductListSkeleton } from &#39;@/components/products&#39;
+import { FilterSidebar } from &#39;@/components/filters&#39;
+
+interface SearchParams {
+  category?: string
+  sort?: &#39;price&#39; | &#39;name&#39; | &#39;date&#39;
+  page?: string
+}
+
+export default async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise&lt;SearchParams&gt;
+}) {
+  const params = await searchParams
+
+  return (
+    &lt;div className=&quot;flex gap-8&quot;&gt;
+      &lt;FilterSidebar /&gt;
+      &lt;Suspense
+        key={JSON.stringify(params)}
+        fallback={&lt;ProductListSkeleton /&gt;}
+      &gt;
+        &lt;ProductList
+          category={params.category}
+          sort={params.sort}
+          page={Number(params.page) || 1}
+        /&gt;
+      &lt;/Suspense&gt;
+    &lt;/div&gt;
+  )
+}
+
+// components/products/ProductList.tsx - Server Component
+async function getProducts(filters: ProductFilters) {
+  const res = await fetch(
+    `${process.env.API_URL}/products?${new URLSearchParams(filters)}`,
+    { next: { tags: [&#39;products&#39;] } }
+  )
+  if (!res.ok) throw new Error(&#39;Failed to fetch products&#39;)
+  return res.json()
+}
+
+export async function ProductList({ category, sort, page }: ProductFilters) {
+  const { products, totalPages } = await getProducts({ category, sort, page })
+
+  return (
+    &lt;div&gt;
+      &lt;div className=&quot;grid grid-cols-3 gap-4&quot;&gt;
+        {products.map((product) =&gt; (
+          &lt;ProductCard key={product.id} product={product} /&gt;
+        ))}
+      &lt;/div&gt;
+      &lt;Pagination currentPage={page} totalPages={totalPages} /&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<h3>Pattern 2: Client Components with &#39;use client&#39;</h3>
+<pre><code class="language-typescript">// components/products/AddToCartButton.tsx
+&#39;use client&#39;
+
+import { useState, useTransition } from &#39;react&#39;
+import { addToCart } from &#39;@/app/actions/cart&#39;
+
+export function AddToCartButton({ productId }: { productId: string }) {
+  const [isPending, startTransition] = useTransition()
+  const [error, setError] = useState&lt;string | null&gt;(null)
+
+  const handleClick = () =&gt; {
+    setError(null)
+    startTransition(async () =&gt; {
+      const result = await addToCart(productId)
+      if (result.error) {
+        setError(result.error)
+      }
+    })
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;button
+        onClick={handleClick}
+        disabled={isPending}
+        className=&quot;btn-primary&quot;
+      &gt;
+        {isPending ? &#39;Adding...&#39; : &#39;Add to Cart&#39;}
+      &lt;/button&gt;
+      {error &amp;&amp; &lt;p className=&quot;text-red-500 text-sm&quot;&gt;{error}&lt;/p&gt;}
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<h3>Pattern 3: Server Actions</h3>
+<pre><code class="language-typescript">// app/actions/cart.ts
+&quot;use server&quot;;
+
+import { revalidateTag } from &quot;next/cache&quot;;
+import { cookies } from &quot;next/headers&quot;;
+import { redirect } from &quot;next/navigation&quot;;
+
+export async function addToCart(productId: string) {
+  const cookieStore = await cookies();
+  const sessionId = cookieStore.get(&quot;session&quot;)?.value;
+
+  if (!sessionId) {
+    redirect(&quot;/login&quot;);
+  }
+
+  try {
+    await db.cart.upsert({
+      where: { sessionId_productId: { sessionId, productId } },
+      update: { quantity: { increment: 1 } },
+      create: { sessionId, productId, quantity: 1 },
+    });
+
+    revalidateTag(&quot;cart&quot;);
+    return { success: true };
+  } catch (error) {
+    return { error: &quot;Failed to add item to cart&quot; };
+  }
+}
+
+export async function checkout(formData: FormData) {
+  const address = formData.get(&quot;address&quot;) as string;
+  const payment = formData.get(&quot;payment&quot;) as string;
+
+  // Validate
+  if (!address || !payment) {
+    return { error: &quot;Missing required fields&quot; };
+  }
+
+  // Process order
+  const order = await processOrder({ address, payment });
+
+  // Redirect to confirmation
+  redirect(`/orders/${order.id}/confirmation`);
+}
+</code></pre>
+<h3>Pattern 4: Parallel Routes</h3>
+<pre><code class="language-typescript">// app/dashboard/layout.tsx
+export default function DashboardLayout({
+  children,
+  analytics,
+  team,
+}: {
+  children: React.ReactNode
+  analytics: React.ReactNode
+  team: React.ReactNode
+}) {
+  return (
+    &lt;div className=&quot;dashboard-grid&quot;&gt;
+      &lt;main&gt;{children}&lt;/main&gt;
+      &lt;aside className=&quot;analytics-panel&quot;&gt;{analytics}&lt;/aside&gt;
+      &lt;aside className=&quot;team-panel&quot;&gt;{team}&lt;/aside&gt;
+    &lt;/div&gt;
+  )
+}
+
+// app/dashboard/@analytics/page.tsx
+export default async function AnalyticsSlot() {
+  const stats = await getAnalytics()
+  return &lt;AnalyticsChart data={stats} /&gt;
+}
+
+// app/dashboard/@analytics/loading.tsx
+export default function AnalyticsLoading() {
+  return &lt;ChartSkeleton /&gt;
+}
+
+// app/dashboard/@team/page.tsx
+export default async function TeamSlot() {
+  const members = await getTeamMembers()
+  return &lt;TeamList members={members} /&gt;
+}
+</code></pre>
+<h3>Pattern 5: Intercepting Routes (Modal Pattern)</h3>
+<pre><code class="language-typescript">// File structure for photo modal
+// app/
+// ├── @modal/
+// │   ├── (.)photos/[id]/page.tsx  # Intercept
+// │   └── default.tsx
+// ├── photos/
+// │   └── [id]/page.tsx            # Full page
+// └── layout.tsx
+
+// app/@modal/(.)photos/[id]/page.tsx
+import { Modal } from &#39;@/components/Modal&#39;
+import { PhotoDetail } from &#39;@/components/PhotoDetail&#39;
+
+export default async function PhotoModal({
+  params,
+}: {
+  params: Promise&lt;{ id: string }&gt;
+}) {
+  const { id } = await params
+  const photo = await getPhoto(id)
+
+  return (
+    &lt;Modal&gt;
+      &lt;PhotoDetail photo={photo} /&gt;
+    &lt;/Modal&gt;
+  )
+}
+
+// app/photos/[id]/page.tsx - Full page version
+export default async function PhotoPage({
+  params,
+}: {
+  params: Promise&lt;{ id: string }&gt;
+}) {
+  const { id } = await params
+  const photo = await getPhoto(id)
+
+  return (
+    &lt;div className=&quot;photo-page&quot;&gt;
+      &lt;PhotoDetail photo={photo} /&gt;
+      &lt;RelatedPhotos photoId={id} /&gt;
+    &lt;/div&gt;
+  )
+}
+
+// app/layout.tsx
+export default function RootLayout({
+  children,
+  modal,
+}: {
+  children: React.ReactNode
+  modal: React.ReactNode
+}) {
+  return (
+    &lt;html&gt;
+      &lt;body&gt;
+        {children}
+        {modal}
+      &lt;/body&gt;
+    &lt;/html&gt;
+  )
+}
+</code></pre>
+<h3>Pattern 6: Streaming with Suspense</h3>
+<pre><code class="language-typescript">// app/product/[id]/page.tsx
+import { Suspense } from &#39;react&#39;
+
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise&lt;{ id: string }&gt;
+}) {
+  const { id } = await params
+
+  // This data loads first (blocking)
+  const product = await getProduct(id)
+
+  return (
+    &lt;div&gt;
+      {/* Immediate render */}
+      &lt;ProductHeader product={product} /&gt;
+
+      {/* Stream in reviews */}
+      &lt;Suspense fallback={&lt;ReviewsSkeleton /&gt;}&gt;
+        &lt;Reviews productId={id} /&gt;
+      &lt;/Suspense&gt;
+
+      {/* Stream in recommendations */}
+      &lt;Suspense fallback={&lt;RecommendationsSkeleton /&gt;}&gt;
+        &lt;Recommendations productId={id} /&gt;
+      &lt;/Suspense&gt;
+    &lt;/div&gt;
+  )
+}
+
+// These components fetch their own data
+async function Reviews({ productId }: { productId: string }) {
+  const reviews = await getReviews(productId) // Slow API
+  return &lt;ReviewList reviews={reviews} /&gt;
+}
+
+async function Recommendations({ productId }: { productId: string }) {
+  const products = await getRecommendations(productId) // ML-based, slow
+  return &lt;ProductCarousel products={products} /&gt;
+}
+</code></pre>
+<h3>Pattern 7: Route Handlers (API Routes)</h3>
+<pre><code class="language-typescript">// app/api/products/route.ts
+import { NextRequest, NextResponse } from &quot;next/server&quot;;
+
+export async function GET(request: NextRequest) {
+  const searchParams = request.nextUrl.searchParams;
+  const category = searchParams.get(&quot;category&quot;);
+
+  const products = await db.product.findMany({
+    where: category ? { category } : undefined,
+    take: 20,
+  });
+
+  return NextResponse.json(products);
+}
+
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+
+  const product = await db.product.create({
+    data: body,
+  });
+
+  return NextResponse.json(product, { status: 201 });
+}
+
+// app/api/products/[id]/route.ts
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise&lt;{ id: string }&gt; },
+) {
+  const { id } = await params;
+  const product = await db.product.findUnique({ where: { id } });
+
+  if (!product) {
+    return NextResponse.json({ error: &quot;Product not found&quot; }, { status: 404 });
+  }
+
+  return NextResponse.json(product);
+}
+</code></pre>
+<h3>Pattern 8: Metadata and SEO</h3>
+<pre><code class="language-typescript">// app/products/[slug]/page.tsx
+import { Metadata } from &#39;next&#39;
+import { notFound } from &#39;next/navigation&#39;
+
+type Props = {
+  params: Promise&lt;{ slug: string }&gt;
+}
+
+export async function generateMetadata({ params }: Props): Promise&lt;Metadata&gt; {
+  const { slug } = await params
+  const product = await getProduct(slug)
+
+  if (!product) return {}
+
+  return {
+    title: product.name,
+    description: product.description,
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      images: [{ url: product.image, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: &#39;summary_large_image&#39;,
+      title: product.name,
+      description: product.description,
+      images: [product.image],
+    },
+  }
+}
+
+export async function generateStaticParams() {
+  const products = await db.product.findMany({ select: { slug: true } })
+  return products.map((p) =&gt; ({ slug: p.slug }))
+}
+
+export default async function ProductPage({ params }: Props) {
+  const { slug } = await params
+  const product = await getProduct(slug)
+
+  if (!product) notFound()
+
+  return &lt;ProductDetail product={product} /&gt;
+}
+</code></pre>
+<h2>Caching Strategies</h2>
+<h3>Data Cache</h3>
+<pre><code class="language-typescript">// No cache (always fresh)
+fetch(url, { cache: &quot;no-store&quot; });
+
+// Cache forever (static)
+fetch(url, { cache: &quot;force-cache&quot; });
+
+// ISR - revalidate after 60 seconds
+fetch(url, { next: { revalidate: 60 } });
+
+// Tag-based invalidation
+fetch(url, { next: { tags: [&quot;products&quot;] } });
+
+// Invalidate via Server Action
+(&quot;use server&quot;);
+import { revalidateTag, revalidatePath } from &quot;next/cache&quot;;
+
+export async function updateProduct(id: string, data: ProductData) {
+  await db.product.update({ where: { id }, data });
+  revalidateTag(&quot;products&quot;);
+  revalidatePath(&quot;/products&quot;);
+}
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Start with Server Components</strong> - Add &#39;use client&#39; only when needed</li>
+<li><strong>Colocate data fetching</strong> - Fetch data where it&#39;s used</li>
+<li><strong>Use Suspense boundaries</strong> - Enable streaming for slow data</li>
+<li><strong>Leverage parallel routes</strong> - Independent loading states</li>
+<li><strong>Use Server Actions</strong> - For mutations with progressive enhancement</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t pass serializable data</strong> - Server → Client boundary limitations</li>
+<li><strong>Don&#39;t use hooks in Server Components</strong> - No useState, useEffect</li>
+<li><strong>Don&#39;t fetch in Client Components</strong> - Use Server Components or React Query</li>
+<li><strong>Don&#39;t over-nest layouts</strong> - Each layout adds to the component tree</li>
+<li><strong>Don&#39;t ignore loading states</strong> - Always provide loading.tsx or Suspense</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://nextjs.org/docs/app">Next.js App Router Documentation</a></li>
+<li><a href="https://github.com/reactjs/rfcs/blob/main/text/0188-server-components.md">Server Components RFC</a></li>
+<li><a href="https://vercel.com/templates/next.js">Vercel Templates</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

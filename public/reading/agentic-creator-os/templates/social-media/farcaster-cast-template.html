@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Farcaster Cast Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/templates/social-media/farcaster-cast-template.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Farcaster Cast Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2Ftemplates">templates</a> / <a href="index.html#agentic-creator-os%2Ftemplates%2Fsocial-media">social-media</a> / <span>farcaster-cast-template.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Farcaster Cast Template</h1>
+<h2>When to Use This Template</h2>
+<ul>
+<li>Building presence on decentralized social (Farcaster/Warpcast)</li>
+<li>Engaging with web3, crypto, and builder communities</li>
+<li>Sharing insights about decentralization, AI, and emerging tech</li>
+<li>Creating content for a technical, forward-thinking audience</li>
+<li>Establishing thought leadership in the onchain ecosystem</li>
+</ul>
+<h2>Input Fields Needed</h2>
+<ul>
+<li><strong>Core Message</strong>: [The main insight or value you&#39;re sharing]</li>
+<li><strong>Audience Context</strong>: [Web3 builders, crypto natives, AI enthusiasts, etc.]</li>
+<li><strong>Technical Level</strong>: [How technical should this be?]</li>
+<li><strong>Engagement Goal</strong>: [Replies, recasts, likes, channel participation]</li>
+<li><strong>Channel Relevance</strong>: [Which Farcaster channels is this relevant to?]</li>
+<li><strong>Call to Action</strong>: [What you want readers to do]</li>
+</ul>
+<hr>
+<h2>Farcaster/Warpcast Dynamics</h2>
+<h3>Key Differences from Twitter/X:</h3>
+<ul>
+<li><strong>Decentralized</strong>: Built on blockchain, censorship-resistant</li>
+<li><strong>Quality over quantity</strong>: Smaller, more engaged audience</li>
+<li><strong>Technical audience</strong>: Higher concentration of builders and developers</li>
+<li><strong>Channel-based</strong>: Content organized into topic-specific channels</li>
+<li><strong>Onchain actions</strong>: Tipping, NFT minting, token interactions</li>
+<li><strong>Authenticity</strong>: Less performative, more genuine discourse</li>
+<li><strong>Early adopter mindset</strong>: Audience values innovation and experimentation</li>
+</ul>
+<h3>What Works on Farcaster:</h3>
+<ul>
+<li>Technical insights and deep dives</li>
+<li>Building in public and sharing progress</li>
+<li>Thoughtful commentary on web3/AI trends</li>
+<li>Genuine questions and discussions</li>
+<li>Sharing useful tools and resources</li>
+<li>Celebrating community wins</li>
+<li>Transparent thoughts on decentralization</li>
+</ul>
+<h3>What Doesn&#39;t Work:</h3>
+<ul>
+<li>Overly promotional content</li>
+<li>Engagement farming tactics</li>
+<li>Shallow takes on complex topics</li>
+<li>Copy-pasted content from Twitter</li>
+<li>Hype without substance</li>
+<li>Ignoring replies and community</li>
+</ul>
+<hr>
+<h2>Cast Structure Patterns</h2>
+<h3>Pattern 1: The Insight Cast (280 characters)</h3>
+<p><strong>Purpose</strong>: Share a valuable observation or lesson</p>
+<p><strong>Structure:</strong></p>
+<pre><code>[Observation or insight]
+
+[Why it matters]
+
+[Optional: Question or CTA]
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code>The best builders I know spend more time thinking than coding.
+
+They prototype in their head first. Code second.
+
+Saves weeks of refactoring.
+</code></pre>
+<pre><code>Decentralization isn&#39;t about removing all intermediaries.
+
+It&#39;s about removing unnecessary ones.
+
+The goal is trust minimization, not trust elimination.
+</code></pre>
+<pre><code>AI agents will be the first true citizens of the decentralized web.
+
+They need permissionless access, composability, and verifiable compute.
+
+Web3 infrastructure is being built for them, not just us.
+</code></pre>
+<hr>
+<h3>Pattern 2: The Thread Cast</h3>
+<p><strong>Purpose</strong>: Explore a topic in depth across multiple casts</p>
+<p><strong>Structure:</strong></p>
+<pre><code>Cast 1: Hook + promise of value
+Cast 2-5: Main points with examples
+Cast 6: Summary + CTA
+</code></pre>
+<p><strong>Example Thread:</strong></p>
+<p><strong>Cast 1:</strong></p>
+<pre><code>I&#39;ve been building on Farcaster for 6 months.
+
+Here&#39;s what I&#39;ve learned about decentralized social:
+
+🧵
+</code></pre>
+<p><strong>Cast 2:</strong></p>
+<pre><code>1. Decentralization is a spectrum, not binary.
+
+Farcaster is &quot;sufficiently decentralized&quot; - the important parts (identity, data) are onchain.
+
+The rest (hosting, clients) can be centralized for UX.
+
+This is the right tradeoff.
+</code></pre>
+<p><strong>Cast 3:</strong></p>
+<pre><code>2. Channels &gt; Algorithms.
+
+Instead of fighting an opaque algorithm, you join channels where your content is relevant.
+
+It&#39;s like Reddit meets Twitter, but decentralized.
+
+Much better signal-to-noise ratio.
+</code></pre>
+<p><strong>Cast 4:</strong></p>
+<pre><code>3. Onchain actions create new primitives.
+
+Tipping, minting, token-gating - all native to the platform.
+
+This enables new creator monetization models that aren&#39;t possible on web2 social.
+</code></pre>
+<p><strong>Cast 5:</strong></p>
+<pre><code>4. The community is different.
+
+More builders, fewer influencers.
+More substance, less performance.
+More collaboration, less competition.
+
+It feels like early Twitter, but better.
+</code></pre>
+<p><strong>Cast 6:</strong></p>
+<pre><code>If you&#39;re building in web3, AI, or just curious about decentralized social, you should be on Farcaster.
+
+It&#39;s where the future is being built.
+
+See you there. 🟣
+</code></pre>
+<hr>
+<h3>Pattern 3: The Question Cast</h3>
+<p><strong>Purpose</strong>: Spark discussion and learn from the community</p>
+<p><strong>Structure:</strong></p>
+<pre><code>[Context for the question]
+
+[The specific question]
+
+[Optional: Your initial thoughts]
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code>Genuine question for builders:
+
+What&#39;s the biggest blocker to building onchain right now?
+
+For me it&#39;s UX - wallets, gas, transaction signing. Still too much friction.
+</code></pre>
+<pre><code>Curious about something:
+
+Do you think AI agents will need their own wallets and onchain identity?
+
+Or will they operate through human-controlled accounts?
+
+I&#39;m leaning toward the former.
+</code></pre>
+<pre><code>Hot take incoming:
+
+Most &quot;decentralized&quot; apps aren&#39;t actually decentralized.
+
+They&#39;re just using blockchain as a database.
+
+Am I wrong? Change my mind.
+</code></pre>
+<hr>
+<h3>Pattern 4: The Build Update Cast</h3>
+<p><strong>Purpose</strong>: Share progress and build in public</p>
+<p><strong>Structure:</strong></p>
+<pre><code>[What you&#39;re building]
+
+[Progress update]
+
+[What&#39;s next or what you learned]
+
+[Optional: Ask for feedback]
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code>Shipped v0.2 of my Farcaster analytics tool today.
+
+New features:
+• Channel growth tracking
+• Cast performance metrics
+• Engagement trends
+
+Next: Adding wallet activity correlation.
+
+Try it: [link]
+</code></pre>
+<pre><code>Day 47 of building in public:
+
+Rewrote the entire backend. Again.
+
+Turns out my &quot;clever&quot; architecture was just complicated.
+
+Simple &gt; clever. Every time.
+</code></pre>
+<pre><code>Just launched my first Frame on Farcaster.
+
+It&#39;s a simple poll, but the UX is magical - vote without leaving your feed.
+
+This is what native onchain interactions should feel like.
+
+[Frame embed]
+</code></pre>
+<hr>
+<h3>Pattern 5: The Resource Share Cast</h3>
+<p><strong>Purpose</strong>: Provide value by sharing useful tools or insights</p>
+<p><strong>Structure:</strong></p>
+<pre><code>[What you&#39;re sharing]
+
+[Why it&#39;s valuable]
+
+[How to use it or where to find it]
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code>Best Farcaster tools I use daily:
+
+• Warpcast - main client
+• Searchcaster - search all casts
+• Farcaster.network - analytics
+• Paragraph - decentralized blogging
+
+All free. All essential.
+</code></pre>
+<pre><code>If you&#39;re building on Farcaster, read this:
+
+&quot;Sufficiently Decentralized&quot; by Dan Romero
+
+It&#39;s the best explanation of Farcaster&#39;s architecture and design decisions.
+
+[link]
+</code></pre>
+<pre><code>New AI tool just dropped:
+
+Claude can now browse Farcaster via MCP.
+
+This changes everything for AI agents on decentralized social.
+
+[link to docs]
+</code></pre>
+<hr>
+<h3>Pattern 6: The Hot Take Cast</h3>
+<p><strong>Purpose</strong>: Share a contrarian or thought-provoking perspective</p>
+<p><strong>Structure:</strong></p>
+<pre><code>[The controversial statement]
+
+[Your reasoning]
+
+[Invitation to discuss]
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code>Unpopular opinion:
+
+Most crypto projects don&#39;t need a token.
+
+They need a token because VCs demand it, not because the product requires it.
+
+Prove me wrong.
+</code></pre>
+<pre><code>Hot take:
+
+Decentralized social will never replace Twitter.
+
+It will replace forums, Discord, and niche communities.
+
+Different use case. Different audience.
+</code></pre>
+<pre><code>Controversial thought:
+
+AI agents will be better at decentralized governance than humans.
+
+They&#39;re not emotional. They can process more data. They can&#39;t be bribed.
+
+This is either utopian or dystopian. Not sure which.
+</code></pre>
+<hr>
+<h3>Pattern 7: The Celebration Cast</h3>
+<p><strong>Purpose</strong>: Celebrate wins and build community</p>
+<p><strong>Structure:</strong></p>
+<pre><code>[The win or milestone]
+
+[Brief context]
+
+[Gratitude or what&#39;s next]
+</code></pre>
+<p><strong>Examples:</strong></p>
+<pre><code>Just hit 1,000 followers on Farcaster! 🎉
+
+This community is incredible. The quality of conversations here is unmatched.
+
+Thank you for being part of this journey.
+
+Here&#39;s to the next 1,000. 🟣
+</code></pre>
+<pre><code>We just crossed 10K users on our Farcaster app!
+
+6 months ago, we had 0.
+
+Building in public works.
+
+Thank you to everyone who believed in us early. 🙏
+</code></pre>
+<pre><code>Minted my first NFT on Farcaster today.
+
+It&#39;s a simple piece, but it represents something bigger - true ownership of digital content.
+
+This is what we&#39;re building for.
+</code></pre>
+<hr>
+<h2>Platform-Specific Formatting</h2>
+<h3>Character Limit</h3>
+<ul>
+<li><strong>Standard cast</strong>: 320 characters (slightly more than Twitter&#39;s 280)</li>
+<li><strong>Optimal length</strong>: 200-280 characters (leaves room for replies)</li>
+<li><strong>Threads</strong>: Use for longer thoughts (each cast = 320 chars)</li>
+</ul>
+<h3>Visual Elements</h3>
+<ul>
+<li><strong>Emojis</strong>: Use sparingly (1-2 per cast) 🟣 ⚡ 🔥 💡 🧵</li>
+<li><strong>Line breaks</strong>: Use for readability (every 1-2 sentences)</li>
+<li><strong>Purple circle</strong>: 🟣 is the unofficial Farcaster emoji</li>
+<li><strong>Formatting</strong>: No bold/italics, use CAPS or &quot;quotes&quot; for emphasis</li>
+</ul>
+<h3>Links</h3>
+<ul>
+<li><strong>Embeds</strong>: Links auto-embed (images, videos, Frames)</li>
+<li><strong>Frames</strong>: Interactive embeds (polls, mints, apps)</li>
+<li><strong>Placement</strong>: Put links at the end of cast</li>
+</ul>
+<h3>Channels</h3>
+<ul>
+<li><strong>Relevance</strong>: Post in relevant channels (/ai, /builders, /crypto)</li>
+<li><strong>Discovery</strong>: Channels help your content reach the right audience</li>
+<li><strong>Etiquette</strong>: Don&#39;t spam multiple channels with same cast</li>
+</ul>
+<h3>Mentions</h3>
+<ul>
+<li><strong>Format</strong>: username (no symbol needed in most clients)</li>
+<li><strong>Engagement</strong>: Mention people to start conversations</li>
+<li><strong>Respect</strong>: Don&#39;t mention people just for reach</li>
+</ul>
+<hr>
+<h2>Pro Tips</h2>
+<h3>Timing</h3>
+<ul>
+<li><strong>Best times</strong>: 7-9 AM, 12-2 PM, 6-8 PM ET (US-heavy audience)</li>
+<li><strong>Consistency</strong>: Post 2-5x per day (quality over quantity)</li>
+<li><strong>Threads</strong>: Post threads in quick succession (don&#39;t space out)</li>
+</ul>
+<h3>Engagement Hacks</h3>
+<ul>
+<li><strong>Reply fast</strong>: Respond to replies within first hour</li>
+<li><strong>Ask questions</strong>: Casts with questions get 3x more replies</li>
+<li><strong>Use Frames</strong>: Interactive Frames get higher engagement</li>
+<li><strong>Tip quality replies</strong>: Use tokens to reward good responses</li>
+<li><strong>Join channels</strong>: Participate in relevant channels actively</li>
+</ul>
+<h3>Community Building</h3>
+<ul>
+<li><strong>Be genuine</strong>: Authenticity is valued over performance</li>
+<li><strong>Build in public</strong>: Share your journey, not just wins</li>
+<li><strong>Support others</strong>: Recast, reply, and celebrate community wins</li>
+<li><strong>Add value</strong>: Share insights, tools, and resources freely</li>
+<li><strong>Be technical</strong>: Don&#39;t dumb things down - the audience can handle it</li>
+</ul>
+<h3>Algorithm (or Lack Thereof)</h3>
+<ul>
+<li><strong>Chronological feeds</strong>: No algorithm in most clients</li>
+<li><strong>Channel-based</strong>: Content surfaces in relevant channels</li>
+<li><strong>Engagement matters</strong>: Recasts and replies boost visibility</li>
+<li><strong>Quality signals</strong>: Accounts with engaged followers get more reach</li>
+</ul>
+<hr>
+<h2>Farcaster-Specific Features</h2>
+<h3>Frames</h3>
+<p>Interactive embeds that enable actions without leaving the feed:</p>
+<ul>
+<li>Polls and surveys</li>
+<li>NFT minting</li>
+<li>Token swaps</li>
+<li>Mini-apps</li>
+<li>Games</li>
+</ul>
+<p><strong>Example Cast with Frame:</strong></p>
+<pre><code>Should AI agents have their own wallets?
+
+Vote below 👇
+
+[Frame: Poll with Yes/No buttons]
+</code></pre>
+<h3>Tipping</h3>
+<p>Native tipping with tokens:</p>
+<ul>
+<li>Reward quality content</li>
+<li>Show appreciation</li>
+<li>Build community</li>
+</ul>
+<h3>Channels</h3>
+<p>Topic-specific feeds (like subreddits):</p>
+<ul>
+<li>/ai - AI and machine learning</li>
+<li>/builders - Building in public</li>
+<li>/crypto - Crypto and web3</li>
+<li>/farcaster - Platform discussion</li>
+<li>/memes - Memes and fun</li>
+</ul>
+<p><strong>Posting to Channels:</strong></p>
+<pre><code>[Your cast content]
+
+Posted in: /ai /builders
+</code></pre>
+<hr>
+<h2>Content Ideas for Farcaster</h2>
+<h3>Technical Insights</h3>
+<ul>
+<li>&quot;Here&#39;s how [technology] actually works...&quot;</li>
+<li>&quot;I analyzed [data/code]. Here&#39;s what I found...&quot;</li>
+<li>&quot;The architecture of [project] is fascinating...&quot;</li>
+<li>&quot;Deep dive: [technical topic]&quot;</li>
+</ul>
+<h3>Building in Public</h3>
+<ul>
+<li>&quot;Day [X] of building [project]...&quot;</li>
+<li>&quot;Shipped [feature] today. Here&#39;s what I learned...&quot;</li>
+<li>&quot;I made a mistake: [lesson learned]...&quot;</li>
+<li>&quot;Progress update: [what&#39;s working/not working]&quot;</li>
+</ul>
+<h3>Web3/AI Commentary</h3>
+<ul>
+<li>&quot;The future of [topic] is [prediction]...&quot;</li>
+<li>&quot;Why [trend] matters for [audience]...&quot;</li>
+<li>&quot;Unpopular opinion: [contrarian take]...&quot;</li>
+<li>&quot;What [event] means for [ecosystem]...&quot;</li>
+</ul>
+<h3>Community Engagement</h3>
+<ul>
+<li>&quot;What are you building right now?&quot;</li>
+<li>&quot;Best [tools/resources] for [task]?&quot;</li>
+<li>&quot;Who should I follow for [topic]?&quot;</li>
+<li>&quot;What&#39;s your biggest challenge with [topic]?&quot;</li>
+</ul>
+<h3>Resource Sharing</h3>
+<ul>
+<li>&quot;Best [tools] I use for [task]...&quot;</li>
+<li>&quot;Essential reading: [article/paper]...&quot;</li>
+<li>&quot;New [tool/feature] just dropped...&quot;</li>
+<li>&quot;If you&#39;re building [X], check out [Y]...&quot;</li>
+</ul>
+<hr>
+<h2>Common Mistakes to Avoid</h2>
+<p>❌ Copy-pasting from Twitter (different audience/culture)
+❌ Engagement farming (low-quality questions for replies)
+❌ Being overly promotional (community values substance)
+❌ Ignoring replies (engagement is key)
+❌ Posting in irrelevant channels (spam)
+❌ Shallow takes on complex topics (audience is technical)
+❌ Not using Frames (missing engagement opportunity)
+❌ Being performative (authenticity wins)
+❌ Posting without context (explain your thinking)
+❌ Forgetting to engage with others (reciprocity matters)</p>
+<p>✅ Customize content for Farcaster (technical, authentic)
+✅ Ask genuine questions (spark real discussion)
+✅ Lead with value (insights, tools, resources)
+✅ Engage actively (reply, recast, tip)
+✅ Post in relevant channels (targeted reach)
+✅ Share thoughtful takes (depth over breadth)
+✅ Use Frames when relevant (interactive engagement)
+✅ Be authentic (genuine over polished)
+✅ Provide context (explain your reasoning)
+✅ Support the community (give more than you take)</p>
+<hr>
+<h2>Cast Template</h2>
+<pre><code>[HOOK - 1-2 sentences that grab attention]
+
+[CONTEXT - Why this matters or background]
+
+[VALUE - The insight, lesson, or resource]
+
+[OPTIONAL: Question or CTA]
+
+[OPTIONAL: Channel tags]
+</code></pre>
+<hr>
+<h2>Example: Complete Farcaster Casts</h2>
+<p><strong>Short Cast:</strong></p>
+<pre><code>The best builders I know spend more time thinking than coding.
+
+They prototype in their head first. Code second.
+
+Saves weeks of refactoring.
+</code></pre>
+<p><strong>Medium Cast:</strong></p>
+<pre><code>Decentralization isn&#39;t about removing all intermediaries.
+
+It&#39;s about removing unnecessary ones.
+
+The goal is trust minimization, not trust elimination.
+
+Farcaster gets this right - identity and data are onchain. Hosting and clients can be centralized for UX.
+
+This is the right tradeoff.
+</code></pre>
+<hr>
+<h2>Customization Checklist</h2>
+<p>Before posting, verify:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Cast is under 320 characters (or broken into thread)</li>
+<li><input disabled="" type="checkbox"> Content is relevant to Farcaster audience (technical, authentic)</li>
+<li><input disabled="" type="checkbox"> Posted in relevant channels (if applicable)</li>
+<li><input disabled="" type="checkbox"> Question asked to encourage replies (if appropriate)</li>
+<li><input disabled="" type="checkbox"> Links placed at end (for clean embeds)</li>
+<li><input disabled="" type="checkbox"> No typos or errors</li>
+<li><input disabled="" type="checkbox"> Provides value (insight, resource, or genuine question)</li>
+<li><input disabled="" type="checkbox"> Authentic and genuine (not performative)</li>
+<li><input disabled="" type="checkbox"> Ready to engage with replies</li>
+<li><input disabled="" type="checkbox"> Considered using a Frame (if interactive content)</li>
+</ul>
+<hr>
+<h2>Farcaster Etiquette</h2>
+<h3>Do:</h3>
+<ul>
+<li>Build in public and share your journey</li>
+<li>Ask genuine questions and engage with answers</li>
+<li>Share useful tools and resources freely</li>
+<li>Celebrate others&#39; wins</li>
+<li>Tip quality content</li>
+<li>Participate in channels actively</li>
+<li>Be technical and thoughtful</li>
+<li>Admit when you&#39;re wrong or learning</li>
+</ul>
+<h3>Don&#39;t:</h3>
+<ul>
+<li>Spam multiple channels with same cast</li>
+<li>Engagement farm with low-quality questions</li>
+<li>Be overly promotional</li>
+<li>Ignore replies to your casts</li>
+<li>Copy-paste from other platforms</li>
+<li>Share shallow takes on complex topics</li>
+<li>Be performative or inauthentic</li>
+<li>Forget to engage with the community</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

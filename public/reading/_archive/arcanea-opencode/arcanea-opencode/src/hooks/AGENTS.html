@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>HOOKS KNOWLEDGE BASE</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/arcanea-opencode/arcanea-opencode/src/hooks/AGENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">HOOKS KNOWLEDGE BASE</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2Farcanea-opencode">arcanea-opencode</a> / <a href="../../index.html#_archive%2Farcanea-opencode%2Farcanea-opencode">arcanea-opencode</a> / <a href="../index.html#_archive%2Farcanea-opencode%2Farcanea-opencode%2Fsrc">src</a> / <a href="index.html#_archive%2Farcanea-opencode%2Farcanea-opencode%2Fsrc%2Fhooks">hooks</a> / <span>AGENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>HOOKS KNOWLEDGE BASE</h1>
+<h2>OVERVIEW</h2>
+<p>22 lifecycle hooks intercepting/modifying agent behavior. Context injection, error recovery, output control, notifications.</p>
+<h2>STRUCTURE</h2>
+<pre><code>hooks/
+├── anthropic-context-window-limit-recovery/  # Auto-compact at token limit (554 lines)
+├── auto-slash-command/         # Detect and execute /command patterns
+├── auto-update-checker/        # Version notifications, startup toast
+├── background-notification/    # OS notify on task complete
+├── claude-code-hooks/          # settings.json PreToolUse/PostToolUse/etc
+├── comment-checker/            # Prevent excessive AI comments
+│   └── filters/                # docstring, directive, bdd, etc
+├── compaction-context-injector/ # Preserve context during compaction
+├── directory-agents-injector/  # Auto-inject AGENTS.md
+├── directory-readme-injector/  # Auto-inject README.md
+├── empty-message-sanitizer/    # Sanitize empty messages
+├── interactive-bash-session/   # Tmux session management
+├── keyword-detector/           # ultrawork/search keyword activation
+├── non-interactive-env/        # CI/headless handling
+├── preemptive-compaction/      # Pre-emptive at 85% usage
+├── ralph-loop/                 # Self-referential dev loop
+├── rules-injector/             # Conditional rules from .claude/rules/
+├── session-recovery/           # Recover from errors (430 lines)
+├── think-mode/                 # Auto-detect thinking triggers
+├── agent-usage-reminder/       # Remind to use specialists
+├── context-window-monitor.ts   # Monitor usage (standalone)
+├── session-notification.ts     # OS notify on idle
+├── todo-continuation-enforcer.ts # Force TODO completion
+└── tool-output-truncator.ts    # Truncate verbose outputs
+</code></pre>
+<h2>HOOK EVENTS</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Timing</th>
+<th>Can Block</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PreToolUse</td>
+<td>Before tool</td>
+<td>Yes</td>
+<td>Validate, modify input</td>
+</tr>
+<tr>
+<td>PostToolUse</td>
+<td>After tool</td>
+<td>No</td>
+<td>Add context, warnings</td>
+</tr>
+<tr>
+<td>UserPromptSubmit</td>
+<td>On prompt</td>
+<td>Yes</td>
+<td>Inject messages, block</td>
+</tr>
+<tr>
+<td>Stop</td>
+<td>Session idle</td>
+<td>No</td>
+<td>Inject follow-ups</td>
+</tr>
+<tr>
+<td>onSummarize</td>
+<td>Compaction</td>
+<td>No</td>
+<td>Preserve context</td>
+</tr>
+</tbody></table>
+<h2>HOW TO ADD</h2>
+<ol>
+<li>Create <code>src/hooks/my-hook/</code></li>
+<li>Files: <code>index.ts</code> (createMyHook), <code>constants.ts</code>, <code>types.ts</code> (optional)</li>
+<li>Return: <code>{ PreToolUse?, PostToolUse?, UserPromptSubmit?, Stop?, onSummarize? }</code></li>
+<li>Export from <code>src/hooks/index.ts</code></li>
+</ol>
+<h2>PATTERNS</h2>
+<ul>
+<li><strong>Storage</strong>: JSON file for persistent state across sessions</li>
+<li><strong>Once-per-session</strong>: Track injected paths in Set</li>
+<li><strong>Message injection</strong>: Return <code>{ messages: [...] }</code></li>
+<li><strong>Blocking</strong>: Return <code>{ blocked: true, message: &quot;...&quot; }</code> from PreToolUse</li>
+</ul>
+<h2>ANTI-PATTERNS</h2>
+<ul>
+<li>Heavy computation in PreToolUse (slows every tool call)</li>
+<li>Blocking without actionable message</li>
+<li>Duplicate injection (track what&#39;s injected)</li>
+<li>Missing try/catch (don&#39;t crash session)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>LLM Application Development Plugin for Claude Code</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/llm-application-dev/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">LLM Application Development Plugin for Claude Code</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev">llm-application-dev</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>LLM Application Development Plugin for Claude Code</h1>
+<p>Build production-ready LLM applications, advanced RAG systems, and intelligent agents with modern AI patterns.</p>
+<h2>Version 2.0.0 Highlights</h2>
+<ul>
+<li><strong>LangGraph Integration</strong>: Updated from deprecated LangChain patterns to LangGraph StateGraph workflows</li>
+<li><strong>Modern Model Support</strong>: Claude Opus/Sonnet/Haiku 4.5 and GPT-5.2/GPT-5.2-mini</li>
+<li><strong>Voyage AI Embeddings</strong>: Recommended embedding models for Claude applications</li>
+<li><strong>Structured Outputs</strong>: Pydantic-based structured output patterns</li>
+</ul>
+<h2>Features</h2>
+<h3>Core Capabilities</h3>
+<ul>
+<li><strong>RAG Systems</strong>: Production retrieval-augmented generation with hybrid search</li>
+<li><strong>Vector Search</strong>: Pinecone, Qdrant, Weaviate, Milvus, pgvector optimization</li>
+<li><strong>Agent Architectures</strong>: LangGraph-based agents with memory and tool use</li>
+<li><strong>Prompt Engineering</strong>: Advanced prompting techniques with model-specific optimization</li>
+</ul>
+<h3>Key Technologies</h3>
+<ul>
+<li>LangChain 1.x / LangGraph for agent workflows</li>
+<li>Voyage AI, OpenAI, and open-source embedding models</li>
+<li>HNSW, IVF, and Product Quantization index strategies</li>
+<li>Async patterns with checkpointers for durable execution</li>
+</ul>
+<h2>Agents</h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ai-engineer</code></td>
+<td>Production-grade LLM applications, RAG systems, and agent architectures</td>
+</tr>
+<tr>
+<td><code>prompt-engineer</code></td>
+<td>Advanced prompting techniques, constitutional AI, and model optimization</td>
+</tr>
+<tr>
+<td><code>vector-database-engineer</code></td>
+<td>Vector search implementation, embedding strategies, and semantic retrieval</td>
+</tr>
+</tbody></table>
+<h2>Skills</h2>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>langchain-architecture</code></td>
+<td>LangGraph StateGraph patterns, memory, and tool integration</td>
+</tr>
+<tr>
+<td><code>rag-implementation</code></td>
+<td>RAG systems with hybrid search and reranking</td>
+</tr>
+<tr>
+<td><code>llm-evaluation</code></td>
+<td>Evaluation frameworks for LLM applications</td>
+</tr>
+<tr>
+<td><code>prompt-engineering-patterns</code></td>
+<td>Chain-of-thought, few-shot, and structured outputs</td>
+</tr>
+<tr>
+<td><code>embedding-strategies</code></td>
+<td>Embedding model selection and optimization</td>
+</tr>
+<tr>
+<td><code>similarity-search-patterns</code></td>
+<td>Vector similarity search implementation</td>
+</tr>
+<tr>
+<td><code>vector-index-tuning</code></td>
+<td>HNSW, IVF, and quantization optimization</td>
+</tr>
+<tr>
+<td><code>hybrid-search-implementation</code></td>
+<td>Vector + keyword search fusion</td>
+</tr>
+</tbody></table>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/llm-application-dev:langchain-agent</code></td>
+<td>Create LangGraph-based agent</td>
+</tr>
+<tr>
+<td><code>/llm-application-dev:ai-assistant</code></td>
+<td>Build AI assistant application</td>
+</tr>
+<tr>
+<td><code>/llm-application-dev:prompt-optimize</code></td>
+<td>Optimize prompts for production</td>
+</tr>
+</tbody></table>
+<h2>Installation</h2>
+<pre><code class="language-bash">/plugin install llm-application-dev
+</code></pre>
+<h2>Requirements</h2>
+<ul>
+<li>LangChain &gt;= 1.2.0</li>
+<li>LangGraph &gt;= 0.3.0</li>
+<li>Python 3.11+</li>
+</ul>
+<h2>Changelog</h2>
+<h3>2.0.0 (January 2026)</h3>
+<ul>
+<li><strong>Breaking</strong>: Migrated from LangChain 0.x to LangChain 1.x/LangGraph</li>
+<li><strong>Breaking</strong>: Updated model references to Claude 4.5 and GPT-5.2</li>
+<li>Added Voyage AI as primary embedding recommendation for Claude apps</li>
+<li>Added LangGraph StateGraph patterns replacing deprecated <code>initialize_agent()</code></li>
+<li>Added structured outputs with Pydantic</li>
+<li>Added async patterns with checkpointers</li>
+<li>Fixed security issue: replaced unsafe code execution with AST-based safe math evaluation</li>
+<li>Updated hybrid search with modern Pinecone client API</li>
+</ul>
+<h3>1.2.2</h3>
+<ul>
+<li>Minor bug fixes and documentation updates</li>
+</ul>
+<h2>License</h2>
+<p>MIT License - See the plugin configuration for details.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Count phases and plans in milestone</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/workflows/complete-milestone.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Count phases and plans in milestone</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Fworkflows">workflows</a> / <span>complete-milestone.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <purpose>
+
+<p>Mark a shipped version (v1.0, v1.1, v2.0) as complete. This creates a historical record in MILESTONES.md, performs full PROJECT.md evolution review, reorganizes ROADMAP.md with milestone groupings, and tags the release in git.</p>
+<p>This is the ritual that separates &quot;development&quot; from &quot;shipped.&quot;</p>
+</purpose>
+
+<required_reading>
+
+<p><strong>Read these files NOW:</strong></p>
+<ol>
+<li>templates/milestone.md</li>
+<li>templates/milestone-archive.md</li>
+<li><code>.planning/ROADMAP.md</code></li>
+<li><code>.planning/REQUIREMENTS.md</code></li>
+<li><code>.planning/PROJECT.md</code></li>
+</ol>
+</required_reading>
+
+<archival_behavior>
+
+<p>When a milestone completes, this workflow:</p>
+<ol>
+<li>Extracts full milestone details to <code>.planning/milestones/v[X.Y]-ROADMAP.md</code></li>
+<li>Archives requirements to <code>.planning/milestones/v[X.Y]-REQUIREMENTS.md</code></li>
+<li>Updates ROADMAP.md to replace milestone details with one-line summary</li>
+<li>Deletes REQUIREMENTS.md (fresh one created for next milestone)</li>
+<li>Performs full PROJECT.md evolution review</li>
+<li>Offers to create next milestone inline</li>
+</ol>
+<p><strong>Context Efficiency:</strong></p>
+<ul>
+<li>Completed milestones: One line each (~50 tokens)</li>
+<li>Full details: In archive files (loaded only when needed)</li>
+<li>Result: ROADMAP.md stays constant size forever</li>
+<li>Result: REQUIREMENTS.md is always milestone-scoped (not cumulative)</li>
+</ul>
+<p><strong>Archive Format:</strong></p>
+<p><strong>ROADMAP archive</strong> uses <code>templates/milestone-archive.md</code> template with:</p>
+<ul>
+<li>Milestone header (status, phases, date)</li>
+<li>Full phase details from roadmap</li>
+<li>Milestone summary (decisions, issues, technical debt)</li>
+</ul>
+<p><strong>REQUIREMENTS archive</strong> contains:</p>
+<ul>
+<li>All v1 requirements marked complete with outcomes</li>
+<li>Traceability table with final status</li>
+<li>Notes on any requirements that changed during milestone</li>
+</ul>
+</archival_behavior>
+
+<process>
+
+<step name="verify_readiness">
+
+<p>Check if milestone is truly complete:</p>
+<pre><code class="language-bash">cat .planning/ROADMAP.md
+ls .planning/phases/*/SUMMARY.md 2&gt;/dev/null | wc -l
+</code></pre>
+<p><strong>Questions to ask:</strong></p>
+<ul>
+<li>Which phases belong to this milestone?</li>
+<li>Are all those phases complete (all plans have summaries)?</li>
+<li>Has the work been tested/validated?</li>
+<li>Is this ready to ship/tag?</li>
+</ul>
+<p>Present:</p>
+<pre><code>Milestone: [Name from user, e.g., &quot;v1.0 MVP&quot;]
+
+Appears to include:
+- Phase 1: Foundation (2/2 plans complete)
+- Phase 2: Authentication (2/2 plans complete)
+- Phase 3: Core Features (3/3 plans complete)
+- Phase 4: Polish (1/1 plan complete)
+
+Total: 4 phases, 8 plans, all complete
+</code></pre>
+<config-check>
+
+<pre><code class="language-bash">cat .planning/config.json 2&gt;/dev/null
+</code></pre>
+</config-check>
+
+<if mode="yolo">
+
+<pre><code>⚡ Auto-approved: Milestone scope verification
+
+[Show breakdown summary without prompting]
+
+Proceeding to stats gathering...
+</code></pre>
+<p>Proceed directly to gather_stats step.</p>
+</if>
+
+<if mode="interactive" OR="custom with gates.confirm_milestone_scope true">
+
+<pre><code>Ready to mark this milestone as shipped?
+(yes / wait / adjust scope)
+</code></pre>
+<p>Wait for confirmation.</p>
+<p>If &quot;adjust scope&quot;: Ask which phases should be included.
+If &quot;wait&quot;: Stop, user will return when ready.</p>
+</if>
+
+</step>
+
+<step name="gather_stats">
+
+<p>Calculate milestone statistics:</p>
+<pre><code class="language-bash"># Count phases and plans in milestone
+# (user specified or detected from roadmap)
+
+# Find git range
+git log --oneline --grep=&quot;feat(&quot; | head -20
+
+# Count files modified in range
+git diff --stat FIRST_COMMIT..LAST_COMMIT | tail -1
+
+# Count LOC (adapt to language)
+find . -name &quot;*.swift&quot; -o -name &quot;*.ts&quot; -o -name &quot;*.py&quot; | xargs wc -l 2&gt;/dev/null
+
+# Calculate timeline
+git log --format=&quot;%ai&quot; FIRST_COMMIT | tail -1  # Start date
+git log --format=&quot;%ai&quot; LAST_COMMIT | head -1   # End date
+</code></pre>
+<p>Present summary:</p>
+<pre><code>Milestone Stats:
+- Phases: [X-Y]
+- Plans: [Z] total
+- Tasks: [N] total (estimated from phase summaries)
+- Files modified: [M]
+- Lines of code: [LOC] [language]
+- Timeline: [Days] days ([Start] → [End])
+- Git range: feat(XX-XX) → feat(YY-YY)
+</code></pre>
+</step>
+
+<step name="extract_accomplishments">
+
+<p>Read all phase SUMMARY.md files in milestone range:</p>
+<pre><code class="language-bash">cat .planning/phases/01-*/01-*-SUMMARY.md
+cat .planning/phases/02-*/02-*-SUMMARY.md
+# ... for each phase in milestone
+</code></pre>
+<p>From summaries, extract 4-6 key accomplishments.</p>
+<p>Present:</p>
+<pre><code>Key accomplishments for this milestone:
+1. [Achievement from phase 1]
+2. [Achievement from phase 2]
+3. [Achievement from phase 3]
+4. [Achievement from phase 4]
+5. [Achievement from phase 5]
+</code></pre>
+</step>
+
+<step name="create_milestone_entry">
+
+<p>Create or update <code>.planning/MILESTONES.md</code>.</p>
+<p>If file doesn&#39;t exist:</p>
+<pre><code class="language-markdown"># Project Milestones: [Project Name from PROJECT.md]
+
+[New entry]
+</code></pre>
+<p>If exists, prepend new entry (reverse chronological order).</p>
+<p>Use template from <code>templates/milestone.md</code>:</p>
+<pre><code class="language-markdown">## v[Version] [Name] (Shipped: YYYY-MM-DD)
+
+**Delivered:** [One sentence from user]
+
+**Phases completed:** [X-Y] ([Z] plans total)
+
+**Key accomplishments:**
+
+- [List from previous step]
+
+**Stats:**
+
+- [Files] files created/modified
+- [LOC] lines of [language]
+- [Phases] phases, [Plans] plans, [Tasks] tasks
+- [Days] days from [start milestone or start project] to ship
+
+**Git range:** `feat(XX-XX)` → `feat(YY-YY)`
+
+**What&#39;s next:** [Ask user: what&#39;s the next goal?]
+
+---
+</code></pre>
+</step>
+
+<step name="evolve_project_full_review">
+
+<p>Perform full PROJECT.md evolution review at milestone completion.</p>
+<p><strong>Read all phase summaries in this milestone:</strong></p>
+<pre><code class="language-bash">cat .planning/phases/*-*/*-SUMMARY.md
+</code></pre>
+<p><strong>Full review checklist:</strong></p>
+<ol>
+<li><p><strong>&quot;What This Is&quot; accuracy:</strong></p>
+<ul>
+<li>Read current description</li>
+<li>Compare to what was actually built</li>
+<li>Update if the product has meaningfully changed</li>
+</ul>
+</li>
+<li><p><strong>Core Value check:</strong></p>
+<ul>
+<li>Is the stated core value still the right priority?</li>
+<li>Did shipping reveal a different core value?</li>
+<li>Update if the ONE thing has shifted</li>
+</ul>
+</li>
+<li><p><strong>Requirements audit:</strong></p>
+<p><strong>Validated section:</strong></p>
+<ul>
+<li>All Active requirements shipped in this milestone → Move to Validated</li>
+<li>Format: <code>- ✓ [Requirement] — v[X.Y]</code></li>
+</ul>
+<p><strong>Active section:</strong></p>
+<ul>
+<li>Remove requirements that moved to Validated</li>
+<li>Add any new requirements for next milestone</li>
+<li>Keep requirements that weren&#39;t addressed yet</li>
+</ul>
+<p><strong>Out of Scope audit:</strong></p>
+<ul>
+<li>Review each item — is the reasoning still valid?</li>
+<li>Remove items that are no longer relevant</li>
+<li>Add any requirements invalidated during this milestone</li>
+</ul>
+</li>
+<li><p><strong>Context update:</strong></p>
+<ul>
+<li>Current codebase state (LOC, tech stack)</li>
+<li>User feedback themes (if any)</li>
+<li>Known issues or technical debt to address</li>
+</ul>
+</li>
+<li><p><strong>Key Decisions audit:</strong></p>
+<ul>
+<li>Extract all decisions from milestone phase summaries</li>
+<li>Add to Key Decisions table with outcomes where known</li>
+<li>Mark ✓ Good, ⚠️ Revisit, or — Pending for each</li>
+</ul>
+</li>
+<li><p><strong>Constraints check:</strong></p>
+<ul>
+<li>Any constraints that changed during development?</li>
+<li>Update as needed</li>
+</ul>
+</li>
+</ol>
+<p><strong>Update PROJECT.md:</strong></p>
+<p>Make all edits inline. Update &quot;Last updated&quot; footer:</p>
+<pre><code class="language-markdown">---
+*Last updated: [date] after v[X.Y] milestone*
+</code></pre>
+<p><strong>Example full evolution (v1.0 → v1.1 prep):</strong></p>
+<p>Before:</p>
+<pre><code class="language-markdown">## What This Is
+
+A real-time collaborative whiteboard for remote teams.
+
+## Core Value
+
+Real-time sync that feels instant.
+
+## Requirements
+
+### Validated
+
+(None yet — ship to validate)
+
+### Active
+
+- [ ] Canvas drawing tools
+- [ ] Real-time sync &lt; 500ms
+- [ ] User authentication
+- [ ] Export to PNG
+
+### Out of Scope
+
+- Mobile app — web-first approach
+- Video chat — use external tools
+</code></pre>
+<p>After v1.0:</p>
+<pre><code class="language-markdown">## What This Is
+
+A real-time collaborative whiteboard for remote teams with instant sync and drawing tools.
+
+## Core Value
+
+Real-time sync that feels instant.
+
+## Requirements
+
+### Validated
+
+- ✓ Canvas drawing tools — v1.0
+- ✓ Real-time sync &lt; 500ms — v1.0 (achieved 200ms avg)
+- ✓ User authentication — v1.0
+
+### Active
+
+- [ ] Export to PNG
+- [ ] Undo/redo history
+- [ ] Shape tools (rectangles, circles)
+
+### Out of Scope
+
+- Mobile app — web-first approach, PWA works well
+- Video chat — use external tools
+- Offline mode — real-time is core value
+
+## Context
+
+Shipped v1.0 with 2,400 LOC TypeScript.
+Tech stack: Next.js, Supabase, Canvas API.
+Initial user testing showed demand for shape tools.
+</code></pre>
+<p><strong>Step complete when:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> &quot;What This Is&quot; reviewed and updated if needed</li>
+<li><input disabled="" type="checkbox"> Core Value verified as still correct</li>
+<li><input disabled="" type="checkbox"> All shipped requirements moved to Validated</li>
+<li><input disabled="" type="checkbox"> New requirements added to Active for next milestone</li>
+<li><input disabled="" type="checkbox"> Out of Scope reasoning audited</li>
+<li><input disabled="" type="checkbox"> Context updated with current state</li>
+<li><input disabled="" type="checkbox"> All milestone decisions added to Key Decisions</li>
+<li><input disabled="" type="checkbox"> &quot;Last updated&quot; footer reflects milestone completion</li>
+</ul>
+</step>
+
+<step name="reorganize_roadmap">
+
+<p>Update <code>.planning/ROADMAP.md</code> to group completed milestone phases.</p>
+<p>Add milestone headers and collapse completed work:</p>
+<pre><code class="language-markdown"># Roadmap: [Project Name]
+
+## Milestones
+
+- ✅ **v1.0 MVP** — Phases 1-4 (shipped YYYY-MM-DD)
+- 🚧 **v1.1 Security** — Phases 5-6 (in progress)
+- 📋 **v2.0 Redesign** — Phases 7-10 (planned)
+
+## Phases
+
+&lt;details&gt;
+&lt;summary&gt;✅ v1.0 MVP (Phases 1-4) — SHIPPED YYYY-MM-DD&lt;/summary&gt;
+
+- [x] Phase 1: Foundation (2/2 plans) — completed YYYY-MM-DD
+- [x] Phase 2: Authentication (2/2 plans) — completed YYYY-MM-DD
+- [x] Phase 3: Core Features (3/3 plans) — completed YYYY-MM-DD
+- [x] Phase 4: Polish (1/1 plan) — completed YYYY-MM-DD
+
+&lt;/details&gt;
+
+### 🚧 v[Next] [Name] (In Progress / Planned)
+
+- [ ] Phase 5: [Name] ([N] plans)
+- [ ] Phase 6: [Name] ([N] plans)
+
+## Progress
+
+| Phase             | Milestone | Plans Complete | Status      | Completed  |
+| ----------------- | --------- | -------------- | ----------- | ---------- |
+| 1. Foundation     | v1.0      | 2/2            | Complete    | YYYY-MM-DD |
+| 2. Authentication | v1.0      | 2/2            | Complete    | YYYY-MM-DD |
+| 3. Core Features  | v1.0      | 3/3            | Complete    | YYYY-MM-DD |
+| 4. Polish         | v1.0      | 1/1            | Complete    | YYYY-MM-DD |
+| 5. Security Audit | v1.1      | 0/1            | Not started | -          |
+| 6. Hardening      | v1.1      | 0/2            | Not started | -          |
+</code></pre>
+</step>
+
+<step name="archive_milestone">
+
+<p>Extract completed milestone details and create archive file.</p>
+<p><strong>Process:</strong></p>
+<ol>
+<li><p>Create archive file path: <code>.planning/milestones/v[X.Y]-ROADMAP.md</code></p>
+</li>
+<li><p>Read <code>~/.claude/get-shit-done/templates/milestone-archive.md</code> template</p>
+</li>
+<li><p>Extract data from current ROADMAP.md:</p>
+<ul>
+<li>All phases belonging to this milestone (by phase number range)</li>
+<li>Full phase details (goals, plans, dependencies, status)</li>
+<li>Phase plan lists with completion checkmarks</li>
+</ul>
+</li>
+<li><p>Extract data from PROJECT.md:</p>
+<ul>
+<li>Key decisions made during this milestone</li>
+<li>Requirements that were validated</li>
+</ul>
+</li>
+<li><p>Fill template {{PLACEHOLDERS}}:</p>
+<ul>
+<li>{{VERSION}} — Milestone version (e.g., &quot;1.0&quot;)</li>
+<li>{{MILESTONE_NAME}} — From ROADMAP.md milestone header</li>
+<li>{{DATE}} — Today&#39;s date</li>
+<li>{{PHASE_START}} — First phase number in milestone</li>
+<li>{{PHASE_END}} — Last phase number in milestone</li>
+<li>{{TOTAL_PLANS}} — Count of all plans in milestone</li>
+<li>{{MILESTONE_DESCRIPTION}} — From ROADMAP.md overview</li>
+<li>{{PHASES_SECTION}} — Full phase details extracted</li>
+<li>{{DECISIONS_FROM_PROJECT}} — Key decisions from PROJECT.md</li>
+<li>{{ISSUES_RESOLVED_DURING_MILESTONE}} — From summaries</li>
+</ul>
+</li>
+<li><p>Write filled template to <code>.planning/milestones/v[X.Y]-ROADMAP.md</code></p>
+</li>
+<li><p>Delete ROADMAP.md (fresh one created for next milestone):</p>
+<pre><code class="language-bash">rm .planning/ROADMAP.md
+</code></pre>
+</li>
+<li><p>Verify archive exists:</p>
+<pre><code class="language-bash">ls .planning/milestones/v[X.Y]-ROADMAP.md
+</code></pre>
+</li>
+<li><p>Confirm roadmap archive complete:</p>
+<pre><code>✅ v[X.Y] roadmap archived to milestones/v[X.Y]-ROADMAP.md
+✅ ROADMAP.md deleted (fresh one for next milestone)
+</code></pre>
+</li>
+</ol>
+<p><strong>Note:</strong> Phase directories (<code>.planning/phases/</code>) are NOT deleted. They accumulate across milestones as the raw execution history. Phase numbering continues (v1.0 phases 1-4, v1.1 phases 5-8, etc.).</p>
+</step>
+
+<step name="archive_requirements">
+
+<p>Archive requirements and prepare for fresh requirements in next milestone.</p>
+<p><strong>Process:</strong></p>
+<ol>
+<li><p>Read current REQUIREMENTS.md:</p>
+<pre><code class="language-bash">cat .planning/REQUIREMENTS.md
+</code></pre>
+</li>
+<li><p>Create archive file: <code>.planning/milestones/v[X.Y]-REQUIREMENTS.md</code></p>
+</li>
+<li><p>Transform requirements for archive:</p>
+<ul>
+<li>Mark all v1 requirements as <code>[x]</code> complete</li>
+<li>Add outcome notes where relevant (validated, adjusted, dropped)</li>
+<li>Update traceability table status to &quot;Complete&quot; for all shipped requirements</li>
+<li>Add &quot;Milestone Summary&quot; section with:<ul>
+<li>Total requirements shipped</li>
+<li>Any requirements that changed scope during milestone</li>
+<li>Any requirements dropped and why</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Write archive file with header:</p>
+<pre><code class="language-markdown"># Requirements Archive: v[X.Y] [Milestone Name]
+
+**Archived:** [DATE]
+**Status:** ✅ SHIPPED
+
+This is the archived requirements specification for v[X.Y].
+For current requirements, see `.planning/REQUIREMENTS.md` (created for next milestone).
+
+---
+
+[Full REQUIREMENTS.md content with checkboxes marked complete]
+
+---
+
+## Milestone Summary
+
+**Shipped:** [X] of [Y] v1 requirements
+**Adjusted:** [list any requirements that changed during implementation]
+**Dropped:** [list any requirements removed and why]
+
+---
+*Archived: [DATE] as part of v[X.Y] milestone completion*
+</code></pre>
+</li>
+<li><p>Delete original REQUIREMENTS.md:</p>
+<pre><code class="language-bash">rm .planning/REQUIREMENTS.md
+</code></pre>
+</li>
+<li><p>Confirm:</p>
+<pre><code>✅ Requirements archived to milestones/v[X.Y]-REQUIREMENTS.md
+✅ REQUIREMENTS.md deleted (fresh one needed for next milestone)
+</code></pre>
+</li>
+</ol>
+<p><strong>Important:</strong> The next milestone workflow starts with <code>/gsd:new-milestone</code> which includes requirements definition. PROJECT.md&#39;s Validated section carries the cumulative record across milestones.</p>
+</step>
+
+<step name="archive_audit">
+
+<p>Move the milestone audit file to the archive (if it exists):</p>
+<pre><code class="language-bash"># Move audit to milestones folder (if exists)
+[ -f .planning/v[X.Y]-MILESTONE-AUDIT.md ] &amp;&amp; mv .planning/v[X.Y]-MILESTONE-AUDIT.md .planning/milestones/
+</code></pre>
+<p>Confirm:</p>
+<pre><code>✅ Audit archived to milestones/v[X.Y]-MILESTONE-AUDIT.md
+</code></pre>
+<p>(Skip silently if no audit file exists — audit is optional)</p>
+</step>
+
+<step name="update_state">
+
+<p>Update STATE.md to reflect milestone completion.</p>
+<p><strong>Project Reference:</strong></p>
+<pre><code class="language-markdown">## Project Reference
+
+See: .planning/PROJECT.md (updated [today])
+
+**Core value:** [Current core value from PROJECT.md]
+**Current focus:** [Next milestone or &quot;Planning next milestone&quot;]
+</code></pre>
+<p><strong>Current Position:</strong></p>
+<pre><code class="language-markdown">Phase: [Next phase] of [Total] ([Phase name])
+Plan: Not started
+Status: Ready to plan
+Last activity: [today] — v[X.Y] milestone complete
+
+Progress: [updated progress bar]
+</code></pre>
+<p><strong>Accumulated Context:</strong></p>
+<ul>
+<li>Clear decisions summary (full log in PROJECT.md)</li>
+<li>Clear resolved blockers</li>
+<li>Keep open blockers for next milestone</li>
+</ul>
+</step>
+
+<step name="git_tag">
+
+<p>Create git tag for milestone:</p>
+<pre><code class="language-bash">git tag -a v[X.Y] -m &quot;$(cat &lt;&lt;&#39;EOF&#39;
+v[X.Y] [Name]
+
+Delivered: [One sentence]
+
+Key accomplishments:
+- [Item 1]
+- [Item 2]
+- [Item 3]
+
+See .planning/MILESTONES.md for full details.
+EOF
+)&quot;
+</code></pre>
+<p>Confirm: &quot;Tagged: v[X.Y]&quot;</p>
+<p>Ask: &quot;Push tag to remote? (y/n)&quot;</p>
+<p>If yes:</p>
+<pre><code class="language-bash">git push origin v[X.Y]
+</code></pre>
+</step>
+
+<step name="git_commit_milestone">
+
+<p>Commit milestone completion including archive files and deletions.</p>
+<p><strong>Check planning config:</strong></p>
+<pre><code class="language-bash">COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;commit_docs&quot;[[:space:]]*:[[:space:]]*[^,}]*&#39; | grep -o &#39;true\|false&#39; || echo &quot;true&quot;)
+git check-ignore -q .planning 2&gt;/dev/null &amp;&amp; COMMIT_PLANNING_DOCS=false
+</code></pre>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=false</code>:</strong> Skip git operations</p>
+<p><strong>If <code>COMMIT_PLANNING_DOCS=true</code> (default):</strong></p>
+<pre><code class="language-bash"># Stage archive files (new)
+git add .planning/milestones/v[X.Y]-ROADMAP.md
+git add .planning/milestones/v[X.Y]-REQUIREMENTS.md
+git add .planning/milestones/v[X.Y]-MILESTONE-AUDIT.md 2&gt;/dev/null || true
+
+# Stage updated files
+git add .planning/MILESTONES.md
+git add .planning/PROJECT.md
+git add .planning/STATE.md
+
+# Stage deletions
+git add -u .planning/
+
+# Commit with descriptive message
+git commit -m &quot;$(cat &lt;&lt;&#39;EOF&#39;
+chore: complete v[X.Y] milestone
+
+Archived:
+- milestones/v[X.Y]-ROADMAP.md
+- milestones/v[X.Y]-REQUIREMENTS.md
+- milestones/v[X.Y]-MILESTONE-AUDIT.md (if audit was run)
+
+Deleted (fresh for next milestone):
+- ROADMAP.md
+- REQUIREMENTS.md
+
+Updated:
+- MILESTONES.md (new entry)
+- PROJECT.md (requirements → Validated)
+- STATE.md (reset for next milestone)
+
+Tagged: v[X.Y]
+EOF
+)&quot;
+</code></pre>
+<p>Confirm: &quot;Committed: chore: complete v[X.Y] milestone&quot;</p>
+</step>
+
+<step name="offer_next">
+
+<pre><code>✅ Milestone v[X.Y] [Name] complete
+
+Shipped:
+- [N] phases ([M] plans, [P] tasks)
+- [One sentence of what shipped]
+
+Archived:
+- milestones/v[X.Y]-ROADMAP.md
+- milestones/v[X.Y]-REQUIREMENTS.md
+
+Summary: .planning/MILESTONES.md
+Tag: v[X.Y]
+
+---
+
+## ▶ Next Up
+
+**Start Next Milestone** — questioning → research → requirements → roadmap
+
+`/gsd:new-milestone`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+---
+</code></pre>
+</step>
+
+</process>
+
+<milestone_naming>
+
+<p><strong>Version conventions:</strong></p>
+<ul>
+<li><strong>v1.0</strong> — Initial MVP</li>
+<li><strong>v1.1, v1.2, v1.3</strong> — Minor updates, new features, fixes</li>
+<li><strong>v2.0, v3.0</strong> — Major rewrites, breaking changes, significant new direction</li>
+</ul>
+<p><strong>Name conventions:</strong></p>
+<ul>
+<li>v1.0 MVP</li>
+<li>v1.1 Security</li>
+<li>v1.2 Performance</li>
+<li>v2.0 Redesign</li>
+<li>v2.0 iOS Launch</li>
+</ul>
+<p>Keep names short (1-2 words describing the focus).</p>
+</milestone_naming>
+
+<what_qualifies>
+
+<p><strong>Create milestones for:</strong></p>
+<ul>
+<li>Initial release (v1.0)</li>
+<li>Public releases</li>
+<li>Major feature sets shipped</li>
+<li>Before archiving planning</li>
+</ul>
+<p><strong>Don&#39;t create milestones for:</strong></p>
+<ul>
+<li>Every phase completion (too granular)</li>
+<li>Work in progress (wait until shipped)</li>
+<li>Internal dev iterations (unless truly shipped internally)</li>
+</ul>
+<p>If uncertain, ask: &quot;Is this deployed/usable/shipped in some form?&quot;
+If yes → milestone. If no → keep working.</p>
+</what_qualifies>
+
+<success_criteria>
+
+<p>Milestone completion is successful when:</p>
+<ul>
+<li><input disabled="" type="checkbox"> MILESTONES.md entry created with stats and accomplishments</li>
+<li><input disabled="" type="checkbox"> PROJECT.md full evolution review completed</li>
+<li><input disabled="" type="checkbox"> All shipped requirements moved to Validated in PROJECT.md</li>
+<li><input disabled="" type="checkbox"> Key Decisions updated with outcomes</li>
+<li><input disabled="" type="checkbox"> ROADMAP.md reorganized with milestone grouping</li>
+<li><input disabled="" type="checkbox"> Roadmap archive created (milestones/v[X.Y]-ROADMAP.md)</li>
+<li><input disabled="" type="checkbox"> Requirements archive created (milestones/v[X.Y]-REQUIREMENTS.md)</li>
+<li><input disabled="" type="checkbox"> REQUIREMENTS.md deleted (fresh for next milestone)</li>
+<li><input disabled="" type="checkbox"> STATE.md updated with fresh project reference</li>
+<li><input disabled="" type="checkbox"> Git tag created (v[X.Y])</li>
+<li><input disabled="" type="checkbox"> Milestone commit made (includes archive files and deletion)</li>
+<li><input disabled="" type="checkbox"> User knows next step (/gsd:new-milestone)</li>
+</ul>
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Skills Recommendations</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/claude-code-setup/skills/claude-automation-recommender/references/skills-reference.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Skills Recommendations</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup">claude-code-setup</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup%2Fskills">skills</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup%2Fskills%2Fclaude-automation-recommender">claude-automation-recommender</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fclaude-code-setup%2Fskills%2Fclaude-automation-recommender%2Freferences">references</a> / <span>skills-reference.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Skills Recommendations</h1>
+<p>Skills are packaged expertise with workflows, reference materials, and best practices. Create them in <code>.claude/skills/&lt;name&gt;/SKILL.md</code>. Skills can be invoked by Claude automatically when relevant, or by users directly with <code>/skill-name</code>.</p>
+<p>Some pre-built skills are available through official plugins (install via <code>/plugin install</code>).</p>
+<p><strong>Note</strong>: These are common patterns. Use web search to find skill ideas specific to the codebase&#39;s tools and frameworks.</p>
+<hr>
+<h2>Available from Official Plugins</h2>
+<h3>Plugin Development (plugin-dev)</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>skill-development</strong></td>
+<td>Creating new skills with proper structure</td>
+</tr>
+<tr>
+<td><strong>hook-development</strong></td>
+<td>Building hooks for automation</td>
+</tr>
+<tr>
+<td><strong>command-development</strong></td>
+<td>Creating slash commands</td>
+</tr>
+<tr>
+<td><strong>agent-development</strong></td>
+<td>Building specialized subagents</td>
+</tr>
+<tr>
+<td><strong>mcp-integration</strong></td>
+<td>Integrating MCP servers into plugins</td>
+</tr>
+<tr>
+<td><strong>plugin-structure</strong></td>
+<td>Understanding plugin architecture</td>
+</tr>
+</tbody></table>
+<h3>Git Workflows (commit-commands)</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>commit</strong></td>
+<td>Creating git commits with proper messages</td>
+</tr>
+<tr>
+<td><strong>commit-push-pr</strong></td>
+<td>Full commit, push, and PR workflow</td>
+</tr>
+</tbody></table>
+<h3>Frontend (frontend-design)</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>frontend-design</strong></td>
+<td>Creating polished UI components</td>
+</tr>
+</tbody></table>
+<p><strong>Value</strong>: Creates distinctive, high-quality UI instead of generic AI aesthetics.</p>
+<h3>Automation Rules (hookify)</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>writing-rules</strong></td>
+<td>Creating hookify rules for automation</td>
+</tr>
+</tbody></table>
+<h3>Feature Development (feature-dev)</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>feature-dev</strong></td>
+<td>End-to-end feature development workflow</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Quick Reference: Official Plugin Skills</h2>
+<table>
+<thead>
+<tr>
+<th>Codebase Signal</th>
+<th>Skill</th>
+<th>Plugin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Building plugins</td>
+<td>skill-development</td>
+<td>plugin-dev</td>
+</tr>
+<tr>
+<td>Git commits</td>
+<td>commit</td>
+<td>commit-commands</td>
+</tr>
+<tr>
+<td>React/Vue/Angular</td>
+<td>frontend-design</td>
+<td>frontend-design</td>
+</tr>
+<tr>
+<td>Automation rules</td>
+<td>writing-rules</td>
+<td>hookify</td>
+</tr>
+<tr>
+<td>Feature planning</td>
+<td>feature-dev</td>
+<td>feature-dev</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Custom Project Skills</h2>
+<p>Create project-specific skills in <code>.claude/skills/&lt;name&gt;/SKILL.md</code>.</p>
+<h3>Skill Structure</h3>
+<pre><code>.claude/skills/
+└── my-skill/
+    ├── SKILL.md           # Main instructions (required)
+    ├── template.yaml      # Template to apply
+    ├── scripts/
+    │   └── validate.sh    # Script to run
+    └── examples/          # Reference examples
+</code></pre>
+<h3>Frontmatter Reference</h3>
+<pre><code class="language-yaml">---
+name: skill-name
+description: What this skill does and when to use it
+disable-model-invocation: true  # Only user can invoke (for side effects)
+user-invocable: false           # Only Claude can invoke (for background knowledge)
+allowed-tools: Read, Grep, Glob # Restrict tool access
+context: fork                   # Run in isolated subagent
+agent: Explore                  # Which agent type when forked
+---
+</code></pre>
+<h3>Invocation Control</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>User</th>
+<th>Claude</th>
+<th>Use for</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(default)</td>
+<td>✓</td>
+<td>✓</td>
+<td>General-purpose skills</td>
+</tr>
+<tr>
+<td><code>disable-model-invocation: true</code></td>
+<td>✓</td>
+<td>✗</td>
+<td>Side effects (deploy, send)</td>
+</tr>
+<tr>
+<td><code>user-invocable: false</code></td>
+<td>✗</td>
+<td>✓</td>
+<td>Background knowledge</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Custom Skill Examples</h2>
+<h3>API Documentation with OpenAPI Template</h3>
+<p>Apply a YAML template to generate consistent API docs:</p>
+<pre><code>.claude/skills/api-doc/
+├── SKILL.md
+└── openapi-template.yaml
+</code></pre>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: api-doc
+description: Generate OpenAPI documentation for an endpoint. Use when documenting API routes.
+---
+
+Generate OpenAPI documentation for the endpoint at $ARGUMENTS.
+
+Use the template in [openapi-template.yaml](openapi-template.yaml) as the structure.
+
+1. Read the endpoint code
+2. Extract path, method, parameters, request/response schemas
+3. Fill in the template with actual values
+4. Output the completed YAML
+</code></pre>
+<p><strong>openapi-template.yaml:</strong></p>
+<pre><code class="language-yaml">paths:
+  /{path}:
+    {method}:
+      summary: &quot;&quot;
+      description: &quot;&quot;
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: {}
+      responses:
+        &quot;200&quot;:
+          description: &quot;&quot;
+          content:
+            application/json:
+              schema: {}
+</code></pre>
+<hr>
+<h3>Database Migration Generator with Script</h3>
+<p>Generate and validate migrations using a bundled script:</p>
+<pre><code>.claude/skills/create-migration/
+├── SKILL.md
+└── scripts/
+    └── validate-migration.sh
+</code></pre>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: create-migration
+description: Create a database migration file
+disable-model-invocation: true
+allowed-tools: Read, Write, Bash
+---
+
+Create a migration for: $ARGUMENTS
+
+1. Generate migration file in `migrations/` with timestamp prefix
+2. Include up and down functions
+3. Run validation: `bash ~/.claude/skills/create-migration/scripts/validate-migration.sh`
+4. Report any issues found
+</code></pre>
+<p><strong>scripts/validate-migration.sh:</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# Validate migration syntax
+npx prisma validate 2&gt;&amp;1 || echo &quot;Validation failed&quot;
+</code></pre>
+<hr>
+<h3>Test Generator with Examples</h3>
+<p>Generate tests following project patterns:</p>
+<pre><code>.claude/skills/gen-test/
+├── SKILL.md
+└── examples/
+    ├── unit-test.ts
+    └── integration-test.ts
+</code></pre>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: gen-test
+description: Generate tests for a file following project conventions
+disable-model-invocation: true
+---
+
+Generate tests for: $ARGUMENTS
+
+Reference these examples for the expected patterns:
+- Unit tests: [examples/unit-test.ts](examples/unit-test.ts)
+- Integration tests: [examples/integration-test.ts](examples/integration-test.ts)
+
+1. Analyze the source file
+2. Identify functions/methods to test
+3. Generate tests matching project conventions
+4. Place in appropriate test directory
+</code></pre>
+<hr>
+<h3>Component Generator with Template</h3>
+<p>Scaffold new components from a template:</p>
+<pre><code>.claude/skills/new-component/
+├── SKILL.md
+└── templates/
+    ├── component.tsx.template
+    ├── component.test.tsx.template
+    └── component.stories.tsx.template
+</code></pre>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: new-component
+description: Scaffold a new React component with tests and stories
+disable-model-invocation: true
+---
+
+Create component: $ARGUMENTS
+
+Use templates in [templates/](templates/) directory:
+1. Generate component from component.tsx.template
+2. Generate tests from component.test.tsx.template
+3. Generate Storybook story from component.stories.tsx.template
+
+Replace {{ComponentName}} with the PascalCase name.
+Replace {{component-name}} with the kebab-case name.
+</code></pre>
+<hr>
+<h3>PR Review with Checklist</h3>
+<p>Review PRs against a project-specific checklist:</p>
+<pre><code>.claude/skills/pr-check/
+├── SKILL.md
+└── checklist.md
+</code></pre>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: pr-check
+description: Review PR against project checklist
+disable-model-invocation: true
+context: fork
+---
+
+## PR Context
+- Diff: !`gh pr diff`
+- Description: !`gh pr view`
+
+Review against [checklist.md](checklist.md).
+
+For each item, mark ✅ or ❌ with explanation.
+</code></pre>
+<p><strong>checklist.md:</strong></p>
+<pre><code class="language-markdown">## PR Checklist
+
+- [ ] Tests added for new functionality
+- [ ] No console.log statements
+- [ ] Error handling includes user-facing messages
+- [ ] API changes are backwards compatible
+- [ ] Database migrations are reversible
+</code></pre>
+<hr>
+<h3>Release Notes Generator</h3>
+<p>Generate release notes from git history:</p>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: release-notes
+description: Generate release notes from commits since last tag
+disable-model-invocation: true
+---
+
+## Recent Changes
+- Commits since last tag: !`git log $(git describe --tags --abbrev=0)..HEAD --oneline`
+- Last tag: !`git describe --tags --abbrev=0`
+
+Generate release notes:
+1. Group commits by type (feat, fix, docs, etc.)
+2. Write user-friendly descriptions
+3. Highlight breaking changes
+4. Format as markdown
+</code></pre>
+<hr>
+<h3>Project Conventions (Claude-only)</h3>
+<p>Background knowledge Claude applies automatically:</p>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: project-conventions
+description: Code style and patterns for this project. Apply when writing or reviewing code.
+user-invocable: false
+---
+
+## Naming Conventions
+- React components: PascalCase
+- Utilities: camelCase
+- Constants: UPPER_SNAKE_CASE
+- Files: kebab-case
+
+## Patterns
+- Use `Result&lt;T, E&gt;` for fallible operations, not exceptions
+- Prefer composition over inheritance
+- All API responses use `{ data, error, meta }` shape
+
+## Forbidden
+- No `any` types
+- No `console.log` in production code
+- No synchronous file I/O
+</code></pre>
+<hr>
+<h3>Environment Setup</h3>
+<p>Onboard new developers with setup script:</p>
+<pre><code>.claude/skills/setup-dev/
+├── SKILL.md
+└── scripts/
+    └── check-prerequisites.sh
+</code></pre>
+<p><strong>SKILL.md:</strong></p>
+<pre><code class="language-yaml">---
+name: setup-dev
+description: Set up development environment for new contributors
+disable-model-invocation: true
+---
+
+Set up development environment:
+
+1. Check prerequisites: `bash scripts/check-prerequisites.sh`
+2. Install dependencies: `npm install`
+3. Copy environment template: `cp .env.example .env`
+4. Set up database: `npm run db:setup`
+5. Verify setup: `npm test`
+
+Report any issues encountered.
+</code></pre>
+<hr>
+<h2>Argument Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$ARGUMENTS</code></td>
+<td>All args as string</td>
+<td><code>/deploy staging</code> → &quot;staging&quot;</td>
+</tr>
+</tbody></table>
+<p>Arguments are appended as <code>ARGUMENTS: &lt;value&gt;</code> if <code>$ARGUMENTS</code> isn&#39;t in the skill.</p>
+<h2>Dynamic Context Injection</h2>
+<p>Use <code>!</code>command`` to inject live data before the skill runs:</p>
+<pre><code class="language-yaml">## Current State
+- Branch: !`git branch --show-current`
+- Status: !`git status --short`
+</code></pre>
+<p>The command output replaces the placeholder before Claude sees the skill content.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

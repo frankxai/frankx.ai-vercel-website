@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>tdd refactor</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/tdd-workflows/commands/tdd-refactor.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">tdd refactor</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ftdd-workflows">tdd-workflows</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ftdd-workflows%2Fcommands">commands</a> / <span>tdd-refactor.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <p>Refactor code with confidence using comprehensive test safety net:</p>
+<p>[Extended thinking: This tool uses the tdd-orchestrator agent (opus model) for sophisticated refactoring while maintaining all tests green. It applies design patterns, improves code quality, and optimizes performance with the safety of comprehensive test coverage.]</p>
+<h2>Usage</h2>
+<p>Use Task tool with subagent_type=&quot;tdd-orchestrator&quot; to perform safe refactoring.</p>
+<p>Prompt: &quot;Refactor this code while keeping all tests green: $ARGUMENTS. Apply TDD refactor phase:</p>
+<h2>Core Process</h2>
+<p><strong>1. Pre-Assessment</strong></p>
+<ul>
+<li>Run tests to establish green baseline</li>
+<li>Analyze code smells and test coverage</li>
+<li>Document current performance metrics</li>
+<li>Create incremental refactoring plan</li>
+</ul>
+<p><strong>2. Code Smell Detection</strong></p>
+<ul>
+<li>Duplicated code → Extract methods/classes</li>
+<li>Long methods → Decompose into focused functions</li>
+<li>Large classes → Split responsibilities</li>
+<li>Long parameter lists → Parameter objects</li>
+<li>Feature Envy → Move methods to appropriate classes</li>
+<li>Primitive Obsession → Value objects</li>
+<li>Switch statements → Polymorphism</li>
+<li>Dead code → Remove</li>
+</ul>
+<p><strong>3. Design Patterns</strong></p>
+<ul>
+<li>Apply Creational (Factory, Builder, Singleton)</li>
+<li>Apply Structural (Adapter, Facade, Decorator)</li>
+<li>Apply Behavioral (Strategy, Observer, Command)</li>
+<li>Apply Domain (Repository, Service, Value Objects)</li>
+<li>Use patterns only where they add clear value</li>
+</ul>
+<p><strong>4. SOLID Principles</strong></p>
+<ul>
+<li>Single Responsibility: One reason to change</li>
+<li>Open/Closed: Open for extension, closed for modification</li>
+<li>Liskov Substitution: Subtypes substitutable</li>
+<li>Interface Segregation: Small, focused interfaces</li>
+<li>Dependency Inversion: Depend on abstractions</li>
+</ul>
+<p><strong>5. Refactoring Techniques</strong></p>
+<ul>
+<li>Extract Method/Variable/Interface</li>
+<li>Inline unnecessary indirection</li>
+<li>Rename for clarity</li>
+<li>Move Method/Field to appropriate classes</li>
+<li>Replace Magic Numbers with constants</li>
+<li>Encapsulate fields</li>
+<li>Replace Conditional with Polymorphism</li>
+<li>Introduce Null Object</li>
+</ul>
+<p><strong>6. Performance Optimization</strong></p>
+<ul>
+<li>Profile to identify bottlenecks</li>
+<li>Optimize algorithms and data structures</li>
+<li>Implement caching where beneficial</li>
+<li>Reduce database queries (N+1 elimination)</li>
+<li>Lazy loading and pagination</li>
+<li>Always measure before and after</li>
+</ul>
+<p><strong>7. Incremental Steps</strong></p>
+<ul>
+<li>Make small, atomic changes</li>
+<li>Run tests after each modification</li>
+<li>Commit after each successful refactoring</li>
+<li>Keep refactoring separate from behavior changes</li>
+<li>Use scaffolding when needed</li>
+</ul>
+<p><strong>8. Architecture Evolution</strong></p>
+<ul>
+<li>Layer separation and dependency management</li>
+<li>Module boundaries and interface definition</li>
+<li>Event-driven patterns for decoupling</li>
+<li>Database access pattern optimization</li>
+</ul>
+<p><strong>9. Safety Verification</strong></p>
+<ul>
+<li>Run full test suite after each change</li>
+<li>Performance regression testing</li>
+<li>Mutation testing for test effectiveness</li>
+<li>Rollback plan for major changes</li>
+</ul>
+<p><strong>10. Advanced Patterns</strong></p>
+<ul>
+<li>Strangler Fig: Gradual legacy replacement</li>
+<li>Branch by Abstraction: Large-scale changes</li>
+<li>Parallel Change: Expand-contract pattern</li>
+<li>Mikado Method: Dependency graph navigation</li>
+</ul>
+<h2>Output Requirements</h2>
+<ul>
+<li>Refactored code with improvements applied</li>
+<li>Test results (all green)</li>
+<li>Before/after metrics comparison</li>
+<li>Applied refactoring techniques list</li>
+<li>Performance improvement measurements</li>
+<li>Remaining technical debt assessment</li>
+</ul>
+<h2>Safety Checklist</h2>
+<p>Before committing:</p>
+<ul>
+<li>✓ All tests pass (100% green)</li>
+<li>✓ No functionality regression</li>
+<li>✓ Performance metrics acceptable</li>
+<li>✓ Code coverage maintained/improved</li>
+<li>✓ Documentation updated</li>
+</ul>
+<h2>Recovery Protocol</h2>
+<p>If tests fail:</p>
+<ul>
+<li>Immediately revert last change</li>
+<li>Identify breaking refactoring</li>
+<li>Apply smaller incremental changes</li>
+<li>Use version control for safe experimentation</li>
+</ul>
+<h2>Example: Extract Method Pattern</h2>
+<p><strong>Before:</strong></p>
+<pre><code class="language-typescript">class OrderProcessor {
+  processOrder(order: Order): ProcessResult {
+    // Validation
+    if (!order.customerId || order.items.length === 0) {
+      return { success: false, error: &quot;Invalid order&quot; };
+    }
+
+    // Calculate totals
+    let subtotal = 0;
+    for (const item of order.items) {
+      subtotal += item.price * item.quantity;
+    }
+    let total = subtotal + subtotal * 0.08 + (subtotal &gt; 100 ? 0 : 15);
+
+    // Process payment...
+    // Update inventory...
+    // Send confirmation...
+  }
+}
+</code></pre>
+<p><strong>After:</strong></p>
+<pre><code class="language-typescript">class OrderProcessor {
+  async processOrder(order: Order): Promise&lt;ProcessResult&gt; {
+    const validation = this.validateOrder(order);
+    if (!validation.isValid) return ProcessResult.failure(validation.error);
+
+    const orderTotal = OrderTotal.calculate(order);
+    const inventoryCheck = await this.inventoryService.checkAvailability(
+      order.items,
+    );
+    if (!inventoryCheck.available)
+      return ProcessResult.failure(inventoryCheck.reason);
+
+    await this.paymentService.processPayment(
+      order.paymentMethod,
+      orderTotal.total,
+    );
+    await this.inventoryService.reserveItems(order.items);
+    await this.notificationService.sendOrderConfirmation(order, orderTotal);
+
+    return ProcessResult.success(order.id, orderTotal.total);
+  }
+
+  private validateOrder(order: Order): ValidationResult {
+    if (!order.customerId)
+      return ValidationResult.invalid(&quot;Customer ID required&quot;);
+    if (order.items.length === 0)
+      return ValidationResult.invalid(&quot;Order must contain items&quot;);
+    return ValidationResult.valid();
+  }
+}
+</code></pre>
+<p><strong>Applied:</strong> Extract Method, Value Objects, Dependency Injection, Async patterns</p>
+<p>Code to refactor: $ARGUMENTS&quot;</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

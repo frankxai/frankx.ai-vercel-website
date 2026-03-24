@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/create-music - Guided Suno Music Creation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/create-music.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/create-music - Guided Suno Music Creation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>create-music.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/create-music - Guided Suno Music Creation</h1>
+<p><strong>ACOS Vibe OS Music Pipeline - From idea to published track</strong></p>
+<h2>Workflow Overview</h2>
+<pre><code>╔═══════════════════════════════════════════════════════════════════╗
+║                    VIBE OS MUSIC PIPELINE                          ║
+║              &quot;Transform Frequency into Form&quot;                        ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  Step 1: Define → Step 2: Craft → Step 3: Generate → Step 4: Publish║
+╚═══════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h2>Step 1: Define Purpose &amp; Mood</h2>
+<p>First, determine the track&#39;s intention:</p>
+<p><strong>Questions to ask:</strong></p>
+<ol>
+<li>What transformation does this music facilitate?</li>
+<li>Who is the listener and what state are they in?</li>
+<li>What state should they be in after listening?</li>
+<li>Which brand? (frankx / arcanea)</li>
+</ol>
+<p><strong>Mood Categories:</strong></p>
+<ul>
+<li>🧘 <strong>Meditation</strong>: calm, peaceful, introspective, healing</li>
+<li>⚡ <strong>Energy</strong>: uplifting, motivational, powerful, epic</li>
+<li>🎯 <strong>Focus</strong>: ambient, minimal, steady, concentration</li>
+<li>❤️ <strong>Emotional</strong>: dramatic, cinematic, touching, transformative</li>
+<li>🌟 <strong>Immersive</strong>: ethereal, expansive, mind-expanding</li>
+</ul>
+<h2>Step 2: Craft Suno Prompt</h2>
+<p>Use the <strong>Lyric Genius MCP</strong> for prompt engineering:</p>
+<pre><code class="language-javascript">// Activate with:
+mcp__lyric-genius__activate_lyric_genius({
+  theme: &quot;track theme&quot;,
+  mood: &quot;emotional mood&quot;,
+  style: &quot;musical genre/style&quot;
+})
+</code></pre>
+<p><strong>Prompt Formula:</strong></p>
+<pre><code>[Genre/Style], [Tempo/Energy], [Instruments], [Vocal Style], [Mood Descriptors], [Special Elements]
+</code></pre>
+<p><strong>Example Prompts by Category:</strong></p>
+<p><strong>528Hz Meditation:</strong></p>
+<pre><code>ambient meditation, slow ethereal, soft synths pads, no drums, 528hz healing frequency,
+binaural undertones, nature sounds subtle, peaceful calming transcendent, female humming gentle
+</code></pre>
+<p><strong>Epic Orchestral:</strong></p>
+<pre><code>cinematic orchestral, building crescendo, full orchestra strings brass,
+choir ethereal, dramatic powerful uplifting, film score epic, heroic triumphant
+</code></pre>
+<p><strong>Focus/Productivity:</strong></p>
+<pre><code>lo-fi ambient, steady 90bpm, soft piano rhodes, minimal drums subtle,
+warm analog, focus concentration flow state, instrumental clean
+</code></pre>
+<h2>Step 3: Generate on Suno</h2>
+<ol>
+<li>Open <a href="https://suno.com/create">Suno</a></li>
+<li>Paste crafted prompt</li>
+<li>Generate 2-4 variations</li>
+<li>Select best version(s)</li>
+<li>Extend if needed (full song vs hook)</li>
+</ol>
+<p><strong>Quality Checklist:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Clear audio quality</li>
+<li><input disabled="" type="checkbox"> Coherent structure</li>
+<li><input disabled="" type="checkbox"> Mood matches intention</li>
+<li><input disabled="" type="checkbox"> Vocals clean (if any)</li>
+<li><input disabled="" type="checkbox"> Suitable length</li>
+</ul>
+<h2>Step 4: Add to Inventory</h2>
+<p>After selecting the final track, add it to the inventory:</p>
+<p><strong>File Location:</strong> <code>data/inventories/frankx/music.json</code> or <code>data/inventories/arcanea/music.json</code></p>
+<p><strong>Entry Template:</strong></p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;track-slug-name&quot;,
+  &quot;type&quot;: &quot;music&quot;,
+  &quot;title&quot;: &quot;Track Title&quot;,
+  &quot;description&quot;: &quot;Brief description of the track&#39;s purpose&quot;,
+  &quot;brand&quot;: &quot;frankx&quot;,
+  &quot;status&quot;: &quot;published&quot;,
+  &quot;tags&quot;: [&quot;meditation&quot;, &quot;528hz&quot;, &quot;healing&quot;],
+  &quot;createdAt&quot;: &quot;2026-01-23&quot;,
+  &quot;platform&quot;: &quot;suno&quot;,
+  &quot;sunoId&quot;: &quot;uuid-from-suno-url&quot;,
+  &quot;sunoUrl&quot;: &quot;https://suno.com/song/uuid&quot;,
+  &quot;duration&quot;: &quot;3:24&quot;,
+  &quot;genre&quot;: [&quot;ambient&quot;, &quot;meditation&quot;],
+  &quot;mood&quot;: [&quot;calm&quot;, &quot;peaceful&quot;, &quot;healing&quot;],
+  &quot;promptUsed&quot;: &quot;The full Suno prompt used&quot;,
+  &quot;usageRights&quot;: &quot;commercial&quot;
+}
+</code></pre>
+<h2>Step 5: Publish &amp; Promote</h2>
+<ol>
+<li><strong>Add to Playlist</strong> on Suno</li>
+<li><strong>Create Social Post</strong> using <code>/generate-social</code> or manual:<ul>
+<li>Hook: &quot;New track just dropped: [Title]&quot;</li>
+<li>Story: Why I created this / what it&#39;s for</li>
+<li>CTA: Link to track</li>
+</ul>
+</li>
+<li><strong>Update Backlog</strong> if this was a planned item</li>
+</ol>
+<h2>Quick Start Commands</h2>
+<pre><code>&quot;Create a meditation track for morning energy&quot;
+&quot;Make an epic orchestral piece for Arcanea&quot;
+&quot;Generate a focus track for deep work sessions&quot;
+&quot;Create a 528Hz healing frequency track&quot;
+</code></pre>
+<h2>Integration with Creation Pipeline</h2>
+<p>Check <code>data/inventories/creation-pipeline.json</code> for:</p>
+<ul>
+<li><strong>Backlog items</strong>: Pre-planned music to create</li>
+<li><strong>Related products</strong>: Music tied to products (e.g., Soulbook meditation series)</li>
+<li><strong>Brand alignment</strong>: Which brand this serves</li>
+</ul>
+<h2>Tools Used</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mcp__lyric-genius__*</code></td>
+<td>Prompt engineering</td>
+</tr>
+<tr>
+<td><code>mcp__nano-banana__*</code></td>
+<td>Cover art generation</td>
+</tr>
+<tr>
+<td>Suno</td>
+<td>Music generation</td>
+</tr>
+<tr>
+<td>Inventory JSON</td>
+<td>Tracking</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>Channel the Frequency Alchemist for music that moves people.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

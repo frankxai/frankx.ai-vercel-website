@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ARIA Patterns and Best Practices</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/accessibility-compliance/references/aria-patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">ARIA Patterns and Best Practices</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Faccessibility-compliance">accessibility-compliance</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Faccessibility-compliance%2Freferences">references</a> / <span>aria-patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ARIA Patterns and Best Practices</h1>
+<h2>Overview</h2>
+<p>ARIA (Accessible Rich Internet Applications) provides attributes to enhance accessibility when native HTML semantics are insufficient. The first rule of ARIA is: don&#39;t use ARIA if native HTML can do the job.</p>
+<h2>ARIA Fundamentals</h2>
+<h3>Roles</h3>
+<p>Roles define what an element is or does.</p>
+<pre><code class="language-tsx">// Widget roles
+&lt;div role=&quot;button&quot;&gt;Click me&lt;/div&gt;
+&lt;div role=&quot;checkbox&quot; aria-checked=&quot;true&quot;&gt;Option&lt;/div&gt;
+&lt;div role=&quot;slider&quot; aria-valuenow=&quot;50&quot;&gt;Volume&lt;/div&gt;
+
+// Landmark roles (prefer semantic HTML)
+&lt;div role=&quot;main&quot;&gt;...&lt;/div&gt;      // Better: &lt;main&gt;
+&lt;div role=&quot;navigation&quot;&gt;...&lt;/div&gt; // Better: &lt;nav&gt;
+&lt;div role=&quot;banner&quot;&gt;...&lt;/div&gt;     // Better: &lt;header&gt;
+
+// Document structure roles
+&lt;div role=&quot;region&quot; aria-label=&quot;Featured&quot;&gt;...&lt;/div&gt;
+&lt;div role=&quot;group&quot; aria-label=&quot;Formatting options&quot;&gt;...&lt;/div&gt;
+</code></pre>
+<h3>States and Properties</h3>
+<p>States indicate current conditions; properties describe relationships.</p>
+<pre><code class="language-tsx">// States (can change)
+aria-checked=&quot;true|false|mixed&quot;
+aria-disabled=&quot;true|false&quot;
+aria-expanded=&quot;true|false&quot;
+aria-hidden=&quot;true|false&quot;
+aria-pressed=&quot;true|false&quot;
+aria-selected=&quot;true|false&quot;
+
+// Properties (usually static)
+aria-label=&quot;Accessible name&quot;
+aria-labelledby=&quot;id-of-label&quot;
+aria-describedby=&quot;id-of-description&quot;
+aria-controls=&quot;id-of-controlled-element&quot;
+aria-owns=&quot;id-of-owned-element&quot;
+aria-live=&quot;polite|assertive|off&quot;
+</code></pre>
+<h2>Common ARIA Patterns</h2>
+<h3>Accordion</h3>
+<pre><code class="language-tsx">function Accordion({ items }) {
+  const [openIndex, setOpenIndex] = useState(-1);
+
+  return (
+    &lt;div className=&quot;accordion&quot;&gt;
+      {items.map((item, index) =&gt; {
+        const isOpen = openIndex === index;
+        const headingId = `accordion-heading-${index}`;
+        const panelId = `accordion-panel-${index}`;
+
+        return (
+          &lt;div key={index}&gt;
+            &lt;h3&gt;
+              &lt;button
+                id={headingId}
+                aria-expanded={isOpen}
+                aria-controls={panelId}
+                onClick={() =&gt; setOpenIndex(isOpen ? -1 : index)}
+              &gt;
+                {item.title}
+                &lt;span aria-hidden=&quot;true&quot;&gt;{isOpen ? &quot;−&quot; : &quot;+&quot;}&lt;/span&gt;
+              &lt;/button&gt;
+            &lt;/h3&gt;
+            &lt;div
+              id={panelId}
+              role=&quot;region&quot;
+              aria-labelledby={headingId}
+              hidden={!isOpen}
+            &gt;
+              {item.content}
+            &lt;/div&gt;
+          &lt;/div&gt;
+        );
+      })}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Tabs</h3>
+<pre><code class="language-tsx">function Tabs({ tabs }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const tabListRef = useRef(null);
+
+  const handleKeyDown = (e, index) =&gt; {
+    let newIndex = index;
+
+    switch (e.key) {
+      case &quot;ArrowRight&quot;:
+        newIndex = (index + 1) % tabs.length;
+        break;
+      case &quot;ArrowLeft&quot;:
+        newIndex = (index - 1 + tabs.length) % tabs.length;
+        break;
+      case &quot;Home&quot;:
+        newIndex = 0;
+        break;
+      case &quot;End&quot;:
+        newIndex = tabs.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    e.preventDefault();
+    setActiveIndex(newIndex);
+    tabListRef.current?.children[newIndex]?.focus();
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;div role=&quot;tablist&quot; ref={tabListRef} aria-label=&quot;Content tabs&quot;&gt;
+        {tabs.map((tab, index) =&gt; (
+          &lt;button
+            key={index}
+            role=&quot;tab&quot;
+            id={`tab-${index}`}
+            aria-selected={index === activeIndex}
+            aria-controls={`panel-${index}`}
+            tabIndex={index === activeIndex ? 0 : -1}
+            onClick={() =&gt; setActiveIndex(index)}
+            onKeyDown={(e) =&gt; handleKeyDown(e, index)}
+          &gt;
+            {tab.label}
+          &lt;/button&gt;
+        ))}
+      &lt;/div&gt;
+
+      {tabs.map((tab, index) =&gt; (
+        &lt;div
+          key={index}
+          role=&quot;tabpanel&quot;
+          id={`panel-${index}`}
+          aria-labelledby={`tab-${index}`}
+          hidden={index !== activeIndex}
+          tabIndex={0}
+        &gt;
+          {tab.content}
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Menu Button</h3>
+<pre><code class="language-tsx">function MenuButton({ label, items }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const buttonRef = useRef(null);
+  const menuRef = useRef(null);
+  const menuId = useId();
+
+  const handleKeyDown = (e) =&gt; {
+    switch (e.key) {
+      case &quot;ArrowDown&quot;:
+        e.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+          setActiveIndex(0);
+        } else {
+          setActiveIndex((prev) =&gt; Math.min(prev + 1, items.length - 1));
+        }
+        break;
+      case &quot;ArrowUp&quot;:
+        e.preventDefault();
+        setActiveIndex((prev) =&gt; Math.max(prev - 1, 0));
+        break;
+      case &quot;Escape&quot;:
+        setIsOpen(false);
+        buttonRef.current?.focus();
+        break;
+      case &quot;Enter&quot;:
+      case &quot; &quot;:
+        if (isOpen &amp;&amp; activeIndex &gt;= 0) {
+          e.preventDefault();
+          items[activeIndex].onClick();
+          setIsOpen(false);
+        }
+        break;
+    }
+  };
+
+  // Focus management
+  useEffect(() =&gt; {
+    if (isOpen &amp;&amp; activeIndex &gt;= 0) {
+      menuRef.current?.children[activeIndex]?.focus();
+    }
+  }, [isOpen, activeIndex]);
+
+  return (
+    &lt;div&gt;
+      &lt;button
+        ref={buttonRef}
+        aria-haspopup=&quot;menu&quot;
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        onClick={() =&gt; setIsOpen(!isOpen)}
+        onKeyDown={handleKeyDown}
+      &gt;
+        {label}
+      &lt;/button&gt;
+
+      {isOpen &amp;&amp; (
+        &lt;ul
+          ref={menuRef}
+          id={menuId}
+          role=&quot;menu&quot;
+          aria-label={label}
+          onKeyDown={handleKeyDown}
+        &gt;
+          {items.map((item, index) =&gt; (
+            &lt;li
+              key={index}
+              role=&quot;menuitem&quot;
+              tabIndex={-1}
+              onClick={() =&gt; {
+                item.onClick();
+                setIsOpen(false);
+                buttonRef.current?.focus();
+              }}
+            &gt;
+              {item.label}
+            &lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Combobox (Autocomplete)</h3>
+<pre><code class="language-tsx">function Combobox({ options, onSelect, placeholder }) {
+  const [inputValue, setInputValue] = useState(&quot;&quot;);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const inputRef = useRef(null);
+  const listboxId = useId();
+
+  const filteredOptions = options.filter((opt) =&gt;
+    opt.toLowerCase().includes(inputValue.toLowerCase()),
+  );
+
+  const handleKeyDown = (e) =&gt; {
+    switch (e.key) {
+      case &quot;ArrowDown&quot;:
+        e.preventDefault();
+        setIsOpen(true);
+        setActiveIndex((prev) =&gt;
+          Math.min(prev + 1, filteredOptions.length - 1),
+        );
+        break;
+      case &quot;ArrowUp&quot;:
+        e.preventDefault();
+        setActiveIndex((prev) =&gt; Math.max(prev - 1, 0));
+        break;
+      case &quot;Enter&quot;:
+        if (activeIndex &gt;= 0) {
+          e.preventDefault();
+          selectOption(filteredOptions[activeIndex]);
+        }
+        break;
+      case &quot;Escape&quot;:
+        setIsOpen(false);
+        setActiveIndex(-1);
+        break;
+    }
+  };
+
+  const selectOption = (option) =&gt; {
+    setInputValue(option);
+    onSelect(option);
+    setIsOpen(false);
+    setActiveIndex(-1);
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;input
+        ref={inputRef}
+        type=&quot;text&quot;
+        role=&quot;combobox&quot;
+        aria-expanded={isOpen}
+        aria-controls={listboxId}
+        aria-activedescendant={
+          activeIndex &gt;= 0 ? `option-${activeIndex}` : undefined
+        }
+        aria-autocomplete=&quot;list&quot;
+        value={inputValue}
+        placeholder={placeholder}
+        onChange={(e) =&gt; {
+          setInputValue(e.target.value);
+          setIsOpen(true);
+          setActiveIndex(-1);
+        }}
+        onKeyDown={handleKeyDown}
+        onFocus={() =&gt; setIsOpen(true)}
+        onBlur={() =&gt; setTimeout(() =&gt; setIsOpen(false), 200)}
+      /&gt;
+
+      {isOpen &amp;&amp; filteredOptions.length &gt; 0 &amp;&amp; (
+        &lt;ul id={listboxId} role=&quot;listbox&quot;&gt;
+          {filteredOptions.map((option, index) =&gt; (
+            &lt;li
+              key={option}
+              id={`option-${index}`}
+              role=&quot;option&quot;
+              aria-selected={index === activeIndex}
+              onClick={() =&gt; selectOption(option)}
+              onMouseEnter={() =&gt; setActiveIndex(index)}
+            &gt;
+              {option}
+            &lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Alert Dialog</h3>
+<pre><code class="language-tsx">function AlertDialog({ isOpen, onConfirm, onCancel, title, message }) {
+  const confirmRef = useRef(null);
+  const dialogId = useId();
+  const titleId = `${dialogId}-title`;
+  const descId = `${dialogId}-desc`;
+
+  useEffect(() =&gt; {
+    if (isOpen) {
+      confirmRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    &lt;FocusTrap&gt;
+      &lt;div
+        role=&quot;alertdialog&quot;
+        aria-modal=&quot;true&quot;
+        aria-labelledby={titleId}
+        aria-describedby={descId}
+      &gt;
+        &lt;div className=&quot;backdrop&quot; onClick={onCancel} /&gt;
+
+        &lt;div className=&quot;dialog&quot;&gt;
+          &lt;h2 id={titleId}&gt;{title}&lt;/h2&gt;
+          &lt;p id={descId}&gt;{message}&lt;/p&gt;
+
+          &lt;div className=&quot;actions&quot;&gt;
+            &lt;button onClick={onCancel}&gt;Cancel&lt;/button&gt;
+            &lt;button ref={confirmRef} onClick={onConfirm}&gt;
+              Confirm
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/FocusTrap&gt;
+  );
+}
+</code></pre>
+<h3>Toolbar</h3>
+<pre><code class="language-tsx">function Toolbar({ items }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const toolbarRef = useRef(null);
+
+  const handleKeyDown = (e) =&gt; {
+    let newIndex = activeIndex;
+
+    switch (e.key) {
+      case &quot;ArrowRight&quot;:
+        newIndex = (activeIndex + 1) % items.length;
+        break;
+      case &quot;ArrowLeft&quot;:
+        newIndex = (activeIndex - 1 + items.length) % items.length;
+        break;
+      case &quot;Home&quot;:
+        newIndex = 0;
+        break;
+      case &quot;End&quot;:
+        newIndex = items.length - 1;
+        break;
+      default:
+        return;
+    }
+
+    e.preventDefault();
+    setActiveIndex(newIndex);
+    toolbarRef.current?.querySelectorAll(&quot;button&quot;)[newIndex]?.focus();
+  };
+
+  return (
+    &lt;div
+      ref={toolbarRef}
+      role=&quot;toolbar&quot;
+      aria-label=&quot;Text formatting&quot;
+      onKeyDown={handleKeyDown}
+    &gt;
+      {items.map((item, index) =&gt; (
+        &lt;button
+          key={index}
+          tabIndex={index === activeIndex ? 0 : -1}
+          aria-pressed={item.isActive}
+          aria-label={item.label}
+          onClick={item.onClick}
+        &gt;
+          {item.icon}
+        &lt;/button&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h2>Live Regions</h2>
+<h3>Polite Announcements</h3>
+<pre><code class="language-tsx">// Status messages that don&#39;t interrupt
+function SearchStatus({ count, query }) {
+  return (
+    &lt;div role=&quot;status&quot; aria-live=&quot;polite&quot; aria-atomic=&quot;true&quot;&gt;
+      {count} results found for &quot;{query}&quot;
+    &lt;/div&gt;
+  );
+}
+
+// Progress indicator
+function LoadingStatus({ progress }) {
+  return (
+    &lt;div role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;
+      Loading: {progress}% complete
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Assertive Announcements</h3>
+<pre><code class="language-tsx">// Important errors that should interrupt
+function ErrorAlert({ message }) {
+  return (
+    &lt;div role=&quot;alert&quot; aria-live=&quot;assertive&quot;&gt;
+      Error: {message}
+    &lt;/div&gt;
+  );
+}
+
+// Form validation summary
+function ValidationSummary({ errors }) {
+  if (errors.length === 0) return null;
+
+  return (
+    &lt;div role=&quot;alert&quot; aria-live=&quot;assertive&quot;&gt;
+      &lt;h2&gt;Please fix the following errors:&lt;/h2&gt;
+      &lt;ul&gt;
+        {errors.map((error, index) =&gt; (
+          &lt;li key={index}&gt;{error}&lt;/li&gt;
+        ))}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Log Region</h3>
+<pre><code class="language-tsx">// Chat messages or activity log
+function ChatLog({ messages }) {
+  return (
+    &lt;div role=&quot;log&quot; aria-live=&quot;polite&quot; aria-relevant=&quot;additions&quot;&gt;
+      {messages.map((msg) =&gt; (
+        &lt;div key={msg.id}&gt;
+          &lt;span className=&quot;author&quot;&gt;{msg.author}:&lt;/span&gt;
+          &lt;span className=&quot;text&quot;&gt;{msg.text}&lt;/span&gt;
+        &lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h2>Common Mistakes to Avoid</h2>
+<h3>1. Redundant ARIA</h3>
+<pre><code class="language-tsx">// Bad: role=&quot;button&quot; on a button
+&lt;button role=&quot;button&quot;&gt;Click me&lt;/button&gt;
+
+// Good: just use button
+&lt;button&gt;Click me&lt;/button&gt;
+
+// Bad: aria-label duplicating visible text
+&lt;button aria-label=&quot;Submit form&quot;&gt;Submit form&lt;/button&gt;
+
+// Good: just use visible text
+&lt;button&gt;Submit form&lt;/button&gt;
+</code></pre>
+<h3>2. Invalid ARIA</h3>
+<pre><code class="language-tsx">// Bad: aria-selected on non-selectable element
+&lt;div aria-selected=&quot;true&quot;&gt;Item&lt;/div&gt;
+
+// Good: use with proper role
+&lt;div role=&quot;option&quot; aria-selected=&quot;true&quot;&gt;Item&lt;/div&gt;
+
+// Bad: aria-expanded without control relationship
+&lt;button aria-expanded=&quot;true&quot;&gt;Menu&lt;/button&gt;
+&lt;div&gt;Menu content&lt;/div&gt;
+
+// Good: with aria-controls
+&lt;button aria-expanded=&quot;true&quot; aria-controls=&quot;menu&quot;&gt;Menu&lt;/button&gt;
+&lt;div id=&quot;menu&quot;&gt;Menu content&lt;/div&gt;
+</code></pre>
+<h3>3. Hidden Content Still Announced</h3>
+<pre><code class="language-tsx">// Bad: visually hidden but still in accessibility tree
+&lt;div style={{ display: &#39;none&#39; }}&gt;Hidden content&lt;/div&gt;
+
+// Good: properly hidden
+&lt;div style={{ display: &#39;none&#39; }} aria-hidden=&quot;true&quot;&gt;Hidden content&lt;/div&gt;
+
+// Or just use display: none (implicitly hidden)
+&lt;div hidden&gt;Hidden content&lt;/div&gt;
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.w3.org/WAI/ARIA/apg/">WAI-ARIA Authoring Practices</a></li>
+<li><a href="https://www.w3.org/TR/html-aria/">ARIA in HTML</a></li>
+<li><a href="https://www.w3.org/TR/using-aria/">Using ARIA</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

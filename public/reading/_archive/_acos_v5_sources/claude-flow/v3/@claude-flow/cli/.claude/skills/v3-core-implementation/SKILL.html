@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Core Implementation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/skills/v3-core-implementation/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Core Implementation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fskills%2Fv3-core-implementation">v3-core-implementation</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: &quot;V3 Core Implementation&quot;
+description: &quot;Core module implementation for claude-flow v3. Implements DDD domains, clean architecture patterns, dependency injection, and modular TypeScript codebase with comprehensive testing.&quot;</h2>
+<h1>V3 Core Implementation</h1>
+<h2>What This Skill Does</h2>
+<p>Implements the core TypeScript modules for claude-flow v3 following Domain-Driven Design principles, clean architecture patterns, and modern TypeScript best practices with comprehensive test coverage.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Initialize core implementation
+Task(&quot;Core foundation&quot;, &quot;Set up DDD domain structure and base classes&quot;, &quot;core-implementer&quot;)
+
+# Domain implementation (parallel)
+Task(&quot;Task domain&quot;, &quot;Implement task management domain with entities and services&quot;, &quot;core-implementer&quot;)
+Task(&quot;Session domain&quot;, &quot;Implement session management domain&quot;, &quot;core-implementer&quot;)
+Task(&quot;Health domain&quot;, &quot;Implement health monitoring domain&quot;, &quot;core-implementer&quot;)
+</code></pre>
+<h2>Core Implementation Architecture</h2>
+<h3>Domain Structure</h3>
+<pre><code>src/
+├── core/
+│   ├── kernel/                     # Microkernel pattern
+│   │   ├── claude-flow-kernel.ts
+│   │   ├── domain-registry.ts
+│   │   └── plugin-loader.ts
+│   │
+│   ├── domains/                    # DDD Bounded Contexts
+│   │   ├── task-management/
+│   │   │   ├── entities/
+│   │   │   ├── value-objects/
+│   │   │   ├── services/
+│   │   │   ├── repositories/
+│   │   │   └── events/
+│   │   │
+│   │   ├── session-management/
+│   │   ├── health-monitoring/
+│   │   ├── lifecycle-management/
+│   │   └── event-coordination/
+│   │
+│   ├── shared/                     # Shared kernel
+│   │   ├── domain/
+│   │   │   ├── entity.ts
+│   │   │   ├── value-object.ts
+│   │   │   ├── domain-event.ts
+│   │   │   └── aggregate-root.ts
+│   │   │
+│   │   ├── infrastructure/
+│   │   │   ├── event-bus.ts
+│   │   │   ├── dependency-container.ts
+│   │   │   └── logger.ts
+│   │   │
+│   │   └── types/
+│   │       ├── common.ts
+│   │       ├── errors.ts
+│   │       └── interfaces.ts
+│   │
+│   └── application/                # Application services
+│       ├── use-cases/
+│       ├── commands/
+│       ├── queries/
+│       └── handlers/
+</code></pre>
+<h2>Base Domain Classes</h2>
+<h3>Entity Base Class</h3>
+<pre><code class="language-typescript">// src/core/shared/domain/entity.ts
+export abstract class Entity&lt;T&gt; {
+  protected readonly _id: T;
+  private _domainEvents: DomainEvent[] = [];
+
+  constructor(id: T) {
+    this._id = id;
+  }
+
+  get id(): T {
+    return this._id;
+  }
+
+  public equals(object?: Entity&lt;T&gt;): boolean {
+    if (object == null || object == undefined) {
+      return false;
+    }
+
+    if (this === object) {
+      return true;
+    }
+
+    if (!(object instanceof Entity)) {
+      return false;
+    }
+
+    return this._id === object._id;
+  }
+
+  protected addDomainEvent(domainEvent: DomainEvent): void {
+    this._domainEvents.push(domainEvent);
+  }
+
+  public getUncommittedEvents(): DomainEvent[] {
+    return this._domainEvents;
+  }
+
+  public markEventsAsCommitted(): void {
+    this._domainEvents = [];
+  }
+}
+</code></pre>
+<h3>Value Object Base Class</h3>
+<pre><code class="language-typescript">// src/core/shared/domain/value-object.ts
+export abstract class ValueObject&lt;T&gt; {
+  protected readonly props: T;
+
+  constructor(props: T) {
+    this.props = Object.freeze(props);
+  }
+
+  public equals(object?: ValueObject&lt;T&gt;): boolean {
+    if (object == null || object == undefined) {
+      return false;
+    }
+
+    if (this === object) {
+      return true;
+    }
+
+    return JSON.stringify(this.props) === JSON.stringify(object.props);
+  }
+
+  get value(): T {
+    return this.props;
+  }
+}
+</code></pre>
+<h3>Aggregate Root</h3>
+<pre><code class="language-typescript">// src/core/shared/domain/aggregate-root.ts
+export abstract class AggregateRoot&lt;T&gt; extends Entity&lt;T&gt; {
+  private _version: number = 0;
+
+  get version(): number {
+    return this._version;
+  }
+
+  protected incrementVersion(): void {
+    this._version++;
+  }
+
+  public applyEvent(event: DomainEvent): void {
+    this.addDomainEvent(event);
+    this.incrementVersion();
+  }
+}
+</code></pre>
+<h2>Task Management Domain Implementation</h2>
+<h3>Task Entity</h3>
+<pre><code class="language-typescript">// src/core/domains/task-management/entities/task.entity.ts
+import { AggregateRoot } from &#39;../../../shared/domain/aggregate-root&#39;;
+import { TaskId } from &#39;../value-objects/task-id.vo&#39;;
+import { TaskStatus } from &#39;../value-objects/task-status.vo&#39;;
+import { Priority } from &#39;../value-objects/priority.vo&#39;;
+import { TaskAssignedEvent } from &#39;../events/task-assigned.event&#39;;
+
+interface TaskProps {
+  id: TaskId;
+  description: string;
+  priority: Priority;
+  status: TaskStatus;
+  assignedAgentId?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export class Task extends AggregateRoot&lt;TaskId&gt; {
+  private props: TaskProps;
+
+  private constructor(props: TaskProps) {
+    super(props.id);
+    this.props = props;
+  }
+
+  static create(description: string, priority: Priority): Task {
+    const task = new Task({
+      id: TaskId.create(),
+      description,
+      priority,
+      status: TaskStatus.pending(),
+      createdAt: new Date(),
+      updatedAt: new Date()
+    });
+
+    return task;
+  }
+
+  static reconstitute(props: TaskProps): Task {
+    return new Task(props);
+  }
+
+  public assignTo(agentId: string): void {
+    if (this.props.status.equals(TaskStatus.completed())) {
+      throw new Error(&#39;Cannot assign completed task&#39;);
+    }
+
+    this.props.assignedAgentId = agentId;
+    this.props.status = TaskStatus.assigned();
+    this.props.updatedAt = new Date();
+
+    this.applyEvent(new TaskAssignedEvent(
+      this.id.value,
+      agentId,
+      this.props.priority
+    ));
+  }
+
+  public complete(result: TaskResult): void {
+    if (!this.props.assignedAgentId) {
+      throw new Error(&#39;Cannot complete unassigned task&#39;);
+    }
+
+    this.props.status = TaskStatus.completed();
+    this.props.updatedAt = new Date();
+
+    this.applyEvent(new TaskCompletedEvent(
+      this.id.value,
+      result,
+      this.calculateDuration()
+    ));
+  }
+
+  // Getters
+  get description(): string { return this.props.description; }
+  get priority(): Priority { return this.props.priority; }
+  get status(): TaskStatus { return this.props.status; }
+  get assignedAgentId(): string | undefined { return this.props.assignedAgentId; }
+  get createdAt(): Date { return this.props.createdAt; }
+  get updatedAt(): Date { return this.props.updatedAt; }
+
+  private calculateDuration(): number {
+    return this.props.updatedAt.getTime() - this.props.createdAt.getTime();
+  }
+}
+</code></pre>
+<h3>Task Value Objects</h3>
+<pre><code class="language-typescript">// src/core/domains/task-management/value-objects/task-id.vo.ts
+export class TaskId extends ValueObject&lt;string&gt; {
+  private constructor(value: string) {
+    super({ value });
+  }
+
+  static create(): TaskId {
+    return new TaskId(crypto.randomUUID());
+  }
+
+  static fromString(id: string): TaskId {
+    if (!id || id.length === 0) {
+      throw new Error(&#39;TaskId cannot be empty&#39;);
+    }
+    return new TaskId(id);
+  }
+
+  get value(): string {
+    return this.props.value;
+  }
+}
+
+// src/core/domains/task-management/value-objects/task-status.vo.ts
+type TaskStatusType = &#39;pending&#39; | &#39;assigned&#39; | &#39;in_progress&#39; | &#39;completed&#39; | &#39;failed&#39;;
+
+export class TaskStatus extends ValueObject&lt;TaskStatusType&gt; {
+  private constructor(status: TaskStatusType) {
+    super({ value: status });
+  }
+
+  static pending(): TaskStatus { return new TaskStatus(&#39;pending&#39;); }
+  static assigned(): TaskStatus { return new TaskStatus(&#39;assigned&#39;); }
+  static inProgress(): TaskStatus { return new TaskStatus(&#39;in_progress&#39;); }
+  static completed(): TaskStatus { return new TaskStatus(&#39;completed&#39;); }
+  static failed(): TaskStatus { return new TaskStatus(&#39;failed&#39;); }
+
+  get value(): TaskStatusType {
+    return this.props.value;
+  }
+
+  public isPending(): boolean { return this.value === &#39;pending&#39;; }
+  public isAssigned(): boolean { return this.value === &#39;assigned&#39;; }
+  public isInProgress(): boolean { return this.value === &#39;in_progress&#39;; }
+  public isCompleted(): boolean { return this.value === &#39;completed&#39;; }
+  public isFailed(): boolean { return this.value === &#39;failed&#39;; }
+}
+
+// src/core/domains/task-management/value-objects/priority.vo.ts
+type PriorityLevel = &#39;low&#39; | &#39;medium&#39; | &#39;high&#39; | &#39;critical&#39;;
+
+export class Priority extends ValueObject&lt;PriorityLevel&gt; {
+  private constructor(level: PriorityLevel) {
+    super({ value: level });
+  }
+
+  static low(): Priority { return new Priority(&#39;low&#39;); }
+  static medium(): Priority { return new Priority(&#39;medium&#39;); }
+  static high(): Priority { return new Priority(&#39;high&#39;); }
+  static critical(): Priority { return new Priority(&#39;critical&#39;); }
+
+  get value(): PriorityLevel {
+    return this.props.value;
+  }
+
+  public getNumericValue(): number {
+    const priorities = { low: 1, medium: 2, high: 3, critical: 4 };
+    return priorities[this.value];
+  }
+}
+</code></pre>
+<h2>Domain Services</h2>
+<h3>Task Scheduling Service</h3>
+<pre><code class="language-typescript">// src/core/domains/task-management/services/task-scheduling.service.ts
+import { Injectable } from &#39;../../../shared/infrastructure/dependency-container&#39;;
+import { Task } from &#39;../entities/task.entity&#39;;
+import { Priority } from &#39;../value-objects/priority.vo&#39;;
+
+@Injectable()
+export class TaskSchedulingService {
+  public prioritizeTasks(tasks: Task[]): Task[] {
+    return tasks.sort((a, b) =&gt;
+      b.priority.getNumericValue() - a.priority.getNumericValue()
+    );
+  }
+
+  public canSchedule(task: Task, agentCapacity: number): boolean {
+    if (agentCapacity &lt;= 0) return false;
+
+    // Critical tasks always schedulable
+    if (task.priority.equals(Priority.critical())) return true;
+
+    // Other logic based on capacity
+    return true;
+  }
+
+  public calculateEstimatedDuration(task: Task): number {
+    // Simple heuristic - would use ML in real implementation
+    const baseTime = 300000; // 5 minutes
+    const priorityMultiplier = {
+      low: 0.5,
+      medium: 1.0,
+      high: 1.5,
+      critical: 2.0
+    };
+
+    return baseTime * priorityMultiplier[task.priority.value];
+  }
+}
+</code></pre>
+<h2>Repository Interfaces &amp; Implementations</h2>
+<h3>Task Repository Interface</h3>
+<pre><code class="language-typescript">// src/core/domains/task-management/repositories/task.repository.ts
+export interface ITaskRepository {
+  save(task: Task): Promise&lt;void&gt;;
+  findById(id: TaskId): Promise&lt;Task | null&gt;;
+  findByAgentId(agentId: string): Promise&lt;Task[]&gt;;
+  findByStatus(status: TaskStatus): Promise&lt;Task[]&gt;;
+  findPendingTasks(): Promise&lt;Task[]&gt;;
+  delete(id: TaskId): Promise&lt;void&gt;;
+}
+</code></pre>
+<h3>SQLite Implementation</h3>
+<pre><code class="language-typescript">// src/core/domains/task-management/repositories/sqlite-task.repository.ts
+@Injectable()
+export class SqliteTaskRepository implements ITaskRepository {
+  constructor(
+    @Inject(&#39;Database&#39;) private db: Database,
+    @Inject(&#39;Logger&#39;) private logger: ILogger
+  ) {}
+
+  async save(task: Task): Promise&lt;void&gt; {
+    const sql = `
+      INSERT OR REPLACE INTO tasks (
+        id, description, priority, status, assigned_agent_id, created_at, updated_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    await this.db.run(sql, [
+      task.id.value,
+      task.description,
+      task.priority.value,
+      task.status.value,
+      task.assignedAgentId,
+      task.createdAt.toISOString(),
+      task.updatedAt.toISOString()
+    ]);
+
+    this.logger.debug(`Task saved: ${task.id.value}`);
+  }
+
+  async findById(id: TaskId): Promise&lt;Task | null&gt; {
+    const sql = &#39;SELECT * FROM tasks WHERE id = ?&#39;;
+    const row = await this.db.get(sql, [id.value]);
+
+    return row ? this.mapRowToTask(row) : null;
+  }
+
+  async findPendingTasks(): Promise&lt;Task[]&gt; {
+    const sql = &#39;SELECT * FROM tasks WHERE status = ? ORDER BY priority DESC, created_at ASC&#39;;
+    const rows = await this.db.all(sql, [&#39;pending&#39;]);
+
+    return rows.map(row =&gt; this.mapRowToTask(row));
+  }
+
+  private mapRowToTask(row: any): Task {
+    return Task.reconstitute({
+      id: TaskId.fromString(row.id),
+      description: row.description,
+      priority: Priority.fromString(row.priority),
+      status: TaskStatus.fromString(row.status),
+      assignedAgentId: row.assigned_agent_id,
+      createdAt: new Date(row.created_at),
+      updatedAt: new Date(row.updated_at)
+    });
+  }
+}
+</code></pre>
+<h2>Application Layer</h2>
+<h3>Use Case Implementation</h3>
+<pre><code class="language-typescript">// src/core/application/use-cases/assign-task.use-case.ts
+@Injectable()
+export class AssignTaskUseCase {
+  constructor(
+    @Inject(&#39;TaskRepository&#39;) private taskRepository: ITaskRepository,
+    @Inject(&#39;AgentRepository&#39;) private agentRepository: IAgentRepository,
+    @Inject(&#39;DomainEventBus&#39;) private eventBus: DomainEventBus,
+    @Inject(&#39;Logger&#39;) private logger: ILogger
+  ) {}
+
+  async execute(command: AssignTaskCommand): Promise&lt;AssignTaskResult&gt; {
+    try {
+      // 1. Validate command
+      await this.validateCommand(command);
+
+      // 2. Load aggregates
+      const task = await this.taskRepository.findById(command.taskId);
+      if (!task) {
+        throw new TaskNotFoundError(command.taskId);
+      }
+
+      const agent = await this.agentRepository.findById(command.agentId);
+      if (!agent) {
+        throw new AgentNotFoundError(command.agentId);
+      }
+
+      // 3. Business logic
+      if (!agent.canAcceptTask(task)) {
+        throw new AgentCannotAcceptTaskError(command.agentId, command.taskId);
+      }
+
+      task.assignTo(command.agentId);
+      agent.acceptTask(task.id);
+
+      // 4. Persist changes
+      await Promise.all([
+        this.taskRepository.save(task),
+        this.agentRepository.save(agent)
+      ]);
+
+      // 5. Publish domain events
+      const events = [
+        ...task.getUncommittedEvents(),
+        ...agent.getUncommittedEvents()
+      ];
+
+      for (const event of events) {
+        await this.eventBus.publish(event);
+      }
+
+      task.markEventsAsCommitted();
+      agent.markEventsAsCommitted();
+
+      // 6. Return result
+      this.logger.info(`Task ${command.taskId.value} assigned to agent ${command.agentId}`);
+
+      return AssignTaskResult.success({
+        taskId: task.id,
+        agentId: command.agentId,
+        assignedAt: new Date()
+      });
+
+    } catch (error) {
+      this.logger.error(`Failed to assign task ${command.taskId.value}:`, error);
+      return AssignTaskResult.failure(error);
+    }
+  }
+
+  private async validateCommand(command: AssignTaskCommand): Promise&lt;void&gt; {
+    if (!command.taskId) {
+      throw new ValidationError(&#39;Task ID is required&#39;);
+    }
+    if (!command.agentId) {
+      throw new ValidationError(&#39;Agent ID is required&#39;);
+    }
+  }
+}
+</code></pre>
+<h2>Dependency Injection Setup</h2>
+<h3>Container Configuration</h3>
+<pre><code class="language-typescript">// src/core/shared/infrastructure/dependency-container.ts
+import { Container } from &#39;inversify&#39;;
+import { TYPES } from &#39;./types&#39;;
+
+export class DependencyContainer {
+  private container: Container;
+
+  constructor() {
+    this.container = new Container();
+    this.setupBindings();
+  }
+
+  private setupBindings(): void {
+    // Repositories
+    this.container.bind&lt;ITaskRepository&gt;(TYPES.TaskRepository)
+      .to(SqliteTaskRepository)
+      .inSingletonScope();
+
+    this.container.bind&lt;IAgentRepository&gt;(TYPES.AgentRepository)
+      .to(SqliteAgentRepository)
+      .inSingletonScope();
+
+    // Services
+    this.container.bind&lt;TaskSchedulingService&gt;(TYPES.TaskSchedulingService)
+      .to(TaskSchedulingService)
+      .inSingletonScope();
+
+    // Use Cases
+    this.container.bind&lt;AssignTaskUseCase&gt;(TYPES.AssignTaskUseCase)
+      .to(AssignTaskUseCase)
+      .inSingletonScope();
+
+    // Infrastructure
+    this.container.bind&lt;ILogger&gt;(TYPES.Logger)
+      .to(ConsoleLogger)
+      .inSingletonScope();
+
+    this.container.bind&lt;DomainEventBus&gt;(TYPES.DomainEventBus)
+      .to(InMemoryDomainEventBus)
+      .inSingletonScope();
+  }
+
+  get&lt;T&gt;(serviceIdentifier: symbol): T {
+    return this.container.get&lt;T&gt;(serviceIdentifier);
+  }
+
+  bind&lt;T&gt;(serviceIdentifier: symbol): BindingToSyntax&lt;T&gt; {
+    return this.container.bind&lt;T&gt;(serviceIdentifier);
+  }
+}
+</code></pre>
+<h2>Modern TypeScript Configuration</h2>
+<h3>Strict TypeScript Setup</h3>
+<pre><code class="language-json">// tsconfig.json
+{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2022&quot;,
+    &quot;lib&quot;: [&quot;ES2022&quot;],
+    &quot;module&quot;: &quot;NodeNext&quot;,
+    &quot;moduleResolution&quot;: &quot;NodeNext&quot;,
+    &quot;declaration&quot;: true,
+    &quot;outDir&quot;: &quot;./dist&quot;,
+    &quot;strict&quot;: true,
+    &quot;exactOptionalPropertyTypes&quot;: true,
+    &quot;noImplicitReturns&quot;: true,
+    &quot;noFallthroughCasesInSwitch&quot;: true,
+    &quot;noUncheckedIndexedAccess&quot;: true,
+    &quot;noImplicitOverride&quot;: true,
+    &quot;experimentalDecorators&quot;: true,
+    &quot;emitDecoratorMetadata&quot;: true,
+    &quot;skipLibCheck&quot;: true,
+    &quot;forceConsistentCasingInFileNames&quot;: true,
+    &quot;resolveJsonModule&quot;: true,
+    &quot;esModuleInterop&quot;: true,
+    &quot;allowSyntheticDefaultImports&quot;: true,
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;: {
+      &quot;@/*&quot;: [&quot;src/*&quot;],
+      &quot;@core/*&quot;: [&quot;src/core/*&quot;],
+      &quot;@shared/*&quot;: [&quot;src/core/shared/*&quot;],
+      &quot;@domains/*&quot;: [&quot;src/core/domains/*&quot;]
+    }
+  },
+  &quot;include&quot;: [&quot;src/**/*&quot;],
+  &quot;exclude&quot;: [&quot;node_modules&quot;, &quot;dist&quot;, &quot;**/*.test.ts&quot;, &quot;**/*.spec.ts&quot;]
+}
+</code></pre>
+<h2>Testing Implementation</h2>
+<h3>Domain Unit Tests</h3>
+<pre><code class="language-typescript">// src/core/domains/task-management/__tests__/entities/task.entity.test.ts
+describe(&#39;Task Entity&#39;, () =&gt; {
+  let task: Task;
+
+  beforeEach(() =&gt; {
+    task = Task.create(&#39;Test task&#39;, Priority.medium());
+  });
+
+  describe(&#39;creation&#39;, () =&gt; {
+    it(&#39;should create task with pending status&#39;, () =&gt; {
+      expect(task.status.isPending()).toBe(true);
+      expect(task.description).toBe(&#39;Test task&#39;);
+      expect(task.priority.equals(Priority.medium())).toBe(true);
+    });
+
+    it(&#39;should generate unique ID&#39;, () =&gt; {
+      const task1 = Task.create(&#39;Task 1&#39;, Priority.low());
+      const task2 = Task.create(&#39;Task 2&#39;, Priority.low());
+
+      expect(task1.id.equals(task2.id)).toBe(false);
+    });
+  });
+
+  describe(&#39;assignment&#39;, () =&gt; {
+    it(&#39;should assign to agent and change status&#39;, () =&gt; {
+      const agentId = &#39;agent-123&#39;;
+
+      task.assignTo(agentId);
+
+      expect(task.assignedAgentId).toBe(agentId);
+      expect(task.status.isAssigned()).toBe(true);
+    });
+
+    it(&#39;should emit TaskAssignedEvent when assigned&#39;, () =&gt; {
+      const agentId = &#39;agent-123&#39;;
+
+      task.assignTo(agentId);
+
+      const events = task.getUncommittedEvents();
+      expect(events).toHaveLength(1);
+      expect(events[0]).toBeInstanceOf(TaskAssignedEvent);
+    });
+
+    it(&#39;should not allow assignment of completed task&#39;, () =&gt; {
+      task.assignTo(&#39;agent-123&#39;);
+      task.complete(TaskResult.success(&#39;done&#39;));
+
+      expect(() =&gt; task.assignTo(&#39;agent-456&#39;))
+        .toThrow(&#39;Cannot assign completed task&#39;);
+    });
+  });
+});
+</code></pre>
+<h3>Integration Tests</h3>
+<pre><code class="language-typescript">// src/core/domains/task-management/__tests__/integration/task-repository.integration.test.ts
+describe(&#39;TaskRepository Integration&#39;, () =&gt; {
+  let repository: SqliteTaskRepository;
+  let db: Database;
+
+  beforeEach(async () =&gt; {
+    db = new Database(&#39;:memory:&#39;);
+    await setupTasksTable(db);
+    repository = new SqliteTaskRepository(db, new ConsoleLogger());
+  });
+
+  afterEach(async () =&gt; {
+    await db.close();
+  });
+
+  it(&#39;should save and retrieve task&#39;, async () =&gt; {
+    const task = Task.create(&#39;Test task&#39;, Priority.high());
+
+    await repository.save(task);
+    const retrieved = await repository.findById(task.id);
+
+    expect(retrieved).toBeDefined();
+    expect(retrieved!.id.equals(task.id)).toBe(true);
+    expect(retrieved!.description).toBe(&#39;Test task&#39;);
+    expect(retrieved!.priority.equals(Priority.high())).toBe(true);
+  });
+
+  it(&#39;should find pending tasks ordered by priority&#39;, async () =&gt; {
+    const lowTask = Task.create(&#39;Low priority&#39;, Priority.low());
+    const highTask = Task.create(&#39;High priority&#39;, Priority.high());
+
+    await repository.save(lowTask);
+    await repository.save(highTask);
+
+    const pending = await repository.findPendingTasks();
+
+    expect(pending).toHaveLength(2);
+    expect(pending[0].id.equals(highTask.id)).toBe(true); // High priority first
+    expect(pending[1].id.equals(lowTask.id)).toBe(true);
+  });
+});
+</code></pre>
+<h2>Performance Optimizations</h2>
+<h3>Entity Caching</h3>
+<pre><code class="language-typescript">// src/core/shared/infrastructure/entity-cache.ts
+@Injectable()
+export class EntityCache&lt;T extends Entity&lt;any&gt;&gt; {
+  private cache = new Map&lt;string, { entity: T; timestamp: number }&gt;();
+  private readonly ttl: number = 300000; // 5 minutes
+
+  set(id: string, entity: T): void {
+    this.cache.set(id, { entity, timestamp: Date.now() });
+  }
+
+  get(id: string): T | null {
+    const cached = this.cache.get(id);
+    if (!cached) return null;
+
+    // Check TTL
+    if (Date.now() - cached.timestamp &gt; this.ttl) {
+      this.cache.delete(id);
+      return null;
+    }
+
+    return cached.entity;
+  }
+
+  invalidate(id: string): void {
+    this.cache.delete(id);
+  }
+
+  clear(): void {
+    this.cache.clear();
+  }
+}
+</code></pre>
+<h2>Success Metrics</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Domain Isolation</strong>: 100% clean dependency boundaries</li>
+<li><input disabled="" type="checkbox"> <strong>Test Coverage</strong>: &gt;90% unit test coverage for domain logic</li>
+<li><input disabled="" type="checkbox"> <strong>Type Safety</strong>: Strict TypeScript compilation with zero any types</li>
+<li><input disabled="" type="checkbox"> <strong>Performance</strong>: &lt;50ms average use case execution time</li>
+<li><input disabled="" type="checkbox"> <strong>Memory Efficiency</strong>: &lt;100MB heap usage for core domains</li>
+<li><input disabled="" type="checkbox"> <strong>Plugin Architecture</strong>: Modular domain loading capability</li>
+</ul>
+<h2>Related V3 Skills</h2>
+<ul>
+<li><code>v3-ddd-architecture</code> - DDD architectural design</li>
+<li><code>v3-mcp-optimization</code> - MCP server integration</li>
+<li><code>v3-memory-unification</code> - AgentDB repository integration</li>
+<li><code>v3-swarm-coordination</code> - Swarm domain implementation</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Complete Core Implementation</h3>
+<pre><code class="language-bash"># Full core module implementation
+Task(&quot;Core implementation&quot;,
+     &quot;Implement all core domains with DDD patterns and comprehensive testing&quot;,
+     &quot;core-implementer&quot;)
+</code></pre>
+<h3>Domain-Specific Implementation</h3>
+<pre><code class="language-bash"># Single domain implementation
+Task(&quot;Task domain implementation&quot;,
+     &quot;Implement task management domain with entities, services, and repositories&quot;,
+     &quot;core-implementer&quot;)
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

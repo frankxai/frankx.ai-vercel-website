@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>.NET Backend Development Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/dotnet-contribution/skills/dotnet-backend-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">.NET Backend Development Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdotnet-contribution">dotnet-contribution</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdotnet-contribution%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdotnet-contribution%2Fskills%2Fdotnet-backend-patterns">dotnet-backend-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: dotnet-backend-patterns
+description: Master C#/.NET backend development patterns for building robust APIs, MCP servers, and enterprise applications. Covers async/await, dependency injection, Entity Framework Core, Dapper, configuration, caching, and testing with xUnit. Use when developing .NET backends, reviewing C# code, or designing API architectures.</h2>
+<h1>.NET Backend Development Patterns</h1>
+<p>Master C#/.NET patterns for building production-grade APIs, MCP servers, and enterprise backends with modern best practices (2024/2025).</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Developing new .NET Web APIs or MCP servers</li>
+<li>Reviewing C# code for quality and performance</li>
+<li>Designing service architectures with dependency injection</li>
+<li>Implementing caching strategies with Redis</li>
+<li>Writing unit and integration tests</li>
+<li>Optimizing database access with EF Core or Dapper</li>
+<li>Configuring applications with IOptions pattern</li>
+<li>Handling errors and implementing resilience patterns</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Project Structure (Clean Architecture)</h3>
+<pre><code>src/
+├── Domain/                     # Core business logic (no dependencies)
+│   ├── Entities/
+│   ├── Interfaces/
+│   ├── Exceptions/
+│   └── ValueObjects/
+├── Application/                # Use cases, DTOs, validation
+│   ├── Services/
+│   ├── DTOs/
+│   ├── Validators/
+│   └── Interfaces/
+├── Infrastructure/             # External implementations
+│   ├── Data/                   # EF Core, Dapper repositories
+│   ├── Caching/                # Redis, Memory cache
+│   ├── External/               # HTTP clients, third-party APIs
+│   └── DependencyInjection/    # Service registration
+└── Api/                        # Entry point
+    ├── Controllers/            # Or MinimalAPI endpoints
+    ├── Middleware/
+    ├── Filters/
+    └── Program.cs
+</code></pre>
+<h3>2. Dependency Injection Patterns</h3>
+<pre><code class="language-csharp">// Service registration by lifetime
+public static class ServiceCollectionExtensions
+{
+    public static IServiceCollection AddApplicationServices(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        // Scoped: One instance per HTTP request
+        services.AddScoped&lt;IProductService, ProductService&gt;();
+        services.AddScoped&lt;IOrderService, OrderService&gt;();
+
+        // Singleton: One instance for app lifetime
+        services.AddSingleton&lt;ICacheService, RedisCacheService&gt;();
+        services.AddSingleton&lt;IConnectionMultiplexer&gt;(_ =&gt;
+            ConnectionMultiplexer.Connect(configuration[&quot;Redis:Connection&quot;]!));
+
+        // Transient: New instance every time
+        services.AddTransient&lt;IValidator&lt;CreateOrderRequest&gt;, CreateOrderValidator&gt;();
+
+        // Options pattern for configuration
+        services.Configure&lt;CatalogOptions&gt;(configuration.GetSection(&quot;Catalog&quot;));
+        services.Configure&lt;RedisOptions&gt;(configuration.GetSection(&quot;Redis&quot;));
+
+        // Factory pattern for conditional creation
+        services.AddScoped&lt;IPriceCalculator&gt;(sp =&gt;
+        {
+            var options = sp.GetRequiredService&lt;IOptions&lt;PricingOptions&gt;&gt;().Value;
+            return options.UseNewEngine
+                ? sp.GetRequiredService&lt;NewPriceCalculator&gt;()
+                : sp.GetRequiredService&lt;LegacyPriceCalculator&gt;();
+        });
+
+        // Keyed services (.NET 8+)
+        services.AddKeyedScoped&lt;IPaymentProcessor, StripeProcessor&gt;(&quot;stripe&quot;);
+        services.AddKeyedScoped&lt;IPaymentProcessor, PayPalProcessor&gt;(&quot;paypal&quot;);
+
+        return services;
+    }
+}
+
+// Usage with keyed services
+public class CheckoutService
+{
+    public CheckoutService(
+        [FromKeyedServices(&quot;stripe&quot;)] IPaymentProcessor stripeProcessor)
+    {
+        _processor = stripeProcessor;
+    }
+}
+</code></pre>
+<h3>3. Async/Await Patterns</h3>
+<pre><code class="language-csharp">// ✅ CORRECT: Async all the way down
+public async Task&lt;Product&gt; GetProductAsync(string id, CancellationToken ct = default)
+{
+    return await _repository.GetByIdAsync(id, ct);
+}
+
+// ✅ CORRECT: Parallel execution with WhenAll
+public async Task&lt;(Stock, Price)&gt; GetStockAndPriceAsync(
+    string productId,
+    CancellationToken ct = default)
+{
+    var stockTask = _stockService.GetAsync(productId, ct);
+    var priceTask = _priceService.GetAsync(productId, ct);
+
+    await Task.WhenAll(stockTask, priceTask);
+
+    return (await stockTask, await priceTask);
+}
+
+// ✅ CORRECT: ConfigureAwait in libraries
+public async Task&lt;T&gt; LibraryMethodAsync&lt;T&gt;(CancellationToken ct = default)
+{
+    var result = await _httpClient.GetAsync(url, ct).ConfigureAwait(false);
+    return await result.Content.ReadFromJsonAsync&lt;T&gt;(ct).ConfigureAwait(false);
+}
+
+// ✅ CORRECT: ValueTask for hot paths with caching
+public ValueTask&lt;Product?&gt; GetCachedProductAsync(string id)
+{
+    if (_cache.TryGetValue(id, out Product? product))
+        return ValueTask.FromResult(product);
+
+    return new ValueTask&lt;Product?&gt;(GetFromDatabaseAsync(id));
+}
+
+// ❌ WRONG: Blocking on async (deadlock risk)
+var result = GetProductAsync(id).Result;  // NEVER do this
+var result2 = GetProductAsync(id).GetAwaiter().GetResult(); // Also bad
+
+// ❌ WRONG: async void (except event handlers)
+public async void ProcessOrder() { }  // Exceptions are lost
+
+// ❌ WRONG: Unnecessary Task.Run for already async code
+await Task.Run(async () =&gt; await GetDataAsync());  // Wastes thread
+</code></pre>
+<h3>4. Configuration with IOptions</h3>
+<pre><code class="language-csharp">// Configuration classes
+public class CatalogOptions
+{
+    public const string SectionName = &quot;Catalog&quot;;
+
+    public int DefaultPageSize { get; set; } = 50;
+    public int MaxPageSize { get; set; } = 200;
+    public TimeSpan CacheDuration { get; set; } = TimeSpan.FromMinutes(15);
+    public bool EnableEnrichment { get; set; } = true;
+}
+
+public class RedisOptions
+{
+    public const string SectionName = &quot;Redis&quot;;
+
+    public string Connection { get; set; } = &quot;localhost:6379&quot;;
+    public string KeyPrefix { get; set; } = &quot;mcp:&quot;;
+    public int Database { get; set; } = 0;
+}
+
+// appsettings.json
+{
+    &quot;Catalog&quot;: {
+        &quot;DefaultPageSize&quot;: 50,
+        &quot;MaxPageSize&quot;: 200,
+        &quot;CacheDuration&quot;: &quot;00:15:00&quot;,
+        &quot;EnableEnrichment&quot;: true
+    },
+    &quot;Redis&quot;: {
+        &quot;Connection&quot;: &quot;localhost:6379&quot;,
+        &quot;KeyPrefix&quot;: &quot;mcp:&quot;,
+        &quot;Database&quot;: 0
+    }
+}
+
+// Registration
+services.Configure&lt;CatalogOptions&gt;(configuration.GetSection(CatalogOptions.SectionName));
+services.Configure&lt;RedisOptions&gt;(configuration.GetSection(RedisOptions.SectionName));
+
+// Usage with IOptions (singleton, read once at startup)
+public class CatalogService
+{
+    private readonly CatalogOptions _options;
+
+    public CatalogService(IOptions&lt;CatalogOptions&gt; options)
+    {
+        _options = options.Value;
+    }
+}
+
+// Usage with IOptionsSnapshot (scoped, re-reads on each request)
+public class DynamicService
+{
+    private readonly CatalogOptions _options;
+
+    public DynamicService(IOptionsSnapshot&lt;CatalogOptions&gt; options)
+    {
+        _options = options.Value;  // Fresh value per request
+    }
+}
+
+// Usage with IOptionsMonitor (singleton, notified on changes)
+public class MonitoredService
+{
+    private CatalogOptions _options;
+
+    public MonitoredService(IOptionsMonitor&lt;CatalogOptions&gt; monitor)
+    {
+        _options = monitor.CurrentValue;
+        monitor.OnChange(newOptions =&gt; _options = newOptions);
+    }
+}
+</code></pre>
+<h3>5. Result Pattern (Avoiding Exceptions for Flow Control)</h3>
+<pre><code class="language-csharp">// Generic Result type
+public class Result&lt;T&gt;
+{
+    public bool IsSuccess { get; }
+    public T? Value { get; }
+    public string? Error { get; }
+    public string? ErrorCode { get; }
+
+    private Result(bool isSuccess, T? value, string? error, string? errorCode)
+    {
+        IsSuccess = isSuccess;
+        Value = value;
+        Error = error;
+        ErrorCode = errorCode;
+    }
+
+    public static Result&lt;T&gt; Success(T value) =&gt; new(true, value, null, null);
+    public static Result&lt;T&gt; Failure(string error, string? code = null) =&gt; new(false, default, error, code);
+
+    public Result&lt;TNew&gt; Map&lt;TNew&gt;(Func&lt;T, TNew&gt; mapper) =&gt;
+        IsSuccess ? Result&lt;TNew&gt;.Success(mapper(Value!)) : Result&lt;TNew&gt;.Failure(Error!, ErrorCode);
+
+    public async Task&lt;Result&lt;TNew&gt;&gt; MapAsync&lt;TNew&gt;(Func&lt;T, Task&lt;TNew&gt;&gt; mapper) =&gt;
+        IsSuccess ? Result&lt;TNew&gt;.Success(await mapper(Value!)) : Result&lt;TNew&gt;.Failure(Error!, ErrorCode);
+}
+
+// Usage in service
+public async Task&lt;Result&lt;Order&gt;&gt; CreateOrderAsync(CreateOrderRequest request, CancellationToken ct)
+{
+    // Validation
+    var validation = await _validator.ValidateAsync(request, ct);
+    if (!validation.IsValid)
+        return Result&lt;Order&gt;.Failure(
+            validation.Errors.First().ErrorMessage,
+            &quot;VALIDATION_ERROR&quot;);
+
+    // Business rule check
+    var stock = await _stockService.CheckAsync(request.ProductId, request.Quantity, ct);
+    if (!stock.IsAvailable)
+        return Result&lt;Order&gt;.Failure(
+            $&quot;Insufficient stock: {stock.Available} available, {request.Quantity} requested&quot;,
+            &quot;INSUFFICIENT_STOCK&quot;);
+
+    // Create order
+    var order = await _repository.CreateAsync(request.ToEntity(), ct);
+
+    return Result&lt;Order&gt;.Success(order);
+}
+
+// Usage in controller/endpoint
+app.MapPost(&quot;/orders&quot;, async (
+    CreateOrderRequest request,
+    IOrderService orderService,
+    CancellationToken ct) =&gt;
+{
+    var result = await orderService.CreateOrderAsync(request, ct);
+
+    return result.IsSuccess
+        ? Results.Created($&quot;/orders/{result.Value!.Id}&quot;, result.Value)
+        : Results.BadRequest(new { error = result.Error, code = result.ErrorCode });
+});
+</code></pre>
+<h2>Data Access Patterns</h2>
+<h3>Entity Framework Core</h3>
+<pre><code class="language-csharp">// DbContext configuration
+public class AppDbContext : DbContext
+{
+    public DbSet&lt;Product&gt; Products =&gt; Set&lt;Product&gt;();
+    public DbSet&lt;Order&gt; Orders =&gt; Set&lt;Order&gt;();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        // Apply all configurations from assembly
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+
+        // Global query filters
+        modelBuilder.Entity&lt;Product&gt;().HasQueryFilter(p =&gt; !p.IsDeleted);
+    }
+}
+
+// Entity configuration
+public class ProductConfiguration : IEntityTypeConfiguration&lt;Product&gt;
+{
+    public void Configure(EntityTypeBuilder&lt;Product&gt; builder)
+    {
+        builder.ToTable(&quot;Products&quot;);
+
+        builder.HasKey(p =&gt; p.Id);
+        builder.Property(p =&gt; p.Id).HasMaxLength(40);
+        builder.Property(p =&gt; p.Name).HasMaxLength(200).IsRequired();
+        builder.Property(p =&gt; p.Price).HasPrecision(18, 2);
+
+        builder.HasIndex(p =&gt; p.Sku).IsUnique();
+        builder.HasIndex(p =&gt; new { p.CategoryId, p.Name });
+
+        builder.HasMany(p =&gt; p.OrderItems)
+            .WithOne(oi =&gt; oi.Product)
+            .HasForeignKey(oi =&gt; oi.ProductId);
+    }
+}
+
+// Repository with EF Core
+public class ProductRepository : IProductRepository
+{
+    private readonly AppDbContext _context;
+
+    public async Task&lt;Product?&gt; GetByIdAsync(string id, CancellationToken ct = default)
+    {
+        return await _context.Products
+            .AsNoTracking()
+            .FirstOrDefaultAsync(p =&gt; p.Id == id, ct);
+    }
+
+    public async Task&lt;IReadOnlyList&lt;Product&gt;&gt; SearchAsync(
+        ProductSearchCriteria criteria,
+        CancellationToken ct = default)
+    {
+        var query = _context.Products.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(criteria.SearchTerm))
+            query = query.Where(p =&gt; EF.Functions.Like(p.Name, $&quot;%{criteria.SearchTerm}%&quot;));
+
+        if (criteria.CategoryId.HasValue)
+            query = query.Where(p =&gt; p.CategoryId == criteria.CategoryId);
+
+        if (criteria.MinPrice.HasValue)
+            query = query.Where(p =&gt; p.Price &gt;= criteria.MinPrice);
+
+        if (criteria.MaxPrice.HasValue)
+            query = query.Where(p =&gt; p.Price &lt;= criteria.MaxPrice);
+
+        return await query
+            .OrderBy(p =&gt; p.Name)
+            .Skip((criteria.Page - 1) * criteria.PageSize)
+            .Take(criteria.PageSize)
+            .ToListAsync(ct);
+    }
+}
+</code></pre>
+<h3>Dapper for Performance</h3>
+<pre><code class="language-csharp">public class DapperProductRepository : IProductRepository
+{
+    private readonly IDbConnection _connection;
+
+    public async Task&lt;Product?&gt; GetByIdAsync(string id, CancellationToken ct = default)
+    {
+        const string sql = &quot;&quot;&quot;
+            SELECT Id, Name, Sku, Price, CategoryId, Stock, CreatedAt
+            FROM Products
+            WHERE Id = @Id AND IsDeleted = 0
+            &quot;&quot;&quot;;
+
+        return await _connection.QueryFirstOrDefaultAsync&lt;Product&gt;(
+            new CommandDefinition(sql, new { Id = id }, cancellationToken: ct));
+    }
+
+    public async Task&lt;IReadOnlyList&lt;Product&gt;&gt; SearchAsync(
+        ProductSearchCriteria criteria,
+        CancellationToken ct = default)
+    {
+        var sql = new StringBuilder(&quot;&quot;&quot;
+            SELECT Id, Name, Sku, Price, CategoryId, Stock, CreatedAt
+            FROM Products
+            WHERE IsDeleted = 0
+            &quot;&quot;&quot;);
+
+        var parameters = new DynamicParameters();
+
+        if (!string.IsNullOrWhiteSpace(criteria.SearchTerm))
+        {
+            sql.Append(&quot; AND Name LIKE @SearchTerm&quot;);
+            parameters.Add(&quot;SearchTerm&quot;, $&quot;%{criteria.SearchTerm}%&quot;);
+        }
+
+        if (criteria.CategoryId.HasValue)
+        {
+            sql.Append(&quot; AND CategoryId = @CategoryId&quot;);
+            parameters.Add(&quot;CategoryId&quot;, criteria.CategoryId);
+        }
+
+        if (criteria.MinPrice.HasValue)
+        {
+            sql.Append(&quot; AND Price &gt;= @MinPrice&quot;);
+            parameters.Add(&quot;MinPrice&quot;, criteria.MinPrice);
+        }
+
+        if (criteria.MaxPrice.HasValue)
+        {
+            sql.Append(&quot; AND Price &lt;= @MaxPrice&quot;);
+            parameters.Add(&quot;MaxPrice&quot;, criteria.MaxPrice);
+        }
+
+        sql.Append(&quot; ORDER BY Name OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY&quot;);
+        parameters.Add(&quot;Offset&quot;, (criteria.Page - 1) * criteria.PageSize);
+        parameters.Add(&quot;PageSize&quot;, criteria.PageSize);
+
+        var results = await _connection.QueryAsync&lt;Product&gt;(
+            new CommandDefinition(sql.ToString(), parameters, cancellationToken: ct));
+
+        return results.ToList();
+    }
+
+    // Multi-mapping for related data
+    public async Task&lt;Order?&gt; GetOrderWithItemsAsync(int orderId, CancellationToken ct = default)
+    {
+        const string sql = &quot;&quot;&quot;
+            SELECT o.*, oi.*, p.*
+            FROM Orders o
+            LEFT JOIN OrderItems oi ON o.Id = oi.OrderId
+            LEFT JOIN Products p ON oi.ProductId = p.Id
+            WHERE o.Id = @OrderId
+            &quot;&quot;&quot;;
+
+        var orderDictionary = new Dictionary&lt;int, Order&gt;();
+
+        await _connection.QueryAsync&lt;Order, OrderItem, Product, Order&gt;(
+            new CommandDefinition(sql, new { OrderId = orderId }, cancellationToken: ct),
+            (order, item, product) =&gt;
+            {
+                if (!orderDictionary.TryGetValue(order.Id, out var existingOrder))
+                {
+                    existingOrder = order;
+                    existingOrder.Items = new List&lt;OrderItem&gt;();
+                    orderDictionary.Add(order.Id, existingOrder);
+                }
+
+                if (item != null)
+                {
+                    item.Product = product;
+                    existingOrder.Items.Add(item);
+                }
+
+                return existingOrder;
+            },
+            splitOn: &quot;Id,Id&quot;);
+
+        return orderDictionary.Values.FirstOrDefault();
+    }
+}
+</code></pre>
+<h2>Caching Patterns</h2>
+<h3>Multi-Level Cache with Redis</h3>
+<pre><code class="language-csharp">public class CachedProductService : IProductService
+{
+    private readonly IProductRepository _repository;
+    private readonly IMemoryCache _memoryCache;
+    private readonly IDistributedCache _distributedCache;
+    private readonly ILogger&lt;CachedProductService&gt; _logger;
+
+    private static readonly TimeSpan MemoryCacheDuration = TimeSpan.FromMinutes(1);
+    private static readonly TimeSpan DistributedCacheDuration = TimeSpan.FromMinutes(15);
+
+    public async Task&lt;Product?&gt; GetByIdAsync(string id, CancellationToken ct = default)
+    {
+        var cacheKey = $&quot;product:{id}&quot;;
+
+        // L1: Memory cache (in-process, fastest)
+        if (_memoryCache.TryGetValue(cacheKey, out Product? cached))
+        {
+            _logger.LogDebug(&quot;L1 cache hit for {CacheKey}&quot;, cacheKey);
+            return cached;
+        }
+
+        // L2: Distributed cache (Redis)
+        var distributed = await _distributedCache.GetStringAsync(cacheKey, ct);
+        if (distributed != null)
+        {
+            _logger.LogDebug(&quot;L2 cache hit for {CacheKey}&quot;, cacheKey);
+            var product = JsonSerializer.Deserialize&lt;Product&gt;(distributed);
+
+            // Populate L1
+            _memoryCache.Set(cacheKey, product, MemoryCacheDuration);
+            return product;
+        }
+
+        // L3: Database
+        _logger.LogDebug(&quot;Cache miss for {CacheKey}, fetching from database&quot;, cacheKey);
+        var fromDb = await _repository.GetByIdAsync(id, ct);
+
+        if (fromDb != null)
+        {
+            var serialized = JsonSerializer.Serialize(fromDb);
+
+            // Populate both caches
+            await _distributedCache.SetStringAsync(
+                cacheKey,
+                serialized,
+                new DistributedCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = DistributedCacheDuration
+                },
+                ct);
+
+            _memoryCache.Set(cacheKey, fromDb, MemoryCacheDuration);
+        }
+
+        return fromDb;
+    }
+
+    public async Task InvalidateAsync(string id, CancellationToken ct = default)
+    {
+        var cacheKey = $&quot;product:{id}&quot;;
+
+        _memoryCache.Remove(cacheKey);
+        await _distributedCache.RemoveAsync(cacheKey, ct);
+
+        _logger.LogInformation(&quot;Invalidated cache for {CacheKey}&quot;, cacheKey);
+    }
+}
+
+// Stale-while-revalidate pattern
+public class StaleWhileRevalidateCache&lt;T&gt;
+{
+    private readonly IDistributedCache _cache;
+    private readonly TimeSpan _freshDuration;
+    private readonly TimeSpan _staleDuration;
+
+    public async Task&lt;T?&gt; GetOrCreateAsync(
+        string key,
+        Func&lt;CancellationToken, Task&lt;T&gt;&gt; factory,
+        CancellationToken ct = default)
+    {
+        var cached = await _cache.GetStringAsync(key, ct);
+
+        if (cached != null)
+        {
+            var entry = JsonSerializer.Deserialize&lt;CacheEntry&lt;T&gt;&gt;(cached)!;
+
+            if (entry.IsStale &amp;&amp; !entry.IsExpired)
+            {
+                // Return stale data immediately, refresh in background
+                _ = Task.Run(async () =&gt;
+                {
+                    var fresh = await factory(CancellationToken.None);
+                    await SetAsync(key, fresh, CancellationToken.None);
+                });
+            }
+
+            if (!entry.IsExpired)
+                return entry.Value;
+        }
+
+        // Cache miss or expired
+        var value = await factory(ct);
+        await SetAsync(key, value, ct);
+        return value;
+    }
+
+    private record CacheEntry&lt;TValue&gt;(TValue Value, DateTime CreatedAt)
+    {
+        public bool IsStale =&gt; DateTime.UtcNow - CreatedAt &gt; _freshDuration;
+        public bool IsExpired =&gt; DateTime.UtcNow - CreatedAt &gt; _staleDuration;
+    }
+}
+</code></pre>
+<h2>Testing Patterns</h2>
+<h3>Unit Tests with xUnit and Moq</h3>
+<pre><code class="language-csharp">public class OrderServiceTests
+{
+    private readonly Mock&lt;IOrderRepository&gt; _mockRepository;
+    private readonly Mock&lt;IStockService&gt; _mockStockService;
+    private readonly Mock&lt;IValidator&lt;CreateOrderRequest&gt;&gt; _mockValidator;
+    private readonly OrderService _sut; // System Under Test
+
+    public OrderServiceTests()
+    {
+        _mockRepository = new Mock&lt;IOrderRepository&gt;();
+        _mockStockService = new Mock&lt;IStockService&gt;();
+        _mockValidator = new Mock&lt;IValidator&lt;CreateOrderRequest&gt;&gt;();
+
+        // Default: validation passes
+        _mockValidator
+            .Setup(v =&gt; v.ValidateAsync(It.IsAny&lt;CreateOrderRequest&gt;(), It.IsAny&lt;CancellationToken&gt;()))
+            .ReturnsAsync(new ValidationResult());
+
+        _sut = new OrderService(
+            _mockRepository.Object,
+            _mockStockService.Object,
+            _mockValidator.Object);
+    }
+
+    [Fact]
+    public async Task CreateOrderAsync_WithValidRequest_ReturnsSuccess()
+    {
+        // Arrange
+        var request = new CreateOrderRequest
+        {
+            ProductId = &quot;PROD-001&quot;,
+            Quantity = 5,
+            CustomerOrderCode = &quot;ORD-2024-001&quot;
+        };
+
+        _mockStockService
+            .Setup(s =&gt; s.CheckAsync(&quot;PROD-001&quot;, 5, It.IsAny&lt;CancellationToken&gt;()))
+            .ReturnsAsync(new StockResult { IsAvailable = true, Available = 10 });
+
+        _mockRepository
+            .Setup(r =&gt; r.CreateAsync(It.IsAny&lt;Order&gt;(), It.IsAny&lt;CancellationToken&gt;()))
+            .ReturnsAsync(new Order { Id = 1, CustomerOrderCode = &quot;ORD-2024-001&quot; });
+
+        // Act
+        var result = await _sut.CreateOrderAsync(request);
+
+        // Assert
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(result.Value);
+        Assert.Equal(1, result.Value.Id);
+
+        _mockRepository.Verify(
+            r =&gt; r.CreateAsync(It.Is&lt;Order&gt;(o =&gt; o.CustomerOrderCode == &quot;ORD-2024-001&quot;),
+            It.IsAny&lt;CancellationToken&gt;()),
+            Times.Once);
+    }
+
+    [Fact]
+    public async Task CreateOrderAsync_WithInsufficientStock_ReturnsFailure()
+    {
+        // Arrange
+        var request = new CreateOrderRequest { ProductId = &quot;PROD-001&quot;, Quantity = 100 };
+
+        _mockStockService
+            .Setup(s =&gt; s.CheckAsync(It.IsAny&lt;string&gt;(), It.IsAny&lt;int&gt;(), It.IsAny&lt;CancellationToken&gt;()))
+            .ReturnsAsync(new StockResult { IsAvailable = false, Available = 5 });
+
+        // Act
+        var result = await _sut.CreateOrderAsync(request);
+
+        // Assert
+        Assert.False(result.IsSuccess);
+        Assert.Equal(&quot;INSUFFICIENT_STOCK&quot;, result.ErrorCode);
+        Assert.Contains(&quot;5 available&quot;, result.Error);
+
+        _mockRepository.Verify(
+            r =&gt; r.CreateAsync(It.IsAny&lt;Order&gt;(), It.IsAny&lt;CancellationToken&gt;()),
+            Times.Never);
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-1)]
+    [InlineData(-100)]
+    public async Task CreateOrderAsync_WithInvalidQuantity_ReturnsValidationError(int quantity)
+    {
+        // Arrange
+        var request = new CreateOrderRequest { ProductId = &quot;PROD-001&quot;, Quantity = quantity };
+
+        _mockValidator
+            .Setup(v =&gt; v.ValidateAsync(request, It.IsAny&lt;CancellationToken&gt;()))
+            .ReturnsAsync(new ValidationResult(new[]
+            {
+                new ValidationFailure(&quot;Quantity&quot;, &quot;Quantity must be greater than 0&quot;)
+            }));
+
+        // Act
+        var result = await _sut.CreateOrderAsync(request);
+
+        // Assert
+        Assert.False(result.IsSuccess);
+        Assert.Equal(&quot;VALIDATION_ERROR&quot;, result.ErrorCode);
+    }
+}
+</code></pre>
+<h3>Integration Tests with WebApplicationFactory</h3>
+<pre><code class="language-csharp">public class ProductsApiTests : IClassFixture&lt;WebApplicationFactory&lt;Program&gt;&gt;
+{
+    private readonly WebApplicationFactory&lt;Program&gt; _factory;
+    private readonly HttpClient _client;
+
+    public ProductsApiTests(WebApplicationFactory&lt;Program&gt; factory)
+    {
+        _factory = factory.WithWebHostBuilder(builder =&gt;
+        {
+            builder.ConfigureServices(services =&gt;
+            {
+                // Replace real database with in-memory
+                services.RemoveAll&lt;DbContextOptions&lt;AppDbContext&gt;&gt;();
+                services.AddDbContext&lt;AppDbContext&gt;(options =&gt;
+                    options.UseInMemoryDatabase(&quot;TestDb&quot;));
+
+                // Replace Redis with memory cache
+                services.RemoveAll&lt;IDistributedCache&gt;();
+                services.AddDistributedMemoryCache();
+            });
+        });
+
+        _client = _factory.CreateClient();
+    }
+
+    [Fact]
+    public async Task GetProduct_WithValidId_ReturnsProduct()
+    {
+        // Arrange
+        using var scope = _factory.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService&lt;AppDbContext&gt;();
+
+        context.Products.Add(new Product
+        {
+            Id = &quot;TEST-001&quot;,
+            Name = &quot;Test Product&quot;,
+            Price = 99.99m
+        });
+        await context.SaveChangesAsync();
+
+        // Act
+        var response = await _client.GetAsync(&quot;/api/products/TEST-001&quot;);
+
+        // Assert
+        response.EnsureSuccessStatusCode();
+        var product = await response.Content.ReadFromJsonAsync&lt;Product&gt;();
+        Assert.Equal(&quot;Test Product&quot;, product!.Name);
+    }
+
+    [Fact]
+    public async Task GetProduct_WithInvalidId_Returns404()
+    {
+        // Act
+        var response = await _client.GetAsync(&quot;/api/products/NONEXISTENT&quot;);
+
+        // Assert
+        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+    }
+}
+</code></pre>
+<h2>Best Practices</h2>
+<h3>DO</h3>
+<ol>
+<li><strong>Use async/await</strong> all the way through the call stack</li>
+<li><strong>Inject dependencies</strong> through constructor injection</li>
+<li><strong>Use IOptions<T></strong> for typed configuration</li>
+<li><strong>Return Result types</strong> instead of throwing exceptions for business logic</li>
+<li><strong>Use CancellationToken</strong> in all async methods</li>
+<li><strong>Prefer Dapper</strong> for read-heavy, performance-critical queries</li>
+<li><strong>Use EF Core</strong> for complex domain models with change tracking</li>
+<li><strong>Cache aggressively</strong> with proper invalidation strategies</li>
+<li><strong>Write unit tests</strong> for business logic, integration tests for APIs</li>
+<li><strong>Use record types</strong> for DTOs and immutable data</li>
+</ol>
+<h3>DON&#39;T</h3>
+<ol>
+<li><strong>Don&#39;t block on async</strong> with <code>.Result</code> or <code>.Wait()</code></li>
+<li><strong>Don&#39;t use async void</strong> except for event handlers</li>
+<li><strong>Don&#39;t catch generic Exception</strong> without re-throwing or logging</li>
+<li><strong>Don&#39;t hardcode</strong> configuration values</li>
+<li><strong>Don&#39;t expose EF entities</strong> directly in APIs (use DTOs)</li>
+<li><strong>Don&#39;t forget</strong> <code>AsNoTracking()</code> for read-only queries</li>
+<li><strong>Don&#39;t ignore</strong> CancellationToken parameters</li>
+<li><strong>Don&#39;t create</strong> <code>new HttpClient()</code> manually (use IHttpClientFactory)</li>
+<li><strong>Don&#39;t mix</strong> sync and async code unnecessarily</li>
+<li><strong>Don&#39;t skip</strong> validation at API boundaries</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li><strong>N+1 Queries</strong>: Use <code>.Include()</code> or explicit joins</li>
+<li><strong>Memory Leaks</strong>: Dispose IDisposable resources, use <code>using</code></li>
+<li><strong>Deadlocks</strong>: Don&#39;t mix sync and async, use ConfigureAwait(false) in libraries</li>
+<li><strong>Over-fetching</strong>: Select only needed columns, use projections</li>
+<li><strong>Missing Indexes</strong>: Check query plans, add indexes for common filters</li>
+<li><strong>Timeout Issues</strong>: Configure appropriate timeouts for HTTP clients</li>
+<li><strong>Cache Stampede</strong>: Use distributed locks for cache population</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><strong>assets/service-template.cs</strong>: Complete service implementation template</li>
+<li><strong>assets/repository-template.cs</strong>: Repository pattern implementation</li>
+<li><strong>references/ef-core-best-practices.md</strong>: EF Core optimization guide</li>
+<li><strong>references/dapper-patterns.md</strong>: Advanced Dapper usage patterns</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

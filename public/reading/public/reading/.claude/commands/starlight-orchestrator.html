@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/starlight-orchestrator — SIS Executive Layer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/starlight-orchestrator.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/starlight-orchestrator — SIS Executive Layer</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>starlight-orchestrator.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: SIS meta-orchestrator — routes complex multi-agent tasks, coordinates swarms, manages n8n workflows via MCP
+thinking: true</h2>
+<h1>/starlight-orchestrator — SIS Executive Layer</h1>
+<p><strong>Purpose</strong>: The conductor of the Starlight Intelligence System. Routes tasks to appropriate agents/skills, coordinates parallel execution, synthesizes outputs, and manages n8n workflow infrastructure via MCP.</p>
+<h2>Input</h2>
+<p>Provide ONE of:</p>
+<ul>
+<li><code>route [task]</code> — analyze and route a complex task to the right agents</li>
+<li><code>coordinate [swarm name]</code> — activate and coordinate a named swarm</li>
+<li><code>workflow [action]</code> — manage n8n workflows (create/fix/status/activate)</li>
+<li><code>audit</code> — audit current system state (skills, workflows, agents, n8n health)</li>
+<li><code>plan [project]</code> — design full orchestration plan for a project</li>
+<li>No input: show current system state + available orchestration options</li>
+</ul>
+<h2>Identity</h2>
+<pre><code>STARLIGHT INTELLIGENCE SYSTEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Memory Vault ──── Pattern Analysis
+      │                  │
+  Guidance Engine ← Federation Sync
+      │
+STARLIGHT ORCHESTRATOR (this command)
+  └── Routes all above into coordinated action
+</code></pre>
+<h2>Core Orchestration Flows</h2>
+<h3>Flow 1: Task Routing</h3>
+<pre><code>Input: &quot;Build the Arcanean content for this week&quot;
+→ Analyze: world-building + content generation + social queuing
+→ Route: /arcanea-swarm (primary) + generate-social (formatting)
+→ Tools: nano-banana (images), slack (delivery), social-queue.json (storage)
+→ Sequence: Lore → Images → Format → Queue → Notify
+→ Execute
+</code></pre>
+<h3>Flow 2: n8n Workflow Management</h3>
+<pre><code>Input: &quot;Fix the Mega Orchestrator VIDEO route&quot;
+→ Load: n8n-mcp tools
+→ Get current workflow state
+→ Identify issue
+→ Apply fix via n8n_update_full_workflow
+→ Test (manual trigger if needed)
+→ Report result
+</code></pre>
+<h3>Flow 3: System Audit</h3>
+<pre><code>→ Check n8n health (n8n_health_check)
+→ List active workflows (n8n_list_workflows)
+→ Check skill-rules.json for gaps
+→ Check MEMORY.md for pending items
+→ Report status with prioritized action items
+</code></pre>
+<h3>Flow 4: Swarm Coordination</h3>
+<pre><code>→ Receive task
+→ Decompose into parallel subtasks
+→ Assign to agents (in parallel where possible)
+→ Collect outputs
+→ Validate against brand DNA
+→ Synthesize into unified result
+→ Route to Frank for approval (if outbound)
+</code></pre>
+<h2>Process</h2>
+<h3>Step 1: Classify the Request</h3>
+<pre><code>ROUTE request?     → decompose + route to skills/agents
+WORKFLOW request?  → use n8n-mcp tools
+AUDIT request?     → system health check
+PLAN request?      → design orchestration blueprint
+No input?          → show system state
+</code></pre>
+<h3>Step 2: Decompose Complex Tasks</h3>
+<p>For any complex request:</p>
+<ol>
+<li>List all skills/agents that could contribute</li>
+<li>Identify dependencies (what needs to run first)</li>
+<li>Identify parallelizable tasks (what can run simultaneously)</li>
+<li>Design execution order</li>
+<li>Set quality gates</li>
+</ol>
+<h3>Step 3: Execute</h3>
+<p>Invoke skills and tools in designed order.
+For parallel tasks: invoke simultaneously in one response.
+For sequential: wait for dependencies before proceeding.</p>
+<h3>Step 4: n8n Workflow Operations</h3>
+<p>Available via n8n MCP:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>MCP Tool</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>List workflows</td>
+<td><code>n8n_list_workflows</code></td>
+</tr>
+<tr>
+<td>Get workflow</td>
+<td><code>n8n_get_workflow</code></td>
+</tr>
+<tr>
+<td>Create workflow</td>
+<td><code>n8n_create_workflow</code></td>
+</tr>
+<tr>
+<td>Update workflow</td>
+<td><code>n8n_update_full_workflow</code></td>
+</tr>
+<tr>
+<td>Test workflow</td>
+<td><code>n8n_test_workflow</code></td>
+</tr>
+<tr>
+<td>Check health</td>
+<td><code>n8n_health_check</code></td>
+</tr>
+<tr>
+<td>Get executions</td>
+<td><code>n8n_executions</code></td>
+</tr>
+</tbody></table>
+<h3>Step 5: Validate and Synthesize</h3>
+<p>Before final output:</p>
+<ul>
+<li><input disabled="" type="checkbox"> All agent outputs align with Brand DNA</li>
+<li><input disabled="" type="checkbox"> No contradictions between outputs</li>
+<li><input disabled="" type="checkbox"> Quality gates passed</li>
+<li><input disabled="" type="checkbox"> Outbound content flagged for Frank&#39;s approval</li>
+</ul>
+<h2>Active System Registry</h2>
+<h3>n8n Workflows (Railway)</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>ID</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Mega Orchestrator</td>
+<td>YYDAv4mZtRdDTtBq</td>
+<td>ACTIVE</td>
+</tr>
+<tr>
+<td>CoinGecko Portfolio</td>
+<td>xrPuXJL6iZjBu1GM</td>
+<td>ACTIVE</td>
+</tr>
+<tr>
+<td>Arcanea Video Pipeline</td>
+<td>1oEGJktWo9357uQc</td>
+<td>INACTIVE</td>
+</tr>
+<tr>
+<td>Arcanean X Story Engine</td>
+<td>[TBD]</td>
+<td>TBD</td>
+</tr>
+</tbody></table>
+<h3>Active Skills (Key)</h3>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Skills</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Arcanea IP</td>
+<td>arcanea, arcanea-swarm</td>
+</tr>
+<tr>
+<td>Design</td>
+<td>design-system, brand-rules, figma-rules</td>
+</tr>
+<tr>
+<td>Content</td>
+<td>generate-social, frankx-brand</td>
+</tr>
+<tr>
+<td>Orchestration</td>
+<td>starlight-orchestrator (this), starlight-architect</td>
+</tr>
+<tr>
+<td>n8n</td>
+<td>n8n-mcp-tools-expert, n8n-node-configuration</td>
+</tr>
+</tbody></table>
+<h3>MCP Tools Available</h3>
+<ul>
+<li><code>nanobanana</code> — image generation (4K, nano banana 2)</li>
+<li><code>n8n-mcp</code> — workflow creation + management</li>
+<li><code>slack</code> — messaging (#content, #briefings channels)</li>
+<li><code>notion</code> — knowledge base</li>
+<li><code>memory</code> — SIS memory graph</li>
+</ul>
+<h2>Orchestration Patterns Reference</h2>
+<h3>Arcanea Content Swarm</h3>
+<pre><code>/arcanea-swarm week
+→ Activates arcanea-swarm skill
+→ Generates 7 Eldrian threads + 2 images
+→ Queues to social-queue.json
+→ Notifies #content Slack
+</code></pre>
+<h3>Design + Build Swarm</h3>
+<pre><code>/design-gods [audit|build|figma|visual|system]
+→ Activates 5 design specialist agents
+→ Coordinates: brand-architect, ui-engineer, design-qa, visual-director, figma-bridge
+</code></pre>
+<h3>Frankx Daily Build</h3>
+<pre><code>/frankx-ai-daily
+→ Routes to: content-strategy + seo + deployment checks
+→ Synthesizes daily action plan
+</code></pre>
+<h2>Output Format</h2>
+<p>For ROUTE/PLAN:</p>
+<pre><code>=== ORCHESTRATION PLAN ===
+Task: [what was requested]
+Classification: [complex/parallel/sequential]
+
+Execution Order:
+Phase 1 (parallel): [agents]
+Phase 2 (sequential): [agents]
+Phase 3: [synthesis]
+
+Routing to: [primary skill/command]
+Executing now...
+</code></pre>
+<p>For AUDIT:</p>
+<pre><code>=== SYSTEM AUDIT ===
+n8n: [healthy/degraded] — [N] active workflows
+Skills: [N] loaded, [missing list if any]
+Memory: [MEMORY.md lines used / 200 limit]
+Pending: [items from MEMORY.md next steps]
+Recommended: [top 3 priority actions]
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

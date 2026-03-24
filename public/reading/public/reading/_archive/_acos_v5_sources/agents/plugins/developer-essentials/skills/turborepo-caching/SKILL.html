@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Turborepo Caching</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/developer-essentials/skills/turborepo-caching/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Turborepo Caching</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials">developer-essentials</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills%2Fturborepo-caching">turborepo-caching</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: turborepo-caching
+description: Configure Turborepo for efficient monorepo builds with local and remote caching. Use when setting up Turborepo, optimizing build pipelines, or implementing distributed caching.</h2>
+<h1>Turborepo Caching</h1>
+<p>Production patterns for Turborepo build optimization.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Setting up new Turborepo projects</li>
+<li>Configuring build pipelines</li>
+<li>Implementing remote caching</li>
+<li>Optimizing CI/CD performance</li>
+<li>Migrating from other monorepo tools</li>
+<li>Debugging cache misses</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Turborepo Architecture</h3>
+<pre><code>Workspace Root/
+├── apps/
+│   ├── web/
+│   │   └── package.json
+│   └── docs/
+│       └── package.json
+├── packages/
+│   ├── ui/
+│   │   └── package.json
+│   └── config/
+│       └── package.json
+├── turbo.json
+└── package.json
+</code></pre>
+<h3>2. Pipeline Concepts</h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>dependsOn</strong></td>
+<td>Tasks that must complete first</td>
+</tr>
+<tr>
+<td><strong>cache</strong></td>
+<td>Whether to cache outputs</td>
+</tr>
+<tr>
+<td><strong>outputs</strong></td>
+<td>Files to cache</td>
+</tr>
+<tr>
+<td><strong>inputs</strong></td>
+<td>Files that affect cache key</td>
+</tr>
+<tr>
+<td><strong>persistent</strong></td>
+<td>Long-running tasks (dev servers)</td>
+</tr>
+</tbody></table>
+<h2>Templates</h2>
+<h3>Template 1: turbo.json Configuration</h3>
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://turbo.build/schema.json&quot;,
+  &quot;globalDependencies&quot;: [&quot;.env&quot;, &quot;.env.local&quot;],
+  &quot;globalEnv&quot;: [&quot;NODE_ENV&quot;, &quot;VERCEL_URL&quot;],
+  &quot;pipeline&quot;: {
+    &quot;build&quot;: {
+      &quot;dependsOn&quot;: [&quot;^build&quot;],
+      &quot;outputs&quot;: [&quot;dist/**&quot;, &quot;.next/**&quot;, &quot;!.next/cache/**&quot;],
+      &quot;env&quot;: [&quot;API_URL&quot;, &quot;NEXT_PUBLIC_*&quot;]
+    },
+    &quot;test&quot;: {
+      &quot;dependsOn&quot;: [&quot;build&quot;],
+      &quot;outputs&quot;: [&quot;coverage/**&quot;],
+      &quot;inputs&quot;: [&quot;src/**/*.tsx&quot;, &quot;src/**/*.ts&quot;, &quot;test/**/*.ts&quot;]
+    },
+    &quot;lint&quot;: {
+      &quot;outputs&quot;: [],
+      &quot;cache&quot;: true
+    },
+    &quot;typecheck&quot;: {
+      &quot;dependsOn&quot;: [&quot;^build&quot;],
+      &quot;outputs&quot;: []
+    },
+    &quot;dev&quot;: {
+      &quot;cache&quot;: false,
+      &quot;persistent&quot;: true
+    },
+    &quot;clean&quot;: {
+      &quot;cache&quot;: false
+    }
+  }
+}
+</code></pre>
+<h3>Template 2: Package-Specific Pipeline</h3>
+<pre><code class="language-json">// apps/web/turbo.json
+{
+  &quot;$schema&quot;: &quot;https://turbo.build/schema.json&quot;,
+  &quot;extends&quot;: [&quot;//&quot;],
+  &quot;pipeline&quot;: {
+    &quot;build&quot;: {
+      &quot;outputs&quot;: [&quot;.next/**&quot;, &quot;!.next/cache/**&quot;],
+      &quot;env&quot;: [&quot;NEXT_PUBLIC_API_URL&quot;, &quot;NEXT_PUBLIC_ANALYTICS_ID&quot;]
+    },
+    &quot;test&quot;: {
+      &quot;outputs&quot;: [&quot;coverage/**&quot;],
+      &quot;inputs&quot;: [&quot;src/**&quot;, &quot;tests/**&quot;, &quot;jest.config.js&quot;]
+    }
+  }
+}
+</code></pre>
+<h3>Template 3: Remote Caching with Vercel</h3>
+<pre><code class="language-bash"># Login to Vercel
+npx turbo login
+
+# Link to Vercel project
+npx turbo link
+
+# Run with remote cache
+turbo build --remote-only
+
+# CI environment variables
+TURBO_TOKEN=your-token
+TURBO_TEAM=your-team
+</code></pre>
+<pre><code class="language-yaml"># .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: &quot;npm&quot;
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npx turbo build --filter=&#39;...[origin/main]&#39;
+
+      - name: Test
+        run: npx turbo test --filter=&#39;...[origin/main]&#39;
+</code></pre>
+<h3>Template 4: Self-Hosted Remote Cache</h3>
+<pre><code class="language-typescript">// Custom remote cache server (Express)
+import express from &quot;express&quot;;
+import { createReadStream, createWriteStream } from &quot;fs&quot;;
+import { mkdir } from &quot;fs/promises&quot;;
+import { join } from &quot;path&quot;;
+
+const app = express();
+const CACHE_DIR = &quot;./cache&quot;;
+
+// Get artifact
+app.get(&quot;/v8/artifacts/:hash&quot;, async (req, res) =&gt; {
+  const { hash } = req.params;
+  const team = req.query.teamId || &quot;default&quot;;
+  const filePath = join(CACHE_DIR, team, hash);
+
+  try {
+    const stream = createReadStream(filePath);
+    stream.pipe(res);
+  } catch {
+    res.status(404).send(&quot;Not found&quot;);
+  }
+});
+
+// Put artifact
+app.put(&quot;/v8/artifacts/:hash&quot;, async (req, res) =&gt; {
+  const { hash } = req.params;
+  const team = req.query.teamId || &quot;default&quot;;
+  const dir = join(CACHE_DIR, team);
+  const filePath = join(dir, hash);
+
+  await mkdir(dir, { recursive: true });
+
+  const stream = createWriteStream(filePath);
+  req.pipe(stream);
+
+  stream.on(&quot;finish&quot;, () =&gt; {
+    res.json({
+      urls: [`${req.protocol}://${req.get(&quot;host&quot;)}/v8/artifacts/${hash}`],
+    });
+  });
+});
+
+// Check artifact exists
+app.head(&quot;/v8/artifacts/:hash&quot;, async (req, res) =&gt; {
+  const { hash } = req.params;
+  const team = req.query.teamId || &quot;default&quot;;
+  const filePath = join(CACHE_DIR, team, hash);
+
+  try {
+    await fs.access(filePath);
+    res.status(200).end();
+  } catch {
+    res.status(404).end();
+  }
+});
+
+app.listen(3000);
+</code></pre>
+<pre><code class="language-json">// turbo.json for self-hosted cache
+{
+  &quot;remoteCache&quot;: {
+    &quot;signature&quot;: false
+  }
+}
+</code></pre>
+<pre><code class="language-bash"># Use self-hosted cache
+turbo build --api=&quot;http://localhost:3000&quot; --token=&quot;my-token&quot; --team=&quot;my-team&quot;
+</code></pre>
+<h3>Template 5: Filtering and Scoping</h3>
+<pre><code class="language-bash"># Build specific package
+turbo build --filter=@myorg/web
+
+# Build package and its dependencies
+turbo build --filter=@myorg/web...
+
+# Build package and its dependents
+turbo build --filter=...@myorg/ui
+
+# Build changed packages since main
+turbo build --filter=&#39;...[origin/main]&#39;
+
+# Build packages in directory
+turbo build --filter=&#39;./apps/*&#39;
+
+# Combine filters
+turbo build --filter=@myorg/web --filter=@myorg/docs
+
+# Exclude package
+turbo build --filter=&#39;!@myorg/docs&#39;
+
+# Include dependencies of changed
+turbo build --filter=&#39;...[HEAD^1]...&#39;
+</code></pre>
+<h3>Template 6: Advanced Pipeline Configuration</h3>
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;https://turbo.build/schema.json&quot;,
+  &quot;pipeline&quot;: {
+    &quot;build&quot;: {
+      &quot;dependsOn&quot;: [&quot;^build&quot;],
+      &quot;outputs&quot;: [&quot;dist/**&quot;],
+      &quot;inputs&quot;: [&quot;$TURBO_DEFAULT$&quot;, &quot;!**/*.md&quot;, &quot;!**/*.test.*&quot;]
+    },
+    &quot;test&quot;: {
+      &quot;dependsOn&quot;: [&quot;^build&quot;],
+      &quot;outputs&quot;: [&quot;coverage/**&quot;],
+      &quot;inputs&quot;: [&quot;src/**&quot;, &quot;tests/**&quot;, &quot;*.config.*&quot;],
+      &quot;env&quot;: [&quot;CI&quot;, &quot;NODE_ENV&quot;]
+    },
+    &quot;test:e2e&quot;: {
+      &quot;dependsOn&quot;: [&quot;build&quot;],
+      &quot;outputs&quot;: [],
+      &quot;cache&quot;: false
+    },
+    &quot;deploy&quot;: {
+      &quot;dependsOn&quot;: [&quot;build&quot;, &quot;test&quot;, &quot;lint&quot;],
+      &quot;outputs&quot;: [],
+      &quot;cache&quot;: false
+    },
+    &quot;db:generate&quot;: {
+      &quot;cache&quot;: false
+    },
+    &quot;db:push&quot;: {
+      &quot;cache&quot;: false,
+      &quot;dependsOn&quot;: [&quot;db:generate&quot;]
+    },
+    &quot;@myorg/web#build&quot;: {
+      &quot;dependsOn&quot;: [&quot;^build&quot;, &quot;@myorg/db#db:generate&quot;],
+      &quot;outputs&quot;: [&quot;.next/**&quot;],
+      &quot;env&quot;: [&quot;NEXT_PUBLIC_*&quot;]
+    }
+  }
+}
+</code></pre>
+<h3>Template 7: Root package.json Setup</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;my-turborepo&quot;,
+  &quot;private&quot;: true,
+  &quot;workspaces&quot;: [&quot;apps/*&quot;, &quot;packages/*&quot;],
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;turbo build&quot;,
+    &quot;dev&quot;: &quot;turbo dev&quot;,
+    &quot;lint&quot;: &quot;turbo lint&quot;,
+    &quot;test&quot;: &quot;turbo test&quot;,
+    &quot;clean&quot;: &quot;turbo clean &amp;&amp; rm -rf node_modules&quot;,
+    &quot;format&quot;: &quot;prettier --write \&quot;**/*.{ts,tsx,md}\&quot;&quot;,
+    &quot;changeset&quot;: &quot;changeset&quot;,
+    &quot;version-packages&quot;: &quot;changeset version&quot;,
+    &quot;release&quot;: &quot;turbo build --filter=./packages/* &amp;&amp; changeset publish&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;turbo&quot;: &quot;^1.10.0&quot;,
+    &quot;prettier&quot;: &quot;^3.0.0&quot;,
+    &quot;@changesets/cli&quot;: &quot;^2.26.0&quot;
+  },
+  &quot;packageManager&quot;: &quot;npm@10.0.0&quot;
+}
+</code></pre>
+<h2>Debugging Cache</h2>
+<pre><code class="language-bash"># Dry run to see what would run
+turbo build --dry-run
+
+# Verbose output with hashes
+turbo build --verbosity=2
+
+# Show task graph
+turbo build --graph
+
+# Force no cache
+turbo build --force
+
+# Show cache status
+turbo build --summarize
+
+# Debug specific task
+TURBO_LOG_VERBOSITY=debug turbo build --filter=@myorg/web
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Define explicit inputs</strong> - Avoid cache invalidation</li>
+<li><strong>Use workspace protocol</strong> - <code>&quot;@myorg/ui&quot;: &quot;workspace:*&quot;</code></li>
+<li><strong>Enable remote caching</strong> - Share across CI and local</li>
+<li><strong>Filter in CI</strong> - Build only affected packages</li>
+<li><strong>Cache build outputs</strong> - Not source files</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t cache dev servers</strong> - Use <code>persistent: true</code></li>
+<li><strong>Don&#39;t include secrets in env</strong> - Use runtime env vars</li>
+<li><strong>Don&#39;t ignore dependsOn</strong> - Causes race conditions</li>
+<li><strong>Don&#39;t over-filter</strong> - May miss dependencies</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://turbo.build/repo/docs">Turborepo Documentation</a></li>
+<li><a href="https://turbo.build/repo/docs/core-concepts/caching">Caching Guide</a></li>
+<li><a href="https://turbo.build/repo/docs/core-concepts/remote-caching">Remote Caching</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

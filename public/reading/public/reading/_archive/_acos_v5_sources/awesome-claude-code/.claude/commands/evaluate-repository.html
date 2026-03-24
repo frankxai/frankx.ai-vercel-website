@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Repository Evaluation Prompt (Awesome-Claude-Code · Full Version)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/.claude/commands/evaluate-repository.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Repository Evaluation Prompt (Awesome-Claude-Code · Full Version)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2F.claude%2Fcommands">commands</a> / <span>evaluate-repository.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Repository Evaluation Prompt (Awesome-Claude-Code · Full Version)</h1>
+<h2>Evaluation Context (Claude Code Ecosystem)</h2>
+<p>You are evaluating a repository intended for use in or alongside <strong>Claude Code</strong>, where certain features (such as hooks, commands, scripts, or automation) may execute implicitly or with elevated trust once enabled by a user.</p>
+<p>In this ecosystem, risk commonly arises not from overtly malicious code, but from implicit execution surfaces, including:</p>
+<ul>
+<li>Hooks that execute automatically based on tool lifecycle events</li>
+<li>Custom commands that may invoke shell scripts</li>
+<li>Scripts that run in the user’s local environment</li>
+<li>Persistent state files that influence control flow</li>
+<li>Network access triggered indirectly by tooling</li>
+</ul>
+<p>Your task is to perform a conservative, evidence-based, static review that:</p>
+<ul>
+<li>Identifies trust boundaries and implicit execution</li>
+<li>Distinguishes declared behavior from effective capability</li>
+<li>Surfaces red flags or areas requiring further manual inspection</li>
+<li>Avoids inferring author intent beyond what is observable</li>
+</ul>
+<p>When uncertain, prefer explicit uncertainty over confident speculation.</p>
+<hr>
+<h2>Instructions</h2>
+<p>Perform a static, read-only review of the repository named at the end of this prompt.</p>
+<p>Do not run any code, install dependencies, or execute scripts.
+Base your assessment solely on repository contents and documentation.</p>
+<p>This evaluation supports curation and triage, not automated approval.</p>
+<hr>
+<h2>Evaluation Criteria</h2>
+<p>For each category below:</p>
+<ul>
+<li>Assign a score from 1–10</li>
+<li>Provide concise justification</li>
+<li>Explicitly note uncertainty</li>
+<li>Separate red flags from speculation</li>
+</ul>
+<h3>1. Code Quality</h3>
+<p>Assess structure, readability, correctness, and internal consistency.</p>
+<h3>2. Security &amp; Safety</h3>
+<p>Assess risks related to:</p>
+<ul>
+<li>Implicit execution (hooks, background behavior)</li>
+<li>File system access</li>
+<li>Network access</li>
+<li>Credential handling</li>
+<li>Tool escalation or privilege assumptions</li>
+</ul>
+<h3>3. Documentation &amp; Transparency</h3>
+<p>Assess whether documentation accurately describes behavior, discloses side effects, and matches implementation.</p>
+<h3>4. Functionality &amp; Scope</h3>
+<p>Assess whether the repository appears to do what it claims within its stated scope.</p>
+<h3>5. Repository Hygiene &amp; Maintenance</h3>
+<p>Assess signals of care, maintainability, licensing, and publication quality.</p>
+<hr>
+<h2>Claude-Code-Specific Checklist</h2>
+<p>Explicitly answer each item:</p>
+<ul>
+<li>Defines hooks (stop, lifecycle, or similar)</li>
+<li>Hooks execute shell scripts</li>
+<li>Commands invoke shell or external tools</li>
+<li>Writes persistent local state files</li>
+<li>Reads state to control execution flow</li>
+<li>Performs implicit execution without explicit confirmation</li>
+<li>Documents hook or command side effects</li>
+<li>Includes safe defaults</li>
+<li>Includes a clear disable or cancel mechanism</li>
+</ul>
+<p>Briefly explain any checked item.</p>
+<hr>
+<h2>Permissions &amp; Side Effects Analysis</h2>
+<h3>A. Reported / Declared Permissions</h3>
+<p>From documentation or config:</p>
+<ul>
+<li>File system:</li>
+<li>Network:</li>
+<li>Execution / hooks:</li>
+<li>APIs / tools:</li>
+</ul>
+<h3>B. Likely Actual Permissions (Inferred)</h3>
+<p>From static inspection:</p>
+<ul>
+<li>File system:</li>
+<li>Network:</li>
+<li>Execution / hooks:</li>
+<li>APIs / tools:</li>
+</ul>
+<p>Mark items as confirmed, likely, or unclear.</p>
+<h3>C. Discrepancies</h3>
+<p>List mismatches between declared and inferred behavior.</p>
+<hr>
+<h2>Red Flag Scan</h2>
+<p>Check all that apply and justify:</p>
+<ul>
+<li>Malware or spyware indicators</li>
+<li>Undisclosed implicit execution</li>
+<li>Undocumented file or network activity</li>
+<li>Unsupported claims</li>
+<li>Supply-chain or trust risks</li>
+</ul>
+<hr>
+<h2>Overall Assessment</h2>
+<h3>Overall Score</h3>
+<p>Score: X / 10</p>
+<h3>Recommendation</h3>
+<p>Choose one:</p>
+<ul>
+<li>Recommend</li>
+<li>Recommend with caveats</li>
+<li>Needs further manual review</li>
+<li>Definitely reject</li>
+</ul>
+<h3>Fast-Reject Heuristic</h3>
+<p>If &quot;Definitely reject&quot;, specify which applies:</p>
+<ul>
+<li>Clear malicious behavior</li>
+<li>Undisclosed high-risk implicit execution</li>
+<li>Severe claim/behavior mismatch</li>
+<li>Unsafe defaults with no mitigation</li>
+<li>Other (explain)</li>
+</ul>
+<hr>
+<h2>Possible Remedies / Improvement Suggestions</h2>
+<p>If applicable, list specific, minimal changes that could materially improve the submission or change the recommendation (e.g., documentation clarifications, safer defaults, permission scoping).</p>
+<hr>
+<h2>Output Format</h2>
+<p>Use clear section headings corresponding to the sections above.
+Keep the evaluation concise, precise, and evidence-based.</p>
+<hr>
+<p>REPOSITORY:</p>
+<p>IF PRESENT: <REPO>$ARGUMENTS</REPO></p>
+<p>ELSE: The repository you are currently working in.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

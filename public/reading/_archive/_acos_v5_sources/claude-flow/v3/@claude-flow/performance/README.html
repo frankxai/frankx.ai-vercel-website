@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/performance</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/performance/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/performance</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fperformance">performance</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/performance</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/performance"><img src="https://img.shields.io/npm/v/@claude-flow/performance.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/performance"><img src="https://img.shields.io/npm/dm/@claude-flow/performance.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0+-blue.svg" alt="TypeScript"></a>
+<a href="https://vitest.dev/"><img src="https://img.shields.io/badge/Benchmarks-Vitest-green.svg" alt="Benchmarks"></a></p>
+<blockquote>
+<p>Comprehensive performance benchmarking module for Claude Flow V3 - statistical analysis, memory tracking, regression detection, and Flash Attention validation.</p>
+</blockquote>
+<h2>Features</h2>
+<ul>
+<li><strong>Statistical Benchmarking</strong> - Mean, median, P95, P99, standard deviation, outlier removal</li>
+<li><strong>Memory Tracking</strong> - Heap, RSS, external, and array buffer monitoring</li>
+<li><strong>Auto-Calibration</strong> - Automatically adjusts iterations for statistical significance</li>
+<li><strong>Regression Detection</strong> - Compare against baselines with significance testing</li>
+<li><strong>V3 Performance Targets</strong> - Built-in targets for CLI, memory, swarm, and attention</li>
+<li><strong>Flash Attention Validation</strong> - Validate 2.49x-7.47x speedup targets</li>
+<li><strong>Multiple Output Formats</strong> - Console, JSON, and programmatic access</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install @claude-flow/performance
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">import { benchmark, BenchmarkRunner, V3_PERFORMANCE_TARGETS } from &#39;@claude-flow/performance&#39;;
+
+// Single benchmark
+const result = await benchmark(&#39;vector-search&#39;, async () =&gt; {
+  await index.search(queryVector, 10);
+}, {
+  iterations: 100,
+  warmup: 10
+});
+
+console.log(`Mean: ${result.mean}ms, P99: ${result.p99}ms`);
+
+// Check against target
+if (result.mean &lt;= V3_PERFORMANCE_TARGETS[&#39;vector-search&#39;]) {
+  console.log(&#39;Target met!&#39;);
+}
+</code></pre>
+<h2>API Reference</h2>
+<h3>Single Benchmark</h3>
+<pre><code class="language-typescript">import { benchmark } from &#39;@claude-flow/performance&#39;;
+
+const result = await benchmark(
+  &#39;my-benchmark&#39;,
+  async () =&gt; {
+    // Code to benchmark
+    await someOperation();
+  },
+  {
+    iterations: 100,      // Number of iterations
+    warmup: 10,           // Warmup iterations
+    timeout: 30000,       // Timeout per iteration (ms)
+    forceGC: false,       // Force GC between iterations
+    minRuns: 10,          // Minimum runs for significance
+    targetTime: 1000,     // Target time for auto-calibration (ms)
+    metadata: {}          // Custom metadata
+  }
+);
+
+// Result structure
+{
+  name: &#39;my-benchmark&#39;,
+  iterations: 100,
+  mean: 5.23,
+  median: 4.98,
+  p95: 8.12,
+  p99: 12.45,
+  min: 3.21,
+  max: 15.67,
+  stdDev: 1.45,
+  opsPerSecond: 191.20,
+  memoryUsage: { heapUsed, heapTotal, external, arrayBuffers, rss },
+  memoryDelta: 1024000,
+  timestamp: 1704067200000
+}
+</code></pre>
+<h3>Benchmark Suite</h3>
+<pre><code class="language-typescript">import { BenchmarkRunner } from &#39;@claude-flow/performance&#39;;
+
+const runner = new BenchmarkRunner(&#39;Memory Operations&#39;);
+
+// Run individual benchmarks
+await runner.run(&#39;vector-search&#39;, async () =&gt; {
+  await index.search(query, 10);
+});
+
+await runner.run(&#39;memory-write&#39;, async () =&gt; {
+  await store.write(entry);
+});
+
+// Or run all at once
+const suite = await runner.runAll([
+  { name: &#39;search&#39;, fn: () =&gt; search() },
+  { name: &#39;write&#39;, fn: () =&gt; write() },
+  { name: &#39;index&#39;, fn: () =&gt; index() }
+]);
+
+// Print results
+runner.printResults();
+
+// Export as JSON
+const json = runner.toJSON();
+</code></pre>
+<h3>Comparison &amp; Regression Detection</h3>
+<pre><code class="language-typescript">import { compareResults, printComparisonReport } from &#39;@claude-flow/performance&#39;;
+
+// Compare current vs baseline
+const comparisons = compareResults(baselineResults, currentResults, {
+  &#39;vector-search&#39;: 1,      // Target: &lt;1ms
+  &#39;memory-write&#39;: 5,       // Target: &lt;5ms
+  &#39;cli-startup&#39;: 500       // Target: &lt;500ms
+});
+
+// Print formatted report
+printComparisonReport(comparisons);
+
+// Programmatic access
+for (const comp of comparisons) {
+  if (!comp.targetMet) {
+    console.error(`${comp.benchmark} missed target!`);
+  }
+  if (comp.significant &amp;&amp; !comp.improved) {
+    console.warn(`${comp.benchmark} regressed by ${comp.changePercent}%`);
+  }
+}
+</code></pre>
+<h3>V3 Performance Targets</h3>
+<pre><code class="language-typescript">import { V3_PERFORMANCE_TARGETS, meetsTarget } from &#39;@claude-flow/performance&#39;;
+
+// Built-in targets
+V3_PERFORMANCE_TARGETS = {
+  // Startup Performance
+  &#39;cli-cold-start&#39;: 500,        // &lt;500ms (5x faster)
+  &#39;cli-warm-start&#39;: 100,        // &lt;100ms
+  &#39;mcp-server-init&#39;: 400,       // &lt;400ms (4.5x faster)
+  &#39;agent-spawn&#39;: 200,           // &lt;200ms (4x faster)
+
+  // Memory Operations
+  &#39;vector-search&#39;: 1,           // &lt;1ms (150x faster)
+  &#39;hnsw-indexing&#39;: 10,          // &lt;10ms
+  &#39;memory-write&#39;: 5,            // &lt;5ms (10x faster)
+  &#39;cache-hit&#39;: 0.1,             // &lt;0.1ms
+
+  // Swarm Coordination
+  &#39;agent-coordination&#39;: 50,     // &lt;50ms
+  &#39;task-decomposition&#39;: 20,     // &lt;20ms
+  &#39;consensus-latency&#39;: 100,     // &lt;100ms (5x faster)
+  &#39;message-throughput&#39;: 0.1,    // &lt;0.1ms per message
+
+  // SONA Learning
+  &#39;sona-adaptation&#39;: 0.05       // &lt;0.05ms
+};
+
+// Check if target is met
+const { met, target, ratio } = meetsTarget(&#39;vector-search&#39;, 0.8);
+// { met: true, target: 1, ratio: 0.8 }
+</code></pre>
+<h3>Formatting Utilities</h3>
+<pre><code class="language-typescript">import { formatBytes, formatTime } from &#39;@claude-flow/performance&#39;;
+
+formatTime(0.00005);  // &#39;50.00 ns&#39;
+formatTime(0.5);      // &#39;500.00 us&#39;
+formatTime(5);        // &#39;5.00 ms&#39;
+formatTime(5000);     // &#39;5.00 s&#39;
+
+formatBytes(1024);          // &#39;1.00 KB&#39;
+formatBytes(1048576);       // &#39;1.00 MB&#39;
+formatBytes(1073741824);    // &#39;1.00 GB&#39;
+</code></pre>
+<h2>Running Benchmarks</h2>
+<pre><code class="language-bash"># Run all benchmarks
+npm run bench
+
+# Run attention benchmarks
+npm run bench:attention
+
+# Run startup benchmarks
+npm run bench:startup
+</code></pre>
+<h2>Example Benchmark File</h2>
+<pre><code class="language-typescript">// benchmarks/memory.bench.ts
+import { describe, bench } from &#39;vitest&#39;;
+import { HNSWIndex } from &#39;@claude-flow/memory&#39;;
+
+describe(&#39;Memory Benchmarks&#39;, () =&gt; {
+  const index = new HNSWIndex({ dimensions: 1536 });
+
+  bench(&#39;vector-search&#39;, async () =&gt; {
+    await index.search(queryVector, 10);
+  }, { iterations: 1000 });
+
+  bench(&#39;hnsw-indexing&#39;, async () =&gt; {
+    await index.addPoint(id, vector);
+  }, { iterations: 100 });
+});
+</code></pre>
+<h2>TypeScript Types</h2>
+<pre><code class="language-typescript">import type {
+  BenchmarkResult,
+  BenchmarkOptions,
+  BenchmarkSuite,
+  MemoryUsage,
+  EnvironmentInfo,
+  ComparisonResult,
+  PerformanceTarget
+} from &#39;@claude-flow/performance&#39;;
+</code></pre>
+<h2>Dependencies</h2>
+<ul>
+<li><code>@ruvector/attention</code> - Flash Attention implementation</li>
+<li><code>@ruvector/sona</code> - SONA learning engine</li>
+<li><code>vitest</code> - Test/benchmark runner</li>
+</ul>
+<h2>Related Packages</h2>
+<ul>
+<li><a href="../memory">@claude-flow/memory</a> - Memory operations to benchmark</li>
+<li><a href="../swarm">@claude-flow/swarm</a> - Swarm coordination to benchmark</li>
+<li><a href="../neural">@claude-flow/neural</a> - Neural operations to benchmark</li>
+</ul>
+<h2>License</h2>
+<p>MIT</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

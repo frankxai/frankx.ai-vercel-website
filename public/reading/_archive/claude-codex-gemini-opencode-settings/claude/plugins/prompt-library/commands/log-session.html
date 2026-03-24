@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Log Session to Global</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/claude/plugins/prompt-library/commands/log-session.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Log Session to Global</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <a href="../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude">claude</a> / <a href="../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins">plugins</a> / <a href="../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fprompt-library">prompt-library</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fprompt-library%2Fcommands">commands</a> / <span>log-session.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Log session to global AI sessions file - single source of truth across all projects
+thinking: false</h2>
+<h1>Log Session to Global</h1>
+<p><strong>Global Log</strong>: <code>~/docs/AI_GLOBAL_SESSIONS.md</code></p>
+<h2>Usage</h2>
+<p>This command appends a session entry to the global AI sessions log.</p>
+<h3>Quick Log (Automatic)</h3>
+<p>Just say: <strong>&quot;Log this to global&quot;</strong> and I&#39;ll create an entry based on our conversation.</p>
+<h3>Manual Log</h3>
+<p>Provide details:</p>
+<ul>
+<li><strong>Project</strong>: FrankX / Arcanea / Other</li>
+<li><strong>Action</strong>: What was accomplished</li>
+<li><strong>Artifacts</strong>: Files created/modified</li>
+<li><strong>Decisions</strong>: Key choices made</li>
+<li><strong>Next</strong>: Follow-up actions</li>
+</ul>
+<h2>Entry Format</h2>
+<pre><code class="language-markdown">---
+
+## SESSION: [Project] - [Action Description]
+**Project**: [Project Name]
+**Date**: [YYYY-MM-DD HH:MM]
+**Agent**: Claude Code
+
+### Summary
+[Brief description of what was accomplished]
+
+### Artifacts Created
+- `path/to/file.md` - Description
+- `path/to/another.ts` - Description
+
+### Key Decisions
+- **[Decision]**: [Rationale]
+
+### Commands Used
+- `/factory` - Publishing pipeline
+- `npm run qa:check` - Quality validation
+
+### Next Actions
+- [ ] Action item 1
+- [ ] Action item 2
+
+### Notes
+[Any additional context or learnings]
+</code></pre>
+<h2>Project Tags</h2>
+<p>Use consistent project names:</p>
+<ul>
+<li><code>FrankX</code> - FrankX.AI website and products</li>
+<li><code>Arcanea</code> - Arcanea game/world</li>
+<li><code>Oracle</code> - Day job work (careful with NDA)</li>
+<li><code>Personal</code> - Personal projects</li>
+<li><code>Research</code> - Learning and exploration</li>
+</ul>
+<h2>Examples</h2>
+<h3>Factory Publish Session</h3>
+<pre><code class="language-markdown">## SESSION: FrankX - Published AI Content Workflows Article
+**Project**: FrankX
+**Date**: 2026-01-16 14:30
+
+### Summary
+Created and published article on AI content workflows using the Publishing Factory pipeline.
+
+### Artifacts Created
+- `artifacts/ai-workflows/2026-01-16/article.md`
+- `content/blog/ai-workflows.mdx`
+- `data/schemas/ai-workflows-schema.json`
+
+### Key Decisions
+- **Format**: Chose tutorial style over thought leadership for better SEO
+- **Length**: 2,500 words to hit comprehensive coverage
+
+### Commands Used
+- `/factory` - Full pipeline
+- `npm run qa:check` - All gates passed
+
+### Next Actions
+- [ ] Monitor analytics after 48 hours
+- [ ] Create LinkedIn post from distribution angles
+</code></pre>
+<h3>Research Session</h3>
+<pre><code class="language-markdown">## SESSION: Research - Gamified Learning with AI Agents
+**Project**: Research
+**Date**: 2026-01-16 10:00
+
+### Summary
+Explored gamification patterns for AI-powered learning systems.
+
+### Key Insights
+1. XP systems work best with immediate feedback
+2. Skill trees map well to competency frameworks
+3. Social features increase retention 40%
+
+### Next Actions
+- [ ] Draft spec for FrankX learning module
+- [ ] Research existing implementations
+</code></pre>
+<h2>Quick Actions</h2>
+<table>
+<thead>
+<tr>
+<th>Say This</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;Log this session&quot;</td>
+<td>Creates entry from context</td>
+</tr>
+<tr>
+<td>&quot;Log factory publish&quot;</td>
+<td>Creates publish-specific entry</td>
+</tr>
+<tr>
+<td>&quot;Log research findings&quot;</td>
+<td>Creates research entry</td>
+</tr>
+<tr>
+<td>&quot;What did we do today?&quot;</td>
+<td>Reads today&#39;s entries</td>
+</tr>
+<tr>
+<td>&quot;Show FrankX sessions&quot;</td>
+<td>Filters by project</td>
+</tr>
+</tbody></table>
+<h2>Related Commands</h2>
+<ul>
+<li><code>/factory</code> - Publishing pipeline (auto-logs on publish)</li>
+<li><code>/factory-qa</code> - Quality checks</li>
+<li><code>/weekly-recap</code> - Weekly summary generation</li>
+</ul>
+<p><strong>What should I log?</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

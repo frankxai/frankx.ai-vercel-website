@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Create Hook Command</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/slash-commands/create-hook/create-hook.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Create Hook Command</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands">slash-commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands%2Fcreate-hook">create-hook</a> / <span>create-hook.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Create Hook Command</h1>
+<p>Analyze the project, suggest practical hooks, and create them with proper testing.</p>
+<h2>Your Task (/create-hook)</h2>
+<ol>
+<li><strong>Analyze environment</strong> - Detect tooling and existing hooks</li>
+<li><strong>Suggest hooks</strong> - Based on your project configuration</li>
+<li><strong>Configure hook</strong> - Ask targeted questions and create the script</li>
+<li><strong>Test &amp; validate</strong> - Ensure the hook works correctly</li>
+</ol>
+<h2>Your Workflow</h2>
+<h3>1. Environment Analysis &amp; Suggestions</h3>
+<p>Automatically detect the project tooling and suggest relevant hooks:</p>
+<p><strong>When TypeScript is detected (<code>tsconfig.json</code>):</strong></p>
+<ul>
+<li>PostToolUse hook: &quot;Type-check files after editing&quot;</li>
+<li>PreToolUse hook: &quot;Block edits with type errors&quot;</li>
+</ul>
+<p><strong>When Prettier is detected (<code>.prettierrc</code>, <code>prettier.config.js</code>):</strong></p>
+<ul>
+<li>PostToolUse hook: &quot;Auto-format files after editing&quot;</li>
+<li>PreToolUse hook: &quot;Require formatted code&quot;</li>
+</ul>
+<p><strong>When ESLint is detected (<code>.eslintrc.*</code>):</strong></p>
+<ul>
+<li>PostToolUse hook: &quot;Lint and auto-fix after editing&quot;</li>
+<li>PreToolUse hook: &quot;Block commits with linting errors&quot;</li>
+</ul>
+<p><strong>When package.json has scripts:</strong></p>
+<ul>
+<li><code>test</code> script → &quot;Run tests before commits&quot;</li>
+<li><code>build</code> script → &quot;Validate build before commits&quot;</li>
+</ul>
+<p><strong>When a git repository is detected:</strong></p>
+<ul>
+<li>PreToolUse/Bash hook: &quot;Prevent commits with secrets&quot;</li>
+<li>PostToolUse hook: &quot;Security scan on file changes&quot;</li>
+</ul>
+<p><strong>Decision Tree:</strong></p>
+<pre><code>Project has TypeScript? → Suggest type checking hooks
+Project has formatter? → Suggest formatting hooks
+Project has tests? → Suggest test validation hooks
+Security sensitive? → Suggest security hooks
++ Scan for additional patterns and suggest custom hooks based on:
+  - Custom scripts in package.json
+  - Unique file patterns or extensions
+  - Development workflow indicators
+  - Project-specific tooling configurations
+</code></pre>
+<h3>2. Hook Configuration</h3>
+<p>Start by asking: <strong>&quot;What should this hook do?&quot;</strong> and offer relevant suggestions from your analysis.</p>
+<p>Then understand the context from the user&#39;s description and <strong>only ask about details you&#39;re unsure about</strong>:</p>
+<ol>
+<li><p><strong>Trigger timing</strong>: When should it run?</p>
+<ul>
+<li><code>PreToolUse</code>: Before file operations (can block)</li>
+<li><code>PostToolUse</code>: After file operations (feedback/fixes)</li>
+<li><code>UserPromptSubmit</code>: Before processing requests</li>
+<li>Other event types as needed</li>
+</ul>
+</li>
+<li><p><strong>Tool matcher</strong>: Which tools should trigger it? (<code>Write</code>, <code>Edit</code>, <code>Bash</code>, <code>*</code> etc)</p>
+</li>
+<li><p><strong>Scope</strong>: <code>global</code>, <code>project</code>, or <code>project-local</code></p>
+</li>
+<li><p><strong>Response approach</strong>:</p>
+<ul>
+<li><strong>Exit codes only</strong>: Simple (exit 0 = success, exit 2 = block in PreToolUse)</li>
+<li><strong>JSON response</strong>: Advanced control (blocking, context, decisions)</li>
+<li>Guide based on complexity: simple pass/fail → exit codes, rich feedback → JSON</li>
+</ul>
+</li>
+<li><p><strong>Blocking behavior</strong> (if relevant): &quot;Should this stop operations when issues are found?&quot;</p>
+<ul>
+<li>PreToolUse: Can block operations (security, validation)</li>
+<li>PostToolUse: Usually provide feedback only</li>
+</ul>
+</li>
+<li><p><strong>Claude integration</strong> (CRITICAL): &quot;Should Claude Code automatically see and fix issues this hook detects?&quot;</p>
+<ul>
+<li>If YES: Use <code>additionalContext</code> for error communication</li>
+<li>If NO: Use <code>suppressOutput: true</code> for silent operation</li>
+</ul>
+</li>
+<li><p><strong>Context pollution</strong>: &quot;Should successful operations be silent to avoid noise?&quot;</p>
+<ul>
+<li>Recommend YES for formatting, routine checks</li>
+<li>Recommend NO for security alerts, critical errors</li>
+</ul>
+</li>
+<li><p><strong>File filtering</strong>: &quot;What file types should this hook process?&quot;</p>
+</li>
+</ol>
+<h3>3. Hook Creation</h3>
+<p>You should:</p>
+<ul>
+<li><strong>Create hooks directory</strong>: <code>~/.claude/hooks/</code> or <code>.claude/hooks/</code> based on scope</li>
+<li><strong>Generate script</strong>: Create hook script with:<ul>
+<li>Proper shebang and executable permissions</li>
+<li>Project-specific commands (use detected config paths)</li>
+<li>Comments explaining the hook&#39;s purpose</li>
+</ul>
+</li>
+<li><strong>Update settings</strong>: Add hook configuration to appropriate settings.json</li>
+<li><strong>Use absolute paths</strong>: Avoid relative paths to scripts and executables. Use <code>$CLAUDE_PROJECT_DIR</code> to reference project root</li>
+<li><strong>Offer validation</strong>: Ask if the user wants you to test the hook</li>
+</ul>
+<p><strong>Key Implementation Standards:</strong></p>
+<ul>
+<li>Read JSON from stdin (never use argv)</li>
+<li>Use top-level <code>additionalContext</code>/<code>systemMessage</code> for Claude communication</li>
+<li>Include <code>suppressOutput: true</code> for successful operations</li>
+<li>Provide specific error counts and actionable feedback</li>
+<li>Focus on changed files rather than entire codebase</li>
+<li>Support common development workflows</li>
+</ul>
+<p><strong>⚠️ CRITICAL: Input/Output Format</strong></p>
+<p>This is where most hook implementations fail. Pay extra attention to:</p>
+<ul>
+<li><strong>Input</strong>: Reading JSON from stdin correctly (not argv)</li>
+<li><strong>Output</strong>: Using correct top-level JSON structure for Claude communication</li>
+<li><strong>Documentation</strong>: Consulting official docs for exact schemas when in doubt</li>
+</ul>
+<h3>4. Testing &amp; Validation</h3>
+<p><strong>CRITICAL: Test both happy and sad paths:</strong></p>
+<p><strong>Happy Path Testing:</strong></p>
+<ol>
+<li><strong>Test expected success scenario</strong> - Create conditions where hook should pass<ul>
+<li><em>Examples</em>: TypeScript (valid code), Linting (formatted code), Security (safe commands)</li>
+</ul>
+</li>
+</ol>
+<p><strong>Sad Path Testing:</strong> 2. <strong>Test expected failure scenario</strong> - Create conditions where hook should fail/warn</p>
+<ul>
+<li><em>Examples</em>: TypeScript (type errors), Linting (unformatted code), Security (dangerous operations)</li>
+</ul>
+<p><strong>Verification Steps:</strong> 3. <strong>Verify expected behavior</strong>: Check if it blocks/warns/provides context as intended</p>
+<p><strong>Example Testing Process:</strong></p>
+<ul>
+<li>For a hook preventing file deletion: Create a test file, attempt the protected action, and verify the hook prevents it</li>
+</ul>
+<p><strong>If Issues Occur, you should:</strong></p>
+<ul>
+<li>Check hook registration in settings</li>
+<li>Verify script permissions (<code>chmod +x</code>)</li>
+<li>Test with simplified version first</li>
+<li>Debug with detailed hook execution analysis</li>
+</ul>
+<h2>Hook Templates</h2>
+<h3>Type Checking (PostToolUse)</h3>
+<pre><code>#!/usr/bin/env node
+// Read stdin JSON, check .ts/.tsx files only
+// Run: npx tsc --noEmit --pretty
+// Output: JSON with additionalContext for errors
+</code></pre>
+<h3>Auto-formatting (PostToolUse)</h3>
+<pre><code>#!/usr/bin/env node
+// Read stdin JSON, check supported file types
+// Run: npx prettier --write [file]
+// Output: JSON with suppressOutput: true
+</code></pre>
+<h3>Security Scanning (PreToolUse)</h3>
+<pre><code class="language-bash">#!/bin/bash
+# Read stdin JSON, check for secrets/keys
+# Block if dangerous patterns found
+# Exit 2 to block, 0 to continue
+</code></pre>
+<p><em>Complete templates available at: <a href="https://docs.claude.com/en/docs/claude-code/hooks#examples">https://docs.claude.com/en/docs/claude-code/hooks#examples</a></em></p>
+<h2>Quick Reference</h2>
+<p><strong>📖 Official Docs</strong>: <a href="https://docs.claude.com/en/docs/claude-code/hooks.md">https://docs.claude.com/en/docs/claude-code/hooks.md</a></p>
+<p><strong>Common Patterns:</strong></p>
+<ul>
+<li><strong>stdin input</strong>: <code>JSON.parse(process.stdin.read())</code></li>
+<li><strong>File filtering</strong>: Check extensions before processing</li>
+<li><strong>Success response</strong>: <code>{continue: true, suppressOutput: true}</code></li>
+<li><strong>Error response</strong>: <code>{continue: true, additionalContext: &quot;error details&quot;}</code></li>
+<li><strong>Block operation</strong>: <code>exit(2)</code> in PreToolUse hooks</li>
+</ul>
+<p><strong>Hook Types by Use Case:</strong></p>
+<ul>
+<li><strong>Code Quality</strong>: PostToolUse for feedback and fixes</li>
+<li><strong>Security</strong>: PreToolUse to block dangerous operations</li>
+<li><strong>CI/CD</strong>: PreToolUse to validate before commits</li>
+<li><strong>Development</strong>: PostToolUse for automated improvements</li>
+</ul>
+<p><strong>Hook Execution Best Practices:</strong></p>
+<ul>
+<li><strong>Hooks run in parallel</strong> according to official documentation</li>
+<li><strong>Design for independence</strong> since execution order isn&#39;t guaranteed</li>
+<li><strong>Plan hook interactions carefully</strong> when multiple hooks affect the same files</li>
+</ul>
+<h2>Success Criteria</h2>
+<p>✅ <strong>Hook created successfully when:</strong></p>
+<ul>
+<li>Script has executable permissions</li>
+<li>Registered in correct settings.json</li>
+<li>Responds correctly to test scenarios</li>
+<li>Integrates properly with Claude for automated fixes</li>
+<li>Follows project conventions and detected tooling</li>
+</ul>
+<p><strong>Result</strong>: The user gets a working hook that enhances their development workflow with intelligent automation and quality checks.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

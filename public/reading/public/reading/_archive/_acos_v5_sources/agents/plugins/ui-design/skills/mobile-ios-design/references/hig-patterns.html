@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>iOS Human Interface Guidelines Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/mobile-ios-design/references/hig-patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">iOS Human Interface Guidelines Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fmobile-ios-design">mobile-ios-design</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fmobile-ios-design%2Freferences">references</a> / <span>hig-patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>iOS Human Interface Guidelines Patterns</h1>
+<h2>Layout and Spacing</h2>
+<h3>Standard Margins and Padding</h3>
+<pre><code class="language-swift">// System standard margins
+private let standardMargin: CGFloat = 16
+private let compactMargin: CGFloat = 8
+private let largeMargin: CGFloat = 24
+
+// Content insets following HIG
+extension EdgeInsets {
+    static let standard = EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+    static let listRow = EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16)
+    static let card = EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+}
+</code></pre>
+<h3>Safe Area Handling</h3>
+<pre><code class="language-swift">struct SafeAreaAwareView: View {
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: 16) {
+                ForEach(items) { item in
+                    ItemRow(item: item)
+                }
+            }
+            .padding(.horizontal)
+        }
+        .safeAreaInset(edge: .bottom) {
+            // Floating action area
+            HStack {
+                Button(&quot;Cancel&quot;) { }
+                    .buttonStyle(.bordered)
+                Spacer()
+                Button(&quot;Confirm&quot;) { }
+                    .buttonStyle(.borderedProminent)
+            }
+            .padding()
+            .background(.regularMaterial)
+        }
+    }
+}
+</code></pre>
+<h3>Adaptive Layouts</h3>
+<pre><code class="language-swift">struct AdaptiveGridView: View {
+    @Environment(\.horizontalSizeClass) private var sizeClass
+
+    private var columns: [GridItem] {
+        switch sizeClass {
+        case .compact:
+            return [GridItem(.flexible())]
+        case .regular:
+            return [
+                GridItem(.flexible()),
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+        default:
+            return [GridItem(.flexible())]
+        }
+    }
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(items) { item in
+                    ItemCard(item: item)
+                }
+            }
+            .padding()
+        }
+    }
+}
+</code></pre>
+<h2>Typography Hierarchy</h2>
+<h3>System Font Styles</h3>
+<pre><code class="language-swift">// HIG-compliant typography scale
+struct Typography {
+    // Titles
+    static let largeTitle = Font.largeTitle.weight(.bold)      // 34pt bold
+    static let title = Font.title.weight(.semibold)            // 28pt semibold
+    static let title2 = Font.title2.weight(.semibold)          // 22pt semibold
+    static let title3 = Font.title3.weight(.semibold)          // 20pt semibold
+
+    // Headlines and body
+    static let headline = Font.headline                         // 17pt semibold
+    static let body = Font.body                                 // 17pt regular
+    static let callout = Font.callout                          // 16pt regular
+
+    // Supporting text
+    static let subheadline = Font.subheadline                  // 15pt regular
+    static let footnote = Font.footnote                        // 13pt regular
+    static let caption = Font.caption                          // 12pt regular
+    static let caption2 = Font.caption2                        // 11pt regular
+}
+</code></pre>
+<h3>Custom Font with Dynamic Type</h3>
+<pre><code class="language-swift">extension Font {
+    static func customBody(_ name: String) -&gt; Font {
+        .custom(name, size: 17, relativeTo: .body)
+    }
+
+    static func customHeadline(_ name: String) -&gt; Font {
+        .custom(name, size: 17, relativeTo: .headline)
+            .weight(.semibold)
+    }
+}
+
+// Usage
+Text(&quot;Custom styled text&quot;)
+    .font(.customBody(&quot;Avenir Next&quot;))
+</code></pre>
+<h2>Color System</h2>
+<h3>Semantic Colors</h3>
+<pre><code class="language-swift">// Use semantic colors for automatic light/dark mode support
+extension Color {
+    // Labels
+    static let primaryLabel = Color.primary
+    static let secondaryLabel = Color.secondary
+    static let tertiaryLabel = Color(uiColor: .tertiaryLabel)
+
+    // Backgrounds
+    static let systemBackground = Color(uiColor: .systemBackground)
+    static let secondaryBackground = Color(uiColor: .secondarySystemBackground)
+    static let groupedBackground = Color(uiColor: .systemGroupedBackground)
+
+    // Fills
+    static let primaryFill = Color(uiColor: .systemFill)
+    static let secondaryFill = Color(uiColor: .secondarySystemFill)
+
+    // Separators
+    static let separator = Color(uiColor: .separator)
+    static let opaqueSeparator = Color(uiColor: .opaqueSeparator)
+}
+</code></pre>
+<h3>Tint Colors</h3>
+<pre><code class="language-swift">// App-wide tint color
+struct AppColors {
+    static let primary = Color.blue
+    static let secondary = Color.purple
+    static let success = Color.green
+    static let warning = Color.orange
+    static let error = Color.red
+
+    // Semantic tints
+    static let interactive = Color.accentColor
+    static let destructive = Color.red
+}
+
+// Apply tint to views
+ContentView()
+    .tint(AppColors.primary)
+</code></pre>
+<h2>Navigation Patterns</h2>
+<h3>Hierarchical Navigation</h3>
+<pre><code class="language-swift">struct MasterDetailView: View {
+    @State private var selectedItem: Item?
+    @Environment(\.horizontalSizeClass) private var sizeClass
+
+    var body: some View {
+        NavigationSplitView {
+            // Sidebar
+            List(items, selection: $selectedItem) { item in
+                NavigationLink(value: item) {
+                    ItemRow(item: item)
+                }
+            }
+            .navigationTitle(&quot;Items&quot;)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(&quot;Add&quot;, systemImage: &quot;plus&quot;) { }
+                }
+            }
+        } detail: {
+            // Detail view
+            if let item = selectedItem {
+                ItemDetailView(item: item)
+            } else {
+                ContentUnavailableView(
+                    &quot;Select an Item&quot;,
+                    systemImage: &quot;sidebar.leading&quot;
+                )
+            }
+        }
+        .navigationSplitViewStyle(.balanced)
+    }
+}
+</code></pre>
+<h3>Tab-Based Navigation</h3>
+<pre><code class="language-swift">struct MainTabView: View {
+    @State private var selectedTab: Tab = .home
+
+    enum Tab: String, CaseIterable {
+        case home, explore, notifications, profile
+
+        var title: String {
+            rawValue.capitalized
+        }
+
+        var systemImage: String {
+            switch self {
+            case .home: return &quot;house&quot;
+            case .explore: return &quot;magnifyingglass&quot;
+            case .notifications: return &quot;bell&quot;
+            case .profile: return &quot;person&quot;
+            }
+        }
+    }
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            ForEach(Tab.allCases, id: \.self) { tab in
+                NavigationStack {
+                    tabContent(for: tab)
+                }
+                .tabItem {
+                    Label(tab.title, systemImage: tab.systemImage)
+                }
+                .tag(tab)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func tabContent(for tab: Tab) -&gt; some View {
+        switch tab {
+        case .home:
+            HomeView()
+        case .explore:
+            ExploreView()
+        case .notifications:
+            NotificationsView()
+        case .profile:
+            ProfileView()
+        }
+    }
+}
+</code></pre>
+<h2>Toolbar Patterns</h2>
+<h3>Standard Toolbar Items</h3>
+<pre><code class="language-swift">struct ContentView: View {
+    @State private var isEditing = false
+
+    var body: some View {
+        NavigationStack {
+            List { /* content */ }
+            .navigationTitle(&quot;Items&quot;)
+            .toolbar {
+                // Leading items
+                ToolbarItem(placement: .topBarLeading) {
+                    EditButton()
+                }
+
+                // Trailing items
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button(&quot;Filter&quot;, systemImage: &quot;line.3.horizontal.decrease.circle&quot;) { }
+                    Button(&quot;Add&quot;, systemImage: &quot;plus&quot;) { }
+                }
+
+                // Bottom bar
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Button(&quot;Archive&quot;, systemImage: &quot;archivebox&quot;) { }
+                    Spacer()
+                    Text(&quot;\(itemCount) items&quot;)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Button(&quot;Share&quot;, systemImage: &quot;square.and.arrow.up&quot;) { }
+                }
+            }
+            .toolbarBackground(.visible, for: .bottomBar)
+        }
+    }
+}
+</code></pre>
+<h3>Search Integration</h3>
+<pre><code class="language-swift">struct SearchableView: View {
+    @State private var searchText = &quot;&quot;
+    @State private var searchScope: SearchScope = .all
+    @State private var isSearching = false
+
+    enum SearchScope: String, CaseIterable {
+        case all, titles, content
+    }
+
+    var body: some View {
+        NavigationStack {
+            List(filteredItems) { item in
+                ItemRow(item: item)
+            }
+            .navigationTitle(&quot;Library&quot;)
+            .searchable(
+                text: $searchText,
+                isPresented: $isSearching,
+                placement: .navigationBarDrawer(displayMode: .always)
+            )
+            .searchScopes($searchScope) {
+                ForEach(SearchScope.allCases, id: \.self) { scope in
+                    Text(scope.rawValue.capitalized).tag(scope)
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<h2>Feedback Patterns</h2>
+<h3>Haptic Feedback</h3>
+<pre><code class="language-swift">struct HapticFeedback {
+    static func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle = .medium) {
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.impactOccurred()
+    }
+
+    static func notification(_ type: UINotificationFeedbackGenerator.FeedbackType) {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(type)
+    }
+
+    static func selection() {
+        let generator = UISelectionFeedbackGenerator()
+        generator.selectionChanged()
+    }
+}
+
+// Usage
+Button(&quot;Submit&quot;) {
+    HapticFeedback.notification(.success)
+    submit()
+}
+</code></pre>
+<h3>Visual Feedback</h3>
+<pre><code class="language-swift">struct FeedbackButton: View {
+    let title: String
+    let action: () -&gt; Void
+
+    @State private var showSuccess = false
+
+    var body: some View {
+        Button(title) {
+            action()
+            withAnimation {
+                showSuccess = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation {
+                    showSuccess = false
+                }
+            }
+        }
+        .overlay(alignment: .trailing) {
+            if showSuccess {
+                Image(systemName: &quot;checkmark.circle.fill&quot;)
+                    .foregroundStyle(.green)
+                    .transition(.scale.combined(with: .opacity))
+            }
+        }
+    }
+}
+</code></pre>
+<h2>Accessibility</h2>
+<h3>VoiceOver Support</h3>
+<pre><code class="language-swift">struct AccessibleCard: View {
+    let item: Item
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(item.title)
+                .font(.headline)
+            Text(item.subtitle)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            HStack {
+                Image(systemName: &quot;star.fill&quot;)
+                Text(&quot;\(item.rating, specifier: &quot;%.1f&quot;)&quot;)
+            }
+        }
+        .padding()
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(&quot;\(item.title), \(item.subtitle)&quot;)
+        .accessibilityValue(&quot;Rating: \(item.rating) stars&quot;)
+        .accessibilityHint(&quot;Double tap to view details&quot;)
+        .accessibilityAddTraits(.isButton)
+    }
+}
+</code></pre>
+<h3>Dynamic Type Support</h3>
+<pre><code class="language-swift">struct DynamicTypeView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    var body: some View {
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                // Stack vertically for accessibility sizes
+                VStack(alignment: .leading, spacing: 12) {
+                    leadingContent
+                    trailingContent
+                }
+            } else {
+                // Side-by-side for standard sizes
+                HStack {
+                    leadingContent
+                    Spacer()
+                    trailingContent
+                }
+            }
+        }
+    }
+
+    var leadingContent: some View {
+        Label(&quot;Items&quot;, systemImage: &quot;folder&quot;)
+    }
+
+    var trailingContent: some View {
+        Text(&quot;12&quot;)
+            .foregroundStyle(.secondary)
+    }
+}
+</code></pre>
+<h2>Error Handling UI</h2>
+<h3>Error States</h3>
+<pre><code class="language-swift">struct ErrorView: View {
+    let error: Error
+    let retryAction: () async -&gt; Void
+
+    var body: some View {
+        ContentUnavailableView {
+            Label(&quot;Unable to Load&quot;, systemImage: &quot;exclamationmark.triangle&quot;)
+        } description: {
+            Text(error.localizedDescription)
+        } actions: {
+            Button(&quot;Try Again&quot;) {
+                Task {
+                    await retryAction()
+                }
+            }
+            .buttonStyle(.borderedProminent)
+        }
+    }
+}
+</code></pre>
+<h3>Empty States</h3>
+<pre><code class="language-swift">struct EmptyStateView: View {
+    let title: String
+    let description: String
+    let systemImage: String
+    let action: (() -&gt; Void)?
+    let actionTitle: String?
+
+    var body: some View {
+        ContentUnavailableView {
+            Label(title, systemImage: systemImage)
+        } description: {
+            Text(description)
+        } actions: {
+            if let action, let actionTitle {
+                Button(actionTitle, action: action)
+                    .buttonStyle(.borderedProminent)
+            }
+        }
+    }
+}
+
+// Usage
+EmptyStateView(
+    title: &quot;No Photos&quot;,
+    description: &quot;Take your first photo to get started.&quot;,
+    systemImage: &quot;camera&quot;,
+    action: { showCamera = true },
+    actionTitle: &quot;Take Photo&quot;
+)
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Demo Scripts</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/03-demos/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Demo Scripts</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F03-demos">03-demos</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Demo Scripts</h1>
+<p>Interactive demonstrations showing Claude Flow creating various applications through the swarm system.</p>
+<h2>Directory Structure</h2>
+<pre><code>03-demos/
+├── quick/          # Fast demos (&lt; 2 minutes)
+├── interactive/    # User-interactive demos
+├── swarm/          # Multi-agent swarm demos
+├── api-creation/   # API-specific demos
+├── create-swarm-sample.sh    # Original note app demo
+├── demo-swarm-app.sh         # Original weather app demo
+├── rest-api-demo.sh          # Original REST API demo
+└── swarm-showcase.sh         # Original task manager demo
+</code></pre>
+<h2>Demo Categories</h2>
+<h3>Quick Demos (<code>quick/</code>)</h3>
+<ul>
+<li><strong>quick-api-demo.sh</strong>: Create a TODO API in under 2 minutes<pre><code class="language-bash">cd examples/03-demos/quick
+./quick-api-demo.sh
+</code></pre>
+</li>
+</ul>
+<h3>Interactive Demos (<code>interactive/</code>)</h3>
+<ul>
+<li><strong>chat-bot-demo.sh</strong>: Build a customized chat bot with user input<pre><code class="language-bash">cd examples/03-demos/interactive
+./chat-bot-demo.sh
+</code></pre>
+</li>
+</ul>
+<h3>Swarm Demos (<code>swarm/</code>)</h3>
+<ul>
+<li><strong>multi-agent-demo.sh</strong>: Watch 5 agents build a real-time dashboard<pre><code class="language-bash">cd examples/03-demos/swarm
+./multi-agent-demo.sh
+</code></pre>
+</li>
+</ul>
+<h2>Original Demos</h2>
+<h3>create-swarm-sample.sh</h3>
+<p><strong>Creates a note-taking CLI application</strong> (929 lines)</p>
+<ul>
+<li>Full CRUD operations for notes</li>
+<li>Categories and search functionality</li>
+<li>Complete test suite</li>
+</ul>
+<h3>demo-swarm-app.sh</h3>
+<p><strong>Weather CLI application demo</strong> (407 lines)</p>
+<ul>
+<li>Simulates swarm creating a weather app</li>
+<li>Shows agent coordination</li>
+<li>Creates working application</li>
+</ul>
+<h3>rest-api-demo.sh</h3>
+<p><strong>REST API creation demo</strong> (342 lines)</p>
+<ul>
+<li>Express.js API with CRUD endpoints</li>
+<li>Database integration</li>
+<li>API documentation</li>
+</ul>
+<h3>swarm-showcase.sh</h3>
+<p><strong>Task manager application</strong> (407 lines)</p>
+<ul>
+<li>Complete feature showcase</li>
+<li>Priority management</li>
+<li>Export/import functionality</li>
+</ul>
+<h2>Running Demos</h2>
+<p>All demos are executable shell scripts:</p>
+<pre><code class="language-bash"># Basic execution
+./create-swarm-sample.sh
+
+# See what&#39;s created
+./demo-swarm-app.sh &amp;&amp; ls -la output/
+
+# Watch the process
+./rest-api-demo.sh --verbose
+</code></pre>
+<h2>What Demos Show</h2>
+<ol>
+<li><p><strong>Swarm Initialization</strong></p>
+<ul>
+<li>Creating swarm with objective</li>
+<li>Agent assignment</li>
+<li>Task decomposition</li>
+</ul>
+</li>
+<li><p><strong>Agent Coordination</strong></p>
+<ul>
+<li>Parallel task execution</li>
+<li>Information sharing</li>
+<li>Quality verification</li>
+</ul>
+</li>
+<li><p><strong>Code Generation</strong></p>
+<ul>
+<li>Main application code</li>
+<li>Test suites</li>
+<li>Documentation</li>
+<li>Configuration files</li>
+</ul>
+</li>
+<li><p><strong>Output Structure</strong></p>
+<ul>
+<li>Professional file organization</li>
+<li>Complete package setup</li>
+<li>Ready-to-run applications</li>
+</ul>
+</li>
+</ol>
+<h2>Demo Features</h2>
+<ul>
+<li><strong>Live Progress</strong>: Watch agents work in real-time</li>
+<li><strong>Quality Output</strong>: Production-ready code</li>
+<li><strong>Best Practices</strong>: Follows coding standards</li>
+<li><strong>Complete Apps</strong>: Not just snippets, full applications</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

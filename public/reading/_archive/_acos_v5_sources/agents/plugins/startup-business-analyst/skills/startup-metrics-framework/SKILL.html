@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Startup Metrics Framework</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/startup-business-analyst/skills/startup-metrics-framework/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Startup Metrics Framework</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst">startup-business-analyst</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst%2Fskills%2Fstartup-metrics-framework">startup-metrics-framework</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: startup-metrics-framework
+description: This skill should be used when the user asks about &quot;key startup metrics&quot;, &quot;SaaS metrics&quot;, &quot;CAC and LTV&quot;, &quot;unit economics&quot;, &quot;burn multiple&quot;, &quot;rule of 40&quot;, &quot;marketplace metrics&quot;, or requests guidance on tracking and optimizing business performance metrics.
+version: 1.0.0</h2>
+<h1>Startup Metrics Framework</h1>
+<p>Comprehensive guide to tracking, calculating, and optimizing key performance metrics for different startup business models from seed through Series A.</p>
+<h2>Overview</h2>
+<p>Track the right metrics at the right stage. Focus on unit economics, growth efficiency, and cash management metrics that matter for fundraising and operational excellence.</p>
+<h2>Universal Startup Metrics</h2>
+<h3>Revenue Metrics</h3>
+<p><strong>MRR (Monthly Recurring Revenue)</strong></p>
+<pre><code>MRR = Σ (Active Subscriptions × Monthly Price)
+</code></pre>
+<p><strong>ARR (Annual Recurring Revenue)</strong></p>
+<pre><code>ARR = MRR × 12
+</code></pre>
+<p><strong>Growth Rate</strong></p>
+<pre><code>MoM Growth = (This Month MRR - Last Month MRR) / Last Month MRR
+YoY Growth = (This Year ARR - Last Year ARR) / Last Year ARR
+</code></pre>
+<p><strong>Target Benchmarks:</strong></p>
+<ul>
+<li>Seed stage: 15-20% MoM growth</li>
+<li>Series A: 10-15% MoM growth, 3-5x YoY</li>
+<li>Series B+: 100%+ YoY (Rule of 40)</li>
+</ul>
+<h3>Unit Economics</h3>
+<p><strong>CAC (Customer Acquisition Cost)</strong></p>
+<pre><code>CAC = Total S&amp;M Spend / New Customers Acquired
+</code></pre>
+<p>Include: Sales salaries, marketing spend, tools, overhead</p>
+<p><strong>LTV (Lifetime Value)</strong></p>
+<pre><code>LTV = ARPU × Gross Margin% × (1 / Churn Rate)
+</code></pre>
+<p>Simplified:</p>
+<pre><code>LTV = ARPU × Average Customer Lifetime × Gross Margin%
+</code></pre>
+<p><strong>LTV:CAC Ratio</strong></p>
+<pre><code>LTV:CAC = LTV / CAC
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>LTV:CAC &gt; 3.0 = Healthy</li>
+<li>LTV:CAC 1.0-3.0 = Needs improvement</li>
+<li>LTV:CAC &lt; 1.0 = Unsustainable</li>
+</ul>
+<p><strong>CAC Payback Period</strong></p>
+<pre><code>CAC Payback = CAC / (ARPU × Gross Margin%)
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>&lt; 12 months = Excellent</li>
+<li>12-18 months = Good</li>
+<li><blockquote>
+<p>24 months = Concerning</p>
+</blockquote>
+</li>
+</ul>
+<h3>Cash Efficiency Metrics</h3>
+<p><strong>Burn Rate</strong></p>
+<pre><code>Monthly Burn = Monthly Revenue - Monthly Expenses
+</code></pre>
+<p>Negative burn = losing money (typical early-stage)</p>
+<p><strong>Runway</strong></p>
+<pre><code>Runway (months) = Cash Balance / Monthly Burn Rate
+</code></pre>
+<p><strong>Target:</strong> Always maintain 12-18 months runway</p>
+<p><strong>Burn Multiple</strong></p>
+<pre><code>Burn Multiple = Net Burn / Net New ARR
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>&lt; 1.0 = Exceptional efficiency</li>
+<li>1.0-1.5 = Good</li>
+<li>1.5-2.0 = Acceptable</li>
+<li><blockquote>
+<p>2.0 = Inefficient</p>
+</blockquote>
+</li>
+</ul>
+<p>Lower is better (spending less to generate ARR)</p>
+<h2>SaaS Metrics</h2>
+<h3>Revenue Composition</h3>
+<p><strong>New MRR</strong>
+New customers × ARPU</p>
+<p><strong>Expansion MRR</strong>
+Upsells and cross-sells from existing customers</p>
+<p><strong>Contraction MRR</strong>
+Downgrades from existing customers</p>
+<p><strong>Churned MRR</strong>
+Lost customers</p>
+<p><strong>Net New MRR Formula:</strong></p>
+<pre><code>Net New MRR = New MRR + Expansion MRR - Contraction MRR - Churned MRR
+</code></pre>
+<h3>Retention Metrics</h3>
+<p><strong>Logo Retention</strong></p>
+<pre><code>Logo Retention = (Customers End - New Customers) / Customers Start
+</code></pre>
+<p><strong>Dollar Retention (NDR - Net Dollar Retention)</strong></p>
+<pre><code>NDR = (ARR Start + Expansion - Contraction - Churn) / ARR Start
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>NDR &gt; 120% = Best-in-class</li>
+<li>NDR 100-120% = Good</li>
+<li>NDR &lt; 100% = Needs work</li>
+</ul>
+<p><strong>Gross Retention</strong></p>
+<pre><code>Gross Retention = (ARR Start - Churn - Contraction) / ARR Start
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li><blockquote>
+<p>90% = Excellent</p>
+</blockquote>
+</li>
+<li>85-90% = Good</li>
+<li>&lt; 85% = Concerning</li>
+</ul>
+<h3>SaaS-Specific Metrics</h3>
+<p><strong>Magic Number</strong></p>
+<pre><code>Magic Number = Net New ARR (quarter) / S&amp;M Spend (prior quarter)
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li><blockquote>
+<p>0.75 = Efficient, ready to scale</p>
+</blockquote>
+</li>
+<li>0.5-0.75 = Moderate efficiency</li>
+<li>&lt; 0.5 = Inefficient, don&#39;t scale yet</li>
+</ul>
+<p><strong>Rule of 40</strong></p>
+<pre><code>Rule of 40 = Revenue Growth Rate% + Profit Margin%
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li><blockquote>
+<p>40% = Excellent</p>
+</blockquote>
+</li>
+<li>20-40% = Acceptable</li>
+<li>&lt; 20% = Needs improvement</li>
+</ul>
+<p><strong>Example:</strong>
+50% growth + (10%) margin = 40% ✓</p>
+<p><strong>Quick Ratio</strong></p>
+<pre><code>Quick Ratio = (New MRR + Expansion MRR) / (Churned MRR + Contraction MRR)
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li><blockquote>
+<p>4.0 = Healthy growth</p>
+</blockquote>
+</li>
+<li>2.0-4.0 = Moderate</li>
+<li>&lt; 2.0 = Churn problem</li>
+</ul>
+<h2>Marketplace Metrics</h2>
+<h3>GMV (Gross Merchandise Value)</h3>
+<p><strong>Total Transaction Volume:</strong></p>
+<pre><code>GMV = Σ (Transaction Value)
+</code></pre>
+<p><strong>Growth Rate:</strong></p>
+<pre><code>GMV Growth Rate = (Current Period GMV - Prior Period GMV) / Prior Period GMV
+</code></pre>
+<p><strong>Target:</strong> 20%+ MoM early-stage</p>
+<h3>Take Rate</h3>
+<pre><code>Take Rate = Net Revenue / GMV
+</code></pre>
+<p><strong>Typical Ranges:</strong></p>
+<ul>
+<li>Payment processors: 2-3%</li>
+<li>E-commerce marketplaces: 10-20%</li>
+<li>Service marketplaces: 15-25%</li>
+<li>High-value B2B: 5-15%</li>
+</ul>
+<h3>Marketplace Liquidity</h3>
+<p><strong>Time to Transaction</strong>
+How long from listing to sale/match?</p>
+<p><strong>Fill Rate</strong>
+% of requests that result in transaction</p>
+<p><strong>Repeat Rate</strong>
+% of users who transact multiple times</p>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>Fill rate &gt; 80% = Strong liquidity</li>
+<li>Repeat rate &gt; 60% = Strong retention</li>
+</ul>
+<h3>Marketplace Balance</h3>
+<p><strong>Supply/Demand Ratio:</strong>
+Track relative growth of supply and demand sides.</p>
+<p><strong>Warning Signs:</strong></p>
+<ul>
+<li>Too much supply: Low fill rates, frustrated suppliers</li>
+<li>Too much demand: Long wait times, frustrated customers</li>
+</ul>
+<p><strong>Goal:</strong> Balanced growth (1:1 ratio ideal, but varies by model)</p>
+<h2>Consumer/Mobile Metrics</h2>
+<h3>Engagement Metrics</h3>
+<p><strong>DAU (Daily Active Users)</strong>
+Unique users active each day</p>
+<p><strong>MAU (Monthly Active Users)</strong>
+Unique users active each month</p>
+<p><strong>DAU/MAU Ratio</strong></p>
+<pre><code>DAU/MAU = DAU / MAU
+</code></pre>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li><blockquote>
+<p>50% = Exceptional (daily habit)</p>
+</blockquote>
+</li>
+<li>20-50% = Good</li>
+<li>&lt; 20% = Weak engagement</li>
+</ul>
+<p><strong>Session Frequency</strong>
+Average sessions per user per day/week</p>
+<p><strong>Session Duration</strong>
+Average time spent per session</p>
+<h3>Retention Curves</h3>
+<p><strong>Day 1 Retention:</strong> % users who return next day
+<strong>Day 7 Retention:</strong> % users active 7 days after signup
+<strong>Day 30 Retention:</strong> % users active 30 days after signup</p>
+<p><strong>Benchmarks (Day 30):</strong></p>
+<ul>
+<li><blockquote>
+<p>40% = Excellent</p>
+</blockquote>
+</li>
+<li>25-40% = Good</li>
+<li>&lt; 25% = Weak</li>
+</ul>
+<p><strong>Retention Curve Shape:</strong></p>
+<ul>
+<li>Flattening curve = good (users becoming habitual)</li>
+<li>Steep decline = poor product-market fit</li>
+</ul>
+<h3>Viral Coefficient (K-Factor)</h3>
+<pre><code>K-Factor = Invites per User × Invite Conversion Rate
+</code></pre>
+<p><strong>Example:</strong>
+10 invites/user × 20% conversion = 2.0 K-factor</p>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>K &gt; 1.0 = Viral growth</li>
+<li>K = 0.5-1.0 = Strong referrals</li>
+<li>K &lt; 0.5 = Weak virality</li>
+</ul>
+<h2>B2B Metrics</h2>
+<h3>Sales Efficiency</h3>
+<p><strong>Win Rate</strong></p>
+<pre><code>Win Rate = Deals Won / Total Opportunities
+</code></pre>
+<p><strong>Target:</strong> 20-30% for new sales team, 30-40% mature</p>
+<p><strong>Sales Cycle Length</strong>
+Average days from opportunity to close</p>
+<p><strong>Shorter is better:</strong></p>
+<ul>
+<li>SMB: 30-60 days</li>
+<li>Mid-market: 60-120 days</li>
+<li>Enterprise: 120-270 days</li>
+</ul>
+<p><strong>Average Contract Value (ACV)</strong></p>
+<pre><code>ACV = Total Contract Value / Contract Length (years)
+</code></pre>
+<h3>Pipeline Metrics</h3>
+<p><strong>Pipeline Coverage</strong></p>
+<pre><code>Pipeline Coverage = Total Pipeline Value / Quota
+</code></pre>
+<p><strong>Target:</strong> 3-5x coverage (3-5x pipeline needed to hit quota)</p>
+<p><strong>Conversion Rates by Stage:</strong></p>
+<ul>
+<li>Lead → Opportunity: 10-20%</li>
+<li>Opportunity → Demo: 50-70%</li>
+<li>Demo → Proposal: 30-50%</li>
+<li>Proposal → Close: 20-40%</li>
+</ul>
+<h2>Metrics by Stage</h2>
+<h3>Pre-Seed (Product-Market Fit)</h3>
+<p><strong>Focus Metrics:</strong></p>
+<ol>
+<li>Active users growth</li>
+<li>User retention (Day 7, Day 30)</li>
+<li>Core engagement (sessions, features used)</li>
+<li>Qualitative feedback (NPS, interviews)</li>
+</ol>
+<p><strong>Don&#39;t worry about:</strong></p>
+<ul>
+<li>Revenue (may be zero)</li>
+<li>CAC (not optimizing yet)</li>
+<li>Unit economics</li>
+</ul>
+<h3>Seed ($500K-$2M ARR)</h3>
+<p><strong>Focus Metrics:</strong></p>
+<ol>
+<li>MRR growth rate (15-20% MoM)</li>
+<li>CAC and LTV (establish baseline)</li>
+<li>Gross retention (&gt; 85%)</li>
+<li>Core product engagement</li>
+</ol>
+<p><strong>Start tracking:</strong></p>
+<ul>
+<li>Sales efficiency</li>
+<li>Burn rate and runway</li>
+</ul>
+<h3>Series A ($2M-$10M ARR)</h3>
+<p><strong>Focus Metrics:</strong></p>
+<ol>
+<li>ARR growth (3-5x YoY)</li>
+<li>Unit economics (LTV:CAC &gt; 3, payback &lt; 18 months)</li>
+<li>Net dollar retention (&gt; 100%)</li>
+<li>Burn multiple (&lt; 2.0)</li>
+<li>Magic number (&gt; 0.5)</li>
+</ol>
+<p><strong>Mature tracking:</strong></p>
+<ul>
+<li>Rule of 40</li>
+<li>Sales efficiency</li>
+<li>Pipeline coverage</li>
+</ul>
+<h2>Metric Tracking Best Practices</h2>
+<h3>Data Infrastructure</h3>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>Single source of truth (analytics platform)</li>
+<li>Real-time or daily updates</li>
+<li>Automated calculations</li>
+<li>Historical tracking</li>
+</ul>
+<p><strong>Tools:</strong></p>
+<ul>
+<li>Mixpanel, Amplitude (product analytics)</li>
+<li>ChartMogul, Baremetrics (SaaS metrics)</li>
+<li>Looker, Tableau (BI dashboards)</li>
+</ul>
+<h3>Reporting Cadence</h3>
+<p><strong>Daily:</strong></p>
+<ul>
+<li>MRR, active users</li>
+<li>Sign-ups, conversions</li>
+</ul>
+<p><strong>Weekly:</strong></p>
+<ul>
+<li>Growth rates</li>
+<li>Retention cohorts</li>
+<li>Sales pipeline</li>
+</ul>
+<p><strong>Monthly:</strong></p>
+<ul>
+<li>Full metric suite</li>
+<li>Board reporting</li>
+<li>Investor updates</li>
+</ul>
+<p><strong>Quarterly:</strong></p>
+<ul>
+<li>Trend analysis</li>
+<li>Benchmarking</li>
+<li>Strategy review</li>
+</ul>
+<h3>Common Mistakes</h3>
+<p><strong>Mistake 1: Vanity Metrics</strong>
+Don&#39;t focus on:</p>
+<ul>
+<li>Total users (without retention)</li>
+<li>Page views (without engagement)</li>
+<li>Downloads (without activation)</li>
+</ul>
+<p>Focus on actionable metrics tied to value.</p>
+<p><strong>Mistake 2: Too Many Metrics</strong>
+Track 5-7 core metrics intensely, not 50 loosely.</p>
+<p><strong>Mistake 3: Ignoring Unit Economics</strong>
+CAC and LTV are critical even at seed stage.</p>
+<p><strong>Mistake 4: Not Segmenting</strong>
+Break down metrics by customer segment, channel, cohort.</p>
+<p><strong>Mistake 5: Gaming Metrics</strong>
+Optimize for real business outcomes, not dashboard numbers.</p>
+<h2>Investor Metrics</h2>
+<h3>What VCs Want to See</h3>
+<p><strong>Seed Round:</strong></p>
+<ul>
+<li>MRR growth rate</li>
+<li>User retention</li>
+<li>Early unit economics</li>
+<li>Product engagement</li>
+</ul>
+<p><strong>Series A:</strong></p>
+<ul>
+<li>ARR and growth rate</li>
+<li>CAC payback &lt; 18 months</li>
+<li>LTV:CAC &gt; 3.0</li>
+<li>Net dollar retention &gt; 100%</li>
+<li>Burn multiple &lt; 2.0</li>
+</ul>
+<p><strong>Series B+:</strong></p>
+<ul>
+<li>Rule of 40 &gt; 40%</li>
+<li>Efficient growth (magic number)</li>
+<li>Path to profitability</li>
+<li>Market leadership metrics</li>
+</ul>
+<h3>Metric Presentation</h3>
+<p><strong>Dashboard Format:</strong></p>
+<pre><code>Current MRR: $250K (↑ 18% MoM)
+ARR: $3.0M (↑ 280% YoY)
+CAC: $1,200 | LTV: $4,800 | LTV:CAC = 4.0x
+NDR: 112% | Logo Retention: 92%
+Burn: $180K/mo | Runway: 18 months
+</code></pre>
+<p><strong>Include:</strong></p>
+<ul>
+<li>Current value</li>
+<li>Growth rate or trend</li>
+<li>Context (target, benchmark)</li>
+</ul>
+<h2>Additional Resources</h2>
+<h3>Reference Files</h3>
+<ul>
+<li><strong><code>references/metric-definitions.md</code></strong> - Complete definitions and formulas for 50+ metrics</li>
+<li><strong><code>references/benchmarks-by-stage.md</code></strong> - Target ranges for each metric by company stage</li>
+<li><strong><code>references/calculation-examples.md</code></strong> - Step-by-step calculation examples</li>
+</ul>
+<h3>Example Files</h3>
+<ul>
+<li><strong><code>examples/saas-metrics-dashboard.md</code></strong> - Complete metrics suite for B2B SaaS company</li>
+<li><strong><code>examples/marketplace-metrics.md</code></strong> - Marketplace-specific metrics with examples</li>
+<li><strong><code>examples/investor-metrics-deck.md</code></strong> - How to present metrics for fundraising</li>
+</ul>
+<h2>Quick Start</h2>
+<p>To implement startup metrics framework:</p>
+<ol>
+<li><strong>Identify business model</strong> - SaaS, marketplace, consumer, B2B</li>
+<li><strong>Choose 5-7 core metrics</strong> - Based on stage and model</li>
+<li><strong>Establish tracking</strong> - Set up analytics and dashboards</li>
+<li><strong>Calculate unit economics</strong> - CAC, LTV, payback</li>
+<li><strong>Set targets</strong> - Use benchmarks for goals</li>
+<li><strong>Review regularly</strong> - Weekly for core metrics</li>
+<li><strong>Share with team</strong> - Align on goals and progress</li>
+<li><strong>Update investors</strong> - Monthly/quarterly reporting</li>
+</ol>
+<p>For detailed definitions, benchmarks, and examples, see <code>references/</code> and <code>examples/</code>.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

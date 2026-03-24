@@ -1,0 +1,799 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Advanced Plugin Example</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/plugin-dev/skills/plugin-structure/examples/advanced-plugin.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Advanced Plugin Example</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>advanced-plugin.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <h1>Advanced Plugin Example</h1>
+<p>A complex, enterprise-grade plugin with MCP integration and advanced organization.</p>
+<h2>Directory Structure</h2>
+<pre><code>enterprise-devops/
+├── .claude-plugin/
+│   └── plugin.json
+├── commands/
+│   ├── ci/
+│   │   ├── build.md
+│   │   ├── test.md
+│   │   └── deploy.md
+│   ├── monitoring/
+│   │   ├── status.md
+│   │   └── logs.md
+│   └── admin/
+│       ├── configure.md
+│       └── manage.md
+├── agents/
+│   ├── orchestration/
+│   │   ├── deployment-orchestrator.md
+│   │   └── rollback-manager.md
+│   └── specialized/
+│       ├── kubernetes-expert.md
+│       ├── terraform-expert.md
+│       └── security-auditor.md
+├── skills/
+│   ├── kubernetes-ops/
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   │   ├── deployment-patterns.md
+│   │   │   ├── troubleshooting.md
+│   │   │   └── security.md
+│   │   ├── examples/
+│   │   │   ├── basic-deployment.yaml
+│   │   │   ├── stateful-set.yaml
+│   │   │   └── ingress-config.yaml
+│   │   └── scripts/
+│   │       ├── validate-manifest.sh
+│   │       └── health-check.sh
+│   ├── terraform-iac/
+│   │   ├── SKILL.md
+│   │   ├── references/
+│   │   │   └── best-practices.md
+│   │   └── examples/
+│   │       └── module-template/
+│   └── ci-cd-pipelines/
+│       ├── SKILL.md
+│       └── references/
+│           └── pipeline-patterns.md
+├── hooks/
+│   ├── hooks.json
+│   └── scripts/
+│       ├── security/
+│       │   ├── scan-secrets.sh
+│       │   ├── validate-permissions.sh
+│       │   └── audit-changes.sh
+│       ├── quality/
+│       │   ├── check-config.sh
+│       │   └── verify-tests.sh
+│       └── workflow/
+│           ├── notify-team.sh
+│           └── update-status.sh
+├── .mcp.json
+├── servers/
+│   ├── kubernetes-mcp/
+│   │   ├── index.js
+│   │   ├── package.json
+│   │   └── lib/
+│   ├── terraform-mcp/
+│   │   ├── main.py
+│   │   └── requirements.txt
+│   └── github-actions-mcp/
+│       ├── server.js
+│       └── package.json
+├── lib/
+│   ├── core/
+│   │   ├── logger.js
+│   │   ├── config.js
+│   │   └── auth.js
+│   ├── integrations/
+│   │   ├── slack.js
+│   │   ├── pagerduty.js
+│   │   └── datadog.js
+│   └── utils/
+│       ├── retry.js
+│       └── validation.js
+└── config/
+    ├── environments/
+    │   ├── production.json
+    │   ├── staging.json
+    │   └── development.json
+    └── templates/
+        ├── deployment.yaml
+        └── service.yaml
+</code></pre>
+<h2>File Contents</h2>
+<h3>.claude-plugin/plugin.json</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;enterprise-devops&quot;,
+  &quot;version&quot;: &quot;2.3.1&quot;,
+  &quot;description&quot;: &quot;Comprehensive DevOps automation for enterprise CI/CD pipelines, infrastructure management, and monitoring&quot;,
+  &quot;author&quot;: {
+    &quot;name&quot;: &quot;DevOps Platform Team&quot;,
+    &quot;email&quot;: &quot;devops-platform@company.com&quot;,
+    &quot;url&quot;: &quot;https://company.com/teams/devops&quot;
+  },
+  &quot;homepage&quot;: &quot;https://docs.company.com/plugins/devops&quot;,
+  &quot;repository&quot;: {
+    &quot;type&quot;: &quot;git&quot;,
+    &quot;url&quot;: &quot;https://github.com/company/devops-plugin.git&quot;
+  },
+  &quot;license&quot;: &quot;Apache-2.0&quot;,
+  &quot;keywords&quot;: [
+    &quot;devops&quot;,
+    &quot;ci-cd&quot;,
+    &quot;kubernetes&quot;,
+    &quot;terraform&quot;,
+    &quot;automation&quot;,
+    &quot;infrastructure&quot;,
+    &quot;deployment&quot;,
+    &quot;monitoring&quot;
+  ],
+  &quot;commands&quot;: [
+    &quot;./commands/ci&quot;,
+    &quot;./commands/monitoring&quot;,
+    &quot;./commands/admin&quot;
+  ],
+  &quot;agents&quot;: [
+    &quot;./agents/orchestration&quot;,
+    &quot;./agents/specialized&quot;
+  ],
+  &quot;hooks&quot;: &quot;./hooks/hooks.json&quot;,
+  &quot;mcpServers&quot;: &quot;./.mcp.json&quot;
+}
+</code></pre>
+<h3>.mcp.json</h3>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;kubernetes&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;${CLAUDE_PLUGIN_ROOT}/servers/kubernetes-mcp/index.js&quot;],
+      &quot;env&quot;: {
+        &quot;KUBECONFIG&quot;: &quot;${KUBECONFIG}&quot;,
+        &quot;K8S_NAMESPACE&quot;: &quot;${K8S_NAMESPACE:-default}&quot;
+      }
+    },
+    &quot;terraform&quot;: {
+      &quot;command&quot;: &quot;python&quot;,
+      &quot;args&quot;: [&quot;${CLAUDE_PLUGIN_ROOT}/servers/terraform-mcp/main.py&quot;],
+      &quot;env&quot;: {
+        &quot;TF_STATE_BUCKET&quot;: &quot;${TF_STATE_BUCKET}&quot;,
+        &quot;AWS_REGION&quot;: &quot;${AWS_REGION}&quot;
+      }
+    },
+    &quot;github-actions&quot;: {
+      &quot;command&quot;: &quot;node&quot;,
+      &quot;args&quot;: [&quot;${CLAUDE_PLUGIN_ROOT}/servers/github-actions-mcp/server.js&quot;],
+      &quot;env&quot;: {
+        &quot;GITHUB_TOKEN&quot;: &quot;${GITHUB_TOKEN}&quot;,
+        &quot;GITHUB_ORG&quot;: &quot;${GITHUB_ORG}&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3>commands/ci/build.md</h3>
+<pre><code class="language-markdown">---
+name: build
+description: Trigger and monitor CI build pipeline
+---
+
+# Build Command
+
+Trigger CI/CD build pipeline and monitor progress in real-time.
+
+## Process
+
+1. **Validation**: Check prerequisites
+   - Verify branch status
+   - Check for uncommitted changes
+   - Validate configuration files
+
+2. **Trigger**: Start build via MCP server
+   \`\`\`javascript
+   // Uses github-actions MCP server
+   const build = await tools.github_actions_trigger_workflow({
+     workflow: &#39;build.yml&#39;,
+     ref: currentBranch
+   })
+   \`\`\`
+
+3. **Monitor**: Track build progress
+   - Display real-time logs
+   - Show test results as they complete
+   - Alert on failures
+
+4. **Report**: Summarize results
+   - Build status
+   - Test coverage
+   - Performance metrics
+   - Deploy readiness
+
+## Integration
+
+After successful build:
+- Offer to deploy to staging
+- Suggest performance optimizations
+- Generate deployment checklist
+</code></pre>
+<h3>agents/orchestration/deployment-orchestrator.md</h3>
+<pre><code class="language-markdown">---
+description: Orchestrates complex multi-environment deployments with rollback capabilities and health monitoring
+capabilities:
+  - Plan and execute multi-stage deployments
+  - Coordinate service dependencies
+  - Monitor deployment health
+  - Execute automated rollbacks
+  - Manage deployment approvals
+---
+
+# Deployment Orchestrator Agent
+
+Specialized agent for orchestrating complex deployments across multiple environments.
+
+## Expertise
+
+- **Deployment strategies**: Blue-green, canary, rolling updates
+- **Dependency management**: Service startup ordering, dependency injection
+- **Health monitoring**: Service health checks, metric validation
+- **Rollback automation**: Automatic rollback on failure detection
+- **Approval workflows**: Multi-stage approval processes
+
+## Orchestration Process
+
+1. **Planning Phase**
+   - Analyze deployment requirements
+   - Identify service dependencies
+   - Generate deployment plan
+   - Calculate rollback strategy
+
+2. **Validation Phase**
+   - Verify environment readiness
+   - Check resource availability
+   - Validate configurations
+   - Run pre-deployment tests
+
+3. **Execution Phase**
+   - Deploy services in dependency order
+   - Monitor health after each stage
+   - Validate metrics and logs
+   - Proceed to next stage on success
+
+4. **Verification Phase**
+   - Run smoke tests
+   - Validate service integration
+   - Check performance metrics
+   - Confirm deployment success
+
+5. **Rollback Phase** (if needed)
+   - Detect failure conditions
+   - Execute rollback plan
+   - Restore previous state
+   - Notify stakeholders
+
+## MCP Integration
+
+Uses multiple MCP servers:
+- `kubernetes`: Deploy and manage containers
+- `terraform`: Provision infrastructure
+- `github-actions`: Trigger deployment pipelines
+
+## Monitoring Integration
+
+Integrates with monitoring tools via lib:
+\`\`\`javascript
+const { DatadogClient } = require(&#39;${CLAUDE_PLUGIN_ROOT}/lib/integrations/datadog&#39;)
+const metrics = await DatadogClient.getMetrics(service, timeRange)
+\`\`\`
+
+## Notification Integration
+
+Sends updates via Slack and PagerDuty:
+\`\`\`javascript
+const { SlackClient } = require(&#39;${CLAUDE_PLUGIN_ROOT}/lib/integrations/slack&#39;)
+await SlackClient.notify({
+  channel: &#39;#deployments&#39;,
+  message: &#39;Deployment started&#39;,
+  metadata: deploymentPlan
+})
+\`\`\`
+</code></pre>
+<h3>skills/kubernetes-ops/SKILL.md</h3>
+<pre><code class="language-markdown">---
+name: Kubernetes Operations
+description: This skill should be used when deploying to Kubernetes, managing K8s resources, troubleshooting cluster issues, configuring ingress/services, scaling deployments, or working with Kubernetes manifests. Provides comprehensive Kubernetes operational knowledge and best practices.
+version: 2.0.0
+---
+
+# Kubernetes Operations
+
+Comprehensive operational knowledge for managing Kubernetes clusters and workloads.
+
+## Overview
+
+Manage Kubernetes infrastructure effectively through:
+- Deployment strategies and patterns
+- Resource configuration and optimization
+- Troubleshooting and debugging
+- Security best practices
+- Performance tuning
+
+## Core Concepts
+
+### Resource Management
+
+**Deployments**: Use for stateless applications
+- Rolling updates for zero-downtime deployments
+- Rollback capabilities for failed deployments
+- Replica management for scaling
+
+**StatefulSets**: Use for stateful applications
+- Stable network identities
+- Persistent storage
+- Ordered deployment and scaling
+
+**DaemonSets**: Use for node-level services
+- Log collectors
+- Monitoring agents
+- Network plugins
+
+### Configuration
+
+**ConfigMaps**: Store non-sensitive configuration
+- Environment-specific settings
+- Application configuration files
+- Feature flags
+
+**Secrets**: Store sensitive data
+- API keys and tokens
+- Database credentials
+- TLS certificates
+
+Use external secret management (Vault, AWS Secrets Manager) for production.
+
+### Networking
+
+**Services**: Expose applications internally
+- ClusterIP for internal communication
+- NodePort for external access (non-production)
+- LoadBalancer for external access (production)
+
+**Ingress**: HTTP/HTTPS routing
+- Path-based routing
+- Host-based routing
+- TLS termination
+- Load balancing
+
+## Deployment Strategies
+
+### Rolling Update
+
+Default strategy, gradual replacement:
+\`\`\`yaml
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+\`\`\`
+
+**When to use**: Standard deployments, minor updates
+
+### Recreate
+
+Stop all pods, then create new ones:
+\`\`\`yaml
+strategy:
+  type: Recreate
+\`\`\`
+
+**When to use**: Stateful apps that can&#39;t run multiple versions
+
+### Blue-Green
+
+Run two complete environments, switch traffic:
+1. Deploy new version (green)
+2. Test green environment
+3. Switch traffic to green
+4. Keep blue for quick rollback
+
+**When to use**: Critical services, need instant rollback
+
+### Canary
+
+Gradually roll out to subset of users:
+1. Deploy canary version (10% traffic)
+2. Monitor metrics and errors
+3. Increase traffic gradually
+4. Complete rollout or rollback
+
+**When to use**: High-risk changes, want gradual validation
+
+## Resource Configuration
+
+### Resource Requests and Limits
+
+Always set for production workloads:
+\`\`\`yaml
+resources:
+  requests:
+    memory: &quot;256Mi&quot;
+    cpu: &quot;250m&quot;
+  limits:
+    memory: &quot;512Mi&quot;
+    cpu: &quot;500m&quot;
+\`\`\`
+
+**Requests**: Guaranteed resources
+**Limits**: Maximum allowed resources
+
+### Health Checks
+
+Essential for reliability:
+\`\`\`yaml
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: 8080
+  initialDelaySeconds: 5
+  periodSeconds: 5
+\`\`\`
+
+**Liveness**: Restart unhealthy pods
+**Readiness**: Remove unready pods from service
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Pods not starting**
+   - Check: `kubectl describe pod &lt;name&gt;`
+   - Look for: Image pull errors, resource constraints
+   - Fix: Verify image name, increase resources
+
+2. **Service not reachable**
+   - Check: `kubectl get svc`, `kubectl get endpoints`
+   - Look for: No endpoints, wrong selector
+   - Fix: Verify pod labels match service selector
+
+3. **High memory usage**
+   - Check: `kubectl top pods`
+   - Look for: Pods near memory limit
+   - Fix: Increase limits, optimize application
+
+4. **Frequent restarts**
+   - Check: `kubectl get pods`, `kubectl logs &lt;name&gt;`
+   - Look for: Liveness probe failures, OOMKilled
+   - Fix: Adjust health checks, increase memory
+
+### Debugging Commands
+
+Get pod details:
+\`\`\`bash
+kubectl describe pod &lt;name&gt;
+kubectl logs &lt;name&gt;
+kubectl logs &lt;name&gt; --previous  # logs from crashed container
+\`\`\`
+
+Execute commands in pod:
+\`\`\`bash
+kubectl exec -it &lt;name&gt; -- /bin/sh
+kubectl exec &lt;name&gt; -- env
+\`\`\`
+
+Check resource usage:
+\`\`\`bash
+kubectl top nodes
+kubectl top pods
+\`\`\`
+
+## Security Best Practices
+
+### Pod Security
+
+- Run as non-root user
+- Use read-only root filesystem
+- Drop unnecessary capabilities
+- Use security contexts
+
+Example:
+\`\`\`yaml
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+\`\`\`
+
+### Network Policies
+
+Restrict pod communication:
+\`\`\`yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: api-allow
+spec:
+  podSelector:
+    matchLabels:
+      app: api
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: frontend
+\`\`\`
+
+### Secrets Management
+
+- Never commit secrets to git
+- Use external secret managers
+- Rotate secrets regularly
+- Limit secret access with RBAC
+
+## Performance Optimization
+
+### Resource Tuning
+
+1. **Start conservative**: Set low limits initially
+2. **Monitor usage**: Track actual resource consumption
+3. **Adjust gradually**: Increase based on metrics
+4. **Set appropriate requests**: Match typical usage
+5. **Set safe limits**: 2x requests for headroom
+
+### Horizontal Pod Autoscaling
+
+Automatically scale based on metrics:
+\`\`\`yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: api
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+\`\`\`
+
+## MCP Server Integration
+
+This skill works with the kubernetes MCP server for operations:
+
+**List pods**:
+\`\`\`javascript
+const pods = await tools.k8s_list_pods({ namespace: &#39;default&#39; })
+\`\`\`
+
+**Get pod logs**:
+\`\`\`javascript
+const logs = await tools.k8s_get_logs({ pod: &#39;api-xyz&#39;, container: &#39;app&#39; })
+\`\`\`
+
+**Apply manifests**:
+\`\`\`javascript
+const result = await tools.k8s_apply_manifest({ file: &#39;deployment.yaml&#39; })
+\`\`\`
+
+## Detailed References
+
+For in-depth information:
+- **Deployment patterns**: `references/deployment-patterns.md`
+- **Troubleshooting guide**: `references/troubleshooting.md`
+- **Security hardening**: `references/security.md`
+
+## Example Manifests
+
+For copy-paste examples:
+- **Basic deployment**: `examples/basic-deployment.yaml`
+- **StatefulSet**: `examples/stateful-set.yaml`
+- **Ingress config**: `examples/ingress-config.yaml`
+
+## Validation Scripts
+
+For manifest validation:
+\`\`\`bash
+bash ${CLAUDE_PLUGIN_ROOT}/skills/kubernetes-ops/scripts/validate-manifest.sh deployment.yaml
+\`\`\`
+</code></pre>
+<h3>hooks/hooks.json</h3>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Write|Edit&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/security/scan-secrets.sh&quot;,
+          &quot;timeout&quot;: 30
+        }
+      ]
+    },
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Evaluate if this bash command is safe for production environment. Check for destructive operations, missing safeguards, and potential security issues. Commands should be idempotent and reversible.&quot;,
+          &quot;timeout&quot;: 20
+        }
+      ]
+    }
+  ],
+  &quot;PostToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/workflow/update-status.sh&quot;,
+          &quot;timeout&quot;: 15
+        }
+      ]
+    }
+  ],
+  &quot;Stop&quot;: [
+    {
+      &quot;matcher&quot;: &quot;.*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/quality/check-config.sh&quot;,
+          &quot;timeout&quot;: 45
+        },
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/workflow/notify-team.sh&quot;,
+          &quot;timeout&quot;: 30
+        }
+      ]
+    }
+  ],
+  &quot;SessionStart&quot;: [
+    {
+      &quot;matcher&quot;: &quot;.*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/hooks/scripts/security/validate-permissions.sh&quot;,
+          &quot;timeout&quot;: 20
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<h2>Key Features</h2>
+<h3>Multi-Level Organization</h3>
+<p><strong>Commands</strong>: Organized by function (CI, monitoring, admin)
+<strong>Agents</strong>: Separated by role (orchestration vs. specialized)
+<strong>Skills</strong>: Rich resources (references, examples, scripts)</p>
+<h3>MCP Integration</h3>
+<p>Three custom MCP servers:</p>
+<ul>
+<li><strong>Kubernetes</strong>: Cluster operations</li>
+<li><strong>Terraform</strong>: Infrastructure provisioning</li>
+<li><strong>GitHub Actions</strong>: CI/CD automation</li>
+</ul>
+<h3>Shared Libraries</h3>
+<p>Reusable code in <code>lib/</code>:</p>
+<ul>
+<li><strong>Core</strong>: Common utilities (logging, config, auth)</li>
+<li><strong>Integrations</strong>: External services (Slack, Datadog)</li>
+<li><strong>Utils</strong>: Helper functions (retry, validation)</li>
+</ul>
+<h3>Configuration Management</h3>
+<p>Environment-specific configs in <code>config/</code>:</p>
+<ul>
+<li><strong>Environments</strong>: Per-environment settings</li>
+<li><strong>Templates</strong>: Reusable deployment templates</li>
+</ul>
+<h3>Security Automation</h3>
+<p>Multiple security hooks:</p>
+<ul>
+<li>Secret scanning before writes</li>
+<li>Permission validation on session start</li>
+<li>Configuration auditing on completion</li>
+</ul>
+<h3>Monitoring Integration</h3>
+<p>Built-in monitoring via lib integrations:</p>
+<ul>
+<li>Datadog for metrics</li>
+<li>PagerDuty for alerts</li>
+<li>Slack for notifications</li>
+</ul>
+<h2>Use Cases</h2>
+<ol>
+<li><strong>Multi-environment deployments</strong>: Orchestrated rollouts across dev/staging/prod</li>
+<li><strong>Infrastructure as code</strong>: Terraform automation with state management</li>
+<li><strong>CI/CD automation</strong>: Build, test, deploy pipelines</li>
+<li><strong>Monitoring and observability</strong>: Integrated metrics and alerting</li>
+<li><strong>Security enforcement</strong>: Automated security scanning and validation</li>
+<li><strong>Team collaboration</strong>: Slack notifications and status updates</li>
+</ol>
+<h2>When to Use This Pattern</h2>
+<ul>
+<li>Large-scale enterprise deployments</li>
+<li>Multiple environment management</li>
+<li>Complex CI/CD workflows</li>
+<li>Integrated monitoring requirements</li>
+<li>Security-critical infrastructure</li>
+<li>Team collaboration needs</li>
+</ul>
+<h2>Scaling Considerations</h2>
+<ul>
+<li><strong>Performance</strong>: Separate MCP servers for parallel operations</li>
+<li><strong>Organization</strong>: Multi-level directories for scalability</li>
+<li><strong>Maintainability</strong>: Shared libraries reduce duplication</li>
+<li><strong>Flexibility</strong>: Environment configs enable customization</li>
+<li><strong>Security</strong>: Layered security hooks and validation</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

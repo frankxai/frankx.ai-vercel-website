@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SPARC Implementation Roadmap for REST API Completion</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/rest-api-simple/sparc-implementation-roadmap.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SPARC Implementation Roadmap for REST API Completion</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2Frest-api-simple">rest-api-simple</a> / <span>sparc-implementation-roadmap.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>SPARC Implementation Roadmap for REST API Completion</h1>
+<h2>Immediate Actions Required</h2>
+<p>Based on the architecture analysis, here&#39;s the roadmap to complete the REST API according to specifications:</p>
+<h2>Phase 1: Core Refactoring (code mode)</h2>
+<pre><code class="language-bash"># Refactor the existing implementation to match specifications
+npx claude-flow sparc run code &quot;Refactor index.js to server.js for REST API: change resource from items to tasks, add API versioning /api/v1/, update data model with title/completed/timestamps&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Rename <code>index.js</code> to <code>server.js</code></li>
+<li>Change resource from &quot;items&quot; to &quot;tasks&quot;</li>
+<li>Update endpoints to use <code>/api/v1/tasks</code></li>
+<li>Implement new data model with timestamps and completed field</li>
+<li>Maintain existing CRUD functionality</li>
+</ul>
+<h2>Phase 2: Test Suite Development (tdd mode)</h2>
+<pre><code class="language-bash"># Create comprehensive test suite
+npx claude-flow sparc run tdd &quot;Create Jest test suite for tasks REST API with full coverage of CRUD operations, error cases, and query parameters&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Install Jest and Supertest dependencies</li>
+<li>Create <code>server.test.js</code> with comprehensive tests</li>
+<li>Test all CRUD operations</li>
+<li>Test error scenarios</li>
+<li>Test query parameters when implemented</li>
+</ul>
+<h2>Phase 3: Feature Implementation (code mode)</h2>
+<pre><code class="language-bash"># Add missing features
+npx claude-flow sparc run code &quot;Implement query parameters for tasks API: filtering by completed status, pagination with limit/offset, and sorting&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Add query parameter parsing</li>
+<li>Implement filtering by completed status</li>
+<li>Add pagination (limit/offset)</li>
+<li>Implement sorting functionality</li>
+<li>Add proper validation for parameters</li>
+</ul>
+<h2>Phase 4: Error Handling Enhancement (code mode)</h2>
+<pre><code class="language-bash"># Enhance error handling
+npx claude-flow sparc run code &quot;Implement proper error handling for tasks API with consistent error format, validation errors, and request ID tracking&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Create consistent error response format</li>
+<li>Add request validation middleware</li>
+<li>Implement X-Request-ID header</li>
+<li>Add proper HTTP status codes</li>
+<li>Handle edge cases gracefully</li>
+</ul>
+<h2>Phase 5: Security Review (security-review mode)</h2>
+<pre><code class="language-bash"># Security analysis
+npx claude-flow sparc run security-review &quot;Review tasks REST API for security vulnerabilities, input validation, and error information leakage&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Review input validation</li>
+<li>Check for information leakage in errors</li>
+<li>Validate data sanitization</li>
+<li>Review headers and CORS settings</li>
+<li>Ensure no hardcoded secrets</li>
+</ul>
+<h2>Phase 6: Performance Optimization (refinement-optimization-mode)</h2>
+<pre><code class="language-bash"># Optimize performance
+npx claude-flow sparc run refinement-optimization-mode &quot;Optimize tasks API query performance and memory usage for large datasets&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Optimize filtering algorithms</li>
+<li>Improve pagination efficiency</li>
+<li>Review memory usage patterns</li>
+<li>Add performance logging</li>
+<li>Consider caching strategies</li>
+</ul>
+<h2>Phase 7: Documentation Update (docs-writer mode)</h2>
+<pre><code class="language-bash"># Update documentation
+npx claude-flow sparc run docs-writer &quot;Update REST API documentation to match implementation: README, API examples, and ensure consistency across all docs&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Update README.md for tasks (not items)</li>
+<li>Ensure API specification matches implementation</li>
+<li>Add usage examples</li>
+<li>Document query parameters</li>
+<li>Update test instructions</li>
+</ul>
+<h2>Phase 8: Integration Testing (integration mode)</h2>
+<pre><code class="language-bash"># Final integration
+npx claude-flow sparc run integration &quot;Perform end-to-end testing of tasks REST API and ensure all components work together correctly&quot; --non-interactive
+</code></pre>
+<p><strong>Tasks</strong>:</p>
+<ul>
+<li>Run full test suite</li>
+<li>Manual testing with test-api.js</li>
+<li>Verify all endpoints</li>
+<li>Check error handling</li>
+<li>Validate documentation accuracy</li>
+</ul>
+<h2>Parallel Execution with Swarm Mode</h2>
+<p>For faster completion, use swarm mode to execute multiple phases in parallel:</p>
+<pre><code class="language-bash"># Background swarm for comprehensive implementation
+npx claude-flow swarm &quot;Complete REST API implementation: refactor to tasks resource, add tests, implement query parameters, enhance error handling&quot; \
+  --strategy development \
+  --background \
+  --parallel \
+  --testing \
+  --monitor \
+  --output ./api-implementation
+
+# Monitor progress
+npx claude-flow status
+npx claude-flow monitor
+</code></pre>
+<h2>Manual Execution Steps</h2>
+<p>If you prefer to execute each phase manually:</p>
+<ol>
+<li><p><strong>Start with core refactoring</strong>:</p>
+<pre><code class="language-bash">cd /workspaces/claude-code-flow/examples/rest-api-simple
+# Backup current implementation
+cp index.js index.js.backup
+</code></pre>
+</li>
+<li><p><strong>Update dependencies</strong>:</p>
+<pre><code class="language-bash">npm install --save-dev jest supertest
+</code></pre>
+</li>
+<li><p><strong>Run tests after each phase</strong>:</p>
+<pre><code class="language-bash">npm test
+</code></pre>
+</li>
+<li><p><strong>Test the API manually</strong>:</p>
+<pre><code class="language-bash">npm run dev
+# In another terminal:
+node test-api.js
+</code></pre>
+</li>
+</ol>
+<h2>Success Metrics</h2>
+<ul>
+<li><input disabled="" type="checkbox"> All tests pass (100% coverage)</li>
+<li><input disabled="" type="checkbox"> API matches specification exactly</li>
+<li><input disabled="" type="checkbox"> Documentation is accurate and complete</li>
+<li><input disabled="" type="checkbox"> No security vulnerabilities found</li>
+<li><input disabled="" type="checkbox"> Performance meets requirements</li>
+<li><input disabled="" type="checkbox"> Code is clean and maintainable</li>
+</ul>
+<h2>Estimated Timeline</h2>
+<ul>
+<li>Phase 1-2: 30 minutes (core refactoring and tests)</li>
+<li>Phase 3-4: 20 minutes (features and error handling)</li>
+<li>Phase 5-6: 15 minutes (security and optimization)</li>
+<li>Phase 7-8: 15 minutes (documentation and integration)</li>
+</ul>
+<p><strong>Total</strong>: ~80 minutes sequential, ~30 minutes with parallel swarm execution</p>
+<h2>Next Immediate Step</h2>
+<p>Execute Phase 1 to refactor the core implementation:</p>
+<pre><code class="language-bash">npx claude-flow sparc run code &quot;Refactor index.js to server.js for REST API: change resource from items to tasks, add API versioning /api/v1/, update data model with title/completed/timestamps&quot; --non-interactive
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

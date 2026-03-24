@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Security Fixes Checklist for v3.0.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/security/SECURITY_FIXES_CHECKLIST.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Security Fixes Checklist for v3.0.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fsecurity">security</a> / <span>SECURITY_FIXES_CHECKLIST.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Security Fixes Checklist for v3.0.0</h1>
+<p>This checklist provides actionable steps to address all security vulnerabilities identified in the security audit.</p>
+<h2>🔴 CRITICAL - Fix Immediately (Before ANY Production Use)</h2>
+<h3>1. Update Vulnerable Dependencies</h3>
+<p><strong>Time Estimate:</strong> 30 minutes
+<strong>Files:</strong> <code>package.json</code></p>
+<pre><code class="language-bash"># Update critical vulnerabilities
+npm update @anthropic-ai/claude-code@^2.0.31
+npm update @modelcontextprotocol/sdk@^1.24.0
+npm update body-parser@^2.2.1
+
+# Run full audit fix
+npm audit fix --force
+
+# Verify fixes
+npm audit
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-bash">npm audit | grep -E &quot;(critical|high)&quot;
+# Should show 0 critical and 0 high vulnerabilities
+</code></pre>
+<hr>
+<h3>2. Fix Password Hashing Implementation</h3>
+<p><strong>Time Estimate:</strong> 2 hours
+<strong>Files:</strong> <code>src/api/auth-service.ts</code></p>
+<p><strong>Step 1:</strong> Install bcrypt</p>
+<pre><code class="language-bash">npm install bcrypt
+npm install --save-dev @types/bcrypt
+</code></pre>
+<p><strong>Step 2:</strong> Replace password hashing functions (Lines 580-588)</p>
+<pre><code class="language-typescript">// BEFORE (INSECURE)
+private async hashPassword(password: string): Promise&lt;string&gt; {
+  return createHash(&#39;sha256&#39;).update(password + &#39;salt&#39;).digest(&#39;hex&#39;);
+}
+
+// AFTER (SECURE)
+import bcrypt from &#39;bcrypt&#39;;
+
+private async hashPassword(password: string): Promise&lt;string&gt; {
+  const rounds = this.config.bcryptRounds || 12;
+  return await bcrypt.hash(password, rounds);
+}
+
+private async verifyPassword(password: string, hash: string): Promise&lt;boolean&gt; {
+  return await bcrypt.compare(password, hash);
+}
+</code></pre>
+<p><strong>Step 3:</strong> Update AuthConfig interface</p>
+<pre><code class="language-typescript">export interface AuthConfig {
+  jwtSecret: string;
+  jwtExpiresIn?: string;
+  apiKeyLength?: number;
+  bcryptRounds?: number;     // Add this line
+  sessionTimeout?: number;
+  // ...
+}
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-bash">npm run test -- auth-service.test
+</code></pre>
+<hr>
+<h3>3. Remove Default Credentials</h3>
+<p><strong>Time Estimate:</strong> 3 hours
+<strong>Files:</strong> <code>src/api/auth-service.ts</code>, <code>src/cli/commands/init.ts</code></p>
+<p><strong>Step 1:</strong> Remove hardcoded passwords (Lines 602-643)</p>
+<pre><code class="language-typescript">// BEFORE (INSECURE)
+private initializeDefaultUsers(): void {
+  const adminUser: User = {
+    id: &#39;admin_default&#39;,
+    email: &#39;admin@claude-flow.local&#39;,
+    passwordHash: createHash(&#39;sha256&#39;).update(&#39;admin123&#39; + &#39;salt&#39;).digest(&#39;hex&#39;),
+    // ...
+  };
+}
+
+// AFTER (SECURE)
+private async initializeDefaultUsers(): Promise&lt;void&gt; {
+  // Check if admin already exists
+  const existingAdmin = Array.from(this.users.values())
+    .find(u =&gt; u.role === &#39;admin&#39;);
+
+  if (!existingAdmin) {
+    // Generate random password
+    const randomPassword = this.generateSecurePassword();
+
+    console.log(&#39;═══════════════════════════════════════════&#39;);
+    console.log(&#39;IMPORTANT: SAVE THESE CREDENTIALS NOW&#39;);
+    console.log(&#39;═══════════════════════════════════════════&#39;);
+    console.log(&#39;Default Admin Credentials:&#39;);
+    console.log(`Email: admin@claude-flow.local`);
+    console.log(`Password: ${randomPassword}`);
+    console.log(&#39;═══════════════════════════════════════════&#39;);
+    console.log(&#39;You will NOT see this password again!&#39;);
+    console.log(&#39;Please change it immediately after first login.&#39;);
+    console.log(&#39;═══════════════════════════════════════════\n&#39;);
+
+    const adminUser: User = {
+      id: &#39;admin_default&#39;,
+      email: &#39;admin@claude-flow.local&#39;,
+      passwordHash: await this.hashPassword(randomPassword),
+      role: &#39;admin&#39;,
+      permissions: ROLE_PERMISSIONS.admin,
+      apiKeys: [],
+      isActive: true,
+      loginAttempts: 0,
+      mfaEnabled: false,
+      mustChangePassword: true,  // Add this field
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+
+    this.users.set(adminUser.id, adminUser);
+  }
+}
+
+private generateSecurePassword(): string {
+  const length = 24;
+  const charset = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&amp;*&#39;;
+  const randomBytes = require(&#39;crypto&#39;).randomBytes(length);
+  let password = &#39;&#39;;
+
+  for (let i = 0; i &lt; length; i++) {
+    password += charset[randomBytes[i] % charset.length];
+  }
+
+  return password;
+}
+</code></pre>
+<p><strong>Step 2:</strong> Add password change enforcement</p>
+<pre><code class="language-typescript">async authenticateUser(email: string, password: string, ...): Promise&lt;...&gt; {
+  // ... existing authentication code ...
+
+  // After successful authentication
+  if (user.mustChangePassword) {
+    return {
+      user,
+      token,
+      session,
+      requirePasswordChange: true  // Signal to frontend
+    };
+  }
+
+  return { user, token, session };
+}
+</code></pre>
+<p><strong>Verification:</strong></p>
+<ol>
+<li>Delete existing database</li>
+<li>Start fresh instance</li>
+<li>Verify random password is generated</li>
+<li>Verify password change is required</li>
+</ol>
+<hr>
+<h2>🟠 HIGH PRIORITY - Fix Before v3.0.0</h2>
+<h3>4. Fix Command Injection Vulnerabilities</h3>
+<p><strong>Time Estimate:</strong> 4 hours
+<strong>Files:</strong> <code>src/cli/commands/hook.ts</code>, <code>src/utils/error-recovery.ts</code></p>
+<p><strong>Fix 1:</strong> Remove shell:true from spawn calls</p>
+<pre><code class="language-typescript">// File: src/cli/commands/hook.ts:184
+
+// BEFORE (VULNERABLE)
+const child = spawn(&#39;npx&#39;, [&#39;ruv-swarm&#39;, &#39;hook&#39;, ...args], {
+  stdio: &#39;inherit&#39;,
+  shell: true,  // DANGEROUS
+});
+
+// AFTER (SECURE)
+const child = spawn(&#39;npx&#39;, [&#39;ruv-swarm&#39;, &#39;hook&#39;, ...args], {
+  stdio: &#39;inherit&#39;,
+  shell: false,  // SAFE
+});
+</code></pre>
+<p><strong>Fix 2:</strong> Add argument validation</p>
+<pre><code class="language-typescript">// File: src/cli/commands/hook.ts (add at top)
+
+function validateHookArgs(args: string[]): void {
+  const dangerousPatterns = [
+    /[;&amp;|`$()]/,           // Shell metacharacters
+    /\.\.\//,              // Path traversal
+    /~\//,                 // Home directory
+    /^-/,                  // Options that could be exploited
+  ];
+
+  for (const arg of args) {
+    for (const pattern of dangerousPatterns) {
+      if (pattern.test(arg)) {
+        throw new Error(`Potentially dangerous argument detected: ${arg}`);
+      }
+    }
+  }
+}
+
+// Use before spawning
+async function executeHook(hookType: string, options: Record&lt;string, any&gt;): Promise&lt;void&gt; {
+  const args = buildArgs(hookType, options);
+  validateHookArgs(args);  // Add this line
+
+  // ... rest of function
+}
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-bash"># Should fail with error
+claude-flow hook pre-task --description &quot;test; whoami&quot;
+claude-flow hook pre-task --description &quot;test &amp;&amp; ls&quot;
+
+# Should succeed
+claude-flow hook pre-task --description &quot;legitimate task description&quot;
+</code></pre>
+<hr>
+<h3>5. Add Path Traversal Protection</h3>
+<p><strong>Time Estimate:</strong> 3 hours
+<strong>Files:</strong> <code>src/utils/path-validator.ts</code> (new), <code>src/cli/commands/task.ts</code></p>
+<p><strong>Step 1:</strong> Create path validation utility</p>
+<pre><code class="language-typescript">// File: src/utils/path-validator.ts (NEW FILE)
+
+import { resolve, join, normalize, isAbsolute } from &#39;path&#39;;
+import { access, constants } from &#39;fs/promises&#39;;
+
+export class PathValidator {
+  private allowedDirectories: Set&lt;string&gt;;
+
+  constructor(allowedDirs: string[] = []) {
+    this.allowedDirectories = new Set(
+      allowedDirs.map(dir =&gt; resolve(normalize(dir)))
+    );
+  }
+
+  /**
+   * Validate that a file path is within allowed directories
+   */
+  async validatePath(userPath: string, baseDir?: string): Promise&lt;string&gt; {
+    // Normalize and resolve path
+    const normalizedPath = normalize(userPath);
+    const resolvedPath = baseDir
+      ? resolve(baseDir, normalizedPath)
+      : resolve(normalizedPath);
+
+    // Check for path traversal attempts
+    if (normalizedPath.includes(&#39;..&#39;)) {
+      throw new Error(&#39;Path traversal detected: .. not allowed&#39;);
+    }
+
+    // If no allowed directories specified, use current working directory
+    if (this.allowedDirectories.size === 0) {
+      const cwd = resolve(process.cwd());
+      if (!resolvedPath.startsWith(cwd)) {
+        throw new Error(`Path must be within current directory: ${cwd}`);
+      }
+    } else {
+      // Check if path is within any allowed directory
+      const isAllowed = Array.from(this.allowedDirectories)
+        .some(allowedDir =&gt; resolvedPath.startsWith(allowedDir));
+
+      if (!isAllowed) {
+        throw new Error(`Path not within allowed directories`);
+      }
+    }
+
+    // Verify file exists and is accessible
+    try {
+      await access(resolvedPath, constants.R_OK);
+    } catch (error) {
+      throw new Error(`File not accessible: ${resolvedPath}`);
+    }
+
+    return resolvedPath;
+  }
+
+  /**
+   * Add an allowed directory
+   */
+  addAllowedDirectory(dir: string): void {
+    this.allowedDirectories.add(resolve(normalize(dir)));
+  }
+}
+
+export const defaultPathValidator = new PathValidator([
+  process.cwd(),
+  join(process.cwd(), &#39;.claude-flow&#39;),
+  join(process.cwd(), &#39;workflows&#39;),
+]);
+</code></pre>
+<p><strong>Step 2:</strong> Use in task command</p>
+<pre><code class="language-typescript">// File: src/cli/commands/task.ts:66
+
+import { defaultPathValidator } from &#39;../../utils/path-validator.js&#39;;
+
+.action(async (workflowFile: string, options: any) =&gt; {
+  try {
+    // Validate path before reading
+    const safePath = await defaultPathValidator.validatePath(workflowFile);
+    const content = await fs.readFile(safePath, &#39;utf-8&#39;);
+    const workflow = JSON.parse(content);
+    // ... rest of function
+  } catch (error) {
+    console.error(chalk.red(&#39;Failed to load workflow:&#39;), getErrorMessage(error));
+    process.exit(1);
+  }
+});
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-bash"># Should fail
+claude-flow task workflow ../../../etc/passwd
+claude-flow task workflow ~/.ssh/id_rsa
+claude-flow task workflow /etc/hosts
+
+# Should succeed
+claude-flow task workflow ./workflows/my-workflow.json
+claude-flow task workflow workflows/test.json
+</code></pre>
+<hr>
+<h3>6. Add Input Validation to Config Commands</h3>
+<p><strong>Time Estimate:</strong> 2 hours
+<strong>Files:</strong> <code>src/cli/commands/config.ts</code></p>
+<p><strong>Step 1:</strong> Install Zod for schema validation</p>
+<pre><code class="language-bash">npm install zod
+</code></pre>
+<p><strong>Step 2:</strong> Define config schemas</p>
+<pre><code class="language-typescript">// File: src/cli/commands/config.ts (add at top)
+
+import { z } from &#39;zod&#39;;
+
+// Define allowed config keys and their schemas
+const CONFIG_SCHEMAS = {
+  &#39;theme&#39;: z.enum([&#39;light&#39;, &#39;dark&#39;, &#39;auto&#39;]),
+  &#39;timeout&#39;: z.number().int().min(1000).max(300000),
+  &#39;logLevel&#39;: z.enum([&#39;debug&#39;, &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;]),
+  &#39;maxRetries&#39;: z.number().int().min(0).max(10),
+  &#39;cacheSizeMB&#39;: z.number().int().min(10).max(1000),
+} as const;
+
+const ALLOWED_CONFIG_KEYS = Object.keys(CONFIG_SCHEMAS);
+
+// Prevent modification of sensitive keys
+const PROTECTED_KEYS = [
+  &#39;authConfig&#39;,
+  &#39;jwtSecret&#39;,
+  &#39;apiKeys&#39;,
+  &#39;database&#39;,
+  &#39;credentials&#39;,
+];
+</code></pre>
+<p><strong>Step 3:</strong> Update set command</p>
+<pre><code class="language-typescript">// File: src/cli/commands/config.ts:28-50
+
+.action(async (key: string, value: string) =&gt; {
+  try {
+    // Check if key is protected
+    if (PROTECTED_KEYS.some(pk =&gt; key.startsWith(pk))) {
+      console.error(chalk.red(`Cannot modify protected config key: ${key}`));
+      process.exit(1);
+    }
+
+    // Check if key is allowed
+    if (!ALLOWED_CONFIG_KEYS.includes(key)) {
+      console.error(chalk.red(`Unknown config key: ${key}`));
+      console.log(chalk.yellow(`Allowed keys: ${ALLOWED_CONFIG_KEYS.join(&#39;, &#39;)}`));
+      process.exit(1);
+    }
+
+    // Parse and validate value
+    let parsedValue: any;
+    try {
+      parsedValue = JSON.parse(value);
+    } catch {
+      parsedValue = value; // Keep as string if not valid JSON
+    }
+
+    // Validate against schema
+    const schema = CONFIG_SCHEMAS[key as keyof typeof CONFIG_SCHEMAS];
+    const validatedValue = schema.parse(parsedValue);
+
+    await configManager.set(key, validatedValue);
+    console.log(
+      chalk.green(&#39;✓&#39;),
+      `Configuration updated: ${key} = ${JSON.stringify(validatedValue)}`
+    );
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      console.error(chalk.red(&#39;Validation error:&#39;), error.errors[0].message);
+    } else {
+      console.error(chalk.red(&#39;Failed to set configuration:&#39;), (error as Error).message);
+    }
+    process.exit(1);
+  }
+});
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-bash"># Should fail
+claude-flow config set &quot;authConfig.jwtSecret&quot; &quot;hacked&quot;
+claude-flow config set &quot;__proto__.isAdmin&quot; &quot;true&quot;
+claude-flow config set &quot;timeout&quot; &quot;999999999&quot;
+
+# Should succeed
+claude-flow config set &quot;theme&quot; &quot;dark&quot;
+claude-flow config set &quot;timeout&quot; &quot;30000&quot;
+</code></pre>
+<hr>
+<h3>7. Fix Weak Token Generation in MCP Auth</h3>
+<p><strong>Time Estimate:</strong> 1 hour
+<strong>Files:</strong> <code>src/mcp/auth.ts</code></p>
+<p><strong>Replace Math.random() with crypto.randomBytes()</strong></p>
+<pre><code class="language-typescript">// File: src/mcp/auth.ts:375-385
+
+// BEFORE (INSECURE)
+private createSecureToken(): string {
+  const timestamp = Date.now().toString(36);
+  const random1 = Math.random().toString(36).substring(2, 15);
+  const random2 = Math.random().toString(36).substring(2, 15);
+  const hash = createHash(&#39;sha256&#39;)
+    .update(`${timestamp}${random1}${random2}`)
+    .digest(&#39;hex&#39;)
+    .substring(0, 32);
+
+  return `mcp_${timestamp}_${hash}`;
+}
+
+// AFTER (SECURE)
+import { randomBytes } from &#39;crypto&#39;;
+
+private createSecureToken(): string {
+  // Generate 32 bytes (256 bits) of cryptographically secure random data
+  const tokenBytes = randomBytes(32);
+  const token = tokenBytes.toString(&#39;hex&#39;);
+  return `mcp_${token}`;
+}
+</code></pre>
+<p><strong>Verification:</strong></p>
+<pre><code class="language-typescript">// Add test
+describe(&#39;Token Generation&#39;, () =&gt; {
+  it(&#39;should generate unique tokens&#39;, () =&gt; {
+    const authManager = new AuthManager(config, logger);
+    const token1 = authManager.generateToken(&#39;user1&#39;, []);
+    const token2 = authManager.generateToken(&#39;user1&#39;, []);
+
+    expect(token1).not.toBe(token2);
+    expect(token1).toMatch(/^mcp_[a-f0-9]{64}$/);
+  });
+});
+</code></pre>
+<hr>
+<h2>🟡 MEDIUM PRIORITY - Fix in v3.1.0</h2>
+<h3>8. Implement Comprehensive Audit Logging</h3>
+<p><strong>Time Estimate:</strong> 8 hours
+<strong>Files:</strong> <code>src/audit/audit-logger.ts</code> (new)</p>
+<pre><code class="language-typescript">// File: src/audit/audit-logger.ts (NEW FILE)
+
+import { ILogger } from &#39;../core/logger.js&#39;;
+import { promises as fs } from &#39;fs&#39;;
+import { join } from &#39;path&#39;;
+
+export interface AuditEvent {
+  id: string;
+  timestamp: Date;
+  userId?: string;
+  sessionId?: string;
+  action: string;
+  resource: string;
+  result: &#39;success&#39; | &#39;failure&#39; | &#39;denied&#39;;
+  metadata?: Record&lt;string, any&gt;;
+  ipAddress?: string;
+  userAgent?: string;
+}
+
+export class AuditLogger {
+  private events: AuditEvent[] = [];
+  private logPath: string;
+
+  constructor(
+    private logger: ILogger,
+    logPath: string = &#39;./logs/audit.jsonl&#39;
+  ) {
+    this.logPath = logPath;
+  }
+
+  async log(event: Omit&lt;AuditEvent, &#39;id&#39; | &#39;timestamp&#39;&gt;): Promise&lt;void&gt; {
+    const auditEvent: AuditEvent = {
+      id: `audit_${Date.now()}_${Math.random().toString(36).slice(2)}`,
+      timestamp: new Date(),
+      ...event
+    };
+
+    this.events.push(auditEvent);
+
+    // Write to file (JSONL format)
+    const logLine = JSON.stringify(auditEvent) + &#39;\n&#39;;
+    await fs.appendFile(this.logPath, logLine, &#39;utf-8&#39;);
+
+    // Log critical events
+    if (event.result === &#39;failure&#39; || event.result === &#39;denied&#39;) {
+      this.logger.warn(&#39;Audit event&#39;, auditEvent);
+    }
+  }
+
+  async query(filter: Partial&lt;AuditEvent&gt;): Promise&lt;AuditEvent[]&gt; {
+    return this.events.filter(event =&gt; {
+      return Object.entries(filter).every(([key, value]) =&gt; {
+        return event[key as keyof AuditEvent] === value;
+      });
+    });
+  }
+}
+</code></pre>
+<p><strong>Integration:</strong></p>
+<pre><code class="language-typescript">// Use in auth-service.ts, permission-manager.ts, etc.
+await auditLogger.log({
+  userId: user.id,
+  action: &#39;user.login&#39;,
+  resource: &#39;authentication&#39;,
+  result: &#39;success&#39;,
+  metadata: { method: &#39;password&#39; }
+});
+</code></pre>
+<hr>
+<h3>9. Add Secret Management</h3>
+<p><strong>Time Estimate:</strong> 6 hours
+<strong>Files:</strong> <code>src/secrets/secret-manager.ts</code> (new)</p>
+<pre><code class="language-typescript">// File: src/secrets/secret-manager.ts (NEW FILE)
+
+import { createCipheriv, createDecipheriv, randomBytes, scryptSync } from &#39;crypto&#39;;
+
+export class SecretManager {
+  private masterKey: Buffer;
+
+  constructor(masterPassword: string) {
+    // Derive master key from password using scrypt
+    this.masterKey = scryptSync(masterPassword, &#39;salt&#39;, 32);
+  }
+
+  /**
+   * Encrypt a secret
+   */
+  encrypt(plaintext: string): string {
+    const iv = randomBytes(16);
+    const cipher = createCipheriv(&#39;aes-256-gcm&#39;, this.masterKey, iv);
+
+    let encrypted = cipher.update(plaintext, &#39;utf8&#39;, &#39;hex&#39;);
+    encrypted += cipher.final(&#39;hex&#39;);
+
+    const authTag = cipher.getAuthTag();
+
+    // Return: iv + authTag + encrypted
+    return iv.toString(&#39;hex&#39;) + &#39;:&#39; + authTag.toString(&#39;hex&#39;) + &#39;:&#39; + encrypted;
+  }
+
+  /**
+   * Decrypt a secret
+   */
+  decrypt(ciphertext: string): string {
+    const parts = ciphertext.split(&#39;:&#39;);
+    const iv = Buffer.from(parts[0], &#39;hex&#39;);
+    const authTag = Buffer.from(parts[1], &#39;hex&#39;);
+    const encrypted = parts[2];
+
+    const decipher = createDecipheriv(&#39;aes-256-gcm&#39;, this.masterKey, iv);
+    decipher.setAuthTag(authTag);
+
+    let decrypted = decipher.update(encrypted, &#39;hex&#39;, &#39;utf8&#39;);
+    decrypted += decipher.final(&#39;utf8&#39;);
+
+    return decrypted;
+  }
+
+  /**
+   * Store secret in environment
+   */
+  async storeSecret(key: string, value: string): Promise&lt;void&gt; {
+    const encrypted = this.encrypt(value);
+    // Store in secure storage (file, database, vault, etc.)
+    // For now, just log warning
+    console.warn(`Secret ${key} should be stored in secure vault`);
+  }
+}
+</code></pre>
+<hr>
+<h2>🟢 LOW PRIORITY - Address in v3.2.0+</h2>
+<h3>10. Add Rate Limiting</h3>
+<h3>11. Implement OAuth 2.0</h3>
+<h3>12. Add SIEM Integration</h3>
+<h3>13. Set up Continuous Security Scanning</h3>
+<hr>
+<h2>Testing Checklist</h2>
+<p>After implementing each fix:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Unit tests pass</li>
+<li><input disabled="" type="checkbox"> Integration tests pass</li>
+<li><input disabled="" type="checkbox"> Security tests pass</li>
+<li><input disabled="" type="checkbox"> Manual testing completed</li>
+<li><input disabled="" type="checkbox"> Code reviewed</li>
+<li><input disabled="" type="checkbox"> Documentation updated</li>
+</ul>
+<h2>Verification Commands</h2>
+<pre><code class="language-bash"># Run all tests
+npm test
+
+# Run security-specific tests
+npm run test:security
+
+# Check for vulnerabilities
+npm audit
+
+# Lint code
+npm run lint
+
+# Type check
+npm run typecheck
+</code></pre>
+<h2>Timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Focus</th>
+<th>Tasks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Critical Fixes</td>
+<td>Tasks 1-3</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>High Priority</td>
+<td>Tasks 4-7</td>
+</tr>
+<tr>
+<td>4-5</td>
+<td>Medium Priority</td>
+<td>Tasks 8-9</td>
+</tr>
+<tr>
+<td>6+</td>
+<td>Low Priority</td>
+<td>Tasks 10-13</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Last Updated:</strong> 2026-01-03
+<strong>Document Version:</strong> 1.0</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

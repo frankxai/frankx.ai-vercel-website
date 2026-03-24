@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>OCI Services Expert</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/oci-services-expert/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">OCI Services Expert</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Foci-services-expert">oci-services-expert</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>OCI Services Expert</h1>
+<p>Expert guidance on Oracle Cloud Infrastructure services, cloud architecture patterns, cost optimization, deployment strategies, and OCI best practices for enterprise solutions.</p>
+<h2>Quick Reference</h2>
+<p><strong>When to Use</strong>: OCI architecture, cost optimization, deployment planning
+<strong>Scope</strong>: All OCI services - compute, storage, networking, AI, database
+<strong>Perspective</strong>: Enterprise architect with multi-cloud awareness</p>
+<h2>Core Service Categories</h2>
+<h3>Compute</h3>
+<ul>
+<li><strong>Compute Instances</strong>: Flexible VMs, Bare Metal</li>
+<li><strong>OKE</strong>: Managed Kubernetes</li>
+<li><strong>Container Instances</strong>: Serverless containers</li>
+<li><strong>Functions</strong>: Event-driven serverless</li>
+</ul>
+<h3>Storage</h3>
+<ul>
+<li><strong>Object Storage</strong>: Data lakes, backups (11 9s durability)</li>
+<li><strong>Block Volume</strong>: High-IOPS databases</li>
+<li><strong>File Storage</strong>: NFS shared filesystems</li>
+</ul>
+<h3>Database</h3>
+<ul>
+<li><strong>Autonomous DB</strong>: Self-driving ATP/ADW</li>
+<li><strong>Base Database</strong>: Traditional Oracle DB</li>
+<li><strong>MySQL HeatWave</strong>: Analytics-accelerated MySQL</li>
+</ul>
+<h3>AI Services</h3>
+<ul>
+<li><strong>Generative AI</strong>: LLMs (Cohere, Llama, custom)</li>
+<li><strong>AI Services</strong>: Vision, Language, Speech</li>
+<li><strong>Data Science</strong>: ML model development</li>
+</ul>
+<h3>Networking</h3>
+<ul>
+<li><strong>VCN</strong>: Virtual networks</li>
+<li><strong>Load Balancer</strong>: L4/L7 balancing</li>
+<li><strong>FastConnect</strong>: Dedicated private connection</li>
+</ul>
+<h2>Architecture Patterns</h2>
+<h3>Three-Tier Web App</h3>
+<pre><code>Internet → Load Balancer → Compute (Auto-scaling) → Autonomous DB
+              ↓
+          WAF (DDoS)
+</code></pre>
+<h3>Microservices on OKE</h3>
+<pre><code>API Gateway → OKE Cluster → Service Mesh → ADB per service
+                ↓
+         Container Registry
+</code></pre>
+<h2>Cost Optimization</h2>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Savings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Reserved Capacity</td>
+<td>Up to 72%</td>
+</tr>
+<tr>
+<td>Preemptible Instances</td>
+<td>50-70%</td>
+</tr>
+<tr>
+<td>Archive Storage</td>
+<td>90% vs Standard</td>
+</tr>
+<tr>
+<td>Auto-scaling</td>
+<td>Pay for actual use</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>💰 OCI VERIFIED PRICING (January 2026)</h2>
+<blockquote>
+<p><strong>IMPORTANT</strong>: This pricing is verified against official Oracle sources. Always confirm at <a href="https://www.oracle.com/cloud/price-list/">oracle.com/cloud/price-list</a> for the latest rates.</p>
+</blockquote>
+<h3>Always Free Tier (No Time Limit)</h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Free Allocation</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Autonomous Database</strong></td>
+<td>2 instances (20GB each)</td>
+<td>ATP, ADW, or AJD</td>
+</tr>
+<tr>
+<td><strong>Ampere A1 Compute</strong></td>
+<td>3,000 OCPU-hours + 18,000 GB-hours/mo</td>
+<td>Shared across VM/Container Instances</td>
+</tr>
+<tr>
+<td><strong>Flexible Load Balancer</strong></td>
+<td>1 LB (10 Mbps)</td>
+<td>Layer 7 with SSL</td>
+</tr>
+<tr>
+<td><strong>Network Load Balancer</strong></td>
+<td>1 NLB</td>
+<td>Layer 4, fully free</td>
+</tr>
+<tr>
+<td><strong>Object Storage</strong></td>
+<td>10GB Standard + 10GB Archive</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Data Egress</strong></td>
+<td>10 TB/month</td>
+<td>Per region</td>
+</tr>
+<tr>
+<td><strong>VCNs</strong></td>
+<td>2 VCNs</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Block Volume</strong></td>
+<td>200GB total</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>⚠️ <strong>Idle Reclamation</strong>: Always Free compute may be reclaimed if CPU &lt;20% for 7 days.</p>
+<h3>Compute Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Shape</th>
+<th>Type</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>VM.Standard.A1.Flex</strong></td>
+<td>Ampere ARM</td>
+<td><strong>$0.0165/OCPU-hr</strong></td>
+<td>Best value; first 3,000 hrs FREE</td>
+</tr>
+<tr>
+<td><strong>VM.Standard.E4.Flex</strong></td>
+<td>AMD EPYC</td>
+<td>$0.025/OCPU-hr</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>VM.Standard3.Flex</strong></td>
+<td>Intel</td>
+<td>$0.032/OCPU-hr</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Container Instance</strong></td>
+<td>Ampere A1</td>
+<td><strong>$0.0165/OCPU-hr</strong></td>
+<td>Uses same free tier pool</td>
+</tr>
+<tr>
+<td><strong>BM.GPU.H100.8</strong></td>
+<td>8x H100 GPUs</td>
+<td>~$30/hr</td>
+<td>AI/ML workloads</td>
+</tr>
+</tbody></table>
+<p><strong>Monthly Estimate (1 OCPU, 4GB)</strong>: ~$12-24/mo (or FREE within Always Free)</p>
+<h3>Database Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Autonomous DB (Always Free)</strong></td>
+<td><strong>$0</strong></td>
+<td>2 instances, 20GB each</td>
+</tr>
+<tr>
+<td><strong>Autonomous DB (Paid)</strong></td>
+<td>$0.336/OCPU-hr</td>
+<td>License included</td>
+</tr>
+<tr>
+<td><strong>Autonomous DB (BYOL)</strong></td>
+<td>$0.0807/OCPU-hr</td>
+<td>76% savings with own license</td>
+</tr>
+<tr>
+<td><strong>Paid AJD Minimum</strong></td>
+<td>~$238/mo</td>
+<td>2 ECPU + 1TB continuous</td>
+</tr>
+<tr>
+<td><strong>Elastic Pools</strong></td>
+<td>Up to 87% savings</td>
+<td>Consolidate multiple ADBs</td>
+</tr>
+</tbody></table>
+<h3>Storage Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Price/GB/Month</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Object Storage (Standard)</strong></td>
+<td><strong>$0.0255</strong></td>
+<td>Hot data, images, assets</td>
+</tr>
+<tr>
+<td><strong>Object Storage (Infrequent)</strong></td>
+<td>$0.018 + $0.01/GB retrieval</td>
+<td>Cooler data</td>
+</tr>
+<tr>
+<td><strong>Archive Storage</strong></td>
+<td><strong>$0.0026</strong></td>
+<td>Long-term retention</td>
+</tr>
+<tr>
+<td><strong>Block Volume</strong></td>
+<td>$0.0255</td>
+<td>Persistent disk</td>
+</tr>
+<tr>
+<td><strong>Block Volume Backup</strong></td>
+<td>$0.005</td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>Example</strong>: 50GB Object Storage = <strong>$1.28/mo</strong></p>
+<h3>Networking Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Price</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Flexible Load Balancer (L7)</strong></td>
+<td>$0.018/hr base + $0.005/GB</td>
+<td>~$13-20/mo</td>
+</tr>
+<tr>
+<td><strong>Network Load Balancer (L4)</strong></td>
+<td><strong>FREE</strong></td>
+<td>No hourly or data charges</td>
+</tr>
+<tr>
+<td><strong>Data Egress (first 10TB)</strong></td>
+<td><strong>FREE</strong></td>
+<td>Per region</td>
+</tr>
+<tr>
+<td><strong>Data Egress (beyond 10TB)</strong></td>
+<td>$0.0085/GB</td>
+<td>Much cheaper than AWS</td>
+</tr>
+<tr>
+<td><strong>Intra-region traffic</strong></td>
+<td><strong>FREE</strong></td>
+<td>Between ADs</td>
+</tr>
+<tr>
+<td><strong>FastConnect</strong></td>
+<td>From $0.30/hr (1 Gbps)</td>
+<td>Dedicated connection</td>
+</tr>
+</tbody></table>
+<h3>Generative AI Pricing</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Input Tokens</th>
+<th>Output Tokens</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Cohere Command A</strong></td>
+<td>~$0.0015/1K</td>
+<td>~$0.002/1K</td>
+</tr>
+<tr>
+<td><strong>Cohere Embed</strong></td>
+<td>~$0.0001/1K</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>Llama 4 Models</strong></td>
+<td>~$0.001/1K</td>
+<td>~$0.002/1K</td>
+</tr>
+</tbody></table>
+<h3>Cost Comparison vs AWS</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>OCI</th>
+<th>AWS</th>
+<th>Savings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>50TB Egress</strong></td>
+<td>~$340</td>
+<td>~$4,500</td>
+<td><strong>92%</strong></td>
+</tr>
+<tr>
+<td><strong>1 OCPU VM/mo</strong></td>
+<td>~$12</td>
+<td>~$35</td>
+<td><strong>66%</strong></td>
+</tr>
+<tr>
+<td><strong>100GB Object Storage</strong></td>
+<td>$2.55</td>
+<td>$2.30</td>
+<td>Similar</td>
+</tr>
+<tr>
+<td><strong>Load Balancer</strong></td>
+<td>$13-20/mo</td>
+<td>$18-25/mo</td>
+<td>~20%</td>
+</tr>
+</tbody></table>
+<h3>Architecture Cost Examples</h3>
+<p><strong>Personal Blog (Next.js)</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Autonomous JSON DB</td>
+<td>$0 (Always Free)</td>
+</tr>
+<tr>
+<td>Container Instance (1 OCPU)</td>
+<td>$0-18 (Free tier covers)</td>
+</tr>
+<tr>
+<td>Object Storage (50GB)</td>
+<td>$1.28</td>
+</tr>
+<tr>
+<td>Network Load Balancer</td>
+<td>$0 (Free)</td>
+</tr>
+<tr>
+<td>Egress (&lt;10TB)</td>
+<td>$0</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>$0-20/mo</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Small SaaS App</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Monthly Cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Autonomous DB (2 ECPU)</td>
+<td>~$240</td>
+</tr>
+<tr>
+<td>OKE Cluster (3 nodes)</td>
+<td>~$150</td>
+</tr>
+<tr>
+<td>Load Balancer (100 Mbps)</td>
+<td>~$50</td>
+</tr>
+<tr>
+<td>Object Storage (500GB)</td>
+<td>~$13</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>~$450/mo</strong></td>
+</tr>
+</tbody></table>
+<h3>Pricing Verification Resources</h3>
+<ul>
+<li><strong>Official Price List</strong>: <a href="https://www.oracle.com/cloud/price-list/">https://www.oracle.com/cloud/price-list/</a></li>
+<li><strong>Cost Estimator</strong>: <a href="https://www.oracle.com/cloud/costestimator.html">https://www.oracle.com/cloud/costestimator.html</a></li>
+<li><strong>Always Free Docs</strong>: <a href="https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm">https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm</a></li>
+</ul>
+<blockquote>
+<p><strong>Last Verified</strong>: January 2026
+<strong>Source</strong>: Oracle official documentation and price lists</p>
+</blockquote>
+<hr>
+<h2>OCI vs Other Clouds</h2>
+<p><strong>OCI Strengths</strong>:</p>
+<ul>
+<li>Oracle DB workloads: Best performance + licensing</li>
+<li>Cost: 20-40% cheaper than AWS/Azure</li>
+<li>Predictable pricing: No surprise egress fees</li>
+<li>Bare metal performance: RDMA, NVMe</li>
+</ul>
+<p><strong>Choose OCI for</strong>:</p>
+<ul>
+<li>Oracle Database migration</li>
+<li>High-performance computing</li>
+<li>Cost-sensitive projects</li>
+<li>Existing Oracle infrastructure</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>oracle-adk</code> - AI agent development</li>
+<li><code>oracle-database-expert</code> - Database optimization</li>
+<li><code>oracle-agent-spec</code> - Agent definitions</li>
+</ul>
+<hr>
+<p><em>See SKILL.md for comprehensive service documentation and deployment patterns.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

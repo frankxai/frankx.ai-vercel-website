@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Plugin Creation Workflow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/commands/create-plugin.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Plugin Creation Workflow</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../../../../../../../index.html#agentic-creator-os%2FC%3A">C:</a> / <a href="../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers">Users</a> / <a href="../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fcommands">commands</a> / <span>create-plugin.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Guided end-to-end plugin creation workflow with component design, implementation, and validation
+argument-hint: Optional plugin description
+allowed-tools: [&quot;Read&quot;, &quot;Write&quot;, &quot;Grep&quot;, &quot;Glob&quot;, &quot;Bash&quot;, &quot;TodoWrite&quot;, &quot;AskUserQuestion&quot;, &quot;Skill&quot;, &quot;Task&quot;]</h2>
+<h1>Plugin Creation Workflow</h1>
+<p>Guide the user through creating a complete, high-quality Claude Code plugin from initial concept to tested implementation. Follow a systematic approach: understand requirements, design components, clarify details, implement following best practices, validate, and test.</p>
+<h2>Core Principles</h2>
+<ul>
+<li><strong>Ask clarifying questions</strong>: Identify all ambiguities about plugin purpose, triggering, scope, and components. Ask specific, concrete questions rather than making assumptions. Wait for user answers before proceeding with implementation.</li>
+<li><strong>Load relevant skills</strong>: Use the Skill tool to load plugin-dev skills when needed (plugin-structure, hook-development, agent-development, etc.)</li>
+<li><strong>Use specialized agents</strong>: Leverage agent-creator, plugin-validator, and skill-reviewer agents for AI-assisted development</li>
+<li><strong>Follow best practices</strong>: Apply patterns from plugin-dev&#39;s own implementation</li>
+<li><strong>Progressive disclosure</strong>: Create lean skills with references/examples</li>
+<li><strong>Use TodoWrite</strong>: Track all progress throughout all phases</li>
+</ul>
+<p><strong>Initial request:</strong> $ARGUMENTS</p>
+<hr>
+<h2>Phase 1: Discovery</h2>
+<p><strong>Goal</strong>: Understand what plugin needs to be built and what problem it solves</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Create todo list with all 7 phases</li>
+<li>If plugin purpose is clear from arguments:<ul>
+<li>Summarize understanding</li>
+<li>Identify plugin type (integration, workflow, analysis, toolkit, etc.)</li>
+</ul>
+</li>
+<li>If plugin purpose is unclear, ask user:<ul>
+<li>What problem does this plugin solve?</li>
+<li>Who will use it and when?</li>
+<li>What should it do?</li>
+<li>Any similar plugins to reference?</li>
+</ul>
+</li>
+<li>Summarize understanding and confirm with user before proceeding</li>
+</ol>
+<p><strong>Output</strong>: Clear statement of plugin purpose and target users</p>
+<hr>
+<h2>Phase 2: Component Planning</h2>
+<p><strong>Goal</strong>: Determine what plugin components are needed</p>
+<p><strong>MUST load plugin-structure skill</strong> using Skill tool before this phase.</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Load plugin-structure skill to understand component types</li>
+<li>Analyze plugin requirements and determine needed components:<ul>
+<li><strong>Skills</strong>: Does it need specialized knowledge? (hooks API, MCP patterns, etc.)</li>
+<li><strong>Commands</strong>: User-initiated actions? (deploy, configure, analyze)</li>
+<li><strong>Agents</strong>: Autonomous tasks? (validation, generation, analysis)</li>
+<li><strong>Hooks</strong>: Event-driven automation? (validation, notifications)</li>
+<li><strong>MCP</strong>: External service integration? (databases, APIs)</li>
+<li><strong>Settings</strong>: User configuration? (.local.md files)</li>
+</ul>
+</li>
+<li>For each component type needed, identify:<ul>
+<li>How many of each type</li>
+<li>What each one does</li>
+<li>Rough triggering/usage patterns</li>
+</ul>
+</li>
+<li>Present component plan to user as table:<pre><code>| Component Type | Count | Purpose |
+|----------------|-------|---------|
+| Skills         | 2     | Hook patterns, MCP usage |
+| Commands       | 3     | Deploy, configure, validate |
+| Agents         | 1     | Autonomous validation |
+| Hooks          | 0     | Not needed |
+| MCP            | 1     | Database integration |
+</code></pre>
+</li>
+<li>Get user confirmation or adjustments</li>
+</ol>
+<p><strong>Output</strong>: Confirmed list of components to create</p>
+<hr>
+<h2>Phase 3: Detailed Design &amp; Clarifying Questions</h2>
+<p><strong>Goal</strong>: Specify each component in detail and resolve all ambiguities</p>
+<p><strong>CRITICAL</strong>: This is one of the most important phases. DO NOT SKIP.</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li><p>For each component in the plan, identify underspecified aspects:</p>
+<ul>
+<li><strong>Skills</strong>: What triggers them? What knowledge do they provide? How detailed?</li>
+<li><strong>Commands</strong>: What arguments? What tools? Interactive or automated?</li>
+<li><strong>Agents</strong>: When to trigger (proactive/reactive)? What tools? Output format?</li>
+<li><strong>Hooks</strong>: Which events? Prompt or command based? Validation criteria?</li>
+<li><strong>MCP</strong>: What server type? Authentication? Which tools?</li>
+<li><strong>Settings</strong>: What fields? Required vs optional? Defaults?</li>
+</ul>
+</li>
+<li><p><strong>Present all questions to user in organized sections</strong> (one section per component type)</p>
+</li>
+<li><p><strong>Wait for answers before proceeding to implementation</strong></p>
+</li>
+<li><p>If user says &quot;whatever you think is best&quot;, provide specific recommendations and get explicit confirmation</p>
+</li>
+</ol>
+<p><strong>Example questions for a skill</strong>:</p>
+<ul>
+<li>What specific user queries should trigger this skill?</li>
+<li>Should it include utility scripts? What functionality?</li>
+<li>How detailed should the core SKILL.md be vs references/?</li>
+<li>Any real-world examples to include?</li>
+</ul>
+<p><strong>Example questions for an agent</strong>:</p>
+<ul>
+<li>Should this agent trigger proactively after certain actions, or only when explicitly requested?</li>
+<li>What tools does it need (Read, Write, Bash, etc.)?</li>
+<li>What should the output format be?</li>
+<li>Any specific quality standards to enforce?</li>
+</ul>
+<p><strong>Output</strong>: Detailed specification for each component</p>
+<hr>
+<h2>Phase 4: Plugin Structure Creation</h2>
+<p><strong>Goal</strong>: Create plugin directory structure and manifest</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li>Determine plugin name (kebab-case, descriptive)</li>
+<li>Choose plugin location:<ul>
+<li>Ask user: &quot;Where should I create the plugin?&quot;</li>
+<li>Offer options: current directory, ../new-plugin-name, custom path</li>
+</ul>
+</li>
+<li>Create directory structure using bash:<pre><code class="language-bash">mkdir -p plugin-name/.claude-plugin
+mkdir -p plugin-name/skills     # if needed
+mkdir -p plugin-name/commands   # if needed
+mkdir -p plugin-name/agents     # if needed
+mkdir -p plugin-name/hooks      # if needed
+</code></pre>
+</li>
+<li>Create plugin.json manifest using Write tool:<pre><code class="language-json">{
+  &quot;name&quot;: &quot;plugin-name&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;description&quot;: &quot;[brief description]&quot;,
+  &quot;author&quot;: {
+    &quot;name&quot;: &quot;[author from user or default]&quot;,
+    &quot;email&quot;: &quot;[email or default]&quot;
+  }
+}
+</code></pre>
+</li>
+<li>Create README.md template</li>
+<li>Create .gitignore if needed (for .claude/*.local.md, etc.)</li>
+<li>Initialize git repo if creating new directory</li>
+</ol>
+<p><strong>Output</strong>: Plugin directory structure created and ready for components</p>
+<hr>
+<h2>Phase 5: Component Implementation</h2>
+<p><strong>Goal</strong>: Create each component following best practices</p>
+<p><strong>LOAD RELEVANT SKILLS</strong> before implementing each component type:</p>
+<ul>
+<li>Skills: Load skill-development skill</li>
+<li>Commands: Load command-development skill</li>
+<li>Agents: Load agent-development skill</li>
+<li>Hooks: Load hook-development skill</li>
+<li>MCP: Load mcp-integration skill</li>
+<li>Settings: Load plugin-settings skill</li>
+</ul>
+<p><strong>Actions for each component</strong>:</p>
+<h3>For Skills:</h3>
+<ol>
+<li>Load skill-development skill using Skill tool</li>
+<li>For each skill:<ul>
+<li>Ask user for concrete usage examples (or use from Phase 3)</li>
+<li>Plan resources (scripts/, references/, examples/)</li>
+<li>Create skill directory structure</li>
+<li>Write SKILL.md with:<ul>
+<li>Third-person description with specific trigger phrases</li>
+<li>Lean body (1,500-2,000 words) in imperative form</li>
+<li>References to supporting files</li>
+</ul>
+</li>
+<li>Create reference files for detailed content</li>
+<li>Create example files for working code</li>
+<li>Create utility scripts if needed</li>
+</ul>
+</li>
+<li>Use skill-reviewer agent to validate each skill</li>
+</ol>
+<h3>For Commands:</h3>
+<ol>
+<li>Load command-development skill using Skill tool</li>
+<li>For each command:<ul>
+<li>Write command markdown with frontmatter</li>
+<li>Include clear description and argument-hint</li>
+<li>Specify allowed-tools (minimal necessary)</li>
+<li>Write instructions FOR Claude (not TO user)</li>
+<li>Provide usage examples and tips</li>
+<li>Reference relevant skills if applicable</li>
+</ul>
+</li>
+</ol>
+<h3>For Agents:</h3>
+<ol>
+<li>Load agent-development skill using Skill tool</li>
+<li>For each agent, use agent-creator agent:<ul>
+<li>Provide description of what agent should do</li>
+<li>Agent-creator generates: identifier, whenToUse with examples, systemPrompt</li>
+<li>Create agent markdown file with frontmatter and system prompt</li>
+<li>Add appropriate model, color, and tools</li>
+<li>Validate with validate-agent.sh script</li>
+</ul>
+</li>
+</ol>
+<h3>For Hooks:</h3>
+<ol>
+<li>Load hook-development skill using Skill tool</li>
+<li>For each hook:<ul>
+<li>Create hooks/hooks.json with hook configuration</li>
+<li>Prefer prompt-based hooks for complex logic</li>
+<li>Use ${CLAUDE_PLUGIN_ROOT} for portability</li>
+<li>Create hook scripts if needed (in examples/ not scripts/)</li>
+<li>Test with validate-hook-schema.sh and test-hook.sh utilities</li>
+</ul>
+</li>
+</ol>
+<h3>For MCP:</h3>
+<ol>
+<li>Load mcp-integration skill using Skill tool</li>
+<li>Create .mcp.json configuration with:<ul>
+<li>Server type (stdio for local, SSE for hosted)</li>
+<li>Command and args (with ${CLAUDE_PLUGIN_ROOT})</li>
+<li>extensionToLanguage mapping if LSP</li>
+<li>Environment variables as needed</li>
+</ul>
+</li>
+<li>Document required env vars in README</li>
+<li>Provide setup instructions</li>
+</ol>
+<h3>For Settings:</h3>
+<ol>
+<li>Load plugin-settings skill using Skill tool</li>
+<li>Create settings template in README</li>
+<li>Create example .claude/plugin-name.local.md file (as documentation)</li>
+<li>Implement settings reading in hooks/commands as needed</li>
+<li>Add to .gitignore: <code>.claude/*.local.md</code></li>
+</ol>
+<p><strong>Progress tracking</strong>: Update todos as each component is completed</p>
+<p><strong>Output</strong>: All plugin components implemented</p>
+<hr>
+<h2>Phase 6: Validation &amp; Quality Check</h2>
+<p><strong>Goal</strong>: Ensure plugin meets quality standards and works correctly</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li><p><strong>Run plugin-validator agent</strong>:</p>
+<ul>
+<li>Use plugin-validator agent to comprehensively validate plugin</li>
+<li>Check: manifest, structure, naming, components, security</li>
+<li>Review validation report</li>
+</ul>
+</li>
+<li><p><strong>Fix critical issues</strong>:</p>
+<ul>
+<li>Address any critical errors from validation</li>
+<li>Fix any warnings that indicate real problems</li>
+</ul>
+</li>
+<li><p><strong>Review with skill-reviewer</strong> (if plugin has skills):</p>
+<ul>
+<li>For each skill, use skill-reviewer agent</li>
+<li>Check description quality, progressive disclosure, writing style</li>
+<li>Apply recommendations</li>
+</ul>
+</li>
+<li><p><strong>Test agent triggering</strong> (if plugin has agents):</p>
+<ul>
+<li>For each agent, verify <example> blocks are clear</li>
+<li>Check triggering conditions are specific</li>
+<li>Run validate-agent.sh on agent files</li>
+</ul>
+</li>
+<li><p><strong>Test hook configuration</strong> (if plugin has hooks):</p>
+<ul>
+<li>Run validate-hook-schema.sh on hooks/hooks.json</li>
+<li>Test hook scripts with test-hook.sh</li>
+<li>Verify ${CLAUDE_PLUGIN_ROOT} usage</li>
+</ul>
+</li>
+<li><p><strong>Present findings</strong>:</p>
+<ul>
+<li>Summary of validation results</li>
+<li>Any remaining issues</li>
+<li>Overall quality assessment</li>
+</ul>
+</li>
+<li><p><strong>Ask user</strong>: &quot;Validation complete. Issues found: [count critical], [count warnings]. Would you like me to fix them now, or proceed to testing?&quot;</p>
+</li>
+</ol>
+<p><strong>Output</strong>: Plugin validated and ready for testing</p>
+<hr>
+<h2>Phase 7: Testing &amp; Verification</h2>
+<p><strong>Goal</strong>: Test that plugin works correctly in Claude Code</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li><p><strong>Installation instructions</strong>:</p>
+<ul>
+<li>Show user how to test locally:<pre><code class="language-bash">cc --plugin-dir /path/to/plugin-name
+</code></pre>
+</li>
+<li>Or copy to <code>.claude-plugin/</code> for project testing</li>
+</ul>
+</li>
+<li><p><strong>Verification checklist</strong> for user to perform:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Skills load when triggered (ask questions with trigger phrases)</li>
+<li><input disabled="" type="checkbox"> Commands appear in <code>/help</code> and execute correctly</li>
+<li><input disabled="" type="checkbox"> Agents trigger on appropriate scenarios</li>
+<li><input disabled="" type="checkbox"> Hooks activate on events (if applicable)</li>
+<li><input disabled="" type="checkbox"> MCP servers connect (if applicable)</li>
+<li><input disabled="" type="checkbox"> Settings files work (if applicable)</li>
+</ul>
+</li>
+<li><p><strong>Testing recommendations</strong>:</p>
+<ul>
+<li>For skills: Ask questions using trigger phrases from descriptions</li>
+<li>For commands: Run <code>/plugin-name:command-name</code> with various arguments</li>
+<li>For agents: Create scenarios matching agent examples</li>
+<li>For hooks: Use <code>claude --debug</code> to see hook execution</li>
+<li>For MCP: Use <code>/mcp</code> to verify servers and tools</li>
+</ul>
+</li>
+<li><p><strong>Ask user</strong>: &quot;I&#39;ve prepared the plugin for testing. Would you like me to guide you through testing each component, or do you want to test it yourself?&quot;</p>
+</li>
+<li><p><strong>If user wants guidance</strong>, walk through testing each component with specific test cases</p>
+</li>
+</ol>
+<p><strong>Output</strong>: Plugin tested and verified working</p>
+<hr>
+<h2>Phase 8: Documentation &amp; Next Steps</h2>
+<p><strong>Goal</strong>: Ensure plugin is well-documented and ready for distribution</p>
+<p><strong>Actions</strong>:</p>
+<ol>
+<li><p><strong>Verify README completeness</strong>:</p>
+<ul>
+<li>Check README has: overview, features, installation, prerequisites, usage</li>
+<li>For MCP plugins: Document required environment variables</li>
+<li>For hook plugins: Explain hook activation</li>
+<li>For settings: Provide configuration templates</li>
+</ul>
+</li>
+<li><p><strong>Add marketplace entry</strong> (if publishing):</p>
+<ul>
+<li>Show user how to add to marketplace.json</li>
+<li>Help draft marketplace description</li>
+<li>Suggest category and tags</li>
+</ul>
+</li>
+<li><p><strong>Create summary</strong>:</p>
+<ul>
+<li>Mark all todos complete</li>
+<li>List what was created:<ul>
+<li>Plugin name and purpose</li>
+<li>Components created (X skills, Y commands, Z agents, etc.)</li>
+<li>Key files and their purposes</li>
+<li>Total file count and structure</li>
+</ul>
+</li>
+<li>Next steps:<ul>
+<li>Testing recommendations</li>
+<li>Publishing to marketplace (if desired)</li>
+<li>Iteration based on usage</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Suggest improvements</strong> (optional):</p>
+<ul>
+<li>Additional components that could enhance plugin</li>
+<li>Integration opportunities</li>
+<li>Testing strategies</li>
+</ul>
+</li>
+</ol>
+<p><strong>Output</strong>: Complete, documented plugin ready for use or publication</p>
+<hr>
+<h2>Important Notes</h2>
+<h3>Throughout All Phases</h3>
+<ul>
+<li><strong>Use TodoWrite</strong> to track progress at every phase</li>
+<li><strong>Load skills with Skill tool</strong> when working on specific component types</li>
+<li><strong>Use specialized agents</strong> (agent-creator, plugin-validator, skill-reviewer)</li>
+<li><strong>Ask for user confirmation</strong> at key decision points</li>
+<li><strong>Follow plugin-dev&#39;s own patterns</strong> as reference examples</li>
+<li><strong>Apply best practices</strong>:<ul>
+<li>Third-person descriptions for skills</li>
+<li>Imperative form in skill bodies</li>
+<li>Commands written FOR Claude</li>
+<li>Strong trigger phrases</li>
+<li>${CLAUDE_PLUGIN_ROOT} for portability</li>
+<li>Progressive disclosure</li>
+<li>Security-first (HTTPS, no hardcoded credentials)</li>
+</ul>
+</li>
+</ul>
+<h3>Key Decision Points (Wait for User)</h3>
+<ol>
+<li>After Phase 1: Confirm plugin purpose</li>
+<li>After Phase 2: Approve component plan</li>
+<li>After Phase 3: Proceed to implementation</li>
+<li>After Phase 6: Fix issues or proceed</li>
+<li>After Phase 7: Continue to documentation</li>
+</ol>
+<h3>Skills to Load by Phase</h3>
+<ul>
+<li><strong>Phase 2</strong>: plugin-structure</li>
+<li><strong>Phase 5</strong>: skill-development, command-development, agent-development, hook-development, mcp-integration, plugin-settings (as needed)</li>
+<li><strong>Phase 6</strong>: (agents will use skills automatically)</li>
+</ul>
+<h3>Quality Standards</h3>
+<p>Every component must meet these standards:</p>
+<ul>
+<li>✅ Follows plugin-dev&#39;s proven patterns</li>
+<li>✅ Uses correct naming conventions</li>
+<li>✅ Has strong trigger conditions (skills/agents)</li>
+<li>✅ Includes working examples</li>
+<li>✅ Properly documented</li>
+<li>✅ Validated with utilities</li>
+<li>✅ Tested in Claude Code</li>
+</ul>
+<hr>
+<h2>Example Workflow</h2>
+<h3>User Request</h3>
+<p>&quot;Create a plugin for managing database migrations&quot;</p>
+<h3>Phase 1: Discovery</h3>
+<ul>
+<li>Understand: Migration management, database schema versioning</li>
+<li>Confirm: User wants to create, run, rollback migrations</li>
+</ul>
+<h3>Phase 2: Component Planning</h3>
+<ul>
+<li>Skills: 1 (migration best practices)</li>
+<li>Commands: 3 (create-migration, run-migrations, rollback)</li>
+<li>Agents: 1 (migration-validator)</li>
+<li>MCP: 1 (database connection)</li>
+</ul>
+<h3>Phase 3: Clarifying Questions</h3>
+<ul>
+<li>Which databases? (PostgreSQL, MySQL, etc.)</li>
+<li>Migration file format? (SQL, code-based?)</li>
+<li>Should agent validate before applying?</li>
+<li>What MCP tools needed? (query, execute, schema)</li>
+</ul>
+<h3>Phase 4-8: Implementation, Validation, Testing, Documentation</h3>
+<hr>
+<p><strong>Begin with Phase 1: Discovery</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

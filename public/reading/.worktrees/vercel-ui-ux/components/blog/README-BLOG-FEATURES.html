@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Blog Quality Features</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/components/blog/README-BLOG-FEATURES.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Blog Quality Features</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.worktrees">.worktrees</a> / <a href="../../index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <a href="../index.html#.worktrees%2Fvercel-ui-ux%2Fcomponents">components</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux%2Fcomponents%2Fblog">blog</a> / <span>README-BLOG-FEATURES.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Blog Quality Features</h1>
+<p>Book-quality reading experience features for blog posts.</p>
+<h2>Features Implemented</h2>
+<h3>1. Text Selection Share Popover</h3>
+<p><strong>Component</strong>: <code>BlogSharePopover.tsx</code></p>
+<ul>
+<li>Appears when user selects 10+ characters of text in article body</li>
+<li>Share to X (with quote truncation for tweet length)</li>
+<li>Share to LinkedIn</li>
+<li>Copy formatted quote to clipboard</li>
+<li>Glassmorphic design with backdrop blur</li>
+<li>Auto-dismisses after copy or outside click</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx">&lt;BlogSharePopover postTitle={post.title} postSlug={post.slug} /&gt;
+</code></pre>
+<h3>2. Reading Progress Bar</h3>
+<p><strong>Component</strong>: <code>BlogReadingProgress.tsx</code></p>
+<ul>
+<li>Top-of-page horizontal progress bar</li>
+<li>Only shows on posts with 1500+ words</li>
+<li>Smooth gradient animation (emerald → cyan → emerald)</li>
+<li>Tracks scroll position as percentage</li>
+<li>Fixed positioning, z-50 layer</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx">&lt;BlogReadingProgress wordCount={1800} /&gt;
+</code></pre>
+<h3>3. Blog Post Feedback</h3>
+<p><strong>Component</strong>: <code>BlogFeedback.tsx</code></p>
+<ul>
+<li>Thumbs up/down voting system</li>
+<li>localStorage prevents duplicate votes</li>
+<li>Optional comment for negative feedback</li>
+<li>Displays aggregate stats when ≥10 votes</li>
+<li>API endpoint: <code>/api/feedback</code> (GET/POST)</li>
+<li>Data stored in <code>data/feedback/blog-post-feedback.jsonl</code></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx">&lt;BlogFeedback postSlug={post.slug} postTitle={post.title} /&gt;
+</code></pre>
+<p><strong>API</strong>:</p>
+<pre><code class="language-typescript">// POST vote
+{
+  type: &#39;blog_post_feedback&#39;,
+  slug: &#39;article-slug&#39;,
+  feedback: &#39;positive&#39; | &#39;negative&#39;,
+  timestamp: ISO8601
+}
+
+// GET aggregate
+/api/feedback?type=blog&amp;slug=article-slug
+// Returns: { positive: 12, negative: 3, total: 15 }
+</code></pre>
+<h3>4. Blog Post End Zone</h3>
+<p><strong>Component</strong>: <code>BlogPostEndZone.tsx</code></p>
+<ul>
+<li>Premium end-of-post experience</li>
+<li>Includes: Feedback, Share buttons, Related posts, Newsletter signup</li>
+<li>Share to X/LinkedIn or copy link</li>
+<li>Related posts grid (up to 3, filtered by category/tags)</li>
+<li>Inline newsletter signup with brand styling</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-tsx">&lt;BlogPostEndZone
+  postSlug={post.slug}
+  postTitle={post.title}
+  postDescription={post.description}
+  relatedPosts={[...]}
+/&gt;
+</code></pre>
+<h2>Supporting Components</h2>
+<h3>BlogArticleContent</h3>
+<p><strong>Component</strong>: <code>BlogArticleContent.tsx</code></p>
+<p>Client-side wrapper that combines article content with share popover.
+Enables text selection sharing while maintaining server-side MDX rendering.</p>
+<pre><code class="language-tsx">&lt;BlogArticleContent postTitle={post.title} postSlug={post.slug}&gt;
+  &lt;MDXContent source={post.content} /&gt;
+&lt;/BlogArticleContent&gt;
+</code></pre>
+<h2>Integration</h2>
+<p>All features are integrated in <code>/app/blog/[slug]/page.tsx</code>:</p>
+<ol>
+<li>Reading progress bar at top of page</li>
+<li>Share popover wraps article content</li>
+<li>End zone replaces old newsletter section</li>
+<li>Related posts automatically filtered by category/tags</li>
+</ol>
+<h2>Data Storage</h2>
+<p>Feedback data stored in JSONL format for easy append and analytics:</p>
+<pre><code>data/feedback/
+├── blog-post-feedback.jsonl   # Blog post votes
+└── chapter-feedback.jsonl      # Book chapter votes (existing)
+</code></pre>
+<h2>API Routes</h2>
+<p><code>/app/api/feedback/route.ts</code> handles both blog and chapter feedback:</p>
+<ul>
+<li><code>POST</code> - Save vote/comment</li>
+<li><code>GET</code> - Retrieve aggregates</li>
+<li>Query params: <code>type=blog|chapter</code>, <code>slug=...</code> or <code>book=...&amp;chapter=...</code></li>
+<li>Response caching: 1 hour</li>
+</ul>
+<h2>Design Principles</h2>
+<ul>
+<li>Premium glassmorphic UI matching FrankX brand</li>
+<li>No emojis, clean iconography (Heroicons style)</li>
+<li>Smooth animations, hover states</li>
+<li>Mobile-responsive</li>
+<li>WCAG AA contrast ratios</li>
+<li>Loading states, error handling</li>
+<li>localStorage for client state</li>
+<li>Server-side rendering where possible</li>
+</ul>
+<h2>Performance</h2>
+<ul>
+<li>Progress bar: Passive scroll listener</li>
+<li>Share popover: Debounced selection handler (200ms)</li>
+<li>Client components only where needed</li>
+<li>No external dependencies beyond existing stack</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

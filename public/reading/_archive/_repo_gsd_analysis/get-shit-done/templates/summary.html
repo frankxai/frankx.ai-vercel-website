@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Summary Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/summary.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Summary Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <span>summary.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Summary Template</h1>
+<p>Template for <code>.planning/phases/XX-name/{phase}-{plan}-SUMMARY.md</code> - phase completion documentation.</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown">---
+phase: XX-name
+plan: YY
+subsystem: [primary category: auth, payments, ui, api, database, infra, testing, etc.]
+tags: [searchable tech: jwt, stripe, react, postgres, prisma]
+
+# Dependency graph
+requires:
+  - phase: [prior phase this depends on]
+    provides: [what that phase built that this uses]
+provides:
+  - [bullet list of what this phase built/delivered]
+affects: [list of phase names or keywords that will need this context]
+
+# Tech tracking
+tech-stack:
+  added: [libraries/tools added in this phase]
+  patterns: [architectural/code patterns established]
+
+key-files:
+  created: [important files created]
+  modified: [important files modified]
+
+key-decisions:
+  - &quot;Decision 1&quot;
+  - &quot;Decision 2&quot;
+
+patterns-established:
+  - &quot;Pattern 1: description&quot;
+  - &quot;Pattern 2: description&quot;
+
+# Metrics
+duration: Xmin
+completed: YYYY-MM-DD
+---
+
+# Phase [X]: [Name] Summary
+
+**[Substantive one-liner describing outcome - NOT &quot;phase complete&quot; or &quot;implementation finished&quot;]**
+
+## Performance
+
+- **Duration:** [time] (e.g., 23 min, 1h 15m)
+- **Started:** [ISO timestamp]
+- **Completed:** [ISO timestamp]
+- **Tasks:** [count completed]
+- **Files modified:** [count]
+
+## Accomplishments
+- [Most important outcome]
+- [Second key accomplishment]
+- [Third if applicable]
+
+## Task Commits
+
+Each task was committed atomically:
+
+1. **Task 1: [task name]** - `abc123f` (feat/fix/test/refactor)
+2. **Task 2: [task name]** - `def456g` (feat/fix/test/refactor)
+3. **Task 3: [task name]** - `hij789k` (feat/fix/test/refactor)
+
+**Plan metadata:** `lmn012o` (docs: complete plan)
+
+_Note: TDD tasks may have multiple commits (test → feat → refactor)_
+
+## Files Created/Modified
+- `path/to/file.ts` - What it does
+- `path/to/another.ts` - What it does
+
+## Decisions Made
+[Key decisions with brief rationale, or &quot;None - followed plan as specified&quot;]
+
+## Deviations from Plan
+
+[If no deviations: &quot;None - plan executed exactly as written&quot;]
+
+[If deviations occurred:]
+
+### Auto-fixed Issues
+
+**1. [Rule X - Category] Brief description**
+- **Found during:** Task [N] ([task name])
+- **Issue:** [What was wrong]
+- **Fix:** [What was done]
+- **Files modified:** [file paths]
+- **Verification:** [How it was verified]
+- **Committed in:** [hash] (part of task commit)
+
+[... repeat for each auto-fix ...]
+
+---
+
+**Total deviations:** [N] auto-fixed ([breakdown by rule])
+**Impact on plan:** [Brief assessment - e.g., &quot;All auto-fixes necessary for correctness/security. No scope creep.&quot;]
+
+## Issues Encountered
+[Problems and how they were resolved, or &quot;None&quot;]
+
+[Note: &quot;Deviations from Plan&quot; documents unplanned work that was handled automatically via deviation rules. &quot;Issues Encountered&quot; documents problems during planned work that required problem-solving.]
+
+## User Setup Required
+
+[If USER-SETUP.md was generated:]
+**External services require manual configuration.** See [{phase}-USER-SETUP.md](./{phase}-USER-SETUP.md) for:
+- Environment variables to add
+- Dashboard configuration steps
+- Verification commands
+
+[If no USER-SETUP.md:]
+None - no external service configuration required.
+
+## Next Phase Readiness
+[What&#39;s ready for next phase]
+[Any blockers or concerns]
+
+---
+*Phase: XX-name*
+*Completed: [date]*
+</code></pre>
+<frontmatter_guidance>
+**Purpose:** Enable automatic context assembly via dependency graph. Frontmatter makes summary metadata machine-readable so plan-phase can scan all summaries quickly and select relevant ones based on dependencies.
+
+<p><strong>Fast scanning:</strong> Frontmatter is first ~25 lines, cheap to scan across all summaries without reading full content.</p>
+<p><strong>Dependency graph:</strong> <code>requires</code>/<code>provides</code>/<code>affects</code> create explicit links between phases, enabling transitive closure for context selection.</p>
+<p><strong>Subsystem:</strong> Primary categorization (auth, payments, ui, api, database, infra, testing) for detecting related phases.</p>
+<p><strong>Tags:</strong> Searchable technical keywords (libraries, frameworks, tools) for tech stack awareness.</p>
+<p><strong>Key-files:</strong> Important files for @context references in PLAN.md.</p>
+<p><strong>Patterns:</strong> Established conventions future phases should maintain.</p>
+<p><strong>Population:</strong> Frontmatter is populated during summary creation in execute-plan.md. See <code>&lt;step name=&quot;create_summary&quot;&gt;</code> for field-by-field guidance.
+</frontmatter_guidance></p>
+<one_liner_rules>
+The one-liner MUST be substantive:
+
+<p><strong>Good:</strong></p>
+<ul>
+<li>&quot;JWT auth with refresh rotation using jose library&quot;</li>
+<li>&quot;Prisma schema with User, Session, and Product models&quot;</li>
+<li>&quot;Dashboard with real-time metrics via Server-Sent Events&quot;</li>
+</ul>
+<p><strong>Bad:</strong></p>
+<ul>
+<li>&quot;Phase complete&quot;</li>
+<li>&quot;Authentication implemented&quot;</li>
+<li>&quot;Foundation finished&quot;</li>
+<li>&quot;All tasks done&quot;</li>
+</ul>
+<p>The one-liner should tell someone what actually shipped.
+</one_liner_rules></p>
+<example>
+```markdown
+# Phase 1: Foundation Summary
+
+<p><strong>JWT auth with refresh rotation using jose library, Prisma User model, and protected API middleware</strong></p>
+<h2>Performance</h2>
+<ul>
+<li><strong>Duration:</strong> 28 min</li>
+<li><strong>Started:</strong> 2025-01-15T14:22:10Z</li>
+<li><strong>Completed:</strong> 2025-01-15T14:50:33Z</li>
+<li><strong>Tasks:</strong> 5</li>
+<li><strong>Files modified:</strong> 8</li>
+</ul>
+<h2>Accomplishments</h2>
+<ul>
+<li>User model with email/password auth</li>
+<li>Login/logout endpoints with httpOnly JWT cookies</li>
+<li>Protected route middleware checking token validity</li>
+<li>Refresh token rotation on each request</li>
+</ul>
+<h2>Files Created/Modified</h2>
+<ul>
+<li><code>prisma/schema.prisma</code> - User and Session models</li>
+<li><code>src/app/api/auth/login/route.ts</code> - Login endpoint</li>
+<li><code>src/app/api/auth/logout/route.ts</code> - Logout endpoint</li>
+<li><code>src/middleware.ts</code> - Protected route checks</li>
+<li><code>src/lib/auth.ts</code> - JWT helpers using jose</li>
+</ul>
+<h2>Decisions Made</h2>
+<ul>
+<li>Used jose instead of jsonwebtoken (ESM-native, Edge-compatible)</li>
+<li>15-min access tokens with 7-day refresh tokens</li>
+<li>Storing refresh tokens in database for revocation capability</li>
+</ul>
+<h2>Deviations from Plan</h2>
+<h3>Auto-fixed Issues</h3>
+<p><strong>1. [Rule 2 - Missing Critical] Added password hashing with bcrypt</strong></p>
+<ul>
+<li><strong>Found during:</strong> Task 2 (Login endpoint implementation)</li>
+<li><strong>Issue:</strong> Plan didn&#39;t specify password hashing - storing plaintext would be critical security flaw</li>
+<li><strong>Fix:</strong> Added bcrypt hashing on registration, comparison on login with salt rounds 10</li>
+<li><strong>Files modified:</strong> src/app/api/auth/login/route.ts, src/lib/auth.ts</li>
+<li><strong>Verification:</strong> Password hash test passes, plaintext never stored</li>
+<li><strong>Committed in:</strong> abc123f (Task 2 commit)</li>
+</ul>
+<p><strong>2. [Rule 3 - Blocking] Installed missing jose dependency</strong></p>
+<ul>
+<li><strong>Found during:</strong> Task 4 (JWT token generation)</li>
+<li><strong>Issue:</strong> jose package not in package.json, import failing</li>
+<li><strong>Fix:</strong> Ran <code>npm install jose</code></li>
+<li><strong>Files modified:</strong> package.json, package-lock.json</li>
+<li><strong>Verification:</strong> Import succeeds, build passes</li>
+<li><strong>Committed in:</strong> def456g (Task 4 commit)</li>
+</ul>
+<hr>
+<p><strong>Total deviations:</strong> 2 auto-fixed (1 missing critical, 1 blocking)
+<strong>Impact on plan:</strong> Both auto-fixes essential for security and functionality. No scope creep.</p>
+<h2>Issues Encountered</h2>
+<ul>
+<li>jsonwebtoken CommonJS import failed in Edge runtime - switched to jose (planned library change, worked as expected)</li>
+</ul>
+<h2>Next Phase Readiness</h2>
+<ul>
+<li>Auth foundation complete, ready for feature development</li>
+<li>User registration endpoint needed before public launch</li>
+</ul>
+<hr>
+<p><em>Phase: 01-foundation</em>
+<em>Completed: 2025-01-15</em></p>
+<pre><code>&lt;/example&gt;
+
+&lt;guidelines&gt;
+**When to create:**
+- After completing each phase plan
+- Required output from execute-plan workflow
+- Documents what actually happened vs what was planned
+
+**Frontmatter completion:**
+- MANDATORY: Complete all frontmatter fields during summary creation
+- See &lt;frontmatter_guidance&gt; for field purposes
+- Frontmatter enables automatic context assembly for future planning
+
+**One-liner requirements:**
+- Must be substantive (describe what shipped, not &quot;phase complete&quot;)
+- Should tell someone what was accomplished
+- Examples: &quot;JWT auth with refresh rotation using jose library&quot; not &quot;Authentication implemented&quot;
+
+**Performance tracking:**
+- Include duration, start/end timestamps
+- Used for velocity metrics in STATE.md
+
+**Deviations section:**
+- Documents unplanned work handled via deviation rules
+- Separate from &quot;Issues Encountered&quot; (which is planned work problems)
+- Auto-fixed issues: What was wrong, how fixed, verification
+
+**Decisions section:**
+- Key decisions made during execution
+- Include rationale (why this choice)
+- Extracted to STATE.md accumulated context
+- Use &quot;None - followed plan as specified&quot; if no deviations
+
+**After creation:**
+- STATE.md updated with position, decisions, issues
+- Next plan can reference decisions made
+&lt;/guidelines&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

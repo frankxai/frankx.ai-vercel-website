@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Hookify Plugin Help</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/hookify/commands/help.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Hookify Plugin Help</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fhookify">hookify</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fhookify%2Fcommands">commands</a> / <span>help.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Get help with the hookify plugin
+allowed-tools: [&quot;Read&quot;]</h2>
+<h1>Hookify Plugin Help</h1>
+<p>Explain how the hookify plugin works and how to use it.</p>
+<h2>Overview</h2>
+<p>The hookify plugin makes it easy to create custom hooks that prevent unwanted behaviors. Instead of editing <code>hooks.json</code> files, users create simple markdown configuration files that define patterns to watch for.</p>
+<h2>How It Works</h2>
+<h3>1. Hook System</h3>
+<p>Hookify installs generic hooks that run on these events:</p>
+<ul>
+<li><strong>PreToolUse</strong>: Before any tool executes (Bash, Edit, Write, etc.)</li>
+<li><strong>PostToolUse</strong>: After a tool executes</li>
+<li><strong>Stop</strong>: When Claude wants to stop working</li>
+<li><strong>UserPromptSubmit</strong>: When user submits a prompt</li>
+</ul>
+<p>These hooks read configuration files from <code>.claude/hookify.*.local.md</code> and check if any rules match the current operation.</p>
+<h3>2. Configuration Files</h3>
+<p>Users create rules in <code>.claude/hookify.{rule-name}.local.md</code> files:</p>
+<pre><code class="language-markdown">---
+name: warn-dangerous-rm
+enabled: true
+event: bash
+pattern: rm\s+-rf
+---
+
+⚠️ **Dangerous rm command detected!**
+
+This command could delete important files. Please verify the path.
+</code></pre>
+<p><strong>Key fields:</strong></p>
+<ul>
+<li><code>name</code>: Unique identifier for the rule</li>
+<li><code>enabled</code>: true/false to activate/deactivate</li>
+<li><code>event</code>: bash, file, stop, prompt, or all</li>
+<li><code>pattern</code>: Regex pattern to match</li>
+</ul>
+<p>The message body is what Claude sees when the rule triggers.</p>
+<h3>3. Creating Rules</h3>
+<p><strong>Option A: Use /hookify command</strong></p>
+<pre><code>/hookify Don&#39;t use console.log in production files
+</code></pre>
+<p>This analyzes your request and creates the appropriate rule file.</p>
+<p><strong>Option B: Create manually</strong>
+Create <code>.claude/hookify.my-rule.local.md</code> with the format above.</p>
+<p><strong>Option C: Analyze conversation</strong></p>
+<pre><code>/hookify
+</code></pre>
+<p>Without arguments, hookify analyzes recent conversation to find behaviors you want to prevent.</p>
+<h2>Available Commands</h2>
+<ul>
+<li><strong><code>/hookify</code></strong> - Create hooks from conversation analysis or explicit instructions</li>
+<li><strong><code>/hookify:help</code></strong> - Show this help (what you&#39;re reading now)</li>
+<li><strong><code>/hookify:list</code></strong> - List all configured hooks</li>
+<li><strong><code>/hookify:configure</code></strong> - Enable/disable existing hooks interactively</li>
+</ul>
+<h2>Example Use Cases</h2>
+<p><strong>Prevent dangerous commands:</strong></p>
+<pre><code class="language-markdown">---
+name: block-chmod-777
+enabled: true
+event: bash
+pattern: chmod\s+777
+---
+
+Don&#39;t use chmod 777 - it&#39;s a security risk. Use specific permissions instead.
+</code></pre>
+<p><strong>Warn about debugging code:</strong></p>
+<pre><code class="language-markdown">---
+name: warn-console-log
+enabled: true
+event: file
+pattern: console\.log\(
+---
+
+Console.log detected. Remember to remove debug logging before committing.
+</code></pre>
+<p><strong>Require tests before stopping:</strong></p>
+<pre><code class="language-markdown">---
+name: require-tests
+enabled: true
+event: stop
+pattern: .*
+---
+
+Did you run tests before finishing? Make sure `npm test` or equivalent was executed.
+</code></pre>
+<h2>Pattern Syntax</h2>
+<p>Use Python regex syntax:</p>
+<ul>
+<li><code>\s</code> - whitespace</li>
+<li><code>\.</code> - literal dot</li>
+<li><code>|</code> - OR</li>
+<li><code>+</code> - one or more</li>
+<li><code>*</code> - zero or more</li>
+<li><code>\d</code> - digit</li>
+<li><code>[abc]</code> - character class</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><code>rm\s+-rf</code> - matches &quot;rm -rf&quot;</li>
+<li><code>console\.log\(</code> - matches &quot;console.log(&quot;</li>
+<li><code>(eval|exec)\(</code> - matches &quot;eval(&quot; or &quot;exec(&quot;</li>
+<li><code>\.env$</code> - matches files ending in .env</li>
+</ul>
+<h2>Important Notes</h2>
+<p><strong>No Restart Needed</strong>: Hookify rules (<code>.local.md</code> files) take effect immediately on the next tool use. The hookify hooks are already loaded and read your rules dynamically.</p>
+<p><strong>Block or Warn</strong>: Rules can either <code>block</code> operations (prevent execution) or <code>warn</code> (show message but allow). Set <code>action: block</code> or <code>action: warn</code> in the rule&#39;s frontmatter.</p>
+<p><strong>Rule Files</strong>: Keep rules in <code>.claude/hookify.*.local.md</code> - they should be git-ignored (add to .gitignore if needed).</p>
+<p><strong>Disable Rules</strong>: Set <code>enabled: false</code> in frontmatter or delete the file.</p>
+<h2>Troubleshooting</h2>
+<p><strong>Hook not triggering:</strong></p>
+<ul>
+<li>Check rule file is in <code>.claude/</code> directory</li>
+<li>Verify <code>enabled: true</code> in frontmatter</li>
+<li>Confirm pattern is valid regex</li>
+<li>Test pattern: <code>python3 -c &quot;import re; print(re.search(&#39;your_pattern&#39;, &#39;test_text&#39;))&quot;</code></li>
+<li>Rules take effect immediately - no restart needed</li>
+</ul>
+<p><strong>Import errors:</strong></p>
+<ul>
+<li>Check Python 3 is available: <code>python3 --version</code></li>
+<li>Verify hookify plugin is installed correctly</li>
+</ul>
+<p><strong>Pattern not matching:</strong></p>
+<ul>
+<li>Test regex separately</li>
+<li>Check for escaping issues (use unquoted patterns in YAML)</li>
+<li>Try simpler pattern first, then refine</li>
+</ul>
+<h2>Getting Started</h2>
+<ol>
+<li><p>Create your first rule:</p>
+<pre><code>/hookify Warn me when I try to use rm -rf
+</code></pre>
+</li>
+<li><p>Try to trigger it:</p>
+<ul>
+<li>Ask Claude to run <code>rm -rf /tmp/test</code></li>
+<li>You should see the warning</li>
+</ul>
+</li>
+<li><p>Refine the rule by editing <code>.claude/hookify.warn-rm.local.md</code></p>
+</li>
+<li><p>Create more rules as you encounter unwanted behaviors</p>
+</li>
+</ol>
+<p>For more examples, check the <code>${CLAUDE_PLUGIN_ROOT}/examples/</code> directory.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

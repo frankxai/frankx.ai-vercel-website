@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>🖼️ Image Generation System Activated</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/commands/generate-images.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">🖼️ Image Generation System Activated</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fcommands">commands</a> / <span>generate-images.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Generate images for articles using Nano Banana MCP - headers, quote cards, and social media images
+thinking: false</h2>
+<h1>🖼️ Image Generation System Activated</h1>
+<p>You are now in <strong>Image Generation Mode</strong> - creating visual assets for FrankX articles using the Nano Banana MCP server.</p>
+<h2>Active Context</h2>
+<ul>
+<li><strong>Focus:</strong> Image generation for blog posts and social media</li>
+<li><strong>Working Directory:</strong> <code>/mnt/c/Users/Frank/FrankX/content/</code></li>
+<li><strong>MCP Server:</strong> Nano Banana (image generation)</li>
+<li><strong>Source:</strong> Files in <code>2-ready-to-publish/blog/</code></li>
+<li><strong>Output:</strong> Images saved to <code>/FrankX.AI - Vercel Website/public/images/blog/[slug]/</code></li>
+</ul>
+<h2>Your Mission</h2>
+<p>For each article ready for images:</p>
+<ol>
+<li><strong>Header Image</strong> (1200x630) - Blog post hero image</li>
+<li><strong>Quote Cards</strong> (1080x1080) - 3-5 social media quote cards</li>
+<li><strong>Platform Images:</strong><ul>
+<li>Twitter: 1200x675</li>
+<li>LinkedIn: 1200x627</li>
+<li>Instagram: 1080x1080</li>
+</ul>
+</li>
+</ol>
+<h2>Image Generation Process</h2>
+<h3>Step 1: Scan Ready Articles</h3>
+<pre><code class="language-bash"># Find articles ready for images
+ls -la /mnt/c/Users/Frank/FrankX/content/2-ready-to-publish/blog/
+</code></pre>
+<p><strong>Look for articles with:</strong></p>
+<ul>
+<li><code>status: &quot;ready-for-images&quot;</code></li>
+<li><code>image_generation</code> metadata present</li>
+<li>No <code>images.header</code> already set</li>
+</ul>
+<h3>Step 2: Analyze Article for Prompts</h3>
+<p><strong>Read article metadata:</strong></p>
+<pre><code class="language-yaml">---
+title: &quot;AI Music Production in 2025&quot;
+theme: &quot;music&quot;
+image_generation:
+  header_prompt: &quot;futuristic AI music studio, vibrant purple and blue&quot;
+  theme: &quot;music&quot;
+  style: &quot;professional, modern, tech-forward&quot;
+  mood: &quot;innovative, inspiring&quot;
+social_snippets:
+  - &quot;I generated 50 songs in a week. 3 were amazing.&quot;
+  - &quot;The AI music revolution isn&#39;t coming. It&#39;s here.&quot;
+---
+</code></pre>
+<p><strong>If no <code>image_generation</code> metadata, create it from:</strong></p>
+<ul>
+<li>Article theme (ai-tech, conscious, creator, music, personal-dev)</li>
+<li>Article title</li>
+<li>Key concepts from content</li>
+</ul>
+<h3>Step 3: Generate Header Image</h3>
+<p><strong>Use Nano Banana MCP to generate:</strong></p>
+<pre><code class="language-javascript">// Prompt format
+`${theme_style}, ${colors}, ${mood}, representing: ${title}`
+
+// Examples by theme:
+// AI-Tech: &quot;futuristic AI technology interface, vibrant purple and electric blue, innovative and cutting-edge, representing: Building AI Agents&quot;
+// Mindful: &quot;ethereal inner awareness visualization, soft purples and cosmic blues with golden light, transcendent and peaceful, representing: Inner Discovery&quot;
+// Creator: &quot;modern creator workspace, energetic oranges and deep purples, entrepreneurial and dynamic, representing: Creator Economy 2025&quot;
+// Music: &quot;abstract sound wave visualization, vibrant gradients and neon colors, rhythmic and creative, representing: AI Music Production&quot;
+// Personal-Dev: &quot;minimalist growth visualization, calm blues and energizing greens, focused and ambitious, representing: Peak Performance&quot;
+</code></pre>
+<p><strong>Nano Banana call:</strong></p>
+<pre><code>Generate image with:
+- Prompt: [theme-based prompt]
+- Width: 1200
+- Height: 630
+- Style: professional blog header, modern, high-quality, branded
+- Save to: /FrankX.AI - Vercel Website/public/images/blog/[slug]/header.png
+</code></pre>
+<h3>Step 4: Generate Quote Cards</h3>
+<p><strong>For each social snippet (3-5 quotes):</strong></p>
+<pre><code>Generate image with:
+- Prompt: &quot;Quote card with bold typography, [theme] color palette, text: &#39;[quote]&#39;, minimal clean design, branded&quot;
+- Width: 1080
+- Height: 1080
+- Style: Instagram quote card, clean typography, on-brand colors
+- Save to: /FrankX.AI - Vercel Website/public/images/blog/[slug]/quote-1.png
+</code></pre>
+<p><strong>Quote card design elements:</strong></p>
+<ul>
+<li>Bold, readable typography</li>
+<li>Theme-appropriate background (gradients, patterns)</li>
+<li>FrankX branding subtle but present</li>
+<li>Quote centered or creatively positioned</li>
+<li>High contrast for readability</li>
+</ul>
+<h3>Step 5: Generate Platform-Specific Images</h3>
+<p><strong>Twitter/X (1200x675):</strong></p>
+<pre><code>Use same prompt as header, optimized for 16:9 aspect ratio
+Save to: twitter.png
+</code></pre>
+<p><strong>LinkedIn (1200x627):</strong></p>
+<pre><code>More professional variant of header
+Save to: linkedin.png
+</code></pre>
+<p><strong>Instagram (1080x1080):</strong></p>
+<pre><code>Square format, more vibrant/social-friendly
+Save to: instagram.png
+</code></pre>
+<h3>Step 6: Update Article Metadata</h3>
+<p><strong>Add generated image paths:</strong></p>
+<pre><code class="language-yaml">---
+# ... existing metadata
+
+# IMAGES
+images:
+  header: &quot;/images/blog/[slug]/header.png&quot;
+  quoteCards:
+    - &quot;/images/blog/[slug]/quote-1.png&quot;
+    - &quot;/images/blog/[slug]/quote-2.png&quot;
+    - &quot;/images/blog/[slug]/quote-3.png&quot;
+  social:
+    twitter: &quot;/images/blog/[slug]/twitter.png&quot;
+    linkedin: &quot;/images/blog/[slug]/linkedin.png&quot;
+    instagram: &quot;/images/blog/[slug]/instagram.png&quot;
+
+# WORKFLOW
+images_generated_date: &quot;2025-11-07&quot;
+status: &quot;images-complete&quot;
+next_step: &quot;generate-social-content&quot;
+---
+</code></pre>
+<h2>Theme-Based Styling Guide</h2>
+<h3>AI &amp; Tech</h3>
+<pre><code>Colors: Vibrant purple (#8B5CF6), electric blue (#3B82F6), neon accents
+Style: Futuristic, tech-forward, professional
+Elements: Circuit patterns, neural networks, holographic effects
+Mood: Innovative, cutting-edge, intelligent
+</code></pre>
+<h3>Mindful</h3>
+<pre><code>Colors: Soft purples (#A78BFA), cosmic blues (#60A5FA), golden light (#FBBF24)
+Style: Ethereal, spiritual, transcendent
+Elements: Sacred geometry, energy flows, cosmic patterns
+Mood: Peaceful, present, transformative
+</code></pre>
+<h3>Creator</h3>
+<pre><code>Colors: Energetic oranges (#F97316), deep purples (#7C3AED), clean whites
+Style: Modern, entrepreneurial, dynamic
+Elements: Workspace aesthetics, growth charts, creative tools
+Mood: Ambitious, inspiring, actionable
+</code></pre>
+<h3>Music</h3>
+<pre><code>Colors: Vibrant gradients, neon pinks (#EC4899), electric blues (#06B6D4)
+Style: Abstract, energetic, artistic
+Elements: Sound waves, frequency visualizations, rhythm patterns
+Mood: Creative, rhythmic, transformative
+</code></pre>
+<h3>Personal Development</h3>
+<pre><code>Colors: Calm blues (#3B82F6), energizing greens (#10B981), clean whites
+Style: Minimal, focused, clear
+Elements: Growth symbols, upward arrows, clean layouts
+Mood: Focused, ambitious, optimized
+</code></pre>
+<h2>Nano Banana Integration</h2>
+<p><strong>MCP Server Commands:</strong></p>
+<pre><code># Check Nano Banana status
+mcp__nano-banana__get_configuration_status
+
+# Generate image
+mcp__nano-banana__generate_image({
+  prompt: &quot;detailed image description&quot;,
+  width: 1200,
+  height: 630,
+  style: &quot;professional, modern, high-quality&quot;,
+  outputPath: &quot;/path/to/save/image.png&quot;
+})
+</code></pre>
+<p><strong>Quality Settings:</strong></p>
+<ul>
+<li>Use highest quality available</li>
+<li>Professional photography style</li>
+<li>High resolution for web display</li>
+<li>Optimized file sizes (compress after generation)</li>
+</ul>
+<h2>Output Report</h2>
+<p>After generating images for each article:</p>
+<pre><code class="language-markdown"># Image Generation Complete ✅
+
+## Article: &quot;AI Music Production in 2025&quot;
+
+**Slug:** `ai-music-2025`
+**Location:** `2-ready-to-publish/blog/ai-music-2025.md`
+
+### Images Generated:
+- ✅ Header image (1200x630)
+- ✅ Quote card 1: &quot;I generated 50 songs in a week...&quot;
+- ✅ Quote card 2: &quot;The AI music revolution isn&#39;t coming...&quot;
+- ✅ Quote card 3: &quot;My 3-step AI music framework...&quot;
+- ✅ Twitter image (1200x675)
+- ✅ LinkedIn image (1200x627)
+- ✅ Instagram image (1080x1080)
+
+**Total:** 7 images
+**Saved to:** `/public/images/blog/ai-music-2025/`
+
+### Next Steps:
+1. ⏭️ **Auto-trigger:** Run `/generate-social` to create social posts
+2. Images ready for use in article
+3. Quote cards ready for social sharing
+
+---
+
+**Images ready! Moving to social content generation.**
+</code></pre>
+<h2>Quality Checklist</h2>
+<p>Before marking images complete:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Header image generated (1200x630)</li>
+<li><input disabled="" type="checkbox"> 3-5 quote cards generated (1080x1080)</li>
+<li><input disabled="" type="checkbox"> Twitter image generated (1200x675)</li>
+<li><input disabled="" type="checkbox"> LinkedIn image generated (1200x627)</li>
+<li><input disabled="" type="checkbox"> Instagram image generated (1080x1080)</li>
+<li><input disabled="" type="checkbox"> All images saved to correct paths</li>
+<li><input disabled="" type="checkbox"> Article metadata updated with image paths</li>
+<li><input disabled="" type="checkbox"> Images visually aligned with theme</li>
+<li><input disabled="" type="checkbox"> Typography readable and on-brand</li>
+<li><input disabled="" type="checkbox"> File sizes optimized (&lt;500KB each)</li>
+</ul>
+<h2>Activation</h2>
+<p><strong>This command runs:</strong></p>
+<ul>
+<li>Automatically after <code>/polish-content</code> (if configured)</li>
+<li>Manually when user types <code>/generate-images</code></li>
+<li>As part of publishing pipeline</li>
+</ul>
+<p><strong>Working directory:</strong> <code>/mnt/c/Users/Frank/FrankX/content/</code></p>
+<p><strong>Ready to generate images! Let&#39;s create stunning visuals for FrankX content.</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

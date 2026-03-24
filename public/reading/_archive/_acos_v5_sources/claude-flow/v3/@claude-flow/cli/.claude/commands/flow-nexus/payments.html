@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Flow Nexus Payments</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/commands/flow-nexus/payments.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Flow Nexus Payments</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands%2Fflow-nexus">flow-nexus</a> / <span>payments.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: flow-nexus-payments
+description: Credit management, billing, and payment configuration</h2>
+<h1>Flow Nexus Payments</h1>
+<p>Manage credits, configure billing, and track usage.</p>
+<h2>Check Balance</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__check_balance()
+</code></pre>
+<h2>Purchase Credits</h2>
+<pre><code class="language-javascript">// Create payment link
+mcp__flow-nexus__create_payment_link({
+  amount: 50 // USD, minimum $10
+})
+// Returns secure payment URL to complete purchase
+</code></pre>
+<h2>Auto-Refill Configuration</h2>
+<pre><code class="language-javascript">// Enable auto-refill
+mcp__flow-nexus__configure_auto_refill({
+  enabled: true,
+  threshold: 100,  // Refill when credits drop below 100
+  amount: 50       // Refill with $50 worth of credits
+})
+
+// Disable auto-refill
+mcp__flow-nexus__configure_auto_refill({
+  enabled: false
+})
+</code></pre>
+<h2>Payment History</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__get_payment_history({
+  limit: 50
+})
+</code></pre>
+<h2>rUv Credits Management</h2>
+<pre><code class="language-javascript">// Check balance
+mcp__flow-nexus__ruv_balance({
+  user_id: &quot;your_id&quot;
+})
+
+// Transaction history
+mcp__flow-nexus__ruv_history({
+  user_id: &quot;your_id&quot;,
+  limit: 100
+})
+</code></pre>
+<h2>Upgrade Tier</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__user_upgrade({
+  user_id: &quot;your_id&quot;,
+  tier: &quot;pro&quot; // pro, enterprise
+})
+</code></pre>
+<h2>Usage Statistics</h2>
+<pre><code class="language-javascript">mcp__flow-nexus__user_stats({
+  user_id: &quot;your_id&quot;
+})
+</code></pre>
+<h2>Credit Pricing</h2>
+<ul>
+<li><strong>Swarm Operations</strong>: 1-10 credits/hour</li>
+<li><strong>Sandbox Execution</strong>: 0.5-5 credits/hour</li>
+<li><strong>Neural Training</strong>: 5-50 credits/job</li>
+<li><strong>Workflow Runs</strong>: 0.1-1 credit/execution</li>
+<li><strong>Storage</strong>: 0.01 credits/GB/day</li>
+</ul>
+<h2>Earning Credits</h2>
+<ol>
+<li><strong>Complete Challenges</strong>: 10-500 credits per challenge</li>
+<li><strong>Publish Templates</strong>: Earn when others use</li>
+<li><strong>Referrals</strong>: Bonus credits for invites</li>
+<li><strong>Daily Login</strong>: Small daily bonus</li>
+<li><strong>Achievements</strong>: Unlock milestone rewards</li>
+</ol>
+<h2>Tiers</h2>
+<h3>Free Tier</h3>
+<ul>
+<li>100 free credits monthly</li>
+<li>Basic sandbox access</li>
+<li>Limited swarm agents (3 max)</li>
+<li>Community support</li>
+</ul>
+<h3>Pro Tier ($29/month)</h3>
+<ul>
+<li>1000 credits monthly</li>
+<li>Priority sandbox access</li>
+<li>Unlimited agents</li>
+<li>Advanced workflows</li>
+<li>Email support</li>
+</ul>
+<h3>Enterprise Tier (Custom)</h3>
+<ul>
+<li>Unlimited credits</li>
+<li>Dedicated resources</li>
+<li>Custom models</li>
+<li>SLA guarantee</li>
+<li>Priority support</li>
+</ul>
+<h2>Cost Optimization Tips</h2>
+<ol>
+<li>Use smaller sandboxes when possible</li>
+<li>Optimize neural network training parameters</li>
+<li>Batch workflow executions</li>
+<li>Clean up unused resources</li>
+<li>Monitor usage regularly</li>
+<li>Use templates to avoid redundant work</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

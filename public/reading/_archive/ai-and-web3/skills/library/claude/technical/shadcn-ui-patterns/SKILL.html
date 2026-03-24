@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>shadcn/ui Patterns for FrankX</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/shadcn-ui-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">shadcn/ui Patterns for FrankX</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fshadcn-ui-patterns">shadcn-ui-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: shadcn/ui Patterns
+description: Build polished, accessible UI with shadcn/ui components following FrankX design system
+version: 1.0.0</h2>
+<h1>shadcn/ui Patterns for FrankX</h1>
+<h2>Purpose</h2>
+<p>Create distinctive, production-grade interfaces using shadcn/ui components with FrankX&#39;s glassmorphic design system. This skill ensures consistent component usage, proper accessibility, and avoidance of generic AI aesthetics.</p>
+<h2>FrankX Project Configuration</h2>
+<pre><code class="language-json">{
+  &quot;style&quot;: &quot;new-york&quot;,
+  &quot;rsc&quot;: true,
+  &quot;tsx&quot;: true,
+  &quot;baseColor&quot;: &quot;neutral&quot;,
+  &quot;cssVariables&quot;: true,
+  &quot;iconLibrary&quot;: &quot;lucide&quot;,
+  &quot;aliases&quot;: {
+    &quot;ui&quot;: &quot;@/components/ui&quot;,
+    &quot;utils&quot;: &quot;@/lib/utils&quot;
+  }
+}
+</code></pre>
+<h2>Core Principles</h2>
+<h3>1. Design-First Approach</h3>
+<p>Before coding any component:</p>
+<ul>
+<li>Establish a bold aesthetic direction (glassmorphic, aurora gradients, etc.)</li>
+<li>Choose typography that elevates (not defaults)</li>
+<li>Avoid generic AI aesthetics - make intentional creative choices</li>
+</ul>
+<h3>2. Component Structure</h3>
+<pre><code>components/
+├── ui/
+│   ├── primitives/     # shadcn base components (button, input, etc.)
+│   ├── magic-ui/       # Enhanced motion components
+│   └── [Custom].tsx    # FrankX-specific components
+</code></pre>
+<h2>Installing New Components</h2>
+<pre><code class="language-bash"># Add shadcn components
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add dialog
+npx shadcn@latest add form
+npx shadcn@latest add input
+npx shadcn@latest add toast
+</code></pre>
+<h2>Essential Patterns</h2>
+<h3>Button Variants</h3>
+<pre><code class="language-tsx">import { Button } from &quot;@/components/ui/primitives/button&quot;
+
+// FrankX uses premium button styling
+&lt;Button variant=&quot;default&quot;&gt;Primary Action&lt;/Button&gt;
+&lt;Button variant=&quot;secondary&quot;&gt;Secondary&lt;/Button&gt;
+&lt;Button variant=&quot;outline&quot;&gt;Outline&lt;/Button&gt;
+&lt;Button variant=&quot;ghost&quot;&gt;Ghost&lt;/Button&gt;
+&lt;Button variant=&quot;destructive&quot;&gt;Destructive&lt;/Button&gt;
+
+// With loading state
+&lt;Button disabled={isLoading}&gt;
+  {isLoading &amp;&amp; &lt;Loader2 className=&quot;mr-2 h-4 w-4 animate-spin&quot; /&gt;}
+  Submit
+&lt;/Button&gt;
+</code></pre>
+<h3>Cards with Glassmorphic Styling</h3>
+<pre><code class="language-tsx">import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from &quot;@/components/ui/card&quot;
+
+// FrankX glassmorphic card pattern
+&lt;Card className=&quot;bg-white/5 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all&quot;&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle className=&quot;text-xl font-semibold&quot;&gt;Title&lt;/CardTitle&gt;
+    &lt;CardDescription className=&quot;text-neutral-400&quot;&gt;Description&lt;/CardDescription&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardContent&gt;
+    {/* Content */}
+  &lt;/CardContent&gt;
+  &lt;CardFooter&gt;
+    &lt;Button&gt;Action&lt;/Button&gt;
+  &lt;/CardFooter&gt;
+&lt;/Card&gt;
+</code></pre>
+<h3>Form with Validation</h3>
+<pre><code class="language-tsx">import { useForm } from &quot;react-hook-form&quot;
+import { zodResolver } from &quot;@hookform/resolvers/zod&quot;
+import * as z from &quot;zod&quot;
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from &quot;@/components/ui/form&quot;
+import { Input } from &quot;@/components/ui/input&quot;
+
+const formSchema = z.object({
+  email: z.string().email(&quot;Invalid email address&quot;),
+  name: z.string().min(2, &quot;Name must be at least 2 characters&quot;),
+})
+
+function EmailForm() {
+  const form = useForm&lt;z.infer&lt;typeof formSchema&gt;&gt;({
+    resolver: zodResolver(formSchema),
+    defaultValues: { email: &quot;&quot;, name: &quot;&quot; },
+  })
+
+  return (
+    &lt;Form {...form}&gt;
+      &lt;form onSubmit={form.handleSubmit(onSubmit)} className=&quot;space-y-4&quot;&gt;
+        &lt;FormField
+          control={form.control}
+          name=&quot;email&quot;
+          render={({ field }) =&gt; (
+            &lt;FormItem&gt;
+              &lt;FormLabel&gt;Email&lt;/FormLabel&gt;
+              &lt;FormControl&gt;
+                &lt;Input placeholder=&quot;you@example.com&quot; {...field} /&gt;
+              &lt;/FormControl&gt;
+              &lt;FormMessage /&gt;
+            &lt;/FormItem&gt;
+          )}
+        /&gt;
+        &lt;Button type=&quot;submit&quot;&gt;Subscribe&lt;/Button&gt;
+      &lt;/form&gt;
+    &lt;/Form&gt;
+  )
+}
+</code></pre>
+<h3>Dialog / Modal</h3>
+<pre><code class="language-tsx">import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from &quot;@/components/ui/dialog&quot;
+
+&lt;Dialog&gt;
+  &lt;DialogTrigger asChild&gt;
+    &lt;Button variant=&quot;outline&quot;&gt;Open&lt;/Button&gt;
+  &lt;/DialogTrigger&gt;
+  &lt;DialogContent className=&quot;bg-neutral-900/95 backdrop-blur-xl border-white/10&quot;&gt;
+    &lt;DialogHeader&gt;
+      &lt;DialogTitle&gt;Modal Title&lt;/DialogTitle&gt;
+      &lt;DialogDescription&gt;Description text here.&lt;/DialogDescription&gt;
+    &lt;/DialogHeader&gt;
+    {/* Content */}
+  &lt;/DialogContent&gt;
+&lt;/Dialog&gt;
+</code></pre>
+<h3>Toast Notifications</h3>
+<pre><code class="language-tsx">import { toast } from &quot;sonner&quot;
+
+// Success
+toast.success(&quot;Changes saved successfully&quot;)
+
+// Error
+toast.error(&quot;Something went wrong&quot;)
+
+// Promise handling
+toast.promise(saveData(), {
+  loading: &quot;Saving...&quot;,
+  success: &quot;Saved!&quot;,
+  error: &quot;Failed to save&quot;
+})
+</code></pre>
+<h2>FrankX Design System Integration</h2>
+<h3>Color Tokens (CSS Variables)</h3>
+<pre><code class="language-css">/* Aurora gradient colors */
+--aurora-1: #00d4ff;
+--aurora-2: #7c3aed;
+--aurora-3: #f472b6;
+
+/* Glass effects */
+--glass-bg: rgba(255, 255, 255, 0.05);
+--glass-border: rgba(255, 255, 255, 0.1);
+--glass-hover: rgba(255, 255, 255, 0.15);
+</code></pre>
+<h3>Glassmorphic Utilities</h3>
+<pre><code class="language-tsx">// Standard glass card
+className=&quot;bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl&quot;
+
+// Elevated glass
+className=&quot;bg-white/10 backdrop-blur-2xl border border-white/20 shadow-2xl rounded-2xl&quot;
+
+// Interactive glass
+className=&quot;bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300&quot;
+</code></pre>
+<h3>Typography Classes</h3>
+<pre><code class="language-tsx">// Headlines
+className=&quot;text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-aurora-1 to-aurora-2 bg-clip-text text-transparent&quot;
+
+// Body text
+className=&quot;text-neutral-300 leading-relaxed&quot;
+
+// Muted text
+className=&quot;text-neutral-500 text-sm&quot;
+</code></pre>
+<h2>Accessibility Requirements</h2>
+<ol>
+<li><p><strong>Focus States</strong>: All interactive elements must have visible focus rings</p>
+<pre><code class="language-tsx">className=&quot;focus-visible:ring-2 focus-visible:ring-aurora-1 focus-visible:ring-offset-2&quot;
+</code></pre>
+</li>
+<li><p><strong>Color Contrast</strong>: Ensure 4.5:1 minimum for body text, 3:1 for large text</p>
+</li>
+<li><p><strong>Screen Reader Support</strong>: Use proper ARIA labels</p>
+<pre><code class="language-tsx">&lt;Button aria-label=&quot;Close dialog&quot;&gt;
+  &lt;X className=&quot;h-4 w-4&quot; /&gt;
+&lt;/Button&gt;
+</code></pre>
+</li>
+<li><p><strong>Keyboard Navigation</strong>: All components must be keyboard accessible</p>
+</li>
+</ol>
+<h2>What to Avoid</h2>
+<ul>
+<li>Generic purple gradients without purpose</li>
+<li>Cookie-cutter layouts lacking FrankX character</li>
+<li>Overused typefaces (use Inter sparingly, prefer distinctive choices)</li>
+<li>Missing loading/error states</li>
+<li>Components without hover/focus feedback</li>
+<li>Non-responsive designs</li>
+</ul>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Building new UI components for FrankX.AI</li>
+<li>Creating forms, modals, or interactive elements</li>
+<li>Implementing design system components</li>
+<li>Ensuring accessibility compliance</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>ui-ux-design-expert</code> - High-level design decisions</li>
+<li><code>nextjs-react-expert</code> - React patterns and Next.js specifics</li>
+<li><code>framer-expert</code> - Animation and motion design</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://ui.shadcn.com">shadcn/ui Documentation</a></li>
+<li><a href="https://radix-ui.com">Radix UI Primitives</a></li>
+<li><a href="https://tailwindcss.com">Tailwind CSS</a></li>
+<li>FrankX Design System: <code>docs/DESIGN_SYSTEM_GUIDE.md</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

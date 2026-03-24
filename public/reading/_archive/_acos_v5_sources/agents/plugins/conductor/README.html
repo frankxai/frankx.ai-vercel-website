@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Conductor - Context-Driven Development Plugin for Claude Code</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Conductor - Context-Driven Development Plugin for Claude Code</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Conductor - Context-Driven Development Plugin for Claude Code</h1>
+<p>Conductor transforms Claude Code into a project management tool by implementing <strong>Context-Driven Development</strong>. It enforces a structured workflow: <strong>Context → Spec &amp; Plan → Implement</strong>.</p>
+<h2>Philosophy</h2>
+<p>By treating context as a managed artifact alongside code, teams establish a persistent, project-aware foundation for all AI interactions. The system maintains:</p>
+<ul>
+<li><strong>Product vision</strong> as living documentation</li>
+<li><strong>Technical decisions</strong> as structured artifacts</li>
+<li><strong>Work units (tracks)</strong> with specifications and phased plans</li>
+<li><strong>TDD workflow</strong> with verification checkpoints</li>
+</ul>
+<h2>Features</h2>
+<ul>
+<li><strong>Specification &amp; Planning</strong>: Generate detailed specs and actionable task plans before implementation</li>
+<li><strong>Context Management</strong>: Maintain style guides, tech stack preferences, and product goals</li>
+<li><strong>Safe Iteration</strong>: Review plans before code generation, keeping humans in control</li>
+<li><strong>Team Collaboration</strong>: Project-level context documents become shared foundations</li>
+<li><strong>Project Intelligence</strong>: Handles both greenfield (new) and brownfield (existing) projects</li>
+<li><strong>Semantic Reversion</strong>: Git-aware revert by logical work units (tracks, phases, tasks)</li>
+<li><strong>State Persistence</strong>: Resume setup across multiple sessions</li>
+</ul>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/conductor:setup</code></td>
+<td>Initialize project with product definition, tech stack, workflow, and style guides</td>
+</tr>
+<tr>
+<td><code>/conductor:new-track</code></td>
+<td>Create a feature or bug track with spec.md and plan.md</td>
+</tr>
+<tr>
+<td><code>/conductor:implement</code></td>
+<td>Execute tasks from the plan following workflow rules</td>
+</tr>
+<tr>
+<td><code>/conductor:status</code></td>
+<td>Display project progress overview</td>
+</tr>
+<tr>
+<td><code>/conductor:revert</code></td>
+<td>Git-aware undo by track, phase, or task</td>
+</tr>
+<tr>
+<td><code>/conductor:manage</code></td>
+<td>Manage track lifecycle: archive, restore, delete, rename, and cleanup</td>
+</tr>
+</tbody></table>
+<h2>Generated Artifacts</h2>
+<pre><code>conductor/
+├── index.md              # Navigation hub
+├── product.md            # Product vision &amp; goals
+├── product-guidelines.md # Standards &amp; messaging
+├── tech-stack.md         # Technology preferences
+├── workflow.md           # Development practices (TDD, commits)
+├── tracks.md             # Master track registry
+├── setup_state.json      # Resumable setup state
+├── code_styleguides/     # Language-specific conventions
+└── tracks/
+    ├── _archive/         # Archived tracks
+    └── &lt;track-id&gt;/
+        ├── spec.md       # Requirements specification
+        ├── plan.md       # Phased task breakdown
+        ├── metadata.json # Track metadata
+        └── index.md      # Track navigation
+</code></pre>
+<h2>Workflow</h2>
+<h3>1. Setup (<code>/conductor:setup</code>)</h3>
+<p>Interactive initialization that creates foundational project documentation:</p>
+<ul>
+<li>Detects greenfield vs brownfield projects</li>
+<li>Asks sequential questions about product, tech stack, workflow preferences</li>
+<li>Generates style guides for selected languages</li>
+<li>Creates tracks registry</li>
+</ul>
+<h3>2. Create Track (<code>/conductor:new-track</code>)</h3>
+<p>Start a new feature or bug fix:</p>
+<ul>
+<li>Interactive Q&amp;A to gather requirements</li>
+<li>Generates detailed specification (spec.md)</li>
+<li>Creates phased implementation plan (plan.md)</li>
+<li>Registers track in tracks.md</li>
+</ul>
+<h3>3. Implement (<code>/conductor:implement</code>)</h3>
+<p>Execute the plan systematically:</p>
+<ul>
+<li>Follows TDD red-green-refactor cycle</li>
+<li>Updates task status markers</li>
+<li>Includes manual verification checkpoints</li>
+<li>Synchronizes documentation on completion</li>
+</ul>
+<h3>4. Monitor (<code>/conductor:status</code>)</h3>
+<p>View project progress:</p>
+<ul>
+<li>Current phase and task</li>
+<li>Completion percentage</li>
+<li>Identified blockers</li>
+</ul>
+<h3>5. Revert (<code>/conductor:revert</code>)</h3>
+<p>Undo work by logical unit:</p>
+<ul>
+<li>Select track, phase, or task to revert</li>
+<li>Git-aware: finds all associated commits</li>
+<li>Requires confirmation before execution</li>
+</ul>
+<h3>6. Manage (<code>/conductor:manage</code>)</h3>
+<p>Manage track lifecycle:</p>
+<ul>
+<li>Archive completed tracks with reason tracking</li>
+<li>Restore archived tracks to active state</li>
+<li>Delete tracks permanently (with safeguards)</li>
+<li>Rename track IDs with reference updates</li>
+<li>Cleanup orphaned artifacts and stale tracks</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash">/plugin install conductor
+</code></pre>
+<h2>Acknowledgments</h2>
+<p>This plugin is based on <a href="https://github.com/gemini-cli-extensions/conductor">Conductor</a> by Google, originally developed for Gemini CLI.</p>
+<p>Adapted for Claude Code by <a href="https://github.com/wshobson">@wshobson</a>.</p>
+<h2>License</h2>
+<p>Apache License 2.0 - See the <a href="https://github.com/gemini-cli-extensions/conductor">original project</a> for license details.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

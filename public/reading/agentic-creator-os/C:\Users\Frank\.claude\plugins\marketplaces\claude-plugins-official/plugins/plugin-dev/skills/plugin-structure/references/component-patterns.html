@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-27" />
+  <title>Component Organization Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/plugin-dev/skills/plugin-structure/references/component-patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Component Organization Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-27 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>component-patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-27</strong></div>
+      <h1>Component Organization Patterns</h1>
+<p>Advanced patterns for organizing plugin components effectively.</p>
+<h2>Component Lifecycle</h2>
+<h3>Discovery Phase</h3>
+<p>When Claude Code starts:</p>
+<ol>
+<li><strong>Scan enabled plugins</strong>: Read <code>.claude-plugin/plugin.json</code> for each</li>
+<li><strong>Discover components</strong>: Look in default and custom paths</li>
+<li><strong>Parse definitions</strong>: Read YAML frontmatter and configurations</li>
+<li><strong>Register components</strong>: Make available to Claude Code</li>
+<li><strong>Initialize</strong>: Start MCP servers, register hooks</li>
+</ol>
+<p><strong>Timing</strong>: Component registration happens during Claude Code initialization, not continuously.</p>
+<h3>Activation Phase</h3>
+<p>When components are used:</p>
+<p><strong>Commands</strong>: User types slash command → Claude Code looks up → Executes
+<strong>Agents</strong>: Task arrives → Claude Code evaluates capabilities → Selects agent
+<strong>Skills</strong>: Task context matches description → Claude Code loads skill
+<strong>Hooks</strong>: Event occurs → Claude Code calls matching hooks
+<strong>MCP Servers</strong>: Tool call matches server capability → Forwards to server</p>
+<h2>Command Organization Patterns</h2>
+<h3>Flat Structure</h3>
+<p>Single directory with all commands:</p>
+<pre><code>commands/
+├── build.md
+├── test.md
+├── deploy.md
+├── review.md
+└── docs.md
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>5-15 commands total</li>
+<li>All commands at same abstraction level</li>
+<li>No clear categorization</li>
+</ul>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Simple, easy to navigate</li>
+<li>No configuration needed</li>
+<li>Fast discovery</li>
+</ul>
+<h3>Categorized Structure</h3>
+<p>Multiple directories for different command types:</p>
+<pre><code>commands/              # Core commands
+├── build.md
+└── test.md
+
+admin-commands/        # Administrative
+├── configure.md
+└── manage.md
+
+workflow-commands/     # Workflow automation
+├── review.md
+└── deploy.md
+</code></pre>
+<p><strong>Manifest configuration</strong>:</p>
+<pre><code class="language-json">{
+  &quot;commands&quot;: [
+    &quot;./commands&quot;,
+    &quot;./admin-commands&quot;,
+    &quot;./workflow-commands&quot;
+  ]
+}
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>15+ commands</li>
+<li>Clear functional categories</li>
+<li>Different permission levels</li>
+</ul>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Organized by purpose</li>
+<li>Easier to maintain</li>
+<li>Can restrict access by directory</li>
+</ul>
+<h3>Hierarchical Structure</h3>
+<p>Nested organization for complex plugins:</p>
+<pre><code>commands/
+├── ci/
+│   ├── build.md
+│   ├── test.md
+│   └── lint.md
+├── deployment/
+│   ├── staging.md
+│   └── production.md
+└── management/
+    ├── config.md
+    └── status.md
+</code></pre>
+<p><strong>Note</strong>: Claude Code doesn&#39;t support nested command discovery automatically. Use custom paths:</p>
+<pre><code class="language-json">{
+  &quot;commands&quot;: [
+    &quot;./commands/ci&quot;,
+    &quot;./commands/deployment&quot;,
+    &quot;./commands/management&quot;
+  ]
+}
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>20+ commands</li>
+<li>Multi-level categorization</li>
+<li>Complex workflows</li>
+</ul>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Maximum organization</li>
+<li>Clear boundaries</li>
+<li>Scalable structure</li>
+</ul>
+<h2>Agent Organization Patterns</h2>
+<h3>Role-Based Organization</h3>
+<p>Organize agents by their primary role:</p>
+<pre><code>agents/
+├── code-reviewer.md        # Reviews code
+├── test-generator.md       # Generates tests
+├── documentation-writer.md # Writes docs
+└── refactorer.md          # Refactors code
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Agents have distinct, non-overlapping roles</li>
+<li>Users invoke agents manually</li>
+<li>Clear agent responsibilities</li>
+</ul>
+<h3>Capability-Based Organization</h3>
+<p>Organize by specific capabilities:</p>
+<pre><code>agents/
+├── python-expert.md        # Python-specific
+├── typescript-expert.md    # TypeScript-specific
+├── api-specialist.md       # API design
+└── database-specialist.md  # Database work
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Technology-specific agents</li>
+<li>Domain expertise focus</li>
+<li>Automatic agent selection</li>
+</ul>
+<h3>Workflow-Based Organization</h3>
+<p>Organize by workflow stage:</p>
+<pre><code>agents/
+├── planning-agent.md      # Planning phase
+├── implementation-agent.md # Coding phase
+├── testing-agent.md       # Testing phase
+└── deployment-agent.md    # Deployment phase
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Sequential workflows</li>
+<li>Stage-specific expertise</li>
+<li>Pipeline automation</li>
+</ul>
+<h2>Skill Organization Patterns</h2>
+<h3>Topic-Based Organization</h3>
+<p>Each skill covers a specific topic:</p>
+<pre><code>skills/
+├── api-design/
+│   └── SKILL.md
+├── error-handling/
+│   └── SKILL.md
+├── testing-strategies/
+│   └── SKILL.md
+└── performance-optimization/
+    └── SKILL.md
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Knowledge-based skills</li>
+<li>Educational or reference content</li>
+<li>Broad applicability</li>
+</ul>
+<h3>Tool-Based Organization</h3>
+<p>Skills for specific tools or technologies:</p>
+<pre><code>skills/
+├── docker/
+│   ├── SKILL.md
+│   └── references/
+│       └── dockerfile-best-practices.md
+├── kubernetes/
+│   ├── SKILL.md
+│   └── examples/
+│       └── deployment.yaml
+└── terraform/
+    ├── SKILL.md
+    └── scripts/
+        └── validate-config.sh
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Tool-specific expertise</li>
+<li>Complex tool configurations</li>
+<li>Tool best practices</li>
+</ul>
+<h3>Workflow-Based Organization</h3>
+<p>Skills for complete workflows:</p>
+<pre><code>skills/
+├── code-review-workflow/
+│   ├── SKILL.md
+│   └── references/
+│       ├── checklist.md
+│       └── standards.md
+├── deployment-workflow/
+│   ├── SKILL.md
+│   └── scripts/
+│       ├── pre-deploy.sh
+│       └── post-deploy.sh
+└── testing-workflow/
+    ├── SKILL.md
+    └── examples/
+        └── test-structure.md
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Multi-step processes</li>
+<li>Company-specific workflows</li>
+<li>Process automation</li>
+</ul>
+<h3>Skill with Rich Resources</h3>
+<p>Comprehensive skill with all resource types:</p>
+<pre><code>skills/
+└── api-testing/
+    ├── SKILL.md              # Core skill (1500 words)
+    ├── references/
+    │   ├── rest-api-guide.md
+    │   ├── graphql-guide.md
+    │   └── authentication.md
+    ├── examples/
+    │   ├── basic-test.js
+    │   ├── authenticated-test.js
+    │   └── integration-test.js
+    ├── scripts/
+    │   ├── run-tests.sh
+    │   └── generate-report.py
+    └── assets/
+        └── test-template.json
+</code></pre>
+<p><strong>Resource usage</strong>:</p>
+<ul>
+<li><strong>SKILL.md</strong>: Overview and when to use resources</li>
+<li><strong>references/</strong>: Detailed guides (loaded as needed)</li>
+<li><strong>examples/</strong>: Copy-paste code samples</li>
+<li><strong>scripts/</strong>: Executable test runners</li>
+<li><strong>assets/</strong>: Templates and configurations</li>
+</ul>
+<h2>Hook Organization Patterns</h2>
+<h3>Monolithic Configuration</h3>
+<p>Single hooks.json with all hooks:</p>
+<pre><code>hooks/
+├── hooks.json     # All hook definitions
+└── scripts/
+    ├── validate-write.sh
+    ├── validate-bash.sh
+    └── load-context.sh
+</code></pre>
+<p><strong>hooks.json</strong>:</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [...],
+  &quot;PostToolUse&quot;: [...],
+  &quot;Stop&quot;: [...],
+  &quot;SessionStart&quot;: [...]
+}
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>5-10 hooks total</li>
+<li>Simple hook logic</li>
+<li>Centralized configuration</li>
+</ul>
+<h3>Event-Based Organization</h3>
+<p>Separate files per event type:</p>
+<pre><code>hooks/
+├── hooks.json              # Combines all
+├── pre-tool-use.json      # PreToolUse hooks
+├── post-tool-use.json     # PostToolUse hooks
+├── stop.json              # Stop hooks
+└── scripts/
+    ├── validate/
+    │   ├── write.sh
+    │   └── bash.sh
+    └── context/
+        └── load.sh
+</code></pre>
+<p><strong>hooks.json</strong> (combines):</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: ${file:./pre-tool-use.json},
+  &quot;PostToolUse&quot;: ${file:./post-tool-use.json},
+  &quot;Stop&quot;: ${file:./stop.json}
+}
+</code></pre>
+<p><strong>Note</strong>: Use build script to combine files, Claude Code doesn&#39;t support file references.</p>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>10+ hooks</li>
+<li>Different teams managing different events</li>
+<li>Complex hook configurations</li>
+</ul>
+<h3>Purpose-Based Organization</h3>
+<p>Group by functional purpose:</p>
+<pre><code>hooks/
+├── hooks.json
+└── scripts/
+    ├── security/
+    │   ├── validate-paths.sh
+    │   ├── check-credentials.sh
+    │   └── scan-malware.sh
+    ├── quality/
+    │   ├── lint-code.sh
+    │   ├── check-tests.sh
+    │   └── verify-docs.sh
+    └── workflow/
+        ├── notify-team.sh
+        └── update-status.sh
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Many hook scripts</li>
+<li>Clear functional boundaries</li>
+<li>Team specialization</li>
+</ul>
+<h2>Script Organization Patterns</h2>
+<h3>Flat Scripts</h3>
+<p>All scripts in single directory:</p>
+<pre><code>scripts/
+├── build.sh
+├── test.py
+├── deploy.sh
+├── validate.js
+└── report.py
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>5-10 scripts</li>
+<li>All scripts related</li>
+<li>Simple plugin</li>
+</ul>
+<h3>Categorized Scripts</h3>
+<p>Group by purpose:</p>
+<pre><code>scripts/
+├── build/
+│   ├── compile.sh
+│   └── package.sh
+├── test/
+│   ├── run-unit.sh
+│   └── run-integration.sh
+├── deploy/
+│   ├── staging.sh
+│   └── production.sh
+└── utils/
+    ├── log.sh
+    └── notify.sh
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>10+ scripts</li>
+<li>Clear categories</li>
+<li>Reusable utilities</li>
+</ul>
+<h3>Language-Based Organization</h3>
+<p>Group by programming language:</p>
+<pre><code>scripts/
+├── bash/
+│   ├── build.sh
+│   └── deploy.sh
+├── python/
+│   ├── analyze.py
+│   └── report.py
+└── javascript/
+    ├── bundle.js
+    └── optimize.js
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Multi-language scripts</li>
+<li>Different runtime requirements</li>
+<li>Language-specific dependencies</li>
+</ul>
+<h2>Cross-Component Patterns</h2>
+<h3>Shared Resources</h3>
+<p>Components sharing common resources:</p>
+<pre><code>plugin/
+├── commands/
+│   ├── test.md        # Uses lib/test-utils.sh
+│   └── deploy.md      # Uses lib/deploy-utils.sh
+├── agents/
+│   └── tester.md      # References lib/test-utils.sh
+├── hooks/
+│   └── scripts/
+│       └── pre-test.sh # Sources lib/test-utils.sh
+└── lib/
+    ├── test-utils.sh
+    └── deploy-utils.sh
+</code></pre>
+<p><strong>Usage in components</strong>:</p>
+<pre><code class="language-bash">#!/bin/bash
+source &quot;${CLAUDE_PLUGIN_ROOT}/lib/test-utils.sh&quot;
+run_tests
+</code></pre>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>Code reuse</li>
+<li>Consistent behavior</li>
+<li>Easier maintenance</li>
+</ul>
+<h3>Layered Architecture</h3>
+<p>Separate concerns into layers:</p>
+<pre><code>plugin/
+├── commands/          # User interface layer
+├── agents/            # Orchestration layer
+├── skills/            # Knowledge layer
+└── lib/
+    ├── core/         # Core business logic
+    ├── integrations/ # External services
+    └── utils/        # Helper functions
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Large plugins (100+ files)</li>
+<li>Multiple developers</li>
+<li>Clear separation of concerns</li>
+</ul>
+<h3>Plugin Within Plugin</h3>
+<p>Nested plugin structure:</p>
+<pre><code>plugin/
+├── .claude-plugin/
+│   └── plugin.json
+├── core/              # Core functionality
+│   ├── commands/
+│   └── agents/
+└── extensions/        # Optional extensions
+    ├── extension-a/
+    │   ├── commands/
+    │   └── agents/
+    └── extension-b/
+        ├── commands/
+        └── agents/
+</code></pre>
+<p><strong>Manifest</strong>:</p>
+<pre><code class="language-json">{
+  &quot;commands&quot;: [
+    &quot;./core/commands&quot;,
+    &quot;./extensions/extension-a/commands&quot;,
+    &quot;./extensions/extension-b/commands&quot;
+  ]
+}
+</code></pre>
+<p><strong>When to use</strong>:</p>
+<ul>
+<li>Modular functionality</li>
+<li>Optional features</li>
+<li>Plugin families</li>
+</ul>
+<h2>Best Practices</h2>
+<h3>Naming</h3>
+<ol>
+<li><strong>Consistent naming</strong>: Match file names to component purpose</li>
+<li><strong>Descriptive names</strong>: Indicate what component does</li>
+<li><strong>Avoid abbreviations</strong>: Use full words for clarity</li>
+</ol>
+<h3>Organization</h3>
+<ol>
+<li><strong>Start simple</strong>: Use flat structure, reorganize when needed</li>
+<li><strong>Group related items</strong>: Keep related components together</li>
+<li><strong>Separate concerns</strong>: Don&#39;t mix unrelated functionality</li>
+</ol>
+<h3>Scalability</h3>
+<ol>
+<li><strong>Plan for growth</strong>: Choose structure that scales</li>
+<li><strong>Refactor early</strong>: Reorganize before it becomes painful</li>
+<li><strong>Document structure</strong>: Explain organization in README</li>
+</ol>
+<h3>Maintainability</h3>
+<ol>
+<li><strong>Consistent patterns</strong>: Use same structure throughout</li>
+<li><strong>Minimize nesting</strong>: Keep directory depth manageable</li>
+<li><strong>Use conventions</strong>: Follow community standards</li>
+</ol>
+<h3>Performance</h3>
+<ol>
+<li><strong>Avoid deep nesting</strong>: Impacts discovery time</li>
+<li><strong>Minimize custom paths</strong>: Use defaults when possible</li>
+<li><strong>Keep configurations small</strong>: Large configs slow loading</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

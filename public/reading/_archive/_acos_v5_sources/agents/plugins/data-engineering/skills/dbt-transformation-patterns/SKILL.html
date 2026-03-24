@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>dbt Transformation Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/data-engineering/skills/dbt-transformation-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">dbt Transformation Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdata-engineering">data-engineering</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdata-engineering%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdata-engineering%2Fskills%2Fdbt-transformation-patterns">dbt-transformation-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: dbt-transformation-patterns
+description: Master dbt (data build tool) for analytics engineering with model organization, testing, documentation, and incremental strategies. Use when building data transformations, creating data models, or implementing analytics engineering best practices.</h2>
+<h1>dbt Transformation Patterns</h1>
+<p>Production-ready patterns for dbt (data build tool) including model organization, testing strategies, documentation, and incremental processing.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Building data transformation pipelines with dbt</li>
+<li>Organizing models into staging, intermediate, and marts layers</li>
+<li>Implementing data quality tests</li>
+<li>Creating incremental models for large datasets</li>
+<li>Documenting data models and lineage</li>
+<li>Setting up dbt project structure</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Model Layers (Medallion Architecture)</h3>
+<pre><code>sources/          Raw data definitions
+    ↓
+staging/          1:1 with source, light cleaning
+    ↓
+intermediate/     Business logic, joins, aggregations
+    ↓
+marts/            Final analytics tables
+</code></pre>
+<h3>2. Naming Conventions</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Prefix</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Staging</td>
+<td><code>stg_</code></td>
+<td><code>stg_stripe__payments</code></td>
+</tr>
+<tr>
+<td>Intermediate</td>
+<td><code>int_</code></td>
+<td><code>int_payments_pivoted</code></td>
+</tr>
+<tr>
+<td>Marts</td>
+<td><code>dim_</code>, <code>fct_</code></td>
+<td><code>dim_customers</code>, <code>fct_orders</code></td>
+</tr>
+</tbody></table>
+<h2>Quick Start</h2>
+<pre><code class="language-yaml"># dbt_project.yml
+name: &quot;analytics&quot;
+version: &quot;1.0.0&quot;
+profile: &quot;analytics&quot;
+
+model-paths: [&quot;models&quot;]
+analysis-paths: [&quot;analyses&quot;]
+test-paths: [&quot;tests&quot;]
+seed-paths: [&quot;seeds&quot;]
+macro-paths: [&quot;macros&quot;]
+
+vars:
+  start_date: &quot;2020-01-01&quot;
+
+models:
+  analytics:
+    staging:
+      +materialized: view
+      +schema: staging
+    intermediate:
+      +materialized: ephemeral
+    marts:
+      +materialized: table
+      +schema: analytics
+</code></pre>
+<pre><code># Project structure
+models/
+├── staging/
+│   ├── stripe/
+│   │   ├── _stripe__sources.yml
+│   │   ├── _stripe__models.yml
+│   │   ├── stg_stripe__customers.sql
+│   │   └── stg_stripe__payments.sql
+│   └── shopify/
+│       ├── _shopify__sources.yml
+│       └── stg_shopify__orders.sql
+├── intermediate/
+│   └── finance/
+│       └── int_payments_pivoted.sql
+└── marts/
+    ├── core/
+    │   ├── _core__models.yml
+    │   ├── dim_customers.sql
+    │   └── fct_orders.sql
+    └── finance/
+        └── fct_revenue.sql
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: Source Definitions</h3>
+<pre><code class="language-yaml"># models/staging/stripe/_stripe__sources.yml
+version: 2
+
+sources:
+  - name: stripe
+    description: Raw Stripe data loaded via Fivetran
+    database: raw
+    schema: stripe
+    loader: fivetran
+    loaded_at_field: _fivetran_synced
+    freshness:
+      warn_after: { count: 12, period: hour }
+      error_after: { count: 24, period: hour }
+    tables:
+      - name: customers
+        description: Stripe customer records
+        columns:
+          - name: id
+            description: Primary key
+            tests:
+              - unique
+              - not_null
+          - name: email
+            description: Customer email
+          - name: created
+            description: Account creation timestamp
+
+      - name: payments
+        description: Stripe payment transactions
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null
+          - name: customer_id
+            tests:
+              - not_null
+              - relationships:
+                  to: source(&#39;stripe&#39;, &#39;customers&#39;)
+                  field: id
+</code></pre>
+<h3>Pattern 2: Staging Models</h3>
+<pre><code class="language-sql">-- models/staging/stripe/stg_stripe__customers.sql
+with source as (
+    select * from {{ source(&#39;stripe&#39;, &#39;customers&#39;) }}
+),
+
+renamed as (
+    select
+        -- ids
+        id as customer_id,
+
+        -- strings
+        lower(email) as email,
+        name as customer_name,
+
+        -- timestamps
+        created as created_at,
+
+        -- metadata
+        _fivetran_synced as _loaded_at
+
+    from source
+)
+
+select * from renamed
+</code></pre>
+<pre><code class="language-sql">-- models/staging/stripe/stg_stripe__payments.sql
+{{
+    config(
+        materialized=&#39;incremental&#39;,
+        unique_key=&#39;payment_id&#39;,
+        on_schema_change=&#39;append_new_columns&#39;
+    )
+}}
+
+with source as (
+    select * from {{ source(&#39;stripe&#39;, &#39;payments&#39;) }}
+
+    {% if is_incremental() %}
+    where _fivetran_synced &gt; (select max(_loaded_at) from {{ this }})
+    {% endif %}
+),
+
+renamed as (
+    select
+        -- ids
+        id as payment_id,
+        customer_id,
+        invoice_id,
+
+        -- amounts (convert cents to dollars)
+        amount / 100.0 as amount,
+        amount_refunded / 100.0 as amount_refunded,
+
+        -- status
+        status as payment_status,
+
+        -- timestamps
+        created as created_at,
+
+        -- metadata
+        _fivetran_synced as _loaded_at
+
+    from source
+)
+
+select * from renamed
+</code></pre>
+<h3>Pattern 3: Intermediate Models</h3>
+<pre><code class="language-sql">-- models/intermediate/finance/int_payments_pivoted_to_customer.sql
+with payments as (
+    select * from {{ ref(&#39;stg_stripe__payments&#39;) }}
+),
+
+customers as (
+    select * from {{ ref(&#39;stg_stripe__customers&#39;) }}
+),
+
+payment_summary as (
+    select
+        customer_id,
+        count(*) as total_payments,
+        count(case when payment_status = &#39;succeeded&#39; then 1 end) as successful_payments,
+        sum(case when payment_status = &#39;succeeded&#39; then amount else 0 end) as total_amount_paid,
+        min(created_at) as first_payment_at,
+        max(created_at) as last_payment_at
+    from payments
+    group by customer_id
+)
+
+select
+    customers.customer_id,
+    customers.email,
+    customers.created_at as customer_created_at,
+    coalesce(payment_summary.total_payments, 0) as total_payments,
+    coalesce(payment_summary.successful_payments, 0) as successful_payments,
+    coalesce(payment_summary.total_amount_paid, 0) as lifetime_value,
+    payment_summary.first_payment_at,
+    payment_summary.last_payment_at
+
+from customers
+left join payment_summary using (customer_id)
+</code></pre>
+<h3>Pattern 4: Mart Models (Dimensions and Facts)</h3>
+<pre><code class="language-sql">-- models/marts/core/dim_customers.sql
+{{
+    config(
+        materialized=&#39;table&#39;,
+        unique_key=&#39;customer_id&#39;
+    )
+}}
+
+with customers as (
+    select * from {{ ref(&#39;int_payments_pivoted_to_customer&#39;) }}
+),
+
+orders as (
+    select * from {{ ref(&#39;stg_shopify__orders&#39;) }}
+),
+
+order_summary as (
+    select
+        customer_id,
+        count(*) as total_orders,
+        sum(total_price) as total_order_value,
+        min(created_at) as first_order_at,
+        max(created_at) as last_order_at
+    from orders
+    group by customer_id
+),
+
+final as (
+    select
+        -- surrogate key
+        {{ dbt_utils.generate_surrogate_key([&#39;customers.customer_id&#39;]) }} as customer_key,
+
+        -- natural key
+        customers.customer_id,
+
+        -- attributes
+        customers.email,
+        customers.customer_created_at,
+
+        -- payment metrics
+        customers.total_payments,
+        customers.successful_payments,
+        customers.lifetime_value,
+        customers.first_payment_at,
+        customers.last_payment_at,
+
+        -- order metrics
+        coalesce(order_summary.total_orders, 0) as total_orders,
+        coalesce(order_summary.total_order_value, 0) as total_order_value,
+        order_summary.first_order_at,
+        order_summary.last_order_at,
+
+        -- calculated fields
+        case
+            when customers.lifetime_value &gt;= 1000 then &#39;high&#39;
+            when customers.lifetime_value &gt;= 100 then &#39;medium&#39;
+            else &#39;low&#39;
+        end as customer_tier,
+
+        -- timestamps
+        current_timestamp as _loaded_at
+
+    from customers
+    left join order_summary using (customer_id)
+)
+
+select * from final
+</code></pre>
+<pre><code class="language-sql">-- models/marts/core/fct_orders.sql
+{{
+    config(
+        materialized=&#39;incremental&#39;,
+        unique_key=&#39;order_id&#39;,
+        incremental_strategy=&#39;merge&#39;
+    )
+}}
+
+with orders as (
+    select * from {{ ref(&#39;stg_shopify__orders&#39;) }}
+
+    {% if is_incremental() %}
+    where updated_at &gt; (select max(updated_at) from {{ this }})
+    {% endif %}
+),
+
+customers as (
+    select * from {{ ref(&#39;dim_customers&#39;) }}
+),
+
+final as (
+    select
+        -- keys
+        orders.order_id,
+        customers.customer_key,
+        orders.customer_id,
+
+        -- dimensions
+        orders.order_status,
+        orders.fulfillment_status,
+        orders.payment_status,
+
+        -- measures
+        orders.subtotal,
+        orders.tax,
+        orders.shipping,
+        orders.total_price,
+        orders.total_discount,
+        orders.item_count,
+
+        -- timestamps
+        orders.created_at,
+        orders.updated_at,
+        orders.fulfilled_at,
+
+        -- metadata
+        current_timestamp as _loaded_at
+
+    from orders
+    left join customers on orders.customer_id = customers.customer_id
+)
+
+select * from final
+</code></pre>
+<h3>Pattern 5: Testing and Documentation</h3>
+<pre><code class="language-yaml"># models/marts/core/_core__models.yml
+version: 2
+
+models:
+  - name: dim_customers
+    description: Customer dimension with payment and order metrics
+    columns:
+      - name: customer_key
+        description: Surrogate key for the customer dimension
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Natural key from source system
+        tests:
+          - unique
+          - not_null
+
+      - name: email
+        description: Customer email address
+        tests:
+          - not_null
+
+      - name: customer_tier
+        description: Customer value tier based on lifetime value
+        tests:
+          - accepted_values:
+              values: [&quot;high&quot;, &quot;medium&quot;, &quot;low&quot;]
+
+      - name: lifetime_value
+        description: Total amount paid by customer
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: &quot;&gt;= 0&quot;
+
+  - name: fct_orders
+    description: Order fact table with all order transactions
+    tests:
+      - dbt_utils.recency:
+          datepart: day
+          field: created_at
+          interval: 1
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref(&#39;dim_customers&#39;)
+              field: customer_key
+</code></pre>
+<h3>Pattern 6: Macros and DRY Code</h3>
+<pre><code class="language-sql">-- macros/cents_to_dollars.sql
+{% macro cents_to_dollars(column_name, precision=2) %}
+    round({{ column_name }} / 100.0, {{ precision }})
+{% endmacro %}
+
+-- macros/generate_schema_name.sql
+{% macro generate_schema_name(custom_schema_name, node) %}
+    {%- set default_schema = target.schema -%}
+    {%- if custom_schema_name is none -%}
+        {{ default_schema }}
+    {%- else -%}
+        {{ default_schema }}_{{ custom_schema_name }}
+    {%- endif -%}
+{% endmacro %}
+
+-- macros/limit_data_in_dev.sql
+{% macro limit_data_in_dev(column_name, days=3) %}
+    {% if target.name == &#39;dev&#39; %}
+        where {{ column_name }} &gt;= dateadd(day, -{{ days }}, current_date)
+    {% endif %}
+{% endmacro %}
+
+-- Usage in model
+select * from {{ ref(&#39;stg_orders&#39;) }}
+{{ limit_data_in_dev(&#39;created_at&#39;) }}
+</code></pre>
+<h3>Pattern 7: Incremental Strategies</h3>
+<pre><code class="language-sql">-- Delete+Insert (default for most warehouses)
+{{
+    config(
+        materialized=&#39;incremental&#39;,
+        unique_key=&#39;id&#39;,
+        incremental_strategy=&#39;delete+insert&#39;
+    )
+}}
+
+-- Merge (best for late-arriving data)
+{{
+    config(
+        materialized=&#39;incremental&#39;,
+        unique_key=&#39;id&#39;,
+        incremental_strategy=&#39;merge&#39;,
+        merge_update_columns=[&#39;status&#39;, &#39;amount&#39;, &#39;updated_at&#39;]
+    )
+}}
+
+-- Insert Overwrite (partition-based)
+{{
+    config(
+        materialized=&#39;incremental&#39;,
+        incremental_strategy=&#39;insert_overwrite&#39;,
+        partition_by={
+            &quot;field&quot;: &quot;created_date&quot;,
+            &quot;data_type&quot;: &quot;date&quot;,
+            &quot;granularity&quot;: &quot;day&quot;
+        }
+    )
+}}
+
+select
+    *,
+    date(created_at) as created_date
+from {{ ref(&#39;stg_events&#39;) }}
+
+{% if is_incremental() %}
+where created_date &gt;= dateadd(day, -3, current_date)
+{% endif %}
+</code></pre>
+<h2>dbt Commands</h2>
+<pre><code class="language-bash"># Development
+dbt run                          # Run all models
+dbt run --select staging         # Run staging models only
+dbt run --select +fct_orders     # Run fct_orders and its upstream
+dbt run --select fct_orders+     # Run fct_orders and its downstream
+dbt run --full-refresh           # Rebuild incremental models
+
+# Testing
+dbt test                         # Run all tests
+dbt test --select stg_stripe     # Test specific models
+dbt build                        # Run + test in DAG order
+
+# Documentation
+dbt docs generate                # Generate docs
+dbt docs serve                   # Serve docs locally
+
+# Debugging
+dbt compile                      # Compile SQL without running
+dbt debug                        # Test connection
+dbt ls --select tag:critical     # List models by tag
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Use staging layer</strong> - Clean data once, use everywhere</li>
+<li><strong>Test aggressively</strong> - Not null, unique, relationships</li>
+<li><strong>Document everything</strong> - Column descriptions, model descriptions</li>
+<li><strong>Use incremental</strong> - For tables &gt; 1M rows</li>
+<li><strong>Version control</strong> - dbt project in Git</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t skip staging</strong> - Raw → mart is tech debt</li>
+<li><strong>Don&#39;t hardcode dates</strong> - Use <code>{{ var(&#39;start_date&#39;) }}</code></li>
+<li><strong>Don&#39;t repeat logic</strong> - Extract to macros</li>
+<li><strong>Don&#39;t test in prod</strong> - Use dev target</li>
+<li><strong>Don&#39;t ignore freshness</strong> - Monitor source data</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.getdbt.com/">dbt Documentation</a></li>
+<li><a href="https://docs.getdbt.com/guides/best-practices">dbt Best Practices</a></li>
+<li><a href="https://hub.getdbt.com/dbt-labs/dbt_utils/latest/">dbt-utils Package</a></li>
+<li><a href="https://discourse.getdbt.com/">dbt Discourse</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

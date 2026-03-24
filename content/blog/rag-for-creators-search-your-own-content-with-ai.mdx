@@ -1,0 +1,288 @@
+---
+title: "RAG for Creators: Search Your Own Content with AI"
+description: "How to build a retrieval system over your own writing, research, and notes — so AI assistants can find and cite your past work."
+date: "2026-03-21"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags: ["RAG", "Vector Search", "AI Memory", "ChromaDB", "Knowledge"]
+image: "/images/blog/rag-for-creators-hero.webp"
+featured: false
+keywords:
+  [
+    "rag for creators",
+    "vector search content",
+    "chromadb tutorial",
+    "semantic search own content",
+    "ai retrieval augmented generation",
+  ]
+readingGoal: "You will understand how to build a RAG system over your own content — blog posts, research notes, product specs — so AI can search and cite it."
+tldr: "Retrieval-Augmented Generation means your AI assistant can search your own content before answering. Instead of re-explaining your 100 blog posts, 20 research domains, and 6 books every session, you embed them as vectors and let the model retrieve what is relevant. The stack: ChromaDB for local vector storage, an embedding model (OpenAI text-embedding-3-small or local alternatives), and the chroma-mcp server connecting it to Claude Code. Total cost: $0 if self-hosted. Setup time: 2 hours."
+schema: ["Article", "FAQPage"]
+---
+
+**TL;DR:** Retrieval-Augmented Generation means your AI assistant can search your own content before answering. Instead of re-explaining your 100 blog posts, 20 research domains, and 6 books every session, you embed them as vectors and let the model retrieve what is relevant. The stack: ChromaDB for local vector storage, an embedding model (OpenAI text-embedding-3-small or local alternatives), and the chroma-mcp server connecting it to Claude Code. Total cost: $0 if self-hosted. Setup time: 2 hours.
+
+---
+
+Three months into writing on frankx.ai, I noticed a problem. I would be working in Claude Code, ask a question about something I had already researched, and Claude would either hallucinate an answer or ask me to explain the context I had already documented.
+
+I had 90+ blog posts, a structured research hub across 20 domains, six product specs, and six books in MDX format. Over 200,000 words of my own work — and Claude could not access any of it.
+
+That is the context window problem. You cannot paste 200,000 words into a prompt. But with a vector database and retrieval, you do not need to — you retrieve only the relevant 2,000 words before each response.
+
+This is RAG. Here is how to build it.
+
+---
+
+## What RAG Actually Means
+
+Retrieval-Augmented Generation is a pattern with two stages:
+
+1. **Retrieve:** Before the model generates, search a database for the most relevant content based on the query.
+2. **Generate:** Pass the retrieved content to the model as context, then generate a grounded response.
+
+Without RAG, a language model only knows what is in its training data and the current context window. With RAG, it can search an external knowledge base first — and cite it.
+
+For a creator, that knowledge base is your own work. Your blog posts. Your research notes. Your product specs. Your past analyses.
+
+The practical result: "What did I write about multi-agent orchestration?" becomes a real query. The model searches your embeddings, retrieves the relevant paragraphs from three posts you wrote, and synthesizes them — with citations to your own work.
+
+---
+
+## Why Creators Need This More Than Developers
+
+Developers immediately think of RAG as a tool for code search or documentation retrieval. Fair. But creators with substantial written archives have an equally pressing need.
+
+**The scale problem:** After 100 blog posts, 20 research domain files, and multiple product guides, no context window holds it all. My `/research/personal-ai-coe` page alone is 8,000 words. Three of those pages would fill a 32K context window.
+
+**The recency problem:** I wrote about [MCP server architecture](/blog/mcp-ecosystem-2026-clawhub-smithery-guide) six weeks ago. When I am working on a new related piece, I want Claude to reference what I already wrote — exact phrasing, specific conclusions — without me re-reading and summarizing it manually.
+
+**The consistency problem:** Brand voice, technical positions, and established facts need to stay consistent across posts. RAG lets me retrieve prior framing before generating new content that should align with it.
+
+---
+
+## The Technical Stack
+
+### ChromaDB
+
+An open-source vector database that runs locally. No API keys. No cloud setup. You install it with pip, point it at a directory, and it persists to disk. It supports metadata filtering, multiple collections, and the standard operations: add, query, delete, update.
+
+For a creator with a few hundred documents, a local ChromaDB instance is all you need.
+
+```bash
+pip install chromadb
+```
+
+### Embedding Model
+
+To store and search documents as vectors, you need an embedding model — a function that converts text to a list of floating-point numbers. Documents with similar meaning get similar vectors. That is what makes semantic search work.
+
+Two options:
+
+**OpenAI text-embedding-3-small** ($0.02/million tokens): The most commonly used. Send text to OpenAI's API, receive a 1536-dimension vector. Reliable, fast, and cheap enough that embedding a full archive of 100 blog posts costs under $0.50.
+
+**Local alternatives (Ollama + nomic-embed-text):** Zero API cost, runs entirely on your machine. Trade-off: requires a capable GPU or CPU for acceptable speed. If you are privacy-focused or working air-gapped, this is the path.
+
+### chroma-mcp
+
+The bridge between ChromaDB and Claude Code. An MCP server that exposes ChromaDB operations as tools Claude can call during a session.
+
+```bash
+claude mcp add chroma-mcp -- npx -y chroma-mcp
+```
+
+Once installed, Claude Code can call `chroma_query` to search your collections, `chroma_add` to embed new documents, and `chroma_list_collections` to see what is available.
+
+---
+
+## What to Embed
+
+This is where most guides go generic. Here is what specifically makes sense for a creator:
+
+**Embed these:**
+
+- Blog posts (full MDX, stripped of frontmatter)
+- Research domain files (your analysis of each research area)
+- Product specs and requirements documents
+- Personal brand guidelines and voice rules
+- FAQ documents and reference materials
+
+**Think carefully before embedding:**
+
+- Code files — semantic search on code works poorly; use a dedicated code search tool or symbol index instead
+- Raw data files (JSON inventories, CSV exports) — structured queries beat semantic search here
+- Email correspondence — usually too context-specific to be useful across sessions
+
+**Do not embed:**
+
+- Transient notes and scratch pads — noise degrades retrieval quality
+- Duplicate content — if you have a blog post and a near-identical newsletter version, embed one
+
+The quality of retrieval depends heavily on the quality of what you embed. A clean, well-structured archive returns precise results. A dumping ground of everything you have ever written returns noise.
+
+---
+
+## Step-by-Step Setup
+
+### Step 1: Install ChromaDB and the OpenAI client
+
+```bash
+pip install chromadb openai
+```
+
+### Step 2: Write the embedding script
+
+Create `scripts/embed-content.py`:
+
+```python
+import chromadb
+import openai
+import os
+from pathlib import Path
+
+client = chromadb.PersistentClient(path="./chroma-data")
+collection = client.get_or_create_collection("frankx-content")
+openai_client = openai.OpenAI(api_key=os.environ["OPENAI_API_KEY"])
+
+def embed_file(file_path: Path, doc_id: str, metadata: dict):
+    text = file_path.read_text(encoding="utf-8")
+    # Strip frontmatter if MDX
+    if text.startswith("---"):
+        parts = text.split("---", 2)
+        text = parts[2].strip() if len(parts) > 2 else text
+
+    response = openai_client.embeddings.create(
+        input=text[:8000],  # Respect token limits
+        model="text-embedding-3-small"
+    )
+    vector = response.data[0].embedding
+
+    collection.add(
+        documents=[text[:8000]],
+        embeddings=[vector],
+        metadatas=[metadata],
+        ids=[doc_id]
+    )
+    print(f"Embedded: {doc_id}")
+
+# Embed all blog posts
+blog_dir = Path("content/blog")
+for mdx_file in blog_dir.glob("*.mdx"):
+    embed_file(
+        file_path=mdx_file,
+        doc_id=f"blog/{mdx_file.stem}",
+        metadata={"type": "blog", "slug": mdx_file.stem}
+    )
+```
+
+### Step 3: Run the embedding job
+
+```bash
+python scripts/embed-content.py
+```
+
+For 100 blog posts averaging 2,500 words, this runs in about 3 minutes and costs under $0.10 at OpenAI embedding rates.
+
+### Step 4: Connect chroma-mcp to Claude Code
+
+```bash
+claude mcp add chroma-mcp -- npx -y chroma-mcp --chroma-path ./chroma-data
+```
+
+Verify the connection:
+
+```bash
+claude mcp list
+```
+
+### Step 5: Test a query
+
+Open Claude Code and try: "Search my blog collection for content about n8n automation workflows."
+
+Claude will call `chroma_query`, retrieve the top matching chunks, and reference them in its response — with document IDs you can trace back to source files.
+
+---
+
+## Query Patterns That Work
+
+The quality of retrieval depends on how you phrase queries. Some patterns I have found reliable:
+
+**Specific topics, not broad categories:**
+
+- Works: "articles about ChromaDB and vector search"
+- Weak: "articles about AI tools"
+
+**Concept combinations:**
+
+- Works: "content about n8n AND newsletter automation"
+- Filters: Add `where={"type": "blog"}` to scope to blog posts only
+
+**Retrieving before writing:**
+A pattern I use regularly — before starting a new piece, I query my archive for related content. The retrieval surfaces past framings, which the new piece can build on or reference explicitly. This is how a writing archive compounds.
+
+**Factual grounding:**
+"What did I write about the cost of running Railway for n8n?" retrieves the exact figures from past posts rather than generating a plausible-but-potentially-wrong number.
+
+---
+
+## Limitations to Know Before You Build
+
+**Semantic similarity is not factual accuracy.** A vector search finds the most similar text, not the most accurate text. If your archive contains a claim you later retracted, retrieval will surface the old claim. You need human review when factual precision matters.
+
+**Chunk size matters.** Embedding an entire 3,000-word post as one vector degrades precision — the vector averages across too many topics. For large documents, consider chunking into 500-1,000 word sections before embedding, with overlap to preserve context across chunk boundaries.
+
+**Embedding model lock-in.** Vectors generated by `text-embedding-3-small` are not compatible with vectors generated by `nomic-embed-text`. If you switch models, you re-embed the full archive. Plan your choice before building.
+
+**Staleness.** When you publish a new post, it is not automatically in your vector database. You need to run the embedding script again or build a watch process that embeds new files on creation. I run a manual re-embed job weekly and after any major publishing push.
+
+---
+
+## How This Fits the 4-Layer Memory Architecture
+
+If you are building on the memory architecture from [AI Agent Memory: From Chat History to Persistent Systems](/blog/ai-agent-memory-persistent-systems), ChromaDB/RAG is Layer 4 — Knowledge Memory.
+
+The four layers:
+
+| Layer               | System               | Scope                        |
+| ------------------- | -------------------- | ---------------------------- |
+| 1. Session Memory   | Conversation context | Ephemeral                    |
+| 2. Project Memory   | CLAUDE.md files      | Persistent, full load        |
+| 3. User Memory      | mem0 / auto-memory   | Cross-session facts          |
+| 4. Knowledge Memory | ChromaDB RAG         | Semantic search, large scale |
+
+Each layer solves a different scale problem. CLAUDE.md handles configuration and rules — small, always loaded. ChromaDB handles archives — large, selectively retrieved.
+
+The [Prompt Library](/prompt-library) documents query patterns and retrieval strategies for specific use cases. The [Personal AI CoE research](/research/personal-ai-coe) covers how knowledge memory fits into the broader intelligence architecture.
+
+---
+
+## The Return on Two Hours
+
+After setup, my workflow shifted in a visible way.
+
+Before: I would re-read my own posts before writing related content, manually track which angles I had covered, and occasionally contradict my own earlier work without realizing it.
+
+After: I query before I write. The retrieval surfaces what I have already established, what positions I have already taken, what examples I have already used. New content builds on the archive instead of starting from scratch.
+
+At 90+ posts, this matters. At 200 posts, it will matter more. The archive becomes a searchable knowledge base rather than a collection of documents I vaguely remember writing.
+
+That is the compounding effect: every post you write makes the system smarter about the next one.
+
+---
+
+## FAQ
+
+**Do I need an OpenAI API key to use ChromaDB?**
+ChromaDB itself has no dependency on OpenAI. You need an embedding model. OpenAI's API is the simplest option. Alternatives include Ollama with a local model (nomic-embed-text is well-regarded), Cohere's embedding API, or Vertex AI. The core setup remains the same; only the embedding function changes.
+
+**How often should I re-embed my archive?**
+Re-embed when you add significant new content. For an active publishing schedule (2-4 posts/week), a weekly re-embed keeps the database current. You can also write a file watcher that embeds new files automatically when they are created — a one-time setup that keeps the database current in real time.
+
+**Can I use RAG with the free tier of Claude?**
+Yes, with limitations. chroma-mcp tools work in Claude Code regardless of plan tier. The constraint is context window size — more retrieved chunks require more tokens. Claude Pro's larger context window handles more retrieved passages per query. Free tier works for targeted queries returning 1-2 chunks.
+
+**What is the difference between RAG and just pasting documents into the context?**
+Scale and precision. With 100 documents, pasting everything would exceed any context window. RAG retrieves only the relevant sections — typically 3-10 chunks from thousands of available ones. You pay only for the context that matters, and the model focuses on relevant material rather than scanning through noise.
+
+**Is my content private if I use ChromaDB locally?**
+Local ChromaDB is entirely private. Your documents never leave your machine unless you choose to send them to an embedding API (OpenAI, Cohere, etc.). For maximum privacy, use a local embedding model via Ollama — then the full pipeline runs on your hardware with zero external calls.

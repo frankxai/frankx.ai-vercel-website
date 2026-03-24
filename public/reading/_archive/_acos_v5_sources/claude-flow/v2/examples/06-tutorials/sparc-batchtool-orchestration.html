@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SPARC BatchTool Orchestration Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/06-tutorials/sparc-batchtool-orchestration.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SPARC BatchTool Orchestration Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F06-tutorials">06-tutorials</a> / <span>sparc-batchtool-orchestration.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>SPARC BatchTool Orchestration Guide</h1>
+<h2>Overview</h2>
+<p>BatchTool enables powerful parallel and concurrent execution of SPARC modes, allowing for sophisticated orchestration patterns that dramatically accelerate development workflows.</p>
+<h2>Key Concepts</h2>
+<h3>1. Parallel Execution</h3>
+<p>Run multiple independent SPARC modes simultaneously:</p>
+<pre><code class="language-bash">batchtool run --parallel \
+  &quot;npx claude-flow sparc run code &#39;user authentication&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run code &#39;database schema&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run code &#39;API endpoints&#39; --non-interactive&quot;
+</code></pre>
+<h3>2. Boomerang Pattern</h3>
+<p>Iterative development where each phase informs the next:</p>
+<pre><code class="language-bash">batchtool orchestrate --boomerang \
+  --phase1 &quot;Research and gather requirements&quot; \
+  --phase2 &quot;Design based on research&quot; \
+  --phase3 &quot;Implement the design&quot; \
+  --phase4 &quot;Test the implementation&quot; \
+  --phase5 &quot;Optimize based on test results&quot;
+</code></pre>
+<h3>3. Dependency-Aware Execution</h3>
+<p>Handle task dependencies intelligently:</p>
+<pre><code class="language-bash">batchtool run --dependency-aware \
+  --task &quot;db:npx claude-flow sparc run code &#39;database layer&#39; --non-interactive&quot; \
+  --task &quot;auth:npx claude-flow sparc run code &#39;auth service&#39; --non-interactive:depends=db&quot; \
+  --task &quot;api:npx claude-flow sparc run code &#39;API layer&#39; --non-interactive:depends=auth,db&quot;
+</code></pre>
+<h2>Complete Workflow Examples</h2>
+<h3>Full Application Development</h3>
+<pre><code class="language-bash"># Complete application development with SPARC + BatchTool
+batchtool orchestrate --name &quot;full-app-development&quot; --boomerang \
+  --phase1-parallel &quot;Research Phase&quot; \
+    &quot;npx claude-flow sparc run ask &#39;research best practices for modern web apps&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run ask &#39;analyze competitor features&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run security-review &#39;identify security requirements&#39; --non-interactive&quot; \
+  --phase2-sequential &quot;Design Phase&quot; \
+    &quot;npx claude-flow sparc run spec-pseudocode &#39;create detailed specifications&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run architect &#39;design system architecture&#39; --non-interactive&quot; \
+  --phase3-parallel &quot;Implementation Phase&quot; \
+    &quot;npx claude-flow sparc run code &#39;implement frontend&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run code &#39;implement backend&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run code &#39;implement database&#39; --non-interactive&quot; \
+  --phase4-sequential &quot;Integration Phase&quot; \
+    &quot;npx claude-flow sparc run integration &#39;integrate all components&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run tdd &#39;comprehensive testing suite&#39; --non-interactive&quot; \
+  --phase5-parallel &quot;Optimization Phase&quot; \
+    &quot;npx claude-flow sparc run optimization &#39;optimize performance&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run security-review &#39;security hardening&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run docs-writer &#39;complete documentation&#39; --non-interactive&quot;
+</code></pre>
+<h3>Microservices Development</h3>
+<pre><code class="language-bash"># Develop multiple microservices concurrently
+batchtool run --parallel --tag &quot;microservices&quot; \
+  &quot;npx claude-flow sparc run code &#39;user-service&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run code &#39;auth-service&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run code &#39;notification-service&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run code &#39;payment-service&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run code &#39;api-gateway&#39; --non-interactive&quot;
+
+# Then integrate and test
+batchtool run --sequential \
+  &quot;npx claude-flow sparc run integration &#39;integrate all microservices&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run tdd &#39;end-to-end testing&#39; --non-interactive&quot; \
+  &quot;npx claude-flow sparc run devops &#39;kubernetes deployment&#39; --non-interactive&quot;
+</code></pre>
+<h3>Feature Development Sprint</h3>
+<pre><code class="language-bash"># Sprint planning and execution
+batchtool orchestrate --sprint &quot;feature-sprint-1&quot; \
+  --planning \
+    &quot;npx claude-flow sparc run sparc &#39;break down epic into features&#39; --non-interactive&quot; \
+  --development-parallel \
+    &quot;npx claude-flow sparc run code &#39;feature: user profile&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run code &#39;feature: notifications&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run code &#39;feature: settings page&#39; --non-interactive&quot; \
+  --testing-parallel \
+    &quot;npx claude-flow sparc run tdd &#39;test user profile&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run tdd &#39;test notifications&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run tdd &#39;test settings&#39; --non-interactive&quot; \
+  --review \
+    &quot;npx claude-flow sparc run security-review &#39;audit all features&#39; --non-interactive&quot; \
+    &quot;npx claude-flow sparc run optimization &#39;performance review&#39; --non-interactive&quot;
+</code></pre>
+<h2>Advanced Patterns</h2>
+<h3>1. Continuous Refinement Loop</h3>
+<pre><code class="language-bash"># Continuous improvement cycle
+while true; do
+  batchtool orchestrate --boomerang \
+    --monitor &quot;npx claude-flow sparc run monitoring &#39;analyze metrics&#39; --non-interactive&quot; \
+    --identify &quot;npx claude-flow sparc run debug &#39;identify bottlenecks&#39; --non-interactive&quot; \
+    --optimize &quot;npx claude-flow sparc run optimization &#39;improve performance&#39; --non-interactive&quot; \
+    --validate &quot;npx claude-flow sparc run tdd &#39;verify improvements&#39; --non-interactive&quot;
+  sleep 3600  # Run every hour
+done
+</code></pre>
+<h3>2. A/B Implementation Testing</h3>
+<pre><code class="language-bash"># Implement two approaches in parallel and compare
+batchtool run --ab-test \
+  --variant-a &quot;npx claude-flow sparc run code &#39;implement with approach A&#39; --non-interactive&quot; \
+  --variant-b &quot;npx claude-flow sparc run code &#39;implement with approach B&#39; --non-interactive&quot; \
+  --compare &quot;npx claude-flow sparc run optimization &#39;compare performance&#39; --non-interactive&quot;
+</code></pre>
+<h3>3. Progressive Enhancement</h3>
+<pre><code class="language-bash"># Build features progressively
+batchtool orchestrate --progressive \
+  --mvp &quot;npx claude-flow sparc run code &#39;minimal viable product&#39; --non-interactive&quot; \
+  --enhance-1 &quot;npx claude-flow sparc run code &#39;add user authentication&#39; --non-interactive&quot; \
+  --enhance-2 &quot;npx claude-flow sparc run code &#39;add real-time updates&#39; --non-interactive&quot; \
+  --enhance-3 &quot;npx claude-flow sparc run code &#39;add analytics&#39; --non-interactive&quot; \
+  --polish &quot;npx claude-flow sparc run optimization &#39;final optimizations&#39; --non-interactive&quot;
+</code></pre>
+<h2>Monitoring and Control</h2>
+<h3>Real-time Monitoring</h3>
+<pre><code class="language-bash"># Monitor all running SPARC tasks
+batchtool monitor --dashboard --refresh 5s
+
+# Get status of specific orchestration
+batchtool status --orchestration &quot;full-app-development&quot;
+
+# View logs from all parallel executions
+batchtool logs --follow --filter &quot;error|warning&quot;
+</code></pre>
+<h3>Resource Management</h3>
+<pre><code class="language-bash"># Limit concurrent executions
+batchtool config --max-concurrent 5
+
+# Set memory limits per task
+batchtool run --memory-limit 2GB \
+  &quot;npx claude-flow sparc run code &#39;heavy processing task&#39; --non-interactive&quot;
+
+# Priority-based execution
+batchtool run --priority high \
+  &quot;npx claude-flow sparc run security-review &#39;urgent security audit&#39; --non-interactive&quot;
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><p><strong>Use --non-interactive for all BatchTool orchestrations</strong></p>
+<ul>
+<li>Ensures smooth automated execution</li>
+<li>Enables proper log capture and monitoring</li>
+</ul>
+</li>
+<li><p><strong>Tag related tasks for easier management</strong></p>
+<pre><code class="language-bash">batchtool run --tag &quot;auth-system&quot; --parallel ...
+</code></pre>
+</li>
+<li><p><strong>Implement proper error handling</strong></p>
+<pre><code class="language-bash">batchtool run --on-error retry --max-retries 3 ...
+</code></pre>
+</li>
+<li><p><strong>Use memory namespaces to share context</strong></p>
+<pre><code class="language-bash">--namespace &quot;project-x-auth&quot;
+</code></pre>
+</li>
+<li><p><strong>Monitor resource usage</strong></p>
+<pre><code class="language-bash">batchtool stats --orchestration &quot;my-workflow&quot;
+</code></pre>
+</li>
+</ol>
+<h2>Integration with CI/CD</h2>
+<pre><code class="language-yaml"># Example GitHub Actions workflow
+name: SPARC Development Pipeline
+on: [push]
+
+jobs:
+  develop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: |
+          npm install -g claude-flow
+          npm install -g batchtool
+      
+      - name: Run SPARC orchestration
+        run: |
+          batchtool orchestrate --boomerang \
+            --analyze &quot;npx claude-flow sparc run architect &#39;analyze changes&#39; --non-interactive&quot; \
+            --implement &quot;npx claude-flow sparc run code &#39;implement features&#39; --non-interactive&quot; \
+            --test &quot;npx claude-flow sparc run tdd &#39;run tests&#39; --non-interactive&quot; \
+            --deploy &quot;npx claude-flow sparc run devops &#39;deploy to staging&#39; --non-interactive&quot;
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>Common Issues</h3>
+<ol>
+<li><strong>Tasks not running in parallel</strong>: Ensure BatchTool is installed and --non-interactive flag is used</li>
+<li><strong>Memory namespace conflicts</strong>: Use unique namespaces for different workflows</li>
+<li><strong>Resource exhaustion</strong>: Limit concurrent executions with --max-concurrent</li>
+</ol>
+<h3>Debug Commands</h3>
+<pre><code class="language-bash"># Enable verbose logging
+batchtool run --verbose --debug ...
+
+# Dry run to see execution plan
+batchtool orchestrate --dry-run ...
+
+# Export orchestration plan
+batchtool export --format json --output plan.json
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

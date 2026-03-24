@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Intelligent Issue Resolution with Multi-Agent Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/incident-response/commands/smart-fix.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Intelligent Issue Resolution with Multi-Agent Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fincident-response">incident-response</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fincident-response%2Fcommands">commands</a> / <span>smart-fix.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Intelligent Issue Resolution with Multi-Agent Orchestration</h1>
+<p>[Extended thinking: This workflow implements a sophisticated debugging and resolution pipeline that leverages AI-assisted debugging tools and observability platforms to systematically diagnose and resolve production issues. The intelligent debugging strategy combines automated root cause analysis with human expertise, using modern 2024/2025 practices including AI code assistants (GitHub Copilot, Claude Code), observability platforms (Sentry, DataDog, OpenTelemetry), git bisect automation for regression tracking, and production-safe debugging techniques like distributed tracing and structured logging. The process follows a rigorous four-phase approach: (1) Issue Analysis Phase - error-detective and debugger agents analyze error traces, logs, reproduction steps, and observability data to understand the full context of the failure including upstream/downstream impacts, (2) Root Cause Investigation Phase - debugger and code-reviewer agents perform deep code analysis, automated git bisect to identify introducing commit, dependency compatibility checks, and state inspection to isolate the exact failure mechanism, (3) Fix Implementation Phase - domain-specific agents (python-pro, typescript-pro, rust-expert, etc.) implement minimal fixes with comprehensive test coverage including unit, integration, and edge case tests while following production-safe practices, (4) Verification Phase - test-automator and performance-engineer agents run regression suites, performance benchmarks, security scans, and verify no new issues are introduced. Complex issues spanning multiple systems require orchestrated coordination between specialist agents (database-optimizer → performance-engineer → devops-troubleshooter) with explicit context passing and state sharing. The workflow emphasizes understanding root causes over treating symptoms, implementing lasting architectural improvements, automating detection through enhanced monitoring and alerting, and preventing future occurrences through type system enhancements, static analysis rules, and improved error handling patterns. Success is measured not just by issue resolution but by reduced mean time to recovery (MTTR), prevention of similar issues, and improved system resilience.]</p>
+<h2>Phase 1: Issue Analysis - Error Detection and Context Gathering</h2>
+<p>Use Task tool with subagent_type=&quot;error-debugging::error-detective&quot; followed by subagent_type=&quot;error-debugging::debugger&quot;:</p>
+<p><strong>First: Error-Detective Analysis</strong></p>
+<p><strong>Prompt:</strong></p>
+<pre><code>Analyze error traces, logs, and observability data for: $ARGUMENTS
+
+Deliverables:
+1. Error signature analysis: exception type, message patterns, frequency, first occurrence
+2. Stack trace deep dive: failure location, call chain, involved components
+3. Reproduction steps: minimal test case, environment requirements, data fixtures needed
+4. Observability context:
+   - Sentry/DataDog error groups and trends
+   - Distributed traces showing request flow (OpenTelemetry/Jaeger)
+   - Structured logs (JSON logs with correlation IDs)
+   - APM metrics: latency spikes, error rates, resource usage
+5. User impact assessment: affected user segments, error rate, business metrics impact
+6. Timeline analysis: when did it start, correlation with deployments/config changes
+7. Related symptoms: similar errors, cascading failures, upstream/downstream impacts
+
+Modern debugging techniques to employ:
+- AI-assisted log analysis (pattern detection, anomaly identification)
+- Distributed trace correlation across microservices
+- Production-safe debugging (no code changes, use observability data)
+- Error fingerprinting for deduplication and tracking
+</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre><code>ERROR_SIGNATURE: {exception type + key message pattern}
+FREQUENCY: {count, rate, trend}
+FIRST_SEEN: {timestamp or git commit}
+STACK_TRACE: {formatted trace with key frames highlighted}
+REPRODUCTION: {minimal steps + sample data}
+OBSERVABILITY_LINKS: [Sentry URL, DataDog dashboard, trace IDs]
+USER_IMPACT: {affected users, severity, business impact}
+TIMELINE: {when started, correlation with changes}
+RELATED_ISSUES: [similar errors, cascading failures]
+</code></pre>
+<p><strong>Second: Debugger Root Cause Identification</strong></p>
+<p><strong>Prompt:</strong></p>
+<pre><code>Perform root cause investigation using error-detective output:
+
+Context from Error-Detective:
+- Error signature: {ERROR_SIGNATURE}
+- Stack trace: {STACK_TRACE}
+- Reproduction: {REPRODUCTION}
+- Observability: {OBSERVABILITY_LINKS}
+
+Deliverables:
+1. Root cause hypothesis with supporting evidence
+2. Code-level analysis: variable states, control flow, timing issues
+3. Git bisect analysis: identify introducing commit (automate with git bisect run)
+4. Dependency analysis: version conflicts, API changes, configuration drift
+5. State inspection: database state, cache state, external API responses
+6. Failure mechanism: why does the code fail under these specific conditions
+7. Fix strategy options with tradeoffs (quick fix vs proper fix)
+
+Context needed for next phase:
+- Exact file paths and line numbers requiring changes
+- Data structures or API contracts affected
+- Dependencies that may need updates
+- Test scenarios to verify the fix
+- Performance characteristics to maintain
+</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre><code>ROOT_CAUSE: {technical explanation with evidence}
+INTRODUCING_COMMIT: {git SHA + summary if found via bisect}
+AFFECTED_FILES: [file paths with specific line numbers]
+FAILURE_MECHANISM: {why it fails - race condition, null check, type mismatch, etc}
+DEPENDENCIES: [related systems, libraries, external APIs]
+FIX_STRATEGY: {recommended approach with reasoning}
+QUICK_FIX_OPTION: {temporary mitigation if applicable}
+PROPER_FIX_OPTION: {long-term solution}
+TESTING_REQUIREMENTS: [scenarios that must be covered]
+</code></pre>
+<h2>Phase 2: Root Cause Investigation - Deep Code Analysis</h2>
+<p>Use Task tool with subagent_type=&quot;error-debugging::debugger&quot; and subagent_type=&quot;comprehensive-review::code-reviewer&quot; for systematic investigation:</p>
+<p><strong>First: Debugger Code Analysis</strong></p>
+<p><strong>Prompt:</strong></p>
+<pre><code>Perform deep code analysis and bisect investigation:
+
+Context from Phase 1:
+- Root cause: {ROOT_CAUSE}
+- Affected files: {AFFECTED_FILES}
+- Failure mechanism: {FAILURE_MECHANISM}
+- Introducing commit: {INTRODUCING_COMMIT}
+
+Deliverables:
+1. Code path analysis: trace execution from entry point to failure
+2. Variable state tracking: values at key decision points
+3. Control flow analysis: branches taken, loops, async operations
+4. Git bisect automation: create bisect script to identify exact breaking commit
+   ```bash
+   git bisect start HEAD v1.2.3
+   git bisect run ./test_reproduction.sh
+</code></pre>
+<ol start="5">
+<li>Dependency compatibility matrix: version combinations that work/fail</li>
+<li>Configuration analysis: environment variables, feature flags, deployment configs</li>
+<li>Timing and race condition analysis: async operations, event ordering, locks</li>
+<li>Memory and resource analysis: leaks, exhaustion, contention</li>
+</ol>
+<p>Modern investigation techniques:</p>
+<ul>
+<li>AI-assisted code explanation (Claude/Copilot to understand complex logic)</li>
+<li>Automated git bisect with reproduction test</li>
+<li>Dependency graph analysis (npm ls, go mod graph, pip show)</li>
+<li>Configuration drift detection (compare staging vs production)</li>
+<li>Time-travel debugging using production traces</li>
+</ul>
+<pre><code>
+**Expected output:**
+</code></pre>
+<p>CODE_PATH: {entry → ... → failure location with key variables}
+STATE_AT_FAILURE: {variable values, object states, database state}
+BISECT_RESULT: {exact commit that introduced bug + diff}
+DEPENDENCY_ISSUES: [version conflicts, breaking changes, CVEs]
+CONFIGURATION_DRIFT: {differences between environments}
+RACE_CONDITIONS: {async issues, event ordering problems}
+ISOLATION_VERIFICATION: {confirmed single root cause vs multiple issues}</p>
+<pre><code>
+**Second: Code-Reviewer Deep Dive**
+
+**Prompt:**
+</code></pre>
+<p>Review code logic and identify design issues:</p>
+<p>Context from Debugger:</p>
+<ul>
+<li>Code path: {CODE_PATH}</li>
+<li>State at failure: {STATE_AT_FAILURE}</li>
+<li>Bisect result: {BISECT_RESULT}</li>
+</ul>
+<p>Deliverables:</p>
+<ol>
+<li>Logic flaw analysis: incorrect assumptions, missing edge cases, wrong algorithms</li>
+<li>Type safety gaps: where stronger types could prevent the issue</li>
+<li>Error handling review: missing try-catch, unhandled promises, panic scenarios</li>
+<li>Contract validation: input validation gaps, output guarantees not met</li>
+<li>Architectural issues: tight coupling, missing abstractions, layering violations</li>
+<li>Similar patterns: other code locations with same vulnerability</li>
+<li>Fix design: minimal change vs refactoring vs architectural improvement</li>
+</ol>
+<p>Review checklist:</p>
+<ul>
+<li>Are null/undefined values handled correctly?</li>
+<li>Are async operations properly awaited/chained?</li>
+<li>Are error cases explicitly handled?</li>
+<li>Are type assertions safe?</li>
+<li>Are API contracts respected?</li>
+<li>Are side effects isolated?</li>
+</ul>
+<pre><code>
+**Expected output:**
+</code></pre>
+<p>LOGIC_FLAWS: [specific incorrect assumptions or algorithms]
+TYPE_SAFETY_GAPS: [where types could prevent issues]
+ERROR_HANDLING_GAPS: [unhandled error paths]
+SIMILAR_VULNERABILITIES: [other code with same pattern]
+FIX_DESIGN: {minimal change approach}
+REFACTORING_OPPORTUNITIES: {if larger improvements warranted}
+ARCHITECTURAL_CONCERNS: {if systemic issues exist}</p>
+<pre><code>
+## Phase 3: Fix Implementation - Domain-Specific Agent Execution
+
+Based on Phase 2 output, route to appropriate domain agent using Task tool:
+
+**Routing Logic:**
+- Python issues → subagent_type=&quot;python-development::python-pro&quot;
+- TypeScript/JavaScript → subagent_type=&quot;javascript-typescript::typescript-pro&quot;
+- Go → subagent_type=&quot;systems-programming::golang-pro&quot;
+- Rust → subagent_type=&quot;systems-programming::rust-pro&quot;
+- SQL/Database → subagent_type=&quot;database-cloud-optimization::database-optimizer&quot;
+- Performance → subagent_type=&quot;application-performance::performance-engineer&quot;
+- Security → subagent_type=&quot;security-scanning::security-auditor&quot;
+
+**Prompt Template (adapt for language):**
+</code></pre>
+<p>Implement production-safe fix with comprehensive test coverage:</p>
+<p>Context from Phase 2:</p>
+<ul>
+<li>Root cause: {ROOT_CAUSE}</li>
+<li>Logic flaws: {LOGIC_FLAWS}</li>
+<li>Fix design: {FIX_DESIGN}</li>
+<li>Type safety gaps: {TYPE_SAFETY_GAPS}</li>
+<li>Similar vulnerabilities: {SIMILAR_VULNERABILITIES}</li>
+</ul>
+<p>Deliverables:</p>
+<ol>
+<li>Minimal fix implementation addressing root cause (not symptoms)</li>
+<li>Unit tests:<ul>
+<li>Specific failure case reproduction</li>
+<li>Edge cases (boundary values, null/empty, overflow)</li>
+<li>Error path coverage</li>
+</ul>
+</li>
+<li>Integration tests:<ul>
+<li>End-to-end scenarios with real dependencies</li>
+<li>External API mocking where appropriate</li>
+<li>Database state verification</li>
+</ul>
+</li>
+<li>Regression tests:<ul>
+<li>Tests for similar vulnerabilities</li>
+<li>Tests covering related code paths</li>
+</ul>
+</li>
+<li>Performance validation:<ul>
+<li>Benchmarks showing no degradation</li>
+<li>Load tests if applicable</li>
+</ul>
+</li>
+<li>Production-safe practices:<ul>
+<li>Feature flags for gradual rollout</li>
+<li>Graceful degradation if fix fails</li>
+<li>Monitoring hooks for fix verification</li>
+<li>Structured logging for debugging</li>
+</ul>
+</li>
+</ol>
+<p>Modern implementation techniques (2024/2025):</p>
+<ul>
+<li>AI pair programming (GitHub Copilot, Claude Code) for test generation</li>
+<li>Type-driven development (leverage TypeScript, mypy, clippy)</li>
+<li>Contract-first APIs (OpenAPI, gRPC schemas)</li>
+<li>Observability-first (structured logs, metrics, traces)</li>
+<li>Defensive programming (explicit error handling, validation)</li>
+</ul>
+<p>Implementation requirements:</p>
+<ul>
+<li>Follow existing code patterns and conventions</li>
+<li>Add strategic debug logging (JSON structured logs)</li>
+<li>Include comprehensive type annotations</li>
+<li>Update error messages to be actionable (include context, suggestions)</li>
+<li>Maintain backward compatibility (version APIs if breaking)</li>
+<li>Add OpenTelemetry spans for distributed tracing</li>
+<li>Include metric counters for monitoring (success/failure rates)</li>
+</ul>
+<pre><code>
+**Expected output:**
+</code></pre>
+<p>FIX_SUMMARY: {what changed and why - root cause vs symptom}
+CHANGED_FILES: [
+{path: &quot;...&quot;, changes: &quot;...&quot;, reasoning: &quot;...&quot;}
+]
+NEW_FILES: [{path: &quot;...&quot;, purpose: &quot;...&quot;}]
+TEST_COVERAGE: {
+unit: &quot;X scenarios&quot;,
+integration: &quot;Y scenarios&quot;,
+edge_cases: &quot;Z scenarios&quot;,
+regression: &quot;W scenarios&quot;
+}
+TEST_RESULTS: {all_passed: true/false, details: &quot;...&quot;}
+BREAKING_CHANGES: {none | API changes with migration path}
+OBSERVABILITY_ADDITIONS: [
+{type: &quot;log&quot;, location: &quot;...&quot;, purpose: &quot;...&quot;},
+{type: &quot;metric&quot;, name: &quot;...&quot;, purpose: &quot;...&quot;},
+{type: &quot;trace&quot;, span: &quot;...&quot;, purpose: &quot;...&quot;}
+]
+FEATURE_FLAGS: [{flag: &quot;...&quot;, rollout_strategy: &quot;...&quot;}]
+BACKWARD_COMPATIBILITY: {maintained | breaking with mitigation}</p>
+<pre><code>
+## Phase 4: Verification - Automated Testing and Performance Validation
+
+Use Task tool with subagent_type=&quot;unit-testing::test-automator&quot; and subagent_type=&quot;application-performance::performance-engineer&quot;:
+
+**First: Test-Automator Regression Suite**
+
+**Prompt:**
+</code></pre>
+<p>Run comprehensive regression testing and verify fix quality:</p>
+<p>Context from Phase 3:</p>
+<ul>
+<li>Fix summary: {FIX_SUMMARY}</li>
+<li>Changed files: {CHANGED_FILES}</li>
+<li>Test coverage: {TEST_COVERAGE}</li>
+<li>Test results: {TEST_RESULTS}</li>
+</ul>
+<p>Deliverables:</p>
+<ol>
+<li>Full test suite execution:<ul>
+<li>Unit tests (all existing + new)</li>
+<li>Integration tests</li>
+<li>End-to-end tests</li>
+<li>Contract tests (if microservices)</li>
+</ul>
+</li>
+<li>Regression detection:<ul>
+<li>Compare test results before/after fix</li>
+<li>Identify any new failures</li>
+<li>Verify all edge cases covered</li>
+</ul>
+</li>
+<li>Test quality assessment:<ul>
+<li>Code coverage metrics (line, branch, condition)</li>
+<li>Mutation testing if applicable</li>
+<li>Test determinism (run multiple times)</li>
+</ul>
+</li>
+<li>Cross-environment testing:<ul>
+<li>Test in staging/QA environments</li>
+<li>Test with production-like data volumes</li>
+<li>Test with realistic network conditions</li>
+</ul>
+</li>
+<li>Security testing:<ul>
+<li>Authentication/authorization checks</li>
+<li>Input validation testing</li>
+<li>SQL injection, XSS prevention</li>
+<li>Dependency vulnerability scan</li>
+</ul>
+</li>
+<li>Automated regression test generation:<ul>
+<li>Use AI to generate additional edge case tests</li>
+<li>Property-based testing for complex logic</li>
+<li>Fuzzing for input validation</li>
+</ul>
+</li>
+</ol>
+<p>Modern testing practices (2024/2025):</p>
+<ul>
+<li>AI-generated test cases (GitHub Copilot, Claude Code)</li>
+<li>Snapshot testing for UI/API contracts</li>
+<li>Visual regression testing for frontend</li>
+<li>Chaos engineering for resilience testing</li>
+<li>Production traffic replay for load testing</li>
+</ul>
+<pre><code>
+**Expected output:**
+</code></pre>
+<p>TEST_RESULTS: {
+total: N,
+passed: X,
+failed: Y,
+skipped: Z,
+new_failures: [list if any],
+flaky_tests: [list if any]
+}
+CODE_COVERAGE: {
+line: &quot;X%&quot;,
+branch: &quot;Y%&quot;,
+function: &quot;Z%&quot;,
+delta: &quot;+/-W%&quot;
+}
+REGRESSION_DETECTED: {yes/no + details if yes}
+CROSS_ENV_RESULTS: {staging: &quot;...&quot;, qa: &quot;...&quot;}
+SECURITY_SCAN: {
+vulnerabilities: [list or &quot;none&quot;],
+static_analysis: &quot;...&quot;,
+dependency_audit: &quot;...&quot;
+}
+TEST_QUALITY: {deterministic: true/false, coverage_adequate: true/false}</p>
+<pre><code>
+**Second: Performance-Engineer Validation**
+
+**Prompt:**
+</code></pre>
+<p>Measure performance impact and validate no regressions:</p>
+<p>Context from Test-Automator:</p>
+<ul>
+<li>Test results: {TEST_RESULTS}</li>
+<li>Code coverage: {CODE_COVERAGE}</li>
+<li>Fix summary: {FIX_SUMMARY}</li>
+</ul>
+<p>Deliverables:</p>
+<ol>
+<li>Performance benchmarks:<ul>
+<li>Response time (p50, p95, p99)</li>
+<li>Throughput (requests/second)</li>
+<li>Resource utilization (CPU, memory, I/O)</li>
+<li>Database query performance</li>
+</ul>
+</li>
+<li>Comparison with baseline:<ul>
+<li>Before/after metrics</li>
+<li>Acceptable degradation thresholds</li>
+<li>Performance improvement opportunities</li>
+</ul>
+</li>
+<li>Load testing:<ul>
+<li>Stress test under peak load</li>
+<li>Soak test for memory leaks</li>
+<li>Spike test for burst handling</li>
+</ul>
+</li>
+<li>APM analysis:<ul>
+<li>Distributed trace analysis</li>
+<li>Slow query detection</li>
+<li>N+1 query patterns</li>
+</ul>
+</li>
+<li>Resource profiling:<ul>
+<li>CPU flame graphs</li>
+<li>Memory allocation tracking</li>
+<li>Goroutine/thread leaks</li>
+</ul>
+</li>
+<li>Production readiness:<ul>
+<li>Capacity planning impact</li>
+<li>Scaling characteristics</li>
+<li>Cost implications (cloud resources)</li>
+</ul>
+</li>
+</ol>
+<p>Modern performance practices:</p>
+<ul>
+<li>OpenTelemetry instrumentation</li>
+<li>Continuous profiling (Pyroscope, pprof)</li>
+<li>Real User Monitoring (RUM)</li>
+<li>Synthetic monitoring</li>
+</ul>
+<pre><code>
+**Expected output:**
+</code></pre>
+<p>PERFORMANCE_BASELINE: {
+response_time_p95: &quot;Xms&quot;,
+throughput: &quot;Y req/s&quot;,
+cpu_usage: &quot;Z%&quot;,
+memory_usage: &quot;W MB&quot;
+}
+PERFORMANCE_AFTER_FIX: {
+response_time_p95: &quot;Xms (delta)&quot;,
+throughput: &quot;Y req/s (delta)&quot;,
+cpu_usage: &quot;Z% (delta)&quot;,
+memory_usage: &quot;W MB (delta)&quot;
+}
+PERFORMANCE_IMPACT: {
+verdict: &quot;improved|neutral|degraded&quot;,
+acceptable: true/false,
+reasoning: &quot;...&quot;
+}
+LOAD_TEST_RESULTS: {
+max_throughput: &quot;...&quot;,
+breaking_point: &quot;...&quot;,
+memory_leaks: &quot;none|detected&quot;
+}
+APM_INSIGHTS: [slow queries, N+1 patterns, bottlenecks]
+PRODUCTION_READY: {yes/no + blockers if no}</p>
+<pre><code>
+**Third: Code-Reviewer Final Approval**
+
+**Prompt:**
+</code></pre>
+<p>Perform final code review and approve for deployment:</p>
+<p>Context from Testing:</p>
+<ul>
+<li>Test results: {TEST_RESULTS}</li>
+<li>Regression detected: {REGRESSION_DETECTED}</li>
+<li>Performance impact: {PERFORMANCE_IMPACT}</li>
+<li>Security scan: {SECURITY_SCAN}</li>
+</ul>
+<p>Deliverables:</p>
+<ol>
+<li>Code quality review:<ul>
+<li>Follows project conventions</li>
+<li>No code smells or anti-patterns</li>
+<li>Proper error handling</li>
+<li>Adequate logging and observability</li>
+</ul>
+</li>
+<li>Architecture review:<ul>
+<li>Maintains system boundaries</li>
+<li>No tight coupling introduced</li>
+<li>Scalability considerations</li>
+</ul>
+</li>
+<li>Security review:<ul>
+<li>No security vulnerabilities</li>
+<li>Proper input validation</li>
+<li>Authentication/authorization correct</li>
+</ul>
+</li>
+<li>Documentation review:<ul>
+<li>Code comments where needed</li>
+<li>API documentation updated</li>
+<li>Runbook updated if operational impact</li>
+</ul>
+</li>
+<li>Deployment readiness:<ul>
+<li>Rollback plan documented</li>
+<li>Feature flag strategy defined</li>
+<li>Monitoring/alerting configured</li>
+</ul>
+</li>
+<li>Risk assessment:<ul>
+<li>Blast radius estimation</li>
+<li>Rollout strategy recommendation</li>
+<li>Success metrics defined</li>
+</ul>
+</li>
+</ol>
+<p>Review checklist:</p>
+<ul>
+<li>All tests pass</li>
+<li>No performance regressions</li>
+<li>Security vulnerabilities addressed</li>
+<li>Breaking changes documented</li>
+<li>Backward compatibility maintained</li>
+<li>Observability adequate</li>
+<li>Deployment plan clear</li>
+</ul>
+<pre><code>
+**Expected output:**
+</code></pre>
+<p>REVIEW_STATUS: {APPROVED|NEEDS_REVISION|BLOCKED}
+CODE_QUALITY: {score/assessment}
+ARCHITECTURE_CONCERNS: [list or &quot;none&quot;]
+SECURITY_CONCERNS: [list or &quot;none&quot;]
+DEPLOYMENT_RISK: {low|medium|high}
+ROLLBACK_PLAN: {
+steps: [&quot;...&quot;],
+estimated_time: &quot;X minutes&quot;,
+data_recovery: &quot;...&quot;
+}
+ROLLOUT_STRATEGY: {
+approach: &quot;canary|blue-green|rolling|big-bang&quot;,
+phases: [&quot;...&quot;],
+success_metrics: [&quot;...&quot;],
+abort_criteria: [&quot;...&quot;]
+}
+MONITORING_REQUIREMENTS: [
+{metric: &quot;...&quot;, threshold: &quot;...&quot;, action: &quot;...&quot;}
+]
+FINAL_VERDICT: {
+approved: true/false,
+blockers: [list if not approved],
+recommendations: [&quot;...&quot;]
+}</p>
+<pre><code>
+## Phase 5: Documentation and Prevention - Long-term Resilience
+
+Use Task tool with subagent_type=&quot;comprehensive-review::code-reviewer&quot; for prevention strategies:
+
+**Prompt:**
+</code></pre>
+<p>Document fix and implement prevention strategies to avoid recurrence:</p>
+<p>Context from Phase 4:</p>
+<ul>
+<li>Final verdict: {FINAL_VERDICT}</li>
+<li>Review status: {REVIEW_STATUS}</li>
+<li>Root cause: {ROOT_CAUSE}</li>
+<li>Rollback plan: {ROLLBACK_PLAN}</li>
+<li>Monitoring requirements: {MONITORING_REQUIREMENTS}</li>
+</ul>
+<p>Deliverables:</p>
+<ol>
+<li>Code documentation:<ul>
+<li>Inline comments for non-obvious logic (minimal)</li>
+<li>Function/class documentation updates</li>
+<li>API contract documentation</li>
+</ul>
+</li>
+<li>Operational documentation:<ul>
+<li>CHANGELOG entry with fix description and version</li>
+<li>Release notes for stakeholders</li>
+<li>Runbook entry for on-call engineers</li>
+<li>Postmortem document (if high-severity incident)</li>
+</ul>
+</li>
+<li>Prevention through static analysis:<ul>
+<li>Add linting rules (eslint, ruff, golangci-lint)</li>
+<li>Configure stricter compiler/type checker settings</li>
+<li>Add custom lint rules for domain-specific patterns</li>
+<li>Update pre-commit hooks</li>
+</ul>
+</li>
+<li>Type system enhancements:<ul>
+<li>Add exhaustiveness checking</li>
+<li>Use discriminated unions/sum types</li>
+<li>Add const/readonly modifiers</li>
+<li>Leverage branded types for validation</li>
+</ul>
+</li>
+<li>Monitoring and alerting:<ul>
+<li>Create error rate alerts (Sentry, DataDog)</li>
+<li>Add custom metrics for business logic</li>
+<li>Set up synthetic monitors (Pingdom, Checkly)</li>
+<li>Configure SLO/SLI dashboards</li>
+</ul>
+</li>
+<li>Architectural improvements:<ul>
+<li>Identify similar vulnerability patterns</li>
+<li>Propose refactoring for better isolation</li>
+<li>Document design decisions</li>
+<li>Update architecture diagrams if needed</li>
+</ul>
+</li>
+<li>Testing improvements:<ul>
+<li>Add property-based tests</li>
+<li>Expand integration test scenarios</li>
+<li>Add chaos engineering tests</li>
+<li>Document testing strategy gaps</li>
+</ul>
+</li>
+</ol>
+<p>Modern prevention practices (2024/2025):</p>
+<ul>
+<li>AI-assisted code review rules (GitHub Copilot, Claude Code)</li>
+<li>Continuous security scanning (Snyk, Dependabot)</li>
+<li>Infrastructure as Code validation (Terraform validate, CloudFormation Linter)</li>
+<li>Contract testing for APIs (Pact, OpenAPI validation)</li>
+<li>Observability-driven development (instrument before deploying)</li>
+</ul>
+<pre><code>
+**Expected output:**
+</code></pre>
+<p>DOCUMENTATION_UPDATES: [
+{file: &quot;CHANGELOG.md&quot;, summary: &quot;...&quot;},
+{file: &quot;docs/runbook.md&quot;, summary: &quot;...&quot;},
+{file: &quot;docs/architecture.md&quot;, summary: &quot;...&quot;}
+]
+PREVENTION_MEASURES: {
+static_analysis: [
+{tool: &quot;eslint&quot;, rule: &quot;...&quot;, reason: &quot;...&quot;},
+{tool: &quot;ruff&quot;, rule: &quot;...&quot;, reason: &quot;...&quot;}
+],
+type_system: [
+{enhancement: &quot;...&quot;, location: &quot;...&quot;, benefit: &quot;...&quot;}
+],
+pre_commit_hooks: [
+{hook: &quot;...&quot;, purpose: &quot;...&quot;}
+]
+}
+MONITORING_ADDED: {
+alerts: [
+{name: &quot;...&quot;, threshold: &quot;...&quot;, channel: &quot;...&quot;}
+],
+dashboards: [
+{name: &quot;...&quot;, metrics: [...], url: &quot;...&quot;}
+],
+slos: [
+{service: &quot;...&quot;, sli: &quot;...&quot;, target: &quot;...&quot;, window: &quot;...&quot;}
+]
+}
+ARCHITECTURAL_IMPROVEMENTS: [
+{improvement: &quot;...&quot;, reasoning: &quot;...&quot;, effort: &quot;small|medium|large&quot;}
+]
+SIMILAR_VULNERABILITIES: {
+found: N,
+locations: [...],
+remediation_plan: &quot;...&quot;
+}
+FOLLOW_UP_TASKS: [
+{task: &quot;...&quot;, priority: &quot;high|medium|low&quot;, owner: &quot;...&quot;}
+]
+POSTMORTEM: {
+created: true/false,
+location: &quot;...&quot;,
+incident_severity: &quot;SEV1|SEV2|SEV3|SEV4&quot;
+}
+KNOWLEDGE_BASE_UPDATES: [
+{article: &quot;...&quot;, summary: &quot;...&quot;}
+]</p>
+<pre><code>
+## Multi-Domain Coordination for Complex Issues
+
+For issues spanning multiple domains, orchestrate specialized agents sequentially with explicit context passing:
+
+**Example 1: Database Performance Issue Causing Application Timeouts**
+
+**Sequence:**
+1. **Phase 1-2**: error-detective + debugger identify slow database queries
+2. **Phase 3a**: Task(subagent_type=&quot;database-cloud-optimization::database-optimizer&quot;)
+   - Optimize query with proper indexes
+   - Context: &quot;Query execution taking 5s, missing index on user_id column, N+1 query pattern detected&quot;
+3. **Phase 3b**: Task(subagent_type=&quot;application-performance::performance-engineer&quot;)
+   - Add caching layer for frequently accessed data
+   - Context: &quot;Database query optimized from 5s to 50ms by adding index on user_id column. Application still experiencing 2s response times due to N+1 query pattern loading 100+ user records per request. Add Redis caching with 5-minute TTL for user profiles.&quot;
+4. **Phase 3c**: Task(subagent_type=&quot;incident-response::devops-troubleshooter&quot;)
+   - Configure monitoring for query performance and cache hit rates
+   - Context: &quot;Cache layer added with Redis. Need monitoring for: query p95 latency (threshold: 100ms), cache hit rate (threshold: &gt;80%), cache memory usage (alert at 80%).&quot;
+
+**Example 2: Frontend JavaScript Error in Production**
+
+**Sequence:**
+1. **Phase 1**: error-detective analyzes Sentry error reports
+   - Context: &quot;TypeError: Cannot read property &#39;map&#39; of undefined, 500+ occurrences in last hour, affects Safari users on iOS 14&quot;
+2. **Phase 2**: debugger + code-reviewer investigate
+   - Context: &quot;API response sometimes returns null instead of empty array when no results. Frontend assumes array.&quot;
+3. **Phase 3a**: Task(subagent_type=&quot;javascript-typescript::typescript-pro&quot;)
+   - Fix frontend with proper null checks
+   - Add type guards
+   - Context: &quot;Backend API /api/users endpoint returning null instead of [] when no results. Fix frontend to handle both. Add TypeScript strict null checks.&quot;
+4. **Phase 3b**: Task(subagent_type=&quot;backend-development::backend-architect&quot;)
+   - Fix backend to always return array
+   - Update API contract
+   - Context: &quot;Frontend now handles null, but API should follow contract and return [] not null. Update OpenAPI spec to document this.&quot;
+5. **Phase 4**: test-automator runs cross-browser tests
+6. **Phase 5**: code-reviewer documents API contract changes
+
+**Example 3: Security Vulnerability in Authentication**
+
+**Sequence:**
+1. **Phase 1**: error-detective reviews security scan report
+   - Context: &quot;SQL injection vulnerability in login endpoint, Snyk severity: HIGH&quot;
+2. **Phase 2**: debugger + security-auditor investigate
+   - Context: &quot;User input not sanitized in SQL WHERE clause, allows authentication bypass&quot;
+3. **Phase 3**: Task(subagent_type=&quot;security-scanning::security-auditor&quot;)
+   - Implement parameterized queries
+   - Add input validation
+   - Add rate limiting
+   - Context: &quot;Replace string concatenation with prepared statements. Add input validation for email format. Implement rate limiting (5 attempts per 15 min).&quot;
+4. **Phase 4a**: test-automator adds security tests
+   - SQL injection attempts
+   - Brute force scenarios
+5. **Phase 4b**: security-auditor performs penetration testing
+6. **Phase 5**: code-reviewer documents security improvements and creates postmortem
+
+**Context Passing Template:**
+</code></pre>
+<p>Context for {next_agent}:</p>
+<p>Completed by {previous_agent}:</p>
+<ul>
+<li>{summary_of_work}</li>
+<li>{key_findings}</li>
+<li>{changes_made}</li>
+</ul>
+<p>Remaining work:</p>
+<ul>
+<li>{specific_tasks_for_next_agent}</li>
+<li>{files_to_modify}</li>
+<li>{constraints_to_follow}</li>
+</ul>
+<p>Dependencies:</p>
+<ul>
+<li>{systems_or_components_affected}</li>
+<li>{data_needed}</li>
+<li>{integration_points}</li>
+</ul>
+<p>Success criteria:</p>
+<ul>
+<li>{measurable_outcomes}</li>
+<li>{verification_steps}</li>
+</ul>
+<pre><code>
+## Configuration Options
+
+Customize workflow behavior by setting priorities at invocation:
+
+**VERIFICATION_LEVEL**: Controls depth of testing and validation
+- **minimal**: Quick fix with basic tests, skip performance benchmarks
+  - Use for: Low-risk bugs, cosmetic issues, documentation fixes
+  - Phases: 1-2-3 (skip detailed Phase 4)
+  - Timeline: ~30 minutes
+- **standard**: Full test coverage + code review (default)
+  - Use for: Most production bugs, feature issues, data bugs
+  - Phases: 1-2-3-4 (all verification)
+  - Timeline: ~2-4 hours
+- **comprehensive**: Standard + security audit + performance benchmarks + chaos testing
+  - Use for: Security issues, performance problems, data corruption, high-traffic systems
+  - Phases: 1-2-3-4-5 (including long-term prevention)
+  - Timeline: ~1-2 days
+
+**PREVENTION_FOCUS**: Controls investment in future prevention
+- **none**: Fix only, no prevention work
+  - Use for: One-off issues, legacy code being deprecated, external library bugs
+  - Output: Code fix + tests only
+- **immediate**: Add tests and basic linting (default)
+  - Use for: Common bugs, recurring patterns, team codebase
+  - Output: Fix + tests + linting rules + minimal monitoring
+- **comprehensive**: Full prevention suite with monitoring, architecture improvements
+  - Use for: High-severity incidents, systemic issues, architectural problems
+  - Output: Fix + tests + linting + monitoring + architecture docs + postmortem
+
+**ROLLOUT_STRATEGY**: Controls deployment approach
+- **immediate**: Deploy directly to production (for hotfixes, low-risk changes)
+- **canary**: Gradual rollout to subset of traffic (default for medium-risk)
+- **blue-green**: Full environment switch with instant rollback capability
+- **feature-flag**: Deploy code but control activation via feature flags (high-risk changes)
+
+**OBSERVABILITY_LEVEL**: Controls instrumentation depth
+- **minimal**: Basic error logging only
+- **standard**: Structured logs + key metrics (default)
+- **comprehensive**: Full distributed tracing + custom dashboards + SLOs
+
+**Example Invocation:**
+</code></pre>
+<p>Issue: Users experiencing timeout errors on checkout page (500+ errors/hour)</p>
+<p>Config:</p>
+<ul>
+<li>VERIFICATION_LEVEL: comprehensive (affects revenue)</li>
+<li>PREVENTION_FOCUS: comprehensive (high business impact)</li>
+<li>ROLLOUT_STRATEGY: canary (test on 5% traffic first)</li>
+<li>OBSERVABILITY_LEVEL: comprehensive (need detailed monitoring)</li>
+</ul>
+<pre><code>
+## Modern Debugging Tools Integration
+
+This workflow leverages modern 2024/2025 tools:
+
+**Observability Platforms:**
+- Sentry (error tracking, release tracking, performance monitoring)
+- DataDog (APM, logs, traces, infrastructure monitoring)
+- OpenTelemetry (vendor-neutral distributed tracing)
+- Honeycomb (observability for complex distributed systems)
+- New Relic (APM, synthetic monitoring)
+
+**AI-Assisted Debugging:**
+- GitHub Copilot (code suggestions, test generation, bug pattern recognition)
+- Claude Code (comprehensive code analysis, architecture review)
+- Sourcegraph Cody (codebase search and understanding)
+- Tabnine (code completion with bug prevention)
+
+**Git and Version Control:**
+- Automated git bisect with reproduction scripts
+- GitHub Actions for automated testing on bisect commits
+- Git blame analysis for identifying code ownership
+- Commit message analysis for understanding changes
+
+**Testing Frameworks:**
+- Jest/Vitest (JavaScript/TypeScript unit/integration tests)
+- pytest (Python testing with fixtures and parametrization)
+- Go testing + testify (Go unit and table-driven tests)
+- Playwright/Cypress (end-to-end browser testing)
+- k6/Locust (load and performance testing)
+
+**Static Analysis:**
+- ESLint/Prettier (JavaScript/TypeScript linting and formatting)
+- Ruff/mypy (Python linting and type checking)
+- golangci-lint (Go comprehensive linting)
+- Clippy (Rust linting and best practices)
+- SonarQube (enterprise code quality and security)
+
+**Performance Profiling:**
+- Chrome DevTools (frontend performance)
+- pprof (Go profiling)
+- py-spy (Python profiling)
+- Pyroscope (continuous profiling)
+- Flame graphs for CPU/memory analysis
+
+**Security Scanning:**
+- Snyk (dependency vulnerability scanning)
+- Dependabot (automated dependency updates)
+- OWASP ZAP (security testing)
+- Semgrep (custom security rules)
+- npm audit / pip-audit / cargo audit
+
+## Success Criteria
+
+A fix is considered complete when ALL of the following are met:
+
+**Root Cause Understanding:**
+- Root cause is identified with supporting evidence
+- Failure mechanism is clearly documented
+- Introducing commit identified (if applicable via git bisect)
+- Similar vulnerabilities catalogued
+
+**Fix Quality:**
+- Fix addresses root cause, not just symptoms
+- Minimal code changes (avoid over-engineering)
+- Follows project conventions and patterns
+- No code smells or anti-patterns introduced
+- Backward compatibility maintained (or breaking changes documented)
+
+**Testing Verification:**
+- All existing tests pass (zero regressions)
+- New tests cover the specific bug reproduction
+- Edge cases and error paths tested
+- Integration tests verify end-to-end behavior
+- Test coverage increased (or maintained at high level)
+
+**Performance &amp; Security:**
+- No performance degradation (p95 latency within 5% of baseline)
+- No security vulnerabilities introduced
+- Resource usage acceptable (memory, CPU, I/O)
+- Load testing passed for high-traffic changes
+
+**Deployment Readiness:**
+- Code review approved by domain expert
+- Rollback plan documented and tested
+- Feature flags configured (if applicable)
+- Monitoring and alerting configured
+- Runbook updated with troubleshooting steps
+
+**Prevention Measures:**
+- Static analysis rules added (if applicable)
+- Type system improvements implemented (if applicable)
+- Documentation updated (code, API, runbook)
+- Postmortem created (if high-severity incident)
+- Knowledge base article created (if novel issue)
+
+**Metrics:**
+- Mean Time to Recovery (MTTR): &lt; 4 hours for SEV2+
+- Bug recurrence rate: 0% (same root cause should not recur)
+- Test coverage: No decrease, ideally increase
+- Deployment success rate: &gt; 95% (rollback rate &lt; 5%)
+
+Issue to resolve: $ARGUMENTS
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

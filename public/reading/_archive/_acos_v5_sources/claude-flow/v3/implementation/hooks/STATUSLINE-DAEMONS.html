@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Statusline &amp; Daemon Integration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/hooks/STATUSLINE-DAEMONS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Statusline &amp; Daemon Integration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fhooks">hooks</a> / <span>STATUSLINE-DAEMONS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>V3 Statusline &amp; Daemon Integration</h1>
+<h2>Overview</h2>
+<p>The V3 hooks system integrates with background daemons and statusline displays to provide real-time monitoring of swarm activity, implementation progress, and security status. This document covers the integration between hooks and the daemon infrastructure.</p>
+<h2>Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
+│                        Claude Code Session                               │
+├─────────────────────────────────────────────────────────────────────────┤
+│  SessionStart Hook                                                       │
+│  └─&gt; .claude/helpers/daemon-manager.sh start                            │
+│       ├─&gt; swarm-monitor.sh     (process detection, 3s interval)         │
+│       ├─&gt; metrics-db.mjs       (SQLite sync, 30s interval)              │
+│       └─&gt; hooks-daemon.mjs     (learning sync, 60s interval)            │
+├─────────────────────────────────────────────────────────────────────────┤
+│  Hooks System Integration                                                │
+│  ├─&gt; PreToolUse Hook   → Activity detection → Metrics update            │
+│  ├─&gt; PostToolUse Hook  → Outcome recording → Pattern learning           │
+│  ├─&gt; PreCommand Hook   → Risk assessment   → Security tracking          │
+│  └─&gt; PostTask Hook     → Progress update   → Statusline refresh         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  statusline.sh (on-demand, &lt;200ms)                                       │
+│  └─&gt; Reads from:                                                         │
+│       ├─ .claude-flow/metrics.db      (SQLite, primary)                 │
+│       ├─ .claude-flow/hooks.db        (ReasoningBank patterns)          │
+│       └─ .claude-flow/metrics/*.json  (exported, legacy compat)         │
+├─────────────────────────────────────────────────────────────────────────┤
+│  SessionEnd Hook                                                         │
+│  └─&gt; .claude/helpers/daemon-manager.sh stop                             │
+│       └─&gt; Final metrics export, pattern consolidation                   │
+└─────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Daemons</h2>
+<h3>1. Daemon Manager (<code>daemon-manager.sh</code>)</h3>
+<p>Central control for all background processes with hooks integration.</p>
+<pre><code class="language-bash"># Start all daemons (called by SessionStart hook)
+.claude/helpers/daemon-manager.sh start [swarm_interval] [metrics_interval] [hooks_interval]
+
+# Default intervals: swarm=3s, metrics=30s, hooks=60s
+.claude/helpers/daemon-manager.sh start 3 30 60
+
+# Stop all daemons (called by SessionEnd hook)
+.claude/helpers/daemon-manager.sh stop
+
+# Restart with new configuration
+.claude/helpers/daemon-manager.sh restart
+
+# Check daemon status
+.claude/helpers/daemon-manager.sh status
+</code></pre>
+<p><strong>PID Management:</strong></p>
+<pre><code>.claude-flow/pids/
+├── swarm-monitor.pid      # Swarm monitoring daemon
+├── metrics-daemon.pid     # Metrics collection daemon
+└── hooks-daemon.pid       # Hooks learning daemon
+</code></pre>
+<p><strong>Log Files:</strong></p>
+<pre><code>.claude-flow/logs/
+├── daemon.log             # Daemon manager operations
+├── swarm-monitor.log      # Process detection logs
+├── metrics-daemon.log     # Metrics sync logs
+└── hooks-daemon.log       # Learning operation logs
+</code></pre>
+<h3>2. Metrics Database Daemon (<code>metrics-db.mjs</code>)</h3>
+<p>SQLite-based metrics storage with hooks integration.</p>
+<pre><code class="language-bash"># Sync metrics from implementation
+node .claude/helpers/metrics-db.mjs sync
+
+# Export to JSON (statusline compatibility)
+node .claude/helpers/metrics-db.mjs export
+
+# Run as daemon
+node .claude/helpers/metrics-db.mjs daemon [interval_seconds]
+
+# Query specific metrics
+node .claude/helpers/metrics-db.mjs query &quot;SELECT * FROM hooks_metrics&quot;
+</code></pre>
+<p><strong>Extended Schema for Hooks:</strong></p>
+<pre><code class="language-sql">-- Hooks Activity Metrics
+CREATE TABLE hooks_metrics (
+  id INTEGER PRIMARY KEY,
+  total_executions INTEGER,
+  total_failures INTEGER,
+  avg_execution_time REAL,
+  patterns_learned INTEGER,
+  routing_confidence REAL,
+  last_updated TEXT
+);
+
+-- Per-Hook Statistics
+CREATE TABLE hook_stats (
+  hook_name TEXT PRIMARY KEY,
+  category TEXT,
+  execution_count INTEGER,
+  success_rate REAL,
+  avg_time_ms REAL,
+  last_executed TEXT
+);
+
+-- Routing History
+CREATE TABLE routing_history (
+  id INTEGER PRIMARY KEY,
+  task_hash TEXT,
+  recommended_agent TEXT,
+  confidence REAL,
+  was_successful INTEGER,
+  timestamp TEXT
+);
+
+-- Learning Patterns
+CREATE TABLE learning_patterns (
+  pattern_id TEXT PRIMARY KEY,
+  category TEXT,
+  quality_score REAL,
+  usage_count INTEGER,
+  created_at TEXT,
+  last_used TEXT
+);
+</code></pre>
+<h3>3. Swarm Monitor Daemon (<code>swarm-monitor.sh</code>)</h3>
+<p>Real-time process detection with hooks event emission.</p>
+<pre><code class="language-bash"># Single check (returns JSON)
+.claude/helpers/swarm-monitor.sh check
+
+# Continuous monitoring with hooks notification
+.claude/helpers/swarm-monitor.sh monitor [interval]
+
+# Status with hooks metrics
+.claude/helpers/swarm-monitor.sh status --include-hooks
+</code></pre>
+<p><strong>Output:</strong></p>
+<pre><code class="language-json">{
+  &quot;timestamp&quot;: &quot;2025-01-05T12:00:00Z&quot;,
+  &quot;swarm&quot;: {
+    &quot;agentic_flow_processes&quot;: 3,
+    &quot;mcp_server_processes&quot;: 2,
+    &quot;estimated_agents&quot;: 5,
+    &quot;active&quot;: true,
+    &quot;coordination_active&quot;: true
+  },
+  &quot;hooks&quot;: {
+    &quot;daemon_running&quot;: true,
+    &quot;patterns_loaded&quot;: 156,
+    &quot;routing_enabled&quot;: true
+  }
+}
+</code></pre>
+<h3>4. Hooks Learning Daemon (<code>hooks-daemon.mjs</code>)</h3>
+<p>Background process for ReasoningBank consolidation.</p>
+<pre><code class="language-bash"># Run consolidation cycle
+node .claude/helpers/hooks-daemon.mjs consolidate
+
+# Run as daemon
+node .claude/helpers/hooks-daemon.mjs daemon [interval_seconds]
+
+# Export patterns
+node .claude/helpers/hooks-daemon.mjs export --format json
+</code></pre>
+<p><strong>Operations:</strong></p>
+<ul>
+<li><strong>Trajectory pruning</strong>: Remove low-quality trajectories</li>
+<li><strong>Pattern consolidation</strong>: Merge similar patterns</li>
+<li><strong>Memory optimization</strong>: Compress old patterns</li>
+<li><strong>Index rebuilding</strong>: Optimize HNSW index</li>
+</ul>
+<h2>Statusline Integration</h2>
+<h3>Format</h3>
+<pre><code>▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3
+─────────────────────────────────────────────────────
+🏗️  DDD Domains    [●●●●●]  5/5    ⚡ 1.0x → 2.49x-7.47x
+🤖 Swarm Agents    ◉ [ 5/15]      🟢 CVE 3/3    💾 156 patterns
+🔧 Architecture    DDD ●93%  │  Security ●CLEAN  │  Hooks ●ACTIVE
+📊 Routing         89% accuracy │  Avg 4.2ms │  1547 operations
+─────────────────────────────────────────────────────
+</code></pre>
+<h3>Statusline Script</h3>
+<pre><code class="language-bash">#!/bin/bash
+# .claude/statusline.sh - V3 with Hooks Integration
+
+# Read from SQLite if available
+if [ -f &quot;.claude-flow/metrics.db&quot; ]; then
+  METRICS=$(node -e &quot;
+    const db = require(&#39;.claude/helpers/metrics-db.mjs&#39;);
+    console.log(JSON.stringify(db.getStatuslineData()));
+  &quot; 2&gt;/dev/null)
+
+  # Extract values
+  DDD_PROGRESS=$(echo &quot;$METRICS&quot; | jq -r &#39;.ddd_progress // 0&#39;)
+  ACTIVE_AGENTS=$(echo &quot;$METRICS&quot; | jq -r &#39;.active_agents // 0&#39;)
+  CVE_STATUS=$(echo &quot;$METRICS&quot; | jq -r &#39;.cve_status // &quot;PENDING&quot;&#39;)
+  PATTERNS=$(echo &quot;$METRICS&quot; | jq -r &#39;.patterns_learned // 0&#39;)
+  ROUTING_ACC=$(echo &quot;$METRICS&quot; | jq -r &#39;.routing_accuracy // 0&#39;)
+  HOOK_STATUS=$(echo &quot;$METRICS&quot; | jq -r &#39;.hooks_status // &quot;INACTIVE&quot;&#39;)
+fi
+
+# Format output
+printf &quot;▊ Claude Flow V3 ● agentic-flow@alpha  │  ⎇ v3\n&quot;
+printf &quot;─────────────────────────────────────────────────────\n&quot;
+printf &quot;🏗️  DDD Domains    %s  │  ⚡ Performance targets active\n&quot; &quot;$DDD_PROGRESS&quot;
+printf &quot;🤖 Swarm Agents    ◉ [%2d/15]      🟢 CVE %s    💾 %d patterns\n&quot; &quot;$ACTIVE_AGENTS&quot; &quot;$CVE_STATUS&quot; &quot;$PATTERNS&quot;
+printf &quot;🔧 Hooks           %s  │  Routing %d%%  │  Learning %s\n&quot; &quot;$HOOK_STATUS&quot; &quot;$ROUTING_ACC&quot; &quot;ACTIVE&quot;
+printf &quot;─────────────────────────────────────────────────────\n&quot;
+</code></pre>
+<h3>Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Target</th>
+<th>Typical</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>statusline.sh total</td>
+<td>&lt;200ms</td>
+<td>138ms</td>
+</tr>
+<tr>
+<td>SQLite query</td>
+<td>&lt;50ms</td>
+<td>12ms</td>
+</tr>
+<tr>
+<td>JSON export</td>
+<td>&lt;100ms</td>
+<td>45ms</td>
+</tr>
+<tr>
+<td>Hooks metrics</td>
+<td>&lt;20ms</td>
+<td>8ms</td>
+</tr>
+</tbody></table>
+<h2>Hook Configuration</h2>
+<h3>Claude Settings (<code>~/.claude/settings.json</code>)</h3>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;SessionStart&quot;: [
+      {
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;timeout&quot;: 5000,
+            &quot;command&quot;: &quot;/workspaces/claude-flow/.claude/helpers/daemon-manager.sh start 3 30 60&quot;
+          }
+        ]
+      }
+    ],
+    &quot;SessionEnd&quot;: [
+      {
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;timeout&quot;: 3000,
+            &quot;command&quot;: &quot;/workspaces/claude-flow/.claude/helpers/daemon-manager.sh stop&quot;
+          }
+        ]
+      }
+    ],
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;timeout&quot;: 100,
+            &quot;command&quot;: &quot;node .claude/helpers/hooks-daemon.mjs notify-activity&quot;
+          }
+        ]
+      }
+    ]
+  },
+  &quot;statusLine&quot;: {
+    &quot;type&quot;: &quot;command&quot;,
+    &quot;command&quot;: &quot;/workspaces/claude-flow/.claude/statusline.sh&quot;
+  }
+}
+</code></pre>
+<h3>V3 Project Settings (<code>.claude-flow/config.json</code>)</h3>
+<pre><code class="language-json">{
+  &quot;daemons&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;swarmMonitor&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;interval&quot;: 3000
+    },
+    &quot;metricsSync&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;interval&quot;: 30000,
+      &quot;database&quot;: &quot;.claude-flow/metrics.db&quot;
+    },
+    &quot;hooksLearning&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;interval&quot;: 60000,
+      &quot;database&quot;: &quot;.claude-flow/hooks.db&quot;
+    }
+  },
+  &quot;statusline&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;refreshOnHook&quot;: true,
+    &quot;showHooksMetrics&quot;: true,
+    &quot;showSwarmActivity&quot;: true
+  }
+}
+</code></pre>
+<h2>Event Flow</h2>
+<h3>1. Session Start</h3>
+<pre><code>SessionStart Hook Triggered
+    │
+    ├─&gt; daemon-manager.sh start
+    │   ├─&gt; Start swarm-monitor.sh (every 3s)
+    │   ├─&gt; Start metrics-db.mjs daemon (every 30s)
+    │   └─&gt; Start hooks-daemon.mjs (every 60s)
+    │
+    ├─&gt; Initialize ReasoningBank
+    │   ├─&gt; Load patterns from .claude-flow/hooks.db
+    │   └─&gt; Warm HNSW index for retrieval
+    │
+    └─&gt; First statusline render
+</code></pre>
+<h3>2. During Session</h3>
+<pre><code>Tool Use (e.g., Edit)
+    │
+    ├─&gt; PreToolUse Hook
+    │   ├─&gt; hooks-daemon.mjs notify-activity
+    │   └─&gt; Increment metrics counter
+    │
+    ├─&gt; Tool Execution
+    │
+    └─&gt; PostToolUse Hook
+        ├─&gt; Record outcome to ReasoningBank
+        ├─&gt; Update hooks_metrics table
+        └─&gt; (If successful) Queue pattern distillation
+</code></pre>
+<h3>3. Background Sync</h3>
+<pre><code>Every 30 seconds (metrics-db.mjs daemon):
+    │
+    ├─&gt; Scan V3 implementation files
+    │   ├─&gt; Count files per module
+    │   └─&gt; Calculate DDD progress
+    │
+    ├─&gt; Check security status
+    │   └─&gt; CVE remediation count
+    │
+    ├─&gt; Export JSON for statusline
+    │
+    └─&gt; Log sync completion
+
+Every 60 seconds (hooks-daemon.mjs):
+    │
+    ├─&gt; Consolidate ReasoningBank patterns
+    │   ├─&gt; Prune low-quality trajectories
+    │   └─&gt; Merge duplicate patterns
+    │
+    ├─&gt; Update hook_stats table
+    │
+    └─&gt; Optimize HNSW index if needed
+</code></pre>
+<h3>4. Session End</h3>
+<pre><code>SessionEnd Hook Triggered
+    │
+    ├─&gt; daemon-manager.sh stop
+    │   ├─&gt; SIGTERM to all daemons
+    │   └─&gt; Wait for graceful shutdown
+    │
+    ├─&gt; Final ReasoningBank consolidation
+    │   └─&gt; Export learned patterns
+    │
+    ├─&gt; Final metrics sync
+    │   └─&gt; Export to JSON
+    │
+    └─&gt; Log session summary
+</code></pre>
+<h2>Metrics Tracked</h2>
+<h3>Hooks Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+<th>Update Frequency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>total_executions</code></td>
+<td>Total hook invocations</td>
+<td>Real-time</td>
+</tr>
+<tr>
+<td><code>total_failures</code></td>
+<td>Failed hook executions</td>
+<td>Real-time</td>
+</tr>
+<tr>
+<td><code>avg_execution_time</code></td>
+<td>Average hook time (ms)</td>
+<td>Every 30s</td>
+</tr>
+<tr>
+<td><code>patterns_learned</code></td>
+<td>ReasoningBank patterns</td>
+<td>Every 60s</td>
+</tr>
+<tr>
+<td><code>routing_accuracy</code></td>
+<td>Task routing success rate</td>
+<td>Every 60s</td>
+</tr>
+<tr>
+<td><code>routing_confidence</code></td>
+<td>Average routing confidence</td>
+<td>Every 60s</td>
+</tr>
+</tbody></table>
+<h3>Per-Hook Statistics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>hook_name</code></td>
+<td>Hook identifier</td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td>pre-edit, post-edit, routing, etc.</td>
+</tr>
+<tr>
+<td><code>execution_count</code></td>
+<td>Times executed</td>
+</tr>
+<tr>
+<td><code>success_rate</code></td>
+<td>Success percentage</td>
+</tr>
+<tr>
+<td><code>avg_time_ms</code></td>
+<td>Average execution time</td>
+</tr>
+<tr>
+<td><code>last_executed</code></td>
+<td>Timestamp of last execution</td>
+</tr>
+</tbody></table>
+<h3>Learning Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>trajectories_stored</code></td>
+<td>Total trajectories in ReasoningBank</td>
+</tr>
+<tr>
+<td><code>patterns_distilled</code></td>
+<td>Memories extracted from trajectories</td>
+</tr>
+<tr>
+<td><code>consolidation_runs</code></td>
+<td>Pattern consolidation cycles</td>
+</tr>
+<tr>
+<td><code>index_size</code></td>
+<td>HNSW index entry count</td>
+</tr>
+<tr>
+<td><code>avg_retrieval_time</code></td>
+<td>Pattern retrieval latency</td>
+</tr>
+</tbody></table>
+<h2>Troubleshooting</h2>
+<h3>Daemons Not Starting</h3>
+<pre><code class="language-bash"># Check daemon status
+.claude/helpers/daemon-manager.sh status
+
+# View logs
+tail -f .claude-flow/logs/daemon.log
+
+# Check for stale PID files
+ls -la .claude-flow/pids/
+
+# Manual cleanup and restart
+rm .claude-flow/pids/*.pid
+.claude/helpers/daemon-manager.sh start
+</code></pre>
+<h3>Statusline Not Updating</h3>
+<pre><code class="language-bash"># Force metrics sync
+node .claude/helpers/metrics-db.mjs sync
+
+# Check SQLite database
+sqlite3 .claude-flow/metrics.db &quot;SELECT * FROM hooks_metrics&quot;
+
+# Verify statusline script
+bash -x .claude/statusline.sh
+</code></pre>
+<h3>ReasoningBank Issues</h3>
+<pre><code class="language-bash"># Check hooks database
+node .claude/helpers/hooks-daemon.mjs status
+
+# Force consolidation
+node .claude/helpers/hooks-daemon.mjs consolidate --force
+
+# Rebuild patterns
+node .claude/helpers/hooks-daemon.mjs rebuild-index
+</code></pre>
+<h3>High CPU from Daemons</h3>
+<pre><code class="language-bash"># Increase daemon intervals
+.claude/helpers/daemon-manager.sh restart 10 60 120
+
+# Disable non-essential daemons
+.claude/helpers/daemon-manager.sh start --no-hooks-daemon
+</code></pre>
+<h2>Files Reference</h2>
+<pre><code>.claude/
+├── statusline.sh                    # Main statusline script
+├── settings.json                    # Claude settings with hooks
+└── helpers/
+    ├── daemon-manager.sh            # Daemon lifecycle
+    ├── metrics-db.mjs               # Metrics SQLite engine
+    ├── swarm-monitor.sh             # Process detection
+    └── hooks-daemon.mjs             # Learning background process
+
+.claude-flow/
+├── metrics.db                       # Main metrics database
+├── hooks.db                         # ReasoningBank storage
+├── config.json                      # V3 configuration
+├── pids/
+│   ├── swarm-monitor.pid
+│   ├── metrics-daemon.pid
+│   └── hooks-daemon.pid
+├── logs/
+│   ├── daemon.log
+│   ├── swarm-monitor.log
+│   ├── metrics-daemon.log
+│   └── hooks-daemon.log
+└── metrics/
+    ├── v3-progress.json             # Exported V3 metrics
+    ├── swarm-activity.json          # Exported swarm status
+    └── hooks-metrics.json           # Exported hooks metrics
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

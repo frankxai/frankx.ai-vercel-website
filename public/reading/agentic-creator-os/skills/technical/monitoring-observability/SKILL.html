@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Monitoring &amp; Observability Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/skills/technical/monitoring-observability/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Monitoring &amp; Observability Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2Fskills">skills</a> / <a href="../index.html#agentic-creator-os%2Fskills%2Ftechnical">technical</a> / <a href="index.html#agentic-creator-os%2Fskills%2Ftechnical%2Fmonitoring-observability">monitoring-observability</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: monitoring-observability
+description: &quot;Monitoring, logging, and observability patterns. Covers structured logging, metrics, tracing, alerting, and dashboards with tools like Sentry, Datadog, and OpenTelemetry.&quot;
+version: 1.0.0
+triggers:
+  - monitoring
+  - logging
+  - observability
+  - metrics
+  - tracing
+  - sentry
+  - datadog</h2>
+<h1>Monitoring &amp; Observability Skill</h1>
+<p>Implement comprehensive observability for production applications with logging, metrics, and tracing.</p>
+<h2>The Three Pillars</h2>
+<table>
+<thead>
+<tr>
+<th>Pillar</th>
+<th>Purpose</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Logs</strong></td>
+<td>What happened</td>
+<td>Pino, Winston, Sentry</td>
+</tr>
+<tr>
+<td><strong>Metrics</strong></td>
+<td>Quantitative data</td>
+<td>Prometheus, Datadog</td>
+</tr>
+<tr>
+<td><strong>Traces</strong></td>
+<td>Request flow</td>
+<td>OpenTelemetry, Jaeger</td>
+</tr>
+</tbody></table>
+<h2>Structured Logging</h2>
+<h3>Pino Setup (Recommended)</h3>
+<pre><code class="language-typescript">// lib/logger.ts
+import pino from &#39;pino&#39;;
+
+export const logger = pino({
+  level: process.env.LOG_LEVEL || &#39;info&#39;,
+  formatters: {
+    level: (label) =&gt; ({ level: label }),
+  },
+  redact: [&#39;password&#39;, &#39;token&#39;, &#39;authorization&#39;, &#39;cookie&#39;],
+  base: {
+    env: process.env.NODE_ENV,
+    version: process.env.APP_VERSION,
+  },
+});
+
+// Usage
+logger.info({ userId: &#39;123&#39;, action: &#39;login&#39; }, &#39;User logged in&#39;);
+logger.error({ err, requestId }, &#39;Request failed&#39;);
+</code></pre>
+<h3>Request Logging Middleware</h3>
+<pre><code class="language-typescript">// middleware.ts
+import { NextRequest, NextResponse } from &#39;next/server&#39;;
+import { logger } from &#39;@/lib/logger&#39;;
+import { nanoid } from &#39;nanoid&#39;;
+
+export function middleware(request: NextRequest) {
+  const requestId = nanoid();
+  const start = Date.now();
+
+  const response = NextResponse.next();
+  response.headers.set(&#39;x-request-id&#39;, requestId);
+
+  // Log after response
+  logger.info({
+    requestId,
+    method: request.method,
+    path: request.nextUrl.pathname,
+    duration: Date.now() - start,
+    status: response.status,
+    userAgent: request.headers.get(&#39;user-agent&#39;),
+  }, &#39;Request completed&#39;);
+
+  return response;
+}
+</code></pre>
+<h2>Error Tracking with Sentry</h2>
+<h3>Setup</h3>
+<pre><code class="language-typescript">// sentry.client.config.ts
+import * as Sentry from &#39;@sentry/nextjs&#39;;
+
+Sentry.init({
+  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  environment: process.env.NODE_ENV,
+  tracesSampleRate: 0.1, // 10% of transactions
+  replaysSessionSampleRate: 0.1,
+  replaysOnErrorSampleRate: 1.0,
+});
+</code></pre>
+<h3>Error Boundary</h3>
+<pre><code class="language-tsx">// components/ErrorBoundary.tsx
+&#39;use client&#39;;
+
+import * as Sentry from &#39;@sentry/nextjs&#39;;
+
+export function ErrorBoundary({ error, reset }: {
+  error: Error &amp; { digest?: string };
+  reset: () =&gt; void;
+}) {
+  useEffect(() =&gt; {
+    Sentry.captureException(error);
+  }, [error]);
+
+  return (
+    &lt;div className=&quot;error-container&quot;&gt;
+      &lt;h2&gt;Something went wrong&lt;/h2&gt;
+      &lt;button onClick={reset}&gt;Try again&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Manual Error Capture</h3>
+<pre><code class="language-typescript">import * as Sentry from &#39;@sentry/nextjs&#39;;
+
+try {
+  await riskyOperation();
+} catch (error) {
+  Sentry.captureException(error, {
+    tags: { feature: &#39;payment&#39; },
+    extra: { userId, orderId },
+  });
+  throw error;
+}
+</code></pre>
+<h2>Metrics with Prometheus</h2>
+<h3>Metrics Endpoint</h3>
+<pre><code class="language-typescript">// app/api/metrics/route.ts
+import { Registry, Counter, Histogram, collectDefaultMetrics } from &#39;prom-client&#39;;
+
+const register = new Registry();
+collectDefaultMetrics({ register });
+
+// Custom metrics
+const httpRequestsTotal = new Counter({
+  name: &#39;http_requests_total&#39;,
+  help: &#39;Total HTTP requests&#39;,
+  labelNames: [&#39;method&#39;, &#39;path&#39;, &#39;status&#39;],
+  registers: [register],
+});
+
+const httpRequestDuration = new Histogram({
+  name: &#39;http_request_duration_seconds&#39;,
+  help: &#39;HTTP request duration&#39;,
+  labelNames: [&#39;method&#39;, &#39;path&#39;],
+  buckets: [0.1, 0.3, 0.5, 1, 3, 5, 10],
+  registers: [register],
+});
+
+export async function GET() {
+  const metrics = await register.metrics();
+  return new Response(metrics, {
+    headers: { &#39;Content-Type&#39;: register.contentType },
+  });
+}
+
+// Export for use in middleware
+export { httpRequestsTotal, httpRequestDuration };
+</code></pre>
+<h2>Distributed Tracing with OpenTelemetry</h2>
+<pre><code class="language-typescript">// instrumentation.ts
+import { NodeSDK } from &#39;@opentelemetry/sdk-node&#39;;
+import { getNodeAutoInstrumentations } from &#39;@opentelemetry/auto-instrumentations-node&#39;;
+import { OTLPTraceExporter } from &#39;@opentelemetry/exporter-trace-otlp-http&#39;;
+
+const sdk = new NodeSDK({
+  traceExporter: new OTLPTraceExporter({
+    url: process.env.OTEL_EXPORTER_OTLP_ENDPOINT,
+  }),
+  instrumentations: [getNodeAutoInstrumentations()],
+});
+
+sdk.start();
+</code></pre>
+<h2>Health Checks</h2>
+<pre><code class="language-typescript">// app/api/health/route.ts
+import { db } from &#39;@/lib/db&#39;;
+import { redis } from &#39;@/lib/redis&#39;;
+
+export async function GET() {
+  const checks = {
+    database: await checkDatabase(),
+    redis: await checkRedis(),
+    uptime: process.uptime(),
+  };
+
+  const healthy = Object.values(checks).every(c =&gt;
+    typeof c === &#39;object&#39; ? c.status === &#39;ok&#39; : true
+  );
+
+  return Response.json(
+    { status: healthy ? &#39;healthy&#39; : &#39;unhealthy&#39;, checks },
+    { status: healthy ? 200 : 503 }
+  );
+}
+
+async function checkDatabase() {
+  try {
+    await db.$queryRaw`SELECT 1`;
+    return { status: &#39;ok&#39; };
+  } catch (error) {
+    return { status: &#39;error&#39;, error: error.message };
+  }
+}
+
+async function checkRedis() {
+  try {
+    await redis.ping();
+    return { status: &#39;ok&#39; };
+  } catch (error) {
+    return { status: &#39;error&#39;, error: error.message };
+  }
+}
+</code></pre>
+<h2>Alerting Rules</h2>
+<pre><code class="language-yaml"># prometheus/alerts.yml
+groups:
+  - name: app-alerts
+    rules:
+      - alert: HighErrorRate
+        expr: rate(http_requests_total{status=~&quot;5..&quot;}[5m]) / rate(http_requests_total[5m]) &gt; 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: &quot;High error rate detected&quot;
+
+      - alert: SlowResponses
+        expr: histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m])) &gt; 2
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: &quot;95th percentile latency above 2s&quot;
+</code></pre>
+<h2>Dashboard Queries (Grafana)</h2>
+<pre><code># Request rate
+rate(http_requests_total[5m])
+
+# Error rate percentage
+rate(http_requests_total{status=~&quot;5..&quot;}[5m]) / rate(http_requests_total[5m]) * 100
+
+# P95 latency
+histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))
+
+# Active users
+sum(increase(user_sessions_total[1h]))
+</code></pre>
+<h2>Anti-Patterns</h2>
+<p>❌ Logging sensitive data (passwords, tokens)
+❌ No request IDs for correlation
+❌ Sampling at 100% in production
+❌ Ignoring errors silently
+❌ No alerts on critical paths</p>
+<p>✅ Structured JSON logs with redaction
+✅ Request ID propagation
+✅ Appropriate sampling rates
+✅ Capture and alert on errors
+✅ Runbooks for each alert</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

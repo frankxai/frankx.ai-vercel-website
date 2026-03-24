@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Milestone Archive Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/milestone-archive.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Milestone Archive Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <span>milestone-archive.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Milestone Archive Template</h1>
+<p>This template is used by the complete-milestone workflow to create archive files in <code>.planning/milestones/</code>.</p>
+<hr>
+<h2>File Template</h2>
+<h1>Milestone v{{VERSION}}: {{MILESTONE_NAME}}</h1>
+<p><strong>Status:</strong> ✅ SHIPPED {{DATE}}
+<strong>Phases:</strong> {{PHASE_START}}-{{PHASE_END}}
+<strong>Total Plans:</strong> {{TOTAL_PLANS}}</p>
+<h2>Overview</h2>
+<p>{{MILESTONE_DESCRIPTION}}</p>
+<h2>Phases</h2>
+<p>{{PHASES_SECTION}}</p>
+<p>[For each phase in this milestone, include:]</p>
+<h3>Phase {{PHASE_NUM}}: {{PHASE_NAME}}</h3>
+<p><strong>Goal</strong>: {{PHASE_GOAL}}
+<strong>Depends on</strong>: {{DEPENDS_ON}}
+<strong>Plans</strong>: {{PLAN_COUNT}} plans</p>
+<p>Plans:</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> {{PHASE}}-01: {{PLAN_DESCRIPTION}}</li>
+<li><input checked="" disabled="" type="checkbox"> {{PHASE}}-02: {{PLAN_DESCRIPTION}}
+[... all plans ...]</li>
+</ul>
+<p><strong>Details:</strong>
+{{PHASE_DETAILS_FROM_ROADMAP}}</p>
+<p><strong>For decimal phases, include (INSERTED) marker:</strong></p>
+<h3>Phase 2.1: Critical Security Patch (INSERTED)</h3>
+<p><strong>Goal</strong>: Fix authentication bypass vulnerability
+<strong>Depends on</strong>: Phase 2
+<strong>Plans</strong>: 1 plan</p>
+<p>Plans:</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 02.1-01: Patch auth vulnerability</li>
+</ul>
+<p><strong>Details:</strong>
+{{PHASE_DETAILS_FROM_ROADMAP}}</p>
+<hr>
+<h2>Milestone Summary</h2>
+<p><strong>Decimal Phases:</strong></p>
+<ul>
+<li>Phase 2.1: Critical Security Patch (inserted after Phase 2 for urgent fix)</li>
+<li>Phase 5.1: Performance Hotfix (inserted after Phase 5 for production issue)</li>
+</ul>
+<p><strong>Key Decisions:</strong>
+{{DECISIONS_FROM_PROJECT_STATE}}
+[Example:]</p>
+<ul>
+<li>Decision: Use ROADMAP.md split (Rationale: Constant context cost)</li>
+<li>Decision: Decimal phase numbering (Rationale: Clear insertion semantics)</li>
+</ul>
+<p><strong>Issues Resolved:</strong>
+{{ISSUES_RESOLVED_DURING_MILESTONE}}
+[Example:]</p>
+<ul>
+<li>Fixed context overflow at 100+ phases</li>
+<li>Resolved phase insertion confusion</li>
+</ul>
+<p><strong>Issues Deferred:</strong>
+{{ISSUES_DEFERRED_TO_LATER}}
+[Example:]</p>
+<ul>
+<li>PROJECT-STATE.md tiering (deferred until decisions &gt; 300)</li>
+</ul>
+<p><strong>Technical Debt Incurred:</strong>
+{{SHORTCUTS_NEEDING_FUTURE_WORK}}
+[Example:]</p>
+<ul>
+<li>Some workflows still have hardcoded paths (fix in Phase 5)</li>
+</ul>
+<hr>
+<p><em>For current project status, see .planning/ROADMAP.md</em></p>
+<hr>
+<h2>Usage Guidelines</h2>
+<guidelines>
+**When to create milestone archives:**
+- After completing all phases in a milestone (v1.0, v1.1, v2.0, etc.)
+- Triggered by complete-milestone workflow
+- Before planning next milestone work
+
+<p><strong>How to fill template:</strong></p>
+<ul>
+<li>Replace {{PLACEHOLDERS}} with actual values</li>
+<li>Extract phase details from ROADMAP.md</li>
+<li>Document decimal phases with (INSERTED) marker</li>
+<li>Include key decisions from PROJECT-STATE.md or SUMMARY files</li>
+<li>List issues resolved vs deferred</li>
+<li>Capture technical debt for future reference</li>
+</ul>
+<p><strong>Archive location:</strong></p>
+<ul>
+<li>Save to <code>.planning/milestones/v{VERSION}-{NAME}.md</code></li>
+<li>Example: <code>.planning/milestones/v1.0-mvp.md</code></li>
+</ul>
+<p><strong>After archiving:</strong></p>
+<ul>
+<li>Update ROADMAP.md to collapse completed milestone in <code>&lt;details&gt;</code> tag</li>
+<li>Update PROJECT.md to brownfield format with Current State section</li>
+<li>Continue phase numbering in next milestone (never restart at 01)</guidelines></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

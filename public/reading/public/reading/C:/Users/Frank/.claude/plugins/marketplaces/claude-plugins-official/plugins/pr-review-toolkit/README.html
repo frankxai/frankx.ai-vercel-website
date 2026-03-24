@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>PR Review Toolkit</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/pr-review-toolkit/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">PR Review Toolkit</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <h1>PR Review Toolkit</h1>
+<p>A comprehensive collection of specialized agents for thorough pull request review, covering code comments, test coverage, error handling, type design, code quality, and code simplification.</p>
+<h2>Overview</h2>
+<p>This plugin bundles 6 expert review agents that each focus on a specific aspect of code quality. Use them individually for targeted reviews or together for comprehensive PR analysis.</p>
+<h2>Agents</h2>
+<h3>1. comment-analyzer</h3>
+<p><strong>Focus</strong>: Code comment accuracy and maintainability</p>
+<p><strong>Analyzes:</strong></p>
+<ul>
+<li>Comment accuracy vs actual code</li>
+<li>Documentation completeness</li>
+<li>Comment rot and technical debt</li>
+<li>Misleading or outdated comments</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>After adding documentation</li>
+<li>Before finalizing PRs with comment changes</li>
+<li>When reviewing existing comments</li>
+</ul>
+<p><strong>Triggers:</strong></p>
+<pre><code>&quot;Check if the comments are accurate&quot;
+&quot;Review the documentation I added&quot;
+&quot;Analyze comments for technical debt&quot;
+</code></pre>
+<h3>2. pr-test-analyzer</h3>
+<p><strong>Focus</strong>: Test coverage quality and completeness</p>
+<p><strong>Analyzes:</strong></p>
+<ul>
+<li>Behavioral vs line coverage</li>
+<li>Critical gaps in test coverage</li>
+<li>Test quality and resilience</li>
+<li>Edge cases and error conditions</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>After creating a PR</li>
+<li>When adding new functionality</li>
+<li>To verify test thoroughness</li>
+</ul>
+<p><strong>Triggers:</strong></p>
+<pre><code>&quot;Check if the tests are thorough&quot;
+&quot;Review test coverage for this PR&quot;
+&quot;Are there any critical test gaps?&quot;
+</code></pre>
+<h3>3. silent-failure-hunter</h3>
+<p><strong>Focus</strong>: Error handling and silent failures</p>
+<p><strong>Analyzes:</strong></p>
+<ul>
+<li>Silent failures in catch blocks</li>
+<li>Inadequate error handling</li>
+<li>Inappropriate fallback behavior</li>
+<li>Missing error logging</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>After implementing error handling</li>
+<li>When reviewing try/catch blocks</li>
+<li>Before finalizing PRs with error handling</li>
+</ul>
+<p><strong>Triggers:</strong></p>
+<pre><code>&quot;Review the error handling&quot;
+&quot;Check for silent failures&quot;
+&quot;Analyze catch blocks in this PR&quot;
+</code></pre>
+<h3>4. type-design-analyzer</h3>
+<p><strong>Focus</strong>: Type design quality and invariants</p>
+<p><strong>Analyzes:</strong></p>
+<ul>
+<li>Type encapsulation (rated 1-10)</li>
+<li>Invariant expression (rated 1-10)</li>
+<li>Type usefulness (rated 1-10)</li>
+<li>Invariant enforcement (rated 1-10)</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>When introducing new types</li>
+<li>During PR creation with data models</li>
+<li>When refactoring type designs</li>
+</ul>
+<p><strong>Triggers:</strong></p>
+<pre><code>&quot;Review the UserAccount type design&quot;
+&quot;Analyze type design in this PR&quot;
+&quot;Check if this type has strong invariants&quot;
+</code></pre>
+<h3>5. code-reviewer</h3>
+<p><strong>Focus</strong>: General code review for project guidelines</p>
+<p><strong>Analyzes:</strong></p>
+<ul>
+<li>CLAUDE.md compliance</li>
+<li>Style violations</li>
+<li>Bug detection</li>
+<li>Code quality issues</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>After writing or modifying code</li>
+<li>Before committing changes</li>
+<li>Before creating pull requests</li>
+</ul>
+<p><strong>Triggers:</strong></p>
+<pre><code>&quot;Review my recent changes&quot;
+&quot;Check if everything looks good&quot;
+&quot;Review this code before I commit&quot;
+</code></pre>
+<h3>6. code-simplifier</h3>
+<p><strong>Focus</strong>: Code simplification and refactoring</p>
+<p><strong>Analyzes:</strong></p>
+<ul>
+<li>Code clarity and readability</li>
+<li>Unnecessary complexity and nesting</li>
+<li>Redundant code and abstractions</li>
+<li>Consistency with project standards</li>
+<li>Overly compact or clever code</li>
+</ul>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>After writing or modifying code</li>
+<li>After passing code review</li>
+<li>When code works but feels complex</li>
+</ul>
+<p><strong>Triggers:</strong></p>
+<pre><code>&quot;Simplify this code&quot;
+&quot;Make this clearer&quot;
+&quot;Refine this implementation&quot;
+</code></pre>
+<p><strong>Note</strong>: This agent preserves functionality while improving code structure and maintainability.</p>
+<h2>Usage Patterns</h2>
+<h3>Individual Agent Usage</h3>
+<p>Simply ask questions that match an agent&#39;s focus area, and Claude will automatically trigger the appropriate agent:</p>
+<pre><code>&quot;Can you check if the tests cover all edge cases?&quot;
+→ Triggers pr-test-analyzer
+
+&quot;Review the error handling in the API client&quot;
+→ Triggers silent-failure-hunter
+
+&quot;I&#39;ve added documentation - is it accurate?&quot;
+→ Triggers comment-analyzer
+</code></pre>
+<h3>Comprehensive PR Review</h3>
+<p>For thorough PR review, ask for multiple aspects:</p>
+<pre><code>&quot;I&#39;m ready to create this PR. Please:
+1. Review test coverage
+2. Check for silent failures
+3. Verify code comments are accurate
+4. Review any new types
+5. General code review&quot;
+</code></pre>
+<p>This will trigger all relevant agents to analyze different aspects of your PR.</p>
+<h3>Proactive Review</h3>
+<p>Claude may proactively use these agents based on context:</p>
+<ul>
+<li><strong>After writing code</strong> → code-reviewer</li>
+<li><strong>After adding docs</strong> → comment-analyzer</li>
+<li><strong>Before creating PR</strong> → Multiple agents as appropriate</li>
+<li><strong>After adding types</strong> → type-design-analyzer</li>
+</ul>
+<h2>Installation</h2>
+<p>Install from your personal marketplace:</p>
+<pre><code class="language-bash">/plugins
+# Find &quot;pr-review-toolkit&quot;
+# Install
+</code></pre>
+<p>Or add manually to settings if needed.</p>
+<h2>Agent Details</h2>
+<h3>Confidence Scoring</h3>
+<p>Agents provide confidence scores for their findings:</p>
+<p><strong>comment-analyzer</strong>: Identifies issues with high confidence in accuracy checks</p>
+<p><strong>pr-test-analyzer</strong>: Rates test gaps 1-10 (10 = critical, must add)</p>
+<p><strong>silent-failure-hunter</strong>: Flags severity of error handling issues</p>
+<p><strong>type-design-analyzer</strong>: Rates 4 dimensions on 1-10 scale</p>
+<p><strong>code-reviewer</strong>: Scores issues 0-100 (91-100 = critical)</p>
+<p><strong>code-simplifier</strong>: Identifies complexity and suggests simplifications</p>
+<h3>Output Formats</h3>
+<p>All agents provide structured, actionable output:</p>
+<ul>
+<li>Clear issue identification</li>
+<li>Specific file and line references</li>
+<li>Explanation of why it&#39;s a problem</li>
+<li>Suggestions for improvement</li>
+<li>Prioritized by severity</li>
+</ul>
+<h2>Best Practices</h2>
+<h3>When to Use Each Agent</h3>
+<p><strong>Before Committing:</strong></p>
+<ul>
+<li>code-reviewer (general quality)</li>
+<li>silent-failure-hunter (if changed error handling)</li>
+</ul>
+<p><strong>Before Creating PR:</strong></p>
+<ul>
+<li>pr-test-analyzer (test coverage check)</li>
+<li>comment-analyzer (if added/modified comments)</li>
+<li>type-design-analyzer (if added/modified types)</li>
+<li>code-reviewer (final sweep)</li>
+</ul>
+<p><strong>After Passing Review:</strong></p>
+<ul>
+<li>code-simplifier (improve clarity and maintainability)</li>
+</ul>
+<p><strong>During PR Review:</strong></p>
+<ul>
+<li>Any agent for specific concerns raised</li>
+<li>Targeted re-review after fixes</li>
+</ul>
+<h3>Running Multiple Agents</h3>
+<p>You can request multiple agents to run in parallel or sequentially:</p>
+<p><strong>Parallel</strong> (faster):</p>
+<pre><code>&quot;Run pr-test-analyzer and comment-analyzer in parallel&quot;
+</code></pre>
+<p><strong>Sequential</strong> (when one informs the other):</p>
+<pre><code>&quot;First review test coverage, then check code quality&quot;
+</code></pre>
+<h2>Tips</h2>
+<ul>
+<li><strong>Be specific</strong>: Target specific agents for focused review</li>
+<li><strong>Use proactively</strong>: Run before creating PRs, not after</li>
+<li><strong>Address critical issues first</strong>: Agents prioritize findings</li>
+<li><strong>Iterate</strong>: Run again after fixes to verify</li>
+<li><strong>Don&#39;t over-use</strong>: Focus on changed code, not entire codebase</li>
+</ul>
+<h2>Troubleshooting</h2>
+<h3>Agent Not Triggering</h3>
+<p><strong>Issue</strong>: Asked for review but agent didn&#39;t run</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Be more specific in your request</li>
+<li>Mention the agent type explicitly</li>
+<li>Reference the specific concern (e.g., &quot;test coverage&quot;)</li>
+</ul>
+<h3>Agent Analyzing Wrong Files</h3>
+<p><strong>Issue</strong>: Agent reviewing too much or wrong files</p>
+<p><strong>Solution</strong>:</p>
+<ul>
+<li>Specify which files to focus on</li>
+<li>Reference the PR number or branch</li>
+<li>Mention &quot;recent changes&quot; or &quot;git diff&quot;</li>
+</ul>
+<h2>Integration with Workflow</h2>
+<p>This plugin works great with:</p>
+<ul>
+<li><strong>build-validator</strong>: Run build/tests before review</li>
+<li><strong>Project-specific agents</strong>: Combine with your custom agents</li>
+</ul>
+<p><strong>Recommended workflow:</strong></p>
+<ol>
+<li>Write code → <strong>code-reviewer</strong></li>
+<li>Fix issues → <strong>silent-failure-hunter</strong> (if error handling)</li>
+<li>Add tests → <strong>pr-test-analyzer</strong></li>
+<li>Document → <strong>comment-analyzer</strong></li>
+<li>Review passes → <strong>code-simplifier</strong> (polish)</li>
+<li>Create PR</li>
+</ol>
+<h2>Contributing</h2>
+<p>Found issues or have suggestions? These agents are maintained in:</p>
+<ul>
+<li>User agents: <code>~/.claude/agents/</code></li>
+<li>Project agents: <code>.claude/agents/</code> in claude-cli-internal</li>
+</ul>
+<h2>License</h2>
+<p>MIT</p>
+<h2>Author</h2>
+<p>Daisy (<a href="mailto:daisy@anthropic.com">daisy@anthropic.com</a>)</p>
+<hr>
+<p><strong>Quick Start</strong>: Just ask for review and the right agent will trigger automatically!</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

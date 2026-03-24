@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>bottleneck detect</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/commands/analysis/bottleneck-detect.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">bottleneck detect</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands%2Fanalysis">analysis</a> / <span>bottleneck-detect.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>bottleneck detect</h1>
+<p>Analyze performance bottlenecks in swarm operations and suggest optimizations.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">npx claude-flow bottleneck detect [options]
+</code></pre>
+<h2>Options</h2>
+<ul>
+<li><code>--swarm-id, -s &lt;id&gt;</code> - Analyze specific swarm (default: current)</li>
+<li><code>--time-range, -t &lt;range&gt;</code> - Analysis period: 1h, 24h, 7d, all (default: 1h)</li>
+<li><code>--threshold &lt;percent&gt;</code> - Bottleneck threshold percentage (default: 20)</li>
+<li><code>--export, -e &lt;file&gt;</code> - Export analysis to file</li>
+<li><code>--fix</code> - Apply automatic optimizations</li>
+</ul>
+<h2>Examples</h2>
+<h3>Basic bottleneck detection</h3>
+<pre><code class="language-bash">npx claude-flow bottleneck detect
+</code></pre>
+<h3>Analyze specific swarm</h3>
+<pre><code class="language-bash">npx claude-flow bottleneck detect --swarm-id swarm-123
+</code></pre>
+<h3>Last 24 hours with export</h3>
+<pre><code class="language-bash">npx claude-flow bottleneck detect -t 24h -e bottlenecks.json
+</code></pre>
+<h3>Auto-fix detected issues</h3>
+<pre><code class="language-bash">npx claude-flow bottleneck detect --fix --threshold 15
+</code></pre>
+<h2>Metrics Analyzed</h2>
+<h3>Communication Bottlenecks</h3>
+<ul>
+<li>Message queue delays</li>
+<li>Agent response times</li>
+<li>Coordination overhead</li>
+<li>Memory access patterns</li>
+</ul>
+<h3>Processing Bottlenecks</h3>
+<ul>
+<li>Task completion times</li>
+<li>Agent utilization rates</li>
+<li>Parallel execution efficiency</li>
+<li>Resource contention</li>
+</ul>
+<h3>Memory Bottlenecks</h3>
+<ul>
+<li>Cache hit rates</li>
+<li>Memory access patterns</li>
+<li>Storage I/O performance</li>
+<li>Neural pattern loading</li>
+</ul>
+<h3>Network Bottlenecks</h3>
+<ul>
+<li>API call latency</li>
+<li>MCP communication delays</li>
+<li>External service timeouts</li>
+<li>Concurrent request limits</li>
+</ul>
+<h2>Output Format</h2>
+<pre><code>🔍 Bottleneck Analysis Report
+━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 Summary
+├── Time Range: Last 1 hour
+├── Agents Analyzed: 6
+├── Tasks Processed: 42
+└── Critical Issues: 2
+
+🚨 Critical Bottlenecks
+1. Agent Communication (35% impact)
+   └── coordinator → coder-1 messages delayed by 2.3s avg
+
+2. Memory Access (28% impact)
+   └── Neural pattern loading taking 1.8s per access
+
+⚠️ Warning Bottlenecks
+1. Task Queue (18% impact)
+   └── 5 tasks waiting &gt; 10s for assignment
+
+💡 Recommendations
+1. Switch to hierarchical topology (est. 40% improvement)
+2. Enable memory caching (est. 25% improvement)
+3. Increase agent concurrency to 8 (est. 20% improvement)
+
+✅ Quick Fixes Available
+Run with --fix to apply:
+- Enable smart caching
+- Optimize message routing
+- Adjust agent priorities
+</code></pre>
+<h2>Automatic Fixes</h2>
+<p>When using <code>--fix</code>, the following optimizations may be applied:</p>
+<ol>
+<li><p><strong>Topology Optimization</strong></p>
+<ul>
+<li>Switch to more efficient topology</li>
+<li>Adjust communication patterns</li>
+<li>Reduce coordination overhead</li>
+</ul>
+</li>
+<li><p><strong>Caching Enhancement</strong></p>
+<ul>
+<li>Enable memory caching</li>
+<li>Optimize cache strategies</li>
+<li>Preload common patterns</li>
+</ul>
+</li>
+<li><p><strong>Concurrency Tuning</strong></p>
+<ul>
+<li>Adjust agent counts</li>
+<li>Optimize parallel execution</li>
+<li>Balance workload distribution</li>
+</ul>
+</li>
+<li><p><strong>Priority Adjustment</strong></p>
+<ul>
+<li>Reorder task queues</li>
+<li>Prioritize critical paths</li>
+<li>Reduce wait times</li>
+</ul>
+</li>
+</ol>
+<h2>Performance Impact</h2>
+<p>Typical improvements after bottleneck resolution:</p>
+<ul>
+<li><strong>Communication</strong>: 30-50% faster message delivery</li>
+<li><strong>Processing</strong>: 20-40% reduced task completion time</li>
+<li><strong>Memory</strong>: 40-60% fewer cache misses</li>
+<li><strong>Overall</strong>: 25-45% performance improvement</li>
+</ul>
+<h2>Integration with Claude Code</h2>
+<pre><code class="language-javascript">// Check for bottlenecks in Claude Code
+mcp__claude-flow__bottleneck_detect {
+  timeRange: &quot;1h&quot;,
+  threshold: 20,
+  autoFix: false
+}
+</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><code>performance report</code> - Detailed performance analysis</li>
+<li><code>token usage</code> - Token optimization analysis</li>
+<li><code>swarm monitor</code> - Real-time monitoring</li>
+<li><code>cache manage</code> - Cache optimization</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

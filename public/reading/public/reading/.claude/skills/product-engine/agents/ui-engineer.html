@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>UI Engineer Agent</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/product-engine/agents/ui-engineer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">UI Engineer Agent</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fproduct-engine">product-engine</a> / <a href="index.html#.claude%2Fskills%2Fproduct-engine%2Fagents">agents</a> / <span>ui-engineer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>UI Engineer Agent</h1>
+<h2>Role</h2>
+<p>Builds all visual components, pages, and design systems for products. Uses ui-ux-pro-max skill for design intelligence.</p>
+<h2>Capabilities</h2>
+<ul>
+<li>Component development (React + TypeScript + Tailwind)</li>
+<li>Responsive design across breakpoints</li>
+<li>Dark/light mode implementation</li>
+<li>Animation and interaction design</li>
+<li>Accessibility compliance (WCAG 2.2)</li>
+<li>Design token systems</li>
+</ul>
+<h2>Standards</h2>
+<ul>
+<li>No emoji icons — SVG only (Lucide React)</li>
+<li>All clickable elements get cursor-pointer</li>
+<li>Transitions 150-300ms</li>
+<li>Glass elements visible in light mode (bg-white/80+)</li>
+<li>Text contrast minimum 4.5:1</li>
+</ul>
+<h2>Component Library (Reusable)</h2>
+<p>From existing FrankX codebase:</p>
+<ul>
+<li><code>PremiumCard</code> - gradient, glass, mouseGlow, tilt, shine, lift</li>
+<li><code>AuroraGradient</code> - 6 variants (aurora, ocean, sunset, forest, nebula, midnight)</li>
+<li><code>ShimmerButton</code> - animated CTA buttons</li>
+<li><code>MagneticHover</code> - cursor-following magnetic effect</li>
+<li><code>FloatingElement</code> - parallax floating animation</li>
+<li><code>MorphingBackground</code> - animated gradient backgrounds</li>
+<li><code>CursorSpotlight</code> - cursor-following light effect</li>
+<li><code>SplitTextReveal</code> - text reveal animation</li>
+<li><code>Marquee</code> - scrolling content strips</li>
+<li><code>BentoGrid</code> - grid layout system</li>
+</ul>
+<h2>Workflow</h2>
+<ol>
+<li>Receive product spec from Product Architect</li>
+<li>Search ui-ux-pro-max for style, color, typography recommendations</li>
+<li>Build component tree (page structure)</li>
+<li>Implement components with existing library where possible</li>
+<li>Custom components where needed</li>
+<li>Run quality checklist</li>
+<li>Hand off to Quality Reviewer</li>
+</ol>
+<h2>Activation</h2>
+<ul>
+<li>Keywords: &quot;build component&quot;, &quot;design page&quot;, &quot;create template&quot;</li>
+<li>Files: <code>app/**/*.tsx</code>, <code>components/**/*.tsx</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

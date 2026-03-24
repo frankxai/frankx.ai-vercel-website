@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Brand Experience Overhaul — Axi &amp; Team Integration Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/plans/brand-experience-overhaul.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Brand Experience Overhaul — Axi &amp; Team Integration Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fplans">plans</a> / <span>brand-experience-overhaul.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Brand Experience Overhaul — Axi &amp; Team Integration Plan</h1>
+<p><strong>Created</strong>: 2026-02-20
+<strong>Status</strong>: Planning → Implementation
+<strong>Goal</strong>: Transform FrankX.AI from text-heavy site to character-driven premium experience</p>
+<hr>
+<h2>Executive Summary</h2>
+<p>The site has 9 premium v2-bionic team characters + 7 Axi mascot variants sitting unused in <code>/gallery</code> and <code>/ai-art</code>. Zero mascot/team presence across 170+ pages. This plan places the right character on the right page to create an immersive, memorable brand experience.</p>
+<hr>
+<h2>1. Global Brand Elements (Every Page)</h2>
+<h3>1A. Favicon — Replace with Axi</h3>
+<ul>
+<li><strong>Current</strong>: Generic cyan &quot;F&quot; on navy rect (<code>public/favicon.svg</code>)</li>
+<li><strong>Replace with</strong>: <code>axi-v3-icon.png</code> converted to multi-size favicon</li>
+<li><strong>Files</strong>: Create <code>public/favicon.ico</code> (32x32), update <code>app/layout.tsx</code> icons config</li>
+<li><strong>Also generate</strong>: <code>apple-touch-icon.png</code> (180x180), <code>icon-192.png</code>, <code>icon-512.png</code> from <code>axi-v3-icon</code></li>
+<li><strong>OpenGraph default</strong>: Use <code>mascot-v24-cyborg-fusion-head.png</code> (has &quot;FrankX.AI&quot; text) as default OG image</li>
+</ul>
+<h3>1B. Nav Logo — Axi Icon + Text</h3>
+<ul>
+<li><strong>Current</strong>: Text-only &quot;FrankX.AI&quot; gradient in <code>NavigationMega.tsx:208-209</code></li>
+<li><strong>Change</strong>: Add 28px Axi icon (<code>axi-v3-icon.png</code>) left of text</li>
+<li><strong>Implementation</strong>: <code>&lt;Image src=&quot;/images/mascot/axi-v3-icon.png&quot; width={28} height={28} /&gt;</code> + existing text</li>
+<li><strong>Mobile</strong>: Show Axi icon only (no text) below 640px for space efficiency</li>
+</ul>
+<h3>1C. Footer</h3>
+<ul>
+<li><strong>Add</strong>: Axi crystal familiar (<code>v25</code>) as footer mascot beside copyright</li>
+<li><strong>Style</strong>: 48px, opacity-60, subtle hover glow animation</li>
+</ul>
+<h3>1D. 404 Page</h3>
+<ul>
+<li><strong>Create</strong>: <code>/app/not-found.tsx</code> with full-screen Axi prowling (<code>v06</code>) + &quot;Lost in the void&quot; message</li>
+<li><strong>Purpose</strong>: Even error states feel premium and on-brand</li>
+</ul>
+<hr>
+<h2>2. Character-to-Page Mapping</h2>
+<h3>Domain Assignments (v2-bionic characters)</h3>
+<table>
+<thead>
+<tr>
+<th>Character</th>
+<th>Role</th>
+<th>Domain Pages</th>
+<th>Color Signature</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Axi</strong> (mascot)</td>
+<td>Brand Companion</td>
+<td>Global nav, favicon, footer, 404, loading, newsletter CTAs</td>
+<td>Purple/Cyan/Gold</td>
+</tr>
+<tr>
+<td><strong>Arion &amp; Mamoru</strong></td>
+<td>The Architect-Creator</td>
+<td><code>/about</code>, <code>/vision</code>, Homepage hero, <code>/start</code></td>
+<td>Silver/Cyan/Purple</td>
+</tr>
+<tr>
+<td><strong>Codex &amp; Talon</strong></td>
+<td>Technical Architect</td>
+<td><code>/ai-architect</code>, <code>/ai-architecture/*</code>, <code>/developers</code>, tech blog posts</td>
+<td>Indigo/Cyan</td>
+</tr>
+<tr>
+<td><strong>Echo &amp; Kira</strong></td>
+<td>Sound Weaver</td>
+<td><code>/music</code>, <code>/music-lab/*</code>, music blog posts, <code>/products/suno-prompt-library</code></td>
+<td>Rose-pink/Cyan</td>
+</tr>
+<tr>
+<td><strong>Nova &amp; Inari</strong></td>
+<td>Content Engine</td>
+<td><code>/blog</code> hub, <code>/newsletter</code>, <code>/creators</code>, <code>/content-studio</code></td>
+<td>Fuchsia/Amber</td>
+</tr>
+<tr>
+<td><strong>Stella &amp; Athena</strong></td>
+<td>System Orchestrator</td>
+<td><code>/acos</code>, <code>/products/agentic-creator-os</code>, <code>/agents</code>, <code>/agent-team</code></td>
+<td>Violet/Emerald</td>
+</tr>
+<tr>
+<td><strong>Draconia &amp; Draconis</strong></td>
+<td>Guardian of Fire</td>
+<td><code>/products</code> hub, <code>/shop/*</code>, conversion CTAs, <code>/courses</code></td>
+<td>Gold/Amber/Orange</td>
+</tr>
+<tr>
+<td><strong>Nero &amp; Umbra</strong></td>
+<td>The Fertile Unknown</td>
+<td><code>/inner-circle</code>, <code>/soulbook/*</code>, <code>/golden-age</code>, <code>/realm</code></td>
+<td>Deep purple/Emerald</td>
+</tr>
+<tr>
+<td><strong>Shinkami</strong></td>
+<td>Meta-Consciousness</td>
+<td><code>/vision</code> timeline, premium sections, <code>/golden-age</code> intro</td>
+<td>Iridescent multicolor</td>
+</tr>
+<tr>
+<td><strong>Lumina &amp; Sol</strong></td>
+<td>Seraph of Light</td>
+<td><code>/inspiration</code>, <code>/coaching</code>, <code>/community</code>, onboarding</td>
+<td>Gold/White/Amber</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. Implementation by Priority Tier</h2>
+<h3>TIER 1 — High-Traffic Core Pages (Week 1)</h3>
+<h4>3.1 Homepage (<code>/app/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero section</strong>: Arion &amp; Mamoru flanking the main headline (parallax background or side accent)</li>
+<li><strong>&quot;Meet the Team&quot; section</strong>: 4-card grid showing Codex, Echo, Nova, Stella with roles</li>
+<li><strong>Bottom CTA</strong>: Axi crystal familiar (<code>v25</code>) beside newsletter signup</li>
+<li><strong>Implementation</strong>: Import <code>next/image</code>, add character images with responsive sizes</li>
+</ul>
+<h4>3.2 Products Hub (<code>/app/products/page.tsx</code>)</h4>
+<ul>
+<li><strong>Header accent</strong>: Draconia &amp; Draconis background image (power/premium energy)</li>
+<li><strong>Product cards</strong>: Small 40px team character avatars on relevant product cards<ul>
+<li>ACOS card → Stella icon</li>
+<li>Vibe OS card → Arion icon</li>
+<li>Suno Library card → Echo icon</li>
+<li>GenCreator OS card → Nova icon</li>
+</ul>
+</li>
+</ul>
+<h4>3.3 Blog Hub (<code>/app/blog/page.tsx</code>)</h4>
+<ul>
+<li><strong>Sidebar/Header</strong>: Nova &amp; Inari as blog mascot (content engine)</li>
+<li><strong>Category tags</strong>: Tiny 24px character icons next to AI/Music/Creator categories</li>
+<li><strong>Individual blog posts</strong> (<code>MDXComponents.tsx</code>): Add Axi accent at end of each article above &quot;Share&quot; section</li>
+</ul>
+<h4>3.4 Newsletter Hub (<code>/app/newsletter/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero</strong>: Axi v25 crystal familiar as central mascot</li>
+<li><strong>Stream cards</strong>: Each stream gets relevant character avatar<ul>
+<li>Creation Chronicles → Arion</li>
+<li>AI Architect Dispatch → Codex</li>
+<li>FrankX Music Letters → Echo</li>
+<li>Arcanea Transmissions → Nero</li>
+<li>Investor Brief → Draconia</li>
+<li>Inner Circle → Shinkami</li>
+</ul>
+</li>
+</ul>
+<h4>3.5 Newsletter Thank-You (<code>/app/newsletter/thank-you/page.tsx</code>)</h4>
+<ul>
+<li><strong>Enhancement</strong>: Post-signup congratulations with Axi celebration visual</li>
+<li><strong>Product recommendations</strong>: 3-card grid of recommended next steps<ul>
+<li>Based on stream: music subscriber → Echo image + music products</li>
+<li>AI subscriber → Codex image + architecture products</li>
+<li>General → Axi + top 3 products</li>
+</ul>
+</li>
+<li><strong>Social proof</strong>: &quot;Join 1,200+ builders&quot; with team character lineup</li>
+</ul>
+<h3>TIER 2 — Vertical Hubs (Week 2)</h3>
+<h4>3.6 AI Architecture (<code>/app/ai-architect/page.tsx</code>, <code>/app/ai-architecture/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero</strong>: Codex &amp; Talon full-width background</li>
+<li><strong>Sub-pages</strong>: Codex avatar in sidebar/breadcrumb area</li>
+</ul>
+<h4>3.7 Music (<code>/app/music/page.tsx</code>, <code>/app/music-lab/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero</strong>: Echo &amp; Kira full-width background</li>
+<li><strong>Music Lab</strong>: Echo avatar in header</li>
+</ul>
+<h4>3.8 ACOS (<code>/app/acos/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero</strong>: Stella &amp; Athena + Axi command center (<code>v19</code>) composition</li>
+<li><strong>Feature sections</strong>: Axi prowling (<code>v06</code>) as background accent</li>
+</ul>
+<h4>3.9 Inner Circle (<code>/app/inner-circle/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero</strong>: Nero &amp; Umbra (mystery/depth/exclusivity)</li>
+<li><strong>Emphasis</strong>: Dark premium, invitation-only energy</li>
+</ul>
+<h4>3.10 About (<code>/app/about/page.tsx</code>)</h4>
+<ul>
+<li><strong>Frank section</strong>: Arion &amp; Mamoru as Frank&#39;s digital avatar</li>
+<li><strong>Team section</strong>: Full team lineup — all 9 v2-bionic characters in grid</li>
+<li><strong>Story</strong>: &quot;These aren&#39;t just mascots. They&#39;re the AI team behind FrankX.&quot;</li>
+</ul>
+<h3>TIER 3 — Product Pages (Week 3)</h3>
+<h4>3.11 Vibe OS (<code>/app/products/vibe-os/page.tsx</code>, <code>/app/vibe/page.tsx</code>)</h4>
+<ul>
+<li><strong>Accent</strong>: Arion avatar (creator-architect energy)</li>
+</ul>
+<h4>3.12 ACOS Product (<code>/app/products/agentic-creator-os/page.tsx</code>)</h4>
+<ul>
+<li><strong>Accent</strong>: Stella &amp; Axi duo</li>
+</ul>
+<h4>3.13 Shop (<code>/app/shop/page.tsx</code>, <code>/app/shop/templates/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero</strong>: Draconia power visual (buying = empowerment)</li>
+<li><strong>Template cards</strong>: Domain-relevant character thumbnails</li>
+</ul>
+<h4>3.14 Courses (<code>/app/courses/page.tsx</code>)</h4>
+<ul>
+<li><strong>Hero</strong>: Lumina &amp; Sol (light/guidance/learning)</li>
+</ul>
+<h3>TIER 4 — Experience Enrichment (Week 4)</h3>
+<h4>3.15 Vision (<code>/app/vision/VisionContent.tsx</code>)</h4>
+<ul>
+<li><strong>Timeline</strong>: Shinkami at the apex (meta-consciousness = vision)</li>
+<li><strong>Ecosystem section</strong>: Use EcosystemVisionBoard with team images</li>
+</ul>
+<h4>3.16 Investor (<code>/app/investor/page.tsx</code>)</h4>
+<ul>
+<li><strong>Accent</strong>: Codex (enterprise credibility) + Draconia (power/returns)</li>
+</ul>
+<h4>3.17 Community (<code>/app/community/page.tsx</code>)</h4>
+<ul>
+<li><strong>Full team showcase</strong>: All characters as &quot;community archetypes&quot;</li>
+</ul>
+<h4>3.18 Students (<code>/app/students/page.tsx</code>)</h4>
+<ul>
+<li><strong>Accent</strong>: Lumina (guidance) + Nova (content creation)</li>
+</ul>
+<hr>
+<h2>4. Technical Implementation Pattern</h2>
+<h3>Reusable Component: <code>CharacterAvatar</code></h3>
+<pre><code class="language-tsx">// components/characters/CharacterAvatar.tsx
+interface CharacterAvatarProps {
+  character:
+    | &quot;axi&quot;
+    | &quot;arion&quot;
+    | &quot;codex&quot;
+    | &quot;echo&quot;
+    | &quot;nova&quot;
+    | &quot;stella&quot;
+    | &quot;draconia&quot;
+    | &quot;nero&quot;
+    | &quot;shinkami&quot;
+    | &quot;lumina&quot;;
+  size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;hero&quot;;
+  variant?: &quot;icon&quot; | &quot;full&quot; | &quot;companion&quot;;
+  className?: string;
+  showName?: boolean;
+  glow?: boolean;
+}
+</code></pre>
+<h3>Image Map</h3>
+<pre><code class="language-tsx">const CHARACTER_IMAGES = {
+  axi: {
+    icon: &quot;/images/mascot/axi-v3-icon.png&quot;,
+    full: &quot;/images/mascot/mascot-v25-crystal-familiar.png&quot;,
+    hero: &quot;/images/mascot/mascot-v19-hero-command-center.png&quot;,
+    action: &quot;/images/mascot/mascot-v06-prowling-action.png&quot;,
+    split: &quot;/images/mascot/mascot-v16-organic-digital-split.png&quot;,
+    cyborg: &quot;/images/mascot/mascot-v24-cyborg-fusion-head.png&quot;,
+  },
+  arion: { full: &quot;/images/team/arion-mamoru.png&quot; },
+  codex: { full: &quot;/images/team/codex-falcon.png&quot; },
+  echo: { full: &quot;/images/team/echo-leopard.png&quot; },
+  nova: { full: &quot;/images/team/nova-fox.png&quot; },
+  stella: { full: &quot;/images/team/stella-owl.png&quot; },
+  draconia: { full: &quot;/images/team/draconia-tiger.png&quot; },
+  nero: { full: &quot;/images/team/nero-umbra.png&quot; },
+  shinkami: { full: &quot;/images/team/shinkami.png&quot; },
+  lumina: { full: &quot;/images/team/lumina-sol.png&quot; },
+};
+</code></pre>
+<h3>Size Definitions</h3>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Dimensions</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sm</code></td>
+<td>32-40px</td>
+<td>Inline icons, card accents, breadcrumbs</td>
+</tr>
+<tr>
+<td><code>md</code></td>
+<td>64-96px</td>
+<td>Section accents, sidebar, product cards</td>
+</tr>
+<tr>
+<td><code>lg</code></td>
+<td>128-200px</td>
+<td>Hero sidebars, feature highlights</td>
+</tr>
+<tr>
+<td><code>hero</code></td>
+<td>300-500px</td>
+<td>Full hero backgrounds, about page</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. New Imagery Needed</h2>
+<h3>5A. Favicon/Icon Set (from axi-v3-icon)</h3>
+<ul>
+<li><code>favicon.ico</code> (32x32) — crop + resize</li>
+<li><code>icon-192.png</code> — for PWA manifest</li>
+<li><code>icon-512.png</code> — for PWA manifest</li>
+<li><code>apple-touch-icon.png</code> (180x180)</li>
+<li>Method: Use sharp/imagemagick to resize axi-v3-icon.png</li>
+</ul>
+<h3>5B. Newsletter Stream Headers (Generate 6 new)</h3>
+<p>Each newsletter stream needs a header banner featuring its assigned character:</p>
+<ol>
+<li>Creation Chronicles banner → Arion + Mamoru, 1200x400</li>
+<li>AI Architect Dispatch banner → Codex + Talon, 1200x400</li>
+<li>FrankX Music Letters banner → Echo + Kira, 1200x400</li>
+<li>Arcanea Transmissions banner → Nero + Umbra, 1200x400</li>
+<li>Investor Brief banner → Draconia + Draconis, 1200x400</li>
+<li>Inner Circle banner → Shinkami, 1200x400</li>
+</ol>
+<h3>5C. Team Lineup Composite</h3>
+<ul>
+<li>All 9 v2-bionic characters in one panoramic group shot</li>
+<li>Use for <code>/about</code>, <code>/team</code>, OpenGraph sharing</li>
+<li>Generate via Gemini image gen or composite existing images</li>
+</ul>
+<h3>5D. Axi Expression Variants (Future)</h3>
+<ul>
+<li>Axi celebrating (newsletter thank-you)</li>
+<li>Axi thinking (loading states)</li>
+<li>Axi waving (onboarding)</li>
+<li>Axi with magnifying glass (search)</li>
+</ul>
+<hr>
+<h2>6. Newsletter Thank-You Enhancement</h2>
+<h3>Current State</h3>
+<ul>
+<li><code>/app/newsletter/thank-you/page.tsx</code> exists but needs enrichment</li>
+</ul>
+<h3>Enhanced Flow</h3>
+<pre><code>Subscribe → POST /api/subscribe → Redirect to /newsletter/thank-you?stream={stream}
+
+Thank-You Page:
+┌─────────────────────────────────────────────────┐
+│  [Axi celebration image]                        │
+│  &quot;Welcome to {stream name}!&quot;                    │
+│  &quot;Your first issue arrives {cadence}.&quot;          │
+│                                                 │
+│  ── While you wait, explore ──                  │
+│                                                 │
+│  [Character] [Character] [Character]            │
+│  Product 1    Product 2    Product 3            │
+│  Relevant     Relevant     Relevant             │
+│  to stream    to stream    to stream            │
+│                                                 │
+│  ── Or dive deeper ──                           │
+│                                                 │
+│  [Blog]  [Shop]  [Inner Circle]                 │
+└─────────────────────────────────────────────────┘
+</code></pre>
+<h3>Stream → Recommendation Map</h3>
+<table>
+<thead>
+<tr>
+<th>Stream</th>
+<th>Character</th>
+<th>Recommended Products</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Creation Chronicles</td>
+<td>Arion</td>
+<td>Soulbook, Vibe OS, Free Playbook</td>
+</tr>
+<tr>
+<td>AI Architect Dispatch</td>
+<td>Codex</td>
+<td>ACOS, AI Architecture Blueprints, Shop Templates</td>
+</tr>
+<tr>
+<td>FrankX Music Letters</td>
+<td>Echo</td>
+<td>Suno Prompt Library, Music Lab, Creative AI Toolkit</td>
+</tr>
+<tr>
+<td>Arcanea Transmissions</td>
+<td>Nero</td>
+<td>Soulbook, Inner Circle, Golden Age</td>
+</tr>
+<tr>
+<td>Investor Brief</td>
+<td>Draconia</td>
+<td>Investor Intelligence, ROI Calculator, Business Plan</td>
+</tr>
+<tr>
+<td>Inner Circle</td>
+<td>Shinkami</td>
+<td>Inner Circle details, Vision, Coaching</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>7. Agent Creation Recommendation</h2>
+<h3>Recommendation: Create &quot;Branding Architect&quot; Agent for ACOS</h3>
+<p><strong>Name</strong>: <code>branding-architect</code> (not &quot;Marketing God&quot; — too grandiose for brand voice)
+<strong>Alternative names</strong>: <code>brand-engine</code>, <code>growth-architect</code></p>
+<p><strong>Rationale</strong>:</p>
+<ul>
+<li>Existing ACOS agents handle code, content, music — but none handle brand consistency, visual identity, or marketing strategy</li>
+<li>This agent would ensure every page, component, and content piece maintains brand DNA</li>
+<li>Not Arcanea-specific, not a &quot;luminor&quot; — a practical builder agent</li>
+</ul>
+<p><strong>Agent Profile</strong>:</p>
+<pre><code class="language-yaml">name: branding-architect
+role: Brand Experience &amp; Growth Architect
+skills:
+  [
+    frankx-brand,
+    web-design-guidelines,
+    seo-content-writer,
+    marketing-psychology,
+    social-content,
+  ]
+focus: Brand consistency, visual placement, conversion optimization, character integration
+triggers: brand, marketing, visual, character, mascot, conversion, CTA
+domain_character: Draconia &amp; Draconis (power, growth, conversion)
+</code></pre>
+<p><strong>Key Capabilities</strong>:</p>
+<ol>
+<li>Audit any page for brand DNA compliance (colors, voice, imagery)</li>
+<li>Recommend character placements for new pages</li>
+<li>Generate marketing copy in FrankX voice</li>
+<li>Optimize CTAs and conversion flows</li>
+<li>Maintain <code>character-prompts.json</code> and image generation queue</li>
+</ol>
+<p><strong>vs. existing agents</strong>:</p>
+<ul>
+<li>Content Engine (Nova) handles content creation</li>
+<li>Branding Architect handles brand EXPERIENCE and VISUAL IDENTITY</li>
+<li>They complement, not overlap</li>
+</ul>
+<hr>
+<h2>8. Implementation Sequence</h2>
+<h3>Phase 1: Quick Wins (Today)</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Nav CTA: <code>/free-playbook</code> → <code>/newsletter</code> ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Favicon: Generate Axi icon set (favicon-32, apple-touch-icon, icon-192, icon-512) ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Nav Logo: Add Axi 28px icon beside &quot;FrankX.AI&quot; in NavigationMega.tsx ✅</li>
+<li><input checked="" disabled="" type="checkbox"> CharacterAvatar component: <code>components/characters/CharacterAvatar.tsx</code> ✅</li>
+</ul>
+<h3>Phase 2: Core Pages (Week 1)</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Newsletter hub: Stream character avatars in StreamShowcase.tsx ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Newsletter thank-you: Stream-aware with character recommendations ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Products hub: Draconia hero accent + 7 character card avatars ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Blog hub: Nova fox accent in hero section ✅</li>
+<li><input checked="" disabled="" type="checkbox"> About page: Arion hero accent + 9-char team grid + &quot;not just mascots&quot; narrative ✅</li>
+</ul>
+<h3>Phase 3: Vertical Hubs (Week 2)</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> AI Architecture pages: Codex accent in hero ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Music pages: Echo accent in hero ✅</li>
+<li><input checked="" disabled="" type="checkbox"> ACOS page: Stella avatar already in hero ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Inner Circle: Nero accent in hero ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Vision: Shinkami accent in hero ✅</li>
+</ul>
+<h3>Phase 4: Polish (Week 3-4)</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Generate newsletter stream banners (6 images) ✅ <code>public/images/newsletter/</code></li>
+<li><input checked="" disabled="" type="checkbox"> Create team lineup composite ✅ public/images/team/team-lineup-composite.png</li>
+<li><input checked="" disabled="" type="checkbox"> Add Axi to blog article footers (<code>app/blog/[slug]/page.tsx</code>) ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Create 404 page with Axi (<code>app/not-found.tsx</code>) ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Footer Axi accent (<code>components/Footer.tsx</code>) ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Generate Axi expression variants ✅ axi-v5-celebrating, axi-v5-thinking, axi-v5-waving in public/images/mascot/</li>
+</ul>
+<hr>
+<h2>9. Metrics to Track</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Baseline</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Newsletter signups/week</td>
+<td>TBD</td>
+<td>+40% with character-driven CTAs</td>
+</tr>
+<tr>
+<td>Time on page (avg)</td>
+<td>TBD</td>
+<td>+25% with visual engagement</td>
+</tr>
+<tr>
+<td>Bounce rate</td>
+<td>TBD</td>
+<td>-15% with immersive character experience</td>
+</tr>
+<tr>
+<td>Brand recall</td>
+<td>N/A</td>
+<td>Qualitative — &quot;the one with the wolf&quot;</td>
+</tr>
+<tr>
+<td>Page scroll depth</td>
+<td>TBD</td>
+<td>+20% with character section anchors</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>10. Non-Goals (Explicitly Out of Scope)</h2>
+<ul>
+<li>Changing the homepage layout/structure (sacred — explicit approval needed)</li>
+<li>Removing any existing pages or URLs</li>
+<li>Creating new routes just for characters</li>
+<li>Animated 3D mascot (complexity too high for now)</li>
+<li>V1-chibi images — these are legacy, do NOT use on new pages (use v2-bionic only)</li>
+</ul>
+<hr>
+<p><em>Plan authored by Claude Opus 4.6 — Feb 20, 2026</em>
+<em>Visual audit: 7 Axi variants + 9 v2-bionic team characters + 8 v1-chibi legacy assessed</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

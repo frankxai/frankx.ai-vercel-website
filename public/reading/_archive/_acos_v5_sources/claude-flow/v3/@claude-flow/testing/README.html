@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/testing</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/testing/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/testing</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Ftesting">testing</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/testing</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/testing"><img src="https://img.shields.io/npm/v/@claude-flow/testing.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/testing"><img src="https://img.shields.io/npm/dm/@claude-flow/testing.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0+-blue.svg" alt="TypeScript"></a>
+<a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/TDD-London%20School-purple.svg" alt="TDD"></a>
+<a href="https://vitest.dev/"><img src="https://img.shields.io/badge/ADR--008-Vitest-green.svg" alt="ADR-008"></a></p>
+<blockquote>
+<p>Comprehensive testing framework for V3 Claude-Flow modules. Implements London School TDD patterns with behavior verification, shared fixtures, and mock services.</p>
+</blockquote>
+<p>Based on ADR-008 (Vitest over Jest).</p>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install @claude-flow/testing vitest --save-dev
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">import {
+  setupV3Tests,
+  createMockApplication,
+  agentConfigs,
+  swarmConfigs,
+  waitFor,
+} from &#39;@claude-flow/testing&#39;;
+
+// Configure test environment
+setupV3Tests();
+
+describe(&#39;MyModule&#39;, () =&gt; {
+  const app = createMockApplication();
+
+  beforeEach(() =&gt; {
+    // Mocks are automatically reset
+  });
+
+  it(&#39;should spawn an agent&#39;, async () =&gt; {
+    const result = await app.agentLifecycle.spawn(agentConfigs.queenCoordinator);
+
+    expect(result.success).toBe(true);
+    expect(result.agent.type).toBe(&#39;queen-coordinator&#39;);
+  });
+});
+</code></pre>
+<h2>Directory Structure</h2>
+<pre><code>src/
+├── fixtures/           # Pre-defined test data
+│   ├── agent-fixtures.ts    # Mock agents, configs
+│   ├── memory-fixtures.ts   # Memory entries, backends
+│   ├── swarm-fixtures.ts    # Swarm configs, topologies
+│   └── mcp-fixtures.ts      # MCP tools, contexts
+├── helpers/            # Test utilities
+│   ├── test-utils.ts        # waitFor, retry, timeout
+│   ├── mock-factory.ts      # Factory functions for mocks
+│   ├── assertion-helpers.ts # Custom Vitest matchers
+│   └── setup-teardown.ts    # Global setup/teardown
+├── mocks/              # Mock service implementations
+│   ├── mock-services.ts     # AgentDB, SwarmCoordinator, etc.
+│   └── mock-mcp-client.ts   # MCP client for CLI testing
+├── setup.ts            # Global test configuration
+└── index.ts            # Main exports
+</code></pre>
+<h2>Fixtures</h2>
+<h3>Agent Fixtures</h3>
+<pre><code class="language-typescript">import {
+  agentConfigs,
+  agentInstances,
+  createAgentConfig,
+  createAgentInstance,
+  createV3SwarmAgentConfigs,
+  createMockAgent,
+  createMockV3Swarm,
+} from &#39;@claude-flow/testing&#39;;
+
+// Pre-defined configs
+const queen = agentConfigs.queenCoordinator;
+const coder = agentConfigs.coder;
+
+// Create with overrides
+const customAgent = createAgentConfig(&#39;coder&#39;, {
+  name: &#39;Custom Coder&#39;,
+  priority: 90,
+});
+
+// Full V3 15-agent swarm
+const swarmConfigs = createV3SwarmAgentConfigs();
+
+// Mock agents with vitest mocks
+const mockAgent = createMockAgent(&#39;security-architect&#39;);
+mockAgent.execute.mockResolvedValue({ success: true });
+</code></pre>
+<h3>Memory Fixtures</h3>
+<pre><code class="language-typescript">import {
+  memoryEntries,
+  searchResults,
+  learnedPatterns,
+  hnswConfigs,
+  memoryBackendConfigs,
+  createMemoryEntry,
+  createVectorQuery,
+  generateMockEmbedding,
+  createMemoryBatch,
+} from &#39;@claude-flow/testing&#39;;
+
+// Pre-defined entries
+const pattern = memoryEntries.agentPattern;
+const securityRule = memoryEntries.securityRule;
+
+// Create with overrides
+const entry = createMemoryEntry(&#39;agentPattern&#39;, {
+  key: &#39;custom:pattern:001&#39;,
+});
+
+// Generate embeddings
+const embedding = generateMockEmbedding(384, &#39;my-seed&#39;);
+
+// Create batch for performance testing
+const batch = createMemoryBatch(10000, &#39;semantic&#39;);
+</code></pre>
+<h3>Swarm Fixtures</h3>
+<pre><code class="language-typescript">import {
+  swarmConfigs,
+  swarmStates,
+  swarmTasks,
+  swarmMessages,
+  coordinationResults,
+  createSwarmConfig,
+  createSwarmTask,
+  createSwarmMessage,
+  createConsensusRequest,
+  createMockSwarmCoordinator,
+} from &#39;@claude-flow/testing&#39;;
+
+// Pre-defined configs
+const v3Config = swarmConfigs.v3Default;
+const minimalConfig = swarmConfigs.minimal;
+
+// Create with overrides
+const customConfig = createSwarmConfig(&#39;v3Default&#39;, {
+  maxAgents: 20,
+  coordination: {
+    consensusProtocol: &#39;pbft&#39;,
+    heartbeatInterval: 500,
+    electionTimeout: 3000,
+  },
+});
+
+// Mock coordinator
+const coordinator = createMockSwarmCoordinator();
+await coordinator.initialize(v3Config);
+</code></pre>
+<h3>MCP Fixtures</h3>
+<pre><code class="language-typescript">import {
+  mcpTools,
+  mcpResources,
+  mcpPrompts,
+  mcpServerConfigs,
+  mcpToolResults,
+  mcpErrors,
+  createMCPTool,
+  createMCPRequest,
+  createMCPResponse,
+  createMockMCPClient,
+} from &#39;@claude-flow/testing&#39;;
+
+// Pre-defined tools
+const swarmInit = mcpTools.swarmInit;
+const agentSpawn = mcpTools.agentSpawn;
+
+// Mock client
+const client = createMockMCPClient();
+await client.connect();
+const result = await client.callTool(&#39;swarm_init&#39;, { topology: &#39;mesh&#39; });
+</code></pre>
+<h2>Test Utilities</h2>
+<h3>Async Utilities</h3>
+<pre><code class="language-typescript">import {
+  waitFor,
+  waitUntilChanged,
+  retry,
+  withTimeout,
+  sleep,
+  parallelLimit,
+} from &#39;@claude-flow/testing&#39;;
+
+// Wait for condition
+await waitFor(() =&gt; element.isVisible(), { timeout: 5000 });
+
+// Wait for value to change
+await waitUntilChanged(() =&gt; counter.value, { from: 0 });
+
+// Retry with exponential backoff
+const result = await retry(
+  async () =&gt; await fetchData(),
+  { maxAttempts: 3, backoff: 100 }
+);
+
+// Timeout wrapper
+await withTimeout(async () =&gt; await longOp(), 5000);
+
+// Parallel with concurrency limit
+const results = await parallelLimit(
+  items.map(item =&gt; () =&gt; processItem(item)),
+  5 // max 5 concurrent
+);
+</code></pre>
+<h3>Time Control</h3>
+<pre><code class="language-typescript">import { createMockClock, measureTime } from &#39;@claude-flow/testing&#39;;
+
+// Mock clock for time-dependent tests
+const clock = createMockClock();
+clock.install();
+clock.tick(1000); // Advance by 1 second
+clock.uninstall();
+
+// Measure execution time
+const { result, duration } = await measureTime(async () =&gt; {
+  return await expensiveOperation();
+});
+</code></pre>
+<h3>Event Emitter</h3>
+<pre><code class="language-typescript">import { createTestEmitter } from &#39;@claude-flow/testing&#39;;
+
+const emitter = createTestEmitter&lt;{ message: string; count: number }&gt;();
+
+const handler = vi.fn();
+emitter.on(&#39;message&#39;, handler);
+emitter.emit(&#39;message&#39;, &#39;hello&#39;);
+
+expect(handler).toHaveBeenCalledWith(&#39;hello&#39;);
+</code></pre>
+<h2>Mock Factory</h2>
+<h3>Application Mocks</h3>
+<pre><code class="language-typescript">import {
+  createMockApplication,
+  createMockEventBus,
+  createMockTaskManager,
+  createMockAgentLifecycle,
+  createMockMemoryService,
+  createMockSecurityService,
+  createMockSwarmCoordinator,
+  createMockLogger,
+} from &#39;@claude-flow/testing&#39;;
+
+// Full application with all mocks
+const app = createMockApplication();
+
+// Individual service mocks
+const eventBus = createMockEventBus();
+const taskManager = createMockTaskManager();
+const security = createMockSecurityService();
+
+// Use in tests
+await app.taskManager.create({ name: &#39;Test&#39;, type: &#39;coding&#39;, payload: {} });
+expect(app.taskManager.create).toHaveBeenCalled();
+
+// Access tracked state
+expect(app.eventBus.publishedEvents).toHaveLength(1);
+expect(app.taskManager.tasks.size).toBe(1);
+</code></pre>
+<h2>Mock Services</h2>
+<h3>MockAgentDB</h3>
+<pre><code class="language-typescript">import { MockAgentDB } from &#39;@claude-flow/testing&#39;;
+
+const db = new MockAgentDB();
+
+// Insert vectors
+await db.insert(&#39;vec-1&#39;, embedding, { type: &#39;pattern&#39; });
+
+// Search
+const results = await db.search(queryEmbedding, 10, 0.7);
+
+// Verify calls
+expect(db.insert).toHaveBeenCalledWith(&#39;vec-1&#39;, expect.any(Array), expect.any(Object));
+</code></pre>
+<h3>MockSwarmCoordinator</h3>
+<pre><code class="language-typescript">import { MockSwarmCoordinator } from &#39;@claude-flow/testing&#39;;
+
+const coordinator = new MockSwarmCoordinator();
+
+await coordinator.initialize({ topology: &#39;hierarchical-mesh&#39; });
+await coordinator.addAgent({ type: &#39;coder&#39;, name: &#39;Coder-1&#39; });
+const result = await coordinator.coordinate({ id: &#39;task-1&#39;, type: &#39;coding&#39;, payload: {} });
+
+expect(coordinator.getState().agentCount).toBe(1);
+expect(result.success).toBe(true);
+</code></pre>
+<h3>MockMCPClient</h3>
+<pre><code class="language-typescript">import { MockMCPClient, createStandardMockMCPClient } from &#39;@claude-flow/testing&#39;;
+
+// Standard client with common tools
+const client = createStandardMockMCPClient();
+await client.connect();
+
+// Custom tool handlers
+client.setToolHandler(&#39;swarm_init&#39;, async (params) =&gt; ({
+  content: [{ type: &#39;text&#39;, text: JSON.stringify({ swarmId: &#39;test&#39; }) }],
+}));
+
+const result = await client.callTool(&#39;swarm_init&#39;, { topology: &#39;mesh&#39; });
+
+// Verify request history
+expect(client.getRequestHistory()).toHaveLength(1);
+expect(client.getLastRequest()?.method).toBe(&#39;tools/call&#39;);
+</code></pre>
+<h2>Assertions</h2>
+<h3>Standard Assertions</h3>
+<pre><code class="language-typescript">import {
+  assertEventPublished,
+  assertEventOrder,
+  assertMocksCalledInOrder,
+  assertV3PerformanceTargets,
+  assertValidStateTransition,
+  assertNoSensitiveData,
+} from &#39;@claude-flow/testing&#39;;
+
+// Event assertions
+assertEventPublished(mockEventBus, &#39;UserCreated&#39;, { userId: &#39;123&#39; });
+assertEventOrder(mockEventBus.publish, [&#39;UserCreated&#39;, &#39;EmailSent&#39;]);
+
+// Mock order
+assertMocksCalledInOrder([mockValidate, mockSave, mockNotify]);
+
+// Performance targets
+assertV3PerformanceTargets({
+  searchSpeedup: 160,
+  flashAttentionSpeedup: 3.5,
+  memoryReduction: 0.55,
+});
+
+// State transitions
+assertValidStateTransition(&#39;pending&#39;, &#39;running&#39;, {
+  pending: [&#39;running&#39;, &#39;cancelled&#39;],
+  running: [&#39;completed&#39;, &#39;failed&#39;],
+});
+
+// Security
+assertNoSensitiveData(mockLogger.logs, [&#39;password&#39;, &#39;token&#39;, &#39;secret&#39;]);
+</code></pre>
+<h3>Custom Vitest Matchers</h3>
+<pre><code class="language-typescript">import { registerCustomMatchers } from &#39;@claude-flow/testing&#39;;
+
+// Register in setup
+registerCustomMatchers();
+
+// Use in tests
+expect(mockFn).toHaveBeenCalledWithPattern({ userId: expect.any(String) });
+expect(event).toHaveEventType(&#39;UserCreated&#39;);
+expect(metrics).toMeetV3PerformanceTargets();
+</code></pre>
+<h2>Setup &amp; Teardown</h2>
+<h3>Global Test Setup</h3>
+<pre><code class="language-typescript">import { setupV3Tests, configureTestEnvironment } from &#39;@claude-flow/testing&#39;;
+
+// Simple setup
+setupV3Tests();
+
+// Custom configuration
+configureTestEnvironment({
+  resetMocks: true,
+  fakeTimers: true,
+  suppressConsole: [&#39;log&#39;, &#39;warn&#39;],
+  env: {
+    NODE_ENV: &#39;test&#39;,
+    DEBUG: &#39;false&#39;,
+  },
+});
+</code></pre>
+<h3>Test Context</h3>
+<pre><code class="language-typescript">import { createSetupContext, createTestScope } from &#39;@claude-flow/testing&#39;;
+
+// Setup context with cleanup
+const ctx = createSetupContext();
+ctx.addCleanup(() =&gt; server.close());
+ctx.registerResource(database);
+// ... run tests
+await ctx.runCleanup();
+
+// Isolated test scope
+const scope = createTestScope();
+scope.addMock(mockService);
+await scope.run(async () =&gt; {
+  // test code - mocks auto-cleared after
+});
+</code></pre>
+<h3>Performance Testing</h3>
+<pre><code class="language-typescript">import { createPerformanceTestHelper } from &#39;@claude-flow/testing&#39;;
+
+const perf = createPerformanceTestHelper();
+
+perf.startMeasurement(&#39;search&#39;);
+await search(query);
+const duration = perf.endMeasurement(&#39;search&#39;);
+
+// Get statistics
+const stats = perf.getStats(&#39;search&#39;);
+console.log(`Avg: ${stats.avg}ms, P95: ${stats.p95}ms`);
+</code></pre>
+<h2>Performance Targets</h2>
+<p>The testing framework includes assertions for V3 performance targets:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Search Speedup</td>
+<td>150x - 12,500x</td>
+</tr>
+<tr>
+<td>Flash Attention Speedup</td>
+<td>2.49x - 7.47x</td>
+</tr>
+<tr>
+<td>Memory Reduction</td>
+<td>&gt;= 50%</td>
+</tr>
+<tr>
+<td>Startup Time</td>
+<td>&lt; 500ms</td>
+</tr>
+<tr>
+<td>Response Time</td>
+<td>&lt; 100ms</td>
+</tr>
+</tbody></table>
+<pre><code class="language-typescript">import { assertV3PerformanceTargets, TEST_CONFIG } from &#39;@claude-flow/testing&#39;;
+
+// Assert targets
+assertV3PerformanceTargets({
+  searchSpeedup: 160,
+  flashAttentionSpeedup: 3.5,
+  memoryReduction: 0.55,
+  startupTimeMs: 450,
+  responseTimeMs: 80,
+});
+
+// Access constants
+console.log(TEST_CONFIG.FLASH_ATTENTION_SPEEDUP_MIN); // 2.49
+console.log(TEST_CONFIG.AGENTDB_SEARCH_IMPROVEMENT_MAX); // 12500
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Use London School TDD</h3>
+<pre><code class="language-typescript">// Arrange mocks before acting
+const mockRepo = createMock&lt;UserRepository&gt;();
+mockRepo.findById.mockResolvedValue(user);
+
+// Act
+await service.processUser(&#39;123&#39;);
+
+// Assert behavior (not implementation)
+expect(mockRepo.findById).toHaveBeenCalledWith(&#39;123&#39;);
+expect(mockNotifier.notify).toHaveBeenCalledBefore(mockRepo.save);
+</code></pre>
+<h3>2. Use Fixtures Over Inline Data</h3>
+<pre><code class="language-typescript">// Good - use fixtures
+const agent = agentConfigs.queenCoordinator;
+const task = createSwarmTask(&#39;securityScan&#39;);
+
+// Avoid - inline data
+const agent = { type: &#39;queen-coordinator&#39;, name: &#39;Test&#39;, capabilities: [] };
+</code></pre>
+<h3>3. Isolate Tests</h3>
+<pre><code class="language-typescript">// Use fresh mocks per test
+beforeEach(() =&gt; {
+  vi.clearAllMocks();
+});
+
+// Or use test scope
+const scope = createTestScope();
+await scope.run(async () =&gt; {
+  // isolated test
+});
+</code></pre>
+<h3>4. Test Behavior, Not Implementation</h3>
+<pre><code class="language-typescript">// Good - behavior verification
+expect(mockEventBus.publish).toHaveBeenCalledWith(
+  expect.objectContaining({ type: &#39;UserCreated&#39; })
+);
+
+// Avoid - implementation details
+expect(service._internalQueue.length).toBe(1);
+</code></pre>
+<h2>License</h2>
+<p>MIT</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

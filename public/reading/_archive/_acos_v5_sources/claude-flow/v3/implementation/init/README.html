@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Init System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/init/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Init System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Finit">init</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>V3 Init System</h1>
+<p>Comprehensive initialization system for Claude Code integration with claude-flow V3.</p>
+<h2>Overview</h2>
+<p>The V3 init system creates a complete development environment including:</p>
+<ul>
+<li><code>.claude/</code> directory with settings, skills, commands, agents, and helpers</li>
+<li><code>.claude-flow/</code> runtime configuration</li>
+<li><code>.mcp.json</code> MCP server configuration</li>
+<li>Cross-platform support (Windows, macOS, Linux)</li>
+</ul>
+<h2>Quick Start</h2>
+<h3>CLI Usage</h3>
+<pre><code class="language-bash"># Default initialization (recommended settings)
+npx @claude-flow/cli init
+
+# Minimal setup (lightweight)
+npx @claude-flow/cli init --minimal
+
+# Full setup (everything enabled)
+npx @claude-flow/cli init --full
+
+# Force overwrite existing files
+npx @claude-flow/cli init --force
+
+# Interactive wizard
+npx @claude-flow/cli init wizard
+</code></pre>
+<h3>Programmatic Usage</h3>
+<pre><code class="language-typescript">import { executeInit, DEFAULT_INIT_OPTIONS } from &#39;@claude-flow/cli/init&#39;;
+
+const result = await executeInit({
+  ...DEFAULT_INIT_OPTIONS,
+  targetDir: process.cwd(),
+  sourceBaseDir: &#39;/path/to/claude-flow&#39;,
+});
+
+console.log(`Created ${result.created.files.length} files`);
+console.log(`Platform: ${result.platform.os} (${result.platform.shell})`);
+</code></pre>
+<h2>Features</h2>
+<h3>Platform Auto-Detection</h3>
+<p>The init system automatically detects:</p>
+<ul>
+<li>Operating system (Windows, macOS, Linux)</li>
+<li>CPU architecture (x64, arm64)</li>
+<li>Default shell (PowerShell, Bash, Zsh)</li>
+<li>Config directory locations</li>
+</ul>
+<h3>Component Selection</h3>
+<p>Choose which components to install:</p>
+<ul>
+<li><strong>Settings</strong>: Claude Code hooks and permissions</li>
+<li><strong>Skills</strong>: Specialized capabilities (50+)</li>
+<li><strong>Commands</strong>: Quick action shortcuts</li>
+<li><strong>Agents</strong>: Agent definitions (25+)</li>
+<li><strong>Helpers</strong>: Utility scripts</li>
+<li><strong>Statusline</strong>: Real-time progress display</li>
+<li><strong>MCP</strong>: Server configuration</li>
+<li><strong>Runtime</strong>: V3 configuration</li>
+</ul>
+<h3>Preset Configurations</h3>
+<table>
+<thead>
+<tr>
+<th>Preset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DEFAULT</code></td>
+<td>Recommended for most projects</td>
+</tr>
+<tr>
+<td><code>MINIMAL</code></td>
+<td>Lightweight, essential features only</td>
+</tr>
+<tr>
+<td><code>FULL</code></td>
+<td>Everything enabled</td>
+</tr>
+</tbody></table>
+<h2>Documentation</h2>
+<ul>
+<li><a href="./CONFIGURATION.md">Configuration Options</a></li>
+<li><a href="./COMPONENTS.md">Components Reference</a></li>
+<li><a href="./HOOKS.md">Hooks Reference</a></li>
+<li><a href="./API.md">Programmatic API</a></li>
+</ul>
+<h2>Created Structure</h2>
+<pre><code>project/
+├── .claude/
+│   ├── settings.json      # Hooks and permissions
+│   ├── skills/            # 50+ skills
+│   ├── commands/          # Command shortcuts
+│   ├── agents/            # Agent definitions
+│   ├── helpers/           # Utility scripts
+│   ├── statusline.sh      # Unix statusline
+│   └── statusline.mjs     # ESM module
+├── .claude-flow/
+│   ├── config.yaml        # Runtime config
+│   ├── data/              # Persistent data
+│   ├── logs/              # Log files
+│   └── sessions/          # Session archives
+└── .mcp.json              # MCP server config
+</code></pre>
+<h2>Cross-Platform Support</h2>
+<h3>Windows</h3>
+<ul>
+<li>PowerShell daemon manager (<code>daemon-manager.ps1</code>)</li>
+<li>Batch wrapper (<code>daemon-manager.cmd</code>)</li>
+<li>Windows-compatible paths</li>
+</ul>
+<h3>macOS</h3>
+<ul>
+<li>Bash/Zsh compatible scripts</li>
+<li>Zsh statusline hooks</li>
+<li>Library/Application Support paths</li>
+</ul>
+<h3>Linux</h3>
+<ul>
+<li>Bash scripts</li>
+<li>XDG-compliant paths</li>
+<li>~/.config directory support</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

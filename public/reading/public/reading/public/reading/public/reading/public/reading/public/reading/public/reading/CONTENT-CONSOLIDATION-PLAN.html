@@ -1,0 +1,1519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>🎯 FrankX Content Consolidation &amp; Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CONTENT-CONSOLIDATION-PLAN.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">🎯 FrankX Content Consolidation &amp; Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="_repo_remote_frankx_website/.separate-repos.html">Repository Separation Strategy</a></li>
+<li><a href="_repo_remote_frankx_website/01-Brand-Foundation/brand-story/BRAND-STORY.html">The FrankX Brand Story</a></li>
+<li><a href="_repo_remote_frankx_website/01-Brand-Foundation/brand-story/EPIPHANY-BRIDGE.html">The Epiphany Bridge Script</a></li>
+<li><a href="_repo_remote_frankx_website/01-Brand-Foundation/vision-mission/VISION-MISSION.html">FrankX Vision &amp; Mission</a></li>
+<li><a href="_repo_remote_frankx_website/02-Expert-Positioning/credibility/EXPERT-STORY.html">Frank's Expert Story &amp; Credibility Stack</a></li>
+<li><a href="_repo_remote_frankx_website/02-Expert-Positioning/ikigai/IKIGAI-FRAMEWORK.html">FrankX IKIGAI Framework</a></li>
+<li><a href="_repo_remote_frankx_website/03-Product-Suite/PRODUCT-LADDER.html">FrankX Product Ladder</a></li>
+<li><a href="_repo_remote_frankx_website/04-Music-Transformation/MUSIC-PRODUCER-JOURNEY.html">The Music Producer Transformation Journey</a></li>
+<li><a href="_repo_remote_frankx_website/05-Business-Plan/BUSINESS-PLAN.html">FrankX Business Plan</a></li>
+<li><a href="_repo_remote_frankx_website/06-Marketing-Strategy/WEBSITE-PLAN.html">FrankX Website &amp; Funnel Plan</a></li>
+<li><a href="_repo_remote_frankx_website/07-Content-Creation/CONTENT-STRATEGY.html">FrankX Content Creation Strategy</a></li>
+<li><a href="_repo_remote_frankx_website/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="_repo_remote_frankx_website/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="_repo_remote_frankx_website/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="_repo_remote_frankx_website/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="_repo_remote_frankx_website/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="_repo_remote_frankx_website/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="_repo_remote_frankx_website/index.html">FrankX Brand Dashboard - Soul-Aligned AI Systems</a></li>
+<li><a href="_repo_remote_frankx_website/MEDITATION_SESSION_RESULTS.html">🧘 Meditation Session Progress Report</a></li>
+<li><a href="_repo_remote_frankx_website/PROJECT_STATUS.html">FrankX Project Status Log</a></li>
+<li><a href="_repo_remote_frankx_website/README.html">🚀 FrankX Brand Blueprint</a></li>
+<li><a href="_repo_remote_frankx_website/RESTRUCTURE_PLAN.html">🧠 FrankX Project Restructure Plan</a></li>
+<li><a href=".github/instructions/codacy.instructions.html">Codacy Rules</a></li>
+<li><a href="001-FrankX-AI-Investment Team/agent.html">Investment Analysis AI Agents - Detailed Specifications</a></li>
+<li><a href="001-FrankX-AI-Investment Team/claude.html">Investment Analysis AI Agent System - System Architecture</a></li>
+<li><a href="001-FrankX-AI-Investment Team/README.html">🤖 AI Investment Analysis System</a></li>
+<li><a href="001-FrankX-AI-Investment Team/reports/investment_analysis_template.html">Investment Analysis Report - {{SYMBOL}}</a></li>
+<li><a href="ACTION-PLAN-CONSOLIDATION.html">✅ Content Consolidation - Action Plan</a></li>
+<li><a href="AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="Agent.html">Agent.md - FrankX.ai Creator Systems Collective</a></li>
+<li><a href="agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="Claude Frankx Skills/arcanea-lore/SKILL.html">Arcanea Lore Master Skill</a></li>
+<li><a href="Claude Frankx Skills/claude-sdk/SKILL.html">Claude SDK Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/frankx-content/SKILL.html">FrankX Content Creator Skill</a></li>
+<li><a href="Claude Frankx Skills/frankx-daily-execution/SKILL.html">FrankX Daily Execution System Skill</a></li>
+<li><a href="Claude Frankx Skills/greek-philosopher/SKILL.html">Greek Philosopher Skill</a></li>
+<li><a href="Claude Frankx Skills/gym-training-expert/SKILL.html">Gym &amp; Training Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/health-nutrition-expert/SKILL.html">Health &amp; Nutrition Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/index.html">Claude Skills Dashboard - FrankX</a></li>
+<li><a href="Claude Frankx Skills/langgraph-patterns/SKILL.html">LangGraph Patterns Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/mcp-architecture/SKILL.html">MCP Architecture Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/openai-agentkit/SKILL.html">OpenAI AgentKit Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/oracle-adk/SKILL.html">Oracle ADK Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/oracle-agent-spec/SKILL.html">Oracle Agent Spec Expert Skill</a></li>
+<li><a href="Claude Frankx Skills/spartan-warrior/SKILL.html">Spartan Warrior Skill</a></li>
+<li><a href="CLAUDE_NEW.html">Claude Code Agent Configuration - FrankX.ai</a></li>
+<li><a href="CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="CODEX.html">Codex Agent Playbook - Creator Systems Architect</a></li>
+<li><a href="CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="CONTENT-CONSOLIDATION-PLAN.html">🎯 FrankX Content Consolidation &amp; Architecture</a></li>
+<li><a href="content-dashboard.html">Content Dashboard</a></li>
+<li><a href="CONTENT-SYSTEM.html">FrankX Content &amp; Product System</a></li>
+<li><a href="content-universe/.claude/commands/add-case-study.html">Add Case Study</a></li>
+<li><a href="content-universe/.claude/commands/blog-post.html">Blog Post</a></li>
+<li><a href="content-universe/.claude/commands/content-status.html">Content Status</a></li>
+<li><a href="content-universe/.claude/commands/course-module.html">Course Module</a></li>
+<li><a href="content-universe/.claude/commands/enhance-prose.html">Enhance Prose</a></li>
+<li><a href="content-universe/.claude/commands/impact-check.html">Impact Check</a></li>
+<li><a href="content-universe/.claude/commands/link-content.html">Link Content</a></li>
+<li><a href="content-universe/.claude/commands/publish.html">Publish</a></li>
+<li><a href="content-universe/.claude/commands/remove-ai-patterns.html">Remove AI Patterns</a></li>
+<li><a href="content-universe/.claude/commands/repurpose.html">Repurpose</a></li>
+<li><a href="content-universe/.claude/commands/research.html">Research</a></li>
+<li><a href="content-universe/.claude/commands/theme-map.html">Theme Map</a></li>
+<li><a href="content-universe/.claude/commands/thread.html">Thread</a></li>
+<li><a href="content-universe/.claude/commands/verify-claims.html">Verify Claims</a></li>
+<li><a href="content-universe/.claude/commands/write-chapter.html">Write Chapter</a></li>
+<li><a href="content-universe/.claude/skills/blog-master/SKILL.html">Blog Master</a></li>
+<li><a href="content-universe/.claude/skills/content-repurposer/SKILL.html">Content Repurposer</a></li>
+<li><a href="content-universe/.claude/skills/content-universe-oracle/SKILL.html">Content Universe Oracle</a></li>
+<li><a href="content-universe/.claude/skills/course-architect/SKILL.html">Course Architect</a></li>
+<li><a href="content-universe/.claude/skills/impact-engineer/SKILL.html">Impact Engineer</a></li>
+<li><a href="content-universe/.claude/skills/literary-architect/SKILL.html">Literary Architect</a></li>
+<li><a href="content-universe/.claude/skills/publishing-pipeline/SKILL.html">Publishing Pipeline</a></li>
+<li><a href="content-universe/.claude/skills/social-media-strategist/SKILL.html">Social Media Strategist</a></li>
+<li><a href="content-universe/.claude/skills/truth-weaver/SKILL.html">Truth Weaver</a></li>
+<li><a href="content-universe/.claude/skills/voice-alchemist/SKILL.html">Voice Alchemist</a></li>
+<li><a href="content-universe/blogs/_templates/blog-template.html">[SEO-Optimized Title with Primary Keyword]</a></li>
+<li><a href="content-universe/books/_shared/resources/anti-ai-patterns.html">Anti-AI Writing Patterns Guide</a></li>
+<li><a href="content-universe/books/_shared/resources/quick-reference.html">Book Writing Quick Reference Guide</a></li>
+<li><a href="content-universe/books/_shared/templates/fantasy/CHARACTER-SHEET.html">Character Sheet Template</a></li>
+<li><a href="content-universe/books/_shared/templates/fantasy/NOVEL-STRUCTURE.html">Fantasy Novel Structure Template</a></li>
+<li><a href="content-universe/books/_shared/templates/fantasy/WORLD-BUILDING.html">World-Building Template</a></li>
+<li><a href="content-universe/books/_templates/chapter-template.html">Chapter [NUMBER]: [TITLE]</a></li>
+<li><a href="content-universe/books/BOOK-DASHBOARD.html">FrankX Book Writing Dashboard</a></li>
+<li><a href="content-universe/books/GOLDEN-AGE-ADDITION.html">🌟 Golden Age Visionary Book System - Added!</a></li>
+<li><a href="content-universe/books/PUBLISHING-FORMATS-STRATEGY.html">📚 Complete Publishing Formats Strategy</a></li>
+<li><a href="content-universe/books/README.html">FrankX Multi-Genre Book Writing System</a></li>
+<li><a href="content-universe/books/SYSTEM-OVERVIEW.html">🎉 FrankX Multi-Genre Book Writing System - Complete!</a></li>
+<li><a href="content-universe/books/WORKFLOW-STRATEGY.html">📖 FrankX Book Writing Workflow &amp; Storage Strategy</a></li>
+<li><a href="content-universe/books/WORKFLOW-VISUAL.html">📊 Visual Workflow Guide</a></li>
+<li><a href="content-universe/books/year-of-creator/book-outline.html">The Year of the Creator: How AI Changed Everything in 2025</a></li>
+<li><a href="content-universe/books/year-of-creator/book-reader.html">The Year of the Creator - AI Book Reader</a></li>
+<li><a href="content-universe/books/year-of-creator/CLAUDE.html">FrankX Book Writing System</a></li>
+<li><a href="content-universe/books/year-of-creator/final/chapter-1-death-of-resume.html">Chapter 1: The Death of the Resume</a></li>
+<li><a href="content-universe/books/year-of-creator/final/chapter-1-expanded.html">Chapter 1: The Death of the Resume - Your Portfolio Revolution Playbook</a></li>
+<li><a href="content-universe/books/year-of-creator/final/chapter-2-seven-trillion-economy.html">Chapter 2: The $7 Trillion Creator Economy</a></li>
+<li><a href="content-universe/books/year-of-creator/final/chapter-3-great-unbundling.html">Chapter 3: The Great Unbundling</a></li>
+<li><a href="content-universe/books/year-of-creator/final/chapter-4-ai-creative-suite.html">Chapter 4: The AI Creative Suite Revolution</a></li>
+<li><a href="content-universe/books/year-of-creator/final/chapter-5-music-revolution.html">Chapter 5: The Music Revolution Nobody Expected</a></li>
+<li><a href="content-universe/books/year-of-creator/final/introduction.html">Introduction: The Last Day of the Old World</a></li>
+<li><a href="content-universe/books/year-of-creator/SOURCES-VERIFICATION.html">Sources &amp; Verification Status</a></li>
+<li><a href="content-universe/books/year-of-creator/workbook-template.html">The Year of the Creator - Interactive Workbook</a></li>
+<li><a href="content-universe/books/year-of-creator/writing-process.html">Book Writing Process &amp; Workflow</a></li>
+<li><a href="content-universe/CONTENT-INTAKE-SYSTEM.html">🎯 FrankX Content Intake &amp; Classification System</a></li>
+<li><a href="content-universe/QUICK-START-GUIDE.html">⚡ Quick Start: Content Intake System</a></li>
+<li><a href="content-universe/QUICKSTART.html">Content Universe - Quick Start Guide</a></li>
+<li><a href="content-universe/README.html">FrankX Content Universe</a></li>
+<li><a href="content-universe/STRUCTURE-ANALYSIS.html">Content Universe Structure Analysis</a></li>
+<li><a href="content/_docs/CONTENT-INTAKE-SYSTEM.html">🎯 FrankX Content Intake &amp; Classification System</a></li>
+<li><a href="content/_docs/LEARNING-SYSTEM.html">🧠 FrankX Learning System</a></li>
+<li><a href="content/_docs/QUICK-START-GUIDE.html">⚡ Quick Start: Content Intake System</a></li>
+<li><a href="content/0-intake/CLASSIFICATION-TASKS-2025-11-07.html">Classification Tasks - November 7, 2025</a></li>
+<li><a href="content/0-intake/README.html">Content Intake</a></li>
+<li><a href="content/2-ready-to-publish/social/cloud-ai-architecture-nims/GENERATION-COMPLETE.html">Social Content Generation Complete ✅</a></li>
+<li><a href="content/2-ready-to-publish/social/cloud-ai-architecture-nims/IMAGE-GENERATION-GUIDE.html">Image Generation Guide</a></li>
+<li><a href="content/2-ready-to-publish/social/cloud-ai-architecture-nims/instagram-post.html">Instagram Carousel Post: Cloud AI Architecture</a></li>
+<li><a href="content/2-ready-to-publish/social/cloud-ai-architecture-nims/linkedin-post.html">LinkedIn Post: When to Use NVIDIA NIMs vs PaaS AI Services</a></li>
+<li><a href="content/2-ready-to-publish/social/cloud-ai-architecture-nims/twitter-thread.html">Twitter Thread: Cloud &amp; AI Architecture with NVIDIA NIMs</a></li>
+<li><a href="content/BLOG-CONSOLIDATION-COMPLETE.html">Blog Consolidation Complete ✅</a></li>
+<li><a href="content/blog/ai-tech/2025-11-07-test-consolidation.html">CLASSIFICATION</a></li>
+<li><a href="content/blog/personal-dev/engineering-your-environment.html">CLASSIFICATION</a></li>
+<li><a href="content/books/_shared/resources/anti-ai-patterns.html">Anti-AI Writing Patterns Guide</a></li>
+<li><a href="content/books/_shared/resources/quick-reference.html">Book Writing Quick Reference Guide</a></li>
+<li><a href="content/books/_shared/templates/fantasy/CHARACTER-SHEET.html">Character Sheet Template</a></li>
+<li><a href="content/books/_shared/templates/fantasy/NOVEL-STRUCTURE.html">Fantasy Novel Structure Template</a></li>
+<li><a href="content/books/_shared/templates/fantasy/WORLD-BUILDING.html">World-Building Template</a></li>
+<li><a href="content/books/_templates/chapter-template.html">Chapter [NUMBER]: [TITLE]</a></li>
+<li><a href="content/books/BOOK-DASHBOARD.html">FrankX Book Writing Dashboard</a></li>
+<li><a href="content/books/GOLDEN-AGE-ADDITION.html">🌟 Golden Age Visionary Book System - Added!</a></li>
+<li><a href="content/books/PUBLISHING-FORMATS-STRATEGY.html">📚 Complete Publishing Formats Strategy</a></li>
+<li><a href="content/books/README.html">FrankX Multi-Genre Book Writing System</a></li>
+<li><a href="content/books/SYSTEM-OVERVIEW.html">🎉 FrankX Multi-Genre Book Writing System - Complete!</a></li>
+<li><a href="content/books/WORKFLOW-STRATEGY.html">📖 FrankX Book Writing Workflow &amp; Storage Strategy</a></li>
+<li><a href="content/books/WORKFLOW-VISUAL.html">📊 Visual Workflow Guide</a></li>
+<li><a href="content/books/year-of-creator/book-outline.html">The Year of the Creator: How AI Changed Everything in 2025</a></li>
+<li><a href="content/books/year-of-creator/book-reader.html">The Year of the Creator - AI Book Reader</a></li>
+<li><a href="content/books/year-of-creator/CLAUDE.html">FrankX Book Writing System</a></li>
+<li><a href="content/books/year-of-creator/final/chapter-1-death-of-resume.html">Chapter 1: The Death of the Resume</a></li>
+<li><a href="content/books/year-of-creator/final/chapter-1-expanded.html">Chapter 1: The Death of the Resume - Your Portfolio Revolution Playbook</a></li>
+<li><a href="content/books/year-of-creator/final/chapter-2-seven-trillion-economy.html">Chapter 2: The $7 Trillion Creator Economy</a></li>
+<li><a href="content/books/year-of-creator/final/chapter-3-great-unbundling.html">Chapter 3: The Great Unbundling</a></li>
+<li><a href="content/books/year-of-creator/final/chapter-4-ai-creative-suite.html">Chapter 4: The AI Creative Suite Revolution</a></li>
+<li><a href="content/books/year-of-creator/final/chapter-5-music-revolution.html">Chapter 5: The Music Revolution Nobody Expected</a></li>
+<li><a href="content/books/year-of-creator/final/introduction.html">Introduction: The Last Day of the Old World</a></li>
+<li><a href="content/books/year-of-creator/SOURCES-VERIFICATION.html">Sources &amp; Verification Status</a></li>
+<li><a href="content/books/year-of-creator/workbook-template.html">The Year of the Creator - Interactive Workbook</a></li>
+<li><a href="content/books/year-of-creator/writing-process.html">Book Writing Process &amp; Workflow</a></li>
+<li><a href="content/README.html">FrankX Content - Single Source of Truth</a></li>
+<li><a href="CREATOR_PRODUCT_ROADMAP.html">Creator Product Roadmap</a></li>
+<li><a href="DAILY_AGENT_TASKS.html">Daily Agent Tasks Framework</a></li>
+<li><a href="DAILY-LOG-FOCUSED-SPRINT.html">FrankX Focused Sprint - Daily Log</a></li>
+<li><a href="daily-tasks-generator.html">Daily Agent Tasks Generator - FrankX.ai</a></li>
+<li><a href="DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="docs/AGENT_ORCHESTRATED_EXPERIENCE.html">FrankX.AI Agent-Orchestrated Experience Design</a></li>
+<li><a href="docs/agents/automation-architect.html">Automation Architect Agent</a></li>
+<li><a href="docs/agents/guardian-qa.html">Guardian QA Agent</a></li>
+<li><a href="docs/agents/launch-captain.html">Launch Captain Agent</a></li>
+<li><a href="docs/agents/market-research-scout.html">Market Research Scout Agent</a></li>
+<li><a href="docs/agents/product-strategist.html">Product Strategist Agent</a></li>
+<li><a href="docs/CHARACTER_IMAGE_PROMPTS.html">FrankX Team Character Image Generation Prompts</a></li>
+<li><a href="docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp; Build Roadmap</a></li>
+<li><a href="docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="docs/DAILY_INTELLIGENCE_OPERATIONS.html">FrankX Daily Intelligence Operations</a></li>
+<li><a href="docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="docs/DEPLOYMENT_STRATEGY.html">FrankX.ai Deployment &amp; Environment Strategy</a></li>
+<li><a href="docs/DYNAMIC_AI_COE_ASSESSMENT_ARCHITECTURE.html">Dynamic AI CoE Assessment Architecture</a></li>
+<li><a href="docs/HERO_IMAGES_INVENTORY.html">FrankX.ai Hero Images Inventory</a></li>
+<li><a href="docs/IMPLEMENTATION_ROADMAP.html">FrankX.ai Website Transformation - Implementation Roadmap</a></li>
+<li><a href="docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint (Creator-First)</a></li>
+<li><a href="docs/LOW_PRIORITY_TASKS_PLAN.html">FrankX.ai: Low-Priority Tasks Implementation Plan</a></li>
+<li><a href="docs/membership-realm.html">FrankX Membership &amp; Realm Blueprint</a></li>
+<li><a href="docs/NANO_BANANA_MCP_TEST_REPORT.html">Nano Banana MCP Server Test Report</a></li>
+<li><a href="docs/NEW_SITEMAP_2025.html">FrankX.ai - Restructured Sitemap 2025</a></li>
+<li><a href="docs/pods/_TEMPLATE.html">&lt;Product Name&gt; Pod</a></li>
+<li><a href="docs/pods/agent-builder-os-backlog.html">Agent Builder OS Backlog</a></li>
+<li><a href="docs/pods/agent-builder-os.html">Agent Builder OS Pod</a></li>
+<li><a href="docs/pods/agentic-creator-os-backlog.html">Agentic Creator OS Backlog</a></li>
+<li><a href="docs/pods/agentic-creator-os.html">Agentic Creator OS Pod</a></li>
+<li><a href="docs/pods/creation-chronicles-backlog.html">Creation Chronicles Backlog</a></li>
+<li><a href="docs/pods/creation-chronicles.html">Creation Chronicles Pod</a></li>
+<li><a href="docs/pods/creative-ai-toolkit-backlog.html">Creative AI Toolkit Backlog</a></li>
+<li><a href="docs/pods/creative-ai-toolkit-emails.html">Creative AI Toolkit Onboarding Sequence</a></li>
+<li><a href="docs/pods/creative-ai-toolkit.html">Creative AI Toolkit Pod</a></li>
+<li><a href="docs/pods/generative-creator-os-backlog.html">Generative Creator OS Backlog</a></li>
+<li><a href="docs/pods/generative-creator-os.html">Generative Creator OS Pod</a></li>
+<li><a href="docs/pods/vibe-os-backlog.html">Vibe OS Backlog</a></li>
+<li><a href="docs/pods/vibe-os.html">Vibe OS Pod</a></li>
+<li><a href="docs/PRODUCT_CONSOLIDATION_STRATEGY.html">FrankX.ai Product Consolidation &amp; Launch Strategy</a></li>
+<li><a href="docs/PRODUCT_ORG_BLUEPRINT.html">FrankX.ai Product Development Blueprint</a></li>
+<li><a href="docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="docs/SITE_AUDIT_V3.html">FrankX.ai V3 - Complete Site Audit &amp; Optimization Roadmap</a></li>
+<li><a href="docs/strategy/README.html">Strategy Directory</a></li>
+<li><a href="docs/strategy/v1/INDEX.html">Strategy v1 Index (Legacy Mix)</a></li>
+<li><a href="docs/strategy/v2/AGENT-OPERATING-CODE.html">Agent Operating Code (Creator-First)</a></li>
+<li><a href="docs/strategy/v2/CREATOR-FIRST-BLUEPRINT.html">Creator-First Blueprint (v2)</a></li>
+<li><a href="docs/strategy/v2/GRAND_SLAM_OFFERS.html">GRAND SLAM OFFERS</a></li>
+<li><a href="docs/strategy/V3_TRANSFORMATION_STRATEGY.html">V3 Website Transformation Strategy</a></li>
+<li><a href="docs/TEAM_IMAGE_REGENERATION_REPORT.html">FrankX.AI Team Image Regeneration Report</a></li>
+<li><a href="docs/TEAM_PAGE_SETUP.html">Team Page Setup Complete ✨</a></li>
+<li><a href="docs/TEAM_STRUCTURE.html">FrankX AI Team Structure</a></li>
+<li><a href="docs/team-page-visual-guide.html">FrankX Team Page - Visual Guide</a></li>
+<li><a href="docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp; Optimization Report</a></li>
+<li><a href="docs/user-journey-analysis.html">User Journey Analysis &amp; Enhancement Strategy</a></li>
+<li><a href="docs/V2_CREATOR_STRATEGY.html">FrankX.AI V2 - Creator-First Platform Strategy</a></li>
+<li><a href="docs/V3_IMPLEMENTATION_SUMMARY.html">V3 Implementation Summary</a></li>
+<li><a href="docs/V3_LAUNCH_PLAN.html">V3 Launch Plan - Simplified &amp; Focused</a></li>
+<li><a href="docs/WORLD_SUMMIT_AI_DEPLOYMENT_PLAN.html">World Summit AI Deployment Plan</a></li>
+<li><a href="FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="FRANKX_STRATEGIC_PRIORITIES.html">FrankX Creator Brand - Strategic Priorities</a></li>
+<li><a href="GEMINI.html">Gemini.md - Guardian Engineer for Creator Systems</a></li>
+<li><a href="MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="new-landing-page-backup/docs/frankx-component-specifications.html">FrankX.AI Component Library Specifications</a></li>
+<li><a href="new-landing-page-backup/docs/frankx-design-system.html">FrankX.AI Design System</a></li>
+<li><a href="new-landing-page-backup/docs/frankx-landing-page-architecture.html">FrankX.AI Landing Page Architecture</a></li>
+<li><a href="new-landing-page-backup/docs/frankx-strategic-recommendations.html">FrankX.AI Strategic Design Recommendations</a></li>
+<li><a href="new-landing-page-backup/NEW-LANDING-PAGE-README.html">🚀 NEW LANDING PAGE - Branch Overview</a></li>
+<li><a href="new-landing-page-backup/node_modules/@alloc/quick-lru/readme.html">quick-lru [![Build Status](https://travis-ci.org/sindresorhus/quick-lru.svg?branch=master)](https://travis-ci.org/sindresorhus/quick-lru) [![Coverage Status](https://coveralls.io/repos/github/sindresorhus/quick-lru/badge.svg?branch=master)](https://coveralls.io/github/sindresorhus/quick-lru?branch=master)</a></li>
+<li><a href="new-landing-page-backup/node_modules/@emnapi/runtime/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint-community/eslint-utils/node_modules/eslint-visitor-keys/README.html">eslint-visitor-keys</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint-community/eslint-utils/README.html">@eslint-community/eslint-utils</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint-community/regexpp/README.html">@eslint-community/regexpp</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint/config-array/README.html">Config Array</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint/config-helpers/README.html">@eslint/config-helpers</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint/core/README.html">ESLint Core</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint/eslintrc/README.html">ESLintRC Library</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint/js/README.html">ESLint JavaScript Plugin</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint/object-schema/README.html">ObjectSchema Package</a></li>
+<li><a href="new-landing-page-backup/node_modules/@eslint/plugin-kit/README.html">ESLint Plugin Kit</a></li>
+<li><a href="new-landing-page-backup/node_modules/@humanfs/core/README.html">`@humanfs/core`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@humanfs/node/README.html">`@humanfs/node`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@humanwhocodes/module-importer/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/@humanwhocodes/module-importer/README.html">ModuleImporter</a></li>
+<li><a href="new-landing-page-backup/node_modules/@humanwhocodes/retry/README.html">Retry utility</a></li>
+<li><a href="new-landing-page-backup/node_modules/@img/colour/LICENSE.html">Licensing</a></li>
+<li><a href="new-landing-page-backup/node_modules/@img/colour/README.html">`@img/colour`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@img/sharp-libvips-linux-x64/README.html">`@img/sharp-libvips-linux-x64`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@img/sharp-linux-x64/README.html">`@img/sharp-linux-x64`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@isaacs/cliui/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/@isaacs/cliui/README.html">@isaacs/cliui</a></li>
+<li><a href="new-landing-page-backup/node_modules/@jridgewell/gen-mapping/README.html">@jridgewell/gen-mapping</a></li>
+<li><a href="new-landing-page-backup/node_modules/@jridgewell/resolve-uri/README.html">@jridgewell/resolve-uri</a></li>
+<li><a href="new-landing-page-backup/node_modules/@jridgewell/sourcemap-codec/README.html">@jridgewell/sourcemap-codec</a></li>
+<li><a href="new-landing-page-backup/node_modules/@jridgewell/trace-mapping/README.html">@jridgewell/trace-mapping</a></li>
+<li><a href="new-landing-page-backup/node_modules/@next/env/README.html">`@next/env`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@next/eslint-plugin-next/README.html">`@next/eslint-plugin-next`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@next/swc-linux-x64-gnu/README.html">`@next/swc-linux-x64-gnu`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@nodelib/fs.scandir/README.html">@nodelib/fs.scandir</a></li>
+<li><a href="new-landing-page-backup/node_modules/@nodelib/fs.stat/README.html">@nodelib/fs.stat</a></li>
+<li><a href="new-landing-page-backup/node_modules/@nodelib/fs.walk/README.html">@nodelib/fs.walk</a></li>
+<li><a href="new-landing-page-backup/node_modules/@pkgjs/parseargs/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/@pkgjs/parseargs/README.html">parseArgs</a></li>
+<li><a href="new-landing-page-backup/node_modules/@rtsao/scc/README.html">`@rtsao/scc`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@rushstack/eslint-patch/CHANGELOG.html">Change Log - @rushstack/eslint-patch</a></li>
+<li><a href="new-landing-page-backup/node_modules/@rushstack/eslint-patch/README.html">@rushstack/eslint-patch</a></li>
+<li><a href="new-landing-page-backup/node_modules/@types/estree/README.html">Installation</a></li>
+<li><a href="new-landing-page-backup/node_modules/@types/json-schema/README.html">Installation</a></li>
+<li><a href="new-landing-page-backup/node_modules/@types/json5/README.html">Installation</a></li>
+<li><a href="new-landing-page-backup/node_modules/@types/node/README.html">Installation</a></li>
+<li><a href="new-landing-page-backup/node_modules/@types/react-dom/README.html">Installation</a></li>
+<li><a href="new-landing-page-backup/node_modules/@types/react/README.html">Installation</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/eslint-plugin/node_modules/ignore/README.html">ignore</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/eslint-plugin/README.html">`@typescript-eslint/eslint-plugin`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/parser/README.html">`@typescript-eslint/parser`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/project-service/README.html">`@typescript-eslint/project-service`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/scope-manager/README.html">`@typescript-eslint/scope-manager`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/tsconfig-utils/README.html">`@typescript-eslint/tsconfig-utils`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/type-utils/README.html">`@typescript-eslint/type-utils`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/types/README.html">`@typescript-eslint/types`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/typescript-estree/node_modules/brace-expansion/README.html">brace-expansion</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/typescript-estree/node_modules/fast-glob/README.html">fast-glob</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/typescript-estree/node_modules/glob-parent/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/typescript-estree/node_modules/glob-parent/README.html">glob-parent</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/typescript-estree/node_modules/minimatch/README.html">minimatch</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/typescript-estree/README.html">`@typescript-eslint/typescript-estree`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/utils/README.html">`@typescript-eslint/utils`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@typescript-eslint/visitor-keys/README.html">`@typescript-eslint/visitor-keys`</a></li>
+<li><a href="new-landing-page-backup/node_modules/@unrs/resolver-binding-linux-x64-gnu/README.html">`@unrs/resolver-binding-linux-x64-gnu`</a></li>
+<li><a href="new-landing-page-backup/node_modules/acorn-jsx/README.html">Acorn-JSX</a></li>
+<li><a href="new-landing-page-backup/node_modules/acorn/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/acorn/README.html">Acorn</a></li>
+<li><a href="new-landing-page-backup/node_modules/ajv/lib/dotjs/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/ajv/README.html">Ajv: Another JSON Schema Validator</a></li>
+<li><a href="new-landing-page-backup/node_modules/ansi-regex/readme.html">ansi-regex</a></li>
+<li><a href="new-landing-page-backup/node_modules/ansi-styles/readme.html">ansi-styles [![Build Status](https://travis-ci.org/chalk/ansi-styles.svg?branch=master)](https://travis-ci.org/chalk/ansi-styles)</a></li>
+<li><a href="new-landing-page-backup/node_modules/any-promise/README.html">Install any libraries depending on any-promise</a></li>
+<li><a href="new-landing-page-backup/node_modules/anymatch/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/arg/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/arg/README.html">Arg</a></li>
+<li><a href="new-landing-page-backup/node_modules/argparse/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/argparse/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/aria-query/README.html">ARIA Query</a></li>
+<li><a href="new-landing-page-backup/node_modules/array-buffer-byte-length/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/array-buffer-byte-length/README.html">array-buffer-byte-length &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/array-includes/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/array-includes/README.html">array-includes &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.findlast/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.findlast/README.html">array.prototype.findlast &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.findlastindex/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.findlastindex/README.html">array.prototype.findlastindex &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.flat/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.flat/README.html">array.prototype.flat &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.flatmap/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.flatmap/README.html">array.prototype.flatmap &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.tosorted/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/array.prototype.tosorted/README.html">array.prototype.tosorted &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/arraybuffer.prototype.slice/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/arraybuffer.prototype.slice/README.html">ArrayBuffer.prototype.slice &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/ast-types-flow/README.html">ast-types-flow</a></li>
+<li><a href="new-landing-page-backup/node_modules/async-function/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/async-function/README.html">async-function &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/autoprefixer/README.html">Autoprefixer [![Cult Of Martians][cult-img]][cult]</a></li>
+<li><a href="new-landing-page-backup/node_modules/available-typed-arrays/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/available-typed-arrays/README.html">available-typed-arrays &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/axe-core/LICENSE-3RD-PARTY.html">LICENSE 3RD PARTY</a></li>
+<li><a href="new-landing-page-backup/node_modules/axe-core/locales/README.html">Localizations</a></li>
+<li><a href="new-landing-page-backup/node_modules/axe-core/README.html">axe-core</a></li>
+<li><a href="new-landing-page-backup/node_modules/axobject-query/README.html">AXObject Query</a></li>
+<li><a href="new-landing-page-backup/node_modules/balanced-match/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/balanced-match/README.html">balanced-match</a></li>
+<li><a href="new-landing-page-backup/node_modules/baseline-browser-mapping/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/baseline-browser-mapping/README.html">[`baseline-browser-mapping`](https://github.com/web-platform-dx/web-features/packages/baseline-browser-mapping)</a></li>
+<li><a href="new-landing-page-backup/node_modules/binary-extensions/readme.html">binary-extensions</a></li>
+<li><a href="new-landing-page-backup/node_modules/brace-expansion/README.html">brace-expansion</a></li>
+<li><a href="new-landing-page-backup/node_modules/braces/README.html">braces [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=W8YFZ425KND68) [![NPM version](https://img.shields.io/npm/v/braces.svg?style=flat)](https://www.npmjs.com/package/braces) [![NPM monthly downloads](https://img.shields.io/npm/dm/braces.svg?style=flat)](https://npmjs.org/package/braces) [![NPM total downloads](https://img.shields.io/npm/dt/braces.svg?style=flat)](https://npmjs.org/package/braces) [![Linux Build Status](https://img.shields.io/travis/micromatch/braces.svg?style=flat&amp;label=Travis)](https://travis-ci.org/micromatch/braces)</a></li>
+<li><a href="new-landing-page-backup/node_modules/browserslist/README.html">Browserslist</a></li>
+<li><a href="new-landing-page-backup/node_modules/call-bind-apply-helpers/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/call-bind-apply-helpers/README.html">call-bind-apply-helpers &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/call-bind/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/call-bind/README.html">call-bind &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/call-bound/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/call-bound/README.html">call-bound &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/callsites/readme.html">callsites [![Build Status](https://travis-ci.org/sindresorhus/callsites.svg?branch=master)](https://travis-ci.org/sindresorhus/callsites)</a></li>
+<li><a href="new-landing-page-backup/node_modules/camelcase-css/README.html">camelcase-css [![NPM Version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url]</a></li>
+<li><a href="new-landing-page-backup/node_modules/caniuse-lite/README.html">caniuse-lite</a></li>
+<li><a href="new-landing-page-backup/node_modules/chalk/readme.html">readme</a></li>
+<li><a href="new-landing-page-backup/node_modules/chokidar/node_modules/glob-parent/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/chokidar/node_modules/glob-parent/README.html">glob-parent</a></li>
+<li><a href="new-landing-page-backup/node_modules/chokidar/README.html">Chokidar [![Weekly downloads](https://img.shields.io/npm/dw/chokidar.svg)](https://github.com/paulmillr/chokidar) [![Yearly downloads](https://img.shields.io/npm/dy/chokidar.svg)](https://github.com/paulmillr/chokidar)</a></li>
+<li><a href="new-landing-page-backup/node_modules/color-convert/CHANGELOG.html">1.0.0 - 2016-01-07</a></li>
+<li><a href="new-landing-page-backup/node_modules/color-convert/README.html">color-convert</a></li>
+<li><a href="new-landing-page-backup/node_modules/color-name/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/commander/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/commander/Readme.html">Commander.js</a></li>
+<li><a href="new-landing-page-backup/node_modules/concat-map/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/cross-spawn/README.html">cross-spawn</a></li>
+<li><a href="new-landing-page-backup/node_modules/cssesc/LICENSE-MIT.html">LICENSE MIT</a></li>
+<li><a href="new-landing-page-backup/node_modules/cssesc/README.html">cssesc [![Build status](https://travis-ci.org/mathiasbynens/cssesc.svg?branch=master)](https://travis-ci.org/mathiasbynens/cssesc) [![Code coverage status](https://img.shields.io/codecov/c/github/mathiasbynens/cssesc.svg)](https://codecov.io/gh/mathiasbynens/cssesc)</a></li>
+<li><a href="new-landing-page-backup/node_modules/csstype/README.html">CSSType</a></li>
+<li><a href="new-landing-page-backup/node_modules/damerau-levenshtein/CHANGELOG.html">Change Log</a></li>
+<li><a href="new-landing-page-backup/node_modules/damerau-levenshtein/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/data-view-buffer/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/data-view-buffer/README.html">data-view-buffer &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/data-view-byte-length/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/data-view-byte-length/README.html">data-view-byte-length &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/data-view-byte-offset/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/data-view-byte-offset/README.html">data-view-byte-offset &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/debug/README.html">debug</a></li>
+<li><a href="new-landing-page-backup/node_modules/deep-is/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/define-data-property/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/define-data-property/README.html">define-data-property &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/define-properties/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/define-properties/README.html">define-properties &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/detect-libc/README.html">detect-libc</a></li>
+<li><a href="new-landing-page-backup/node_modules/didyoumean/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/dlv/README.html">`dlv(obj, keypath)` [![NPM](https://img.shields.io/npm/v/dlv.svg)](https://npmjs.com/package/dlv) [![Build](https://travis-ci.org/developit/dlv.svg?branch=master)](https://travis-ci.org/developit/dlv)</a></li>
+<li><a href="new-landing-page-backup/node_modules/doctrine/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/doctrine/README.html">Doctrine</a></li>
+<li><a href="new-landing-page-backup/node_modules/dunder-proto/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/dunder-proto/README.html">dunder-proto &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/eastasianwidth/README.html">East Asian Width</a></li>
+<li><a href="new-landing-page-backup/node_modules/electron-to-chromium/README.html">Electron-to-Chromium [![npm](https://img.shields.io/npm/v/electron-to-chromium.svg)](https://www.npmjs.com/package/electron-to-chromium) [![travis](https://img.shields.io/travis/Kilian/electron-to-chromium/master.svg)](https://travis-ci.org/Kilian/electron-to-chromium) [![npm-downloads](https://img.shields.io/npm/dm/electron-to-chromium.svg)](https://www.npmjs.com/package/electron-to-chromium) [![codecov](https://codecov.io/gh/Kilian/electron-to-chromium/branch/master/graph/badge.svg)](https://codecov.io/gh/Kilian/electron-to-chromium)[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FKilian%2Felectron-to-chromium.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FKilian%2Felectron-to-chromium?ref=badge_shield)</a></li>
+<li><a href="new-landing-page-backup/node_modules/emoji-regex/LICENSE-MIT.html">LICENSE MIT</a></li>
+<li><a href="new-landing-page-backup/node_modules/emoji-regex/README.html">emoji-regex [![Build status](https://travis-ci.org/mathiasbynens/emoji-regex.svg?branch=main)](https://travis-ci.org/mathiasbynens/emoji-regex)</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-abstract/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-abstract/README.html">es-abstract &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-define-property/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-define-property/README.html">es-define-property &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-errors/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-errors/README.html">es-errors &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-iterator-helpers/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-iterator-helpers/README.html">es-iterator-helpers &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-object-atoms/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-object-atoms/README.html">es-object-atoms &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-set-tostringtag/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-set-tostringtag/README.html">es-set-tostringtag &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-shim-unscopables/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-shim-unscopables/README.html">es-shim-unscopables &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-to-primitive/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/es-to-primitive/README.html">es-to-primitive &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/escalade/readme.html">escalade [![CI](https://github.com/lukeed/escalade/workflows/CI/badge.svg)](https://github.com/lukeed/escalade/actions) [![licenses](https://licenses.dev/b/npm/escalade)](https://licenses.dev/npm/escalade) [![codecov](https://badgen.now.sh/codecov/c/github/lukeed/escalade)](https://codecov.io/gh/lukeed/escalade)</a></li>
+<li><a href="new-landing-page-backup/node_modules/escape-string-regexp/readme.html">escape-string-regexp [![Build Status](https://travis-ci.org/sindresorhus/escape-string-regexp.svg?branch=master)](https://travis-ci.org/sindresorhus/escape-string-regexp)</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-import-resolver-node/node_modules/debug/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-import-resolver-node/node_modules/debug/README.html">debug</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-import-resolver-node/README.html">eslint-import-resolver-node</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-import-resolver-typescript/README.html">eslint-import-resolver-typescript</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-module-utils/CHANGELOG.html">Change Log</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-module-utils/node_modules/debug/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-module-utils/node_modules/debug/README.html">debug</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/CHANGELOG.html">Change Log</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/consistent-type-specifier-style.html">import/consistent-type-specifier-style</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/default.html">import/default</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/dynamic-import-chunkname.html">import/dynamic-import-chunkname</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/enforce-node-protocol-usage.html">import/enforce-node-protocol-usage</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/export.html">import/export</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/exports-last.html">import/exports-last</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/extensions.html">import/extensions</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/first.html">import/first</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/group-exports.html">import/group-exports</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/imports-first.html">import/imports-first</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/max-dependencies.html">import/max-dependencies</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/named.html">import/named</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/namespace.html">import/namespace</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/newline-after-import.html">import/newline-after-import</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-absolute-path.html">import/no-absolute-path</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-amd.html">import/no-amd</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-anonymous-default-export.html">import/no-anonymous-default-export</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-commonjs.html">import/no-commonjs</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-cycle.html">import/no-cycle</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-default-export.html">import/no-default-export</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-deprecated.html">import/no-deprecated</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-duplicates.html">import/no-duplicates</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-dynamic-require.html">import/no-dynamic-require</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-empty-named-blocks.html">import/no-empty-named-blocks</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-extraneous-dependencies.html">import/no-extraneous-dependencies</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-import-module-exports.html">import/no-import-module-exports</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-internal-modules.html">import/no-internal-modules</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-mutable-exports.html">import/no-mutable-exports</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-named-as-default-member.html">import/no-named-as-default-member</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-named-as-default.html">import/no-named-as-default</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-named-default.html">import/no-named-default</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-named-export.html">import/no-named-export</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-namespace.html">import/no-namespace</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-nodejs-modules.html">import/no-nodejs-modules</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-relative-packages.html">import/no-relative-packages</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-relative-parent-imports.html">import/no-relative-parent-imports</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-restricted-paths.html">import/no-restricted-paths</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-self-import.html">import/no-self-import</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-unassigned-import.html">import/no-unassigned-import</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-unresolved.html">import/no-unresolved</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-unused-modules.html">import/no-unused-modules</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-useless-path-segments.html">import/no-useless-path-segments</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/no-webpack-loader-syntax.html">import/no-webpack-loader-syntax</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/order.html">import/order</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/prefer-default-export.html">import/prefer-default-export</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/docs/rules/unambiguous.html">import/unambiguous</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/memo-parser/README.html">eslint-plugin-import/memo-parser</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/node_modules/debug/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/node_modules/debug/README.html">debug</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/node_modules/semver/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/README.html">eslint-plugin-import</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-import/SECURITY.html">Security Policy</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/accessible-emoji.html">jsx-a11y/accessible-emoji</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/alt-text.html">jsx-a11y/alt-text</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/anchor-ambiguous-text.html">jsx-a11y/anchor-ambiguous-text</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/anchor-has-content.html">jsx-a11y/anchor-has-content</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/anchor-is-valid.html">jsx-a11y/anchor-is-valid</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/aria-activedescendant-has-tabindex.html">jsx-a11y/aria-activedescendant-has-tabindex</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/aria-props.html">jsx-a11y/aria-props</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/aria-proptypes.html">jsx-a11y/aria-proptypes</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/aria-role.html">jsx-a11y/aria-role</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/aria-unsupported-elements.html">jsx-a11y/aria-unsupported-elements</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/autocomplete-valid.html">jsx-a11y/autocomplete-valid</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/click-events-have-key-events.html">jsx-a11y/click-events-have-key-events</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/control-has-associated-label.html">jsx-a11y/control-has-associated-label</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/heading-has-content.html">jsx-a11y/heading-has-content</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/html-has-lang.html">jsx-a11y/html-has-lang</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/iframe-has-title.html">jsx-a11y/iframe-has-title</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/img-redundant-alt.html">jsx-a11y/img-redundant-alt</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/interactive-supports-focus.html">jsx-a11y/interactive-supports-focus</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/label-has-associated-control.html">jsx-a11y/label-has-associated-control</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/label-has-for.html">jsx-a11y/label-has-for</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/lang.html">jsx-a11y/lang</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/media-has-caption.html">jsx-a11y/media-has-caption</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/mouse-events-have-key-events.html">jsx-a11y/mouse-events-have-key-events</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-access-key.html">jsx-a11y/no-access-key</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-aria-hidden-on-focusable.html">jsx-a11y/no-aria-hidden-on-focusable</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-autofocus.html">jsx-a11y/no-autofocus</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-distracting-elements.html">jsx-a11y/no-distracting-elements</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-interactive-element-to-noninteractive-role.html">jsx-a11y/no-interactive-element-to-noninteractive-role</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-noninteractive-element-interactions.html">jsx-a11y/no-noninteractive-element-interactions</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-noninteractive-element-to-interactive-role.html">jsx-a11y/no-noninteractive-element-to-interactive-role</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-noninteractive-tabindex.html">jsx-a11y/no-noninteractive-tabindex</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-onchange.html">jsx-a11y/no-onchange</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-redundant-roles.html">jsx-a11y/no-redundant-roles</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/no-static-element-interactions.html">jsx-a11y/no-static-element-interactions</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/prefer-tag-over-role.html">jsx-a11y/prefer-tag-over-role</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/role-has-required-aria-props.html">jsx-a11y/role-has-required-aria-props</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/role-supports-aria-props.html">jsx-a11y/role-supports-aria-props</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/scope.html">jsx-a11y/scope</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/docs/rules/tabindex-no-positive.html">jsx-a11y/tabindex-no-positive</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-jsx-a11y/README.html">eslint-plugin-jsx-a11y</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-react-hooks/README.html">`eslint-plugin-react-hooks`</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-react/node_modules/resolve/readme.html">resolve &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-react/node_modules/resolve/SECURITY.html">Security</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-react/node_modules/semver/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-plugin-react/README.html">`eslint-plugin-react` &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-scope/README.html">ESLint Scope</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint-visitor-keys/README.html">eslint-visitor-keys</a></li>
+<li><a href="new-landing-page-backup/node_modules/eslint/README.html">ESLint</a></li>
+<li><a href="new-landing-page-backup/node_modules/espree/README.html">Espree</a></li>
+<li><a href="new-landing-page-backup/node_modules/esquery/license.html">license</a></li>
+<li><a href="new-landing-page-backup/node_modules/esquery/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/esrecurse/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/estraverse/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/esutils/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/fast-deep-equal/README.html">fast-deep-equal</a></li>
+<li><a href="new-landing-page-backup/node_modules/fast-glob/node_modules/glob-parent/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/fast-glob/node_modules/glob-parent/README.html">glob-parent</a></li>
+<li><a href="new-landing-page-backup/node_modules/fast-glob/README.html">fast-glob</a></li>
+<li><a href="new-landing-page-backup/node_modules/fast-json-stable-stringify/README.html">fast-json-stable-stringify</a></li>
+<li><a href="new-landing-page-backup/node_modules/fast-levenshtein/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/fast-levenshtein/README.html">fast-levenshtein - Levenshtein algorithm in Javascript</a></li>
+<li><a href="new-landing-page-backup/node_modules/fastq/README.html">fastq</a></li>
+<li><a href="new-landing-page-backup/node_modules/fastq/SECURITY.html">Security Policy</a></li>
+<li><a href="new-landing-page-backup/node_modules/file-entry-cache/README.html">file-entry-cache</a></li>
+<li><a href="new-landing-page-backup/node_modules/fill-range/README.html">fill-range [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=W8YFZ425KND68) [![NPM version](https://img.shields.io/npm/v/fill-range.svg?style=flat)](https://www.npmjs.com/package/fill-range) [![NPM monthly downloads](https://img.shields.io/npm/dm/fill-range.svg?style=flat)](https://npmjs.org/package/fill-range) [![NPM total downloads](https://img.shields.io/npm/dt/fill-range.svg?style=flat)](https://npmjs.org/package/fill-range) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/fill-range.svg?style=flat&amp;label=Travis)](https://travis-ci.org/jonschlinkert/fill-range)</a></li>
+<li><a href="new-landing-page-backup/node_modules/find-up/readme.html">find-up [![Build Status](https://travis-ci.com/sindresorhus/find-up.svg?branch=master)](https://travis-ci.com/github/sindresorhus/find-up)</a></li>
+<li><a href="new-landing-page-backup/node_modules/flat-cache/changelog.html">flat-cache - Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/flat-cache/README.html">flat-cache</a></li>
+<li><a href="new-landing-page-backup/node_modules/flatted/README.html">flatted</a></li>
+<li><a href="new-landing-page-backup/node_modules/for-each/.github/SECURITY.html">Security</a></li>
+<li><a href="new-landing-page-backup/node_modules/for-each/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/for-each/README.html">for-each [![build status][1]][2]</a></li>
+<li><a href="new-landing-page-backup/node_modules/foreground-child/README.html">foreground-child</a></li>
+<li><a href="new-landing-page-backup/node_modules/fraction.js/README.html">Fraction.js - ℚ in JavaScript</a></li>
+<li><a href="new-landing-page-backup/node_modules/framer-motion/client/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/framer-motion/dom/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/framer-motion/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/framer-motion/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/function-bind/.github/SECURITY.html">Security</a></li>
+<li><a href="new-landing-page-backup/node_modules/function-bind/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/function-bind/README.html">function-bind &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/function.prototype.name/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/function.prototype.name/README.html">function.prototype.name &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/functions-have-names/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/functions-have-names/README.html">functions-have-names &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/generator-function/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/generator-function/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/generator-function/README.html">generator-function &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/get-intrinsic/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/get-intrinsic/README.html">get-intrinsic &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/get-proto/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/get-proto/README.html">get-proto &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/get-symbol-description/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/get-symbol-description/README.html">get-symbol-description &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/get-tsconfig/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/glob-parent/README.html">glob-parent</a></li>
+<li><a href="new-landing-page-backup/node_modules/glob/node_modules/brace-expansion/README.html">brace-expansion</a></li>
+<li><a href="new-landing-page-backup/node_modules/glob/node_modules/minimatch/README.html">minimatch</a></li>
+<li><a href="new-landing-page-backup/node_modules/glob/README.html">Glob</a></li>
+<li><a href="new-landing-page-backup/node_modules/globals/readme.html">globals</a></li>
+<li><a href="new-landing-page-backup/node_modules/globalthis/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/globalthis/README.html">globalThis &lt;sup&gt;[![Version Badge][npm-version-svg]][npm-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/gopd/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/gopd/README.html">gopd &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/graphemer/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/graphemer/README.html">Graphemer: Unicode Character Splitter 🪓</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-bigints/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-bigints/README.html">has-bigints &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-flag/readme.html">has-flag [![Build Status](https://travis-ci.org/sindresorhus/has-flag.svg?branch=master)](https://travis-ci.org/sindresorhus/has-flag)</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-property-descriptors/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-property-descriptors/README.html">has-property-descriptors &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-proto/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-proto/README.html">has-proto &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-symbols/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-symbols/README.html">has-symbols &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-tostringtag/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/has-tostringtag/README.html">has-tostringtag &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/hasown/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/hasown/README.html">hasown &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/ignore/README.html">ignore</a></li>
+<li><a href="new-landing-page-backup/node_modules/import-fresh/readme.html">import-fresh</a></li>
+<li><a href="new-landing-page-backup/node_modules/imurmurhash/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/internal-slot/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/internal-slot/README.html">internal-slot &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-array-buffer/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-array-buffer/README.html">is-array-buffer &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-async-function/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-async-function/README.html">is-async-function &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-bigint/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-bigint/README.html">is-bigint &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-binary-path/readme.html">is-binary-path [![Build Status](https://travis-ci.org/sindresorhus/is-binary-path.svg?branch=master)](https://travis-ci.org/sindresorhus/is-binary-path)</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-boolean-object/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-boolean-object/README.html">is-boolean-object &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-bun-module/README.html">is-bun-module</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-callable/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-callable/README.html">is-callable &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-core-module/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-core-module/README.html">is-core-module &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-data-view/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-data-view/README.html">is-data-view &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-date-object/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-date-object/README.html">is-date-object &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-extglob/README.html">is-extglob [![NPM version](https://img.shields.io/npm/v/is-extglob.svg?style=flat)](https://www.npmjs.com/package/is-extglob) [![NPM downloads](https://img.shields.io/npm/dm/is-extglob.svg?style=flat)](https://npmjs.org/package/is-extglob) [![Build Status](https://img.shields.io/travis/jonschlinkert/is-extglob.svg?style=flat)](https://travis-ci.org/jonschlinkert/is-extglob)</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-finalizationregistry/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-finalizationregistry/README.html">is-finalizationregistry &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-fullwidth-code-point/readme.html">is-fullwidth-code-point [![Build Status](https://travis-ci.org/sindresorhus/is-fullwidth-code-point.svg?branch=master)](https://travis-ci.org/sindresorhus/is-fullwidth-code-point)</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-generator-function/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-generator-function/README.html">is-generator-function &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-glob/README.html">is-glob [![NPM version](https://img.shields.io/npm/v/is-glob.svg?style=flat)](https://www.npmjs.com/package/is-glob) [![NPM monthly downloads](https://img.shields.io/npm/dm/is-glob.svg?style=flat)](https://npmjs.org/package/is-glob) [![NPM total downloads](https://img.shields.io/npm/dt/is-glob.svg?style=flat)](https://npmjs.org/package/is-glob) [![Build Status](https://img.shields.io/github/workflow/status/micromatch/is-glob/dev)](https://github.com/micromatch/is-glob/actions)</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-map/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-map/README.html">is-map &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-negative-zero/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-negative-zero/README.html">is-negative-zero &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-number-object/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-number-object/README.html">is-number-object &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-number/README.html">is-number [![NPM version](https://img.shields.io/npm/v/is-number.svg?style=flat)](https://www.npmjs.com/package/is-number) [![NPM monthly downloads](https://img.shields.io/npm/dm/is-number.svg?style=flat)](https://npmjs.org/package/is-number) [![NPM total downloads](https://img.shields.io/npm/dt/is-number.svg?style=flat)](https://npmjs.org/package/is-number) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/is-number.svg?style=flat&amp;label=Travis)](https://travis-ci.org/jonschlinkert/is-number)</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-regex/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-regex/README.html">is-regex &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-set/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-set/README.html">is-set &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-shared-array-buffer/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-shared-array-buffer/README.html">is-shared-array-buffer &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-string/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-string/README.html">is-string &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-symbol/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-symbol/README.html">is-symbol &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-typed-array/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-typed-array/README.html">is-typed-array &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-weakmap/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-weakmap/README.html">is-weakmap &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-weakref/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-weakref/README.html">is-weakref &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-weakset/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/is-weakset/README.html">is-weakset &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/isarray/README.html">isarray</a></li>
+<li><a href="new-landing-page-backup/node_modules/isexe/README.html">isexe</a></li>
+<li><a href="new-landing-page-backup/node_modules/iterator.prototype/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/iterator.prototype/README.html">iterator.prototype &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/jackspeak/LICENSE.html">Blue Oak Model License</a></li>
+<li><a href="new-landing-page-backup/node_modules/jackspeak/README.html">jackspeak</a></li>
+<li><a href="new-landing-page-backup/node_modules/jiti/README.html">jiti</a></li>
+<li><a href="new-landing-page-backup/node_modules/js-tokens/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/js-tokens/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/js-yaml/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/js-yaml/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/json-buffer/README.html">json-buffer</a></li>
+<li><a href="new-landing-page-backup/node_modules/json-schema-traverse/README.html">json-schema-traverse</a></li>
+<li><a href="new-landing-page-backup/node_modules/json-stable-stringify-without-jsonify/readme.html">json-stable-stringify</a></li>
+<li><a href="new-landing-page-backup/node_modules/json5/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/json5/README.html">JSON5 – JSON for Humans</a></li>
+<li><a href="new-landing-page-backup/node_modules/jsx-ast-utils/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/jsx-ast-utils/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/jsx-ast-utils/README.html">jsx-ast-utils &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/keyv/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/language-subtag-registry/README.html">IANA Language Tags #</a></li>
+<li><a href="new-landing-page-backup/node_modules/language-tags/README.html">IANA Language Tags for JavaScript #</a></li>
+<li><a href="new-landing-page-backup/node_modules/levn/README.html">levn [![Build Status](https://travis-ci.org/gkz/levn.png)](https://travis-ci.org/gkz/levn) &lt;a name="levn" /&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/lilconfig/readme.html">Lilconfig ⚙️</a></li>
+<li><a href="new-landing-page-backup/node_modules/lines-and-columns/README.html">lines-and-columns</a></li>
+<li><a href="new-landing-page-backup/node_modules/locate-path/readme.html">locate-path [![Build Status](https://travis-ci.com/sindresorhus/locate-path.svg?branch=master)](https://travis-ci.com/github/sindresorhus/locate-path)</a></li>
+<li><a href="new-landing-page-backup/node_modules/lodash.merge/README.html">lodash.merge v4.6.2</a></li>
+<li><a href="new-landing-page-backup/node_modules/loose-envify/README.html">loose-envify</a></li>
+<li><a href="new-landing-page-backup/node_modules/lru-cache/README.html">lru-cache</a></li>
+<li><a href="new-landing-page-backup/node_modules/math-intrinsics/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/math-intrinsics/README.html">math-intrinsics &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/merge2/README.html">merge2</a></li>
+<li><a href="new-landing-page-backup/node_modules/micromatch/README.html">micromatch [![NPM version](https://img.shields.io/npm/v/micromatch.svg?style=flat)](https://www.npmjs.com/package/micromatch) [![NPM monthly downloads](https://img.shields.io/npm/dm/micromatch.svg?style=flat)](https://npmjs.org/package/micromatch) [![NPM total downloads](https://img.shields.io/npm/dt/micromatch.svg?style=flat)](https://npmjs.org/package/micromatch)  [![Tests](https://github.com/micromatch/micromatch/actions/workflows/test.yml/badge.svg)](https://github.com/micromatch/micromatch/actions/workflows/test.yml)</a></li>
+<li><a href="new-landing-page-backup/node_modules/minimatch/README.html">minimatch</a></li>
+<li><a href="new-landing-page-backup/node_modules/minimist/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/minimist/README.html">minimist &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/minipass/README.html">minipass</a></li>
+<li><a href="new-landing-page-backup/node_modules/motion-dom/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/motion-utils/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/ms/license.html">license</a></li>
+<li><a href="new-landing-page-backup/node_modules/ms/readme.html">ms</a></li>
+<li><a href="new-landing-page-backup/node_modules/mz/HISTORY.html">HISTORY</a></li>
+<li><a href="new-landing-page-backup/node_modules/mz/README.html">MZ - Modernize node.js</a></li>
+<li><a href="new-landing-page-backup/node_modules/nanoid/README.html">Nano ID</a></li>
+<li><a href="new-landing-page-backup/node_modules/napi-postinstall/README.html">napi-postinstall</a></li>
+<li><a href="new-landing-page-backup/node_modules/natural-compare/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@babel/runtime/README.html">@babel/runtime</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/abort-controller.js.LEGAL.html">abort controller.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/console.js.LEGAL.html">console.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/crypto.js.LEGAL.html">crypto.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/events.js.LEGAL.html">events.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/fetch.js.LEGAL.html">fetch.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/index.js.LEGAL.html">index.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/load.js.LEGAL.html">load.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/stream.js.LEGAL.html">stream.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/timers.js.LEGAL.html">timers.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/@edge-runtime/primitives/url.js.LEGAL.html">url.js.LEGAL</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/react-is/README.html">`react-is`</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/react-refresh/README.html">react-refresh</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/dist/compiled/regenerator-runtime/README.html">regenerator-runtime</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/license.html">license</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/node_modules/postcss/README.html">PostCSS</a></li>
+<li><a href="new-landing-page-backup/node_modules/next/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/node-releases/README.html">Node.js releases data</a></li>
+<li><a href="new-landing-page-backup/node_modules/normalize-path/README.html">normalize-path [![NPM version](https://img.shields.io/npm/v/normalize-path.svg?style=flat)](https://www.npmjs.com/package/normalize-path) [![NPM monthly downloads](https://img.shields.io/npm/dm/normalize-path.svg?style=flat)](https://npmjs.org/package/normalize-path) [![NPM total downloads](https://img.shields.io/npm/dt/normalize-path.svg?style=flat)](https://npmjs.org/package/normalize-path) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/normalize-path.svg?style=flat&amp;label=Travis)](https://travis-ci.org/jonschlinkert/normalize-path)</a></li>
+<li><a href="new-landing-page-backup/node_modules/normalize-range/readme.html">normalize-range</a></li>
+<li><a href="new-landing-page-backup/node_modules/object-assign/readme.html">object-assign [![Build Status](https://travis-ci.org/sindresorhus/object-assign.svg?branch=master)](https://travis-ci.org/sindresorhus/object-assign)</a></li>
+<li><a href="new-landing-page-backup/node_modules/object-hash/readme.html">object-hash</a></li>
+<li><a href="new-landing-page-backup/node_modules/object-inspect/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/object-inspect/readme.html">object-inspect &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/object-keys/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/object-keys/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.assign/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.assign/README.html">object.assign &lt;sup&gt;[![Version Badge][npm-version-svg]][npm-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.entries/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.entries/README.html">object.entries &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.fromentries/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.fromentries/README.html">object.fromentries &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.groupby/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.groupby/README.html">object.groupby &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.values/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/object.values/README.html">object.values &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/optionator/CHANGELOG.html">0.9.0</a></li>
+<li><a href="new-landing-page-backup/node_modules/optionator/README.html">Optionator</a></li>
+<li><a href="new-landing-page-backup/node_modules/own-keys/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/own-keys/README.html">own-keys &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/p-limit/readme.html">p-limit</a></li>
+<li><a href="new-landing-page-backup/node_modules/p-locate/readme.html">p-locate [![Build Status](https://travis-ci.com/sindresorhus/p-locate.svg?branch=master)](https://travis-ci.com/github/sindresorhus/p-locate)</a></li>
+<li><a href="new-landing-page-backup/node_modules/package-json-from-dist/LICENSE.html">Blue Oak Model License</a></li>
+<li><a href="new-landing-page-backup/node_modules/package-json-from-dist/README.html">package-json-from-dist</a></li>
+<li><a href="new-landing-page-backup/node_modules/parent-module/readme.html">parent-module [![Build Status](https://travis-ci.org/sindresorhus/parent-module.svg?branch=master)](https://travis-ci.org/sindresorhus/parent-module)</a></li>
+<li><a href="new-landing-page-backup/node_modules/path-exists/readme.html">path-exists [![Build Status](https://travis-ci.org/sindresorhus/path-exists.svg?branch=master)](https://travis-ci.org/sindresorhus/path-exists)</a></li>
+<li><a href="new-landing-page-backup/node_modules/path-key/readme.html">path-key [![Build Status](https://travis-ci.org/sindresorhus/path-key.svg?branch=master)](https://travis-ci.org/sindresorhus/path-key)</a></li>
+<li><a href="new-landing-page-backup/node_modules/path-parse/README.html">path-parse [![Build Status](https://travis-ci.org/jbgutierrez/path-parse.svg?branch=master)](https://travis-ci.org/jbgutierrez/path-parse)</a></li>
+<li><a href="new-landing-page-backup/node_modules/path-scurry/LICENSE.html">Blue Oak Model License</a></li>
+<li><a href="new-landing-page-backup/node_modules/path-scurry/README.html">path-scurry</a></li>
+<li><a href="new-landing-page-backup/node_modules/picocolors/README.html">picocolors</a></li>
+<li><a href="new-landing-page-backup/node_modules/picomatch/CHANGELOG.html">Release history</a></li>
+<li><a href="new-landing-page-backup/node_modules/picomatch/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/pify/readme.html">pify [![Build Status](https://travis-ci.org/sindresorhus/pify.svg?branch=master)](https://travis-ci.org/sindresorhus/pify)</a></li>
+<li><a href="new-landing-page-backup/node_modules/pirates/README.html">Pirates [![Coverage][codecov-badge]][codecov-link]</a></li>
+<li><a href="new-landing-page-backup/node_modules/possible-typed-array-names/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/possible-typed-array-names/README.html">possible-typed-array-names &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-import/README.html">postcss-import</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-js/README.html">PostCSS JS</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-load-config/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-nested/README.html">PostCSS Nested</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-selector-parser/API.html">API Documentation</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-selector-parser/CHANGELOG.html">6.1.2</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-selector-parser/README.html">postcss-selector-parser [![test](https://github.com/postcss/postcss-selector-parser/actions/workflows/test.yml/badge.svg)](https://github.com/postcss/postcss-selector-parser/actions/workflows/test.yml)</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss-value-parser/README.html">postcss-value-parser</a></li>
+<li><a href="new-landing-page-backup/node_modules/postcss/README.html">PostCSS</a></li>
+<li><a href="new-landing-page-backup/node_modules/prelude-ls/CHANGELOG.html">1.2.1</a></li>
+<li><a href="new-landing-page-backup/node_modules/prelude-ls/README.html">prelude.ls [![Build Status](https://travis-ci.org/gkz/prelude-ls.png?branch=master)](https://travis-ci.org/gkz/prelude-ls)</a></li>
+<li><a href="new-landing-page-backup/node_modules/prop-types/README.html">prop-types [![Build Status](https://travis-ci.com/facebook/prop-types.svg?branch=main)](https://travis-ci.org/facebook/prop-types)</a></li>
+<li><a href="new-landing-page-backup/node_modules/punycode/LICENSE-MIT.html">LICENSE MIT</a></li>
+<li><a href="new-landing-page-backup/node_modules/punycode/README.html">Punycode.js [![punycode on npm](https://img.shields.io/npm/v/punycode)](https://www.npmjs.com/package/punycode) [![](https://data.jsdelivr.com/v1/package/npm/punycode/badge)](https://www.jsdelivr.com/package/npm/punycode)</a></li>
+<li><a href="new-landing-page-backup/node_modules/queue-microtask/README.html">queue-microtask [![ci][ci-image]][ci-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url]</a></li>
+<li><a href="new-landing-page-backup/node_modules/react-dom/README.html">`react-dom`</a></li>
+<li><a href="new-landing-page-backup/node_modules/react-is/README.html">`react-is`</a></li>
+<li><a href="new-landing-page-backup/node_modules/react/README.html">`react`</a></li>
+<li><a href="new-landing-page-backup/node_modules/read-cache/README.html">read-cache [![Build Status](https://travis-ci.org/TrySound/read-cache.svg?branch=master)](https://travis-ci.org/TrySound/read-cache)</a></li>
+<li><a href="new-landing-page-backup/node_modules/readdirp/README.html">readdirp [![Weekly downloads](https://img.shields.io/npm/dw/readdirp.svg)](https://github.com/paulmillr/readdirp)</a></li>
+<li><a href="new-landing-page-backup/node_modules/reflect.getprototypeof/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/reflect.getprototypeof/README.html">reflect.getprototypeof &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/regexp.prototype.flags/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/regexp.prototype.flags/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/resolve-from/readme.html">resolve-from [![Build Status](https://travis-ci.org/sindresorhus/resolve-from.svg?branch=master)](https://travis-ci.org/sindresorhus/resolve-from)</a></li>
+<li><a href="new-landing-page-backup/node_modules/resolve-pkg-maps/README.html">resolve-pkg-maps</a></li>
+<li><a href="new-landing-page-backup/node_modules/resolve/.github/INCIDENT_RESPONSE_PROCESS.html">Incident Response Process for **resolve**</a></li>
+<li><a href="new-landing-page-backup/node_modules/resolve/.github/THREAT_MODEL.html">THREAT MODEL</a></li>
+<li><a href="new-landing-page-backup/node_modules/resolve/readme.html">resolve &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/resolve/SECURITY.html">Security</a></li>
+<li><a href="new-landing-page-backup/node_modules/reusify/README.html">reusify</a></li>
+<li><a href="new-landing-page-backup/node_modules/reusify/SECURITY.html">Security Policy</a></li>
+<li><a href="new-landing-page-backup/node_modules/run-parallel/README.html">run-parallel [![travis][travis-image]][travis-url] [![npm][npm-image]][npm-url] [![downloads][downloads-image]][downloads-url] [![javascript style guide][standard-image]][standard-url]</a></li>
+<li><a href="new-landing-page-backup/node_modules/safe-array-concat/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/safe-array-concat/README.html">safe-array-concat &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/safe-push-apply/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/safe-push-apply/README.html">safe-push-apply &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/safe-regex-test/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/safe-regex-test/README.html">safe-regex-test &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/scheduler/README.html">`scheduler`</a></li>
+<li><a href="new-landing-page-backup/node_modules/semver/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/set-function-length/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/set-function-length/README.html">set-function-length &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/set-function-name/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/set-function-name/README.html">set-function-name &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/set-proto/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/set-proto/README.html">set-proto &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/sharp/README.html">sharp</a></li>
+<li><a href="new-landing-page-backup/node_modules/shebang-command/readme.html">shebang-command [![Build Status](https://travis-ci.org/kevva/shebang-command.svg?branch=master)](https://travis-ci.org/kevva/shebang-command)</a></li>
+<li><a href="new-landing-page-backup/node_modules/shebang-regex/readme.html">shebang-regex [![Build Status](https://travis-ci.org/sindresorhus/shebang-regex.svg?branch=master)](https://travis-ci.org/sindresorhus/shebang-regex)</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel-list/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel-list/README.html">side-channel-list &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel-map/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel-map/README.html">side-channel-map &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel-weakmap/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel-weakmap/README.html">side-channel-weakmap &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/side-channel/README.html">side-channel &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/signal-exit/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/signal-exit/README.html">signal-exit</a></li>
+<li><a href="new-landing-page-backup/node_modules/source-map-js/README.html">Source Map JS</a></li>
+<li><a href="new-landing-page-backup/node_modules/stable-hash/README.html">stable-hash</a></li>
+<li><a href="new-landing-page-backup/node_modules/stop-iteration-iterator/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/stop-iteration-iterator/README.html">stop-iteration-iterator &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/string-width-cjs/node_modules/ansi-regex/readme.html">ansi-regex</a></li>
+<li><a href="new-landing-page-backup/node_modules/string-width-cjs/node_modules/emoji-regex/LICENSE-MIT.html">LICENSE MIT</a></li>
+<li><a href="new-landing-page-backup/node_modules/string-width-cjs/node_modules/emoji-regex/README.html">emoji-regex [![Build status](https://travis-ci.org/mathiasbynens/emoji-regex.svg?branch=master)](https://travis-ci.org/mathiasbynens/emoji-regex)</a></li>
+<li><a href="new-landing-page-backup/node_modules/string-width-cjs/node_modules/strip-ansi/readme.html">strip-ansi [![Build Status](https://travis-ci.org/chalk/strip-ansi.svg?branch=master)](https://travis-ci.org/chalk/strip-ansi)</a></li>
+<li><a href="new-landing-page-backup/node_modules/string-width-cjs/readme.html">string-width</a></li>
+<li><a href="new-landing-page-backup/node_modules/string-width/readme.html">string-width</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.includes/README.html">ES6 `String.prototype.includes` polyfill [![Build status](https://travis-ci.org/mathiasbynens/String.prototype.includes.svg?branch=master)](https://travis-ci.org/mathiasbynens/String.prototype.includes)</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.matchall/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.matchall/README.html">string.prototype.matchall &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.repeat/LICENSE-MIT.html">LICENSE MIT</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.repeat/README.html">ES6 `String.prototype.repeat` polyfill [![Build status](https://travis-ci.org/mathiasbynens/String.prototype.repeat.svg?branch=master)](https://travis-ci.org/mathiasbynens/String.prototype.repeat)</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.trim/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.trim/README.html">String.prototype.trim &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.trimend/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.trimend/README.html">String.prototype.trimEnd &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.trimstart/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/string.prototype.trimstart/README.html">String.prototype.trimStart &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/strip-ansi-cjs/node_modules/ansi-regex/readme.html">ansi-regex</a></li>
+<li><a href="new-landing-page-backup/node_modules/strip-ansi-cjs/readme.html">strip-ansi [![Build Status](https://travis-ci.org/chalk/strip-ansi.svg?branch=master)](https://travis-ci.org/chalk/strip-ansi)</a></li>
+<li><a href="new-landing-page-backup/node_modules/strip-ansi/readme.html">strip-ansi</a></li>
+<li><a href="new-landing-page-backup/node_modules/strip-bom/readme.html">strip-bom [![Build Status](https://travis-ci.org/sindresorhus/strip-bom.svg?branch=master)](https://travis-ci.org/sindresorhus/strip-bom)</a></li>
+<li><a href="new-landing-page-backup/node_modules/strip-json-comments/readme.html">strip-json-comments [![Build Status](https://travis-ci.com/sindresorhus/strip-json-comments.svg?branch=master)](https://travis-ci.com/github/sindresorhus/strip-json-comments)</a></li>
+<li><a href="new-landing-page-backup/node_modules/styled-jsx/license.html">license</a></li>
+<li><a href="new-landing-page-backup/node_modules/styled-jsx/readme.html">styled-jsx</a></li>
+<li><a href="new-landing-page-backup/node_modules/sucrase/README.html">Sucrase</a></li>
+<li><a href="new-landing-page-backup/node_modules/supports-color/readme.html">supports-color [![Build Status](https://travis-ci.org/chalk/supports-color.svg?branch=master)](https://travis-ci.org/chalk/supports-color)</a></li>
+<li><a href="new-landing-page-backup/node_modules/supports-preserve-symlinks-flag/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/supports-preserve-symlinks-flag/README.html">node-supports-preserve-symlinks-flag &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/lib/postcss-plugins/nesting/README.html">tailwindcss/nesting</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/lib/value-parser/README.html">postcss-value-parser (forked + inlined)</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/node_modules/fast-glob/node_modules/glob-parent/CHANGELOG.html">CHANGELOG</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/node_modules/fast-glob/node_modules/glob-parent/README.html">glob-parent</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/node_modules/fast-glob/README.html">fast-glob</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/src/postcss-plugins/nesting/README.html">tailwindcss/nesting</a></li>
+<li><a href="new-landing-page-backup/node_modules/tailwindcss/src/value-parser/README.html">postcss-value-parser (forked + inlined)</a></li>
+<li><a href="new-landing-page-backup/node_modules/thenify-all/History.html">History</a></li>
+<li><a href="new-landing-page-backup/node_modules/thenify-all/README.html">thenify-all</a></li>
+<li><a href="new-landing-page-backup/node_modules/thenify/History.html">History</a></li>
+<li><a href="new-landing-page-backup/node_modules/thenify/README.html">thenify</a></li>
+<li><a href="new-landing-page-backup/node_modules/tinyglobby/node_modules/fdir/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/tinyglobby/node_modules/picomatch/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/tinyglobby/README.html">tinyglobby</a></li>
+<li><a href="new-landing-page-backup/node_modules/to-regex-range/README.html">to-regex-range [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=W8YFZ425KND68) [![NPM version](https://img.shields.io/npm/v/to-regex-range.svg?style=flat)](https://www.npmjs.com/package/to-regex-range) [![NPM monthly downloads](https://img.shields.io/npm/dm/to-regex-range.svg?style=flat)](https://npmjs.org/package/to-regex-range) [![NPM total downloads](https://img.shields.io/npm/dt/to-regex-range.svg?style=flat)](https://npmjs.org/package/to-regex-range) [![Linux Build Status](https://img.shields.io/travis/micromatch/to-regex-range.svg?style=flat&amp;label=Travis)](https://travis-ci.org/micromatch/to-regex-range)</a></li>
+<li><a href="new-landing-page-backup/node_modules/ts-api-utils/LICENSE.html">MIT License</a></li>
+<li><a href="new-landing-page-backup/node_modules/ts-api-utils/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/ts-interface-checker/README.html">ts-interface-checker</a></li>
+<li><a href="new-landing-page-backup/node_modules/tsconfig-paths/CHANGELOG.html">Change Log</a></li>
+<li><a href="new-landing-page-backup/node_modules/tsconfig-paths/README.html">tsconfig-paths</a></li>
+<li><a href="new-landing-page-backup/node_modules/tslib/CopyrightNotice.html">CopyrightNotice</a></li>
+<li><a href="new-landing-page-backup/node_modules/tslib/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/tslib/README.html">tslib</a></li>
+<li><a href="new-landing-page-backup/node_modules/tslib/SECURITY.html">SECURITY</a></li>
+<li><a href="new-landing-page-backup/node_modules/tslib/tslib.es6.html">tslib.es6</a></li>
+<li><a href="new-landing-page-backup/node_modules/tslib/tslib.html">tslib</a></li>
+<li><a href="new-landing-page-backup/node_modules/type-check/README.html">type-check [![Build Status](https://travis-ci.org/gkz/type-check.png?branch=master)](https://travis-ci.org/gkz/type-check)</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-buffer/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-buffer/README.html">typed-array-buffer &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-byte-length/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-byte-length/README.html">typed-array-byte-offset &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-byte-offset/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-byte-offset/README.html">typed-array-byte-offset &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-length/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/typed-array-length/README.html">typed-array-length &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/typescript/LICENSE.html">LICENSE</a></li>
+<li><a href="new-landing-page-backup/node_modules/typescript/README.html">TypeScript</a></li>
+<li><a href="new-landing-page-backup/node_modules/typescript/SECURITY.html">SECURITY</a></li>
+<li><a href="new-landing-page-backup/node_modules/typescript/ThirdPartyNoticeText.html">ThirdPartyNoticeText</a></li>
+<li><a href="new-landing-page-backup/node_modules/unbox-primitive/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/unbox-primitive/README.html">unbox-primitive &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/undici-types/README.html">undici-types</a></li>
+<li><a href="new-landing-page-backup/node_modules/unrs-resolver/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/update-browserslist-db/README.html">Update Browserslist DB</a></li>
+<li><a href="new-landing-page-backup/node_modules/uri-js/README.html">URI.js</a></li>
+<li><a href="new-landing-page-backup/node_modules/util-deprecate/History.html">History</a></li>
+<li><a href="new-landing-page-backup/node_modules/util-deprecate/README.html">README</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-boxed-primitive/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-boxed-primitive/README.html">which-boxed-primitive &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-builtin-type/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-builtin-type/README.html">which-builtin-type &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-collection/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-collection/README.html">which-collection &lt;sup&gt;[![Version Badge][2]][1]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-typed-array/CHANGELOG.html">Changelog</a></li>
+<li><a href="new-landing-page-backup/node_modules/which-typed-array/README.html">which-typed-array &lt;sup&gt;[![Version Badge][npm-version-svg]][package-url]&lt;/sup&gt;</a></li>
+<li><a href="new-landing-page-backup/node_modules/which/CHANGELOG.html">Changes</a></li>
+<li><a href="new-landing-page-backup/node_modules/which/README.html">which</a></li>
+<li><a href="new-landing-page-backup/node_modules/word-wrap/README.html">word-wrap [![NPM version](https://img.shields.io/npm/v/word-wrap.svg?style=flat)](https://www.npmjs.com/package/word-wrap) [![NPM monthly downloads](https://img.shields.io/npm/dm/word-wrap.svg?style=flat)](https://npmjs.org/package/word-wrap) [![NPM total downloads](https://img.shields.io/npm/dt/word-wrap.svg?style=flat)](https://npmjs.org/package/word-wrap) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/word-wrap.svg?style=flat&amp;label=Travis)](https://travis-ci.org/jonschlinkert/word-wrap)</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi-cjs/node_modules/ansi-regex/readme.html">ansi-regex</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi-cjs/node_modules/emoji-regex/LICENSE-MIT.html">LICENSE MIT</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi-cjs/node_modules/emoji-regex/README.html">emoji-regex [![Build status](https://travis-ci.org/mathiasbynens/emoji-regex.svg?branch=master)](https://travis-ci.org/mathiasbynens/emoji-regex)</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi-cjs/node_modules/string-width/readme.html">string-width</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi-cjs/node_modules/strip-ansi/readme.html">strip-ansi [![Build Status](https://travis-ci.org/chalk/strip-ansi.svg?branch=master)](https://travis-ci.org/chalk/strip-ansi)</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi-cjs/readme.html">wrap-ansi [![Build Status](https://travis-ci.com/chalk/wrap-ansi.svg?branch=master)](https://travis-ci.com/chalk/wrap-ansi) [![Coverage Status](https://coveralls.io/repos/github/chalk/wrap-ansi/badge.svg?branch=master)](https://coveralls.io/github/chalk/wrap-ansi?branch=master)</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi/node_modules/ansi-styles/readme.html">ansi-styles</a></li>
+<li><a href="new-landing-page-backup/node_modules/wrap-ansi/readme.html">wrap-ansi</a></li>
+<li><a href="new-landing-page-backup/node_modules/yocto-queue/readme.html">yocto-queue [![](https://badgen.net/bundlephobia/minzip/yocto-queue)](https://bundlephobia.com/result?p=yocto-queue)</a></li>
+<li><a href="new-landing-page-backup/README.html">FrankX.AI Landing Page 🚀</a></li>
+<li><a href="NEXTJS-SKILLS-GUIDE.html">FrankX Next.js Skills Guide</a></li>
+<li><a href="products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="public/.well-known/security.html">security</a></li>
+<li><a href="public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="public/humans.html">humans</a></li>
+<li><a href="public/robots.html">robots</a></li>
+<li><a href="public/team-preview.html">FrankX AI Team - Preview</a></li>
+<li><a href="public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="QUICKSTART.html">FrankX v3 - Quick Start Guide</a></li>
+<li><a href="README.html">frankx.ai Marketing Site</a></li>
+<li><a href="reports/weekly/MANUAL_STEPS.html">Manual Steps Required - Weekly Recap Nov 7, 2025</a></li>
+<li><a href="reports/weekly/recap-2025-11-07.html">Weekly Recap - Week of November 7, 2025</a></li>
+<li><a href="SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp; Marketing Optimization Strategy</a></li>
+<li><a href="ULTIMATE-WORKFLOW-COMPLETE.html">ULTIMATE-WORKFLOW-COMPLETE.md</a></li>
+<li><a href="ULTIMATE-WORKFLOW-COMPLETE.html">🚀 FrankX Ultimate Content Workflow - COMPLETE SYSTEM</a></li>
+<li><a href="UX_UI_ANALYSIS_REPORT.html">FrankX.AI Comprehensive UX/UI Analysis Report</a></li>
+<li><a href="v2/AGENT_TEAM_DEPLOYMENT.html">FrankX.AI V2 - Specialized Agent Team Deployment</a></li>
+<li><a href="v2/HOMEPAGE_REDESIGN_BRIEF.html">Homepage Redesign Brief - V2</a></li>
+<li><a href="v2/README.html">FrankX.AI V2 Transformation</a></li>
+<li><a href="v2/V2_PROGRESS_REPORT.html">FrankX.ai V2 Transformation - Progress Report</a></li>
+<li><a href="VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp; COPY FRAMEWORKS</a></li>
+<li><a href="vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="website-exploration.html">FrankX.AI Website Exploration</a></li>
+<li><a href="WORLD_SUMMIT_AI_STATUS.html">World Summit AI Deployment Status</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>CONTENT-CONSOLIDATION-PLAN.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>🎯 FrankX Content Consolidation &amp; Architecture</h1>
+<p><strong>Problem:</strong> Content fragmented across 3 locations
+<strong>Solution:</strong> Single source of truth with clear publishing pipeline</p>
+<hr>
+<h2>📊 Current State (Fragmented)</h2>
+<pre><code>❌ CURRENT MESS:
+
+/FrankX/
+├── content-universe/          ← Books, intake (NEW, we just created)
+├── content/                   ← Existing content (UNKNOWN what&#39;s here)
+└── FrankX.AI - Vercel Website/
+    └── content/               ← What Vercel reads (DUPLICATE?)
+
+PROBLEMS:
+- Three content folders!
+- Unclear which is source of truth
+- Potential duplication
+- No clear publishing flow
+</code></pre>
+<hr>
+<h2>✅ Proposed Architecture (Clean)</h2>
+<pre><code>SINGLE SOURCE OF TRUTH:
+
+/FrankX/
+├── content/                           ← ALL CONTENT HERE
+│   │
+│   ├── 0-intake/                      ← Drop zone (any AI assistant)
+│   │   ├── to-classify/
+│   │   └── classified/
+│   │
+│   ├── articles/                      ← Blog posts (PUBLISHED)
+│   │   ├── ai-tech/
+│   │   │   ├── 2024-01-15-enterprise-ai.md
+│   │   │   └── ...
+│   │   ├── conscious/
+│   │   ├── creator/
+│   │   ├── music/
+│   │   └── personal-dev/
+│   │
+│   ├── books/                         ← Book projects
+│   │   ├── _shared/                   ← Templates, resources
+│   │   ├── year-of-creator/
+│   │   │   ├── final/
+│   │   │   │   ├── chapter-01.md
+│   │   │   │   └── ...
+│   │   │   ├── drafts/
+│   │   │   └── metadata.json
+│   │   ├── dragon-awakening/
+│   │   └── BOOK-DASHBOARD.md
+│   │
+│   ├── social/                        ← Social media content
+│   │   ├── twitter/
+│   │   ├── linkedin/
+│   │   └── scheduled/
+│   │
+│   ├── courses/                       ← Course lessons
+│   │   ├── ai-music-academy/
+│   │   └── creator-masterclass/
+│   │
+│   ├── drafts/                        ← Work in progress
+│   │   ├── articles/
+│   │   ├── books/
+│   │   └── social/
+│   │
+│   └── _docs/                         ← System documentation
+│       ├── README.md
+│       ├── INTAKE-SYSTEM.md
+│       ├── PUBLISHING-WORKFLOW.md
+│       └── agents/
+│           ├── classifier.md
+│           ├── article-editor.md
+│           └── book-integrator.md
+│
+└── FrankX.AI - Vercel Website/
+    ├── app/
+    │   ├── blog/
+    │   │   └── [slug]/
+    │   │       └── page.tsx          ← Reads from ../../content/articles/
+    │   └── books/
+    │       └── [slug]/
+    │           └── page.tsx           ← Reads from ../../content/books/
+    │
+    └── lib/
+        └── content-loader.ts          ← Loads from ../../content/
+
+NO DUPLICATION - Vercel reads directly from /content/
+</code></pre>
+<hr>
+<h2>🔄 Publishing Pipeline</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    CONTENT FLOW                                  │
+└─────────────────────────────────────────────────────────────────┘
+
+AI ASSISTANT (Claude, ChatGPT, Gemini)
+    │
+    ▼
+SAVE AS .MD FILE
+    │
+    ▼
+DROP IN: /content/0-intake/to-classify/
+    │
+    ▼
+RUN: /classify-content
+    │
+    ├──────────┬──────────┬──────────┐
+    ▼          ▼          ▼          ▼
+ARTICLE    BOOK      SOCIAL    COURSE
+    │          │          │          │
+    ▼          ▼          ▼          ▼
+/content/  /content/  /content/  /content/
+articles/  books/     social/    courses/
+    │          │          │          │
+    │          │          │          │
+    ├──────────┴──────────┴──────────┘
+    │
+    ▼
+VERCEL WEBSITE READS DIRECTLY
+    │
+    ├─── Next.js app/blog/ reads articles/
+    ├─── Next.js app/books/ reads books/
+    └─── API routes for social scheduling
+    │
+    ▼
+GIT PUSH
+    │
+    ▼
+AUTO-DEPLOY TO frankx.com
+</code></pre>
+<hr>
+<h2>🛠️ Technical Implementation</h2>
+<h3>Vercel Website Reads from /content/</h3>
+<p><strong>File: <code>FrankX.AI - Vercel Website/lib/content-loader.ts</code></strong></p>
+<pre><code class="language-typescript">import fs from &#39;fs&#39;;
+import path from &#39;path&#39;;
+import matter from &#39;gray-matter&#39;;
+
+// Single source of truth - point to main content folder
+const CONTENT_ROOT = path.join(process.cwd(), &#39;..&#39;, &#39;..&#39;, &#39;content&#39;);
+
+export function getArticles(theme?: string) {
+  const articlesPath = theme
+    ? path.join(CONTENT_ROOT, &#39;articles&#39;, theme)
+    : path.join(CONTENT_ROOT, &#39;articles&#39;);
+
+  // Read all .md files
+  // Parse frontmatter
+  // Return article data
+}
+
+export function getBooks() {
+  const booksPath = path.join(CONTENT_ROOT, &#39;books&#39;);
+
+  // Read all book folders
+  // Load metadata.json
+  // Return book data
+}
+
+export function getBookChapters(bookSlug: string) {
+  const bookPath = path.join(CONTENT_ROOT, &#39;books&#39;, bookSlug, &#39;final&#39;);
+
+  // Read all chapter .md files
+  // Parse and return
+}
+</code></pre>
+<p><strong>No duplication needed!</strong> Vercel reads directly from source.</p>
+<h3>Git Tracks Everything Together</h3>
+<pre><code class="language-bash"># Both content and website in same repo
+/FrankX/.git/
+  ├── tracks /content/
+  └── tracks /FrankX.AI - Vercel Website/
+
+# One commit, both update:
+git add .
+git commit -m &quot;New blog post + website update&quot;
+git push
+
+# Vercel auto-deploys website
+# Website automatically sees new content
+</code></pre>
+<hr>
+<h2>📋 Migration Plan</h2>
+<h3>Phase 1: Analyze Current Content (30 min)</h3>
+<p><strong>Check what exists:</strong></p>
+<pre><code class="language-bash"># See what&#39;s in each folder
+ls -la /mnt/c/Users/Frank/FrankX/content/
+ls -la /mnt/c/Users/Frank/FrankX/content-universe/
+ls -la &quot;/mnt/c/Users/Frank/FrankX/FrankX.AI - Vercel Website/content/&quot;
+</code></pre>
+<p><strong>Inventory:</strong></p>
+<ul>
+<li>What content exists where?</li>
+<li>What&#39;s duplicated?</li>
+<li>What&#39;s the master copy?</li>
+</ul>
+<h3>Phase 2: Consolidate to /content/ (1 hour)</h3>
+<p><strong>Move everything to /content/:</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# Migration script
+
+cd /mnt/c/Users/Frank/FrankX
+
+# Create new /content/ structure
+mkdir -p content/{0-intake,articles,books,social,courses,drafts,_docs}
+mkdir -p content/articles/{ai-tech,conscious,creator,music,personal-dev}
+mkdir -p content/0-intake/{to-classify,classified}
+mkdir -p content/drafts/{articles,books,social}
+
+# Move from content-universe/books/ to content/books/
+if [ -d &quot;content-universe/books&quot; ]; then
+  echo &quot;Moving books from content-universe...&quot;
+  cp -r content-universe/books/* content/books/
+fi
+
+# Move from old content/ (merge carefully)
+if [ -d &quot;content&quot; ] &amp;&amp; [ &quot;$(ls -A content)&quot; ]; then
+  echo &quot;Merging existing content...&quot;
+  # Analyze and merge based on what we find
+fi
+
+# Check Vercel website content/ folder
+if [ -d &quot;FrankX.AI - Vercel Website/content&quot; ]; then
+  echo &quot;Found Vercel content folder...&quot;
+  # Determine if it&#39;s duplicate or unique content
+  # Merge if needed
+fi
+
+# Remove old folders after verification
+# mv content-universe content-universe.OLD
+# mv &quot;FrankX.AI - Vercel Website/content&quot; &quot;FrankX.AI - Vercel Website/content.OLD&quot;
+</code></pre>
+<h3>Phase 3: Update Vercel Website (2 hours)</h3>
+<p><strong>Update content loading in Next.js:</strong></p>
+<pre><code class="language-typescript">// lib/content-loader.ts
+// Point to new ../../content/ location
+
+// Update all imports
+// Test locally
+// Verify all content loads
+</code></pre>
+<h3>Phase 4: Update Git &amp; Deploy (30 min)</h3>
+<pre><code class="language-bash"># Commit new structure
+git add content/
+git add &quot;FrankX.AI - Vercel Website/&quot;
+git commit -m &quot;Consolidate content to single source&quot;
+git push
+
+# Vercel auto-deploys
+# Test live site
+</code></pre>
+<h3>Phase 5: Clean Up (15 min)</h3>
+<pre><code class="language-bash"># Remove old folders
+rm -rf content-universe
+rm -rf &quot;FrankX.AI - Vercel Website/content&quot;
+
+# Update documentation
+# Archive old READMEs
+</code></pre>
+<hr>
+<h2>📁 Final Folder Structure</h2>
+<pre><code>/mnt/c/Users/Frank/FrankX/
+│
+├── .git/                              ← Git tracks everything
+│
+├── content/                           ← SINGLE SOURCE OF TRUTH
+│   ├── 0-intake/
+│   │   ├── to-classify/              ← DROP ALL NEW CONTENT HERE
+│   │   └── classified/
+│   │
+│   ├── articles/                     ← PUBLISHED blog posts
+│   │   ├── ai-tech/
+│   │   │   ├── 2024-01-enterprise-ai.md
+│   │   │   ├── 2024-02-oracle-cloud.md
+│   │   │   └── ...
+│   │   ├── conscious/
+│   │   │   └── ...
+│   │   ├── creator/
+│   │   ├── music/
+│   │   └── personal-dev/
+│   │
+│   ├── books/                        ← BOOK PROJECTS
+│   │   ├── _shared/
+│   │   │   ├── templates/
+│   │   │   └── resources/
+│   │   ├── year-of-creator/
+│   │   │   ├── final/
+│   │   │   │   ├── intro.md
+│   │   │   │   ├── chapter-01.md
+│   │   │   │   └── ...
+│   │   │   ├── drafts/
+│   │   │   ├── research/
+│   │   │   └── metadata.json
+│   │   ├── dragon-awakening/
+│   │   │   └── ...
+│   │   └── BOOK-DASHBOARD.md
+│   │
+│   ├── social/                       ← SOCIAL CONTENT
+│   │   ├── twitter/
+│   │   ├── linkedin/
+│   │   └── scheduled/
+│   │
+│   ├── courses/                      ← COURSE CONTENT
+│   │   ├── ai-music-academy/
+│   │   └── creator-masterclass/
+│   │
+│   ├── drafts/                       ← WORK IN PROGRESS
+│   │   ├── articles/
+│   │   ├── books/
+│   │   └── social/
+│   │
+│   ├── _docs/                        ← DOCUMENTATION
+│   │   ├── README.md
+│   │   ├── INTAKE-SYSTEM.md
+│   │   ├── PUBLISHING-WORKFLOW.md
+│   │   ├── BOOK-WRITING-SYSTEM.md
+│   │   └── agents/
+│   │       ├── classifier.md
+│   │       ├── article-editor.md
+│   │       └── book-integrator.md
+│   │
+│   └── CONTENT-DASHBOARD.md          ← MASTER TRACKING
+│
+├── FrankX.AI - Vercel Website/       ← NEXT.JS WEBSITE
+│   ├── app/
+│   │   ├── blog/
+│   │   │   ├── page.tsx              ← Blog index
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx          ← Blog post (reads ../../content/articles/)
+│   │   ├── books/
+│   │   │   ├── page.tsx              ← Books index
+│   │   │   └── [slug]/
+│   │   │       ├── page.tsx          ← Book page
+│   │   │       └── [chapter]/
+│   │   │           └── page.tsx      ← Chapter (reads ../../content/books/)
+│   │   └── api/
+│   │       └── social/
+│   │           └── route.ts          ← Social posting API
+│   │
+│   ├── lib/
+│   │   ├── content-loader.ts         ← Loads from ../../content/
+│   │   ├── markdown-processor.ts
+│   │   └── types.ts
+│   │
+│   ├── public/
+│   ├── package.json
+│   └── next.config.js
+│
+├── scripts/                          ← BUILD SCRIPTS
+│   ├── build-epub.js                ← Books to EPUB
+│   ├── build-pdf.js                 ← Books to PDF
+│   └── sync-social.js               ← Social media scheduler
+│
+└── .gitignore
+</code></pre>
+<hr>
+<h2>🎯 Content Classification Flow</h2>
+<pre><code>NEW CONTENT → /content/0-intake/to-classify/
+    │
+    ▼
+/classify-content (slash command)
+    │
+    ├─── Agent reads all files
+    ├─── Classifies type &amp; theme
+    ├─── Adds metadata
+    └─── Routes to destination
+    │
+    ├──────────┬──────────┬──────────┐
+    ▼          ▼          ▼          ▼
+ARTICLES   BOOKS     SOCIAL    COURSES
+    │          │          │          │
+    ▼          ▼          ▼          ▼
+/content/  /content/  /content/ /content/
+articles/  books/     social/   courses/
+[theme]/   [book]/    [type]/   [course]/
+    │          │          │          │
+    │          │          │          │
+    └──────────┴──────────┴──────────┘
+              │
+              ▼
+    VERCEL READS DIRECTLY
+              │
+              ▼
+    frankx.com/blog/[slug]
+    frankx.com/books/[book]
+
+    (No copy, no duplication!)
+</code></pre>
+<hr>
+<h2>✅ Benefits of This Architecture</h2>
+<h3>1. Single Source of Truth</h3>
+<ul>
+<li>✅ All content in <code>/content/</code></li>
+<li>✅ No duplication</li>
+<li>✅ Clear what&#39;s published vs draft</li>
+<li>✅ Easy to find anything</li>
+</ul>
+<h3>2. Clean Publishing</h3>
+<ul>
+<li>✅ Vercel reads directly from <code>/content/</code></li>
+<li>✅ Git push → auto-deploy</li>
+<li>✅ New content immediately available</li>
+<li>✅ No manual copying</li>
+</ul>
+<h3>3. Multi-Format Publishing</h3>
+<ul>
+<li>✅ Same content → Web (Vercel)</li>
+<li>✅ Same content → EPUB (books)</li>
+<li>✅ Same content → PDF (books)</li>
+<li>✅ Same content → Social (API)</li>
+</ul>
+<h3>4. Simple Workflow</h3>
+<ul>
+<li>✅ Drop in <code>/content/0-intake/</code></li>
+<li>✅ Run <code>/classify-content</code></li>
+<li>✅ Agents route and edit</li>
+<li>✅ Git push → live!</li>
+</ul>
+<h3>5. Scalable</h3>
+<ul>
+<li>✅ Add new themes easily</li>
+<li>✅ Add new books easily</li>
+<li>✅ Add new content types easily</li>
+<li>✅ Maintain one system</li>
+</ul>
+<hr>
+<h2>🚀 Implementation Steps</h2>
+<h3>Step 1: Analyze Current State (WE DO TOGETHER)</h3>
+<pre><code class="language-bash"># Let&#39;s see what content exists where
+ls -la /mnt/c/Users/Frank/FrankX/content/
+ls -la /mnt/c/Users/Frank/FrankX/content-universe/
+ls -la &quot;/mnt/c/Users/Frank/FrankX/FrankX.AI - Vercel Website/content/&quot;
+
+# Read any README files
+# Understand what&#39;s already there
+</code></pre>
+<h3>Step 2: Create New Structure (30 min)</h3>
+<pre><code class="language-bash"># Run consolidation script
+# Create clean /content/ structure
+# Move content from old locations
+# Preserve everything important
+</code></pre>
+<h3>Step 3: Update Vercel Website (2 hours)</h3>
+<pre><code class="language-bash"># Update content-loader.ts
+# Point to ../../content/
+# Update all imports
+# Test locally
+# Fix any issues
+</code></pre>
+<h3>Step 4: Test Everything (1 hour)</h3>
+<pre><code class="language-bash"># Test blog posts load
+# Test books load
+# Test classification
+# Test publishing flow
+# Verify no duplication
+</code></pre>
+<h3>Step 5: Deploy (30 min)</h3>
+<pre><code class="language-bash"># Git commit
+# Git push
+# Vercel auto-deploys
+# Test live site
+# Archive old folders
+</code></pre>
+<h3>Step 6: Document (30 min)</h3>
+<pre><code class="language-bash"># Update all READMEs
+# Update workflow docs
+# Create /content/README.md
+# Update slash commands
+</code></pre>
+<hr>
+<h2>📖 Updated Documentation Structure</h2>
+<pre><code>/content/_docs/
+├── README.md                     ← Main content system overview
+├── INTAKE-WORKFLOW.md           ← How to add new content
+├── PUBLISHING-WORKFLOW.md       ← How content gets published
+├── BOOK-WRITING-SYSTEM.md       ← Book writing guide
+├── CLASSIFICATION-GUIDE.md      ← How classification works
+└── agents/
+    ├── classifier.md            ← Classification agent
+    ├── article-editor.md        ← Article editing agent
+    ├── book-integrator.md       ← Book integration agent
+    └── social-optimizer.md      ← Social media agent
+</code></pre>
+<hr>
+<h2>🎯 Next Steps</h2>
+<p><strong>I recommend we:</strong></p>
+<ol>
+<li><p><strong>First, analyze current state</strong> (15 min)</p>
+<ul>
+<li>Check what content exists in each folder</li>
+<li>Identify duplicates</li>
+<li>Understand current usage</li>
+</ul>
+</li>
+<li><p><strong>Create migration script</strong> (30 min)</p>
+<ul>
+<li>Consolidate to <code>/content/</code></li>
+<li>Preserve all existing content</li>
+<li>Clear folder structure</li>
+</ul>
+</li>
+<li><p><strong>Update Vercel website</strong> (2 hours)</p>
+<ul>
+<li>Point to new <code>/content/</code> location</li>
+<li>Test locally</li>
+<li>Fix any issues</li>
+</ul>
+</li>
+<li><p><strong>Deploy and test</strong> (30 min)</p>
+<ul>
+<li>Push to GitHub</li>
+<li>Vercel auto-deploys</li>
+<li>Verify everything works</li>
+</ul>
+</li>
+<li><p><strong>Clean up</strong> (15 min)</p>
+<ul>
+<li>Remove old folders</li>
+<li>Update documentation</li>
+<li>Archive old READMEs</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p><strong>Ready to start? Let&#39;s first analyze what currently exists in those three folders.</strong></p>
+<p><strong>Shall I check the current state of your content folders?</strong> 🔍</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

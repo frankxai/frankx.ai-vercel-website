@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Complete Git Workflow with Multi-Agent Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/git-pr-workflows/commands/git-workflow.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Complete Git Workflow with Multi-Agent Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fgit-pr-workflows">git-pr-workflows</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fgit-pr-workflows%2Fcommands">commands</a> / <span>git-workflow.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Complete Git Workflow with Multi-Agent Orchestration</h1>
+<p>Orchestrate a comprehensive git workflow from code review through PR creation, leveraging specialized agents for quality assurance, testing, and deployment readiness. This workflow implements modern git best practices including Conventional Commits, automated testing, and structured PR creation.</p>
+<p>[Extended thinking: This workflow coordinates multiple specialized agents to ensure code quality before commits are made. The code-reviewer agent performs initial quality checks, test-automator ensures all tests pass, and deployment-engineer verifies production readiness. By orchestrating these agents sequentially with context passing, we prevent broken code from entering the repository while maintaining high velocity. The workflow supports both trunk-based and feature-branch strategies with configurable options for different team needs.]</p>
+<h2>Configuration</h2>
+<p><strong>Target branch</strong>: $ARGUMENTS (defaults to &#39;main&#39; if not specified)</p>
+<p><strong>Supported flags</strong>:</p>
+<ul>
+<li><code>--skip-tests</code>: Skip automated test execution (use with caution)</li>
+<li><code>--draft-pr</code>: Create PR as draft for work-in-progress</li>
+<li><code>--no-push</code>: Perform all checks but don&#39;t push to remote</li>
+<li><code>--squash</code>: Squash commits before pushing</li>
+<li><code>--conventional</code>: Enforce Conventional Commits format strictly</li>
+<li><code>--trunk-based</code>: Use trunk-based development workflow</li>
+<li><code>--feature-branch</code>: Use feature branch workflow (default)</li>
+</ul>
+<h2>Phase 1: Pre-Commit Review and Analysis</h2>
+<h3>1. Code Quality Assessment</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;code-reviewer&quot;</li>
+<li>Prompt: &quot;Review all uncommitted changes for code quality issues. Check for: 1) Code style violations, 2) Security vulnerabilities, 3) Performance concerns, 4) Missing error handling, 5) Incomplete implementations. Generate a detailed report with severity levels (critical/high/medium/low) and provide specific line-by-line feedback. Output format: JSON with {issues: [], summary: {critical: 0, high: 0, medium: 0, low: 0}, recommendations: []}&quot;</li>
+<li>Expected output: Structured code review report for next phase</li>
+</ul>
+<h3>2. Dependency and Breaking Change Analysis</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;code-reviewer&quot;</li>
+<li>Prompt: &quot;Analyze the changes for: 1) New dependencies or version changes, 2) Breaking API changes, 3) Database schema modifications, 4) Configuration changes, 5) Backward compatibility issues. Context from previous review: [insert issues summary]. Identify any changes that require migration scripts or documentation updates.&quot;</li>
+<li>Context from previous: Code quality issues that might indicate breaking changes</li>
+<li>Expected output: Breaking change assessment and migration requirements</li>
+</ul>
+<h2>Phase 2: Testing and Validation</h2>
+<h3>1. Test Execution and Coverage</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;unit-testing::test-automator&quot;</li>
+<li>Prompt: &quot;Execute all test suites for the modified code. Run: 1) Unit tests, 2) Integration tests, 3) End-to-end tests if applicable. Generate coverage report and identify any untested code paths. Based on review issues: [insert critical/high issues], ensure tests cover the problem areas. Provide test results in format: {passed: [], failed: [], skipped: [], coverage: {statements: %, branches: %, functions: %, lines: %}, untested_critical_paths: []}&quot;</li>
+<li>Context from previous: Critical code review issues that need test coverage</li>
+<li>Expected output: Complete test results and coverage metrics</li>
+</ul>
+<h3>2. Test Recommendations and Gap Analysis</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;unit-testing::test-automator&quot;</li>
+<li>Prompt: &quot;Based on test results [insert summary] and code changes, identify: 1) Missing test scenarios, 2) Edge cases not covered, 3) Integration points needing verification, 4) Performance benchmarks needed. Generate test implementation recommendations prioritized by risk. Consider the breaking changes identified: [insert breaking changes].&quot;</li>
+<li>Context from previous: Test results, breaking changes, untested paths</li>
+<li>Expected output: Prioritized list of additional tests needed</li>
+</ul>
+<h2>Phase 3: Commit Message Generation</h2>
+<h3>1. Change Analysis and Categorization</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;code-reviewer&quot;</li>
+<li>Prompt: &quot;Analyze all changes and categorize them according to Conventional Commits specification. Identify the primary change type (feat/fix/docs/style/refactor/perf/test/build/ci/chore/revert) and scope. For changes: [insert file list and summary], determine if this should be a single commit or multiple atomic commits. Consider test results: [insert test summary].&quot;</li>
+<li>Context from previous: Test results, code review summary</li>
+<li>Expected output: Commit structure recommendation</li>
+</ul>
+<h3>2. Conventional Commit Message Creation</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;llm-application-dev::prompt-engineer&quot;</li>
+<li>Prompt: &quot;Create Conventional Commits format message(s) based on categorization: [insert categorization]. Format: <type>(<scope>): <subject> with blank line then <body> explaining what and why (not how), then <footer> with BREAKING CHANGE: if applicable. Include: 1) Clear subject line (50 chars max), 2) Detailed body explaining rationale, 3) References to issues/tickets, 4) Co-authors if applicable. Consider the impact: [insert breaking changes if any].&quot;</li>
+<li>Context from previous: Change categorization, breaking changes</li>
+<li>Expected output: Properly formatted commit message(s)</li>
+</ul>
+<h2>Phase 4: Branch Strategy and Push Preparation</h2>
+<h3>1. Branch Management</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;cicd-automation::deployment-engineer&quot;</li>
+<li>Prompt: &quot;Based on workflow type [--trunk-based or --feature-branch], prepare branch strategy. For feature branch: ensure branch name follows pattern (feature|bugfix|hotfix)/<ticket>-<description>. For trunk-based: prepare for direct main push with feature flag strategy if needed. Current branch: [insert branch], target: [insert target branch]. Verify no conflicts with target branch.&quot;</li>
+<li>Expected output: Branch preparation commands and conflict status</li>
+</ul>
+<h3>2. Pre-Push Validation</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;cicd-automation::deployment-engineer&quot;</li>
+<li>Prompt: &quot;Perform final pre-push checks: 1) Verify all CI checks will pass, 2) Confirm no sensitive data in commits, 3) Validate commit signatures if required, 4) Check branch protection rules, 5) Ensure all review comments addressed. Test summary: [insert test results]. Review status: [insert review summary].&quot;</li>
+<li>Context from previous: All previous validation results</li>
+<li>Expected output: Push readiness confirmation or blocking issues</li>
+</ul>
+<h2>Phase 5: Pull Request Creation</h2>
+<h3>1. PR Description Generation</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;documentation-generation::docs-architect&quot;</li>
+<li>Prompt: &quot;Create comprehensive PR description including: 1) Summary of changes (what and why), 2) Type of change checklist, 3) Testing performed summary from [insert test results], 4) Screenshots/recordings if UI changes, 5) Deployment notes from [insert deployment considerations], 6) Related issues/tickets, 7) Breaking changes section if applicable: [insert breaking changes], 8) Reviewer checklist. Format as GitHub-flavored Markdown.&quot;</li>
+<li>Context from previous: All validation results, test outcomes, breaking changes</li>
+<li>Expected output: Complete PR description in Markdown</li>
+</ul>
+<h3>2. PR Metadata and Automation Setup</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;cicd-automation::deployment-engineer&quot;</li>
+<li>Prompt: &quot;Configure PR metadata: 1) Assign appropriate reviewers based on CODEOWNERS, 2) Add labels (type, priority, component), 3) Link related issues, 4) Set milestone if applicable, 5) Configure merge strategy (squash/merge/rebase), 6) Set up auto-merge if all checks pass. Consider draft status: [--draft-pr flag]. Include test status: [insert test summary].&quot;</li>
+<li>Context from previous: PR description, test results, review status</li>
+<li>Expected output: PR configuration commands and automation rules</li>
+</ul>
+<h2>Success Criteria</h2>
+<ul>
+<li>✅ All critical and high-severity code issues resolved</li>
+<li>✅ Test coverage maintained or improved (target: &gt;80%)</li>
+<li>✅ All tests passing (unit, integration, e2e)</li>
+<li>✅ Commit messages follow Conventional Commits format</li>
+<li>✅ No merge conflicts with target branch</li>
+<li>✅ PR description complete with all required sections</li>
+<li>✅ Branch protection rules satisfied</li>
+<li>✅ Security scanning completed with no critical vulnerabilities</li>
+<li>✅ Performance benchmarks within acceptable thresholds</li>
+<li>✅ Documentation updated for any API changes</li>
+</ul>
+<h2>Rollback Procedures</h2>
+<p>In case of issues after merge:</p>
+<ol>
+<li><strong>Immediate Revert</strong>: Create revert PR with <code>git revert &lt;commit-hash&gt;</code></li>
+<li><strong>Feature Flag Disable</strong>: If using feature flags, disable immediately</li>
+<li><strong>Hotfix Branch</strong>: For critical issues, create hotfix branch from main</li>
+<li><strong>Communication</strong>: Notify team via designated channels</li>
+<li><strong>Root Cause Analysis</strong>: Document issue in postmortem template</li>
+</ol>
+<h2>Best Practices Reference</h2>
+<ul>
+<li><strong>Commit Frequency</strong>: Commit early and often, but ensure each commit is atomic</li>
+<li><strong>Branch Naming</strong>: <code>(feature|bugfix|hotfix|docs|chore)/&lt;ticket-id&gt;-&lt;brief-description&gt;</code></li>
+<li><strong>PR Size</strong>: Keep PRs under 400 lines for effective review</li>
+<li><strong>Review Response</strong>: Address review comments within 24 hours</li>
+<li><strong>Merge Strategy</strong>: Squash for feature branches, merge for release branches</li>
+<li><strong>Sign-Off</strong>: Require at least 2 approvals for main branch changes</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

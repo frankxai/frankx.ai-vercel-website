@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Context-Driven Development</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/skills/context-driven-development/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Context-Driven Development</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fskills%2Fcontext-driven-development">context-driven-development</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: context-driven-development
+description: Use this skill when working with Conductor&#39;s context-driven development methodology, managing project context artifacts, or understanding the relationship between product.md, tech-stack.md, and workflow.md files.
+version: 1.0.0</h2>
+<h1>Context-Driven Development</h1>
+<p>Guide for implementing and maintaining context as a managed artifact alongside code, enabling consistent AI interactions and team alignment through structured project documentation.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Setting up new projects with Conductor</li>
+<li>Understanding the relationship between context artifacts</li>
+<li>Maintaining consistency across AI-assisted development sessions</li>
+<li>Onboarding team members to an existing Conductor project</li>
+<li>Deciding when to update context documents</li>
+<li>Managing greenfield vs brownfield project contexts</li>
+</ul>
+<h2>Core Philosophy</h2>
+<p>Context-Driven Development treats project context as a first-class artifact managed alongside code. Instead of relying on ad-hoc prompts or scattered documentation, establish a persistent, structured foundation that informs all AI interactions.</p>
+<p>Key principles:</p>
+<ol>
+<li><strong>Context precedes code</strong>: Define what you&#39;re building and how before implementation</li>
+<li><strong>Living documentation</strong>: Context artifacts evolve with the project</li>
+<li><strong>Single source of truth</strong>: One canonical location for each type of information</li>
+<li><strong>AI alignment</strong>: Consistent context produces consistent AI behavior</li>
+</ol>
+<h2>The Workflow</h2>
+<p>Follow the <strong>Context → Spec &amp; Plan → Implement</strong> workflow:</p>
+<ol>
+<li><strong>Context Phase</strong>: Establish or verify project context artifacts exist and are current</li>
+<li><strong>Specification Phase</strong>: Define requirements and acceptance criteria for work units</li>
+<li><strong>Planning Phase</strong>: Break specifications into phased, actionable tasks</li>
+<li><strong>Implementation Phase</strong>: Execute tasks following established workflow patterns</li>
+</ol>
+<h2>Artifact Relationships</h2>
+<h3>product.md - Defines WHAT and WHY</h3>
+<p>Purpose: Captures product vision, goals, target users, and business context.</p>
+<p>Contents:</p>
+<ul>
+<li>Product name and one-line description</li>
+<li>Problem statement and solution approach</li>
+<li>Target user personas</li>
+<li>Core features and capabilities</li>
+<li>Success metrics and KPIs</li>
+<li>Product roadmap (high-level)</li>
+</ul>
+<p>Update when:</p>
+<ul>
+<li>Product vision or goals change</li>
+<li>New major features are planned</li>
+<li>Target audience shifts</li>
+<li>Business priorities evolve</li>
+</ul>
+<h3>product-guidelines.md - Defines HOW to Communicate</h3>
+<p>Purpose: Establishes brand voice, messaging standards, and communication patterns.</p>
+<p>Contents:</p>
+<ul>
+<li>Brand voice and tone guidelines</li>
+<li>Terminology and glossary</li>
+<li>Error message conventions</li>
+<li>User-facing copy standards</li>
+<li>Documentation style</li>
+</ul>
+<p>Update when:</p>
+<ul>
+<li>Brand guidelines change</li>
+<li>New terminology is introduced</li>
+<li>Communication patterns need refinement</li>
+</ul>
+<h3>tech-stack.md - Defines WITH WHAT</h3>
+<p>Purpose: Documents technology choices, dependencies, and architectural decisions.</p>
+<p>Contents:</p>
+<ul>
+<li>Primary languages and frameworks</li>
+<li>Key dependencies with versions</li>
+<li>Infrastructure and deployment targets</li>
+<li>Development tools and environment</li>
+<li>Testing frameworks</li>
+<li>Code quality tools</li>
+</ul>
+<p>Update when:</p>
+<ul>
+<li>Adding new dependencies</li>
+<li>Upgrading major versions</li>
+<li>Changing infrastructure</li>
+<li>Adopting new tools or patterns</li>
+</ul>
+<h3>workflow.md - Defines HOW to Work</h3>
+<p>Purpose: Establishes development practices, quality gates, and team workflows.</p>
+<p>Contents:</p>
+<ul>
+<li>Development methodology (TDD, etc.)</li>
+<li>Git workflow and commit conventions</li>
+<li>Code review requirements</li>
+<li>Testing requirements and coverage targets</li>
+<li>Quality assurance gates</li>
+<li>Deployment procedures</li>
+</ul>
+<p>Update when:</p>
+<ul>
+<li>Team practices evolve</li>
+<li>Quality standards change</li>
+<li>New workflow patterns are adopted</li>
+</ul>
+<h3>tracks.md - Tracks WHAT&#39;S HAPPENING</h3>
+<p>Purpose: Registry of all work units with status and metadata.</p>
+<p>Contents:</p>
+<ul>
+<li>Active tracks with current status</li>
+<li>Completed tracks with completion dates</li>
+<li>Track metadata (type, priority, assignee)</li>
+<li>Links to individual track directories</li>
+</ul>
+<p>Update when:</p>
+<ul>
+<li>New tracks are created</li>
+<li>Track status changes</li>
+<li>Tracks are completed or archived</li>
+</ul>
+<h2>Context Maintenance Principles</h2>
+<h3>Keep Artifacts Synchronized</h3>
+<p>Ensure changes in one artifact reflect in related documents:</p>
+<ul>
+<li>New feature in product.md → Update tech-stack.md if new dependencies needed</li>
+<li>Completed track → Update product.md to reflect new capabilities</li>
+<li>Workflow change → Update all affected track plans</li>
+</ul>
+<h3>Update tech-stack.md When Adding Dependencies</h3>
+<p>Before adding any new dependency:</p>
+<ol>
+<li>Check if existing dependencies solve the need</li>
+<li>Document the rationale for new dependencies</li>
+<li>Add version constraints</li>
+<li>Note any configuration requirements</li>
+</ol>
+<h3>Update product.md When Features Complete</h3>
+<p>After completing a feature track:</p>
+<ol>
+<li>Move feature from &quot;planned&quot; to &quot;implemented&quot; in product.md</li>
+<li>Update any affected success metrics</li>
+<li>Document any scope changes from original plan</li>
+</ol>
+<h3>Verify Context Before Implementation</h3>
+<p>Before starting any track:</p>
+<ol>
+<li>Read all context artifacts</li>
+<li>Flag any outdated information</li>
+<li>Propose updates before proceeding</li>
+<li>Confirm context accuracy with stakeholders</li>
+</ol>
+<h2>Greenfield vs Brownfield Handling</h2>
+<h3>Greenfield Projects (New)</h3>
+<p>For new projects:</p>
+<ol>
+<li>Run <code>/conductor:setup</code> to create all artifacts interactively</li>
+<li>Answer questions about product vision, tech preferences, and workflow</li>
+<li>Generate initial style guides for chosen languages</li>
+<li>Create empty tracks registry</li>
+</ol>
+<p>Characteristics:</p>
+<ul>
+<li>Full control over context structure</li>
+<li>Define standards before code exists</li>
+<li>Establish patterns early</li>
+</ul>
+<h3>Brownfield Projects (Existing)</h3>
+<p>For existing codebases:</p>
+<ol>
+<li>Run <code>/conductor:setup</code> with existing codebase detection</li>
+<li>System analyzes existing code, configs, and documentation</li>
+<li>Pre-populate artifacts based on discovered patterns</li>
+<li>Review and refine generated context</li>
+</ol>
+<p>Characteristics:</p>
+<ul>
+<li>Extract implicit context from existing code</li>
+<li>Reconcile existing patterns with desired patterns</li>
+<li>Document technical debt and modernization plans</li>
+<li>Preserve working patterns while establishing standards</li>
+</ul>
+<h2>Benefits</h2>
+<h3>Team Alignment</h3>
+<ul>
+<li>New team members onboard faster with explicit context</li>
+<li>Consistent terminology and conventions across the team</li>
+<li>Shared understanding of product goals and technical decisions</li>
+</ul>
+<h3>AI Consistency</h3>
+<ul>
+<li>AI assistants produce aligned outputs across sessions</li>
+<li>Reduced need to re-explain context in each interaction</li>
+<li>Predictable behavior based on documented standards</li>
+</ul>
+<h3>Institutional Memory</h3>
+<ul>
+<li>Decisions and rationale are preserved</li>
+<li>Context survives team changes</li>
+<li>Historical context informs future decisions</li>
+</ul>
+<h3>Quality Assurance</h3>
+<ul>
+<li>Standards are explicit and verifiable</li>
+<li>Deviations from context are detectable</li>
+<li>Quality gates are documented and enforceable</li>
+</ul>
+<h2>Directory Structure</h2>
+<pre><code>conductor/
+├── index.md              # Navigation hub linking all artifacts
+├── product.md            # Product vision and goals
+├── product-guidelines.md # Communication standards
+├── tech-stack.md         # Technology preferences
+├── workflow.md           # Development practices
+├── tracks.md             # Work unit registry
+├── setup_state.json      # Resumable setup state
+├── code_styleguides/     # Language-specific conventions
+│   ├── python.md
+│   ├── typescript.md
+│   └── ...
+└── tracks/
+    └── &lt;track-id&gt;/
+        ├── spec.md
+        ├── plan.md
+        ├── metadata.json
+        └── index.md
+</code></pre>
+<h2>Context Lifecycle</h2>
+<ol>
+<li><strong>Creation</strong>: Initial setup via <code>/conductor:setup</code></li>
+<li><strong>Validation</strong>: Verify before each track</li>
+<li><strong>Evolution</strong>: Update as project grows</li>
+<li><strong>Synchronization</strong>: Keep artifacts aligned</li>
+<li><strong>Archival</strong>: Document historical decisions</li>
+</ol>
+<h2>Context Validation Checklist</h2>
+<p>Before starting implementation on any track, validate context:</p>
+<h3>Product Context</h3>
+<ul>
+<li><input disabled="" type="checkbox"> product.md reflects current product vision</li>
+<li><input disabled="" type="checkbox"> Target users are accurately described</li>
+<li><input disabled="" type="checkbox"> Feature list is up to date</li>
+<li><input disabled="" type="checkbox"> Success metrics are defined</li>
+</ul>
+<h3>Technical Context</h3>
+<ul>
+<li><input disabled="" type="checkbox"> tech-stack.md lists all current dependencies</li>
+<li><input disabled="" type="checkbox"> Version numbers are accurate</li>
+<li><input disabled="" type="checkbox"> Infrastructure targets are correct</li>
+<li><input disabled="" type="checkbox"> Development tools are documented</li>
+</ul>
+<h3>Workflow Context</h3>
+<ul>
+<li><input disabled="" type="checkbox"> workflow.md describes current practices</li>
+<li><input disabled="" type="checkbox"> Quality gates are defined</li>
+<li><input disabled="" type="checkbox"> Coverage targets are specified</li>
+<li><input disabled="" type="checkbox"> Commit conventions are documented</li>
+</ul>
+<h3>Track Context</h3>
+<ul>
+<li><input disabled="" type="checkbox"> tracks.md shows all active work</li>
+<li><input disabled="" type="checkbox"> No stale or abandoned tracks</li>
+<li><input disabled="" type="checkbox"> Dependencies between tracks are noted</li>
+</ul>
+<h2>Common Anti-Patterns</h2>
+<p>Avoid these context management mistakes:</p>
+<h3>Stale Context</h3>
+<p>Problem: Context documents become outdated and misleading.
+Solution: Update context as part of each track&#39;s completion process.</p>
+<h3>Context Sprawl</h3>
+<p>Problem: Information scattered across multiple locations.
+Solution: Use the defined artifact structure; resist creating new document types.</p>
+<h3>Implicit Context</h3>
+<p>Problem: Relying on knowledge not captured in artifacts.
+Solution: If you reference something repeatedly, add it to the appropriate artifact.</p>
+<h3>Context Hoarding</h3>
+<p>Problem: One person maintains context without team input.
+Solution: Review context artifacts in pull requests; make updates collaborative.</p>
+<h3>Over-Specification</h3>
+<p>Problem: Context becomes so detailed it&#39;s impossible to maintain.
+Solution: Keep artifacts focused on decisions that affect AI behavior and team alignment.</p>
+<h2>Integration with Development Tools</h2>
+<h3>IDE Integration</h3>
+<p>Configure your IDE to display context files prominently:</p>
+<ul>
+<li>Pin conductor/product.md for quick reference</li>
+<li>Add tech-stack.md to project notes</li>
+<li>Create snippets for common patterns from style guides</li>
+</ul>
+<h3>Git Hooks</h3>
+<p>Consider pre-commit hooks that:</p>
+<ul>
+<li>Warn when dependencies change without tech-stack.md update</li>
+<li>Remind to update product.md when feature branches merge</li>
+<li>Validate context artifact syntax</li>
+</ul>
+<h3>CI/CD Integration</h3>
+<p>Include context validation in pipelines:</p>
+<ul>
+<li>Check tech-stack.md matches actual dependencies</li>
+<li>Verify links in context documents resolve</li>
+<li>Ensure tracks.md status matches git branch state</li>
+</ul>
+<h2>Session Continuity</h2>
+<p>Conductor supports multi-session development through context persistence:</p>
+<h3>Starting a New Session</h3>
+<ol>
+<li>Read index.md to orient yourself</li>
+<li>Check tracks.md for active work</li>
+<li>Review relevant track&#39;s plan.md for current task</li>
+<li>Verify context artifacts are current</li>
+</ol>
+<h3>Ending a Session</h3>
+<ol>
+<li>Update plan.md with current progress</li>
+<li>Note any blockers or decisions made</li>
+<li>Commit in-progress work with clear status</li>
+<li>Update tracks.md if status changed</li>
+</ol>
+<h3>Handling Interruptions</h3>
+<p>If interrupted mid-task:</p>
+<ol>
+<li>Mark task as <code>[~]</code> with note about stopping point</li>
+<li>Commit work-in-progress to feature branch</li>
+<li>Document any uncommitted decisions in plan.md</li>
+</ol>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Read context first</strong>: Always read relevant artifacts before starting work</li>
+<li><strong>Small updates</strong>: Make incremental context changes, not massive rewrites</li>
+<li><strong>Link decisions</strong>: Reference context when making implementation choices</li>
+<li><strong>Version context</strong>: Commit context changes alongside code changes</li>
+<li><strong>Review context</strong>: Include context artifact reviews in code reviews</li>
+<li><strong>Validate regularly</strong>: Run context validation checklist before major work</li>
+<li><strong>Communicate changes</strong>: Notify team when context artifacts change significantly</li>
+<li><strong>Preserve history</strong>: Use git to track context evolution over time</li>
+<li><strong>Question staleness</strong>: If context feels wrong, investigate and update</li>
+<li><strong>Keep it actionable</strong>: Every context item should inform a decision or behavior</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

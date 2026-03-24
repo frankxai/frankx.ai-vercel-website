@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Nx Workspace Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/developer-essentials/skills/nx-workspace-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Nx Workspace Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials">developer-essentials</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills%2Fnx-workspace-patterns">nx-workspace-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: nx-workspace-patterns
+description: Configure and optimize Nx monorepo workspaces. Use when setting up Nx, configuring project boundaries, optimizing build caching, or implementing affected commands.</h2>
+<h1>Nx Workspace Patterns</h1>
+<p>Production patterns for Nx monorepo management.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Setting up new Nx workspaces</li>
+<li>Configuring project boundaries</li>
+<li>Optimizing CI with affected commands</li>
+<li>Implementing remote caching</li>
+<li>Managing dependencies between projects</li>
+<li>Migrating to Nx</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Nx Architecture</h3>
+<pre><code>workspace/
+├── apps/              # Deployable applications
+│   ├── web/
+│   └── api/
+├── libs/              # Shared libraries
+│   ├── shared/
+│   │   ├── ui/
+│   │   └── utils/
+│   └── feature/
+│       ├── auth/
+│       └── dashboard/
+├── tools/             # Custom executors/generators
+├── nx.json            # Nx configuration
+└── workspace.json     # Project configuration
+</code></pre>
+<h3>2. Library Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>feature</strong></td>
+<td>Smart components, business logic</td>
+<td><code>feature-auth</code></td>
+</tr>
+<tr>
+<td><strong>ui</strong></td>
+<td>Presentational components</td>
+<td><code>ui-buttons</code></td>
+</tr>
+<tr>
+<td><strong>data-access</strong></td>
+<td>API calls, state management</td>
+<td><code>data-access-users</code></td>
+</tr>
+<tr>
+<td><strong>util</strong></td>
+<td>Pure functions, helpers</td>
+<td><code>util-formatting</code></td>
+</tr>
+<tr>
+<td><strong>shell</strong></td>
+<td>App bootstrapping</td>
+<td><code>shell-web</code></td>
+</tr>
+</tbody></table>
+<h2>Templates</h2>
+<h3>Template 1: nx.json Configuration</h3>
+<pre><code class="language-json">{
+  &quot;$schema&quot;: &quot;./node_modules/nx/schemas/nx-schema.json&quot;,
+  &quot;npmScope&quot;: &quot;myorg&quot;,
+  &quot;affected&quot;: {
+    &quot;defaultBase&quot;: &quot;main&quot;
+  },
+  &quot;tasksRunnerOptions&quot;: {
+    &quot;default&quot;: {
+      &quot;runner&quot;: &quot;nx/tasks-runners/default&quot;,
+      &quot;options&quot;: {
+        &quot;cacheableOperations&quot;: [
+          &quot;build&quot;,
+          &quot;lint&quot;,
+          &quot;test&quot;,
+          &quot;e2e&quot;,
+          &quot;build-storybook&quot;
+        ],
+        &quot;parallel&quot;: 3
+      }
+    }
+  },
+  &quot;targetDefaults&quot;: {
+    &quot;build&quot;: {
+      &quot;dependsOn&quot;: [&quot;^build&quot;],
+      &quot;inputs&quot;: [&quot;production&quot;, &quot;^production&quot;],
+      &quot;cache&quot;: true
+    },
+    &quot;test&quot;: {
+      &quot;inputs&quot;: [&quot;default&quot;, &quot;^production&quot;, &quot;{workspaceRoot}/jest.preset.js&quot;],
+      &quot;cache&quot;: true
+    },
+    &quot;lint&quot;: {
+      &quot;inputs&quot;: [&quot;default&quot;, &quot;{workspaceRoot}/.eslintrc.json&quot;],
+      &quot;cache&quot;: true
+    },
+    &quot;e2e&quot;: {
+      &quot;inputs&quot;: [&quot;default&quot;, &quot;^production&quot;],
+      &quot;cache&quot;: true
+    }
+  },
+  &quot;namedInputs&quot;: {
+    &quot;default&quot;: [&quot;{projectRoot}/**/*&quot;, &quot;sharedGlobals&quot;],
+    &quot;production&quot;: [
+      &quot;default&quot;,
+      &quot;!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)&quot;,
+      &quot;!{projectRoot}/tsconfig.spec.json&quot;,
+      &quot;!{projectRoot}/jest.config.[jt]s&quot;,
+      &quot;!{projectRoot}/.eslintrc.json&quot;
+    ],
+    &quot;sharedGlobals&quot;: [
+      &quot;{workspaceRoot}/babel.config.json&quot;,
+      &quot;{workspaceRoot}/tsconfig.base.json&quot;
+    ]
+  },
+  &quot;generators&quot;: {
+    &quot;@nx/react&quot;: {
+      &quot;application&quot;: {
+        &quot;style&quot;: &quot;css&quot;,
+        &quot;linter&quot;: &quot;eslint&quot;,
+        &quot;bundler&quot;: &quot;webpack&quot;
+      },
+      &quot;library&quot;: {
+        &quot;style&quot;: &quot;css&quot;,
+        &quot;linter&quot;: &quot;eslint&quot;
+      },
+      &quot;component&quot;: {
+        &quot;style&quot;: &quot;css&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3>Template 2: Project Configuration</h3>
+<pre><code class="language-json">// apps/web/project.json
+{
+  &quot;name&quot;: &quot;web&quot;,
+  &quot;$schema&quot;: &quot;../../node_modules/nx/schemas/project-schema.json&quot;,
+  &quot;sourceRoot&quot;: &quot;apps/web/src&quot;,
+  &quot;projectType&quot;: &quot;application&quot;,
+  &quot;tags&quot;: [&quot;type:app&quot;, &quot;scope:web&quot;],
+  &quot;targets&quot;: {
+    &quot;build&quot;: {
+      &quot;executor&quot;: &quot;@nx/webpack:webpack&quot;,
+      &quot;outputs&quot;: [&quot;{options.outputPath}&quot;],
+      &quot;defaultConfiguration&quot;: &quot;production&quot;,
+      &quot;options&quot;: {
+        &quot;compiler&quot;: &quot;babel&quot;,
+        &quot;outputPath&quot;: &quot;dist/apps/web&quot;,
+        &quot;index&quot;: &quot;apps/web/src/index.html&quot;,
+        &quot;main&quot;: &quot;apps/web/src/main.tsx&quot;,
+        &quot;tsConfig&quot;: &quot;apps/web/tsconfig.app.json&quot;,
+        &quot;assets&quot;: [&quot;apps/web/src/assets&quot;],
+        &quot;styles&quot;: [&quot;apps/web/src/styles.css&quot;]
+      },
+      &quot;configurations&quot;: {
+        &quot;development&quot;: {
+          &quot;extractLicenses&quot;: false,
+          &quot;optimization&quot;: false,
+          &quot;sourceMap&quot;: true
+        },
+        &quot;production&quot;: {
+          &quot;optimization&quot;: true,
+          &quot;outputHashing&quot;: &quot;all&quot;,
+          &quot;sourceMap&quot;: false,
+          &quot;extractLicenses&quot;: true
+        }
+      }
+    },
+    &quot;serve&quot;: {
+      &quot;executor&quot;: &quot;@nx/webpack:dev-server&quot;,
+      &quot;defaultConfiguration&quot;: &quot;development&quot;,
+      &quot;options&quot;: {
+        &quot;buildTarget&quot;: &quot;web:build&quot;
+      },
+      &quot;configurations&quot;: {
+        &quot;development&quot;: {
+          &quot;buildTarget&quot;: &quot;web:build:development&quot;
+        },
+        &quot;production&quot;: {
+          &quot;buildTarget&quot;: &quot;web:build:production&quot;
+        }
+      }
+    },
+    &quot;test&quot;: {
+      &quot;executor&quot;: &quot;@nx/jest:jest&quot;,
+      &quot;outputs&quot;: [&quot;{workspaceRoot}/coverage/{projectRoot}&quot;],
+      &quot;options&quot;: {
+        &quot;jestConfig&quot;: &quot;apps/web/jest.config.ts&quot;,
+        &quot;passWithNoTests&quot;: true
+      }
+    },
+    &quot;lint&quot;: {
+      &quot;executor&quot;: &quot;@nx/eslint:lint&quot;,
+      &quot;outputs&quot;: [&quot;{options.outputFile}&quot;],
+      &quot;options&quot;: {
+        &quot;lintFilePatterns&quot;: [&quot;apps/web/**/*.{ts,tsx,js,jsx}&quot;]
+      }
+    }
+  }
+}
+</code></pre>
+<h3>Template 3: Module Boundary Rules</h3>
+<pre><code class="language-json">// .eslintrc.json
+{
+  &quot;root&quot;: true,
+  &quot;ignorePatterns&quot;: [&quot;**/*&quot;],
+  &quot;plugins&quot;: [&quot;@nx&quot;],
+  &quot;overrides&quot;: [
+    {
+      &quot;files&quot;: [&quot;*.ts&quot;, &quot;*.tsx&quot;, &quot;*.js&quot;, &quot;*.jsx&quot;],
+      &quot;rules&quot;: {
+        &quot;@nx/enforce-module-boundaries&quot;: [
+          &quot;error&quot;,
+          {
+            &quot;enforceBuildableLibDependency&quot;: true,
+            &quot;allow&quot;: [],
+            &quot;depConstraints&quot;: [
+              {
+                &quot;sourceTag&quot;: &quot;type:app&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [
+                  &quot;type:feature&quot;,
+                  &quot;type:ui&quot;,
+                  &quot;type:data-access&quot;,
+                  &quot;type:util&quot;
+                ]
+              },
+              {
+                &quot;sourceTag&quot;: &quot;type:feature&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [
+                  &quot;type:ui&quot;,
+                  &quot;type:data-access&quot;,
+                  &quot;type:util&quot;
+                ]
+              },
+              {
+                &quot;sourceTag&quot;: &quot;type:ui&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [&quot;type:ui&quot;, &quot;type:util&quot;]
+              },
+              {
+                &quot;sourceTag&quot;: &quot;type:data-access&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [&quot;type:data-access&quot;, &quot;type:util&quot;]
+              },
+              {
+                &quot;sourceTag&quot;: &quot;type:util&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [&quot;type:util&quot;]
+              },
+              {
+                &quot;sourceTag&quot;: &quot;scope:web&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [&quot;scope:web&quot;, &quot;scope:shared&quot;]
+              },
+              {
+                &quot;sourceTag&quot;: &quot;scope:api&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [&quot;scope:api&quot;, &quot;scope:shared&quot;]
+              },
+              {
+                &quot;sourceTag&quot;: &quot;scope:shared&quot;,
+                &quot;onlyDependOnLibsWithTags&quot;: [&quot;scope:shared&quot;]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
+</code></pre>
+<h3>Template 4: Custom Generator</h3>
+<pre><code class="language-typescript">// tools/generators/feature-lib/index.ts
+import {
+  Tree,
+  formatFiles,
+  generateFiles,
+  joinPathFragments,
+  names,
+  readProjectConfiguration,
+} from &quot;@nx/devkit&quot;;
+import { libraryGenerator } from &quot;@nx/react&quot;;
+
+interface FeatureLibraryGeneratorSchema {
+  name: string;
+  scope: string;
+  directory?: string;
+}
+
+export default async function featureLibraryGenerator(
+  tree: Tree,
+  options: FeatureLibraryGeneratorSchema,
+) {
+  const { name, scope, directory } = options;
+  const projectDirectory = directory
+    ? `${directory}/${name}`
+    : `libs/${scope}/feature-${name}`;
+
+  // Generate base library
+  await libraryGenerator(tree, {
+    name: `feature-${name}`,
+    directory: projectDirectory,
+    tags: `type:feature,scope:${scope}`,
+    style: &quot;css&quot;,
+    skipTsConfig: false,
+    skipFormat: true,
+    unitTestRunner: &quot;jest&quot;,
+    linter: &quot;eslint&quot;,
+  });
+
+  // Add custom files
+  const projectConfig = readProjectConfiguration(
+    tree,
+    `${scope}-feature-${name}`,
+  );
+  const projectNames = names(name);
+
+  generateFiles(
+    tree,
+    joinPathFragments(__dirname, &quot;files&quot;),
+    projectConfig.sourceRoot,
+    {
+      ...projectNames,
+      scope,
+      tmpl: &quot;&quot;,
+    },
+  );
+
+  await formatFiles(tree);
+}
+</code></pre>
+<h3>Template 5: CI Configuration with Affected</h3>
+<pre><code class="language-yaml"># .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: &quot;npm&quot;
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Derive SHAs for affected commands
+        uses: nrwl/nx-set-shas@v4
+
+      - name: Run affected lint
+        run: npx nx affected -t lint --parallel=3
+
+      - name: Run affected test
+        run: npx nx affected -t test --parallel=3 --configuration=ci
+
+      - name: Run affected build
+        run: npx nx affected -t build --parallel=3
+
+      - name: Run affected e2e
+        run: npx nx affected -t e2e --parallel=1
+</code></pre>
+<h3>Template 6: Remote Caching Setup</h3>
+<pre><code class="language-typescript">// nx.json with Nx Cloud
+{
+  &quot;tasksRunnerOptions&quot;: {
+    &quot;default&quot;: {
+      &quot;runner&quot;: &quot;nx-cloud&quot;,
+      &quot;options&quot;: {
+        &quot;cacheableOperations&quot;: [&quot;build&quot;, &quot;lint&quot;, &quot;test&quot;, &quot;e2e&quot;],
+        &quot;accessToken&quot;: &quot;your-nx-cloud-token&quot;,
+        &quot;parallel&quot;: 3,
+        &quot;cacheDirectory&quot;: &quot;.nx/cache&quot;
+      }
+    }
+  },
+  &quot;nxCloudAccessToken&quot;: &quot;your-nx-cloud-token&quot;
+}
+
+// Self-hosted cache with S3
+{
+  &quot;tasksRunnerOptions&quot;: {
+    &quot;default&quot;: {
+      &quot;runner&quot;: &quot;@nx-aws-cache/nx-aws-cache&quot;,
+      &quot;options&quot;: {
+        &quot;cacheableOperations&quot;: [&quot;build&quot;, &quot;lint&quot;, &quot;test&quot;],
+        &quot;awsRegion&quot;: &quot;us-east-1&quot;,
+        &quot;awsBucket&quot;: &quot;my-nx-cache-bucket&quot;,
+        &quot;awsProfile&quot;: &quot;default&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h2>Common Commands</h2>
+<pre><code class="language-bash"># Generate new library
+nx g @nx/react:lib feature-auth --directory=libs/web --tags=type:feature,scope:web
+
+# Run affected tests
+nx affected -t test --base=main
+
+# View dependency graph
+nx graph
+
+# Run specific project
+nx build web --configuration=production
+
+# Reset cache
+nx reset
+
+# Run migrations
+nx migrate latest
+nx migrate --run-migrations
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Use tags consistently</strong> - Enforce with module boundaries</li>
+<li><strong>Enable caching early</strong> - Significant CI savings</li>
+<li><strong>Keep libs focused</strong> - Single responsibility</li>
+<li><strong>Use generators</strong> - Ensure consistency</li>
+<li><strong>Document boundaries</strong> - Help new developers</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t create circular deps</strong> - Graph should be acyclic</li>
+<li><strong>Don&#39;t skip affected</strong> - Test only what changed</li>
+<li><strong>Don&#39;t ignore boundaries</strong> - Tech debt accumulates</li>
+<li><strong>Don&#39;t over-granularize</strong> - Balance lib count</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://nx.dev/getting-started/intro">Nx Documentation</a></li>
+<li><a href="https://nx.dev/core-features/enforce-module-boundaries">Module Boundaries</a></li>
+<li><a href="https://nx.app/">Nx Cloud</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

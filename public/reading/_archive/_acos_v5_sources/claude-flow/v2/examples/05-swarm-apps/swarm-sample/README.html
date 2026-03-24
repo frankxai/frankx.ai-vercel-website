@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Notes CLI</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/05-swarm-apps/swarm-sample/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Notes CLI</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F05-swarm-apps">05-swarm-apps</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F05-swarm-apps%2Fswarm-sample">swarm-sample</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Notes CLI</h1>
+<p>A powerful command-line note-taking application created by the Claude Flow Swarm system.</p>
+<h2>🐝 Swarm Creation Details</h2>
+<p>This application was built through the collaborative effort of specialized swarm agents:</p>
+<h3>Agent Contributions</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Role</th>
+<th>Contribution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Coordinator-1</strong></td>
+<td>Project Management</td>
+<td>Decomposed requirements into 15 subtasks, assigned agents</td>
+</tr>
+<tr>
+<td><strong>Developer-1</strong></td>
+<td>Core Development</td>
+<td>Implemented NotesManager class and data persistence</td>
+</tr>
+<tr>
+<td><strong>Developer-2</strong></td>
+<td>CLI Development</td>
+<td>Built command-line interface using Commander.js</td>
+</tr>
+<tr>
+<td><strong>Tester-1</strong></td>
+<td>Quality Assurance</td>
+<td>Created comprehensive test suite with 15+ test cases</td>
+</tr>
+<tr>
+<td><strong>Reviewer-1</strong></td>
+<td>Code Review</td>
+<td>Ensured code quality, best practices, and 0.9 quality threshold</td>
+</tr>
+<tr>
+<td><strong>Documenter-1</strong></td>
+<td>Documentation</td>
+<td>Generated user documentation and inline comments</td>
+</tr>
+</tbody></table>
+<h3>Development Timeline</h3>
+<pre><code>[00:00] Objective received: &quot;create a note-taking CLI application&quot;
+[00:01] Task decomposition completed (5 main tasks, 10 subtasks)
+[00:02] 6 agents assigned to parallel tasks
+[00:05] Core implementation completed by Developer-1
+[00:07] CLI interface completed by Developer-2
+[00:09] Test suite completed by Tester-1 (100% coverage)
+[00:11] Code review completed by Reviewer-1
+[00:12] Documentation completed by Documenter-1
+[00:13] Integration testing passed
+[00:14] Quality threshold (0.9) achieved
+[00:15] Application ready for deployment
+</code></pre>
+<h2>🚀 Installation</h2>
+<pre><code class="language-bash"># Clone or download the application
+cd notes-cli
+
+# Install dependencies
+npm install
+
+# Make the CLI globally available
+npm link
+</code></pre>
+<h2>📝 Usage</h2>
+<h3>Add a Note</h3>
+<pre><code class="language-bash">notes add &quot;Shopping List&quot; --content &quot;Milk, Bread, Eggs&quot; --tags &quot;personal,todo&quot;
+</code></pre>
+<h3>List All Notes</h3>
+<pre><code class="language-bash">notes list
+</code></pre>
+<h3>List Notes by Tag</h3>
+<pre><code class="language-bash">notes list --tag work
+</code></pre>
+<h3>Search Notes</h3>
+<pre><code class="language-bash">notes search &quot;meeting&quot;
+</code></pre>
+<h3>View a Specific Note</h3>
+<pre><code class="language-bash">notes view &lt;note-id&gt;
+</code></pre>
+<h3>Delete a Note</h3>
+<pre><code class="language-bash">notes delete &lt;note-id&gt;
+</code></pre>
+<h3>View Statistics</h3>
+<pre><code class="language-bash">notes stats
+</code></pre>
+<h3>Show Swarm Information</h3>
+<pre><code class="language-bash">notes info
+</code></pre>
+<h2>🔧 Features</h2>
+<ul>
+<li><strong>Persistent Storage</strong>: Notes are saved to <code>~/.notes-cli/notes.json</code></li>
+<li><strong>Tag Support</strong>: Organize notes with multiple tags</li>
+<li><strong>Search Functionality</strong>: Search by title, content, or tags</li>
+<li><strong>Statistics</strong>: View insights about your notes</li>
+<li><strong>Colorful Output</strong>: Enhanced readability with color-coded information</li>
+<li><strong>Swarm Attribution</strong>: See which agent contributed to each feature</li>
+</ul>
+<h2>🏗️ Architecture</h2>
+<pre><code>notes-cli/
+├── notes.js          # Main application (Agent: Developer-1 &amp; Developer-2)
+├── notes.test.js     # Test suite (Agent: Tester-1)
+├── package.json      # Project configuration (Agent: Coordinator-1)
+└── README.md         # Documentation (Agent: Documenter-1)
+</code></pre>
+<h3>Data Model</h3>
+<pre><code class="language-javascript">Note {
+  id: string,          // Unique timestamp-based ID
+  title: string,       // Note title
+  content: string,     // Note content
+  tags: string[],      // Array of tags
+  createdAt: string,   // ISO timestamp
+  updatedAt: string,   // ISO timestamp
+  swarmAgent: string   // Agent that created/modified
+}
+</code></pre>
+<h2>🧪 Testing</h2>
+<p>Run the comprehensive test suite:</p>
+<pre><code class="language-bash">npm test
+</code></pre>
+<p>Run with coverage:</p>
+<pre><code class="language-bash">npm run test:coverage
+</code></pre>
+<p>The test suite includes:</p>
+<ul>
+<li>Unit tests for all CRUD operations</li>
+<li>Integration tests for CLI commands</li>
+<li>Edge case handling</li>
+<li>100% code coverage target</li>
+</ul>
+<h2>🔒 Quality Assurance</h2>
+<p>This application meets the following quality standards:</p>
+<ul>
+<li>✅ Quality threshold: 0.9 (90%)</li>
+<li>✅ Test coverage: 100%</li>
+<li>✅ Code review: Passed</li>
+<li>✅ Best practices: Followed</li>
+<li>✅ Documentation: Complete</li>
+</ul>
+<h2>🤝 Contributing</h2>
+<p>This project was created by swarm agents, but human contributions are welcome!</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Ensure tests pass (maintain 0.9 quality threshold)</li>
+<li>Submit a pull request</li>
+</ol>
+<h2>📄 License</h2>
+<p>MIT License - Created by Claude Flow Swarm</p>
+<h2>🙏 Acknowledgments</h2>
+<p>Special thanks to the Claude Flow Swarm system and all participating agents:</p>
+<ul>
+<li>Coordinator-1 for excellent project management</li>
+<li>Developer-1 &amp; Developer-2 for robust implementation</li>
+<li>Tester-1 for comprehensive quality assurance</li>
+<li>Reviewer-1 for maintaining high code standards</li>
+<li>Documenter-1 for clear documentation</li>
+</ul>
+<hr>
+<p><strong>Created with Claude Flow Swarm v1.0.49</strong></p>
+<p><em>Strategy: Development | Mode: Parallel | Quality: 0.9</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

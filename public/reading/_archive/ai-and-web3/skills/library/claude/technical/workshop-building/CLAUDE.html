@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Workshop Building Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/workshop-building/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Workshop Building Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fworkshop-building">workshop-building</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Workshop Building Skill</h1>
+<p><strong>Version</strong>: 1.0.0
+<strong>Category</strong>: Technical + Education
+<strong>Agentic-Creator-OS Integration</strong>: Full</p>
+<hr>
+<h2>Purpose</h2>
+<p>Master skill for creating comprehensive, hands-on technical workshops that transform learners from beginners to practitioners. Designed for the FrankX Workshop System, integrating with GitHub repositories, frankx.ai/workshops, and the Agentic-Creator OS intelligence systems.</p>
+<h2>Core Philosophy</h2>
+<blockquote>
+<p>&quot;The best workshop doesn&#39;t just teach—it transforms. Every participant leaves with working code, deep understanding, and the confidence to build on their own.&quot;</p>
+</blockquote>
+<h3>The FrankX Workshop Methodology</h3>
+<pre><code>┌──────────────────────────────────────────────────────────────┐
+│                 WORKSHOP TRANSFORMATION LOOP                  │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│   DISCOVER ──────► UNDERSTAND ──────► BUILD ──────► MASTER   │
+│       │                │                │              │      │
+│   Curiosity         Concepts         Practice       Fluency  │
+│   Sparked           Grasped          Applied        Achieved │
+│                                                               │
+│   ┌─────────────────────────────────────────────────────┐   │
+│   │  Quality Gates at Each Stage Ensure Progression     │   │
+│   └─────────────────────────────────────────────────────┘   │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>Workshop Architecture</h2>
+<h3>Directory Structure</h3>
+<pre><code>workshops/
+├── README.md                    # Workshop catalog and navigation
+├── _templates/                  # Reusable workshop templates
+│   ├── module-template.md       # Standard module structure
+│   ├── lab-template.md          # Hands-on lab structure
+│   └── assessment-template.md   # Knowledge check templates
+│
+├── ai-coding-agents/            # Workshop: AI Coding Agents Mastery
+│   ├── README.md                # Workshop overview
+│   ├── 00-prerequisites/        # Setup requirements
+│   ├── 01-foundations/          # Core concepts
+│   ├── 02-setup-guides/         # Tool installation
+│   ├── 03-first-agent/          # First project
+│   ├── 04-advanced/             # Advanced patterns
+│   ├── 05-evolution/            # skill.md → agent.md → orchestration
+│   ├── labs/                    # Hands-on exercises
+│   ├── projects/                # Capstone projects
+│   └── resources/               # Additional materials
+│
+├── mcp-server-mastery/          # Workshop: MCP Server Architecture
+├── oracle-genai-enterprise/     # Workshop: Oracle GenAI for Enterprise
+├── agentic-creator-evolution/   # Workshop: From Beginner to Master
+└── quality-gates/               # Shared quality assessment system
+    ├── progress-tracker.md      # Track learner progress
+    ├── skill-assessments/       # Test comprehension
+    └── completion-criteria.md   # Graduation requirements
+</code></pre>
+<h3>Workshop Module Structure</h3>
+<p>Each module follows this pattern:</p>
+<pre><code class="language-markdown"># Module X: [Title]
+
+## Learning Objectives
+- [ ] Objective 1 (measurable)
+- [ ] Objective 2 (actionable)
+- [ ] Objective 3 (demonstrable)
+
+## Prerequisites
+- Previous module completion
+- Required tools/access
+
+## Concepts (UNDERSTAND)
+[Theory and explanation - 20% of content]
+
+## Demonstration (OBSERVE)
+[Walkthrough with explanations - 30% of content]
+
+## Lab Exercise (BUILD)
+[Hands-on practice - 40% of content]
+
+## Assessment (VERIFY)
+[Knowledge check - 10% of content]
+
+## Next Steps
+[Pathway to next module]
+</code></pre>
+<hr>
+<h2>Workshop Types</h2>
+<h3>1. Quick Start Labs (30 min - 2 hours)</h3>
+<ul>
+<li>Single focused skill</li>
+<li>Immediate hands-on</li>
+<li>Clear outcome</li>
+<li>Example: &quot;Set Up Claude Code in 30 Minutes&quot;</li>
+</ul>
+<h3>2. Deep Dive Modules (2-4 hours)</h3>
+<ul>
+<li>Comprehensive topic coverage</li>
+<li>Multiple exercises</li>
+<li>Builds on prerequisites</li>
+<li>Example: &quot;MCP Server Architecture Deep Dive&quot;</li>
+</ul>
+<h3>3. Full Workshops (1-3 days)</h3>
+<ul>
+<li>Complete transformation journey</li>
+<li>Multiple modules</li>
+<li>Capstone project</li>
+<li>Example: &quot;AI Coding Agents Mastery Workshop&quot;</li>
+</ul>
+<h3>4. Evolution Pathways (Ongoing)</h3>
+<ul>
+<li>Progressive skill building</li>
+<li>Milestone achievements</li>
+<li>Community progression</li>
+<li>Example: &quot;Agentic Creator Evolution Path&quot;</li>
+</ul>
+<hr>
+<h2>Quality Gates System</h2>
+<h3>Per-Module Gates</h3>
+<pre><code class="language-yaml">module_quality_gates:
+  content:
+    - concepts_clear: true
+    - code_examples_working: true
+    - labs_tested: true
+    - assessments_validated: true
+
+  experience:
+    - estimated_time_accurate: true
+    - difficulty_appropriate: true
+    - prerequisites_documented: true
+
+  outcomes:
+    - learning_objectives_measurable: true
+    - hands_on_percentage: &quot;&gt;= 40%&quot;
+    - real_world_applicability: true
+</code></pre>
+<h3>Workshop-Level Gates</h3>
+<pre><code class="language-yaml">workshop_quality_gates:
+  structure:
+    - logical_progression: true
+    - no_prerequisite_gaps: true
+    - capstone_integrates_all: true
+
+  accessibility:
+    - beginner_friendly_entry: true
+    - advanced_paths_available: true
+    - multiple_learning_styles: true
+
+  completeness:
+    - all_tools_documented: true
+    - troubleshooting_included: true
+    - next_steps_clear: true
+</code></pre>
+<hr>
+<h2>Creating a New Workshop</h2>
+<h3>Step 1: Define the Transformation</h3>
+<pre><code class="language-markdown">## Workshop Planning Template
+
+### Target Audience
+- Who is this for?
+- Current skill level?
+- Goals and motivations?
+
+### Transformation Promise
+- What can they do BEFORE?
+- What can they do AFTER?
+- How long does it take?
+
+### Success Metrics
+- Completion criteria
+- Skill assessments
+- Real-world application proof
+</code></pre>
+<h3>Step 2: Map the Learning Journey</h3>
+<pre><code>DISCOVERY PHASE
+├── Hook: Why this matters
+├── Overview: What we&#39;ll build
+└── Quick win: First 10 minutes
+
+FOUNDATION PHASE
+├── Core concepts
+├── Mental models
+└── Terminology
+
+BUILD PHASE
+├── Guided labs
+├── Independent exercises
+└── Troubleshooting
+
+MASTERY PHASE
+├── Capstone project
+├── Real-world application
+└── Community sharing
+</code></pre>
+<h3>Step 3: Create Content with Quality Gates</h3>
+<p>Each piece of content must pass:</p>
+<ol>
+<li><strong>Clarity Check</strong>: Can a beginner understand this?</li>
+<li><strong>Accuracy Check</strong>: Is the code/info correct and current?</li>
+<li><strong>Completeness Check</strong>: Are all steps documented?</li>
+<li><strong>Testing Check</strong>: Has someone successfully followed this?</li>
+</ol>
+<hr>
+<h2>Integration Points</h2>
+<h3>GitHub Integration</h3>
+<p>Workshops live in <code>FrankX-Workshops</code> repository:</p>
+<ul>
+<li>Version controlled content</li>
+<li>Issue tracking for feedback</li>
+<li>PR workflow for updates</li>
+<li>Actions for validation</li>
+</ul>
+<h3>FrankX.AI Integration</h3>
+<p>Workshops displayed at <code>frankx.ai/workshops</code>:</p>
+<ul>
+<li>Interactive progress tracking</li>
+<li>Community discussion</li>
+<li>Achievement system</li>
+<li>Certificate generation</li>
+</ul>
+<h3>Agentic-Creator OS Integration</h3>
+<p>Workshop content feeds into:</p>
+<ul>
+<li>Skill development tracking</li>
+<li>Agent training data</li>
+<li>Knowledge base expansion</li>
+<li>Evolution pathway</li>
+</ul>
+<h3>OpenCode ACOS Integration</h3>
+<p>Same skill available in:</p>
+<ul>
+<li><code>.opencode/agents/workshop-builder.md</code></li>
+<li>Cross-platform consistency</li>
+<li>Shared quality gates</li>
+</ul>
+<hr>
+<h2>Workshop Content Guidelines</h2>
+<h3>Voice and Tone</h3>
+<ul>
+<li><strong>Authoritative but approachable</strong>: Expert guidance without intimidation</li>
+<li><strong>Action-oriented</strong>: Focus on doing, not just reading</li>
+<li><strong>Encouraging</strong>: Celebrate progress, normalize challenges</li>
+<li><strong>Practical</strong>: Real-world applications, not academic exercises</li>
+</ul>
+<h3>Code Standards</h3>
+<pre><code class="language-markdown">## Code Block Requirements
+
+1. **Complete and runnable**: No pseudo-code in labs
+2. **Well-commented**: Explain the &quot;why&quot; not just &quot;what&quot;
+3. **Tested**: All code verified working
+4. **Copy-friendly**: Easy to copy and execute
+</code></pre>
+<h3>Visual Standards</h3>
+<ul>
+<li>Architecture diagrams for complex concepts</li>
+<li>Progress indicators for multi-step processes</li>
+<li>Before/after comparisons for transformations</li>
+<li>Terminal screenshots for setup verification</li>
+</ul>
+<hr>
+<h2>Workshop Templates</h2>
+<h3>Quick Start Template</h3>
+<pre><code class="language-markdown"># Quick Start: [Topic]
+
+**Time**: 30 minutes
+**Level**: Beginner
+**Outcome**: [What they&#39;ll have working]
+
+## Prerequisites
+- [Minimal requirements]
+
+## Step 1: [Action] (5 min)
+[Clear instructions]
+
+## Step 2: [Action] (10 min)
+[Clear instructions]
+
+## Step 3: [Action] (10 min)
+[Clear instructions]
+
+## Verify It Works
+[How to test success]
+
+## Next Steps
+[Where to go from here]
+</code></pre>
+<h3>Deep Dive Template</h3>
+<pre><code class="language-markdown"># [Topic] Deep Dive
+
+**Duration**: 3-4 hours
+**Level**: Intermediate
+**Prerequisites**: [List]
+
+## Overview
+[Why this matters, what you&#39;ll learn]
+
+## Part 1: Concepts (45 min)
+### 1.1 [Concept]
+### 1.2 [Concept]
+### 1.3 [Concept]
+
+## Part 2: Hands-On (2 hours)
+### Lab 1: [Title]
+### Lab 2: [Title]
+### Lab 3: [Title]
+
+## Part 3: Real-World Application (45 min)
+### Project: [Title]
+### Best Practices
+### Common Pitfalls
+
+## Assessment
+[Knowledge check]
+
+## Resources
+[Further learning]
+</code></pre>
+<hr>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Creating new technical workshops</li>
+<li>Structuring educational content</li>
+<li>Building learning pathways</li>
+<li>Designing hands-on labs</li>
+<li>Integrating with FrankX workshop system</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>mcp-architecture</code> - For MCP-focused workshops</li>
+<li><code>claude-sdk</code> - For Agent SDK workshops</li>
+<li><code>oracle-adk</code> - For Oracle ADK workshops</li>
+<li><code>frankx-brand</code> - For voice and tone alignment</li>
+<li><code>ui-ux-design-expert</code> - For workshop UI/UX</li>
+</ul>
+<hr>
+<h2>Activation Commands</h2>
+<pre><code class="language-bash"># Create new workshop
+/workshop-building create [workshop-name]
+
+# Generate module
+/workshop-building module [workshop-name] [module-number]
+
+# Validate workshop quality
+/workshop-building validate [workshop-name]
+
+# Generate workshop landing page
+/workshop-building landing [workshop-name]
+</code></pre>
+<hr>
+<p><em>This skill embodies the FrankX mission: transforming creators from tech-overwhelmed to AI-empowered through hands-on, soul-aligned learning experiences.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

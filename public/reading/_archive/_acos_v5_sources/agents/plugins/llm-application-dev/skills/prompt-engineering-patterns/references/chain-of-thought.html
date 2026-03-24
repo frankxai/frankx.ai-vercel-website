@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Chain-of-Thought Prompting</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/llm-application-dev/skills/prompt-engineering-patterns/references/chain-of-thought.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Chain-of-Thought Prompting</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev">llm-application-dev</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills%2Fprompt-engineering-patterns">prompt-engineering-patterns</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills%2Fprompt-engineering-patterns%2Freferences">references</a> / <span>chain-of-thought.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Chain-of-Thought Prompting</h1>
+<h2>Overview</h2>
+<p>Chain-of-Thought (CoT) prompting elicits step-by-step reasoning from LLMs, dramatically improving performance on complex reasoning, math, and logic tasks.</p>
+<h2>Core Techniques</h2>
+<h3>Zero-Shot CoT</h3>
+<p>Add a simple trigger phrase to elicit reasoning:</p>
+<pre><code class="language-python">def zero_shot_cot(query):
+    return f&quot;&quot;&quot;{query}
+
+Let&#39;s think step by step:&quot;&quot;&quot;
+
+# Example
+query = &quot;If a train travels 60 mph for 2.5 hours, how far does it go?&quot;
+prompt = zero_shot_cot(query)
+
+# Model output:
+# &quot;Let&#39;s think step by step:
+# 1. Speed = 60 miles per hour
+# 2. Time = 2.5 hours
+# 3. Distance = Speed × Time
+# 4. Distance = 60 × 2.5 = 150 miles
+# Answer: 150 miles&quot;
+</code></pre>
+<h3>Few-Shot CoT</h3>
+<p>Provide examples with explicit reasoning chains:</p>
+<pre><code class="language-python">few_shot_examples = &quot;&quot;&quot;
+Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 balls. How many tennis balls does he have now?
+A: Let&#39;s think step by step:
+1. Roger starts with 5 balls
+2. He buys 2 cans, each with 3 balls
+3. Balls from cans: 2 × 3 = 6 balls
+4. Total: 5 + 6 = 11 balls
+Answer: 11
+
+Q: The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many do they have?
+A: Let&#39;s think step by step:
+1. Started with 23 apples
+2. Used 20 for lunch: 23 - 20 = 3 apples left
+3. Bought 6 more: 3 + 6 = 9 apples
+Answer: 9
+
+Q: {user_query}
+A: Let&#39;s think step by step:&quot;&quot;&quot;
+</code></pre>
+<h3>Self-Consistency</h3>
+<p>Generate multiple reasoning paths and take the majority vote:</p>
+<pre><code class="language-python">import openai
+from collections import Counter
+
+def self_consistency_cot(query, n=5, temperature=0.7):
+    prompt = f&quot;{query}\n\nLet&#39;s think step by step:&quot;
+
+    responses = []
+    for _ in range(n):
+        response = openai.ChatCompletion.create(
+            model=&quot;gpt-5&quot;,
+            messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}],
+            temperature=temperature
+        )
+        responses.append(extract_final_answer(response))
+
+    # Take majority vote
+    answer_counts = Counter(responses)
+    final_answer = answer_counts.most_common(1)[0][0]
+
+    return {
+        &#39;answer&#39;: final_answer,
+        &#39;confidence&#39;: answer_counts[final_answer] / n,
+        &#39;all_responses&#39;: responses
+    }
+</code></pre>
+<h2>Advanced Patterns</h2>
+<h3>Least-to-Most Prompting</h3>
+<p>Break complex problems into simpler subproblems:</p>
+<pre><code class="language-python">def least_to_most_prompt(complex_query):
+    # Stage 1: Decomposition
+    decomp_prompt = f&quot;&quot;&quot;Break down this complex problem into simpler subproblems:
+
+Problem: {complex_query}
+
+Subproblems:&quot;&quot;&quot;
+
+    subproblems = get_llm_response(decomp_prompt)
+
+    # Stage 2: Sequential solving
+    solutions = []
+    context = &quot;&quot;
+
+    for subproblem in subproblems:
+        solve_prompt = f&quot;&quot;&quot;{context}
+
+Solve this subproblem:
+{subproblem}
+
+Solution:&quot;&quot;&quot;
+        solution = get_llm_response(solve_prompt)
+        solutions.append(solution)
+        context += f&quot;\n\nPreviously solved: {subproblem}\nSolution: {solution}&quot;
+
+    # Stage 3: Final integration
+    final_prompt = f&quot;&quot;&quot;Given these solutions to subproblems:
+{context}
+
+Provide the final answer to: {complex_query}
+
+Final Answer:&quot;&quot;&quot;
+
+    return get_llm_response(final_prompt)
+</code></pre>
+<h3>Tree-of-Thought (ToT)</h3>
+<p>Explore multiple reasoning branches:</p>
+<pre><code class="language-python">class TreeOfThought:
+    def __init__(self, llm_client, max_depth=3, branches_per_step=3):
+        self.client = llm_client
+        self.max_depth = max_depth
+        self.branches_per_step = branches_per_step
+
+    def solve(self, problem):
+        # Generate initial thought branches
+        initial_thoughts = self.generate_thoughts(problem, depth=0)
+
+        # Evaluate each branch
+        best_path = None
+        best_score = -1
+
+        for thought in initial_thoughts:
+            path, score = self.explore_branch(problem, thought, depth=1)
+            if score &gt; best_score:
+                best_score = score
+                best_path = path
+
+        return best_path
+
+    def generate_thoughts(self, problem, context=&quot;&quot;, depth=0):
+        prompt = f&quot;&quot;&quot;Problem: {problem}
+{context}
+
+Generate {self.branches_per_step} different next steps in solving this problem:
+
+1.&quot;&quot;&quot;
+        response = self.client.complete(prompt)
+        return self.parse_thoughts(response)
+
+    def evaluate_thought(self, problem, thought_path):
+        prompt = f&quot;&quot;&quot;Problem: {problem}
+
+Reasoning path so far:
+{thought_path}
+
+Rate this reasoning path from 0-10 for:
+- Correctness
+- Likelihood of reaching solution
+- Logical coherence
+
+Score:&quot;&quot;&quot;
+        return float(self.client.complete(prompt))
+</code></pre>
+<h3>Verification Step</h3>
+<p>Add explicit verification to catch errors:</p>
+<pre><code class="language-python">def cot_with_verification(query):
+    # Step 1: Generate reasoning and answer
+    reasoning_prompt = f&quot;&quot;&quot;{query}
+
+Let&#39;s solve this step by step:&quot;&quot;&quot;
+
+    reasoning_response = get_llm_response(reasoning_prompt)
+
+    # Step 2: Verify the reasoning
+    verification_prompt = f&quot;&quot;&quot;Original problem: {query}
+
+Proposed solution:
+{reasoning_response}
+
+Verify this solution by:
+1. Checking each step for logical errors
+2. Verifying arithmetic calculations
+3. Ensuring the final answer makes sense
+
+Is this solution correct? If not, what&#39;s wrong?
+
+Verification:&quot;&quot;&quot;
+
+    verification = get_llm_response(verification_prompt)
+
+    # Step 3: Revise if needed
+    if &quot;incorrect&quot; in verification.lower() or &quot;error&quot; in verification.lower():
+        revision_prompt = f&quot;&quot;&quot;The previous solution had errors:
+{verification}
+
+Please provide a corrected solution to: {query}
+
+Corrected solution:&quot;&quot;&quot;
+        return get_llm_response(revision_prompt)
+
+    return reasoning_response
+</code></pre>
+<h2>Domain-Specific CoT</h2>
+<h3>Math Problems</h3>
+<pre><code class="language-python">math_cot_template = &quot;&quot;&quot;
+Problem: {problem}
+
+Solution:
+Step 1: Identify what we know
+- {list_known_values}
+
+Step 2: Identify what we need to find
+- {target_variable}
+
+Step 3: Choose relevant formulas
+- {formulas}
+
+Step 4: Substitute values
+- {substitution}
+
+Step 5: Calculate
+- {calculation}
+
+Step 6: Verify and state answer
+- {verification}
+
+Answer: {final_answer}
+&quot;&quot;&quot;
+</code></pre>
+<h3>Code Debugging</h3>
+<pre><code class="language-python">debug_cot_template = &quot;&quot;&quot;
+Code with error:
+{code}
+
+Error message:
+{error}
+
+Debugging process:
+Step 1: Understand the error message
+- {interpret_error}
+
+Step 2: Locate the problematic line
+- {identify_line}
+
+Step 3: Analyze why this line fails
+- {root_cause}
+
+Step 4: Determine the fix
+- {proposed_fix}
+
+Step 5: Verify the fix addresses the error
+- {verification}
+
+Fixed code:
+{corrected_code}
+&quot;&quot;&quot;
+</code></pre>
+<h3>Logical Reasoning</h3>
+<pre><code class="language-python">logic_cot_template = &quot;&quot;&quot;
+Premises:
+{premises}
+
+Question: {question}
+
+Reasoning:
+Step 1: List all given facts
+{facts}
+
+Step 2: Identify logical relationships
+{relationships}
+
+Step 3: Apply deductive reasoning
+{deductions}
+
+Step 4: Draw conclusion
+{conclusion}
+
+Answer: {final_answer}
+&quot;&quot;&quot;
+</code></pre>
+<h2>Performance Optimization</h2>
+<h3>Caching Reasoning Patterns</h3>
+<pre><code class="language-python">class ReasoningCache:
+    def __init__(self):
+        self.cache = {}
+
+    def get_similar_reasoning(self, problem, threshold=0.85):
+        problem_embedding = embed(problem)
+
+        for cached_problem, reasoning in self.cache.items():
+            similarity = cosine_similarity(
+                problem_embedding,
+                embed(cached_problem)
+            )
+            if similarity &gt; threshold:
+                return reasoning
+
+        return None
+
+    def add_reasoning(self, problem, reasoning):
+        self.cache[problem] = reasoning
+</code></pre>
+<h3>Adaptive Reasoning Depth</h3>
+<pre><code class="language-python">def adaptive_cot(problem, initial_depth=3):
+    depth = initial_depth
+
+    while depth &lt;= 10:  # Max depth
+        response = generate_cot(problem, num_steps=depth)
+
+        # Check if solution seems complete
+        if is_solution_complete(response):
+            return response
+
+        depth += 2  # Increase reasoning depth
+
+    return response  # Return best attempt
+</code></pre>
+<h2>Evaluation Metrics</h2>
+<pre><code class="language-python">def evaluate_cot_quality(reasoning_chain):
+    metrics = {
+        &#39;coherence&#39;: measure_logical_coherence(reasoning_chain),
+        &#39;completeness&#39;: check_all_steps_present(reasoning_chain),
+        &#39;correctness&#39;: verify_final_answer(reasoning_chain),
+        &#39;efficiency&#39;: count_unnecessary_steps(reasoning_chain),
+        &#39;clarity&#39;: rate_explanation_clarity(reasoning_chain)
+    }
+    return metrics
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Clear Step Markers</strong>: Use numbered steps or clear delimiters</li>
+<li><strong>Show All Work</strong>: Don&#39;t skip steps, even obvious ones</li>
+<li><strong>Verify Calculations</strong>: Add explicit verification steps</li>
+<li><strong>State Assumptions</strong>: Make implicit assumptions explicit</li>
+<li><strong>Check Edge Cases</strong>: Consider boundary conditions</li>
+<li><strong>Use Examples</strong>: Show the reasoning pattern with examples first</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li><strong>Premature Conclusions</strong>: Jumping to answer without full reasoning</li>
+<li><strong>Circular Logic</strong>: Using the conclusion to justify the reasoning</li>
+<li><strong>Missing Steps</strong>: Skipping intermediate calculations</li>
+<li><strong>Overcomplicated</strong>: Adding unnecessary steps that confuse</li>
+<li><strong>Inconsistent Format</strong>: Changing step structure mid-reasoning</li>
+</ul>
+<h2>When to Use CoT</h2>
+<p><strong>Use CoT for:</strong></p>
+<ul>
+<li>Math and arithmetic problems</li>
+<li>Logical reasoning tasks</li>
+<li>Multi-step planning</li>
+<li>Code generation and debugging</li>
+<li>Complex decision making</li>
+</ul>
+<p><strong>Skip CoT for:</strong></p>
+<ul>
+<li>Simple factual queries</li>
+<li>Direct lookups</li>
+<li>Creative writing</li>
+<li>Tasks requiring conciseness</li>
+<li>Real-time, latency-sensitive applications</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li>Benchmark datasets for CoT evaluation</li>
+<li>Pre-built CoT prompt templates</li>
+<li>Reasoning verification tools</li>
+<li>Step extraction and parsing utilities</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

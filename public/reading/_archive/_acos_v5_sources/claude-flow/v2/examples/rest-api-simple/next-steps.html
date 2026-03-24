@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Next Steps to Complete REST API</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/rest-api-simple/next-steps.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Next Steps to Complete REST API</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2Frest-api-simple">rest-api-simple</a> / <span>next-steps.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Next Steps to Complete REST API</h1>
+<h2>Current Situation</h2>
+<p>The REST API implementation (<code>index.js</code>) doesn&#39;t match its specification:</p>
+<ul>
+<li>Uses &quot;items&quot; instead of &quot;tasks&quot;</li>
+<li>Missing API versioning (<code>/api/v1/</code>)</li>
+<li>Lacks proper data model (timestamps, completed field)</li>
+<li>No test suite with Jest/Supertest</li>
+</ul>
+<h2>Immediate Action Required</h2>
+<h3>Option 1: Sequential SPARC Execution (Recommended)</h3>
+<p>Execute the following command to start the refactoring:</p>
+<pre><code class="language-bash">cd /workspaces/claude-code-flow/examples/rest-api-simple
+npx claude-flow sparc run code &quot;Refactor index.js to server.js for REST API: change resource from items to tasks, add API versioning /api/v1/, update data model with title/completed/timestamps&quot;
+</code></pre>
+<p>Then continue with:</p>
+<ol>
+<li><code>npx claude-flow sparc run tdd &quot;Create Jest test suite for tasks REST API&quot;</code></li>
+<li><code>npx claude-flow sparc run code &quot;Implement query parameters for tasks API&quot;</code></li>
+<li><code>npx claude-flow sparc run code &quot;Enhance error handling for tasks API&quot;</code></li>
+</ol>
+<h3>Option 2: Parallel Swarm Execution (Faster)</h3>
+<p>Use swarm mode to complete everything at once:</p>
+<pre><code class="language-bash">cd /workspaces/claude-code-flow/examples/rest-api-simple
+npx claude-flow swarm &quot;Complete REST API implementation: refactor to tasks resource with proper data model, add API versioning, create Jest test suite, implement query parameters, enhance error handling&quot; \
+  --strategy development \
+  --background \
+  --parallel \
+  --testing
+</code></pre>
+<h3>Option 3: Manual Implementation</h3>
+<ol>
+<li>Backup current implementation: <code>cp index.js index.js.backup</code></li>
+<li>Install test dependencies: <code>npm install --save-dev jest supertest</code></li>
+<li>Manually refactor the code following the architecture plan</li>
+<li>Create test suite</li>
+<li>Run tests: <code>npm test</code></li>
+</ol>
+<h2>Key Files to Review</h2>
+<ul>
+<li><code>architecture-completion-plan.md</code> - Detailed technical architecture</li>
+<li><code>sparc-implementation-roadmap.md</code> - Step-by-step SPARC commands</li>
+<li><code>api-specification.md</code> - Target API specification</li>
+</ul>
+<h2>Expected Outcome</h2>
+<p>After completion, the API will:</p>
+<ul>
+<li>Use <code>/api/v1/tasks</code> endpoints</li>
+<li>Support task model with <code>title</code>, <code>completed</code>, <code>createdAt</code>, <code>updatedAt</code></li>
+<li>Include query parameters for filtering and pagination</li>
+<li>Have comprehensive Jest test suite</li>
+<li>Match the documented specification exactly</li>
+</ul>
+<h2>Time Estimate</h2>
+<ul>
+<li>Sequential SPARC: ~80 minutes</li>
+<li>Parallel Swarm: ~30 minutes</li>
+<li>Manual: 2-3 hours</li>
+</ul>
+<p>Choose your preferred approach and execute the commands above to complete the REST API implementation.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

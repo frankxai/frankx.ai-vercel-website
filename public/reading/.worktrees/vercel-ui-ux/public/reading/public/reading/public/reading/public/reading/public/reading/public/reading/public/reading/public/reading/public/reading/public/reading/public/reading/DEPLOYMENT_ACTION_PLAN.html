@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>🚀 Security Deployment Action Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="DEPLOYMENT_ACTION_PLAN.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">🚀 Security Deployment Action Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>DEPLOYMENT_ACTION_PLAN.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>🚀 Security Deployment Action Plan</h1>
+<p><strong>Status</strong>: ✅ Code committed and pushed to main
+<strong>Branch</strong>: <code>main</code> (auto-deploys to frankx.ai)
+<strong>Next</strong>: Complete environment configuration in Vercel</p>
+<hr>
+<h2>⚡ Quick Actions (10 Minutes)</h2>
+<h3>Step 1: Generate Authentication Secrets</h3>
+<pre><code class="language-bash">cd &quot;/mnt/c/Users/Frank/FrankX/FrankX.AI - Vercel Website&quot;
+
+# Generate NextAuth secret
+openssl rand -base64 32
+# Copy output - you&#39;ll paste this in Vercel
+
+# Generate admin password hash (use a STRONG password!)
+node scripts/generate-password-hash.mjs &quot;YourSecurePassword123!&quot;
+# Copy the hash output
+</code></pre>
+<h3>Step 2: Configure Vercel Environment Variables</h3>
+<p><strong>Go to</strong>: <a href="https://vercel.com/dashboard">https://vercel.com/dashboard</a> → FrankX.AI → Settings → Environment Variables</p>
+<p><strong>Add these variables</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Variable Name</th>
+<th>Value</th>
+<th>Environment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>NEXTAUTH_SECRET</code></td>
+<td>(paste secret from Step 1)</td>
+<td>Production, Preview, Development</td>
+</tr>
+<tr>
+<td><code>NEXTAUTH_URL</code></td>
+<td><code>https://frankx.ai</code></td>
+<td>Production</td>
+</tr>
+<tr>
+<td><code>ADMIN_EMAIL</code></td>
+<td><code>admin@frankx.ai</code></td>
+<td>All</td>
+</tr>
+<tr>
+<td><code>ADMIN_PASSWORD_HASH</code></td>
+<td>(paste hash from Step 1)</td>
+<td>All</td>
+</tr>
+</tbody></table>
+<p><strong>Keep existing variables</strong>:</p>
+<ul>
+<li><code>RESEND_API_KEY</code> (already configured)</li>
+<li>Any other existing variables</li>
+</ul>
+<h3>Step 3: Add Vercel KV Storage</h3>
+<p><strong>In Vercel Dashboard</strong>:</p>
+<ol>
+<li>Click &quot;Storage&quot; tab</li>
+<li>Click &quot;Create Database&quot;</li>
+<li>Select &quot;KV (Redis)&quot;</li>
+<li>Choose region: <strong>US East</strong> (or closest to your users)</li>
+<li>Database name: <code>frankx-analytics</code></li>
+<li>Click &quot;Create&quot;</li>
+</ol>
+<p><strong>Vercel automatically injects</strong> these variables:</p>
+<ul>
+<li><code>KV_URL</code></li>
+<li><code>KV_REST_API_URL</code></li>
+<li><code>KV_REST_API_TOKEN</code></li>
+<li><code>KV_REST_API_READ_ONLY_TOKEN</code></li>
+</ul>
+<h3>Step 4: Trigger Redeploy</h3>
+<p>Vercel should auto-deploy after your git push. If not:</p>
+<pre><code class="language-bash"># Check deployment status
+vercel --prod
+</code></pre>
+<p>Or trigger redeploy in dashboard:
+<strong>Deployments</strong> tab → Click &quot;Redeploy&quot; on latest deployment</p>
+<h3>Step 5: Test Authentication</h3>
+<p>After deployment completes (~3-5 minutes):</p>
+<pre><code class="language-bash"># 1. Try accessing dashboard (should redirect to login)
+open https://frankx.ai/dashboard/pdf-analytics
+
+# 2. Login with credentials from Step 1:
+#    Email: admin@frankx.ai
+#    Password: (your password from Step 1)
+
+# 3. Verify dashboard loads and shows analytics
+</code></pre>
+<hr>
+<h2>🎯 What You&#39;ll See After Deployment</h2>
+<h3>✅ Working Features</h3>
+<ol>
+<li><p><strong>Dashboard Login Page</strong></p>
+<ul>
+<li>Visit <code>/dashboard/pdf-analytics</code> → Redirects to <code>/auth/signin</code></li>
+<li>Premium dark theme login form</li>
+<li>Password show/hide toggle</li>
+<li>Clear error messages</li>
+</ul>
+</li>
+<li><p><strong>Protected Analytics</strong></p>
+<ul>
+<li>PDF analytics dashboard (requires login)</li>
+<li>Lead management dashboard (requires login)</li>
+<li>Session persists across page reloads</li>
+</ul>
+</li>
+<li><p><strong>Rate Limiting</strong></p>
+<ul>
+<li>Email endpoint: 5 requests per 10 minutes</li>
+<li>Clear error message when limit exceeded</li>
+<li>Automatic reset after time window</li>
+</ul>
+</li>
+<li><p><strong>Persistent Data</strong></p>
+<ul>
+<li>Analytics survive deployments</li>
+<li>Leads stored in Vercel KV</li>
+<li>Data accessible via dashboard</li>
+</ul>
+</li>
+</ol>
+<h3>🚨 If Something&#39;s Wrong</h3>
+<p><strong>Problem</strong>: Can&#39;t login / &quot;Invalid credentials&quot;</p>
+<pre><code class="language-bash"># Solution: Regenerate password hash
+node scripts/generate-password-hash.mjs &quot;NewPassword123!&quot;
+# Update ADMIN_PASSWORD_HASH in Vercel
+# Wait 2 minutes for env var refresh
+</code></pre>
+<p><strong>Problem</strong>: Dashboard still publicly accessible</p>
+<pre><code class="language-bash"># Solution: Check middleware is deployed
+# Look at Vercel deployment logs
+# Verify middleware.ts exists in deployment
+</code></pre>
+<p><strong>Problem</strong>: &quot;Rate limit exceeded&quot; immediately</p>
+<pre><code class="language-bash"># Solution: Check Upstash dashboard
+# Verify KV_* environment variables are set
+# Clear rate limit cache in Vercel KV data browser
+</code></pre>
+<hr>
+<h2>📊 What Changed (User-Facing)</h2>
+<h3>Before This Update</h3>
+<ul>
+<li>❌ Anyone could view analytics dashboard</li>
+<li>❌ Lead data (emails, names) publicly exposed</li>
+<li>❌ Analytics data lost on every deployment</li>
+<li>❌ No spam protection on email endpoint</li>
+</ul>
+<h3>After This Update</h3>
+<ul>
+<li>✅ Dashboard requires login (email + password)</li>
+<li>✅ All PII protected behind authentication</li>
+<li>✅ Analytics persist forever (Vercel KV)</li>
+<li>✅ Rate limiting prevents email spam</li>
+</ul>
+<h3>User Experience</h3>
+<p><strong>For visitors</strong> (no change):</p>
+<ul>
+<li>Homepage, blog, downloads work exactly the same</li>
+<li>Newsletter signup still works</li>
+<li>PDF previews still work</li>
+<li>Email delivery still works (now with rate limiting)</li>
+</ul>
+<p><strong>For admins</strong> (new):</p>
+<ul>
+<li>Must login to view dashboards</li>
+<li>Session lasts 30 days</li>
+<li>Can export leads as CSV</li>
+<li>Can view analytics trends</li>
+</ul>
+<hr>
+<h2>🔐 Security Improvements</h2>
+<h3>Critical Issues Fixed</h3>
+<ol>
+<li><strong>P0: Public Dashboard Access</strong> → ✅ Fixed with NextAuth.js</li>
+<li><strong>P0: Data Loss on Deploy</strong> → ✅ Fixed with Vercel KV</li>
+</ol>
+<h3>Additional Enhancements</h3>
+<ol start="3">
+<li><strong>Rate Limiting</strong> → Prevents spam (5 emails per 10 min)</li>
+<li><strong>Input Validation</strong> → Stricter email validation</li>
+<li><strong>CSV Injection</strong> → Sanitizes exported data</li>
+<li><strong>Password Hashing</strong> → Bcrypt with 10 salt rounds</li>
+<li><strong>Session Security</strong> → JWT with 30-day expiration</li>
+</ol>
+<hr>
+<h2>📈 Monitoring (Week 1)</h2>
+<h3>Check Daily</h3>
+<p><strong>Vercel Dashboard</strong> → Logs:</p>
+<ul>
+<li>Look for auth errors</li>
+<li>Watch for rate limit hits</li>
+<li>Verify KV storage usage</li>
+</ul>
+<p><strong>Upstash Dashboard</strong> (if using Upstash KV):</p>
+<ul>
+<li>Rate limit analytics</li>
+<li>Identify blocked IPs</li>
+<li>Adjust limits if needed</li>
+</ul>
+<h3>Success Metrics</h3>
+<p>Week 1 targets:</p>
+<ul>
+<li>✅ Zero unauthorized dashboard access</li>
+<li>✅ Analytics data persists across 3+ deployments</li>
+<li>✅ Rate limiting blocks &lt;5 spam attempts</li>
+<li>✅ All legitimate users can login</li>
+</ul>
+<hr>
+<h2>🆘 Emergency Rollback</h2>
+<p><strong>If critical issues arise</strong>:</p>
+<pre><code class="language-bash">cd &quot;/mnt/c/Users/Frank/FrankX/FrankX.AI - Vercel Website&quot;
+
+# Find previous commit (before security upgrade)
+git log --oneline -3
+
+# Revert to previous version
+git revert 8a8e5e8
+
+# Push revert
+git push origin main
+
+# Vercel will auto-deploy previous version
+</code></pre>
+<p><strong>Expected downtime</strong>: ~3-5 minutes during redeploy</p>
+<p><strong>Note</strong>: Vercel KV data remains intact (won&#39;t lose analytics)</p>
+<hr>
+<h2>📚 Documentation</h2>
+<h3>Quick Reference</h3>
+<ul>
+<li><strong>5-minute setup</strong>: <code>docs/SECURITY_SETUP.md</code></li>
+<li><strong>Full upgrade details</strong>: <code>SECURITY_UPGRADE.md</code></li>
+<li><strong>Environment template</strong>: <code>.env.example</code></li>
+<li><strong>Password hash generator</strong>: <code>scripts/generate-password-hash.mjs</code></li>
+</ul>
+<h3>For Future You</h3>
+<p><strong>Change admin password</strong>:</p>
+<pre><code class="language-bash">node scripts/generate-password-hash.mjs &quot;NewPassword&quot;
+# Update ADMIN_PASSWORD_HASH in Vercel
+</code></pre>
+<p><strong>Add new protected route</strong>:</p>
+<pre><code class="language-typescript">// middleware.ts
+export const config = {
+  matcher: [
+    &#39;/dashboard/:path*&#39;,
+    &#39;/api/dashboard/:path*&#39;,
+    &#39;/your-new-route/:path*&#39;  // Add here
+  ]
+}
+</code></pre>
+<p><strong>View KV data</strong>:</p>
+<ul>
+<li>Vercel Dashboard → Storage → frankx-analytics → Data Browser</li>
+<li>Search for keys: <code>pdf_views:all</code>, <code>leads</code>, etc.</li>
+</ul>
+<hr>
+<h2>✅ Completion Checklist</h2>
+<p>Before marking this complete:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Generated NEXTAUTH_SECRET and added to Vercel</li>
+<li><input disabled="" type="checkbox"> Generated admin password hash and added to Vercel</li>
+<li><input disabled="" type="checkbox"> Created Vercel KV database</li>
+<li><input disabled="" type="checkbox"> Verified auto-deployment completed successfully</li>
+<li><input disabled="" type="checkbox"> Tested login at <a href="https://frankx.ai/auth/signin">https://frankx.ai/auth/signin</a></li>
+<li><input disabled="" type="checkbox"> Verified dashboard requires authentication</li>
+<li><input disabled="" type="checkbox"> Checked analytics data displays correctly</li>
+<li><input disabled="" type="checkbox"> Saved admin password in password manager</li>
+<li><input disabled="" type="checkbox"> Read <code>docs/SECURITY_SETUP.md</code> troubleshooting section</li>
+</ul>
+<hr>
+<h2>🎉 You&#39;re Done!</h2>
+<p><strong>Security Status</strong>: ✅ Production-Ready</p>
+<p><strong>Risk Level</strong>: 🟢 Low (was 🔴 Critical)</p>
+<p><strong>Next Steps</strong>:</p>
+<ol>
+<li>Complete the 5 steps above</li>
+<li>Test thoroughly for 1 week</li>
+<li>Consider adding OAuth (Google/GitHub login) for easier access</li>
+<li>Set up monitoring alerts</li>
+</ol>
+<p><strong>Questions?</strong> See <code>docs/SECURITY_SETUP.md</code> → Troubleshooting</p>
+<hr>
+<p><strong>Created</strong>: January 14, 2026
+<strong>Deployed</strong>: Pending environment configuration
+<strong>ETA</strong>: 10 minutes to complete setup</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

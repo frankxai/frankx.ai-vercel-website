@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Changelog</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-code-mcp/CHANGELOG.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Changelog</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#_archive">_archive</a> / <a href="../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-code-mcp">claude-code-mcp</a> / <span>CHANGELOG.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Changelog</h1>
+<p>All notable changes to this project will be documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<h2>[1.10.12] - 2025-05-17</h2>
+<ul>
+<li>Fixed MCP server startup issue by ensuring process runs regardless of module detection</li>
+<li>Updated server version constant to match package version</li>
+<li>Simplified entry point logic to prevent early exit</li>
+</ul>
+<h2>[1.10.11] - 2025-05-17</h2>
+<ul>
+<li>Restored package structure to v1.9.4 configuration after bundling issues</li>
+<li>Removed bundling approach and dependencies (esbuild)</li>
+<li>Fixed build by returning to simple TypeScript compilation with tsc</li>
+<li>Kept ESLint in devDependencies where it belongs</li>
+<li>Package now works correctly as MCP server again</li>
+</ul>
+<h2>[1.10.10] - 2025-05-17</h2>
+<ul>
+<li>Restored shipping TypeScript source files alongside compiled JavaScript</li>
+<li>Returns to the pre-bundling approach of versions 1.5.0-1.9.x</li>
+<li>Includes src/server.ts, tsconfig.json, and start scripts in package</li>
+<li>Provides flexibility for users to run or modify the TypeScript version</li>
+</ul>
+<h2>[1.10.9] - 2025-05-17</h2>
+<ul>
+<li>Switched from bundling approach to TypeScript compilation like working MCP servers</li>
+<li>Aligns with successful macos-automator-mcp package structure</li>
+<li>Simpler build process with tsc instead of esbuild bundling</li>
+</ul>
+<h2>[1.10.8] - 2025-05-17</h2>
+<ul>
+<li>Fixed critical dependency issue by moving @eslint/js to devDependencies</li>
+<li>This resolves the MCP server crash on initialization</li>
+<li>Cleaner production bundle without unnecessary development dependencies</li>
+</ul>
+<h2>[1.10.7] - 2025-05-17</h2>
+<ul>
+<li>Fixed bundling configuration to properly include all native modules</li>
+<li>Resolved MCP initialization errors in bundled version</li>
+</ul>
+<h2>[1.10.6] - 2025-05-17</h2>
+<ul>
+<li>Runs now from compiled dist, bundled. Faster startup &amp; smaller package size.</li>
+<li>Tool version and startup time print on first use</li>
+</ul>
+<h2>[1.10.0] - 2025-05-17</h2>
+<ul>
+<li>Support for <code>CLAUDE_CLI_NAME</code> environment variable to override the Claude CLI binary name</li>
+<li>Support for absolute paths in <code>CLAUDE_CLI_NAME</code> (e.g., <code>/tmp/claude-test</code>)</li>
+<li>Comprehensive unit and e2e tests for the server functionality</li>
+<li>Test infrastructure with mocked Claude CLI for reliable testing</li>
+<li><code>CLAUDE_CLI_NAME</code> now supports both simple names and absolute paths</li>
+<li>Relative paths in <code>CLAUDE_CLI_NAME</code> now throw an error (security improvement)</li>
+<li>Removed test mock directory lookup when absolute path is provided</li>
+</ul>
+<h2>[1.9.5] - 2025-05-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>Clarify that workingDir must be absolute.</li>
+</ul>
+<h2>[1.9.4] - 2025-05-15</h2>
+<h3>Added</h3>
+<ul>
+<li>Enhanced <code>claude_code</code> tool description in <code>src/server.ts</code> to reflect multi-modal capabilities (image analysis), file content analysis, and provide more comprehensive prompt tips.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Resized example images in <code>README.md</code> for better display via HTML width attributes.</li>
+</ul>
+<h2>[1.9.3] - 2025-05-15</h2>
+<h3>Changed</h3>
+<ul>
+<li>Better work directory management.</li>
+</ul>
+<h2>[1.9.1] - 2025-05-14</h2>
+<h3>Changed</h3>
+<ul>
+<li>Increased the maximum execution timeout for the Claude Code tool from 5 minutes to 30 minutes.</li>
+</ul>
+<h2>[1.9.0] - 2025-05-14</h2>
+<h3>Changed</h3>
+<ul>
+<li>Modified the input for the <code>claude_code</code> tool. The <code>workFolder</code> is now an optional explicit JSON parameter instead of being parsed from the <code>prompt</code> string. This improves clarity and simplifies prompt construction.</li>
+</ul>
+<h2>[1.8.0] - 2025-05-14</h2>
+<h3>Changed</h3>
+<ul>
+<li>Improved startup stability by explicitly using <code>/bin/bash</code> for Claude CLI script execution and ensuring correct command-line arguments are used.</li>
+</ul>
+<h2>[1.7.0] - 2025-05-14</h2>
+<h3>Changed</h3>
+<ul>
+<li>Renamed the primary MCP tool from <code>code</code> to <code>claude_code</code> for better clarity and consistency in UI (<code>src/server.ts</code>).</li>
+<li>Updated <code>README.md</code> to reflect the new tool name.</li>
+</ul>
+<h2>[1.6.1] - 2025-05-14</h2>
+<h3>Fixed</h3>
+<ul>
+<li>Amended previous commit on <code>feature/v1.6.0-updates</code> to include <code>dist/server.js</code> which was built but not staged.</li>
+<li>Resolved merge conflicts by rebasing <code>release/v1.6.1</code> onto <code>main</code> before merge.</li>
+</ul>
+<p><em>(Note: Version 1.6.1 was primarily a maintenance release for PR #6 hygiene after rebasing).</em></p>
+<h2>[1.6.0] - 2025-05-14</h2>
+<h3>Added</h3>
+<ul>
+<li>Integrated logic in <code>src/server.ts</code> to parse &quot;Your work folder is...&quot; directive from prompts to set the Current Working Directory (CWD) for the underlying <code>claude-code-cli</code>.</li>
+<li>Default CWD for <code>claude-code-cli</code> is set to the user&#39;s home directory if no specific &quot;Your work folder is...&quot; directive is provided in the prompt.</li>
+<li>Enhanced error messages for <code>claude-code-cli</code> execution failures, including attempts to append <code>stderr</code> and <code>stdout</code> from the failed process to the error message.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>Resolved various linting errors in <code>src/server.ts</code> related to:<ul>
+<li>Correct access of request parameters (e.g., <code>args.params.name</code> for tool name, <code>args.params.arguments.prompt</code> for prompt).</li>
+<li>Correct usage of <code>ErrorCode</code> enum members from <code>@modelcontextprotocol/sdk</code> (e.g., <code>ErrorCode.MethodNotFound</code>, <code>ErrorCode.InvalidParams</code>, <code>ErrorCode.InternalError</code> for timeouts and general failures).</li>
+</ul>
+</li>
+<li>Ensured <code>npm run build</code> completes successfully after CWD logic integration and lint fixes.</li>
+<li>Ensured the <code>--dangerously-skip-permissions</code> flag is passed correctly as one of the first arguments to <code>claude-code-cli</code>.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Set default execution timeout for <code>claude-code-cli</code> to 5 minutes (300,000 ms).</li>
+</ul>
+<hr>
+<p><em>Older versions might not have detailed changelog entries.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-21" />
+  <title>FrankX.AI V2 Transformation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="v2/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX.AI V2 Transformation</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-21 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-21</strong></div>
+      <h1>FrankX.AI V2 Transformation</h1>
+<p><strong>Creator-First, High-End Web Experience</strong></p>
+<h2>🎯 Mission</h2>
+<p>Transform frankx.ai into a world-class platform that empowers creators (musicians, builders, storytellers) to ship faster with AI tools.</p>
+<h2>📊 Current State Analysis</h2>
+<ul>
+<li><strong>56 pages</strong> with fragmentation and duplicate content</li>
+<li><strong>~60% bounce rate</strong> due to unclear value proposition</li>
+<li><strong>Abstract messaging</strong> (&quot;Soul Frequency,&quot; &quot;Intelligence Era&quot;) confuses visitors</li>
+<li><strong>6 duplicate assessment pages</strong> create decision paralysis</li>
+<li><strong>Navigation overload</strong> (Intelligence dropdown has 7 items)</li>
+<li><strong>Mobile performance issues</strong> (heavy animations, LCP ~4-5s on 3G)</li>
+<li><strong>Accessibility violations</strong> (gradient text contrast, no reduced-motion support)</li>
+</ul>
+<h2>🚀 V2 Goals</h2>
+<ul>
+<li><strong>35-page streamlined structure</strong> with clear user journeys</li>
+<li><strong>&lt;35% bounce rate</strong> through crystal-clear messaging</li>
+<li><strong>8-10% conversion rate</strong> via guided onboarding &amp; personalization</li>
+<li><strong>&lt;2.5s LCP on mobile</strong> through performance optimization</li>
+<li><strong>WCAG AA compliance</strong> for accessibility</li>
+<li><strong>Hybrid CMS</strong>: Notion for dynamic content, Git for core pages</li>
+</ul>
+<h2>🏗️ Architecture</h2>
+<h3>Content Management</h3>
+<pre><code>NOTION CMS (Dynamic)
+├── Blog posts
+├── Guides &amp; tutorials
+├── Case studies
+└── Resource library
+
+GIT/MDX (Static)
+├── Homepage
+├── Product pages
+├── Core landing pages
+└── Templates
+</code></pre>
+<h3>Asset Management</h3>
+<pre><code>/public/
+├── images/
+│   ├── hero/           # Hero images (Nano Banana MCP)
+│   ├── products/       # Product screenshots
+│   ├── blog/           # Blog post headers
+│   └── misc/           # Icons, logos, etc.
+└── downloads/          # PDFs, templates, etc.
+</code></pre>
+<h3>Page Structure (35 pages target)</h3>
+<pre><code>CORE (8)
+├── / (Homepage)
+├── /products (Hub)
+├── /assessment (Consolidated)
+├── /community
+├── /blog
+├── /about
+├── /contact
+└── /thank-you
+
+PRODUCTS (6)
+├── /products/vibe-os
+├── /products/creative-ai-toolkit
+├── /products/creator-os (merged)
+├── /products/enterprise
+├── /music-lab
+└── /content-studio
+
+LEARN (8)
+├── /learn (Hub)
+├── /learn/intelligence-atlas
+├── /learn/guides/[slug]
+├── /learn/templates
+├── /creation-chronicles
+├── /tools/roi-calculator
+├── /tools/strategy-canvas
+└── /founder-playbook
+
+DYNAMIC (10)
+├── /blog/[slug]
+├── /guides/[slug]
+└── Individual pages
+
+UTILITY (3)
+├── /search
+├── /roadmap
+└── Legal pages
+</code></pre>
+<h2>👥 Specialized Agent Team</h2>
+<h3>1. The UX Architect</h3>
+<p><strong>Role</strong>: Information architecture, user flows, conversion optimization
+<strong>Focus</strong>:</p>
+<ul>
+<li>Homepage hero simplification</li>
+<li>Navigation consolidation</li>
+<li>Assessment flow redesign</li>
+<li>Mobile-first layouts</li>
+</ul>
+<h3>2. The Conversion Alchemist</h3>
+<p><strong>Role</strong>: CRO tactics, funnel optimization, personalization
+<strong>Focus</strong>:</p>
+<ul>
+<li>Guided onboarding</li>
+<li>Exit-intent strategy</li>
+<li>Social proof integration</li>
+<li>Email capture funnels</li>
+</ul>
+<h3>3. The Technical Translator (Codex/Gemini)</h3>
+<p><strong>Role</strong>: Implementation, CMS integration, performance
+<strong>Focus</strong>:</p>
+<ul>
+<li>Notion API integration</li>
+<li>Image generation workflow</li>
+<li>Performance optimization</li>
+<li>Component library</li>
+</ul>
+<h3>4. The Content Curator (Claude)</h3>
+<p><strong>Role</strong>: Messaging, storytelling, creator resonance
+<strong>Focus</strong>:</p>
+<ul>
+<li>Hero copywriting</li>
+<li>Case study development</li>
+<li>SEO content strategy</li>
+<li>Voice consistency</li>
+</ul>
+<h3>5. The QA Guardian</h3>
+<p><strong>Role</strong>: Testing, accessibility, quality assurance
+<strong>Focus</strong>:</p>
+<ul>
+<li>Cross-browser testing</li>
+<li>Accessibility audits</li>
+<li>Performance monitoring</li>
+<li>Device testing</li>
+</ul>
+<h2>📅 4-Week Implementation Roadmap</h2>
+<h3>Week 1: Foundation</h3>
+<p><strong>Days 1-2</strong>: Infrastructure</p>
+<ul>
+<li>Git branching strategy (develop/staging/main)</li>
+<li>Vercel environment setup</li>
+<li>Domain configuration (frankx.ai)</li>
+</ul>
+<p><strong>Days 3-4</strong>: Homepage Redesign</p>
+<ul>
+<li>New hero: &quot;AI Tools for Creators Who Ship Faster&quot;</li>
+<li>Single CTA: &quot;Take Free Assessment&quot;</li>
+<li>Reduced animations, improved performance</li>
+<li>Social proof above the fold</li>
+</ul>
+<p><strong>Days 5-7</strong>: Navigation Overhaul</p>
+<ul>
+<li>Consolidate 56 → 35 pages</li>
+<li>Simplify main nav (5 items max)</li>
+<li>Mobile bottom nav</li>
+<li>301 redirects for old URLs</li>
+</ul>
+<h3>Week 2: CMS &amp; Content</h3>
+<p><strong>Days 8-9</strong>: Notion CMS Setup</p>
+<ul>
+<li>Blog database schema</li>
+<li>ISR configuration (10-min revalidation)</li>
+<li>Test with 3 blog posts</li>
+</ul>
+<p><strong>Day 10</strong>: Product Pages</p>
+<ul>
+<li>Vibe OS redesign</li>
+<li>Creative AI Toolkit optimization</li>
+<li>Creator OS consolidation</li>
+</ul>
+<p><strong>Days 11-12</strong>: SEO &amp; Metadata</p>
+<ul>
+<li>Dynamic OG images</li>
+<li>Structured data (JSON-LD)</li>
+<li>Internal linking strategy</li>
+</ul>
+<p><strong>Days 13-14</strong>: Content Migration</p>
+<ul>
+<li>Transfer 5 posts to Notion</li>
+<li>Asset organization</li>
+<li>Publishing workflow docs</li>
+</ul>
+<h3>Week 3: Conversion &amp; Mobile</h3>
+<p><strong>Days 15-16</strong>: Assessment Redesign</p>
+<ul>
+<li>5-question progressive flow</li>
+<li>Personalized results page</li>
+<li>Product recommendation engine</li>
+</ul>
+<p><strong>Day 17</strong>: Conversion Tactics</p>
+<ul>
+<li>Exit-intent popups</li>
+<li>Lead magnets</li>
+<li>Urgency/scarcity elements</li>
+</ul>
+<p><strong>Days 18-19</strong>: Mobile Optimization</p>
+<ul>
+<li>Performance optimization (animations, lazy loading)</li>
+<li>Bottom navigation</li>
+<li>Touch target optimization</li>
+</ul>
+<p><strong>Days 20-21</strong>: Accessibility</p>
+<ul>
+<li>Contrast fixes (WCAG AA)</li>
+<li>Screen reader testing</li>
+<li>Reduced-motion support</li>
+</ul>
+<h3>Week 4: Polish &amp; Launch</h3>
+<p><strong>Days 22-23</strong>: Comprehensive QA</p>
+<ul>
+<li>User journey testing</li>
+<li>Cross-browser validation</li>
+<li>Form submission tests</li>
+</ul>
+<p><strong>Day 24</strong>: Pre-Launch</p>
+<ul>
+<li>Final staging review</li>
+<li>Monitoring setup</li>
+<li>Rollback plan</li>
+</ul>
+<p><strong>Day 25</strong>: Production Launch 🚀</p>
+<ul>
+<li>Merge to main</li>
+<li>Domain deployment</li>
+<li>Analytics monitoring</li>
+</ul>
+<p><strong>Days 26-28</strong>: Post-Launch</p>
+<ul>
+<li>Monitor metrics</li>
+<li>Fix critical bugs</li>
+<li>Iterate based on data</li>
+</ul>
+<h2>🎨 Design System V2</h2>
+<h3>Typography</h3>
+<pre><code class="language-css">/* Hero Headlines */
+font-size: clamp(2.5rem, 8vw, 6rem);
+color: #ffffff; /* No gradients - accessibility first */
+line-height: 1.1;
+
+/* Body Text */
+font-size: 1.125rem; /* 18px */
+color: #e2e8f0; /* slate-200 */
+line-height: 1.7;
+</code></pre>
+<h3>Colors (Simplified)</h3>
+<pre><code class="language-css">/* Primary */
+--cyan-500: #06b6d4;
+
+/* Surfaces */
+--surface-base: #0f172a; /* slate-950 */
+--surface-card: rgba(255,255,255,0.08);
+--surface-elevated: rgba(255,255,255,0.12);
+
+/* Text */
+--text-primary: #ffffff;
+--text-secondary: #e2e8f0;
+--text-tertiary: #cbd5e1;
+</code></pre>
+<h3>Animations (Reduced)</h3>
+<ul>
+<li>❌ Remove: MorphingBackground, ParallaxContainer, MagneticHover</li>
+<li>✅ Keep: Simple fade-in on scroll, hover states</li>
+<li>✅ Add: <code>prefers-reduced-motion</code> support</li>
+</ul>
+<h2>🔧 Technical Stack</h2>
+<h3>Core</h3>
+<ul>
+<li>Next.js 15 + App Router</li>
+<li>TypeScript + Tailwind CSS</li>
+<li>React 18.3.1</li>
+</ul>
+<h3>CMS &amp; Data</h3>
+<ul>
+<li>Notion API (@notionhq/client)</li>
+<li>MDX for static content</li>
+<li>Gray-matter for frontmatter</li>
+</ul>
+<h3>Performance</h3>
+<ul>
+<li>ISR (Incremental Static Regeneration)</li>
+<li>Image optimization (next/image, WebP)</li>
+<li>Dynamic imports for heavy components</li>
+</ul>
+<h3>Analytics</h3>
+<ul>
+<li>Plausible (privacy-friendly)</li>
+<li>Custom events: <code>creator_funnel_step</code>, <code>toolkit_download</code>, etc.</li>
+</ul>
+<h3>Testing &amp; QA</h3>
+<ul>
+<li>Lighthouse CI</li>
+<li>axe DevTools (accessibility)</li>
+<li>WAVE (accessibility audit)</li>
+</ul>
+<h2>📈 Success Metrics</h2>
+<h3>Engagement</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Current</th>
+<th>Target</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bounce Rate</td>
+<td>~60%</td>
+<td>&lt;35%</td>
+<td>-42%</td>
+</tr>
+<tr>
+<td>Time on Site</td>
+<td>~1.5min</td>
+<td>&gt;4min</td>
+<td>+167%</td>
+</tr>
+<tr>
+<td>Pages/Session</td>
+<td>~2</td>
+<td>&gt;3</td>
+<td>+50%</td>
+</tr>
+</tbody></table>
+<h3>Conversion</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Current</th>
+<th>Target</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CTA Click Rate</td>
+<td>~8%</td>
+<td>20%+</td>
+<td>+150%</td>
+</tr>
+<tr>
+<td>Assessment Completion</td>
+<td>~30%</td>
+<td>60%+</td>
+<td>+100%</td>
+</tr>
+<tr>
+<td>Free→Paid</td>
+<td>Unknown</td>
+<td>5%</td>
+<td>New</td>
+</tr>
+</tbody></table>
+<h3>Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Current</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LCP (Mobile)</td>
+<td>~4-5s</td>
+<td>&lt;2.5s</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td>FID</td>
+<td>Unknown</td>
+<td>&lt;100ms</td>
+<td>Target</td>
+</tr>
+<tr>
+<td>CLS</td>
+<td>Unknown</td>
+<td>&lt;0.1</td>
+<td>Target</td>
+</tr>
+</tbody></table>
+<h3>Accessibility</h3>
+<ul>
+<li>WCAG AA compliance: 100%</li>
+<li>Color contrast: 4.5:1 minimum</li>
+<li>Keyboard navigation: Full support</li>
+<li>Screen reader: Compatible</li>
+</ul>
+<h2>🚨 Risk Mitigation</h2>
+<h3>SEO Impact (URL Changes)</h3>
+<ul>
+<li>✅ 301 redirects for all moved pages</li>
+<li>✅ Maintain search console monitoring</li>
+<li>✅ Preserve key landing pages</li>
+</ul>
+<h3>Performance Regression</h3>
+<ul>
+<li>✅ Lighthouse CI in pipeline</li>
+<li>✅ Performance budgets enforced</li>
+<li>✅ Core Web Vitals monitoring</li>
+</ul>
+<h3>Accessibility Compliance</h3>
+<ul>
+<li>✅ Automated testing (axe)</li>
+<li>✅ Manual audits pre-release</li>
+<li>✅ User testing with assistive tech</li>
+</ul>
+<h2>📚 Documentation</h2>
+<h3>For Implementation</h3>
+<ul>
+<li><a href="./homepage-redesign.md">Homepage Redesign Brief</a></li>
+<li><a href="./assessment-flow.md">Assessment Flow Spec</a></li>
+<li><a href="./notion-cms-guide.md">Notion CMS Setup Guide</a></li>
+<li><a href="./mobile-checklist.md">Mobile Optimization Checklist</a></li>
+</ul>
+<h3>For Maintenance</h3>
+<ul>
+<li><a href="./content-workflow.md">Content Publishing Workflow</a></li>
+<li><a href="./asset-management.md">Asset Management Guide</a></li>
+<li><a href="./deployment-procedures.md">Deployment Procedures</a></li>
+<li><a href="./troubleshooting.md">Troubleshooting</a></li>
+</ul>
+<h2>🎯 Next Steps</h2>
+<ol>
+<li><strong>Review this plan</strong> with stakeholders</li>
+<li><strong>Set up infrastructure</strong> (Git branches, Vercel environments)</li>
+<li><strong>Begin Week 1</strong> (Homepage + Navigation)</li>
+<li><strong>Daily standups</strong> to track progress</li>
+<li><strong>Iterate based on data</strong> post-launch</li>
+</ol>
+<hr>
+<p><strong>Built with consciousness-aligned AI by the FrankX Agent Collective</strong>
+<em>Empowering creators to ship faster with world-class tools and systems</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

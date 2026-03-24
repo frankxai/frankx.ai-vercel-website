@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Ensure .planning/quick/ exists</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/commands/gsd/quick.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Ensure .planning/quick/ exists</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fcommands">commands</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fcommands%2Fgsd">gsd</a> / <span>quick.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: gsd:quick
+description: Execute a quick task with GSD guarantees (atomic commits, state tracking) but skip optional agents
+argument-hint: &quot;&quot;
+allowed-tools:
+  - Read
+  - Write
+  - Edit
+  - Glob
+  - Grep
+  - Bash
+  - Task
+  - AskUserQuestion</h2>
+<objective>
+Execute small, ad-hoc tasks with GSD guarantees (atomic commits, STATE.md tracking) while skipping optional agents (research, plan-checker, verifier).
+
+<p>Quick mode is the same system with a shorter path:</p>
+<ul>
+<li>Spawns gsd-planner (quick mode) + gsd-executor(s)</li>
+<li>Skips gsd-phase-researcher, gsd-plan-checker, gsd-verifier</li>
+<li>Quick tasks live in <code>.planning/quick/</code> separate from planned phases</li>
+<li>Updates STATE.md &quot;Quick Tasks Completed&quot; table (NOT ROADMAP.md)</li>
+</ul>
+<p>Use when: You know exactly what to do and the task is small enough to not need research or verification.
+</objective></p>
+<execution_context>
+Orchestration is inline - no separate workflow file. Quick mode is deliberately simpler than full GSD.
+</execution_context>
+
+<context>
+@.planning/STATE.md
+</context>
+
+<process>
+**Step 0: Resolve Model Profile**
+
+<p>Read model profile for agent spawning:</p>
+<pre><code class="language-bash">MODEL_PROFILE=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;model_profile&quot;[[:space:]]*:[[:space:]]*&quot;[^&quot;]*&quot;&#39; | grep -o &#39;&quot;[^&quot;]*&quot;$&#39; | tr -d &#39;&quot;&#39; || echo &quot;balanced&quot;)
+</code></pre>
+<p>Default to &quot;balanced&quot; if not set.</p>
+<p><strong>Model lookup table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>quality</th>
+<th>balanced</th>
+<th>budget</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gsd-planner</td>
+<td>opus</td>
+<td>opus</td>
+<td>sonnet</td>
+</tr>
+<tr>
+<td>gsd-executor</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>sonnet</td>
+</tr>
+</tbody></table>
+<p>Store resolved models for use in Task calls below.</p>
+<hr>
+<p><strong>Step 1: Pre-flight validation</strong></p>
+<p>Check that an active GSD project exists:</p>
+<pre><code class="language-bash">if [ ! -f .planning/ROADMAP.md ]; then
+  echo &quot;Quick mode requires an active project with ROADMAP.md.&quot;
+  echo &quot;Run /gsd:new-project first.&quot;
+  exit 1
+fi
+</code></pre>
+<p>If validation fails, stop immediately with the error message.</p>
+<p>Quick tasks can run mid-phase - validation only checks ROADMAP.md exists, not phase status.</p>
+<hr>
+<p><strong>Step 2: Get task description</strong></p>
+<p>Prompt user interactively for the task description:</p>
+<pre><code>AskUserQuestion(
+  header: &quot;Quick Task&quot;,
+  question: &quot;What do you want to do?&quot;,
+  followUp: null
+)
+</code></pre>
+<p>Store response as <code>$DESCRIPTION</code>.</p>
+<p>If empty, re-prompt: &quot;Please provide a task description.&quot;</p>
+<p>Generate slug from description:</p>
+<pre><code class="language-bash">slug=$(echo &quot;$DESCRIPTION&quot; | tr &#39;[:upper:]&#39; &#39;[:lower:]&#39; | sed &#39;s/[^a-z0-9]/-/g&#39; | sed &#39;s/--*/-/g&#39; | sed &#39;s/^-//;s/-$//&#39; | cut -c1-40)
+</code></pre>
+<hr>
+<p><strong>Step 3: Calculate next quick task number</strong></p>
+<p>Ensure <code>.planning/quick/</code> directory exists and find the next sequential number:</p>
+<pre><code class="language-bash"># Ensure .planning/quick/ exists
+mkdir -p .planning/quick
+
+# Find highest existing number and increment
+last=$(ls -1d .planning/quick/[0-9][0-9][0-9]-* 2&gt;/dev/null | sort -r | head -1 | xargs -I{} basename {} | grep -oE &#39;^[0-9]+&#39;)
+
+if [ -z &quot;$last&quot; ]; then
+  next_num=&quot;001&quot;
+else
+  next_num=$(printf &quot;%03d&quot; $((10#$last + 1)))
+fi
+</code></pre>
+<hr>
+<p><strong>Step 4: Create quick task directory</strong></p>
+<p>Create the directory for this quick task:</p>
+<pre><code class="language-bash">QUICK_DIR=&quot;.planning/quick/${next_num}-${slug}&quot;
+mkdir -p &quot;$QUICK_DIR&quot;
+</code></pre>
+<p>Report to user:</p>
+<pre><code>Creating quick task ${next_num}: ${DESCRIPTION}
+Directory: ${QUICK_DIR}
+</code></pre>
+<p>Store <code>$QUICK_DIR</code> for use in orchestration.</p>
+<hr>
+<p><strong>Step 5: Spawn planner (quick mode)</strong></p>
+<p>Spawn gsd-planner with quick mode context:</p>
+<pre><code>Task(
+  prompt=&quot;
+&lt;planning_context&gt;
+
+**Mode:** quick
+**Directory:** ${QUICK_DIR}
+**Description:** ${DESCRIPTION}
+
+**Project State:**
+@.planning/STATE.md
+
+&lt;/planning_context&gt;
+
+&lt;constraints&gt;
+- Create a SINGLE plan with 1-3 focused tasks
+- Quick tasks should be atomic and self-contained
+- No research phase, no checker phase
+- Target ~30% context usage (simple, focused)
+&lt;/constraints&gt;
+
+&lt;output&gt;
+Write plan to: ${QUICK_DIR}/${next_num}-PLAN.md
+Return: ## PLANNING COMPLETE with plan path
+&lt;/output&gt;
+&quot;,
+  subagent_type=&quot;gsd-planner&quot;,
+  model=&quot;{planner_model}&quot;,
+  description=&quot;Quick plan: ${DESCRIPTION}&quot;
+)
+</code></pre>
+<p>After planner returns:</p>
+<ol>
+<li>Verify plan exists at <code>${QUICK_DIR}/${next_num}-PLAN.md</code></li>
+<li>Extract plan count (typically 1 for quick tasks)</li>
+<li>Report: &quot;Plan created: ${QUICK_DIR}/${next_num}-PLAN.md&quot;</li>
+</ol>
+<p>If plan not found, error: &quot;Planner failed to create ${next_num}-PLAN.md&quot;</p>
+<hr>
+<p><strong>Step 6: Spawn executor</strong></p>
+<p>Spawn gsd-executor with plan reference:</p>
+<pre><code>Task(
+  prompt=&quot;
+Execute quick task ${next_num}.
+
+Plan: @${QUICK_DIR}/${next_num}-PLAN.md
+Project state: @.planning/STATE.md
+
+&lt;constraints&gt;
+- Execute all tasks in the plan
+- Commit each task atomically
+- Create summary at: ${QUICK_DIR}/${next_num}-SUMMARY.md
+- Do NOT update ROADMAP.md (quick tasks are separate from planned phases)
+&lt;/constraints&gt;
+&quot;,
+  subagent_type=&quot;gsd-executor&quot;,
+  model=&quot;{executor_model}&quot;,
+  description=&quot;Execute: ${DESCRIPTION}&quot;
+)
+</code></pre>
+<p>After executor returns:</p>
+<ol>
+<li>Verify summary exists at <code>${QUICK_DIR}/${next_num}-SUMMARY.md</code></li>
+<li>Extract commit hash from executor output</li>
+<li>Report completion status</li>
+</ol>
+<p>If summary not found, error: &quot;Executor failed to create ${next_num}-SUMMARY.md&quot;</p>
+<p>Note: For quick tasks producing multiple plans (rare), spawn executors in parallel waves per execute-phase patterns.</p>
+<hr>
+<p><strong>Step 7: Update STATE.md</strong></p>
+<p>Update STATE.md with quick task completion record.</p>
+<p><strong>7a. Check if &quot;Quick Tasks Completed&quot; section exists:</strong></p>
+<p>Read STATE.md and check for <code>### Quick Tasks Completed</code> section.</p>
+<p><strong>7b. If section doesn&#39;t exist, create it:</strong></p>
+<p>Insert after <code>### Blockers/Concerns</code> section:</p>
+<pre><code class="language-markdown">### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+</code></pre>
+<p><strong>7c. Append new row to table:</strong></p>
+<pre><code class="language-markdown">| ${next_num} | ${DESCRIPTION} | $(date +%Y-%m-%d) | ${commit_hash} | [${next_num}-${slug}](./quick/${next_num}-${slug}/) |
+</code></pre>
+<p><strong>7d. Update &quot;Last activity&quot; line:</strong></p>
+<p>Find and update the line:</p>
+<pre><code>Last activity: $(date +%Y-%m-%d) - Completed quick task ${next_num}: ${DESCRIPTION}
+</code></pre>
+<p>Use Edit tool to make these changes atomically</p>
+<hr>
+<p><strong>Step 8: Final commit and completion</strong></p>
+<p>Stage and commit quick task artifacts:</p>
+<pre><code class="language-bash"># Stage quick task artifacts
+git add ${QUICK_DIR}/${next_num}-PLAN.md
+git add ${QUICK_DIR}/${next_num}-SUMMARY.md
+git add .planning/STATE.md
+
+# Commit with quick task format
+git commit -m &quot;$(cat &lt;&lt;&#39;EOF&#39;
+docs(quick-${next_num}): ${DESCRIPTION}
+
+Quick task completed.
+
+Co-Authored-By: Claude Opus 4.5 &lt;noreply@anthropic.com&gt;
+EOF
+)&quot;
+</code></pre>
+<p>Get final commit hash:</p>
+<pre><code class="language-bash">commit_hash=$(git rev-parse --short HEAD)
+</code></pre>
+<p>Display completion output:</p>
+<pre><code>---
+
+GSD &gt; QUICK TASK COMPLETE
+
+Quick Task ${next_num}: ${DESCRIPTION}
+
+Summary: ${QUICK_DIR}/${next_num}-SUMMARY.md
+Commit: ${commit_hash}
+
+---
+
+Ready for next task: /gsd:quick
+</code></pre>
+</process>
+
+<success_criteria>
+- [ ] ROADMAP.md validation passes
+- [ ] User provides task description
+- [ ] Slug generated (lowercase, hyphens, max 40 chars)
+- [ ] Next number calculated (001, 002, 003...)
+- [ ] Directory created at `.planning/quick/NNN-slug/`
+- [ ] `${next_num}-PLAN.md` created by planner
+- [ ] `${next_num}-SUMMARY.md` created by executor
+- [ ] STATE.md updated with quick task row
+- [ ] Artifacts committed
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

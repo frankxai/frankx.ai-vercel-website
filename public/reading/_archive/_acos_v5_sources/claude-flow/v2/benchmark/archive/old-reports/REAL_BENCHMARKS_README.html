@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Real Claude Flow Benchmarks</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/archive/old-reports/REAL_BENCHMARKS_README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Real Claude Flow Benchmarks</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Farchive">archive</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Farchive%2Fold-reports">old-reports</a> / <span>REAL_BENCHMARKS_README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Real Claude Flow Benchmarks</h1>
+<p><strong>CRITICAL</strong>: These are REAL benchmarks that execute actual <code>./claude-flow</code> commands. NO simulations.</p>
+<h2>🎯 Overview</h2>
+<p>This benchmark suite implements real-world performance testing for Claude Flow by:</p>
+<ol>
+<li><strong>Executing Real Commands</strong>: Uses actual <code>./claude-flow</code> subprocess calls</li>
+<li><strong>Measuring Actual Performance</strong>: Tracks real execution time, token usage, memory consumption</li>
+<li><strong>Parsing Real Responses</strong>: Extracts metrics from actual JSON streaming responses</li>
+<li><strong>Tracking Real Resources</strong>: Monitors CPU, memory, and I/O during execution</li>
+</ol>
+<h2>📁 Structure</h2>
+<pre><code>benchmark/
+├── src/swarm_benchmark/scenarios/
+│   ├── __init__.py
+│   └── real_benchmarks.py          # Core real benchmark implementations
+├── examples/
+│   ├── real_swarm_benchmark.py     # Real swarm execution examples
+│   ├── real_hive_mind_benchmark.py # Real hive-mind execution examples  
+│   └── real_sparc_benchmark.py     # Real SPARC mode execution examples
+├── test_real_benchmarks.py         # Validation tests for real benchmarks
+├── run_real_benchmarks.py          # Comprehensive benchmark runner
+└── REAL_BENCHMARKS_README.md       # This file
+</code></pre>
+<h2>🚀 Quick Start</h2>
+<h3>1. Test Installation</h3>
+<pre><code class="language-bash"># Validate Claude Flow is available and benchmarks work
+python test_real_benchmarks.py --quick
+</code></pre>
+<h3>2. Run Individual Benchmarks</h3>
+<pre><code class="language-bash"># Real swarm benchmark
+python examples/real_swarm_benchmark.py &quot;Create a REST API for user management&quot;
+
+# Real hive-mind benchmark  
+python examples/real_hive_mind_benchmark.py &quot;Design distributed system architecture&quot;
+
+# Real SPARC mode benchmark
+python examples/real_sparc_benchmark.py coder &quot;Implement OAuth2 authentication&quot;
+</code></pre>
+<h3>3. Run Comprehensive Suite</h3>
+<pre><code class="language-bash"># Run all benchmark types
+python run_real_benchmarks.py --mode comprehensive
+
+# Run specific benchmark type
+python run_real_benchmarks.py --mode swarm
+python run_real_benchmarks.py --mode hive-mind  
+python run_real_benchmarks.py --mode sparc
+</code></pre>
+<h2>🔬 Core Components</h2>
+<h3>RealBenchmarkResult</h3>
+<p>Captures comprehensive metrics from real executions:</p>
+<pre><code class="language-python">@dataclass
+class RealBenchmarkResult:
+    benchmark_name: str          # Benchmark identifier
+    success: bool               # Execution success
+    execution_time: float       # Real execution time (seconds)
+    tokens_used: int           # Actual tokens consumed by Claude
+    agents_spawned: int        # Real agent count from output
+    memory_usage_mb: float     # Actual memory consumption
+    cpu_usage_percent: float   # Real CPU usage during execution
+    output_size_bytes: int     # Size of actual output
+    error_count: int           # Number of errors in stderr
+    warning_count: int         # Number of warnings
+    command_executed: List[str] # Actual command executed
+    stdout_excerpt: str        # First 500 chars of stdout
+    stderr_excerpt: str        # First 500 chars of stderr
+    metrics_raw: Dict[str, Any] # Raw metrics from JSON parsing
+    timestamp: str             # ISO timestamp
+</code></pre>
+<h3>ClaudeFlowRealExecutor</h3>
+<p>Executes real Claude Flow commands with comprehensive monitoring:</p>
+<pre><code class="language-python">executor = ClaudeFlowRealExecutor()
+
+# Execute real swarm
+result = executor.execute_swarm(
+    objective=&quot;Create a REST API&quot;,
+    strategy=&quot;development&quot;, 
+    mode=&quot;hierarchical&quot;,
+    max_agents=5,
+    non_interactive=True
+)
+
+# Execute real hive-mind
+result = executor.execute_hive_mind(
+    task=&quot;Solve optimization problem&quot;,
+    collective_mode=&quot;consensus&quot;,
+    agent_count=8,
+    timeout=15
+)
+
+# Execute real SPARC mode
+result = executor.execute_sparc_mode(
+    mode=&quot;coder&quot;,
+    task=&quot;Implement authentication system&quot;,
+    timeout=10
+)
+</code></pre>
+<h2>📊 Benchmark Scenarios</h2>
+<h3>Swarm Benchmarks</h3>
+<ul>
+<li><strong>Development Swarm</strong>: <code>development</code> strategy with <code>centralized</code> mode</li>
+<li><strong>Research Swarm</strong>: <code>research</code> strategy with <code>distributed</code> mode  </li>
+<li><strong>Optimization Swarm</strong>: <code>optimization</code> strategy with <code>hybrid</code> mode</li>
+<li><strong>Analysis Swarm</strong>: <code>analysis</code> strategy with <code>mesh</code> mode</li>
+</ul>
+<h3>Hive-Mind Benchmarks</h3>
+<ul>
+<li><strong>Consensus Mode</strong>: Democratic decision-making with 6-8 agents</li>
+<li><strong>Collective Intelligence</strong>: Advanced problem-solving with 10-12 agents</li>
+<li><strong>Memory Shared</strong>: Persistent knowledge sharing with 6 agents</li>
+</ul>
+<h3>SPARC Mode Benchmarks</h3>
+<ul>
+<li><strong>Coder</strong>: Implementation tasks</li>
+<li><strong>TDD</strong>: Test-driven development</li>
+<li><strong>Architect</strong>: System design</li>
+<li><strong>Optimizer</strong>: Performance optimization</li>
+<li><strong>Researcher</strong>: Information gathering</li>
+<li><strong>Reviewer</strong>: Code review</li>
+<li><strong>Analyzer</strong>: System analysis</li>
+</ul>
+<h2>🎯 Usage Examples</h2>
+<h3>Simple Swarm Benchmark</h3>
+<pre><code class="language-python">from swarm_benchmark.scenarios.real_benchmarks import RealSwarmBenchmark
+
+benchmark = RealSwarmBenchmark()
+result = benchmark.benchmark_swarm_task(&quot;Create a simple API endpoint&quot;)
+
+print(f&quot;Success: {result.success}&quot;)
+print(f&quot;Time: {result.execution_time:.2f}s&quot;)
+print(f&quot;Tokens: {result.tokens_used}&quot;)
+print(f&quot;Agents: {result.agents_spawned}&quot;)
+</code></pre>
+<h3>Multi-Scenario Benchmark</h3>
+<pre><code class="language-python">from swarm_benchmark.scenarios.real_benchmarks import RealBenchmarkSuite
+
+suite = RealBenchmarkSuite(output_dir=&quot;./results&quot;)
+results = suite.run_comprehensive_benchmark()
+
+# Results contain actual metrics from real executions
+for category, benchmarks in results.items():
+    for benchmark in benchmarks:
+        print(f&quot;{benchmark.benchmark_name}: {benchmark.execution_time:.2f}s&quot;)
+</code></pre>
+<h3>Custom Real Executor</h3>
+<pre><code class="language-python">from swarm_benchmark.scenarios.real_benchmarks import ClaudeFlowRealExecutor
+
+executor = ClaudeFlowRealExecutor(
+    claude_flow_path=&quot;/path/to/claude-flow&quot;,
+    working_dir=&quot;/workspace&quot;
+)
+
+# Real execution with resource monitoring
+result = executor.execute_swarm(
+    objective=&quot;Build microservices architecture&quot;,
+    strategy=&quot;development&quot;,
+    mode=&quot;hierarchical&quot;, 
+    max_agents=6,
+    timeout=20
+)
+
+# Actual metrics from real execution
+print(f&quot;Real execution time: {result.execution_time:.2f}s&quot;)
+print(f&quot;Actual tokens used: {result.tokens_used}&quot;)
+print(f&quot;Real memory usage: {result.memory_usage_mb:.2f} MB&quot;)
+</code></pre>
+<h2>📈 Performance Monitoring</h2>
+<h3>Real-Time Resource Monitoring</h3>
+<p>The <code>ResourceMonitor</code> class tracks actual system resources during benchmark execution:</p>
+<pre><code class="language-python">class ResourceMonitor:
+    def start_monitoring(self, interval: float = 1.0)
+    def stop_monitoring(self) -&gt; List[SystemMetrics]
+    
+    # Tracks:
+    # - CPU usage percentage
+    # - Memory consumption (MB)
+    # - Disk I/O (read/write MB)
+    # - Network bytes sent/received
+</code></pre>
+<h3>Metrics Extraction</h3>
+<p>Real output parsing extracts actual metrics:</p>
+<pre><code class="language-python"># Extract token usage from real Claude Flow output
+tokens = executor._extract_token_usage(stdout)
+
+# Extract actual agent count from output  
+agents = executor._extract_agent_count(stdout)
+
+# Parse JSON metrics from streaming responses
+metrics = executor._parse_json_metrics(stdout)
+</code></pre>
+<h2>🔧 Configuration</h2>
+<h3>Environment Setup</h3>
+<p>Required environment for real benchmarks:</p>
+<pre><code class="language-bash"># Ensure claude-flow is available
+export PATH=&quot;/path/to/claude-flow/bin:$PATH&quot;
+
+# Set working directory
+export CLAUDE_WORKING_DIR=&quot;/workspace&quot;
+
+# Optional: Custom claude-flow path
+export CLAUDE_FLOW_PATH=&quot;/custom/path/claude-flow&quot;
+</code></pre>
+<h3>Benchmark Configuration</h3>
+<pre><code class="language-python"># Swarm configuration
+config = SwarmConfig(
+    objective=&quot;Task description&quot;,
+    strategy=ExecutionStrategy.DEVELOPMENT,
+    mode=CoordinationMode.HIERARCHICAL,
+    max_agents=5,
+    timeout=15,  # minutes
+    output_dir=&quot;./results&quot;
+)
+
+# SPARC configuration  
+config = SparcConfig(
+    prompt=&quot;Task description&quot;,
+    mode=SparcMode.CODER,
+    timeout=10,  # minutes
+    parallel=False,
+    monitor=True
+)
+</code></pre>
+<h2>📊 Output Format</h2>
+<p>Real benchmark results are saved as JSON:</p>
+<pre><code class="language-json">{
+  &quot;benchmark_name&quot;: &quot;swarm_development_hierarchical&quot;,
+  &quot;success&quot;: true,
+  &quot;execution_time&quot;: 45.67,
+  &quot;tokens_used&quot;: 2456,
+  &quot;agents_spawned&quot;: 5,
+  &quot;memory_usage_mb&quot;: 128.5,
+  &quot;cpu_usage_percent&quot;: 23.8,
+  &quot;output_size_bytes&quot;: 15420,
+  &quot;error_count&quot;: 0,
+  &quot;warning_count&quot;: 1,
+  &quot;command_executed&quot;: [&quot;./claude-flow&quot;, &quot;swarm&quot;, &quot;...&quot;],
+  &quot;stdout_excerpt&quot;: &quot;Starting swarm execution...&quot;,
+  &quot;stderr_excerpt&quot;: &quot;&quot;,
+  &quot;metrics_raw&quot;: {&quot;performance&quot;: 0.95},
+  &quot;timestamp&quot;: &quot;2025-08-06T10:30:45.123456&quot;
+}
+</code></pre>
+<h2>🧪 Testing</h2>
+<h3>Validation Tests</h3>
+<pre><code class="language-bash"># Quick validation (no real execution)
+python test_real_benchmarks.py --quick
+
+# Full validation with real executions
+python test_real_benchmarks.py
+
+# Structure validation only
+python test_real_benchmarks.py --validate-only
+</code></pre>
+<h3>Example Execution Tests</h3>
+<pre><code class="language-bash"># Test individual examples
+python examples/real_swarm_benchmark.py --multiple
+python examples/real_hive_mind_benchmark.py --suite  
+python examples/real_sparc_benchmark.py --workflow
+</code></pre>
+<h2>🚨 Important Notes</h2>
+<h3>Real Execution Requirements</h3>
+<ol>
+<li><strong>Claude Flow Installation</strong>: Must have working <code>./claude-flow</code> executable</li>
+<li><strong>Network Access</strong>: Real benchmarks may require internet connectivity</li>
+<li><strong>API Limits</strong>: Respect Claude API rate limits and token usage</li>
+<li><strong>Execution Time</strong>: Real benchmarks take actual time to complete</li>
+<li><strong>Resource Usage</strong>: Real benchmarks consume actual system resources</li>
+</ol>
+<h3>Safety Considerations</h3>
+<ol>
+<li><strong>Non-Interactive Mode</strong>: Always use <code>--non-interactive</code> flag</li>
+<li><strong>Timeout Limits</strong>: Set reasonable timeouts to prevent hanging</li>
+<li><strong>Resource Monitoring</strong>: Monitor CPU/memory usage during execution</li>
+<li><strong>Error Handling</strong>: Benchmarks gracefully handle execution failures</li>
+<li><strong>Result Validation</strong>: Verify benchmark results are sane</li>
+</ol>
+<h3>Performance Guidelines</h3>
+<ol>
+<li><strong>Concurrent Execution</strong>: Avoid running multiple benchmarks simultaneously</li>
+<li><strong>Resource Allocation</strong>: Ensure sufficient system resources</li>
+<li><strong>Timeout Configuration</strong>: Set appropriate timeouts for task complexity</li>
+<li><strong>Output Management</strong>: Clean up large output files regularly</li>
+<li><strong>Monitoring Overhead</strong>: Resource monitoring adds minimal overhead</li>
+</ol>
+<h2>📚 Advanced Usage</h2>
+<h3>Custom Benchmark Creation</h3>
+<pre><code class="language-python">class CustomRealBenchmark:
+    def __init__(self):
+        self.executor = ClaudeFlowRealExecutor()
+    
+    def benchmark_custom_workflow(self, task: str) -&gt; RealBenchmarkResult:
+        # Execute real custom command
+        command = [
+            self.executor.executor.claude_flow_path,
+            &quot;custom-command&quot;,
+            task,
+            &quot;--mode&quot;, &quot;custom&quot;,
+            &quot;--non-interactive&quot;
+        ]
+        
+        # Monitor and execute
+        self.executor.resource_monitor.start_monitoring()
+        
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=600
+        )
+        
+        metrics = self.executor.resource_monitor.stop_monitoring()
+        
+        # Parse and return results
+        return self._build_result(result, metrics)
+</code></pre>
+<h3>Integration with CI/CD</h3>
+<pre><code class="language-python"># Automated benchmark execution
+def run_ci_benchmarks():
+    suite = RealBenchmarkSuite()
+    results = suite.run_comprehensive_benchmark()
+    
+    # Validate performance thresholds
+    for category, benchmarks in results.items():
+        for benchmark in benchmarks:
+            if benchmark.execution_time &gt; 120:  # 2 minutes
+                raise Exception(f&quot;Benchmark {benchmark.benchmark_name} exceeded time limit&quot;)
+            
+            if not benchmark.success:
+                raise Exception(f&quot;Benchmark {benchmark.benchmark_name} failed&quot;)
+    
+    return results
+</code></pre>
+<p>This real benchmark implementation provides comprehensive, accurate performance measurement for Claude Flow operations using actual command execution and real-world metrics.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

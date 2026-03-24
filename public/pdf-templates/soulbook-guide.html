@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Creator's Soulbook - Complete Framework Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --primary-dark: #0f0f1a;
+      --primary: #1a1a2e;
+      --secondary: #16213e;
+      --accent-gold: #d4a574;
+      --accent-gold-light: #e8c9a8;
+      --accent-emerald: #34d399;
+      --accent-purple: #a78bfa;
+      --accent-rose: #fb7185;
+      --accent-cyan: #22d3ee;
+      --accent-amber: #fbbf24;
+      --accent-blue: #60a5fa;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-light: #94a3b8;
+      --bg-cream: #faf8f5;
+      --bg-warm: #f5f0e8;
+      --border-light: #e2e0dc;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-cream);
+      color: var(--text-primary);
+      line-height: 1.75;
+      font-size: 10.5pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 18mm 22mm;
+      margin: 0 auto;
+      background: white;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 600;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: 44pt; line-height: 1.1; }
+    h2 {
+      font-size: 22pt;
+      margin: 0 0 0.8em;
+      position: relative;
+      padding-bottom: 0.5em;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
+      border-radius: 2px;
+    }
+    h3 {
+      font-size: 14pt;
+      margin: 1.5em 0 0.5em;
+      color: var(--secondary);
+    }
+    h4 {
+      font-size: 11pt;
+      margin: 1.2em 0 0.4em;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+    }
+
+    p { margin-bottom: 1em; }
+
+    /* Cover Page */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(145deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+      color: white;
+      position: relative;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(212,165,116,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(167,139,250,0.1) 0%, transparent 50%);
+    }
+    .cover-content {
+      position: relative;
+      z-index: 1;
+    }
+    .cover h1 {
+      color: white;
+      font-size: 52pt;
+      margin-bottom: 0.3em;
+    }
+    .cover-tagline {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16pt;
+      font-style: italic;
+      color: var(--accent-gold-light);
+      margin-bottom: 1em;
+      max-width: 400px;
+    }
+    .cover-subtitle {
+      font-size: 11pt;
+      color: rgba(255,255,255,0.6);
+      margin-top: 3em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .cover-author {
+      margin-top: 1em;
+      font-size: 12pt;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Cover Icon - Beautiful SVG */
+    .cover-icon {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 2em;
+    }
+
+    /* Pillar Cards - Premium Design */
+    .pillar-card {
+      background: linear-gradient(135deg, var(--bg-warm) 0%, white 100%);
+      border-radius: 16px;
+      padding: 1.5em 1.8em;
+      margin: 1.5em 0;
+      position: relative;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    .pillar-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 16px 0 0 16px;
+    }
+    .pillar-card.consciousness::before { background: linear-gradient(180deg, var(--accent-amber), var(--accent-gold)); }
+    .pillar-card.identity::before { background: linear-gradient(180deg, var(--accent-purple), #c4b5fd); }
+    .pillar-card.emotions::before { background: linear-gradient(180deg, var(--accent-rose), #fda4af); }
+    .pillar-card.relationships::before { background: linear-gradient(180deg, var(--accent-cyan), #67e8f9); }
+    .pillar-card.vitality::before { background: linear-gradient(180deg, var(--accent-emerald), #6ee7b7); }
+    .pillar-card.purpose::before { background: linear-gradient(180deg, var(--accent-blue), #93c5fd); }
+    .pillar-card.creation::before { background: linear-gradient(180deg, var(--accent-gold), var(--accent-gold-light)); }
+
+    .pillar-header {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      margin-bottom: 0.8em;
+    }
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+    .pillar-meta {
+      flex: 1;
+    }
+    .pillar-number {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10pt;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .pillar-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16pt;
+      font-weight: 600;
+      color: var(--primary);
+      margin: 0;
+    }
+    .pillar-card p {
+      color: var(--text-secondary);
+      font-style: italic;
+      margin: 0;
+      font-size: 10.5pt;
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 0.8em 0 1.2em 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    li {
+      margin-bottom: 0.6em;
+      padding-left: 1.8em;
+      position: relative;
+    }
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 6px;
+      height: 6px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+      border-radius: 50%;
+    }
+    ol { counter-reset: list-counter; }
+    ol li { counter-increment: list-counter; }
+    ol li::before {
+      content: counter(list-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+      border-radius: 50%;
+      font-size: 9pt;
+      font-weight: 600;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* Quote Block */
+    .quote {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13pt;
+      font-style: italic;
+      text-align: center;
+      color: var(--secondary);
+      padding: 1.8em 2.5em;
+      margin: 2em 0;
+      position: relative;
+      background: linear-gradient(135deg, rgba(212,165,116,0.08) 0%, rgba(212,165,116,0.02) 100%);
+      border-radius: 12px;
+    }
+    .quote::before {
+      content: '"';
+      position: absolute;
+      top: 0.2em;
+      left: 0.5em;
+      font-size: 48pt;
+      color: var(--accent-gold);
+      opacity: 0.3;
+      font-family: Georgia, serif;
+      line-height: 1;
+    }
+
+    /* Practice Box */
+    .practice-box {
+      background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+      border: 1px solid rgba(52,211,153,0.3);
+      border-radius: 12px;
+      padding: 1.2em 1.5em;
+      margin: 1.2em 0;
+    }
+    .practice-box h4 {
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-top: 0;
+    }
+    .practice-box h4 svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Question Box */
+    .question-box {
+      background: linear-gradient(135deg, #fef3c7 0%, #fefce8 100%);
+      border: 1px solid rgba(251,191,36,0.3);
+      border-radius: 12px;
+      padding: 1.2em 1.5em;
+      margin: 1.2em 0;
+    }
+    .question-box h4 {
+      color: #b45309;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-top: 0;
+    }
+
+    /* Highlight Box */
+    .highlight {
+      background: linear-gradient(90deg, rgba(212,165,116,0.12) 0%, rgba(212,165,116,0.04) 100%);
+      padding: 1.2em 1.5em;
+      border-radius: 10px;
+      margin: 1.2em 0;
+      border-left: 3px solid var(--accent-gold);
+    }
+
+    /* Table of Contents */
+    .toc { margin: 1.5em 0; }
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.6em 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 10.5pt;
+    }
+    .toc-item:last-child { border-bottom: none; }
+    .toc-item span:first-child { color: var(--text-primary); }
+    .toc-item span:last-child {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-light);
+      font-size: 9pt;
+    }
+
+    /* Page Number */
+    .page-number {
+      position: absolute;
+      bottom: 12mm;
+      right: 22mm;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: var(--text-light);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 9pt;
+      color: var(--text-secondary);
+      margin-top: 3em;
+      padding-top: 1.5em;
+      border-top: 1px solid var(--border-light);
+    }
+
+    /* Decorative Elements */
+    .page-decoration {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      opacity: 0.04;
+    }
+
+    @media print {
+      .page {
+        page-break-after: always;
+        box-shadow: none;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cover Page -->
+  <div class="page cover">
+    <div class="cover-content">
+      <!-- Elegant SVG Icon -->
+      <svg class="cover-icon" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="55" stroke="url(#gold-gradient)" stroke-width="2" opacity="0.4"/>
+        <circle cx="60" cy="60" r="42" stroke="url(#gold-gradient)" stroke-width="1.5" opacity="0.3"/>
+        <path d="M60 20L65 45H55L60 20Z" fill="url(#gold-gradient)" opacity="0.8"/>
+        <path d="M60 100L55 75H65L60 100Z" fill="url(#gold-gradient)" opacity="0.8"/>
+        <path d="M20 60L45 55V65L20 60Z" fill="url(#gold-gradient)" opacity="0.8"/>
+        <path d="M100 60L75 65V55L100 60Z" fill="url(#gold-gradient)" opacity="0.8"/>
+        <circle cx="60" cy="60" r="18" fill="url(#gold-gradient)" opacity="0.15"/>
+        <circle cx="60" cy="60" r="8" fill="url(#gold-gradient)"/>
+        <defs>
+          <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#d4a574"/>
+            <stop offset="100%" stop-color="#e8c9a8"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <h1>The Creator's<br/>Soulbook</h1>
+      <p class="cover-tagline">A Complete Framework for Conscious Living Through the 7 Pillars of Transformation</p>
+      <p class="cover-subtitle">Life Architecture System</p>
+      <p class="cover-author">By Frank · FrankX.AI</p>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="page">
+    <svg class="page-decoration" viewBox="0 0 150 150" fill="none">
+      <circle cx="75" cy="75" r="70" stroke="#d4a574" stroke-width="0.5"/>
+      <circle cx="75" cy="75" r="50" stroke="#d4a574" stroke-width="0.5"/>
+    </svg>
+
+    <h2>Contents</h2>
+    <div class="toc">
+      <div class="toc-item"><span>Introduction: The Transformation Journey</span><span>03</span></div>
+      <div class="toc-item"><span>The Philosophy of the Soulbook</span><span>04</span></div>
+      <div class="toc-item"><span>Pillar 1: Consciousness & Awareness</span><span>05</span></div>
+      <div class="toc-item"><span>Pillar 2: Identity & Self-Concept</span><span>07</span></div>
+      <div class="toc-item"><span>Pillar 3: Emotional Mastery</span><span>09</span></div>
+      <div class="toc-item"><span>Pillar 4: Relationships & Connection</span><span>11</span></div>
+      <div class="toc-item"><span>Pillar 5: Vitality & Body Wisdom</span><span>13</span></div>
+      <div class="toc-item"><span>Pillar 6: Purpose & Meaning</span><span>15</span></div>
+      <div class="toc-item"><span>Pillar 7: Creation & Expression</span><span>17</span></div>
+      <div class="toc-item"><span>The Three Life Books</span><span>19</span></div>
+      <div class="toc-item"><span>Integration Practices</span><span>21</span></div>
+      <div class="toc-item"><span>Your Transformation Begins</span><span>23</span></div>
+    </div>
+
+    <div class="quote">
+      You already have the answers. The Soulbook framework isn't about adding new things—it's about uncovering what's already within you.
+    </div>
+
+    <span class="page-number">02</span>
+  </div>
+
+  <!-- Introduction -->
+  <div class="page">
+    <h2>Introduction</h2>
+    <h3 style="margin-top: 0; font-size: 12pt; color: var(--accent-gold);">The Transformation Journey</h3>
+
+    <p>Welcome to The Creator's Soulbook—a comprehensive framework for designing, tracking, and transforming every dimension of your life.</p>
+
+    <p>This isn't another self-help system that asks you to become someone else. Instead, it's a mirror that reveals who you already are, and a map that guides you toward your fullest expression.</p>
+
+    <div class="highlight">
+      The Soulbook operates on a fundamental truth: <strong>sustainable transformation happens gradually, through consistent practice and compassionate self-reflection.</strong>
+    </div>
+
+    <h3>What You'll Discover</h3>
+    <ul>
+      <li><strong>The 7 Pillars Framework</strong> — The foundational architecture for an extraordinary life</li>
+      <li><strong>Three Life Book Perspectives</strong> — Different lenses for the same wisdom: Life Symphony, Golden Path, and The 7 Pillars</li>
+      <li><strong>25+ AI Coaching Prompts</strong> — Deep reflection exercises powered by conscious conversation</li>
+      <li><strong>Practical Exercises</strong> — Embodied practices that integrate into daily life</li>
+    </ul>
+
+    <h3>How to Use This Guide</h3>
+    <p>There is no "right" way to journey through the Soulbook. Some prefer to move systematically through each pillar. Others follow their intuition, drawn to wherever they feel the most pull.</p>
+
+    <p>Trust your inner compass. The pillars are interconnected—growth in one area naturally catalyzes growth in others.</p>
+
+    <div class="quote">
+      Knowing isn't enough. We focus on embodied transformation that integrates into daily life.
+    </div>
+
+    <span class="page-number">03</span>
+  </div>
+
+  <!-- Philosophy -->
+  <div class="page">
+    <h2>The Philosophy</h2>
+    <h3 style="margin-top: 0; font-size: 12pt; color: var(--accent-gold);">Foundational Principles</h3>
+
+    <p>Before diving into the pillars, let's establish the foundational principles that guide this work.</p>
+
+    <div class="pillar-card" style="margin-top: 1.5em;">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="20" stroke="#34d399" stroke-width="2" fill="none"/>
+          <path d="M24 12V24L32 28" stroke="#34d399" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-title" style="font-size: 13pt;">Transformation is a Journey</div>
+        </div>
+      </div>
+      <p>Sustainable change happens gradually, through consistent practice and compassionate self-reflection. There are no shortcuts, but there are accelerators.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <path d="M24 8L30 20H18L24 8Z" fill="#a78bfa"/>
+          <path d="M24 40L18 28H30L24 40Z" fill="#a78bfa"/>
+          <circle cx="24" cy="24" r="6" fill="#a78bfa"/>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-title" style="font-size: 13pt;">You Already Have the Answers</div>
+        </div>
+      </div>
+      <p>The Soulbook framework isn't about adding new things—it's about uncovering what's already within you. Every reflection is designed to reveal rather than instruct.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="16" stroke="#60a5fa" stroke-width="2" fill="none"/>
+          <circle cx="24" cy="24" r="8" stroke="#60a5fa" stroke-width="2" fill="none"/>
+          <circle cx="24" cy="24" r="3" fill="#60a5fa"/>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-title" style="font-size: 13pt;">Integration Over Information</div>
+        </div>
+      </div>
+      <p>Knowing isn't enough. What matters is embodied transformation—wisdom that has moved from the mind into the body, from theory into lived experience.</p>
+    </div>
+
+    <div class="highlight">
+      <strong>The Pillar Connections:</strong> Each pillar flows into the next in a continuous cycle. Awareness reveals identity. Identity shapes emotions. Emotional mastery improves relationships. The cycle continues, completing the circle of transformation.
+    </div>
+
+    <span class="page-number">04</span>
+  </div>
+
+  <!-- Pillar 1: Consciousness -->
+  <div class="page">
+    <h2>Pillar 1</h2>
+
+    <div class="pillar-card consciousness">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="18" stroke="url(#amber-grad)" stroke-width="2.5" fill="none"/>
+          <circle cx="24" cy="24" r="10" stroke="url(#amber-grad)" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <circle cx="24" cy="24" r="4" fill="url(#amber-grad)"/>
+          <path d="M24 4V10M24 38V44M4 24H10M38 24H44" stroke="url(#amber-grad)" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          <defs>
+            <linearGradient id="amber-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fbbf24"/>
+              <stop offset="100%" stop-color="#d4a574"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">The First Pillar</div>
+          <div class="pillar-title">Consciousness & Awareness</div>
+        </div>
+      </div>
+      <p>The foundation of all transformation begins with Awareness. Cultivating present-moment consciousness creates the fertile ground for all other pillars to flourish.</p>
+    </div>
+
+    <h3>Core Understanding</h3>
+    <p>Consciousness is not merely thinking—it's the awareness that witnesses thinking. When you develop this witness perspective, you create space between stimulus and response. In that space lies your freedom.</p>
+
+    <p>Most of us live on autopilot, reacting to life from unconscious patterns formed decades ago. The work of this pillar is to wake up—to become the conscious author of your experience.</p>
+
+    <h4>Key Concepts</h4>
+    <ul>
+      <li><strong>Mindfulness</strong> — Present-moment awareness without judgment</li>
+      <li><strong>Presence</strong> — Fully inhabiting the here and now</li>
+      <li><strong>Witnessing</strong> — Observing thoughts without identification</li>
+      <li><strong>Metacognition</strong> — Thinking about thinking</li>
+    </ul>
+
+    <div class="practice-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+          <path d="M12 2L15 8H9L12 2Z"/>
+          <circle cx="12" cy="14" r="6"/>
+        </svg>
+        Daily Practices
+      </h4>
+      <ul>
+        <li><strong>Morning Meditation</strong> — 10-20 minutes of seated awareness</li>
+        <li><strong>Self-Observation</strong> — Notice reactions throughout the day</li>
+        <li><strong>Breathwork</strong> — Use breath as an anchor to presence</li>
+        <li><strong>Evening Journaling</strong> — Reflect on moments of awareness</li>
+      </ul>
+    </div>
+
+    <div class="question-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16V12M12 8H12.01"/>
+        </svg>
+        Reflection Questions
+      </h4>
+      <ul>
+        <li>What am I aware of right now?</li>
+        <li>Where in my life am I on autopilot?</li>
+        <li>What would change if I brought full awareness to this moment?</li>
+      </ul>
+    </div>
+
+    <span class="page-number">05</span>
+  </div>
+
+  <!-- Pillar 2: Identity -->
+  <div class="page">
+    <h2>Pillar 2</h2>
+
+    <div class="pillar-card identity">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="8" width="32" height="32" rx="4" stroke="url(#purple-grad)" stroke-width="2" fill="none"/>
+          <circle cx="24" cy="20" r="6" stroke="url(#purple-grad)" stroke-width="2" fill="none"/>
+          <path d="M16 36C16 30 19 28 24 28C29 28 32 30 32 36" stroke="url(#purple-grad)" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="purple-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#a78bfa"/>
+              <stop offset="100%" stop-color="#c4b5fd"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">The Second Pillar</div>
+          <div class="pillar-title">Identity & Self-Concept</div>
+        </div>
+      </div>
+      <p>Understanding who you truly are beyond limiting beliefs and societal conditioning. Your identity shapes your reality.</p>
+    </div>
+
+    <h3>Core Understanding</h3>
+    <p>Who you believe you are determines what you believe is possible. Most of our identity was formed before we had the capacity to question it—through family systems, cultural conditioning, and early experiences.</p>
+
+    <p>The work of this pillar is to examine those inherited beliefs, release what no longer serves, and consciously choose the identity that aligns with your highest potential.</p>
+
+    <h4>Key Concepts</h4>
+    <ul>
+      <li><strong>Self-Image</strong> — The picture you hold of yourself</li>
+      <li><strong>Core Beliefs</strong> — Fundamental assumptions about yourself and reality</li>
+      <li><strong>Values</strong> — What truly matters to you</li>
+      <li><strong>Authenticity</strong> — Living from your true self</li>
+    </ul>
+
+    <div class="practice-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2V6M12 18V22M2 12H6M18 12H22"/>
+        </svg>
+        Daily Practices
+      </h4>
+      <ul>
+        <li><strong>Values Clarification</strong> — Regularly revisit what truly matters</li>
+        <li><strong>Belief Examination</strong> — Question assumptions about who you are</li>
+        <li><strong>Shadow Work</strong> — Integrate disowned parts of yourself</li>
+        <li><strong>Inner Child Healing</strong> — Tend to parts that were wounded early</li>
+      </ul>
+    </div>
+
+    <div class="question-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16V12M12 8H12.01"/>
+        </svg>
+        Reflection Questions
+      </h4>
+      <ul>
+        <li>Who do I believe I am? Where did that belief come from?</li>
+        <li>What identities serve my growth? Which ones limit me?</li>
+        <li>If I could design my identity from scratch, who would I become?</li>
+      </ul>
+    </div>
+
+    <span class="page-number">07</span>
+  </div>
+
+  <!-- Pillar 3: Emotions -->
+  <div class="page">
+    <h2>Pillar 3</h2>
+
+    <div class="pillar-card emotions">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <path d="M24 8C30 8 36 14 36 22C36 32 24 40 24 40C24 40 12 32 12 22C12 14 18 8 24 8Z" stroke="url(#rose-grad)" stroke-width="2.5" fill="none"/>
+          <circle cx="24" cy="22" r="6" fill="url(#rose-grad)" opacity="0.3"/>
+          <defs>
+            <linearGradient id="rose-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fb7185"/>
+              <stop offset="100%" stop-color="#fda4af"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">The Third Pillar</div>
+          <div class="pillar-title">Emotional Mastery</div>
+        </div>
+      </div>
+      <p>Transforming emotional reactivity into conscious response. Your emotions are messengers guiding you toward growth.</p>
+    </div>
+
+    <h3>Core Understanding</h3>
+    <p>Emotions are not problems to be solved—they are information to be received. Every feeling carries a message about your needs, boundaries, and desires.</p>
+
+    <p>Emotional mastery isn't about control or suppression. It's about developing the capacity to <em>feel fully</em> while choosing your response consciously.</p>
+
+    <h4>Key Concepts</h4>
+    <ul>
+      <li><strong>Emotional Intelligence</strong> — Recognizing and understanding emotions</li>
+      <li><strong>Regulation</strong> — Managing intensity without suppression</li>
+      <li><strong>Processing</strong> — Moving emotions through the body</li>
+      <li><strong>Resilience</strong> — Bouncing back from challenges</li>
+    </ul>
+
+    <div class="practice-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+          <path d="M12 2L15 8H9L12 2Z"/>
+          <circle cx="12" cy="14" r="6"/>
+        </svg>
+        Daily Practices
+      </h4>
+      <ul>
+        <li><strong>Feeling Practices</strong> — Name and locate emotions in your body</li>
+        <li><strong>Emotional Release</strong> — Safe containers for intense feelings</li>
+        <li><strong>Co-Regulation</strong> — Practice presence with trusted others</li>
+        <li><strong>Journaling Emotions</strong> — Track patterns and messages</li>
+      </ul>
+    </div>
+
+    <div class="question-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16V12M12 8H12.01"/>
+        </svg>
+        Reflection Questions
+      </h4>
+      <ul>
+        <li>What is this emotion trying to tell me?</li>
+        <li>Where do I feel this in my body?</li>
+        <li>What need is seeking expression through this feeling?</li>
+      </ul>
+    </div>
+
+    <span class="page-number">09</span>
+  </div>
+
+  <!-- Pillar 4: Relationships -->
+  <div class="page">
+    <h2>Pillar 4</h2>
+
+    <div class="pillar-card relationships">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="16" cy="20" r="8" stroke="url(#cyan-grad)" stroke-width="2" fill="none"/>
+          <circle cx="32" cy="20" r="8" stroke="url(#cyan-grad)" stroke-width="2" fill="none"/>
+          <path d="M20 26C22 30 26 30 28 26" stroke="url(#cyan-grad)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M24 34V40" stroke="url(#cyan-grad)" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#67e8f9"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">The Fourth Pillar</div>
+          <div class="pillar-title">Relationships & Connection</div>
+        </div>
+      </div>
+      <p>The mirror of connection reveals your deepest patterns. Conscious relationships accelerate your transformation journey.</p>
+    </div>
+
+    <h3>Core Understanding</h3>
+    <p>Relationships are the greatest teachers. Every interaction mirrors something back to us about ourselves. The people who trigger us most are often pointing to the places within us that most need healing.</p>
+
+    <h4>Key Concepts</h4>
+    <ul>
+      <li><strong>Connection</strong> — Genuine presence with another</li>
+      <li><strong>Intimacy</strong> — The courage to be truly seen</li>
+      <li><strong>Boundaries</strong> — Honoring needs while respecting others</li>
+      <li><strong>Vulnerability</strong> — Foundation of authentic relationship</li>
+    </ul>
+
+    <div class="practice-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2V6M12 18V22M2 12H6M18 12H22"/>
+        </svg>
+        Daily Practices
+      </h4>
+      <ul>
+        <li><strong>Boundary Work</strong> — Practice saying no with love</li>
+        <li><strong>NVC Communication</strong> — Non-violent, needs-based dialogue</li>
+        <li><strong>Deep Listening</strong> — Presence without agenda</li>
+        <li><strong>Community Building</strong> — Cultivate meaningful connections</li>
+      </ul>
+    </div>
+
+    <div class="question-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16V12M12 8H12.01"/>
+        </svg>
+        Reflection Questions
+      </h4>
+      <ul>
+        <li>How do I show up in my closest relationships?</li>
+        <li>What patterns repeat across different relationships?</li>
+        <li>What would it take to be fully myself with others?</li>
+      </ul>
+    </div>
+
+    <span class="page-number">11</span>
+  </div>
+
+  <!-- Pillar 5: Vitality -->
+  <div class="page">
+    <h2>Pillar 5</h2>
+
+    <div class="pillar-card vitality">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <path d="M24 4C24 4 8 16 8 28C8 36 15 42 24 42C33 42 40 36 40 28C40 16 24 4 24 4Z" stroke="url(#emerald-grad)" stroke-width="2" fill="none"/>
+          <path d="M24 16V30M18 24H30" stroke="url(#emerald-grad)" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="emerald-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#34d399"/>
+              <stop offset="100%" stop-color="#6ee7b7"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">The Fifth Pillar</div>
+          <div class="pillar-title">Vitality & Body Wisdom</div>
+        </div>
+      </div>
+      <p>Your body holds ancient wisdom. Honoring your physical vessel amplifies your capacity for transformation.</p>
+    </div>
+
+    <h3>Core Understanding</h3>
+    <p>The body is not merely a vehicle for the mind—it is a temple of wisdom, a storehouse of memory, and a compass for truth. This pillar reconnects you with somatic intelligence.</p>
+
+    <h4>Key Concepts</h4>
+    <ul>
+      <li><strong>Somatic Intelligence</strong> — Wisdom held in the body</li>
+      <li><strong>Energy Management</strong> — Cultivating life force</li>
+      <li><strong>Physical Health</strong> — Foundation that enables all else</li>
+      <li><strong>Movement</strong> — The body's need for expression</li>
+    </ul>
+
+    <div class="practice-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+          <path d="M12 2L15 8H9L12 2Z"/>
+          <circle cx="12" cy="14" r="6"/>
+        </svg>
+        Daily Practices
+      </h4>
+      <ul>
+        <li><strong>Somatic Exercises</strong> — Body-based awareness practices</li>
+        <li><strong>Energy Work</strong> — Breathwork, yoga, qigong</li>
+        <li><strong>Nature Immersion</strong> — Connection with natural world</li>
+        <li><strong>Nourishing Foods</strong> — Eating with consciousness</li>
+      </ul>
+    </div>
+
+    <div class="question-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16V12M12 8H12.01"/>
+        </svg>
+        Reflection Questions
+      </h4>
+      <ul>
+        <li>What is my body trying to tell me right now?</li>
+        <li>Where am I holding tension, and what is stored there?</li>
+        <li>How would my life change if I truly listened to my body?</li>
+      </ul>
+    </div>
+
+    <span class="page-number">13</span>
+  </div>
+
+  <!-- Pillar 6: Purpose -->
+  <div class="page">
+    <h2>Pillar 6</h2>
+
+    <div class="pillar-card purpose">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="16" stroke="url(#blue-grad)" stroke-width="2" fill="none"/>
+          <circle cx="24" cy="24" r="10" stroke="url(#blue-grad)" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <circle cx="24" cy="24" r="4" fill="url(#blue-grad)"/>
+          <path d="M24 4V12M24 36V44M4 24H12M36 24H44" stroke="url(#blue-grad)" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+          <defs>
+            <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#60a5fa"/>
+              <stop offset="100%" stop-color="#93c5fd"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">The Sixth Pillar</div>
+          <div class="pillar-title">Purpose & Meaning</div>
+        </div>
+      </div>
+      <p>Living in alignment with your unique contribution. Purpose emerges when you dare to follow what lights you up.</p>
+    </div>
+
+    <h3>Core Understanding</h3>
+    <p>Purpose isn't something you find—it's something you uncover by paying attention to what moves you. It lives at the intersection of what you love, what you're good at, what the world needs, and what sustains you.</p>
+
+    <h4>Key Concepts</h4>
+    <ul>
+      <li><strong>Mission</strong> — Your unique contribution to the world</li>
+      <li><strong>Calling</strong> — What draws you forward irresistibly</li>
+      <li><strong>Meaning</strong> — Significance through your choices</li>
+      <li><strong>Alignment</strong> — Living with your deepest values</li>
+    </ul>
+
+    <div class="practice-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 2V6M12 18V22M2 12H6M18 12H22"/>
+        </svg>
+        Daily Practices
+      </h4>
+      <ul>
+        <li><strong>Ikigai Exploration</strong> — Map your purpose intersection</li>
+        <li><strong>Legacy Work</strong> — Consider what you want to leave behind</li>
+        <li><strong>Service Projects</strong> — Give without expectation</li>
+        <li><strong>Passion Experiments</strong> — Try things that call to you</li>
+      </ul>
+    </div>
+
+    <div class="question-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16V12M12 8H12.01"/>
+        </svg>
+        Reflection Questions
+      </h4>
+      <ul>
+        <li>What would I do even if I knew I would fail?</li>
+        <li>What makes me lose track of time?</li>
+        <li>How do I want to be remembered?</li>
+      </ul>
+    </div>
+
+    <span class="page-number">15</span>
+  </div>
+
+  <!-- Pillar 7: Creation -->
+  <div class="page">
+    <h2>Pillar 7</h2>
+
+    <div class="pillar-card creation">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <path d="M24 4L28 16H36L30 24L34 36L24 28L14 36L18 24L12 16H20L24 4Z" stroke="url(#gold-grad2)" stroke-width="2" fill="none"/>
+          <circle cx="24" cy="24" r="6" fill="url(#gold-grad2)" opacity="0.2"/>
+          <defs>
+            <linearGradient id="gold-grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#d4a574"/>
+              <stop offset="100%" stop-color="#e8c9a8"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">The Seventh Pillar</div>
+          <div class="pillar-title">Creation & Expression</div>
+        </div>
+      </div>
+      <p>Your unique expression is a gift to the world. Creative flow connects you to the infinite source within.</p>
+    </div>
+
+    <h3>Core Understanding</h3>
+    <p>Creation is your birthright. You are not a consumer of life but a creator within it. When you express authentically, you participate in the ongoing creation of reality itself.</p>
+
+    <h4>Key Concepts</h4>
+    <ul>
+      <li><strong>Creativity</strong> — Bringing something new into being</li>
+      <li><strong>Expression</strong> — Giving form to what lives within</li>
+      <li><strong>Flow</strong> — State of effortless engagement</li>
+      <li><strong>Innovation</strong> — Fresh approaches to old challenges</li>
+    </ul>
+
+    <div class="practice-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2">
+          <path d="M12 2L15 8H9L12 2Z"/>
+          <circle cx="12" cy="14" r="6"/>
+        </svg>
+        Daily Practices
+      </h4>
+      <ul>
+        <li><strong>Daily Creating</strong> — Make something every day</li>
+        <li><strong>Flow States</strong> — Cultivate conditions for engagement</li>
+        <li><strong>Play Experiments</strong> — Create without attachment</li>
+        <li><strong>Expressive Arts</strong> — Move, paint, write, make music</li>
+      </ul>
+    </div>
+
+    <div class="question-box">
+      <h4>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 16V12M12 8H12.01"/>
+        </svg>
+        Reflection Questions
+      </h4>
+      <ul>
+        <li>What wants to come through me?</li>
+        <li>What would I create if failure were impossible?</li>
+        <li>What creative dreams still call to me?</li>
+      </ul>
+    </div>
+
+    <span class="page-number">17</span>
+  </div>
+
+  <!-- The Three Life Books -->
+  <div class="page">
+    <h2>The Three Life Books</h2>
+
+    <p>The Soulbook framework can be experienced through three different lenses—each offering a unique journey through the same transformative territory.</p>
+
+    <div class="pillar-card" style="margin-top: 1.5em;">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="16" stroke="#a78bfa" stroke-width="2" fill="none"/>
+          <path d="M12 24C12 24 18 16 24 16C30 16 36 24 36 24C36 24 30 32 24 32C18 32 12 24 12 24Z" stroke="#a78bfa" stroke-width="2" fill="none"/>
+          <circle cx="24" cy="24" r="4" fill="#a78bfa"/>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">For Artists</div>
+          <div class="pillar-title">Life Symphony</div>
+        </div>
+      </div>
+      <p>A comprehensive 12-week journey integrating all 7 pillars harmoniously. Like movements in a symphony, each pillar builds upon the others.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <path d="M8 40L24 8L40 40H8Z" stroke="#fbbf24" stroke-width="2" fill="none"/>
+          <circle cx="24" cy="28" r="4" fill="#fbbf24"/>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">For Seekers</div>
+          <div class="pillar-title">Golden Path</div>
+        </div>
+      </div>
+      <p>A focused 4-week journey targeting three pillars: Consciousness, Emotional Mastery, and Purpose. Perfect for rapid transformation.</p>
+    </div>
+
+    <div class="pillar-card">
+      <div class="pillar-header">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none">
+          <rect x="8" y="8" width="32" height="32" rx="4" stroke="#60a5fa" stroke-width="2" fill="none"/>
+          <path d="M16 16H32M16 24H32M16 32H28" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="pillar-meta">
+          <div class="pillar-number">For Builders</div>
+          <div class="pillar-title">7 Pillars Mastery</div>
+        </div>
+      </div>
+      <p>Seven separate intensive courses, each devoted to mastering one pillar. For comprehensive expertise in each area.</p>
+    </div>
+
+    <div class="quote">
+      Choose the path that resonates. All roads lead to the same destination—your most authentic, fully expressed self.
+    </div>
+
+    <span class="page-number">19</span>
+  </div>
+
+  <!-- Integration -->
+  <div class="page">
+    <h2>Integration Practices</h2>
+
+    <p>The pillars don't exist in isolation—they form an interconnected system. Here are practices that weave them together.</p>
+
+    <h3>Morning Ritual</h3>
+    <p style="color: var(--text-secondary); font-style: italic; margin-bottom: 0.5em;">15-20 minutes daily</p>
+
+    <div class="practice-box">
+      <ol>
+        <li><strong>Awareness Check</strong> — 3 minutes of silent observation</li>
+        <li><strong>Identity Affirmation</strong> — State who you choose to be today</li>
+        <li><strong>Emotional Inventory</strong> — Name your current feelings</li>
+        <li><strong>Gratitude for Relationships</strong> — Thank one person in your mind</li>
+        <li><strong>Body Movement</strong> — 3 minutes of stretching or breathwork</li>
+        <li><strong>Purpose Statement</strong> — Remind yourself why today matters</li>
+        <li><strong>Creative Intention</strong> — What will you create today?</li>
+      </ol>
+    </div>
+
+    <h3>Weekly Review Questions</h3>
+    <div class="question-box">
+      <ul>
+        <li>Which pillar asked for the most attention this week?</li>
+        <li>What patterns did I notice across different pillars?</li>
+        <li>Where did I experience the most growth?</li>
+        <li>What pillar am I avoiding, and why?</li>
+        <li>How can I bring more integration next week?</li>
+      </ul>
+    </div>
+
+    <div class="highlight">
+      <strong>Remember:</strong> Growth in one pillar naturally catalyzes growth in others. Trust the process. The integration happens organically when you show up consistently.
+    </div>
+
+    <span class="page-number">21</span>
+  </div>
+
+  <!-- Closing -->
+  <div class="page">
+    <h2>Your Transformation Begins</h2>
+
+    <p>You now hold the complete Soulbook framework. But knowledge without action remains potential. The transformation happens in the doing.</p>
+
+    <h3>Your Next Steps</h3>
+    <ol>
+      <li><strong>Choose Your Entry Point</strong> — Which pillar calls to you most strongly?</li>
+      <li><strong>Start with One Practice</strong> — Pick one and commit for 7 days</li>
+      <li><strong>Join the Community</strong> — Connect with fellow travelers at FrankX.AI</li>
+      <li><strong>Track Your Journey</strong> — Use the Obsidian vault to document insights</li>
+    </ol>
+
+    <div class="quote">
+      The journey of a thousand miles begins with a single step. Your step begins now.
+    </div>
+
+    <h3>Resources</h3>
+    <ul>
+      <li><strong>Obsidian Vault</strong> — Ready-to-use templates at FrankX.AI</li>
+      <li><strong>AI Coaching Prompts</strong> — 25+ prompts included in the vault</li>
+      <li><strong>Community</strong> — Join the Inner Circle for live support</li>
+      <li><strong>Programs</strong> — Explore guided journeys through the Life Books</li>
+    </ul>
+
+    <div class="highlight" style="text-align: center; margin-top: 2em; padding: 2em;">
+      <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 15pt; margin: 0; color: var(--primary);">
+        <em>You already have everything you need.<br/>The Soulbook simply helps you remember.</em>
+      </p>
+    </div>
+
+    <div class="footer" style="margin-top: 3em;">
+      <p style="font-family: 'Playfair Display', serif; font-size: 11pt; margin-bottom: 0.5em;">The Creator's Soulbook</p>
+      <p>&copy; 2026 Frank · FrankX.AI</p>
+      <p style="margin-top: 1em; font-weight: 500; color: var(--accent-gold);">frankx.ai</p>
+    </div>
+
+    <span class="page-number">23</span>
+  </div>
+</body>
+</html>

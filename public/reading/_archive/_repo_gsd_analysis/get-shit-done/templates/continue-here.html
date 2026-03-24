@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Continue-Here Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/continue-here.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Continue-Here Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <span>continue-here.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Continue-Here Template</h1>
+<p>Copy and fill this structure for <code>.planning/phases/XX-name/.continue-here.md</code>:</p>
+<pre><code class="language-yaml">---
+phase: XX-name
+task: 3
+total_tasks: 7
+status: in_progress
+last_updated: 2025-01-15T14:30:00Z
+---
+</code></pre>
+<pre><code class="language-markdown">&lt;current_state&gt;
+[Where exactly are we? What&#39;s the immediate context?]
+&lt;/current_state&gt;
+
+&lt;completed_work&gt;
+[What got done this session - be specific]
+
+- Task 1: [name] - Done
+- Task 2: [name] - Done
+- Task 3: [name] - In progress, [what&#39;s done on it]
+&lt;/completed_work&gt;
+
+&lt;remaining_work&gt;
+[What&#39;s left in this phase]
+
+- Task 3: [name] - [what&#39;s left to do]
+- Task 4: [name] - Not started
+- Task 5: [name] - Not started
+&lt;/remaining_work&gt;
+
+&lt;decisions_made&gt;
+[Key decisions and why - so next session doesn&#39;t re-debate]
+
+- Decided to use [X] because [reason]
+- Chose [approach] over [alternative] because [reason]
+&lt;/decisions_made&gt;
+
+&lt;blockers&gt;
+[Anything stuck or waiting on external factors]
+
+- [Blocker 1]: [status/workaround]
+&lt;/blockers&gt;
+
+&lt;context&gt;
+[Mental state, &quot;vibe&quot;, anything that helps resume smoothly]
+
+[What were you thinking about? What was the plan?
+This is the &quot;pick up exactly where you left off&quot; context.]
+&lt;/context&gt;
+
+&lt;next_action&gt;
+[The very first thing to do when resuming]
+
+Start with: [specific action]
+&lt;/next_action&gt;
+</code></pre>
+<yaml_fields>
+Required YAML frontmatter:
+
+<ul>
+<li><code>phase</code>: Directory name (e.g., <code>02-authentication</code>)</li>
+<li><code>task</code>: Current task number</li>
+<li><code>total_tasks</code>: How many tasks in phase</li>
+<li><code>status</code>: <code>in_progress</code>, <code>blocked</code>, <code>almost_done</code></li>
+<li><code>last_updated</code>: ISO timestamp</yaml_fields></li>
+</ul>
+<guidelines>
+- Be specific enough that a fresh Claude instance understands immediately
+- Include WHY decisions were made, not just what
+- The `<next_action>` should be actionable without reading anything else
+- This file gets DELETED after resume - it's not permanent storage
+</guidelines>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

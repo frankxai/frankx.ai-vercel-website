@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Python MCP Server Implementation Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/mcp-builder/reference/python_mcp_server.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Python MCP Server Implementation Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills%2Fmcp-builder">mcp-builder</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fmcp-builder%2Freference">reference</a> / <span>python_mcp_server.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Python MCP Server Implementation Guide</h1>
+<h2>Overview</h2>
+<p>This document provides Python-specific best practices and examples for implementing MCP servers using the MCP Python SDK. It covers server setup, tool registration patterns, input validation with Pydantic, error handling, and complete working examples.</p>
+<hr>
+<h2>Quick Reference</h2>
+<h3>Key Imports</h3>
+<pre><code class="language-python">from mcp.server.fastmcp import FastMCP
+from pydantic import BaseModel, Field, field_validator, ConfigDict
+from typing import Optional, List, Dict, Any
+from enum import Enum
+import httpx
+</code></pre>
+<h3>Server Initialization</h3>
+<pre><code class="language-python">mcp = FastMCP(&quot;service_mcp&quot;)
+</code></pre>
+<h3>Tool Registration Pattern</h3>
+<pre><code class="language-python">@mcp.tool(name=&quot;tool_name&quot;, annotations={...})
+async def tool_function(params: InputModel) -&gt; str:
+    # Implementation
+    pass
+</code></pre>
+<hr>
+<h2>MCP Python SDK and FastMCP</h2>
+<p>The official MCP Python SDK provides FastMCP, a high-level framework for building MCP servers. It provides:</p>
+<ul>
+<li>Automatic description and inputSchema generation from function signatures and docstrings</li>
+<li>Pydantic model integration for input validation</li>
+<li>Decorator-based tool registration with <code>@mcp.tool</code></li>
+</ul>
+<p><strong>For complete SDK documentation, use WebFetch to load:</strong>
+<code>https://raw.githubusercontent.com/modelcontextprotocol/python-sdk/main/README.md</code></p>
+<h2>Server Naming Convention</h2>
+<p>Python MCP servers must follow this naming pattern:</p>
+<ul>
+<li><strong>Format</strong>: <code>{service}_mcp</code> (lowercase with underscores)</li>
+<li><strong>Examples</strong>: <code>github_mcp</code>, <code>jira_mcp</code>, <code>stripe_mcp</code></li>
+</ul>
+<p>The name should be:</p>
+<ul>
+<li>General (not tied to specific features)</li>
+<li>Descriptive of the service/API being integrated</li>
+<li>Easy to infer from the task description</li>
+<li>Without version numbers or dates</li>
+</ul>
+<h2>Tool Implementation</h2>
+<h3>Tool Naming</h3>
+<p>Use snake_case for tool names (e.g., &quot;search_users&quot;, &quot;create_project&quot;, &quot;get_channel_info&quot;) with clear, action-oriented names.</p>
+<p><strong>Avoid Naming Conflicts</strong>: Include the service context to prevent overlaps:</p>
+<ul>
+<li>Use &quot;slack_send_message&quot; instead of just &quot;send_message&quot;</li>
+<li>Use &quot;github_create_issue&quot; instead of just &quot;create_issue&quot;</li>
+<li>Use &quot;asana_list_tasks&quot; instead of just &quot;list_tasks&quot;</li>
+</ul>
+<h3>Tool Structure with FastMCP</h3>
+<p>Tools are defined using the <code>@mcp.tool</code> decorator with Pydantic models for input validation:</p>
+<pre><code class="language-python">from pydantic import BaseModel, Field, ConfigDict
+from mcp.server.fastmcp import FastMCP
+
+# Initialize the MCP server
+mcp = FastMCP(&quot;example_mcp&quot;)
+
+# Define Pydantic model for input validation
+class ServiceToolInput(BaseModel):
+    &#39;&#39;&#39;Input model for service tool operation.&#39;&#39;&#39;
+    model_config = ConfigDict(
+        str_strip_whitespace=True,  # Auto-strip whitespace from strings
+        validate_assignment=True,    # Validate on assignment
+        extra=&#39;forbid&#39;              # Forbid extra fields
+    )
+
+    param1: str = Field(..., description=&quot;First parameter description (e.g., &#39;user123&#39;, &#39;project-abc&#39;)&quot;, min_length=1, max_length=100)
+    param2: Optional[int] = Field(default=None, description=&quot;Optional integer parameter with constraints&quot;, ge=0, le=1000)
+    tags: Optional[List[str]] = Field(default_factory=list, description=&quot;List of tags to apply&quot;, max_items=10)
+
+@mcp.tool(
+    name=&quot;service_tool_name&quot;,
+    annotations={
+        &quot;title&quot;: &quot;Human-Readable Tool Title&quot;,
+        &quot;readOnlyHint&quot;: True,     # Tool does not modify environment
+        &quot;destructiveHint&quot;: False,  # Tool does not perform destructive operations
+        &quot;idempotentHint&quot;: True,    # Repeated calls have no additional effect
+        &quot;openWorldHint&quot;: False     # Tool does not interact with external entities
+    }
+)
+async def service_tool_name(params: ServiceToolInput) -&gt; str:
+    &#39;&#39;&#39;Tool description automatically becomes the &#39;description&#39; field.
+
+    This tool performs a specific operation on the service. It validates all inputs
+    using the ServiceToolInput Pydantic model before processing.
+
+    Args:
+        params (ServiceToolInput): Validated input parameters containing:
+            - param1 (str): First parameter description
+            - param2 (Optional[int]): Optional parameter with default
+            - tags (Optional[List[str]]): List of tags
+
+    Returns:
+        str: JSON-formatted response containing operation results
+    &#39;&#39;&#39;
+    # Implementation here
+    pass
+</code></pre>
+<h2>Pydantic v2 Key Features</h2>
+<ul>
+<li>Use <code>model_config</code> instead of nested <code>Config</code> class</li>
+<li>Use <code>field_validator</code> instead of deprecated <code>validator</code></li>
+<li>Use <code>model_dump()</code> instead of deprecated <code>dict()</code></li>
+<li>Validators require <code>@classmethod</code> decorator</li>
+<li>Type hints are required for validator methods</li>
+</ul>
+<pre><code class="language-python">from pydantic import BaseModel, Field, field_validator, ConfigDict
+
+class CreateUserInput(BaseModel):
+    model_config = ConfigDict(
+        str_strip_whitespace=True,
+        validate_assignment=True
+    )
+
+    name: str = Field(..., description=&quot;User&#39;s full name&quot;, min_length=1, max_length=100)
+    email: str = Field(..., description=&quot;User&#39;s email address&quot;, pattern=r&#39;^[\w\.-]+@[\w\.-]+\.\w+$&#39;)
+    age: int = Field(..., description=&quot;User&#39;s age&quot;, ge=0, le=150)
+
+    @field_validator(&#39;email&#39;)
+    @classmethod
+    def validate_email(cls, v: str) -&gt; str:
+        if not v.strip():
+            raise ValueError(&quot;Email cannot be empty&quot;)
+        return v.lower()
+</code></pre>
+<h2>Response Format Options</h2>
+<p>Support multiple output formats for flexibility:</p>
+<pre><code class="language-python">from enum import Enum
+
+class ResponseFormat(str, Enum):
+    &#39;&#39;&#39;Output format for tool responses.&#39;&#39;&#39;
+    MARKDOWN = &quot;markdown&quot;
+    JSON = &quot;json&quot;
+
+class UserSearchInput(BaseModel):
+    query: str = Field(..., description=&quot;Search query&quot;)
+    response_format: ResponseFormat = Field(
+        default=ResponseFormat.MARKDOWN,
+        description=&quot;Output format: &#39;markdown&#39; for human-readable or &#39;json&#39; for machine-readable&quot;
+    )
+</code></pre>
+<p><strong>Markdown format</strong>:</p>
+<ul>
+<li>Use headers, lists, and formatting for clarity</li>
+<li>Convert timestamps to human-readable format (e.g., &quot;2024-01-15 10:30:00 UTC&quot; instead of epoch)</li>
+<li>Show display names with IDs in parentheses (e.g., &quot;@john.doe (U123456)&quot;)</li>
+<li>Omit verbose metadata (e.g., show only one profile image URL, not all sizes)</li>
+<li>Group related information logically</li>
+</ul>
+<p><strong>JSON format</strong>:</p>
+<ul>
+<li>Return complete, structured data suitable for programmatic processing</li>
+<li>Include all available fields and metadata</li>
+<li>Use consistent field names and types</li>
+</ul>
+<h2>Pagination Implementation</h2>
+<p>For tools that list resources:</p>
+<pre><code class="language-python">class ListInput(BaseModel):
+    limit: Optional[int] = Field(default=20, description=&quot;Maximum results to return&quot;, ge=1, le=100)
+    offset: Optional[int] = Field(default=0, description=&quot;Number of results to skip for pagination&quot;, ge=0)
+
+async def list_items(params: ListInput) -&gt; str:
+    # Make API request with pagination
+    data = await api_request(limit=params.limit, offset=params.offset)
+
+    # Return pagination info
+    response = {
+        &quot;total&quot;: data[&quot;total&quot;],
+        &quot;count&quot;: len(data[&quot;items&quot;]),
+        &quot;offset&quot;: params.offset,
+        &quot;items&quot;: data[&quot;items&quot;],
+        &quot;has_more&quot;: data[&quot;total&quot;] &gt; params.offset + len(data[&quot;items&quot;]),
+        &quot;next_offset&quot;: params.offset + len(data[&quot;items&quot;]) if data[&quot;total&quot;] &gt; params.offset + len(data[&quot;items&quot;]) else None
+    }
+    return json.dumps(response, indent=2)
+</code></pre>
+<h2>Error Handling</h2>
+<p>Provide clear, actionable error messages:</p>
+<pre><code class="language-python">def _handle_api_error(e: Exception) -&gt; str:
+    &#39;&#39;&#39;Consistent error formatting across all tools.&#39;&#39;&#39;
+    if isinstance(e, httpx.HTTPStatusError):
+        if e.response.status_code == 404:
+            return &quot;Error: Resource not found. Please check the ID is correct.&quot;
+        elif e.response.status_code == 403:
+            return &quot;Error: Permission denied. You don&#39;t have access to this resource.&quot;
+        elif e.response.status_code == 429:
+            return &quot;Error: Rate limit exceeded. Please wait before making more requests.&quot;
+        return f&quot;Error: API request failed with status {e.response.status_code}&quot;
+    elif isinstance(e, httpx.TimeoutException):
+        return &quot;Error: Request timed out. Please try again.&quot;
+    return f&quot;Error: Unexpected error occurred: {type(e).__name__}&quot;
+</code></pre>
+<h2>Shared Utilities</h2>
+<p>Extract common functionality into reusable functions:</p>
+<pre><code class="language-python"># Shared API request function
+async def _make_api_request(endpoint: str, method: str = &quot;GET&quot;, **kwargs) -&gt; dict:
+    &#39;&#39;&#39;Reusable function for all API calls.&#39;&#39;&#39;
+    async with httpx.AsyncClient() as client:
+        response = await client.request(
+            method,
+            f&quot;{API_BASE_URL}/{endpoint}&quot;,
+            timeout=30.0,
+            **kwargs
+        )
+        response.raise_for_status()
+        return response.json()
+</code></pre>
+<h2>Async/Await Best Practices</h2>
+<p>Always use async/await for network requests and I/O operations:</p>
+<pre><code class="language-python"># Good: Async network request
+async def fetch_data(resource_id: str) -&gt; dict:
+    async with httpx.AsyncClient() as client:
+        response = await client.get(f&quot;{API_URL}/resource/{resource_id}&quot;)
+        response.raise_for_status()
+        return response.json()
+
+# Bad: Synchronous request
+def fetch_data(resource_id: str) -&gt; dict:
+    response = requests.get(f&quot;{API_URL}/resource/{resource_id}&quot;)  # Blocks
+    return response.json()
+</code></pre>
+<h2>Type Hints</h2>
+<p>Use type hints throughout:</p>
+<pre><code class="language-python">from typing import Optional, List, Dict, Any
+
+async def get_user(user_id: str) -&gt; Dict[str, Any]:
+    data = await fetch_user(user_id)
+    return {&quot;id&quot;: data[&quot;id&quot;], &quot;name&quot;: data[&quot;name&quot;]}
+</code></pre>
+<h2>Tool Docstrings</h2>
+<p>Every tool must have comprehensive docstrings with explicit type information:</p>
+<pre><code class="language-python">async def search_users(params: UserSearchInput) -&gt; str:
+    &#39;&#39;&#39;
+    Search for users in the Example system by name, email, or team.
+
+    This tool searches across all user profiles in the Example platform,
+    supporting partial matches and various search filters. It does NOT
+    create or modify users, only searches existing ones.
+
+    Args:
+        params (UserSearchInput): Validated input parameters containing:
+            - query (str): Search string to match against names/emails (e.g., &quot;john&quot;, &quot;@example.com&quot;, &quot;team:marketing&quot;)
+            - limit (Optional[int]): Maximum results to return, between 1-100 (default: 20)
+            - offset (Optional[int]): Number of results to skip for pagination (default: 0)
+
+    Returns:
+        str: JSON-formatted string containing search results with the following schema:
+
+        Success response:
+        {
+            &quot;total&quot;: int,           # Total number of matches found
+            &quot;count&quot;: int,           # Number of results in this response
+            &quot;offset&quot;: int,          # Current pagination offset
+            &quot;users&quot;: [
+                {
+                    &quot;id&quot;: str,      # User ID (e.g., &quot;U123456789&quot;)
+                    &quot;name&quot;: str,    # Full name (e.g., &quot;John Doe&quot;)
+                    &quot;email&quot;: str,   # Email address (e.g., &quot;john@example.com&quot;)
+                    &quot;team&quot;: str     # Team name (e.g., &quot;Marketing&quot;) - optional
+                }
+            ]
+        }
+
+        Error response:
+        &quot;Error: &lt;error message&gt;&quot; or &quot;No users found matching &#39;&lt;query&gt;&#39;&quot;
+
+    Examples:
+        - Use when: &quot;Find all marketing team members&quot; -&gt; params with query=&quot;team:marketing&quot;
+        - Use when: &quot;Search for John&#39;s account&quot; -&gt; params with query=&quot;john&quot;
+        - Don&#39;t use when: You need to create a user (use example_create_user instead)
+        - Don&#39;t use when: You have a user ID and need full details (use example_get_user instead)
+
+    Error Handling:
+        - Input validation errors are handled by Pydantic model
+        - Returns &quot;Error: Rate limit exceeded&quot; if too many requests (429 status)
+        - Returns &quot;Error: Invalid API authentication&quot; if API key is invalid (401 status)
+        - Returns formatted list of results or &quot;No users found matching &#39;query&#39;&quot;
+    &#39;&#39;&#39;
+</code></pre>
+<h2>Complete Example</h2>
+<p>See below for a complete Python MCP server example:</p>
+<pre><code class="language-python">#!/usr/bin/env python3
+&#39;&#39;&#39;
+MCP Server for Example Service.
+
+This server provides tools to interact with Example API, including user search,
+project management, and data export capabilities.
+&#39;&#39;&#39;
+
+from typing import Optional, List, Dict, Any
+from enum import Enum
+import httpx
+from pydantic import BaseModel, Field, field_validator, ConfigDict
+from mcp.server.fastmcp import FastMCP
+
+# Initialize the MCP server
+mcp = FastMCP(&quot;example_mcp&quot;)
+
+# Constants
+API_BASE_URL = &quot;https://api.example.com/v1&quot;
+
+# Enums
+class ResponseFormat(str, Enum):
+    &#39;&#39;&#39;Output format for tool responses.&#39;&#39;&#39;
+    MARKDOWN = &quot;markdown&quot;
+    JSON = &quot;json&quot;
+
+# Pydantic Models for Input Validation
+class UserSearchInput(BaseModel):
+    &#39;&#39;&#39;Input model for user search operations.&#39;&#39;&#39;
+    model_config = ConfigDict(
+        str_strip_whitespace=True,
+        validate_assignment=True
+    )
+
+    query: str = Field(..., description=&quot;Search string to match against names/emails&quot;, min_length=2, max_length=200)
+    limit: Optional[int] = Field(default=20, description=&quot;Maximum results to return&quot;, ge=1, le=100)
+    offset: Optional[int] = Field(default=0, description=&quot;Number of results to skip for pagination&quot;, ge=0)
+    response_format: ResponseFormat = Field(default=ResponseFormat.MARKDOWN, description=&quot;Output format&quot;)
+
+    @field_validator(&#39;query&#39;)
+    @classmethod
+    def validate_query(cls, v: str) -&gt; str:
+        if not v.strip():
+            raise ValueError(&quot;Query cannot be empty or whitespace only&quot;)
+        return v.strip()
+
+# Shared utility functions
+async def _make_api_request(endpoint: str, method: str = &quot;GET&quot;, **kwargs) -&gt; dict:
+    &#39;&#39;&#39;Reusable function for all API calls.&#39;&#39;&#39;
+    async with httpx.AsyncClient() as client:
+        response = await client.request(
+            method,
+            f&quot;{API_BASE_URL}/{endpoint}&quot;,
+            timeout=30.0,
+            **kwargs
+        )
+        response.raise_for_status()
+        return response.json()
+
+def _handle_api_error(e: Exception) -&gt; str:
+    &#39;&#39;&#39;Consistent error formatting across all tools.&#39;&#39;&#39;
+    if isinstance(e, httpx.HTTPStatusError):
+        if e.response.status_code == 404:
+            return &quot;Error: Resource not found. Please check the ID is correct.&quot;
+        elif e.response.status_code == 403:
+            return &quot;Error: Permission denied. You don&#39;t have access to this resource.&quot;
+        elif e.response.status_code == 429:
+            return &quot;Error: Rate limit exceeded. Please wait before making more requests.&quot;
+        return f&quot;Error: API request failed with status {e.response.status_code}&quot;
+    elif isinstance(e, httpx.TimeoutException):
+        return &quot;Error: Request timed out. Please try again.&quot;
+    return f&quot;Error: Unexpected error occurred: {type(e).__name__}&quot;
+
+# Tool definitions
+@mcp.tool(
+    name=&quot;example_search_users&quot;,
+    annotations={
+        &quot;title&quot;: &quot;Search Example Users&quot;,
+        &quot;readOnlyHint&quot;: True,
+        &quot;destructiveHint&quot;: False,
+        &quot;idempotentHint&quot;: True,
+        &quot;openWorldHint&quot;: True
+    }
+)
+async def example_search_users(params: UserSearchInput) -&gt; str:
+    &#39;&#39;&#39;Search for users in the Example system by name, email, or team.
+
+    [Full docstring as shown above]
+    &#39;&#39;&#39;
+    try:
+        # Make API request using validated parameters
+        data = await _make_api_request(
+            &quot;users/search&quot;,
+            params={
+                &quot;q&quot;: params.query,
+                &quot;limit&quot;: params.limit,
+                &quot;offset&quot;: params.offset
+            }
+        )
+
+        users = data.get(&quot;users&quot;, [])
+        total = data.get(&quot;total&quot;, 0)
+
+        if not users:
+            return f&quot;No users found matching &#39;{params.query}&#39;&quot;
+
+        # Format response based on requested format
+        if params.response_format == ResponseFormat.MARKDOWN:
+            lines = [f&quot;# User Search Results: &#39;{params.query}&#39;&quot;, &quot;&quot;]
+            lines.append(f&quot;Found {total} users (showing {len(users)})&quot;)
+            lines.append(&quot;&quot;)
+
+            for user in users:
+                lines.append(f&quot;## {user[&#39;name&#39;]} ({user[&#39;id&#39;]})&quot;)
+                lines.append(f&quot;- **Email**: {user[&#39;email&#39;]}&quot;)
+                if user.get(&#39;team&#39;):
+                    lines.append(f&quot;- **Team**: {user[&#39;team&#39;]}&quot;)
+                lines.append(&quot;&quot;)
+
+            return &quot;\n&quot;.join(lines)
+
+        else:
+            # Machine-readable JSON format
+            import json
+            response = {
+                &quot;total&quot;: total,
+                &quot;count&quot;: len(users),
+                &quot;offset&quot;: params.offset,
+                &quot;users&quot;: users
+            }
+            return json.dumps(response, indent=2)
+
+    except Exception as e:
+        return _handle_api_error(e)
+
+if __name__ == &quot;__main__&quot;:
+    mcp.run()
+</code></pre>
+<hr>
+<h2>Advanced FastMCP Features</h2>
+<h3>Context Parameter Injection</h3>
+<p>FastMCP can automatically inject a <code>Context</code> parameter into tools for advanced capabilities like logging, progress reporting, resource reading, and user interaction:</p>
+<pre><code class="language-python">from mcp.server.fastmcp import FastMCP, Context
+
+mcp = FastMCP(&quot;example_mcp&quot;)
+
+@mcp.tool()
+async def advanced_search(query: str, ctx: Context) -&gt; str:
+    &#39;&#39;&#39;Advanced tool with context access for logging and progress.&#39;&#39;&#39;
+
+    # Report progress for long operations
+    await ctx.report_progress(0.25, &quot;Starting search...&quot;)
+
+    # Log information for debugging
+    await ctx.log_info(&quot;Processing query&quot;, {&quot;query&quot;: query, &quot;timestamp&quot;: datetime.now()})
+
+    # Perform search
+    results = await search_api(query)
+    await ctx.report_progress(0.75, &quot;Formatting results...&quot;)
+
+    # Access server configuration
+    server_name = ctx.fastmcp.name
+
+    return format_results(results)
+
+@mcp.tool()
+async def interactive_tool(resource_id: str, ctx: Context) -&gt; str:
+    &#39;&#39;&#39;Tool that can request additional input from users.&#39;&#39;&#39;
+
+    # Request sensitive information when needed
+    api_key = await ctx.elicit(
+        prompt=&quot;Please provide your API key:&quot;,
+        input_type=&quot;password&quot;
+    )
+
+    # Use the provided key
+    return await api_call(resource_id, api_key)
+</code></pre>
+<p><strong>Context capabilities:</strong></p>
+<ul>
+<li><code>ctx.report_progress(progress, message)</code> - Report progress for long operations</li>
+<li><code>ctx.log_info(message, data)</code> / <code>ctx.log_error()</code> / <code>ctx.log_debug()</code> - Logging</li>
+<li><code>ctx.elicit(prompt, input_type)</code> - Request input from users</li>
+<li><code>ctx.fastmcp.name</code> - Access server configuration</li>
+<li><code>ctx.read_resource(uri)</code> - Read MCP resources</li>
+</ul>
+<h3>Resource Registration</h3>
+<p>Expose data as resources for efficient, template-based access:</p>
+<pre><code class="language-python">@mcp.resource(&quot;file://documents/{name}&quot;)
+async def get_document(name: str) -&gt; str:
+    &#39;&#39;&#39;Expose documents as MCP resources.
+
+    Resources are useful for static or semi-static data that doesn&#39;t
+    require complex parameters. They use URI templates for flexible access.
+    &#39;&#39;&#39;
+    document_path = f&quot;./docs/{name}&quot;
+    with open(document_path, &quot;r&quot;) as f:
+        return f.read()
+
+@mcp.resource(&quot;config://settings/{key}&quot;)
+async def get_setting(key: str, ctx: Context) -&gt; str:
+    &#39;&#39;&#39;Expose configuration as resources with context.&#39;&#39;&#39;
+    settings = await load_settings()
+    return json.dumps(settings.get(key, {}))
+</code></pre>
+<p><strong>When to use Resources vs Tools:</strong></p>
+<ul>
+<li><strong>Resources</strong>: For data access with simple parameters (URI templates)</li>
+<li><strong>Tools</strong>: For complex operations with validation and business logic</li>
+</ul>
+<h3>Structured Output Types</h3>
+<p>FastMCP supports multiple return types beyond strings:</p>
+<pre><code class="language-python">from typing import TypedDict
+from dataclasses import dataclass
+from pydantic import BaseModel
+
+# TypedDict for structured returns
+class UserData(TypedDict):
+    id: str
+    name: str
+    email: str
+
+@mcp.tool()
+async def get_user_typed(user_id: str) -&gt; UserData:
+    &#39;&#39;&#39;Returns structured data - FastMCP handles serialization.&#39;&#39;&#39;
+    return {&quot;id&quot;: user_id, &quot;name&quot;: &quot;John Doe&quot;, &quot;email&quot;: &quot;john@example.com&quot;}
+
+# Pydantic models for complex validation
+class DetailedUser(BaseModel):
+    id: str
+    name: str
+    email: str
+    created_at: datetime
+    metadata: Dict[str, Any]
+
+@mcp.tool()
+async def get_user_detailed(user_id: str) -&gt; DetailedUser:
+    &#39;&#39;&#39;Returns Pydantic model - automatically generates schema.&#39;&#39;&#39;
+    user = await fetch_user(user_id)
+    return DetailedUser(**user)
+</code></pre>
+<h3>Lifespan Management</h3>
+<p>Initialize resources that persist across requests:</p>
+<pre><code class="language-python">from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def app_lifespan():
+    &#39;&#39;&#39;Manage resources that live for the server&#39;s lifetime.&#39;&#39;&#39;
+    # Initialize connections, load config, etc.
+    db = await connect_to_database()
+    config = load_configuration()
+
+    # Make available to all tools
+    yield {&quot;db&quot;: db, &quot;config&quot;: config}
+
+    # Cleanup on shutdown
+    await db.close()
+
+mcp = FastMCP(&quot;example_mcp&quot;, lifespan=app_lifespan)
+
+@mcp.tool()
+async def query_data(query: str, ctx: Context) -&gt; str:
+    &#39;&#39;&#39;Access lifespan resources through context.&#39;&#39;&#39;
+    db = ctx.request_context.lifespan_state[&quot;db&quot;]
+    results = await db.query(query)
+    return format_results(results)
+</code></pre>
+<h3>Transport Options</h3>
+<p>FastMCP supports two main transport mechanisms:</p>
+<pre><code class="language-python"># stdio transport (for local tools) - default
+if __name__ == &quot;__main__&quot;:
+    mcp.run()
+
+# Streamable HTTP transport (for remote servers)
+if __name__ == &quot;__main__&quot;:
+    mcp.run(transport=&quot;streamable_http&quot;, port=8000)
+</code></pre>
+<p><strong>Transport selection:</strong></p>
+<ul>
+<li><strong>stdio</strong>: Command-line tools, local integrations, subprocess execution</li>
+<li><strong>Streamable HTTP</strong>: Web services, remote access, multiple clients</li>
+</ul>
+<hr>
+<h2>Code Best Practices</h2>
+<h3>Code Composability and Reusability</h3>
+<p>Your implementation MUST prioritize composability and code reuse:</p>
+<ol>
+<li><p><strong>Extract Common Functionality</strong>:</p>
+<ul>
+<li>Create reusable helper functions for operations used across multiple tools</li>
+<li>Build shared API clients for HTTP requests instead of duplicating code</li>
+<li>Centralize error handling logic in utility functions</li>
+<li>Extract business logic into dedicated functions that can be composed</li>
+<li>Extract shared markdown or JSON field selection &amp; formatting functionality</li>
+</ul>
+</li>
+<li><p><strong>Avoid Duplication</strong>:</p>
+<ul>
+<li>NEVER copy-paste similar code between tools</li>
+<li>If you find yourself writing similar logic twice, extract it into a function</li>
+<li>Common operations like pagination, filtering, field selection, and formatting should be shared</li>
+<li>Authentication/authorization logic should be centralized</li>
+</ul>
+</li>
+</ol>
+<h3>Python-Specific Best Practices</h3>
+<ol>
+<li><strong>Use Type Hints</strong>: Always include type annotations for function parameters and return values</li>
+<li><strong>Pydantic Models</strong>: Define clear Pydantic models for all input validation</li>
+<li><strong>Avoid Manual Validation</strong>: Let Pydantic handle input validation with constraints</li>
+<li><strong>Proper Imports</strong>: Group imports (standard library, third-party, local)</li>
+<li><strong>Error Handling</strong>: Use specific exception types (httpx.HTTPStatusError, not generic Exception)</li>
+<li><strong>Async Context Managers</strong>: Use <code>async with</code> for resources that need cleanup</li>
+<li><strong>Constants</strong>: Define module-level constants in UPPER_CASE</li>
+</ol>
+<h2>Quality Checklist</h2>
+<p>Before finalizing your Python MCP server implementation, ensure:</p>
+<h3>Strategic Design</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tools enable complete workflows, not just API endpoint wrappers</li>
+<li><input disabled="" type="checkbox"> Tool names reflect natural task subdivisions</li>
+<li><input disabled="" type="checkbox"> Response formats optimize for agent context efficiency</li>
+<li><input disabled="" type="checkbox"> Human-readable identifiers used where appropriate</li>
+<li><input disabled="" type="checkbox"> Error messages guide agents toward correct usage</li>
+</ul>
+<h3>Implementation Quality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> FOCUSED IMPLEMENTATION: Most important and valuable tools implemented</li>
+<li><input disabled="" type="checkbox"> All tools have descriptive names and documentation</li>
+<li><input disabled="" type="checkbox"> Return types are consistent across similar operations</li>
+<li><input disabled="" type="checkbox"> Error handling is implemented for all external calls</li>
+<li><input disabled="" type="checkbox"> Server name follows format: <code>{service}_mcp</code></li>
+<li><input disabled="" type="checkbox"> All network operations use async/await</li>
+<li><input disabled="" type="checkbox"> Common functionality is extracted into reusable functions</li>
+<li><input disabled="" type="checkbox"> Error messages are clear, actionable, and educational</li>
+<li><input disabled="" type="checkbox"> Outputs are properly validated and formatted</li>
+</ul>
+<h3>Tool Configuration</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All tools implement &#39;name&#39; and &#39;annotations&#39; in the decorator</li>
+<li><input disabled="" type="checkbox"> Annotations correctly set (readOnlyHint, destructiveHint, idempotentHint, openWorldHint)</li>
+<li><input disabled="" type="checkbox"> All tools use Pydantic BaseModel for input validation with Field() definitions</li>
+<li><input disabled="" type="checkbox"> All Pydantic Fields have explicit types and descriptions with constraints</li>
+<li><input disabled="" type="checkbox"> All tools have comprehensive docstrings with explicit input/output types</li>
+<li><input disabled="" type="checkbox"> Docstrings include complete schema structure for dict/JSON returns</li>
+<li><input disabled="" type="checkbox"> Pydantic models handle input validation (no manual validation needed)</li>
+</ul>
+<h3>Advanced Features (where applicable)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Context injection used for logging, progress, or elicitation</li>
+<li><input disabled="" type="checkbox"> Resources registered for appropriate data endpoints</li>
+<li><input disabled="" type="checkbox"> Lifespan management implemented for persistent connections</li>
+<li><input disabled="" type="checkbox"> Structured output types used (TypedDict, Pydantic models)</li>
+<li><input disabled="" type="checkbox"> Appropriate transport configured (stdio or streamable HTTP)</li>
+</ul>
+<h3>Code Quality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> File includes proper imports including Pydantic imports</li>
+<li><input disabled="" type="checkbox"> Pagination is properly implemented where applicable</li>
+<li><input disabled="" type="checkbox"> Filtering options are provided for potentially large result sets</li>
+<li><input disabled="" type="checkbox"> All async functions are properly defined with <code>async def</code></li>
+<li><input disabled="" type="checkbox"> HTTP client usage follows async patterns with proper context managers</li>
+<li><input disabled="" type="checkbox"> Type hints are used throughout the code</li>
+<li><input disabled="" type="checkbox"> Constants are defined at module level in UPPER_CASE</li>
+</ul>
+<h3>Testing</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Server runs successfully: <code>python your_server.py --help</code></li>
+<li><input disabled="" type="checkbox"> All imports resolve correctly</li>
+<li><input disabled="" type="checkbox"> Sample tool calls work as expected</li>
+<li><input disabled="" type="checkbox"> Error scenarios handled gracefully</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

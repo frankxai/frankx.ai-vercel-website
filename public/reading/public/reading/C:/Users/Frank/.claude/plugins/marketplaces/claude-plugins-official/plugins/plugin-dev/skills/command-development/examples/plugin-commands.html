@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Plugin Command Examples</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/plugin-dev/skills/command-development/examples/plugin-commands.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Plugin Command Examples</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>plugin-commands.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <h1>Plugin Command Examples</h1>
+<p>Practical examples of commands designed for Claude Code plugins, demonstrating plugin-specific patterns and features.</p>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-simple-plugin-command">Simple Plugin Command</a></li>
+<li><a href="#2-script-based-analysis">Script-Based Analysis</a></li>
+<li><a href="#3-template-based-generation">Template-Based Generation</a></li>
+<li><a href="#4-multi-script-workflow">Multi-Script Workflow</a></li>
+<li><a href="#5-configuration-driven-deployment">Configuration-Driven Deployment</a></li>
+<li><a href="#6-agent-integration">Agent Integration</a></li>
+<li><a href="#7-skill-integration">Skill Integration</a></li>
+<li><a href="#8-multi-component-workflow">Multi-Component Workflow</a></li>
+<li><a href="#9-validated-input-command">Validated Input Command</a></li>
+<li><a href="#10-environment-aware-command">Environment-Aware Command</a></li>
+</ol>
+<hr>
+<h2>1. Simple Plugin Command</h2>
+<p><strong>Use case:</strong> Basic command that uses plugin script</p>
+<p><strong>File:</strong> <code>commands/analyze.md</code></p>
+<pre><code class="language-markdown">---
+description: Analyze code quality using plugin tools
+argument-hint: [file-path]
+allowed-tools: Bash(node:*), Read
+---
+
+Analyze @$1 using plugin&#39;s quality checker:
+
+!`node ${CLAUDE_PLUGIN_ROOT}/scripts/quality-check.js $1`
+
+Review the analysis output and provide:
+1. Summary of findings
+2. Priority issues to address
+3. Suggested improvements
+4. Code quality score interpretation
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Uses <code>${CLAUDE_PLUGIN_ROOT}</code> for portable path</li>
+<li>Combines file reference with script execution</li>
+<li>Simple single-purpose command</li>
+</ul>
+<hr>
+<h2>2. Script-Based Analysis</h2>
+<p><strong>Use case:</strong> Run comprehensive analysis using multiple plugin scripts</p>
+<p><strong>File:</strong> <code>commands/full-audit.md</code></p>
+<pre><code class="language-markdown">---
+description: Complete code audit using plugin suite
+argument-hint: [directory]
+allowed-tools: Bash(*)
+model: sonnet
+---
+
+Running complete audit on $1:
+
+**Security scan:**
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/security-scan.sh $1`
+
+**Performance analysis:**
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/perf-analyze.sh $1`
+
+**Best practices check:**
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/best-practices.sh $1`
+
+Analyze all results and create comprehensive report including:
+- Critical issues requiring immediate attention
+- Performance optimization opportunities
+- Security vulnerabilities and fixes
+- Overall health score and recommendations
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Multiple script executions</li>
+<li>Organized output sections</li>
+<li>Comprehensive workflow</li>
+<li>Clear reporting structure</li>
+</ul>
+<hr>
+<h2>3. Template-Based Generation</h2>
+<p><strong>Use case:</strong> Generate documentation following plugin template</p>
+<p><strong>File:</strong> <code>commands/gen-api-docs.md</code></p>
+<pre><code class="language-markdown">---
+description: Generate API documentation from template
+argument-hint: [api-file]
+---
+
+Template structure: @${CLAUDE_PLUGIN_ROOT}/templates/api-documentation.md
+
+API implementation: @$1
+
+Generate complete API documentation following the template format above.
+
+Ensure documentation includes:
+- Endpoint descriptions with HTTP methods
+- Request/response schemas
+- Authentication requirements
+- Error codes and handling
+- Usage examples with curl commands
+- Rate limiting information
+
+Format output as markdown suitable for README or docs site.
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Uses plugin template</li>
+<li>Combines template with source file</li>
+<li>Standardized output format</li>
+<li>Clear documentation structure</li>
+</ul>
+<hr>
+<h2>4. Multi-Script Workflow</h2>
+<p><strong>Use case:</strong> Orchestrate build, test, and deploy workflow</p>
+<p><strong>File:</strong> <code>commands/release.md</code></p>
+<pre><code class="language-markdown">---
+description: Execute complete release workflow
+argument-hint: [version]
+allowed-tools: Bash(*), Read
+---
+
+Executing release workflow for version $1:
+
+**Step 1 - Pre-release validation:**
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/pre-release-check.sh $1`
+
+**Step 2 - Build artifacts:**
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/build-release.sh $1`
+
+**Step 3 - Run test suite:**
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/run-tests.sh`
+
+**Step 4 - Package release:**
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/package.sh $1`
+
+Review all step outputs and report:
+1. Any failures or warnings
+2. Build artifacts location
+3. Test results summary
+4. Next steps for deployment
+5. Rollback plan if needed
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Multi-step workflow</li>
+<li>Sequential script execution</li>
+<li>Clear step numbering</li>
+<li>Comprehensive reporting</li>
+</ul>
+<hr>
+<h2>5. Configuration-Driven Deployment</h2>
+<p><strong>Use case:</strong> Deploy using environment-specific plugin configuration</p>
+<p><strong>File:</strong> <code>commands/deploy.md</code></p>
+<pre><code class="language-markdown">---
+description: Deploy application to environment
+argument-hint: [environment]
+allowed-tools: Read, Bash(*)
+---
+
+Deployment configuration for $1: @${CLAUDE_PLUGIN_ROOT}/config/$1-deploy.json
+
+Current git state: !`git rev-parse --short HEAD`
+
+Build info: !`cat package.json | grep -E &#39;(name|version)&#39;`
+
+Execute deployment to $1 environment using configuration above.
+
+Deployment checklist:
+1. Validate configuration settings
+2. Build application for $1
+3. Run pre-deployment tests
+4. Deploy to target environment
+5. Run smoke tests
+6. Verify deployment success
+7. Update deployment log
+
+Report deployment status and any issues encountered.
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Environment-specific configuration</li>
+<li>Dynamic config file loading</li>
+<li>Pre-deployment validation</li>
+<li>Structured checklist</li>
+</ul>
+<hr>
+<h2>6. Agent Integration</h2>
+<p><strong>Use case:</strong> Command that launches plugin agent for complex task</p>
+<p><strong>File:</strong> <code>commands/deep-review.md</code></p>
+<pre><code class="language-markdown">---
+description: Deep code review using plugin agent
+argument-hint: [file-or-directory]
+---
+
+Initiate comprehensive code review of @$1 using the code-reviewer agent.
+
+The agent will perform:
+1. **Static analysis** - Check for code smells and anti-patterns
+2. **Security audit** - Identify potential vulnerabilities
+3. **Performance review** - Find optimization opportunities
+4. **Best practices** - Ensure code follows standards
+5. **Documentation check** - Verify adequate documentation
+
+The agent has access to:
+- Plugin&#39;s linting rules: ${CLAUDE_PLUGIN_ROOT}/config/lint-rules.json
+- Security checklist: ${CLAUDE_PLUGIN_ROOT}/checklists/security.md
+- Performance guidelines: ${CLAUDE_PLUGIN_ROOT}/docs/performance.md
+
+Note: This uses the Task tool to launch the plugin&#39;s code-reviewer agent for thorough analysis.
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Delegates to plugin agent</li>
+<li>Documents agent capabilities</li>
+<li>References plugin resources</li>
+<li>Clear scope definition</li>
+</ul>
+<hr>
+<h2>7. Skill Integration</h2>
+<p><strong>Use case:</strong> Command that leverages plugin skill for specialized knowledge</p>
+<p><strong>File:</strong> <code>commands/document-api.md</code></p>
+<pre><code class="language-markdown">---
+description: Document API following plugin standards
+argument-hint: [api-file]
+---
+
+API source code: @$1
+
+Generate API documentation following the plugin&#39;s API documentation standards.
+
+Use the api-documentation-standards skill to ensure:
+- **OpenAPI compliance** - Follow OpenAPI 3.0 specification
+- **Consistent formatting** - Use plugin&#39;s documentation style
+- **Complete coverage** - Document all endpoints and schemas
+- **Example quality** - Provide realistic usage examples
+- **Error documentation** - Cover all error scenarios
+
+The skill provides:
+- Standard documentation templates
+- API documentation best practices
+- Common patterns for this codebase
+- Quality validation criteria
+
+Generate production-ready API documentation.
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Invokes plugin skill by name</li>
+<li>Documents skill purpose</li>
+<li>Clear expectations</li>
+<li>Leverages skill knowledge</li>
+</ul>
+<hr>
+<h2>8. Multi-Component Workflow</h2>
+<p><strong>Use case:</strong> Complex workflow using agents, skills, and scripts</p>
+<p><strong>File:</strong> <code>commands/complete-review.md</code></p>
+<pre><code class="language-markdown">---
+description: Comprehensive review using all plugin components
+argument-hint: [file-path]
+allowed-tools: Bash(node:*), Read
+---
+
+Target file: @$1
+
+Execute comprehensive review workflow:
+
+**Phase 1: Automated Analysis**
+Run plugin analyzer: !`node ${CLAUDE_PLUGIN_ROOT}/scripts/analyze.js $1`
+
+**Phase 2: Deep Review (Agent)**
+Launch the code-quality-reviewer agent for detailed analysis.
+Agent will examine:
+- Code structure and organization
+- Error handling patterns
+- Testing coverage
+- Documentation quality
+
+**Phase 3: Standards Check (Skill)**
+Use the coding-standards skill to validate:
+- Naming conventions
+- Code formatting
+- Best practices adherence
+- Framework-specific patterns
+
+**Phase 4: Report Generation**
+Template: @${CLAUDE_PLUGIN_ROOT}/templates/review-report.md
+
+Compile all findings into comprehensive report following template.
+
+**Phase 5: Recommendations**
+Generate prioritized action items:
+1. Critical issues (must fix)
+2. Important improvements (should fix)
+3. Nice-to-have enhancements (could fix)
+
+Include specific file locations and suggested changes for each item.
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Multi-phase workflow</li>
+<li>Combines scripts, agents, skills</li>
+<li>Template-based reporting</li>
+<li>Prioritized outputs</li>
+</ul>
+<hr>
+<h2>9. Validated Input Command</h2>
+<p><strong>Use case:</strong> Command with input validation and error handling</p>
+<p><strong>File:</strong> <code>commands/build-env.md</code></p>
+<pre><code class="language-markdown">---
+description: Build for specific environment with validation
+argument-hint: [environment]
+allowed-tools: Bash(*)
+---
+
+Validate environment argument: !`echo &quot;$1&quot; | grep -E &quot;^(dev|staging|prod)$&quot; &amp;&amp; echo &quot;VALID&quot; || echo &quot;INVALID&quot;`
+
+Check build script exists: !`test -x ${CLAUDE_PLUGIN_ROOT}/scripts/build.sh &amp;&amp; echo &quot;EXISTS&quot; || echo &quot;MISSING&quot;`
+
+Verify configuration available: !`test -f ${CLAUDE_PLUGIN_ROOT}/config/$1.json &amp;&amp; echo &quot;FOUND&quot; || echo &quot;NOT_FOUND&quot;`
+
+If all validations pass:
+
+**Configuration:** @${CLAUDE_PLUGIN_ROOT}/config/$1.json
+
+**Execute build:** !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/build.sh $1 2&gt;&amp;1`
+
+**Validation results:** !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/validate-build.sh $1 2&gt;&amp;1`
+
+Report build status and any issues.
+
+If validations fail:
+- Explain which validation failed
+- Provide expected values/locations
+- Suggest corrective actions
+- Document troubleshooting steps
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Input validation</li>
+<li>Resource existence checks</li>
+<li>Error handling</li>
+<li>Helpful error messages</li>
+<li>Graceful failure handling</li>
+</ul>
+<hr>
+<h2>10. Environment-Aware Command</h2>
+<p><strong>Use case:</strong> Command that adapts behavior based on environment</p>
+<p><strong>File:</strong> <code>commands/run-checks.md</code></p>
+<pre><code class="language-markdown">---
+description: Run environment-appropriate checks
+argument-hint: [environment]
+allowed-tools: Bash(*), Read
+---
+
+Environment: $1
+
+Load environment configuration: @${CLAUDE_PLUGIN_ROOT}/config/$1-checks.json
+
+Determine check level: !`echo &quot;$1&quot; | grep -E &quot;^prod$&quot; &amp;&amp; echo &quot;FULL&quot; || echo &quot;BASIC&quot;`
+
+**For production environment:**
+- Full test suite: !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/test-full.sh`
+- Security scan: !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/security-scan.sh`
+- Performance audit: !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/perf-check.sh`
+- Compliance check: !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/compliance.sh`
+
+**For non-production environments:**
+- Basic tests: !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/test-basic.sh`
+- Quick lint: !`bash ${CLAUDE_PLUGIN_ROOT}/scripts/lint.sh`
+
+Analyze results based on environment requirements:
+
+**Production:** All checks must pass with zero critical issues
+**Staging:** No critical issues, warnings acceptable
+**Development:** Focus on blocking issues only
+
+Report status and recommend proceed/block decision.
+</code></pre>
+<p><strong>Key features:</strong></p>
+<ul>
+<li>Environment-aware logic</li>
+<li>Conditional execution</li>
+<li>Different validation levels</li>
+<li>Appropriate reporting per environment</li>
+</ul>
+<hr>
+<h2>Common Patterns Summary</h2>
+<h3>Pattern: Plugin Script Execution</h3>
+<pre><code class="language-markdown">!`node ${CLAUDE_PLUGIN_ROOT}/scripts/script-name.js $1`
+</code></pre>
+<p>Use for: Running plugin-provided Node.js scripts</p>
+<h3>Pattern: Plugin Configuration Loading</h3>
+<pre><code class="language-markdown">@${CLAUDE_PLUGIN_ROOT}/config/config-name.json
+</code></pre>
+<p>Use for: Loading plugin configuration files</p>
+<h3>Pattern: Plugin Template Usage</h3>
+<pre><code class="language-markdown">@${CLAUDE_PLUGIN_ROOT}/templates/template-name.md
+</code></pre>
+<p>Use for: Using plugin templates for generation</p>
+<h3>Pattern: Agent Invocation</h3>
+<pre><code class="language-markdown">Launch the [agent-name] agent for [task description].
+</code></pre>
+<p>Use for: Delegating complex tasks to plugin agents</p>
+<h3>Pattern: Skill Reference</h3>
+<pre><code class="language-markdown">Use the [skill-name] skill to ensure [requirements].
+</code></pre>
+<p>Use for: Leveraging plugin skills for specialized knowledge</p>
+<h3>Pattern: Input Validation</h3>
+<pre><code class="language-markdown">Validate input: !`echo &quot;$1&quot; | grep -E &quot;^pattern$&quot; &amp;&amp; echo &quot;OK&quot; || echo &quot;ERROR&quot;`
+</code></pre>
+<p>Use for: Validating command arguments</p>
+<h3>Pattern: Resource Validation</h3>
+<pre><code class="language-markdown">Check exists: !`test -f ${CLAUDE_PLUGIN_ROOT}/path/file &amp;&amp; echo &quot;YES&quot; || echo &quot;NO&quot;`
+</code></pre>
+<p>Use for: Verifying required plugin files exist</p>
+<hr>
+<h2>Development Tips</h2>
+<h3>Testing Plugin Commands</h3>
+<ol>
+<li><p><strong>Test with plugin installed:</strong></p>
+<pre><code class="language-bash">cd /path/to/plugin
+claude /command-name args
+</code></pre>
+</li>
+<li><p><strong>Verify ${CLAUDE_PLUGIN_ROOT} expansion:</strong></p>
+<pre><code class="language-bash"># Add debug output to command
+!`echo &quot;Plugin root: ${CLAUDE_PLUGIN_ROOT}&quot;`
+</code></pre>
+</li>
+<li><p><strong>Test across different working directories:</strong></p>
+<pre><code class="language-bash">cd /tmp &amp;&amp; claude /command-name
+cd /other/project &amp;&amp; claude /command-name
+</code></pre>
+</li>
+<li><p><strong>Validate resource availability:</strong></p>
+<pre><code class="language-bash"># Check all plugin resources exist
+!`ls -la ${CLAUDE_PLUGIN_ROOT}/scripts/`
+!`ls -la ${CLAUDE_PLUGIN_ROOT}/config/`
+</code></pre>
+</li>
+</ol>
+<h3>Common Mistakes to Avoid</h3>
+<ol>
+<li><p><strong>Using relative paths instead of ${CLAUDE_PLUGIN_ROOT}:</strong></p>
+<pre><code class="language-markdown"># Wrong
+!`node ./scripts/analyze.js`
+
+# Correct
+!`node ${CLAUDE_PLUGIN_ROOT}/scripts/analyze.js`
+</code></pre>
+</li>
+<li><p><strong>Forgetting to allow required tools:</strong></p>
+<pre><code class="language-markdown"># Missing allowed-tools
+!`bash script.sh`  # Will fail without Bash permission
+
+# Correct
+---
+allowed-tools: Bash(*)
+---
+!`bash ${CLAUDE_PLUGIN_ROOT}/scripts/script.sh`
+</code></pre>
+</li>
+<li><p><strong>Not validating inputs:</strong></p>
+<pre><code class="language-markdown"># Risky - no validation
+Deploy to $1 environment
+
+# Better - with validation
+Validate: !`echo &quot;$1&quot; | grep -E &quot;^(dev|staging|prod)$&quot; || echo &quot;INVALID&quot;`
+Deploy to $1 environment (if valid)
+</code></pre>
+</li>
+<li><p><strong>Hardcoding plugin paths:</strong></p>
+<pre><code class="language-markdown"># Wrong - breaks on different installations
+@/home/user/.claude/plugins/my-plugin/config.json
+
+# Correct - works everywhere
+@${CLAUDE_PLUGIN_ROOT}/config.json
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>For detailed plugin-specific features, see <code>references/plugin-features-reference.md</code>.
+For general command development, see main <code>SKILL.md</code>.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>AI Architecture Patterns Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/ai-architecture-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">AI Architecture Patterns Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fai-architecture-patterns">ai-architecture-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: AI Architecture Patterns
+description: Enterprise AI design patterns for production systems - RAG, Multi-Agent, AI Gateway, LLMOps, and more
+version: 1.0.0
+category: technical
+command: /ai-architecture-patterns
+triggers: [&quot;ai pattern&quot;, &quot;architecture pattern&quot;, &quot;rag pattern&quot;, &quot;agent pattern&quot;, &quot;ai gateway&quot;]
+type: reference</h2>
+<h1>AI Architecture Patterns Skill</h1>
+<h2>Purpose</h2>
+<p>Provide expert guidance on selecting and implementing enterprise AI architecture patterns for production systems. This skill contains battle-tested patterns from real-world deployments and the AI Architect Academy.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Designing new AI systems</li>
+<li>Evaluating architecture options</li>
+<li>Selecting patterns for specific use cases</li>
+<li>Understanding tradeoffs between approaches</li>
+<li>Getting implementation guidance</li>
+</ul>
+<h2>Core Patterns Library</h2>
+<h3>1. AI Gateway Pattern</h3>
+<p><strong>Problem</strong>: Multiple AI services with inconsistent interfaces, no centralized security, and limited observability create management complexity and security risks.</p>
+<p><strong>Solution</strong>: Deploy a centralized AI gateway that provides unified authentication, rate limiting, request/response logging, and model routing for all AI services.</p>
+<p><strong>Key Components</strong>:</p>
+<ul>
+<li>API Gateway (Kong, AWS API Gateway, OCI API Gateway)</li>
+<li>Authentication Service (OAuth2, API Keys)</li>
+<li>Rate Limiter (Redis-based)</li>
+<li>Request Logger (OpenTelemetry)</li>
+<li>Model Router</li>
+</ul>
+<p><strong>When to Use</strong>:</p>
+<ul>
+<li>Multiple AI providers in your stack</li>
+<li>Need centralized security controls</li>
+<li>Want unified logging and monitoring</li>
+<li>Cost allocation across teams</li>
+</ul>
+<p><strong>When NOT to Use</strong>:</p>
+<ul>
+<li>Single AI provider with simple use case</li>
+<li>Ultra-low latency requirements (&lt;10ms)</li>
+<li>Early prototyping</li>
+</ul>
+<hr>
+<h3>2. RAG Production Pattern</h3>
+<p><strong>Problem</strong>: LLMs hallucinate and lack access to enterprise-specific knowledge, making them unreliable for business-critical applications.</p>
+<p><strong>Solution</strong>: Implement a RAG pipeline with document ingestion, chunking, embedding, vector storage, retrieval, and augmented generation with source citations.</p>
+<p><strong>Key Components</strong>:</p>
+<ul>
+<li>Document Ingestion Pipeline</li>
+<li>Text Chunking Service (semantic, fixed, hybrid)</li>
+<li>Embedding Model (OpenAI, Cohere, Local)</li>
+<li>Vector Database (Pinecone, Weaviate, pgvector)</li>
+<li>Retrieval Service with Reranking</li>
+<li>LLM with RAG prompt template</li>
+</ul>
+<p><strong>When to Use</strong>:</p>
+<ul>
+<li>Customer support knowledge base</li>
+<li>Internal document Q&amp;A</li>
+<li>Legal/compliance document analysis</li>
+<li>Technical documentation assistants</li>
+</ul>
+<p><strong>When NOT to Use</strong>:</p>
+<ul>
+<li>General creative writing</li>
+<li>Real-time frequently changing data</li>
+<li>Very small document corpus (&lt;100 docs)</li>
+</ul>
+<p><strong>Implementation Tips</strong>:</p>
+<ul>
+<li>Start with fixed-size chunks (512-1024 tokens)</li>
+<li>Add metadata extraction for filtering</li>
+<li>Implement hybrid search (keyword + semantic)</li>
+<li>Use reranking for improved precision</li>
+</ul>
+<hr>
+<h3>3. Multi-Agent Orchestration Pattern</h3>
+<p><strong>Problem</strong>: Complex tasks require multiple specialized capabilities that exceed what a single LLM prompt can handle reliably.</p>
+<p><strong>Solution</strong>: Decompose complex workflows into specialized agents with an orchestrator that coordinates task distribution, handoffs, and result aggregation.</p>
+<p><strong>Key Components</strong>:</p>
+<ul>
+<li>Orchestrator Agent (workflow coordinator)</li>
+<li>Specialized Worker Agents (domain experts)</li>
+<li>Task Queue (for async processing)</li>
+<li>State Management (context preservation)</li>
+<li>Handoff Protocol (agent-to-agent communication)</li>
+<li>Result Aggregator</li>
+</ul>
+<p><strong>When to Use</strong>:</p>
+<ul>
+<li>Complex workflows with 5+ distinct steps</li>
+<li>Tasks requiring different expertise</li>
+<li>Autonomous systems</li>
+<li>Workflows with branching logic</li>
+</ul>
+<p><strong>When NOT to Use</strong>:</p>
+<ul>
+<li>Simple single-step tasks</li>
+<li>When cost is primary constraint</li>
+<li>High-volume, low-complexity operations</li>
+</ul>
+<p><strong>Frameworks</strong>:</p>
+<ul>
+<li>LangGraph (graph-based orchestration)</li>
+<li>Claude Agent SDK</li>
+<li>AutoGen / CrewAI</li>
+</ul>
+<hr>
+<h3>4. MCP Server Architecture</h3>
+<p><strong>Problem</strong>: N agents x M tools = N*M integrations. Each AI agent needs custom code to integrate with each tool.</p>
+<p><strong>Solution</strong>: Implement MCP (Model Context Protocol) servers that provide standardized interfaces for tools, resources, and prompts.</p>
+<p><strong>Key Components</strong>:</p>
+<ul>
+<li>MCP Server (Node.js or Python)</li>
+<li>Tool Definitions (JSON Schema)</li>
+<li>Resource Providers</li>
+<li>Prompt Templates</li>
+<li>Transport Layer (stdio, SSE)</li>
+</ul>
+<p><strong>When to Use</strong>:</p>
+<ul>
+<li>Building tools for multiple AI agents</li>
+<li>Creating reusable integrations</li>
+<li>Claude Code environments</li>
+<li>Enterprise tool standardization</li>
+</ul>
+<p><strong>Implementation</strong>:</p>
+<pre><code class="language-typescript">import { Server } from &#39;@modelcontextprotocol/sdk/server&#39;;
+
+const server = new Server({
+  name: &#39;my-mcp-server&#39;,
+  version: &#39;1.0.0&#39;
+});
+
+server.tool(&#39;search&#39;, {
+  description: &#39;Search documents&#39;,
+  inputSchema: {
+    type: &#39;object&#39;,
+    properties: {
+      query: { type: &#39;string&#39; }
+    }
+  },
+  handler: async ({ query }) =&gt; {
+    // Implementation
+  }
+});
+</code></pre>
+<hr>
+<h3>5. LLMOps Pipeline Pattern</h3>
+<p><strong>Problem</strong>: LLM applications lack mature DevOps practices, leading to unpredictable quality and difficult rollbacks.</p>
+<p><strong>Solution</strong>: Implement prompt versioning, automated evaluation, staged deployments, and continuous monitoring.</p>
+<p><strong>Key Components</strong>:</p>
+<ul>
+<li>Prompt Version Control (Git, Promptfoo)</li>
+<li>Evaluation Dataset</li>
+<li>Automated Eval Pipeline</li>
+<li>Deployment Orchestrator</li>
+<li>Monitoring Dashboard</li>
+<li>Rollback Mechanism</li>
+</ul>
+<p><strong>When to Use</strong>:</p>
+<ul>
+<li>Production LLM applications</li>
+<li>Teams with multiple prompt engineers</li>
+<li>Regulated industries</li>
+<li>High-stakes AI applications</li>
+</ul>
+<p><strong>Evaluation Metrics</strong>:</p>
+<ul>
+<li>Accuracy (vs golden answers)</li>
+<li>Latency (p50, p95, p99)</li>
+<li>Cost per request</li>
+<li>User satisfaction scores</li>
+</ul>
+<hr>
+<h3>6. Vector Database Selection Framework</h3>
+<p><strong>Problem</strong>: Many vector database options with different tradeoffs. Wrong choice leads to expensive migrations.</p>
+<p><strong>Solution</strong>: Structured decision framework evaluating scale, features, operations, and cost.</p>
+<p><strong>Selection Matrix</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Scale</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&lt;1M vectors</td>
+<td>pgvector (simple), Chroma (prototyping)</td>
+</tr>
+<tr>
+<td>1-100M vectors</td>
+<td>Weaviate, Qdrant (self-hosted)</td>
+</tr>
+<tr>
+<td>100M+ vectors</td>
+<td>Pinecone, Milvus (managed)</td>
+</tr>
+</tbody></table>
+<p><strong>Key Considerations</strong>:</p>
+<ul>
+<li>Hybrid search support</li>
+<li>Metadata filtering</li>
+<li>Multi-tenancy</li>
+<li>Backup/restore</li>
+<li>Managed vs self-hosted</li>
+</ul>
+<hr>
+<h3>7. AI Center of Excellence Framework</h3>
+<p><strong>Problem</strong>: Scattered AI initiatives across organization lead to duplicated effort, inconsistent quality, and security gaps.</p>
+<p><strong>Solution</strong>: Establish centralized governance with standardized patterns, reusable components, and shared infrastructure.</p>
+<p><strong>Key Components</strong>:</p>
+<ul>
+<li>Pattern Library (this skill!)</li>
+<li>Governance Framework</li>
+<li>Shared Infrastructure</li>
+<li>Training Program</li>
+<li>Review Board</li>
+<li>Metrics Dashboard</li>
+</ul>
+<p><strong>Governance Areas</strong>:</p>
+<ul>
+<li>Model selection criteria</li>
+<li>Security standards</li>
+<li>Cost controls</li>
+<li>Ethical guidelines</li>
+<li>Incident response</li>
+</ul>
+<hr>
+<h3>8. Security &amp; Governance Pattern</h3>
+<p><strong>Problem</strong>: AI introduces new security vectors: prompt injection, data leakage, model manipulation.</p>
+<p><strong>Solution</strong>: Implement AI-specific security controls including guardrails, PII handling, and audit logging.</p>
+<p><strong>Key Controls</strong>:</p>
+<ul>
+<li>Input Guardrails (prompt injection detection)</li>
+<li>Output Guardrails (content filtering)</li>
+<li>PII Detection &amp; Redaction</li>
+<li>Audit Logging</li>
+<li>Access Control</li>
+<li>Compliance Reporting</li>
+</ul>
+<p><strong>Guardrails Implementation</strong>:</p>
+<pre><code class="language-python">from guardrails import Guard
+
+guard = Guard.from_pydantic(output_class=SafeResponse)
+
+response = guard(
+    llm.invoke,
+    prompt=user_input,
+    on_fail=&quot;reask&quot;
+)
+</code></pre>
+<hr>
+<h2>Pattern Selection Decision Tree</h2>
+<pre><code>START: What type of AI system?
+│
+├── Document/Knowledge Q&amp;A
+│   └── → RAG Production Pattern
+│       ├── Need multiple models? → + AI Gateway
+│       └── Sensitive data? → + Security &amp; Governance
+│
+├── Autonomous Agents
+│   └── → Multi-Agent Orchestration
+│       ├── Many tools? → + MCP Servers
+│       └── Production deployment? → + LLMOps
+│
+├── Enterprise AI Platform
+│   └── → AI Gateway + AI CoE Framework
+│       ├── Cost concerns? → + Cost Optimization
+│       └── Compliance? → + Security &amp; Governance
+│
+└── Content Generation
+    └── → AI Gateway + LLMOps
+        └── Quality critical? → + Evaluation Pipeline
+</code></pre>
+<h2>Pattern Combinations Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Primary</th>
+<th>Secondary</th>
+<th>Tertiary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Customer Support Bot</td>
+<td>RAG</td>
+<td>AI Gateway</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>Code Assistant</td>
+<td>Multi-Agent</td>
+<td>MCP Servers</td>
+<td>LLMOps</td>
+</tr>
+<tr>
+<td>Document Intelligence</td>
+<td>RAG</td>
+<td>Vector DB</td>
+<td>AI Gateway</td>
+</tr>
+<tr>
+<td>Enterprise AI Platform</td>
+<td>AI Gateway</td>
+<td>AI CoE</td>
+<td>Security</td>
+</tr>
+<tr>
+<td>Research Assistant</td>
+<td>RAG</td>
+<td>Multi-Agent</td>
+<td>LLMOps</td>
+</tr>
+</tbody></table>
+<h2>Cloud Provider Mapping</h2>
+<h3>AWS</h3>
+<ul>
+<li>AI Gateway: API Gateway + Lambda</li>
+<li>RAG: Bedrock + OpenSearch</li>
+<li>Vector DB: OpenSearch, Aurora pgvector</li>
+</ul>
+<h3>GCP</h3>
+<ul>
+<li>AI Gateway: Cloud Endpoints + Cloud Functions</li>
+<li>RAG: Vertex AI + Matching Engine</li>
+<li>Vector DB: Matching Engine, AlloyDB</li>
+</ul>
+<h3>Azure</h3>
+<ul>
+<li>AI Gateway: API Management + Functions</li>
+<li>RAG: Azure OpenAI + AI Search</li>
+<li>Vector DB: AI Search, Cosmos DB</li>
+</ul>
+<h3>OCI</h3>
+<ul>
+<li>AI Gateway: API Gateway + Functions</li>
+<li>RAG: OCI GenAI + OpenSearch</li>
+<li>Vector DB: OpenSearch, PostgreSQL</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><strong>GitHub</strong>: <a href="https://github.com/frankxai/ai-architect-academy">https://github.com/frankxai/ai-architect-academy</a></li>
+<li><strong>Patterns Library</strong>: /01-design-patterns</li>
+<li><strong>Learning Paths</strong>: /02-learning-paths</li>
+<li><strong>Templates</strong>: /AI CoE Templates</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>mcp-architecture</code> - MCP server development</li>
+<li><code>claude-sdk</code> - Agent development with Claude</li>
+<li><code>langgraph-patterns</code> - Graph-based agent workflows</li>
+<li><code>oci-services-expert</code> - Oracle Cloud guidance</li>
+</ul>
+<hr>
+<p><em>Part of the AI Architect Academy by FrankX.AI</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

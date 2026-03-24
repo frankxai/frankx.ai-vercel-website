@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>React Native Reanimated 3 Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/react-native-design/references/reanimated-patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">React Native Reanimated 3 Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Freact-native-design">react-native-design</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Freact-native-design%2Freferences">references</a> / <span>reanimated-patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>React Native Reanimated 3 Patterns</h1>
+<h2>Core Concepts</h2>
+<h3>Shared Values and Animated Styles</h3>
+<pre><code class="language-typescript">import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  withTiming,
+  withDelay,
+  withSequence,
+  withRepeat,
+  Easing,
+} from &#39;react-native-reanimated&#39;;
+
+function BasicAnimations() {
+  // Shared value - can be modified from JS or UI thread
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(1);
+  const rotation = useSharedValue(0);
+
+  // Animated style - runs on UI thread
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    opacity: opacity.value,
+    transform: [
+      { scale: scale.value },
+      { rotate: `${rotation.value}deg` },
+    ],
+  }));
+
+  const animate = () =&gt; {
+    // Spring animation
+    scale.value = withSpring(1.2, {
+      damping: 10,
+      stiffness: 100,
+    });
+
+    // Timing animation with easing
+    opacity.value = withTiming(1, {
+      duration: 500,
+      easing: Easing.bezier(0.25, 0.1, 0.25, 1),
+    });
+
+    // Sequence of animations
+    rotation.value = withSequence(
+      withTiming(15, { duration: 100 }),
+      withTiming(-15, { duration: 100 }),
+      withTiming(0, { duration: 100 })
+    );
+  };
+
+  return (
+    &lt;Animated.View style={[styles.box, animatedStyle]} /&gt;
+  );
+}
+</code></pre>
+<h3>Animation Callbacks</h3>
+<pre><code class="language-typescript">import { runOnJS, runOnUI } from &#39;react-native-reanimated&#39;;
+
+function AnimationWithCallbacks() {
+  const translateX = useSharedValue(0);
+  const [status, setStatus] = useState(&#39;idle&#39;);
+
+  const updateStatus = (newStatus: string) =&gt; {
+    setStatus(newStatus);
+  };
+
+  const animate = () =&gt; {
+    translateX.value = withTiming(
+      200,
+      { duration: 1000 },
+      (finished) =&gt; {
+        &#39;worklet&#39;;
+        if (finished) {
+          // Call JS function from worklet
+          runOnJS(updateStatus)(&#39;completed&#39;);
+        }
+      }
+    );
+  };
+
+  return (
+    &lt;Animated.View
+      style={[
+        styles.box,
+        useAnimatedStyle(() =&gt; ({
+          transform: [{ translateX: translateX.value }],
+        })),
+      ]}
+    /&gt;
+  );
+}
+</code></pre>
+<h2>Gesture Handler Integration</h2>
+<h3>Pan Gesture</h3>
+<pre><code class="language-typescript">import { Gesture, GestureDetector } from &#39;react-native-gesture-handler&#39;;
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  clamp,
+} from &#39;react-native-reanimated&#39;;
+
+function DraggableBox() {
+  const translateX = useSharedValue(0);
+  const translateY = useSharedValue(0);
+  const context = useSharedValue({ x: 0, y: 0 });
+
+  const panGesture = Gesture.Pan()
+    .onStart(() =&gt; {
+      context.value = { x: translateX.value, y: translateY.value };
+    })
+    .onUpdate((event) =&gt; {
+      translateX.value = event.translationX + context.value.x;
+      translateY.value = event.translationY + context.value.y;
+    })
+    .onEnd((event) =&gt; {
+      // Apply velocity decay
+      translateX.value = withSpring(
+        clamp(translateX.value + event.velocityX / 10, -100, 100)
+      );
+      translateY.value = withSpring(
+        clamp(translateY.value + event.velocityY / 10, -100, 100)
+      );
+    });
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [
+      { translateX: translateX.value },
+      { translateY: translateY.value },
+    ],
+  }));
+
+  return (
+    &lt;GestureDetector gesture={panGesture}&gt;
+      &lt;Animated.View style={[styles.box, animatedStyle]} /&gt;
+    &lt;/GestureDetector&gt;
+  );
+}
+</code></pre>
+<h3>Pinch and Rotate Gestures</h3>
+<pre><code class="language-typescript">function ZoomableImage() {
+  const scale = useSharedValue(1);
+  const rotation = useSharedValue(0);
+  const savedScale = useSharedValue(1);
+  const savedRotation = useSharedValue(0);
+
+  const pinchGesture = Gesture.Pinch()
+    .onUpdate((event) =&gt; {
+      scale.value = savedScale.value * event.scale;
+    })
+    .onEnd(() =&gt; {
+      savedScale.value = scale.value;
+      // Snap back if too small
+      if (scale.value &lt; 1) {
+        scale.value = withSpring(1);
+        savedScale.value = 1;
+      }
+    });
+
+  const rotateGesture = Gesture.Rotation()
+    .onUpdate((event) =&gt; {
+      rotation.value = savedRotation.value + event.rotation;
+    })
+    .onEnd(() =&gt; {
+      savedRotation.value = rotation.value;
+    });
+
+  const composed = Gesture.Simultaneous(pinchGesture, rotateGesture);
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [
+      { scale: scale.value },
+      { rotate: `${rotation.value}rad` },
+    ],
+  }));
+
+  return (
+    &lt;GestureDetector gesture={composed}&gt;
+      &lt;Animated.Image
+        source={{ uri: imageUrl }}
+        style={[styles.image, animatedStyle]}
+      /&gt;
+    &lt;/GestureDetector&gt;
+  );
+}
+</code></pre>
+<h3>Tap Gesture with Feedback</h3>
+<pre><code class="language-typescript">function TappableCard({ onPress, children }: TappableCardProps) {
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
+
+  const tapGesture = Gesture.Tap()
+    .onBegin(() =&gt; {
+      scale.value = withSpring(0.97);
+      opacity.value = withTiming(0.8, { duration: 100 });
+    })
+    .onFinalize(() =&gt; {
+      scale.value = withSpring(1);
+      opacity.value = withTiming(1, { duration: 100 });
+    })
+    .onEnd(() =&gt; {
+      runOnJS(onPress)();
+    });
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [{ scale: scale.value }],
+    opacity: opacity.value,
+  }));
+
+  return (
+    &lt;GestureDetector gesture={tapGesture}&gt;
+      &lt;Animated.View style={[styles.card, animatedStyle]}&gt;
+        {children}
+      &lt;/Animated.View&gt;
+    &lt;/GestureDetector&gt;
+  );
+}
+</code></pre>
+<h2>Common Animation Patterns</h2>
+<h3>Fade In/Out</h3>
+<pre><code class="language-typescript">function FadeInView({ visible, children }: FadeInViewProps) {
+  const opacity = useSharedValue(0);
+
+  useEffect(() =&gt; {
+    opacity.value = withTiming(visible ? 1 : 0, { duration: 300 });
+  }, [visible]);
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    opacity: opacity.value,
+    display: opacity.value === 0 ? &#39;none&#39; : &#39;flex&#39;,
+  }));
+
+  return (
+    &lt;Animated.View style={animatedStyle}&gt;
+      {children}
+    &lt;/Animated.View&gt;
+  );
+}
+</code></pre>
+<h3>Slide In/Out</h3>
+<pre><code class="language-typescript">function SlideInView({ visible, direction = &#39;right&#39;, children }) {
+  const translateX = useSharedValue(direction === &#39;right&#39; ? 100 : -100);
+  const opacity = useSharedValue(0);
+
+  useEffect(() =&gt; {
+    if (visible) {
+      translateX.value = withSpring(0);
+      opacity.value = withTiming(1);
+    } else {
+      translateX.value = withSpring(direction === &#39;right&#39; ? 100 : -100);
+      opacity.value = withTiming(0);
+    }
+  }, [visible, direction]);
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [{ translateX: translateX.value }],
+    opacity: opacity.value,
+  }));
+
+  return (
+    &lt;Animated.View style={animatedStyle}&gt;
+      {children}
+    &lt;/Animated.View&gt;
+  );
+}
+</code></pre>
+<h3>Staggered List Animation</h3>
+<pre><code class="language-typescript">function StaggeredList({ items }: { items: Item[] }) {
+  return (
+    &lt;FlatList
+      data={items}
+      keyExtractor={(item) =&gt; item.id}
+      renderItem={({ item, index }) =&gt; (
+        &lt;StaggeredItem item={item} index={index} /&gt;
+      )}
+    /&gt;
+  );
+}
+
+function StaggeredItem({ item, index }: { item: Item; index: number }) {
+  const translateY = useSharedValue(50);
+  const opacity = useSharedValue(0);
+
+  useEffect(() =&gt; {
+    translateY.value = withDelay(
+      index * 100,
+      withSpring(0, { damping: 15 })
+    );
+    opacity.value = withDelay(
+      index * 100,
+      withTiming(1, { duration: 300 })
+    );
+  }, [index]);
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [{ translateY: translateY.value }],
+    opacity: opacity.value,
+  }));
+
+  return (
+    &lt;Animated.View style={[styles.listItem, animatedStyle]}&gt;
+      &lt;Text&gt;{item.title}&lt;/Text&gt;
+    &lt;/Animated.View&gt;
+  );
+}
+</code></pre>
+<h3>Pulse Animation</h3>
+<pre><code class="language-typescript">function PulseView({ children }: { children: React.ReactNode }) {
+  const scale = useSharedValue(1);
+
+  useEffect(() =&gt; {
+    scale.value = withRepeat(
+      withSequence(
+        withTiming(1.05, { duration: 500 }),
+        withTiming(1, { duration: 500 })
+      ),
+      -1, // infinite
+      false // no reverse
+    );
+
+    return () =&gt; {
+      cancelAnimation(scale);
+    };
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [{ scale: scale.value }],
+  }));
+
+  return (
+    &lt;Animated.View style={animatedStyle}&gt;
+      {children}
+    &lt;/Animated.View&gt;
+  );
+}
+</code></pre>
+<h3>Shake Animation</h3>
+<pre><code class="language-typescript">function ShakeView({ trigger, children }) {
+  const translateX = useSharedValue(0);
+
+  useEffect(() =&gt; {
+    if (trigger) {
+      translateX.value = withSequence(
+        withTiming(-10, { duration: 50 }),
+        withTiming(10, { duration: 50 }),
+        withTiming(-10, { duration: 50 }),
+        withTiming(10, { duration: 50 }),
+        withTiming(0, { duration: 50 })
+      );
+    }
+  }, [trigger]);
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [{ translateX: translateX.value }],
+  }));
+
+  return (
+    &lt;Animated.View style={animatedStyle}&gt;
+      {children}
+    &lt;/Animated.View&gt;
+  );
+}
+</code></pre>
+<h2>Advanced Patterns</h2>
+<h3>Interpolation</h3>
+<pre><code class="language-typescript">import { interpolate, Extrapolation } from &#39;react-native-reanimated&#39;;
+
+function ParallaxHeader() {
+  const scrollY = useSharedValue(0);
+
+  const headerStyle = useAnimatedStyle(() =&gt; {
+    const height = interpolate(
+      scrollY.value,
+      [0, 200],
+      [300, 100],
+      Extrapolation.CLAMP
+    );
+
+    const opacity = interpolate(
+      scrollY.value,
+      [0, 150, 200],
+      [1, 0.5, 0],
+      Extrapolation.CLAMP
+    );
+
+    const translateY = interpolate(
+      scrollY.value,
+      [0, 200],
+      [0, -50],
+      Extrapolation.CLAMP
+    );
+
+    return {
+      height,
+      opacity,
+      transform: [{ translateY }],
+    };
+  });
+
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Animated.View style={[styles.header, headerStyle]}&gt;
+        &lt;Text style={styles.headerTitle}&gt;Header&lt;/Text&gt;
+      &lt;/Animated.View&gt;
+      &lt;Animated.ScrollView
+        onScroll={useAnimatedScrollHandler({
+          onScroll: (event) =&gt; {
+            scrollY.value = event.contentOffset.y;
+          },
+        })}
+        scrollEventThrottle={16}
+      &gt;
+        {/* Content */}
+      &lt;/Animated.ScrollView&gt;
+    &lt;/View&gt;
+  );
+}
+</code></pre>
+<h3>Color Interpolation</h3>
+<pre><code class="language-typescript">import { interpolateColor } from &#39;react-native-reanimated&#39;;
+
+function ColorTransition() {
+  const progress = useSharedValue(0);
+
+  const animatedStyle = useAnimatedStyle(() =&gt; {
+    const backgroundColor = interpolateColor(
+      progress.value,
+      [0, 0.5, 1],
+      [&#39;#6366f1&#39;, &#39;#8b5cf6&#39;, &#39;#ec4899&#39;]
+    );
+
+    return { backgroundColor };
+  });
+
+  const toggleColor = () =&gt; {
+    progress.value = withTiming(progress.value === 0 ? 1 : 0, {
+      duration: 1000,
+    });
+  };
+
+  return (
+    &lt;Pressable onPress={toggleColor}&gt;
+      &lt;Animated.View style={[styles.box, animatedStyle]} /&gt;
+    &lt;/Pressable&gt;
+  );
+}
+</code></pre>
+<h3>Derived Values</h3>
+<pre><code class="language-typescript">import { useDerivedValue } from &#39;react-native-reanimated&#39;;
+
+function DerivedValueExample() {
+  const x = useSharedValue(0);
+  const y = useSharedValue(0);
+
+  // Derived value computed from other shared values
+  const distance = useDerivedValue(() =&gt; {
+    return Math.sqrt(x.value ** 2 + y.value ** 2);
+  });
+
+  const angle = useDerivedValue(() =&gt; {
+    return Math.atan2(y.value, x.value) * (180 / Math.PI);
+  });
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [
+      { translateX: x.value },
+      { translateY: y.value },
+      { rotate: `${angle.value}deg` },
+    ],
+    opacity: interpolate(distance.value, [0, 200], [1, 0.5]),
+  }));
+
+  return (
+    &lt;Animated.View style={[styles.box, animatedStyle]} /&gt;
+  );
+}
+</code></pre>
+<h3>Layout Animations</h3>
+<pre><code class="language-typescript">import Animated, {
+  Layout,
+  FadeIn,
+  FadeOut,
+  SlideInLeft,
+  SlideOutRight,
+  ZoomIn,
+  ZoomOut,
+} from &#39;react-native-reanimated&#39;;
+
+function AnimatedList() {
+  const [items, setItems] = useState([1, 2, 3, 4, 5]);
+
+  const addItem = () =&gt; {
+    setItems([...items, items.length + 1]);
+  };
+
+  const removeItem = (id: number) =&gt; {
+    setItems(items.filter((item) =&gt; item !== id));
+  };
+
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Button title=&quot;Add Item&quot; onPress={addItem} /&gt;
+      {items.map((item) =&gt; (
+        &lt;Animated.View
+          key={item}
+          style={styles.item}
+          entering={FadeIn.duration(300).springify()}
+          exiting={SlideOutRight.duration(300)}
+          layout={Layout.springify()}
+        &gt;
+          &lt;Text&gt;Item {item}&lt;/Text&gt;
+          &lt;Pressable onPress={() =&gt; removeItem(item)}&gt;
+            &lt;Text&gt;Remove&lt;/Text&gt;
+          &lt;/Pressable&gt;
+        &lt;/Animated.View&gt;
+      ))}
+    &lt;/View&gt;
+  );
+}
+</code></pre>
+<h3>Swipeable Card</h3>
+<pre><code class="language-typescript">function SwipeableCard({ onSwipeLeft, onSwipeRight }) {
+  const translateX = useSharedValue(0);
+  const rotateZ = useSharedValue(0);
+  const context = useSharedValue({ x: 0 });
+
+  const SWIPE_THRESHOLD = 120;
+
+  const panGesture = Gesture.Pan()
+    .onStart(() =&gt; {
+      context.value = { x: translateX.value };
+    })
+    .onUpdate((event) =&gt; {
+      translateX.value = event.translationX + context.value.x;
+      rotateZ.value = interpolate(
+        translateX.value,
+        [-200, 0, 200],
+        [-15, 0, 15]
+      );
+    })
+    .onEnd((event) =&gt; {
+      if (translateX.value &gt; SWIPE_THRESHOLD) {
+        translateX.value = withTiming(500, { duration: 200 }, () =&gt; {
+          runOnJS(onSwipeRight)();
+        });
+      } else if (translateX.value &lt; -SWIPE_THRESHOLD) {
+        translateX.value = withTiming(-500, { duration: 200 }, () =&gt; {
+          runOnJS(onSwipeLeft)();
+        });
+      } else {
+        translateX.value = withSpring(0);
+        rotateZ.value = withSpring(0);
+      }
+    });
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [
+      { translateX: translateX.value },
+      { rotate: `${rotateZ.value}deg` },
+    ],
+  }));
+
+  const leftIndicatorStyle = useAnimatedStyle(() =&gt; ({
+    opacity: interpolate(
+      translateX.value,
+      [0, SWIPE_THRESHOLD],
+      [0, 1],
+      Extrapolation.CLAMP
+    ),
+  }));
+
+  const rightIndicatorStyle = useAnimatedStyle(() =&gt; ({
+    opacity: interpolate(
+      translateX.value,
+      [-SWIPE_THRESHOLD, 0],
+      [1, 0],
+      Extrapolation.CLAMP
+    ),
+  }));
+
+  return (
+    &lt;GestureDetector gesture={panGesture}&gt;
+      &lt;Animated.View style={[styles.card, animatedStyle]}&gt;
+        &lt;Animated.View style={[styles.likeIndicator, leftIndicatorStyle]}&gt;
+          &lt;Text&gt;LIKE&lt;/Text&gt;
+        &lt;/Animated.View&gt;
+        &lt;Animated.View style={[styles.nopeIndicator, rightIndicatorStyle]}&gt;
+          &lt;Text&gt;NOPE&lt;/Text&gt;
+        &lt;/Animated.View&gt;
+        {/* Card content */}
+      &lt;/Animated.View&gt;
+    &lt;/GestureDetector&gt;
+  );
+}
+</code></pre>
+<h3>Bottom Sheet</h3>
+<pre><code class="language-typescript">const MAX_TRANSLATE_Y = -SCREEN_HEIGHT + 50;
+const MIN_TRANSLATE_Y = 0;
+const SNAP_POINTS = [-SCREEN_HEIGHT * 0.5, -SCREEN_HEIGHT * 0.25, 0];
+
+function BottomSheet({ children }) {
+  const translateY = useSharedValue(0);
+  const context = useSharedValue({ y: 0 });
+
+  const panGesture = Gesture.Pan()
+    .onStart(() =&gt; {
+      context.value = { y: translateY.value };
+    })
+    .onUpdate((event) =&gt; {
+      translateY.value = clamp(
+        context.value.y + event.translationY,
+        MAX_TRANSLATE_Y,
+        MIN_TRANSLATE_Y
+      );
+    })
+    .onEnd((event) =&gt; {
+      // Find closest snap point
+      const destination = SNAP_POINTS.reduce((prev, curr) =&gt;
+        Math.abs(curr - translateY.value) &lt; Math.abs(prev - translateY.value)
+          ? curr
+          : prev
+      );
+
+      translateY.value = withSpring(destination, {
+        damping: 50,
+        stiffness: 300,
+      });
+    });
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [{ translateY: translateY.value }],
+  }));
+
+  const backdropStyle = useAnimatedStyle(() =&gt; ({
+    opacity: interpolate(
+      translateY.value,
+      [MIN_TRANSLATE_Y, MAX_TRANSLATE_Y],
+      [0, 0.5]
+    ),
+    pointerEvents: translateY.value &lt; -50 ? &#39;auto&#39; : &#39;none&#39;,
+  }));
+
+  return (
+    &lt;&gt;
+      &lt;Animated.View style={[styles.backdrop, backdropStyle]} /&gt;
+      &lt;GestureDetector gesture={panGesture}&gt;
+        &lt;Animated.View style={[styles.bottomSheet, animatedStyle]}&gt;
+          &lt;View style={styles.handle} /&gt;
+          {children}
+        &lt;/Animated.View&gt;
+      &lt;/GestureDetector&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h2>Performance Tips</h2>
+<h3>Memoization</h3>
+<pre><code class="language-typescript">// Memoize animated style when dependencies don&#39;t change
+const animatedStyle = useAnimatedStyle(
+  () =&gt; ({
+    transform: [{ translateX: translateX.value }],
+  }),
+  [],
+); // Empty deps if no external dependencies
+
+// Use useMemo for complex calculations outside worklets
+const threshold = useMemo(() =&gt; calculateThreshold(screenWidth), [screenWidth]);
+</code></pre>
+<h3>Worklet Best Practices</h3>
+<pre><code class="language-typescript">// Do: Keep worklets simple
+const simpleWorklet = () =&gt; {
+  &quot;worklet&quot;;
+  return scale.value * 2;
+};
+
+// Don&#39;t: Complex logic in worklets
+// Move complex logic to JS with runOnJS
+
+// Do: Use runOnJS for callbacks
+const onComplete = () =&gt; {
+  setIsAnimating(false);
+};
+
+opacity.value = withTiming(1, {}, (finished) =&gt; {
+  &quot;worklet&quot;;
+  if (finished) {
+    runOnJS(onComplete)();
+  }
+});
+</code></pre>
+<h3>Cancel Animations</h3>
+<pre><code class="language-typescript">import { cancelAnimation } from &#39;react-native-reanimated&#39;;
+
+function AnimatedComponent() {
+  const translateX = useSharedValue(0);
+
+  useEffect(() =&gt; {
+    // Start animation
+    translateX.value = withRepeat(
+      withTiming(100, { duration: 1000 }),
+      -1,
+      true
+    );
+
+    // Cleanup: cancel animation on unmount
+    return () =&gt; {
+      cancelAnimation(translateX);
+    };
+  }, []);
+
+  return &lt;Animated.View style={animatedStyle} /&gt;;
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

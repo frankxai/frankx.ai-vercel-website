@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Non-Interactive Claude Flow Commands</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/NON_INTERACTIVE_COMMANDS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Non-Interactive Claude Flow Commands</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <span>NON_INTERACTIVE_COMMANDS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Non-Interactive Claude Flow Commands</h1>
+<h2>Working Commands (alpha.83)</h2>
+<p>These commands work correctly with <code>--non-interactive</code> flag in claude-flow alpha.83:</p>
+<h3>1. Swarm Command</h3>
+<pre><code class="language-bash"># Basic swarm with non-interactive mode
+npx claude-flow@v2.0.0-alpha.83 swarm &quot;Your task description&quot; --non-interactive
+
+# With additional options
+npx claude-flow@v2.0.0-alpha.83 swarm &quot;Build a REST API&quot; \
+  --strategy development \
+  --mode distributed \
+  --max-agents 8 \
+  --non-interactive
+
+# With executor (for built-in execution without Claude CLI)
+npx claude-flow@v2.0.0-alpha.83 swarm &quot;Analyze code patterns&quot; \
+  --executor \
+  --non-interactive
+</code></pre>
+<h3>2. Hive-Mind Command</h3>
+<pre><code class="language-bash"># Basic hive-mind spawn
+npx claude-flow@v2.0.0-alpha.83 hive-mind spawn &quot;Design architecture&quot; \
+  --count 4 \
+  --coordination majority \
+  --non-interactive
+
+# With different coordination modes
+npx claude-flow@v2.0.0-alpha.83 hive-mind spawn &quot;Solve complex problem&quot; \
+  --count 8 \
+  --coordination weighted \
+  --non-interactive
+
+# Byzantine fault tolerant mode
+npx claude-flow@v2.0.0-alpha.83 hive-mind spawn &quot;Critical system design&quot; \
+  --count 10 \
+  --coordination byzantine \
+  --non-interactive
+</code></pre>
+<h3>3. SPARC Commands</h3>
+<pre><code class="language-bash"># SPARC modes (these work without --non-interactive as they&#39;re already non-interactive)
+npx claude-flow@v2.0.0-alpha.83 sparc spec &quot;Define API requirements&quot;
+npx claude-flow@v2.0.0-alpha.83 sparc architect &quot;Design microservices system&quot;
+npx claude-flow@v2.0.0-alpha.83 sparc tdd &quot;Create authentication module&quot;
+npx claude-flow@v2.0.0-alpha.83 sparc integration &quot;Integrate payment gateway&quot;
+npx claude-flow@v2.0.0-alpha.83 sparc refactor &quot;Optimize database queries&quot;
+
+# With output format
+npx claude-flow@v2.0.0-alpha.83 sparc tdd &quot;Build calculator&quot; --format markdown
+npx claude-flow@v2.0.0-alpha.83 sparc architect &quot;Design system&quot; --format json
+
+# With file output
+npx claude-flow@v2.0.0-alpha.83 sparc tdd &quot;Create parser&quot; --file ./output/parser.md
+</code></pre>
+<h2>Benchmark Usage</h2>
+<h3>Using Real Execution with Benchmark Tool</h3>
+<pre><code class="language-bash"># Swarm benchmark
+./benchmark/bin/swarm-benchmark real swarm &quot;Your task&quot; --strategy auto --mode centralized
+
+# Hive-mind benchmark  
+./benchmark/bin/swarm-benchmark real hive-mind &quot;Your task&quot; --max-workers 8 --consensus majority
+
+# SPARC benchmark
+./benchmark/bin/swarm-benchmark real sparc tdd &quot;Your task&quot;
+</code></pre>
+<h2>Important Notes</h2>
+<ol>
+<li><strong>Version Requirement</strong>: Use <code>claude-flow@v2.0.0-alpha.83</code> for working non-interactive mode</li>
+<li><strong>Current Issue</strong>: Versions after alpha.83 (including alpha.87) have a regression where --non-interactive flag is not properly handled</li>
+<li><strong>SPARC Commands</strong>: Work without Claude CLI and don&#39;t require --non-interactive flag</li>
+<li><strong>Swarm/Hive-mind</strong>: Require Claude CLI unless using --executor flag</li>
+</ol>
+<h2>Troubleshooting</h2>
+<h3>If Non-Interactive Mode Fails</h3>
+<ol>
+<li>Check claude-flow version: <code>npx claude-flow --version</code></li>
+<li>Use alpha.83: <code>npx claude-flow@v2.0.0-alpha.83</code></li>
+<li>For SPARC modes, omit --non-interactive flag as they&#39;re already non-interactive</li>
+<li>Use --executor flag for swarm/hive-mind to avoid Claude CLI dependency</li>
+</ol>
+<h3>Exit Codes</h3>
+<ul>
+<li>0: Success</li>
+<li>-9: Timeout (SIGKILL)</li>
+<li>1: General error</li>
+<li>127: Command not found (usually Claude CLI missing)</li>
+</ul>
+<h2>Examples for Testing</h2>
+<pre><code class="language-bash"># Test swarm non-interactive
+npx claude-flow@v2.0.0-alpha.83 swarm &quot;Hello world test&quot; --non-interactive
+
+# Test hive-mind non-interactive
+npx claude-flow@v2.0.0-alpha.83 hive-mind spawn &quot;Simple task&quot; --count 2 --non-interactive
+
+# Test SPARC (already non-interactive)
+npx claude-flow@v2.0.0-alpha.83 sparc tdd &quot;Simple function&quot;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

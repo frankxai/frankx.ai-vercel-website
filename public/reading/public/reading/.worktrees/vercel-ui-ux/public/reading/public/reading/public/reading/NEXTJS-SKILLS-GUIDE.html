@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Next.js Skills Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="NEXTJS-SKILLS-GUIDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Next.js Skills Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>NEXTJS-SKILLS-GUIDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Next.js Skills Guide</h1>
+<h2>🎯 Your Project Setup</h2>
+<p><strong>Current Status:</strong></p>
+<ul>
+<li>Next.js: 15.1.3 (Upgrade to 16 recommended)</li>
+<li>Location: C:\Users\Frank\FrankX</li>
+<li>Skills Available: ✅ Globally installed</li>
+</ul>
+<h2>🚀 How to Use in This Project</h2>
+<h3>Step 1: Upgrade to Next.js 16 (Recommended)</h3>
+<p>In Claude Code:</p>
+<pre><code class="language-bash">/skill nextjs-upgrade-assistant
+</code></pre>
+<p>This will guide you through upgrading FrankX to Next.js 16, enabling:</p>
+<ul>
+<li>Built-in MCP server access</li>
+<li>Partial Prerendering (PPR)</li>
+<li>Enhanced Server Actions</li>
+<li>Better performance optimizations</li>
+</ul>
+<h3>Step 2: Start Development</h3>
+<pre><code class="language-bash">cd &quot;C:\Users\Frank\FrankX&quot;
+npm run dev
+</code></pre>
+<p>Once running, both MCP servers are active:</p>
+<ul>
+<li>✅ next-devtools-mcp (documentation &amp; codemods)</li>
+<li>✅ Built-in Next.js MCP (real-time app insights)</li>
+</ul>
+<h3>Step 3: Use Skills for Development</h3>
+<pre><code class="language-bash"># Get expert help
+/skill nextjs-expert
+&quot;How do I implement [feature] in FrankX?&quot;
+
+# Use agent team for complex tasks
+/skill nextjs-agent-team
+&quot;Architecture Agent: Review FrankX structure&quot;
+
+# Optimize performance
+/skill nextjs-agent-team
+&quot;Performance Agent: Audit FrankX&quot;
+</code></pre>
+<h2>📦 Available Skills</h2>
+<h3>1. Next.js Expert (<code>/skill nextjs-expert</code>)</h3>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Building new features</li>
+<li>Debugging issues</li>
+<li>Learning patterns</li>
+<li>Code optimization</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code>&quot;Add a contact form with Server Actions&quot;
+&quot;Debug this hydration error in app/page.tsx&quot;
+&quot;Optimize image loading in the blog&quot;
+&quot;Add metadata for SEO to all pages&quot;
+</code></pre>
+<h3>2. Agent Team (<code>/skill nextjs-agent-team</code>)</h3>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Complete features</li>
+<li>Architecture decisions</li>
+<li>Multi-step processes</li>
+<li>Comprehensive audits</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code>&quot;Build a newsletter subscription system&quot;
+&quot;Architecture Agent: Design the new products section&quot;
+&quot;Performance Agent: Full app optimization&quot;
+&quot;Security Agent: Review authentication flow&quot;
+</code></pre>
+<h3>3. Upgrade Assistant (<code>/skill nextjs-upgrade-assistant</code>)</h3>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Migrating to Next.js 16</li>
+<li>Configuration updates</li>
+<li>Breaking change fixes</li>
+<li>Post-upgrade optimization</li>
+</ul>
+<h2>🎓 FrankX-Specific Use Cases</h2>
+<h3>Use Case 1: Add New Content Section</h3>
+<pre><code class="language-bash">/skill nextjs-expert
+&quot;Create a new content section for [topic] using MDX and Server Components,
+following FrankX&#39;s existing patterns in /app/&quot;
+</code></pre>
+<h3>Use Case 2: Optimize Existing Pages</h3>
+<pre><code class="language-bash">/skill nextjs-agent-team
+&quot;Performance Agent: Analyze FrankX performance and suggest optimizations
+for Core Web Vitals&quot;
+</code></pre>
+<h3>Use Case 3: Add Interactive Features</h3>
+<pre><code class="language-bash">/skill nextjs-expert
+&quot;Add an interactive [feature] that works with FrankX&#39;s theme system
+(next-themes with dark mode)&quot;
+</code></pre>
+<h3>Use Case 4: Improve SEO</h3>
+<pre><code class="language-bash">/skill nextjs-expert
+&quot;Enhance metadata and OpenGraph tags for better SEO across all FrankX pages&quot;
+</code></pre>
+<h2>🔧 FrankX Configuration Notes</h2>
+<p>Your project uses:</p>
+<ul>
+<li><strong>Framework:</strong> Next.js 15.1.3 (App Router)</li>
+<li><strong>Styling:</strong> Tailwind CSS + Framer Motion</li>
+<li><strong>Themes:</strong> next-themes (dark mode)</li>
+<li><strong>Content:</strong> MDX with gray-matter</li>
+<li><strong>Icons:</strong> Lucide React</li>
+</ul>
+<p>Skills are aware of these and will provide compatible solutions.</p>
+<h2>📊 Development Workflow</h2>
+<h3>Daily Development</h3>
+<ol>
+<li>Start dev server: <code>npm run dev</code></li>
+<li>Invoke skill: <code>/skill nextjs-expert</code></li>
+<li>Describe task or issue</li>
+<li>Implement suggested solution</li>
+<li>Skills automatically query MCP servers for context</li>
+</ol>
+<h3>Feature Development</h3>
+<ol>
+<li>Plan: <code>/skill nextjs-agent-team</code> with Architecture Agent</li>
+<li>Implement: <code>/skill nextjs-expert</code> for coding</li>
+<li>Style: <code>/skill nextjs-agent-team</code> with UI/UX Agent</li>
+<li>Test: <code>/skill nextjs-agent-team</code> with Testing Agent</li>
+<li>Document: <code>/skill nextjs-agent-team</code> with Documentation Agent</li>
+</ol>
+<h3>Performance Review</h3>
+<ol>
+<li>Audit: <code>/skill nextjs-agent-team</code> → &quot;Performance Agent: full audit&quot;</li>
+<li>Fix issues: Follow Performance Agent recommendations</li>
+<li>Verify: Re-run audit to confirm improvements</li>
+<li>Deploy: Push optimized version</li>
+</ol>
+<h2>🎯 Priority Tasks for FrankX</h2>
+<h3>Immediate (This Week)</h3>
+<ol>
+<li><p>⬆️ <strong>Upgrade to Next.js 16</strong></p>
+<pre><code class="language-bash">/skill nextjs-upgrade-assistant
+</code></pre>
+</li>
+<li><p>🔍 <strong>Performance Audit</strong></p>
+<pre><code class="language-bash">/skill nextjs-agent-team
+&quot;Performance Agent: Complete audit of FrankX&quot;
+</code></pre>
+</li>
+<li><p>📱 <strong>Mobile Optimization</strong></p>
+<pre><code class="language-bash">/skill nextjs-agent-team
+&quot;UI/UX Agent: Improve mobile experience&quot;
+</code></pre>
+</li>
+</ol>
+<h3>Short-term (This Month)</h3>
+<ol start="4">
+<li><p>🔒 <strong>Security Review</strong></p>
+<pre><code class="language-bash">/skill nextjs-agent-team
+&quot;Security Agent: Audit FrankX security&quot;
+</code></pre>
+</li>
+<li><p>⚡ <strong>Enable PPR</strong> (After Next.js 16 upgrade)</p>
+<pre><code class="language-bash">/skill nextjs-expert
+&quot;Enable and implement Partial Prerendering&quot;
+</code></pre>
+</li>
+<li><p>📈 <strong>SEO Enhancement</strong></p>
+<pre><code class="language-bash">/skill nextjs-expert
+&quot;Comprehensive SEO optimization with metadata API&quot;
+</code></pre>
+</li>
+</ol>
+<h2>🐛 Common FrankX Issues &amp; Solutions</h2>
+<h3>Issue: Slow Page Loads</h3>
+<pre><code class="language-bash">/skill nextjs-agent-team
+&quot;Performance Agent: Why are my pages loading slowly?
+Project uses MDX content and has dynamic routes.&quot;
+</code></pre>
+<h3>Issue: Dark Mode Flickering</h3>
+<pre><code class="language-bash">/skill nextjs-expert
+&quot;Fix dark mode flickering with next-themes.
+Currently using: [paste your theme setup]&quot;
+</code></pre>
+<h3>Issue: Type Errors After Update</h3>
+<pre><code class="language-bash">/skill nextjs-expert
+&quot;Fix TypeScript errors in [file path].
+Error: [paste error]&quot;
+</code></pre>
+<h2>🔗 Quick Links</h2>
+<ul>
+<li><strong>Skills Location:</strong> <code>~/.claude/skills/</code> (Linux) or symlinked to <code>.claude-nextjs-skills/</code></li>
+<li><strong>Quick Reference:</strong> <code>~/.claude/skills/QUICK-REFERENCE.md</code></li>
+<li><strong>Full Documentation:</strong> <code>~/.claude/skills/README-NEXTJS-SKILLS.md</code></li>
+<li><strong>MCP Status:</strong> Run <code>claude mcp list</code> in terminal</li>
+</ul>
+<h2>📚 Learning Resources</h2>
+<h3>Within Claude Code</h3>
+<pre><code class="language-bash"># Learn Server Components
+/skill nextjs-expert
+&quot;Teach me Server Components with examples for FrankX&quot;
+
+# Learn Server Actions
+/skill nextjs-expert
+&quot;Show me Server Actions patterns I can use in FrankX&quot;
+
+# Learn Optimization
+/skill nextjs-agent-team
+&quot;Performance Agent: Explain optimization strategies&quot;
+</code></pre>
+<h3>External</h3>
+<ul>
+<li>Next.js Docs: <a href="https://nextjs.org/docs">https://nextjs.org/docs</a></li>
+<li>FrankX GitHub: [your repo URL]</li>
+<li>Vercel Deployment: [your deployment URL]</li>
+</ul>
+<h2>💡 Pro Tips for FrankX</h2>
+<ol>
+<li><p><strong>Always Use Dev Server</strong></p>
+<ul>
+<li>Enables both MCP servers</li>
+<li>Real-time insights and documentation</li>
+<li>Better debugging capabilities</li>
+</ul>
+</li>
+<li><p><strong>Start with Architecture</strong></p>
+<ul>
+<li>Use Architecture Agent for new sections</li>
+<li>Prevents rework and maintains consistency</li>
+<li>Aligns with existing FrankX patterns</li>
+</ul>
+</li>
+<li><p><strong>Optimize as You Build</strong></p>
+<ul>
+<li>Performance Agent can review before completion</li>
+<li>Easier than optimizing later</li>
+<li>Better user experience from start</li>
+</ul>
+</li>
+<li><p><strong>Document New Patterns</strong></p>
+<ul>
+<li>Use Documentation Agent for complex features</li>
+<li>Helps team understand your code</li>
+<li>Makes maintenance easier</li>
+</ul>
+</li>
+<li><p><strong>Security First</strong></p>
+<ul>
+<li>Security Agent reviews all data handling</li>
+<li>Validates inputs in Server Actions</li>
+<li>Protects user data from start</li>
+</ul>
+</li>
+</ol>
+<h2>🎉 Success Metrics</h2>
+<p>Track your improvements:</p>
+<ul>
+<li>⚡ Page load time: [baseline] → [target]</li>
+<li>🎯 Lighthouse score: [baseline] → 95+</li>
+<li>📦 Bundle size: [baseline] → [optimized]</li>
+<li>♿ Accessibility: [baseline] → 100</li>
+<li>🔒 Security score: [baseline] → A+</li>
+</ul>
+<h2>🤝 Getting Help</h2>
+<pre><code class="language-bash"># For Next.js questions
+/skill nextjs-expert
+&quot;[Your question about Next.js]&quot;
+
+# For complex projects
+/skill nextjs-agent-team
+&quot;[Describe your project or issue]&quot;
+
+# For upgrades
+/skill nextjs-upgrade-assistant
+&quot;I want to upgrade FrankX to Next.js 16&quot;
+</code></pre>
+<hr>
+<p><strong>Built for FrankX</strong> 🚀 | Let&#39;s make this the best Next.js project ever!</p>
+<p>Start by upgrading to Next.js 16 and enabling all the latest features.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,926 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Module 4: Advanced Agent Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/ai-coding-agents/04-advanced/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Module 4: Advanced Agent Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="../index.html#_archive%2Fworkshops-repo%2Fai-coding-agents">ai-coding-agents</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fai-coding-agents%2F04-advanced">04-advanced</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Module 4: Advanced Agent Patterns</h1>
+<p><strong>Duration</strong>: 3 hours
+<strong>Level</strong>: Intermediate-Advanced
+<strong>Prerequisites</strong>: Completed Modules 0-3</p>
+<hr>
+<h2>Learning Objectives</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Architect production-grade MCP servers</li>
+<li>Implement multi-agent orchestration patterns</li>
+<li>Build hook systems for agent behavior customization</li>
+<li>Design memory and context management strategies</li>
+<li>Deploy agents in production environments</li>
+</ol>
+<hr>
+<h2>Overview</h2>
+<p>This module takes you from building simple agents to architecting sophisticated AI-powered systems.</p>
+<pre><code>Advanced Capabilities:
+├── MCP Server Architecture
+│   ├── Resources (data exposure)
+│   ├── Tools (action capabilities)
+│   └── Prompts (reusable templates)
+├── Multi-Agent Orchestration
+│   ├── Specialized agents
+│   ├── Handoff patterns
+│   └── Workflow coordination
+├── Hook Systems
+│   ├── Pre/post tool hooks
+│   ├── Response filters
+│   └── Context injectors
+└── Production Patterns
+    ├── Error handling
+    ├── Monitoring
+    └── Scaling
+</code></pre>
+<hr>
+<h2>4.1 MCP Server Architecture</h2>
+<h3>The Three Primitives</h3>
+<p>MCP provides three primitives for AI-data integration:</p>
+<table>
+<thead>
+<tr>
+<th>Primitive</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Resources</strong></td>
+<td>Expose data</td>
+<td>Database schemas, file contents</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>Enable actions</td>
+<td>Query execution, API calls</td>
+</tr>
+<tr>
+<td><strong>Prompts</strong></td>
+<td>Reusable templates</td>
+<td>Code review, analysis prompts</td>
+</tr>
+</tbody></table>
+<h3>Production MCP Server Structure</h3>
+<pre><code>mcp-server-myapp/
+├── src/
+│   ├── index.ts          # Server entry point
+│   ├── resources/        # Resource handlers
+│   │   ├── database.ts
+│   │   └── files.ts
+│   ├── tools/            # Tool implementations
+│   │   ├── query.ts
+│   │   └── mutation.ts
+│   ├── prompts/          # Prompt templates
+│   │   └── analysis.ts
+│   └── utils/            # Shared utilities
+│       ├── auth.ts
+│       └── validation.ts
+├── package.json
+├── tsconfig.json
+└── README.md
+</code></pre>
+<h3>Building a Complete MCP Server</h3>
+<p>Create <code>src/index.ts</code>:</p>
+<pre><code class="language-typescript">import { Server } from &quot;@modelcontextprotocol/sdk/server/index.js&quot;;
+import { StdioServerTransport } from &quot;@modelcontextprotocol/sdk/server/stdio.js&quot;;
+import {
+  CallToolRequestSchema,
+  ListResourcesRequestSchema,
+  ListToolsRequestSchema,
+  ReadResourceRequestSchema,
+} from &quot;@modelcontextprotocol/sdk/types.js&quot;;
+
+// Initialize server
+const server = new Server(
+  {
+    name: &quot;myapp-server&quot;,
+    version: &quot;1.0.0&quot;,
+  },
+  {
+    capabilities: {
+      resources: {},
+      tools: {},
+      prompts: {},
+    },
+  }
+);
+
+// =============================================================================
+// RESOURCES
+// =============================================================================
+
+server.setRequestHandler(ListResourcesRequestSchema, async () =&gt; {
+  return {
+    resources: [
+      {
+        uri: &quot;myapp://config&quot;,
+        mimeType: &quot;application/json&quot;,
+        name: &quot;Application Configuration&quot;,
+        description: &quot;Current application configuration and settings&quot;,
+      },
+      {
+        uri: &quot;myapp://schema&quot;,
+        mimeType: &quot;application/json&quot;,
+        name: &quot;Database Schema&quot;,
+        description: &quot;Current database schema definition&quot;,
+      },
+      {
+        uri: &quot;myapp://metrics&quot;,
+        mimeType: &quot;application/json&quot;,
+        name: &quot;Application Metrics&quot;,
+        description: &quot;Real-time application metrics&quot;,
+      },
+    ],
+  };
+});
+
+server.setRequestHandler(ReadResourceRequestSchema, async (request) =&gt; {
+  const { uri } = request.params;
+
+  switch (uri) {
+    case &quot;myapp://config&quot;:
+      return {
+        contents: [
+          {
+            uri,
+            mimeType: &quot;application/json&quot;,
+            text: JSON.stringify(await getConfig(), null, 2),
+          },
+        ],
+      };
+
+    case &quot;myapp://schema&quot;:
+      return {
+        contents: [
+          {
+            uri,
+            mimeType: &quot;application/json&quot;,
+            text: JSON.stringify(await getSchema(), null, 2),
+          },
+        ],
+      };
+
+    case &quot;myapp://metrics&quot;:
+      return {
+        contents: [
+          {
+            uri,
+            mimeType: &quot;application/json&quot;,
+            text: JSON.stringify(await getMetrics(), null, 2),
+          },
+        ],
+      };
+
+    default:
+      throw new Error(`Unknown resource: ${uri}`);
+  }
+});
+
+// =============================================================================
+// TOOLS
+// =============================================================================
+
+server.setRequestHandler(ListToolsRequestSchema, async () =&gt; {
+  return {
+    tools: [
+      {
+        name: &quot;query_database&quot;,
+        description: &quot;Execute a read-only SQL query against the database&quot;,
+        inputSchema: {
+          type: &quot;object&quot;,
+          properties: {
+            query: {
+              type: &quot;string&quot;,
+              description: &quot;SQL SELECT query to execute&quot;,
+            },
+            params: {
+              type: &quot;array&quot;,
+              items: { type: &quot;string&quot; },
+              description: &quot;Query parameters for prepared statement&quot;,
+            },
+          },
+          required: [&quot;query&quot;],
+        },
+      },
+      {
+        name: &quot;create_record&quot;,
+        description: &quot;Create a new record in a table&quot;,
+        inputSchema: {
+          type: &quot;object&quot;,
+          properties: {
+            table: {
+              type: &quot;string&quot;,
+              description: &quot;Table name&quot;,
+            },
+            data: {
+              type: &quot;object&quot;,
+              description: &quot;Record data as key-value pairs&quot;,
+            },
+          },
+          required: [&quot;table&quot;, &quot;data&quot;],
+        },
+      },
+      {
+        name: &quot;analyze_performance&quot;,
+        description: &quot;Analyze query or function performance&quot;,
+        inputSchema: {
+          type: &quot;object&quot;,
+          properties: {
+            target: {
+              type: &quot;string&quot;,
+              description: &quot;Query or function to analyze&quot;,
+            },
+            iterations: {
+              type: &quot;number&quot;,
+              description: &quot;Number of iterations for benchmarking&quot;,
+              default: 100,
+            },
+          },
+          required: [&quot;target&quot;],
+        },
+      },
+    ],
+  };
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) =&gt; {
+  const { name, arguments: args } = request.params;
+
+  // Validate and sanitize inputs
+  validateToolInput(name, args);
+
+  try {
+    switch (name) {
+      case &quot;query_database&quot;:
+        const result = await executeQuery(args.query, args.params);
+        return {
+          content: [
+            {
+              type: &quot;text&quot;,
+              text: JSON.stringify(result, null, 2),
+            },
+          ],
+        };
+
+      case &quot;create_record&quot;:
+        const id = await createRecord(args.table, args.data);
+        return {
+          content: [
+            {
+              type: &quot;text&quot;,
+              text: `Record created with ID: ${id}`,
+            },
+          ],
+        };
+
+      case &quot;analyze_performance&quot;:
+        const analysis = await analyzePerformance(args.target, args.iterations);
+        return {
+          content: [
+            {
+              type: &quot;text&quot;,
+              text: JSON.stringify(analysis, null, 2),
+            },
+          ],
+        };
+
+      default:
+        throw new Error(`Unknown tool: ${name}`);
+    }
+  } catch (error) {
+    return {
+      content: [
+        {
+          type: &quot;text&quot;,
+          text: `Error: ${error.message}`,
+        },
+      ],
+      isError: true,
+    };
+  }
+});
+
+// =============================================================================
+// HELPER FUNCTIONS
+// =============================================================================
+
+function validateToolInput(name: string, args: unknown): void {
+  // Implement input validation
+  if (name === &quot;query_database&quot;) {
+    const query = (args as { query: string }).query.toUpperCase();
+    if (query.includes(&quot;DROP&quot;) || query.includes(&quot;DELETE&quot;) || query.includes(&quot;TRUNCATE&quot;)) {
+      throw new Error(&quot;Destructive queries are not allowed&quot;);
+    }
+  }
+}
+
+async function getConfig(): Promise&lt;object&gt; {
+  // Return application config
+  return { environment: &quot;development&quot;, version: &quot;1.0.0&quot; };
+}
+
+async function getSchema(): Promise&lt;object&gt; {
+  // Return database schema
+  return { tables: [&quot;users&quot;, &quot;posts&quot;, &quot;comments&quot;] };
+}
+
+async function getMetrics(): Promise&lt;object&gt; {
+  // Return application metrics
+  return { requests: 1000, errors: 5, avgLatency: 50 };
+}
+
+async function executeQuery(query: string, params?: string[]): Promise&lt;unknown&gt; {
+  // Execute query (implement with your database)
+  return { rows: [], count: 0 };
+}
+
+async function createRecord(table: string, data: object): Promise&lt;number&gt; {
+  // Create record (implement with your database)
+  return 1;
+}
+
+async function analyzePerformance(target: string, iterations: number): Promise&lt;object&gt; {
+  // Analyze performance
+  return { avgTime: 10, minTime: 5, maxTime: 20 };
+}
+
+// =============================================================================
+// START SERVER
+// =============================================================================
+
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error(&quot;MCP Server running on stdio&quot;);
+}
+
+main().catch(console.error);
+</code></pre>
+<h3>Exercise 4.1.1: Build a Project-Specific MCP Server</h3>
+<p>Create an MCP server for your actual project that:</p>
+<ol>
+<li>Exposes your database schema as a resource</li>
+<li>Provides safe query execution as a tool</li>
+<li>Includes at least one analysis capability</li>
+</ol>
+<hr>
+<h2>4.2 Multi-Agent Orchestration</h2>
+<h3>The Orchestration Problem</h3>
+<p>Single agents hit limitations:</p>
+<ul>
+<li>Context window constraints</li>
+<li>Specialized expertise needed</li>
+<li>Complex workflows</li>
+</ul>
+<p>Solution: Multiple specialized agents with coordination.</p>
+<h3>Orchestration Patterns</h3>
+<h4>Pattern 1: Sequential Pipeline</h4>
+<pre><code>Agent A → Agent B → Agent C → Result
+(Research)  (Write)   (Review)
+</code></pre>
+<pre><code class="language-typescript">// Sequential pipeline example
+async function contentPipeline(topic: string) {
+  // Step 1: Research agent gathers information
+  const research = await researchAgent.execute({
+    task: `Research ${topic}`,
+    outputFormat: &quot;structured_notes&quot;,
+  });
+
+  // Step 2: Writing agent creates content
+  const draft = await writingAgent.execute({
+    task: &quot;Write article&quot;,
+    context: research.output,
+    style: &quot;technical_blog&quot;,
+  });
+
+  // Step 3: Review agent polishes
+  const final = await reviewAgent.execute({
+    task: &quot;Review and improve&quot;,
+    content: draft.output,
+    criteria: [&quot;clarity&quot;, &quot;accuracy&quot;, &quot;engagement&quot;],
+  });
+
+  return final.output;
+}
+</code></pre>
+<h4>Pattern 2: Parallel Execution</h4>
+<pre><code>         ┌─→ Agent A ─→┐
+Input ───┼─→ Agent B ─→┼─── Merge ─→ Result
+         └─→ Agent C ─→┘
+</code></pre>
+<pre><code class="language-typescript">// Parallel execution example
+async function parallelAnalysis(code: string) {
+  // Run multiple analyses in parallel
+  const [security, performance, quality] = await Promise.all([
+    securityAgent.analyze(code),
+    performanceAgent.analyze(code),
+    qualityAgent.analyze(code),
+  ]);
+
+  // Merge results
+  return mergeAnalyses({
+    security: security.findings,
+    performance: performance.findings,
+    quality: quality.findings,
+  });
+}
+</code></pre>
+<h4>Pattern 3: Supervisor Pattern</h4>
+<pre><code>        Supervisor Agent
+       /       |       \
+   Agent A  Agent B  Agent C
+       \       |       /
+        Supervisor Agent
+</code></pre>
+<pre><code class="language-typescript">// Supervisor pattern example
+class SupervisorAgent {
+  private specialists: Map&lt;string, Agent&gt;;
+
+  async coordinate(task: Task): Promise&lt;Result&gt; {
+    // Supervisor analyzes task and delegates
+    const plan = await this.planExecution(task);
+
+    // Execute plan with specialists
+    for (const step of plan.steps) {
+      const specialist = this.specialists.get(step.agentType);
+      const result = await specialist.execute(step.task);
+
+      // Supervisor reviews and decides next steps
+      if (result.needsRevision) {
+        step.task = await this.revise(step.task, result.feedback);
+        // Re-execute...
+      }
+    }
+
+    return this.synthesize(plan.results);
+  }
+}
+</code></pre>
+<h3>Exercise 4.2.1: Build a Code Review Pipeline</h3>
+<p>Create a multi-agent code review system:</p>
+<ol>
+<li><strong>Security Agent</strong>: Checks for vulnerabilities</li>
+<li><strong>Style Agent</strong>: Checks coding standards</li>
+<li><strong>Logic Agent</strong>: Checks for bugs and edge cases</li>
+<li><strong>Supervisor</strong>: Coordinates and synthesizes findings</li>
+</ol>
+<hr>
+<h2>4.3 Hook Systems</h2>
+<h3>What Are Hooks?</h3>
+<p>Hooks let you intercept and modify agent behavior:</p>
+<pre><code>User Input
+    ↓
+[Pre-Input Hooks] ← Modify/validate input
+    ↓
+Agent Processing
+    ↓
+[Pre-Tool Hooks] ← Intercept tool calls
+    ↓
+Tool Execution
+    ↓
+[Post-Tool Hooks] ← Process results
+    ↓
+Agent Response
+    ↓
+[Post-Response Hooks] ← Modify/log output
+    ↓
+User Output
+</code></pre>
+<h3>Implementing a Hook System</h3>
+<pre><code class="language-typescript">// Hook types
+type HookPhase = &quot;pre-input&quot; | &quot;pre-tool&quot; | &quot;post-tool&quot; | &quot;post-response&quot;;
+
+interface Hook {
+  phase: HookPhase;
+  name: string;
+  priority: number;
+  handler: (context: HookContext) =&gt; Promise&lt;HookResult&gt;;
+}
+
+interface HookContext {
+  input?: string;
+  toolName?: string;
+  toolArgs?: unknown;
+  toolResult?: unknown;
+  response?: string;
+  metadata: Record&lt;string, unknown&gt;;
+}
+
+interface HookResult {
+  continue: boolean;
+  modified?: unknown;
+  error?: string;
+}
+
+// Hook registry
+class HookRegistry {
+  private hooks: Map&lt;HookPhase, Hook[]&gt; = new Map();
+
+  register(hook: Hook): void {
+    const phaseHooks = this.hooks.get(hook.phase) || [];
+    phaseHooks.push(hook);
+    phaseHooks.sort((a, b) =&gt; a.priority - b.priority);
+    this.hooks.set(hook.phase, phaseHooks);
+  }
+
+  async execute(phase: HookPhase, context: HookContext): Promise&lt;HookContext&gt; {
+    const hooks = this.hooks.get(phase) || [];
+
+    for (const hook of hooks) {
+      const result = await hook.handler(context);
+
+      if (!result.continue) {
+        throw new Error(result.error || &quot;Hook stopped execution&quot;);
+      }
+
+      if (result.modified !== undefined) {
+        context = { ...context, ...result.modified };
+      }
+    }
+
+    return context;
+  }
+}
+</code></pre>
+<h3>Example Hooks</h3>
+<pre><code class="language-typescript">// Security hook: Prevent sensitive data exposure
+const sensitiveDataHook: Hook = {
+  phase: &quot;post-response&quot;,
+  name: &quot;sensitive-data-filter&quot;,
+  priority: 1,
+  handler: async (context) =&gt; {
+    const patterns = [
+      /api[_-]?key[=:]\s*[&quot;&#39;]?[\w-]+/gi,
+      /password[=:]\s*[&quot;&#39;]?[^&quot;&#39;\s]+/gi,
+      /secret[=:]\s*[&quot;&#39;]?[\w-]+/gi,
+    ];
+
+    let response = context.response || &quot;&quot;;
+    for (const pattern of patterns) {
+      response = response.replace(pattern, &quot;[REDACTED]&quot;);
+    }
+
+    return {
+      continue: true,
+      modified: { response },
+    };
+  },
+};
+
+// Logging hook: Track all tool usage
+const loggingHook: Hook = {
+  phase: &quot;post-tool&quot;,
+  name: &quot;tool-logger&quot;,
+  priority: 100,
+  handler: async (context) =&gt; {
+    console.log(JSON.stringify({
+      timestamp: new Date().toISOString(),
+      tool: context.toolName,
+      args: context.toolArgs,
+      resultSize: JSON.stringify(context.toolResult).length,
+    }));
+
+    return { continue: true };
+  },
+};
+
+// Rate limiting hook
+const rateLimitHook: Hook = {
+  phase: &quot;pre-tool&quot;,
+  name: &quot;rate-limiter&quot;,
+  priority: 1,
+  handler: async (context) =&gt; {
+    const toolName = context.toolName;
+    const count = await getToolCallCount(toolName, &quot;1m&quot;);
+
+    if (count &gt; 100) {
+      return {
+        continue: false,
+        error: `Rate limit exceeded for tool: ${toolName}`,
+      };
+    }
+
+    await incrementToolCallCount(toolName);
+    return { continue: true };
+  },
+};
+</code></pre>
+<h3>Exercise 4.3.1: Build a Custom Hook</h3>
+<p>Create a hook that:</p>
+<ol>
+<li>Logs all database queries</li>
+<li>Tracks execution time</li>
+<li>Alerts on slow queries (&gt;100ms)</li>
+</ol>
+<hr>
+<h2>4.4 Memory and Context Management</h2>
+<h3>The Context Problem</h3>
+<p>LLMs have limited context windows. How do you maintain:</p>
+<ul>
+<li>Long-term project knowledge?</li>
+<li>Conversation history?</li>
+<li>Learning from past interactions?</li>
+</ul>
+<h3>Memory Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────┐
+│              Working Memory                  │
+│  (Current conversation, immediate context)   │
+├─────────────────────────────────────────────┤
+│              Short-Term Memory               │
+│  (Recent sessions, cached results)           │
+├─────────────────────────────────────────────┤
+│              Long-Term Memory                │
+│  (Knowledge base, learned patterns)          │
+└─────────────────────────────────────────────┘
+</code></pre>
+<h3>Implementing Memory Layers</h3>
+<pre><code class="language-typescript">interface Memory {
+  store(key: string, value: unknown, ttl?: number): Promise&lt;void&gt;;
+  retrieve(key: string): Promise&lt;unknown | null&gt;;
+  search(query: string, limit?: number): Promise&lt;SearchResult[]&gt;;
+  forget(key: string): Promise&lt;void&gt;;
+}
+
+class WorkingMemory implements Memory {
+  private cache: Map&lt;string, { value: unknown; expires: number }&gt; = new Map();
+
+  async store(key: string, value: unknown, ttl = 3600000): Promise&lt;void&gt; {
+    this.cache.set(key, {
+      value,
+      expires: Date.now() + ttl,
+    });
+  }
+
+  async retrieve(key: string): Promise&lt;unknown | null&gt; {
+    const entry = this.cache.get(key);
+    if (!entry) return null;
+    if (Date.now() &gt; entry.expires) {
+      this.cache.delete(key);
+      return null;
+    }
+    return entry.value;
+  }
+
+  // ... other methods
+}
+
+class LongTermMemory implements Memory {
+  private db: Database;
+
+  async store(key: string, value: unknown): Promise&lt;void&gt; {
+    // Store in persistent database with embeddings for search
+    const embedding = await generateEmbedding(JSON.stringify(value));
+    await this.db.insert(&quot;memories&quot;, {
+      key,
+      value: JSON.stringify(value),
+      embedding,
+      created_at: new Date(),
+    });
+  }
+
+  async search(query: string, limit = 10): Promise&lt;SearchResult[]&gt; {
+    // Semantic search using embeddings
+    const queryEmbedding = await generateEmbedding(query);
+    return this.db.query(`
+      SELECT * FROM memories
+      ORDER BY embedding &lt;-&gt; $1
+      LIMIT $2
+    `, [queryEmbedding, limit]);
+  }
+
+  // ... other methods
+}
+</code></pre>
+<h3>Context Compression</h3>
+<p>When context gets too long, compress intelligently:</p>
+<pre><code class="language-typescript">async function compressContext(
+  messages: Message[],
+  maxTokens: number
+): Promise&lt;Message[]&gt; {
+  // Strategy 1: Summarize old messages
+  const oldMessages = messages.slice(0, -10);
+  const recentMessages = messages.slice(-10);
+
+  if (estimateTokens(messages) &lt;= maxTokens) {
+    return messages;
+  }
+
+  // Create summary of old messages
+  const summary = await summarizeMessages(oldMessages);
+
+  return [
+    { role: &quot;system&quot;, content: `Previous conversation summary: ${summary}` },
+    ...recentMessages,
+  ];
+}
+
+async function summarizeMessages(messages: Message[]): Promise&lt;string&gt; {
+  // Use a smaller model for summarization
+  return await llm.complete({
+    model: &quot;claude-haiku&quot;,
+    prompt: `Summarize this conversation, preserving key decisions and context:\n${
+      messages.map(m =&gt; `${m.role}: ${m.content}`).join(&quot;\n&quot;)
+    }`,
+    maxTokens: 500,
+  });
+}
+</code></pre>
+<hr>
+<h2>4.5 Production Deployment</h2>
+<h3>Deployment Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Error Handling</strong>: Graceful degradation</li>
+<li><input disabled="" type="checkbox"> <strong>Logging</strong>: Structured logs for debugging</li>
+<li><input disabled="" type="checkbox"> <strong>Monitoring</strong>: Health checks, metrics</li>
+<li><input disabled="" type="checkbox"> <strong>Security</strong>: Input validation, rate limiting</li>
+<li><input disabled="" type="checkbox"> <strong>Scaling</strong>: Stateless design, load balancing</li>
+</ul>
+<h3>Docker Deployment</h3>
+<pre><code class="language-dockerfile">FROM node:20-slim
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY dist ./dist
+COPY .claude ./config
+
+ENV NODE_ENV=production
+ENV MCP_CONFIG_PATH=/app/config
+
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD node healthcheck.js || exit 1
+
+USER node
+
+CMD [&quot;node&quot;, &quot;dist/index.js&quot;]
+</code></pre>
+<h3>Monitoring Setup</h3>
+<pre><code class="language-typescript">// Prometheus metrics
+import { Counter, Histogram, Registry } from &quot;prom-client&quot;;
+
+const registry = new Registry();
+
+const toolCallsCounter = new Counter({
+  name: &quot;mcp_tool_calls_total&quot;,
+  help: &quot;Total number of tool calls&quot;,
+  labelNames: [&quot;tool_name&quot;, &quot;status&quot;],
+  registers: [registry],
+});
+
+const toolLatencyHistogram = new Histogram({
+  name: &quot;mcp_tool_latency_seconds&quot;,
+  help: &quot;Tool call latency in seconds&quot;,
+  labelNames: [&quot;tool_name&quot;],
+  buckets: [0.01, 0.05, 0.1, 0.5, 1, 5],
+  registers: [registry],
+});
+
+// Wrap tool calls with metrics
+async function instrumentedToolCall(
+  name: string,
+  handler: () =&gt; Promise&lt;unknown&gt;
+): Promise&lt;unknown&gt; {
+  const startTime = Date.now();
+  try {
+    const result = await handler();
+    toolCallsCounter.inc({ tool_name: name, status: &quot;success&quot; });
+    return result;
+  } catch (error) {
+    toolCallsCounter.inc({ tool_name: name, status: &quot;error&quot; });
+    throw error;
+  } finally {
+    const duration = (Date.now() - startTime) / 1000;
+    toolLatencyHistogram.observe({ tool_name: name }, duration);
+  }
+}
+</code></pre>
+<hr>
+<h2>Lab: Build a Production Agent System</h2>
+<p><strong>Duration</strong>: 1.5 hours</p>
+<h3>Objective</h3>
+<p>Build a complete, production-ready agent system.</p>
+<h3>Requirements</h3>
+<ol>
+<li><p><strong>MCP Server</strong> with:</p>
+<ul>
+<li>3+ resources</li>
+<li>5+ tools</li>
+<li>Input validation</li>
+<li>Error handling</li>
+</ul>
+</li>
+<li><p><strong>Multi-Agent Setup</strong> with:</p>
+<ul>
+<li>2+ specialized agents</li>
+<li>Clear handoff logic</li>
+<li>Result synthesis</li>
+</ul>
+</li>
+<li><p><strong>Hook System</strong> with:</p>
+<ul>
+<li>Logging hook</li>
+<li>Security hook</li>
+<li>Rate limiting</li>
+</ul>
+</li>
+<li><p><strong>Deployment Ready</strong>:</p>
+<ul>
+<li>Dockerfile</li>
+<li>Health check</li>
+<li>Basic monitoring</li>
+</ul>
+</li>
+</ol>
+<h3>Deliverable</h3>
+<p>A GitHub repository with documented, deployable agent system.</p>
+<hr>
+<h2>Assessment Checklist</h2>
+<p>Before moving to Module 5, verify you can:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Build production-grade MCP servers</li>
+<li><input disabled="" type="checkbox"> Implement multi-agent orchestration</li>
+<li><input disabled="" type="checkbox"> Create custom hook systems</li>
+<li><input disabled="" type="checkbox"> Design memory management strategies</li>
+<li><input disabled="" type="checkbox"> Deploy agents to production</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<p>You&#39;ve mastered advanced patterns. In <strong>Module 5: Evolution Framework</strong>, you&#39;ll learn:</p>
+<ul>
+<li>The complete evolution stack</li>
+<li>Building reusable skill libraries</li>
+<li>Creating agent personas</li>
+<li>Designing orchestration systems</li>
+</ul>
+<p><a href="../05-evolution/">Continue to Module 5 →</a></p>
+<hr>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://spec.modelcontextprotocol.io">MCP Protocol Specification</a></li>
+<li><a href="https://docs.anthropic.com/claude-code/architecture">Claude Code Architecture</a></li>
+<li><a href="https://docs.docker.com/develop/dev-best-practices/">Docker Best Practices</a></li>
+<li><a href="https://prometheus.io/docs/concepts/metric_types/">Prometheus Metrics</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

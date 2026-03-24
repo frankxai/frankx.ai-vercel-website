@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Epic: LiteLLM Multi-Model Gateway Integration for Claude Code</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/litellm/EPIC.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Epic: LiteLLM Multi-Model Gateway Integration for Claude Code</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2Flitellm">litellm</a> / <span>EPIC.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Epic: LiteLLM Multi-Model Gateway Integration for Claude Code</h1>
+<h2>🎯 Epic Overview</h2>
+<p>Implement a comprehensive LiteLLM proxy solution enabling Claude Code to seamlessly route requests to multiple non-Anthropic LLM providers through a unified, multi-tenant architecture.</p>
+<h2>📋 User Stories</h2>
+<h3>US-001: Multi-Provider Model Routing</h3>
+<p><strong>As a</strong> developer<br><strong>I want to</strong> configure Claude Code to use different LLM providers<br><strong>So that</strong> I can optimize for cost, performance, and capability per task</p>
+<p><strong>Acceptance Criteria:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Support for 10+ providers (OpenAI, Azure, OpenRouter, Bedrock, Ollama)</li>
+<li><input disabled="" type="checkbox"> Model aliasing system (map Claude names to provider models)</li>
+<li><input disabled="" type="checkbox"> Runtime model selection via CLI flags</li>
+<li><input disabled="" type="checkbox"> Transparent routing without code changes</li>
+</ul>
+<h3>US-002: Multi-Tenant Architecture</h3>
+<p><strong>As a</strong> system administrator<br><strong>I want to</strong> deploy LiteLLM with tenant isolation<br><strong>So that</strong> multiple teams can use different models and quotas</p>
+<p><strong>Acceptance Criteria:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Tenant-specific configuration files</li>
+<li><input disabled="" type="checkbox"> API key isolation per tenant</li>
+<li><input disabled="" type="checkbox"> Usage tracking and quotas per tenant</li>
+<li><input disabled="" type="checkbox"> Tenant-based routing rules</li>
+</ul>
+<h3>US-003: Cost Optimization</h3>
+<p><strong>As a</strong> engineering manager<br><strong>I want to</strong> optimize LLM costs across providers<br><strong>So that</strong> we reduce operational expenses while maintaining quality</p>
+<p><strong>Acceptance Criteria:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Cost tracking per model/provider</li>
+<li><input disabled="" type="checkbox"> Automatic fallback to cheaper providers</li>
+<li><input disabled="" type="checkbox"> Budget alerts and thresholds</li>
+<li><input disabled="" type="checkbox"> Usage reports and analytics</li>
+</ul>
+<h3>US-004: Enterprise Compliance</h3>
+<p><strong>As a</strong> compliance officer<br><strong>I want to</strong> ensure data governance and audit trails<br><strong>So that</strong> we meet regulatory requirements</p>
+<p><strong>Acceptance Criteria:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Complete request/response logging</li>
+<li><input disabled="" type="checkbox"> PII detection and redaction</li>
+<li><input disabled="" type="checkbox"> Audit trail for all model usage</li>
+<li><input disabled="" type="checkbox"> Data residency controls</li>
+</ul>
+<h2>🏗️ Technical Architecture</h2>
+<h3>Components</h3>
+<pre><code class="language-mermaid">graph TB
+    subgraph &quot;Claude Code Clients&quot;
+        CC1[Claude Code Instance 1]
+        CC2[Claude Code Instance 2]
+        CCN[Claude Code Instance N]
+    end
+    
+    subgraph &quot;LiteLLM Gateway Layer&quot;
+        LB[Load Balancer]
+        LP1[LiteLLM Proxy 1]
+        LP2[LiteLLM Proxy 2]
+        LPN[LiteLLM Proxy N]
+        
+        subgraph &quot;Shared Services&quot;
+            CACHE[Redis Cache]
+            DB[PostgreSQL]
+            METRICS[Prometheus]
+        end
+    end
+    
+    subgraph &quot;LLM Providers&quot;
+        OPENAI[OpenAI API]
+        AZURE[Azure OpenAI]
+        OPENROUTER[OpenRouter]
+        BEDROCK[Amazon Bedrock]
+        OLLAMA[Local Ollama]
+    end
+    
+    CC1 --&gt; LB
+    CC2 --&gt; LB
+    CCN --&gt; LB
+    
+    LB --&gt; LP1
+    LB --&gt; LP2
+    LB --&gt; LPN
+    
+    LP1 --&gt; CACHE
+    LP1 --&gt; DB
+    LP1 --&gt; METRICS
+    
+    LP1 --&gt; OPENAI
+    LP1 --&gt; AZURE
+    LP1 --&gt; OPENROUTER
+    LP1 --&gt; BEDROCK
+    LP1 --&gt; OLLAMA
+</code></pre>
+<h3>Model Routing Strategy</h3>
+<table>
+<thead>
+<tr>
+<th>Task Type</th>
+<th>Primary Model</th>
+<th>Fallback Model</th>
+<th>Cost Tier</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Code Generation</td>
+<td>OpenRouter/Qwen3-Coder</td>
+<td>OpenAI/Codex</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Reasoning</td>
+<td>OpenAI/o3-pro</td>
+<td>Azure/GPT-4</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Refactoring</td>
+<td>Local/Ollama</td>
+<td>OpenRouter/DeepSeek</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>OpenAI/GPT-4o-mini</td>
+<td>Anthropic/Claude-Haiku</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Security Analysis</td>
+<td>Azure/GPT-4</td>
+<td>Bedrock/Claude</td>
+<td>High</td>
+</tr>
+</tbody></table>
+<h2>📊 Implementation Phases</h2>
+<h3>Phase 1: Foundation (Week 1-2)</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Create directory structure</li>
+<li><input disabled="" type="checkbox"> Basic LiteLLM proxy setup</li>
+<li><input disabled="" type="checkbox"> Docker containerization</li>
+<li><input disabled="" type="checkbox"> Single-tenant configuration</li>
+<li><input disabled="" type="checkbox"> OpenAI + OpenRouter integration</li>
+</ul>
+<h3>Phase 2: Multi-Tenancy (Week 3-4)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tenant isolation architecture</li>
+<li><input disabled="" type="checkbox"> PostgreSQL integration for configs</li>
+<li><input disabled="" type="checkbox"> Redis caching layer</li>
+<li><input disabled="" type="checkbox"> API key management system</li>
+<li><input disabled="" type="checkbox"> Tenant routing middleware</li>
+</ul>
+<h3>Phase 3: Advanced Features (Week 5-6)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Cost tracking and optimization</li>
+<li><input disabled="" type="checkbox"> Prometheus metrics integration</li>
+<li><input disabled="" type="checkbox"> Grafana dashboards</li>
+<li><input disabled="" type="checkbox"> Alert system (budget, errors)</li>
+<li><input disabled="" type="checkbox"> Fallback logic implementation</li>
+</ul>
+<h3>Phase 4: Enterprise Features (Week 7-8)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Audit logging system</li>
+<li><input disabled="" type="checkbox"> PII detection/redaction</li>
+<li><input disabled="" type="checkbox"> Rate limiting per tenant</li>
+<li><input disabled="" type="checkbox"> A/B testing framework</li>
+<li><input disabled="" type="checkbox"> Model performance benchmarking</li>
+</ul>
+<h3>Phase 5: Production Hardening (Week 9-10)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> High availability setup</li>
+<li><input disabled="" type="checkbox"> Disaster recovery procedures</li>
+<li><input disabled="" type="checkbox"> Security scanning</li>
+<li><input disabled="" type="checkbox"> Load testing</li>
+<li><input disabled="" type="checkbox"> Documentation and training</li>
+</ul>
+<h2>🔧 Technical Requirements</h2>
+<h3>Infrastructure</h3>
+<ul>
+<li>Docker 20.10+</li>
+<li>Kubernetes 1.28+ (optional)</li>
+<li>PostgreSQL 15+</li>
+<li>Redis 7+</li>
+<li>Nginx or Traefik for load balancing</li>
+</ul>
+<h3>Monitoring Stack</h3>
+<ul>
+<li>Prometheus for metrics</li>
+<li>Grafana for visualization</li>
+<li>Loki for log aggregation</li>
+<li>AlertManager for notifications</li>
+</ul>
+<h3>Security</h3>
+<ul>
+<li>TLS 1.3 for all connections</li>
+<li>API key rotation mechanism</li>
+<li>Network segmentation</li>
+<li>Secrets management (Vault/K8s secrets)</li>
+</ul>
+<h2>📈 Success Metrics</h2>
+<h3>Performance KPIs</h3>
+<ul>
+<li>Response time &lt; 2s for 95th percentile</li>
+<li>99.9% uptime SLA</li>
+<li>&lt; 1% error rate</li>
+<li>Support for 1000+ concurrent requests</li>
+</ul>
+<h3>Business KPIs</h3>
+<ul>
+<li>40% cost reduction vs direct Anthropic usage</li>
+<li>90% developer satisfaction score</li>
+<li>&lt; 5 minute onboarding for new tenants</li>
+<li>100% audit compliance</li>
+</ul>
+<h2>🚀 Deployment Scenarios</h2>
+<h3>Local Development</h3>
+<pre><code class="language-bash">docker-compose up -d
+claude --model codex-mini &quot;Write a function&quot;
+</code></pre>
+<h3>Staging Environment</h3>
+<pre><code class="language-bash">kubectl apply -f k8s/staging/
+helm upgrade litellm ./charts/litellm
+</code></pre>
+<h3>Production</h3>
+<pre><code class="language-bash">terraform apply -var=&quot;environment=production&quot;
+kubectl rollout restart deployment/litellm-proxy
+</code></pre>
+<h2>📝 Configuration Examples</h2>
+<h3>Basic Tenant Config</h3>
+<pre><code class="language-yaml">tenant: engineering-team
+models:
+  - alias: fast-code
+    provider: openrouter/qwen/qwen3-coder
+    max_tokens: 8192
+  - alias: reasoning
+    provider: openai/o3-pro
+    max_tokens: 4096
+budget:
+  daily_limit: 100
+  alert_threshold: 80
+</code></pre>
+<h3>Advanced Routing Rules</h3>
+<pre><code class="language-yaml">routing:
+  - pattern: &quot;refactor*&quot;
+    model: local/ollama/deepseek
+  - pattern: &quot;security*&quot;
+    model: azure/gpt-4-turbo
+  - pattern: &quot;*&quot;
+    model: openrouter/qwen/qwen3-coder
+    fallback: openai/gpt-4o-mini
+</code></pre>
+<h2>🔐 Security Considerations</h2>
+<ol>
+<li><p><strong>API Key Management</strong></p>
+<ul>
+<li>Encrypted storage in PostgreSQL</li>
+<li>Regular rotation (30 days)</li>
+<li>Audit trail for access</li>
+</ul>
+</li>
+<li><p><strong>Network Security</strong></p>
+<ul>
+<li>Private subnets for LiteLLM proxies</li>
+<li>WAF rules for public endpoints</li>
+<li>DDoS protection</li>
+</ul>
+</li>
+<li><p><strong>Data Protection</strong></p>
+<ul>
+<li>PII scanning before routing</li>
+<li>Encryption at rest and in transit</li>
+<li>GDPR compliance features</li>
+</ul>
+</li>
+</ol>
+<h2>📚 Documentation Requirements</h2>
+<ul>
+<li><input disabled="" type="checkbox"> API Reference Guide</li>
+<li><input disabled="" type="checkbox"> Tenant Onboarding Guide</li>
+<li><input disabled="" type="checkbox"> Operations Runbook</li>
+<li><input disabled="" type="checkbox"> Troubleshooting Guide</li>
+<li><input disabled="" type="checkbox"> Model Selection Best Practices</li>
+<li><input disabled="" type="checkbox"> Cost Optimization Playbook</li>
+</ul>
+<h2>🧪 Testing Strategy</h2>
+<h3>Unit Tests</h3>
+<ul>
+<li>Model routing logic</li>
+<li>Tenant isolation</li>
+<li>Cost calculation</li>
+<li>Fallback mechanisms</li>
+</ul>
+<h3>Integration Tests</h3>
+<ul>
+<li>Provider connectivity</li>
+<li>End-to-end request flow</li>
+<li>Multi-tenant scenarios</li>
+<li>Cache behavior</li>
+</ul>
+<h3>Performance Tests</h3>
+<ul>
+<li>Load testing (1000+ RPS)</li>
+<li>Latency benchmarks</li>
+<li>Memory usage profiling</li>
+<li>Database query optimization</li>
+</ul>
+<h2>📅 Timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Milestone</th>
+<th>Date</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Epic Kickoff</td>
+<td>2025-01-07</td>
+<td>✅ Started</td>
+</tr>
+<tr>
+<td>Phase 1 Complete</td>
+<td>2025-01-21</td>
+<td>🔄 In Progress</td>
+</tr>
+<tr>
+<td>Phase 2 Complete</td>
+<td>2025-02-04</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>Phase 3 Complete</td>
+<td>2025-02-18</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>Phase 4 Complete</td>
+<td>2025-03-04</td>
+<td>⏳ Planned</td>
+</tr>
+<tr>
+<td>Production Launch</td>
+<td>2025-03-18</td>
+<td>⏳ Planned</td>
+</tr>
+</tbody></table>
+<h2>👥 Stakeholders</h2>
+<ul>
+<li><strong>Product Owner</strong>: LLM Platform Team</li>
+<li><strong>Technical Lead</strong>: DevOps Architecture</li>
+<li><strong>Security Lead</strong>: Compliance Team</li>
+<li><strong>Primary Users</strong>: Engineering Teams</li>
+<li><strong>Executive Sponsor</strong>: CTO Office</li>
+</ul>
+<h2>🔗 Related Issues</h2>
+<ul>
+<li>#1234 - Implement cost tracking for LLM usage</li>
+<li>#1235 - Add support for Azure OpenAI</li>
+<li>#1236 - Create tenant management UI</li>
+<li>#1237 - Implement PII detection</li>
+<li>#1238 - Add Prometheus metrics</li>
+</ul>
+<h2>📎 Resources</h2>
+<ul>
+<li><a href="https://docs.litellm.ai">LiteLLM Documentation</a></li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/llm-gateway">Claude Code LLM Gateway Guide</a></li>
+<li><a href="https://openrouter.ai/docs">OpenRouter API Reference</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/guide/multitenant/overview">Multi-Tenant Architecture Patterns</a></li>
+</ul>
+<hr>
+<p><strong>Epic Status</strong>: 🟢 Active<br><strong>Priority</strong>: P0 - Critical<br><strong>Labels</strong>: <code>infrastructure</code>, <code>llm-gateway</code>, <code>multi-tenant</code>, <code>cost-optimization</code></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

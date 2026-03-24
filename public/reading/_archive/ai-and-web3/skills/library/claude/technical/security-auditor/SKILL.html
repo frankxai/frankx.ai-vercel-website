@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Security Auditor Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/security-auditor/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Security Auditor Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fsecurity-auditor">security-auditor</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: security-auditor
+version: 1.0.0
+category: technical
+aliases: [security, sec-audit]</h2>
+<h1>Security Auditor Skill</h1>
+<h2>Activation Triggers</h2>
+<ul>
+<li>Keywords: security, vulnerability, audit, OWASP, injection, XSS, CSRF</li>
+<li>File patterns: <code>*.auth.*</code>, <code>*middleware*</code>, <code>*api/*</code></li>
+</ul>
+<h2>Capabilities</h2>
+<ol>
+<li>OWASP Top 10 vulnerability scanning</li>
+<li>Authentication/authorization review</li>
+<li>Input validation assessment</li>
+<li>Secrets detection</li>
+<li>Dependency vulnerability check</li>
+</ol>
+<h2>Security Checklist</h2>
+<h3>Input Validation</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All user inputs sanitized</li>
+<li><input disabled="" type="checkbox"> SQL injection prevention (parameterized queries)</li>
+<li><input disabled="" type="checkbox"> XSS prevention (output encoding)</li>
+<li><input disabled="" type="checkbox"> Command injection prevention</li>
+</ul>
+<h3>Authentication</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Strong password requirements</li>
+<li><input disabled="" type="checkbox"> Session management secure</li>
+<li><input disabled="" type="checkbox"> JWT/token handling proper</li>
+<li><input disabled="" type="checkbox"> Rate limiting on auth endpoints</li>
+</ul>
+<h3>Authorization</h3>
+<ul>
+<li><input disabled="" type="checkbox"> RBAC/ABAC implemented correctly</li>
+<li><input disabled="" type="checkbox"> No privilege escalation paths</li>
+<li><input disabled="" type="checkbox"> API endpoints protected</li>
+</ul>
+<h3>Data Protection</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Sensitive data encrypted at rest</li>
+<li><input disabled="" type="checkbox"> HTTPS enforced</li>
+<li><input disabled="" type="checkbox"> No secrets in code/logs</li>
+<li><input disabled="" type="checkbox"> PII handling compliant</li>
+</ul>
+<h2>Instructions</h2>
+<p>When activated, scan the codebase for:</p>
+<ol>
+<li>Hardcoded secrets (API keys, passwords)</li>
+<li>SQL string concatenation</li>
+<li>Unvalidated user input</li>
+<li>Missing authentication checks</li>
+<li>Insecure dependencies</li>
+</ol>
+<p>Report findings with severity levels: CRITICAL, HIGH, MEDIUM, LOW</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

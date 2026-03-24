@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Embedding Strategies</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/llm-application-dev/skills/embedding-strategies/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Embedding Strategies</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev">llm-application-dev</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills%2Fembedding-strategies">embedding-strategies</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: embedding-strategies
+description: Select and optimize embedding models for semantic search and RAG applications. Use when choosing embedding models, implementing chunking strategies, or optimizing embedding quality for specific domains.</h2>
+<h1>Embedding Strategies</h1>
+<p>Guide to selecting and optimizing embedding models for vector search applications.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Choosing embedding models for RAG</li>
+<li>Optimizing chunking strategies</li>
+<li>Fine-tuning embeddings for domains</li>
+<li>Comparing embedding model performance</li>
+<li>Reducing embedding dimensions</li>
+<li>Handling multilingual content</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Embedding Model Comparison (2026)</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Dimensions</th>
+<th>Max Tokens</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>voyage-3-large</strong></td>
+<td>1024</td>
+<td>32000</td>
+<td>Claude apps (Anthropic recommended)</td>
+</tr>
+<tr>
+<td><strong>voyage-3</strong></td>
+<td>1024</td>
+<td>32000</td>
+<td>Claude apps, cost-effective</td>
+</tr>
+<tr>
+<td><strong>voyage-code-3</strong></td>
+<td>1024</td>
+<td>32000</td>
+<td>Code search</td>
+</tr>
+<tr>
+<td><strong>voyage-finance-2</strong></td>
+<td>1024</td>
+<td>32000</td>
+<td>Financial documents</td>
+</tr>
+<tr>
+<td><strong>voyage-law-2</strong></td>
+<td>1024</td>
+<td>32000</td>
+<td>Legal documents</td>
+</tr>
+<tr>
+<td><strong>text-embedding-3-large</strong></td>
+<td>3072</td>
+<td>8191</td>
+<td>OpenAI apps, high accuracy</td>
+</tr>
+<tr>
+<td><strong>text-embedding-3-small</strong></td>
+<td>1536</td>
+<td>8191</td>
+<td>OpenAI apps, cost-effective</td>
+</tr>
+<tr>
+<td><strong>bge-large-en-v1.5</strong></td>
+<td>1024</td>
+<td>512</td>
+<td>Open source, local deployment</td>
+</tr>
+<tr>
+<td><strong>all-MiniLM-L6-v2</strong></td>
+<td>384</td>
+<td>256</td>
+<td>Fast, lightweight</td>
+</tr>
+<tr>
+<td><strong>multilingual-e5-large</strong></td>
+<td>1024</td>
+<td>512</td>
+<td>Multi-language</td>
+</tr>
+</tbody></table>
+<h3>2. Embedding Pipeline</h3>
+<pre><code>Document → Chunking → Preprocessing → Embedding Model → Vector
+                ↓
+        [Overlap, Size]  [Clean, Normalize]  [API/Local]
+</code></pre>
+<h2>Templates</h2>
+<h3>Template 1: Voyage AI Embeddings (Recommended for Claude)</h3>
+<pre><code class="language-python">from langchain_voyageai import VoyageAIEmbeddings
+from typing import List
+import os
+
+# Initialize Voyage AI embeddings (recommended by Anthropic for Claude)
+embeddings = VoyageAIEmbeddings(
+    model=&quot;voyage-3-large&quot;,
+    voyage_api_key=os.environ.get(&quot;VOYAGE_API_KEY&quot;)
+)
+
+def get_embeddings(texts: List[str]) -&gt; List[List[float]]:
+    &quot;&quot;&quot;Get embeddings from Voyage AI.&quot;&quot;&quot;
+    return embeddings.embed_documents(texts)
+
+def get_query_embedding(query: str) -&gt; List[float]:
+    &quot;&quot;&quot;Get single query embedding.&quot;&quot;&quot;
+    return embeddings.embed_query(query)
+
+# Specialized models for domains
+code_embeddings = VoyageAIEmbeddings(model=&quot;voyage-code-3&quot;)
+finance_embeddings = VoyageAIEmbeddings(model=&quot;voyage-finance-2&quot;)
+legal_embeddings = VoyageAIEmbeddings(model=&quot;voyage-law-2&quot;)
+</code></pre>
+<h3>Template 2: OpenAI Embeddings</h3>
+<pre><code class="language-python">from openai import OpenAI
+from typing import List
+import numpy as np
+
+client = OpenAI()
+
+def get_embeddings(
+    texts: List[str],
+    model: str = &quot;text-embedding-3-small&quot;,
+    dimensions: int = None
+) -&gt; List[List[float]]:
+    &quot;&quot;&quot;Get embeddings from OpenAI with optional dimension reduction.&quot;&quot;&quot;
+    # Handle batching for large lists
+    batch_size = 100
+    all_embeddings = []
+
+    for i in range(0, len(texts), batch_size):
+        batch = texts[i:i + batch_size]
+
+        kwargs = {&quot;input&quot;: batch, &quot;model&quot;: model}
+        if dimensions:
+            # Matryoshka dimensionality reduction
+            kwargs[&quot;dimensions&quot;] = dimensions
+
+        response = client.embeddings.create(**kwargs)
+        embeddings = [item.embedding for item in response.data]
+        all_embeddings.extend(embeddings)
+
+    return all_embeddings
+
+
+def get_embedding(text: str, **kwargs) -&gt; List[float]:
+    &quot;&quot;&quot;Get single embedding.&quot;&quot;&quot;
+    return get_embeddings([text], **kwargs)[0]
+
+
+# Dimension reduction with Matryoshka embeddings
+def get_reduced_embedding(text: str, dimensions: int = 512) -&gt; List[float]:
+    &quot;&quot;&quot;Get embedding with reduced dimensions (Matryoshka).&quot;&quot;&quot;
+    return get_embedding(
+        text,
+        model=&quot;text-embedding-3-small&quot;,
+        dimensions=dimensions
+    )
+</code></pre>
+<h3>Template 3: Local Embeddings with Sentence Transformers</h3>
+<pre><code class="language-python">from sentence_transformers import SentenceTransformer
+from typing import List, Optional
+import numpy as np
+
+class LocalEmbedder:
+    &quot;&quot;&quot;Local embedding with sentence-transformers.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        model_name: str = &quot;BAAI/bge-large-en-v1.5&quot;,
+        device: str = &quot;cuda&quot;
+    ):
+        self.model = SentenceTransformer(model_name, device=device)
+        self.model_name = model_name
+
+    def embed(
+        self,
+        texts: List[str],
+        normalize: bool = True,
+        show_progress: bool = False
+    ) -&gt; np.ndarray:
+        &quot;&quot;&quot;Embed texts with optional normalization.&quot;&quot;&quot;
+        embeddings = self.model.encode(
+            texts,
+            normalize_embeddings=normalize,
+            show_progress_bar=show_progress,
+            convert_to_numpy=True
+        )
+        return embeddings
+
+    def embed_query(self, query: str) -&gt; np.ndarray:
+        &quot;&quot;&quot;Embed a query with appropriate prefix for retrieval models.&quot;&quot;&quot;
+        # BGE and similar models benefit from query prefix
+        if &quot;bge&quot; in self.model_name.lower():
+            query = f&quot;Represent this sentence for searching relevant passages: {query}&quot;
+        return self.embed([query])[0]
+
+    def embed_documents(self, documents: List[str]) -&gt; np.ndarray:
+        &quot;&quot;&quot;Embed documents for indexing.&quot;&quot;&quot;
+        return self.embed(documents)
+
+
+# E5 model with instructions
+class E5Embedder:
+    def __init__(self, model_name: str = &quot;intfloat/multilingual-e5-large&quot;):
+        self.model = SentenceTransformer(model_name)
+
+    def embed_query(self, query: str) -&gt; np.ndarray:
+        &quot;&quot;&quot;E5 requires &#39;query:&#39; prefix for queries.&quot;&quot;&quot;
+        return self.model.encode(f&quot;query: {query}&quot;)
+
+    def embed_document(self, document: str) -&gt; np.ndarray:
+        &quot;&quot;&quot;E5 requires &#39;passage:&#39; prefix for documents.&quot;&quot;&quot;
+        return self.model.encode(f&quot;passage: {document}&quot;)
+</code></pre>
+<h3>Template 4: Chunking Strategies</h3>
+<pre><code class="language-python">from typing import List, Tuple
+import re
+
+def chunk_by_tokens(
+    text: str,
+    chunk_size: int = 512,
+    chunk_overlap: int = 50,
+    tokenizer=None
+) -&gt; List[str]:
+    &quot;&quot;&quot;Chunk text by token count.&quot;&quot;&quot;
+    import tiktoken
+    tokenizer = tokenizer or tiktoken.get_encoding(&quot;cl100k_base&quot;)
+
+    tokens = tokenizer.encode(text)
+    chunks = []
+
+    start = 0
+    while start &lt; len(tokens):
+        end = start + chunk_size
+        chunk_tokens = tokens[start:end]
+        chunk_text = tokenizer.decode(chunk_tokens)
+        chunks.append(chunk_text)
+        start = end - chunk_overlap
+
+    return chunks
+
+
+def chunk_by_sentences(
+    text: str,
+    max_chunk_size: int = 1000,
+    min_chunk_size: int = 100
+) -&gt; List[str]:
+    &quot;&quot;&quot;Chunk text by sentences, respecting size limits.&quot;&quot;&quot;
+    import nltk
+    sentences = nltk.sent_tokenize(text)
+
+    chunks = []
+    current_chunk = []
+    current_size = 0
+
+    for sentence in sentences:
+        sentence_size = len(sentence)
+
+        if current_size + sentence_size &gt; max_chunk_size and current_chunk:
+            chunks.append(&quot; &quot;.join(current_chunk))
+            current_chunk = []
+            current_size = 0
+
+        current_chunk.append(sentence)
+        current_size += sentence_size
+
+    if current_chunk:
+        chunks.append(&quot; &quot;.join(current_chunk))
+
+    return chunks
+
+
+def chunk_by_semantic_sections(
+    text: str,
+    headers_pattern: str = r&#39;^#{1,3}\s+.+$&#39;
+) -&gt; List[Tuple[str, str]]:
+    &quot;&quot;&quot;Chunk markdown by headers, preserving hierarchy.&quot;&quot;&quot;
+    lines = text.split(&#39;\n&#39;)
+    chunks = []
+    current_header = &quot;&quot;
+    current_content = []
+
+    for line in lines:
+        if re.match(headers_pattern, line, re.MULTILINE):
+            if current_content:
+                chunks.append((current_header, &#39;\n&#39;.join(current_content)))
+            current_header = line
+            current_content = []
+        else:
+            current_content.append(line)
+
+    if current_content:
+        chunks.append((current_header, &#39;\n&#39;.join(current_content)))
+
+    return chunks
+
+
+def recursive_character_splitter(
+    text: str,
+    chunk_size: int = 1000,
+    chunk_overlap: int = 200,
+    separators: List[str] = None
+) -&gt; List[str]:
+    &quot;&quot;&quot;LangChain-style recursive splitter.&quot;&quot;&quot;
+    separators = separators or [&quot;\n\n&quot;, &quot;\n&quot;, &quot;. &quot;, &quot; &quot;, &quot;&quot;]
+
+    def split_text(text: str, separators: List[str]) -&gt; List[str]:
+        if not text:
+            return []
+
+        separator = separators[0]
+        remaining_separators = separators[1:]
+
+        if separator == &quot;&quot;:
+            # Character-level split
+            return [text[i:i+chunk_size] for i in range(0, len(text), chunk_size - chunk_overlap)]
+
+        splits = text.split(separator)
+        chunks = []
+        current_chunk = []
+        current_length = 0
+
+        for split in splits:
+            split_length = len(split) + len(separator)
+
+            if current_length + split_length &gt; chunk_size and current_chunk:
+                chunk_text = separator.join(current_chunk)
+
+                # Recursively split if still too large
+                if len(chunk_text) &gt; chunk_size and remaining_separators:
+                    chunks.extend(split_text(chunk_text, remaining_separators))
+                else:
+                    chunks.append(chunk_text)
+
+                # Start new chunk with overlap
+                overlap_splits = []
+                overlap_length = 0
+                for s in reversed(current_chunk):
+                    if overlap_length + len(s) &lt;= chunk_overlap:
+                        overlap_splits.insert(0, s)
+                        overlap_length += len(s)
+                    else:
+                        break
+                current_chunk = overlap_splits
+                current_length = overlap_length
+
+            current_chunk.append(split)
+            current_length += split_length
+
+        if current_chunk:
+            chunks.append(separator.join(current_chunk))
+
+        return chunks
+
+    return split_text(text, separators)
+</code></pre>
+<h3>Template 5: Domain-Specific Embedding Pipeline</h3>
+<pre><code class="language-python">import re
+from typing import List, Optional
+from dataclasses import dataclass
+
+@dataclass
+class EmbeddedDocument:
+    id: str
+    document_id: str
+    chunk_index: int
+    text: str
+    embedding: List[float]
+    metadata: dict
+
+class DomainEmbeddingPipeline:
+    &quot;&quot;&quot;Pipeline for domain-specific embeddings.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        embedding_model: str = &quot;voyage-3-large&quot;,
+        chunk_size: int = 512,
+        chunk_overlap: int = 50,
+        preprocessing_fn=None
+    ):
+        self.embeddings = VoyageAIEmbeddings(model=embedding_model)
+        self.chunk_size = chunk_size
+        self.chunk_overlap = chunk_overlap
+        self.preprocess = preprocessing_fn or self._default_preprocess
+
+    def _default_preprocess(self, text: str) -&gt; str:
+        &quot;&quot;&quot;Default preprocessing.&quot;&quot;&quot;
+        # Remove excessive whitespace
+        text = re.sub(r&#39;\s+&#39;, &#39; &#39;, text)
+        # Remove special characters (customize for your domain)
+        text = re.sub(r&#39;[^\w\s.,!?-]&#39;, &#39;&#39;, text)
+        return text.strip()
+
+    async def process_documents(
+        self,
+        documents: List[dict],
+        id_field: str = &quot;id&quot;,
+        content_field: str = &quot;content&quot;,
+        metadata_fields: Optional[List[str]] = None
+    ) -&gt; List[EmbeddedDocument]:
+        &quot;&quot;&quot;Process documents for vector storage.&quot;&quot;&quot;
+        processed = []
+
+        for doc in documents:
+            content = doc[content_field]
+            doc_id = doc[id_field]
+
+            # Preprocess
+            cleaned = self.preprocess(content)
+
+            # Chunk
+            chunks = chunk_by_tokens(
+                cleaned,
+                self.chunk_size,
+                self.chunk_overlap
+            )
+
+            # Create embeddings
+            embeddings = await self.embeddings.aembed_documents(chunks)
+
+            # Create records
+            for i, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
+                metadata = {&quot;document_id&quot;: doc_id, &quot;chunk_index&quot;: i}
+
+                # Add specified metadata fields
+                if metadata_fields:
+                    for field in metadata_fields:
+                        if field in doc:
+                            metadata[field] = doc[field]
+
+                processed.append(EmbeddedDocument(
+                    id=f&quot;{doc_id}_chunk_{i}&quot;,
+                    document_id=doc_id,
+                    chunk_index=i,
+                    text=chunk,
+                    embedding=embedding,
+                    metadata=metadata
+                ))
+
+        return processed
+
+
+# Code-specific pipeline
+class CodeEmbeddingPipeline:
+    &quot;&quot;&quot;Specialized pipeline for code embeddings.&quot;&quot;&quot;
+
+    def __init__(self):
+        # Use Voyage&#39;s code-specific model
+        self.embeddings = VoyageAIEmbeddings(model=&quot;voyage-code-3&quot;)
+
+    def chunk_code(self, code: str, language: str) -&gt; List[dict]:
+        &quot;&quot;&quot;Chunk code by functions/classes using tree-sitter.&quot;&quot;&quot;
+        try:
+            import tree_sitter_languages
+            parser = tree_sitter_languages.get_parser(language)
+            tree = parser.parse(bytes(code, &quot;utf8&quot;))
+
+            chunks = []
+            # Extract function and class definitions
+            self._extract_nodes(tree.root_node, code, chunks)
+            return chunks
+        except ImportError:
+            # Fallback to simple chunking
+            return [{&quot;text&quot;: code, &quot;type&quot;: &quot;module&quot;}]
+
+    def _extract_nodes(self, node, source_code: str, chunks: list):
+        &quot;&quot;&quot;Recursively extract function/class definitions.&quot;&quot;&quot;
+        if node.type in [&#39;function_definition&#39;, &#39;class_definition&#39;, &#39;method_definition&#39;]:
+            text = source_code[node.start_byte:node.end_byte]
+            chunks.append({
+                &quot;text&quot;: text,
+                &quot;type&quot;: node.type,
+                &quot;name&quot;: self._get_name(node),
+                &quot;start_line&quot;: node.start_point[0],
+                &quot;end_line&quot;: node.end_point[0]
+            })
+        for child in node.children:
+            self._extract_nodes(child, source_code, chunks)
+
+    def _get_name(self, node) -&gt; str:
+        &quot;&quot;&quot;Extract name from function/class node.&quot;&quot;&quot;
+        for child in node.children:
+            if child.type == &#39;identifier&#39; or child.type == &#39;name&#39;:
+                return child.text.decode(&#39;utf8&#39;)
+        return &quot;unknown&quot;
+
+    async def embed_with_context(
+        self,
+        chunk: str,
+        context: str = &quot;&quot;
+    ) -&gt; List[float]:
+        &quot;&quot;&quot;Embed code with surrounding context.&quot;&quot;&quot;
+        if context:
+            combined = f&quot;Context: {context}\n\nCode:\n{chunk}&quot;
+        else:
+            combined = chunk
+        return await self.embeddings.aembed_query(combined)
+</code></pre>
+<h3>Template 6: Embedding Quality Evaluation</h3>
+<pre><code class="language-python">import numpy as np
+from typing import List, Dict
+
+def evaluate_retrieval_quality(
+    queries: List[str],
+    relevant_docs: List[List[str]],  # List of relevant doc IDs per query
+    retrieved_docs: List[List[str]],  # List of retrieved doc IDs per query
+    k: int = 10
+) -&gt; Dict[str, float]:
+    &quot;&quot;&quot;Evaluate embedding quality for retrieval.&quot;&quot;&quot;
+
+    def precision_at_k(relevant: set, retrieved: List[str], k: int) -&gt; float:
+        retrieved_k = retrieved[:k]
+        relevant_retrieved = len(set(retrieved_k) &amp; relevant)
+        return relevant_retrieved / k if k &gt; 0 else 0
+
+    def recall_at_k(relevant: set, retrieved: List[str], k: int) -&gt; float:
+        retrieved_k = retrieved[:k]
+        relevant_retrieved = len(set(retrieved_k) &amp; relevant)
+        return relevant_retrieved / len(relevant) if relevant else 0
+
+    def mrr(relevant: set, retrieved: List[str]) -&gt; float:
+        for i, doc in enumerate(retrieved):
+            if doc in relevant:
+                return 1 / (i + 1)
+        return 0
+
+    def ndcg_at_k(relevant: set, retrieved: List[str], k: int) -&gt; float:
+        dcg = sum(
+            1 / np.log2(i + 2) if doc in relevant else 0
+            for i, doc in enumerate(retrieved[:k])
+        )
+        ideal_dcg = sum(1 / np.log2(i + 2) for i in range(min(len(relevant), k)))
+        return dcg / ideal_dcg if ideal_dcg &gt; 0 else 0
+
+    metrics = {
+        f&quot;precision@{k}&quot;: [],
+        f&quot;recall@{k}&quot;: [],
+        &quot;mrr&quot;: [],
+        f&quot;ndcg@{k}&quot;: []
+    }
+
+    for relevant, retrieved in zip(relevant_docs, retrieved_docs):
+        relevant_set = set(relevant)
+        metrics[f&quot;precision@{k}&quot;].append(precision_at_k(relevant_set, retrieved, k))
+        metrics[f&quot;recall@{k}&quot;].append(recall_at_k(relevant_set, retrieved, k))
+        metrics[&quot;mrr&quot;].append(mrr(relevant_set, retrieved))
+        metrics[f&quot;ndcg@{k}&quot;].append(ndcg_at_k(relevant_set, retrieved, k))
+
+    return {name: np.mean(values) for name, values in metrics.items()}
+
+
+def compute_embedding_similarity(
+    embeddings1: np.ndarray,
+    embeddings2: np.ndarray,
+    metric: str = &quot;cosine&quot;
+) -&gt; np.ndarray:
+    &quot;&quot;&quot;Compute similarity matrix between embedding sets.&quot;&quot;&quot;
+    if metric == &quot;cosine&quot;:
+        # Normalize and compute dot product
+        norm1 = embeddings1 / np.linalg.norm(embeddings1, axis=1, keepdims=True)
+        norm2 = embeddings2 / np.linalg.norm(embeddings2, axis=1, keepdims=True)
+        return norm1 @ norm2.T
+    elif metric == &quot;euclidean&quot;:
+        from scipy.spatial.distance import cdist
+        return -cdist(embeddings1, embeddings2, metric=&#39;euclidean&#39;)
+    elif metric == &quot;dot&quot;:
+        return embeddings1 @ embeddings2.T
+    else:
+        raise ValueError(f&quot;Unknown metric: {metric}&quot;)
+
+
+def compare_embedding_models(
+    texts: List[str],
+    models: Dict[str, callable],
+    queries: List[str],
+    relevant_indices: List[List[int]],
+    k: int = 5
+) -&gt; Dict[str, Dict[str, float]]:
+    &quot;&quot;&quot;Compare multiple embedding models on retrieval quality.&quot;&quot;&quot;
+    results = {}
+
+    for model_name, embed_fn in models.items():
+        # Embed all texts
+        doc_embeddings = np.array(embed_fn(texts))
+
+        retrieved_per_query = []
+        for query in queries:
+            query_embedding = np.array(embed_fn([query])[0])
+            # Compute similarities
+            similarities = compute_embedding_similarity(
+                query_embedding.reshape(1, -1),
+                doc_embeddings,
+                metric=&quot;cosine&quot;
+            )[0]
+            # Get top-k indices
+            top_k_indices = np.argsort(similarities)[::-1][:k]
+            retrieved_per_query.append([str(i) for i in top_k_indices])
+
+        # Convert relevant indices to string IDs
+        relevant_docs = [[str(i) for i in indices] for indices in relevant_indices]
+
+        results[model_name] = evaluate_retrieval_quality(
+            queries, relevant_docs, retrieved_per_query, k
+        )
+
+    return results
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Match model to use case</strong>: Code vs prose vs multilingual</li>
+<li><strong>Chunk thoughtfully</strong>: Preserve semantic boundaries</li>
+<li><strong>Normalize embeddings</strong>: For cosine similarity search</li>
+<li><strong>Batch requests</strong>: More efficient than one-by-one</li>
+<li><strong>Cache embeddings</strong>: Avoid recomputing for static content</li>
+<li><strong>Use Voyage AI for Claude apps</strong>: Recommended by Anthropic</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t ignore token limits</strong>: Truncation loses information</li>
+<li><strong>Don&#39;t mix embedding models</strong>: Incompatible vector spaces</li>
+<li><strong>Don&#39;t skip preprocessing</strong>: Garbage in, garbage out</li>
+<li><strong>Don&#39;t over-chunk</strong>: Lose important context</li>
+<li><strong>Don&#39;t forget metadata</strong>: Essential for filtering and debugging</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.voyageai.com/">Voyage AI Documentation</a></li>
+<li><a href="https://platform.openai.com/docs/guides/embeddings">OpenAI Embeddings Guide</a></li>
+<li><a href="https://www.sbert.net/">Sentence Transformers</a></li>
+<li><a href="https://huggingface.co/spaces/mteb/leaderboard">MTEB Benchmark</a></li>
+<li><a href="https://python.langchain.com/docs/integrations/text_embedding/">LangChain Embedding Models</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

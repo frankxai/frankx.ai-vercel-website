@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Foundation Model Builder Agent for MLE-STAR</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/automation/agents/foundation_agent_README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Foundation Model Builder Agent for MLE-STAR</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fautomation">automation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fautomation%2Fagents">agents</a> / <span>foundation_agent_README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Foundation Model Builder Agent for MLE-STAR</h1>
+<h2>Overview</h2>
+<p>The Foundation Model Builder is a critical component of the MLE-STAR (Machine Learning Engineering - Search, Train, Ablate, Refine) automation workflow. This agent handles the foundation phase, focusing on:</p>
+<ul>
+<li>Data preprocessing and feature engineering</li>
+<li>Initial model building and baseline creation</li>
+<li>Performance benchmarking</li>
+<li>Model persistence and versioning</li>
+</ul>
+<h2>Architecture</h2>
+<p>The Foundation Agent consists of four main modules:</p>
+<h3>1. <code>foundation_agent_core.py</code></h3>
+<p>Core functionality for model building:</p>
+<ul>
+<li><strong>FoundationModelBuilder</strong>: Main class handling model training and evaluation</li>
+<li><strong>ModelResult</strong>: Data structure for storing model performance metrics</li>
+<li>Dataset analysis and problem type detection</li>
+<li>Preprocessing pipeline creation</li>
+<li>Baseline model training with cross-validation</li>
+<li>Ensemble model creation</li>
+<li>Comprehensive reporting</li>
+</ul>
+<h3>2. <code>foundation_agent_features.py</code></h3>
+<p>Advanced feature engineering capabilities:</p>
+<ul>
+<li><strong>FeatureEngineer</strong>: Comprehensive feature engineering toolkit</li>
+<li>Polynomial and interaction features</li>
+<li>Statistical aggregate features</li>
+<li>Ratio and difference features</li>
+<li>Clustering-based features</li>
+<li>Mathematical transformations</li>
+<li>Binning and discretization</li>
+<li>Feature selection (univariate, mutual information, RFE)</li>
+<li>Dimensionality reduction (PCA, TruncatedSVD)</li>
+</ul>
+<h3>3. <code>foundation_agent_integration.py</code></h3>
+<p>Integration with MLE-STAR workflow:</p>
+<ul>
+<li><strong>FoundationAgentIntegration</strong>: Coordination layer</li>
+<li>Claude-flow hooks integration</li>
+<li>Memory system coordination</li>
+<li>Workflow step processing</li>
+<li>Cross-agent communication</li>
+<li>Result sharing and persistence</li>
+</ul>
+<h3>4. <code>test_foundation_agent.py</code></h3>
+<p>Comprehensive test suite:</p>
+<ul>
+<li>Unit tests for all major components</li>
+<li>Integration tests for workflow scenarios</li>
+<li>Feature engineering validation</li>
+<li>Model training verification</li>
+</ul>
+<h2>Usage</h2>
+<h3>Standalone Execution</h3>
+<pre><code class="language-python">from foundation_agent_core import FoundationModelBuilder
+
+# Initialize builder
+builder = FoundationModelBuilder(
+    session_id=&quot;my_session&quot;,
+    execution_id=&quot;my_execution&quot;
+)
+
+# Load and analyze data
+import pandas as pd
+data = pd.read_csv(&quot;my_data.csv&quot;)
+analysis = builder.analyze_dataset(data, target_column=&quot;target&quot;)
+
+# Train baseline models
+X = data.drop(columns=[&quot;target&quot;])
+y = data[&quot;target&quot;]
+results = builder.train_baseline_models(X, y, cv_folds=5)
+
+# Create ensemble
+ensemble = builder.create_ensemble_baseline(X, y)
+
+# Save results
+report = builder.save_results()
+</code></pre>
+<h3>Workflow Integration</h3>
+<pre><code class="language-bash"># Run as part of MLE-STAR workflow
+python foundation_agent_integration.py \
+    --session-id &quot;automation-session-123&quot; \
+    --execution-id &quot;workflow-exec-456&quot; \
+    --dataset &quot;path/to/data.csv&quot; \
+    --target &quot;target_column&quot; \
+    --step &quot;full_pipeline&quot;
+</code></pre>
+<h3>Feature Engineering</h3>
+<pre><code class="language-python">from foundation_agent_features import FeatureEngineer
+
+# Initialize engineer
+engineer = FeatureEngineer(problem_type=&quot;classification&quot;)
+
+# Create features
+X_poly = engineer.create_polynomial_features(X, degree=2)
+X_stats = engineer.create_statistical_features(X)
+X_all = engineer.create_all_features(X, config={
+    &#39;polynomial&#39;: True,
+    &#39;statistical&#39;: True,
+    &#39;clustering&#39;: {&#39;n_clusters&#39;: 5}
+})
+
+# Select features
+X_selected, scores = engineer.select_features_univariate(X_all, y, k=20)
+</code></pre>
+<h2>Baseline Models</h2>
+<p>The agent automatically selects appropriate models based on problem type:</p>
+<h3>Classification</h3>
+<ul>
+<li>Logistic Regression</li>
+<li>Decision Tree</li>
+<li>Random Forest</li>
+<li>Support Vector Machine</li>
+<li>K-Nearest Neighbors</li>
+<li>Naive Bayes</li>
+<li>Neural Network (MLP)</li>
+</ul>
+<h3>Regression</h3>
+<ul>
+<li>Linear Regression</li>
+<li>Ridge Regression</li>
+<li>Lasso Regression</li>
+<li>Decision Tree</li>
+<li>Random Forest</li>
+<li>Support Vector Regression</li>
+<li>K-Nearest Neighbors</li>
+<li>Neural Network (MLP)</li>
+</ul>
+<h2>Coordination &amp; Memory</h2>
+<p>The agent uses Claude-flow hooks for coordination:</p>
+<pre><code class="language-bash"># Pre-task coordination
+npx claude-flow@alpha hooks pre-task --description &quot;Foundation building&quot;
+
+# Post-edit notifications
+npx claude-flow@alpha hooks post-edit --file &quot;model.pkl&quot;
+
+# Memory storage
+npx claude-flow@alpha memory store &quot;agent/foundation/results&quot; &quot;{...}&quot;
+
+# Result sharing
+npx claude-flow@alpha hooks notify --message &quot;Foundation complete&quot;
+</code></pre>
+<h2>Output Structure</h2>
+<pre><code>models/foundation_{session_id}/
+├── LogisticRegression_baseline.pkl
+├── RandomForest_baseline.pkl
+├── ensemble_baseline.pkl
+├── preprocessing_pipeline.pkl
+└── foundation_report.json
+</code></pre>
+<h3>Foundation Report Structure</h3>
+<pre><code class="language-json">{
+  &quot;session_id&quot;: &quot;...&quot;,
+  &quot;execution_id&quot;: &quot;...&quot;,
+  &quot;timestamp&quot;: &quot;2025-01-04T10:00:00Z&quot;,
+  &quot;problem_type&quot;: &quot;classification&quot;,
+  &quot;preprocessing&quot;: {
+    &quot;features&quot;: [&quot;feature_1&quot;, &quot;feature_2&quot;, ...],
+    &quot;pipeline_steps&quot;: &quot;...&quot;
+  },
+  &quot;baseline_models&quot;: [
+    {
+      &quot;model_name&quot;: &quot;RandomForest&quot;,
+      &quot;mean_cv_score&quot;: 0.85,
+      &quot;std_cv_score&quot;: 0.03,
+      &quot;training_time&quot;: 2.5
+    }
+  ],
+  &quot;best_model&quot;: {
+    &quot;name&quot;: &quot;RandomForest&quot;,
+    &quot;score&quot;: 0.85,
+    &quot;std&quot;: 0.03
+  },
+  &quot;recommendations&quot;: [
+    &quot;Consider feature engineering&quot;,
+    &quot;Try ensemble methods&quot;
+  ]
+}
+</code></pre>
+<h2>Performance Optimization</h2>
+<p>The agent includes several optimizations:</p>
+<ol>
+<li><strong>Parallel Processing</strong>: Cross-validation uses all available cores</li>
+<li><strong>Memory Efficiency</strong>: Streaming data processing for large datasets</li>
+<li><strong>Caching</strong>: Preprocessed data cached between model training</li>
+<li><strong>Early Stopping</strong>: Poor performing models stopped early</li>
+<li><strong>Sparse Matrix Support</strong>: Efficient handling of sparse features</li>
+</ol>
+<h2>Error Handling</h2>
+<p>The agent includes robust error handling:</p>
+<ul>
+<li>Graceful degradation when models fail</li>
+<li>Automatic recovery from memory errors</li>
+<li>Validation of input data formats</li>
+<li>Clear error messages and logging</li>
+</ul>
+<h2>Testing</h2>
+<p>Run the comprehensive test suite:</p>
+<pre><code class="language-bash"># Run all tests
+python test_foundation_agent.py
+
+# Run specific test class
+python -m unittest test_foundation_agent.TestFoundationModelBuilder
+
+# Run with coverage
+coverage run test_foundation_agent.py
+coverage report
+</code></pre>
+<h2>Future Enhancements</h2>
+<p>Planned improvements include:</p>
+<ol>
+<li><strong>AutoML Integration</strong>: Automatic hyperparameter tuning</li>
+<li><strong>GPU Support</strong>: RAPIDS integration for faster processing</li>
+<li><strong>Distributed Training</strong>: Dask/Ray support for large datasets</li>
+<li><strong>Advanced Ensembles</strong>: Stacking and blending methods</li>
+<li><strong>Explainability</strong>: SHAP/LIME integration</li>
+<li><strong>Online Learning</strong>: Incremental model updates</li>
+</ol>
+<h2>Dependencies</h2>
+<pre><code class="language-python"># Core dependencies
+pandas&gt;=1.3.0
+numpy&gt;=1.21.0
+scikit-learn&gt;=1.0.0
+joblib&gt;=1.1.0
+
+# Optional dependencies
+dask&gt;=2022.1.0  # For distributed processing
+shap&gt;=0.40.0    # For model explainability
+matplotlib&gt;=3.4.0  # For visualizations
+</code></pre>
+<h2>Contributing</h2>
+<p>When contributing to the Foundation Agent:</p>
+<ol>
+<li>Follow the existing code structure</li>
+<li>Add comprehensive tests for new features</li>
+<li>Update documentation</li>
+<li>Ensure all tests pass</li>
+<li>Follow PEP 8 style guidelines</li>
+</ol>
+<h2>License</h2>
+<p>This module is part of the Claude-Flow project and follows the same licensing terms.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

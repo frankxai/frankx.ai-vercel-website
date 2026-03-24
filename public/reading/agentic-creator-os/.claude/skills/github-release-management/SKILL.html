@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitHub Release Management Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/github-release-management/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitHub Release Management Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fgithub-release-management">github-release-management</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: github-release-management
+version: 2.0.0
+description: Comprehensive GitHub release orchestration with AI swarm coordination for automated versioning, testing, deployment, and rollback management
+category: github
+tags: [release, deployment, versioning, automation, ci-cd, swarm, orchestration]
+author: Claude Flow Team
+requires:
+  - gh (GitHub CLI)
+  - claude-flow
+  - ruv-swarm (optional for enhanced coordination)
+  - mcp-github (optional for MCP integration)
+dependencies:
+  - git
+  - npm or yarn
+  - node &gt;= 20.0.0
+related_skills:
+  - github-pr-management
+  - github-issue-tracking
+  - github-workflow-automation
+  - multi-repo-coordination</h2>
+<h1>GitHub Release Management Skill</h1>
+<p>Intelligent release automation and orchestration using AI swarms for comprehensive software releases - from changelog generation to multi-platform deployment with rollback capabilities.</p>
+<h2>Quick Start</h2>
+<h3>Simple Release Flow</h3>
+<pre><code class="language-bash"># Plan and create a release
+gh release create v2.0.0 \
+  --draft \
+  --generate-notes \
+  --title &quot;Release v2.0.0&quot;
+
+# Orchestrate with swarm
+npx claude-flow github release-create \
+  --version &quot;2.0.0&quot; \
+  --build-artifacts \
+  --deploy-targets &quot;npm,docker,github&quot;
+</code></pre>
+<h3>Full Automated Release</h3>
+<pre><code class="language-bash"># Initialize release swarm
+npx claude-flow swarm init --topology hierarchical
+
+# Execute complete release pipeline
+npx claude-flow sparc pipeline &quot;Release v2.0.0 with full validation&quot;
+</code></pre>
+<hr>
+<h2>Core Capabilities</h2>
+<h3>1. Release Planning &amp; Version Management</h3>
+<ul>
+<li>Semantic version analysis and suggestion</li>
+<li>Breaking change detection from commits</li>
+<li>Release timeline generation</li>
+<li>Multi-package version coordination</li>
+</ul>
+<h3>2. Automated Testing &amp; Validation</h3>
+<ul>
+<li>Multi-stage test orchestration</li>
+<li>Cross-platform compatibility testing</li>
+<li>Performance regression detection</li>
+<li>Security vulnerability scanning</li>
+</ul>
+<h3>3. Build &amp; Deployment Orchestration</h3>
+<ul>
+<li>Multi-platform build coordination</li>
+<li>Parallel artifact generation</li>
+<li>Progressive deployment strategies</li>
+<li>Automated rollback mechanisms</li>
+</ul>
+<h3>4. Documentation &amp; Communication</h3>
+<ul>
+<li>Automated changelog generation</li>
+<li>Release notes with categorization</li>
+<li>Migration guide creation</li>
+<li>Stakeholder notification</li>
+</ul>
+<hr>
+<h2>Progressive Disclosure: Level 1 - Basic Usage</h2>
+<h3>Essential Release Commands</h3>
+<h4>Create Release Draft</h4>
+<pre><code class="language-bash"># Get last release tag
+LAST_TAG=$(gh release list --limit 1 --json tagName -q &#39;.[0].tagName&#39;)
+
+# Generate changelog from commits
+CHANGELOG=$(gh api repos/:owner/:repo/compare/${LAST_TAG}...HEAD \
+  --jq &#39;.commits[].commit.message&#39;)
+
+# Create draft release
+gh release create v2.0.0 \
+  --draft \
+  --title &quot;Release v2.0.0&quot; \
+  --notes &quot;$CHANGELOG&quot; \
+  --target main
+</code></pre>
+<h4>Basic Version Bump</h4>
+<pre><code class="language-bash"># Update package.json version
+npm version patch  # or minor, major
+
+# Push version tag
+git push --follow-tags
+</code></pre>
+<h4>Simple Deployment</h4>
+<pre><code class="language-bash"># Build and publish npm package
+npm run build
+npm publish
+
+# Create GitHub release
+gh release create $(npm pkg get version) \
+  --generate-notes
+</code></pre>
+<h3>Quick Integration Example</h3>
+<pre><code class="language-javascript">// Simple release preparation in Claude Code
+[Single Message]:
+  // Update version files
+  Edit(&quot;package.json&quot;, { old: &#39;&quot;version&quot;: &quot;1.0.0&quot;&#39;, new: &#39;&quot;version&quot;: &quot;2.0.0&quot;&#39; })
+
+  // Generate changelog
+  Bash(&quot;gh api repos/:owner/:repo/compare/v1.0.0...HEAD --jq &#39;.commits[].commit.message&#39; &gt; CHANGELOG.md&quot;)
+
+  // Create release branch
+  Bash(&quot;git checkout -b release/v2.0.0&quot;)
+  Bash(&quot;git add -A &amp;&amp; git commit -m &#39;release: Prepare v2.0.0&#39;&quot;)
+
+  // Create PR
+  Bash(&quot;gh pr create --title &#39;Release v2.0.0&#39; --body &#39;Automated release preparation&#39;&quot;)
+</code></pre>
+<hr>
+<h2>Progressive Disclosure: Level 2 - Swarm Coordination</h2>
+<h3>AI Swarm Release Orchestration</h3>
+<h4>Initialize Release Swarm</h4>
+<pre><code class="language-javascript">// Set up coordinated release team
+[Single Message - Swarm Initialization]:
+  mcp__claude-flow__swarm_init {
+    topology: &quot;hierarchical&quot;,
+    maxAgents: 6,
+    strategy: &quot;balanced&quot;
+  }
+
+  // Spawn specialized agents
+  mcp__claude-flow__agent_spawn { type: &quot;coordinator&quot;, name: &quot;Release Director&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;coder&quot;, name: &quot;Version Manager&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;tester&quot;, name: &quot;QA Engineer&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;reviewer&quot;, name: &quot;Release Reviewer&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;analyst&quot;, name: &quot;Deployment Analyst&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;researcher&quot;, name: &quot;Compatibility Checker&quot; }
+</code></pre>
+<h4>Coordinated Release Workflow</h4>
+<pre><code class="language-javascript">[Single Message - Full Release Coordination]:
+  // Create release branch
+  Bash(&quot;gh api repos/:owner/:repo/git/refs --method POST -f ref=&#39;refs/heads/release/v2.0.0&#39; -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq &#39;.object.sha&#39;)&quot;)
+
+  // Orchestrate release preparation
+  mcp__claude-flow__task_orchestrate {
+    task: &quot;Prepare release v2.0.0 with comprehensive testing and validation&quot;,
+    strategy: &quot;sequential&quot;,
+    priority: &quot;critical&quot;,
+    maxAgents: 6
+  }
+
+  // Update all release files
+  Write(&quot;package.json&quot;, &quot;[updated version]&quot;)
+  Write(&quot;CHANGELOG.md&quot;, &quot;[release changelog]&quot;)
+  Write(&quot;RELEASE_NOTES.md&quot;, &quot;[detailed notes]&quot;)
+
+  // Run comprehensive validation
+  Bash(&quot;npm install &amp;&amp; npm test &amp;&amp; npm run lint &amp;&amp; npm run build&quot;)
+
+  // Create release PR
+  Bash(`gh pr create \
+    --title &quot;Release v2.0.0: Feature Set and Improvements&quot; \
+    --head &quot;release/v2.0.0&quot; \
+    --base &quot;main&quot; \
+    --body &quot;$(cat RELEASE_NOTES.md)&quot;`)
+
+  // Track progress
+  TodoWrite { todos: [
+    { content: &quot;Prepare release branch&quot;, status: &quot;completed&quot;, priority: &quot;critical&quot; },
+    { content: &quot;Run validation suite&quot;, status: &quot;completed&quot;, priority: &quot;high&quot; },
+    { content: &quot;Create release PR&quot;, status: &quot;completed&quot;, priority: &quot;high&quot; },
+    { content: &quot;Code review approval&quot;, status: &quot;pending&quot;, priority: &quot;high&quot; },
+    { content: &quot;Merge and deploy&quot;, status: &quot;pending&quot;, priority: &quot;critical&quot; }
+  ]}
+
+  // Store release state
+  mcp__claude-flow__memory_usage {
+    action: &quot;store&quot;,
+    key: &quot;release/v2.0.0/status&quot;,
+    value: JSON.stringify({
+      version: &quot;2.0.0&quot;,
+      stage: &quot;validation_complete&quot;,
+      timestamp: Date.now(),
+      ready_for_review: true
+    })
+  }
+</code></pre>
+<h3>Release Agent Specializations</h3>
+<h4>Changelog Agent</h4>
+<pre><code class="language-bash"># Get merged PRs between versions
+PRS=$(gh pr list --state merged --base main --json number,title,labels,author,mergedAt \
+  --jq &quot;.[] | select(.mergedAt &gt; \&quot;$(gh release view v1.0.0 --json publishedAt -q .publishedAt)\&quot;)&quot;)
+
+# Get commit history
+COMMITS=$(gh api repos/:owner/:repo/compare/v1.0.0...HEAD \
+  --jq &#39;.commits[].commit.message&#39;)
+
+# Generate categorized changelog
+npx claude-flow github changelog \
+  --prs &quot;$PRS&quot; \
+  --commits &quot;$COMMITS&quot; \
+  --from v1.0.0 \
+  --to HEAD \
+  --categorize \
+  --add-migration-guide
+</code></pre>
+<p><strong>Capabilities:</strong></p>
+<ul>
+<li>Semantic commit analysis</li>
+<li>Breaking change detection</li>
+<li>Contributor attribution</li>
+<li>Migration guide generation</li>
+<li>Multi-language support</li>
+</ul>
+<h4>Version Agent</h4>
+<pre><code class="language-bash"># Intelligent version suggestion
+npx claude-flow github version-suggest \
+  --current v1.2.3 \
+  --analyze-commits \
+  --check-compatibility \
+  --suggest-pre-release
+</code></pre>
+<p><strong>Logic:</strong></p>
+<ul>
+<li>Analyzes commit messages and PR labels</li>
+<li>Detects breaking changes via keywords</li>
+<li>Suggests appropriate version bump</li>
+<li>Handles pre-release versioning</li>
+<li>Validates version constraints</li>
+</ul>
+<h4>Build Agent</h4>
+<pre><code class="language-bash"># Multi-platform build coordination
+npx claude-flow github release-build \
+  --platforms &quot;linux,macos,windows&quot; \
+  --architectures &quot;x64,arm64&quot; \
+  --parallel \
+  --optimize-size
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Cross-platform compilation</li>
+<li>Parallel build execution</li>
+<li>Artifact optimization and compression</li>
+<li>Dependency bundling</li>
+<li>Build caching and reuse</li>
+</ul>
+<h4>Test Agent</h4>
+<pre><code class="language-bash"># Comprehensive pre-release testing
+npx claude-flow github release-test \
+  --suites &quot;unit,integration,e2e,performance&quot; \
+  --environments &quot;node:16,node:18,node:20&quot; \
+  --fail-fast false \
+  --generate-report
+</code></pre>
+<h4>Deploy Agent</h4>
+<pre><code class="language-bash"># Multi-target deployment orchestration
+npx claude-flow github release-deploy \
+  --targets &quot;npm,docker,github,s3&quot; \
+  --staged-rollout \
+  --monitor-metrics \
+  --auto-rollback
+</code></pre>
+<hr>
+<h2>Progressive Disclosure: Level 3 - Advanced Workflows</h2>
+<h3>Multi-Package Release Coordination</h3>
+<h4>Monorepo Release Strategy</h4>
+<pre><code class="language-javascript">[Single Message - Multi-Package Release]:
+  // Initialize mesh topology for cross-package coordination
+  mcp__claude-flow__swarm_init { topology: &quot;mesh&quot;, maxAgents: 8 }
+
+  // Spawn package-specific agents
+  Task(&quot;Package A Manager&quot;, &quot;Coordinate claude-flow package release v1.0.72&quot;, &quot;coder&quot;)
+  Task(&quot;Package B Manager&quot;, &quot;Coordinate ruv-swarm package release v1.0.12&quot;, &quot;coder&quot;)
+  Task(&quot;Integration Tester&quot;, &quot;Validate cross-package compatibility&quot;, &quot;tester&quot;)
+  Task(&quot;Version Coordinator&quot;, &quot;Align dependencies and versions&quot;, &quot;coordinator&quot;)
+
+  // Update all packages simultaneously
+  Write(&quot;packages/claude-flow/package.json&quot;, &quot;[v1.0.72 content]&quot;)
+  Write(&quot;packages/ruv-swarm/package.json&quot;, &quot;[v1.0.12 content]&quot;)
+  Write(&quot;CHANGELOG.md&quot;, &quot;[consolidated changelog]&quot;)
+
+  // Run cross-package validation
+  Bash(&quot;cd packages/claude-flow &amp;&amp; npm install &amp;&amp; npm test&quot;)
+  Bash(&quot;cd packages/ruv-swarm &amp;&amp; npm install &amp;&amp; npm test&quot;)
+  Bash(&quot;npm run test:integration&quot;)
+
+  // Create unified release PR
+  Bash(`gh pr create \
+    --title &quot;Release: claude-flow v1.0.72, ruv-swarm v1.0.12&quot; \
+    --body &quot;Multi-package coordinated release with cross-compatibility validation&quot;`)
+</code></pre>
+<h3>Progressive Deployment Strategy</h3>
+<h4>Staged Rollout Configuration</h4>
+<pre><code class="language-yaml"># .github/release-deployment.yml
+deployment:
+  strategy: progressive
+  stages:
+    - name: canary
+      percentage: 5
+      duration: 1h
+      metrics:
+        - error-rate &lt; 0.1%
+        - latency-p99 &lt; 200ms
+      auto-advance: true
+
+    - name: partial
+      percentage: 25
+      duration: 4h
+      validation: automated-tests
+      approval: qa-team
+
+    - name: rollout
+      percentage: 50
+      duration: 8h
+      monitor: true
+
+    - name: full
+      percentage: 100
+      approval: release-manager
+      rollback-enabled: true
+</code></pre>
+<h4>Execute Staged Deployment</h4>
+<pre><code class="language-bash"># Deploy with progressive rollout
+npx claude-flow github release-deploy \
+  --version v2.0.0 \
+  --strategy progressive \
+  --config .github/release-deployment.yml \
+  --monitor-metrics \
+  --auto-rollback-on-error
+</code></pre>
+<h3>Multi-Repository Coordination</h3>
+<h4>Coordinated Multi-Repo Release</h4>
+<pre><code class="language-bash"># Synchronize releases across repositories
+npx claude-flow github multi-release \
+  --repos &quot;frontend:v2.0.0,backend:v2.1.0,cli:v1.5.0&quot; \
+  --ensure-compatibility \
+  --atomic-release \
+  --synchronized \
+  --rollback-all-on-failure
+</code></pre>
+<h4>Cross-Repo Dependency Management</h4>
+<pre><code class="language-javascript">[Single Message - Cross-Repo Release]:
+  // Initialize star topology for centralized coordination
+  mcp__claude-flow__swarm_init { topology: &quot;star&quot;, maxAgents: 6 }
+
+  // Spawn repo-specific coordinators
+  Task(&quot;Frontend Release&quot;, &quot;Release frontend v2.0.0 with API compatibility&quot;, &quot;coordinator&quot;)
+  Task(&quot;Backend Release&quot;, &quot;Release backend v2.1.0 with breaking changes&quot;, &quot;coordinator&quot;)
+  Task(&quot;CLI Release&quot;, &quot;Release CLI v1.5.0 with new commands&quot;, &quot;coordinator&quot;)
+  Task(&quot;Compatibility Checker&quot;, &quot;Validate cross-repo compatibility&quot;, &quot;researcher&quot;)
+
+  // Coordinate version updates across repos
+  Bash(&quot;gh api repos/org/frontend/dispatches --method POST -f event_type=&#39;release&#39; -F client_payload[version]=v2.0.0&quot;)
+  Bash(&quot;gh api repos/org/backend/dispatches --method POST -f event_type=&#39;release&#39; -F client_payload[version]=v2.1.0&quot;)
+  Bash(&quot;gh api repos/org/cli/dispatches --method POST -f event_type=&#39;release&#39; -F client_payload[version]=v1.5.0&quot;)
+
+  // Monitor all releases
+  mcp__claude-flow__swarm_monitor { interval: 5, duration: 300 }
+</code></pre>
+<h3>Hotfix Emergency Procedures</h3>
+<h4>Emergency Hotfix Workflow</h4>
+<pre><code class="language-bash"># Fast-track critical bug fix
+npx claude-flow github emergency-release \
+  --issue 789 \
+  --severity critical \
+  --target-version v1.2.4 \
+  --cherry-pick-commits \
+  --bypass-checks security-only \
+  --fast-track \
+  --notify-all
+</code></pre>
+<h4>Automated Hotfix Process</h4>
+<pre><code class="language-javascript">[Single Message - Emergency Hotfix]:
+  // Create hotfix branch from last stable release
+  Bash(&quot;git checkout -b hotfix/v1.2.4 v1.2.3&quot;)
+
+  // Cherry-pick critical fixes
+  Bash(&quot;git cherry-pick abc123def&quot;)
+
+  // Fast validation
+  Bash(&quot;npm run test:critical &amp;&amp; npm run build&quot;)
+
+  // Create emergency release
+  Bash(`gh release create v1.2.4 \
+    --title &quot;HOTFIX v1.2.4: Critical Security Patch&quot; \
+    --notes &quot;Emergency release addressing CVE-2024-XXXX&quot; \
+    --prerelease=false`)
+
+  // Immediate deployment
+  Bash(&quot;npm publish --tag hotfix&quot;)
+
+  // Notify stakeholders
+  Bash(`gh issue create \
+    --title &quot;🚨 HOTFIX v1.2.4 Deployed&quot; \
+    --body &quot;Critical security patch deployed. Please update immediately.&quot; \
+    --label &quot;critical,security,hotfix&quot;`)
+</code></pre>
+<hr>
+<h2>Progressive Disclosure: Level 4 - Enterprise Features</h2>
+<h3>Release Configuration Management</h3>
+<h4>Comprehensive Release Config</h4>
+<pre><code class="language-yaml"># .github/release-swarm.yml
+version: 2.0.0
+
+release:
+  versioning:
+    strategy: semantic
+    breaking-keywords: [&quot;BREAKING&quot;, &quot;BREAKING CHANGE&quot;, &quot;!&quot;]
+    feature-keywords: [&quot;feat&quot;, &quot;feature&quot;]
+    fix-keywords: [&quot;fix&quot;, &quot;bugfix&quot;]
+
+  changelog:
+    sections:
+      - title: &quot;🚀 Features&quot;
+        labels: [&quot;feature&quot;, &quot;enhancement&quot;]
+        emoji: true
+      - title: &quot;🐛 Bug Fixes&quot;
+        labels: [&quot;bug&quot;, &quot;fix&quot;]
+      - title: &quot;💥 Breaking Changes&quot;
+        labels: [&quot;breaking&quot;]
+        highlight: true
+      - title: &quot;📚 Documentation&quot;
+        labels: [&quot;docs&quot;, &quot;documentation&quot;]
+      - title: &quot;⚡ Performance&quot;
+        labels: [&quot;performance&quot;, &quot;optimization&quot;]
+      - title: &quot;🔒 Security&quot;
+        labels: [&quot;security&quot;]
+        priority: critical
+
+  artifacts:
+    - name: npm-package
+      build: npm run build
+      test: npm run test:all
+      publish: npm publish
+      registry: https://registry.npmjs.org
+
+    - name: docker-image
+      build: docker build -t app:$VERSION .
+      test: docker run app:$VERSION npm test
+      publish: docker push app:$VERSION
+      platforms: [linux/amd64, linux/arm64]
+
+    - name: binaries
+      build: ./scripts/build-binaries.sh
+      platforms: [linux, macos, windows]
+      architectures: [x64, arm64]
+      upload: github-release
+      sign: true
+
+  validation:
+    pre-release:
+      - lint: npm run lint
+      - typecheck: npm run typecheck
+      - unit-tests: npm run test:unit
+      - integration-tests: npm run test:integration
+      - security-scan: npm audit
+      - license-check: npm run license-check
+
+    post-release:
+      - smoke-tests: npm run test:smoke
+      - deployment-validation: ./scripts/validate-deployment.sh
+      - performance-baseline: npm run benchmark
+
+  deployment:
+    environments:
+      - name: staging
+        auto-deploy: true
+        validation: npm run test:e2e
+        approval: false
+
+      - name: production
+        auto-deploy: false
+        approval-required: true
+        approvers: [&quot;release-manager&quot;, &quot;tech-lead&quot;]
+        rollback-enabled: true
+        health-checks:
+          - endpoint: /health
+            expected: 200
+            timeout: 30s
+
+  monitoring:
+    metrics:
+      - error-rate: &lt;1%
+      - latency-p95: &lt;500ms
+      - availability: &gt;99.9%
+      - memory-usage: &lt;80%
+
+    alerts:
+      - type: slack
+        channel: releases
+        on: [deploy, rollback, error]
+      - type: email
+        recipients: [&quot;team@company.com&quot;]
+        on: [critical-error, rollback]
+      - type: pagerduty
+        service: production-releases
+        on: [critical-error]
+
+  rollback:
+    auto-rollback:
+      triggers:
+        - error-rate &gt; 5%
+        - latency-p99 &gt; 2000ms
+        - availability &lt; 99%
+      grace-period: 5m
+
+    manual-rollback:
+      preserve-data: true
+      notify-users: true
+      create-incident: true
+</code></pre>
+<h3>Advanced Testing Strategies</h3>
+<h4>Comprehensive Validation Suite</h4>
+<pre><code class="language-bash"># Pre-release validation with all checks
+npx claude-flow github release-validate \
+  --checks &quot;
+    version-conflicts,
+    dependency-compatibility,
+    api-breaking-changes,
+    security-vulnerabilities,
+    performance-regression,
+    documentation-completeness,
+    license-compliance,
+    backwards-compatibility
+  &quot; \
+  --block-on-failure \
+  --generate-report \
+  --upload-results
+</code></pre>
+<h4>Backward Compatibility Testing</h4>
+<pre><code class="language-bash"># Test against previous versions
+npx claude-flow github compat-test \
+  --previous-versions &quot;v1.0,v1.1,v1.2&quot; \
+  --api-contracts \
+  --data-migrations \
+  --integration-tests \
+  --generate-report
+</code></pre>
+<h4>Performance Regression Detection</h4>
+<pre><code class="language-bash"># Benchmark against baseline
+npx claude-flow github performance-test \
+  --baseline v1.9.0 \
+  --candidate v2.0.0 \
+  --metrics &quot;throughput,latency,memory,cpu&quot; \
+  --threshold 5% \
+  --fail-on-regression
+</code></pre>
+<h3>Release Monitoring &amp; Analytics</h3>
+<h4>Real-Time Release Monitoring</h4>
+<pre><code class="language-bash"># Monitor release health post-deployment
+npx claude-flow github release-monitor \
+  --version v2.0.0 \
+  --metrics &quot;error-rate,latency,throughput,adoption&quot; \
+  --alert-thresholds \
+  --duration 24h \
+  --export-dashboard
+</code></pre>
+<h4>Release Analytics &amp; Insights</h4>
+<pre><code class="language-bash"># Analyze release performance and adoption
+npx claude-flow github release-analytics \
+  --version v2.0.0 \
+  --compare-with v1.9.0 \
+  --metrics &quot;adoption,performance,stability,feedback&quot; \
+  --generate-insights \
+  --export-report
+</code></pre>
+<h4>Automated Rollback Configuration</h4>
+<pre><code class="language-bash"># Configure intelligent auto-rollback
+npx claude-flow github rollback-config \
+  --triggers &#39;{
+    &quot;error-rate&quot;: &quot;&gt;5%&quot;,
+    &quot;latency-p99&quot;: &quot;&gt;1000ms&quot;,
+    &quot;availability&quot;: &quot;&lt;99.9%&quot;,
+    &quot;failed-health-checks&quot;: &quot;&gt;3&quot;
+  }&#39; \
+  --grace-period 5m \
+  --notify-on-rollback \
+  --preserve-metrics
+</code></pre>
+<h3>Security &amp; Compliance</h3>
+<h4>Security Scanning</h4>
+<pre><code class="language-bash"># Comprehensive security validation
+npx claude-flow github release-security \
+  --scan-dependencies \
+  --check-secrets \
+  --audit-permissions \
+  --sign-artifacts \
+  --sbom-generation \
+  --vulnerability-report
+</code></pre>
+<h4>Compliance Validation</h4>
+<pre><code class="language-bash"># Ensure regulatory compliance
+npx claude-flow github release-compliance \
+  --standards &quot;SOC2,GDPR,HIPAA&quot; \
+  --license-audit \
+  --data-governance \
+  --audit-trail \
+  --generate-attestation
+</code></pre>
+<hr>
+<h2>GitHub Actions Integration</h2>
+<h3>Complete Release Workflow</h3>
+<pre><code class="language-yaml"># .github/workflows/release.yml
+name: Intelligent Release Workflow
+on:
+  push:
+    tags: [&#39;v*&#39;]
+
+jobs:
+  release-orchestration:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      issues: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: &#39;20&#39;
+          cache: &#39;npm&#39;
+
+      - name: Authenticate GitHub CLI
+        run: echo &quot;${{ secrets.GITHUB_TOKEN }}&quot; | gh auth login --with-token
+
+      - name: Initialize Release Swarm
+        run: |
+          # Extract version from tag
+          RELEASE_TAG=${{ github.ref_name }}
+          PREV_TAG=$(gh release list --limit 2 --json tagName -q &#39;.[1].tagName&#39;)
+
+          # Get merged PRs for changelog
+          PRS=$(gh pr list --state merged --base main --json number,title,labels,author,mergedAt \
+            --jq &quot;.[] | select(.mergedAt &gt; \&quot;$(gh release view $PREV_TAG --json publishedAt -q .publishedAt)\&quot;)&quot;)
+
+          # Get commit history
+          COMMITS=$(gh api repos/${{ github.repository }}/compare/${PREV_TAG}...HEAD \
+            --jq &#39;.commits[].commit.message&#39;)
+
+          # Initialize swarm coordination
+          npx claude-flow@alpha swarm init --topology hierarchical
+
+          # Store release context
+          echo &quot;$PRS&quot; &gt; /tmp/release-prs.json
+          echo &quot;$COMMITS&quot; &gt; /tmp/release-commits.txt
+
+      - name: Generate Release Changelog
+        run: |
+          # Generate intelligent changelog
+          CHANGELOG=$(npx claude-flow@alpha github changelog \
+            --prs &quot;$(cat /tmp/release-prs.json)&quot; \
+            --commits &quot;$(cat /tmp/release-commits.txt)&quot; \
+            --from $PREV_TAG \
+            --to $RELEASE_TAG \
+            --categorize \
+            --add-migration-guide \
+            --format markdown)
+
+          echo &quot;$CHANGELOG&quot; &gt; RELEASE_CHANGELOG.md
+
+      - name: Build Release Artifacts
+        run: |
+          # Install dependencies
+          npm ci
+
+          # Run comprehensive validation
+          npm run lint
+          npm run typecheck
+          npm run test:all
+          npm run build
+
+          # Build platform-specific binaries
+          npx claude-flow@alpha github release-build \
+            --platforms &quot;linux,macos,windows&quot; \
+            --architectures &quot;x64,arm64&quot; \
+            --parallel
+
+      - name: Security Scan
+        run: |
+          # Run security validation
+          npm audit --audit-level=moderate
+
+          npx claude-flow@alpha github release-security \
+            --scan-dependencies \
+            --check-secrets \
+            --sign-artifacts
+
+      - name: Create GitHub Release
+        run: |
+          # Update release with generated changelog
+          gh release edit ${{ github.ref_name }} \
+            --notes &quot;$(cat RELEASE_CHANGELOG.md)&quot; \
+            --draft=false
+
+          # Upload all artifacts
+          for file in dist/*; do
+            gh release upload ${{ github.ref_name }} &quot;$file&quot;
+          done
+
+      - name: Deploy to Package Registries
+        run: |
+          # Publish to npm
+          echo &quot;//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}&quot; &gt; .npmrc
+          npm publish
+
+          # Build and push Docker images
+          docker build -t ${{ github.repository }}:${{ github.ref_name }} .
+          docker push ${{ github.repository }}:${{ github.ref_name }}
+
+      - name: Post-Release Validation
+        run: |
+          # Run smoke tests
+          npm run test:smoke
+
+          # Validate deployment
+          npx claude-flow@alpha github release-validate \
+            --version ${{ github.ref_name }} \
+            --smoke-tests \
+            --health-checks
+
+      - name: Create Release Announcement
+        run: |
+          # Create announcement issue
+          gh issue create \
+            --title &quot;🎉 Released ${{ github.ref_name }}&quot; \
+            --body &quot;$(cat RELEASE_CHANGELOG.md)&quot; \
+            --label &quot;announcement,release&quot;
+
+          # Notify via discussion
+          gh api repos/${{ github.repository }}/discussions \
+            --method POST \
+            -f title=&quot;Release ${{ github.ref_name }} Now Available&quot; \
+            -f body=&quot;$(cat RELEASE_CHANGELOG.md)&quot; \
+            -f category_id=&quot;$(gh api repos/${{ github.repository }}/discussions/categories --jq &#39;.[] | select(.slug==&quot;announcements&quot;) | .id&#39;)&quot;
+
+      - name: Monitor Release
+        run: |
+          # Start release monitoring
+          npx claude-flow@alpha github release-monitor \
+            --version ${{ github.ref_name }} \
+            --duration 1h \
+            --alert-on-errors &amp;
+</code></pre>
+<h3>Hotfix Workflow</h3>
+<pre><code class="language-yaml"># .github/workflows/hotfix.yml
+name: Emergency Hotfix Workflow
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  emergency-hotfix:
+    if: contains(github.event.issue.labels.*.name, &#39;critical-hotfix&#39;)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Hotfix Branch
+        run: |
+          LAST_STABLE=$(gh release list --limit 1 --json tagName -q &#39;.[0].tagName&#39;)
+          HOTFIX_VERSION=$(echo $LAST_STABLE | awk -F. &#39;{print $1&quot;.&quot;$2&quot;.&quot;$3+1}&#39;)
+
+          git checkout -b hotfix/$HOTFIX_VERSION $LAST_STABLE
+
+      - name: Fast-Track Testing
+        run: |
+          npm ci
+          npm run test:critical
+          npm run build
+
+      - name: Emergency Release
+        run: |
+          npx claude-flow@alpha github emergency-release \
+            --issue ${{ github.event.issue.number }} \
+            --severity critical \
+            --fast-track \
+            --notify-all
+</code></pre>
+<hr>
+<h2>Best Practices &amp; Patterns</h2>
+<h3>Release Planning Guidelines</h3>
+<h4>1. Regular Release Cadence</h4>
+<ul>
+<li><strong>Weekly</strong>: Patch releases with bug fixes</li>
+<li><strong>Bi-weekly</strong>: Minor releases with features</li>
+<li><strong>Quarterly</strong>: Major releases with breaking changes</li>
+<li><strong>On-demand</strong>: Hotfixes for critical issues</li>
+</ul>
+<h4>2. Feature Freeze Strategy</h4>
+<ul>
+<li>Code freeze 3 days before release</li>
+<li>Only critical bug fixes allowed</li>
+<li>Beta testing period for major releases</li>
+<li>Stakeholder communication plan</li>
+</ul>
+<h4>3. Version Management Rules</h4>
+<ul>
+<li>Strict semantic versioning compliance</li>
+<li>Breaking changes only in major versions</li>
+<li>Deprecation warnings one minor version ahead</li>
+<li>Cross-package version synchronization</li>
+</ul>
+<h3>Automation Recommendations</h3>
+<h4>1. Comprehensive CI/CD Pipeline</h4>
+<ul>
+<li>Automated testing at every stage</li>
+<li>Security scanning before release</li>
+<li>Performance benchmarking</li>
+<li>Documentation generation</li>
+</ul>
+<h4>2. Progressive Deployment</h4>
+<ul>
+<li>Canary releases for early detection</li>
+<li>Staged rollouts with monitoring</li>
+<li>Automated health checks</li>
+<li>Quick rollback mechanisms</li>
+</ul>
+<h4>3. Monitoring &amp; Observability</h4>
+<ul>
+<li>Real-time error tracking</li>
+<li>Performance metrics collection</li>
+<li>User adoption analytics</li>
+<li>Feedback collection automation</li>
+</ul>
+<h3>Documentation Standards</h3>
+<h4>1. Changelog Requirements</h4>
+<ul>
+<li>Categorized changes by type</li>
+<li>Breaking changes highlighted</li>
+<li>Migration guides for major versions</li>
+<li>Contributor attribution</li>
+</ul>
+<h4>2. Release Notes Content</h4>
+<ul>
+<li>High-level feature summaries</li>
+<li>Detailed technical changes</li>
+<li>Upgrade instructions</li>
+<li>Known issues and limitations</li>
+</ul>
+<h4>3. API Documentation</h4>
+<ul>
+<li>Automated API doc generation</li>
+<li>Example code updates</li>
+<li>Deprecation notices</li>
+<li>Version compatibility matrix</li>
+</ul>
+<hr>
+<h2>Troubleshooting &amp; Common Issues</h2>
+<h3>Issue: Failed Release Build</h3>
+<pre><code class="language-bash"># Debug build failures
+npx claude-flow@alpha diagnostic-run \
+  --component build \
+  --verbose
+
+# Retry with isolated environment
+docker run --rm -v $(pwd):/app node:20 \
+  bash -c &quot;cd /app &amp;&amp; npm ci &amp;&amp; npm run build&quot;
+</code></pre>
+<h3>Issue: Test Failures in CI</h3>
+<pre><code class="language-bash"># Run tests with detailed output
+npm run test -- --verbose --coverage
+
+# Check for environment-specific issues
+npm run test:ci
+
+# Compare local vs CI environment
+npx claude-flow@alpha github compat-test \
+  --environments &quot;local,ci&quot; \
+  --compare
+</code></pre>
+<h3>Issue: Deployment Rollback Needed</h3>
+<pre><code class="language-bash"># Immediate rollback to previous version
+npx claude-flow@alpha github rollback \
+  --to-version v1.9.9 \
+  --reason &quot;Critical bug in v2.0.0&quot; \
+  --preserve-data \
+  --notify-users
+
+# Investigate rollback cause
+npx claude-flow@alpha github release-analytics \
+  --version v2.0.0 \
+  --identify-issues
+</code></pre>
+<h3>Issue: Version Conflicts</h3>
+<pre><code class="language-bash"># Check and resolve version conflicts
+npx claude-flow@alpha github release-validate \
+  --checks version-conflicts \
+  --auto-resolve
+
+# Align multi-package versions
+npx claude-flow@alpha github version-sync \
+  --packages &quot;package-a,package-b&quot; \
+  --strategy semantic
+</code></pre>
+<hr>
+<h2>Performance Metrics &amp; Benchmarks</h2>
+<h3>Expected Performance</h3>
+<ul>
+<li><strong>Release Planning</strong>: &lt; 2 minutes</li>
+<li><strong>Build Process</strong>: 3-8 minutes (varies by project)</li>
+<li><strong>Test Execution</strong>: 5-15 minutes</li>
+<li><strong>Deployment</strong>: 2-5 minutes per target</li>
+<li><strong>Complete Pipeline</strong>: 15-30 minutes</li>
+</ul>
+<h3>Optimization Tips</h3>
+<ol>
+<li><strong>Parallel Execution</strong>: Use swarm coordination for concurrent tasks</li>
+<li><strong>Caching</strong>: Enable build and dependency caching</li>
+<li><strong>Incremental Builds</strong>: Only rebuild changed components</li>
+<li><strong>Test Optimization</strong>: Run critical tests first, full suite in parallel</li>
+</ol>
+<h3>Success Metrics</h3>
+<ul>
+<li><strong>Release Frequency</strong>: Target weekly minor releases</li>
+<li><strong>Lead Time</strong>: &lt; 2 hours from commit to production</li>
+<li><strong>Failure Rate</strong>: &lt; 2% of releases require rollback</li>
+<li><strong>MTTR</strong>: &lt; 30 minutes for critical hotfixes</li>
+</ul>
+<hr>
+<h2>Related Resources</h2>
+<h3>Documentation</h3>
+<ul>
+<li><a href="https://cli.github.com/manual/">GitHub CLI Documentation</a></li>
+<li><a href="https://semver.org/">Semantic Versioning Spec</a></li>
+<li><a href="../../docs/sparc-methodology.md">Claude Flow SPARC Guide</a></li>
+<li><a href="../../docs/swarm-patterns.md">Swarm Coordination Patterns</a></li>
+</ul>
+<h3>Related Skills</h3>
+<ul>
+<li><strong>github-pr-management</strong>: PR review and merge automation</li>
+<li><strong>github-workflow-automation</strong>: CI/CD workflow orchestration</li>
+<li><strong>multi-repo-coordination</strong>: Cross-repository synchronization</li>
+<li><strong>deployment-orchestration</strong>: Advanced deployment strategies</li>
+</ul>
+<h3>Support &amp; Community</h3>
+<ul>
+<li>Issues: <a href="https://github.com/ruvnet/claude-flow/issues">https://github.com/ruvnet/claude-flow/issues</a></li>
+<li>Discussions: <a href="https://github.com/ruvnet/claude-flow/discussions">https://github.com/ruvnet/claude-flow/discussions</a></li>
+<li>Documentation: <a href="https://claude-flow.dev/docs">https://claude-flow.dev/docs</a></li>
+</ul>
+<hr>
+<h2>Appendix: Release Checklist Template</h2>
+<h3>Pre-Release Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Version numbers updated across all packages</li>
+<li><input disabled="" type="checkbox"> Changelog generated and reviewed</li>
+<li><input disabled="" type="checkbox"> Breaking changes documented with migration guide</li>
+<li><input disabled="" type="checkbox"> All tests passing (unit, integration, e2e)</li>
+<li><input disabled="" type="checkbox"> Security scan completed with no critical issues</li>
+<li><input disabled="" type="checkbox"> Performance benchmarks within acceptable range</li>
+<li><input disabled="" type="checkbox"> Documentation updated (API docs, README, examples)</li>
+<li><input disabled="" type="checkbox"> Release notes drafted and reviewed</li>
+<li><input disabled="" type="checkbox"> Stakeholders notified of upcoming release</li>
+<li><input disabled="" type="checkbox"> Deployment plan reviewed and approved</li>
+</ul>
+<h3>Release Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Release branch created and validated</li>
+<li><input disabled="" type="checkbox"> CI/CD pipeline completed successfully</li>
+<li><input disabled="" type="checkbox"> Artifacts built and verified</li>
+<li><input disabled="" type="checkbox"> GitHub release created with proper notes</li>
+<li><input disabled="" type="checkbox"> Packages published to registries</li>
+<li><input disabled="" type="checkbox"> Docker images pushed to container registry</li>
+<li><input disabled="" type="checkbox"> Deployment to staging successful</li>
+<li><input disabled="" type="checkbox"> Smoke tests passing in staging</li>
+<li><input disabled="" type="checkbox"> Production deployment completed</li>
+<li><input disabled="" type="checkbox"> Health checks passing</li>
+</ul>
+<h3>Post-Release Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Release announcement published</li>
+<li><input disabled="" type="checkbox"> Monitoring dashboards reviewed</li>
+<li><input disabled="" type="checkbox"> Error rates within normal range</li>
+<li><input disabled="" type="checkbox"> Performance metrics stable</li>
+<li><input disabled="" type="checkbox"> User feedback collected</li>
+<li><input disabled="" type="checkbox"> Documentation links verified</li>
+<li><input disabled="" type="checkbox"> Release retrospective scheduled</li>
+<li><input disabled="" type="checkbox"> Next release planning initiated</li>
+</ul>
+<hr>
+<p><strong>Version</strong>: 2.0.0
+<strong>Last Updated</strong>: 2025-10-19
+<strong>Maintained By</strong>: Claude Flow Team</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

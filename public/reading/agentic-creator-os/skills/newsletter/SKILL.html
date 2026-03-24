@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Newsletter Writing</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/skills/newsletter/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Newsletter Writing</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2Fskills%2Fnewsletter">newsletter</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Newsletter Writing
+description: Create engaging email newsletters that nurture subscribers and drive conversions
+version: 1.0.0
+triggers:
+  - &quot;newsletter&quot;
+  - &quot;email newsletter&quot;
+  - &quot;weekly email&quot;
+  - &quot;email sequence&quot;
+  - &quot;send newsletter&quot;
+  - &quot;skill:newsletter&quot;</h2>
+<h1>Newsletter Writing</h1>
+<h2>Purpose</h2>
+<p>Build and nurture an email audience through compelling newsletters that:</p>
+<ul>
+<li>Provide consistent value to subscribers</li>
+<li>Establish trust and authority</li>
+<li>Drive traffic to owned platforms</li>
+<li>Convert readers into customers</li>
+</ul>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Weekly newsletters for ongoing engagement</li>
+<li>Launch announcements for products/courses</li>
+<li>Nurture sequences for new subscribers</li>
+<li>Re-engagement campaigns for cold leads</li>
+<li>Product updates and announcements</li>
+<li>Curated content roundups</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>The Newsletter Funnel</h3>
+<pre><code class="language-typescript">interface NewsletterFunnel {
+  awareness: {
+    content: &quot;Top-of-funnel value posts&quot;;
+    frequency: &quot;Weekly&quot;;
+    goal: &quot;Build trust&quot;;
+  };
+  consideration: {
+    content: &quot;Deep-dive content, case studies&quot;;
+    frequency: &quot;2x weekly&quot;;
+    goal: &quot;Demonstrate expertise&quot;;
+  };
+  conversion: {
+    content: &quot;Product launches, limited offers&quot;;
+    frequency: &quot;As needed&quot;;
+    goal: &quot;Drive sales&quot;;
+  };
+  retention: {
+    content: &quot;Onboarding, exclusive content&quot;;
+    frequency: &quot;Post-purchase&quot;;
+    goal: &quot;Customer success&quot;;
+  };
+}
+</code></pre>
+<h3>Email Anatomy</h3>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│ PREHEADER (Preview text - 40-80 chars)                  │
+├─────────────────────────────────────────────────────────┤
+│ SUBJECT LINE (30-50 chars - creates curiosity)          │
+│ PREHEADER text (40-80 chars - supplements subject)      │
+├─────────────────────────────────────────────────────────┤
+│ GREETING (Personal, warm - &quot;Hey [Name]&quot;)                │
+├─────────────────────────────────────────────────────────┤
+│ HOOK (1-2 sentences - grab attention)                   │
+├─────────────────────────────────────────────────────────┤
+│ BODY CONTENT (Scannable, valuable)                      │
+│ • Bullet points for readability                         │
+│ • Short paragraphs (2-3 sentences)                      │
+│ • Bold key phrases                                      │
+├─────────────────────────────────────────────────────────┤
+│ CTA (Clear action - 1 primary, optional secondary)      │
+├─────────────────────────────────────────────────────────┤
+│ SIGNATURE (Consistent, builds recognition)              │
+├─────────────────────────────────────────────────────────┤
+│ PS (Often highest-read section)                         │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: Weekly Newsletter Structure</h3>
+<pre><code class="language-markdown">Subject: [Week of Month Day]: [Intriguing teaser]
+
+Preheader: [Complementary teaser - 50 chars]
+
+---
+
+Hey [Name],
+
+**[HOOK - 1-2 sentences that grab attention]**
+
+**[SECTION 1: Main Value]**
+[Headline or subtopic]
+
+[Brief explanation with 2-3 paragraphs]
+
+**[SECTION 2: Deep Dive]**
+[Headline or subtopic]
+
+[Practical takeaways with examples]
+
+**[SECTION 3: Curated/Found]**
+[Headline]
+
+- [Item 1 with brief description]
+- [Item 2 with brief description]
+- [Item 3 with brief description]
+
+**[SECTION 4: Upcoming/Preview]**
+[What&#39;s coming next week or month]
+
+**[CTA]**
+[Primary action you want them to take]
+
+Best,
+[Your Name]
+
+P.S. [P.S. often has highest open rate - include extra value or reminder]
+
+---
+
+[Unsubscribe] [Privacy] [Web Version]
+</code></pre>
+<h3>Pattern 2: Product Launch Email</h3>
+<pre><code class="language-markdown">Subject: 🚀 [PRODUCT NAME] is here (and it&#39;s a game-changer)
+
+Preheader: After 6 months of development, [result]
+
+---
+
+Hey [Name],
+
+**[BIG ANNOUNCEMENT - 1 sentence]**
+
+[Product name] is finally ready.
+
+Here&#39;s what it does:
+
+✅ [Key benefit 1]
+✅ [Key benefit 2]  
+✅ [Key benefit 3]
+
+**Why I built this:**
+
+[Personal story - 3-4 sentences connecting to reader&#39;s pain point]
+
+**What early testers say:**
+
+&gt; &quot;[Powerful testimonial quote]&quot;
+
+**Launch offer (72 hours only):**
+- [Discount or bonus]
+- [Best price of the year]
+- [Exclusive access]
+
+→ [Get [Product Name] now →]
+
+No questions asked, 30-day money-back guarantee.
+
+[Your Name]
+
+P.S. [Urgency element - limited quantity or time]
+
+---
+
+**[EMAIL FOOTER]**
+</code></pre>
+<h3>Pattern 3: Welcome Sequence Email</h3>
+<pre><code class="language-markdown">Email 1: Welcome (Day 0)
+---
+Subject: Welcome to the [Community Name] family! 🎉
+
+Hey [Name],
+
+Thanks for joining [NUMBER] others who receive [newsletter name].
+
+Here&#39;s what you can expect:
+
+📈 [Content type 1 - e.g., &quot;Weekly insights on [topic]&quot;]
+🎯 [Content type 2 - e.g., &quot;Actionable frameworks&quot;]
+🌟 [Content type 3 - e.g., &quot;Exclusive offers&quot;]
+
+To get you started, here&#39;s my best [resource]:
+
+[Link to best free resource]
+
+Looking forward to having you in the community.
+
+[Your Name]
+
+---
+
+Email 2: Your Story (Day 2)
+---
+Subject: My story and why [newsletter] exists
+
+Hey [Name],
+
+Before we dive into [topic], I want you to know who I am and why I send this newsletter.
+
+[3-4 paragraphs about your background, transformation, mission]
+
+[Connect to reader&#39;s potential transformation]
+
+This newsletter exists to help you [reader outcome].
+
+[CTA to reply with question]
+
+[Your Name]
+
+---
+
+Email 3: The Framework (Day 5)
+---
+Subject: The exact framework I use to [result]
+
+Hey [Name],
+
+I promised you actionable frameworks.
+
+Here&#39;s the [framework name] I use to [result]:
+
+[Framework steps with explanation]
+
+I&#39;ve put together a worksheet to help you implement this:
+
+[Link to worksheet]
+
+Let me know what you think.
+
+[Your Name]
+</code></pre>
+<h2>Step-by-Step Process</h2>
+<ol>
+<li><p><strong>List Segmentation</strong></p>
+<ul>
+<li>Identify subscriber categories</li>
+<li>Personalize based on behavior</li>
+<li>Tag based on engagement</li>
+<li>Segment for targeted campaigns</li>
+</ul>
+</li>
+<li><p><strong>Content Planning</strong></p>
+<ul>
+<li>Plan content calendar monthly</li>
+<li>Batch write emails in sessions</li>
+<li>Create reusable templates</li>
+<li>Build email sequence templates</li>
+</ul>
+</li>
+<li><p><strong>Subject Line Optimization</strong></p>
+<ul>
+<li>A/B test subject lines</li>
+<li>Use curiosity and specificity</li>
+<li>Avoid spam trigger words</li>
+<li>Keep under 50 characters</li>
+</ul>
+</li>
+<li><p><strong>Write and Design</strong></p>
+<ul>
+<li>Use pre-written templates</li>
+<li>Write in conversational tone</li>
+<li>Optimize for mobile (short paragraphs)</li>
+<li>Include one clear CTA</li>
+</ul>
+</li>
+<li><p><strong>Test and Iterate</strong></p>
+<ul>
+<li>A/B test send times</li>
+<li>Test subject lines and preheaders</li>
+<li>Monitor open rates and CTR</li>
+<li>Continuously improve based on data</li>
+</ul>
+</li>
+</ol>
+<h2>FrankX Application</h2>
+<pre><code class="language-markdown">Subject: You&#39;re not broken. You&#39;re just undisciplined. Here&#39;s the fix.
+
+Hey [Name],
+
+The self-improvement industry wants you to believe you&#39;re broken.
+
+You&#39;re not.
+
+You&#39;re undisciplined.
+
+And discipline is a skill that can be trained.
+
+**Here&#39;s the framework:**
+
+The 5 Pillars of Transformative Discipline:
+
+1/ Identity first
+Who do you need to become?
+
+2/ Environment design
+Your surroundings shape your choices.
+
+3. Micro-commitments
+Start so small you can&#39;t fail.
+
+4. Accountability systems
+External structures for internal change.
+
+5. Progress tracking
+What gets measured gets managed.
+
+This works for any transformation:
+
+→ Health
+→ Wealth
+→ Relationships
+→ Consciousness
+
+The golden age demands golden discipline.
+
+[Your CTA here]
+
+[Your Name]
+
+P.S. Reply with your biggest discipline challenge. I read every response.
+</code></pre>
+<h2>Anti-Patterns</h2>
+<table>
+<thead>
+<tr>
+<th>Bad Practice</th>
+<th>Why It&#39;s Bad</th>
+<th>Better Approach</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Long paragraphs</td>
+<td>Mobile readers skip</td>
+<td>2-3 sentences max</td>
+</tr>
+<tr>
+<td>Multiple CTAs</td>
+<td>Confuses reader</td>
+<td>One primary CTA</td>
+</tr>
+<tr>
+<td>Clickbait subject lines</td>
+<td>Damages trust</td>
+<td>Deliver on promise</td>
+</tr>
+<tr>
+<td>Inconsistent sending</td>
+<td>Loses audience</td>
+<td>Regular schedule</td>
+</tr>
+<tr>
+<td>Ignoring unsubscribes</td>
+<td>Poor list hygiene</td>
+<td>Welcome non-openers</td>
+</tr>
+<tr>
+<td>No personalization</td>
+<td>Feels impersonal</td>
+<td>Use name, segment by interest</td>
+</tr>
+</tbody></table>
+<h2>Quick Commands</h2>
+<pre><code class="language-bash"># Create weekly newsletter
+skill:newsletter, write a weekly newsletter about [THEME]
+
+# Write product launch email
+skill:newsletter, create a product launch email for [PRODUCT]
+
+# Build welcome sequence
+skill:newsletter, create a 5-email welcome sequence
+
+# Repurpose blog to newsletter
+skill:newsletter, turn my blog post [URL] into a newsletter
+
+# Write newsletter about topic
+skill:newsletter, write about [TOPIC] for my email list
+</code></pre>
+<h2>Related Skills</h2>
+<ul>
+<li><code>blog-writing</code> - Create content to repurpose</li>
+<li><code>social-media</code> - Promote newsletters on social</li>
+<li><code>content-strategy</code> - Plan email content calendar</li>
+<li><code>seo-optimization</code> - Optimize newsletter links</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><code>resources/templates.md</code> - Email templates by type</li>
+<li><code>resources/subject-lines.md</code> - Proven subject line formulas</li>
+<li><code>resources/welcome-sequence.md</code> - Welcome email sequences</li>
+<li><code>resources/sequence-triggers.md</code> - Automated email triggers</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

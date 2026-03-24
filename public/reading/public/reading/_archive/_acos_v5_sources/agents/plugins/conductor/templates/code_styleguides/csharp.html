@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>C# Style Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/templates/code_styleguides/csharp.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">C# Style Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates%2Fcode_styleguides">code_styleguides</a> / <span>csharp.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>C# Style Guide</h1>
+<p>C# conventions and best practices for .NET development.</p>
+<h2>Naming Conventions</h2>
+<h3>General Rules</h3>
+<pre><code class="language-csharp">// PascalCase for public members, types, namespaces
+public class UserService { }
+public void ProcessOrder() { }
+public string FirstName { get; set; }
+
+// camelCase for private fields, parameters, locals
+private readonly ILogger _logger;
+private int _itemCount;
+public void DoWork(string inputValue) { }
+
+// Prefix interfaces with I
+public interface IUserRepository { }
+public interface INotificationService { }
+
+// Suffix async methods with Async
+public async Task&lt;User&gt; GetUserAsync(int id) { }
+public async Task ProcessOrderAsync(Order order) { }
+
+// Constants: PascalCase (not SCREAMING_CASE)
+public const int MaxRetryCount = 3;
+public const string DefaultCurrency = &quot;USD&quot;;
+</code></pre>
+<h3>Field and Property Naming</h3>
+<pre><code class="language-csharp">public class Order
+{
+    // Private fields: underscore prefix + camelCase
+    private readonly IOrderRepository _repository;
+    private int _itemCount;
+
+    // Public properties: PascalCase
+    public int Id { get; set; }
+    public string CustomerName { get; set; }
+    public DateTime CreatedAt { get; init; }
+
+    // Boolean properties: Is/Has/Can prefix
+    public bool IsActive { get; set; }
+    public bool HasDiscount { get; set; }
+    public bool CanEdit { get; }
+}
+</code></pre>
+<h2>Async/Await Patterns</h2>
+<h3>Basic Async Usage</h3>
+<pre><code class="language-csharp">// Always use async/await for I/O operations
+public async Task&lt;User&gt; GetUserAsync(int id)
+{
+    var user = await _repository.FindAsync(id);
+    if (user == null)
+    {
+        throw new NotFoundException($&quot;User {id} not found&quot;);
+    }
+    return user;
+}
+
+// Don&#39;t block on async code
+// Bad
+var user = GetUserAsync(id).Result;
+
+// Good
+var user = await GetUserAsync(id);
+</code></pre>
+<h3>Async Best Practices</h3>
+<pre><code class="language-csharp">// Use ConfigureAwait(false) in library code
+public async Task&lt;Data&gt; FetchDataAsync()
+{
+    var response = await _httpClient.GetAsync(url)
+        .ConfigureAwait(false);
+    return await response.Content.ReadAsAsync&lt;Data&gt;()
+        .ConfigureAwait(false);
+}
+
+// Avoid async void except for event handlers
+// Bad
+public async void ProcessOrder() { }
+
+// Good
+public async Task ProcessOrderAsync() { }
+
+// Event handler exception
+private async void Button_Click(object sender, EventArgs e)
+{
+    try
+    {
+        await ProcessOrderAsync();
+    }
+    catch (Exception ex)
+    {
+        HandleError(ex);
+    }
+}
+</code></pre>
+<h3>Parallel Async Operations</h3>
+<pre><code class="language-csharp">// Execute independent operations in parallel
+public async Task&lt;DashboardData&gt; LoadDashboardAsync()
+{
+    var usersTask = _userService.GetActiveUsersAsync();
+    var ordersTask = _orderService.GetRecentOrdersAsync();
+    var statsTask = _statsService.GetDailyStatsAsync();
+
+    await Task.WhenAll(usersTask, ordersTask, statsTask);
+
+    return new DashboardData
+    {
+        Users = await usersTask,
+        Orders = await ordersTask,
+        Stats = await statsTask
+    };
+}
+
+// Use SemaphoreSlim for throttling
+public async Task ProcessItemsAsync(IEnumerable&lt;Item&gt; items)
+{
+    using var semaphore = new SemaphoreSlim(10); // Max 10 concurrent
+
+    var tasks = items.Select(async item =&gt;
+    {
+        await semaphore.WaitAsync();
+        try
+        {
+            await ProcessItemAsync(item);
+        }
+        finally
+        {
+            semaphore.Release();
+        }
+    });
+
+    await Task.WhenAll(tasks);
+}
+</code></pre>
+<h2>LINQ</h2>
+<h3>Query Syntax vs Method Syntax</h3>
+<pre><code class="language-csharp">// Method syntax (preferred for simple queries)
+var activeUsers = users
+    .Where(u =&gt; u.IsActive)
+    .OrderBy(u =&gt; u.Name)
+    .ToList();
+
+// Query syntax (for complex queries with joins)
+var orderSummary =
+    from order in orders
+    join customer in customers on order.CustomerId equals customer.Id
+    where order.Total &gt; 100
+    group order by customer.Name into g
+    select new { Customer = g.Key, Total = g.Sum(o =&gt; o.Total) };
+</code></pre>
+<h3>LINQ Best Practices</h3>
+<pre><code class="language-csharp">// Use appropriate methods
+var hasItems = items.Any();                    // Not: items.Count() &gt; 0
+var firstOrDefault = items.FirstOrDefault();  // Not: items.First()
+var count = items.Count;                       // Property, not Count()
+
+// Avoid multiple enumerations
+// Bad
+if (items.Any())
+{
+    foreach (var item in items) { }
+}
+
+// Good
+var itemList = items.ToList();
+if (itemList.Count &gt; 0)
+{
+    foreach (var item in itemList) { }
+}
+
+// Project early to reduce memory
+var names = users
+    .Where(u =&gt; u.IsActive)
+    .Select(u =&gt; u.Name)  // Select only what you need
+    .ToList();
+</code></pre>
+<h3>Common LINQ Operations</h3>
+<pre><code class="language-csharp">// Filtering
+var adults = people.Where(p =&gt; p.Age &gt;= 18);
+
+// Transformation
+var names = people.Select(p =&gt; $&quot;{p.FirstName} {p.LastName}&quot;);
+
+// Aggregation
+var total = orders.Sum(o =&gt; o.Amount);
+var average = scores.Average();
+var max = values.Max();
+
+// Grouping
+var byDepartment = employees
+    .GroupBy(e =&gt; e.Department)
+    .Select(g =&gt; new { Department = g.Key, Count = g.Count() });
+
+// Joining
+var result = orders
+    .Join(customers,
+        o =&gt; o.CustomerId,
+        c =&gt; c.Id,
+        (o, c) =&gt; new { Order = o, Customer = c });
+
+// Flattening
+var allOrders = customers.SelectMany(c =&gt; c.Orders);
+</code></pre>
+<h2>Dependency Injection</h2>
+<h3>Service Registration</h3>
+<pre><code class="language-csharp">// In Program.cs or Startup.cs
+public void ConfigureServices(IServiceCollection services)
+{
+    // Transient: new instance each time
+    services.AddTransient&lt;IEmailService, EmailService&gt;();
+
+    // Scoped: one instance per request
+    services.AddScoped&lt;IUserRepository, UserRepository&gt;();
+
+    // Singleton: one instance for app lifetime
+    services.AddSingleton&lt;ICacheService, MemoryCacheService&gt;();
+
+    // Factory registration
+    services.AddScoped&lt;IDbConnection&gt;(sp =&gt;
+    {
+        var config = sp.GetRequiredService&lt;IConfiguration&gt;();
+        return new SqlConnection(config.GetConnectionString(&quot;Default&quot;));
+    });
+}
+</code></pre>
+<h3>Constructor Injection</h3>
+<pre><code class="language-csharp">public class OrderService : IOrderService
+{
+    private readonly IOrderRepository _repository;
+    private readonly ILogger&lt;OrderService&gt; _logger;
+    private readonly IEmailService _emailService;
+
+    public OrderService(
+        IOrderRepository repository,
+        ILogger&lt;OrderService&gt; logger,
+        IEmailService emailService)
+    {
+        _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _emailService = emailService ?? throw new ArgumentNullException(nameof(emailService));
+    }
+
+    public async Task&lt;Order&gt; CreateOrderAsync(OrderRequest request)
+    {
+        _logger.LogInformation(&quot;Creating order for customer {CustomerId}&quot;, request.CustomerId);
+
+        var order = new Order(request);
+        await _repository.SaveAsync(order);
+        await _emailService.SendOrderConfirmationAsync(order);
+
+        return order;
+    }
+}
+</code></pre>
+<h3>Options Pattern</h3>
+<pre><code class="language-csharp">// Configuration class
+public class EmailSettings
+{
+    public string SmtpServer { get; set; }
+    public int Port { get; set; }
+    public string FromAddress { get; set; }
+}
+
+// Registration
+services.Configure&lt;EmailSettings&gt;(
+    configuration.GetSection(&quot;Email&quot;));
+
+// Usage
+public class EmailService
+{
+    private readonly EmailSettings _settings;
+
+    public EmailService(IOptions&lt;EmailSettings&gt; options)
+    {
+        _settings = options.Value;
+    }
+}
+</code></pre>
+<h2>Testing</h2>
+<h3>xUnit Basics</h3>
+<pre><code class="language-csharp">public class CalculatorTests
+{
+    [Fact]
+    public void Add_TwoPositiveNumbers_ReturnsSum()
+    {
+        // Arrange
+        var calculator = new Calculator();
+
+        // Act
+        var result = calculator.Add(2, 3);
+
+        // Assert
+        Assert.Equal(5, result);
+    }
+
+    [Theory]
+    [InlineData(1, 1, 2)]
+    [InlineData(0, 0, 0)]
+    [InlineData(-1, 1, 0)]
+    public void Add_VariousNumbers_ReturnsCorrectSum(int a, int b, int expected)
+    {
+        var calculator = new Calculator();
+        Assert.Equal(expected, calculator.Add(a, b));
+    }
+}
+</code></pre>
+<h3>Mocking with Moq</h3>
+<pre><code class="language-csharp">public class OrderServiceTests
+{
+    private readonly Mock&lt;IOrderRepository&gt; _mockRepository;
+    private readonly Mock&lt;ILogger&lt;OrderService&gt;&gt; _mockLogger;
+    private readonly OrderService _service;
+
+    public OrderServiceTests()
+    {
+        _mockRepository = new Mock&lt;IOrderRepository&gt;();
+        _mockLogger = new Mock&lt;ILogger&lt;OrderService&gt;&gt;();
+        _service = new OrderService(_mockRepository.Object, _mockLogger.Object);
+    }
+
+    [Fact]
+    public async Task GetOrderAsync_ExistingOrder_ReturnsOrder()
+    {
+        // Arrange
+        var expectedOrder = new Order { Id = 1, Total = 100m };
+        _mockRepository
+            .Setup(r =&gt; r.FindAsync(1))
+            .ReturnsAsync(expectedOrder);
+
+        // Act
+        var result = await _service.GetOrderAsync(1);
+
+        // Assert
+        Assert.Equal(expectedOrder.Id, result.Id);
+        _mockRepository.Verify(r =&gt; r.FindAsync(1), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetOrderAsync_NonExistingOrder_ThrowsNotFoundException()
+    {
+        // Arrange
+        _mockRepository
+            .Setup(r =&gt; r.FindAsync(999))
+            .ReturnsAsync((Order)null);
+
+        // Act &amp; Assert
+        await Assert.ThrowsAsync&lt;NotFoundException&gt;(
+            () =&gt; _service.GetOrderAsync(999));
+    }
+}
+</code></pre>
+<h3>Integration Testing</h3>
+<pre><code class="language-csharp">public class ApiIntegrationTests : IClassFixture&lt;WebApplicationFactory&lt;Program&gt;&gt;
+{
+    private readonly HttpClient _client;
+
+    public ApiIntegrationTests(WebApplicationFactory&lt;Program&gt; factory)
+    {
+        _client = factory.CreateClient();
+    }
+
+    [Fact]
+    public async Task GetUsers_ReturnsSuccessAndCorrectContentType()
+    {
+        // Act
+        var response = await _client.GetAsync(&quot;/api/users&quot;);
+
+        // Assert
+        response.EnsureSuccessStatusCode();
+        Assert.Equal(&quot;application/json; charset=utf-8&quot;,
+            response.Content.Headers.ContentType.ToString());
+    }
+}
+</code></pre>
+<h2>Common Patterns</h2>
+<h3>Null Handling</h3>
+<pre><code class="language-csharp">// Null-conditional operators
+var length = customer?.Address?.Street?.Length;
+var name = user?.Name ?? &quot;Unknown&quot;;
+
+// Null-coalescing assignment
+list ??= new List&lt;Item&gt;();
+
+// Pattern matching for null checks
+if (user is not null)
+{
+    ProcessUser(user);
+}
+
+// Guard clauses
+public void ProcessOrder(Order order)
+{
+    ArgumentNullException.ThrowIfNull(order);
+
+    if (order.Items.Count == 0)
+    {
+        throw new ArgumentException(&quot;Order must have items&quot;, nameof(order));
+    }
+
+    // Process...
+}
+</code></pre>
+<h3>Records and Init-Only Properties</h3>
+<pre><code class="language-csharp">// Record for immutable data
+public record User(int Id, string Name, string Email);
+
+// Record with additional members
+public record Order
+{
+    public int Id { get; init; }
+    public string CustomerName { get; init; }
+    public decimal Total { get; init; }
+
+    public bool IsHighValue =&gt; Total &gt; 1000;
+}
+
+// Record mutation via with expression
+var updatedUser = user with { Name = &quot;New Name&quot; };
+</code></pre>
+<h3>Pattern Matching</h3>
+<pre><code class="language-csharp">// Type patterns
+public decimal CalculateDiscount(object customer) =&gt; customer switch
+{
+    PremiumCustomer p =&gt; p.PurchaseTotal * 0.2m,
+    RegularCustomer r when r.YearsActive &gt; 5 =&gt; r.PurchaseTotal * 0.1m,
+    RegularCustomer r =&gt; r.PurchaseTotal * 0.05m,
+    null =&gt; 0m,
+    _ =&gt; throw new ArgumentException(&quot;Unknown customer type&quot;)
+};
+
+// Property patterns
+public string GetShippingOption(Order order) =&gt; order switch
+{
+    { Total: &gt; 100, IsPriority: true } =&gt; &quot;Express&quot;,
+    { Total: &gt; 100 } =&gt; &quot;Standard&quot;,
+    { IsPriority: true } =&gt; &quot;Priority&quot;,
+    _ =&gt; &quot;Economy&quot;
+};
+
+// List patterns (C# 11)
+public bool IsValidSequence(int[] numbers) =&gt; numbers switch
+{
+    [1, 2, 3] =&gt; true,
+    [1, .., 3] =&gt; true,
+    [_, _, ..] =&gt; numbers.Length &gt;= 2,
+    _ =&gt; false
+};
+</code></pre>
+<h3>Disposable Pattern</h3>
+<pre><code class="language-csharp">public class ResourceManager : IDisposable
+{
+    private bool _disposed;
+    private readonly FileStream _stream;
+
+    public ResourceManager(string path)
+    {
+        _stream = File.OpenRead(path);
+    }
+
+    public void DoWork()
+    {
+        ObjectDisposedException.ThrowIf(_disposed, this);
+        // Work with _stream
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (_disposed) return;
+
+        if (disposing)
+        {
+            _stream?.Dispose();
+        }
+
+        _disposed = true;
+    }
+}
+
+// Using statement
+using var manager = new ResourceManager(&quot;file.txt&quot;);
+manager.DoWork();
+</code></pre>
+<h2>Code Organization</h2>
+<h3>File Structure</h3>
+<pre><code class="language-csharp">// One type per file (generally)
+// Filename matches type name: UserService.cs
+
+// Order of members
+public class UserService
+{
+    // 1. Constants
+    private const int MaxRetries = 3;
+
+    // 2. Static fields
+    private static readonly object _lock = new();
+
+    // 3. Instance fields
+    private readonly IUserRepository _repository;
+
+    // 4. Constructors
+    public UserService(IUserRepository repository)
+    {
+        _repository = repository;
+    }
+
+    // 5. Properties
+    public int TotalUsers { get; private set; }
+
+    // 6. Public methods
+    public async Task&lt;User&gt; GetUserAsync(int id) { }
+
+    // 7. Private methods
+    private void ValidateUser(User user) { }
+}
+</code></pre>
+<h3>Project Structure</h3>
+<pre><code>Solution/
+├── src/
+│   ├── MyApp.Api/              # Web API project
+│   ├── MyApp.Core/             # Domain/business logic
+│   ├── MyApp.Infrastructure/   # Data access, external services
+│   └── MyApp.Shared/           # Shared utilities
+├── tests/
+│   ├── MyApp.UnitTests/
+│   └── MyApp.IntegrationTests/
+└── MyApp.sln
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

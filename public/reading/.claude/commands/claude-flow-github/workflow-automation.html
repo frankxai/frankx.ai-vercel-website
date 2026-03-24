@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Workflow Automation - GitHub Actions Integration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/claude-flow-github/workflow-automation.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Workflow Automation - GitHub Actions Integration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fcommands">commands</a> / <a href="index.html#.claude%2Fcommands%2Fclaude-flow-github">claude-flow-github</a> / <span>workflow-automation.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Workflow Automation - GitHub Actions Integration</h1>
+<h2>Overview</h2>
+<p>Integrate AI swarms with GitHub Actions to create intelligent, self-organizing CI/CD pipelines that adapt to your codebase.</p>
+<h2>Core Features</h2>
+<h3>1. Swarm-Powered Actions</h3>
+<pre><code class="language-yaml"># .github/workflows/swarm-ci.yml
+name: Intelligent CI with Swarms
+on: [push, pull_request]
+
+jobs:
+  swarm-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Initialize Swarm
+        uses: ruvnet/swarm-action@v1
+        with:
+          topology: mesh
+          max-agents: 6
+
+      - name: Analyze Changes
+        run: |
+          npx ruv-swarm actions analyze \
+            --commit ${{ github.sha }} \
+            --suggest-tests \
+            --optimize-pipeline
+</code></pre>
+<h3>2. Dynamic Workflow Generation</h3>
+<pre><code class="language-bash"># Generate workflows based on code analysis
+npx ruv-swarm actions generate-workflow \
+  --analyze-codebase \
+  --detect-languages \
+  --create-optimal-pipeline
+</code></pre>
+<h3>3. Intelligent Test Selection</h3>
+<pre><code class="language-yaml"># Smart test runner
+- name: Swarm Test Selection
+  run: |
+    npx ruv-swarm actions smart-test \
+      --changed-files ${{ steps.files.outputs.all }} \
+      --impact-analysis \
+      --parallel-safe
+</code></pre>
+<h2>Workflow Templates</h2>
+<h3>Multi-Language Detection</h3>
+<pre><code class="language-yaml"># .github/workflows/polyglot-swarm.yml
+name: Polyglot Project Handler
+on: push
+
+jobs:
+  detect-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Detect Languages
+        id: detect
+        run: |
+          npx ruv-swarm actions detect-stack \
+            --output json &gt; stack.json
+
+      - name: Dynamic Build Matrix
+        run: |
+          npx ruv-swarm actions create-matrix \
+            --from stack.json \
+            --parallel-builds
+</code></pre>
+<h3>Adaptive Security Scanning</h3>
+<pre><code class="language-yaml"># .github/workflows/security-swarm.yml
+name: Intelligent Security Scan
+on:
+  schedule:
+    - cron: &quot;0 0 * * *&quot;
+  workflow_dispatch:
+
+jobs:
+  security-swarm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Security Analysis Swarm
+        run: |
+          # Use gh CLI for issue creation
+          SECURITY_ISSUES=$(npx ruv-swarm actions security \
+            --deep-scan \
+            --format json)
+
+          # Create issues for complex security problems
+          echo &quot;$SECURITY_ISSUES&quot; | jq -r &#39;.issues[]? | @base64&#39; | while read -r issue; do
+            _jq() {
+              echo ${issue} | base64 --decode | jq -r ${1}
+            }
+            gh issue create \
+              --title &quot;$(_jq &#39;.title&#39;)&quot; \
+              --body &quot;$(_jq &#39;.body&#39;)&quot; \
+              --label &quot;security,critical&quot;
+          done
+</code></pre>
+<h2>Action Commands</h2>
+<h3>Pipeline Optimization</h3>
+<pre><code class="language-bash"># Optimize existing workflows
+npx ruv-swarm actions optimize \
+  --workflow &quot;.github/workflows/ci.yml&quot; \
+  --suggest-parallelization \
+  --reduce-redundancy \
+  --estimate-savings
+</code></pre>
+<h3>Failure Analysis</h3>
+<pre><code class="language-bash"># Analyze failed runs using gh CLI
+gh run view ${{ github.run_id }} --json jobs,conclusion | \
+  npx ruv-swarm actions analyze-failure \
+    --suggest-fixes \
+    --auto-retry-flaky
+
+# Create issue for persistent failures
+if [ $? -ne 0 ]; then
+  gh issue create \
+    --title &quot;CI Failure: Run ${{ github.run_id }}&quot; \
+    --body &quot;Automated analysis detected persistent failures&quot; \
+    --label &quot;ci-failure&quot;
+fi
+</code></pre>
+<h3>Resource Management</h3>
+<pre><code class="language-bash"># Optimize resource usage
+npx ruv-swarm actions resources \
+  --analyze-usage \
+  --suggest-runners \
+  --cost-optimize
+</code></pre>
+<h2>Advanced Workflows</h2>
+<h3>1. Self-Healing CI/CD</h3>
+<pre><code class="language-yaml"># Auto-fix common CI failures
+name: Self-Healing Pipeline
+on: workflow_run
+
+jobs:
+  heal-pipeline:
+    if: ${{ github.event.workflow_run.conclusion == &#39;failure&#39; }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Diagnose and Fix
+        run: |
+          npx ruv-swarm actions self-heal \
+            --run-id ${{ github.event.workflow_run.id }} \
+            --auto-fix-common \
+            --create-pr-complex
+</code></pre>
+<h3>2. Progressive Deployment</h3>
+<pre><code class="language-yaml"># Intelligent deployment strategy
+name: Smart Deployment
+on:
+  push:
+    branches: [main]
+
+jobs:
+  progressive-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Analyze Risk
+        id: risk
+        run: |
+          npx ruv-swarm actions deploy-risk \
+            --changes ${{ github.sha }} \
+            --history 30d
+
+      - name: Choose Strategy
+        run: |
+          npx ruv-swarm actions deploy-strategy \
+            --risk ${{ steps.risk.outputs.level }} \
+            --auto-execute
+</code></pre>
+<h3>3. Performance Regression Detection</h3>
+<pre><code class="language-yaml"># Automatic performance testing
+name: Performance Guard
+on: pull_request
+
+jobs:
+  perf-swarm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Performance Analysis
+        run: |
+          npx ruv-swarm actions perf-test \
+            --baseline main \
+            --threshold 10% \
+            --auto-profile-regression
+</code></pre>
+<h2>Custom Actions</h2>
+<h3>Swarm Action Development</h3>
+<pre><code class="language-javascript">// action.yml
+name: &quot;Swarm Custom Action&quot;;
+description: &quot;Custom swarm-powered action&quot;;
+inputs: task: description: &quot;Task for swarm&quot;;
+required: true;
+runs: using: &quot;node16&quot;;
+main: &quot;dist/index.js&quot;;
+
+// index.js
+const { SwarmAction } = require(&quot;ruv-swarm&quot;);
+
+async function run() {
+  const swarm = new SwarmAction({
+    topology: &quot;mesh&quot;,
+    agents: [&quot;analyzer&quot;, &quot;optimizer&quot;],
+  });
+
+  await swarm.execute(core.getInput(&quot;task&quot;));
+}
+</code></pre>
+<h2>Matrix Strategies</h2>
+<h3>Dynamic Test Matrix</h3>
+<pre><code class="language-yaml"># Generate test matrix from code analysis
+jobs:
+  generate-matrix:
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: |
+          MATRIX=$(npx ruv-swarm actions test-matrix \
+            --detect-frameworks \
+            --optimize-coverage)
+          echo &quot;matrix=${MATRIX}&quot; &gt;&gt; $GITHUB_OUTPUT
+
+  test:
+    needs: generate-matrix
+    strategy:
+      matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
+</code></pre>
+<h3>Intelligent Parallelization</h3>
+<pre><code class="language-bash"># Determine optimal parallelization
+npx ruv-swarm actions parallel-strategy \
+  --analyze-dependencies \
+  --time-estimates \
+  --cost-aware
+</code></pre>
+<h2>Monitoring &amp; Insights</h2>
+<h3>Workflow Analytics</h3>
+<pre><code class="language-bash"># Analyze workflow performance
+npx ruv-swarm actions analytics \
+  --workflow &quot;ci.yml&quot; \
+  --period 30d \
+  --identify-bottlenecks \
+  --suggest-improvements
+</code></pre>
+<h3>Cost Optimization</h3>
+<pre><code class="language-bash"># Optimize GitHub Actions costs
+npx ruv-swarm actions cost-optimize \
+  --analyze-usage \
+  --suggest-caching \
+  --recommend-self-hosted
+</code></pre>
+<h3>Failure Patterns</h3>
+<pre><code class="language-bash"># Identify failure patterns
+npx ruv-swarm actions failure-patterns \
+  --period 90d \
+  --classify-failures \
+  --suggest-preventions
+</code></pre>
+<h2>Integration Examples</h2>
+<h3>1. PR Validation Swarm</h3>
+<pre><code class="language-yaml">name: PR Validation Swarm
+on: pull_request
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Multi-Agent Validation
+        run: |
+          # Get PR details using gh CLI
+          PR_DATA=$(gh pr view ${{ github.event.pull_request.number }} --json files,labels)
+
+          # Run validation with swarm
+          RESULTS=$(npx ruv-swarm actions pr-validate \
+            --spawn-agents &quot;linter,tester,security,docs&quot; \
+            --parallel \
+            --pr-data &quot;$PR_DATA&quot;)
+
+          # Post results as PR comment
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --body &quot;$RESULTS&quot;
+</code></pre>
+<h3>2. Release Automation</h3>
+<pre><code class="language-yaml">name: Intelligent Release
+on:
+  push:
+    tags: [&quot;v*&quot;]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Swarm
+        run: |
+          npx ruv-swarm actions release \
+            --analyze-changes \
+            --generate-notes \
+            --create-artifacts \
+            --publish-smart
+</code></pre>
+<h3>3. Documentation Updates</h3>
+<pre><code class="language-yaml">name: Auto Documentation
+on:
+  push:
+    paths: [&quot;src/**&quot;]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Documentation Swarm
+        run: |
+          npx ruv-swarm actions update-docs \
+            --analyze-changes \
+            --update-api-docs \
+            --check-examples
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Workflow Organization</h3>
+<ul>
+<li>Use reusable workflows for swarm operations</li>
+<li>Implement proper caching strategies</li>
+<li>Set appropriate timeouts</li>
+<li>Use workflow dependencies wisely</li>
+</ul>
+<h3>2. Security</h3>
+<ul>
+<li>Store swarm configs in secrets</li>
+<li>Use OIDC for authentication</li>
+<li>Implement least-privilege principles</li>
+<li>Audit swarm operations</li>
+</ul>
+<h3>3. Performance</h3>
+<ul>
+<li>Cache swarm dependencies</li>
+<li>Use appropriate runner sizes</li>
+<li>Implement early termination</li>
+<li>Optimize parallel execution</li>
+</ul>
+<h2>Advanced Features</h2>
+<h3>Predictive Failures</h3>
+<pre><code class="language-bash"># Predict potential failures
+npx ruv-swarm actions predict \
+  --analyze-history \
+  --identify-risks \
+  --suggest-preventive
+</code></pre>
+<h3>Workflow Recommendations</h3>
+<pre><code class="language-bash"># Get workflow recommendations
+npx ruv-swarm actions recommend \
+  --analyze-repo \
+  --suggest-workflows \
+  --industry-best-practices
+</code></pre>
+<h3>Automated Optimization</h3>
+<pre><code class="language-bash"># Continuously optimize workflows
+npx ruv-swarm actions auto-optimize \
+  --monitor-performance \
+  --apply-improvements \
+  --track-savings
+</code></pre>
+<h2>Debugging &amp; Troubleshooting</h2>
+<h3>Debug Mode</h3>
+<pre><code class="language-yaml">- name: Debug Swarm
+  run: |
+    npx ruv-swarm actions debug \
+      --verbose \
+      --trace-agents \
+      --export-logs
+</code></pre>
+<h3>Performance Profiling</h3>
+<pre><code class="language-bash"># Profile workflow performance
+npx ruv-swarm actions profile \
+  --workflow &quot;ci.yml&quot; \
+  --identify-slow-steps \
+  --suggest-optimizations
+</code></pre>
+<p>See also: <a href="./swarm-pr.md">swarm-pr.md</a>, <a href="./release-swarm.md">release-swarm.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

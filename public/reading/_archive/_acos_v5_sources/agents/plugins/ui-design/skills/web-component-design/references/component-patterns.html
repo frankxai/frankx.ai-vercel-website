@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Component Patterns Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/web-component-design/references/component-patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Component Patterns Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fweb-component-design">web-component-design</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fweb-component-design%2Freferences">references</a> / <span>component-patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Component Patterns Reference</h1>
+<h2>Compound Components Deep Dive</h2>
+<p>Compound components share implicit state while allowing flexible composition.</p>
+<h3>Implementation with Context</h3>
+<pre><code class="language-tsx">import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  type ReactNode,
+  type Dispatch,
+  type SetStateAction,
+} from &quot;react&quot;;
+
+// Types
+interface TabsContextValue {
+  activeTab: string;
+  setActiveTab: Dispatch&lt;SetStateAction&lt;string&gt;&gt;;
+}
+
+interface TabsProps {
+  defaultValue: string;
+  children: ReactNode;
+  onChange?: (value: string) =&gt; void;
+}
+
+interface TabListProps {
+  children: ReactNode;
+  className?: string;
+}
+
+interface TabProps {
+  value: string;
+  children: ReactNode;
+  disabled?: boolean;
+}
+
+interface TabPanelProps {
+  value: string;
+  children: ReactNode;
+}
+
+// Context
+const TabsContext = createContext&lt;TabsContextValue | null&gt;(null);
+
+function useTabs() {
+  const context = useContext(TabsContext);
+  if (!context) {
+    throw new Error(&quot;Tabs components must be used within &lt;Tabs&gt;&quot;);
+  }
+  return context;
+}
+
+// Root Component
+export function Tabs({ defaultValue, children, onChange }: TabsProps) {
+  const [activeTab, setActiveTab] = useState(defaultValue);
+
+  const handleChange: Dispatch&lt;SetStateAction&lt;string&gt;&gt; = useCallback(
+    (value) =&gt; {
+      const newValue = typeof value === &quot;function&quot; ? value(activeTab) : value;
+      setActiveTab(newValue);
+      onChange?.(newValue);
+    },
+    [activeTab, onChange],
+  );
+
+  return (
+    &lt;TabsContext.Provider value={{ activeTab, setActiveTab: handleChange }}&gt;
+      &lt;div className=&quot;tabs&quot;&gt;{children}&lt;/div&gt;
+    &lt;/TabsContext.Provider&gt;
+  );
+}
+
+// Tab List (container for tab triggers)
+Tabs.List = function TabList({ children, className }: TabListProps) {
+  return (
+    &lt;div role=&quot;tablist&quot; className={`flex border-b ${className}`}&gt;
+      {children}
+    &lt;/div&gt;
+  );
+};
+
+// Individual Tab (trigger)
+Tabs.Tab = function Tab({ value, children, disabled }: TabProps) {
+  const { activeTab, setActiveTab } = useTabs();
+  const isActive = activeTab === value;
+
+  return (
+    &lt;button
+      role=&quot;tab&quot;
+      aria-selected={isActive}
+      aria-controls={`panel-${value}`}
+      tabIndex={isActive ? 0 : -1}
+      disabled={disabled}
+      onClick={() =&gt; setActiveTab(value)}
+      className={`
+        px-4 py-2 font-medium transition-colors
+        ${
+          isActive
+            ? &quot;border-b-2 border-blue-600 text-blue-600&quot;
+            : &quot;text-gray-600 hover:text-gray-900&quot;
+        }
+        ${disabled ? &quot;opacity-50 cursor-not-allowed&quot; : &quot;&quot;}
+      `}
+    &gt;
+      {children}
+    &lt;/button&gt;
+  );
+};
+
+// Tab Panel (content)
+Tabs.Panel = function TabPanel({ value, children }: TabPanelProps) {
+  const { activeTab } = useTabs();
+
+  if (activeTab !== value) return null;
+
+  return (
+    &lt;div
+      role=&quot;tabpanel&quot;
+      id={`panel-${value}`}
+      aria-labelledby={`tab-${value}`}
+      tabIndex={0}
+      className=&quot;py-4&quot;
+    &gt;
+      {children}
+    &lt;/div&gt;
+  );
+};
+</code></pre>
+<h3>Usage</h3>
+<pre><code class="language-tsx">&lt;Tabs defaultValue=&quot;overview&quot; onChange={console.log}&gt;
+  &lt;Tabs.List&gt;
+    &lt;Tabs.Tab value=&quot;overview&quot;&gt;Overview&lt;/Tabs.Tab&gt;
+    &lt;Tabs.Tab value=&quot;features&quot;&gt;Features&lt;/Tabs.Tab&gt;
+    &lt;Tabs.Tab value=&quot;pricing&quot; disabled&gt;
+      Pricing
+    &lt;/Tabs.Tab&gt;
+  &lt;/Tabs.List&gt;
+  &lt;Tabs.Panel value=&quot;overview&quot;&gt;
+    &lt;h2&gt;Product Overview&lt;/h2&gt;
+    &lt;p&gt;Description here...&lt;/p&gt;
+  &lt;/Tabs.Panel&gt;
+  &lt;Tabs.Panel value=&quot;features&quot;&gt;
+    &lt;h2&gt;Key Features&lt;/h2&gt;
+    &lt;ul&gt;...&lt;/ul&gt;
+  &lt;/Tabs.Panel&gt;
+&lt;/Tabs&gt;
+</code></pre>
+<h2>Render Props Pattern</h2>
+<p>Delegate rendering control to the consumer while providing state and helpers.</p>
+<pre><code class="language-tsx">interface DataLoaderRenderProps&lt;T&gt; {
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
+  refetch: () =&gt; void;
+}
+
+interface DataLoaderProps&lt;T&gt; {
+  url: string;
+  children: (props: DataLoaderRenderProps&lt;T&gt;) =&gt; ReactNode;
+}
+
+function DataLoader&lt;T&gt;({ url, children }: DataLoaderProps&lt;T&gt;) {
+  const [state, setState] = useState&lt;{
+    data: T | null;
+    loading: boolean;
+    error: Error | null;
+  }&gt;({
+    data: null,
+    loading: true,
+    error: null,
+  });
+
+  const fetchData = useCallback(async () =&gt; {
+    setState((prev) =&gt; ({ ...prev, loading: true, error: null }));
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(&quot;Fetch failed&quot;);
+      const data = await response.json();
+      setState({ data, loading: false, error: null });
+    } catch (error) {
+      setState((prev) =&gt; ({ ...prev, loading: false, error: error as Error }));
+    }
+  }, [url]);
+
+  useEffect(() =&gt; {
+    fetchData();
+  }, [fetchData]);
+
+  return &lt;&gt;{children({ ...state, refetch: fetchData })}&lt;/&gt;;
+}
+
+// Usage
+&lt;DataLoader&lt;User[]&gt; url=&quot;/api/users&quot;&gt;
+  {({ data, loading, error, refetch }) =&gt; {
+    if (loading) return &lt;Spinner /&gt;;
+    if (error) return &lt;ErrorMessage error={error} onRetry={refetch} /&gt;;
+    return &lt;UserList users={data!} /&gt;;
+  }}
+&lt;/DataLoader&gt;;
+</code></pre>
+<h2>Polymorphic Components</h2>
+<p>Components that can render as different HTML elements.</p>
+<pre><code class="language-tsx">type AsProp&lt;C extends React.ElementType&gt; = {
+  as?: C;
+};
+
+type PropsToOmit&lt;C extends React.ElementType, P&gt; = keyof (AsProp&lt;C&gt; &amp; P);
+
+type PolymorphicComponentProp&lt;
+  C extends React.ElementType,
+  Props = {}
+&gt; = React.PropsWithChildren&lt;Props &amp; AsProp&lt;C&gt;&gt; &amp;
+  Omit&lt;React.ComponentPropsWithoutRef&lt;C&gt;, PropsToOmit&lt;C, Props&gt;&gt;;
+
+interface TextOwnProps {
+  variant?: &#39;body&#39; | &#39;heading&#39; | &#39;label&#39;;
+  size?: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;;
+}
+
+type TextProps&lt;C extends React.ElementType&gt; = PolymorphicComponentProp&lt;C, TextOwnProps&gt;;
+
+function Text&lt;C extends React.ElementType = &#39;span&#39;&gt;({
+  as,
+  variant = &#39;body&#39;,
+  size = &#39;md&#39;,
+  className,
+  children,
+  ...props
+}: TextProps&lt;C&gt;) {
+  const Component = as || &#39;span&#39;;
+
+  const variantClasses = {
+    body: &#39;font-normal&#39;,
+    heading: &#39;font-bold&#39;,
+    label: &#39;font-medium uppercase tracking-wide&#39;,
+  };
+
+  const sizeClasses = {
+    sm: &#39;text-sm&#39;,
+    md: &#39;text-base&#39;,
+    lg: &#39;text-lg&#39;,
+  };
+
+  return (
+    &lt;Component
+      className={`${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
+      {...props}
+    &gt;
+      {children}
+    &lt;/Component&gt;
+  );
+}
+
+// Usage
+&lt;Text&gt;Default span&lt;/Text&gt;
+&lt;Text as=&quot;p&quot; variant=&quot;body&quot; size=&quot;lg&quot;&gt;Paragraph&lt;/Text&gt;
+&lt;Text as=&quot;h1&quot; variant=&quot;heading&quot; size=&quot;lg&quot;&gt;Heading&lt;/Text&gt;
+&lt;Text as=&quot;label&quot; variant=&quot;label&quot; htmlFor=&quot;input&quot;&gt;Label&lt;/Text&gt;
+</code></pre>
+<h2>Controlled vs Uncontrolled Pattern</h2>
+<p>Support both modes for maximum flexibility.</p>
+<pre><code class="language-tsx">interface InputProps {
+  // Controlled
+  value?: string;
+  onChange?: (value: string) =&gt; void;
+  // Uncontrolled
+  defaultValue?: string;
+  // Common
+  placeholder?: string;
+  disabled?: boolean;
+}
+
+function Input({
+  value: controlledValue,
+  onChange,
+  defaultValue = &#39;&#39;,
+  ...props
+}: InputProps) {
+  const [internalValue, setInternalValue] = useState(defaultValue);
+
+  // Determine if controlled
+  const isControlled = controlledValue !== undefined;
+  const value = isControlled ? controlledValue : internalValue;
+
+  const handleChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    const newValue = e.target.value;
+
+    if (!isControlled) {
+      setInternalValue(newValue);
+    }
+
+    onChange?.(newValue);
+  };
+
+  return (
+    &lt;input
+      type=&quot;text&quot;
+      value={value}
+      onChange={handleChange}
+      {...props}
+    /&gt;
+  );
+}
+
+// Controlled usage
+const [search, setSearch] = useState(&#39;&#39;);
+&lt;Input value={search} onChange={setSearch} /&gt;
+
+// Uncontrolled usage
+&lt;Input defaultValue=&quot;initial&quot; onChange={console.log} /&gt;
+</code></pre>
+<h2>Slot Pattern</h2>
+<p>Allow consumers to replace internal parts.</p>
+<pre><code class="language-tsx">interface CardProps {
+  children: ReactNode;
+  header?: ReactNode;
+  footer?: ReactNode;
+  media?: ReactNode;
+}
+
+function Card({ children, header, footer, media }: CardProps) {
+  return (
+    &lt;article className=&quot;rounded-lg border bg-white shadow-sm&quot;&gt;
+      {media &amp;&amp; (
+        &lt;div className=&quot;aspect-video overflow-hidden rounded-t-lg&quot;&gt;{media}&lt;/div&gt;
+      )}
+      {header &amp;&amp; &lt;header className=&quot;border-b px-4 py-3&quot;&gt;{header}&lt;/header&gt;}
+      &lt;div className=&quot;px-4 py-4&quot;&gt;{children}&lt;/div&gt;
+      {footer &amp;&amp; (
+        &lt;footer className=&quot;border-t px-4 py-3 bg-gray-50 rounded-b-lg&quot;&gt;
+          {footer}
+        &lt;/footer&gt;
+      )}
+    &lt;/article&gt;
+  );
+}
+
+// Usage with slots
+&lt;Card
+  media={&lt;img src=&quot;/image.jpg&quot; alt=&quot;&quot; /&gt;}
+  header={&lt;h2 className=&quot;font-semibold&quot;&gt;Card Title&lt;/h2&gt;}
+  footer={&lt;Button&gt;Action&lt;/Button&gt;}
+&gt;
+  &lt;p&gt;Card content goes here.&lt;/p&gt;
+&lt;/Card&gt;;
+</code></pre>
+<h2>Forward Ref Pattern</h2>
+<p>Allow parent components to access the underlying DOM node.</p>
+<pre><code class="language-tsx">import { forwardRef, useRef, useImperativeHandle } from &quot;react&quot;;
+
+interface InputHandle {
+  focus: () =&gt; void;
+  clear: () =&gt; void;
+  getValue: () =&gt; string;
+}
+
+interface FancyInputProps {
+  label: string;
+  placeholder?: string;
+}
+
+const FancyInput = forwardRef&lt;InputHandle, FancyInputProps&gt;(
+  ({ label, placeholder }, ref) =&gt; {
+    const inputRef = useRef&lt;HTMLInputElement&gt;(null);
+
+    useImperativeHandle(ref, () =&gt; ({
+      focus: () =&gt; inputRef.current?.focus(),
+      clear: () =&gt; {
+        if (inputRef.current) inputRef.current.value = &quot;&quot;;
+      },
+      getValue: () =&gt; inputRef.current?.value ?? &quot;&quot;,
+    }));
+
+    return (
+      &lt;div&gt;
+        &lt;label className=&quot;block text-sm font-medium mb-1&quot;&gt;{label}&lt;/label&gt;
+        &lt;input
+          ref={inputRef}
+          type=&quot;text&quot;
+          placeholder={placeholder}
+          className=&quot;w-full px-3 py-2 border rounded-md&quot;
+        /&gt;
+      &lt;/div&gt;
+    );
+  },
+);
+
+FancyInput.displayName = &quot;FancyInput&quot;;
+
+// Usage
+function Form() {
+  const inputRef = useRef&lt;InputHandle&gt;(null);
+
+  const handleSubmit = () =&gt; {
+    console.log(inputRef.current?.getValue());
+    inputRef.current?.clear();
+  };
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;FancyInput ref={inputRef} label=&quot;Name&quot; /&gt;
+      &lt;button type=&quot;button&quot; onClick={() =&gt; inputRef.current?.focus()}&gt;
+        Focus Input
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

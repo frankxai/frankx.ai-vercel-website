@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Model Profiles</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/references/model-profiles.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Model Profiles</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Freferences">references</a> / <span>model-profiles.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Model Profiles</h1>
+<p>Model profiles control which Claude model each GSD agent uses. This allows balancing quality vs token spend.</p>
+<h2>Profile Definitions</h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th><code>quality</code></th>
+<th><code>balanced</code></th>
+<th><code>budget</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gsd-planner</td>
+<td>opus</td>
+<td>opus</td>
+<td>sonnet</td>
+</tr>
+<tr>
+<td>gsd-roadmapper</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>sonnet</td>
+</tr>
+<tr>
+<td>gsd-executor</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>sonnet</td>
+</tr>
+<tr>
+<td>gsd-phase-researcher</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+<tr>
+<td>gsd-project-researcher</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+<tr>
+<td>gsd-research-synthesizer</td>
+<td>sonnet</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+<tr>
+<td>gsd-debugger</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>sonnet</td>
+</tr>
+<tr>
+<td>gsd-codebase-mapper</td>
+<td>sonnet</td>
+<td>haiku</td>
+<td>haiku</td>
+</tr>
+<tr>
+<td>gsd-verifier</td>
+<td>sonnet</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+<tr>
+<td>gsd-plan-checker</td>
+<td>sonnet</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+<tr>
+<td>gsd-integration-checker</td>
+<td>sonnet</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+</tbody></table>
+<h2>Profile Philosophy</h2>
+<p><strong>quality</strong> - Maximum reasoning power</p>
+<ul>
+<li>Opus for all decision-making agents</li>
+<li>Sonnet for read-only verification</li>
+<li>Use when: quota available, critical architecture work</li>
+</ul>
+<p><strong>balanced</strong> (default) - Smart allocation</p>
+<ul>
+<li>Opus only for planning (where architecture decisions happen)</li>
+<li>Sonnet for execution and research (follows explicit instructions)</li>
+<li>Sonnet for verification (needs reasoning, not just pattern matching)</li>
+<li>Use when: normal development, good balance of quality and cost</li>
+</ul>
+<p><strong>budget</strong> - Minimal Opus usage</p>
+<ul>
+<li>Sonnet for anything that writes code</li>
+<li>Haiku for research and verification</li>
+<li>Use when: conserving quota, high-volume work, less critical phases</li>
+</ul>
+<h2>Resolution Logic</h2>
+<p>Orchestrators resolve model before spawning:</p>
+<pre><code>1. Read .planning/config.json
+2. Get model_profile (default: &quot;balanced&quot;)
+3. Look up agent in table above
+4. Pass model parameter to Task call
+</code></pre>
+<h2>Switching Profiles</h2>
+<p>Runtime: <code>/gsd:set-profile &lt;profile&gt;</code></p>
+<p>Per-project default: Set in <code>.planning/config.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;model_profile&quot;: &quot;balanced&quot;
+}
+</code></pre>
+<h2>Design Rationale</h2>
+<p><strong>Why Opus for gsd-planner?</strong>
+Planning involves architecture decisions, goal decomposition, and task design. This is where model quality has the highest impact.</p>
+<p><strong>Why Sonnet for gsd-executor?</strong>
+Executors follow explicit PLAN.md instructions. The plan already contains the reasoning; execution is implementation.</p>
+<p><strong>Why Sonnet (not Haiku) for verifiers in balanced?</strong>
+Verification requires goal-backward reasoning - checking if code <em>delivers</em> what the phase promised, not just pattern matching. Sonnet handles this well; Haiku may miss subtle gaps.</p>
+<p><strong>Why Haiku for gsd-codebase-mapper?</strong>
+Read-only exploration and pattern extraction. No reasoning required, just structured output from file contents.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

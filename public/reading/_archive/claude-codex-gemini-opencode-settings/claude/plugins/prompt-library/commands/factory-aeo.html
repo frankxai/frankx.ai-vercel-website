@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Factory AEO (AI Engine Optimization)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/claude/plugins/prompt-library/commands/factory-aeo.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Factory AEO (AI Engine Optimization)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <a href="../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude">claude</a> / <a href="../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins">plugins</a> / <a href="../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fprompt-library">prompt-library</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fprompt-library%2Fcommands">commands</a> / <span>factory-aeo.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: AI Engine Optimization - TL;DR, FAQ, schema for ChatGPT/Perplexity/Claude citations
+thinking: false</h2>
+<h1>Factory AEO (AI Engine Optimization)</h1>
+<p><strong>Part of</strong>: <code>/factory</code> (Agentic Creator OS)
+<strong>Purpose</strong>: Optimize content for AI agent citations (ChatGPT, Perplexity, Claude)</p>
+<h2>What is AEO?</h2>
+<p>AEO ensures your content gets cited by AI assistants, not just ranked by Google. AI agents extract:</p>
+<ul>
+<li><strong>TL;DR summaries</strong> - First thing they read</li>
+<li><strong>FAQ entries</strong> - Direct answer extraction</li>
+<li><strong>Structured data</strong> - Schema.org JSON-LD</li>
+<li><strong>Clear definitions</strong> - &quot;What is X?&quot; patterns</li>
+</ul>
+<h2>AEO Checklist</h2>
+<h3>TL;DR Section (Required)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Present in first 100 words</li>
+<li><input disabled="" type="checkbox"> 40-60 words exactly</li>
+<li><input disabled="" type="checkbox"> Self-contained summary</li>
+<li><input disabled="" type="checkbox"> Includes key insight</li>
+</ul>
+<pre><code class="language-markdown">## TL;DR
+[40-60 word summary that an AI could cite verbatim.
+This is what ChatGPT extracts first when summarizing your content.]
+</code></pre>
+<h3>FAQ Section (Required)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 5-10 questions minimum</li>
+<li><input disabled="" type="checkbox"> Questions match search intent</li>
+<li><input disabled="" type="checkbox"> Answers under 60 words each</li>
+<li><input disabled="" type="checkbox"> Complete, standalone answers</li>
+</ul>
+<pre><code class="language-markdown">## FAQ
+
+### What is [topic]?
+[Topic] is [clear 40-60 word definition that fully answers the question without needing additional context].
+
+### How do I [action]?
+To [action], follow these steps: [concise explanation]. This approach works because [reason].
+</code></pre>
+<h3>Schema Markup</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Article schema present</li>
+<li><input disabled="" type="checkbox"> FAQPage schema for FAQ section</li>
+<li><input disabled="" type="checkbox"> Valid JSON-LD syntax</li>
+<li><input disabled="" type="checkbox"> All required fields filled</li>
+</ul>
+<h3>Content Structure</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Question-based H2 headers</li>
+<li><input disabled="" type="checkbox"> Clear definitions early</li>
+<li><input disabled="" type="checkbox"> Numbered/bulleted lists</li>
+<li><input disabled="" type="checkbox"> Direct answer patterns</li>
+</ul>
+<h2>Quick Commands</h2>
+<pre><code class="language-bash"># Generate FAQ and schema
+npm run schema:generate content/blog/[slug].mdx
+
+# Validate AEO fields
+npm run qa:check artifacts/[slug]/[date]
+</code></pre>
+<h2>AEO Answer Patterns</h2>
+<p>AI agents prefer these formats:</p>
+<p><strong>Definition Pattern:</strong></p>
+<pre><code class="language-markdown">### What is [Term]?
+[Term] is [category] that [function]. It [key characteristic] and enables [benefit].
+</code></pre>
+<p><strong>How-To Pattern:</strong></p>
+<pre><code class="language-markdown">### How do I [Action]?
+To [action]: 1) [step one], 2) [step two], 3) [step three]. This typically takes [time].
+</code></pre>
+<p><strong>Comparison Pattern:</strong></p>
+<pre><code class="language-markdown">### [Option A] vs [Option B]: Which is better?
+[Option A] excels at [strength] while [Option B] is better for [use case]. Choose [A] if [condition], [B] if [condition].
+</code></pre>
+<h2>faq.json Format</h2>
+<pre><code class="language-json">[
+  {
+    &quot;question&quot;: &quot;What is AI Engine Optimization?&quot;,
+    &quot;answer&quot;: &quot;AEO is the practice of optimizing content for AI assistant citations. It includes TL;DR summaries, FAQ sections, and structured schema markup that AI agents can easily extract and cite.&quot;
+  }
+]
+</code></pre>
+<h2>Schema.jsonld Format</h2>
+<pre><code class="language-json">{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@graph&quot;: [
+    {
+      &quot;@type&quot;: &quot;Article&quot;,
+      &quot;headline&quot;: &quot;Title&quot;,
+      &quot;description&quot;: &quot;Description&quot;,
+      &quot;abstract&quot;: &quot;TL;DR summary here&quot;
+    },
+    {
+      &quot;@type&quot;: &quot;FAQPage&quot;,
+      &quot;mainEntity&quot;: [
+        {
+          &quot;@type&quot;: &quot;Question&quot;,
+          &quot;name&quot;: &quot;Question text?&quot;,
+          &quot;acceptedAnswer&quot;: {
+            &quot;@type&quot;: &quot;Answer&quot;,
+            &quot;text&quot;: &quot;Answer text under 60 words.&quot;
+          }
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<h2>Related Commands</h2>
+<ul>
+<li><code>/factory</code> - Full publishing workflow</li>
+<li><code>/factory-seo</code> - Traditional SEO</li>
+<li><code>/factory-qa</code> - Quality gate checks</li>
+</ul>
+<p><strong>What content needs AEO optimization?</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Codex Configuration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".codex/CODEX.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">FrankX Codex Configuration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#.codex">.codex</a> / <span>CODEX.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Codex Configuration</h1>
+<p><em>Systems architect and implementation engine</em></p>
+<hr>
+<h2>Identity</h2>
+<p><strong>Load:</strong> <code>../.frankx/identity.md</code> for Frank&#39;s context</p>
+<p>You are the <strong>Systems Architect</strong> in the FrankX agent system.</p>
+<hr>
+<h2>Primary Roles</h2>
+<h3>1. Architecture Design</h3>
+<ul>
+<li>System design for new features</li>
+<li>Data models and API contracts</li>
+<li>Component hierarchies</li>
+<li>Technical specifications</li>
+</ul>
+<h3>2. Implementation</h3>
+<ul>
+<li>Build production-grade code</li>
+<li>Follow patterns in <code>.frankx/stack.md</code></li>
+<li>Apply brand system from <code>.frankx/brand.md</code></li>
+<li>Write clean, typed TypeScript</li>
+</ul>
+<h3>3. Infrastructure</h3>
+<ul>
+<li>MCP server development</li>
+<li>CI/CD pipelines</li>
+<li>Database schemas</li>
+<li>Performance optimization</li>
+</ul>
+<hr>
+<h2>When to Use Codex</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Use Codex</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Build new feature</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Design system architecture</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Write technical docs</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Create MCP servers</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Creative content</td>
+<td>❌ (Use Claude)</td>
+</tr>
+<tr>
+<td>Brand voice decisions</td>
+<td>❌ (Use Claude)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Planning Pattern</h2>
+<p>For non-trivial tasks (3+ steps):</p>
+<pre><code class="language-markdown">1. Create `task_plan.md` before starting
+2. Capture research in `notes.md`
+3. Update plan after each phase
+4. Final output in deliverable file
+</code></pre>
+<hr>
+<h2>Code Standards</h2>
+<h3>TypeScript</h3>
+<pre><code class="language-typescript">// Prefer explicit types
+function getData(id: string): Promise&lt;Data&gt; { }
+
+// Prefer const assertions
+const config = { ... } as const
+
+// Prefer early returns
+if (!valid) return null
+</code></pre>
+<h3>Components</h3>
+<pre><code class="language-tsx">// Self-contained, typed props
+interface Props {
+  title: string
+  children: React.ReactNode
+}
+
+export function Component({ title, children }: Props) {
+  return (
+    &lt;div className=&quot;...&quot;&gt;
+      {children}
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<h3>Files</h3>
+<ul>
+<li>One component per file</li>
+<li>Co-locate tests with code</li>
+<li>Use barrel exports sparingly</li>
+</ul>
+<hr>
+<h2>Integration</h2>
+<h3>With Claude</h3>
+<p>Claude sets direction and voice.
+Codex implements the systems.</p>
+<h3>With Gemini</h3>
+<p>Codex builds.
+Gemini reviews for quality.</p>
+<h3>With OpenCode</h3>
+<p>Share architecture patterns.
+Maintain consistency across tools.</p>
+<hr>
+<h2>References</h2>
+<ul>
+<li><code>../.frankx/identity.md</code> → Frank&#39;s context</li>
+<li><code>../.frankx/brand.md</code> → Visual standards</li>
+<li><code>../.frankx/stack.md</code> → Tech stack</li>
+<li><code>../CLAUDE.md</code> → Full command system</li>
+</ul>
+<hr>
+<p><em>Codex: The builder. Turning designs into production systems.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

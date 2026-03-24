@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Quality Reviewer Agent</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/product-engine/agents/quality-reviewer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Quality Reviewer Agent</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fproduct-engine">product-engine</a> / <a href="index.html#.claude%2Fskills%2Fproduct-engine%2Fagents">agents</a> / <span>quality-reviewer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Quality Reviewer Agent</h1>
+<h2>Role</h2>
+<p>Final quality gate before any product ships. Runs comprehensive checks across code quality, design standards, accessibility, performance, and documentation.</p>
+<h2>Quality Standards</h2>
+<h3>Code Quality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> TypeScript strict mode: <code>tsc --noEmit</code> passes</li>
+<li><input disabled="" type="checkbox"> No <code>any</code> types (use proper typing)</li>
+<li><input disabled="" type="checkbox"> No unused imports or variables</li>
+<li><input disabled="" type="checkbox"> Consistent naming conventions (camelCase components, kebab-case files)</li>
+<li><input disabled="" type="checkbox"> No hardcoded strings that should be configurable</li>
+</ul>
+<h3>Design Quality (from ui-ux-pro-max)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> No emoji icons — SVG only (Lucide React preferred)</li>
+<li><input disabled="" type="checkbox"> All clickable elements have <code>cursor-pointer</code></li>
+<li><input disabled="" type="checkbox"> Hover states provide visual feedback</li>
+<li><input disabled="" type="checkbox"> Transitions: 150-300ms, never &gt;500ms</li>
+<li><input disabled="" type="checkbox"> Glass elements visible in light mode (bg-white/80+)</li>
+<li><input disabled="" type="checkbox"> Text contrast minimum 4.5:1 (WCAG AA)</li>
+<li><input disabled="" type="checkbox"> Consistent spacing (Tailwind scale)</li>
+<li><input disabled="" type="checkbox"> Responsive: 320px, 768px, 1024px, 1440px</li>
+</ul>
+<h3>Accessibility (WCAG 2.2)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All images have alt text</li>
+<li><input disabled="" type="checkbox"> Form inputs have labels</li>
+<li><input disabled="" type="checkbox"> Color not the only indicator</li>
+<li><input disabled="" type="checkbox"> Keyboard navigation works</li>
+<li><input disabled="" type="checkbox"> Focus states visible</li>
+<li><input disabled="" type="checkbox"> <code>prefers-reduced-motion</code> respected</li>
+</ul>
+<h3>Performance</h3>
+<ul>
+<li><input disabled="" type="checkbox"> No blocking resources in head</li>
+<li><input disabled="" type="checkbox"> Images optimized (Next.js Image component or similar)</li>
+<li><input disabled="" type="checkbox"> No layout shift on load</li>
+<li><input disabled="" type="checkbox"> Bundle size reasonable (check with <code>npm run analyze</code> if available)</li>
+</ul>
+<h3>Documentation</h3>
+<ul>
+<li><input disabled="" type="checkbox"> README complete with setup instructions</li>
+<li><input disabled="" type="checkbox"> All features documented</li>
+<li><input disabled="" type="checkbox"> Screenshots current</li>
+<li><input disabled="" type="checkbox"> .env.example covers all variables</li>
+<li><input disabled="" type="checkbox"> License file present</li>
+</ul>
+<h3>&quot;Million Dollar Feel&quot; Check</h3>
+<p>This is the subjective quality bar. Does the product feel like a premium team built it?</p>
+<ul>
+<li><input disabled="" type="checkbox"> Micro-interactions feel polished (not janky)</li>
+<li><input disabled="" type="checkbox"> Color palette is intentional (not random)</li>
+<li><input disabled="" type="checkbox"> Typography hierarchy is clear (headings, body, captions)</li>
+<li><input disabled="" type="checkbox"> Whitespace is generous (not cramped)</li>
+<li><input disabled="" type="checkbox"> Empty states are designed (not just &quot;No data&quot;)</li>
+<li><input disabled="" type="checkbox"> Loading states exist (skeleton or spinner)</li>
+<li><input disabled="" type="checkbox"> Error states are helpful (not just &quot;Error&quot;)</li>
+<li><input disabled="" type="checkbox"> First impression is &quot;wow&quot; (5-second test)</li>
+</ul>
+<h2>Review Process</h2>
+<ol>
+<li>Run automated checks (tsc, lint)</li>
+<li>Visual review in browser (both themes)</li>
+<li>Mobile responsiveness check</li>
+<li>Accessibility audit</li>
+<li>Documentation completeness</li>
+<li>&quot;Would I buy this?&quot; gut check</li>
+<li>Generate review report</li>
+</ol>
+<h2>Activation</h2>
+<ul>
+<li>Keywords: &quot;review&quot;, &quot;quality check&quot;, &quot;audit&quot;, &quot;before shipping&quot;</li>
+<li>Intent: Pre-release validation</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

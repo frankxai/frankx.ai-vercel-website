@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Core Development Subagents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code-subagents/categories/01-core-development/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Core Development Subagents</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents">awesome-claude-code-subagents</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents%2Fcategories">categories</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents%2Fcategories%2F01-core-development">01-core-development</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Core Development Subagents</h1>
+<p>Core Development subagents are your essential toolkit for building modern applications from the ground up. These specialized agents cover the entire development spectrum - from backend services to frontend interfaces, from mobile apps to desktop applications, and from simple APIs to complex distributed systems.</p>
+<h2>🎯 When to Use Core Development Subagents</h2>
+<p>Use these subagents when you need to:</p>
+<ul>
+<li><strong>Build new applications</strong> from scratch with proper architecture</li>
+<li><strong>Implement complex features</strong> that require deep technical expertise  </li>
+<li><strong>Design scalable systems</strong> that can grow with your needs</li>
+<li><strong>Create beautiful UIs</strong> that provide exceptional user experiences</li>
+<li><strong>Develop real-time features</strong> for interactive applications</li>
+<li><strong>Modernize legacy systems</strong> with current best practices</li>
+<li><strong>Optimize performance</strong> across the entire stack</li>
+</ul>
+<h2>📋 Available Subagents</h2>
+<h3><a href="api-designer.md"><strong>api-designer</strong></a> - REST and GraphQL API architect</h3>
+<p>The architect who designs beautiful, intuitive, and scalable APIs. Expert in RESTful principles, GraphQL schemas, API versioning, and documentation. Ensures your APIs are developer-friendly and future-proof.</p>
+<p><strong>Use when:</strong> Designing new APIs, refactoring existing endpoints, implementing API standards, or creating comprehensive API documentation.</p>
+<h3><a href="backend-developer.md"><strong>backend-developer</strong></a> - Server-side expert for scalable APIs</h3>
+<p>Your go-to specialist for building robust server applications, RESTful APIs, and microservices. Excels at database design, authentication systems, and performance optimization. Perfect for creating the backbone of your application with Node.js, Python, Java, or other backend technologies.</p>
+<p><strong>Use when:</strong> Building APIs, designing databases, implementing authentication, handling business logic, or optimizing server performance.</p>
+<h3><a href="electron-pro.md"><strong>electron-pro</strong></a> - Desktop application expert</h3>
+<p>Specialist in building cross-platform desktop applications using web technologies. Masters Electron framework for creating installable desktop apps with native capabilities. Handles auto-updates, system integration, and desktop-specific features.</p>
+<p><strong>Use when:</strong> Creating desktop applications, porting web apps to desktop, implementing system tray features, or building offline-capable desktop tools.</p>
+<h3><a href="frontend-developer.md"><strong>frontend-developer</strong></a> - UI/UX specialist for React, Vue, and Angular</h3>
+<p>Master of modern web interfaces who creates responsive, accessible, and performant user experiences. Expert in component architecture, state management, and modern CSS. Transforms designs into pixel-perfect, interactive applications.</p>
+<p><strong>Use when:</strong> Creating web interfaces, implementing complex UI components, optimizing frontend performance, or ensuring accessibility compliance.</p>
+<h3><a href="fullstack-developer.md"><strong>fullstack-developer</strong></a> - End-to-end feature development</h3>
+<p>The versatile expert who seamlessly works across the entire stack. Builds complete features from database to UI, ensuring smooth integration between frontend and backend. Ideal for rapid prototyping and full feature implementation.</p>
+<p><strong>Use when:</strong> Building complete features, prototyping applications, working on small to medium projects, or when you need unified development across the stack.</p>
+<h3><a href="graphql-architect.md"><strong>graphql-architect</strong></a> - GraphQL schema and federation expert</h3>
+<p>Specialized in GraphQL ecosystem, from schema design to federation strategies. Masters resolver optimization, subscription patterns, and GraphQL best practices. Perfect for building flexible, efficient data layers.</p>
+<p><strong>Use when:</strong> Implementing GraphQL APIs, designing schemas, optimizing resolvers, setting up federation, or migrating from REST to GraphQL.</p>
+<h3><a href="microservices-architect.md"><strong>microservices-architect</strong></a> - Distributed systems designer</h3>
+<p>Expert in designing and implementing microservices architectures. Handles service decomposition, inter-service communication, distributed transactions, and orchestration. Ensures your system scales horizontally with resilience.</p>
+<p><strong>Use when:</strong> Breaking monoliths into microservices, designing distributed systems, implementing service mesh, or solving distributed system challenges.</p>
+<h3><a href="mobile-developer.md"><strong>mobile-developer</strong></a> - Cross-platform mobile specialist</h3>
+<p>Expert in creating native and cross-platform mobile applications for iOS and Android. Proficient in React Native, Flutter, and native development. Focuses on mobile-specific challenges like offline functionality, push notifications, and app store optimization.</p>
+<p><strong>Use when:</strong> Building mobile apps, implementing mobile-specific features, optimizing for mobile performance, or preparing for app store deployment.</p>
+<h3><a href="ui-designer.md"><strong>ui-designer</strong></a> - Visual design and interaction specialist</h3>
+<p>Master of visual design who creates beautiful, intuitive, and accessible user interfaces. Expert in design systems, typography, color theory, and interaction patterns. Transforms ideas into polished designs that balance aesthetics with functionality while maintaining brand consistency.</p>
+<p><strong>Use when:</strong> Creating visual designs, building design systems, defining interaction patterns, establishing brand identity, or preparing design handoffs for development.</p>
+<h3><a href="websocket-engineer.md"><strong>websocket-engineer</strong></a> - Real-time communication specialist</h3>
+<p>Master of real-time, bidirectional communication. Implements WebSocket servers, manages connections at scale, and handles real-time features like chat, notifications, and live updates. Expert in Socket.io and native WebSocket implementations.</p>
+<p><strong>Use when:</strong> Building chat applications, implementing real-time notifications, creating collaborative features, or developing live-updating dashboards.</p>
+<h3><a href="wordpress-master.md"><strong>wordpress-master</strong></a> - WordPress development and optimization expert</h3>
+<p>Specialist in WordPress ecosystem who builds everything from simple blogs to enterprise platforms. Masters theme development, plugin architecture, Gutenberg blocks, and performance optimization. Expert in both classic PHP development and modern block-based solutions.</p>
+<p><strong>Use when:</strong> Building WordPress sites, developing custom themes, creating plugins, implementing WooCommerce solutions, or optimizing WordPress performance.</p>
+<h2>🚀 Quick Selection Guide</h2>
+<table>
+<thead>
+<tr>
+<th>If you need to...</th>
+<th>Use this subagent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Build a REST API with database</td>
+<td><strong>backend-developer</strong></td>
+</tr>
+<tr>
+<td>Create a responsive web UI</td>
+<td><strong>frontend-developer</strong></td>
+</tr>
+<tr>
+<td>Develop a complete web application</td>
+<td><strong>fullstack-developer</strong></td>
+</tr>
+<tr>
+<td>Build a mobile app</td>
+<td><strong>mobile-developer</strong></td>
+</tr>
+<tr>
+<td>Design user interfaces</td>
+<td><strong>ui-designer</strong></td>
+</tr>
+<tr>
+<td>Create a desktop application</td>
+<td><strong>electron-pro</strong></td>
+</tr>
+<tr>
+<td>Design a new API structure</td>
+<td><strong>api-designer</strong></td>
+</tr>
+<tr>
+<td>Implement GraphQL</td>
+<td><strong>graphql-architect</strong></td>
+</tr>
+<tr>
+<td>Build a distributed system</td>
+<td><strong>microservices-architect</strong></td>
+</tr>
+<tr>
+<td>Add real-time features</td>
+<td><strong>websocket-engineer</strong></td>
+</tr>
+<tr>
+<td>Create a WordPress site</td>
+<td><strong>wordpress-master</strong></td>
+</tr>
+</tbody></table>
+<h2>💡 Common Combinations</h2>
+<p><strong>Full-Stack Web Application:</strong></p>
+<ul>
+<li>Start with <strong>api-designer</strong> for API structure</li>
+<li>Use <strong>backend-developer</strong> for server implementation  </li>
+<li>Employ <strong>frontend-developer</strong> for UI development</li>
+</ul>
+<p><strong>Enterprise System:</strong></p>
+<ul>
+<li>Begin with <strong>microservices-architect</strong> for system design</li>
+<li>Use <strong>graphql-architect</strong> for data layer</li>
+<li>Add <strong>backend-developer</strong> for service implementation</li>
+</ul>
+<p><strong>Real-time Application:</strong></p>
+<ul>
+<li>Start with <strong>websocket-engineer</strong> for real-time infrastructure</li>
+<li>Add <strong>backend-developer</strong> for business logic</li>
+<li>Use <strong>frontend-developer</strong> for interactive UI</li>
+</ul>
+<p><strong>Design-Driven Development:</strong></p>
+<ul>
+<li>Begin with <strong>ui-designer</strong> for visual design and prototypes</li>
+<li>Use <strong>frontend-developer</strong> for implementation</li>
+<li>Add <strong>accessibility-tester</strong> for compliance validation</li>
+</ul>
+<p><strong>WordPress Project:</strong></p>
+<ul>
+<li>Start with <strong>wordpress-master</strong> for architecture and setup</li>
+<li>Add <strong>php-pro</strong> for custom PHP development</li>
+<li>Use <strong>frontend-developer</strong> for custom JavaScript</li>
+</ul>
+<h2>🎬 Getting Started</h2>
+<ol>
+<li><strong>Choose the right subagent</strong> based on your specific needs</li>
+<li><strong>Provide clear context</strong> about your project requirements</li>
+<li><strong>Specify your tech stack</strong> preferences if any</li>
+<li><strong>Describe your constraints</strong> (performance, scalability, timeline)</li>
+<li><strong>Let the subagent guide you</strong> through best practices and implementation</li>
+</ol>
+<p>Each subagent comes with:</p>
+<ul>
+<li>Deep expertise in their domain</li>
+<li>Knowledge of current best practices</li>
+<li>Ability to work with your existing codebase</li>
+<li>Focus on clean, maintainable code</li>
+<li>Understanding of production requirements</li>
+</ul>
+<h2>📚 Best Practices</h2>
+<ul>
+<li><strong>Start with architecture:</strong> Use architects (API, GraphQL, Microservices) before implementation</li>
+<li><strong>Iterate frequently:</strong> Work with subagents in short cycles for better results</li>
+<li><strong>Combine expertise:</strong> Use multiple subagents for complex projects</li>
+<li><strong>Follow conventions:</strong> Each subagent knows the best practices for their domain</li>
+<li><strong>Think production-ready:</strong> All subagents consider scalability, security, and maintenance</li>
+</ul>
+<p>Choose your subagent and start building amazing applications today!</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

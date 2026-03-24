@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Technology Stack</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/templates/tech-stack.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Technology Stack</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates">templates</a> / <span>tech-stack.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Technology Stack</h1>
+<h2>Frontend</h2>
+<h3>Framework</h3>
+<p><strong>Choice:</strong> {{FRONTEND_FRAMEWORK}}
+<strong>Version:</strong> {{FRONTEND_VERSION}}</p>
+<p><strong>Rationale:</strong>
+{{FRONTEND_RATIONALE}}</p>
+<h3>State Management</h3>
+<p><strong>Choice:</strong> {{STATE_MANAGEMENT}}
+<strong>Version:</strong> {{STATE_VERSION}}</p>
+<p><strong>Rationale:</strong>
+{{STATE_RATIONALE}}</p>
+<h3>Styling</h3>
+<p><strong>Choice:</strong> {{STYLING_SOLUTION}}
+<strong>Version:</strong> {{STYLING_VERSION}}</p>
+<p><strong>Rationale:</strong>
+{{STYLING_RATIONALE}}</p>
+<h3>Additional Frontend Libraries</h3>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Purpose</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{FE_LIB_1}}</td>
+<td>{{FE_LIB_1_PURPOSE}}</td>
+<td>{{FE_LIB_1_VERSION}}</td>
+</tr>
+<tr>
+<td>{{FE_LIB_2}}</td>
+<td>{{FE_LIB_2_PURPOSE}}</td>
+<td>{{FE_LIB_2_VERSION}}</td>
+</tr>
+<tr>
+<td>{{FE_LIB_3}}</td>
+<td>{{FE_LIB_3_PURPOSE}}</td>
+<td>{{FE_LIB_3_VERSION}}</td>
+</tr>
+</tbody></table>
+<h2>Backend</h2>
+<h3>Language</h3>
+<p><strong>Choice:</strong> {{BACKEND_LANGUAGE}}
+<strong>Version:</strong> {{BACKEND_LANGUAGE_VERSION}}</p>
+<p><strong>Rationale:</strong>
+{{BACKEND_LANGUAGE_RATIONALE}}</p>
+<h3>Framework</h3>
+<p><strong>Choice:</strong> {{BACKEND_FRAMEWORK}}
+<strong>Version:</strong> {{BACKEND_FRAMEWORK_VERSION}}</p>
+<p><strong>Rationale:</strong>
+{{BACKEND_FRAMEWORK_RATIONALE}}</p>
+<h3>Database</h3>
+<h4>Primary Database</h4>
+<p><strong>Choice:</strong> {{PRIMARY_DATABASE}}
+<strong>Version:</strong> {{PRIMARY_DB_VERSION}}</p>
+<p><strong>Rationale:</strong>
+{{PRIMARY_DB_RATIONALE}}</p>
+<h4>Secondary Database (if applicable)</h4>
+<p><strong>Choice:</strong> {{SECONDARY_DATABASE}}
+<strong>Purpose:</strong> {{SECONDARY_DB_PURPOSE}}</p>
+<h3>Additional Backend Libraries</h3>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Purpose</th>
+<th>Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{BE_LIB_1}}</td>
+<td>{{BE_LIB_1_PURPOSE}}</td>
+<td>{{BE_LIB_1_VERSION}}</td>
+</tr>
+<tr>
+<td>{{BE_LIB_2}}</td>
+<td>{{BE_LIB_2_PURPOSE}}</td>
+<td>{{BE_LIB_2_VERSION}}</td>
+</tr>
+<tr>
+<td>{{BE_LIB_3}}</td>
+<td>{{BE_LIB_3_PURPOSE}}</td>
+<td>{{BE_LIB_3_VERSION}}</td>
+</tr>
+</tbody></table>
+<h2>Infrastructure</h2>
+<h3>Hosting</h3>
+<p><strong>Provider:</strong> {{HOSTING_PROVIDER}}
+<strong>Environment:</strong> {{HOSTING_ENVIRONMENT}}</p>
+<p><strong>Services Used:</strong></p>
+<ul>
+<li>{{HOSTING_SERVICE_1}}</li>
+<li>{{HOSTING_SERVICE_2}}</li>
+<li>{{HOSTING_SERVICE_3}}</li>
+</ul>
+<h3>CI/CD</h3>
+<p><strong>Platform:</strong> {{CICD_PLATFORM}}</p>
+<p><strong>Pipeline Stages:</strong></p>
+<ol>
+<li>{{PIPELINE_STAGE_1}}</li>
+<li>{{PIPELINE_STAGE_2}}</li>
+<li>{{PIPELINE_STAGE_3}}</li>
+<li>{{PIPELINE_STAGE_4}}</li>
+</ol>
+<h3>Monitoring</h3>
+<p><strong>APM:</strong> {{APM_TOOL}}
+<strong>Logging:</strong> {{LOGGING_TOOL}}
+<strong>Alerting:</strong> {{ALERTING_TOOL}}</p>
+<h3>Additional Infrastructure</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Purpose</th>
+<th>Provider</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{INFRA_1}}</td>
+<td>{{INFRA_1_PURPOSE}}</td>
+<td>{{INFRA_1_PROVIDER}}</td>
+</tr>
+<tr>
+<td>{{INFRA_2}}</td>
+<td>{{INFRA_2_PURPOSE}}</td>
+<td>{{INFRA_2_PROVIDER}}</td>
+</tr>
+</tbody></table>
+<h2>Development Tools</h2>
+<h3>Package Manager</h3>
+<p><strong>Choice:</strong> {{PACKAGE_MANAGER}}
+<strong>Version:</strong> {{PACKAGE_MANAGER_VERSION}}</p>
+<h3>Testing</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Tool</th>
+<th>Coverage Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Unit</td>
+<td>{{UNIT_TEST_TOOL}}</td>
+<td>{{UNIT_COVERAGE}}%</td>
+</tr>
+<tr>
+<td>Integration</td>
+<td>{{INTEGRATION_TEST_TOOL}}</td>
+<td>{{INTEGRATION_COVERAGE}}%</td>
+</tr>
+<tr>
+<td>E2E</td>
+<td>{{E2E_TEST_TOOL}}</td>
+<td>Critical paths</td>
+</tr>
+</tbody></table>
+<h3>Linting &amp; Formatting</h3>
+<p><strong>Linter:</strong> {{LINTER}}
+<strong>Formatter:</strong> {{FORMATTER}}
+<strong>Config:</strong> {{LINT_CONFIG}}</p>
+<h3>Additional Dev Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{DEV_TOOL_1}}</td>
+<td>{{DEV_TOOL_1_PURPOSE}}</td>
+</tr>
+<tr>
+<td>{{DEV_TOOL_2}}</td>
+<td>{{DEV_TOOL_2_PURPOSE}}</td>
+</tr>
+<tr>
+<td>{{DEV_TOOL_3}}</td>
+<td>{{DEV_TOOL_3_PURPOSE}}</td>
+</tr>
+</tbody></table>
+<h2>Decision Log</h2>
+<h3>{{DECISION_1_TITLE}}</h3>
+<p><strong>Date:</strong> {{DECISION_1_DATE}}
+<strong>Status:</strong> {{DECISION_1_STATUS}}</p>
+<p><strong>Context:</strong>
+{{DECISION_1_CONTEXT}}</p>
+<p><strong>Decision:</strong>
+{{DECISION_1_DECISION}}</p>
+<p><strong>Consequences:</strong></p>
+<ul>
+<li>{{DECISION_1_CONSEQUENCE_1}}</li>
+<li>{{DECISION_1_CONSEQUENCE_2}}</li>
+</ul>
+<hr>
+<h3>{{DECISION_2_TITLE}}</h3>
+<p><strong>Date:</strong> {{DECISION_2_DATE}}
+<strong>Status:</strong> {{DECISION_2_STATUS}}</p>
+<p><strong>Context:</strong>
+{{DECISION_2_CONTEXT}}</p>
+<p><strong>Decision:</strong>
+{{DECISION_2_DECISION}}</p>
+<p><strong>Consequences:</strong></p>
+<ul>
+<li>{{DECISION_2_CONSEQUENCE_1}}</li>
+<li>{{DECISION_2_CONSEQUENCE_2}}</li>
+</ul>
+<hr>
+<h3>{{DECISION_3_TITLE}}</h3>
+<p><strong>Date:</strong> {{DECISION_3_DATE}}
+<strong>Status:</strong> {{DECISION_3_STATUS}}</p>
+<p><strong>Context:</strong>
+{{DECISION_3_CONTEXT}}</p>
+<p><strong>Decision:</strong>
+{{DECISION_3_DECISION}}</p>
+<p><strong>Consequences:</strong></p>
+<ul>
+<li>{{DECISION_3_CONSEQUENCE_1}}</li>
+<li>{{DECISION_3_CONSEQUENCE_2}}</li>
+</ul>
+<h2>Version Compatibility Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Min Version</th>
+<th>Max Version</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{COMPONENT_1}}</td>
+<td>{{MIN_1}}</td>
+<td>{{MAX_1}}</td>
+<td>{{NOTES_1}}</td>
+</tr>
+<tr>
+<td>{{COMPONENT_2}}</td>
+<td>{{MIN_2}}</td>
+<td>{{MAX_2}}</td>
+<td>{{NOTES_2}}</td>
+</tr>
+<tr>
+<td>{{COMPONENT_3}}</td>
+<td>{{MIN_3}}</td>
+<td>{{MAX_3}}</td>
+<td>{{NOTES_3}}</td>
+</tr>
+</tbody></table>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

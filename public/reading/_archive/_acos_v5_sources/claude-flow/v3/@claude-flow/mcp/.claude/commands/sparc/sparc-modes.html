@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SPARC Modes Overview</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/commands/sparc/sparc-modes.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SPARC Modes Overview</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands%2Fsparc">sparc</a> / <span>sparc-modes.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>SPARC Modes Overview</h1>
+<p>SPARC (Specification, Planning, Architecture, Review, Code) is a comprehensive development methodology with 17 specialized modes, all integrated with MCP tools for enhanced coordination and execution.</p>
+<h2>Available Modes</h2>
+<h3>Core Orchestration Modes</h3>
+<ul>
+<li><strong>orchestrator</strong>: Multi-agent task orchestration</li>
+<li><strong>swarm-coordinator</strong>: Specialized swarm management</li>
+<li><strong>workflow-manager</strong>: Process automation</li>
+<li><strong>batch-executor</strong>: Parallel task execution</li>
+</ul>
+<h3>Development Modes</h3>
+<ul>
+<li><strong>coder</strong>: Autonomous code generation</li>
+<li><strong>architect</strong>: System design</li>
+<li><strong>reviewer</strong>: Code review</li>
+<li><strong>tdd</strong>: Test-driven development</li>
+</ul>
+<h3>Analysis and Research Modes</h3>
+<ul>
+<li><strong>researcher</strong>: Deep research capabilities</li>
+<li><strong>analyzer</strong>: Code and data analysis</li>
+<li><strong>optimizer</strong>: Performance optimization</li>
+</ul>
+<h3>Creative and Support Modes</h3>
+<ul>
+<li><strong>designer</strong>: UI/UX design</li>
+<li><strong>innovator</strong>: Creative problem solving</li>
+<li><strong>documenter</strong>: Documentation generation</li>
+<li><strong>debugger</strong>: Systematic debugging</li>
+<li><strong>tester</strong>: Comprehensive testing</li>
+<li><strong>memory-manager</strong>: Knowledge management</li>
+</ul>
+<h2>Usage</h2>
+<h3>Option 1: Using MCP Tools (Preferred in Claude Code)</h3>
+<pre><code class="language-javascript">// Execute SPARC mode directly
+mcp__claude-flow__sparc_mode {
+  mode: &quot;&lt;mode&gt;&quot;,
+  task_description: &quot;&lt;task&gt;&quot;,
+  options: {
+    // mode-specific options
+  }
+}
+
+// Initialize swarm for advanced coordination
+mcp__claude-flow__swarm_init {
+  topology: &quot;hierarchical&quot;,
+  strategy: &quot;auto&quot;,
+  maxAgents: 8
+}
+
+// Spawn specialized agents
+mcp__claude-flow__agent_spawn {
+  type: &quot;&lt;agent-type&gt;&quot;,
+  capabilities: [&quot;&lt;capability1&gt;&quot;, &quot;&lt;capability2&gt;&quot;]
+}
+
+// Monitor execution
+mcp__claude-flow__swarm_monitor {
+  swarmId: &quot;current&quot;,
+  interval: 5000
+}
+</code></pre>
+<h3>Option 2: Using NPX CLI (Fallback when MCP not available)</h3>
+<pre><code class="language-bash"># Use when running from terminal or MCP tools unavailable
+npx claude-flow sparc run &lt;mode&gt; &quot;task description&quot;
+
+# For alpha features
+npx claude-flow@alpha sparc run &lt;mode&gt; &quot;task description&quot;
+
+# List all modes
+npx claude-flow sparc modes
+
+# Get help for a mode
+npx claude-flow sparc help &lt;mode&gt;
+
+# Run with options
+npx claude-flow sparc run &lt;mode&gt; &quot;task&quot; --parallel --monitor
+</code></pre>
+<h3>Option 3: Local Installation</h3>
+<pre><code class="language-bash"># If claude-flow is installed locally
+./claude-flow sparc run &lt;mode&gt; &quot;task description&quot;
+</code></pre>
+<h2>Common Workflows</h2>
+<h3>Full Development Cycle</h3>
+<h4>Using MCP Tools (Preferred)</h4>
+<pre><code class="language-javascript">// 1. Initialize development swarm
+mcp__claude-flow__swarm_init {
+  topology: &quot;hierarchical&quot;,
+  maxAgents: 12
+}
+
+// 2. Architecture design
+mcp__claude-flow__sparc_mode {
+  mode: &quot;architect&quot;,
+  task_description: &quot;design microservices&quot;
+}
+
+// 3. Implementation
+mcp__claude-flow__sparc_mode {
+  mode: &quot;coder&quot;,
+  task_description: &quot;implement services&quot;
+}
+
+// 4. Testing
+mcp__claude-flow__sparc_mode {
+  mode: &quot;tdd&quot;,
+  task_description: &quot;test all services&quot;
+}
+
+// 5. Review
+mcp__claude-flow__sparc_mode {
+  mode: &quot;reviewer&quot;,
+  task_description: &quot;review implementation&quot;
+}
+</code></pre>
+<h4>Using NPX CLI (Fallback)</h4>
+<pre><code class="language-bash"># 1. Architecture design
+npx claude-flow sparc run architect &quot;design microservices&quot;
+
+# 2. Implementation
+npx claude-flow sparc run coder &quot;implement services&quot;
+
+# 3. Testing
+npx claude-flow sparc run tdd &quot;test all services&quot;
+
+# 4. Review
+npx claude-flow sparc run reviewer &quot;review implementation&quot;
+</code></pre>
+<h3>Research and Innovation</h3>
+<h4>Using MCP Tools (Preferred)</h4>
+<pre><code class="language-javascript">// 1. Research phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;researcher&quot;,
+  task_description: &quot;research best practices&quot;
+}
+
+// 2. Innovation
+mcp__claude-flow__sparc_mode {
+  mode: &quot;innovator&quot;,
+  task_description: &quot;propose novel solutions&quot;
+}
+
+// 3. Documentation
+mcp__claude-flow__sparc_mode {
+  mode: &quot;documenter&quot;,
+  task_description: &quot;document findings&quot;
+}
+</code></pre>
+<h4>Using NPX CLI (Fallback)</h4>
+<pre><code class="language-bash"># 1. Research phase
+npx claude-flow sparc run researcher &quot;research best practices&quot;
+
+# 2. Innovation
+npx claude-flow sparc run innovator &quot;propose novel solutions&quot;
+
+# 3. Documentation
+npx claude-flow sparc run documenter &quot;document findings&quot;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

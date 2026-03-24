@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Product Deploy — Production Release</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/product-deploy.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Product Deploy — Production Release</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>product-deploy.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Product Deploy — Production Release</h1>
+<p>Deploy changes to production (frankx.ai) via the two-repo workflow.</p>
+<h2>Input</h2>
+<ul>
+<li><strong>What</strong>: $ARGUMENTS (description of what&#39;s being deployed, e.g., &quot;Vibe Producer page + newsletter updates&quot;)</li>
+</ul>
+<h2>Step 1: Pre-Deploy Verification</h2>
+<ol>
+<li>Run <code>npx tsc --noEmit</code> — must pass with zero errors</li>
+<li>Run <code>npm run build</code> — must complete successfully</li>
+<li>Check git status — identify all changed/new files to deploy</li>
+<li>Verify no secrets or test data in changed files</li>
+</ol>
+<p><strong>If any check fails</strong>: Stop and fix before proceeding.</p>
+<h2>Step 2: Stage Changes in Dev Repo</h2>
+<ol>
+<li><code>git status</code> — show all changes</li>
+<li><code>git diff</code> — review what&#39;s changing</li>
+<li>Present the change summary to Frank</li>
+<li><strong>Ask</strong>: &quot;These files will be deployed to production. Approve?&quot;</li>
+</ol>
+<h2>Step 3: Sync to Production</h2>
+<p>Only after explicit approval:</p>
+<pre><code class="language-bash"># 1. Copy changed files to production worktree
+# For each changed file, copy to .worktrees/vercel-ui-ux/
+
+# 2. Commit in production repo
+cd .worktrees/vercel-ui-ux
+git add [specific files]
+git commit -m &quot;feat: [description]&quot;
+
+# 3. Push (use TOKEN-based push for WSL)
+TOKEN=$(gh auth token) &amp;&amp; git -c &quot;http.https://github.com/.extraheader=Authorization: Basic $(echo -n &quot;x-access-token:$TOKEN&quot; | base64 --wrap=0)&quot; -c credential.helper= push origin main
+</code></pre>
+<h2>Step 4: Post-Deploy Verification</h2>
+<ol>
+<li>Check Vercel deployment status (via Vercel MCP or dashboard)</li>
+<li>Verify the deployed page loads at frankx.ai</li>
+<li>Quick smoke test (links work, images load, no console errors)</li>
+</ol>
+<h2>Step 5: Report</h2>
+<pre><code>## Deployment Report
+
+**Status**: SUCCESS / FAILED
+**URL**: https://frankx.ai/[path]
+**Files deployed**: [count]
+**Commit**: [hash]
+
+### Changes
+- [file] — [what changed]
+
+### Verification
+- [ ] Page loads
+- [ ] No console errors
+- [ ] Links work
+- [ ] Images load
+- [ ] Mobile responsive
+</code></pre>
+<h2>Rollback Plan</h2>
+<p>If something breaks after deploy:</p>
+<ol>
+<li><code>cd .worktrees/vercel-ui-ux &amp;&amp; git revert HEAD</code></li>
+<li>Push revert (same TOKEN-based push)</li>
+<li>Verify frankx.ai reverts to previous version</li>
+<li>Investigate root cause in dev repo</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

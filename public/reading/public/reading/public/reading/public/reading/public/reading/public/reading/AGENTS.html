@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX AI Agent System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="AGENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX AI Agent System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>AGENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX AI Agent System</h1>
+<p><strong>Multi-Agent Collaboration for Creator Transformation</strong></p>
+<blockquote>
+<p>This file serves as the central reference for all AI agents working in the FrankX ecosystem.
+Works with: Claude, Codex, Gemini, OpenCode</p>
+</blockquote>
+<hr>
+<h2>Quick Reference</h2>
+<h3>Launch Commands (WSL)</h3>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Claude</th>
+<th>Codex</th>
+<th>Gemini</th>
+<th>OpenCode</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>FrankX</strong></td>
+<td><code>cfx</code></td>
+<td><code>cxfx</code></td>
+<td><code>gfx</code></td>
+<td><code>ofx</code></td>
+</tr>
+<tr>
+<td><strong>Arcanea</strong></td>
+<td><code>carc</code></td>
+<td><code>cxarc</code></td>
+<td><code>garc</code></td>
+<td><code>oarc</code></td>
+</tr>
+<tr>
+<td><strong>AI Music</strong></td>
+<td><code>cmusic</code></td>
+<td><code>cxmusic</code></td>
+<td><code>gmusic</code></td>
+<td><code>omusic</code></td>
+</tr>
+</tbody></table>
+<p>All aliases use max-autonomy flags. See <code>~/.bashrc</code> for full list.</p>
+<h3>Agent Configuration Files</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Config File</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude</td>
+<td><code>CLAUDE.md</code></td>
+<td>Story &amp; Resonance Lead</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td><code>CODEX.md</code></td>
+<td>Systems Architect</td>
+</tr>
+<tr>
+<td>Gemini</td>
+<td><code>GEMINI.md</code></td>
+<td>Guardian Engineer</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td><code>OPENCODE.md</code></td>
+<td>Autonomous Builder</td>
+</tr>
+</tbody></table>
+<h3>Shared Resources</h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Skills Library</td>
+<td><code>SKILLS.md</code></td>
+<td>All 52 skills reference</td>
+</tr>
+<tr>
+<td>Agent Protocol</td>
+<td><code>agents/AGENT_PROTOCOL.md</code></td>
+<td>Handoff procedures</td>
+</tr>
+<tr>
+<td>Business Agents</td>
+<td><code>agents/business-agents.md</code></td>
+<td>Marketing specialists</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Core Agent Team</h2>
+<h3>Claude - Story &amp; Resonance Lead</h3>
+<p><strong>File</strong>: <code>CLAUDE.md</code></p>
+<p><strong>Mission</strong>: Translate Frank&#39;s musician-technologist journey into language, prompts, and experiences that turn overwhelmed creators into confident, AI-empowered artists.</p>
+<p><strong>Primary Skills</strong>:</p>
+<ul>
+<li><code>frankx-brand</code> - Voice &amp; style standards</li>
+<li><code>frankx-content</code> - Content creation</li>
+<li><code>golden-age-book-writing</code> - Book writing</li>
+<li><code>soulbook/*</code> - Life design coaching</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>All creator-facing copy and content</li>
+<li>Brand voice and messaging</li>
+<li>Narrative design and storytelling</li>
+<li>Book and course content</li>
+</ul>
+<hr>
+<h3>Codex - Systems Architect</h3>
+<p><strong>File</strong>: <code>CODEX.md</code></p>
+<p><strong>Mission</strong>: Design and build the technical foundations that power the FrankX creator ecosystem.</p>
+<p><strong>Primary Skills</strong>:</p>
+<ul>
+<li><code>mcp-architecture</code> - MCP server design</li>
+<li><code>claude-sdk</code> - Agent SDK patterns</li>
+<li><code>oracle-*</code> - Oracle Cloud &amp; database</li>
+<li><code>nextjs-react-expert</code> - Web architecture</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>System architecture decisions</li>
+<li>API and data model design</li>
+<li>Complex technical planning</li>
+<li>Integration architecture</li>
+</ul>
+<hr>
+<h3>Gemini - Guardian Engineer</h3>
+<p><strong>File</strong>: <code>GEMINI.md</code></p>
+<p><strong>Mission</strong>: Keep the FrankX.ai creator experience fast, accessible, and reliable.</p>
+<p><strong>Primary Skills</strong>:</p>
+<ul>
+<li><code>nextjs-react-expert</code> - Implementation</li>
+<li><code>ui-ux-design-expert</code> - Design systems</li>
+<li><code>framer-expert</code> - Animations</li>
+<li>Quality &amp; testing expertise</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Feature implementation</li>
+<li>Quality assurance</li>
+<li>Performance optimization</li>
+<li>Accessibility audits</li>
+</ul>
+<hr>
+<h3>OpenCode - Autonomous Builder</h3>
+<p><strong>File</strong>: <code>OPENCODE.md</code></p>
+<p><strong>Mission</strong>: Rapidly prototype, iterate, and ship features for the FrankX creator ecosystem.</p>
+<p><strong>Primary Skills</strong>:</p>
+<ul>
+<li>All technical skills</li>
+<li>Rapid prototyping focus</li>
+<li>Cross-stack capability</li>
+</ul>
+<p><strong>Best For</strong>:</p>
+<ul>
+<li>Quick prototypes and MVPs</li>
+<li>Exploratory development</li>
+<li>Bug fixing and debugging</li>
+<li>Utility scripts and tools</li>
+</ul>
+<hr>
+<h2>Specialized Agents</h2>
+<p>Activate these for specific workflows:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Activation</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Technical Translator</strong></td>
+<td>&quot;Activate Technical Translator&quot;</td>
+<td>Making AI accessible for creators</td>
+</tr>
+<tr>
+<td><strong>Frequency Alchemist</strong></td>
+<td>&quot;Channel Frequency Alchemist&quot;</td>
+<td>Suno music sessions, Vibe OS</td>
+</tr>
+<tr>
+<td><strong>Creation Engine</strong></td>
+<td>&quot;Engage Creation Engine&quot;</td>
+<td>Content &amp; product development</td>
+</tr>
+<tr>
+<td><strong>Soul Strategist</strong></td>
+<td>&quot;Consult Soul Strategist&quot;</td>
+<td>Transformation journey design</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Business Agents</h2>
+<p>For website, marketing, and growth work. See <code>agents/business-agents.md</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Brand Architect</td>
+<td>Visual identity &amp; design</td>
+</tr>
+<tr>
+<td>Conversion Engineer</td>
+<td>Funnels &amp; landing pages</td>
+</tr>
+<tr>
+<td>SEO Dominator</td>
+<td>Search visibility</td>
+</tr>
+<tr>
+<td>Product Alchemist</td>
+<td>Product strategy</td>
+</tr>
+<tr>
+<td>Performance Guardian</td>
+<td>Site speed</td>
+</tr>
+<tr>
+<td>Content Strategist</td>
+<td>Editorial planning</td>
+</tr>
+<tr>
+<td>Market Intelligence</td>
+<td>Competitive analysis</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Multi-Agent Workflows</h2>
+<h3>Feature Development</h3>
+<pre><code>1. Claude    -&gt; Define user story and copy needs
+2. Codex     -&gt; Design architecture and specs
+3. OpenCode  -&gt; Build prototype
+4. Gemini    -&gt; QA, polish, ship
+5. Claude    -&gt; Documentation and announcement
+</code></pre>
+<h3>Content Launch</h3>
+<pre><code>1. Claude    -&gt; Write content (blog, course, etc.)
+2. Gemini    -&gt; Build UI components
+3. SEO Agent -&gt; Optimize for search
+4. Claude    -&gt; Social content
+5. Gemini    -&gt; Deploy and monitor
+</code></pre>
+<h3>Bug Fix</h3>
+<pre><code>1. OpenCode  -&gt; Investigate and fix
+2. Gemini    -&gt; Review and test
+3. Codex     -&gt; Architecture review (if needed)
+</code></pre>
+<hr>
+<h2>Handoff Protocol</h2>
+<h3>Standard Handoff Template</h3>
+<pre><code class="language-markdown">## Handoff: [Feature/Task Name]
+**From**: [Agent Name]
+**To**: [Agent Name]
+**Status**: [Ready / Needs Review / Blocked]
+
+### What&#39;s Done
+- [Completed work]
+
+### What&#39;s Needed
+- [Next steps for receiving agent]
+
+### Files Changed
+- [List of files]
+
+### Notes
+- [Context, decisions, blockers]
+</code></pre>
+<h3>Priority Levels</h3>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+<th>Response Time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P0</td>
+<td>Production down</td>
+<td>Immediate</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>Major feature blocked</td>
+<td>Same session</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Normal development</td>
+<td>Next session</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>Nice to have</td>
+<td>Backlog</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Skills Access</h2>
+<p>All agents share the same skills library at <code>.claude-skills/</code>.</p>
+<p>See <code>SKILLS.md</code> for the complete 52-skill inventory.</p>
+<h3>Quick Skill Lookup</h3>
+<pre><code class="language-bash"># Read any skill
+cat .claude-skills/[category]/[skill-name]/SKILL.md
+
+# Examples
+cat .claude-skills/creative/frankx-brand/SKILL.md
+cat .claude-skills/technical/mcp-architecture/SKILL.md
+cat .claude-skills/soulbook/7-pillars/energy/SKILL.md
+</code></pre>
+<hr>
+<h2>Agent Selection Guide</h2>
+<p><strong>Use Claude when</strong>:</p>
+<ul>
+<li>Writing any creator-facing content</li>
+<li>Need brand voice consistency</li>
+<li>Creating courses, books, marketing copy</li>
+<li>Designing user journeys</li>
+</ul>
+<p><strong>Use Codex when</strong>:</p>
+<ul>
+<li>Planning system architecture</li>
+<li>Designing APIs and data models</li>
+<li>Making technical decisions</li>
+<li>Building MCP servers or agents</li>
+</ul>
+<p><strong>Use Gemini when</strong>:</p>
+<ul>
+<li>Implementing features from specs</li>
+<li>Running QA and testing</li>
+<li>Optimizing performance</li>
+<li>Ensuring accessibility</li>
+</ul>
+<p><strong>Use OpenCode when</strong>:</p>
+<ul>
+<li>Need a quick prototype</li>
+<li>Exploring implementation options</li>
+<li>Fixing bugs fast</li>
+<li>Building internal tools</li>
+</ul>
+<hr>
+<h2>Emergency Protocol</h2>
+<h3>Production Issue</h3>
+<ol>
+<li>Acknowledge and assess severity</li>
+<li>OpenCode or Gemini investigates</li>
+<li>Rollback if needed</li>
+<li>Fix and deploy</li>
+<li>Post-mortem with all agents</li>
+</ol>
+<h3>Security Issue</h3>
+<ol>
+<li>Assess exposure (Codex)</li>
+<li>Patch immediately (Gemini)</li>
+<li>Deploy without disclosure</li>
+<li>Document and notify if needed</li>
+</ol>
+<hr>
+<p><em>The FrankX Agent System: Four minds, one mission - empower creators.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

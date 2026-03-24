@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SAST Security Plugin</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/security-scanning/commands/security-sast.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">SAST Security Plugin</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning">security-scanning</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning%2Fcommands">commands</a> / <span>security-sast.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>description: Static Application Security Testing (SAST) for code vulnerability analysis across multiple languages and frameworks
+globs:
+  [
+    &quot;<strong>/*.py&quot;,
+    &quot;</strong>/<em>.js&quot;,
+    &quot;**/</em>.ts&quot;,
+    &quot;<strong>/*.java&quot;,
+    &quot;</strong>/<em>.rb&quot;,
+    &quot;**/</em>.go&quot;,
+    &quot;<strong>/*.rs&quot;,
+    &quot;</strong>/*.php&quot;,
+  ]
+keywords:
+  [
+    sast,
+    static analysis,
+    code security,
+    vulnerability scanning,
+    bandit,
+    semgrep,
+    eslint,
+    sonarqube,
+    codeql,
+    security patterns,
+    code review,
+    ast analysis,</p>
+<h2>  ]</h2>
+<h1>SAST Security Plugin</h1>
+<p>Static Application Security Testing (SAST) for comprehensive code vulnerability detection across multiple languages, frameworks, and security patterns.</p>
+<h2>Capabilities</h2>
+<ul>
+<li><strong>Multi-language SAST</strong>: Python, JavaScript/TypeScript, Java, Ruby, PHP, Go, Rust</li>
+<li><strong>Tool integration</strong>: Bandit, Semgrep, ESLint Security, SonarQube, CodeQL, PMD, SpotBugs, Brakeman, gosec, cargo-clippy</li>
+<li><strong>Vulnerability patterns</strong>: SQL injection, XSS, hardcoded secrets, path traversal, IDOR, CSRF, insecure deserialization</li>
+<li><strong>Framework analysis</strong>: Django, Flask, React, Express, Spring Boot, Rails, Laravel</li>
+<li><strong>Custom rule authoring</strong>: Semgrep pattern development for organization-specific security policies</li>
+</ul>
+<h2>When to Use This Tool</h2>
+<p>Use for code review security analysis, injection vulnerabilities, hardcoded secrets, framework-specific patterns, custom security policy enforcement, pre-deployment validation, legacy code assessment, and compliance (OWASP, PCI-DSS, SOC2).</p>
+<p><strong>Specialized tools</strong>: Use <code>security-secrets.md</code> for advanced credential scanning, <code>security-owasp.md</code> for Top 10 mapping, <code>security-api.md</code> for REST/GraphQL endpoints.</p>
+<h2>SAST Tool Selection</h2>
+<h3>Python: Bandit</h3>
+<pre><code class="language-bash"># Installation &amp; scan
+pip install bandit
+bandit -r . -f json -o bandit-report.json
+bandit -r . -ll -ii -f json  # High/Critical only
+</code></pre>
+<p><strong>Configuration</strong>: <code>.bandit</code></p>
+<pre><code class="language-yaml">exclude_dirs: [&quot;/tests/&quot;, &quot;/venv/&quot;, &quot;/.tox/&quot;, &quot;/build/&quot;]
+tests:
+  [
+    B201,
+    B301,
+    B302,
+    B303,
+    B304,
+    B305,
+    B307,
+    B308,
+    B312,
+    B323,
+    B324,
+    B501,
+    B502,
+    B506,
+    B602,
+    B608,
+  ]
+skips: [B101]
+</code></pre>
+<h3>JavaScript/TypeScript: ESLint Security</h3>
+<pre><code class="language-bash">npm install --save-dev eslint @eslint/plugin-security eslint-plugin-no-secrets
+eslint . --ext .js,.jsx,.ts,.tsx --format json &gt; eslint-security.json
+</code></pre>
+<p><strong>Configuration</strong>: <code>.eslintrc-security.json</code></p>
+<pre><code class="language-json">{
+  &quot;plugins&quot;: [&quot;@eslint/plugin-security&quot;, &quot;eslint-plugin-no-secrets&quot;],
+  &quot;extends&quot;: [&quot;plugin:security/recommended&quot;],
+  &quot;rules&quot;: {
+    &quot;security/detect-object-injection&quot;: &quot;error&quot;,
+    &quot;security/detect-non-literal-fs-filename&quot;: &quot;error&quot;,
+    &quot;security/detect-eval-with-expression&quot;: &quot;error&quot;,
+    &quot;security/detect-pseudo-random-prng&quot;: &quot;error&quot;,
+    &quot;no-secrets/no-secrets&quot;: &quot;error&quot;
+  }
+}
+</code></pre>
+<h3>Multi-Language: Semgrep</h3>
+<pre><code class="language-bash">pip install semgrep
+semgrep --config=auto --json --output=semgrep-report.json
+semgrep --config=p/security-audit --json
+semgrep --config=p/owasp-top-ten --json
+semgrep ci --config=auto  # CI mode
+</code></pre>
+<p><strong>Custom Rules</strong>: <code>.semgrep.yml</code></p>
+<pre><code class="language-yaml">rules:
+  - id: sql-injection-format-string
+    pattern: cursor.execute(&quot;... %s ...&quot; % $VAR)
+    message: SQL injection via string formatting
+    severity: ERROR
+    languages: [python]
+    metadata:
+      cwe: &quot;CWE-89&quot;
+      owasp: &quot;A03:2021-Injection&quot;
+
+  - id: dangerous-innerHTML
+    pattern: $ELEM.innerHTML = $VAR
+    message: XSS via innerHTML assignment
+    severity: ERROR
+    languages: [javascript, typescript]
+    metadata:
+      cwe: &quot;CWE-79&quot;
+
+  - id: hardcoded-aws-credentials
+    patterns:
+      - pattern: $KEY = &quot;AKIA...&quot;
+      - metavariable-regex:
+          metavariable: $KEY
+          regex: &quot;(aws_access_key_id|AWS_ACCESS_KEY_ID)&quot;
+    message: Hardcoded AWS credentials detected
+    severity: ERROR
+    languages: [python, javascript, java]
+
+  - id: path-traversal-open
+    patterns:
+      - pattern: open($PATH, ...)
+      - pattern-not: open(os.path.join(SAFE_DIR, ...), ...)
+      - metavariable-pattern:
+          metavariable: $PATH
+          patterns:
+            - pattern: $REQ.get(...)
+    message: Path traversal via user input
+    severity: ERROR
+    languages: [python]
+
+  - id: command-injection
+    patterns:
+      - pattern-either:
+          - pattern: os.system($CMD)
+          - pattern: subprocess.call($CMD, shell=True)
+      - metavariable-pattern:
+          metavariable: $CMD
+          patterns:
+            - pattern-either:
+                - pattern: $X + $Y
+                - pattern: f&quot;...{$VAR}...&quot;
+    message: Command injection via shell=True
+    severity: ERROR
+    languages: [python]
+</code></pre>
+<h3>Other Language Tools</h3>
+<p><strong>Java</strong>: <code>mvn spotbugs:check</code>
+<strong>Ruby</strong>: <code>brakeman -o report.json -f json</code>
+<strong>Go</strong>: <code>gosec -fmt=json -out=gosec.json ./...</code>
+<strong>Rust</strong>: <code>cargo clippy -- -W clippy::unwrap_used</code></p>
+<h2>Vulnerability Patterns</h2>
+<h3>SQL Injection</h3>
+<p><strong>VULNERABLE</strong>: String formatting/concatenation with user input in SQL queries</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python"># Parameterized queries
+cursor.execute(&quot;SELECT * FROM users WHERE id = %s&quot;, (user_id,))
+User.objects.filter(id=user_id)  # ORM
+</code></pre>
+<h3>Cross-Site Scripting (XSS)</h3>
+<p><strong>VULNERABLE</strong>: Direct HTML manipulation with unsanitized user input (innerHTML, outerHTML, document.write)</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-javascript">// Use textContent for plain text
+element.textContent = userInput;
+
+// React auto-escapes
+&lt;div&gt;{userInput}&lt;/div&gt;;
+
+// Sanitize when HTML required
+import DOMPurify from &quot;dompurify&quot;;
+element.innerHTML = DOMPurify.sanitize(userInput);
+</code></pre>
+<h3>Hardcoded Secrets</h3>
+<p><strong>VULNERABLE</strong>: Hardcoded API keys, passwords, tokens in source code</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python">import os
+API_KEY = os.environ.get(&#39;API_KEY&#39;)
+PASSWORD = os.getenv(&#39;DB_PASSWORD&#39;)
+</code></pre>
+<h3>Path Traversal</h3>
+<p><strong>VULNERABLE</strong>: Opening files using unsanitized user input</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python">import os
+ALLOWED_DIR = &#39;/var/www/uploads&#39;
+file_name = request.args.get(&#39;file&#39;)
+file_path = os.path.join(ALLOWED_DIR, file_name)
+file_path = os.path.realpath(file_path)
+if not file_path.startswith(os.path.realpath(ALLOWED_DIR)):
+    raise ValueError(&quot;Invalid file path&quot;)
+with open(file_path, &#39;r&#39;) as f:
+    content = f.read()
+</code></pre>
+<h3>Insecure Deserialization</h3>
+<p><strong>VULNERABLE</strong>: pickle.loads(), yaml.load() with untrusted data</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python">import json
+data = json.loads(user_input)  # SECURE
+import yaml
+config = yaml.safe_load(user_input)  # SECURE
+</code></pre>
+<h3>Command Injection</h3>
+<p><strong>VULNERABLE</strong>: os.system() or subprocess with shell=True and user input</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python">subprocess.run([&#39;ping&#39;, &#39;-c&#39;, &#39;4&#39;, user_input])  # Array args
+import shlex
+safe_input = shlex.quote(user_input)  # Input validation
+</code></pre>
+<h3>Insecure Random</h3>
+<p><strong>VULNERABLE</strong>: random module for security-critical operations</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python">import secrets
+token = secrets.token_hex(16)
+session_id = secrets.token_urlsafe(32)
+</code></pre>
+<h2>Framework Security</h2>
+<h3>Django</h3>
+<p><strong>VULNERABLE</strong>: @csrf_exempt, DEBUG=True, weak SECRET_KEY, missing security middleware</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python"># settings.py
+DEBUG = False
+SECRET_KEY = os.environ.get(&#39;DJANGO_SECRET_KEY&#39;)
+
+MIDDLEWARE = [
+    &#39;django.middleware.security.SecurityMiddleware&#39;,
+    &#39;django.middleware.csrf.CsrfViewMiddleware&#39;,
+    &#39;django.middleware.clickjacking.XFrameOptionsMiddleware&#39;,
+]
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = &#39;DENY&#39;
+</code></pre>
+<h3>Flask</h3>
+<p><strong>VULNERABLE</strong>: debug=True, weak secret_key, CORS wildcard</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-python">import os
+from flask_talisman import Talisman
+
+app.secret_key = os.environ.get(&#39;FLASK_SECRET_KEY&#39;)
+Talisman(app, force_https=True)
+CORS(app, origins=[&#39;https://example.com&#39;])
+</code></pre>
+<h3>Express.js</h3>
+<p><strong>VULNERABLE</strong>: Missing helmet, CORS wildcard, no rate limiting</p>
+<p><strong>SECURE</strong>:</p>
+<pre><code class="language-javascript">const helmet = require(&quot;helmet&quot;);
+const rateLimit = require(&quot;express-rate-limit&quot;);
+
+app.use(helmet());
+app.use(cors({ origin: &quot;https://example.com&quot; }));
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }));
+</code></pre>
+<h2>Multi-Language Scanner Implementation</h2>
+<pre><code class="language-python">import json
+import subprocess
+from pathlib import Path
+from typing import Dict, List, Any
+from dataclasses import dataclass
+from datetime import datetime
+
+@dataclass
+class SASTFinding:
+    tool: str
+    severity: str
+    category: str
+    title: str
+    description: str
+    file_path: str
+    line_number: int
+    cwe: str
+    owasp: str
+    confidence: str
+
+class MultiLanguageSASTScanner:
+    def __init__(self, project_path: str):
+        self.project_path = Path(project_path)
+        self.findings: List[SASTFinding] = []
+
+    def detect_languages(self) -&gt; List[str]:
+        &quot;&quot;&quot;Auto-detect languages&quot;&quot;&quot;
+        languages = []
+        indicators = {
+            &#39;python&#39;: [&#39;*.py&#39;, &#39;requirements.txt&#39;],
+            &#39;javascript&#39;: [&#39;*.js&#39;, &#39;package.json&#39;],
+            &#39;typescript&#39;: [&#39;*.ts&#39;, &#39;tsconfig.json&#39;],
+            &#39;java&#39;: [&#39;*.java&#39;, &#39;pom.xml&#39;],
+            &#39;ruby&#39;: [&#39;*.rb&#39;, &#39;Gemfile&#39;],
+            &#39;go&#39;: [&#39;*.go&#39;, &#39;go.mod&#39;],
+            &#39;rust&#39;: [&#39;*.rs&#39;, &#39;Cargo.toml&#39;],
+        }
+        for lang, patterns in indicators.items():
+            for pattern in patterns:
+                if list(self.project_path.glob(f&#39;**/{pattern}&#39;)):
+                    languages.append(lang)
+                    break
+        return languages
+
+    def run_comprehensive_sast(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Execute all applicable SAST tools&quot;&quot;&quot;
+        languages = self.detect_languages()
+
+        scan_results = {
+            &#39;timestamp&#39;: datetime.now().isoformat(),
+            &#39;languages&#39;: languages,
+            &#39;tools_executed&#39;: [],
+            &#39;findings&#39;: []
+        }
+
+        self.run_semgrep_scan()
+        scan_results[&#39;tools_executed&#39;].append(&#39;semgrep&#39;)
+
+        if &#39;python&#39; in languages:
+            self.run_bandit_scan()
+            scan_results[&#39;tools_executed&#39;].append(&#39;bandit&#39;)
+        if &#39;javascript&#39; in languages or &#39;typescript&#39; in languages:
+            self.run_eslint_security_scan()
+            scan_results[&#39;tools_executed&#39;].append(&#39;eslint-security&#39;)
+
+        scan_results[&#39;findings&#39;] = [vars(f) for f in self.findings]
+        scan_results[&#39;summary&#39;] = self.generate_summary()
+        return scan_results
+
+    def run_semgrep_scan(self):
+        &quot;&quot;&quot;Run Semgrep&quot;&quot;&quot;
+        for ruleset in [&#39;auto&#39;, &#39;p/security-audit&#39;, &#39;p/owasp-top-ten&#39;]:
+            try:
+                result = subprocess.run([
+                    &#39;semgrep&#39;, &#39;--config&#39;, ruleset, &#39;--json&#39;, &#39;--quiet&#39;,
+                    str(self.project_path)
+                ], capture_output=True, text=True, timeout=300)
+
+                if result.stdout:
+                    data = json.loads(result.stdout)
+                    for f in data.get(&#39;results&#39;, []):
+                        self.findings.append(SASTFinding(
+                            tool=&#39;semgrep&#39;,
+                            severity=f.get(&#39;extra&#39;, {}).get(&#39;severity&#39;, &#39;MEDIUM&#39;).upper(),
+                            category=&#39;sast&#39;,
+                            title=f.get(&#39;check_id&#39;, &#39;&#39;),
+                            description=f.get(&#39;extra&#39;, {}).get(&#39;message&#39;, &#39;&#39;),
+                            file_path=f.get(&#39;path&#39;, &#39;&#39;),
+                            line_number=f.get(&#39;start&#39;, {}).get(&#39;line&#39;, 0),
+                            cwe=f.get(&#39;extra&#39;, {}).get(&#39;metadata&#39;, {}).get(&#39;cwe&#39;, &#39;&#39;),
+                            owasp=f.get(&#39;extra&#39;, {}).get(&#39;metadata&#39;, {}).get(&#39;owasp&#39;, &#39;&#39;),
+                            confidence=f.get(&#39;extra&#39;, {}).get(&#39;metadata&#39;, {}).get(&#39;confidence&#39;, &#39;MEDIUM&#39;)
+                        ))
+            except Exception as e:
+                print(f&quot;Semgrep {ruleset} failed: {e}&quot;)
+
+    def generate_summary(self) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;Generate statistics&quot;&quot;&quot;
+        severity_counts = {&#39;CRITICAL&#39;: 0, &#39;HIGH&#39;: 0, &#39;MEDIUM&#39;: 0, &#39;LOW&#39;: 0}
+        for f in self.findings:
+            severity_counts[f.severity] = severity_counts.get(f.severity, 0) + 1
+
+        return {
+            &#39;total_findings&#39;: len(self.findings),
+            &#39;severity_breakdown&#39;: severity_counts,
+            &#39;risk_score&#39;: self.calculate_risk_score(severity_counts)
+        }
+
+    def calculate_risk_score(self, severity_counts: Dict[str, int]) -&gt; int:
+        &quot;&quot;&quot;Risk score 0-100&quot;&quot;&quot;
+        weights = {&#39;CRITICAL&#39;: 10, &#39;HIGH&#39;: 7, &#39;MEDIUM&#39;: 4, &#39;LOW&#39;: 1}
+        total = sum(weights[s] * c for s, c in severity_counts.items())
+        return min(100, int((total / 50) * 100))
+</code></pre>
+<h2>CI/CD Integration</h2>
+<h3>GitHub Actions</h3>
+<pre><code class="language-yaml">name: SAST Scan
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: &quot;3.11&quot;
+
+      - name: Install tools
+        run: |
+          pip install bandit semgrep
+          npm install -g eslint @eslint/plugin-security
+
+      - name: Run scans
+        run: |
+          bandit -r . -f json -o bandit.json || true
+          semgrep --config=auto --json --output=semgrep.json || true
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: sast-reports
+          path: |
+            bandit.json
+            semgrep.json
+</code></pre>
+<h3>GitLab CI</h3>
+<pre><code class="language-yaml">sast:
+  stage: test
+  image: python:3.11
+  script:
+    - pip install bandit semgrep
+    - bandit -r . -f json -o bandit.json || true
+    - semgrep --config=auto --json --output=semgrep.json || true
+  artifacts:
+    reports:
+      sast: bandit.json
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Run early and often</strong> - Pre-commit hooks and CI/CD</li>
+<li><strong>Combine multiple tools</strong> - Different tools catch different vulnerabilities</li>
+<li><strong>Tune false positives</strong> - Configure exclusions and thresholds</li>
+<li><strong>Prioritize findings</strong> - Focus on CRITICAL/HIGH first</li>
+<li><strong>Framework-aware scanning</strong> - Use specific rulesets</li>
+<li><strong>Custom rules</strong> - Organization-specific patterns</li>
+<li><strong>Developer training</strong> - Secure coding practices</li>
+<li><strong>Incremental remediation</strong> - Fix gradually</li>
+<li><strong>Baseline management</strong> - Track known issues</li>
+<li><strong>Regular updates</strong> - Keep tools current</li>
+</ol>
+<h2>Related Tools</h2>
+<ul>
+<li><strong>security-secrets.md</strong> - Advanced credential detection</li>
+<li><strong>security-owasp.md</strong> - OWASP Top 10 assessment</li>
+<li><strong>security-api.md</strong> - API security testing</li>
+<li><strong>security-scan.md</strong> - Comprehensive security scanning</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

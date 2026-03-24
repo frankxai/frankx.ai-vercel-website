@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>MCP Authentication Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/mcp-integration/references/authentication.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">MCP Authentication Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills">skills</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fmcp-integration">mcp-integration</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fmcp-integration%2Freferences">references</a> / <span>authentication.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>MCP Authentication Patterns</h1>
+<p>Complete guide to authentication methods for MCP servers in Claude Code plugins.</p>
+<h2>Overview</h2>
+<p>MCP servers support multiple authentication methods depending on the server type and service requirements. Choose the method that best matches your use case and security requirements.</p>
+<h2>OAuth (Automatic)</h2>
+<h3>How It Works</h3>
+<p>Claude Code automatically handles the complete OAuth 2.0 flow for SSE and HTTP servers:</p>
+<ol>
+<li>User attempts to use MCP tool</li>
+<li>Claude Code detects authentication needed</li>
+<li>Opens browser for OAuth consent</li>
+<li>User authorizes in browser</li>
+<li>Tokens stored securely by Claude Code</li>
+<li>Automatic token refresh</li>
+</ol>
+<h3>Configuration</h3>
+<pre><code class="language-json">{
+  &quot;service&quot;: {
+    &quot;type&quot;: &quot;sse&quot;,
+    &quot;url&quot;: &quot;https://mcp.example.com/sse&quot;
+  }
+}
+</code></pre>
+<p>No additional auth configuration needed! Claude Code handles everything.</p>
+<h3>Supported Services</h3>
+<p><strong>Known OAuth-enabled MCP servers:</strong></p>
+<ul>
+<li>Asana: <code>https://mcp.asana.com/sse</code></li>
+<li>GitHub (when available)</li>
+<li>Google services (when available)</li>
+<li>Custom OAuth servers</li>
+</ul>
+<h3>OAuth Scopes</h3>
+<p>OAuth scopes are determined by the MCP server. Users see required scopes during the consent flow.</p>
+<p><strong>Document required scopes in your README:</strong></p>
+<pre><code class="language-markdown">## Authentication
+
+This plugin requires the following Asana permissions:
+- Read tasks and projects
+- Create and update tasks
+- Access workspace data
+</code></pre>
+<h3>Token Storage</h3>
+<p>Tokens are stored securely by Claude Code:</p>
+<ul>
+<li>Not accessible to plugins</li>
+<li>Encrypted at rest</li>
+<li>Automatic refresh</li>
+<li>Cleared on sign-out</li>
+</ul>
+<h3>Troubleshooting OAuth</h3>
+<p><strong>Authentication loop:</strong></p>
+<ul>
+<li>Clear cached tokens (sign out and sign in)</li>
+<li>Check OAuth redirect URLs</li>
+<li>Verify server OAuth configuration</li>
+</ul>
+<p><strong>Scope issues:</strong></p>
+<ul>
+<li>User may need to re-authorize for new scopes</li>
+<li>Check server documentation for required scopes</li>
+</ul>
+<p><strong>Token expiration:</strong></p>
+<ul>
+<li>Claude Code auto-refreshes</li>
+<li>If refresh fails, prompts re-authentication</li>
+</ul>
+<h2>Token-Based Authentication</h2>
+<h3>Bearer Tokens</h3>
+<p>Most common for HTTP and WebSocket servers.</p>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;api&quot;: {
+    &quot;type&quot;: &quot;http&quot;,
+    &quot;url&quot;: &quot;https://api.example.com/mcp&quot;,
+    &quot;headers&quot;: {
+      &quot;Authorization&quot;: &quot;Bearer ${API_TOKEN}&quot;
+    }
+  }
+}
+</code></pre>
+<p><strong>Environment variable:</strong></p>
+<pre><code class="language-bash">export API_TOKEN=&quot;your-secret-token-here&quot;
+</code></pre>
+<h3>API Keys</h3>
+<p>Alternative to Bearer tokens, often in custom headers.</p>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;api&quot;: {
+    &quot;type&quot;: &quot;http&quot;,
+    &quot;url&quot;: &quot;https://api.example.com/mcp&quot;,
+    &quot;headers&quot;: {
+      &quot;X-API-Key&quot;: &quot;${API_KEY}&quot;,
+      &quot;X-API-Secret&quot;: &quot;${API_SECRET}&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Custom Headers</h3>
+<p>Services may use custom authentication headers.</p>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-json">{
+  &quot;service&quot;: {
+    &quot;type&quot;: &quot;sse&quot;,
+    &quot;url&quot;: &quot;https://mcp.example.com/sse&quot;,
+    &quot;headers&quot;: {
+      &quot;X-Auth-Token&quot;: &quot;${AUTH_TOKEN}&quot;,
+      &quot;X-User-ID&quot;: &quot;${USER_ID}&quot;,
+      &quot;X-Tenant-ID&quot;: &quot;${TENANT_ID}&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Documenting Token Requirements</h3>
+<p>Always document in your README:</p>
+<pre><code class="language-markdown">## Setup
+
+### Required Environment Variables
+
+Set these environment variables before using the plugin:
+
+\`\`\`bash
+export API_TOKEN=&quot;your-token-here&quot;
+export API_SECRET=&quot;your-secret-here&quot;
+\`\`\`
+
+### Obtaining Tokens
+
+1. Visit https://api.example.com/tokens
+2. Create a new API token
+3. Copy the token and secret
+4. Set environment variables as shown above
+
+### Token Permissions
+
+The API token needs the following permissions:
+- Read access to resources
+- Write access for creating items
+- Delete access (optional, for cleanup operations)
+\`\`\`
+</code></pre>
+<h2>Environment Variable Authentication (stdio)</h2>
+<h3>Passing Credentials to Server</h3>
+<p>For stdio servers, pass credentials via environment variables:</p>
+<pre><code class="language-json">{
+  &quot;database&quot;: {
+    &quot;command&quot;: &quot;python&quot;,
+    &quot;args&quot;: [&quot;-m&quot;, &quot;mcp_server_db&quot;],
+    &quot;env&quot;: {
+      &quot;DATABASE_URL&quot;: &quot;${DATABASE_URL}&quot;,
+      &quot;DB_USER&quot;: &quot;${DB_USER}&quot;,
+      &quot;DB_PASSWORD&quot;: &quot;${DB_PASSWORD}&quot;
+    }
+  }
+}
+</code></pre>
+<h3>User Environment Variables</h3>
+<pre><code class="language-bash"># User sets these in their shell
+export DATABASE_URL=&quot;postgresql://localhost/mydb&quot;
+export DB_USER=&quot;myuser&quot;
+export DB_PASSWORD=&quot;mypassword&quot;
+</code></pre>
+<h3>Documentation Template</h3>
+<pre><code class="language-markdown">## Database Configuration
+
+Set these environment variables:
+
+\`\`\`bash
+export DATABASE_URL=&quot;postgresql://host:port/database&quot;
+export DB_USER=&quot;username&quot;
+export DB_PASSWORD=&quot;password&quot;
+\`\`\`
+
+Or create a `.env` file (add to `.gitignore`):
+
+\`\`\`
+DATABASE_URL=postgresql://localhost:5432/mydb
+DB_USER=myuser
+DB_PASSWORD=mypassword
+\`\`\`
+
+Load with: \`source .env\` or \`export $(cat .env | xargs)\`
+\`\`\`
+</code></pre>
+<h2>Dynamic Headers</h2>
+<h3>Headers Helper Script</h3>
+<p>For tokens that change or expire, use a helper script:</p>
+<pre><code class="language-json">{
+  &quot;api&quot;: {
+    &quot;type&quot;: &quot;sse&quot;,
+    &quot;url&quot;: &quot;https://api.example.com&quot;,
+    &quot;headersHelper&quot;: &quot;${CLAUDE_PLUGIN_ROOT}/scripts/get-headers.sh&quot;
+  }
+}
+</code></pre>
+<p><strong>Script (get-headers.sh):</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# Generate dynamic authentication headers
+
+# Fetch fresh token
+TOKEN=$(get-fresh-token-from-somewhere)
+
+# Output JSON headers
+cat &lt;&lt;EOF
+{
+  &quot;Authorization&quot;: &quot;Bearer $TOKEN&quot;,
+  &quot;X-Timestamp&quot;: &quot;$(date -Iseconds)&quot;
+}
+EOF
+</code></pre>
+<h3>Use Cases for Dynamic Headers</h3>
+<ul>
+<li>Short-lived tokens that need refresh</li>
+<li>Tokens with HMAC signatures</li>
+<li>Time-based authentication</li>
+<li>Dynamic tenant/workspace selection</li>
+</ul>
+<h2>Security Best Practices</h2>
+<h3>DO</h3>
+<p>✅ <strong>Use environment variables:</strong></p>
+<pre><code class="language-json">{
+  &quot;headers&quot;: {
+    &quot;Authorization&quot;: &quot;Bearer ${API_TOKEN}&quot;
+  }
+}
+</code></pre>
+<p>✅ <strong>Document required variables in README</strong></p>
+<p>✅ <strong>Use HTTPS/WSS always</strong></p>
+<p>✅ <strong>Implement token rotation</strong></p>
+<p>✅ <strong>Store tokens securely (env vars, not files)</strong></p>
+<p>✅ <strong>Let OAuth handle authentication when available</strong></p>
+<h3>DON&#39;T</h3>
+<p>❌ <strong>Hardcode tokens:</strong></p>
+<pre><code class="language-json">{
+  &quot;headers&quot;: {
+    &quot;Authorization&quot;: &quot;Bearer sk-abc123...&quot;  // NEVER!
+  }
+}
+</code></pre>
+<p>❌ <strong>Commit tokens to git</strong></p>
+<p>❌ <strong>Share tokens in documentation</strong></p>
+<p>❌ <strong>Use HTTP instead of HTTPS</strong></p>
+<p>❌ <strong>Store tokens in plugin files</strong></p>
+<p>❌ <strong>Log tokens or sensitive headers</strong></p>
+<h2>Multi-Tenancy Patterns</h2>
+<h3>Workspace/Tenant Selection</h3>
+<p><strong>Via environment variable:</strong></p>
+<pre><code class="language-json">{
+  &quot;api&quot;: {
+    &quot;type&quot;: &quot;http&quot;,
+    &quot;url&quot;: &quot;https://api.example.com/mcp&quot;,
+    &quot;headers&quot;: {
+      &quot;Authorization&quot;: &quot;Bearer ${API_TOKEN}&quot;,
+      &quot;X-Workspace-ID&quot;: &quot;${WORKSPACE_ID}&quot;
+    }
+  }
+}
+</code></pre>
+<p><strong>Via URL:</strong></p>
+<pre><code class="language-json">{
+  &quot;api&quot;: {
+    &quot;type&quot;: &quot;http&quot;,
+    &quot;url&quot;: &quot;https://${TENANT_ID}.api.example.com/mcp&quot;
+  }
+}
+</code></pre>
+<h3>Per-User Configuration</h3>
+<p>Users set their own workspace:</p>
+<pre><code class="language-bash">export WORKSPACE_ID=&quot;my-workspace-123&quot;
+export TENANT_ID=&quot;my-company&quot;
+</code></pre>
+<h2>Authentication Troubleshooting</h2>
+<h3>Common Issues</h3>
+<p><strong>401 Unauthorized:</strong></p>
+<ul>
+<li>Check token is set correctly</li>
+<li>Verify token hasn&#39;t expired</li>
+<li>Check token has required permissions</li>
+<li>Ensure header format is correct</li>
+</ul>
+<p><strong>403 Forbidden:</strong></p>
+<ul>
+<li>Token valid but lacks permissions</li>
+<li>Check scope/permissions</li>
+<li>Verify workspace/tenant ID</li>
+<li>May need admin approval</li>
+</ul>
+<p><strong>Token not found:</strong></p>
+<pre><code class="language-bash"># Check environment variable is set
+echo $API_TOKEN
+
+# If empty, set it
+export API_TOKEN=&quot;your-token&quot;
+</code></pre>
+<p><strong>Token in wrong format:</strong></p>
+<pre><code class="language-json">// Correct
+&quot;Authorization&quot;: &quot;Bearer sk-abc123&quot;
+
+// Wrong
+&quot;Authorization&quot;: &quot;sk-abc123&quot;
+</code></pre>
+<h3>Debugging Authentication</h3>
+<p><strong>Enable debug mode:</strong></p>
+<pre><code class="language-bash">claude --debug
+</code></pre>
+<p>Look for:</p>
+<ul>
+<li>Authentication header values (sanitized)</li>
+<li>OAuth flow progress</li>
+<li>Token refresh attempts</li>
+<li>Authentication errors</li>
+</ul>
+<p><strong>Test authentication separately:</strong></p>
+<pre><code class="language-bash"># Test HTTP endpoint
+curl -H &quot;Authorization: Bearer $API_TOKEN&quot; \
+     https://api.example.com/mcp/health
+
+# Should return 200 OK
+</code></pre>
+<h2>Migration Patterns</h2>
+<h3>From Hardcoded to Environment Variables</h3>
+<p><strong>Before:</strong></p>
+<pre><code class="language-json">{
+  &quot;headers&quot;: {
+    &quot;Authorization&quot;: &quot;Bearer sk-hardcoded-token&quot;
+  }
+}
+</code></pre>
+<p><strong>After:</strong></p>
+<pre><code class="language-json">{
+  &quot;headers&quot;: {
+    &quot;Authorization&quot;: &quot;Bearer ${API_TOKEN}&quot;
+  }
+}
+</code></pre>
+<p><strong>Migration steps:</strong></p>
+<ol>
+<li>Add environment variable to plugin README</li>
+<li>Update configuration to use ${VAR}</li>
+<li>Test with variable set</li>
+<li>Remove hardcoded value</li>
+<li>Commit changes</li>
+</ol>
+<h3>From Basic Auth to OAuth</h3>
+<p><strong>Before:</strong></p>
+<pre><code class="language-json">{
+  &quot;headers&quot;: {
+    &quot;Authorization&quot;: &quot;Basic ${BASE64_CREDENTIALS}&quot;
+  }
+}
+</code></pre>
+<p><strong>After:</strong></p>
+<pre><code class="language-json">{
+  &quot;type&quot;: &quot;sse&quot;,
+  &quot;url&quot;: &quot;https://mcp.example.com/sse&quot;
+}
+</code></pre>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Better security</li>
+<li>No credential management</li>
+<li>Automatic token refresh</li>
+<li>Scoped permissions</li>
+</ul>
+<h2>Advanced Authentication</h2>
+<h3>Mutual TLS (mTLS)</h3>
+<p>Some enterprise services require client certificates.</p>
+<p><strong>Not directly supported in MCP configuration.</strong></p>
+<p><strong>Workaround:</strong> Wrap in stdio server that handles mTLS:</p>
+<pre><code class="language-json">{
+  &quot;secure-api&quot;: {
+    &quot;command&quot;: &quot;${CLAUDE_PLUGIN_ROOT}/servers/mtls-wrapper&quot;,
+    &quot;args&quot;: [&quot;--cert&quot;, &quot;${CLIENT_CERT}&quot;, &quot;--key&quot;, &quot;${CLIENT_KEY}&quot;],
+    &quot;env&quot;: {
+      &quot;API_URL&quot;: &quot;https://secure.example.com&quot;
+    }
+  }
+}
+</code></pre>
+<h3>JWT Tokens</h3>
+<p>Generate JWT tokens dynamically with headers helper:</p>
+<pre><code class="language-bash">#!/bin/bash
+# generate-jwt.sh
+
+# Generate JWT (using library or API call)
+JWT=$(generate-jwt-token)
+
+echo &quot;{\&quot;Authorization\&quot;: \&quot;Bearer $JWT\&quot;}&quot;
+</code></pre>
+<pre><code class="language-json">{
+  &quot;headersHelper&quot;: &quot;${CLAUDE_PLUGIN_ROOT}/scripts/generate-jwt.sh&quot;
+}
+</code></pre>
+<h3>HMAC Signatures</h3>
+<p>For APIs requiring request signing:</p>
+<pre><code class="language-bash">#!/bin/bash
+# generate-hmac.sh
+
+TIMESTAMP=$(date -Iseconds)
+SIGNATURE=$(echo -n &quot;$TIMESTAMP&quot; | openssl dgst -sha256 -hmac &quot;$SECRET_KEY&quot; | cut -d&#39; &#39; -f2)
+
+cat &lt;&lt;EOF
+{
+  &quot;X-Timestamp&quot;: &quot;$TIMESTAMP&quot;,
+  &quot;X-Signature&quot;: &quot;$SIGNATURE&quot;,
+  &quot;X-API-Key&quot;: &quot;$API_KEY&quot;
+}
+EOF
+</code></pre>
+<h2>Best Practices Summary</h2>
+<h3>For Plugin Developers</h3>
+<ol>
+<li><strong>Prefer OAuth</strong> when service supports it</li>
+<li><strong>Use environment variables</strong> for tokens</li>
+<li><strong>Document all required variables</strong> in README</li>
+<li><strong>Provide setup instructions</strong> with examples</li>
+<li><strong>Never commit credentials</strong></li>
+<li><strong>Use HTTPS/WSS only</strong></li>
+<li><strong>Test authentication thoroughly</strong></li>
+</ol>
+<h3>For Plugin Users</h3>
+<ol>
+<li><strong>Set environment variables</strong> before using plugin</li>
+<li><strong>Keep tokens secure</strong> and private</li>
+<li><strong>Rotate tokens regularly</strong></li>
+<li><strong>Use different tokens</strong> for dev/prod</li>
+<li><strong>Don&#39;t commit .env files</strong> to git</li>
+<li><strong>Review OAuth scopes</strong> before authorizing</li>
+</ol>
+<h2>Conclusion</h2>
+<p>Choose the authentication method that matches your MCP server&#39;s requirements:</p>
+<ul>
+<li><strong>OAuth</strong> for cloud services (easiest for users)</li>
+<li><strong>Bearer tokens</strong> for API services</li>
+<li><strong>Environment variables</strong> for stdio servers</li>
+<li><strong>Dynamic headers</strong> for complex auth flows</li>
+</ul>
+<p>Always prioritize security and provide clear setup documentation for users.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

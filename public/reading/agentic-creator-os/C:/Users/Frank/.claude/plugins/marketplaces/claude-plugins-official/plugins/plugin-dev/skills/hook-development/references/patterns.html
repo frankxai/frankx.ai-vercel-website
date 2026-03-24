@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Common Hook Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/hook-development/references/patterns.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Common Hook Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../../../../../../../../../index.html#agentic-creator-os%2FC%3A">C:</a> / <a href="../../../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="../../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills">skills</a> / <a href="../index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fhook-development">hook-development</a> / <a href="index.html#agentic-creator-os%2FC%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fhook-development%2Freferences">references</a> / <span>patterns.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Common Hook Patterns</h1>
+<p>This reference provides common, proven patterns for implementing Claude Code hooks. Use these patterns as starting points for typical hook use cases.</p>
+<h2>Pattern 1: Security Validation</h2>
+<p>Block dangerous file writes using prompt-based hooks:</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Write|Edit&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;File path: $TOOL_INPUT.file_path. Verify: 1) Not in /etc or system directories 2) Not .env or credentials 3) Path doesn&#39;t contain &#39;..&#39; traversal. Return &#39;approve&#39; or &#39;deny&#39;.&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Use for:</strong> Preventing writes to sensitive files or system directories.</p>
+<h2>Pattern 2: Test Enforcement</h2>
+<p>Ensure tests run before stopping:</p>
+<pre><code class="language-json">{
+  &quot;Stop&quot;: [
+    {
+      &quot;matcher&quot;: &quot;*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Review transcript. If code was modified (Write/Edit tools used), verify tests were executed. If no tests were run, block with reason &#39;Tests must be run after code changes&#39;.&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Use for:</strong> Enforcing quality standards and preventing incomplete work.</p>
+<h2>Pattern 3: Context Loading</h2>
+<p>Load project-specific context at session start:</p>
+<pre><code class="language-json">{
+  &quot;SessionStart&quot;: [
+    {
+      &quot;matcher&quot;: &quot;*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/scripts/load-context.sh&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Example script (load-context.sh):</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+cd &quot;$CLAUDE_PROJECT_DIR&quot; || exit 1
+
+# Detect project type
+if [ -f &quot;package.json&quot; ]; then
+  echo &quot;📦 Node.js project detected&quot;
+  echo &quot;export PROJECT_TYPE=nodejs&quot; &gt;&gt; &quot;$CLAUDE_ENV_FILE&quot;
+elif [ -f &quot;Cargo.toml&quot; ]; then
+  echo &quot;🦀 Rust project detected&quot;
+  echo &quot;export PROJECT_TYPE=rust&quot; &gt;&gt; &quot;$CLAUDE_ENV_FILE&quot;
+fi
+</code></pre>
+<p><strong>Use for:</strong> Automatically detecting and configuring project-specific settings.</p>
+<h2>Pattern 4: Notification Logging</h2>
+<p>Log all notifications for audit or analysis:</p>
+<pre><code class="language-json">{
+  &quot;Notification&quot;: [
+    {
+      &quot;matcher&quot;: &quot;*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/scripts/log-notification.sh&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Use for:</strong> Tracking user notifications or integration with external logging systems.</p>
+<h2>Pattern 5: MCP Tool Monitoring</h2>
+<p>Monitor and validate MCP tool usage:</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;mcp__.*__delete.*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Deletion operation detected. Verify: Is this deletion intentional? Can it be undone? Are there backups? Return &#39;approve&#39; only if safe.&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Use for:</strong> Protecting against destructive MCP operations.</p>
+<h2>Pattern 6: Build Verification</h2>
+<p>Ensure project builds after code changes:</p>
+<pre><code class="language-json">{
+  &quot;Stop&quot;: [
+    {
+      &quot;matcher&quot;: &quot;*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Check if code was modified. If Write/Edit tools were used, verify the project was built (npm run build, cargo build, etc). If not built, block and request build.&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Use for:</strong> Catching build errors before committing or stopping work.</p>
+<h2>Pattern 7: Permission Confirmation</h2>
+<p>Ask user before dangerous operations:</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Command: $TOOL_INPUT.command. If command contains &#39;rm&#39;, &#39;delete&#39;, &#39;drop&#39;, or other destructive operations, return &#39;ask&#39; to confirm with user. Otherwise &#39;approve&#39;.&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Use for:</strong> User confirmation on potentially destructive commands.</p>
+<h2>Pattern 8: Code Quality Checks</h2>
+<p>Run linters or formatters on file edits:</p>
+<pre><code class="language-json">{
+  &quot;PostToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Write|Edit&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/scripts/check-quality.sh&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p><strong>Example script (check-quality.sh):</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+input=$(cat)
+file_path=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.file_path&#39;)
+
+# Run linter if applicable
+if [[ &quot;$file_path&quot; == *.js ]] || [[ &quot;$file_path&quot; == *.ts ]]; then
+  npx eslint &quot;$file_path&quot; 2&gt;&amp;1 || true
+fi
+</code></pre>
+<p><strong>Use for:</strong> Automatic code quality enforcement.</p>
+<h2>Pattern Combinations</h2>
+<p>Combine multiple patterns for comprehensive protection:</p>
+<pre><code class="language-json">{
+  &quot;PreToolUse&quot;: [
+    {
+      &quot;matcher&quot;: &quot;Write|Edit&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Validate file write safety&quot;
+        }
+      ]
+    },
+    {
+      &quot;matcher&quot;: &quot;Bash&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Validate bash command safety&quot;
+        }
+      ]
+    }
+  ],
+  &quot;Stop&quot;: [
+    {
+      &quot;matcher&quot;: &quot;*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;prompt&quot;,
+          &quot;prompt&quot;: &quot;Verify tests run and build succeeded&quot;
+        }
+      ]
+    }
+  ],
+  &quot;SessionStart&quot;: [
+    {
+      &quot;matcher&quot;: &quot;*&quot;,
+      &quot;hooks&quot;: [
+        {
+          &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;bash ${CLAUDE_PLUGIN_ROOT}/scripts/load-context.sh&quot;
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
+<p>This provides multi-layered protection and automation.</p>
+<h2>Pattern 9: Temporarily Active Hooks</h2>
+<p>Create hooks that only run when explicitly enabled via flag files:</p>
+<pre><code class="language-bash">#!/bin/bash
+# Hook only active when flag file exists
+FLAG_FILE=&quot;$CLAUDE_PROJECT_DIR/.enable-security-scan&quot;
+
+if [ ! -f &quot;$FLAG_FILE&quot; ]; then
+  # Quick exit when disabled
+  exit 0
+fi
+
+# Flag present, run validation
+input=$(cat)
+file_path=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.file_path&#39;)
+
+# Run security scan
+security-scanner &quot;$file_path&quot;
+</code></pre>
+<p><strong>Activation:</strong></p>
+<pre><code class="language-bash"># Enable the hook
+touch .enable-security-scan
+
+# Disable the hook
+rm .enable-security-scan
+</code></pre>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>Temporary debugging hooks</li>
+<li>Feature flags for development</li>
+<li>Project-specific validation that&#39;s opt-in</li>
+<li>Performance-intensive checks only when needed</li>
+</ul>
+<p><strong>Note:</strong> Must restart Claude Code after creating/removing flag files for hooks to recognize changes.</p>
+<h2>Pattern 10: Configuration-Driven Hooks</h2>
+<p>Use JSON configuration to control hook behavior:</p>
+<pre><code class="language-bash">#!/bin/bash
+CONFIG_FILE=&quot;$CLAUDE_PROJECT_DIR/.claude/my-plugin.local.json&quot;
+
+# Read configuration
+if [ -f &quot;$CONFIG_FILE&quot; ]; then
+  strict_mode=$(jq -r &#39;.strictMode // false&#39; &quot;$CONFIG_FILE&quot;)
+  max_file_size=$(jq -r &#39;.maxFileSize // 1000000&#39; &quot;$CONFIG_FILE&quot;)
+else
+  # Defaults
+  strict_mode=false
+  max_file_size=1000000
+fi
+
+# Skip if not in strict mode
+if [ &quot;$strict_mode&quot; != &quot;true&quot; ]; then
+  exit 0
+fi
+
+# Apply configured limits
+input=$(cat)
+file_size=$(echo &quot;$input&quot; | jq -r &#39;.tool_input.content | length&#39;)
+
+if [ &quot;$file_size&quot; -gt &quot;$max_file_size&quot; ]; then
+  echo &#39;{&quot;decision&quot;: &quot;deny&quot;, &quot;reason&quot;: &quot;File exceeds configured size limit&quot;}&#39; &gt;&amp;2
+  exit 2
+fi
+</code></pre>
+<p><strong>Configuration file (.claude/my-plugin.local.json):</strong></p>
+<pre><code class="language-json">{
+  &quot;strictMode&quot;: true,
+  &quot;maxFileSize&quot;: 500000,
+  &quot;allowedPaths&quot;: [&quot;/tmp&quot;, &quot;/home/user/projects&quot;]
+}
+</code></pre>
+<p><strong>Use for:</strong></p>
+<ul>
+<li>User-configurable hook behavior</li>
+<li>Per-project settings</li>
+<li>Team-specific rules</li>
+<li>Dynamic validation criteria</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Git Checkpoint System Demo</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/git-checkpoint-demo.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Git Checkpoint System Demo</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <span>git-checkpoint-demo.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Git Checkpoint System Demo</h1>
+<p>This example demonstrates how to use the automatic Git checkpoint system with Claude Code.</p>
+<h2>Quick Setup</h2>
+<pre><code class="language-bash"># Run the setup script
+./.claude/helpers/setup-checkpoints.sh
+
+# Choose option 1 for simple checkpoints or option 2 for advanced features
+</code></pre>
+<h2>How It Works</h2>
+<h3>1. Pre-Edit Checkpoints</h3>
+<p>Before editing any file, Claude automatically creates a checkpoint:</p>
+<ul>
+<li>Creates a Git stash of current changes</li>
+<li>Creates a checkpoint branch</li>
+<li>Stores metadata in <code>.claude/checkpoints/</code></li>
+</ul>
+<h3>2. Post-Edit Checkpoints</h3>
+<p>After editing a file, Claude:</p>
+<ul>
+<li>Commits the changes with a descriptive message</li>
+<li>Creates a Git tag for easy reference</li>
+<li>Updates checkpoint metadata</li>
+</ul>
+<h3>3. Task Checkpoints</h3>
+<p>When you submit a new task, Claude:</p>
+<ul>
+<li>Creates a checkpoint of the current state</li>
+<li>Includes task description in commit message</li>
+<li>Optionally creates GitHub releases (advanced mode)</li>
+</ul>
+<h3>4. Session End Checkpoints</h3>
+<p>When ending a Claude session:</p>
+<ul>
+<li>Creates a final checkpoint</li>
+<li>Generates a session summary</li>
+<li>Lists all checkpoints created during the session</li>
+</ul>
+<h2>Example Workflow</h2>
+<pre><code class="language-bash"># 1. Start Claude Code with checkpoints enabled
+claude --settings .claude/settings-checkpoint-simple.json
+
+# 2. Work on your project
+# Claude will automatically create checkpoints
+
+# 3. List all checkpoints
+git tag -l &#39;checkpoint-*&#39; | sort -r
+
+# 4. View checkpoint details
+./.claude/helpers/checkpoint-manager.sh show checkpoint-20240130-143022
+
+# 5. Compare current state with a checkpoint
+./.claude/helpers/checkpoint-manager.sh diff checkpoint-20240130-143022
+
+# 6. Rollback to a checkpoint if needed
+./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022
+</code></pre>
+<h2>Checkpoint Manager Commands</h2>
+<pre><code class="language-bash"># List all checkpoints
+./.claude/helpers/checkpoint-manager.sh list
+
+# Show checkpoint details
+./.claude/helpers/checkpoint-manager.sh show &lt;checkpoint-name&gt;
+
+# Rollback to checkpoint
+./.claude/helpers/checkpoint-manager.sh rollback &lt;checkpoint-name&gt; [--branch|--reset|--stash]
+
+# Compare with checkpoint
+./.claude/helpers/checkpoint-manager.sh diff &lt;checkpoint-name&gt;
+
+# Clean old checkpoints
+./.claude/helpers/checkpoint-manager.sh clean [days]
+
+# Generate summary report
+./.claude/helpers/checkpoint-manager.sh summary
+</code></pre>
+<h2>Rollback Options</h2>
+<ol>
+<li><p><strong>Branch Rollback</strong> (safest):</p>
+<pre><code class="language-bash">./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --branch
+</code></pre>
+<p>Creates a new branch from the checkpoint</p>
+</li>
+<li><p><strong>Stash Rollback</strong> (reversible):</p>
+<pre><code class="language-bash">./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --stash
+</code></pre>
+<p>Stashes current changes before resetting</p>
+</li>
+<li><p><strong>Hard Reset</strong> (destructive):</p>
+<pre><code class="language-bash">./.claude/helpers/checkpoint-manager.sh rollback checkpoint-20240130-143022 --reset
+</code></pre>
+<p>⚠️ Permanently discards current changes</p>
+</li>
+</ol>
+<h2>Advanced Features</h2>
+<h3>GitHub Integration</h3>
+<p>With the advanced configuration, you can:</p>
+<ul>
+<li>Create GitHub releases for major checkpoints</li>
+<li>Use GitHub CLI for enhanced tracking</li>
+<li>Generate release notes automatically</li>
+</ul>
+<p>Enable by setting:</p>
+<pre><code class="language-bash">export CREATE_GH_RELEASE=true
+</code></pre>
+<h3>Custom Checkpoint Scripts</h3>
+<p>The system uses the <code>checkpoint-hooks.sh</code> script which can be customized:</p>
+<ul>
+<li>Modify checkpoint naming conventions</li>
+<li>Add custom metadata</li>
+<li>Integrate with other tools</li>
+</ul>
+<h2>Tips</h2>
+<ol>
+<li><strong>Regular Cleanup</strong>: Use <code>checkpoint-manager.sh clean 7</code> to remove checkpoints older than 7 days</li>
+<li><strong>Session Summaries</strong>: Check <code>.claude/checkpoints/summary-*.md</code> files for session overviews</li>
+<li><strong>Metadata</strong>: All checkpoint metadata is stored in <code>.claude/checkpoints/*.json</code></li>
+<li><strong>Git Integration</strong>: All checkpoints are standard Git tags and branches</li>
+</ol>
+<h2>Troubleshooting</h2>
+<h3>Checkpoint not created</h3>
+<ul>
+<li>Ensure Git is initialized in your project</li>
+<li>Check that <code>jq</code> is installed</li>
+<li>Verify hooks are enabled in settings.json</li>
+</ul>
+<h3>Cannot rollback</h3>
+<ul>
+<li>Ensure you have committed or stashed current changes</li>
+<li>Check that the checkpoint exists with <code>git tag -l</code></li>
+<li>Use <code>--stash</code> option to save current work</li>
+</ul>
+<h3>JSON errors</h3>
+<ul>
+<li>Use the simple configuration if you encounter JSON parsing issues</li>
+<li>Check that all quotes are properly escaped</li>
+<li>Validate JSON with <code>jq &#39;.&#39; .claude/settings.json</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

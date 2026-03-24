@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ACOS Claude Flow Capabilities Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-flow/CAPABILITIES.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">ACOS Claude Flow Capabilities Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#.claude-flow">.claude-flow</a> / <span>CAPABILITIES.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ACOS Claude Flow Capabilities Reference</h1>
+<blockquote>
+<p>FrankX Project - AI Architect &amp; Creator Platform
+Generated: 2026-02-07</p>
+</blockquote>
+<h2>Overview</h2>
+<p>ACOS integrates Claude Flow V3 orchestration into the FrankX creator platform:</p>
+<ul>
+<li><strong>Swarm Coordination</strong> with hierarchical topology (anti-drift)</li>
+<li><strong>Self-Learning Hooks</strong> with trajectory tracking and pattern discovery</li>
+<li><strong>Agent Messaging</strong> for multi-agent coordination</li>
+<li><strong>Checkpoint Management</strong> for safe rollbacks</li>
+<li><strong>Intelligent Routing</strong> with complexity detection</li>
+</ul>
+<h3>Configuration</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Topology</td>
+<td>hierarchical</td>
+</tr>
+<tr>
+<td>Max Agents</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Strategy</td>
+<td>specialized</td>
+</tr>
+<tr>
+<td>Memory Backend</td>
+<td>hybrid</td>
+</tr>
+<tr>
+<td>Learning</td>
+<td>Enabled (trajectories + patterns)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Swarm Orchestration</h2>
+<h3>Anti-Drift Configuration (Default)</h3>
+<pre><code class="language-bash"># Initialize swarm for complex tasks
+npx claude-flow@v3alpha swarm init --topology hierarchical --max-agents 8 --strategy specialized
+</code></pre>
+<h3>When to Auto-Invoke Swarm</h3>
+<ul>
+<li>Multiple files (3+) affected</li>
+<li>New feature implementation</li>
+<li>Cross-module refactoring</li>
+<li>API changes with tests</li>
+<li>Performance optimization</li>
+</ul>
+<h3>Skip Swarm For</h3>
+<ul>
+<li>Single file edits</li>
+<li>Simple bug fixes</li>
+<li>Documentation updates</li>
+<li>Configuration changes</li>
+</ul>
+<hr>
+<h2>Available Agents</h2>
+<h3>Core Development</h3>
+<p><code>coder</code>, <code>reviewer</code>, <code>tester</code>, <code>planner</code>, <code>researcher</code></p>
+<h3>Specialized</h3>
+<p><code>security-architect</code>, <code>memory-specialist</code>, <code>performance-engineer</code></p>
+<h3>FrankX-Specific</h3>
+<p><code>frontend-designer</code>, <code>content-engine</code>, <code>seo-intelligence</code>, <code>music-producer</code>, <code>devops-engineer</code></p>
+<h3>Swarm Coordination</h3>
+<p><code>hierarchical-coordinator</code>, <code>mesh-coordinator</code>, <code>adaptive-coordinator</code></p>
+<h3>GitHub</h3>
+<p><code>pr-manager</code>, <code>code-review-swarm</code>, <code>issue-tracker</code></p>
+<hr>
+<h2>Hook Pipeline</h2>
+<h3>Session Lifecycle</h3>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Hooks</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SessionStart</td>
+<td>trajectory init, learning restore, agent registration</td>
+<td>Context setup</td>
+</tr>
+<tr>
+<td>UserPromptSubmit</td>
+<td>skill activation, routing, complexity detection</td>
+<td>Task classification</td>
+</tr>
+<tr>
+<td>PreToolUse</td>
+<td>pre-edit guidance, pre-command security, task routing</td>
+<td>Safety + intelligence</td>
+</tr>
+<tr>
+<td>PostToolUse</td>
+<td>operation tracking, pattern storage, auto-checkpoint</td>
+<td>Learning</td>
+</tr>
+<tr>
+<td>PostToolUseFailure</td>
+<td>failure learning, retry analysis</td>
+<td>Error recovery</td>
+</tr>
+<tr>
+<td>Stop</td>
+<td>trajectory finalization, pattern export, metrics</td>
+<td>Session close</td>
+</tr>
+<tr>
+<td>PreCompact</td>
+<td>pattern preservation, context guidance</td>
+<td>Context retention</td>
+</tr>
+</tbody></table>
+<h3>Helper Scripts</h3>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>guidance-hooks.sh</code></td>
+<td>Security-sensitive file detection, routing</td>
+</tr>
+<tr>
+<td><code>learning-hooks.sh</code></td>
+<td>Pattern storage, search, consolidation</td>
+</tr>
+<tr>
+<td><code>swarm-hooks.sh</code></td>
+<td>Agent messaging, consensus, task handoffs</td>
+</tr>
+<tr>
+<td><code>checkpoint-manager.sh</code></td>
+<td>Git checkpoint creation and rollback</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Commands</h2>
+<h3>Swarm</h3>
+<ul>
+<li><code>/claude-flow-swarm</code> - Initialize and manage swarms</li>
+<li>Spawn, monitor, status, strategies</li>
+</ul>
+<h3>Memory</h3>
+<ul>
+<li><code>/claude-flow-memory</code> - Memory operations</li>
+<li>Store, search, persist, neural integration</li>
+</ul>
+<h3>Agents</h3>
+<ul>
+<li>Agent spawning, capabilities, coordination</li>
+<li>Type detection and routing</li>
+</ul>
+<h3>Monitoring</h3>
+<ul>
+<li>Agent metrics, real-time view, status</li>
+</ul>
+<h3>Hooks</h3>
+<ul>
+<li>Pre/post edit, pre/post task, session lifecycle</li>
+</ul>
+<h3>Workflows</h3>
+<ul>
+<li>Create, execute, export workflow templates</li>
+</ul>
+<hr>
+<h2>Learning System</h2>
+<h3>Trajectory Tracking</h3>
+<ul>
+<li>Auto-creates trajectory on session start</li>
+<li>Tracks all tool operations (async, non-blocking)</li>
+<li>Auto-scores on session end (heuristic-based)</li>
+<li>Extracts operation sequence patterns</li>
+</ul>
+<h3>Pattern Discovery</h3>
+<ul>
+<li>Sequences with &gt;70% success rate stored</li>
+<li>Similar past work surfaced via trajectory hints</li>
+<li>Cross-session learning improves over time</li>
+</ul>
+<h3>Metrics</h3>
+<pre><code class="language-bash"># View dashboard
+node .claude/dashboard/view-dashboard.js all
+
+# Check learning stats
+node .claude/dashboard/view-dashboard.js learning
+</code></pre>
+<hr>
+<h2>Integration Ecosystem</h2>
+<h3>ACOS Skills (630+)</h3>
+<p>Globally installed at <code>~/.agents/skills/</code>, activated via skill profiles.</p>
+<h3>Arcanea Gates (10)</h3>
+<p>Progressive skill development mapped to gate progression.</p>
+<h3>Agentic Jujutsu</h3>
+<p>Self-learning version control with ReasoningBank integration.</p>
+<h3>MCP Servers</h3>
+<ul>
+<li><code>claude-flow</code> - Orchestration coordination</li>
+<li><code>nanobanana</code> - Image generation</li>
+<li><code>playwright</code> - Browser automation</li>
+<li><code>memory</code> - Persistent knowledge graph</li>
+<li><code>sequential-thinking</code> - Reasoning chains</li>
+</ul>
+<hr>
+<p><em>Excellence in execution. Let the work speak.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

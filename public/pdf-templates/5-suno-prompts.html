@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>5 Prompts That Made My Best Suno Tracks</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    :root {
+      --primary-dark: #0a0f1a; --primary: #0f172a; --secondary: #1e293b;
+      --accent-emerald: #10b981; --accent-emerald-light: #34d399;
+      --accent-cyan: #22d3ee; --accent-purple: #a78bfa;
+      --accent-amber: #f59e0b; --accent-rose: #fb7185;
+      --text-primary: #1e293b; --text-secondary: #64748b; --text-light: #94a3b8;
+      --bg-cream: #fafafa; --bg-warm: #f8fafc; --border-light: #e2e8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-cream); color: var(--text-primary); line-height: 1.75; font-size: 10.5pt; -webkit-font-smoothing: antialiased; }
+    .page { width: 210mm; min-height: 297mm; padding: 18mm 22mm; margin: 0 auto; background: white; page-break-after: always; position: relative; overflow: hidden; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; color: var(--primary); letter-spacing: -0.02em; }
+    h1 { font-size: 44pt; line-height: 1.1; }
+    h2 { font-size: 22pt; margin: 0 0 0.8em; position: relative; padding-bottom: 0.5em; }
+    h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background: linear-gradient(90deg, var(--accent-emerald), var(--accent-cyan)); border-radius: 2px; }
+    h3 { font-size: 14pt; margin: 1.5em 0 0.5em; color: var(--secondary); }
+    h4 { font-size: 11pt; margin: 1.2em 0 0.4em; font-weight: 500; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); }
+    p { margin-bottom: 1em; }
+    .cover { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(145deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%); color: white; position: relative; }
+    .cover::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 20%, rgba(16,185,129,0.15) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, rgba(34,211,238,0.1) 0%, transparent 50%); }
+    .cover-content { position: relative; z-index: 1; }
+    .cover h1 { color: white; font-size: 46pt; margin-bottom: 0.3em; max-width: 500px; }
+    .cover-tagline { font-family: 'Playfair Display', Georgia, serif; font-size: 15pt; font-style: italic; color: var(--accent-emerald-light); margin-bottom: 1em; max-width: 420px; }
+    .cover-subtitle { font-size: 11pt; color: rgba(255,255,255,0.6); margin-top: 3em; letter-spacing: 0.1em; text-transform: uppercase; }
+    .cover-author { margin-top: 1em; font-size: 12pt; color: rgba(255,255,255,0.8); }
+    .cover-stats { display: flex; gap: 3em; margin-top: 2.5em; }
+    .cover-stat { text-align: center; }
+    .cover-stat-number { font-family: 'JetBrains Mono', monospace; font-size: 24pt; font-weight: 700; color: var(--accent-emerald-light); display: block; }
+    .cover-stat-label { font-size: 9pt; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.5); }
+    .cover-icon { width: 100px; height: 100px; margin-bottom: 2em; }
+    .prompt-card { background: linear-gradient(135deg, var(--bg-warm) 0%, white 100%); border-radius: 16px; padding: 1.5em 1.8em; margin: 1.2em 0; position: relative; border: 1px solid var(--border-light); box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+    .prompt-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 16px 0 0 16px; }
+    .prompt-card.emerald::before { background: linear-gradient(180deg, var(--accent-emerald), var(--accent-emerald-light)); }
+    .prompt-card.cyan::before { background: linear-gradient(180deg, var(--accent-cyan), #67e8f9); }
+    .prompt-card.purple::before { background: linear-gradient(180deg, var(--accent-purple), #c4b5fd); }
+    .prompt-card.amber::before { background: linear-gradient(180deg, var(--accent-amber), #fcd34d); }
+    .prompt-card.rose::before { background: linear-gradient(180deg, var(--accent-rose), #fda4af); }
+    .prompt-number { font-family: 'JetBrains Mono', monospace; font-size: 9pt; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.15em; }
+    .prompt-title { font-family: 'Playfair Display', Georgia, serif; font-size: 16pt; font-weight: 600; color: var(--primary); margin: 0; }
+    .prompt-meta { font-family: 'JetBrains Mono', monospace; font-size: 9pt; color: var(--accent-emerald); margin-top: 0.2em; }
+    .prompt-code { background: var(--primary); color: #e2e8f0; border-radius: 10px; padding: 1.2em 1.4em; margin: 1em 0; font-family: 'JetBrains Mono', monospace; font-size: 9.5pt; line-height: 1.7; position: relative; border-top: 3px solid var(--accent-emerald); }
+    .prompt-code::before { content: 'PROMPT'; position: absolute; top: -0.1em; right: 1em; font-size: 7pt; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-emerald); background: var(--primary); padding: 0 0.5em; }
+    .why-box { background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); border: 1px solid rgba(16,185,129,0.2); border-radius: 12px; padding: 1em 1.3em; margin: 1em 0; }
+    .why-box h4 { color: #059669; margin-top: 0; font-size: 10pt; }
+    .variation-box { background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; padding: 1em 1.3em; margin: 1em 0; }
+    .variation-box h4 { color: #2563eb; margin-top: 0; font-size: 10pt; }
+    ul, ol { margin: 0.6em 0 1em 0; padding-left: 0; list-style: none; }
+    li { margin-bottom: 0.5em; padding-left: 1.6em; position: relative; font-size: 10pt; }
+    ul li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan)); border-radius: 50%; }
+    .highlight { background: linear-gradient(90deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.02) 100%); padding: 1.2em 1.5em; border-radius: 10px; margin: 1.2em 0; border-left: 3px solid var(--accent-emerald); }
+    .cheat-table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 9.5pt; }
+    .cheat-table th { background: var(--primary); color: white; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 9pt; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.8em 1em; text-align: left; }
+    .cheat-table th:first-child { border-radius: 8px 0 0 0; }
+    .cheat-table th:last-child { border-radius: 0 8px 0 0; }
+    .cheat-table td { padding: 0.7em 1em; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+    .cheat-table tr:last-child td { border-bottom: none; }
+    .cheat-table tr:nth-child(even) td { background: var(--bg-warm); }
+    .cta-box { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); border-radius: 16px; padding: 2em; margin: 2em 0; color: white; text-align: center; position: relative; overflow: hidden; }
+    .cta-box::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(16,185,129,0.15) 0%, transparent 70%); }
+    .cta-box * { position: relative; z-index: 1; }
+    .cta-box h3 { color: white; font-size: 18pt; margin: 0 0 0.5em; }
+    .cta-box p { color: rgba(255,255,255,0.7); font-size: 10.5pt; }
+    .cta-button { display: inline-block; margin-top: 1em; padding: 0.8em 2.5em; background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan)); color: white; font-weight: 600; font-size: 11pt; border-radius: 10px; }
+    .cta-price { font-family: 'JetBrains Mono', monospace; font-size: 28pt; font-weight: 700; color: var(--accent-emerald-light); margin: 0.3em 0; }
+    .cta-price-old { text-decoration: line-through; color: rgba(255,255,255,0.4); font-size: 16pt; margin-right: 0.3em; }
+    .page-number { position: absolute; bottom: 12mm; right: 22mm; font-family: 'JetBrains Mono', monospace; font-size: 9pt; color: var(--text-light); }
+    .footer { text-align: center; font-size: 9pt; color: var(--text-secondary); margin-top: 2em; padding-top: 1.5em; border-top: 1px solid var(--border-light); }
+    .listen-link { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; color: var(--accent-emerald); }
+    @media print { .page { page-break-after: always; box-shadow: none; margin: 0; } }
+  </style>
+</head>
+<body>
+  <div class="page cover">
+    <div class="cover-content">
+      <svg class="cover-icon" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="url(#eg)" stroke-width="2" opacity="0.4"/><circle cx="50" cy="50" r="32" stroke="url(#eg)" stroke-width="1.5" opacity="0.25"/><path d="M42 30V62C42 67 37 72 30 72C23 72 18 67 18 62C18 57 23 52 30 52C34 52 37 53 39 55V30H42Z" fill="url(#eg)" opacity="0.7"/><path d="M72 24V56C72 61 67 66 60 66C53 66 48 61 48 56C48 51 53 46 60 46C64 46 67 47 69 49V24H72Z" fill="url(#eg)" opacity="0.5"/><path d="M42 30H72V36H42V30Z" fill="url(#eg)" opacity="0.6"/><path d="M80 35C83 40 85 45 85 50C85 55 83 60 80 65" stroke="url(#eg)" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/><path d="M86 30C90 37 92 43 92 50C92 57 90 63 86 70" stroke="url(#eg)" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/><defs><linearGradient id="eg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#22d3ee"/></linearGradient></defs></svg>
+      <h1>5 Prompts That<br/>Made My Best<br/>Suno Tracks</h1>
+      <p class="cover-tagline">The exact prompts behind 500+ plays and 34 likes. Copy them. Tweak them. Make them yours.</p>
+      <div class="cover-stats"><div class="cover-stat"><span class="cover-stat-number">500+</span><span class="cover-stat-label">Tracks Created</span></div><div class="cover-stat"><span class="cover-stat-number">142</span><span class="cover-stat-label">Top Plays</span></div><div class="cover-stat"><span class="cover-stat-number">5</span><span class="cover-stat-label">Proven Prompts</span></div></div>
+      <p class="cover-subtitle">Free Guide</p>
+      <p class="cover-author">By Frank Riemer &middot; FrankX.AI</p>
+    </div>
+  </div>
+  <div class="page">
+    <h2>How to Use This Guide</h2>
+    <p>Each prompt below is the actual text I used in Suno to create my top-performing tracks. For each one:</p>
+    <ul><li><strong>The Prompt</strong> &mdash; copy it directly into Suno's "Song Description" field</li><li><strong>Why It Works</strong> &mdash; the specific elements that produce good output</li><li><strong>Variations</strong> &mdash; tweak these parameters to explore different directions</li></ul>
+    <div class="highlight"><strong>Tip:</strong> Set Suno to v4 or higher for best results. Longer, more descriptive prompts consistently outperform short ones.</div>
+    <h2 style="margin-top: 1.2em;">Prompt 1</h2>
+    <div class="prompt-card emerald"><div><div class="prompt-number">The Top Performer</div><div class="prompt-title">The Awakening</div><div class="prompt-meta">142 plays &middot; 20 likes &middot; African / World / Cinematic</div></div></div>
+    <div class="prompt-code">African, 10 female vocalists, drums, powerful, cinematic, consciousness, natural, world music, tribal drums, layered female choir, call and response, dramatic build, soul-stirring, rhythmic percussion, organic, raw energy</div>
+    <div class="why-box"><h4>Why It Works</h4><ul><li><strong>"10 female vocalists"</strong> &mdash; Suno interprets this as dense layered vocals, creating rich choral texture</li><li><strong>"Call and response"</strong> &mdash; triggers antiphonal structure (lead voice, then group response)</li><li><strong>"Dramatic build"</strong> &mdash; signals song structure: quiet start, powerful climax</li><li><strong>"Tribal drums"</strong> &mdash; produces organic percussion instead of electronic beats</li></ul></div>
+    <div class="variation-box"><h4>Variations to Try</h4><ul><li>Swap "African" for "Mongolian" or "Celtic" for different world music flavors</li><li>Replace "10 female vocalists" with "male baritone choir" for a deeper register</li><li>Add "432Hz" or "528Hz" for healing frequency tuning</li></ul></div>
+    <p class="listen-link">suno.com/song/8374d2ad-9142-4900-9028-a1e805688407</p>
+    <span class="page-number">02</span>
+  </div>
+  <div class="page">
+    <h2>Prompt 2</h2>
+    <div class="prompt-card cyan"><div><div class="prompt-number">Highest Engagement</div><div class="prompt-title">Vibe O S</div><div class="prompt-meta">128 plays &middot; 24 likes &middot; Hip Hop / Bass</div></div></div>
+    <div class="prompt-code">Female hip hop, bass-heavy, lyrical, sophisticated, violin, electric guitar, 808 sub bass, confident female vocalist, clever wordplay, cinematic strings, modern trap production, polished, radio-ready, 4 minutes</div>
+    <div class="why-box"><h4>Why It Works</h4><ul><li><strong>"Sophisticated"</strong> &mdash; one of the most powerful Suno keywords. Elevates vocabulary, melody, and production</li><li><strong>"Violin" + "electric guitar"</strong> &mdash; hybrid instrumentation blends classical with modern</li><li><strong>"808 sub bass"</strong> &mdash; double emphasis with "bass-heavy" ensures deep low-end</li><li><strong>"4 minutes"</strong> &mdash; explicitly requesting longer duration (default ~2 min)</li></ul></div>
+    <div class="variation-box"><h4>Variations to Try</h4><ul><li>Replace "female" with "male" or "duet" for different vocal arrangements</li><li>Add "jazz chords" or "neo-soul" for a smoother feel</li><li>Swap "trap production" for "boom bap" for classic hip hop texture</li></ul></div>
+    <p class="listen-link">suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db</p>
+    <h2 style="margin-top: 1.5em;">Prompt 3</h2>
+    <div class="prompt-card purple"><div><div class="prompt-number">Genre Fusion Master</div><div class="prompt-title">Golden Age of Intelligence</div><div class="prompt-meta">119 plays &middot; 20 likes &middot; EDM / Metalcore / Hip Hop</div></div></div>
+    <div class="prompt-code">EDM hit, metalcore, sophisticated hip hop, female duet, electric guitar, festival anthem, massive drop, stadium energy, heavy breakdown, soaring vocals, electronic meets metal, high production value, radio edit</div>
+    <div class="why-box"><h4>Why It Works</h4><ul><li><strong>3-genre fusion</strong> &mdash; combining EDM + metalcore + hip hop forces Suno into creative territory</li><li><strong>"Massive drop" + "heavy breakdown"</strong> &mdash; structural keywords give the song clear peak moments</li><li><strong>"Festival anthem" + "stadium energy"</strong> &mdash; context words set the scale of production</li></ul></div>
+    <p class="listen-link">suno.com/song/d1ad41a9-9239-454d-bc2c-a187f42ac30b</p>
+    <span class="page-number">03</span>
+  </div>
+  <div class="page">
+    <h2>Prompt 4</h2>
+    <div class="prompt-card amber"><div><div class="prompt-number">Production Quality Hack</div><div class="prompt-title">Lumina</div><div class="prompt-meta">108 plays &middot; 16 likes &middot; Rock / Soul / Orchestral</div></div></div>
+    <div class="prompt-code">Arcanean rock, female choir soul, violins, high energy soul, Dolby Atmos remastered, cinematic, orchestral, natural, dramatic, sophisticated, uplifting epic feminine beauty extraordinary high notes, cinematic choir, head voice dramatic soprano vocal mastery, female vocals</div>
+    <div class="why-box"><h4>Why It Works</h4><ul><li><strong>"Dolby Atmos remastered"</strong> &mdash; signals "premium, wide, immersive" mixing quality</li><li><strong>"Head voice dramatic soprano vocal mastery"</strong> &mdash; stacking vocal descriptors forces impressive singing</li><li><strong>"Arcanean rock"</strong> &mdash; invented genres push Suno into creative interpretation</li></ul></div>
+    <div class="variation-box"><h4>Variations to Try</h4><ul><li>Replace "Arcanean" with any invented word to create your own genre</li><li>Add "IMAX, THX" as additional production quality signals</li><li>Try "male tenor" or "countertenor" to change gender but keep high range</li></ul></div>
+    <p class="listen-link">suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae</p>
+    <h2 style="margin-top: 1.5em;">Prompt 5</h2>
+    <div class="prompt-card rose"><div><div class="prompt-number">Best Like Ratio (44%)</div><div class="prompt-title">Trust in Yourself</div><div class="prompt-meta">77 plays &middot; 34 likes &middot; Pop Punk / Symphonic</div></div></div>
+    <div class="prompt-code">Pop punk, symphonic, male vocals, female chorus, heavy 808 bass, electric guitar solo, motivational, anthemic, sing-along chorus, energetic, uplifting message, stadium rock meets pop punk, powerful drums</div>
+    <div class="why-box"><h4>Why It Works</h4><ul><li><strong>"Male vocals, female chorus"</strong> &mdash; contrast creates commercial-sounding production</li><li><strong>"Sing-along chorus"</strong> &mdash; tells Suno to make it catchy and repetitive</li><li><strong>"Stadium rock meets pop punk"</strong> &mdash; genre fusion that feels both massive and personal</li><li><strong>"Motivational, anthemic"</strong> &mdash; emotional direction words shape lyric content</li></ul></div>
+    <p class="listen-link">suno.com/song/66572f21-2682-41f3-9051-86446e9b9bd7</p>
+    <span class="page-number">04</span>
+  </div>
+  <div class="page">
+    <h2>Power Words Cheat Sheet</h2>
+    <p>Use these keywords to level up any Suno prompt. Stack multiple categories for best results.</p>
+    <table class="cheat-table"><thead><tr><th>Category</th><th>Keywords</th></tr></thead><tbody><tr><td><strong>Quality</strong></td><td>sophisticated, polished, radio-ready, high production value, remastered</td></tr><tr><td><strong>Emotion</strong></td><td>dramatic, uplifting, haunting, euphoric, melancholic, triumphant</td></tr><tr><td><strong>Structure</strong></td><td>build, drop, breakdown, bridge, outro, verse-chorus-verse</td></tr><tr><td><strong>Vocals</strong></td><td>belting, head voice, whisper, choir, layered harmonies, call and response</td></tr><tr><td><strong>Production</strong></td><td>Dolby Atmos, THX, cinematic, spatial, wide stereo</td></tr></tbody></table>
+    <h2 style="margin-top: 1.5em;">Common Mistakes</h2>
+    <div class="highlight"><ul><li style="margin-bottom: 0.8em;"><strong>Too vague:</strong> "Make a good song" gives Suno no direction. Be specific about genre, instruments, and mood.</li><li style="margin-bottom: 0.8em;"><strong>Too short:</strong> Single-word genres produce generic results. Stack descriptors.</li><li style="margin-bottom: 0.8em;"><strong>Contradictions:</strong> "Calm, aggressive" confuses the model. Pick one emotional direction.</li><li><strong>Ignoring duration:</strong> Default is ~2 min. Add "3 minutes" or "4 minutes" for longer tracks.</li></ul></div>
+    <div class="cta-box"><h3>Want 100+ More Prompts?</h3><p>The Suno Prompt Library has 100+ battle-tested prompts organized by genre, with stackable modifiers and a formula cheatsheet.</p><div class="cta-price"><span class="cta-price-old">$47</span> $27</div><div class="cta-button">Get the Full Library</div><p style="margin-top: 0.8em; font-size: 9pt; color: rgba(255,255,255,0.5);">frankx.ai/products/suno-prompt-library</p></div>
+    <div class="footer"><p style="font-family: 'Playfair Display', serif; font-size: 11pt; margin-bottom: 0.5em;">5 Prompts That Made My Best Suno Tracks</p><p>2026 Frank Riemer &middot; FrankX.AI</p><p style="margin-top: 0.5em;">suno.com/@frankx &middot; frankx.ai/music &middot; frankx.ai/music-lab</p></div>
+    <span class="page-number">05</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>PCI Compliance</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/payment-processing/skills/pci-compliance/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">PCI Compliance</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpayment-processing">payment-processing</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpayment-processing%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpayment-processing%2Fskills%2Fpci-compliance">pci-compliance</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: pci-compliance
+description: Implement PCI DSS compliance requirements for secure handling of payment card data and payment systems. Use when securing payment processing, achieving PCI compliance, or implementing payment card security measures.</h2>
+<h1>PCI Compliance</h1>
+<p>Master PCI DSS (Payment Card Industry Data Security Standard) compliance for secure payment processing and handling of cardholder data.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Building payment processing systems</li>
+<li>Handling credit card information</li>
+<li>Implementing secure payment flows</li>
+<li>Conducting PCI compliance audits</li>
+<li>Reducing PCI compliance scope</li>
+<li>Implementing tokenization and encryption</li>
+<li>Preparing for PCI DSS assessments</li>
+</ul>
+<h2>PCI DSS Requirements (12 Core Requirements)</h2>
+<h3>Build and Maintain Secure Network</h3>
+<ol>
+<li>Install and maintain firewall configuration</li>
+<li>Don&#39;t use vendor-supplied defaults for passwords</li>
+</ol>
+<h3>Protect Cardholder Data</h3>
+<ol start="3">
+<li>Protect stored cardholder data</li>
+<li>Encrypt transmission of cardholder data across public networks</li>
+</ol>
+<h3>Maintain Vulnerability Management</h3>
+<ol start="5">
+<li>Protect systems against malware</li>
+<li>Develop and maintain secure systems and applications</li>
+</ol>
+<h3>Implement Strong Access Control</h3>
+<ol start="7">
+<li>Restrict access to cardholder data by business need-to-know</li>
+<li>Identify and authenticate access to system components</li>
+<li>Restrict physical access to cardholder data</li>
+</ol>
+<h3>Monitor and Test Networks</h3>
+<ol start="10">
+<li>Track and monitor all access to network resources and cardholder data</li>
+<li>Regularly test security systems and processes</li>
+</ol>
+<h3>Maintain Information Security Policy</h3>
+<ol start="12">
+<li>Maintain a policy that addresses information security</li>
+</ol>
+<h2>Compliance Levels</h2>
+<p><strong>Level 1</strong>: &gt; 6 million transactions/year (annual ROC required)
+<strong>Level 2</strong>: 1-6 million transactions/year (annual SAQ)
+<strong>Level 3</strong>: 20,000-1 million e-commerce transactions/year
+<strong>Level 4</strong>: &lt; 20,000 e-commerce or &lt; 1 million total transactions</p>
+<h2>Data Minimization (Never Store)</h2>
+<pre><code class="language-python"># NEVER STORE THESE
+PROHIBITED_DATA = {
+    &#39;full_track_data&#39;: &#39;Magnetic stripe data&#39;,
+    &#39;cvv&#39;: &#39;Card verification code/value&#39;,
+    &#39;pin&#39;: &#39;PIN or PIN block&#39;
+}
+
+# CAN STORE (if encrypted)
+ALLOWED_DATA = {
+    &#39;pan&#39;: &#39;Primary Account Number (card number)&#39;,
+    &#39;cardholder_name&#39;: &#39;Name on card&#39;,
+    &#39;expiration_date&#39;: &#39;Card expiration&#39;,
+    &#39;service_code&#39;: &#39;Service code&#39;
+}
+
+class PaymentData:
+    &quot;&quot;&quot;Safe payment data handling.&quot;&quot;&quot;
+
+    def __init__(self):
+        self.prohibited_fields = [&#39;cvv&#39;, &#39;cvv2&#39;, &#39;cvc&#39;, &#39;pin&#39;]
+
+    def sanitize_log(self, data):
+        &quot;&quot;&quot;Remove sensitive data from logs.&quot;&quot;&quot;
+        sanitized = data.copy()
+
+        # Mask PAN
+        if &#39;card_number&#39; in sanitized:
+            card = sanitized[&#39;card_number&#39;]
+            sanitized[&#39;card_number&#39;] = f&quot;{card[:6]}{&#39;*&#39; * (len(card) - 10)}{card[-4:]}&quot;
+
+        # Remove prohibited data
+        for field in self.prohibited_fields:
+            sanitized.pop(field, None)
+
+        return sanitized
+
+    def validate_no_prohibited_storage(self, data):
+        &quot;&quot;&quot;Ensure no prohibited data is being stored.&quot;&quot;&quot;
+        for field in self.prohibited_fields:
+            if field in data:
+                raise SecurityError(f&quot;Attempting to store prohibited field: {field}&quot;)
+</code></pre>
+<h2>Tokenization</h2>
+<h3>Using Payment Processor Tokens</h3>
+<pre><code class="language-python">import stripe
+
+class TokenizedPayment:
+    &quot;&quot;&quot;Handle payments using tokens (no card data on server).&quot;&quot;&quot;
+
+    @staticmethod
+    def create_payment_method_token(card_details):
+        &quot;&quot;&quot;Create token from card details (client-side only).&quot;&quot;&quot;
+        # THIS SHOULD ONLY BE DONE CLIENT-SIDE WITH STRIPE.JS
+        # NEVER send card details to your server
+
+        &quot;&quot;&quot;
+        // Frontend JavaScript
+        const stripe = Stripe(&#39;pk_...&#39;);
+
+        const {token, error} = await stripe.createToken({
+            card: {
+                number: &#39;4242424242424242&#39;,
+                exp_month: 12,
+                exp_year: 2024,
+                cvc: &#39;123&#39;
+            }
+        });
+
+        // Send token.id to server (NOT card details)
+        &quot;&quot;&quot;
+        pass
+
+    @staticmethod
+    def charge_with_token(token_id, amount):
+        &quot;&quot;&quot;Charge using token (server-side).&quot;&quot;&quot;
+        # Your server only sees the token, never the card number
+        stripe.api_key = &quot;sk_...&quot;
+
+        charge = stripe.Charge.create(
+            amount=amount,
+            currency=&quot;usd&quot;,
+            source=token_id,  # Token instead of card details
+            description=&quot;Payment&quot;
+        )
+
+        return charge
+
+    @staticmethod
+    def store_payment_method(customer_id, payment_method_token):
+        &quot;&quot;&quot;Store payment method as token for future use.&quot;&quot;&quot;
+        stripe.Customer.modify(
+            customer_id,
+            source=payment_method_token
+        )
+
+        # Store only customer_id and payment_method_id in your database
+        # NEVER store actual card details
+        return {
+            &#39;customer_id&#39;: customer_id,
+            &#39;has_payment_method&#39;: True
+            # DO NOT store: card number, CVV, etc.
+        }
+</code></pre>
+<h3>Custom Tokenization (Advanced)</h3>
+<pre><code class="language-python">import secrets
+from cryptography.fernet import Fernet
+
+class TokenVault:
+    &quot;&quot;&quot;Secure token vault for card data (if you must store it).&quot;&quot;&quot;
+
+    def __init__(self, encryption_key):
+        self.cipher = Fernet(encryption_key)
+        self.vault = {}  # In production: use encrypted database
+
+    def tokenize(self, card_data):
+        &quot;&quot;&quot;Convert card data to token.&quot;&quot;&quot;
+        # Generate secure random token
+        token = secrets.token_urlsafe(32)
+
+        # Encrypt card data
+        encrypted = self.cipher.encrypt(json.dumps(card_data).encode())
+
+        # Store token -&gt; encrypted data mapping
+        self.vault[token] = encrypted
+
+        return token
+
+    def detokenize(self, token):
+        &quot;&quot;&quot;Retrieve card data from token.&quot;&quot;&quot;
+        encrypted = self.vault.get(token)
+        if not encrypted:
+            raise ValueError(&quot;Token not found&quot;)
+
+        # Decrypt
+        decrypted = self.cipher.decrypt(encrypted)
+        return json.loads(decrypted.decode())
+
+    def delete_token(self, token):
+        &quot;&quot;&quot;Remove token from vault.&quot;&quot;&quot;
+        self.vault.pop(token, None)
+</code></pre>
+<h2>Encryption</h2>
+<h3>Data at Rest</h3>
+<pre><code class="language-python">from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+import os
+
+class EncryptedStorage:
+    &quot;&quot;&quot;Encrypt data at rest using AES-256-GCM.&quot;&quot;&quot;
+
+    def __init__(self, encryption_key):
+        &quot;&quot;&quot;Initialize with 256-bit key.&quot;&quot;&quot;
+        self.key = encryption_key  # Must be 32 bytes
+
+    def encrypt(self, plaintext):
+        &quot;&quot;&quot;Encrypt data.&quot;&quot;&quot;
+        # Generate random nonce
+        nonce = os.urandom(12)
+
+        # Encrypt
+        aesgcm = AESGCM(self.key)
+        ciphertext = aesgcm.encrypt(nonce, plaintext.encode(), None)
+
+        # Return nonce + ciphertext
+        return nonce + ciphertext
+
+    def decrypt(self, encrypted_data):
+        &quot;&quot;&quot;Decrypt data.&quot;&quot;&quot;
+        # Extract nonce and ciphertext
+        nonce = encrypted_data[:12]
+        ciphertext = encrypted_data[12:]
+
+        # Decrypt
+        aesgcm = AESGCM(self.key)
+        plaintext = aesgcm.decrypt(nonce, ciphertext, None)
+
+        return plaintext.decode()
+
+# Usage
+storage = EncryptedStorage(os.urandom(32))
+encrypted_pan = storage.encrypt(&quot;4242424242424242&quot;)
+# Store encrypted_pan in database
+</code></pre>
+<h3>Data in Transit</h3>
+<pre><code class="language-python"># Always use TLS 1.2 or higher
+# Flask/Django example
+app.config[&#39;SESSION_COOKIE_SECURE&#39;] = True  # HTTPS only
+app.config[&#39;SESSION_COOKIE_HTTPONLY&#39;] = True
+app.config[&#39;SESSION_COOKIE_SAMESITE&#39;] = &#39;Strict&#39;
+
+# Enforce HTTPS
+from flask_talisman import Talisman
+Talisman(app, force_https=True)
+</code></pre>
+<h2>Access Control</h2>
+<pre><code class="language-python">from functools import wraps
+from flask import session
+
+def require_pci_access(f):
+    &quot;&quot;&quot;Decorator to restrict access to cardholder data.&quot;&quot;&quot;
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        user = session.get(&#39;user&#39;)
+
+        # Check if user has PCI access role
+        if not user or &#39;pci_access&#39; not in user.get(&#39;roles&#39;, []):
+            return {&#39;error&#39;: &#39;Unauthorized access to cardholder data&#39;}, 403
+
+        # Log access attempt
+        audit_log(
+            user=user[&#39;id&#39;],
+            action=&#39;access_cardholder_data&#39;,
+            resource=f.__name__
+        )
+
+        return f(*args, **kwargs)
+
+    return decorated_function
+
+@app.route(&#39;/api/payment-methods&#39;)
+@require_pci_access
+def get_payment_methods():
+    &quot;&quot;&quot;Retrieve payment methods (restricted access).&quot;&quot;&quot;
+    # Only accessible to users with pci_access role
+    pass
+</code></pre>
+<h2>Audit Logging</h2>
+<pre><code class="language-python">import logging
+from datetime import datetime
+
+class PCIAuditLogger:
+    &quot;&quot;&quot;PCI-compliant audit logging.&quot;&quot;&quot;
+
+    def __init__(self):
+        self.logger = logging.getLogger(&#39;pci_audit&#39;)
+        # Configure to write to secure, append-only log
+
+    def log_access(self, user_id, resource, action, result):
+        &quot;&quot;&quot;Log access to cardholder data.&quot;&quot;&quot;
+        entry = {
+            &#39;timestamp&#39;: datetime.utcnow().isoformat(),
+            &#39;user_id&#39;: user_id,
+            &#39;resource&#39;: resource,
+            &#39;action&#39;: action,
+            &#39;result&#39;: result,
+            &#39;ip_address&#39;: request.remote_addr
+        }
+
+        self.logger.info(json.dumps(entry))
+
+    def log_authentication(self, user_id, success, method):
+        &quot;&quot;&quot;Log authentication attempt.&quot;&quot;&quot;
+        entry = {
+            &#39;timestamp&#39;: datetime.utcnow().isoformat(),
+            &#39;user_id&#39;: user_id,
+            &#39;event&#39;: &#39;authentication&#39;,
+            &#39;success&#39;: success,
+            &#39;method&#39;: method,
+            &#39;ip_address&#39;: request.remote_addr
+        }
+
+        self.logger.info(json.dumps(entry))
+
+# Usage
+audit = PCIAuditLogger()
+audit.log_access(user_id=123, resource=&#39;payment_methods&#39;, action=&#39;read&#39;, result=&#39;success&#39;)
+</code></pre>
+<h2>Security Best Practices</h2>
+<h3>Input Validation</h3>
+<pre><code class="language-python">import re
+
+def validate_card_number(card_number):
+    &quot;&quot;&quot;Validate card number format (Luhn algorithm).&quot;&quot;&quot;
+    # Remove spaces and dashes
+    card_number = re.sub(r&#39;[\s-]&#39;, &#39;&#39;, card_number)
+
+    # Check if all digits
+    if not card_number.isdigit():
+        return False
+
+    # Luhn algorithm
+    def luhn_checksum(card_num):
+        def digits_of(n):
+            return [int(d) for d in str(n)]
+
+        digits = digits_of(card_num)
+        odd_digits = digits[-1::-2]
+        even_digits = digits[-2::-2]
+        checksum = sum(odd_digits)
+        for d in even_digits:
+            checksum += sum(digits_of(d * 2))
+        return checksum % 10
+
+    return luhn_checksum(card_number) == 0
+
+def sanitize_input(user_input):
+    &quot;&quot;&quot;Sanitize user input to prevent injection.&quot;&quot;&quot;
+    # Remove special characters
+    # Validate against expected format
+    # Escape for database queries
+    pass
+</code></pre>
+<h2>PCI DSS SAQ (Self-Assessment Questionnaire)</h2>
+<h3>SAQ A (Least Requirements)</h3>
+<ul>
+<li>E-commerce using hosted payment page</li>
+<li>No card data on your systems</li>
+<li>~20 questions</li>
+</ul>
+<h3>SAQ A-EP</h3>
+<ul>
+<li>E-commerce with embedded payment form</li>
+<li>Uses JavaScript to handle card data</li>
+<li>~180 questions</li>
+</ul>
+<h3>SAQ D (Most Requirements)</h3>
+<ul>
+<li>Store, process, or transmit card data</li>
+<li>Full PCI DSS requirements</li>
+<li>~300 questions</li>
+</ul>
+<h2>Compliance Checklist</h2>
+<pre><code class="language-python">PCI_COMPLIANCE_CHECKLIST = {
+    &#39;network_security&#39;: [
+        &#39;Firewall configured and maintained&#39;,
+        &#39;No vendor default passwords&#39;,
+        &#39;Network segmentation implemented&#39;
+    ],
+    &#39;data_protection&#39;: [
+        &#39;No storage of CVV, track data, or PIN&#39;,
+        &#39;PAN encrypted when stored&#39;,
+        &#39;PAN masked when displayed&#39;,
+        &#39;Encryption keys properly managed&#39;
+    ],
+    &#39;vulnerability_management&#39;: [
+        &#39;Anti-virus installed and updated&#39;,
+        &#39;Secure development practices&#39;,
+        &#39;Regular security patches&#39;,
+        &#39;Vulnerability scanning performed&#39;
+    ],
+    &#39;access_control&#39;: [
+        &#39;Access restricted by role&#39;,
+        &#39;Unique IDs for all users&#39;,
+        &#39;Multi-factor authentication&#39;,
+        &#39;Physical security measures&#39;
+    ],
+    &#39;monitoring&#39;: [
+        &#39;Audit logs enabled&#39;,
+        &#39;Log review process&#39;,
+        &#39;File integrity monitoring&#39;,
+        &#39;Regular security testing&#39;
+    ],
+    &#39;policy&#39;: [
+        &#39;Security policy documented&#39;,
+        &#39;Risk assessment performed&#39;,
+        &#39;Security awareness training&#39;,
+        &#39;Incident response plan&#39;
+    ]
+}
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/data-minimization.md</strong>: Never store prohibited data</li>
+<li><strong>references/tokenization.md</strong>: Tokenization strategies</li>
+<li><strong>references/encryption.md</strong>: Encryption requirements</li>
+<li><strong>references/access-control.md</strong>: Role-based access</li>
+<li><strong>references/audit-logging.md</strong>: Comprehensive logging</li>
+<li><strong>assets/pci-compliance-checklist.md</strong>: Complete checklist</li>
+<li><strong>assets/encrypted-storage.py</strong>: Encryption utilities</li>
+<li><strong>scripts/audit-payment-system.sh</strong>: Compliance audit script</li>
+</ul>
+<h2>Common Violations</h2>
+<ol>
+<li><strong>Storing CVV</strong>: Never store card verification codes</li>
+<li><strong>Unencrypted PAN</strong>: Card numbers must be encrypted at rest</li>
+<li><strong>Weak Encryption</strong>: Use AES-256 or equivalent</li>
+<li><strong>No Access Controls</strong>: Restrict who can access cardholder data</li>
+<li><strong>Missing Audit Logs</strong>: Must log all access to payment data</li>
+<li><strong>Insecure Transmission</strong>: Always use TLS 1.2+</li>
+<li><strong>Default Passwords</strong>: Change all default credentials</li>
+<li><strong>No Security Testing</strong>: Regular penetration testing required</li>
+</ol>
+<h2>Reducing PCI Scope</h2>
+<ol>
+<li><strong>Use Hosted Payments</strong>: Stripe Checkout, PayPal, etc.</li>
+<li><strong>Tokenization</strong>: Replace card data with tokens</li>
+<li><strong>Network Segmentation</strong>: Isolate cardholder data environment</li>
+<li><strong>Outsource</strong>: Use PCI-compliant payment processors</li>
+<li><strong>No Storage</strong>: Never store full card details</li>
+</ol>
+<p>By minimizing systems that touch card data, you reduce compliance burden significantly.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

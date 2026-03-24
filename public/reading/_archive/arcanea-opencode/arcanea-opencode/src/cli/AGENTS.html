@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>CLI KNOWLEDGE BASE</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/arcanea-opencode/arcanea-opencode/src/cli/AGENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">CLI KNOWLEDGE BASE</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2Farcanea-opencode">arcanea-opencode</a> / <a href="../../index.html#_archive%2Farcanea-opencode%2Farcanea-opencode">arcanea-opencode</a> / <a href="../index.html#_archive%2Farcanea-opencode%2Farcanea-opencode%2Fsrc">src</a> / <a href="index.html#_archive%2Farcanea-opencode%2Farcanea-opencode%2Fsrc%2Fcli">cli</a> / <span>AGENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>CLI KNOWLEDGE BASE</h1>
+<h2>OVERVIEW</h2>
+<p>CLI for oh-my-opencode: interactive installer, health diagnostics (doctor), runtime launcher. Entry: <code>bunx oh-my-opencode</code>.</p>
+<h2>STRUCTURE</h2>
+<pre><code>cli/
+├── index.ts              # Commander.js entry, subcommand routing
+├── install.ts            # Interactive TUI installer (477 lines)
+├── config-manager.ts     # JSONC parsing, env detection (669 lines)
+├── types.ts              # CLI-specific types
+├── doctor/               # Health check system
+│   ├── index.ts          # Doctor command entry
+│   ├── constants.ts      # Check categories
+│   ├── types.ts          # Check result interfaces
+│   └── checks/           # 17+ individual checks
+├── get-local-version/    # Version detection
+└── run/                  # OpenCode session launcher
+</code></pre>
+<h2>CLI COMMANDS</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>install</code></td>
+<td>Interactive setup wizard</td>
+</tr>
+<tr>
+<td><code>doctor</code></td>
+<td>Environment health checks</td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td>Launch OpenCode session</td>
+</tr>
+</tbody></table>
+<h2>DOCTOR CHECKS</h2>
+<p>17+ checks in <code>doctor/checks/</code>:</p>
+<ul>
+<li>version.ts (OpenCode &gt;= 1.0.150)</li>
+<li>config.ts (plugin registered)</li>
+<li>bun.ts, node.ts, git.ts</li>
+<li>anthropic-auth.ts, openai-auth.ts, google-auth.ts</li>
+<li>lsp-<em>.ts, mcp-</em>.ts</li>
+</ul>
+<h2>CONFIG-MANAGER (669 lines)</h2>
+<ul>
+<li>JSONC support (comments, trailing commas)</li>
+<li>Multi-source: User (~/.config/opencode/) + Project (.opencode/)</li>
+<li>Zod validation</li>
+<li>Legacy format migration</li>
+<li>Error aggregation for doctor</li>
+</ul>
+<h2>HOW TO ADD CHECK</h2>
+<ol>
+<li>Create <code>src/cli/doctor/checks/my-check.ts</code>:<pre><code class="language-typescript">export const myCheck: DoctorCheck = {
+  name: &quot;my-check&quot;,
+  category: &quot;environment&quot;,
+  check: async () =&gt; {
+    return { status: &quot;pass&quot; | &quot;warn&quot; | &quot;fail&quot;, message: &quot;...&quot; }
+  }
+}
+</code></pre>
+</li>
+<li>Add to <code>src/cli/doctor/checks/index.ts</code></li>
+</ol>
+<h2>ANTI-PATTERNS</h2>
+<ul>
+<li>Blocking prompts in non-TTY (check <code>process.stdout.isTTY</code>)</li>
+<li>Hardcoded paths (use shared utilities)</li>
+<li>JSON.parse for user files (use parseJsonc)</li>
+<li>Silent failures in doctor checks</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Conductor Setup</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/commands/setup.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Conductor Setup</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fcommands">commands</a> / <span>setup.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: &quot;Initialize project with Conductor artifacts (product definition, tech stack, workflow, style guides)&quot;
+argument-hint: &quot;[--resume]&quot;</h2>
+<h1>Conductor Setup</h1>
+<p>Initialize or resume Conductor project setup. This command creates foundational project documentation through interactive Q&amp;A.</p>
+<h2>Pre-flight Checks</h2>
+<ol>
+<li><p>Check if <code>conductor/</code> directory already exists in the project root:</p>
+<ul>
+<li>If <code>conductor/product.md</code> exists: Ask user whether to resume setup or reinitialize</li>
+<li>If <code>conductor/setup_state.json</code> exists with incomplete status: Offer to resume from last step</li>
+</ul>
+</li>
+<li><p>Detect project type by checking for existing indicators:</p>
+<ul>
+<li><strong>Greenfield (new project)</strong>: No .git, no package.json, no requirements.txt, no go.mod, no src/ directory</li>
+<li><strong>Brownfield (existing project)</strong>: Any of the above exist</li>
+</ul>
+</li>
+<li><p>Load or create <code>conductor/setup_state.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;in_progress&quot;,
+  &quot;project_type&quot;: &quot;greenfield|brownfield&quot;,
+  &quot;current_section&quot;: &quot;product|guidelines|tech_stack|workflow|styleguides&quot;,
+  &quot;current_question&quot;: 1,
+  &quot;completed_sections&quot;: [],
+  &quot;answers&quot;: {},
+  &quot;files_created&quot;: [],
+  &quot;started_at&quot;: &quot;ISO_TIMESTAMP&quot;,
+  &quot;last_updated&quot;: &quot;ISO_TIMESTAMP&quot;
+}
+</code></pre>
+</li>
+</ol>
+<h2>Interactive Q&amp;A Protocol</h2>
+<p><strong>CRITICAL RULES:</strong></p>
+<ul>
+<li>Ask ONE question per turn</li>
+<li>Wait for user response before proceeding</li>
+<li>Offer 2-3 suggested answers plus &quot;Type your own&quot; option</li>
+<li>Maximum 5 questions per section</li>
+<li>Update <code>setup_state.json</code> after each successful step</li>
+<li>Validate file writes succeeded before continuing</li>
+</ul>
+<h3>Section 1: Product Definition (max 5 questions)</h3>
+<p><strong>Q1: Project Name</strong></p>
+<pre><code>What is your project name?
+
+Suggested:
+1. [Infer from directory name]
+2. [Infer from package.json/go.mod if brownfield]
+3. Type your own
+</code></pre>
+<p><strong>Q2: Project Description</strong></p>
+<pre><code>Describe your project in one sentence.
+
+Suggested:
+1. A web application that [does X]
+2. A CLI tool for [doing Y]
+3. Type your own
+</code></pre>
+<p><strong>Q3: Problem Statement</strong></p>
+<pre><code>What problem does this project solve?
+
+Suggested:
+1. Users struggle to [pain point]
+2. There&#39;s no good way to [need]
+3. Type your own
+</code></pre>
+<p><strong>Q4: Target Users</strong></p>
+<pre><code>Who are the primary users?
+
+Suggested:
+1. Developers building [X]
+2. End users who need [Y]
+3. Internal teams managing [Z]
+4. Type your own
+</code></pre>
+<p><strong>Q5: Key Goals (optional)</strong></p>
+<pre><code>What are 2-3 key goals for this project? (Press enter to skip)
+</code></pre>
+<h3>Section 2: Product Guidelines (max 3 questions)</h3>
+<p><strong>Q1: Voice and Tone</strong></p>
+<pre><code>What voice/tone should documentation and UI text use?
+
+Suggested:
+1. Professional and technical
+2. Friendly and approachable
+3. Concise and direct
+4. Type your own
+</code></pre>
+<p><strong>Q2: Design Principles</strong></p>
+<pre><code>What design principles guide this project?
+
+Suggested:
+1. Simplicity over features
+2. Performance first
+3. Developer experience focused
+4. User safety and reliability
+5. Type your own (comma-separated)
+</code></pre>
+<h3>Section 3: Tech Stack (max 5 questions)</h3>
+<p>For <strong>brownfield projects</strong>, first analyze existing code:</p>
+<ul>
+<li>Run <code>Glob</code> to find package.json, requirements.txt, go.mod, Cargo.toml, etc.</li>
+<li>Parse detected files to pre-populate tech stack</li>
+<li>Present findings and ask for confirmation/additions</li>
+</ul>
+<p><strong>Q1: Primary Language(s)</strong></p>
+<pre><code>What primary language(s) does this project use?
+
+[For brownfield: &quot;I detected: Python 3.11, JavaScript. Is this correct?&quot;]
+
+Suggested:
+1. TypeScript
+2. Python
+3. Go
+4. Rust
+5. Type your own (comma-separated)
+</code></pre>
+<p><strong>Q2: Frontend Framework (if applicable)</strong></p>
+<pre><code>What frontend framework (if any)?
+
+Suggested:
+1. React
+2. Vue
+3. Next.js
+4. None / CLI only
+5. Type your own
+</code></pre>
+<p><strong>Q3: Backend Framework (if applicable)</strong></p>
+<pre><code>What backend framework (if any)?
+
+Suggested:
+1. Express / Fastify
+2. Django / FastAPI
+3. Go standard library
+4. None / Frontend only
+5. Type your own
+</code></pre>
+<p><strong>Q4: Database (if applicable)</strong></p>
+<pre><code>What database (if any)?
+
+Suggested:
+1. PostgreSQL
+2. MongoDB
+3. SQLite
+4. None / Stateless
+5. Type your own
+</code></pre>
+<p><strong>Q5: Infrastructure</strong></p>
+<pre><code>Where will this be deployed?
+
+Suggested:
+1. AWS (Lambda, ECS, etc.)
+2. Vercel / Netlify
+3. Self-hosted / Docker
+4. Not decided yet
+5. Type your own
+</code></pre>
+<h3>Section 4: Workflow Preferences (max 4 questions)</h3>
+<p><strong>Q1: TDD Strictness</strong></p>
+<pre><code>How strictly should TDD be enforced?
+
+Suggested:
+1. Strict - tests required before implementation
+2. Moderate - tests encouraged, not blocked
+3. Flexible - tests recommended for complex logic
+</code></pre>
+<p><strong>Q2: Commit Strategy</strong></p>
+<pre><code>What commit strategy should be followed?
+
+Suggested:
+1. Conventional Commits (feat:, fix:, etc.)
+2. Descriptive messages, no format required
+3. Squash commits per task
+</code></pre>
+<p><strong>Q3: Code Review Requirements</strong></p>
+<pre><code>What code review policy?
+
+Suggested:
+1. Required for all changes
+2. Required for non-trivial changes
+3. Optional / self-review OK
+</code></pre>
+<p><strong>Q4: Verification Checkpoints</strong></p>
+<pre><code>When should manual verification be required?
+
+Suggested:
+1. After each phase completion
+2. After each task completion
+3. Only at track completion
+</code></pre>
+<h3>Section 5: Code Style Guides (max 2 questions)</h3>
+<p><strong>Q1: Languages to Include</strong></p>
+<pre><code>Which language style guides should be generated?
+
+[Based on detected languages, pre-select]
+
+Options:
+1. TypeScript/JavaScript
+2. Python
+3. Go
+4. Rust
+5. All detected languages
+6. Skip style guides
+</code></pre>
+<p><strong>Q2: Existing Conventions</strong></p>
+<pre><code>Do you have existing linting/formatting configs to incorporate?
+
+[For brownfield: &quot;I found .eslintrc, .prettierrc. Should I incorporate these?&quot;]
+
+Suggested:
+1. Yes, use existing configs
+2. No, generate fresh guides
+3. Skip this step
+</code></pre>
+<h2>Artifact Generation</h2>
+<p>After completing Q&amp;A, generate the following files:</p>
+<h3>1. conductor/index.md</h3>
+<pre><code class="language-markdown"># Conductor - [Project Name]
+
+Navigation hub for project context.
+
+## Quick Links
+
+- [Product Definition](./product.md)
+- [Product Guidelines](./product-guidelines.md)
+- [Tech Stack](./tech-stack.md)
+- [Workflow](./workflow.md)
+- [Tracks](./tracks.md)
+
+## Active Tracks
+
+&lt;!-- Auto-populated by /conductor:new-track --&gt;
+
+## Getting Started
+
+Run `/conductor:new-track` to create your first feature track.
+</code></pre>
+<h3>2. conductor/product.md</h3>
+<p>Template populated with Q&amp;A answers for:</p>
+<ul>
+<li>Project name and description</li>
+<li>Problem statement</li>
+<li>Target users</li>
+<li>Key goals</li>
+</ul>
+<h3>3. conductor/product-guidelines.md</h3>
+<p>Template populated with:</p>
+<ul>
+<li>Voice and tone</li>
+<li>Design principles</li>
+<li>Any additional standards</li>
+</ul>
+<h3>4. conductor/tech-stack.md</h3>
+<p>Template populated with:</p>
+<ul>
+<li>Languages (with versions if detected)</li>
+<li>Frameworks (frontend, backend)</li>
+<li>Database</li>
+<li>Infrastructure</li>
+<li>Key dependencies (for brownfield, from package files)</li>
+</ul>
+<h3>5. conductor/workflow.md</h3>
+<p>Template populated with:</p>
+<ul>
+<li>TDD policy and strictness level</li>
+<li>Commit strategy and conventions</li>
+<li>Code review requirements</li>
+<li>Verification checkpoint rules</li>
+<li>Task lifecycle definition</li>
+</ul>
+<h3>6. conductor/tracks.md</h3>
+<pre><code class="language-markdown"># Tracks Registry
+
+| Status | Track ID | Title | Created | Updated |
+| ------ | -------- | ----- | ------- | ------- |
+
+&lt;!-- Tracks registered by /conductor:new-track --&gt;
+</code></pre>
+<h3>7. conductor/code_styleguides/</h3>
+<p>Generate selected style guides from <code>$CLAUDE_PLUGIN_ROOT/templates/code_styleguides/</code></p>
+<h2>State Management</h2>
+<p>After each successful file creation:</p>
+<ol>
+<li>Update <code>setup_state.json</code>:<ul>
+<li>Add filename to <code>files_created</code> array</li>
+<li>Update <code>last_updated</code> timestamp</li>
+<li>If section complete, add to <code>completed_sections</code></li>
+</ul>
+</li>
+<li>Verify file exists with <code>Read</code> tool</li>
+</ol>
+<h2>Completion</h2>
+<p>When all files are created:</p>
+<ol>
+<li><p>Set <code>setup_state.json</code> status to &quot;complete&quot;</p>
+</li>
+<li><p>Display summary:</p>
+<pre><code>Conductor setup complete!
+
+Created artifacts:
+- conductor/index.md
+- conductor/product.md
+- conductor/product-guidelines.md
+- conductor/tech-stack.md
+- conductor/workflow.md
+- conductor/tracks.md
+- conductor/code_styleguides/[languages]
+
+Next steps:
+1. Review generated files and customize as needed
+2. Run /conductor:new-track to create your first track
+</code></pre>
+</li>
+</ol>
+<h2>Resume Handling</h2>
+<p>If <code>--resume</code> argument or resuming from state:</p>
+<ol>
+<li>Load <code>setup_state.json</code></li>
+<li>Skip completed sections</li>
+<li>Resume from <code>current_section</code> and <code>current_question</code></li>
+<li>Verify previously created files still exist</li>
+<li>If files missing, offer to regenerate</li>
+</ol>
+<h2>Error Handling</h2>
+<ul>
+<li>If file write fails: Halt and report error, do not update state</li>
+<li>If user cancels: Save current state for future resume</li>
+<li>If state file corrupted: Offer to start fresh or attempt recovery</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

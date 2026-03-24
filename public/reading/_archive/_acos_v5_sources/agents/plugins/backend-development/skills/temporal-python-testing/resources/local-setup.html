@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Local Development Setup for Temporal Python Testing</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/backend-development/skills/temporal-python-testing/resources/local-setup.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Local Development Setup for Temporal Python Testing</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development">backend-development</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Ftemporal-python-testing">temporal-python-testing</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Ftemporal-python-testing%2Fresources">resources</a> / <span>local-setup.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Local Development Setup for Temporal Python Testing</h1>
+<p>Comprehensive guide for setting up local Temporal development environment with pytest integration and coverage tracking.</p>
+<h2>Temporal Server Setup with Docker Compose</h2>
+<h3>Basic Docker Compose Configuration</h3>
+<pre><code class="language-yaml"># docker-compose.yml
+version: &quot;3.8&quot;
+
+services:
+  temporal:
+    image: temporalio/auto-setup:latest
+    container_name: temporal-dev
+    ports:
+      - &quot;7233:7233&quot; # Temporal server
+      - &quot;8233:8233&quot; # Web UI
+    environment:
+      - DB=postgresql
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal
+      - POSTGRES_SEEDS=postgresql
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
+    depends_on:
+      - postgresql
+
+  postgresql:
+    image: postgres:14-alpine
+    container_name: temporal-postgres
+    environment:
+      - POSTGRES_USER=temporal
+      - POSTGRES_PASSWORD=temporal
+      - POSTGRES_DB=temporal
+    ports:
+      - &quot;5432:5432&quot;
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  temporal-ui:
+    image: temporalio/ui:latest
+    container_name: temporal-ui
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    ports:
+      - &quot;8080:8080&quot;
+
+volumes:
+  postgres_data:
+</code></pre>
+<h3>Starting Local Server</h3>
+<pre><code class="language-bash"># Start Temporal server
+docker-compose up -d
+
+# Verify server is running
+docker-compose ps
+
+# View logs
+docker-compose logs -f temporal
+
+# Access Temporal Web UI
+open http://localhost:8080
+
+# Stop server
+docker-compose down
+
+# Reset data (clean slate)
+docker-compose down -v
+</code></pre>
+<h3>Health Check Script</h3>
+<pre><code class="language-python"># scripts/health_check.py
+import asyncio
+from temporalio.client import Client
+
+async def check_temporal_health():
+    &quot;&quot;&quot;Verify Temporal server is accessible&quot;&quot;&quot;
+    try:
+        client = await Client.connect(&quot;localhost:7233&quot;)
+        print(&quot;✓ Connected to Temporal server&quot;)
+
+        # Test workflow execution
+        from temporalio.worker import Worker
+
+        @workflow.defn
+        class HealthCheckWorkflow:
+            @workflow.run
+            async def run(self) -&gt; str:
+                return &quot;healthy&quot;
+
+        async with Worker(
+            client,
+            task_queue=&quot;health-check&quot;,
+            workflows=[HealthCheckWorkflow],
+        ):
+            result = await client.execute_workflow(
+                HealthCheckWorkflow.run,
+                id=&quot;health-check&quot;,
+                task_queue=&quot;health-check&quot;,
+            )
+            print(f&quot;✓ Workflow execution successful: {result}&quot;)
+
+        return True
+
+    except Exception as e:
+        print(f&quot;✗ Health check failed: {e}&quot;)
+        return False
+
+if __name__ == &quot;__main__&quot;:
+    asyncio.run(check_temporal_health())
+</code></pre>
+<h2>pytest Configuration</h2>
+<h3>Project Structure</h3>
+<pre><code>temporal-project/
+├── docker-compose.yml
+├── pyproject.toml
+├── pytest.ini
+├── requirements.txt
+├── src/
+│   ├── workflows/
+│   │   ├── __init__.py
+│   │   ├── order_workflow.py
+│   │   └── payment_workflow.py
+│   └── activities/
+│       ├── __init__.py
+│       ├── payment_activities.py
+│       └── inventory_activities.py
+├── tests/
+│   ├── conftest.py
+│   ├── unit/
+│   │   ├── test_workflows.py
+│   │   └── test_activities.py
+│   ├── integration/
+│   │   └── test_order_flow.py
+│   └── replay/
+│       └── test_workflow_replay.py
+└── scripts/
+    ├── health_check.py
+    └── export_histories.py
+</code></pre>
+<h3>pytest Configuration</h3>
+<pre><code class="language-ini"># pytest.ini
+[pytest]
+asyncio_mode = auto
+testpaths = tests
+python_files = test_*.py
+python_classes = Test*
+python_functions = test_*
+
+# Markers for test categorization
+markers =
+    unit: Unit tests (fast, isolated)
+    integration: Integration tests (require Temporal server)
+    replay: Replay tests (require production histories)
+    slow: Slow running tests
+
+# Coverage settings
+addopts =
+    --verbose
+    --strict-markers
+    --cov=src
+    --cov-report=term-missing
+    --cov-report=html
+    --cov-fail-under=80
+
+# Async test timeout
+asyncio_default_fixture_loop_scope = function
+</code></pre>
+<h3>Shared Test Fixtures</h3>
+<pre><code class="language-python"># tests/conftest.py
+import pytest
+from temporalio.testing import WorkflowEnvironment
+from temporalio.client import Client
+
+@pytest.fixture(scope=&quot;session&quot;)
+def event_loop():
+    &quot;&quot;&quot;Provide event loop for async fixtures&quot;&quot;&quot;
+    import asyncio
+    loop = asyncio.get_event_loop_policy().new_event_loop()
+    yield loop
+    loop.close()
+
+@pytest.fixture(scope=&quot;session&quot;)
+async def temporal_client():
+    &quot;&quot;&quot;Provide Temporal client connected to local server&quot;&quot;&quot;
+    client = await Client.connect(&quot;localhost:7233&quot;)
+    yield client
+    await client.close()
+
+@pytest.fixture(scope=&quot;module&quot;)
+async def workflow_env():
+    &quot;&quot;&quot;Module-scoped time-skipping environment&quot;&quot;&quot;
+    env = await WorkflowEnvironment.start_time_skipping()
+    yield env
+    await env.shutdown()
+
+@pytest.fixture
+def activity_env():
+    &quot;&quot;&quot;Function-scoped activity environment&quot;&quot;&quot;
+    from temporalio.testing import ActivityEnvironment
+    return ActivityEnvironment()
+
+@pytest.fixture
+async def test_worker(temporal_client, workflow_env):
+    &quot;&quot;&quot;Pre-configured test worker&quot;&quot;&quot;
+    from temporalio.worker import Worker
+    from src.workflows import OrderWorkflow, PaymentWorkflow
+    from src.activities import process_payment, update_inventory
+
+    return Worker(
+        workflow_env.client,
+        task_queue=&quot;test-queue&quot;,
+        workflows=[OrderWorkflow, PaymentWorkflow],
+        activities=[process_payment, update_inventory],
+    )
+</code></pre>
+<h3>Dependencies</h3>
+<pre><code class="language-txt"># requirements.txt
+temporalio&gt;=1.5.0
+pytest&gt;=7.4.0
+pytest-asyncio&gt;=0.21.0
+pytest-cov&gt;=4.1.0
+pytest-xdist&gt;=3.3.0  # Parallel test execution
+</code></pre>
+<pre><code class="language-toml"># pyproject.toml
+[build-system]
+requires = [&quot;setuptools&gt;=61.0&quot;]
+build-backend = &quot;setuptools.build_backend&quot;
+
+[project]
+name = &quot;temporal-project&quot;
+version = &quot;0.1.0&quot;
+requires-python = &quot;&gt;=3.10&quot;
+dependencies = [
+    &quot;temporalio&gt;=1.5.0&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;pytest&gt;=7.4.0&quot;,
+    &quot;pytest-asyncio&gt;=0.21.0&quot;,
+    &quot;pytest-cov&gt;=4.1.0&quot;,
+    &quot;pytest-xdist&gt;=3.3.0&quot;,
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = &quot;auto&quot;
+testpaths = [&quot;tests&quot;]
+</code></pre>
+<h2>Coverage Configuration</h2>
+<h3>Coverage Settings</h3>
+<pre><code class="language-ini"># .coveragerc
+[run]
+source = src
+omit =
+    */tests/*
+    */venv/*
+    */__pycache__/*
+
+[report]
+exclude_lines =
+    # Exclude type checking blocks
+    if TYPE_CHECKING:
+    # Exclude debug code
+    def __repr__
+    # Exclude abstract methods
+    @abstractmethod
+    # Exclude pass statements
+    pass
+
+[html]
+directory = htmlcov
+</code></pre>
+<h3>Running Tests with Coverage</h3>
+<pre><code class="language-bash"># Run all tests with coverage
+pytest --cov=src --cov-report=term-missing
+
+# Generate HTML coverage report
+pytest --cov=src --cov-report=html
+open htmlcov/index.html
+
+# Run specific test categories
+pytest -m unit  # Unit tests only
+pytest -m integration  # Integration tests only
+pytest -m &quot;not slow&quot;  # Skip slow tests
+
+# Parallel execution (faster)
+pytest -n auto  # Use all CPU cores
+
+# Fail if coverage below threshold
+pytest --cov=src --cov-fail-under=80
+</code></pre>
+<h3>Coverage Report Example</h3>
+<pre><code>---------- coverage: platform darwin, python 3.11.5 -----------
+Name                                Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------
+src/__init__.py                         0      0   100%
+src/activities/__init__.py              2      0   100%
+src/activities/inventory.py            45      3    93%   78-80
+src/activities/payment.py              38      0   100%
+src/workflows/__init__.py               2      0   100%
+src/workflows/order_workflow.py        67      5    93%   45-49
+src/workflows/payment_workflow.py      52      0   100%
+-----------------------------------------------------------------
+TOTAL                                 206      8    96%
+
+10 files skipped due to complete coverage.
+</code></pre>
+<h2>Development Workflow</h2>
+<h3>Daily Development Flow</h3>
+<pre><code class="language-bash"># 1. Start Temporal server
+docker-compose up -d
+
+# 2. Verify server health
+python scripts/health_check.py
+
+# 3. Run tests during development
+pytest tests/unit/ --verbose
+
+# 4. Run full test suite before commit
+pytest --cov=src --cov-report=term-missing
+
+# 5. Check coverage
+open htmlcov/index.html
+
+# 6. Stop server
+docker-compose down
+</code></pre>
+<h3>Pre-Commit Hook</h3>
+<pre><code class="language-bash"># .git/hooks/pre-commit
+#!/bin/bash
+
+echo &quot;Running tests...&quot;
+pytest --cov=src --cov-fail-under=80
+
+if [ $? -ne 0 ]; then
+    echo &quot;Tests failed. Commit aborted.&quot;
+    exit 1
+fi
+
+echo &quot;All tests passed!&quot;
+</code></pre>
+<h3>Makefile for Common Tasks</h3>
+<pre><code class="language-makefile"># Makefile
+.PHONY: setup test test-unit test-integration coverage clean
+
+setup:
+    docker-compose up -d
+    pip install -r requirements.txt
+    python scripts/health_check.py
+
+test:
+    pytest --cov=src --cov-report=term-missing
+
+test-unit:
+    pytest -m unit --verbose
+
+test-integration:
+    pytest -m integration --verbose
+
+test-replay:
+    pytest -m replay --verbose
+
+test-parallel:
+    pytest -n auto --cov=src
+
+coverage:
+    pytest --cov=src --cov-report=html
+    open htmlcov/index.html
+
+clean:
+    docker-compose down -v
+    rm -rf .pytest_cache htmlcov .coverage
+
+ci:
+    docker-compose up -d
+    sleep 10  # Wait for Temporal to start
+    pytest --cov=src --cov-fail-under=80
+    docker-compose down
+</code></pre>
+<h3>CI/CD Example</h3>
+<pre><code class="language-yaml"># .github/workflows/test.yml
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: &quot;3.11&quot;
+
+      - name: Start Temporal server
+        run: docker-compose up -d
+
+      - name: Wait for Temporal
+        run: sleep 10
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run tests with coverage
+        run: |
+          pytest --cov=src --cov-report=xml --cov-fail-under=80
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+
+      - name: Cleanup
+        if: always()
+        run: docker-compose down
+</code></pre>
+<h2>Debugging Tips</h2>
+<h3>Enable Temporal SDK Logging</h3>
+<pre><code class="language-python">import logging
+
+# Enable debug logging for Temporal SDK
+logging.basicConfig(level=logging.DEBUG)
+temporal_logger = logging.getLogger(&quot;temporalio&quot;)
+temporal_logger.setLevel(logging.DEBUG)
+</code></pre>
+<h3>Interactive Debugging</h3>
+<pre><code class="language-python"># Add breakpoint in test
+@pytest.mark.asyncio
+async def test_workflow_with_breakpoint(workflow_env):
+    import pdb; pdb.set_trace()  # Debug here
+
+    async with Worker(...):
+        result = await workflow_env.client.execute_workflow(...)
+</code></pre>
+<h3>Temporal Web UI</h3>
+<pre><code class="language-bash"># Access Web UI at http://localhost:8080
+# - View workflow executions
+# - Inspect event history
+# - Replay workflows
+# - Monitor workers
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Isolated Environment</strong>: Use Docker Compose for reproducible local setup</li>
+<li><strong>Health Checks</strong>: Always verify Temporal server before running tests</li>
+<li><strong>Fast Feedback</strong>: Use pytest markers to run unit tests quickly</li>
+<li><strong>Coverage Targets</strong>: Maintain ≥80% code coverage</li>
+<li><strong>Parallel Testing</strong>: Use pytest-xdist for faster test runs</li>
+<li><strong>CI/CD Integration</strong>: Automated testing on every commit</li>
+<li><strong>Cleanup</strong>: Clear Docker volumes between test runs if needed</li>
+</ol>
+<h2>Troubleshooting</h2>
+<p><strong>Issue: Temporal server not starting</strong></p>
+<pre><code class="language-bash"># Check logs
+docker-compose logs temporal
+
+# Reset database
+docker-compose down -v
+docker-compose up -d
+</code></pre>
+<p><strong>Issue: Tests timing out</strong></p>
+<pre><code class="language-python"># Increase timeout in pytest.ini
+asyncio_default_timeout = 30
+</code></pre>
+<p><strong>Issue: Port already in use</strong></p>
+<pre><code class="language-bash"># Find process using port 7233
+lsof -i :7233
+
+# Kill process or change port in docker-compose.yml
+</code></pre>
+<h2>Additional Resources</h2>
+<ul>
+<li>Temporal Local Development: docs.temporal.io/develop/python/local-dev</li>
+<li>pytest Documentation: docs.pytest.org</li>
+<li>Docker Compose: docs.docker.com/compose</li>
+<li>pytest-asyncio: github.com/pytest-dev/pytest-asyncio</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

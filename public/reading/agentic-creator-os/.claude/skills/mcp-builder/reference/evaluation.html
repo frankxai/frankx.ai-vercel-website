@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>MCP Server Evaluation Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/mcp-builder/reference/evaluation.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">MCP Server Evaluation Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills%2Fmcp-builder">mcp-builder</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fmcp-builder%2Freference">reference</a> / <span>evaluation.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>MCP Server Evaluation Guide</h1>
+<h2>Overview</h2>
+<p>This document provides guidance on creating comprehensive evaluations for MCP servers. Evaluations test whether LLMs can effectively use your MCP server to answer realistic, complex questions using only the tools provided.</p>
+<hr>
+<h2>Quick Reference</h2>
+<h3>Evaluation Requirements</h3>
+<ul>
+<li>Create 10 human-readable questions</li>
+<li>Questions must be READ-ONLY, INDEPENDENT, NON-DESTRUCTIVE</li>
+<li>Each question requires multiple tool calls (potentially dozens)</li>
+<li>Answers must be single, verifiable values</li>
+<li>Answers must be STABLE (won&#39;t change over time)</li>
+</ul>
+<h3>Output Format</h3>
+<pre><code class="language-xml">&lt;evaluation&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Your question here&lt;/question&gt;
+      &lt;answer&gt;Single verifiable answer&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+&lt;/evaluation&gt;
+</code></pre>
+<hr>
+<h2>Purpose of Evaluations</h2>
+<p>The measure of quality of an MCP server is NOT how well or comprehensively the server implements tools, but how well these implementations (input/output schemas, docstrings/descriptions, functionality) enable LLMs with no other context and access ONLY to the MCP servers to answer realistic and difficult questions.</p>
+<h2>Evaluation Overview</h2>
+<p>Create 10 human-readable questions requiring ONLY READ-ONLY, INDEPENDENT, NON-DESTRUCTIVE, and IDEMPOTENT operations to answer. Each question should be:</p>
+<ul>
+<li>Realistic</li>
+<li>Clear and concise</li>
+<li>Unambiguous</li>
+<li>Complex, requiring potentially dozens of tool calls or steps</li>
+<li>Answerable with a single, verifiable value that you identify in advance</li>
+</ul>
+<h2>Question Guidelines</h2>
+<h3>Core Requirements</h3>
+<ol>
+<li><p><strong>Questions MUST be independent</strong></p>
+<ul>
+<li>Each question should NOT depend on the answer to any other question</li>
+<li>Should not assume prior write operations from processing another question</li>
+</ul>
+</li>
+<li><p><strong>Questions MUST require ONLY NON-DESTRUCTIVE AND IDEMPOTENT tool use</strong></p>
+<ul>
+<li>Should not instruct or require modifying state to arrive at the correct answer</li>
+</ul>
+</li>
+<li><p><strong>Questions must be REALISTIC, CLEAR, CONCISE, and COMPLEX</strong></p>
+<ul>
+<li>Must require another LLM to use multiple (potentially dozens of) tools or steps to answer</li>
+</ul>
+</li>
+</ol>
+<h3>Complexity and Depth</h3>
+<ol start="4">
+<li><p><strong>Questions must require deep exploration</strong></p>
+<ul>
+<li>Consider multi-hop questions requiring multiple sub-questions and sequential tool calls</li>
+<li>Each step should benefit from information found in previous questions</li>
+</ul>
+</li>
+<li><p><strong>Questions may require extensive paging</strong></p>
+<ul>
+<li>May need paging through multiple pages of results</li>
+<li>May require querying old data (1-2 years out-of-date) to find niche information</li>
+<li>The questions must be DIFFICULT</li>
+</ul>
+</li>
+<li><p><strong>Questions must require deep understanding</strong></p>
+<ul>
+<li>Rather than surface-level knowledge</li>
+<li>May pose complex ideas as True/False questions requiring evidence</li>
+<li>May use multiple-choice format where LLM must search different hypotheses</li>
+</ul>
+</li>
+<li><p><strong>Questions must not be solvable with straightforward keyword search</strong></p>
+<ul>
+<li>Do not include specific keywords from the target content</li>
+<li>Use synonyms, related concepts, or paraphrases</li>
+<li>Require multiple searches, analyzing multiple related items, extracting context, then deriving the answer</li>
+</ul>
+</li>
+</ol>
+<h3>Tool Testing</h3>
+<ol start="8">
+<li><p><strong>Questions should stress-test tool return values</strong></p>
+<ul>
+<li>May elicit tools returning large JSON objects or lists, overwhelming the LLM</li>
+<li>Should require understanding multiple modalities of data:<ul>
+<li>IDs and names</li>
+<li>Timestamps and datetimes (months, days, years, seconds)</li>
+<li>File IDs, names, extensions, and mimetypes</li>
+<li>URLs, GIDs, etc.</li>
+</ul>
+</li>
+<li>Should probe the tool&#39;s ability to return all useful forms of data</li>
+</ul>
+</li>
+<li><p><strong>Questions should MOSTLY reflect real human use cases</strong></p>
+<ul>
+<li>The kinds of information retrieval tasks that HUMANS assisted by an LLM would care about</li>
+</ul>
+</li>
+<li><p><strong>Questions may require dozens of tool calls</strong></p>
+<ul>
+<li>This challenges LLMs with limited context</li>
+<li>Encourages MCP server tools to reduce information returned</li>
+</ul>
+</li>
+<li><p><strong>Include ambiguous questions</strong></p>
+<ul>
+<li>May be ambiguous OR require difficult decisions on which tools to call</li>
+<li>Force the LLM to potentially make mistakes or misinterpret</li>
+<li>Ensure that despite AMBIGUITY, there is STILL A SINGLE VERIFIABLE ANSWER</li>
+</ul>
+</li>
+</ol>
+<h3>Stability</h3>
+<ol start="12">
+<li><p><strong>Questions must be designed so the answer DOES NOT CHANGE</strong></p>
+<ul>
+<li>Do not ask questions that rely on &quot;current state&quot; which is dynamic</li>
+<li>For example, do not count:<ul>
+<li>Number of reactions to a post</li>
+<li>Number of replies to a thread</li>
+<li>Number of members in a channel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>DO NOT let the MCP server RESTRICT the kinds of questions you create</strong></p>
+<ul>
+<li>Create challenging and complex questions</li>
+<li>Some may not be solvable with the available MCP server tools</li>
+<li>Questions may require specific output formats (datetime vs. epoch time, JSON vs. MARKDOWN)</li>
+<li>Questions may require dozens of tool calls to complete</li>
+</ul>
+</li>
+</ol>
+<h2>Answer Guidelines</h2>
+<h3>Verification</h3>
+<ol>
+<li><strong>Answers must be VERIFIABLE via direct string comparison</strong><ul>
+<li>If the answer can be re-written in many formats, clearly specify the output format in the QUESTION</li>
+<li>Examples: &quot;Use YYYY/MM/DD.&quot;, &quot;Respond True or False.&quot;, &quot;Answer A, B, C, or D and nothing else.&quot;</li>
+<li>Answer should be a single VERIFIABLE value such as:<ul>
+<li>User ID, user name, display name, first name, last name</li>
+<li>Channel ID, channel name</li>
+<li>Message ID, string</li>
+<li>URL, title</li>
+<li>Numerical quantity</li>
+<li>Timestamp, datetime</li>
+<li>Boolean (for True/False questions)</li>
+<li>Email address, phone number</li>
+<li>File ID, file name, file extension</li>
+<li>Multiple choice answer</li>
+</ul>
+</li>
+<li>Answers must not require special formatting or complex, structured output</li>
+<li>Answer will be verified using DIRECT STRING COMPARISON</li>
+</ul>
+</li>
+</ol>
+<h3>Readability</h3>
+<ol start="2">
+<li><strong>Answers should generally prefer HUMAN-READABLE formats</strong><ul>
+<li>Examples: names, first name, last name, datetime, file name, message string, URL, yes/no, true/false, a/b/c/d</li>
+<li>Rather than opaque IDs (though IDs are acceptable)</li>
+<li>The VAST MAJORITY of answers should be human-readable</li>
+</ul>
+</li>
+</ol>
+<h3>Stability</h3>
+<ol start="3">
+<li><p><strong>Answers must be STABLE/STATIONARY</strong></p>
+<ul>
+<li>Look at old content (e.g., conversations that have ended, projects that have launched, questions answered)</li>
+<li>Create QUESTIONS based on &quot;closed&quot; concepts that will always return the same answer</li>
+<li>Questions may ask to consider a fixed time window to insulate from non-stationary answers</li>
+<li>Rely on context UNLIKELY to change</li>
+<li>Example: if finding a paper name, be SPECIFIC enough so answer is not confused with papers published later</li>
+</ul>
+</li>
+<li><p><strong>Answers must be CLEAR and UNAMBIGUOUS</strong></p>
+<ul>
+<li>Questions must be designed so there is a single, clear answer</li>
+<li>Answer can be derived from using the MCP server tools</li>
+</ul>
+</li>
+</ol>
+<h3>Diversity</h3>
+<ol start="5">
+<li><p><strong>Answers must be DIVERSE</strong></p>
+<ul>
+<li>Answer should be a single VERIFIABLE value in diverse modalities and formats</li>
+<li>User concept: user ID, user name, display name, first name, last name, email address, phone number</li>
+<li>Channel concept: channel ID, channel name, channel topic</li>
+<li>Message concept: message ID, message string, timestamp, month, day, year</li>
+</ul>
+</li>
+<li><p><strong>Answers must NOT be complex structures</strong></p>
+<ul>
+<li>Not a list of values</li>
+<li>Not a complex object</li>
+<li>Not a list of IDs or strings</li>
+<li>Not natural language text</li>
+<li>UNLESS the answer can be straightforwardly verified using DIRECT STRING COMPARISON</li>
+<li>And can be realistically reproduced</li>
+<li>It should be unlikely that an LLM would return the same list in any other order or format</li>
+</ul>
+</li>
+</ol>
+<h2>Evaluation Process</h2>
+<h3>Step 1: Documentation Inspection</h3>
+<p>Read the documentation of the target API to understand:</p>
+<ul>
+<li>Available endpoints and functionality</li>
+<li>If ambiguity exists, fetch additional information from the web</li>
+<li>Parallelize this step AS MUCH AS POSSIBLE</li>
+<li>Ensure each subagent is ONLY examining documentation from the file system or on the web</li>
+</ul>
+<h3>Step 2: Tool Inspection</h3>
+<p>List the tools available in the MCP server:</p>
+<ul>
+<li>Inspect the MCP server directly</li>
+<li>Understand input/output schemas, docstrings, and descriptions</li>
+<li>WITHOUT calling the tools themselves at this stage</li>
+</ul>
+<h3>Step 3: Developing Understanding</h3>
+<p>Repeat steps 1 &amp; 2 until you have a good understanding:</p>
+<ul>
+<li>Iterate multiple times</li>
+<li>Think about the kinds of tasks you want to create</li>
+<li>Refine your understanding</li>
+<li>At NO stage should you READ the code of the MCP server implementation itself</li>
+<li>Use your intuition and understanding to create reasonable, realistic, but VERY challenging tasks</li>
+</ul>
+<h3>Step 4: Read-Only Content Inspection</h3>
+<p>After understanding the API and tools, USE the MCP server tools:</p>
+<ul>
+<li>Inspect content using READ-ONLY and NON-DESTRUCTIVE operations ONLY</li>
+<li>Goal: identify specific content (e.g., users, channels, messages, projects, tasks) for creating realistic questions</li>
+<li>Should NOT call any tools that modify state</li>
+<li>Will NOT read the code of the MCP server implementation itself</li>
+<li>Parallelize this step with individual sub-agents pursuing independent explorations</li>
+<li>Ensure each subagent is only performing READ-ONLY, NON-DESTRUCTIVE, and IDEMPOTENT operations</li>
+<li>BE CAREFUL: SOME TOOLS may return LOTS OF DATA which would cause you to run out of CONTEXT</li>
+<li>Make INCREMENTAL, SMALL, AND TARGETED tool calls for exploration</li>
+<li>In all tool call requests, use the <code>limit</code> parameter to limit results (&lt;10)</li>
+<li>Use pagination</li>
+</ul>
+<h3>Step 5: Task Generation</h3>
+<p>After inspecting the content, create 10 human-readable questions:</p>
+<ul>
+<li>An LLM should be able to answer these with the MCP server</li>
+<li>Follow all question and answer guidelines above</li>
+</ul>
+<h2>Output Format</h2>
+<p>Each QA pair consists of a question and an answer. The output should be an XML file with this structure:</p>
+<pre><code class="language-xml">&lt;evaluation&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Find the project created in Q2 2024 with the highest number of completed tasks. What is the project name?&lt;/question&gt;
+      &lt;answer&gt;Website Redesign&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Search for issues labeled as &quot;bug&quot; that were closed in March 2024. Which user closed the most issues? Provide their username.&lt;/question&gt;
+      &lt;answer&gt;sarah_dev&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Look for pull requests that modified files in the /api directory and were merged between January 1 and January 31, 2024. How many different contributors worked on these PRs?&lt;/question&gt;
+      &lt;answer&gt;7&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Find the repository with the most stars that was created before 2023. What is the repository name?&lt;/question&gt;
+      &lt;answer&gt;data-pipeline&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+&lt;/evaluation&gt;
+</code></pre>
+<h2>Evaluation Examples</h2>
+<h3>Good Questions</h3>
+<p><strong>Example 1: Multi-hop question requiring deep exploration (GitHub MCP)</strong></p>
+<pre><code class="language-xml">&lt;qa_pair&gt;
+   &lt;question&gt;Find the repository that was archived in Q3 2023 and had previously been the most forked project in the organization. What was the primary programming language used in that repository?&lt;/question&gt;
+   &lt;answer&gt;Python&lt;/answer&gt;
+&lt;/qa_pair&gt;
+</code></pre>
+<p>This question is good because:</p>
+<ul>
+<li>Requires multiple searches to find archived repositories</li>
+<li>Needs to identify which had the most forks before archival</li>
+<li>Requires examining repository details for the language</li>
+<li>Answer is a simple, verifiable value</li>
+<li>Based on historical (closed) data that won&#39;t change</li>
+</ul>
+<p><strong>Example 2: Requires understanding context without keyword matching (Project Management MCP)</strong></p>
+<pre><code class="language-xml">&lt;qa_pair&gt;
+   &lt;question&gt;Locate the initiative focused on improving customer onboarding that was completed in late 2023. The project lead created a retrospective document after completion. What was the lead&#39;s role title at that time?&lt;/question&gt;
+   &lt;answer&gt;Product Manager&lt;/answer&gt;
+&lt;/qa_pair&gt;
+</code></pre>
+<p>This question is good because:</p>
+<ul>
+<li>Doesn&#39;t use specific project name (&quot;initiative focused on improving customer onboarding&quot;)</li>
+<li>Requires finding completed projects from specific timeframe</li>
+<li>Needs to identify the project lead and their role</li>
+<li>Requires understanding context from retrospective documents</li>
+<li>Answer is human-readable and stable</li>
+<li>Based on completed work (won&#39;t change)</li>
+</ul>
+<p><strong>Example 3: Complex aggregation requiring multiple steps (Issue Tracker MCP)</strong></p>
+<pre><code class="language-xml">&lt;qa_pair&gt;
+   &lt;question&gt;Among all bugs reported in January 2024 that were marked as critical priority, which assignee resolved the highest percentage of their assigned bugs within 48 hours? Provide the assignee&#39;s username.&lt;/question&gt;
+   &lt;answer&gt;alex_eng&lt;/answer&gt;
+&lt;/qa_pair&gt;
+</code></pre>
+<p>This question is good because:</p>
+<ul>
+<li>Requires filtering bugs by date, priority, and status</li>
+<li>Needs to group by assignee and calculate resolution rates</li>
+<li>Requires understanding timestamps to determine 48-hour windows</li>
+<li>Tests pagination (potentially many bugs to process)</li>
+<li>Answer is a single username</li>
+<li>Based on historical data from specific time period</li>
+</ul>
+<p><strong>Example 4: Requires synthesis across multiple data types (CRM MCP)</strong></p>
+<pre><code class="language-xml">&lt;qa_pair&gt;
+   &lt;question&gt;Find the account that upgraded from the Starter to Enterprise plan in Q4 2023 and had the highest annual contract value. What industry does this account operate in?&lt;/question&gt;
+   &lt;answer&gt;Healthcare&lt;/answer&gt;
+&lt;/qa_pair&gt;
+</code></pre>
+<p>This question is good because:</p>
+<ul>
+<li>Requires understanding subscription tier changes</li>
+<li>Needs to identify upgrade events in specific timeframe</li>
+<li>Requires comparing contract values</li>
+<li>Must access account industry information</li>
+<li>Answer is simple and verifiable</li>
+<li>Based on completed historical transactions</li>
+</ul>
+<h3>Poor Questions</h3>
+<p><strong>Example 1: Answer changes over time</strong></p>
+<pre><code class="language-xml">&lt;qa_pair&gt;
+   &lt;question&gt;How many open issues are currently assigned to the engineering team?&lt;/question&gt;
+   &lt;answer&gt;47&lt;/answer&gt;
+&lt;/qa_pair&gt;
+</code></pre>
+<p>This question is poor because:</p>
+<ul>
+<li>The answer will change as issues are created, closed, or reassigned</li>
+<li>Not based on stable/stationary data</li>
+<li>Relies on &quot;current state&quot; which is dynamic</li>
+</ul>
+<p><strong>Example 2: Too easy with keyword search</strong></p>
+<pre><code class="language-xml">&lt;qa_pair&gt;
+   &lt;question&gt;Find the pull request with title &quot;Add authentication feature&quot; and tell me who created it.&lt;/question&gt;
+   &lt;answer&gt;developer123&lt;/answer&gt;
+&lt;/qa_pair&gt;
+</code></pre>
+<p>This question is poor because:</p>
+<ul>
+<li>Can be solved with a straightforward keyword search for exact title</li>
+<li>Doesn&#39;t require deep exploration or understanding</li>
+<li>No synthesis or analysis needed</li>
+</ul>
+<p><strong>Example 3: Ambiguous answer format</strong></p>
+<pre><code class="language-xml">&lt;qa_pair&gt;
+   &lt;question&gt;List all the repositories that have Python as their primary language.&lt;/question&gt;
+   &lt;answer&gt;repo1, repo2, repo3, data-pipeline, ml-tools&lt;/answer&gt;
+&lt;/qa_pair&gt;
+</code></pre>
+<p>This question is poor because:</p>
+<ul>
+<li>Answer is a list that could be returned in any order</li>
+<li>Difficult to verify with direct string comparison</li>
+<li>LLM might format differently (JSON array, comma-separated, newline-separated)</li>
+<li>Better to ask for a specific aggregate (count) or superlative (most stars)</li>
+</ul>
+<h2>Verification Process</h2>
+<p>After creating evaluations:</p>
+<ol>
+<li><strong>Examine the XML file</strong> to understand the schema</li>
+<li><strong>Load each task instruction</strong> and in parallel using the MCP server and tools, identify the correct answer by attempting to solve the task YOURSELF</li>
+<li><strong>Flag any operations</strong> that require WRITE or DESTRUCTIVE operations</li>
+<li><strong>Accumulate all CORRECT answers</strong> and replace any incorrect answers in the document</li>
+<li><strong>Remove any <code>&lt;qa_pair&gt;</code></strong> that require WRITE or DESTRUCTIVE operations</li>
+</ol>
+<p>Remember to parallelize solving tasks to avoid running out of context, then accumulate all answers and make changes to the file at the end.</p>
+<h2>Tips for Creating Quality Evaluations</h2>
+<ol>
+<li><strong>Think Hard and Plan Ahead</strong> before generating tasks</li>
+<li><strong>Parallelize Where Opportunity Arises</strong> to speed up the process and manage context</li>
+<li><strong>Focus on Realistic Use Cases</strong> that humans would actually want to accomplish</li>
+<li><strong>Create Challenging Questions</strong> that test the limits of the MCP server&#39;s capabilities</li>
+<li><strong>Ensure Stability</strong> by using historical data and closed concepts</li>
+<li><strong>Verify Answers</strong> by solving the questions yourself using the MCP server tools</li>
+<li><strong>Iterate and Refine</strong> based on what you learn during the process</li>
+</ol>
+<hr>
+<h1>Running Evaluations</h1>
+<p>After creating your evaluation file, you can use the provided evaluation harness to test your MCP server.</p>
+<h2>Setup</h2>
+<ol>
+<li><p><strong>Install Dependencies</strong></p>
+<pre><code class="language-bash">pip install -r scripts/requirements.txt
+</code></pre>
+<p>Or install manually:</p>
+<pre><code class="language-bash">pip install anthropic mcp
+</code></pre>
+</li>
+<li><p><strong>Set API Key</strong></p>
+<pre><code class="language-bash">export ANTHROPIC_API_KEY=your_api_key_here
+</code></pre>
+</li>
+</ol>
+<h2>Evaluation File Format</h2>
+<p>Evaluation files use XML format with <code>&lt;qa_pair&gt;</code> elements:</p>
+<pre><code class="language-xml">&lt;evaluation&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Find the project created in Q2 2024 with the highest number of completed tasks. What is the project name?&lt;/question&gt;
+      &lt;answer&gt;Website Redesign&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Search for issues labeled as &quot;bug&quot; that were closed in March 2024. Which user closed the most issues? Provide their username.&lt;/question&gt;
+      &lt;answer&gt;sarah_dev&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+&lt;/evaluation&gt;
+</code></pre>
+<h2>Running Evaluations</h2>
+<p>The evaluation script (<code>scripts/evaluation.py</code>) supports three transport types:</p>
+<p><strong>Important:</strong></p>
+<ul>
+<li><strong>stdio transport</strong>: The evaluation script automatically launches and manages the MCP server process for you. Do not run the server manually.</li>
+<li><strong>sse/http transports</strong>: You must start the MCP server separately before running the evaluation. The script connects to the already-running server at the specified URL.</li>
+</ul>
+<h3>1. Local STDIO Server</h3>
+<p>For locally-run MCP servers (script launches the server automatically):</p>
+<pre><code class="language-bash">python scripts/evaluation.py \
+  -t stdio \
+  -c python \
+  -a my_mcp_server.py \
+  evaluation.xml
+</code></pre>
+<p>With environment variables:</p>
+<pre><code class="language-bash">python scripts/evaluation.py \
+  -t stdio \
+  -c python \
+  -a my_mcp_server.py \
+  -e API_KEY=abc123 \
+  -e DEBUG=true \
+  evaluation.xml
+</code></pre>
+<h3>2. Server-Sent Events (SSE)</h3>
+<p>For SSE-based MCP servers (you must start the server first):</p>
+<pre><code class="language-bash">python scripts/evaluation.py \
+  -t sse \
+  -u https://example.com/mcp \
+  -H &quot;Authorization: Bearer token123&quot; \
+  -H &quot;X-Custom-Header: value&quot; \
+  evaluation.xml
+</code></pre>
+<h3>3. HTTP (Streamable HTTP)</h3>
+<p>For HTTP-based MCP servers (you must start the server first):</p>
+<pre><code class="language-bash">python scripts/evaluation.py \
+  -t http \
+  -u https://example.com/mcp \
+  -H &quot;Authorization: Bearer token123&quot; \
+  evaluation.xml
+</code></pre>
+<h2>Command-Line Options</h2>
+<pre><code>usage: evaluation.py [-h] [-t {stdio,sse,http}] [-m MODEL] [-c COMMAND]
+                     [-a ARGS [ARGS ...]] [-e ENV [ENV ...]] [-u URL]
+                     [-H HEADERS [HEADERS ...]] [-o OUTPUT]
+                     eval_file
+
+positional arguments:
+  eval_file             Path to evaluation XML file
+
+optional arguments:
+  -h, --help            Show help message
+  -t, --transport       Transport type: stdio, sse, or http (default: stdio)
+  -m, --model           Claude model to use (default: claude-3-7-sonnet-20250219)
+  -o, --output          Output file for report (default: print to stdout)
+
+stdio options:
+  -c, --command         Command to run MCP server (e.g., python, node)
+  -a, --args            Arguments for the command (e.g., server.py)
+  -e, --env             Environment variables in KEY=VALUE format
+
+sse/http options:
+  -u, --url             MCP server URL
+  -H, --header          HTTP headers in &#39;Key: Value&#39; format
+</code></pre>
+<h2>Output</h2>
+<p>The evaluation script generates a detailed report including:</p>
+<ul>
+<li><p><strong>Summary Statistics</strong>:</p>
+<ul>
+<li>Accuracy (correct/total)</li>
+<li>Average task duration</li>
+<li>Average tool calls per task</li>
+<li>Total tool calls</li>
+</ul>
+</li>
+<li><p><strong>Per-Task Results</strong>:</p>
+<ul>
+<li>Prompt and expected response</li>
+<li>Actual response from the agent</li>
+<li>Whether the answer was correct (✅/❌)</li>
+<li>Duration and tool call details</li>
+<li>Agent&#39;s summary of its approach</li>
+<li>Agent&#39;s feedback on the tools</li>
+</ul>
+</li>
+</ul>
+<h3>Save Report to File</h3>
+<pre><code class="language-bash">python scripts/evaluation.py \
+  -t stdio \
+  -c python \
+  -a my_server.py \
+  -o evaluation_report.md \
+  evaluation.xml
+</code></pre>
+<h2>Complete Example Workflow</h2>
+<p>Here&#39;s a complete example of creating and running an evaluation:</p>
+<ol>
+<li><strong>Create your evaluation file</strong> (<code>my_evaluation.xml</code>):</li>
+</ol>
+<pre><code class="language-xml">&lt;evaluation&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Find the user who created the most issues in January 2024. What is their username?&lt;/question&gt;
+      &lt;answer&gt;alice_developer&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Among all pull requests merged in Q1 2024, which repository had the highest number? Provide the repository name.&lt;/question&gt;
+      &lt;answer&gt;backend-api&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+   &lt;qa_pair&gt;
+      &lt;question&gt;Find the project that was completed in December 2023 and had the longest duration from start to finish. How many days did it take?&lt;/question&gt;
+      &lt;answer&gt;127&lt;/answer&gt;
+   &lt;/qa_pair&gt;
+&lt;/evaluation&gt;
+</code></pre>
+<ol start="2">
+<li><strong>Install dependencies</strong>:</li>
+</ol>
+<pre><code class="language-bash">pip install -r scripts/requirements.txt
+export ANTHROPIC_API_KEY=your_api_key
+</code></pre>
+<ol start="3">
+<li><strong>Run evaluation</strong>:</li>
+</ol>
+<pre><code class="language-bash">python scripts/evaluation.py \
+  -t stdio \
+  -c python \
+  -a github_mcp_server.py \
+  -e GITHUB_TOKEN=ghp_xxx \
+  -o github_eval_report.md \
+  my_evaluation.xml
+</code></pre>
+<ol start="4">
+<li><strong>Review the report</strong> in <code>github_eval_report.md</code> to:<ul>
+<li>See which questions passed/failed</li>
+<li>Read the agent&#39;s feedback on your tools</li>
+<li>Identify areas for improvement</li>
+<li>Iterate on your MCP server design</li>
+</ul>
+</li>
+</ol>
+<h2>Troubleshooting</h2>
+<h3>Connection Errors</h3>
+<p>If you get connection errors:</p>
+<ul>
+<li><strong>STDIO</strong>: Verify the command and arguments are correct</li>
+<li><strong>SSE/HTTP</strong>: Check the URL is accessible and headers are correct</li>
+<li>Ensure any required API keys are set in environment variables or headers</li>
+</ul>
+<h3>Low Accuracy</h3>
+<p>If many evaluations fail:</p>
+<ul>
+<li>Review the agent&#39;s feedback for each task</li>
+<li>Check if tool descriptions are clear and comprehensive</li>
+<li>Verify input parameters are well-documented</li>
+<li>Consider whether tools return too much or too little data</li>
+<li>Ensure error messages are actionable</li>
+</ul>
+<h3>Timeout Issues</h3>
+<p>If tasks are timing out:</p>
+<ul>
+<li>Use a more capable model (e.g., <code>claude-3-7-sonnet-20250219</code>)</li>
+<li>Check if tools are returning too much data</li>
+<li>Verify pagination is working correctly</li>
+<li>Consider simplifying complex questions</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

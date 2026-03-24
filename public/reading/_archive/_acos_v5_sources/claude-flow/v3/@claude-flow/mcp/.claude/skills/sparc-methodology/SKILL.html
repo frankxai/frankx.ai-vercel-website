@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SPARC Methodology - Comprehensive Development Framework</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/skills/sparc-methodology/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SPARC Methodology - Comprehensive Development Framework</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fskills%2Fsparc-methodology">sparc-methodology</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: sparc-methodology
+description: SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) comprehensive development methodology with multi-agent orchestration
+version: 2.7.0
+category: development
+tags:
+  - sparc
+  - tdd
+  - architecture
+  - orchestration
+  - methodology
+  - multi-agent
+author: Claude Flow</h2>
+<h1>SPARC Methodology - Comprehensive Development Framework</h1>
+<h2>Overview</h2>
+<p>SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) is a systematic development methodology integrated with Claude Flow&#39;s multi-agent orchestration capabilities. It provides 17 specialized modes for comprehensive software development, from initial research through deployment and monitoring.</p>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#core-philosophy">Core Philosophy</a></li>
+<li><a href="#development-phases">Development Phases</a></li>
+<li><a href="#available-modes">Available Modes</a></li>
+<li><a href="#activation-methods">Activation Methods</a></li>
+<li><a href="#orchestration-patterns">Orchestration Patterns</a></li>
+<li><a href="#tdd-workflows">TDD Workflows</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+<li><a href="#integration-examples">Integration Examples</a></li>
+<li><a href="#common-workflows">Common Workflows</a></li>
+</ol>
+<hr>
+<h2>Core Philosophy</h2>
+<p>SPARC methodology emphasizes:</p>
+<ul>
+<li><strong>Systematic Approach</strong>: Structured phases from specification to completion</li>
+<li><strong>Test-Driven Development</strong>: Tests written before implementation</li>
+<li><strong>Parallel Execution</strong>: Concurrent agent coordination for 2.8-4.4x speed improvements</li>
+<li><strong>Memory Integration</strong>: Persistent knowledge sharing across agents and sessions</li>
+<li><strong>Quality First</strong>: Comprehensive reviews, testing, and validation</li>
+<li><strong>Modular Design</strong>: Clean separation of concerns with clear interfaces</li>
+</ul>
+<h3>Key Principles</h3>
+<ol>
+<li><strong>Specification Before Code</strong>: Define requirements and constraints clearly</li>
+<li><strong>Design Before Implementation</strong>: Plan architecture and components</li>
+<li><strong>Tests Before Features</strong>: Write failing tests, then make them pass</li>
+<li><strong>Review Everything</strong>: Code quality, security, and performance checks</li>
+<li><strong>Document Continuously</strong>: Maintain current documentation throughout</li>
+</ol>
+<hr>
+<h2>Development Phases</h2>
+<h3>Phase 1: Specification</h3>
+<p><strong>Goal</strong>: Define requirements, constraints, and success criteria</p>
+<ul>
+<li>Requirements analysis</li>
+<li>User story mapping</li>
+<li>Constraint identification</li>
+<li>Success metrics definition</li>
+<li>Pseudocode planning</li>
+</ul>
+<p><strong>Key Modes</strong>: <code>researcher</code>, <code>analyzer</code>, <code>memory-manager</code></p>
+<h3>Phase 2: Architecture</h3>
+<p><strong>Goal</strong>: Design system structure and component interfaces</p>
+<ul>
+<li>System architecture design</li>
+<li>Component interface definition</li>
+<li>Database schema planning</li>
+<li>API contract specification</li>
+<li>Infrastructure planning</li>
+</ul>
+<p><strong>Key Modes</strong>: <code>architect</code>, <code>designer</code>, <code>orchestrator</code></p>
+<h3>Phase 3: Refinement (TDD Implementation)</h3>
+<p><strong>Goal</strong>: Implement features with test-first approach</p>
+<ul>
+<li>Write failing tests</li>
+<li>Implement minimum viable code</li>
+<li>Make tests pass</li>
+<li>Refactor for quality</li>
+<li>Iterate until complete</li>
+</ul>
+<p><strong>Key Modes</strong>: <code>tdd</code>, <code>coder</code>, <code>tester</code></p>
+<h3>Phase 4: Review</h3>
+<p><strong>Goal</strong>: Ensure code quality, security, and performance</p>
+<ul>
+<li>Code quality assessment</li>
+<li>Security vulnerability scanning</li>
+<li>Performance profiling</li>
+<li>Best practices validation</li>
+<li>Documentation review</li>
+</ul>
+<p><strong>Key Modes</strong>: <code>reviewer</code>, <code>optimizer</code>, <code>debugger</code></p>
+<h3>Phase 5: Completion</h3>
+<p><strong>Goal</strong>: Integration, deployment, and monitoring</p>
+<ul>
+<li>System integration</li>
+<li>Deployment automation</li>
+<li>Monitoring setup</li>
+<li>Documentation finalization</li>
+<li>Knowledge capture</li>
+</ul>
+<p><strong>Key Modes</strong>: <code>workflow-manager</code>, <code>documenter</code>, <code>memory-manager</code></p>
+<hr>
+<h2>Available Modes</h2>
+<h3>Core Orchestration Modes</h3>
+<h4><code>orchestrator</code></h4>
+<p>Multi-agent task orchestration with TodoWrite/Task/Memory coordination.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Task decomposition into manageable units</li>
+<li>Agent coordination and resource allocation</li>
+<li>Progress tracking and result synthesis</li>
+<li>Adaptive strategy selection</li>
+<li>Cross-agent communication</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-javascript">mcp__claude-flow__sparc_mode {
+  mode: &quot;orchestrator&quot;,
+  task_description: &quot;coordinate feature development&quot;,
+  options: { parallel: true, monitor: true }
+}
+</code></pre>
+<h4><code>swarm-coordinator</code></h4>
+<p>Specialized swarm management for complex multi-agent workflows.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Topology optimization (mesh, hierarchical, ring, star)</li>
+<li>Agent lifecycle management</li>
+<li>Dynamic scaling based on workload</li>
+<li>Fault tolerance and recovery</li>
+<li>Performance monitoring</li>
+</ul>
+<h4><code>workflow-manager</code></h4>
+<p>Process automation and workflow orchestration.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Workflow definition and execution</li>
+<li>Event-driven triggers</li>
+<li>Sequential and parallel pipelines</li>
+<li>State management</li>
+<li>Error handling and retry logic</li>
+</ul>
+<h4><code>batch-executor</code></h4>
+<p>Parallel task execution for high-throughput operations.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Concurrent file operations</li>
+<li>Batch processing optimization</li>
+<li>Resource pooling</li>
+<li>Load balancing</li>
+<li>Progress aggregation</li>
+</ul>
+<hr>
+<h3>Development Modes</h3>
+<h4><code>coder</code></h4>
+<p>Autonomous code generation with batch file operations.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Feature implementation</li>
+<li>Code refactoring</li>
+<li>Bug fixes and patches</li>
+<li>API development</li>
+<li>Algorithm implementation</li>
+</ul>
+<p><strong>Quality Standards</strong>:</p>
+<ul>
+<li>ES2022+ standards</li>
+<li>TypeScript type safety</li>
+<li>Comprehensive error handling</li>
+<li>Performance optimization</li>
+<li>Security best practices</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-javascript">mcp__claude-flow__sparc_mode {
+  mode: &quot;coder&quot;,
+  task_description: &quot;implement user authentication with JWT&quot;,
+  options: {
+    test_driven: true,
+    parallel_edits: true,
+    typescript: true
+  }
+}
+</code></pre>
+<h4><code>architect</code></h4>
+<p>System design with Memory-based coordination.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Microservices architecture</li>
+<li>Event-driven design</li>
+<li>Domain-driven design (DDD)</li>
+<li>Hexagonal architecture</li>
+<li>CQRS and Event Sourcing</li>
+</ul>
+<p><strong>Memory Integration</strong>:</p>
+<ul>
+<li>Store architectural decisions</li>
+<li>Share component specifications</li>
+<li>Maintain design consistency</li>
+<li>Track architectural evolution</li>
+</ul>
+<p><strong>Design Patterns</strong>:</p>
+<ul>
+<li>Layered architecture</li>
+<li>Microservices patterns</li>
+<li>Event-driven patterns</li>
+<li>Domain modeling</li>
+<li>Infrastructure as Code</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-javascript">mcp__claude-flow__sparc_mode {
+  mode: &quot;architect&quot;,
+  task_description: &quot;design scalable e-commerce platform&quot;,
+  options: {
+    detailed: true,
+    memory_enabled: true,
+    patterns: [&quot;microservices&quot;, &quot;event-driven&quot;]
+  }
+}
+</code></pre>
+<h4><code>tdd</code></h4>
+<p>Test-driven development with comprehensive testing.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Test-first development</li>
+<li>Red-green-refactor cycle</li>
+<li>Test suite design</li>
+<li>Coverage optimization (target: 90%+)</li>
+<li>Continuous testing</li>
+</ul>
+<p><strong>TDD Workflow</strong>:</p>
+<ol>
+<li>Write failing test (RED)</li>
+<li>Implement minimum code</li>
+<li>Make test pass (GREEN)</li>
+<li>Refactor for quality (REFACTOR)</li>
+<li>Repeat cycle</li>
+</ol>
+<p><strong>Testing Strategies</strong>:</p>
+<ul>
+<li>Unit testing (Jest, Mocha, Vitest)</li>
+<li>Integration testing</li>
+<li>End-to-end testing (Playwright, Cypress)</li>
+<li>Performance testing</li>
+<li>Security testing</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-javascript">mcp__claude-flow__sparc_mode {
+  mode: &quot;tdd&quot;,
+  task_description: &quot;shopping cart feature with payment integration&quot;,
+  options: {
+    coverage_target: 90,
+    test_framework: &quot;jest&quot;,
+    e2e_framework: &quot;playwright&quot;
+  }
+}
+</code></pre>
+<h4><code>reviewer</code></h4>
+<p>Code review using batch file analysis.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Code quality assessment</li>
+<li>Security vulnerability detection</li>
+<li>Performance analysis</li>
+<li>Best practices validation</li>
+<li>Documentation review</li>
+</ul>
+<p><strong>Review Criteria</strong>:</p>
+<ul>
+<li>Code correctness and logic</li>
+<li>Design pattern adherence</li>
+<li>Comprehensive error handling</li>
+<li>Test coverage adequacy</li>
+<li>Maintainability and readability</li>
+<li>Security vulnerabilities</li>
+<li>Performance bottlenecks</li>
+</ul>
+<p><strong>Batch Analysis</strong>:</p>
+<ul>
+<li>Parallel file review</li>
+<li>Pattern detection</li>
+<li>Dependency checking</li>
+<li>Consistency validation</li>
+<li>Automated reporting</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-javascript">mcp__claude-flow__sparc_mode {
+  mode: &quot;reviewer&quot;,
+  task_description: &quot;review authentication module PR #123&quot;,
+  options: {
+    security_check: true,
+    performance_check: true,
+    test_coverage_check: true
+  }
+}
+</code></pre>
+<hr>
+<h3>Analysis and Research Modes</h3>
+<h4><code>researcher</code></h4>
+<p>Deep research with parallel WebSearch/WebFetch and Memory coordination.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Comprehensive information gathering</li>
+<li>Source credibility evaluation</li>
+<li>Trend analysis and forecasting</li>
+<li>Competitive research</li>
+<li>Technology assessment</li>
+</ul>
+<p><strong>Research Methods</strong>:</p>
+<ul>
+<li>Parallel web searches</li>
+<li>Academic paper analysis</li>
+<li>Industry report synthesis</li>
+<li>Expert opinion gathering</li>
+<li>Statistical data compilation</li>
+</ul>
+<p><strong>Memory Integration</strong>:</p>
+<ul>
+<li>Store research findings with citations</li>
+<li>Build knowledge graphs</li>
+<li>Track information sources</li>
+<li>Cross-reference insights</li>
+<li>Maintain research history</li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<pre><code class="language-javascript">mcp__claude-flow__sparc_mode {
+  mode: &quot;researcher&quot;,
+  task_description: &quot;research microservices best practices 2024&quot;,
+  options: {
+    depth: &quot;comprehensive&quot;,
+    sources: [&quot;academic&quot;, &quot;industry&quot;, &quot;news&quot;],
+    citations: true
+  }
+}
+</code></pre>
+<h4><code>analyzer</code></h4>
+<p>Code and data analysis with pattern recognition.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Static code analysis</li>
+<li>Dependency analysis</li>
+<li>Performance profiling</li>
+<li>Security scanning</li>
+<li>Data pattern recognition</li>
+</ul>
+<h4><code>optimizer</code></h4>
+<p>Performance optimization and bottleneck resolution.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Algorithm optimization</li>
+<li>Database query tuning</li>
+<li>Caching strategy design</li>
+<li>Bundle size reduction</li>
+<li>Memory leak detection</li>
+</ul>
+<hr>
+<h3>Creative and Support Modes</h3>
+<h4><code>designer</code></h4>
+<p>UI/UX design with accessibility focus.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Interface design</li>
+<li>User experience optimization</li>
+<li>Accessibility compliance (WCAG 2.1)</li>
+<li>Design system creation</li>
+<li>Responsive layout design</li>
+</ul>
+<h4><code>innovator</code></h4>
+<p>Creative problem-solving and novel solutions.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Brainstorming and ideation</li>
+<li>Alternative approach generation</li>
+<li>Technology evaluation</li>
+<li>Proof of concept development</li>
+<li>Innovation feasibility analysis</li>
+</ul>
+<h4><code>documenter</code></h4>
+<p>Comprehensive documentation generation.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>API documentation (OpenAPI/Swagger)</li>
+<li>Architecture diagrams</li>
+<li>User guides and tutorials</li>
+<li>Code comments and JSDoc</li>
+<li>README and changelog maintenance</li>
+</ul>
+<h4><code>debugger</code></h4>
+<p>Systematic debugging and issue resolution.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Bug reproduction</li>
+<li>Root cause analysis</li>
+<li>Fix implementation</li>
+<li>Regression prevention</li>
+<li>Debug logging optimization</li>
+</ul>
+<h4><code>tester</code></h4>
+<p>Comprehensive testing beyond TDD.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Test suite expansion</li>
+<li>Edge case identification</li>
+<li>Performance testing</li>
+<li>Load testing</li>
+<li>Chaos engineering</li>
+</ul>
+<h4><code>memory-manager</code></h4>
+<p>Knowledge management and context preservation.</p>
+<p><strong>Capabilities</strong>:</p>
+<ul>
+<li>Cross-session memory persistence</li>
+<li>Knowledge graph construction</li>
+<li>Context restoration</li>
+<li>Learning pattern extraction</li>
+<li>Decision tracking</li>
+</ul>
+<hr>
+<h2>Activation Methods</h2>
+<h3>Method 1: MCP Tools (Preferred in Claude Code)</h3>
+<p><strong>Best for</strong>: Integrated Claude Code workflows with full orchestration capabilities</p>
+<pre><code class="language-javascript">// Basic mode execution
+mcp__claude-flow__sparc_mode {
+  mode: &quot;&lt;mode-name&gt;&quot;,
+  task_description: &quot;&lt;task description&gt;&quot;,
+  options: {
+    // mode-specific options
+  }
+}
+
+// Initialize swarm for complex tasks
+mcp__claude-flow__swarm_init {
+  topology: &quot;hierarchical&quot;,  // or &quot;mesh&quot;, &quot;ring&quot;, &quot;star&quot;
+  strategy: &quot;auto&quot;,           // or &quot;balanced&quot;, &quot;specialized&quot;, &quot;adaptive&quot;
+  maxAgents: 8
+}
+
+// Spawn specialized agents
+mcp__claude-flow__agent_spawn {
+  type: &quot;&lt;agent-type&gt;&quot;,
+  capabilities: [&quot;&lt;capability1&gt;&quot;, &quot;&lt;capability2&gt;&quot;]
+}
+
+// Monitor execution
+mcp__claude-flow__swarm_monitor {
+  swarmId: &quot;current&quot;,
+  interval: 5000
+}
+</code></pre>
+<h3>Method 2: NPX CLI (Fallback)</h3>
+<p><strong>Best for</strong>: Terminal usage or when MCP tools unavailable</p>
+<pre><code class="language-bash"># Execute specific mode
+npx claude-flow sparc run &lt;mode&gt; &quot;task description&quot;
+
+# Use alpha features
+npx claude-flow@alpha sparc run &lt;mode&gt; &quot;task description&quot;
+
+# List all available modes
+npx claude-flow sparc modes
+
+# Get help for specific mode
+npx claude-flow sparc help &lt;mode&gt;
+
+# Run with options
+npx claude-flow sparc run &lt;mode&gt; &quot;task&quot; --parallel --monitor
+
+# Execute TDD workflow
+npx claude-flow sparc tdd &quot;feature description&quot;
+
+# Batch execution
+npx claude-flow sparc batch &lt;mode1,mode2,mode3&gt; &quot;task&quot;
+
+# Pipeline execution
+npx claude-flow sparc pipeline &quot;task description&quot;
+</code></pre>
+<h3>Method 3: Local Installation</h3>
+<p><strong>Best for</strong>: Projects with local claude-flow installation</p>
+<pre><code class="language-bash"># If claude-flow is installed locally
+./claude-flow sparc run &lt;mode&gt; &quot;task description&quot;
+</code></pre>
+<hr>
+<h2>Orchestration Patterns</h2>
+<h3>Pattern 1: Hierarchical Coordination</h3>
+<p><strong>Best for</strong>: Complex projects with clear delegation hierarchy</p>
+<pre><code class="language-javascript">// Initialize hierarchical swarm
+mcp__claude-flow__swarm_init {
+  topology: &quot;hierarchical&quot;,
+  maxAgents: 12
+}
+
+// Spawn coordinator
+mcp__claude-flow__agent_spawn {
+  type: &quot;coordinator&quot;,
+  capabilities: [&quot;planning&quot;, &quot;delegation&quot;, &quot;monitoring&quot;]
+}
+
+// Spawn specialized workers
+mcp__claude-flow__agent_spawn { type: &quot;architect&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;coder&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;tester&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;reviewer&quot; }
+</code></pre>
+<h3>Pattern 2: Mesh Coordination</h3>
+<p><strong>Best for</strong>: Collaborative tasks requiring peer-to-peer communication</p>
+<pre><code class="language-javascript">mcp__claude-flow__swarm_init {
+  topology: &quot;mesh&quot;,
+  strategy: &quot;balanced&quot;,
+  maxAgents: 6
+}
+</code></pre>
+<h3>Pattern 3: Sequential Pipeline</h3>
+<p><strong>Best for</strong>: Ordered workflow execution (spec → design → code → test → review)</p>
+<pre><code class="language-javascript">mcp__claude-flow__workflow_create {
+  name: &quot;development-pipeline&quot;,
+  steps: [
+    { mode: &quot;researcher&quot;, task: &quot;gather requirements&quot; },
+    { mode: &quot;architect&quot;, task: &quot;design system&quot; },
+    { mode: &quot;coder&quot;, task: &quot;implement features&quot; },
+    { mode: &quot;tdd&quot;, task: &quot;create tests&quot; },
+    { mode: &quot;reviewer&quot;, task: &quot;review code&quot; }
+  ],
+  triggers: [&quot;on_step_complete&quot;]
+}
+</code></pre>
+<h3>Pattern 4: Parallel Execution</h3>
+<p><strong>Best for</strong>: Independent tasks that can run concurrently</p>
+<pre><code class="language-javascript">mcp__claude-flow__task_orchestrate {
+  task: &quot;build full-stack application&quot;,
+  strategy: &quot;parallel&quot;,
+  dependencies: {
+    backend: [],
+    frontend: [],
+    database: [],
+    tests: [&quot;backend&quot;, &quot;frontend&quot;]
+  }
+}
+</code></pre>
+<h3>Pattern 5: Adaptive Strategy</h3>
+<p><strong>Best for</strong>: Dynamic workloads with changing requirements</p>
+<pre><code class="language-javascript">mcp__claude-flow__swarm_init {
+  topology: &quot;hierarchical&quot;,
+  strategy: &quot;adaptive&quot;,  // Auto-adjusts based on workload
+  maxAgents: 20
+}
+</code></pre>
+<hr>
+<h2>TDD Workflows</h2>
+<h3>Complete TDD Workflow</h3>
+<pre><code class="language-javascript">// Step 1: Initialize TDD swarm
+mcp__claude-flow__swarm_init {
+  topology: &quot;hierarchical&quot;,
+  maxAgents: 8
+}
+
+// Step 2: Research and planning
+mcp__claude-flow__sparc_mode {
+  mode: &quot;researcher&quot;,
+  task_description: &quot;research testing best practices for feature X&quot;
+}
+
+// Step 3: Architecture design
+mcp__claude-flow__sparc_mode {
+  mode: &quot;architect&quot;,
+  task_description: &quot;design testable architecture for feature X&quot;
+}
+
+// Step 4: TDD implementation
+mcp__claude-flow__sparc_mode {
+  mode: &quot;tdd&quot;,
+  task_description: &quot;implement feature X with 90% coverage&quot;,
+  options: {
+    coverage_target: 90,
+    test_framework: &quot;jest&quot;,
+    parallel_tests: true
+  }
+}
+
+// Step 5: Code review
+mcp__claude-flow__sparc_mode {
+  mode: &quot;reviewer&quot;,
+  task_description: &quot;review feature X implementation&quot;,
+  options: {
+    test_coverage_check: true,
+    security_check: true
+  }
+}
+
+// Step 6: Optimization
+mcp__claude-flow__sparc_mode {
+  mode: &quot;optimizer&quot;,
+  task_description: &quot;optimize feature X performance&quot;
+}
+</code></pre>
+<h3>Red-Green-Refactor Cycle</h3>
+<pre><code class="language-javascript">// RED: Write failing test
+mcp__claude-flow__sparc_mode {
+  mode: &quot;tester&quot;,
+  task_description: &quot;create failing test for shopping cart add item&quot;,
+  options: { expect_failure: true }
+}
+
+// GREEN: Minimal implementation
+mcp__claude-flow__sparc_mode {
+  mode: &quot;coder&quot;,
+  task_description: &quot;implement minimal code to pass test&quot;,
+  options: { minimal: true }
+}
+
+// REFACTOR: Improve code quality
+mcp__claude-flow__sparc_mode {
+  mode: &quot;coder&quot;,
+  task_description: &quot;refactor shopping cart implementation&quot;,
+  options: { maintain_tests: true }
+}
+</code></pre>
+<hr>
+<h2>Best Practices</h2>
+<h3>1. Memory Integration</h3>
+<p><strong>Always use Memory for cross-agent coordination</strong>:</p>
+<pre><code class="language-javascript">// Store architectural decisions
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  namespace: &quot;architecture&quot;,
+  key: &quot;api-design-v1&quot;,
+  value: JSON.stringify(apiDesign),
+  ttl: 86400000  // 24 hours
+}
+
+// Retrieve in subsequent agents
+mcp__claude-flow__memory_usage {
+  action: &quot;retrieve&quot;,
+  namespace: &quot;architecture&quot;,
+  key: &quot;api-design-v1&quot;
+}
+</code></pre>
+<h3>2. Parallel Operations</h3>
+<p><strong>Batch all related operations in single message</strong>:</p>
+<pre><code class="language-javascript">// ✅ CORRECT: All operations together
+[Single Message]:
+  mcp__claude-flow__agent_spawn { type: &quot;researcher&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;coder&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;tester&quot; }
+  TodoWrite { todos: [8-10 todos] }
+
+// ❌ WRONG: Multiple messages
+Message 1: mcp__claude-flow__agent_spawn { type: &quot;researcher&quot; }
+Message 2: mcp__claude-flow__agent_spawn { type: &quot;coder&quot; }
+Message 3: TodoWrite { todos: [...] }
+</code></pre>
+<h3>3. Hook Integration</h3>
+<p><strong>Every SPARC mode should use hooks</strong>:</p>
+<pre><code class="language-bash"># Before work
+npx claude-flow@alpha hooks pre-task --description &quot;implement auth&quot;
+
+# During work
+npx claude-flow@alpha hooks post-edit --file &quot;auth.js&quot;
+
+# After work
+npx claude-flow@alpha hooks post-task --task-id &quot;task-123&quot;
+</code></pre>
+<h3>4. Test Coverage</h3>
+<p><strong>Maintain minimum 90% coverage</strong>:</p>
+<ul>
+<li>Unit tests for all functions</li>
+<li>Integration tests for APIs</li>
+<li>E2E tests for critical flows</li>
+<li>Edge case coverage</li>
+<li>Error path testing</li>
+</ul>
+<h3>5. Documentation</h3>
+<p><strong>Document as you build</strong>:</p>
+<ul>
+<li>API documentation (OpenAPI)</li>
+<li>Architecture decision records (ADR)</li>
+<li>Code comments for complex logic</li>
+<li>README with setup instructions</li>
+<li>Changelog for version tracking</li>
+</ul>
+<h3>6. File Organization</h3>
+<p><strong>Never save to root folder</strong>:</p>
+<pre><code>project/
+├── src/           # Source code
+├── tests/         # Test files
+├── docs/          # Documentation
+├── config/        # Configuration
+├── scripts/       # Utility scripts
+└── examples/      # Example code
+</code></pre>
+<hr>
+<h2>Integration Examples</h2>
+<h3>Example 1: Full-Stack Development</h3>
+<pre><code class="language-javascript">[Single Message - Parallel Agent Execution]:
+
+// Initialize swarm
+mcp__claude-flow__swarm_init {
+  topology: &quot;hierarchical&quot;,
+  maxAgents: 10
+}
+
+// Architecture phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;architect&quot;,
+  task_description: &quot;design REST API with authentication&quot;,
+  options: { memory_enabled: true }
+}
+
+// Research phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;researcher&quot;,
+  task_description: &quot;research authentication best practices&quot;
+}
+
+// Implementation phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;coder&quot;,
+  task_description: &quot;implement Express API with JWT auth&quot;,
+  options: { test_driven: true }
+}
+
+// Testing phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;tdd&quot;,
+  task_description: &quot;comprehensive API tests&quot;,
+  options: { coverage_target: 90 }
+}
+
+// Review phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;reviewer&quot;,
+  task_description: &quot;security and performance review&quot;,
+  options: { security_check: true }
+}
+
+// Batch todos
+TodoWrite {
+  todos: [
+    {content: &quot;Design API schema&quot;, status: &quot;completed&quot;},
+    {content: &quot;Research JWT implementation&quot;, status: &quot;completed&quot;},
+    {content: &quot;Implement authentication&quot;, status: &quot;in_progress&quot;},
+    {content: &quot;Write API tests&quot;, status: &quot;pending&quot;},
+    {content: &quot;Security review&quot;, status: &quot;pending&quot;},
+    {content: &quot;Performance optimization&quot;, status: &quot;pending&quot;},
+    {content: &quot;API documentation&quot;, status: &quot;pending&quot;},
+    {content: &quot;Deployment setup&quot;, status: &quot;pending&quot;}
+  ]
+}
+</code></pre>
+<h3>Example 2: Research-Driven Innovation</h3>
+<pre><code class="language-javascript">// Research phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;researcher&quot;,
+  task_description: &quot;research AI-powered search implementations&quot;,
+  options: {
+    depth: &quot;comprehensive&quot;,
+    sources: [&quot;academic&quot;, &quot;industry&quot;]
+  }
+}
+
+// Innovation phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;innovator&quot;,
+  task_description: &quot;propose novel search algorithm&quot;,
+  options: { memory_enabled: true }
+}
+
+// Architecture phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;architect&quot;,
+  task_description: &quot;design scalable search system&quot;
+}
+
+// Implementation phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;coder&quot;,
+  task_description: &quot;implement search algorithm&quot;,
+  options: { test_driven: true }
+}
+
+// Documentation phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;documenter&quot;,
+  task_description: &quot;document search system architecture and API&quot;
+}
+</code></pre>
+<h3>Example 3: Legacy Code Refactoring</h3>
+<pre><code class="language-javascript">// Analysis phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;analyzer&quot;,
+  task_description: &quot;analyze legacy codebase dependencies&quot;
+}
+
+// Planning phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;orchestrator&quot;,
+  task_description: &quot;plan incremental refactoring strategy&quot;
+}
+
+// Testing phase (create safety net)
+mcp__claude-flow__sparc_mode {
+  mode: &quot;tester&quot;,
+  task_description: &quot;create comprehensive test suite for legacy code&quot;,
+  options: { coverage_target: 80 }
+}
+
+// Refactoring phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;coder&quot;,
+  task_description: &quot;refactor module X with modern patterns&quot;,
+  options: { maintain_tests: true }
+}
+
+// Review phase
+mcp__claude-flow__sparc_mode {
+  mode: &quot;reviewer&quot;,
+  task_description: &quot;validate refactoring maintains functionality&quot;
+}
+</code></pre>
+<hr>
+<h2>Common Workflows</h2>
+<h3>Workflow 1: Feature Development</h3>
+<pre><code class="language-bash"># Step 1: Research and planning
+npx claude-flow sparc run researcher &quot;authentication patterns&quot;
+
+# Step 2: Architecture design
+npx claude-flow sparc run architect &quot;design auth system&quot;
+
+# Step 3: TDD implementation
+npx claude-flow sparc tdd &quot;user authentication feature&quot;
+
+# Step 4: Code review
+npx claude-flow sparc run reviewer &quot;review auth implementation&quot;
+
+# Step 5: Documentation
+npx claude-flow sparc run documenter &quot;document auth API&quot;
+</code></pre>
+<h3>Workflow 2: Bug Investigation</h3>
+<pre><code class="language-bash"># Step 1: Analyze issue
+npx claude-flow sparc run analyzer &quot;investigate bug #456&quot;
+
+# Step 2: Debug systematically
+npx claude-flow sparc run debugger &quot;fix memory leak in service X&quot;
+
+# Step 3: Create tests
+npx claude-flow sparc run tester &quot;regression tests for bug #456&quot;
+
+# Step 4: Review fix
+npx claude-flow sparc run reviewer &quot;validate bug fix&quot;
+</code></pre>
+<h3>Workflow 3: Performance Optimization</h3>
+<pre><code class="language-bash"># Step 1: Profile performance
+npx claude-flow sparc run analyzer &quot;profile API response times&quot;
+
+# Step 2: Identify bottlenecks
+npx claude-flow sparc run optimizer &quot;optimize database queries&quot;
+
+# Step 3: Implement improvements
+npx claude-flow sparc run coder &quot;implement caching layer&quot;
+
+# Step 4: Benchmark results
+npx claude-flow sparc run tester &quot;performance benchmarks&quot;
+</code></pre>
+<h3>Workflow 4: Complete Pipeline</h3>
+<pre><code class="language-bash"># Execute full development pipeline
+npx claude-flow sparc pipeline &quot;e-commerce checkout feature&quot;
+
+# This automatically runs:
+# 1. researcher - Gather requirements
+# 2. architect - Design system
+# 3. coder - Implement features
+# 4. tdd - Create comprehensive tests
+# 5. reviewer - Code quality review
+# 6. optimizer - Performance tuning
+# 7. documenter - Documentation
+</code></pre>
+<hr>
+<h2>Advanced Features</h2>
+<h3>Neural Pattern Training</h3>
+<pre><code class="language-javascript">// Train patterns from successful workflows
+mcp__claude-flow__neural_train {
+  pattern_type: &quot;coordination&quot;,
+  training_data: &quot;successful_tdd_workflow.json&quot;,
+  epochs: 50
+}
+</code></pre>
+<h3>Cross-Session Memory</h3>
+<pre><code class="language-javascript">// Save session state
+mcp__claude-flow__memory_persist {
+  sessionId: &quot;feature-auth-v1&quot;
+}
+
+// Restore in new session
+mcp__claude-flow__context_restore {
+  snapshotId: &quot;feature-auth-v1&quot;
+}
+</code></pre>
+<h3>GitHub Integration</h3>
+<pre><code class="language-javascript">// Analyze repository
+mcp__claude-flow__github_repo_analyze {
+  repo: &quot;owner/repo&quot;,
+  analysis_type: &quot;code_quality&quot;
+}
+
+// Manage pull requests
+mcp__claude-flow__github_pr_manage {
+  repo: &quot;owner/repo&quot;,
+  pr_number: 123,
+  action: &quot;review&quot;
+}
+</code></pre>
+<h3>Performance Monitoring</h3>
+<pre><code class="language-javascript">// Real-time swarm monitoring
+mcp__claude-flow__swarm_monitor {
+  swarmId: &quot;current&quot;,
+  interval: 5000
+}
+
+// Bottleneck analysis
+mcp__claude-flow__bottleneck_analyze {
+  component: &quot;api-layer&quot;,
+  metrics: [&quot;latency&quot;, &quot;throughput&quot;, &quot;errors&quot;]
+}
+
+// Token usage tracking
+mcp__claude-flow__token_usage {
+  operation: &quot;feature-development&quot;,
+  timeframe: &quot;24h&quot;
+}
+</code></pre>
+<hr>
+<h2>Performance Benefits</h2>
+<p><strong>Proven Results</strong>:</p>
+<ul>
+<li><strong>84.8%</strong> SWE-Bench solve rate</li>
+<li><strong>32.3%</strong> token reduction through optimizations</li>
+<li><strong>2.8-4.4x</strong> speed improvement with parallel execution</li>
+<li><strong>27+</strong> neural models for pattern learning</li>
+<li><strong>90%+</strong> test coverage standard</li>
+</ul>
+<hr>
+<h2>Support and Resources</h2>
+<ul>
+<li><strong>Documentation</strong>: <a href="https://github.com/ruvnet/claude-flow">https://github.com/ruvnet/claude-flow</a></li>
+<li><strong>Issues</strong>: <a href="https://github.com/ruvnet/claude-flow/issues">https://github.com/ruvnet/claude-flow/issues</a></li>
+<li><strong>NPM Package</strong>: <a href="https://www.npmjs.com/package/claude-flow">https://www.npmjs.com/package/claude-flow</a></li>
+<li><strong>Community</strong>: Discord server (link in repository)</li>
+</ul>
+<hr>
+<h2>Quick Reference</h2>
+<h3>Most Common Commands</h3>
+<pre><code class="language-bash"># List modes
+npx claude-flow sparc modes
+
+# Run specific mode
+npx claude-flow sparc run &lt;mode&gt; &quot;task&quot;
+
+# TDD workflow
+npx claude-flow sparc tdd &quot;feature&quot;
+
+# Full pipeline
+npx claude-flow sparc pipeline &quot;task&quot;
+
+# Batch execution
+npx claude-flow sparc batch &lt;modes&gt; &quot;task&quot;
+</code></pre>
+<h3>Most Common MCP Calls</h3>
+<pre><code class="language-javascript">// Initialize swarm
+mcp__claude-flow__swarm_init { topology: &quot;hierarchical&quot; }
+
+// Execute mode
+mcp__claude-flow__sparc_mode { mode: &quot;coder&quot;, task_description: &quot;...&quot; }
+
+// Monitor progress
+mcp__claude-flow__swarm_monitor { interval: 5000 }
+
+// Store in memory
+mcp__claude-flow__memory_usage { action: &quot;store&quot;, key: &quot;...&quot;, value: &quot;...&quot; }
+</code></pre>
+<hr>
+<p>Remember: <strong>SPARC = Systematic, Parallel, Agile, Refined, Complete</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Project Board Sync - GitHub Projects Integration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-flow/agents/github/project-board-sync.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Project Board Sync - GitHub Projects Integration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude-flow">.claude-flow</a> / <a href="../index.html#.claude-flow%2Fagents">agents</a> / <a href="index.html#.claude-flow%2Fagents%2Fgithub">github</a> / <span>project-board-sync.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: project-board-sync
+description: Synchronize AI swarms with GitHub Projects for visual task management, progress tracking, and team coordination
+type: coordination
+color: &quot;#A8E6CF&quot;
+tools:</p>
+<ul>
+<li>Bash</li>
+<li>Read</li>
+<li>Write</li>
+<li>Edit</li>
+<li>Glob</li>
+<li>Grep</li>
+<li>LS</li>
+<li>TodoWrite</li>
+<li>mcp__claude-flow__swarm_init</li>
+<li>mcp__claude-flow__agent_spawn</li>
+<li>mcp__claude-flow__task_orchestrate</li>
+<li>mcp__claude-flow__swarm_status</li>
+<li>mcp__claude-flow__memory_usage</li>
+<li>mcp__claude-flow__github_repo_analyze</li>
+<li>mcp__claude-flow__github_pr_manage</li>
+<li>mcp__claude-flow__github_issue_track</li>
+<li>mcp__claude-flow__github_metrics</li>
+<li>mcp__claude-flow__workflow_create</li>
+<li>mcp__claude-flow__workflow_execute
+hooks:
+  pre:<ul>
+<li>&quot;gh auth status || (echo &#39;GitHub CLI not authenticated&#39; &amp;&amp; exit 1)&quot;</li>
+<li>&quot;gh project list --owner @me --limit 1 &gt;/dev/null || echo &#39;No projects accessible&#39;&quot;</li>
+<li>&quot;git status --porcelain || echo &#39;Not in git repository&#39;&quot;</li>
+<li>&quot;gh api user | jq -r &#39;.login&#39; || echo &#39;API access check&#39;&quot;
+post:</li>
+<li>&quot;gh project list --owner @me --limit 3 | head -5&quot;</li>
+<li>&quot;gh issue list --limit 3 --json number,title,state&quot;</li>
+<li>&quot;git branch --show-current || echo &#39;Not on a branch&#39;&quot;</li>
+<li>&quot;gh repo view --json name,description&quot;</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1>Project Board Sync - GitHub Projects Integration</h1>
+<h2>Overview</h2>
+<p>Synchronize AI swarms with GitHub Projects for visual task management, progress tracking, and team coordination.</p>
+<h2>Core Features</h2>
+<h3>1. Board Initialization</h3>
+<pre><code class="language-bash"># Connect swarm to GitHub Project using gh CLI
+# Get project details
+PROJECT_ID=$(gh project list --owner @me --format json | \
+  jq -r &#39;.projects[] | select(.title == &quot;Development Board&quot;) | .id&#39;)
+
+# Initialize swarm with project
+npx ruv-swarm github board-init \
+  --project-id &quot;$PROJECT_ID&quot; \
+  --sync-mode &quot;bidirectional&quot; \
+  --create-views &quot;swarm-status,agent-workload,priority&quot;
+
+# Create project fields for swarm tracking
+gh project field-create $PROJECT_ID --owner @me \
+  --name &quot;Swarm Status&quot; \
+  --data-type &quot;SINGLE_SELECT&quot; \
+  --single-select-options &quot;pending,in_progress,completed&quot;
+</code></pre>
+<h3>2. Task Synchronization</h3>
+<pre><code class="language-bash"># Sync swarm tasks with project cards
+npx ruv-swarm github board-sync \
+  --map-status &#39;{
+    &quot;todo&quot;: &quot;To Do&quot;,
+    &quot;in_progress&quot;: &quot;In Progress&quot;,
+    &quot;review&quot;: &quot;Review&quot;,
+    &quot;done&quot;: &quot;Done&quot;
+  }&#39; \
+  --auto-move-cards \
+  --update-metadata
+</code></pre>
+<h3>3. Real-time Updates</h3>
+<pre><code class="language-bash"># Enable real-time board updates
+npx ruv-swarm github board-realtime \
+  --webhook-endpoint &quot;https://api.example.com/github-sync&quot; \
+  --update-frequency &quot;immediate&quot; \
+  --batch-updates false
+</code></pre>
+<h2>Configuration</h2>
+<h3>Board Mapping Configuration</h3>
+<pre><code class="language-yaml"># .github/board-sync.yml
+version: 1
+project:
+  name: &quot;AI Development Board&quot;
+  number: 1
+
+mapping:
+  # Map swarm task status to board columns
+  status:
+    pending: &quot;Backlog&quot;
+    assigned: &quot;Ready&quot;
+    in_progress: &quot;In Progress&quot;
+    review: &quot;Review&quot;
+    completed: &quot;Done&quot;
+    blocked: &quot;Blocked&quot;
+
+  # Map agent types to labels
+  agents:
+    coder: &quot;🔧 Development&quot;
+    tester: &quot;🧪 Testing&quot;
+    analyst: &quot;📊 Analysis&quot;
+    designer: &quot;🎨 Design&quot;
+    architect: &quot;🏗️ Architecture&quot;
+
+  # Map priority to project fields
+  priority:
+    critical: &quot;🔴 Critical&quot;
+    high: &quot;🟡 High&quot;
+    medium: &quot;🟢 Medium&quot;
+    low: &quot;⚪ Low&quot;
+
+  # Custom fields
+  fields:
+    - name: &quot;Agent Count&quot;
+      type: number
+      source: task.agents.length
+    - name: &quot;Complexity&quot;
+      type: select
+      source: task.complexity
+    - name: &quot;ETA&quot;
+      type: date
+      source: task.estimatedCompletion
+</code></pre>
+<h3>View Configuration</h3>
+<pre><code class="language-javascript">// Custom board views
+{
+  &quot;views&quot;: [
+    {
+      &quot;name&quot;: &quot;Swarm Overview&quot;,
+      &quot;type&quot;: &quot;board&quot;,
+      &quot;groupBy&quot;: &quot;status&quot;,
+      &quot;filters&quot;: [&quot;is:open&quot;],
+      &quot;sort&quot;: &quot;priority:desc&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Agent Workload&quot;,
+      &quot;type&quot;: &quot;table&quot;,
+      &quot;groupBy&quot;: &quot;assignedAgent&quot;,
+      &quot;columns&quot;: [&quot;title&quot;, &quot;status&quot;, &quot;priority&quot;, &quot;eta&quot;],
+      &quot;sort&quot;: &quot;eta:asc&quot;
+    },
+    {
+      &quot;name&quot;: &quot;Sprint Progress&quot;,
+      &quot;type&quot;: &quot;roadmap&quot;,
+      &quot;dateField&quot;: &quot;eta&quot;,
+      &quot;groupBy&quot;: &quot;milestone&quot;
+    }
+  ]
+}
+</code></pre>
+<h2>Automation Features</h2>
+<h3>1. Auto-Assignment</h3>
+<pre><code class="language-bash"># Automatically assign cards to agents
+npx ruv-swarm github board-auto-assign \
+  --strategy &quot;load-balanced&quot; \
+  --consider &quot;expertise,workload,availability&quot; \
+  --update-cards
+</code></pre>
+<h3>2. Progress Tracking</h3>
+<pre><code class="language-bash"># Track and visualize progress
+npx ruv-swarm github board-progress \
+  --show &quot;burndown,velocity,cycle-time&quot; \
+  --time-period &quot;sprint&quot; \
+  --export-metrics
+</code></pre>
+<h3>3. Smart Card Movement</h3>
+<pre><code class="language-bash"># Intelligent card state transitions
+npx ruv-swarm github board-smart-move \
+  --rules &#39;{
+    &quot;auto-progress&quot;: &quot;when:all-subtasks-done&quot;,
+    &quot;auto-review&quot;: &quot;when:tests-pass&quot;,
+    &quot;auto-done&quot;: &quot;when:pr-merged&quot;
+  }&#39;
+</code></pre>
+<h2>Board Commands</h2>
+<h3>Create Cards from Issues</h3>
+<pre><code class="language-bash"># Convert issues to project cards using gh CLI
+# List issues with label
+ISSUES=$(gh issue list --label &quot;enhancement&quot; --json number,title,body)
+
+# Add issues to project
+echo &quot;$ISSUES&quot; | jq -r &#39;.[].number&#39; | while read -r issue; do
+  gh project item-add $PROJECT_ID --owner @me --url &quot;https://github.com/$GITHUB_REPOSITORY/issues/$issue&quot;
+done
+
+# Process with swarm
+npx ruv-swarm github board-import-issues \
+  --issues &quot;$ISSUES&quot; \
+  --add-to-column &quot;Backlog&quot; \
+  --parse-checklist \
+  --assign-agents
+</code></pre>
+<h3>Bulk Operations</h3>
+<pre><code class="language-bash"># Bulk card operations
+npx ruv-swarm github board-bulk \
+  --filter &quot;status:blocked&quot; \
+  --action &quot;add-label:needs-attention&quot; \
+  --notify-assignees
+</code></pre>
+<h3>Card Templates</h3>
+<pre><code class="language-bash"># Create cards from templates
+npx ruv-swarm github board-template \
+  --template &quot;feature-development&quot; \
+  --variables &#39;{
+    &quot;feature&quot;: &quot;User Authentication&quot;,
+    &quot;priority&quot;: &quot;high&quot;,
+    &quot;agents&quot;: [&quot;architect&quot;, &quot;coder&quot;, &quot;tester&quot;]
+  }&#39; \
+  --create-subtasks
+</code></pre>
+<h2>Advanced Synchronization</h2>
+<h3>1. Multi-Board Sync</h3>
+<pre><code class="language-bash"># Sync across multiple boards
+npx ruv-swarm github multi-board-sync \
+  --boards &quot;Development,QA,Release&quot; \
+  --sync-rules &#39;{
+    &quot;Development-&gt;QA&quot;: &quot;when:ready-for-test&quot;,
+    &quot;QA-&gt;Release&quot;: &quot;when:tests-pass&quot;
+  }&#39;
+</code></pre>
+<h3>2. Cross-Organization Sync</h3>
+<pre><code class="language-bash"># Sync boards across organizations
+npx ruv-swarm github cross-org-sync \
+  --source &quot;org1/Project-A&quot; \
+  --target &quot;org2/Project-B&quot; \
+  --field-mapping &quot;custom&quot; \
+  --conflict-resolution &quot;source-wins&quot;
+</code></pre>
+<h3>3. External Tool Integration</h3>
+<pre><code class="language-bash"># Sync with external tools
+npx ruv-swarm github board-integrate \
+  --tool &quot;jira&quot; \
+  --mapping &quot;bidirectional&quot; \
+  --sync-frequency &quot;5m&quot; \
+  --transform-rules &quot;custom&quot;
+</code></pre>
+<h2>Visualization &amp; Reporting</h2>
+<h3>Board Analytics</h3>
+<pre><code class="language-bash"># Generate board analytics using gh CLI data
+# Fetch project data
+PROJECT_DATA=$(gh project item-list $PROJECT_ID --owner @me --format json)
+
+# Get issue metrics
+ISSUE_METRICS=$(echo &quot;$PROJECT_DATA&quot; | jq -r &#39;.items[] | select(.content.type == &quot;Issue&quot;)&#39; | \
+  while read -r item; do
+    ISSUE_NUM=$(echo &quot;$item&quot; | jq -r &#39;.content.number&#39;)
+    gh issue view $ISSUE_NUM --json createdAt,closedAt,labels,assignees
+  done)
+
+# Generate analytics with swarm
+npx ruv-swarm github board-analytics \
+  --project-data &quot;$PROJECT_DATA&quot; \
+  --issue-metrics &quot;$ISSUE_METRICS&quot; \
+  --metrics &quot;throughput,cycle-time,wip&quot; \
+  --group-by &quot;agent,priority,type&quot; \
+  --time-range &quot;30d&quot; \
+  --export &quot;dashboard&quot;
+</code></pre>
+<h3>Custom Dashboards</h3>
+<pre><code class="language-javascript">// Dashboard configuration
+{
+  &quot;dashboard&quot;: {
+    &quot;widgets&quot;: [
+      {
+        &quot;type&quot;: &quot;chart&quot;,
+        &quot;title&quot;: &quot;Task Completion Rate&quot;,
+        &quot;data&quot;: &quot;completed-per-day&quot;,
+        &quot;visualization&quot;: &quot;line&quot;
+      },
+      {
+        &quot;type&quot;: &quot;gauge&quot;,
+        &quot;title&quot;: &quot;Sprint Progress&quot;,
+        &quot;data&quot;: &quot;sprint-completion&quot;,
+        &quot;target&quot;: 100
+      },
+      {
+        &quot;type&quot;: &quot;heatmap&quot;,
+        &quot;title&quot;: &quot;Agent Activity&quot;,
+        &quot;data&quot;: &quot;agent-tasks-per-day&quot;
+      }
+    ]
+  }
+}
+</code></pre>
+<h3>Reports</h3>
+<pre><code class="language-bash"># Generate reports
+npx ruv-swarm github board-report \
+  --type &quot;sprint-summary&quot; \
+  --format &quot;markdown&quot; \
+  --include &quot;velocity,burndown,blockers&quot; \
+  --distribute &quot;slack,email&quot;
+</code></pre>
+<h2>Workflow Integration</h2>
+<h3>Sprint Management</h3>
+<pre><code class="language-bash"># Manage sprints with swarms
+npx ruv-swarm github sprint-manage \
+  --sprint &quot;Sprint 23&quot; \
+  --auto-populate \
+  --capacity-planning \
+  --track-velocity
+</code></pre>
+<h3>Milestone Tracking</h3>
+<pre><code class="language-bash"># Track milestone progress
+npx ruv-swarm github milestone-track \
+  --milestone &quot;v2.0 Release&quot; \
+  --update-board \
+  --show-dependencies \
+  --predict-completion
+</code></pre>
+<h3>Release Planning</h3>
+<pre><code class="language-bash"># Plan releases using board data
+npx ruv-swarm github release-plan-board \
+  --analyze-velocity \
+  --estimate-completion \
+  --identify-risks \
+  --optimize-scope
+</code></pre>
+<h2>Team Collaboration</h2>
+<h3>Work Distribution</h3>
+<pre><code class="language-bash"># Distribute work among team
+npx ruv-swarm github board-distribute \
+  --strategy &quot;skills-based&quot; \
+  --balance-workload \
+  --respect-preferences \
+  --notify-assignments
+</code></pre>
+<h3>Standup Automation</h3>
+<pre><code class="language-bash"># Generate standup reports
+npx ruv-swarm github standup-report \
+  --team &quot;frontend&quot; \
+  --include &quot;yesterday,today,blockers&quot; \
+  --format &quot;slack&quot; \
+  --schedule &quot;daily-9am&quot;
+</code></pre>
+<h3>Review Coordination</h3>
+<pre><code class="language-bash"># Coordinate reviews via board
+npx ruv-swarm github review-coordinate \
+  --board &quot;Code Review&quot; \
+  --assign-reviewers \
+  --track-feedback \
+  --ensure-coverage
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Board Organization</h3>
+<ul>
+<li>Clear column definitions</li>
+<li>Consistent labeling system</li>
+<li>Regular board grooming</li>
+<li>Automation rules</li>
+</ul>
+<h3>2. Data Integrity</h3>
+<ul>
+<li>Bidirectional sync validation</li>
+<li>Conflict resolution strategies</li>
+<li>Audit trails</li>
+<li>Regular backups</li>
+</ul>
+<h3>3. Team Adoption</h3>
+<ul>
+<li>Training materials</li>
+<li>Clear workflows</li>
+<li>Regular reviews</li>
+<li>Feedback loops</li>
+</ul>
+<h2>Troubleshooting</h2>
+<h3>Sync Issues</h3>
+<pre><code class="language-bash"># Diagnose sync problems
+npx ruv-swarm github board-diagnose \
+  --check &quot;permissions,webhooks,rate-limits&quot; \
+  --test-sync \
+  --show-conflicts
+</code></pre>
+<h3>Performance</h3>
+<pre><code class="language-bash"># Optimize board performance
+npx ruv-swarm github board-optimize \
+  --analyze-size \
+  --archive-completed \
+  --index-fields \
+  --cache-views
+</code></pre>
+<h3>Data Recovery</h3>
+<pre><code class="language-bash"># Recover board data
+npx ruv-swarm github board-recover \
+  --backup-id &quot;2024-01-15&quot; \
+  --restore-cards \
+  --preserve-current \
+  --merge-conflicts
+</code></pre>
+<h2>Examples</h2>
+<h3>Agile Development Board</h3>
+<pre><code class="language-bash"># Setup agile board
+npx ruv-swarm github agile-board \
+  --methodology &quot;scrum&quot; \
+  --sprint-length &quot;2w&quot; \
+  --ceremonies &quot;planning,review,retro&quot; \
+  --metrics &quot;velocity,burndown&quot;
+</code></pre>
+<h3>Kanban Flow Board</h3>
+<pre><code class="language-bash"># Setup kanban board
+npx ruv-swarm github kanban-board \
+  --wip-limits &#39;{
+    &quot;In Progress&quot;: 5,
+    &quot;Review&quot;: 3
+  }&#39; \
+  --cycle-time-tracking \
+  --continuous-flow
+</code></pre>
+<h3>Research Project Board</h3>
+<pre><code class="language-bash"># Setup research board
+npx ruv-swarm github research-board \
+  --phases &quot;ideation,research,experiment,analysis,publish&quot; \
+  --track-citations \
+  --collaborate-external
+</code></pre>
+<h2>Metrics &amp; KPIs</h2>
+<h3>Performance Metrics</h3>
+<pre><code class="language-bash"># Track board performance
+npx ruv-swarm github board-kpis \
+  --metrics &#39;[
+    &quot;average-cycle-time&quot;,
+    &quot;throughput-per-sprint&quot;,
+    &quot;blocked-time-percentage&quot;,
+    &quot;first-time-pass-rate&quot;
+  ]&#39; \
+  --dashboard-url
+</code></pre>
+<h3>Team Metrics</h3>
+<pre><code class="language-bash"># Track team performance
+npx ruv-swarm github team-metrics \
+  --board &quot;Development&quot; \
+  --per-member \
+  --include &quot;velocity,quality,collaboration&quot; \
+  --anonymous-option
+</code></pre>
+<p>See also: <a href="./swarm-issue.md">swarm-issue.md</a>, <a href="./multi-repo-swarm.md">multi-repo-swarm.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>React Native Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/frontend-mobile-development/skills/react-native-architecture/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">React Native Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development">frontend-mobile-development</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development%2Fskills%2Freact-native-architecture">react-native-architecture</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: react-native-architecture
+description: Build production React Native apps with Expo, navigation, native modules, offline sync, and cross-platform patterns. Use when developing mobile apps, implementing native integrations, or architecting React Native projects.</h2>
+<h1>React Native Architecture</h1>
+<p>Production-ready patterns for React Native development with Expo, including navigation, state management, native modules, and offline-first architecture.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Starting a new React Native or Expo project</li>
+<li>Implementing complex navigation patterns</li>
+<li>Integrating native modules and platform APIs</li>
+<li>Building offline-first mobile applications</li>
+<li>Optimizing React Native performance</li>
+<li>Setting up CI/CD for mobile releases</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Project Structure</h3>
+<pre><code>src/
+├── app/                    # Expo Router screens
+│   ├── (auth)/            # Auth group
+│   ├── (tabs)/            # Tab navigation
+│   └── _layout.tsx        # Root layout
+├── components/
+│   ├── ui/                # Reusable UI components
+│   └── features/          # Feature-specific components
+├── hooks/                 # Custom hooks
+├── services/              # API and native services
+├── stores/                # State management
+├── utils/                 # Utilities
+└── types/                 # TypeScript types
+</code></pre>
+<h3>2. Expo vs Bare React Native</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Expo</th>
+<th>Bare RN</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Setup complexity</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Native modules</td>
+<td>EAS Build</td>
+<td>Manual linking</td>
+</tr>
+<tr>
+<td>OTA updates</td>
+<td>Built-in</td>
+<td>Manual setup</td>
+</tr>
+<tr>
+<td>Build service</td>
+<td>EAS</td>
+<td>Custom CI</td>
+</tr>
+<tr>
+<td>Custom native code</td>
+<td>Config plugins</td>
+<td>Direct access</td>
+</tr>
+</tbody></table>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Create new Expo project
+npx create-expo-app@latest my-app -t expo-template-blank-typescript
+
+# Install essential dependencies
+npx expo install expo-router expo-status-bar react-native-safe-area-context
+npx expo install @react-native-async-storage/async-storage
+npx expo install expo-secure-store expo-haptics
+</code></pre>
+<pre><code class="language-typescript">// app/_layout.tsx
+import { Stack } from &#39;expo-router&#39;
+import { ThemeProvider } from &#39;@/providers/ThemeProvider&#39;
+import { QueryProvider } from &#39;@/providers/QueryProvider&#39;
+
+export default function RootLayout() {
+  return (
+    &lt;QueryProvider&gt;
+      &lt;ThemeProvider&gt;
+        &lt;Stack screenOptions={{ headerShown: false }}&gt;
+          &lt;Stack.Screen name=&quot;(tabs)&quot; /&gt;
+          &lt;Stack.Screen name=&quot;(auth)&quot; /&gt;
+          &lt;Stack.Screen name=&quot;modal&quot; options={{ presentation: &#39;modal&#39; }} /&gt;
+        &lt;/Stack&gt;
+      &lt;/ThemeProvider&gt;
+    &lt;/QueryProvider&gt;
+  )
+}
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: Expo Router Navigation</h3>
+<pre><code class="language-typescript">// app/(tabs)/_layout.tsx
+import { Tabs } from &#39;expo-router&#39;
+import { Home, Search, User, Settings } from &#39;lucide-react-native&#39;
+import { useTheme } from &#39;@/hooks/useTheme&#39;
+
+export default function TabLayout() {
+  const { colors } = useTheme()
+
+  return (
+    &lt;Tabs
+      screenOptions={{
+        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.textMuted,
+        tabBarStyle: { backgroundColor: colors.background },
+        headerShown: false,
+      }}
+    &gt;
+      &lt;Tabs.Screen
+        name=&quot;index&quot;
+        options={{
+          title: &#39;Home&#39;,
+          tabBarIcon: ({ color, size }) =&gt; &lt;Home size={size} color={color} /&gt;,
+        }}
+      /&gt;
+      &lt;Tabs.Screen
+        name=&quot;search&quot;
+        options={{
+          title: &#39;Search&#39;,
+          tabBarIcon: ({ color, size }) =&gt; &lt;Search size={size} color={color} /&gt;,
+        }}
+      /&gt;
+      &lt;Tabs.Screen
+        name=&quot;profile&quot;
+        options={{
+          title: &#39;Profile&#39;,
+          tabBarIcon: ({ color, size }) =&gt; &lt;User size={size} color={color} /&gt;,
+        }}
+      /&gt;
+      &lt;Tabs.Screen
+        name=&quot;settings&quot;
+        options={{
+          title: &#39;Settings&#39;,
+          tabBarIcon: ({ color, size }) =&gt; &lt;Settings size={size} color={color} /&gt;,
+        }}
+      /&gt;
+    &lt;/Tabs&gt;
+  )
+}
+
+// app/(tabs)/profile/[id].tsx - Dynamic route
+import { useLocalSearchParams } from &#39;expo-router&#39;
+
+export default function ProfileScreen() {
+  const { id } = useLocalSearchParams&lt;{ id: string }&gt;()
+
+  return &lt;UserProfile userId={id} /&gt;
+}
+
+// Navigation from anywhere
+import { router } from &#39;expo-router&#39;
+
+// Programmatic navigation
+router.push(&#39;/profile/123&#39;)
+router.replace(&#39;/login&#39;)
+router.back()
+
+// With params
+router.push({
+  pathname: &#39;/product/[id]&#39;,
+  params: { id: &#39;123&#39;, referrer: &#39;home&#39; },
+})
+</code></pre>
+<h3>Pattern 2: Authentication Flow</h3>
+<pre><code class="language-typescript">// providers/AuthProvider.tsx
+import { createContext, useContext, useEffect, useState } from &#39;react&#39;
+import { useRouter, useSegments } from &#39;expo-router&#39;
+import * as SecureStore from &#39;expo-secure-store&#39;
+
+interface AuthContextType {
+  user: User | null
+  isLoading: boolean
+  signIn: (credentials: Credentials) =&gt; Promise&lt;void&gt;
+  signOut: () =&gt; Promise&lt;void&gt;
+}
+
+const AuthContext = createContext&lt;AuthContextType | null&gt;(null)
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState&lt;User | null&gt;(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const segments = useSegments()
+  const router = useRouter()
+
+  // Check authentication on mount
+  useEffect(() =&gt; {
+    checkAuth()
+  }, [])
+
+  // Protect routes
+  useEffect(() =&gt; {
+    if (isLoading) return
+
+    const inAuthGroup = segments[0] === &#39;(auth)&#39;
+
+    if (!user &amp;&amp; !inAuthGroup) {
+      router.replace(&#39;/login&#39;)
+    } else if (user &amp;&amp; inAuthGroup) {
+      router.replace(&#39;/(tabs)&#39;)
+    }
+  }, [user, segments, isLoading])
+
+  async function checkAuth() {
+    try {
+      const token = await SecureStore.getItemAsync(&#39;authToken&#39;)
+      if (token) {
+        const userData = await api.getUser(token)
+        setUser(userData)
+      }
+    } catch (error) {
+      await SecureStore.deleteItemAsync(&#39;authToken&#39;)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  async function signIn(credentials: Credentials) {
+    const { token, user } = await api.login(credentials)
+    await SecureStore.setItemAsync(&#39;authToken&#39;, token)
+    setUser(user)
+  }
+
+  async function signOut() {
+    await SecureStore.deleteItemAsync(&#39;authToken&#39;)
+    setUser(null)
+  }
+
+  if (isLoading) {
+    return &lt;SplashScreen /&gt;
+  }
+
+  return (
+    &lt;AuthContext.Provider value={{ user, isLoading, signIn, signOut }}&gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  )
+}
+
+export const useAuth = () =&gt; {
+  const context = useContext(AuthContext)
+  if (!context) throw new Error(&#39;useAuth must be used within AuthProvider&#39;)
+  return context
+}
+</code></pre>
+<h3>Pattern 3: Offline-First with React Query</h3>
+<pre><code class="language-typescript">// providers/QueryProvider.tsx
+import { QueryClient, QueryClientProvider } from &#39;@tanstack/react-query&#39;
+import { createAsyncStoragePersister } from &#39;@tanstack/query-async-storage-persister&#39;
+import { PersistQueryClientProvider } from &#39;@tanstack/react-query-persist-client&#39;
+import AsyncStorage from &#39;@react-native-async-storage/async-storage&#39;
+import NetInfo from &#39;@react-native-community/netinfo&#39;
+import { onlineManager } from &#39;@tanstack/react-query&#39;
+
+// Sync online status
+onlineManager.setEventListener((setOnline) =&gt; {
+  return NetInfo.addEventListener((state) =&gt; {
+    setOnline(!!state.isConnected)
+  })
+})
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      gcTime: 1000 * 60 * 60 * 24, // 24 hours
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 2,
+      networkMode: &#39;offlineFirst&#39;,
+    },
+    mutations: {
+      networkMode: &#39;offlineFirst&#39;,
+    },
+  },
+})
+
+const asyncStoragePersister = createAsyncStoragePersister({
+  storage: AsyncStorage,
+  key: &#39;REACT_QUERY_OFFLINE_CACHE&#39;,
+})
+
+export function QueryProvider({ children }: { children: React.ReactNode }) {
+  return (
+    &lt;PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister: asyncStoragePersister }}
+    &gt;
+      {children}
+    &lt;/PersistQueryClientProvider&gt;
+  )
+}
+
+// hooks/useProducts.ts
+import { useQuery, useMutation, useQueryClient } from &#39;@tanstack/react-query&#39;
+
+export function useProducts() {
+  return useQuery({
+    queryKey: [&#39;products&#39;],
+    queryFn: api.getProducts,
+    // Use stale data while revalidating
+    placeholderData: (previousData) =&gt; previousData,
+  })
+}
+
+export function useCreateProduct() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: api.createProduct,
+    // Optimistic update
+    onMutate: async (newProduct) =&gt; {
+      await queryClient.cancelQueries({ queryKey: [&#39;products&#39;] })
+      const previous = queryClient.getQueryData([&#39;products&#39;])
+
+      queryClient.setQueryData([&#39;products&#39;], (old: Product[]) =&gt; [
+        ...old,
+        { ...newProduct, id: &#39;temp-&#39; + Date.now() },
+      ])
+
+      return { previous }
+    },
+    onError: (err, newProduct, context) =&gt; {
+      queryClient.setQueryData([&#39;products&#39;], context?.previous)
+    },
+    onSettled: () =&gt; {
+      queryClient.invalidateQueries({ queryKey: [&#39;products&#39;] })
+    },
+  })
+}
+</code></pre>
+<h3>Pattern 4: Native Module Integration</h3>
+<pre><code class="language-typescript">// services/haptics.ts
+import * as Haptics from &quot;expo-haptics&quot;;
+import { Platform } from &quot;react-native&quot;;
+
+export const haptics = {
+  light: () =&gt; {
+    if (Platform.OS !== &quot;web&quot;) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    }
+  },
+  medium: () =&gt; {
+    if (Platform.OS !== &quot;web&quot;) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+  },
+  heavy: () =&gt; {
+    if (Platform.OS !== &quot;web&quot;) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+    }
+  },
+  success: () =&gt; {
+    if (Platform.OS !== &quot;web&quot;) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+  },
+  error: () =&gt; {
+    if (Platform.OS !== &quot;web&quot;) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+    }
+  },
+};
+
+// services/biometrics.ts
+import * as LocalAuthentication from &quot;expo-local-authentication&quot;;
+
+export async function authenticateWithBiometrics(): Promise&lt;boolean&gt; {
+  const hasHardware = await LocalAuthentication.hasHardwareAsync();
+  if (!hasHardware) return false;
+
+  const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+  if (!isEnrolled) return false;
+
+  const result = await LocalAuthentication.authenticateAsync({
+    promptMessage: &quot;Authenticate to continue&quot;,
+    fallbackLabel: &quot;Use passcode&quot;,
+    disableDeviceFallback: false,
+  });
+
+  return result.success;
+}
+
+// services/notifications.ts
+import * as Notifications from &quot;expo-notifications&quot;;
+import { Platform } from &quot;react-native&quot;;
+import Constants from &quot;expo-constants&quot;;
+
+Notifications.setNotificationHandler({
+  handleNotification: async () =&gt; ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
+export async function registerForPushNotifications() {
+  let token: string | undefined;
+
+  if (Platform.OS === &quot;android&quot;) {
+    await Notifications.setNotificationChannelAsync(&quot;default&quot;, {
+      name: &quot;default&quot;,
+      importance: Notifications.AndroidImportance.MAX,
+      vibrationPattern: [0, 250, 250, 250],
+    });
+  }
+
+  const { status: existingStatus } = await Notifications.getPermissionsAsync();
+  let finalStatus = existingStatus;
+
+  if (existingStatus !== &quot;granted&quot;) {
+    const { status } = await Notifications.requestPermissionsAsync();
+    finalStatus = status;
+  }
+
+  if (finalStatus !== &quot;granted&quot;) {
+    return null;
+  }
+
+  const projectId = Constants.expoConfig?.extra?.eas?.projectId;
+  token = (await Notifications.getExpoPushTokenAsync({ projectId })).data;
+
+  return token;
+}
+</code></pre>
+<h3>Pattern 5: Platform-Specific Code</h3>
+<pre><code class="language-typescript">// components/ui/Button.tsx
+import { Platform, Pressable, StyleSheet, Text, ViewStyle } from &#39;react-native&#39;
+import * as Haptics from &#39;expo-haptics&#39;
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from &#39;react-native-reanimated&#39;
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable)
+
+interface ButtonProps {
+  title: string
+  onPress: () =&gt; void
+  variant?: &#39;primary&#39; | &#39;secondary&#39; | &#39;outline&#39;
+  disabled?: boolean
+}
+
+export function Button({
+  title,
+  onPress,
+  variant = &#39;primary&#39;,
+  disabled = false,
+}: ButtonProps) {
+  const scale = useSharedValue(1)
+
+  const animatedStyle = useAnimatedStyle(() =&gt; ({
+    transform: [{ scale: scale.value }],
+  }))
+
+  const handlePressIn = () =&gt; {
+    scale.value = withSpring(0.95)
+    if (Platform.OS !== &#39;web&#39;) {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+  }
+
+  const handlePressOut = () =&gt; {
+    scale.value = withSpring(1)
+  }
+
+  return (
+    &lt;AnimatedPressable
+      onPress={onPress}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      disabled={disabled}
+      style={[
+        styles.button,
+        styles[variant],
+        disabled &amp;&amp; styles.disabled,
+        animatedStyle,
+      ]}
+    &gt;
+      &lt;Text style={[styles.text, styles[`${variant}Text`]]}&gt;{title}&lt;/Text&gt;
+    &lt;/AnimatedPressable&gt;
+  )
+}
+
+// Platform-specific files
+// Button.ios.tsx - iOS-specific implementation
+// Button.android.tsx - Android-specific implementation
+// Button.web.tsx - Web-specific implementation
+
+// Or use Platform.select
+const styles = StyleSheet.create({
+  button: {
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    borderRadius: 8,
+    alignItems: &#39;center&#39;,
+    ...Platform.select({
+      ios: {
+        shadowColor: &#39;#000&#39;,
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+  },
+  primary: {
+    backgroundColor: &#39;#007AFF&#39;,
+  },
+  secondary: {
+    backgroundColor: &#39;#5856D6&#39;,
+  },
+  outline: {
+    backgroundColor: &#39;transparent&#39;,
+    borderWidth: 1,
+    borderColor: &#39;#007AFF&#39;,
+  },
+  disabled: {
+    opacity: 0.5,
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: &#39;600&#39;,
+  },
+  primaryText: {
+    color: &#39;#FFFFFF&#39;,
+  },
+  secondaryText: {
+    color: &#39;#FFFFFF&#39;,
+  },
+  outlineText: {
+    color: &#39;#007AFF&#39;,
+  },
+})
+</code></pre>
+<h3>Pattern 6: Performance Optimization</h3>
+<pre><code class="language-typescript">// components/ProductList.tsx
+import { FlashList } from &#39;@shopify/flash-list&#39;
+import { memo, useCallback } from &#39;react&#39;
+
+interface ProductListProps {
+  products: Product[]
+  onProductPress: (id: string) =&gt; void
+}
+
+// Memoize list item
+const ProductItem = memo(function ProductItem({
+  item,
+  onPress,
+}: {
+  item: Product
+  onPress: (id: string) =&gt; void
+}) {
+  const handlePress = useCallback(() =&gt; onPress(item.id), [item.id, onPress])
+
+  return (
+    &lt;Pressable onPress={handlePress} style={styles.item}&gt;
+      &lt;FastImage
+        source={{ uri: item.image }}
+        style={styles.image}
+        resizeMode=&quot;cover&quot;
+      /&gt;
+      &lt;Text style={styles.title}&gt;{item.name}&lt;/Text&gt;
+      &lt;Text style={styles.price}&gt;${item.price}&lt;/Text&gt;
+    &lt;/Pressable&gt;
+  )
+})
+
+export function ProductList({ products, onProductPress }: ProductListProps) {
+  const renderItem = useCallback(
+    ({ item }: { item: Product }) =&gt; (
+      &lt;ProductItem item={item} onPress={onProductPress} /&gt;
+    ),
+    [onProductPress]
+  )
+
+  const keyExtractor = useCallback((item: Product) =&gt; item.id, [])
+
+  return (
+    &lt;FlashList
+      data={products}
+      renderItem={renderItem}
+      keyExtractor={keyExtractor}
+      estimatedItemSize={100}
+      // Performance optimizations
+      removeClippedSubviews={true}
+      maxToRenderPerBatch={10}
+      windowSize={5}
+      // Pull to refresh
+      onRefresh={onRefresh}
+      refreshing={isRefreshing}
+    /&gt;
+  )
+}
+</code></pre>
+<h2>EAS Build &amp; Submit</h2>
+<pre><code class="language-json">// eas.json
+{
+  &quot;cli&quot;: { &quot;version&quot;: &quot;&gt;= 5.0.0&quot; },
+  &quot;build&quot;: {
+    &quot;development&quot;: {
+      &quot;developmentClient&quot;: true,
+      &quot;distribution&quot;: &quot;internal&quot;,
+      &quot;ios&quot;: { &quot;simulator&quot;: true }
+    },
+    &quot;preview&quot;: {
+      &quot;distribution&quot;: &quot;internal&quot;,
+      &quot;android&quot;: { &quot;buildType&quot;: &quot;apk&quot; }
+    },
+    &quot;production&quot;: {
+      &quot;autoIncrement&quot;: true
+    }
+  },
+  &quot;submit&quot;: {
+    &quot;production&quot;: {
+      &quot;ios&quot;: { &quot;appleId&quot;: &quot;your@email.com&quot;, &quot;ascAppId&quot;: &quot;123456789&quot; },
+      &quot;android&quot;: { &quot;serviceAccountKeyPath&quot;: &quot;./google-services.json&quot; }
+    }
+  }
+}
+</code></pre>
+<pre><code class="language-bash"># Build commands
+eas build --platform ios --profile development
+eas build --platform android --profile preview
+eas build --platform all --profile production
+
+# Submit to stores
+eas submit --platform ios
+eas submit --platform android
+
+# OTA updates
+eas update --branch production --message &quot;Bug fixes&quot;
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Use Expo</strong> - Faster development, OTA updates, managed native code</li>
+<li><strong>FlashList over FlatList</strong> - Better performance for long lists</li>
+<li><strong>Memoize components</strong> - Prevent unnecessary re-renders</li>
+<li><strong>Use Reanimated</strong> - 60fps animations on native thread</li>
+<li><strong>Test on real devices</strong> - Simulators miss real-world issues</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t inline styles</strong> - Use StyleSheet.create for performance</li>
+<li><strong>Don&#39;t fetch in render</strong> - Use useEffect or React Query</li>
+<li><strong>Don&#39;t ignore platform differences</strong> - Test on both iOS and Android</li>
+<li><strong>Don&#39;t store secrets in code</strong> - Use environment variables</li>
+<li><strong>Don&#39;t skip error boundaries</strong> - Mobile crashes are unforgiving</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.expo.dev/">Expo Documentation</a></li>
+<li><a href="https://docs.expo.dev/router/introduction/">Expo Router</a></li>
+<li><a href="https://reactnative.dev/docs/performance">React Native Performance</a></li>
+<li><a href="https://shopify.github.io/flash-list/">FlashList</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

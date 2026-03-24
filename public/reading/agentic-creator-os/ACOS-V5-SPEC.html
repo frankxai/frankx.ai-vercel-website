@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agentic Creator OS v5 Specification</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/ACOS-V5-SPEC.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Agentic Creator OS v5 Specification</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#agentic-creator-os">agentic-creator-os</a> / <span>ACOS-V5-SPEC.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Agentic Creator OS v5 Specification</h1>
+<p><strong>Codename: Swarm Creator Protocol</strong></p>
+<p><em>Synthesizing the best patterns from the Claude Code ecosystem for creators</em></p>
+<hr>
+<h2>Executive Summary</h2>
+<p>ACOS v5 integrates patterns from 5 leading Claude Code repositories:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Absorbed Patterns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/ruvnet/claude-flow">claude-flow</a></td>
+<td>Swarm orchestration, 3-tier model routing, anti-drift, AgentDB</td>
+</tr>
+<tr>
+<td><a href="https://github.com/wshobson/agents">wshobson/agents</a></td>
+<td>72 plugins, 129 skills, progressive disclosure, marketplace</td>
+</tr>
+<tr>
+<td><a href="https://github.com/hesreallyhim/awesome-claude-code">awesome-claude-code</a></td>
+<td>Ecosystem mapping, claudekit patterns</td>
+</tr>
+<tr>
+<td><a href="https://github.com/VoltAgent/awesome-claude-code-subagents">awesome-claude-code-subagents</a></td>
+<td>100+ specialized subagents, category organization</td>
+</tr>
+<tr>
+<td><a href="https://github.com/steipete/claude-code-mcp">claude-code-mcp</a></td>
+<td>Agent-in-agent pattern, MCP server recursion</td>
+</tr>
+</tbody></table>
+<p><strong>Result</strong>: A creator-focused AI operating system with enterprise-grade orchestration.</p>
+<hr>
+<h2>Part 1: Architecture Overview</h2>
+<pre><code>ACOS v5 = v4 (GSD Context Engineering)
+        + claude-flow (Swarm Orchestration)
+        + wshobson/agents (Plugin Marketplace)
+        + VoltAgent (100+ Subagents)
+        + claude-code-mcp (Recursive Agents)
+</code></pre>
+<h3>Core Layers</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────────┐
+│                     ACOS v5 ARCHITECTURE                            │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │                    LAYER 5: CREATOR HUB                      │   │
+│  │  HUB.md | STATE.md | VOICE.md | Daily Workflows              │   │
+│  │  (From v4 - GSD Context Engineering)                         │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                              │                                      │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │                    LAYER 4: SWARM ORCHESTRATION              │   │
+│  │  Hierarchical | Mesh | Queen-led Hive Mind                   │   │
+│  │  Anti-Drift Config | One-Message Parallelism                 │   │
+│  │  (From claude-flow)                                          │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                              │                                      │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │                    LAYER 3: MODEL ROUTING                    │   │
+│  │  Agent Booster (WASM) → Haiku → Sonnet → Opus               │   │
+│  │  Intelligent 3-Tier Cost Optimization                        │   │
+│  │  (From claude-flow ADR-026)                                  │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                              │                                      │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │                    LAYER 2: PLUGIN MARKETPLACE               │   │
+│  │  72 Plugins | 129 Skills | Progressive Disclosure            │   │
+│  │  npm Distribution | Minimal Token Usage                      │   │
+│  │  (From wshobson/agents)                                      │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                              │                                      │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │                    LAYER 1: AGENT LIBRARY                    │   │
+│  │  100+ Specialized Subagents | 9 Categories                   │   │
+│  │  Creator-Focused: Music, Content, Products, Brand            │   │
+│  │  (From VoltAgent + FrankX Original)                          │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                              │                                      │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │                    LAYER 0: MCP FOUNDATION                   │   │
+│  │  Claude Code SDK | Agent-in-Agent Pattern                    │   │
+│  │  MCP Protocol | Memory Backend (AgentDB)                     │   │
+│  │  (From claude-code-mcp + Anthropic SDK)                      │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>Part 2: Swarm Orchestration (From claude-flow)</h2>
+<h3>2.1 Topology Options</h3>
+<table>
+<thead>
+<tr>
+<th>Topology</th>
+<th>Use Case</th>
+<th>Anti-Drift Level</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>hierarchical</strong></td>
+<td>Complex features, multi-step tasks</td>
+<td>Highest</td>
+</tr>
+<tr>
+<td><strong>mesh</strong></td>
+<td>Simple tasks, parallel work</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td><strong>hive-mind</strong></td>
+<td>Consensus decisions, distributed reasoning</td>
+<td>High</td>
+</tr>
+</tbody></table>
+<h3>2.2 Anti-Drift Configuration (Default for Creators)</h3>
+<pre><code class="language-javascript">// ACOS v5 default swarm config
+{
+  topology: &quot;hierarchical&quot;,   // Single coordinator enforces alignment
+  maxAgents: 8,               // Smaller team = less drift surface
+  strategy: &quot;specialized&quot;,    // Clear roles reduce ambiguity
+  consensus: &quot;raft&quot;           // Leader maintains authoritative state
+}
+</code></pre>
+<h3>2.3 Agent Routing by Task Type</h3>
+<table>
+<thead>
+<tr>
+<th>Task Type</th>
+<th>Agents</th>
+<th>Topology</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Content Creation</td>
+<td>coordinator, researcher, writer, editor</td>
+<td>hierarchical</td>
+</tr>
+<tr>
+<td>Music Production</td>
+<td>coordinator, prompt-engineer, mixer, reviewer</td>
+<td>hierarchical</td>
+</tr>
+<tr>
+<td>Product Launch</td>
+<td>coordinator, copywriter, designer, developer</td>
+<td>hierarchical</td>
+</tr>
+<tr>
+<td>Research</td>
+<td>researcher, analyst, synthesizer</td>
+<td>mesh</td>
+</tr>
+<tr>
+<td>Bug Fix</td>
+<td>debugger, coder, tester</td>
+<td>mesh</td>
+</tr>
+</tbody></table>
+<h3>2.4 One-Message Parallelism Rule</h3>
+<p><strong>CRITICAL</strong>: All related operations MUST be in ONE message for parallelism.</p>
+<pre><code class="language-javascript">// ✅ CORRECT - All in one message
+Message 1:
+  - TodoWrite([...all todos...])
+  - Task(&quot;Research&quot;, ...)
+  - Task(&quot;Architect&quot;, ...)
+  - Task(&quot;Coder&quot;, ...)
+
+// ❌ WRONG - Sequential messages
+Message 1: TodoWrite([todo1])
+Message 2: Task(&quot;Research&quot;, ...)
+Message 3: Task(&quot;Architect&quot;, ...)
+</code></pre>
+<hr>
+<h2>Part 3: Model Routing (From claude-flow ADR-026)</h2>
+<h3>3.1 Three-Tier Strategy</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Handler</th>
+<th>Latency</th>
+<th>Cost</th>
+<th>Use Cases</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1</strong></td>
+<td>Agent Booster (WASM)</td>
+<td>&lt;1ms</td>
+<td>$0</td>
+<td>Simple transforms (var→const, add types)</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Haiku 4.5</td>
+<td>~500ms</td>
+<td>$0.0002</td>
+<td>Simple tasks, low complexity (&lt;30%)</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Sonnet/Opus 4.5</td>
+<td>2-5s</td>
+<td>$0.003-0.015</td>
+<td>Complex reasoning, architecture (&gt;30%)</td>
+</tr>
+</tbody></table>
+<h3>3.2 Creator-Optimized Routing</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Model</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Social post draft</td>
+<td>Haiku</td>
+<td>Simple, fast iteration</td>
+</tr>
+<tr>
+<td>Blog article</td>
+<td>Sonnet</td>
+<td>Balanced depth/speed</td>
+</tr>
+<tr>
+<td>Product strategy</td>
+<td>Opus</td>
+<td>Complex multi-factor reasoning</td>
+</tr>
+<tr>
+<td>Voice calibration</td>
+<td>Opus</td>
+<td>Nuanced pattern recognition</td>
+</tr>
+<tr>
+<td>Image prompts</td>
+<td>Haiku</td>
+<td>Quick generation</td>
+</tr>
+<tr>
+<td>Music prompts</td>
+<td>Sonnet</td>
+<td>Creative balance</td>
+</tr>
+<tr>
+<td>Code refactor</td>
+<td>Agent Booster + Sonnet</td>
+<td>Transform + review</td>
+</tr>
+</tbody></table>
+<h3>3.3 Model Recommendation Hooks</h3>
+<p>When hooks output these tags, use the recommended model:</p>
+<pre><code>[AGENT_BOOSTER_AVAILABLE] → Skip LLM, use Edit tool directly
+[TASK_MODEL_RECOMMENDATION] Use model=&quot;haiku&quot; → Use Haiku
+[TASK_MODEL_RECOMMENDATION] Use model=&quot;sonnet&quot; → Use Sonnet
+[TASK_MODEL_RECOMMENDATION] Use model=&quot;opus&quot; → Use Opus
+</code></pre>
+<hr>
+<h2>Part 4: Plugin Marketplace (From wshobson/agents)</h2>
+<h3>4.1 ACOS Plugin Architecture</h3>
+<pre><code>@frankx/acos-plugin-{name}
+├── CLAUDE.md          # Agent configuration
+├── skills/            # Progressive disclosure skills
+├── commands/          # Slash commands
+├── agents/            # Specialized agents
+└── package.json       # npm metadata
+</code></pre>
+<h3>4.2 Creator Plugin Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Plugins</th>
+<th>Agents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Content</strong></td>
+<td>blog-writer, social-manager, newsletter-pro</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>Music</strong></td>
+<td>suno-master, audio-mixer, frequency-engineer</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Products</strong></td>
+<td>course-builder, ebook-creator, landing-page</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>Brand</strong></td>
+<td>voice-architect, visual-designer, copy-master</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Growth</strong></td>
+<td>seo-optimizer, email-marketer, analytics-pro</td>
+<td>5</td>
+</tr>
+<tr>
+<td><strong>Business</strong></td>
+<td>pricing-strategist, launch-manager, sales-pro</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Technical</strong></td>
+<td>code-reviewer, debugger, deployer</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Research</strong></td>
+<td>topic-researcher, competitor-analyst, trend-scout</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Orchestration</strong></td>
+<td>swarm-coordinator, task-manager, memory-keeper</td>
+<td>3</td>
+</tr>
+</tbody></table>
+<h3>4.3 Installation Flow</h3>
+<pre><code class="language-bash"># Add ACOS marketplace
+/plugin marketplace add frankxai/agentic-creator-os
+
+# Install creator plugins
+/plugin install @frankx/acos-content      # Blog, social, newsletter
+/plugin install @frankx/acos-music        # Suno, audio, frequency
+/plugin install @frankx/acos-products     # Courses, ebooks, landing pages
+/plugin install @frankx/acos-brand        # Voice, visual, copy
+</code></pre>
+<h3>4.4 Progressive Disclosure Skills</h3>
+<p>Skills load knowledge only when activated (token efficiency):</p>
+<pre><code class="language-bash"># Content skills (5)
+/skill seo-optimization        # SEO patterns and checklist
+/skill voice-matching          # Match creator&#39;s voice
+/skill hook-writing            # Compelling openings
+/skill cta-design              # Conversion-focused CTAs
+/skill content-repurposing     # Multi-platform adaptation
+
+# Music skills (4)
+/skill suno-prompting          # Advanced Suno techniques
+/skill frequency-mapping       # Hz → emotion mapping
+/skill song-structure          # Verse/chorus/bridge patterns
+/skill genre-blending          # Cross-genre techniques
+</code></pre>
+<hr>
+<h2>Part 5: Agent Library (From VoltAgent + FrankX)</h2>
+<h3>5.1 Creator-Focused Agent Categories</h3>
+<pre><code>acos-agents/
+├── 01-content-creation/
+│   ├── blog-writer.md
+│   ├── newsletter-composer.md
+│   ├── social-content-creator.md
+│   ├── copywriter.md
+│   ├── editor.md
+│   └── headline-master.md
+│
+├── 02-music-production/
+│   ├── suno-prompt-architect.md
+│   ├── frequency-alchemist.md
+│   ├── lyrics-writer.md
+│   ├── audio-mixer.md
+│   └── music-distributor.md
+│
+├── 03-product-development/
+│   ├── course-architect.md
+│   ├── ebook-designer.md
+│   ├── landing-page-builder.md
+│   ├── pricing-strategist.md
+│   └── launch-coordinator.md
+│
+├── 04-brand-voice/
+│   ├── voice-calibrator.md
+│   ├── brand-guardian.md
+│   ├── visual-director.md
+│   └── tone-matcher.md
+│
+├── 05-growth-marketing/
+│   ├── seo-intelligence-scout.md
+│   ├── email-sequence-builder.md
+│   ├── funnel-architect.md
+│   └── analytics-interpreter.md
+│
+├── 06-research-strategy/
+│   ├── topic-researcher.md
+│   ├── competitor-analyst.md
+│   ├── trend-forecaster.md
+│   └── audience-profiler.md
+│
+├── 07-technical-ops/
+│   ├── code-reviewer.md
+│   ├── deployer.md
+│   ├── debugger.md
+│   └── performance-optimizer.md
+│
+├── 08-orchestration/
+│   ├── swarm-coordinator.md
+│   ├── task-orchestrator.md
+│   ├── memory-manager.md
+│   └── context-guardian.md
+│
+└── 09-meta/
+    ├── agent-installer.md
+    ├── skill-router.md
+    └── model-selector.md
+</code></pre>
+<h3>5.2 Agent Definition Template</h3>
+<pre><code class="language-markdown"># [Agent Name]
+
+## Identity
+- **Role**: [Specific function]
+- **Model**: [haiku|sonnet|opus] or auto-route
+- **Category**: [category from above]
+
+## Expertise
+[What this agent knows deeply]
+
+## Activation
+- Keyword triggers: [words that activate this agent]
+- Task patterns: [types of tasks this handles]
+
+## Tools
+- Primary: [main tools used]
+- Secondary: [supporting tools]
+
+## Collaboration
+- Works with: [other agents]
+- Hands off to: [agents for next steps]
+
+## Anti-Drift Guardrails
+- Stay focused on: [specific scope]
+- Do NOT: [out-of-scope actions]
+- Checkpoint after: [verification points]
+
+## Output Format
+[Expected output structure]
+</code></pre>
+<hr>
+<h2>Part 6: MCP Foundation (From claude-code-mcp)</h2>
+<h3>6.1 Agent-in-Agent Pattern</h3>
+<p>ACOS v5 can run Claude Code as an MCP server, enabling:</p>
+<ul>
+<li>Recursive agent spawning</li>
+<li>Autonomous execution with <code>--dangerously-skip-permissions</code></li>
+<li>Cross-tool interoperability (Cursor, Windsurf, Claude Desktop)</li>
+</ul>
+<h3>6.2 MCP Configuration</h3>
+<pre><code class="language-json">{
+  &quot;acos-server&quot;: {
+    &quot;command&quot;: &quot;npx&quot;,
+    &quot;args&quot;: [
+      &quot;-y&quot;,
+      &quot;@frankx/agentic-creator-os@latest&quot;,
+      &quot;serve&quot;
+    ],
+    &quot;env&quot;: {
+      &quot;ACOS_MODE&quot;: &quot;mcp-server&quot;,
+      &quot;ACOS_MODEL_ROUTING&quot;: &quot;auto&quot;
+    }
+  }
+}
+</code></pre>
+<h3>6.3 Memory Backend (AgentDB)</h3>
+<p>From claude-flow&#39;s AgentDB integration:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Vector search</td>
+<td>150x-12,500x faster retrieval</td>
+</tr>
+<tr>
+<td>HNSW indexing</td>
+<td>Sub-millisecond similarity search</td>
+</tr>
+<tr>
+<td>Hybrid storage</td>
+<td>SQLite + vector for structured + semantic</td>
+</tr>
+<tr>
+<td>Namespace isolation</td>
+<td>Each creator&#39;s memory isolated</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Part 7: Creator Hub Generator v5</h2>
+<h3>7.1 Enhanced Wizard Flow</h3>
+<pre><code class="language-bash"># Initialize hub with swarm support
+/acos:init-hub --version=5
+
+# Wizard steps:
+# 1. Identity Discovery (same as v4)
+# 2. Workflow Mapping (same as v4)
+# 3. Tool Integration (same as v4)
+# 4. Voice Calibration (same as v4)
+# 5. NEW: Swarm Configuration
+# 6. NEW: Plugin Selection
+# 7. NEW: Model Tier Preferences
+</code></pre>
+<h3>7.2 Generated Hub Structure (v5)</h3>
+<pre><code>.creator-hub/
+├── HUB.md                    # Creator identity
+├── STATE.md                  # Living memory (&lt;100 lines)
+├── VOICE.md                  # Voice patterns
+├── SWARM.md                  # NEW: Swarm configuration
+├── skills/                   # Auto-selected skills
+├── agents/                   # NEW: Custom agent overrides
+├── plugins/                  # NEW: Installed plugin configs
+├── workflows/
+│   ├── daily-ops.md
+│   ├── swarm-content.md      # NEW: Multi-agent content workflow
+│   └── swarm-launch.md       # NEW: Multi-agent launch workflow
+├── templates/
+└── outputs/
+</code></pre>
+<h3>7.3 SWARM.md Configuration</h3>
+<pre><code class="language-markdown"># Creator Swarm Configuration
+
+## Default Topology
+topology: hierarchical
+maxAgents: 8
+strategy: specialized
+consensus: raft
+
+## Agent Roster
+| Role | Agent | Model Tier |
+|------|-------|------------|
+| Coordinator | swarm-coordinator | sonnet |
+| Research | topic-researcher | haiku |
+| Writing | blog-writer | sonnet |
+| Editing | editor | haiku |
+| SEO | seo-intelligence-scout | haiku |
+| Voice Check | voice-calibrator | opus |
+
+## Task Routing
+| Task Type | Agents | Notes |
+|-----------|--------|-------|
+| Blog post | coordinator, researcher, writer, editor, seo | Full swarm |
+| Social post | writer, editor | Quick 2-agent |
+| Newsletter | writer, editor, email-builder | Email-optimized |
+| Product launch | Full roster + launch-coordinator | All hands |
+
+## Anti-Drift Rules
+- Checkpoint after each major phase
+- Voice check every 500 words
+- SEO check before publish
+- Coordinator reviews all outputs
+</code></pre>
+<hr>
+<h2>Part 8: npm Distribution</h2>
+<h3>8.1 Package Structure</h3>
+<pre><code>@frankx/agentic-creator-os/
+├── bin/
+│   └── acos.js              # CLI entry point
+├── src/
+│   ├── cli/                 # CLI commands
+│   ├── hub-generator/       # Hub initialization
+│   ├── swarm/               # Swarm orchestration
+│   ├── plugins/             # Plugin management
+│   ├── agents/              # Agent library
+│   └── mcp/                 # MCP server mode
+├── templates/
+│   ├── HUB.md
+│   ├── STATE.md
+│   ├── VOICE.md
+│   └── SWARM.md
+├── package.json
+└── README.md
+</code></pre>
+<h3>8.2 CLI Commands</h3>
+<pre><code class="language-bash"># Installation
+npx @frankx/agentic-creator-os init    # Initialize hub
+npx @frankx/agentic-creator-os serve   # Run as MCP server
+
+# Or global install
+npm install -g @frankx/agentic-creator-os
+acos init                              # Initialize hub
+acos swarm start                       # Start swarm mode
+acos plugin install &lt;name&gt;             # Install plugin
+acos agent spawn &lt;type&gt;                # Spawn specific agent
+</code></pre>
+<h3>8.3 Versioning Strategy</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Version</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Free</strong></td>
+<td><code>@frankx/acos-core</code></td>
+<td>Hub generator, 10 agents, basic skills</td>
+</tr>
+<tr>
+<td><strong>Pro</strong></td>
+<td><code>@frankx/acos-pro</code></td>
+<td>Full agent library, swarm, all skills</td>
+</tr>
+<tr>
+<td><strong>Enterprise</strong></td>
+<td><code>@frankx/acos-enterprise</code></td>
+<td>White-label, custom agents, SLA</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Part 9: SEO &amp; Discovery Strategy</h2>
+<h3>9.1 Target Keywords</h3>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Monthly Volume</th>
+<th>Difficulty</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Code tutorial 2026</td>
+<td>8,100</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>AI agent for content creators</td>
+<td>4,400</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Personal AI operating system</td>
+<td>2,900</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>MCP server for creators</td>
+<td>1,200</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Claude Code plugins</td>
+<td>6,600</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>AI workflow automation</td>
+<td>12,000</td>
+<td>High</td>
+</tr>
+</tbody></table>
+<h3>9.2 Content Strategy</h3>
+<table>
+<thead>
+<tr>
+<th>Content Type</th>
+<th>Target Keyword</th>
+<th>Platform</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Getting Started Guide</td>
+<td>Claude Code tutorial</td>
+<td>frankx.ai/docs</td>
+</tr>
+<tr>
+<td>Plugin Directory</td>
+<td>Claude Code plugins</td>
+<td>frankx.ai/plugins</td>
+</tr>
+<tr>
+<td>Agent Showcase</td>
+<td>AI agent for creators</td>
+<td>frankx.ai/agents</td>
+</tr>
+<tr>
+<td>Workflow Gallery</td>
+<td>AI workflow automation</td>
+<td>frankx.ai/workflows</td>
+</tr>
+<tr>
+<td>npm README</td>
+<td>Personal AI OS</td>
+<td>npmjs.com</td>
+</tr>
+</tbody></table>
+<h3>9.3 Distribution Channels</h3>
+<ol>
+<li><strong>npm Registry</strong> (primary) - <code>npx create-agentic-creator-os</code></li>
+<li><strong>Claude Plugin Marketplace</strong> - First-mover advantage</li>
+<li><strong>ProductHunt</strong> - Creator audience</li>
+<li><strong>GitHub</strong> - Developer discovery</li>
+<li><strong>frankx.ai</strong> - SEO + conversion</li>
+</ol>
+<hr>
+<h2>Part 10: Implementation Roadmap</h2>
+<h3>Phase 1: Core Infrastructure (Week 1)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Set up npm package structure</li>
+<li><input disabled="" type="checkbox"> Implement CLI with <code>commander.js</code></li>
+<li><input disabled="" type="checkbox"> Port v4 hub-generator to npm</li>
+<li><input disabled="" type="checkbox"> Add basic swarm commands</li>
+</ul>
+<h3>Phase 2: Swarm Integration (Week 2)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Implement hierarchical topology</li>
+<li><input disabled="" type="checkbox"> Add model routing logic</li>
+<li><input disabled="" type="checkbox"> Create anti-drift hooks</li>
+<li><input disabled="" type="checkbox"> Build one-message parallelism</li>
+</ul>
+<h3>Phase 3: Plugin System (Week 3)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Create plugin loader</li>
+<li><input disabled="" type="checkbox"> Implement progressive disclosure</li>
+<li><input disabled="" type="checkbox"> Build marketplace integration</li>
+<li><input disabled="" type="checkbox"> Package first 10 plugins</li>
+</ul>
+<h3>Phase 4: Agent Library (Week 4)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Port 40 creator-focused agents</li>
+<li><input disabled="" type="checkbox"> Implement agent-in-agent pattern</li>
+<li><input disabled="" type="checkbox"> Add AgentDB memory backend</li>
+<li><input disabled="" type="checkbox"> Create agent installer</li>
+</ul>
+<h3>Phase 5: Launch (Week 5)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Documentation site</li>
+<li><input disabled="" type="checkbox"> ProductHunt launch</li>
+<li><input disabled="" type="checkbox"> Plugin marketplace submission</li>
+<li><input disabled="" type="checkbox"> SEO content publishing</li>
+</ul>
+<hr>
+<h2>Appendix: Forked Repositories</h2>
+<table>
+<thead>
+<tr>
+<th>Repo</th>
+<th>Fork URL</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>claude-flow</td>
+<td>github.com/frankxai/claude-flow</td>
+<td>Swarm patterns</td>
+</tr>
+<tr>
+<td>agents</td>
+<td>github.com/frankxai/agents</td>
+<td>Plugin architecture</td>
+</tr>
+<tr>
+<td>awesome-claude-code</td>
+<td>github.com/frankxai/awesome-claude-code</td>
+<td>Ecosystem map</td>
+</tr>
+<tr>
+<td>awesome-claude-code-subagents</td>
+<td>github.com/frankxai/awesome-claude-code-subagents</td>
+<td>Agent library</td>
+</tr>
+<tr>
+<td>claude-code-mcp</td>
+<td>github.com/frankxai/claude-code-mcp</td>
+<td>MCP server</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>ACOS v5 - Swarm Creator Protocol</em>
+<em>Synthesizing the best of Claude Code ecosystem for creators</em>
+<em>Version 5.0.0-alpha | January 2026</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

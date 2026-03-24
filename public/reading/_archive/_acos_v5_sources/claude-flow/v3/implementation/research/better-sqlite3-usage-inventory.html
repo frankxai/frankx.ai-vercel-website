@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>better-sqlite3 Usage Inventory - Claude-Flow v3</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/research/better-sqlite3-usage-inventory.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">better-sqlite3 Usage Inventory - Claude-Flow v3</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fresearch">research</a> / <span>better-sqlite3-usage-inventory.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>better-sqlite3 Usage Inventory - Claude-Flow v3</h1>
+<p><strong>Generated</strong>: 2026-01-03
+<strong>Purpose</strong>: Complete inventory of better-sqlite3 usage across codebase for sql.js migration</p>
+<hr>
+<h2>Summary</h2>
+<ul>
+<li><strong>Total files</strong>: 17</li>
+<li><strong>Direct imports</strong>: 15</li>
+<li><strong>Indirect usage</strong>: 2 (patches)</li>
+<li><strong>External dependencies</strong>: 2 (agentic-flow, agentdb)</li>
+</ul>
+<hr>
+<h2>1. Core Database Layer</h2>
+<h3>1.1 Main Abstraction Layer ⭐ (Priority: Critical)</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/memory/sqlite-wrapper.js</code></p>
+<ul>
+<li><strong>Line</strong>: 14-19 (initialization)</li>
+<li><strong>Usage</strong>: Dynamic require/import with error handling</li>
+<li><strong>Current features</strong>:<ul>
+<li>Platform detection</li>
+<li>Auto-rebuild on NODE_MODULE_VERSION mismatch</li>
+<li>Graceful fallback messaging</li>
+</ul>
+</li>
+<li><strong>Migration</strong>: Add sql.js as alternative provider</li>
+<li><strong>Impact</strong>: High - Core abstraction used by all database operations</li>
+</ul>
+<pre><code class="language-javascript">// Lines 14-19
+let Database = null;
+let sqliteAvailable = false;
+let loadError = null;
+let rebuildAttempted = false;
+
+// Line 54-66: Loading logic
+async function tryLoadSQLite() {
+  try {
+    const require = createRequire(import.meta.url);
+    Database = require(&#39;better-sqlite3&#39;);
+    sqliteAvailable = true;
+    return true;
+  } catch (requireErr) {
+    // Fallback to ES module import
+    // ... error handling
+  }
+}
+</code></pre>
+<hr>
+<h3>1.2 Database Service</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/api/database-service.ts</code></p>
+<ul>
+<li><strong>Line</strong>: 559</li>
+<li><strong>Usage</strong>: Dynamic import for SQLite initialization</li>
+<li><strong>Method</strong>: <code>initializeSQLite()</code></li>
+<li><strong>Migration</strong>: Indirect - uses sqlite-wrapper abstractions</li>
+<li><strong>Impact</strong>: Medium - API layer uses DatabaseManager</li>
+</ul>
+<pre><code class="language-typescript">// Line 556-570
+private async initializeSQLite(): Promise&lt;void&gt; {
+  try {
+    // Import better-sqlite3 dynamically
+    const Database = (await import(&#39;better-sqlite3&#39;)).default;
+    this.db = new Database(this.config.database);
+
+    // Enable WAL mode for better concurrency
+    this.db.pragma(&#39;journal_mode = WAL&#39;);
+    this.db.pragma(&#39;synchronous = NORMAL&#39;);
+    this.db.pragma(&#39;cache_size = 1000&#39;);
+    this.db.pragma(&#39;temp_store = memory&#39;);
+  } catch (error) {
+    throw new DatabaseError(&#39;Failed to initialize SQLite&#39;, { error });
+  }
+}
+</code></pre>
+<hr>
+<h3>1.3 Database Manager</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/core/DatabaseManager.ts</code></p>
+<ul>
+<li><strong>Line</strong>: 197</li>
+<li><strong>Usage</strong>: CommonJS require with error recovery</li>
+<li><strong>Method</strong>: <code>SQLiteProvider</code> constructor</li>
+<li><strong>Migration</strong>: Add SqlJsProvider as alternative</li>
+<li><strong>Impact</strong>: High - Core persistence layer</li>
+</ul>
+<pre><code class="language-typescript">// Line 189-207
+class SQLiteProvider implements IDatabaseProvider {
+  private db: any;
+  private dbPath: string;
+
+  constructor(dbPath: string) {
+    this.dbPath = dbPath;
+    // Dynamic import to handle optional dependency
+    try {
+      const Database = require(&#39;better-sqlite3&#39;); // Line 197
+      this.db = new Database(dbPath);
+    } catch (error) {
+      // Check for native module version mismatch (NODE_MODULE_VERSION error)
+      if (isNativeModuleVersionError(error)) {
+        const recoveryMsg = getNativeModuleRecoveryMessage(error);
+        throw new NativeModuleError(recoveryMsg, error as Error);
+      }
+      throw new Error(&#39;better-sqlite3 not available. Install with: npm install better-sqlite3&#39;);
+    }
+  }
+}
+</code></pre>
+<hr>
+<h3>1.4 Persistence Manager</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/core/persistence.ts</code></p>
+<ul>
+<li><strong>Line</strong>: 5</li>
+<li><strong>Usage</strong>: ES module import (direct)</li>
+<li><strong>Type</strong>: TypeScript with full type safety</li>
+<li><strong>Migration</strong>: Replace with provider abstraction</li>
+<li><strong>Impact</strong>: High - Manages agent/task persistence</li>
+</ul>
+<pre><code class="language-typescript">// Line 1-8
+/**
+ * Persistence layer for Claude-Flow using SQLite
+ */
+
+import Database from &#39;better-sqlite3&#39;; // Line 5
+import { join } from &#39;path&#39;;
+import { mkdir } from &#39;fs/promises&#39;;
+</code></pre>
+<p><strong>Methods using better-sqlite3</strong>:</p>
+<ul>
+<li><code>initialize()</code> - Line 44-53</li>
+<li><code>createTables()</code> - Line 55-100</li>
+<li><code>saveAgent()</code> - Line 103-120</li>
+<li><code>getAgent()</code> - Line 122-139</li>
+<li>All CRUD operations for agents/tasks</li>
+</ul>
+<hr>
+<h2>2. Memory Backends</h2>
+<h3>2.1 SQLite Backend</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/memory/backends/sqlite.ts</code></p>
+<ul>
+<li><strong>Line</strong>: N/A (uses wrapper)</li>
+<li><strong>Usage</strong>: Indirect via <code>sqlite-wrapper.js</code></li>
+<li><strong>Migration</strong>: Template for sql.js backend</li>
+<li><strong>Impact</strong>: Medium - Memory storage layer</li>
+</ul>
+<pre><code class="language-typescript">// Line 32-38: Dynamic import from wrapper
+if (!this.sqliteLoaded) {
+  const module = await import(&#39;../sqlite-wrapper.js&#39;);
+  createDatabase = module.createDatabase;
+  isSQLiteAvailable = module.isSQLiteAvailable;
+  this.sqliteLoaded = true;
+}
+</code></pre>
+<hr>
+<h3>2.2 SQLite Store</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/memory/sqlite-store.js</code></p>
+<ul>
+<li><strong>Line</strong>: 10</li>
+<li><strong>Usage</strong>: Import from wrapper</li>
+<li><strong>Type</strong>: JavaScript (MCP server)</li>
+<li><strong>Migration</strong>: Indirect - uses wrapper</li>
+<li><strong>Impact</strong>: Medium - MCP memory persistence</li>
+</ul>
+<pre><code class="language-javascript">// Line 1-12
+import path from &#39;path&#39;;
+import { promises as fs } from &#39;fs&#39;;
+import { fileURLToPath } from &#39;url&#39;;
+import os from &#39;os&#39;;
+import { createDatabase } from &#39;./sqlite-wrapper.js&#39;; // Line 10
+import { getSwarmDir } from &#39;../utils/project-root.js&#39;;
+import { sessionSerializer } from &#39;./enhanced-session-serializer.js&#39;;
+</code></pre>
+<hr>
+<h2>3. CLI Commands</h2>
+<h3>3.1 Hive Mind Main</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/hive-mind.js</code></p>
+<ul>
+<li><strong>Lines</strong>: 38, 46</li>
+<li><strong>Usage</strong>: Dual loading (require + dynamic import)</li>
+<li><strong>Migration</strong>: Use abstraction layer</li>
+<li><strong>Impact</strong>: Low - CLI utility</li>
+</ul>
+<pre><code class="language-javascript">// Line 36-49
+try {
+  Database = require(&#39;better-sqlite3&#39;); // Line 38
+  DatabaseAvailable = true;
+} catch (error) {
+  console.warn(&#39;⚠️  better-sqlite3 not available, falling back to in-memory storage&#39;);
+  try {
+    // Try ES module import
+    const sqlite = await import(&#39;better-sqlite3&#39;); // Line 46
+    Database = sqlite.default;
+    DatabaseAvailable = true;
+  } catch (importError) {
+    // Fallback handled
+  }
+}
+</code></pre>
+<hr>
+<h3>3.2 Hive Mind Wizard</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/hive-mind-wizard.js</code></p>
+<ul>
+<li><strong>Line</strong>: 4</li>
+<li><strong>Usage</strong>: Direct require</li>
+<li><strong>Migration</strong>: Add try-catch with sql.js fallback</li>
+<li><strong>Impact</strong>: Low - Setup wizard</li>
+</ul>
+<pre><code class="language-javascript">// Line 1-10
+const fs = require(&#39;fs-extra&#39;);
+const path = require(&#39;path&#39;);
+const Database = require(&#39;better-sqlite3&#39;); // Line 4
+const ora = require(&#39;ora&#39;);
+</code></pre>
+<hr>
+<h3>3.3 Hive Mind Memory</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/hive-mind/memory.js</code></p>
+<ul>
+<li><strong>Line</strong>: 7</li>
+<li><strong>Usage</strong>: ES module import</li>
+<li><strong>Migration</strong>: Use abstraction layer</li>
+<li><strong>Impact</strong>: Low - Memory CLI utilities</li>
+</ul>
+<pre><code class="language-javascript">// Line 1-10
+/**
+ * Hive Mind Memory Management CLI
+ */
+import fs from &#39;fs-extra&#39;;
+import path from &#39;path&#39;;
+import Database from &#39;better-sqlite3&#39;; // Line 7
+</code></pre>
+<hr>
+<h3>3.4 Metrics Reader</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/hive-mind/metrics-reader.js</code></p>
+<ul>
+<li><strong>Line</strong>: 6</li>
+<li><strong>Usage</strong>: ES module import</li>
+<li><strong>Migration</strong>: Use abstraction layer</li>
+<li><strong>Impact</strong>: Low - Metrics utilities</li>
+</ul>
+<pre><code class="language-javascript">// Line 1-10
+/**
+ * Hive Mind Metrics Reader
+ */
+import fs from &#39;fs-extra&#39;;
+import path from &#39;path&#39;;
+import Database from &#39;better-sqlite3&#39;; // Line 6
+</code></pre>
+<hr>
+<h3>3.5 Database Optimizer</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/hive-mind/db-optimizer.js</code></p>
+<ul>
+<li><strong>Line</strong>: 8</li>
+<li><strong>Usage</strong>: ES module import</li>
+<li><strong>Migration</strong>: Use abstraction layer</li>
+<li><strong>Impact</strong>: Low - Maintenance utilities</li>
+</ul>
+<pre><code class="language-javascript">// Line 1-12
+/**
+ * Hive Mind Database Optimizer
+ */
+import fs from &#39;fs-extra&#39;;
+import path from &#39;path&#39;;
+import os from &#39;os&#39;;
+import Database from &#39;better-sqlite3&#39;; // Line 8
+</code></pre>
+<hr>
+<h3>3.6 MCP Wrapper</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/hive-mind/mcp-wrapper.js</code></p>
+<ul>
+<li><strong>Line</strong>: 132</li>
+<li><strong>Usage</strong>: Type annotation only (JSDoc)</li>
+<li><strong>Migration</strong>: Update type annotation</li>
+<li><strong>Impact</strong>: None - Type hint only</li>
+</ul>
+<pre><code class="language-javascript">// Line 132
+/** @type {import(&#39;better-sqlite3&#39;).Database | null} */
+this.db = null;
+</code></pre>
+<hr>
+<h3>3.7 Hive Mind Init</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/init/hive-mind-init.js</code></p>
+<ul>
+<li><strong>Lines</strong>: 304, 307</li>
+<li><strong>Usage</strong>: Dynamic import with error handling</li>
+<li><strong>Migration</strong>: Add sql.js as fallback</li>
+<li><strong>Impact</strong>: Medium - Initialization logic</li>
+</ul>
+<pre><code class="language-javascript">// Line 304-315
+// Dynamic import for better-sqlite3 with proper error handling
+let Database;
+try {
+  Database = (await import(&#39;better-sqlite3&#39;)).default; // Line 307
+  console.log(&#39;✅ Using SQLite for persistent storage&#39;);
+} catch (error) {
+  console.warn(&#39;⚠️  SQLite not available, using in-memory storage&#39;);
+  console.warn(&#39;   Install better-sqlite3 for persistence: npm install better-sqlite3&#39;);
+  useInMemory = true;
+}
+</code></pre>
+<hr>
+<h3>3.8 Swarm Metrics Integration</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/cli/simple-commands/swarm-metrics-integration.js</code></p>
+<ul>
+<li><strong>Line</strong>: 8</li>
+<li><strong>Usage</strong>: ES module import</li>
+<li><strong>Migration</strong>: Use abstraction layer</li>
+<li><strong>Impact</strong>: Low - Metrics integration</li>
+</ul>
+<pre><code class="language-javascript">// Line 1-12
+/**
+ * Swarm Metrics Integration Service
+ */
+import fs from &#39;fs-extra&#39;;
+import path from &#39;path&#39;;
+import Database from &#39;better-sqlite3&#39;; // Line 8
+</code></pre>
+<hr>
+<h2>4. Utilities</h2>
+<h3>4.1 Error Recovery</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/utils/error-recovery.ts</code></p>
+<ul>
+<li><strong>Lines</strong>: N/A (reference only)</li>
+<li><strong>Usage</strong>: Detects better-sqlite3 errors</li>
+<li><strong>Functions</strong>:<ul>
+<li><code>isNpmCacheError()</code> - Line 28-34</li>
+<li><code>isNativeModuleVersionError()</code> - Line 40-46</li>
+<li><code>getNativeModuleRecoveryMessage()</code> - Line 52-80</li>
+<li><code>verifyBetterSqlite3()</code> - Line 267-274</li>
+</ul>
+</li>
+<li><strong>Migration</strong>: Add sql.js error detection</li>
+<li><strong>Impact</strong>: High - Error handling infrastructure</li>
+</ul>
+<pre><code class="language-typescript">// Line 28-34
+export function isNpmCacheError(error: any): boolean {
+  const errorStr = error?.message || String(error);
+  return (
+    errorStr.includes(&#39;ENOTEMPTY&#39;) &amp;&amp;
+    (errorStr.includes(&#39;npm&#39;) || errorStr.includes(&#39;npx&#39;) || errorStr.includes(&#39;_npx&#39;))
+  ) || errorStr.includes(&#39;better-sqlite3&#39;); // Line 33
+}
+</code></pre>
+<hr>
+<h2>5. Patches &amp; Workarounds</h2>
+<h3>5.1 Agentic-Flow SQLite Fix</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/scripts/fix-agentic-flow-sqlite.sh</code></p>
+<ul>
+<li><strong>Line</strong>: 6, 16, 25-26</li>
+<li><strong>Usage</strong>: Patches external dependency</li>
+<li><strong>Purpose</strong>: Fixes broken better-sqlite3 import in agentic-flow</li>
+<li><strong>Migration</strong>: Keep patch, add documentation</li>
+<li><strong>Impact</strong>: Low - External dependency fix</li>
+</ul>
+<pre><code class="language-bash"># Line 6
+QUERIES_FILE=&quot;node_modules/agentic-flow/dist/reasoningbank/db/queries.js&quot;
+
+# Line 16
+if grep -q &quot;import Database from &#39;better-sqlite3&#39;&quot; &quot;$QUERIES_FILE&quot;; then
+
+# Line 25-26
+sed -i &#39;5s/const BetterSqlite3 = null; \/\/ Not used/import Database from &#39;\&#39;&#39;better-sqlite3&#39;\&#39;&#39;;/&#39; &quot;$QUERIES_FILE&quot;
+sed -i &#39;s/new BetterSqlite3(/new Database(/g&#39; &quot;$QUERIES_FILE&quot;
+</code></pre>
+<hr>
+<h3>5.2 Hive Mind Timezone Fix Patch</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/src/patches/hive-mind-timezone-fix.patch</code></p>
+<ul>
+<li><strong>Line</strong>: 77</li>
+<li><strong>Usage</strong>: Patch file showing better-sqlite3 import</li>
+<li><strong>Migration</strong>: Update patch if needed</li>
+<li><strong>Impact</strong>: None - Documentation only</li>
+</ul>
+<pre><code class="language-diff"># Line 77
++ import Database from &#39;better-sqlite3&#39;;
+</code></pre>
+<hr>
+<h2>6. External Dependencies</h2>
+<h3>6.1 agentic-flow</h3>
+<p><strong>Package</strong>: <code>agentic-flow@^1.9.4</code></p>
+<ul>
+<li><strong>Status</strong>: Optional dependency</li>
+<li><strong>Uses</strong>: better-sqlite3 for ReasoningBank database</li>
+<li><strong>File</strong>: <code>dist/reasoningbank/db/queries.js</code></li>
+<li><strong>Workaround</strong>: Postinstall patch script</li>
+<li><strong>Migration</strong>:<ul>
+<li>Keep as-is (optional dependency)</li>
+<li>Document feature unavailability without better-sqlite3</li>
+<li>Future: Consider contributing sql.js support upstream</li>
+</ul>
+</li>
+</ul>
+<p><strong>Impact</strong>: Medium - Disables ReasoningBank features on Windows</p>
+<hr>
+<h3>6.2 agentdb</h3>
+<p><strong>Package</strong>: <code>agentdb@^1.6.1</code></p>
+<ul>
+<li><strong>Status</strong>: Optional dependency</li>
+<li><strong>Uses</strong>: better-sqlite3 for vector database</li>
+<li><strong>Patch</strong>: <code>patches/agentdb-fix-imports.patch</code></li>
+<li><strong>Migration</strong>:<ul>
+<li>Keep as-is (optional dependency)</li>
+<li>Unlikely to support sql.js (performance requirements)</li>
+<li>Document vector search unavailability without better-sqlite3</li>
+</ul>
+</li>
+</ul>
+<p><strong>Impact</strong>: Medium - Disables vector search on Windows</p>
+<hr>
+<h2>7. Install Scripts</h2>
+<h3>7.1 ARM64 Installation Helper</h3>
+<p><strong>File</strong>: <code>/home/user/claude-flow/scripts/install-arm64.js</code></p>
+<ul>
+<li><strong>Lines</strong>: 9, 11</li>
+<li><strong>Usage</strong>: Test and rebuild better-sqlite3 on macOS ARM64</li>
+<li><strong>Migration</strong>: Add sql.js check as fallback</li>
+<li><strong>Impact</strong>: Low - Platform-specific helper</li>
+</ul>
+<pre><code class="language-javascript">// Line 7-16
+async function checkSqliteBindings() {
+  try {
+    const Database = await import(&#39;better-sqlite3&#39;); // Line 9
+    const db = new Database.default(&#39;:memory:&#39;); // Line 11
+    db.close();
+    return true;
+  } catch (error) {
+    // Silently fail - this is expected when better-sqlite3 doesn&#39;t compile
+    return false;
+  }
+}
+</code></pre>
+<hr>
+<h2>Migration Priority Matrix</h2>
+<h3>Critical Priority (Week 1)</h3>
+<ol>
+<li><strong>sqlite-wrapper.js</strong> - Core abstraction, affects all database operations</li>
+<li><strong>DatabaseManager.ts</strong> - Provider selection logic</li>
+<li><strong>backends/sqlite.ts</strong> - Template for sql.js backend</li>
+</ol>
+<h3>High Priority (Week 2)</h3>
+<ol start="4">
+<li><strong>persistence.ts</strong> - Agent/task persistence</li>
+<li><strong>database-service.ts</strong> - API layer</li>
+<li><strong>error-recovery.ts</strong> - Error handling infrastructure</li>
+</ol>
+<h3>Medium Priority (Week 3)</h3>
+<ol start="7">
+<li><strong>hive-mind-init.js</strong> - Initialization logic</li>
+<li><strong>sqlite-store.js</strong> - MCP memory persistence</li>
+<li>All CLI commands (9 files) - Utilities</li>
+</ol>
+<h3>Low Priority (Week 4)</h3>
+<ol start="10">
+<li><strong>Patches</strong> - Update documentation only</li>
+<li><strong>install-arm64.js</strong> - Platform helper</li>
+<li><strong>External dependencies</strong> - Document limitations</li>
+</ol>
+<hr>
+<h2>Testing Requirements</h2>
+<h3>Per-File Testing</h3>
+<p>Each modified file should have:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Unit tests with sql.js provider</li>
+<li><input disabled="" type="checkbox"> Unit tests with better-sqlite3 provider</li>
+<li><input disabled="" type="checkbox"> Unit tests with JSON fallback</li>
+<li><input disabled="" type="checkbox"> Integration tests for provider switching</li>
+<li><input disabled="" type="checkbox"> Error handling tests</li>
+</ul>
+<h3>Platform Testing</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Windows 10/11 (sql.js primary)</li>
+<li><input disabled="" type="checkbox"> macOS Intel (better-sqlite3 primary)</li>
+<li><input disabled="" type="checkbox"> macOS ARM64 (better-sqlite3 with rebuild)</li>
+<li><input disabled="" type="checkbox"> Linux Ubuntu (better-sqlite3 primary)</li>
+<li><input disabled="" type="checkbox"> Alpine Linux (sql.js fallback)</li>
+<li><input disabled="" type="checkbox"> WSL (mixed environment)</li>
+</ul>
+<hr>
+<h2>Estimated Migration Effort</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Lines to Change</th>
+<th>Complexity</th>
+<th>Hours</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sqlite-wrapper.js</td>
+<td>~100</td>
+<td>High</td>
+<td>8</td>
+</tr>
+<tr>
+<td>DatabaseManager.ts</td>
+<td>~50</td>
+<td>Medium</td>
+<td>4</td>
+</tr>
+<tr>
+<td>backends/sqljs.ts (new)</td>
+<td>~350</td>
+<td>High</td>
+<td>12</td>
+</tr>
+<tr>
+<td>persistence.ts</td>
+<td>~20</td>
+<td>Low</td>
+<td>2</td>
+</tr>
+<tr>
+<td>database-service.ts</td>
+<td>~10</td>
+<td>Low</td>
+<td>1</td>
+</tr>
+<tr>
+<td>error-recovery.ts</td>
+<td>~30</td>
+<td>Medium</td>
+<td>3</td>
+</tr>
+<tr>
+<td>CLI files (9)</td>
+<td>~5 each</td>
+<td>Low</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Tests (new)</td>
+<td>~500</td>
+<td>High</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>N/A</td>
+<td>Medium</td>
+<td>8</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>~1065</strong></td>
+<td><strong>-</strong></td>
+<td><strong>59 hours</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Estimated timeline</strong>: ~8 working days (1 developer)</p>
+<hr>
+<h2>Code Patterns to Replace</h2>
+<h3>Pattern 1: Direct Import</h3>
+<pre><code class="language-javascript">// Before
+import Database from &#39;better-sqlite3&#39;;
+const db = new Database(&#39;path/to/db.sqlite&#39;);
+
+// After
+import { createDatabase } from &#39;./sqlite-wrapper.js&#39;;
+const db = await createDatabase(&#39;path/to/db.sqlite&#39;);
+</code></pre>
+<h3>Pattern 2: Dynamic Import</h3>
+<pre><code class="language-javascript">// Before
+const Database = (await import(&#39;better-sqlite3&#39;)).default;
+
+// After
+const { createDatabase } = await import(&#39;./sqlite-wrapper.js&#39;);
+const db = await createDatabase(dbPath);
+</code></pre>
+<h3>Pattern 3: Require</h3>
+<pre><code class="language-javascript">// Before
+const Database = require(&#39;better-sqlite3&#39;);
+
+// After
+const { createDatabase } = require(&#39;./sqlite-wrapper.js&#39;);
+// (or migrate to ESM)
+</code></pre>
+<hr>
+<h2>Validation Checklist</h2>
+<h3>Pre-Migration</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All 17 files catalogued</li>
+<li><input disabled="" type="checkbox"> Dependencies mapped</li>
+<li><input disabled="" type="checkbox"> Test coverage baseline established</li>
+<li><input disabled="" type="checkbox"> Performance benchmarks collected</li>
+</ul>
+<h3>During Migration</h3>
+<ul>
+<li><input disabled="" type="checkbox"> sqlite-wrapper.js supports sql.js</li>
+<li><input disabled="" type="checkbox"> Provider selection logic implemented</li>
+<li><input disabled="" type="checkbox"> All files migrated to use abstraction</li>
+<li><input disabled="" type="checkbox"> Tests passing on all platforms</li>
+</ul>
+<h3>Post-Migration</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Windows installation success rate &gt;95%</li>
+<li><input disabled="" type="checkbox"> Performance within 2-5x of better-sqlite3</li>
+<li><input disabled="" type="checkbox"> No regressions on Linux/macOS</li>
+<li><input disabled="" type="checkbox"> Documentation updated</li>
+</ul>
+<hr>
+<p><strong>Document Version</strong>: 1.0
+<strong>Last Updated</strong>: 2026-01-03
+<strong>Status</strong>: Complete inventory for migration planning</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

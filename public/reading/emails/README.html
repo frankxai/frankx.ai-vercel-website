@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Email Templates - React Email</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="emails/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Email Templates - React Email</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#emails">emails</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Email Templates - React Email</h1>
+<p>Professional email templates for A/B testing, built with <a href="https://react.email">@react-email/components</a>.</p>
+<h2>5 Template Variants</h2>
+<h3>1. Classic White</h3>
+<ul>
+<li><strong>Style</strong>: White background (#FFFFFF), navy text, simple and clean</li>
+<li><strong>Inspiration</strong>: ConvertKit, Substack</li>
+<li><strong>Best For</strong>: Maximum compatibility across email clients, builds trust</li>
+<li><strong>Use Case</strong>: Professional newsletters, cold outreach</li>
+</ul>
+<h3>2. Modern Light</h3>
+<ul>
+<li><strong>Style</strong>: Light gray background (#F8F9FA), card-based sections with shadows</li>
+<li><strong>Inspiration</strong>: Beehiiv</li>
+<li><strong>Best For</strong>: Visual hierarchy, easy to scan</li>
+<li><strong>Use Case</strong>: Content-heavy emails, multiple CTAs</li>
+</ul>
+<h3>3. Minimal Gradient</h3>
+<ul>
+<li><strong>Style</strong>: White base with emerald gradient header</li>
+<li><strong>Inspiration</strong>: Linear, Notion emails</li>
+<li><strong>Best For</strong>: Contemporary brand feel, focused content</li>
+<li><strong>Use Case</strong>: Product updates, announcements</li>
+</ul>
+<h3>4. Dark Premium</h3>
+<ul>
+<li><strong>Style</strong>: Dark navy (#0F172A) with glassmorphic cards, includes light mode fallback</li>
+<li><strong>Inspiration</strong>: FrankX brand design system</li>
+<li><strong>Best For</strong>: Premium positioning (note: some email clients don&#39;t render dark well)</li>
+<li><strong>Use Case</strong>: Premium product launches, VIP communications</li>
+<li><strong>Warning</strong>: Test extensively before using - dark backgrounds have limited email client support</li>
+</ul>
+<h3>5. Card-Based Modular</h3>
+<ul>
+<li><strong>Style</strong>: White background with distinct colored cards per section</li>
+<li><strong>Inspiration</strong>: Lemon Squeezy</li>
+<li><strong>Best For</strong>: Multiple content blocks, clear CTAs</li>
+<li><strong>Use Case</strong>: Onboarding sequences, feature announcements</li>
+</ul>
+<h2>Quick Start</h2>
+<h3>Render to HTML (for Resend/email delivery)</h3>
+<pre><code class="language-typescript">import { render } from &#39;@react-email/components&#39;;
+import { ClassicWhite } from &#39;./emails&#39;;
+
+const html = await render(
+  &lt;ClassicWhite
+    firstName=&quot;Alex&quot;
+    sourceContext=&quot;after reading one of my articles&quot;
+    downloadLink=&quot;https://frankx.ai/download&quot;
+  /&gt;
+);
+
+// Send via Resend
+import { Resend } from &#39;resend&#39;;
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+await resend.emails.send({
+  from: &#39;Frank &lt;frank@frankx.ai&gt;&#39;,
+  to: &#39;user@example.com&#39;,
+  subject: &quot;Your free AI tool is ready (+ what&#39;s next)&quot;,
+  html,
+});
+</code></pre>
+<h3>Preview in Browser</h3>
+<pre><code class="language-bash"># Install React Email CLI
+npm install -g react-email
+
+# Start preview server
+cd emails
+react-email dev
+</code></pre>
+<p>Then open <code>http://localhost:3000</code> to preview all templates.</p>
+<h2>Template Props</h2>
+<p>All variants accept the same props:</p>
+<pre><code class="language-typescript">interface EmailProps {
+  firstName?: string;          // Default: &quot;there&quot;
+  sourceContext?: string;      // Default: &quot;to stay updated&quot;
+  downloadLink?: string;       // Default: &quot;https://frankx.ai/download&quot;
+  unsubscribeUrl?: string;     // Default: &quot;https://frankx.ai/unsubscribe&quot;
+}
+</code></pre>
+<h2>File Structure</h2>
+<pre><code>emails/
+├── variants/               # 5 template variants
+│   ├── ClassicWhite.tsx
+│   ├── ModernLight.tsx
+│   ├── MinimalGradient.tsx
+│   ├── DarkPremium.tsx
+│   └── CardBased.tsx
+├── components/             # Shared components
+│   ├── EmailHeader.tsx
+│   ├── EmailFooter.tsx
+│   └── EmailButton.tsx
+├── preview/                # Preview wrapper
+│   └── WelcomeEmail.tsx
+├── index.ts               # Exports + metadata
+└── README.md
+</code></pre>
+<h2>A/B Testing Strategy</h2>
+<h3>Recommended Test Sequence</h3>
+<ol>
+<li><strong>Week 1</strong>: Test Classic White vs Modern Light (safe baseline)</li>
+<li><strong>Week 2</strong>: Test winner vs Minimal Gradient (brand alignment)</li>
+<li><strong>Week 3</strong>: Test winner vs Card-Based (CTA optimization)</li>
+<li><strong>Week 4</strong>: Test Dark Premium (if brand positioning justifies risk)</li>
+</ol>
+<h3>Key Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Open Rate</td>
+<td>&gt;40%</td>
+<td>Opens / Delivered</td>
+</tr>
+<tr>
+<td>Click Rate</td>
+<td>&gt;8%</td>
+<td>Clicks / Opens</td>
+</tr>
+<tr>
+<td>Unsubscribe</td>
+<td>&lt;2%</td>
+<td>Unsubs / Delivered</td>
+</tr>
+<tr>
+<td>Conversion</td>
+<td>&gt;3%</td>
+<td>Conversions / Clicks</td>
+</tr>
+</tbody></table>
+<h3>Testing Tools</h3>
+<ul>
+<li><strong>Resend</strong>: Built-in A/B testing (50/50 split)</li>
+<li><strong>Litmus</strong>: Email client rendering tests</li>
+<li><strong>Email on Acid</strong>: Cross-client compatibility</li>
+</ul>
+<h2>Email Client Compatibility</h2>
+<h3>✅ Excellent Support (All variants)</h3>
+<ul>
+<li>Apple Mail (macOS/iOS)</li>
+<li>Gmail (web, iOS, Android)</li>
+<li>Outlook (web)</li>
+<li>Yahoo Mail</li>
+<li>ProtonMail</li>
+</ul>
+<h3>⚠️ Limited Support</h3>
+<ul>
+<li>Outlook 2016-2021 (Windows) - Use Classic White or Card-Based</li>
+<li>Dark Premium - Some clients force light backgrounds</li>
+</ul>
+<h3>Test Before Sending</h3>
+<p>Always preview in multiple clients before production:</p>
+<pre><code class="language-bash"># Using Litmus or Email on Acid
+# 1. Render to HTML
+# 2. Send test to preview@litmus.com or similar
+# 3. Check rendering across 70+ clients
+</code></pre>
+<h2>Customization</h2>
+<h3>Brand Colors</h3>
+<p>Edit in each template file:</p>
+<pre><code class="language-typescript">// Primary brand color (emerald green)
+color: &#39;#10B981&#39;
+
+// Dark brand color
+backgroundColor: &#39;#0F172A&#39;
+
+// Accent colors
+color: &#39;#059669&#39;  // Darker emerald
+color: &#39;#34D399&#39;  // Lighter emerald
+</code></pre>
+<h3>Typography</h3>
+<p>All templates use system font stack:</p>
+<pre><code class="language-css">font-family: &#39;-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif&#39;
+</code></pre>
+<h3>Button Styles</h3>
+<p>Modify <code>components/EmailButton.tsx</code>:</p>
+<ul>
+<li><code>variant=&quot;primary&quot;</code> - Emerald background</li>
+<li><code>variant=&quot;secondary&quot;</code> - Dark background</li>
+<li><code>variant=&quot;ghost&quot;</code> - Transparent with border</li>
+</ul>
+<h2>Production Checklist</h2>
+<p>Before sending to real users:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Test all links (download, unsubscribe, website)</li>
+<li><input disabled="" type="checkbox"> Verify variables render correctly (firstName, sourceContext)</li>
+<li><input disabled="" type="checkbox"> Check mobile responsive (test on iOS + Android)</li>
+<li><input disabled="" type="checkbox"> Preview in 5+ email clients</li>
+<li><input disabled="" type="checkbox"> Validate HTML (no broken tags)</li>
+<li><input disabled="" type="checkbox"> Check spam score (use Mail Tester)</li>
+<li><input disabled="" type="checkbox"> Add alt text to images (if any)</li>
+<li><input disabled="" type="checkbox"> Verify unsubscribe link works</li>
+<li><input disabled="" type="checkbox"> Test with real email address first</li>
+</ul>
+<h2>Next Steps</h2>
+<ol>
+<li><strong>Choose winner from A/B test</strong></li>
+<li><strong>Create remaining 4 welcome series emails</strong> (Days 3, 7, 14, 30)</li>
+<li><strong>Build nurture campaigns</strong> (weekly newsletter template)</li>
+<li><strong>Add transactional emails</strong> (purchase confirmation, password reset)</li>
+</ol>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://react.email">React Email Docs</a></li>
+<li><a href="https://resend.com/docs">Resend API</a></li>
+<li><a href="https://www.goodemailcode.com">Email Design Best Practices</a></li>
+<li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/">WCAG Email Accessibility</a></li>
+</ul>
+<hr>
+<p><strong>Template Author</strong>: FrankX Email Team
+<strong>Last Updated</strong>: 2026-02-16
+<strong>Version</strong>: 1.0.0</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

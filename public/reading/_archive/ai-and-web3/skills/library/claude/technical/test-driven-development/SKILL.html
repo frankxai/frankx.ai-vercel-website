@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Test-Driven Development (TDD)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/test-driven-development/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Test-Driven Development (TDD)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Ftest-driven-development">test-driven-development</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Test-Driven Development
+description: Enforce RED-GREEN-REFACTOR cycle for reliable, maintainable code
+version: 1.0.0
+source: Adapted from obra/superpowers</h2>
+<h1>Test-Driven Development (TDD)</h1>
+<h2>The Fundamental Rule</h2>
+<p><strong>NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST.</strong></p>
+<p>This is non-negotiable. Code written before tests must be deleted and rewritten with tests first.</p>
+<h2>Why TDD Matters</h2>
+<p>Testing after implementation provides <strong>false confidence</strong>:</p>
+<ul>
+<li>Tests pass immediately (proves nothing)</li>
+<li>No verification that tests catch regressions</li>
+<li>Untested edge cases slip through</li>
+</ul>
+<p>TDD ensures every line of production code is <strong>proven necessary</strong> by a failing test.</p>
+<h2>The RED-GREEN-REFACTOR Cycle</h2>
+<h3>1. RED - Write a Failing Test</h3>
+<pre><code class="language-typescript">// Write the test FIRST
+describe(&#39;calculateTotal&#39;, () =&gt; {
+  it(&#39;should sum items with tax&#39;, () =&gt; {
+    const items = [{ price: 100 }, { price: 50 }];
+    const result = calculateTotal(items, 0.08);
+    expect(result).toBe(162); // 150 + 12 tax
+  });
+});
+</code></pre>
+<p>Run the test. It MUST fail. If it passes, you&#39;re testing existing code (wrong).</p>
+<h3>2. Verify RED</h3>
+<p>Confirm failure is for the <strong>right reason</strong>:</p>
+<ul>
+<li>✅ &quot;calculateTotal is not defined&quot; - Correct, function doesn&#39;t exist</li>
+<li>❌ &quot;SyntaxError in test file&quot; - Fix test, not production code</li>
+</ul>
+<h3>3. GREEN - Minimal Implementation</h3>
+<p>Write the <strong>simplest code</strong> that makes the test pass:</p>
+<pre><code class="language-typescript">function calculateTotal(items: Item[], taxRate: number): number {
+  const subtotal = items.reduce((sum, item) =&gt; sum + item.price, 0);
+  return subtotal + (subtotal * taxRate);
+}
+</code></pre>
+<h3>4. Verify GREEN</h3>
+<ul>
+<li>All tests pass</li>
+<li>No regressions introduced</li>
+<li>Coverage increased</li>
+</ul>
+<h3>5. REFACTOR</h3>
+<p>Improve code quality while keeping tests green:</p>
+<ul>
+<li>Extract functions</li>
+<li>Rename for clarity</li>
+<li>Remove duplication</li>
+<li>Improve performance</li>
+</ul>
+<h2>Common Rationalizations (Reject All)</h2>
+<table>
+<thead>
+<tr>
+<th>Excuse</th>
+<th>Reality</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;I&#39;ll test after&quot;</td>
+<td>Tests passing immediately prove nothing</td>
+</tr>
+<tr>
+<td>&quot;Already manually tested&quot;</td>
+<td>Manual testing isn&#39;t systematic or repeatable</td>
+</tr>
+<tr>
+<td>&quot;Deleting work is wasteful&quot;</td>
+<td>Sunk cost fallacy; unverified code is debt</td>
+</tr>
+<tr>
+<td>&quot;Too simple to test&quot;</td>
+<td>Simple code breaks too; testing takes seconds</td>
+</tr>
+<tr>
+<td>&quot;Keep existing as reference&quot;</td>
+<td>You&#39;ll adapt it; that&#39;s testing after</td>
+</tr>
+</tbody></table>
+<h2>Red Flags - Stop Immediately</h2>
+<ul>
+<li>Writing code before tests</li>
+<li>Tests passing on first run</li>
+<li>Any &quot;just this once&quot; rationalization</li>
+<li>Skipping the verify steps</li>
+</ul>
+<h2>FrankX Application</h2>
+<h3>For Next.js Components</h3>
+<pre><code class="language-typescript">// 1. RED - Write test first
+describe(&#39;EmailSignup&#39;, () =&gt; {
+  it(&#39;should show error for invalid email&#39;, async () =&gt; {
+    render(&lt;EmailSignup /&gt;);
+    await userEvent.type(screen.getByRole(&#39;textbox&#39;), &#39;invalid&#39;);
+    await userEvent.click(screen.getByRole(&#39;button&#39;));
+    expect(screen.getByText(/invalid email/i)).toBeInTheDocument();
+  });
+});
+
+// 2. GREEN - Implement component
+// 3. REFACTOR - Clean up
+</code></pre>
+<h3>For API Routes</h3>
+<pre><code class="language-typescript">// 1. RED
+describe(&#39;POST /api/subscribe&#39;, () =&gt; {
+  it(&#39;should return 400 for invalid email&#39;, async () =&gt; {
+    const response = await POST({ json: () =&gt; ({ email: &#39;bad&#39; }) });
+    expect(response.status).toBe(400);
+  });
+});
+
+// 2. GREEN - Implement route
+// 3. REFACTOR
+</code></pre>
+<h2>Test File Organization</h2>
+<pre><code>project/
+├── app/
+│   └── api/
+│       └── subscribe/
+│           └── route.ts
+├── tests/
+│   ├── unit/           # Fast, isolated tests
+│   │   └── api/
+│   │       └── subscribe.test.ts
+│   ├── integration/    # Cross-component tests
+│   └── e2e/           # Playwright tests
+│       └── subscribe.spec.ts
+</code></pre>
+<h2>Commands</h2>
+<pre><code class="language-bash"># Run tests in watch mode
+npm test -- --watch
+
+# Run specific test file
+npm test -- api/subscribe.test.ts
+
+# Run with coverage
+npm test -- --coverage
+</code></pre>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Writing any new feature</li>
+<li>Fixing bugs (write failing test FIRST)</li>
+<li>Refactoring (ensure tests exist)</li>
+<li>Code reviews (verify TDD was followed)</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>systematic-debugging</code> - When tests reveal bugs</li>
+<li><code>webapp-testing</code> - For Playwright e2e tests</li>
+<li><code>implementation-planning</code> - Plans include TDD steps</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

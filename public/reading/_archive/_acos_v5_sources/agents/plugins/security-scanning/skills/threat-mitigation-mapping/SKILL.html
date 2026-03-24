@@ -1,0 +1,802 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Threat Mitigation Mapping</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/security-scanning/skills/threat-mitigation-mapping/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Threat Mitigation Mapping</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning">security-scanning</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fsecurity-scanning%2Fskills%2Fthreat-mitigation-mapping">threat-mitigation-mapping</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: threat-mitigation-mapping
+description: Map identified threats to appropriate security controls and mitigations. Use when prioritizing security investments, creating remediation plans, or validating control effectiveness.</h2>
+<h1>Threat Mitigation Mapping</h1>
+<p>Connect threats to controls for effective security planning.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Prioritizing security investments</li>
+<li>Creating remediation roadmaps</li>
+<li>Validating control coverage</li>
+<li>Designing defense-in-depth</li>
+<li>Security architecture review</li>
+<li>Risk treatment planning</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Control Categories</h3>
+<pre><code>Preventive ────► Stop attacks before they occur
+   │              (Firewall, Input validation)
+   │
+Detective ─────► Identify attacks in progress
+   │              (IDS, Log monitoring)
+   │
+Corrective ────► Respond and recover from attacks
+                  (Incident response, Backup restore)
+</code></pre>
+<h3>2. Control Layers</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Network</strong></td>
+<td>Firewall, WAF, DDoS protection</td>
+</tr>
+<tr>
+<td><strong>Application</strong></td>
+<td>Input validation, authentication</td>
+</tr>
+<tr>
+<td><strong>Data</strong></td>
+<td>Encryption, access controls</td>
+</tr>
+<tr>
+<td><strong>Endpoint</strong></td>
+<td>EDR, patch management</td>
+</tr>
+<tr>
+<td><strong>Process</strong></td>
+<td>Security training, incident response</td>
+</tr>
+</tbody></table>
+<h3>3. Defense in Depth</h3>
+<pre><code>                    ┌──────────────────────┐
+                    │      Perimeter       │ ← Firewall, WAF
+                    │   ┌──────────────┐   │
+                    │   │   Network    │   │ ← Segmentation, IDS
+                    │   │  ┌────────┐  │   │
+                    │   │  │  Host  │  │   │ ← EDR, Hardening
+                    │   │  │ ┌────┐ │  │   │
+                    │   │  │ │App │ │  │   │ ← Auth, Validation
+                    │   │  │ │Data│ │  │   │ ← Encryption
+                    │   │  │ └────┘ │  │   │
+                    │   │  └────────┘  │   │
+                    │   └──────────────┘   │
+                    └──────────────────────┘
+</code></pre>
+<h2>Templates</h2>
+<h3>Template 1: Mitigation Model</h3>
+<pre><code class="language-python">from dataclasses import dataclass, field
+from enum import Enum
+from typing import List, Dict, Optional, Set
+from datetime import datetime
+
+class ControlType(Enum):
+    PREVENTIVE = &quot;preventive&quot;
+    DETECTIVE = &quot;detective&quot;
+    CORRECTIVE = &quot;corrective&quot;
+
+
+class ControlLayer(Enum):
+    NETWORK = &quot;network&quot;
+    APPLICATION = &quot;application&quot;
+    DATA = &quot;data&quot;
+    ENDPOINT = &quot;endpoint&quot;
+    PROCESS = &quot;process&quot;
+    PHYSICAL = &quot;physical&quot;
+
+
+class ImplementationStatus(Enum):
+    NOT_IMPLEMENTED = &quot;not_implemented&quot;
+    PARTIAL = &quot;partial&quot;
+    IMPLEMENTED = &quot;implemented&quot;
+    VERIFIED = &quot;verified&quot;
+
+
+class Effectiveness(Enum):
+    NONE = 0
+    LOW = 1
+    MEDIUM = 2
+    HIGH = 3
+    VERY_HIGH = 4
+
+
+@dataclass
+class SecurityControl:
+    id: str
+    name: str
+    description: str
+    control_type: ControlType
+    layer: ControlLayer
+    effectiveness: Effectiveness
+    implementation_cost: str  # Low, Medium, High
+    maintenance_cost: str
+    status: ImplementationStatus = ImplementationStatus.NOT_IMPLEMENTED
+    mitigates_threats: List[str] = field(default_factory=list)
+    dependencies: List[str] = field(default_factory=list)
+    technologies: List[str] = field(default_factory=list)
+    compliance_refs: List[str] = field(default_factory=list)
+
+    def coverage_score(self) -&gt; float:
+        &quot;&quot;&quot;Calculate coverage score based on status and effectiveness.&quot;&quot;&quot;
+        status_multiplier = {
+            ImplementationStatus.NOT_IMPLEMENTED: 0.0,
+            ImplementationStatus.PARTIAL: 0.5,
+            ImplementationStatus.IMPLEMENTED: 0.8,
+            ImplementationStatus.VERIFIED: 1.0,
+        }
+        return self.effectiveness.value * status_multiplier[self.status]
+
+
+@dataclass
+class Threat:
+    id: str
+    name: str
+    category: str  # STRIDE category
+    description: str
+    impact: str  # Critical, High, Medium, Low
+    likelihood: str
+    risk_score: float
+
+
+@dataclass
+class MitigationMapping:
+    threat: Threat
+    controls: List[SecurityControl]
+    residual_risk: str = &quot;Unknown&quot;
+    notes: str = &quot;&quot;
+
+    def calculate_coverage(self) -&gt; float:
+        &quot;&quot;&quot;Calculate how well controls cover the threat.&quot;&quot;&quot;
+        if not self.controls:
+            return 0.0
+
+        total_score = sum(c.coverage_score() for c in self.controls)
+        max_possible = len(self.controls) * Effectiveness.VERY_HIGH.value
+
+        return (total_score / max_possible) * 100 if max_possible &gt; 0 else 0
+
+    def has_defense_in_depth(self) -&gt; bool:
+        &quot;&quot;&quot;Check if multiple layers are covered.&quot;&quot;&quot;
+        layers = set(c.layer for c in self.controls if c.status != ImplementationStatus.NOT_IMPLEMENTED)
+        return len(layers) &gt;= 2
+
+    def has_control_diversity(self) -&gt; bool:
+        &quot;&quot;&quot;Check if multiple control types are present.&quot;&quot;&quot;
+        types = set(c.control_type for c in self.controls if c.status != ImplementationStatus.NOT_IMPLEMENTED)
+        return len(types) &gt;= 2
+
+
+@dataclass
+class MitigationPlan:
+    name: str
+    threats: List[Threat] = field(default_factory=list)
+    controls: List[SecurityControl] = field(default_factory=list)
+    mappings: List[MitigationMapping] = field(default_factory=list)
+
+    def get_unmapped_threats(self) -&gt; List[Threat]:
+        &quot;&quot;&quot;Find threats without mitigations.&quot;&quot;&quot;
+        mapped_ids = {m.threat.id for m in self.mappings}
+        return [t for t in self.threats if t.id not in mapped_ids]
+
+    def get_control_coverage(self) -&gt; Dict[str, float]:
+        &quot;&quot;&quot;Get coverage percentage for each threat.&quot;&quot;&quot;
+        return {
+            m.threat.id: m.calculate_coverage()
+            for m in self.mappings
+        }
+
+    def get_gaps(self) -&gt; List[Dict]:
+        &quot;&quot;&quot;Identify mitigation gaps.&quot;&quot;&quot;
+        gaps = []
+        for mapping in self.mappings:
+            coverage = mapping.calculate_coverage()
+            if coverage &lt; 50:
+                gaps.append({
+                    &quot;threat&quot;: mapping.threat.id,
+                    &quot;threat_name&quot;: mapping.threat.name,
+                    &quot;coverage&quot;: coverage,
+                    &quot;issue&quot;: &quot;Insufficient control coverage&quot;,
+                    &quot;recommendation&quot;: &quot;Add more controls or improve existing ones&quot;
+                })
+            if not mapping.has_defense_in_depth():
+                gaps.append({
+                    &quot;threat&quot;: mapping.threat.id,
+                    &quot;threat_name&quot;: mapping.threat.name,
+                    &quot;coverage&quot;: coverage,
+                    &quot;issue&quot;: &quot;No defense in depth&quot;,
+                    &quot;recommendation&quot;: &quot;Add controls at different layers&quot;
+                })
+            if not mapping.has_control_diversity():
+                gaps.append({
+                    &quot;threat&quot;: mapping.threat.id,
+                    &quot;threat_name&quot;: mapping.threat.name,
+                    &quot;coverage&quot;: coverage,
+                    &quot;issue&quot;: &quot;No control diversity&quot;,
+                    &quot;recommendation&quot;: &quot;Add detective/corrective controls&quot;
+                })
+        return gaps
+</code></pre>
+<h3>Template 2: Control Library</h3>
+<pre><code class="language-python">class ControlLibrary:
+    &quot;&quot;&quot;Library of standard security controls.&quot;&quot;&quot;
+
+    STANDARD_CONTROLS = {
+        # Authentication Controls
+        &quot;AUTH-001&quot;: SecurityControl(
+            id=&quot;AUTH-001&quot;,
+            name=&quot;Multi-Factor Authentication&quot;,
+            description=&quot;Require MFA for all user authentication&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.APPLICATION,
+            effectiveness=Effectiveness.HIGH,
+            implementation_cost=&quot;Medium&quot;,
+            maintenance_cost=&quot;Low&quot;,
+            mitigates_threats=[&quot;SPOOFING&quot;],
+            technologies=[&quot;TOTP&quot;, &quot;WebAuthn&quot;, &quot;SMS OTP&quot;],
+            compliance_refs=[&quot;PCI-DSS 8.3&quot;, &quot;NIST 800-63B&quot;]
+        ),
+        &quot;AUTH-002&quot;: SecurityControl(
+            id=&quot;AUTH-002&quot;,
+            name=&quot;Account Lockout Policy&quot;,
+            description=&quot;Lock accounts after failed authentication attempts&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.APPLICATION,
+            effectiveness=Effectiveness.MEDIUM,
+            implementation_cost=&quot;Low&quot;,
+            maintenance_cost=&quot;Low&quot;,
+            mitigates_threats=[&quot;SPOOFING&quot;],
+            technologies=[&quot;Custom implementation&quot;],
+            compliance_refs=[&quot;PCI-DSS 8.1.6&quot;]
+        ),
+
+        # Input Validation Controls
+        &quot;VAL-001&quot;: SecurityControl(
+            id=&quot;VAL-001&quot;,
+            name=&quot;Input Validation Framework&quot;,
+            description=&quot;Validate and sanitize all user input&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.APPLICATION,
+            effectiveness=Effectiveness.HIGH,
+            implementation_cost=&quot;Medium&quot;,
+            maintenance_cost=&quot;Medium&quot;,
+            mitigates_threats=[&quot;TAMPERING&quot;, &quot;INJECTION&quot;],
+            technologies=[&quot;Joi&quot;, &quot;Yup&quot;, &quot;Pydantic&quot;],
+            compliance_refs=[&quot;OWASP ASVS V5&quot;]
+        ),
+        &quot;VAL-002&quot;: SecurityControl(
+            id=&quot;VAL-002&quot;,
+            name=&quot;Web Application Firewall&quot;,
+            description=&quot;Deploy WAF to filter malicious requests&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.NETWORK,
+            effectiveness=Effectiveness.MEDIUM,
+            implementation_cost=&quot;Medium&quot;,
+            maintenance_cost=&quot;Medium&quot;,
+            mitigates_threats=[&quot;TAMPERING&quot;, &quot;INJECTION&quot;, &quot;DOS&quot;],
+            technologies=[&quot;AWS WAF&quot;, &quot;Cloudflare&quot;, &quot;ModSecurity&quot;],
+            compliance_refs=[&quot;PCI-DSS 6.6&quot;]
+        ),
+
+        # Encryption Controls
+        &quot;ENC-001&quot;: SecurityControl(
+            id=&quot;ENC-001&quot;,
+            name=&quot;Data Encryption at Rest&quot;,
+            description=&quot;Encrypt sensitive data in storage&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.DATA,
+            effectiveness=Effectiveness.HIGH,
+            implementation_cost=&quot;Medium&quot;,
+            maintenance_cost=&quot;Low&quot;,
+            mitigates_threats=[&quot;INFORMATION_DISCLOSURE&quot;],
+            technologies=[&quot;AES-256&quot;, &quot;KMS&quot;, &quot;HSM&quot;],
+            compliance_refs=[&quot;PCI-DSS 3.4&quot;, &quot;GDPR Art. 32&quot;]
+        ),
+        &quot;ENC-002&quot;: SecurityControl(
+            id=&quot;ENC-002&quot;,
+            name=&quot;TLS Encryption&quot;,
+            description=&quot;Encrypt data in transit using TLS 1.3&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.NETWORK,
+            effectiveness=Effectiveness.HIGH,
+            implementation_cost=&quot;Low&quot;,
+            maintenance_cost=&quot;Low&quot;,
+            mitigates_threats=[&quot;INFORMATION_DISCLOSURE&quot;, &quot;TAMPERING&quot;],
+            technologies=[&quot;TLS 1.3&quot;, &quot;Certificate management&quot;],
+            compliance_refs=[&quot;PCI-DSS 4.1&quot;, &quot;HIPAA&quot;]
+        ),
+
+        # Logging Controls
+        &quot;LOG-001&quot;: SecurityControl(
+            id=&quot;LOG-001&quot;,
+            name=&quot;Security Event Logging&quot;,
+            description=&quot;Log all security-relevant events&quot;,
+            control_type=ControlType.DETECTIVE,
+            layer=ControlLayer.APPLICATION,
+            effectiveness=Effectiveness.MEDIUM,
+            implementation_cost=&quot;Low&quot;,
+            maintenance_cost=&quot;Medium&quot;,
+            mitigates_threats=[&quot;REPUDIATION&quot;],
+            technologies=[&quot;ELK Stack&quot;, &quot;Splunk&quot;, &quot;CloudWatch&quot;],
+            compliance_refs=[&quot;PCI-DSS 10.2&quot;, &quot;SOC2&quot;]
+        ),
+        &quot;LOG-002&quot;: SecurityControl(
+            id=&quot;LOG-002&quot;,
+            name=&quot;Log Integrity Protection&quot;,
+            description=&quot;Protect logs from tampering&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.DATA,
+            effectiveness=Effectiveness.MEDIUM,
+            implementation_cost=&quot;Medium&quot;,
+            maintenance_cost=&quot;Low&quot;,
+            mitigates_threats=[&quot;REPUDIATION&quot;, &quot;TAMPERING&quot;],
+            technologies=[&quot;Immutable storage&quot;, &quot;Log signing&quot;],
+            compliance_refs=[&quot;PCI-DSS 10.5&quot;]
+        ),
+
+        # Access Control
+        &quot;ACC-001&quot;: SecurityControl(
+            id=&quot;ACC-001&quot;,
+            name=&quot;Role-Based Access Control&quot;,
+            description=&quot;Implement RBAC for authorization&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.APPLICATION,
+            effectiveness=Effectiveness.HIGH,
+            implementation_cost=&quot;Medium&quot;,
+            maintenance_cost=&quot;Medium&quot;,
+            mitigates_threats=[&quot;ELEVATION_OF_PRIVILEGE&quot;, &quot;INFORMATION_DISCLOSURE&quot;],
+            technologies=[&quot;RBAC&quot;, &quot;ABAC&quot;, &quot;Policy engines&quot;],
+            compliance_refs=[&quot;PCI-DSS 7.1&quot;, &quot;SOC2&quot;]
+        ),
+
+        # Availability Controls
+        &quot;AVL-001&quot;: SecurityControl(
+            id=&quot;AVL-001&quot;,
+            name=&quot;Rate Limiting&quot;,
+            description=&quot;Limit request rates to prevent abuse&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.APPLICATION,
+            effectiveness=Effectiveness.MEDIUM,
+            implementation_cost=&quot;Low&quot;,
+            maintenance_cost=&quot;Low&quot;,
+            mitigates_threats=[&quot;DENIAL_OF_SERVICE&quot;],
+            technologies=[&quot;API Gateway&quot;, &quot;Redis&quot;, &quot;Token bucket&quot;],
+            compliance_refs=[&quot;OWASP API Security&quot;]
+        ),
+        &quot;AVL-002&quot;: SecurityControl(
+            id=&quot;AVL-002&quot;,
+            name=&quot;DDoS Protection&quot;,
+            description=&quot;Deploy DDoS mitigation services&quot;,
+            control_type=ControlType.PREVENTIVE,
+            layer=ControlLayer.NETWORK,
+            effectiveness=Effectiveness.HIGH,
+            implementation_cost=&quot;High&quot;,
+            maintenance_cost=&quot;Medium&quot;,
+            mitigates_threats=[&quot;DENIAL_OF_SERVICE&quot;],
+            technologies=[&quot;Cloudflare&quot;, &quot;AWS Shield&quot;, &quot;Akamai&quot;],
+            compliance_refs=[&quot;NIST CSF&quot;]
+        ),
+    }
+
+    def get_controls_for_threat(self, threat_category: str) -&gt; List[SecurityControl]:
+        &quot;&quot;&quot;Get all controls that mitigate a threat category.&quot;&quot;&quot;
+        return [
+            c for c in self.STANDARD_CONTROLS.values()
+            if threat_category in c.mitigates_threats
+        ]
+
+    def get_controls_by_layer(self, layer: ControlLayer) -&gt; List[SecurityControl]:
+        &quot;&quot;&quot;Get controls for a specific layer.&quot;&quot;&quot;
+        return [c for c in self.STANDARD_CONTROLS.values() if c.layer == layer]
+
+    def get_control(self, control_id: str) -&gt; Optional[SecurityControl]:
+        &quot;&quot;&quot;Get a specific control by ID.&quot;&quot;&quot;
+        return self.STANDARD_CONTROLS.get(control_id)
+
+    def recommend_controls(
+        self,
+        threat: Threat,
+        existing_controls: List[str]
+    ) -&gt; List[SecurityControl]:
+        &quot;&quot;&quot;Recommend additional controls for a threat.&quot;&quot;&quot;
+        available = self.get_controls_for_threat(threat.category)
+        return [c for c in available if c.id not in existing_controls]
+</code></pre>
+<h3>Template 3: Mitigation Analysis</h3>
+<pre><code class="language-python">class MitigationAnalyzer:
+    &quot;&quot;&quot;Analyze and optimize mitigation strategies.&quot;&quot;&quot;
+
+    def __init__(self, plan: MitigationPlan, library: ControlLibrary):
+        self.plan = plan
+        self.library = library
+
+    def calculate_overall_risk_reduction(self) -&gt; float:
+        &quot;&quot;&quot;Calculate overall risk reduction percentage.&quot;&quot;&quot;
+        if not self.plan.mappings:
+            return 0.0
+
+        weighted_coverage = 0
+        total_weight = 0
+
+        for mapping in self.plan.mappings:
+            # Weight by threat risk score
+            weight = mapping.threat.risk_score
+            coverage = mapping.calculate_coverage()
+            weighted_coverage += weight * coverage
+            total_weight += weight
+
+        return weighted_coverage / total_weight if total_weight &gt; 0 else 0
+
+    def get_critical_gaps(self) -&gt; List[Dict]:
+        &quot;&quot;&quot;Find critical gaps that need immediate attention.&quot;&quot;&quot;
+        gaps = self.plan.get_gaps()
+        critical_threats = {t.id for t in self.plan.threats if t.impact == &quot;Critical&quot;}
+
+        return [g for g in gaps if g[&quot;threat&quot;] in critical_threats]
+
+    def optimize_budget(
+        self,
+        budget: float,
+        cost_map: Dict[str, float]
+    ) -&gt; List[SecurityControl]:
+        &quot;&quot;&quot;Select controls that maximize risk reduction within budget.&quot;&quot;&quot;
+        # Simple greedy approach - can be replaced with optimization algorithm
+        recommended = []
+        remaining_budget = budget
+        unmapped = self.plan.get_unmapped_threats()
+
+        # Sort controls by effectiveness/cost ratio
+        all_controls = list(self.library.STANDARD_CONTROLS.values())
+        controls_with_value = []
+
+        for control in all_controls:
+            if control.status == ImplementationStatus.NOT_IMPLEMENTED:
+                cost = cost_map.get(control.id, float(&#39;inf&#39;))
+                if cost &lt;= remaining_budget:
+                    # Calculate value as threats covered * effectiveness / cost
+                    threats_covered = len([
+                        t for t in unmapped
+                        if t.category in control.mitigates_threats
+                    ])
+                    if threats_covered &gt; 0:
+                        value = (threats_covered * control.effectiveness.value) / cost
+                        controls_with_value.append((control, value, cost))
+
+        # Sort by value (higher is better)
+        controls_with_value.sort(key=lambda x: x[1], reverse=True)
+
+        for control, value, cost in controls_with_value:
+            if cost &lt;= remaining_budget:
+                recommended.append(control)
+                remaining_budget -= cost
+
+        return recommended
+
+    def generate_roadmap(self) -&gt; List[Dict]:
+        &quot;&quot;&quot;Generate implementation roadmap by priority.&quot;&quot;&quot;
+        roadmap = []
+        gaps = self.plan.get_gaps()
+
+        # Phase 1: Critical threats with low coverage
+        phase1 = []
+        for gap in gaps:
+            mapping = next(
+                (m for m in self.plan.mappings if m.threat.id == gap[&quot;threat&quot;]),
+                None
+            )
+            if mapping and mapping.threat.impact == &quot;Critical&quot;:
+                controls = self.library.get_controls_for_threat(mapping.threat.category)
+                phase1.extend([
+                    {
+                        &quot;threat&quot;: gap[&quot;threat&quot;],
+                        &quot;control&quot;: c.id,
+                        &quot;control_name&quot;: c.name,
+                        &quot;phase&quot;: 1,
+                        &quot;priority&quot;: &quot;Critical&quot;
+                    }
+                    for c in controls
+                    if c.status == ImplementationStatus.NOT_IMPLEMENTED
+                ])
+
+        roadmap.extend(phase1[:5])  # Top 5 for phase 1
+
+        # Phase 2: High impact threats
+        phase2 = []
+        for gap in gaps:
+            mapping = next(
+                (m for m in self.plan.mappings if m.threat.id == gap[&quot;threat&quot;]),
+                None
+            )
+            if mapping and mapping.threat.impact == &quot;High&quot;:
+                controls = self.library.get_controls_for_threat(mapping.threat.category)
+                phase2.extend([
+                    {
+                        &quot;threat&quot;: gap[&quot;threat&quot;],
+                        &quot;control&quot;: c.id,
+                        &quot;control_name&quot;: c.name,
+                        &quot;phase&quot;: 2,
+                        &quot;priority&quot;: &quot;High&quot;
+                    }
+                    for c in controls
+                    if c.status == ImplementationStatus.NOT_IMPLEMENTED
+                ])
+
+        roadmap.extend(phase2[:5])  # Top 5 for phase 2
+
+        return roadmap
+
+    def defense_in_depth_analysis(self) -&gt; Dict[str, List[str]]:
+        &quot;&quot;&quot;Analyze defense in depth coverage.&quot;&quot;&quot;
+        layer_coverage = {layer.value: [] for layer in ControlLayer}
+
+        for mapping in self.plan.mappings:
+            for control in mapping.controls:
+                if control.status in [ImplementationStatus.IMPLEMENTED, ImplementationStatus.VERIFIED]:
+                    layer_coverage[control.layer.value].append(control.id)
+
+        return layer_coverage
+
+    def generate_report(self) -&gt; str:
+        &quot;&quot;&quot;Generate comprehensive mitigation report.&quot;&quot;&quot;
+        risk_reduction = self.calculate_overall_risk_reduction()
+        gaps = self.plan.get_gaps()
+        critical_gaps = self.get_critical_gaps()
+        layer_coverage = self.defense_in_depth_analysis()
+
+        report = f&quot;&quot;&quot;
+# Threat Mitigation Report
+
+## Executive Summary
+- **Overall Risk Reduction:** {risk_reduction:.1f}%
+- **Total Threats:** {len(self.plan.threats)}
+- **Total Controls:** {len(self.plan.controls)}
+- **Identified Gaps:** {len(gaps)}
+- **Critical Gaps:** {len(critical_gaps)}
+
+## Defense in Depth Coverage
+{self._format_layer_coverage(layer_coverage)}
+
+## Critical Gaps Requiring Immediate Action
+{self._format_gaps(critical_gaps)}
+
+## Recommendations
+{self._format_recommendations()}
+
+## Implementation Roadmap
+{self._format_roadmap()}
+&quot;&quot;&quot;
+        return report
+
+    def _format_layer_coverage(self, coverage: Dict[str, List[str]]) -&gt; str:
+        lines = []
+        for layer, controls in coverage.items():
+            status = &quot;✓&quot; if controls else &quot;✗&quot;
+            lines.append(f&quot;- {layer}: {status} ({len(controls)} controls)&quot;)
+        return &quot;\n&quot;.join(lines)
+
+    def _format_gaps(self, gaps: List[Dict]) -&gt; str:
+        if not gaps:
+            return &quot;No critical gaps identified.&quot;
+        lines = []
+        for gap in gaps:
+            lines.append(f&quot;- **{gap[&#39;threat_name&#39;]}**: {gap[&#39;issue&#39;]}&quot;)
+            lines.append(f&quot;  - Coverage: {gap[&#39;coverage&#39;]:.1f}%&quot;)
+            lines.append(f&quot;  - Recommendation: {gap[&#39;recommendation&#39;]}&quot;)
+        return &quot;\n&quot;.join(lines)
+
+    def _format_recommendations(self) -&gt; str:
+        recommendations = []
+        layer_coverage = self.defense_in_depth_analysis()
+
+        for layer, controls in layer_coverage.items():
+            if not controls:
+                recommendations.append(f&quot;- Add {layer} layer controls&quot;)
+
+        gaps = self.plan.get_gaps()
+        if any(g[&quot;issue&quot;] == &quot;No control diversity&quot; for g in gaps):
+            recommendations.append(&quot;- Add more detective and corrective controls&quot;)
+
+        return &quot;\n&quot;.join(recommendations) if recommendations else &quot;Current coverage is adequate.&quot;
+
+    def _format_roadmap(self) -&gt; str:
+        roadmap = self.generate_roadmap()
+        if not roadmap:
+            return &quot;No additional controls recommended at this time.&quot;
+
+        lines = []
+        current_phase = 0
+        for item in roadmap:
+            if item[&quot;phase&quot;] != current_phase:
+                current_phase = item[&quot;phase&quot;]
+                lines.append(f&quot;\n### Phase {current_phase}&quot;)
+            lines.append(f&quot;- [{item[&#39;priority&#39;]}] {item[&#39;control_name&#39;]} (for {item[&#39;threat&#39;]})&quot;)
+
+        return &quot;\n&quot;.join(lines)
+</code></pre>
+<h3>Template 4: Control Effectiveness Testing</h3>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import List, Callable, Any
+import asyncio
+
+@dataclass
+class ControlTest:
+    control_id: str
+    test_name: str
+    test_function: Callable[[], bool]
+    expected_result: bool
+    description: str
+
+
+class ControlTester:
+    &quot;&quot;&quot;Test control effectiveness.&quot;&quot;&quot;
+
+    def __init__(self):
+        self.tests: List[ControlTest] = []
+        self.results: List[Dict] = []
+
+    def add_test(self, test: ControlTest) -&gt; None:
+        self.tests.append(test)
+
+    async def run_tests(self) -&gt; List[Dict]:
+        &quot;&quot;&quot;Run all control tests.&quot;&quot;&quot;
+        self.results = []
+
+        for test in self.tests:
+            try:
+                result = test.test_function()
+                passed = result == test.expected_result
+                self.results.append({
+                    &quot;control_id&quot;: test.control_id,
+                    &quot;test_name&quot;: test.test_name,
+                    &quot;passed&quot;: passed,
+                    &quot;actual_result&quot;: result,
+                    &quot;expected_result&quot;: test.expected_result,
+                    &quot;description&quot;: test.description,
+                    &quot;error&quot;: None
+                })
+            except Exception as e:
+                self.results.append({
+                    &quot;control_id&quot;: test.control_id,
+                    &quot;test_name&quot;: test.test_name,
+                    &quot;passed&quot;: False,
+                    &quot;actual_result&quot;: None,
+                    &quot;expected_result&quot;: test.expected_result,
+                    &quot;description&quot;: test.description,
+                    &quot;error&quot;: str(e)
+                })
+
+        return self.results
+
+    def get_effectiveness_score(self, control_id: str) -&gt; float:
+        &quot;&quot;&quot;Calculate effectiveness score for a control.&quot;&quot;&quot;
+        control_results = [r for r in self.results if r[&quot;control_id&quot;] == control_id]
+        if not control_results:
+            return 0.0
+
+        passed = sum(1 for r in control_results if r[&quot;passed&quot;])
+        return (passed / len(control_results)) * 100
+
+    def generate_test_report(self) -&gt; str:
+        &quot;&quot;&quot;Generate test results report.&quot;&quot;&quot;
+        if not self.results:
+            return &quot;No tests have been run.&quot;
+
+        total = len(self.results)
+        passed = sum(1 for r in self.results if r[&quot;passed&quot;])
+
+        report = f&quot;&quot;&quot;
+# Control Effectiveness Test Report
+
+## Summary
+- **Total Tests:** {total}
+- **Passed:** {passed}
+- **Failed:** {total - passed}
+- **Pass Rate:** {(passed/total)*100:.1f}%
+
+## Results by Control
+&quot;&quot;&quot;
+        # Group by control
+        controls = {}
+        for result in self.results:
+            cid = result[&quot;control_id&quot;]
+            if cid not in controls:
+                controls[cid] = []
+            controls[cid].append(result)
+
+        for control_id, results in controls.items():
+            score = self.get_effectiveness_score(control_id)
+            report += f&quot;\n### {control_id} (Effectiveness: {score:.1f}%)\n&quot;
+            for r in results:
+                status = &quot;✓&quot; if r[&quot;passed&quot;] else &quot;✗&quot;
+                report += f&quot;- {status} {r[&#39;test_name&#39;]}\n&quot;
+                if r[&quot;error&quot;]:
+                    report += f&quot;  - Error: {r[&#39;error&#39;]}\n&quot;
+
+        return report
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Map all threats</strong> - No threat should be unmapped</li>
+<li><strong>Layer controls</strong> - Defense in depth is essential</li>
+<li><strong>Mix control types</strong> - Preventive, detective, corrective</li>
+<li><strong>Track effectiveness</strong> - Measure and improve</li>
+<li><strong>Review regularly</strong> - Controls degrade over time</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t rely on single controls</strong> - Single points of failure</li>
+<li><strong>Don&#39;t ignore cost</strong> - ROI matters</li>
+<li><strong>Don&#39;t skip testing</strong> - Untested controls may fail</li>
+<li><strong>Don&#39;t set and forget</strong> - Continuous improvement</li>
+<li><strong>Don&#39;t ignore people/process</strong> - Technology alone isn&#39;t enough</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.nist.gov/cyberframework">NIST Cybersecurity Framework</a></li>
+<li><a href="https://www.cisecurity.org/controls">CIS Controls</a></li>
+<li><a href="https://d3fend.mitre.org/">MITRE D3FEND</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

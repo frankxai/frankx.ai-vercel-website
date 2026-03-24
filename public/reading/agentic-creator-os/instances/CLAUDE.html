@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Instances Directory - Project Configurations</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/instances/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Instances Directory - Project Configurations</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="index.html#agentic-creator-os%2Finstances">instances</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <claude-mem-context>
+# Instances Directory - Project Configurations
+
+<p>This directory contains project-specific configurations that customize Agentic Creator OS behavior.</p>
+<h2>What Are Instances?</h2>
+<p>Instances define how Agentic Creator OS behaves for different projects:</p>
+<ul>
+<li>Brand voice and tone</li>
+<li>Enabled skills and workflows</li>
+<li>Evaluation settings</li>
+<li>Integration preferences</li>
+</ul>
+<h2>Directory Structure</h2>
+<pre><code>instances/
+├── CLAUDE.md              ← YOU ARE HERE
+├── _template/             ← Template for new projects
+│   ├── config.json        ← Template configuration
+│   └── config.ts          ← Config utilities
+├── frankx/                ← FrankX project
+│   └── config.json        ← FrankX configuration
+└── demo-project/          ← Demo project
+    └── config.json        ← Demo configuration
+</code></pre>
+<h2>Instance Configuration</h2>
+<p>Each instance has a <code>config.json</code> with:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Project Name&quot;,
+  &quot;slug&quot;: &quot;project-slug&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;brand&quot;: {
+    &quot;name&quot;: &quot;Brand Name&quot;,
+    &quot;voice&quot;: {
+      &quot;tone&quot;: &quot;professional&quot;,
+      &quot;personality&quot;: [&quot;trait1&quot;, &quot;trait2&quot;],
+      &quot;keywords&quot;: [&quot;word1&quot;, &quot;word2&quot;],
+      &quot;avoidKeywords&quot;: [&quot;word3&quot;]
+    },
+    &quot;colors&quot;: {
+      &quot;primary&quot;: &quot;#123456&quot;,
+      &quot;secondary&quot;: &quot;#654321&quot;,
+      &quot;accent&quot;: &quot;#abcdef&quot;
+    }
+  },
+  &quot;directories&quot;: {
+    &quot;workflows&quot;: &quot;workflows&quot;,
+    &quot;templates&quot;: &quot;templates&quot;,
+    &quot;skills&quot;: &quot;skills&quot;,
+    &quot;mcpServers&quot;: &quot;mcp-servers&quot;
+  },
+  &quot;integrations&quot;: {
+    &quot;opencode&quot;: true,
+    &quot;claudeCode&quot;: true,
+    &quot;gemini&quot;: false
+  },
+  &quot;skills&quot;: {
+    &quot;enabled&quot;: [&quot;content&quot;, &quot;marketing&quot;],
+    &quot;custom&quot;: []
+  },
+  &quot;workflows&quot;: {
+    &quot;enabled&quot;: [&quot;social-media&quot;, &quot;content&quot;],
+    &quot;custom&quot;: []
+  },
+  &quot;evaluation&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;strictMode&quot;: false,
+    &quot;benchmarkAgainst&quot;: &quot;industry-average&quot;
+  }
+}
+</code></pre>
+<h2>Available Instances</h2>
+<h3>frankx</h3>
+<p><strong>Purpose:</strong> FrankX brand content</p>
+<p><strong>Settings:</strong></p>
+<ul>
+<li>Tone: Provocative, visionary</li>
+<li>Brand: FrankX</li>
+<li>Skills: All enabled</li>
+<li>Evaluation: Strict mode, benchmark against top performers</li>
+</ul>
+<p><strong>Use for:</strong> Creating FrankX-branded content</p>
+<h3>demo-project</h3>
+<p><strong>Purpose:</strong> Demo and testing</p>
+<p><strong>Settings:</strong></p>
+<ul>
+<li>Tone: Friendly, educational</li>
+<li>Brand: Demo Brand</li>
+<li>Skills: content, marketing only</li>
+<li>Evaluation: Standard mode</li>
+</ul>
+<p><strong>Use for:</strong> Testing workflows, learning the system</p>
+<h3>_template</h3>
+<p><strong>Purpose:</strong> Template for new projects</p>
+<p><strong>Use for:</strong> Creating new project instances</p>
+<p><strong>How to use:</strong></p>
+<pre><code class="language-bash">cp -r instances/_template instances/my-new-project
+# Edit instances/my-new-project/config.json
+</code></pre>
+<h2>Creating a New Instance</h2>
+<ol>
+<li><p><strong>Copy template:</strong></p>
+<pre><code class="language-bash">cp -r instances/_template instances/my-project
+</code></pre>
+</li>
+<li><p><strong>Edit config.json:</strong></p>
+<ul>
+<li>Change name, slug</li>
+<li>Set brand voice</li>
+<li>Enable/disable skills</li>
+<li>Configure workflows</li>
+</ul>
+</li>
+<li><p><strong>Use the instance:</strong>
+The system will automatically detect which instance to use based on your project.</p>
+</li>
+</ol>
+<h2>Instance Selection</h2>
+<p>The system selects an instance based on:</p>
+<ol>
+<li><strong>Project directory name</strong> - Matches instance slug</li>
+<li><strong>Manual override</strong> - Specify in configuration</li>
+<li><strong>Default instance</strong> - Falls back to frankx</li>
+</ol>
+<h2>Brand Voice Configuration</h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Options</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>tone</code></td>
+<td>Overall voice</td>
+<td>professional, casual, authoritative, friendly, provocative</td>
+</tr>
+<tr>
+<td><code>personality</code></td>
+<td>Traits</td>
+<td>innovative, helpful, reliable, cutting-edge, etc.</td>
+</tr>
+<tr>
+<td><code>keywords</code></td>
+<td>Approved terms</td>
+<td>[&quot;AI&quot;, &quot;automation&quot;, &quot;workflow&quot;]</td>
+</tr>
+<tr>
+<td><code>avoidKeywords</code></td>
+<td>Terms to avoid</td>
+<td>[&quot;spammy&quot;, &quot;clickbait&quot;]</td>
+</tr>
+</tbody></table>
+<h2>For AI Agents</h2>
+<p>When working with instances:</p>
+<ol>
+<li><strong>Check the instance</strong> - Know which project you&#39;re working on</li>
+<li><strong>Respect brand voice</strong> - Match the configured tone</li>
+<li><strong>Use enabled skills</strong> - Don&#39;t use disabled skills</li>
+<li><strong>Follow evaluation rules</strong> - Strict mode = higher standards</li>
+<li><strong>Know the keywords</strong> - Use approved terminology</li>
+</ol>
+<h2>Loading Instances</h2>
+<pre><code class="language-typescript">import { getInstanceConfig, listInstances } from &#39;./instances/_template/config.ts&#39;;
+
+// List all instances
+const instances = await listInstances();
+// Returns: [{ name, description, path }]
+
+// Load specific instance
+const config = await getInstanceConfig(&#39;frankx&#39;);
+// Returns: ProjectConfig object
+</code></pre>
+<h2>Related Directories</h2>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>skills/</code></td>
+<td>Skills customized by instance</td>
+</tr>
+<tr>
+<td><code>workflows/</code></td>
+<td>Workflows customized by instance</td>
+</tr>
+<tr>
+<td><code>templates/</code></td>
+<td>Templates customized by instance</td>
+</tr>
+<tr>
+<td><code>mcp-servers/</code></td>
+<td>Tools customized by instance</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Instances personalize Agentic Creator OS for each project. Know your instance, respect its rules.</strong>
+</claude-mem-context></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

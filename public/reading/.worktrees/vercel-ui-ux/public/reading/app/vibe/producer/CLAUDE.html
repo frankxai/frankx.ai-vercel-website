@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/vibe/producer — Music Producer: Suno AI Prompt Engineering</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="app/vibe/producer/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/vibe/producer — Music Producer: Suno AI Prompt Engineering</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#app">app</a> / <a href="../index.html#app%2Fvibe">vibe</a> / <a href="index.html#app%2Fvibe%2Fproducer">producer</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/vibe/producer — Music Producer: Suno AI Prompt Engineering</h1>
+<p><strong>Route</strong>: <code>/vibe/producer</code>
+<strong>Status</strong>: Live (Free Beta)
+<strong>Created</strong>: Feb 20, 2026
+<strong>Component</strong>: MusicProducerPage (<code>page.tsx</code>)</p>
+<hr>
+<h2>Purpose</h2>
+<p>Hub page for the Music Producer agent — a Suno AI prompt engineering guide and interactive gateway. Educates users on how to generate professional music matched to their creative state (Alpha, Beta, Theta, Delta brainwaves).</p>
+<hr>
+<h2>Content Structure</h2>
+<h3>Hero Section</h3>
+<ul>
+<li>Primary CTA: &quot;Start Creating&quot; → <code>/vibe</code> (Music Producer agent)</li>
+<li>Secondary CTA: &quot;Learn More&quot; → <code>/vibe</code> (info section)</li>
+<li>Brand colors: Purple (#8B5CF6), cyan, emerald gradient</li>
+</ul>
+<h3>1. Brain State Reference (4 sections)</h3>
+<p>Maps four brainwave states to music parameters:</p>
+<ul>
+<li><strong>Alpha</strong> (8-12 Hz): Relaxed focus → 60-80 BPM, ambient</li>
+<li><strong>Beta</strong> (12-30 Hz): Deep work → 120-140 BPM, D Dorian</li>
+<li><strong>Theta</strong> (4-8 Hz): Creative flow → 80-100 BPM, C Major/A Major</li>
+<li><strong>Delta</strong> (0.5-4 Hz): Rest/sleep → 50-70 BPM, A Minor/F Major</li>
+</ul>
+<h3>2. Three Core Workflows (with example Suno prompts)</h3>
+<ol>
+<li><p><strong>Deep Work Session Music</strong> (coding, writing)</p>
+<ul>
+<li>Prompt: &quot;Electronic ambient, 128 BPM, D Dorian, layered synthesizers...&quot;</li>
+</ul>
+</li>
+<li><p><strong>Creative Flow State Music</strong> (brainstorming, sketching)</p>
+<ul>
+<li>Prompt: &quot;Acoustic indie, 92 BPM, C Major, fingerpicked guitar...&quot;</li>
+</ul>
+</li>
+<li><p><strong>Recovery &amp; Rest Music</strong> (meditation, sleep)</p>
+<ul>
+<li>Prompt: &quot;Ambient drone, 60 BPM, A Minor, sustained pads...&quot;</li>
+</ul>
+</li>
+</ol>
+<h3>3. 6-Part Prompt Formula</h3>
+<p>Educational breakdown of effective Suno prompts:</p>
+<ol>
+<li>Genre/Style</li>
+<li>Tempo/Energy</li>
+<li>Instruments</li>
+<li>Vocal Style</li>
+<li>Mood/Emotion</li>
+<li>Special Elements</li>
+</ol>
+<h3>4. Learn &amp; Go Deeper (Resource Links)</h3>
+<p>Links to 4 related blog articles:</p>
+<ul>
+<li>Suno Prompt Engineering Complete Guide</li>
+<li>Suno Music Production Workflow</li>
+<li>The Science of State-Change Music</li>
+<li>Music as Consciousness Technology</li>
+</ul>
+<h3>5. Pricing &amp; CTA Section</h3>
+<ul>
+<li>Free tier: 10 prompts/day</li>
+<li>Vibe Club upgrade link</li>
+<li>CTA buttons to <code>/vibe</code> and <code>/products/vibe-os</code></li>
+</ul>
+<hr>
+<h2>Data Sources</h2>
+<h3>From <code>data/vibe-agents.json</code></h3>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;music-producer&quot;,
+  &quot;name&quot;: &quot;Music Producer&quot;,
+  &quot;personality&quot;: &quot;Collaborative studio partner...&quot;,
+  &quot;specialty&quot;: &quot;Suno AI prompt engineering&quot;,
+  &quot;workflows&quot;: [
+    { &quot;id&quot;: &quot;deep-work-music&quot;, ... },
+    { &quot;id&quot;: &quot;creative-flow-music&quot;, ... },
+    { &quot;id&quot;: &quot;recovery-music&quot;, ... }
+  ]
+}
+</code></pre>
+<p>All data on this page is hardcoded based on the agent definition. No dynamic data fetching.</p>
+<hr>
+<h2>Design System</h2>
+<p><strong>Colors</strong>:</p>
+<ul>
+<li>Primary: Purple (#8B5CF6) — matches Music Producer agent color</li>
+<li>Accents: Cyan (#43BFE3), emerald (#10B981), violet</li>
+<li>Background: Dark navy (#02030b)</li>
+</ul>
+<p><strong>Typography</strong>:</p>
+<ul>
+<li>H1: 4xl (sm:5xl lg:6xl), bold</li>
+<li>H2: 3xl, bold</li>
+<li>Body: 16-18px, slate-300/400</li>
+</ul>
+<p><strong>Animations</strong>:</p>
+<ul>
+<li>Hero: staggered opacity + y-offset</li>
+<li>Sections: whileInView with delays</li>
+<li>Background: animated gradient orbs (motion.div)</li>
+</ul>
+<p><strong>Components</strong>:</p>
+<ul>
+<li>Framer Motion for animations</li>
+<li>Lucide icons: Music, Zap, Brain, Sparkles, etc.</li>
+<li>Custom gradient text (bg-clip-text)</li>
+</ul>
+<hr>
+<h2>Links &amp; Navigation</h2>
+<p><strong>Internal Links</strong>:</p>
+<ul>
+<li><code>/vibe</code> → Music Producer agent (primary CTA)</li>
+<li><code>/products/vibe-os</code> → Vibe OS product page</li>
+<li><code>/blog/suno-prompt-engineering-complete-guide</code> → Resource</li>
+<li><code>/blog/suno-music-production-workflow</code> → Resource</li>
+<li><code>/blog/science-of-state-change-music</code> → Resource</li>
+<li><code>/blog/music-as-consciousness-technology</code> → Resource</li>
+</ul>
+<p><strong>External Links</strong>: None</p>
+<hr>
+<h2>SEO &amp; Metadata</h2>
+<p><strong>Title</strong>: &quot;Music Producer — Suno AI Prompt Engineering | Vibe OS&quot;
+<strong>Description</strong>: &quot;Generate professional-quality music matched to your creative state. Free tier: 10 prompts/day. Deep focus, creative flow, meditation, and motivation music.&quot;
+<strong>Keywords</strong>: suno ai, music production, prompt engineering, creative workflows, vibe os, music for focus</p>
+<hr>
+<h2>Future Enhancements</h2>
+<ol>
+<li><strong>Interactive Suno Embed Section</strong>: Add 3-5 example tracks (Suno iframe embeds)</li>
+<li><strong>Prompt Generator Tool</strong>: Interactive form to generate custom prompts</li>
+<li><strong>Success Stories</strong>: User-generated music examples</li>
+<li><strong>Advanced Features Section</strong>: DeltaWave frequencies, binaural beats, etc.</li>
+</ol>
+<hr>
+<h2>Notes</h2>
+<ul>
+<li>Page inherits layout from <code>/app/vibe/layout.tsx</code></li>
+<li>All hero CTAs link to <code>/vibe</code> agent hub (Music Producer agent)</li>
+<li>Design matches premium Vibe OS aesthetic</li>
+<li>Part of larger Vibe OS ecosystem (3 agents: Music Producer, Coming Soon, Q2 2026)</li>
+<li>Badge shows &quot;Free Beta&quot; status</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

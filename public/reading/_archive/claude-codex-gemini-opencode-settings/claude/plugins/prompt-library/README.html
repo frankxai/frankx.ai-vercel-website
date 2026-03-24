@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Prompt Library Plugin</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/claude/plugins/prompt-library/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Prompt Library Plugin</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <a href="../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins">plugins</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fprompt-library">prompt-library</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Prompt Library Plugin</h1>
+<p>A comprehensive prompt engineering system for Claude Code with harvesting, architecture, testing, and evolution capabilities.</p>
+<h2>Overview</h2>
+<p>The Prompt Library plugin provides a complete workflow for managing prompts at scale:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                     PROMPT LIBRARY SYSTEM                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
+│  │   HARVEST   │───▶│  ARCHITECT  │───▶│    TEST     │         │
+│  │             │    │             │    │             │         │
+│  │ Discover    │    │ Design      │    │ Validate    │         │
+│  │ Collect     │    │ Structure   │    │ Score       │         │
+│  │ Categorize  │    │ Optimize    │    │ Safety      │         │
+│  └─────────────┘    └─────────────┘    └──────┬──────┘         │
+│         ▲                                      │                │
+│         │                                      ▼                │
+│         │           ┌─────────────┐    ┌─────────────┐         │
+│         │           │   EVOLVE    │◀───│   DEPLOY    │         │
+│         │           │             │    │             │         │
+│         └───────────│ Research    │    │ Production  │         │
+│                     │ Metrics     │    │ Monitoring  │         │
+│                     │ Iterate     │    │ Feedback    │         │
+│                     └─────────────┘    └─────────────┘         │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Installation</h2>
+<ol>
+<li>Copy the plugin to your Claude Code plugins directory:</li>
+</ol>
+<pre><code class="language-bash">cp -r prompt-library ~/.claude/plugins/
+</code></pre>
+<ol start="2">
+<li>Verify installation:</li>
+</ol>
+<pre><code class="language-bash">claude plugins list
+# Should show: prompt-library v1.0.0
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Harvest prompts from GitHub
+/harvest github anthropics/anthropic-cookbook
+
+# Design a new prompt
+/architect design &quot;code review assistant&quot; --pattern cot
+
+# Test the prompt
+/test prompt new-prompt-id
+
+# Evolve based on metrics
+/evolve prompt prompt-id --strategy metrics
+</code></pre>
+<h2>Agents</h2>
+<h3>Prompt Harvester</h3>
+<p>Scans GitHub, ArXiv, and AI research labs for elite prompts.</p>
+<p><strong>Activation:</strong></p>
+<pre><code>&quot;Activate Prompt Harvester to scan [source] for [domain] prompts&quot;
+</code></pre>
+<p><strong>Key Capabilities:</strong></p>
+<ul>
+<li>GitHub repository scanning</li>
+<li>ArXiv paper analysis</li>
+<li>AI lab blog monitoring</li>
+<li>Quality scoring and categorization</li>
+</ul>
+<h3>Prompt Architect</h3>
+<p>Designs sophisticated prompts using advanced reasoning patterns.</p>
+<p><strong>Activation:</strong></p>
+<pre><code>&quot;Activate Prompt Architect to design a [task] prompt using [pattern]&quot;
+</code></pre>
+<p><strong>Patterns Supported:</strong></p>
+<ul>
+<li>Chain-of-Thought (CoT)</li>
+<li>Tree-of-Thought (ToT)</li>
+<li>ReAct (Reasoning + Acting)</li>
+<li>Self-Consistency</li>
+<li>Constitutional Constraints</li>
+</ul>
+<h3>Prompt Tester</h3>
+<p>Validates prompt quality, safety, and brand alignment.</p>
+<p><strong>Activation:</strong></p>
+<pre><code>&quot;Activate Prompt Tester to validate [prompt] for [use case]&quot;
+</code></pre>
+<p><strong>Test Dimensions:</strong></p>
+<ul>
+<li>Functional testing</li>
+<li>Quality scoring</li>
+<li>Safety validation</li>
+<li>Brand alignment</li>
+<li>Efficiency metrics</li>
+</ul>
+<h3>Prompt Evolver</h3>
+<p>Evolves prompts based on research and performance data.</p>
+<p><strong>Activation:</strong></p>
+<pre><code>&quot;Activate Prompt Evolver to improve [prompt] based on [research/metrics]&quot;
+</code></pre>
+<p><strong>Evolution Strategies:</strong></p>
+<ul>
+<li>Research-driven (new techniques)</li>
+<li>Metrics-driven (performance data)</li>
+<li>Model-adaptive (new model capabilities)</li>
+</ul>
+<h2>Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/harvest</code></td>
+<td>Discover and collect prompts</td>
+</tr>
+<tr>
+<td><code>/architect</code></td>
+<td>Design and structure prompts</td>
+</tr>
+<tr>
+<td><code>/test</code></td>
+<td>Validate and score prompts</td>
+</tr>
+<tr>
+<td><code>/evolve</code></td>
+<td>Improve prompts over time</td>
+</tr>
+</tbody></table>
+<p>See individual command docs for detailed usage.</p>
+<h2>Directory Structure</h2>
+<pre><code>prompt-library/
+├── .claude-plugin/
+│   └── plugin.json          # Plugin manifest
+├── commands/
+│   ├── harvest.md           # /harvest command
+│   ├── architect.md         # /architect command
+│   ├── test.md              # /test command
+│   └── evolve.md            # /evolve command
+├── agents/
+│   ├── prompt-harvester.md  # Harvester agent
+│   ├── prompt-architect.md  # Architect agent
+│   ├── prompt-tester.md     # Tester agent
+│   └── prompt-evolver.md    # Evolver agent
+├── skills/
+│   └── prompt-engineering/
+│       └── SKILL.md         # Core skill documentation
+└── README.md                # This file
+</code></pre>
+<h2>Configuration</h2>
+<p>Configure the plugin in <code>plugin.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;configuration&quot;: {
+    &quot;promptsDirectory&quot;: &quot;./prompts&quot;,
+    &quot;harvestSources&quot;: [&quot;github:anthropics/*&quot;, &quot;arxiv:cs.CL&quot;],
+    &quot;qualityThreshold&quot;: 0.8,
+    &quot;brandVoice&quot;: &quot;professional-technical-accessible&quot;
+  }
+}
+</code></pre>
+<h2>Workflow Examples</h2>
+<h3>Building a Prompt Library from Scratch</h3>
+<pre><code class="language-bash"># 1. Harvest existing prompts
+/harvest github &quot;prompt engineering stars:&gt;500&quot;
+/harvest arxiv &quot;chain of thought&quot; --days 90
+
+# 2. Review and categorize
+/harvest list --pending
+/harvest approve prompt-abc123
+
+# 3. Design new prompts
+/architect design &quot;customer support&quot; --pattern cot+const
+
+# 4. Test all prompts
+/test batch ./prompts/ --parallel 5
+
+# 5. Generate reports
+/test batch ./prompts/ --report markdown &gt; library-report.md
+</code></pre>
+<h3>Continuous Improvement Cycle</h3>
+<pre><code class="language-bash"># Weekly: Harvest new research
+/harvest weekly
+
+# Monthly: Audit and evolve
+/evolve audit --threshold 3.5
+/evolve batch ./prompts/low-performers/ --strategy metrics
+
+# Quarterly: Major evolution
+/evolve research --scan --days 90
+/evolve batch ./prompts/ --strategy hybrid
+</code></pre>
+<h3>Production Deployment</h3>
+<pre><code class="language-bash"># Validate before deploy
+/test prompt production-prompt --comprehensive
+
+# Compare with current
+/test compare production-v1 production-v2 --ab-test
+
+# Deploy if improved
+/evolve prompt production-prompt --promote
+
+# Monitor and iterate
+/evolve metrics production-prompt --watch
+</code></pre>
+<h2>Integration</h2>
+<p>The Prompt Library integrates with other Claude Code plugins:</p>
+<ul>
+<li><strong>Creator Tools</strong>: Generate content prompts</li>
+<li><strong>Oracle AI</strong>: Enterprise prompt patterns</li>
+<li><strong>Suno Prompts</strong>: Music generation prompts</li>
+</ul>
+<h2>Contributing</h2>
+<p>To add prompts to the library:</p>
+<ol>
+<li>Use <code>/harvest</code> or <code>/architect</code> to create</li>
+<li>Run <code>/test</code> to validate</li>
+<li>Document in standard format</li>
+<li>Submit for review</li>
+</ol>
+<h2>License</h2>
+<p>MIT License - See repository LICENSE file.</p>
+<h2>Version History</h2>
+<ul>
+<li><strong>1.0.0</strong> (2024-03-15): Initial release<ul>
+<li>Four core agents</li>
+<li>Complete command set</li>
+<li>Prompt engineering skill</li>
+</ul>
+</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

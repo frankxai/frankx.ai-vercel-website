@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Gamified Learning with AI Agents Research</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="research/gamified-ai-learning/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Gamified Learning with AI Agents Research</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#research">research</a> / <a href="index.html#research%2Fgamified-ai-learning">gamified-ai-learning</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Gamified Learning with AI Agents Research</h1>
+<p><strong>Research Date:</strong> January 14, 2026
+<strong>Researcher:</strong> Claude (Story &amp; Resonance Lead)
+<strong>Purpose:</strong> Explore gamification + LLM/Agent architectures for engaging learning experiences</p>
+<hr>
+<h2>🎯 Quick Start</h2>
+<p><strong>New here?</strong> Start with one of these:</p>
+<ul>
+<li><strong>5 minutes:</strong> <a href="QUICK-REFERENCE.md">QUICK-REFERENCE.md</a> - One-page overview</li>
+<li><strong>15 minutes:</strong> <a href="EXECUTIVE-SUMMARY.md">EXECUTIVE-SUMMARY.md</a> - Complete strategic analysis</li>
+<li><strong>Deep dive:</strong> Read all documents below (2-3 hours)</li>
+</ul>
+<hr>
+<h2>📊 Research Summary</h2>
+<p><strong>Total Research:</strong> 4,584 lines across 9 comprehensive documents</p>
+<h3>The Big Idea</h3>
+<p>Transform Claude Code&#39;s skill.md pattern into a <strong>Learning Operating System</strong> where personal growth becomes a game worth playing, AI agents act as adaptive coaches, and every skill mastered unlocks new creative capabilities.</p>
+<h3>Key Findings</h3>
+<ul>
+<li>✅ Gamification drives 3.6x long-term engagement when tied to real mastery</li>
+<li>✅ AI tutoring produces 7% better outcomes with 50% less instructor time</li>
+<li>✅ Skill trees provide clear progression paths that prevent overwhelm</li>
+<li>✅ AI accountability partners validated by multiple successful products</li>
+<li>✅ Multi-agent coaching systems outperform single-agent approaches</li>
+</ul>
+<h3>Strategic Fit for FrankX</h3>
+<p>The Learning OS is the <strong>missing connective tissue</strong> that transforms FrankX from &quot;content + community&quot; into a complete Creator Development Operating System.</p>
+<p><strong>Projected Revenue:</strong> $420K (Year 1) → $2.4M (Year 2) → $8.1M (Year 3)</p>
+<hr>
+<h2>📚 Research Documents</h2>
+<h3>Core Documents (Start Here)</h3>
+<p><strong><a href="QUICK-REFERENCE.md">QUICK-REFERENCE.md</a></strong> (7.8 KB)</p>
+<ul>
+<li>One-page decision-making guide</li>
+<li>Core mechanics overview</li>
+<li>Revenue model &amp; timeline</li>
+<li>Immediate next steps</li>
+</ul>
+<p><strong><a href="EXECUTIVE-SUMMARY.md">EXECUTIVE-SUMMARY.md</a></strong> (15 KB)</p>
+<ul>
+<li>Complete strategic analysis</li>
+<li>Research synthesis</li>
+<li>Key insights &amp; recommendations</li>
+<li>Decision framework</li>
+</ul>
+<h3>Detailed Research</h3>
+<p><strong>1. <a href="frameworks/01-gamification-mechanics.md">frameworks/01-gamification-mechanics.md</a></strong> (~30 KB)</p>
+<ul>
+<li>XP systems, levels, progression</li>
+<li>Psychological principles (Self-Determination Theory)</li>
+<li>Platform examples (Duolingo, Habitica)</li>
+<li>2026 evolution beyond points/badges</li>
+<li>Critical success factors</li>
+</ul>
+<p><strong>2. <a href="llm-learning/01-ai-powered-tutoring.md">llm-learning/01-ai-powered-tutoring.md</a></strong> (~25 KB)</p>
+<ul>
+<li>Khanmigo (Khan Academy) case study</li>
+<li>Claude AI in education</li>
+<li>Multi-agent learning systems</li>
+<li>Socratic method effectiveness</li>
+<li>Real-world impact metrics</li>
+</ul>
+<p><strong>3. <a href="skill-systems/01-skill-md-pattern-for-learning.md">skill-systems/01-skill-md-pattern-for-learning.md</a></strong> (~32 KB)</p>
+<ul>
+<li>Enhanced skill.md architecture</li>
+<li>Progressive content unlocking</li>
+<li>XP &amp; leveling systems</li>
+<li>Dynamic challenges</li>
+<li>Claude Code integration</li>
+<li>Soulbook skill tree design</li>
+</ul>
+<p><strong>4. <a href="agent-coaching/01-ai-accountability-systems.md">agent-coaching/01-ai-accountability-systems.md</a></strong> (~28 KB)</p>
+<ul>
+<li>Current AI accountability landscape</li>
+<li>Summit, Overlord, Rocky.ai, SideCoach analysis</li>
+<li>Multi-agent coaching patterns</li>
+<li>Memory &amp; context systems</li>
+<li>FrankX implementation strategy</li>
+</ul>
+<h3>Synthesis Documents</h3>
+<p><strong>5. <a href="synthesis/LEARNING-OS-PROTOTYPE.md">synthesis/LEARNING-OS-PROTOTYPE.md</a></strong> (~45 KB)</p>
+<ul>
+<li><strong>THE COMPLETE PROTOTYPE SPECIFICATION</strong></li>
+<li>Core components &amp; mechanics</li>
+<li>User journey (Week 1 → Month 6+)</li>
+<li>Technical architecture</li>
+<li>Implementation roadmap (5 phases)</li>
+<li>Differentiation analysis</li>
+<li>Product positioning</li>
+</ul>
+<p><strong>6. <a href="synthesis/FRANKX-ECOSYSTEM-CONNECTION.md">synthesis/FRANKX-ECOSYSTEM-CONNECTION.md</a></strong> (~35 KB)</p>
+<ul>
+<li><strong>STRATEGIC BUSINESS ANALYSIS</strong></li>
+<li>Integration with Blog, Soulbook, Realm, Vibe OS</li>
+<li>Revenue model enhancement</li>
+<li>Go-to-market strategy</li>
+<li>Competitive advantages</li>
+<li>3-5 year vision</li>
+</ul>
+<hr>
+<h2>🎮 The Learning OS Concept</h2>
+<h3>What It Is</h3>
+<p>A gamified personal development operating system that transforms skill.md files into living progress trackers with:</p>
+<ul>
+<li><strong>XP &amp; Levels</strong> - RPG-style progression tied to real mastery</li>
+<li><strong>Multi-Agent Coaching</strong> - Specialized AI agents for different needs</li>
+<li><strong>Progressive Unlocks</strong> - Content reveals as you demonstrate understanding</li>
+<li><strong>Community Learning</strong> - Collaborative challenges, mentor economy</li>
+<li><strong>Real-World Integration</strong> - Embedded in Claude Code, tracks actual work</li>
+</ul>
+<h3>How It Works</h3>
+<pre><code>Traditional Learning:          Learning OS:
+├─ Static content          →   ├─ Dynamic progression
+├─ Self-motivation         →   ├─ AI accountability partner
+├─ Unclear progress        →   ├─ Visual XP &amp; levels
+├─ Isolated practice       →   ├─ Community challenges
+└─ Abstract exercises      →   └─ Real project integration
+</code></pre>
+<h3>Example: Gym Training Expert Skill</h3>
+<p><strong>Current State (Static):</strong></p>
+<pre><code class="language-markdown">---
+name: gym-training-expert
+---
+# Static knowledge base
+[Content that never changes]
+</code></pre>
+<p><strong>Learning OS (Dynamic):</strong></p>
+<pre><code class="language-markdown">---
+name: gym-training-expert
+level: 3
+xp: 275/500
+mastery: 45%
+streak: 14 days 🔥
+---
+# Your Progress Dashboard
+Level 3 - Developing Lifter
+
+## Active Challenges
+Foundation Builder (2/3 workouts) → +75 XP
+
+## Skill Tree
+├─ Tier 1: Foundation ⭐ MASTERED
+├─ Tier 2: Practices ⚡ IN PROGRESS
+└─ Tier 3: Integration 🔒 Unlock at Level 6
+</code></pre>
+<hr>
+<h2>💡 Key Research Insights</h2>
+<h3>1. Gamification Evolution (2026)</h3>
+<p>Traditional points/badges no longer drive engagement. Success requires <strong>purpose-driven progression</strong> tied to actual skill development. DuoLingo works because XP reflects real language practice, not arbitrary actions.</p>
+<h3>2. AI Tutoring Paradigm</h3>
+<p>The most effective AI tutors don&#39;t give answers—they <strong>guide discovery</strong> through Socratic questioning. Khanmigo&#39;s approach produces 7% better outcomes and 5x more engagement.</p>
+<h3>3. Multi-Agent Advantage</h3>
+<p>Single-agent systems can&#39;t match multi-agent specialization. An Accountability Partner + Skill Coach + Energy Monitor provides comprehensive support that adapts in real-time.</p>
+<h3>4. Integration is Everything</h3>
+<p>Standalone learning apps fail to compete with integrated systems. Learning OS embedded in Claude Code sees actual work, tracks real progress, ties skill development to projects that matter.</p>
+<h3>5. Community Completes the Loop</h3>
+<p>Solo learning has limits. The mentor tier (teaching others) reinforces mastery better than any quiz. Teaching economy within The Realm turns community into transformation engine.</p>
+<hr>
+<h2>🚀 Implementation Roadmap</h2>
+<p><strong>Phase 1: Foundation (Months 1-2)</strong></p>
+<ul>
+<li>Enhanced skill.md with progress tracking</li>
+<li>Basic XP &amp; leveling system</li>
+<li>Single agent (Accountability Partner)</li>
+<li>3 pilot skills converted</li>
+</ul>
+<p><strong>Phase 2: Intelligence (Months 3-4)</strong></p>
+<ul>
+<li>Pattern recognition &amp; adaptive coaching</li>
+<li>Multi-agent system</li>
+<li>Automatic tracking (file watching)</li>
+</ul>
+<p><strong>Phase 3: Gamification (Months 5-6)</strong></p>
+<ul>
+<li>Skill tree visualization</li>
+<li>Cross-skill synergies</li>
+<li>Badges &amp; achievements</li>
+<li>10+ skills available</li>
+</ul>
+<p><strong>Phase 4: Community (Months 7-9)</strong></p>
+<ul>
+<li>Mentor tier unlocking</li>
+<li>Collaborative challenges</li>
+<li>Realm integration</li>
+<li>Teaching mode</li>
+</ul>
+<p><strong>Phase 5: Scale (Months 10-12)</strong></p>
+<ul>
+<li>50+ skills across all categories</li>
+<li>Public launch</li>
+<li>Multi-user architecture</li>
+<li>Mobile companion (optional)</li>
+</ul>
+<hr>
+<h2>💰 Revenue Potential</h2>
+<h3>Pricing Tiers</h3>
+<pre><code>FREE:       3 skills, basic agent, Tier 1 content
+$19/MONTH:  Unlimited skills, multi-agent team, Tier 2
+$49/MONTH:  + Realm + mentor tier + Tier 3 (The Realm integration)
+$99/MONTH:  + all products (Vibe OS, Music Academy, etc.)
+</code></pre>
+<h3>Conservative Projections</h3>
+<pre><code>Year 1: 1,000 users × $35 avg = $420,000 ARR
+Year 2: 5,000 users × $40 avg = $2,400,000 ARR
+Year 3: 15,000 users × $45 avg = $8,100,000 ARR
+</code></pre>
+<hr>
+<h2>🎯 FrankX Ecosystem Integration</h2>
+<h3>Blog → Skills</h3>
+<p>Articles convert to skill content with tiered revelation, practice challenges, and mastery checks.</p>
+<h3>Soulbook → Skill Trees</h3>
+<p>7 Pillars become progression paths. Complete all → &quot;Soulbook Master&quot;</p>
+<h3>The Realm → Learning Guild</h3>
+<p>Community becomes hub for mentors, collaborative challenges, skill showcases.</p>
+<h3>Vibe OS → Energy XP</h3>
+<p>Music sessions earn XP. Track which sessions boost productivity. Unlock personalized playlists.</p>
+<h3>AI Music Academy → Music Mastery</h3>
+<p>Gamified path from Suno beginner to releasing tracks. Mentor tier = teach others.</p>
+<hr>
+<h2>📖 Research Objectives (Completed)</h2>
+<ol>
+<li>✅ <strong>Gamified Learning Frameworks</strong> - Existing systems, psychological principles, engagement mechanics</li>
+<li>✅ <strong>LLM-Powered Learning</strong> - AI tutors, adaptive learning, personalization approaches</li>
+<li>✅ <strong>Skill.md Pattern Adaptation</strong> - Claude Code architecture for personal development</li>
+<li>✅ <strong>Agent-Supported Growth</strong> - AI accountability partners, multi-agent learning systems</li>
+<li>✅ <strong>FrankX Integration</strong> - Product potential, Soulbook connection, creator applications</li>
+</ol>
+<hr>
+<h2>📁 Folder Structure</h2>
+<pre><code>gamified-ai-learning/
+├── README.md (this file)
+├── QUICK-REFERENCE.md (one-page overview)
+├── EXECUTIVE-SUMMARY.md (strategic analysis)
+├── frameworks/
+│   └── 01-gamification-mechanics.md
+├── llm-learning/
+│   └── 01-ai-powered-tutoring.md
+├── skill-systems/
+│   └── 01-skill-md-pattern-for-learning.md
+├── agent-coaching/
+│   └── 01-ai-accountability-systems.md
+└── synthesis/
+    ├── LEARNING-OS-PROTOTYPE.md (complete spec)
+    └── FRANKX-ECOSYSTEM-CONNECTION.md (business strategy)
+</code></pre>
+<hr>
+<h2>🎬 Next Actions</h2>
+<h3>For Frank (This Week)</h3>
+<ol>
+<li>✅ Review complete research package</li>
+<li>⏭️ Decide on commitment level (full product / MVP / prototype)</li>
+<li>⏭️ Choose 2-3 pilot skills for conversion</li>
+<li>⏭️ Define Accountability Partner agent personality</li>
+<li>⏭️ Test prototype personally for 30 days</li>
+</ol>
+<h3>For Development (Month 1)</h3>
+<ol>
+<li>Technical architecture specification</li>
+<li>Enhanced skill.md format design</li>
+<li>Basic agent implementation</li>
+<li>Progress tracking system</li>
+<li>Core commands (/checkin, /skills, /practice)</li>
+</ol>
+<h3>For Content (Month 1)</h3>
+<ol>
+<li>Convert 3 blog articles to skill format</li>
+<li>Create practice challenges for each</li>
+<li>Write mastery check questions</li>
+<li>Design skill tree visualizations</li>
+</ol>
+<h3>For Community (Month 1)</h3>
+<ol>
+<li>Prepare Realm for beta announcement</li>
+<li>Identify 10-20 potential beta testers</li>
+<li>Design first collaborative challenge</li>
+<li>Plan mentor tier rollout</li>
+</ol>
+<hr>
+<h2>🏆 Success Metrics</h2>
+<p><strong>Week 1:</strong></p>
+<ul>
+<li>80%+ complete onboarding</li>
+<li>70%+ activate first skill</li>
+<li>60%+ daily check-in at least once</li>
+</ul>
+<p><strong>Month 1:</strong></p>
+<ul>
+<li>60%+ maintain 7-day streak</li>
+<li>70%+ level up in at least one skill</li>
+<li>40%+ activate second skill</li>
+</ul>
+<p><strong>Month 3:</strong></p>
+<ul>
+<li>70%+ still active</li>
+<li>50%+ reach Level 3+ in one skill</li>
+<li>30%+ unlock Tier 2 content</li>
+</ul>
+<p><strong>Month 6:</strong></p>
+<ul>
+<li>50%+ still active</li>
+<li>20%+ reach mentor tier</li>
+<li>30%+ active in 3+ skills</li>
+</ul>
+<hr>
+<h2>❓ Key Questions (Answered)</h2>
+<p><strong>Q: How do you make learning feel like play without trivializing mastery?</strong>
+A: Tie XP to genuine progress, require mastery checks for unlocks, celebrate depth over speed.</p>
+<p><strong>Q: What makes AI-assisted learning engaging vs. patronizing?</strong>
+A: Socratic guidance (not answers), pattern recognition (adapts to you), persistent memory (builds relationship).</p>
+<p><strong>Q: Can skill.md files become living progress trackers?</strong>
+A: Yes. Add progress fields (level, XP, mastery, streaks) and implement progressive content unlocking.</p>
+<p><strong>Q: How can agents adapt to individual learning styles?</strong>
+A: Track patterns (productivity peaks, struggle times), adjust difficulty dynamically, personalize recommendations.</p>
+<p><strong>Q: What&#39;s the FrankX angle?</strong>
+A: Creator-specific skills embedded in workflow. Blog → curriculum, Realm → learning guild, products → tied to progression.</p>
+<hr>
+<h2>🎯 The Bottom Line</h2>
+<p><strong>This research proves:</strong></p>
+<ul>
+<li>✅ Gamified learning works (when tied to real mastery)</li>
+<li>✅ AI tutoring is effective (50% time savings, better outcomes)</li>
+<li>✅ Multi-agent coaching superior to single-agent</li>
+<li>✅ Creator market ready for systematic skill development</li>
+<li>✅ FrankX uniquely positioned to deliver this</li>
+</ul>
+<p><strong>The question isn&#39;t &quot;Should we build this?&quot;</strong></p>
+<p><strong>The question is &quot;How fast can we ship v1?&quot;</strong></p>
+<hr>
+<h2>📞 Contact</h2>
+<p>This research was conducted as part of Frank&#39;s Personal Development Plan exploration into gamified learning with AI agents.</p>
+<p>For questions or to discuss implementation:</p>
+<ul>
+<li>Review synthesis documents for complete specifications</li>
+<li>Check QUICK-REFERENCE.md for decision framework</li>
+<li>See LEARNING-OS-PROTOTYPE.md for technical details</li>
+</ul>
+<hr>
+<p><em>Making growth a game worth playing, one skill at a time.</em></p>
+<p><strong>Research Status:</strong> ✅ COMPLETE (January 14, 2026)</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

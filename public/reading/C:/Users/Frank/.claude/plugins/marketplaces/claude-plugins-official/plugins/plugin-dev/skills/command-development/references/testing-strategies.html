@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Command Testing Strategies</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/command-development/references/testing-strategies.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Command Testing Strategies</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills">skills</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fcommand-development">command-development</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fcommand-development%2Freferences">references</a> / <span>testing-strategies.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Command Testing Strategies</h1>
+<p>Comprehensive strategies for testing slash commands before deployment and distribution.</p>
+<h2>Overview</h2>
+<p>Testing commands ensures they work correctly, handle edge cases, and provide good user experience. A systematic testing approach catches issues early and builds confidence in command reliability.</p>
+<h2>Testing Levels</h2>
+<h3>Level 1: Syntax and Structure Validation</h3>
+<p><strong>What to test:</strong></p>
+<ul>
+<li>YAML frontmatter syntax</li>
+<li>Markdown format</li>
+<li>File location and naming</li>
+</ul>
+<p><strong>How to test:</strong></p>
+<pre><code class="language-bash"># Validate YAML frontmatter
+head -n 20 .claude/commands/my-command.md | grep -A 10 &quot;^---&quot;
+
+# Check for closing frontmatter marker
+head -n 20 .claude/commands/my-command.md | grep -c &quot;^---&quot; # Should be 2
+
+# Verify file has .md extension
+ls .claude/commands/*.md
+
+# Check file is in correct location
+test -f .claude/commands/my-command.md &amp;&amp; echo &quot;Found&quot; || echo &quot;Missing&quot;
+</code></pre>
+<p><strong>Automated validation script:</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# validate-command.sh
+
+COMMAND_FILE=&quot;$1&quot;
+
+if [ ! -f &quot;$COMMAND_FILE&quot; ]; then
+  echo &quot;ERROR: File not found: $COMMAND_FILE&quot;
+  exit 1
+fi
+
+# Check .md extension
+if [[ ! &quot;$COMMAND_FILE&quot; =~ \.md$ ]]; then
+  echo &quot;ERROR: File must have .md extension&quot;
+  exit 1
+fi
+
+# Validate YAML frontmatter if present
+if head -n 1 &quot;$COMMAND_FILE&quot; | grep -q &quot;^---&quot;; then
+  # Count frontmatter markers
+  MARKERS=$(head -n 50 &quot;$COMMAND_FILE&quot; | grep -c &quot;^---&quot;)
+  if [ &quot;$MARKERS&quot; -ne 2 ]; then
+    echo &quot;ERROR: Invalid YAML frontmatter (need exactly 2 &#39;---&#39; markers)&quot;
+    exit 1
+  fi
+  echo &quot;✓ YAML frontmatter syntax valid&quot;
+fi
+
+# Check for empty file
+if [ ! -s &quot;$COMMAND_FILE&quot; ]; then
+  echo &quot;ERROR: File is empty&quot;
+  exit 1
+fi
+
+echo &quot;✓ Command file structure valid&quot;
+</code></pre>
+<h3>Level 2: Frontmatter Field Validation</h3>
+<p><strong>What to test:</strong></p>
+<ul>
+<li>Field types correct</li>
+<li>Values in valid ranges</li>
+<li>Required fields present (if any)</li>
+</ul>
+<p><strong>Validation script:</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# validate-frontmatter.sh
+
+COMMAND_FILE=&quot;$1&quot;
+
+# Extract YAML frontmatter
+FRONTMATTER=$(sed -n &#39;/^---$/,/^---$/p&#39; &quot;$COMMAND_FILE&quot; | sed &#39;1d;$d&#39;)
+
+if [ -z &quot;$FRONTMATTER&quot; ]; then
+  echo &quot;No frontmatter to validate&quot;
+  exit 0
+fi
+
+# Check &#39;model&#39; field if present
+if echo &quot;$FRONTMATTER&quot; | grep -q &quot;^model:&quot;; then
+  MODEL=$(echo &quot;$FRONTMATTER&quot; | grep &quot;^model:&quot; | cut -d: -f2 | tr -d &#39; &#39;)
+  if ! echo &quot;sonnet opus haiku&quot; | grep -qw &quot;$MODEL&quot;; then
+    echo &quot;ERROR: Invalid model &#39;$MODEL&#39; (must be sonnet, opus, or haiku)&quot;
+    exit 1
+  fi
+  echo &quot;✓ Model field valid: $MODEL&quot;
+fi
+
+# Check &#39;allowed-tools&#39; field format
+if echo &quot;$FRONTMATTER&quot; | grep -q &quot;^allowed-tools:&quot;; then
+  echo &quot;✓ allowed-tools field present&quot;
+  # Could add more sophisticated validation here
+fi
+
+# Check &#39;description&#39; length
+if echo &quot;$FRONTMATTER&quot; | grep -q &quot;^description:&quot;; then
+  DESC=$(echo &quot;$FRONTMATTER&quot; | grep &quot;^description:&quot; | cut -d: -f2-)
+  LENGTH=${#DESC}
+  if [ &quot;$LENGTH&quot; -gt 80 ]; then
+    echo &quot;WARNING: Description length $LENGTH (recommend &lt; 60 chars)&quot;
+  else
+    echo &quot;✓ Description length acceptable: $LENGTH chars&quot;
+  fi
+fi
+
+echo &quot;✓ Frontmatter fields valid&quot;
+</code></pre>
+<h3>Level 3: Manual Command Invocation</h3>
+<p><strong>What to test:</strong></p>
+<ul>
+<li>Command appears in <code>/help</code></li>
+<li>Command executes without errors</li>
+<li>Output is as expected</li>
+</ul>
+<p><strong>Test procedure:</strong></p>
+<pre><code class="language-bash"># 1. Start Claude Code
+claude --debug
+
+# 2. Check command appears in help
+&gt; /help
+# Look for your command in the list
+
+# 3. Invoke command without arguments
+&gt; /my-command
+# Check for reasonable error or behavior
+
+# 4. Invoke with valid arguments
+&gt; /my-command arg1 arg2
+# Verify expected behavior
+
+# 5. Check debug logs
+tail -f ~/.claude/debug-logs/latest
+# Look for errors or warnings
+</code></pre>
+<h3>Level 4: Argument Testing</h3>
+<p><strong>What to test:</strong></p>
+<ul>
+<li>Positional arguments work ($1, $2, etc.)</li>
+<li>$ARGUMENTS captures all arguments</li>
+<li>Missing arguments handled gracefully</li>
+<li>Invalid arguments detected</li>
+</ul>
+<p><strong>Test matrix:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Test Case</th>
+<th>Command</th>
+<th>Expected Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>No args</td>
+<td><code>/cmd</code></td>
+<td>Graceful handling or useful message</td>
+</tr>
+<tr>
+<td>One arg</td>
+<td><code>/cmd arg1</code></td>
+<td>$1 substituted correctly</td>
+</tr>
+<tr>
+<td>Two args</td>
+<td><code>/cmd arg1 arg2</code></td>
+<td>$1 and $2 substituted</td>
+</tr>
+<tr>
+<td>Extra args</td>
+<td><code>/cmd a b c d</code></td>
+<td>All captured or extras ignored appropriately</td>
+</tr>
+<tr>
+<td>Special chars</td>
+<td><code>/cmd &quot;arg with spaces&quot;</code></td>
+<td>Quotes handled correctly</td>
+</tr>
+<tr>
+<td>Empty arg</td>
+<td><code>/cmd &quot;&quot;</code></td>
+<td>Empty string handled</td>
+</tr>
+</tbody></table>
+<p><strong>Test script:</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# test-command-arguments.sh
+
+COMMAND=&quot;$1&quot;
+
+echo &quot;Testing argument handling for /$COMMAND&quot;
+echo
+
+echo &quot;Test 1: No arguments&quot;
+echo &quot;  Command: /$COMMAND&quot;
+echo &quot;  Expected: [describe expected behavior]&quot;
+echo &quot;  Manual test required&quot;
+echo
+
+echo &quot;Test 2: Single argument&quot;
+echo &quot;  Command: /$COMMAND test-value&quot;
+echo &quot;  Expected: &#39;test-value&#39; appears in output&quot;
+echo &quot;  Manual test required&quot;
+echo
+
+echo &quot;Test 3: Multiple arguments&quot;
+echo &quot;  Command: /$COMMAND arg1 arg2 arg3&quot;
+echo &quot;  Expected: All arguments used appropriately&quot;
+echo &quot;  Manual test required&quot;
+echo
+
+echo &quot;Test 4: Special characters&quot;
+echo &quot;  Command: /$COMMAND \&quot;value with spaces\&quot;&quot;
+echo &quot;  Expected: Entire phrase captured&quot;
+echo &quot;  Manual test required&quot;
+</code></pre>
+<h3>Level 5: File Reference Testing</h3>
+<p><strong>What to test:</strong></p>
+<ul>
+<li>@ syntax loads file contents</li>
+<li>Non-existent files handled</li>
+<li>Large files handled appropriately</li>
+<li>Multiple file references work</li>
+</ul>
+<p><strong>Test procedure:</strong></p>
+<pre><code class="language-bash"># Create test files
+echo &quot;Test content&quot; &gt; /tmp/test-file.txt
+echo &quot;Second file&quot; &gt; /tmp/test-file-2.txt
+
+# Test single file reference
+&gt; /my-command /tmp/test-file.txt
+# Verify file content is read
+
+# Test non-existent file
+&gt; /my-command /tmp/nonexistent.txt
+# Verify graceful error handling
+
+# Test multiple files
+&gt; /my-command /tmp/test-file.txt /tmp/test-file-2.txt
+# Verify both files processed
+
+# Test large file
+dd if=/dev/zero of=/tmp/large-file.bin bs=1M count=100
+&gt; /my-command /tmp/large-file.bin
+# Verify reasonable behavior (may truncate or warn)
+
+# Cleanup
+rm /tmp/test-file*.txt /tmp/large-file.bin
+</code></pre>
+<h3>Level 6: Bash Execution Testing</h3>
+<p><strong>What to test:</strong></p>
+<ul>
+<li>!` commands execute correctly</li>
+<li>Command output included in prompt</li>
+<li>Command failures handled</li>
+<li>Security: only allowed commands run</li>
+</ul>
+<p><strong>Test procedure:</strong></p>
+<pre><code class="language-bash"># Create test command with bash execution
+cat &gt; .claude/commands/test-bash.md &lt;&lt; &#39;EOF&#39;
+---
+description: Test bash execution
+allowed-tools: Bash(echo:*), Bash(date:*)
+---
+
+Current date: !`date`
+Test output: !`echo &quot;Hello from bash&quot;`
+
+Analysis of output above...
+EOF
+
+# Test in Claude Code
+&gt; /test-bash
+# Verify:
+# 1. Date appears correctly
+# 2. Echo output appears
+# 3. No errors in debug logs
+
+# Test with disallowed command (should fail or be blocked)
+cat &gt; .claude/commands/test-forbidden.md &lt;&lt; &#39;EOF&#39;
+---
+description: Test forbidden command
+allowed-tools: Bash(echo:*)
+---
+
+Trying forbidden: !`ls -la /`
+EOF
+
+&gt; /test-forbidden
+# Verify: Permission denied or appropriate error
+</code></pre>
+<h3>Level 7: Integration Testing</h3>
+<p><strong>What to test:</strong></p>
+<ul>
+<li>Commands work with other plugin components</li>
+<li>Commands interact correctly with each other</li>
+<li>State management works across invocations</li>
+<li>Workflow commands execute in sequence</li>
+</ul>
+<p><strong>Test scenarios:</strong></p>
+<p><strong>Scenario 1: Command + Hook Integration</strong></p>
+<pre><code class="language-bash"># Setup: Command that triggers a hook
+# Test: Invoke command, verify hook executes
+
+# Command: .claude/commands/risky-operation.md
+# Hook: PreToolUse that validates the operation
+
+&gt; /risky-operation
+# Verify: Hook executes and validates before command completes
+</code></pre>
+<p><strong>Scenario 2: Command Sequence</strong></p>
+<pre><code class="language-bash"># Setup: Multi-command workflow
+&gt; /workflow-init
+# Verify: State file created
+
+&gt; /workflow-step2
+# Verify: State file read, step 2 executes
+
+&gt; /workflow-complete
+# Verify: State file cleaned up
+</code></pre>
+<p><strong>Scenario 3: Command + MCP Integration</strong></p>
+<pre><code class="language-bash"># Setup: Command uses MCP tools
+# Test: Verify MCP server accessible
+
+&gt; /mcp-command
+# Verify:
+# 1. MCP server starts (if stdio)
+# 2. Tool calls succeed
+# 3. Results included in output
+</code></pre>
+<h2>Automated Testing Approaches</h2>
+<h3>Command Test Suite</h3>
+<p>Create a test suite script:</p>
+<pre><code class="language-bash">#!/bin/bash
+# test-commands.sh - Command test suite
+
+TEST_DIR=&quot;.claude/commands&quot;
+FAILED_TESTS=0
+
+echo &quot;Command Test Suite&quot;
+echo &quot;==================&quot;
+echo
+
+for cmd_file in &quot;$TEST_DIR&quot;/*.md; do
+  cmd_name=$(basename &quot;$cmd_file&quot; .md)
+  echo &quot;Testing: $cmd_name&quot;
+
+  # Validate structure
+  if ./validate-command.sh &quot;$cmd_file&quot;; then
+    echo &quot;  ✓ Structure valid&quot;
+  else
+    echo &quot;  ✗ Structure invalid&quot;
+    ((FAILED_TESTS++))
+  fi
+
+  # Validate frontmatter
+  if ./validate-frontmatter.sh &quot;$cmd_file&quot;; then
+    echo &quot;  ✓ Frontmatter valid&quot;
+  else
+    echo &quot;  ✗ Frontmatter invalid&quot;
+    ((FAILED_TESTS++))
+  fi
+
+  echo
+done
+
+echo &quot;==================&quot;
+echo &quot;Tests complete&quot;
+echo &quot;Failed: $FAILED_TESTS&quot;
+
+exit $FAILED_TESTS
+</code></pre>
+<h3>Pre-Commit Hook</h3>
+<p>Validate commands before committing:</p>
+<pre><code class="language-bash">#!/bin/bash
+# .git/hooks/pre-commit
+
+echo &quot;Validating commands...&quot;
+
+COMMANDS_CHANGED=$(git diff --cached --name-only | grep &quot;\.claude/commands/.*\.md&quot;)
+
+if [ -z &quot;$COMMANDS_CHANGED&quot; ]; then
+  echo &quot;No commands changed&quot;
+  exit 0
+fi
+
+for cmd in $COMMANDS_CHANGED; do
+  echo &quot;Checking: $cmd&quot;
+
+  if ! ./scripts/validate-command.sh &quot;$cmd&quot;; then
+    echo &quot;ERROR: Command validation failed: $cmd&quot;
+    exit 1
+  fi
+done
+
+echo &quot;✓ All commands valid&quot;
+</code></pre>
+<h3>Continuous Testing</h3>
+<p>Test commands in CI/CD:</p>
+<pre><code class="language-yaml"># .github/workflows/test-commands.yml
+name: Test Commands
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate command structure
+        run: |
+          for cmd in .claude/commands/*.md; do
+            echo &quot;Testing: $cmd&quot;
+            ./scripts/validate-command.sh &quot;$cmd&quot;
+          done
+
+      - name: Validate frontmatter
+        run: |
+          for cmd in .claude/commands/*.md; do
+            ./scripts/validate-frontmatter.sh &quot;$cmd&quot;
+          done
+
+      - name: Check for TODOs
+        run: |
+          if grep -r &quot;TODO&quot; .claude/commands/; then
+            echo &quot;ERROR: TODOs found in commands&quot;
+            exit 1
+          fi
+</code></pre>
+<h2>Edge Case Testing</h2>
+<h3>Test Edge Cases</h3>
+<p><strong>Empty arguments:</strong></p>
+<pre><code class="language-bash">&gt; /cmd &quot;&quot;
+&gt; /cmd &#39;&#39; &#39;&#39;
+</code></pre>
+<p><strong>Special characters:</strong></p>
+<pre><code class="language-bash">&gt; /cmd &quot;arg with spaces&quot;
+&gt; /cmd arg-with-dashes
+&gt; /cmd arg_with_underscores
+&gt; /cmd arg/with/slashes
+&gt; /cmd &#39;arg with &quot;quotes&quot;&#39;
+</code></pre>
+<p><strong>Long arguments:</strong></p>
+<pre><code class="language-bash">&gt; /cmd $(python -c &quot;print(&#39;a&#39; * 10000)&quot;)
+</code></pre>
+<p><strong>Unusual file paths:</strong></p>
+<pre><code class="language-bash">&gt; /cmd ./file
+&gt; /cmd ../file
+&gt; /cmd ~/file
+&gt; /cmd &quot;/path with spaces/file&quot;
+</code></pre>
+<p><strong>Bash command edge cases:</strong></p>
+<pre><code class="language-markdown"># Commands that might fail
+!`exit 1`
+!`false`
+!`command-that-does-not-exist`
+
+# Commands with special output
+!`echo &quot;&quot;`
+!`cat /dev/null`
+!`yes | head -n 1000000`
+</code></pre>
+<h2>Performance Testing</h2>
+<h3>Response Time Testing</h3>
+<pre><code class="language-bash">#!/bin/bash
+# test-command-performance.sh
+
+COMMAND=&quot;$1&quot;
+
+echo &quot;Testing performance of /$COMMAND&quot;
+echo
+
+for i in {1..5}; do
+  echo &quot;Run $i:&quot;
+  START=$(date +%s%N)
+
+  # Invoke command (manual step - record time)
+  echo &quot;  Invoke: /$COMMAND&quot;
+  echo &quot;  Start time: $START&quot;
+  echo &quot;  (Record end time manually)&quot;
+  echo
+done
+
+echo &quot;Analyze results:&quot;
+echo &quot;  - Average response time&quot;
+echo &quot;  - Variance&quot;
+echo &quot;  - Acceptable threshold: &lt; 3 seconds for fast commands&quot;
+</code></pre>
+<h3>Resource Usage Testing</h3>
+<pre><code class="language-bash"># Monitor Claude Code during command execution
+# In terminal 1:
+claude --debug
+
+# In terminal 2:
+watch -n 1 &#39;ps aux | grep claude&#39;
+
+# Execute command and observe:
+# - Memory usage
+# - CPU usage
+# - Process count
+</code></pre>
+<h2>User Experience Testing</h2>
+<h3>Usability Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Command name is intuitive</li>
+<li><input disabled="" type="checkbox"> Description is clear in <code>/help</code></li>
+<li><input disabled="" type="checkbox"> Arguments are well-documented</li>
+<li><input disabled="" type="checkbox"> Error messages are helpful</li>
+<li><input disabled="" type="checkbox"> Output is formatted readably</li>
+<li><input disabled="" type="checkbox"> Long-running commands show progress</li>
+<li><input disabled="" type="checkbox"> Results are actionable</li>
+<li><input disabled="" type="checkbox"> Edge cases have good UX</li>
+</ul>
+<h3>User Acceptance Testing</h3>
+<p>Recruit testers:</p>
+<pre><code class="language-markdown"># Testing Guide for Beta Testers
+
+## Command: /my-new-command
+
+### Test Scenarios
+
+1. **Basic usage:**
+   - Run: `/my-new-command`
+   - Expected: [describe]
+   - Rate clarity: 1-5
+
+2. **With arguments:**
+   - Run: `/my-new-command arg1 arg2`
+   - Expected: [describe]
+   - Rate usefulness: 1-5
+
+3. **Error case:**
+   - Run: `/my-new-command invalid-input`
+   - Expected: Helpful error message
+   - Rate error message: 1-5
+
+### Feedback Questions
+
+1. Was the command easy to understand?
+2. Did the output meet your expectations?
+3. What would you change?
+4. Would you use this command regularly?
+</code></pre>
+<h2>Testing Checklist</h2>
+<p>Before releasing a command:</p>
+<h3>Structure</h3>
+<ul>
+<li><input disabled="" type="checkbox"> File in correct location</li>
+<li><input disabled="" type="checkbox"> Correct .md extension</li>
+<li><input disabled="" type="checkbox"> Valid YAML frontmatter (if present)</li>
+<li><input disabled="" type="checkbox"> Markdown syntax correct</li>
+</ul>
+<h3>Functionality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Command appears in <code>/help</code></li>
+<li><input disabled="" type="checkbox"> Description is clear</li>
+<li><input disabled="" type="checkbox"> Command executes without errors</li>
+<li><input disabled="" type="checkbox"> Arguments work as expected</li>
+<li><input disabled="" type="checkbox"> File references work</li>
+<li><input disabled="" type="checkbox"> Bash execution works (if used)</li>
+</ul>
+<h3>Edge Cases</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Missing arguments handled</li>
+<li><input disabled="" type="checkbox"> Invalid arguments detected</li>
+<li><input disabled="" type="checkbox"> Non-existent files handled</li>
+<li><input disabled="" type="checkbox"> Special characters work</li>
+<li><input disabled="" type="checkbox"> Long inputs handled</li>
+</ul>
+<h3>Integration</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Works with other commands</li>
+<li><input disabled="" type="checkbox"> Works with hooks (if applicable)</li>
+<li><input disabled="" type="checkbox"> Works with MCP (if applicable)</li>
+<li><input disabled="" type="checkbox"> State management works</li>
+</ul>
+<h3>Quality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Performance acceptable</li>
+<li><input disabled="" type="checkbox"> No security issues</li>
+<li><input disabled="" type="checkbox"> Error messages helpful</li>
+<li><input disabled="" type="checkbox"> Output formatted well</li>
+<li><input disabled="" type="checkbox"> Documentation complete</li>
+</ul>
+<h3>Distribution</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tested by others</li>
+<li><input disabled="" type="checkbox"> Feedback incorporated</li>
+<li><input disabled="" type="checkbox"> README updated</li>
+<li><input disabled="" type="checkbox"> Examples provided</li>
+</ul>
+<h2>Debugging Failed Tests</h2>
+<h3>Common Issues and Solutions</h3>
+<p><strong>Issue: Command not appearing in /help</strong></p>
+<pre><code class="language-bash"># Check file location
+ls -la .claude/commands/my-command.md
+
+# Check permissions
+chmod 644 .claude/commands/my-command.md
+
+# Check syntax
+head -n 20 .claude/commands/my-command.md
+
+# Restart Claude Code
+claude --debug
+</code></pre>
+<p><strong>Issue: Arguments not substituting</strong></p>
+<pre><code class="language-bash"># Verify syntax
+grep &#39;\$1&#39; .claude/commands/my-command.md
+grep &#39;\$ARGUMENTS&#39; .claude/commands/my-command.md
+
+# Test with simple command first
+echo &quot;Test: \$1 and \$2&quot; &gt; .claude/commands/test-args.md
+</code></pre>
+<p><strong>Issue: Bash commands not executing</strong></p>
+<pre><code class="language-bash"># Check allowed-tools
+grep &quot;allowed-tools&quot; .claude/commands/my-command.md
+
+# Verify command syntax
+grep &#39;!\`&#39; .claude/commands/my-command.md
+
+# Test command manually
+date
+echo &quot;test&quot;
+</code></pre>
+<p><strong>Issue: File references not working</strong></p>
+<pre><code class="language-bash"># Check @ syntax
+grep &#39;@&#39; .claude/commands/my-command.md
+
+# Verify file exists
+ls -la /path/to/referenced/file
+
+# Check permissions
+chmod 644 /path/to/referenced/file
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Test early, test often</strong>: Validate as you develop</li>
+<li><strong>Automate validation</strong>: Use scripts for repeatable checks</li>
+<li><strong>Test edge cases</strong>: Don&#39;t just test the happy path</li>
+<li><strong>Get feedback</strong>: Have others test before wide release</li>
+<li><strong>Document tests</strong>: Keep test scenarios for regression testing</li>
+<li><strong>Monitor in production</strong>: Watch for issues after release</li>
+<li><strong>Iterate</strong>: Improve based on real usage data</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

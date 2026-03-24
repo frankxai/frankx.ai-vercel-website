@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>THE CREATOR'S SOULBOOK</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/soulbook/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">THE CREATOR'S SOULBOOK</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Fsoulbook">soulbook</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: The Creator&#39;s Soulbook
+description: Guided process to create your personalized Soulbook - a comprehensive life transformation system
+version: 1.0.0
+type: guided-creation</h2>
+<h1>THE CREATOR&#39;S SOULBOOK</h1>
+<p><em>&quot;Write the book your soul came here to write&quot;</em></p>
+<h2>What This Skill Does</h2>
+<p>This skill guides you through creating your <strong>personalized Soulbook</strong> - a comprehensive document capturing your life vision, systems, and transformation journey across all 7 pillars of life.</p>
+<p>When you run <code>/soulbook</code>, I will:</p>
+<ol>
+<li><strong>Guide you through a discovery process</strong> - asking deep questions to understand your life</li>
+<li><strong>Create structured markdown files</strong> - one for each pillar/area of your life</li>
+<li><strong>Build your personal Soulbook</strong> - a complete document of your life architecture</li>
+<li><strong>Generate a beautiful PDF</strong> - your finalized Soulbook ready to use</li>
+</ol>
+<hr>
+<h2>The Process Overview</h2>
+<pre><code>╔═══════════════════════════════════════════════════════════════════╗
+║                   SOULBOOK CREATION PROCESS                       ║
+╠═══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  STEP 1: Choose Your Life Book                                    ║
+║  ├─ Life Symphony (for artists/musicians)                         ║
+║  ├─ Golden Path (for seekers/visionaries)                         ║
+║  └─ The 7 Pillars (for builders/architects)                       ║
+║                                                                   ║
+║  STEP 2: Foundation Phase (Pillars 1-3)                           ║
+║  ├─ Pillar 1: Energy (Physical foundation)                        ║
+║  ├─ Pillar 2: Mind (Mental &amp; emotional)                           ║
+║  └─ Pillar 3: Soul (Values &amp; purpose)                             ║
+║                                                                   ║
+║  STEP 3: Growth Phase (Pillars 4-6)                               ║
+║  ├─ Pillar 4: Craft (Skills &amp; mastery)                            ║
+║  ├─ Pillar 5: Capital (Resources &amp; freedom)                       ║
+║  └─ Pillar 6: Circle (Relationships)                              ║
+║                                                                   ║
+║  STEP 4: Legacy Phase (Pillar 7)                                  ║
+║  └─ Pillar 7: Legacy (Vision &amp; impact)                            ║
+║                                                                   ║
+║  STEP 5: Integration &amp; PDF Generation                             ║
+║  └─ Create your complete Soulbook PDF                             ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+</code></pre>
+<hr>
+<h2>Session Structure</h2>
+<h3>Phase 1: Discovery &amp; Setup (5-10 minutes)</h3>
+<p>I&#39;ll ask you questions to understand:</p>
+<ul>
+<li>Which Life Book resonates with you</li>
+<li>Your current life situation</li>
+<li>Your transformation goals</li>
+<li>Your immediate priorities</li>
+</ul>
+<h3>Phase 2: Deep Dive Sessions (Each Pillar: 10-15 minutes)</h3>
+<p>For each of the 7 pillars, I&#39;ll guide you through:</p>
+<ol>
+<li><strong>Current State Assessment</strong> - Where are you now? (1-10 rating + reflection)</li>
+<li><strong>Vision Creation</strong> - Where do you want to be? (Future state)</li>
+<li><strong>Systems Design</strong> - What habits/systems will get you there?</li>
+<li><strong>Action Planning</strong> - Next 30/60/90 day roadmap</li>
+</ol>
+<p>Each pillar session creates a markdown file in your personal soulbook folder.</p>
+<h3>Phase 3: Integration &amp; Export (5 minutes)</h3>
+<ul>
+<li>Review your complete Soulbook</li>
+<li>Make final edits</li>
+<li>Generate beautifully formatted PDF</li>
+</ul>
+<p><strong>Total Time:</strong> 2-3 hours (can be done in multiple sessions)</p>
+<hr>
+<h2>File Structure Created</h2>
+<p>When you complete the process, you&#39;ll have:</p>
+<pre><code>soulbook-personal/
+├── _meta.md                           # Your Life Book choice &amp; metadata
+├── 00-introduction.md                 # Your personal introduction
+├── 01-energy.md                       # Pillar 1: Energy
+├── 02-mind.md                         # Pillar 2: Mind
+├── 03-soul.md                         # Pillar 3: Soul
+├── 04-craft.md                        # Pillar 4: Craft
+├── 05-capital.md                      # Pillar 5: Capital
+├── 06-circle.md                       # Pillar 6: Circle
+├── 07-legacy.md                       # Pillar 7: Legacy
+├── 08-integration.md                  # Integration &amp; next steps
+└── outputs/
+    └── MY-SOULBOOK-{date}.pdf         # Your final PDF
+</code></pre>
+<hr>
+<h2>The Questions I&#39;ll Ask (Sample)</h2>
+<h3>For Each Pillar:</h3>
+<p><strong>Current State:</strong></p>
+<ul>
+<li>&quot;On a scale of 1-10, how satisfied are you with this area of life?&quot;</li>
+<li>&quot;What&#39;s working well?&quot;</li>
+<li>&quot;What&#39;s causing friction or pain?&quot;</li>
+<li>&quot;What have you tried before?&quot;</li>
+</ul>
+<p><strong>Vision State:</strong></p>
+<ul>
+<li>&quot;Describe your ideal state in this pillar 1 year from now&quot;</li>
+<li>&quot;What would a 10/10 look like for you?&quot;</li>
+<li>&quot;What becomes possible when this pillar is strong?&quot;</li>
+</ul>
+<p><strong>Systems &amp; Habits:</strong></p>
+<ul>
+<li>&quot;What daily/weekly rituals would support this pillar?&quot;</li>
+<li>&quot;What systems need to be built?&quot;</li>
+<li>&quot;What needs to be eliminated or changed?&quot;</li>
+</ul>
+<p><strong>Action Planning:</strong></p>
+<ul>
+<li>&quot;What are your top 3 priorities in this area for the next 30 days?&quot;</li>
+<li>&quot;What&#39;s one micro-commitment you can start this week?&quot;</li>
+<li>&quot;What support or resources do you need?&quot;</li>
+</ul>
+<hr>
+<h2>Soulbook Modes</h2>
+<h3>🚀 Quick Start Mode (1 hour)</h3>
+<ul>
+<li>Brief assessment of all 7 pillars</li>
+<li>High-level vision for each</li>
+<li>Creates basic structure</li>
+<li>Good for first-time users</li>
+</ul>
+<h3>📊 Deep Dive Mode (2-3 hours)</h3>
+<ul>
+<li>Comprehensive exploration</li>
+<li>Detailed systems design</li>
+<li>Full action planning</li>
+<li>Recommended for serious transformation</li>
+</ul>
+<h3>🎯 Focus Mode (30 minutes per pillar)</h3>
+<ul>
+<li>Work on one pillar at a time</li>
+<li>Can be done over multiple sessions</li>
+<li>Pick up where you left off</li>
+<li>Good for busy schedules</li>
+</ul>
+<hr>
+<h2>AI Agent Collaboration</h2>
+<p>During your Soulbook creation, I can invoke specialized agents:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>When Activated</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Lifesmith</strong></td>
+<td>Foundation &amp; Growth phases</td>
+<td>Deep dive on habits, systems, and structural life design</td>
+</tr>
+<tr>
+<td><strong>Soul Composer</strong></td>
+<td>If you choose Life Symphony</td>
+<td>Music-focused metaphors and creative expression</td>
+</tr>
+<tr>
+<td><strong>Soul Strategist</strong></td>
+<td>Vision &amp; Legacy phases</td>
+<td>Higher-level transformation strategy and soul alignment</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>PDF Export Features</h2>
+<p>Your final PDF will include:</p>
+<ul>
+<li><strong>Beautiful formatting</strong> with your chosen Life Book aesthetic</li>
+<li><strong>Visual diagrams</strong> showing your life architecture</li>
+<li><strong>Color-coded sections</strong> for each pillar</li>
+<li><strong>Progress tracking pages</strong> for 30/60/90 day reviews</li>
+<li><strong>Reflection prompts</strong> for ongoing journaling</li>
+<li><strong>QR codes</strong> linking to relevant resources</li>
+</ul>
+<hr>
+<h2>Continuing Your Soulbook Journey</h2>
+<p>Your Soulbook is a <strong>living document</strong>. After initial creation:</p>
+<h3>Monthly Review Sessions</h3>
+<p>Run <code>/soulbook-review</code> to:</p>
+<ul>
+<li>Update ratings for each pillar</li>
+<li>Reflect on progress</li>
+<li>Adjust systems and goals</li>
+<li>Generate updated PDF</li>
+</ul>
+<h3>Quarterly Deep Dives</h3>
+<p>Run <code>/soulbook-pillar [name]</code> to:</p>
+<ul>
+<li>Deeply revise a specific pillar</li>
+<li>Expand your vision</li>
+<li>Redesign systems</li>
+<li>Update action plans</li>
+</ul>
+<h3>Annual Reconstruction</h3>
+<p>Run <code>/soulbook-annual</code> to:</p>
+<ul>
+<li>Complete annual review</li>
+<li>Set new yearly vision</li>
+<li>Celebrate wins</li>
+<li>Redesign life architecture</li>
+</ul>
+<hr>
+<h2>Getting Started</h2>
+<p>When you&#39;re ready to begin, I&#39;ll:</p>
+<ol>
+<li><strong>Ask you to choose your Life Book</strong> (Life Symphony, Golden Path, or 7 Pillars)</li>
+<li><strong>Set your session preference</strong> (Quick Start, Deep Dive, or Focus Mode)</li>
+<li><strong>Begin the guided journey</strong> through each pillar</li>
+<li><strong>Create your files</strong> as we go</li>
+<li><strong>Generate your PDF</strong> at the end</li>
+</ol>
+<p>This is your Soulbook. Your life architecture. Your transformation blueprint.</p>
+<p>Are you ready to write the book your soul came here to write?</p>
+<hr>
+<h2>Claude Code Integration</h2>
+<p>When this skill is invoked, Claude Code should:</p>
+<ol>
+<li><strong>Read the agent instructions</strong>: Load <code>soulbook-creator-agent.md</code> for detailed process</li>
+<li><strong>Activate the Soulbook Creator Agent</strong>: Follow the agent personality and process</li>
+<li><strong>Execute the 5-phase process</strong>: Welcome → Foundation → Growth → Legacy → Integration</li>
+<li><strong>Create all markdown files</strong>: Generate structured files as you go</li>
+<li><strong>Generate PDF</strong>: Use pandoc or markdown-to-pdf tools</li>
+</ol>
+<h3>Agent Activation Prompt</h3>
+<p>When <code>/soulbook</code> is invoked, use this internal prompt:</p>
+<pre><code>I am now the Soulbook Creator Agent. I will guide {user} through creating
+their personalized Soulbook by:
+
+1. Welcoming them and explaining the process
+2. Having them choose their Life Book (Life Symphony, Golden Path, or 7 Pillars)
+3. Setting their session preference (Quick Start, Deep Dive, or Focus Mode)
+4. Guiding them through each of the 7 pillars with thoughtful questions
+5. Creating markdown files for each pillar as we complete it
+6. Generating a final PDF of their complete Soulbook
+
+I will be patient, encouraging, and adapt my language to their chosen Life Book.
+The goal is for them to have a complete, actionable life transformation document.
+
+Let&#39;s begin!
+</code></pre>
+<hr>
+<h2>Usage</h2>
+<pre><code class="language-bash"># Start your Soulbook creation journey
+/skill soulbook
+
+# Resume if interrupted
+/skill soulbook --resume
+
+# Review and update existing Soulbook
+/skill soulbook --review
+
+# Deep dive on specific pillar
+/skill soulbook --pillar energy
+/skill soulbook --pillar mind
+# ... etc
+
+# Generate PDF only (if markdown files exist)
+/skill soulbook --pdf
+</code></pre>
+<h3>Alternative Invocation</h3>
+<p>If Claude Code supports skill shortcuts:</p>
+<pre><code class="language-bash">/soulbook               # Same as /skill soulbook
+/soulbook --resume      # Resume interrupted session
+/soulbook --review      # Monthly review
+</code></pre>
+<hr>
+<h2>Required Tools</h2>
+<p>For PDF generation, ensure one of these is installed:</p>
+<ul>
+<li><strong>pandoc</strong> (recommended): <code>sudo apt install pandoc texlive-xelatex</code></li>
+<li><strong>markdown-pdf</strong>: <code>npm install -g markdown-pdf</code></li>
+<li><strong>Alternative</strong>: Use online markdown-to-pdf services</li>
+</ul>
+<p>Check installation:</p>
+<pre><code class="language-bash">pandoc --version
+</code></pre>
+<hr>
+<p><em>Your extraordinary life begins with a decision. Make it now.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

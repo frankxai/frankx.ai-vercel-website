@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>AI Architect Workflow for OCI Diagram Generation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/oracle-diagram-generator/AI_ARCHITECT_WORKFLOW.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">AI Architect Workflow for OCI Diagram Generation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Foracle-diagram-generator">oracle-diagram-generator</a> / <span>AI_ARCHITECT_WORKFLOW.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>AI Architect Workflow for OCI Diagram Generation</h1>
+<h2>Overview</h2>
+<p>This workflow ensures professional-quality OCI architecture diagrams by <strong>thinking through the solution architecture FIRST</strong> before generating any diagrams.</p>
+<h2>Phase 1: Requirements Analysis</h2>
+<h3>Business Domain Understanding</h3>
+<p>Before any diagram, answer these questions:</p>
+<ol>
+<li><p><strong>What is the business domain?</strong></p>
+<ul>
+<li>Marketing, Sales, Legal, HR, Finance, Operations, etc.</li>
+<li>What are the key business processes?</li>
+<li>Who are the users/stakeholders?</li>
+</ul>
+</li>
+<li><p><strong>What problems are we solving?</strong></p>
+<ul>
+<li>Current pain points</li>
+<li>Manual processes to automate</li>
+<li>Data silos to connect</li>
+</ul>
+</li>
+<li><p><strong>What outcomes are expected?</strong></p>
+<ul>
+<li>Efficiency gains (quantify if possible)</li>
+<li>Cost reduction targets</li>
+<li>Quality/accuracy improvements</li>
+</ul>
+</li>
+</ol>
+<h3>Example: Marketing Agent System</h3>
+<pre><code>Domain: Marketing Operations
+Problems:
+  - Manual content creation taking 20+ hours/week
+  - Inconsistent campaign performance analysis
+  - Siloed data across platforms
+Outcomes:
+  - 70% reduction in content creation time
+  - Real-time campaign optimization
+  - Unified customer 360 view
+</code></pre>
+<h2>Phase 2: Agent Architecture Design</h2>
+<h3>Identify Agent Types Needed</h3>
+<p>Use this decision framework:</p>
+<table>
+<thead>
+<tr>
+<th>Agent Type</th>
+<th>When to Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Orchestrator</strong></td>
+<td>Coordinates multiple specialists</td>
+<td>Campaign Planner, Deal Manager</td>
+</tr>
+<tr>
+<td><strong>Specialist</strong></td>
+<td>Deep expertise in one domain</td>
+<td>SEO Agent, Contract Analyzer</td>
+</tr>
+<tr>
+<td><strong>Utility</strong></td>
+<td>Common functions across domains</td>
+<td>Document Generator, Data Fetcher</td>
+</tr>
+<tr>
+<td><strong>Monitor</strong></td>
+<td>Continuous surveillance</td>
+<td>Compliance Monitor, Performance Tracker</td>
+</tr>
+</tbody></table>
+<h3>Design Agent Hierarchy</h3>
+<p>Standard pattern (from Oracle ADK):</p>
+<pre><code>                    ┌─────────────────┐
+                    │   Agent Hub     │
+                    │  (OCI GenAI)    │
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+                    │  Orchestrator   │
+                    │  (Supervisor)   │
+                    └────────┬────────┘
+           ┌─────────────────┼─────────────────┐
+           │                 │                 │
+    ┌──────▼──────┐   ┌──────▼──────┐   ┌──────▼──────┐
+    │ Specialist  │   │ Specialist  │   │ Specialist  │
+    │   Agent 1   │   │   Agent 2   │   │   Agent N   │
+    └──────┬──────┘   └──────┬──────┘   └──────┬──────┘
+           └─────────────────┼─────────────────┘
+                             │
+                    ┌────────▼────────┐
+                    │   Tool Layer    │
+                    │ (APIs, DBs, etc)│
+                    └────────┬────────┘
+                             │
+                    ┌────────▼────────┐
+                    │   Data Layer    │
+                    │  (ADB, Storage) │
+                    └─────────────────┘
+</code></pre>
+<h3>Map Agents to OCI Services</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>OCI Service</th>
+<th>Icon Index</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent Hub</td>
+<td>OCI Generative AI</td>
+<td>60 (ai)</td>
+</tr>
+<tr>
+<td>Specialist Agent</td>
+<td>OCI Generative AI</td>
+<td>60 (ai)</td>
+</tr>
+<tr>
+<td>Tool - API</td>
+<td>API Gateway</td>
+<td>79</td>
+</tr>
+<tr>
+<td>Tool - Compute</td>
+<td>Functions</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Tool - Integration</td>
+<td>Integration Cloud</td>
+<td>81</td>
+</tr>
+<tr>
+<td>Data - Database</td>
+<td>Autonomous DB</td>
+<td>37</td>
+</tr>
+<tr>
+<td>Data - Storage</td>
+<td>Object Storage</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Data - Secrets</td>
+<td>Vault</td>
+<td>105</td>
+</tr>
+</tbody></table>
+<h2>Phase 3: Data Flow Design</h2>
+<h3>Identify Data Flows</h3>
+<p>For each agent, document:</p>
+<ol>
+<li><strong>Inputs</strong>: What data does it receive?</li>
+<li><strong>Processing</strong>: What transformation/analysis?</li>
+<li><strong>Outputs</strong>: What does it produce?</li>
+<li><strong>Persistence</strong>: What needs to be stored?</li>
+</ol>
+<h3>Example: Content Creator Agent</h3>
+<pre><code>Inputs:
+  - Campaign brief from Orchestrator
+  - Brand guidelines from Knowledge Base
+  - Audience persona from CDP
+
+Processing:
+  - Generate content variations
+  - Check brand compliance
+  - Optimize for SEO
+
+Outputs:
+  - Draft content to Orchestrator
+  - SEO recommendations to SEO Agent
+
+Persistence:
+  - Content drafts to Object Storage
+  - Generation metrics to ADB
+</code></pre>
+<h3>Design Connector Labels</h3>
+<p>Use action-oriented labels (from Oracle official patterns):</p>
+<ul>
+<li>✅ &quot;generate content draft&quot;</li>
+<li>✅ &quot;fetch customer data&quot;</li>
+<li>✅ &quot;analyze performance&quot;</li>
+<li>❌ &quot;data&quot; (too vague)</li>
+<li>❌ &quot;connection&quot; (meaningless)</li>
+</ul>
+<h2>Phase 4: Cost Estimation</h2>
+<h3>Calculate Monthly Costs</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Pricing Model</th>
+<th>Typical Range</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>OCI GenAI (Cohere Cmd A)</td>
+<td>$0.0015/1K tokens in, $0.002/1K out</td>
+<td>$100-500/mo</td>
+</tr>
+<tr>
+<td>ADB 26ai (Always Free)</td>
+<td>$0 for 2 instances</td>
+<td>$0</td>
+</tr>
+<tr>
+<td>ADB 26ai (Paid)</td>
+<td>$0.336/ECPU-hour</td>
+<td>$240+/mo</td>
+</tr>
+<tr>
+<td>Functions</td>
+<td>$0.0002/GB-second</td>
+<td>$5-50/mo</td>
+</tr>
+<tr>
+<td>Object Storage</td>
+<td>$0.0255/GB/mo</td>
+<td>$3-30/mo</td>
+</tr>
+<tr>
+<td>API Gateway</td>
+<td>$3.50/million calls</td>
+<td>$10-50/mo</td>
+</tr>
+</tbody></table>
+<h3>Cost Box Format</h3>
+<pre><code>💰 MONTHLY COST ESTIMATE
+━━━━━━━━━━━━━━━━━━━━━━━━
+OCI GenAI: $XXX
+ADB 26ai: $XXX
+Functions: $XX
+Storage: $X
+━━━━━━━━━━━━━━━━━━━━━━━━
+TOTAL: $XXX-XXX/mo
+</code></pre>
+<h2>Phase 5: Diagram Layout Planning</h2>
+<h3>Standard Dimensions</h3>
+<ul>
+<li><strong>Canvas</strong>: 1400-1600px wide × 800-1000px tall</li>
+<li><strong>Icons</strong>: 85px standard size</li>
+<li><strong>Spacing</strong>: 160px horizontal, 140px vertical</li>
+<li><strong>Containers</strong>: 30-40px padding</li>
+</ul>
+<h3>Layout Grid</h3>
+<pre><code>Y=80:   Agent Hub (centered)
+Y=200:  Orchestrator Layer
+Y=330:  Specialist Agents
+Y=510:  Tool Layer
+Y=660:  Data Layer
+</code></pre>
+<h3>Container Sizing</h3>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Typical Width</th>
+<th>Typical Height</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hub</td>
+<td>300-400px</td>
+<td>100px</td>
+</tr>
+<tr>
+<td>Orchestrator</td>
+<td>500-600px</td>
+<td>110px</td>
+</tr>
+<tr>
+<td>Specialists</td>
+<td>1100-1300px</td>
+<td>160px</td>
+</tr>
+<tr>
+<td>Tools</td>
+<td>1000-1200px</td>
+<td>130px</td>
+</tr>
+<tr>
+<td>Data</td>
+<td>800-1000px</td>
+<td>130px</td>
+</tr>
+</tbody></table>
+<h2>Phase 6: Quality Checklist</h2>
+<p>Before finalizing any diagram, verify:</p>
+<h3>Visual Standards</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All icons are 85px (not smaller)</li>
+<li><input disabled="" type="checkbox"> All fonts are 14-16px</li>
+<li><input disabled="" type="checkbox"> Colors match Oracle palette</li>
+<li><input disabled="" type="checkbox"> Consistent spacing between elements</li>
+<li><input disabled="" type="checkbox"> Labels are centered below icons</li>
+</ul>
+<h3>Architecture Quality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Clear hierarchy (Hub → Orchestrator → Specialists)</li>
+<li><input disabled="" type="checkbox"> All agents have clear purpose</li>
+<li><input disabled="" type="checkbox"> Data flows are labeled with actions</li>
+<li><input disabled="" type="checkbox"> Tools connect to appropriate agents</li>
+<li><input disabled="" type="checkbox"> Cost estimate is included</li>
+</ul>
+<h3>Technical Accuracy</h3>
+<ul>
+<li><input disabled="" type="checkbox"> OCI service names are correct</li>
+<li><input disabled="" type="checkbox"> Icon types match services</li>
+<li><input disabled="" type="checkbox"> Pricing is current/accurate</li>
+<li><input disabled="" type="checkbox"> Integration patterns are valid</li>
+</ul>
+<h2>Template: Architecture Design Document</h2>
+<pre><code class="language-markdown"># [Domain] AI Agent System Architecture
+
+## Business Context
+- **Domain**:
+- **Key Processes**:
+- **Target Outcomes**:
+
+## Agent Design
+
+### Orchestrator
+- **Name**:
+- **Responsibilities**:
+- **Model**: Cohere Command A
+
+### Specialist Agents
+| Agent | Purpose | Tools Used |
+|-------|---------|------------|
+| | | |
+
+### Data Requirements
+| Data Type | Source | Storage |
+|-----------|--------|---------|
+| | | |
+
+## Cost Estimate
+| Service | Monthly Cost |
+|---------|--------------|
+| | |
+| **TOTAL** | |
+
+## Diagram Layout
+[Sketch or coordinates]
+</code></pre>
+<hr>
+<p><em>Always complete this workflow BEFORE running the diagram generator.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

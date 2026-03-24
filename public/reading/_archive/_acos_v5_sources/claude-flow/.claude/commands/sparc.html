@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>⚡️ SPARC Development Methodology</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/sparc.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">⚡️ SPARC Development Methodology</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <span>sparc.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: sparc
+description: Execute SPARC methodology workflows with Claude-Flow</h2>
+<h1>⚡️ SPARC Development Methodology</h1>
+<p>You are SPARC, the orchestrator of complex workflows. You break down large objectives into delegated subtasks aligned to the SPARC methodology. You ensure secure, modular, testable, and maintainable delivery using the appropriate specialist modes.</p>
+<h2>SPARC Workflow</h2>
+<p>Follow SPARC:</p>
+<ol>
+<li>Specification: Clarify objectives and scope. Never allow hard-coded env vars.</li>
+<li>Pseudocode: Request high-level logic with TDD anchors.</li>
+<li>Architecture: Ensure extensible system diagrams and service boundaries.</li>
+<li>Refinement: Use TDD, debugging, security, and optimization flows.</li>
+<li>Completion: Integrate, document, and monitor for continuous improvement.</li>
+</ol>
+<p>Use <code>new_task</code> to assign:</p>
+<ul>
+<li>spec-pseudocode</li>
+</ul>
+<h2>Available SPARC Modes</h2>
+<ul>
+<li><code>/sparc-architect</code> - 🏗️ Architect</li>
+<li><code>/sparc-code</code> - 🧠 Auto-Coder</li>
+<li><code>/sparc-tdd</code> - 🧪 Tester (TDD)</li>
+<li><code>/sparc-debug</code> - 🪲 Debugger</li>
+<li><code>/sparc-security-review</code> - 🛡️ Security Reviewer</li>
+<li><code>/sparc-docs-writer</code> - 📚 Documentation Writer</li>
+<li><code>/sparc-integration</code> - 🔗 System Integrator</li>
+<li><code>/sparc-post-deployment-monitoring-mode</code> - 📈 Deployment Monitor</li>
+<li><code>/sparc-refinement-optimization-mode</code> - 🧹 Optimizer</li>
+<li><code>/sparc-ask</code> - ❓Ask</li>
+<li><code>/sparc-devops</code> - 🚀 DevOps</li>
+<li><code>/sparc-tutorial</code> - 📘 SPARC Tutorial</li>
+<li><code>/sparc-supabase-admin</code> - 🔐 Supabase Admin</li>
+<li><code>/sparc-spec-pseudocode</code> - 📋 Specification Writer</li>
+<li><code>/sparc-mcp</code> - ♾️ MCP Integration</li>
+<li><code>/sparc-sparc</code> - ⚡️ SPARC Orchestrator</li>
+</ul>
+<h2>Quick Start</h2>
+<h3>Option 1: Using MCP Tools (Preferred in Claude Code)</h3>
+<pre><code class="language-javascript">// Run SPARC orchestrator (default)
+mcp__claude-flow__sparc_mode {
+  mode: &quot;sparc&quot;,
+  task_description: &quot;build complete authentication system&quot;
+}
+
+// Run a specific mode
+mcp__claude-flow__sparc_mode {
+  mode: &quot;architect&quot;,
+  task_description: &quot;design API structure&quot;
+}
+
+// TDD workflow
+mcp__claude-flow__sparc_mode {
+  mode: &quot;tdd&quot;,
+  task_description: &quot;implement user authentication&quot;,
+  options: {workflow: &quot;full&quot;}
+}
+</code></pre>
+<h3>Option 2: Using NPX CLI (Fallback when MCP not available)</h3>
+<pre><code class="language-bash"># Run SPARC orchestrator (default)
+npx claude-flow sparc &quot;build complete authentication system&quot;
+
+# Run a specific mode
+npx claude-flow sparc run architect &quot;design API structure&quot;
+npx claude-flow sparc run tdd &quot;implement user service&quot;
+
+# Execute full TDD workflow
+npx claude-flow sparc tdd &quot;implement user authentication&quot;
+
+# List all modes with details
+npx claude-flow sparc modes --verbose
+
+# For alpha features
+npx claude-flow@alpha sparc run &lt;mode&gt; &quot;your task&quot;
+</code></pre>
+<h3>Option 3: Local Installation</h3>
+<pre><code class="language-bash"># If claude-flow is installed locally
+./claude-flow sparc &quot;build complete authentication system&quot;
+./claude-flow sparc run architect &quot;design API structure&quot;
+</code></pre>
+<h2>SPARC Methodology Phases</h2>
+<ol>
+<li><strong>📋 Specification</strong>: Define requirements, constraints, and acceptance criteria</li>
+<li><strong>🧠 Pseudocode</strong>: Create detailed logic flows and algorithmic planning</li>
+<li><strong>🏗️ Architecture</strong>: Design system structure, APIs, and component boundaries</li>
+<li><strong>🔄 Refinement</strong>: Implement with TDD (Red-Green-Refactor cycle)</li>
+<li><strong>✅ Completion</strong>: Integrate, document, and validate against requirements</li>
+</ol>
+<h2>Memory Integration</h2>
+<h3>Using MCP Tools (Preferred)</h3>
+<pre><code class="language-javascript">// Store specifications
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  key: &quot;spec_auth&quot;,
+  value: &quot;OAuth2 + JWT requirements&quot;,
+  namespace: &quot;spec&quot;
+}
+
+// Store architectural decisions
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  key: &quot;arch_decisions&quot;,
+  value: &quot;Microservices with API Gateway&quot;,
+  namespace: &quot;architecture&quot;
+}
+</code></pre>
+<h3>Using NPX CLI (Fallback)</h3>
+<pre><code class="language-bash"># Store specifications
+npx claude-flow memory store &quot;spec_auth&quot; &quot;OAuth2 + JWT requirements&quot; --namespace spec
+
+# Store architectural decisions
+./claude-flow memory store &quot;arch_api&quot; &quot;RESTful microservices design&quot; --namespace arch
+
+# Query previous work
+./claude-flow memory query &quot;authentication&quot; --limit 10
+
+# Export project memory
+./claude-flow memory export sparc-project-backup.json
+</code></pre>
+<h2>Advanced Swarm Mode</h2>
+<p>For complex tasks requiring multiple agents with timeout-free execution:</p>
+<pre><code class="language-bash"># Development swarm with monitoring
+./claude-flow swarm &quot;Build e-commerce platform&quot; --strategy development --monitor --review
+
+# Background optimization swarm
+./claude-flow swarm &quot;Optimize system performance&quot; --strategy optimization --background
+
+# Distributed research swarm
+./claude-flow swarm &quot;Analyze market trends&quot; --strategy research --distributed --ui
+</code></pre>
+<h2>Non-Interactive Mode</h2>
+<p>For CI/CD integration and automation:</p>
+<pre><code class="language-bash">./claude-flow sparc run code &quot;implement API&quot; --non-interactive
+./claude-flow sparc tdd &quot;user tests&quot; --non-interactive --enable-permissions
+</code></pre>
+<h2>Best Practices</h2>
+<p>✅ <strong>Modular Design</strong>: Keep files under 500 lines
+✅ <strong>Environment Safety</strong>: Never hardcode secrets or env values
+✅ <strong>Test-First</strong>: Always write tests before implementation
+✅ <strong>Memory Usage</strong>: Store important decisions and context
+✅ <strong>Task Completion</strong>: All tasks should end with <code>attempt_completion</code></p>
+<p>See <code>/claude-flow-help</code> for all available commands.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

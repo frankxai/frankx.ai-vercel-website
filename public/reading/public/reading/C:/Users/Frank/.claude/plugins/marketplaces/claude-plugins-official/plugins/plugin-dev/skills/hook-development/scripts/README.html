@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-26" />
+  <title>Hook Development Utility Scripts</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CUsersFrank.claudepluginsmarketplacesclaude-plugins-official/plugins/plugin-dev/skills/hook-development/scripts/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Hook Development Utility Scripts</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-26 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-26</strong></div>
+      <h1>Hook Development Utility Scripts</h1>
+<p>These scripts help validate, test, and lint hook implementations before deployment.</p>
+<h2>validate-hook-schema.sh</h2>
+<p>Validates <code>hooks.json</code> configuration files for correct structure and common issues.</p>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-bash">./validate-hook-schema.sh path/to/hooks.json
+</code></pre>
+<p><strong>Checks:</strong></p>
+<ul>
+<li>Valid JSON syntax</li>
+<li>Required fields present</li>
+<li>Valid hook event names</li>
+<li>Proper hook types (command/prompt)</li>
+<li>Timeout values in valid ranges</li>
+<li>Hardcoded path detection</li>
+<li>Prompt hook event compatibility</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash">cd my-plugin
+./validate-hook-schema.sh hooks/hooks.json
+</code></pre>
+<h2>test-hook.sh</h2>
+<p>Tests individual hook scripts with sample input before deploying to Claude Code.</p>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-bash">./test-hook.sh [options] &lt;hook-script&gt; &lt;test-input.json&gt;
+</code></pre>
+<p><strong>Options:</strong></p>
+<ul>
+<li><code>-v, --verbose</code> - Show detailed execution information</li>
+<li><code>-t, --timeout N</code> - Set timeout in seconds (default: 60)</li>
+<li><code>--create-sample &lt;event-type&gt;</code> - Generate sample test input</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash"># Create sample test input
+./test-hook.sh --create-sample PreToolUse &gt; test-input.json
+
+# Test a hook script
+./test-hook.sh my-hook.sh test-input.json
+
+# Test with verbose output and custom timeout
+./test-hook.sh -v -t 30 my-hook.sh test-input.json
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Sets up proper environment variables (CLAUDE_PROJECT_DIR, CLAUDE_PLUGIN_ROOT)</li>
+<li>Measures execution time</li>
+<li>Validates output JSON</li>
+<li>Shows exit codes and their meanings</li>
+<li>Captures environment file output</li>
+</ul>
+<h2>hook-linter.sh</h2>
+<p>Checks hook scripts for common issues and best practices violations.</p>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-bash">./hook-linter.sh &lt;hook-script.sh&gt; [hook-script2.sh ...]
+</code></pre>
+<p><strong>Checks:</strong></p>
+<ul>
+<li>Shebang presence</li>
+<li><code>set -euo pipefail</code> usage</li>
+<li>Stdin input reading</li>
+<li>Proper error handling</li>
+<li>Variable quoting (injection prevention)</li>
+<li>Exit code usage</li>
+<li>Hardcoded paths</li>
+<li>Long-running code detection</li>
+<li>Error output to stderr</li>
+<li>Input validation</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash"># Lint single script
+./hook-linter.sh ../examples/validate-write.sh
+
+# Lint multiple scripts
+./hook-linter.sh ../examples/*.sh
+</code></pre>
+<h2>Typical Workflow</h2>
+<ol>
+<li><p><strong>Write your hook script</strong></p>
+<pre><code class="language-bash">vim my-plugin/scripts/my-hook.sh
+</code></pre>
+</li>
+<li><p><strong>Lint the script</strong></p>
+<pre><code class="language-bash">./hook-linter.sh my-plugin/scripts/my-hook.sh
+</code></pre>
+</li>
+<li><p><strong>Create test input</strong></p>
+<pre><code class="language-bash">./test-hook.sh --create-sample PreToolUse &gt; test-input.json
+# Edit test-input.json as needed
+</code></pre>
+</li>
+<li><p><strong>Test the hook</strong></p>
+<pre><code class="language-bash">./test-hook.sh -v my-plugin/scripts/my-hook.sh test-input.json
+</code></pre>
+</li>
+<li><p><strong>Add to hooks.json</strong></p>
+<pre><code class="language-bash"># Edit my-plugin/hooks/hooks.json
+</code></pre>
+</li>
+<li><p><strong>Validate configuration</strong></p>
+<pre><code class="language-bash">./validate-hook-schema.sh my-plugin/hooks/hooks.json
+</code></pre>
+</li>
+<li><p><strong>Test in Claude Code</strong></p>
+<pre><code class="language-bash">claude --debug
+</code></pre>
+</li>
+</ol>
+<h2>Tips</h2>
+<ul>
+<li>Always test hooks before deploying to avoid breaking user workflows</li>
+<li>Use verbose mode (<code>-v</code>) to debug hook behavior</li>
+<li>Check the linter output for security and best practice issues</li>
+<li>Validate hooks.json after any changes</li>
+<li>Create different test inputs for various scenarios (safe operations, dangerous operations, edge cases)</li>
+</ul>
+<h2>Common Issues</h2>
+<h3>Hook doesn&#39;t execute</h3>
+<p>Check:</p>
+<ul>
+<li>Script has shebang (<code>#!/bin/bash</code>)</li>
+<li>Script is executable (<code>chmod +x</code>)</li>
+<li>Path in hooks.json is correct (use <code>${CLAUDE_PLUGIN_ROOT}</code>)</li>
+</ul>
+<h3>Hook times out</h3>
+<ul>
+<li>Reduce timeout in hooks.json</li>
+<li>Optimize hook script performance</li>
+<li>Remove long-running operations</li>
+</ul>
+<h3>Hook fails silently</h3>
+<ul>
+<li>Check exit codes (should be 0 or 2)</li>
+<li>Ensure errors go to stderr (<code>&gt;&amp;2</code>)</li>
+<li>Validate JSON output structure</li>
+</ul>
+<h3>Injection vulnerabilities</h3>
+<ul>
+<li>Always quote variables: <code>&quot;$variable&quot;</code></li>
+<li>Use <code>set -euo pipefail</code></li>
+<li>Validate all input fields</li>
+<li>Run the linter to catch issues</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

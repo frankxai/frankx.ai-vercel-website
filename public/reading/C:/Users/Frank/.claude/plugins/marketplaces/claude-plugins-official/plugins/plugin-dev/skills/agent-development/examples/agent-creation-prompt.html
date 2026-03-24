@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>AI-Assisted Agent Generation Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="C:/Users/Frank/.claude/plugins/marketplaces/claude-plugins-official/plugins/plugin-dev/skills/agent-development/examples/agent-creation-prompt.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">AI-Assisted Agent Generation Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../../index.html#C%3A">C:</a> / <a href="../../../../../../../../../../index.html#C%3A%2FUsers">Users</a> / <a href="../../../../../../../../../index.html#C%3A%2FUsers%2FFrank">Frank</a> / <a href="../../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude">.claude</a> / <a href="../../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins">plugins</a> / <a href="../../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces">marketplaces</a> / <a href="../../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official">claude-plugins-official</a> / <a href="../../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins">plugins</a> / <a href="../../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev">plugin-dev</a> / <a href="../../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills">skills</a> / <a href="../index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fagent-development">agent-development</a> / <a href="index.html#C%3A%2FUsers%2FFrank%2F.claude%2Fplugins%2Fmarketplaces%2Fclaude-plugins-official%2Fplugins%2Fplugin-dev%2Fskills%2Fagent-development%2Fexamples">examples</a> / <span>agent-creation-prompt.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>AI-Assisted Agent Generation Template</h1>
+<p>Use this template to generate agents using Claude with the agent creation system prompt.</p>
+<h2>Usage Pattern</h2>
+<h3>Step 1: Describe Your Agent Need</h3>
+<p>Think about:</p>
+<ul>
+<li>What task should the agent handle?</li>
+<li>When should it be triggered?</li>
+<li>Should it be proactive or reactive?</li>
+<li>What are the key responsibilities?</li>
+</ul>
+<h3>Step 2: Use the Generation Prompt</h3>
+<p>Send this to Claude (with the agent-creation-system-prompt loaded):</p>
+<pre><code>Create an agent configuration based on this request: &quot;[YOUR DESCRIPTION]&quot;
+
+Return ONLY the JSON object, no other text.
+</code></pre>
+<p><strong>Replace [YOUR DESCRIPTION] with your agent requirements.</strong></p>
+<h3>Step 3: Claude Returns JSON</h3>
+<p>Claude will return:</p>
+<pre><code class="language-json">{
+  &quot;identifier&quot;: &quot;agent-name&quot;,
+  &quot;whenToUse&quot;: &quot;Use this agent when... Examples: &lt;example&gt;...&lt;/example&gt;&quot;,
+  &quot;systemPrompt&quot;: &quot;You are... **Your Core Responsibilities:**...&quot;
+}
+</code></pre>
+<h3>Step 4: Convert to Agent File</h3>
+<p>Create <code>agents/[identifier].md</code>:</p>
+<pre><code class="language-markdown">---
+name: [identifier from JSON]
+description: [whenToUse from JSON]
+model: inherit
+color: [choose: blue/cyan/green/yellow/magenta/red]
+tools: [&quot;Read&quot;, &quot;Write&quot;, &quot;Grep&quot;]  # Optional: restrict tools
+---
+
+[systemPrompt from JSON]
+</code></pre>
+<h2>Example 1: Code Review Agent</h2>
+<p><strong>Your request:</strong></p>
+<pre><code>I need an agent that reviews code changes for quality issues, security vulnerabilities, and adherence to best practices. It should be called after code is written and provide specific feedback.
+</code></pre>
+<p><strong>Claude generates:</strong></p>
+<pre><code class="language-json">{
+  &quot;identifier&quot;: &quot;code-quality-reviewer&quot;,
+  &quot;whenToUse&quot;: &quot;Use this agent when the user has written code and needs quality review, or explicitly asks to review code changes. Examples:\n\n&lt;example&gt;\nContext: User just implemented a new feature\nuser: \&quot;I&#39;ve added the authentication feature\&quot;\nassistant: \&quot;Great! Let me review the code quality.\&quot;\n&lt;commentary&gt;\nCode was written, trigger code-quality-reviewer agent for review.\n&lt;/commentary&gt;\nassistant: \&quot;I&#39;ll use the code-quality-reviewer agent to analyze the changes.\&quot;\n&lt;/example&gt;\n\n&lt;example&gt;\nContext: User explicitly requests review\nuser: \&quot;Can you review my code for issues?\&quot;\nassistant: \&quot;I&#39;ll use the code-quality-reviewer agent to perform a thorough review.\&quot;\n&lt;commentary&gt;\nExplicit review request triggers the agent.\n&lt;/commentary&gt;\n&lt;/example&gt;&quot;,
+  &quot;systemPrompt&quot;: &quot;You are an expert code quality reviewer specializing in identifying issues in software implementations.\n\n**Your Core Responsibilities:**\n1. Analyze code changes for quality issues (readability, maintainability, performance)\n2. Identify security vulnerabilities (injection, XSS, authentication issues)\n3. Check adherence to project best practices and coding standards\n4. Provide actionable, specific feedback with line numbers\n\n**Review Process:**\n1. Read the code changes using available tools\n2. Analyze for:\n   - Code quality (duplication, complexity, clarity)\n   - Security (OWASP top 10, input validation)\n   - Best practices (error handling, logging, testing)\n   - Project-specific standards (from CLAUDE.md)\n3. Identify issues with severity (critical/major/minor)\n4. Provide specific recommendations with examples\n\n**Output Format:**\nProvide a structured review:\n1. Summary (2-3 sentences)\n2. Critical Issues (must fix)\n3. Major Issues (should fix)\n4. Minor Issues (nice to fix)\n5. Positive observations\n6. Overall assessment\n\nInclude file names and line numbers for all findings.&quot;
+}
+</code></pre>
+<p><strong>You create:</strong></p>
+<p>File: <code>agents/code-quality-reviewer.md</code></p>
+<pre><code class="language-markdown">---
+name: code-quality-reviewer
+description: Use this agent when the user has written code and needs quality review, or explicitly asks to review code changes. Examples:
+
+&lt;example&gt;
+Context: User just implemented a new feature
+user: &quot;I&#39;ve added the authentication feature&quot;
+assistant: &quot;Great! Let me review the code quality.&quot;
+&lt;commentary&gt;
+Code was written, trigger code-quality-reviewer agent for review.
+&lt;/commentary&gt;
+assistant: &quot;I&#39;ll use the code-quality-reviewer agent to analyze the changes.&quot;
+&lt;/example&gt;
+
+&lt;example&gt;
+Context: User explicitly requests review
+user: &quot;Can you review my code for issues?&quot;
+assistant: &quot;I&#39;ll use the code-quality-reviewer agent to perform a thorough review.&quot;
+&lt;commentary&gt;
+Explicit review request triggers the agent.
+&lt;/commentary&gt;
+&lt;/example&gt;
+
+model: inherit
+color: blue
+tools: [&quot;Read&quot;, &quot;Grep&quot;, &quot;Glob&quot;]
+---
+
+You are an expert code quality reviewer specializing in identifying issues in software implementations.
+
+**Your Core Responsibilities:**
+1. Analyze code changes for quality issues (readability, maintainability, performance)
+2. Identify security vulnerabilities (injection, XSS, authentication issues)
+3. Check adherence to project best practices and coding standards
+4. Provide actionable, specific feedback with line numbers
+
+**Review Process:**
+1. Read the code changes using available tools
+2. Analyze for:
+   - Code quality (duplication, complexity, clarity)
+   - Security (OWASP top 10, input validation)
+   - Best practices (error handling, logging, testing)
+   - Project-specific standards (from CLAUDE.md)
+3. Identify issues with severity (critical/major/minor)
+4. Provide specific recommendations with examples
+
+**Output Format:**
+Provide a structured review:
+1. Summary (2-3 sentences)
+2. Critical Issues (must fix)
+3. Major Issues (should fix)
+4. Minor Issues (nice to fix)
+5. Positive observations
+6. Overall assessment
+
+Include file names and line numbers for all findings.
+</code></pre>
+<h2>Example 2: Test Generation Agent</h2>
+<p><strong>Your request:</strong></p>
+<pre><code>Create an agent that generates unit tests for code. It should analyze existing code and create comprehensive test suites following project conventions.
+</code></pre>
+<p><strong>Claude generates:</strong></p>
+<pre><code class="language-json">{
+  &quot;identifier&quot;: &quot;test-generator&quot;,
+  &quot;whenToUse&quot;: &quot;Use this agent when the user asks to generate tests, needs test coverage, or has written code that needs testing. Examples:\n\n&lt;example&gt;\nContext: User wrote new functions without tests\nuser: \&quot;I&#39;ve implemented the user authentication functions\&quot;\nassistant: \&quot;Great! Let me generate tests for these functions.\&quot;\n&lt;commentary&gt;\nNew code without tests, proactively trigger test-generator.\n&lt;/commentary&gt;\nassistant: \&quot;I&#39;ll use the test-generator agent to create comprehensive tests.\&quot;\n&lt;/example&gt;&quot;,
+  &quot;systemPrompt&quot;: &quot;You are an expert test engineer specializing in creating comprehensive unit tests...\n\n**Your Core Responsibilities:**\n1. Analyze code to understand behavior\n2. Generate test cases covering happy paths and edge cases\n3. Follow project testing conventions\n4. Ensure high code coverage\n\n**Test Generation Process:**\n1. Read target code\n2. Identify testable units (functions, classes, methods)\n3. Design test cases (inputs, expected outputs, edge cases)\n4. Generate tests following project patterns\n5. Add assertions and error cases\n\n**Output Format:**\nGenerate complete test files with:\n- Test suite structure\n- Setup/teardown if needed\n- Descriptive test names\n- Comprehensive assertions&quot;
+}
+</code></pre>
+<p><strong>You create:</strong> <code>agents/test-generator.md</code> with the structure above.</p>
+<h2>Example 3: Documentation Agent</h2>
+<p><strong>Your request:</strong></p>
+<pre><code>Build an agent that writes and updates API documentation. It should analyze code and generate clear, comprehensive docs.
+</code></pre>
+<p><strong>Result:</strong> Agent file with identifier <code>api-docs-writer</code>, appropriate examples, and system prompt for documentation generation.</p>
+<h2>Tips for Effective Agent Generation</h2>
+<h3>Be Specific in Your Request</h3>
+<p><strong>Vague:</strong></p>
+<pre><code>&quot;I need an agent that helps with code&quot;
+</code></pre>
+<p><strong>Specific:</strong></p>
+<pre><code>&quot;I need an agent that reviews pull requests for type safety issues in TypeScript, checking for proper type annotations, avoiding &#39;any&#39;, and ensuring correct generic usage&quot;
+</code></pre>
+<h3>Include Triggering Preferences</h3>
+<p>Tell Claude when the agent should activate:</p>
+<pre><code>&quot;Create an agent that generates tests. It should be triggered proactively after code is written, not just when explicitly requested.&quot;
+</code></pre>
+<h3>Mention Project Context</h3>
+<pre><code>&quot;Create a code review agent. This project uses React and TypeScript, so the agent should check for React best practices and TypeScript type safety.&quot;
+</code></pre>
+<h3>Define Output Expectations</h3>
+<pre><code>&quot;Create an agent that analyzes performance. It should provide specific recommendations with file names and line numbers, plus estimated performance impact.&quot;
+</code></pre>
+<h2>Validation After Generation</h2>
+<p>Always validate generated agents:</p>
+<pre><code class="language-bash"># Validate structure
+./scripts/validate-agent.sh agents/your-agent.md
+
+# Check triggering works
+# Test with scenarios from examples
+</code></pre>
+<h2>Iterating on Generated Agents</h2>
+<p>If generated agent needs improvement:</p>
+<ol>
+<li>Identify what&#39;s missing or wrong</li>
+<li>Manually edit the agent file</li>
+<li>Focus on:<ul>
+<li>Better examples in description</li>
+<li>More specific system prompt</li>
+<li>Clearer process steps</li>
+<li>Better output format definition</li>
+</ul>
+</li>
+<li>Re-validate</li>
+<li>Test again</li>
+</ol>
+<h2>Advantages of AI-Assisted Generation</h2>
+<ul>
+<li><strong>Comprehensive</strong>: Claude includes edge cases and quality checks</li>
+<li><strong>Consistent</strong>: Follows proven patterns</li>
+<li><strong>Fast</strong>: Seconds vs manual writing</li>
+<li><strong>Examples</strong>: Auto-generates triggering examples</li>
+<li><strong>Complete</strong>: Provides full system prompt structure</li>
+</ul>
+<h2>When to Edit Manually</h2>
+<p>Edit generated agents when:</p>
+<ul>
+<li>Need very specific project patterns</li>
+<li>Require custom tool combinations</li>
+<li>Want unique persona or style</li>
+<li>Integrating with existing agents</li>
+<li>Need precise triggering conditions</li>
+</ul>
+<p>Start with generation, then refine manually for best results.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

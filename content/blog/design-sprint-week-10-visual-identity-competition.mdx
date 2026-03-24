@@ -1,0 +1,181 @@
+---
+title: "Design Sprint: Three AI Teams Compete to Define frankx.ai's Visual Identity"
+description: "How I used three competing AI design teams to build a visual identity strategy for frankx.ai — with WebGL shaders, glassmorphism hierarchies, and canvas physics. Real components, real code, real competition."
+date: "2026-03-02"
+author: "Frank"
+category: "AI Architecture"
+tags:
+  [
+    "design-system",
+    "visual-identity",
+    "webgl",
+    "glassmorphism",
+    "ai-development",
+    "design-lab",
+  ]
+keywords:
+  [
+    "design system competition",
+    "visual identity strategy",
+    "webgl hero section",
+    "glassmorphism design",
+    "ai design teams",
+    "frankx design lab",
+    "css houdini shimmer",
+    "canvas cursor physics",
+  ]
+featured: true
+readingGoal: "Show how AI-assisted design competitions produce better outcomes than linear design processes. Demonstrate three production-ready visual identity systems with real code."
+---
+
+# Design Sprint: Three AI Teams Compete to Define frankx.ai's Visual Identity
+
+_What happens when you pit three design philosophies against each other with real code? You get three production-ready visual identity systems in one session._
+
+**TL;DR:** Instead of iterating on one design direction, I created three competing "design god teams" — each proposing a complete visual identity with live hero components, card systems, typography, and color strategies. The Strategy Arena at [/design-lab/strategy](/design-lab/strategy) presents all three side by side. The winner gets implemented across the entire site.
+
+---
+
+## The Problem: 232 Pages, No Signature
+
+frankx.ai has 232 pages, a mature component library, and a solid design token system. But it lacks a **signature visual identity** — the one thing that makes visitors instantly know "this is frankx.ai."
+
+Look at the competition:
+
+- **Linear** owns specular glass with monochrome restraint
+- **Stripe** owns the animated mesh gradient hero
+- **Vercel** owns Geist minimalism with performance-as-design
+- **Raycast** owns product glow with warm palettes
+
+FrankX needs to pick its move and execute it comprehensively.
+
+## The Approach: Competition Over Iteration
+
+Traditional design: pick a direction, iterate, second-guess, iterate more.
+
+What I did instead: three competing teams, each with a complete proposal. No compromise. Each team goes all-in on their philosophy.
+
+### Team Alpha: Cosmic Forge — Atmospheric Drama
+
+**Signature move:** Animated mesh gradient rendered on GPU via GLSL fragment shaders.
+
+The hero uses four brand color control points (`#AB47C7`, `#43BFE3`, `#10b981`, `#0a0a0b`) blended through sine-based noise functions running entirely on the GPU. The result: buttery-smooth organic gradients at fractional CPU cost.
+
+```glsl
+vec3 c0 = vec3(0.671, 0.278, 0.780); // Purple
+vec3 c1 = vec3(0.263, 0.749, 0.890); // Cyan
+vec3 c2 = vec3(0.063, 0.725, 0.506); // Emerald
+vec3 c3 = vec3(0.039, 0.039, 0.043); // Void
+```
+
+Below the fold: absolute silence. Monochrome cards, no gradients, no floating elements. The contrast between the dramatic hero and the calm body creates tension that keeps you scrolling.
+
+**Card system:** GlowCard with cursor-following radial glow. Already in the component library, 11 color presets.
+
+**Philosophy:** "One spectacle, then silence."
+
+### Team Beta: Glass Cathedral — Systematic Elegance
+
+**Signature move:** Four-tier glassmorphism hierarchy where every element communicates its importance through blur, opacity, and border intensity.
+
+| Level | Material | Blur | Usage                |
+| ----- | -------- | ---- | -------------------- |
+| 0     | none     | 0px  | Section containers   |
+| 1     | frosted  | 24px | Standard cards       |
+| 2     | crystal  | 40px | Feature cards, stats |
+| 3     | liquid   | 60px | CTAs, premium forms  |
+
+No animation. No gradient text. Everything fades in together (no stagger) over 800ms. The stillness IS the statement.
+
+**Card system:** GlassCard with element theming — `water` for cyan tint, `fire` for warmth, `arcane` for purple. Glass tier maps to content importance.
+
+**Philosophy:** "Glass does not jump. Glass catches light."
+
+### Team Gamma: Neon Grid — Electric Precision
+
+**Signature move:** Canvas-rendered dot grid with cursor-repulsion physics. 2px dots at 40px spacing — dots within 200px of your cursor shift away by up to 8px, creating a living background that responds to movement.
+
+```typescript
+if (dist < repelRadius && dist > 0) {
+  const force = (1 - dist / repelRadius) * repelStrength;
+  dx = (distX / dist) * force;
+  dy = (distY / dist) * force;
+}
+```
+
+Per-section color rotation through the brand palette: emerald for AI Architecture, amber for Creative Systems, violet for Open Tools. Each section owns its color.
+
+**Card system:** NeonCard wrapping ShimmerCard with an expanding gradient accent line — 12px wide at rest, full width on hover.
+
+**Philosophy:** "Everything earns its entrance."
+
+## The Strategy Arena
+
+All three approaches are live at [/design-lab/strategy](/design-lab/strategy) with:
+
+- **Live hero previews** in browser-frame containers
+- **Card system demos** showing each approach's core card component
+- **Typography specimens** with heading/body/monospace samples
+- **Color palette swatches** with hex values
+- **Motion philosophy** descriptions
+- **Pros and cons** for each approach
+- **Side-by-side comparison matrix** across 10 dimensions
+
+No mockups. No Figma screenshots. Real components rendering in the browser.
+
+## Comparison Matrix
+
+| Dimension      | Cosmic Forge              | Glass Cathedral                | Neon Grid                         |
+| -------------- | ------------------------- | ------------------------------ | --------------------------------- |
+| Hero           | WebGL mesh gradient       | Static void + crystal stats    | Canvas dot grid + floating mockup |
+| Core Card      | GlowCard                  | GlassCard                      | ShimmerCard + NeonCard            |
+| Color          | Monochrome below hero     | Near-monochrome + element tint | Per-section rotation              |
+| Motion         | Dramatic hero, quiet body | Near-zero throughout           | Moderate everywhere               |
+| Typography     | Gradient on hero only     | Monospace accents              | Gradient per section              |
+| New Components | 1                         | 2                              | 3                                 |
+| Bundle Impact  | ~3KB shader               | ~0KB                           | ~2KB canvas                       |
+| Best For       | Enterprise architects     | Linear/Vercel audience         | Creative technologists            |
+| Biggest Risk   | Stripe clone perception   | Cold/corporate                 | Visual noise                      |
+
+## What I Learned
+
+**Competition produces clarity.** When you commit to three distinct directions instead of hedging on one, the trade-offs become obvious. You can't unsee the difference between "atmospheric drama" and "systematic elegance" once they're rendered side by side.
+
+**Real code beats mockups.** Each hero component is 130-356 lines of production TypeScript. The GLSL shaders actually run on the GPU. The cursor physics actually respond to your mouse. You feel the difference between approaches in a way that a Figma frame never communicates.
+
+**Existing components are the constraint.** All three approaches reuse the existing component library (GlowCard, GlassCard, ShimmerCard, SplitTextReveal). The question isn't "what new things do we build?" — it's "which existing pieces do we elevate?"
+
+## What's Next
+
+The winner gets implemented across:
+
+- **Homepage** — full section sequence with the winning approach
+- **Key pages** — /coaching, /music-lab, /products, /acos
+- **Navigation** — nav style matching the winning philosophy
+- **Typography** — heading weights, gradient usage, monospace accents
+
+Visit [/design-lab/strategy](/design-lab/strategy) to see all three live.
+
+---
+
+## FAQ
+
+### Why compete three approaches instead of iterating on one?
+
+Competition forces commitment to a philosophy. Iteration produces compromise. When each team goes all-in on their direction, the strengths and weaknesses become immediately visible. You pick the approach whose weaknesses you can live with.
+
+### Do all three approaches reuse existing components?
+
+Yes. Alpha uses GlowCard, Beta uses GlassCard, Gamma uses ShimmerCard + a new NeonCard wrapper. All three use SplitTextReveal, AuthorityBar, and the existing motion library. The differences are in how they compose and constrain these components.
+
+### How much new code did each approach require?
+
+Alpha: 1 new component (CosmicForgeHero, 356 lines with GLSL shaders). Beta: 2 new components (GlassCathedralHero + FeaturedWork). Gamma: 3 new components (NeonGridHero + NeonCard + CreativeShowcase). Beta has the smallest bundle impact (~0KB new deps).
+
+### What about mobile performance?
+
+All three approaches have mobile fallbacks. Cosmic Forge disables WebGL on mobile and shows a static gradient. Neon Grid increases dot spacing to 60px and disables cursor physics. Glass Cathedral reduces blur values by 50% to prevent `backdrop-filter` stacking issues.
+
+### When will the winning approach ship?
+
+After review at /design-lab/strategy, the winner gets implemented across the homepage and key pages in the same sprint. Target: within the week.
