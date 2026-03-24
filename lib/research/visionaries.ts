@@ -368,7 +368,7 @@ export const visionaries: VisionaryPerson[] = [
     why: 'He is the clearest model of shipping plus writing as one integrated system.',
     qualities: ['Open Source', 'Public Teaching', 'Craft Discipline'],
     url: 'https://simonwillison.net',
-    youtubeId: 'pOLR5jE5Vjw',
+    youtubeId: 'eTTMUWP5B0s',
     top10Rank: 2,
   },
   {
