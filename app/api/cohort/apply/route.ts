@@ -5,7 +5,7 @@ const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
 const FROM_EMAIL = 'Frank <frank@mail.frankx.ai>'
 const NOTIFY_EMAIL = process.env.RESEND_FROM_EMAIL || 'frank@mail.frankx.ai'
 
-const VALID_TRACKS = ['builder', 'creator', 'hybrid']
+const VALID_TRACKS = ['portfolio', 'product', 'creator']
 
 export async function POST(request: NextRequest) {
   try {
@@ -50,9 +50,9 @@ export async function POST(request: NextRequest) {
     }
 
     const trackLabel =
-      track === 'builder' ? 'Builder (Ship a product)'
-      : track === 'creator' ? 'Creator (Launch content)'
-      : 'Hybrid (Build + Create)'
+      track === 'portfolio' ? 'Portfolio Builder'
+      : track === 'product' ? 'Product Launcher'
+      : 'Creator & Community'
 
     // 1. Add applicant to Resend audience
     const contactResponse = await fetch(
