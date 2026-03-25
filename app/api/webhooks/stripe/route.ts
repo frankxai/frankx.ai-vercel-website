@@ -3,7 +3,7 @@ import Stripe from 'stripe'
 import { generateProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_placeholder')
 
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!
 const RESEND_API_KEY = process.env.RESEND_API_KEY
