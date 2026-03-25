@@ -10,6 +10,7 @@ import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
+import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 
 // ============================================================================
 // TYPES
@@ -1241,6 +1242,9 @@ export default function HomePageElite({
 
         {/* 4. Authority bar */}
         <AuthorityBar />
+
+        {/* 4b. AI Stack — tool logos with guide links */}
+        <TrustedByBlock />
 
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
