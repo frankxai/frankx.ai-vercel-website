@@ -253,7 +253,7 @@
     "pricingTiers": [
       {
         "name": "Free",
-        "price": "$0",
+        "price": "$0/mo",
         "description": "Experience the Music Producer agent with daily limits",
         "features": [
           "10 Music Producer prompts/day",
@@ -278,8 +278,8 @@
           "Arcanea Cloud preview access"
         ],
         "ctaLabel": "Join Vibe Club",
-        "ctaHref": "/products/vibe-os/app#upgrade",
-        "highlighted": true
+        "ctaHref": "/products/vibe-os#pricing",
+        "featured": true
       },
       {
         "name": "Pro",
@@ -295,7 +295,7 @@
           "Priority support + Slack"
         ],
         "ctaLabel": "Go Pro",
-        "ctaHref": "/products/vibe-os/app#upgrade"
+        "ctaHref": "/products/vibe-os#pricing"
       }
     ],
     "modules": [

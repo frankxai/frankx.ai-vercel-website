@@ -240,7 +240,7 @@ export default function VibeOSPromptPreview() {
           className="mt-8 text-center text-sm text-white/40"
         >
           <span className="font-semibold text-white/60">50+ prompts</span> like this in the full library.
-          Free tier includes <span className="font-semibold text-white/60">10 prompts/day</span>.
+          Free tier includes <span className="font-semibold text-white/60">10 Music + 5 Creation Engine prompts/day</span>.
         </motion.p>
       </div>
     </section>

@@ -78,11 +78,6 @@ const structuredData = {
       availability: 'https://schema.org/InStock'
     }
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '47'
-  },
   featureList: [
     '50+ Engineered Suno Prompts',
     '15-Point Quality Validation Rubric',

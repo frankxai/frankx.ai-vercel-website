@@ -31,7 +31,7 @@ const agents = [
     status: 'live' as const,
     remaining: 10,
     cta: 'Launch Agent',
-    href: '/vibe/producer',
+    href: '/products/vibe-os/app',
     locked: false,
     disabledTooltip: null,
   },
@@ -40,10 +40,10 @@ const agents = [
     icon: Wand2,
     accent: '#43BFE3',
     description: 'SEO-optimized content creation',
-    status: 'live' as const,
-    remaining: 5,
-    cta: 'Launch Agent',
-    href: '#',
+    status: 'coming-soon' as const,
+    remaining: 0,
+    cta: 'Coming Soon',
+    href: '',
     locked: false,
     disabledTooltip: 'Coming soon',
   },
@@ -319,8 +319,8 @@ export default function VibeOSAppPage() {
       await navigator.clipboard.writeText(prompt)
       setCopiedIndex(id)
       setTimeout(() => setCopiedIndex(null), 2000)
-    } catch {
-      // Fallback for older browsers
+    } catch (err) {
+      console.warn('Clipboard write failed, using fallback:', err)
       const textarea = document.createElement('textarea')
       textarea.value = prompt
       document.body.appendChild(textarea)

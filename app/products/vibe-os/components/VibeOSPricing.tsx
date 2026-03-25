@@ -5,7 +5,7 @@ const tiers = [
   {
     name: 'Free',
     price: '$0',
-    period: '/month',
+    period: '/mo',
     description: 'Experience the Music Producer agent with daily limits',
     features: [
       '10 Music Producer prompts/day',
@@ -22,7 +22,7 @@ const tiers = [
   {
     name: 'Vibe Club',
     price: '$19',
-    period: '/month',
+    period: '/mo',
     description: 'Unlimited agents, all 9 LLMs, monthly Vibe Pack',
     features: [
       'Unlimited Music Producer & Creation Engine',
@@ -33,14 +33,14 @@ const tiers = [
       'Arcanea Cloud preview access',
     ],
     cta: 'Join Vibe Club',
-    href: '/products/vibe-os/app#upgrade',
+    href: '/products/vibe-os#pricing',
     borderClass: 'border-cyan-500/50',
     highlighted: true,
   },
   {
     name: 'Pro',
     price: '$97',
-    period: '/month',
+    period: '/mo',
     description: 'API access, custom agents, team seats',
     features: [
       'Everything in Vibe Club',
@@ -52,7 +52,7 @@ const tiers = [
       'Priority support + Slack',
     ],
     cta: 'Go Pro',
-    href: '/products/vibe-os/app#upgrade',
+    href: '/products/vibe-os#pricing',
     borderClass: 'border-amber-500/30',
     highlighted: false,
   },
@@ -93,7 +93,7 @@ function CellContent({ value }: { value: CellValue }) {
 
 export default function VibeOSPricing() {
   return (
-    <section className="relative py-24">
+    <section id="pricing" className="relative py-24">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-void via-space to-void" />
 
