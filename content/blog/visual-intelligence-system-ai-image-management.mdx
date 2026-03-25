@@ -35,7 +35,7 @@ The full audit uncovered a landscape far worse than expected:
 | Duplicate hero images across blog posts      | 3         |
 | Oversized images (7-9 MB each)               | 12        |
 
-Every one of those 333 orphans burned disk and deploy time. The placeholder SVGs sat on two of the highest-traffic articles — [GenCreator](/gencreator) and [Personal AI CoE](/research/visual-intelligence). The duplicate heroes made three distinct posts look interchangeable in social previews.
+Every one of those 333 orphans burned disk and deploy time. The placeholder SVGs sat on two of the highest-traffic articles — [GenCreator](/gencreator) and [Personal AI CoE](/tools/visual-intelligence). The duplicate heroes made three distinct posts look interchangeable in social previews.
 
 The root cause was straightforward: images accumulated across months of shipping — AI-generated art, diagrams, screenshots, mascot variants — with zero tracking layer between the filesystem and the pages that consumed them.
 

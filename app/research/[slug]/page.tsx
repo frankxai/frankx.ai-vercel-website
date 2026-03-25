@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       domain.title.toLowerCase(),
       ...domain.highlights.map(h => h.label.toLowerCase()),
       'AI research',
-      'frank van den bergh',
+      'Frank Riemer',
     ],
     openGraph: {
       title: `${domain.title} | FrankX Research`,

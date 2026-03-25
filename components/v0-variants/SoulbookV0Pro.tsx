@@ -338,7 +338,7 @@ export default function SoulbookPage() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl">
               <Sparkles className="h-4 w-4 text-purple-400" />
               <span className="text-sm font-medium text-white/90">
-                By Frank van den Bergh
+                By Frank Riemer
               </span>
             </div>
 
@@ -530,7 +530,7 @@ export default function SoulbookPage() {
                 <div className="flex items-center gap-4">
                   <div className="h-16 w-16 rounded-full bg-gradient-to-br from-purple-500 to-cyan-500" />
                   <div>
-                    <div className="font-semibold text-white">Frank van den Bergh</div>
+                    <div className="font-semibold text-white">Frank Riemer</div>
                     <div className="text-sm text-white/60">Creator of FrankX & The Soulbook</div>
                   </div>
                 </div>

@@ -63,6 +63,27 @@ const nextConfig = {
         destination: '/products/agentic-creator-os',
         permanent: false,
       },
+      // Research Hub content relocation redirects
+      {
+        source: '/research/visionaries',
+        destination: '/visionaries',
+        permanent: true,
+      },
+      {
+        source: '/research/visionariers',
+        destination: '/visionaries',
+        permanent: true,
+      },
+      {
+        source: '/research/ai-evolution',
+        destination: '/ai-evolution',
+        permanent: true,
+      },
+      {
+        source: '/research/visual-intelligence',
+        destination: '/tools/visual-intelligence',
+        permanent: true,
+      },
       // Blog post legacy redirects
       {
         source: '/blog/big-props-to-the-builders-of-this-era',

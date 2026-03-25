@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import VisionariesHub from './VisionariesHub'
 import { topVisionaries, visionarySources, visionaryUpdatedAt, visionaries } from '@/lib/research/visionaries'
 
-const pageUrl = 'https://frankx.ai/research/visionaries'
+const pageUrl = 'https://frankx.ai/visionaries'
 
 export const metadata: Metadata = {
   title: 'Visionaries Hub | FrankX Research',

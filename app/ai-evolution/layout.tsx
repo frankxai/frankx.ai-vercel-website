@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description:
       'A living research map of the complete AI landscape — foundation models, agentic AI, multi-agent systems, and the path to AGI.',
     type: 'article',
-    url: 'https://frankx.ai/research/ai-evolution',
+    url: 'https://frankx.ai/ai-evolution',
     siteName: 'FrankX',
     images: [
       {
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     creator: '@frankxai',
   },
   alternates: {
-    canonical: 'https://frankx.ai/research/ai-evolution',
+    canonical: 'https://frankx.ai/ai-evolution',
   },
 }
 
@@ -57,7 +57,7 @@ const articleLd = JSON.stringify({
   headline: 'The AI Evolution: From GenAI to AGI',
   description:
     'A living research map of the complete AI landscape — from foundation models through agentic AI to the AGI horizon.',
-  url: 'https://frankx.ai/research/ai-evolution',
+  url: 'https://frankx.ai/ai-evolution',
   datePublished: '2026-03-22T00:00:00Z',
   dateModified: '2026-03-22T00:00:00Z',
   author: {
@@ -73,7 +73,7 @@ const articleLd = JSON.stringify({
   },
   mainEntityOfPage: {
     '@type': 'WebPage',
-    '@id': 'https://frankx.ai/research/ai-evolution',
+    '@id': 'https://frankx.ai/ai-evolution',
   },
   breadcrumb: {
     '@type': 'BreadcrumbList',
@@ -94,7 +94,7 @@ const articleLd = JSON.stringify({
         '@type': 'ListItem',
         position: 3,
         name: 'The AI Evolution',
-        item: 'https://frankx.ai/research/ai-evolution',
+        item: 'https://frankx.ai/ai-evolution',
       },
     ],
   },
