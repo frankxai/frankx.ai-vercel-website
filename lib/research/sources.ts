@@ -294,6 +294,26 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'Inworld AI', title: 'AI NPC Character Engine', url: 'https://inworld.ai', type: 'official' },
     { name: 'AIVA', title: 'AI Music Composition for Games', url: 'https://www.aiva.ai', type: 'official' },
   ],
+  'housing-crisis-decisions': [
+    { name: 'McKinsey', title: 'A Blueprint for Addressing the Global Affordable Housing Challenge', url: 'https://www.mckinsey.com/featured-insights/urbanization/tackling-the-worlds-affordable-housing-challenge', type: 'industry-report' },
+    { name: 'McKinsey', title: 'Modular Construction: From Projects to Products', url: 'https://www.mckinsey.com/business-functions/operations/our-insights/modular-construction-from-projects-to-products', type: 'industry-report' },
+    { name: 'Harvard JCHS', title: "State of the Nation's Housing 2024", url: 'https://www.jchs.harvard.edu/state-nations-housing-2024', type: 'industry-report' },
+    { name: 'OECD', title: 'Housing Policy Toolkit — Brick by Brick', url: 'https://www.oecd.org/housing/policy-toolkit/', type: 'official' },
+    { name: 'Brookings', title: 'Housing Underproduction in the US', url: 'https://www.brookings.edu/articles/housing-supply/', type: 'industry-report' },
+    { name: 'Freddie Mac', title: 'Housing Supply: A Growing Deficit', url: 'https://www.freddiemac.com/research/insight/20210507-housing-supply', type: 'industry-report' },
+    { name: 'World Economic Forum', title: 'Making Affordable Housing a Reality', url: 'https://www.weforum.org/publications/making-affordable-housing-a-reality/', type: 'industry-report' },
+    { name: 'UN-Habitat', title: 'World Cities Report', url: 'https://unhabitat.org/wcr/', type: 'official' },
+    { name: 'UC Berkeley Terner Center', title: 'Upzoning and Housing Production Research', url: 'https://ternercenter.berkeley.edu/', type: 'journal' },
+    { name: 'Victoria Transport Policy', title: 'Parking Cost, Pricing and Revenue', url: 'https://www.vtpi.org/tca/tca0504.pdf', type: 'industry-report' },
+    { name: 'Lincoln Institute', title: 'Community Land Trusts — Permanence and Affordability', url: 'https://www.lincolninst.edu/publications/policy-focus-reports/community-land-trusts', type: 'journal' },
+    { name: 'Mercatus Center', title: 'Houston Land-Use Regulation and Housing Affordability', url: 'https://www.mercatus.org/research/policy-briefs/how-land-use-regulation-undermines-affordable-housing', type: 'journal' },
+    { name: 'HUD', title: 'Annual Homeless Assessment Report 2023', url: 'https://www.huduser.gov/portal/sites/default/files/pdf/2023-AHAR-Part-1.pdf', type: 'official' },
+    { name: 'Eurostat', title: 'Housing Statistics — Housing Cost Overburden Rate', url: 'https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Housing_statistics', type: 'official' },
+    { name: 'NAR', title: 'Housing Shortage Tracker', url: 'https://www.nar.realtor/research-and-statistics/housing-statistics/housing-shortage-tracker', type: 'industry-report' },
+    { name: 'Stanford', title: 'The Effects of Rent Control Expansion on Tenants, Landlords, and Inequality', url: 'https://web.stanford.edu/~diamlam/DMQ.pdf', type: 'journal' },
+    { name: 'City of Vienna', title: 'Vienna Model of Social Housing', url: 'https://socialhousing.wien/policy/the-vienna-model', type: 'official' },
+    { name: 'Singapore HDB', title: 'About Us — Housing & Development Board', url: 'https://www.hdb.gov.sg/about-us', type: 'official' },
+  ],
 }
 
 export function getSourcesForDomain(slug: string): ResearchSource[] {
