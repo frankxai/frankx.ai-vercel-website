@@ -277,7 +277,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
                 AI Architect at Oracle. 12,000+ songs with Suno.
-                75+ open-source skills shipped. Everything documented.
+                630+ AI skills shipped. Everything documented.
               </p>
 
               <div className="flex items-center gap-3">
@@ -324,9 +324,16 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               {featuredTrack ? (
                 <FeaturedTrack track={featuredTrack} />
               ) : (
-                <GlowCard color="emerald" className="p-8">
-                  <p className="text-white/50 text-center">Music player loading...</p>
-                </GlowCard>
+                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
+                  <iframe
+                    src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
+                    className="w-full h-[380px]"
+                    style={{ border: 'none' }}
+                    allow="autoplay; clipboard-write"
+                    loading="lazy"
+                    title="Vibe OS — Featured Track"
+                  />
+                </div>
               )}
             </motion.div>
           </div>
@@ -359,7 +366,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 const credentials = [
   'AI Architect at Oracle',
   '12,000+ AI Songs Created',
-  '75+ Open Source Skills',
+  '630+ AI Skills Shipped',
   'Everything Documented',
 ]
 
