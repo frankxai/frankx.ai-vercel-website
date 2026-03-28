@@ -334,6 +334,18 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 13,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'MCP ecosystem metrics (340% growth, 50+ servers) are GitHub-derived, not independently audited',
+      'Claude Code token reduction claims are vendor-reported (Anthropic)',
+      'Claude model benchmark scores are from vendor announcements — independent replication varies',
+    ],
+    whatWeDontKnow: [
+      'MCP adoption in enterprise vs hobby projects — no breakdown available',
+      'Whether MCP will become a true standard or remain Anthropic-centric',
+      'Long-term maintenance burden of MCP server ecosystem',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-ops',
@@ -394,6 +406,18 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-01-27',
     sourceCount: 11,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'The 5-layer stack and 6-level maturity model are synthesized frameworks, not peer-reviewed standards',
+      'Memory architecture taxonomy (4 types) draws on cognitive science analogies — real implementations vary',
+      'Maturity level distribution ("most at Level 1-2") is estimated, not surveyed',
+    ],
+    whatWeDontKnow: [
+      'Whether the 5-layer stack is the right abstraction for all organization sizes',
+      'Optimal investment allocation across the 5 layers for different maturity levels',
+      'How quickly organizations actually progress through maturity levels',
+    ],
+    lastVerified: '2026-01-27',
   },
   {
     slug: 'ai-neuroscience',
@@ -463,6 +487,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 15,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Neuralink trial data is from the company itself — no independent peer-reviewed outcomes yet',
+      'Apple BCI HID protocol is announced but no shipping products confirm consumer viability',
+      '91% thought decoding accuracy is from a single study with small sample size',
+      'Neuromorphic "100x efficiency" claims are for specific workloads, not general computing',
+    ],
+    whatWeDontKnow: [
+      'Long-term safety profile of implanted BCIs beyond 72-month tracking window',
+      'Whether non-invasive BCIs can achieve implant-level signal quality',
+      'Timeline for consumer BCI applications beyond focus/meditation',
+      'How neuromorphic computing will integrate with transformer-based AI architectures',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'vector-databases',
@@ -536,6 +574,18 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 5,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Benchmark latency numbers are from vendor-run tests, not independent head-to-head evaluations',
+      'Market valuations and funding data can change rapidly — verify before citing',
+      'pgvector "10M vector sweet spot" is approximate and depends heavily on hardware and index type',
+    ],
+    whatWeDontKnow: [
+      'True total cost of ownership comparison across all 7 platforms at matched scale',
+      'How multi-tenant performance degrades under real production load',
+      'Whether cloud provider acquisitions will fragment or consolidate the ecosystem',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-security',
@@ -612,6 +662,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 6,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'OWASP Agentic AI Top 10 is a first edition — attack taxonomy will evolve as real-world incidents emerge',
+      'Lakera acquisition price (~$300M) is from a single source (Calcalist)',
+      'EU AI Act enforcement impact is too early to assess — first investigation just launched',
+      '"Intent Capsule" pattern effectiveness lacks independent benchmarks',
+    ],
+    whatWeDontKnow: [
+      'How effective current guardrails are against adversarial attacks at scale',
+      'Whether regulatory fragmentation (EU, US state-level, China) will help or hinder security',
+      'Real-world prevalence and impact of delegation attacks in multi-agent systems',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'coding-assistants',
@@ -682,6 +745,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 5,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Cursor valuation ($29.3B) and ARR ($1B+) are from press reports, not audited financials',
+      'Market share percentages are derived from GitHub PR analysis, not comprehensive surveys',
+      'Benchmark scores are point-in-time snapshots — models update frequently',
+      'Copilot 20M+ user count includes free tier, not all paying subscribers',
+    ],
+    whatWeDontKnow: [
+      'Actual developer productivity gains from AI coding tools in controlled studies',
+      'Whether Cursor\'s growth is sustainable or a bubble driven by VC-subsidized pricing',
+      'How AI coding assistants affect code quality and maintainability long-term',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-adoption',
@@ -753,6 +829,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 5,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'McKinsey "88% regular AI use" is self-reported and includes trivial usage (ChatGPT for emails)',
+      'The 120K survey is a single source for the 8.6% production figure — may not be representative',
+      '63.7% "no formalized initiative" conflicts with 88% usage — definitions matter',
+      'Gartner 40% prediction is a forecast, not observed data',
+    ],
+    whatWeDontKnow: [
+      'How to reliably measure AI ROI across different enterprise contexts',
+      'Whether the "pilot purgatory" problem is structural or just a timing lag',
+      'Which industries will adopt fastest and why — current data is anecdotal',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'agent-benchmarks',
@@ -821,6 +910,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 6,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Benchmark scores are point-in-time — models update weekly and rankings shift',
+      'SWE-bench and Terminal-Bench test specific coding patterns, not general software engineering ability',
+      'Qwen3-Coder 3B result is remarkable but from a single benchmark run — needs independent replication',
+      'ARC-AGI-2 has limited public test set — overfitting concerns exist for all models',
+    ],
+    whatWeDontKnow: [
+      'How benchmark performance correlates with real-world developer productivity',
+      'Whether efficiency gains (small models matching large) will continue scaling',
+      'True cost-adjusted performance across all benchmarks simultaneously',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-mental-health',
@@ -890,6 +992,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Woebot and Wysa RCTs have relatively small sample sizes compared to pharmaceutical trials',
+      'Most studies are 2-8 weeks — long-term efficacy data is limited',
+      '91% prediction accuracy is from a single study population — generalizability unknown',
+      'Publication bias likely — failed AI therapy studies are less likely to be published',
+    ],
+    whatWeDontKnow: [
+      'Long-term retention of therapeutic gains from AI-only interventions',
+      'Optimal dosage/frequency of AI therapy interactions for different conditions',
+      'Whether AI therapy apps work equally well across demographics and cultures',
+      'Risk of over-reliance on AI therapy delaying professional help for severe conditions',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'generative-ai',
@@ -972,6 +1088,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Benchmark scores are vendor-reported — independent replication sometimes differs',
+      'Pricing changes rapidly — Opus 4.6 67% cut happened mid-cycle, others may follow',
+      'Context window sizes are maximums — effective use at 1M+ tokens is still unproven at scale',
+      'Open-source comparisons (Llama, DeepSeek) depend on hardware and quantization choices',
+    ],
+    whatWeDontKnow: [
+      'How pricing will evolve as competition intensifies — race to bottom or differentiation?',
+      'Whether 1M+ context windows are practically useful vs. RAG for most applications',
+      'How reasoning benchmark scores translate to real-world task completion rates',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-agent-config',
@@ -1062,6 +1191,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'Configuration patterns are derived from a single production system (ACOS) — may not generalize',
+      '500+ skills claim is self-counted from the FrankX ecosystem, not independently verified',
+      'Scaling claims lack controlled comparisons against simpler approaches',
+      'Hook-based automation benefits are qualitative, not quantitatively measured',
+    ],
+    whatWeDontKnow: [
+      'Whether CLAUDE.md-style constitution files improve agent output quality in controlled tests',
+      'Optimal number of concurrent skills before context pollution degrades performance',
+      'How these patterns transfer to non-Claude agents (GPT, Gemini, open-source)',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'prompt-engineering',
@@ -1128,6 +1270,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      '90% cost reduction via caching is the theoretical maximum — real-world savings vary by workload',
+      'Adaptive thinking effort levels are Anthropic-specific — pattern may not transfer to other providers',
+      'Anti-pattern recommendations are experience-based, not empirically validated',
+      'Prompt architecture patterns are emerging best practices, not established standards',
+    ],
+    whatWeDontKnow: [
+      'Whether prompt caching benefits diminish as models get faster at processing uncached prompts',
+      'Optimal template hierarchy depth before complexity exceeds benefit',
+      'How to reliably benchmark prompt quality across different domains and tasks',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-education',
@@ -1197,6 +1352,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Learning gains (0.36-0.70 SD) are averaged across diverse interventions — individual tool results vary',
+      '92% student AI usage is self-reported and includes any AI tool, not just educational ones',
+      'Most studies are short-term (weeks to months) — long-term retention data is sparse',
+      'MagicSchool "7-10 hours saved" is from user surveys, not time-motion studies',
+    ],
+    whatWeDontKnow: [
+      'Whether AI tutoring improves deep understanding or primarily helps with procedural knowledge',
+      'Long-term impact on critical thinking skills when students regularly use AI',
+      'How AI education tools perform across socioeconomic and linguistic demographics',
+      'Optimal balance between AI and human instruction for different age groups',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-creative-tools',
@@ -1266,6 +1435,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 9,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Midjourney market share and revenue estimates are unofficial — the company does not disclose financials',
+      '86% "daily AI use by creatives" conflates different survey methodologies',
+      'Video generation quality claims evolve monthly — comparisons date quickly',
+      'Suno $300M+ valuation is estimated, not confirmed by the company',
+    ],
+    whatWeDontKnow: [
+      'Whether AI creative tools enhance or homogenize creative output over time',
+      'How copyright and licensing will resolve for AI-generated content commercially',
+      'Whether human-AI creative collaboration produces work that audiences perceive as higher quality',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-personal-productivity',
@@ -1335,6 +1517,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 9,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'Oura Advisor engagement data (60% weekly active) is from a beta cohort — may not reflect general population',
+      'BetterUp $4.8B valuation is from 2021 funding round — current valuation may differ significantly',
+      '"50%+ behavior change" from Oura is self-reported, not clinically measured',
+      'AI coaching meta-analyses are still limited compared to traditional therapy evidence bases',
+    ],
+    whatWeDontKnow: [
+      'Whether AI coaching produces lasting behavioral change beyond the novelty period',
+      'Optimal frequency and depth of AI coaching interactions for different goals',
+      'How AI coaching effectiveness compares to human coaching in matched conditions',
+      'Privacy and data security implications of long-term AI coaching relationships',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-healthcare',
@@ -1399,6 +1595,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 11,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'FDA clearance does not guarantee clinical superiority — it means "substantially equivalent" to existing devices',
+      '800+ AI/ML device count includes many incremental updates to existing products',
+      '30-50% diagnostic time reduction varies widely by condition and implementation context',
+      'Algorithmic bias data is still emerging — most devices lack comprehensive demographic testing',
+    ],
+    whatWeDontKnow: [
+      'Long-term patient outcomes from AI-assisted vs traditional diagnosis at population scale',
+      'How AI diagnostic tools perform in resource-limited healthcare settings',
+      'Whether AI diagnostics will reduce or exacerbate healthcare cost growth',
+      'Liability frameworks for AI-assisted clinical decisions that lead to adverse outcomes',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'creator-economy-ai',
@@ -1460,6 +1670,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'n8n valuation ($2.5B) and ARR ($40M+) are from press reports during a funding round — may be peak pricing',
+      '"3-5x content production" is anecdotal from creator case studies, not controlled research',
+      'Zapier "2B+ tasks" includes trivial automations — high-value task share is unknown',
+      '"86% daily AI use" for creatives is from Adobe/Envato surveys of their own user bases',
+    ],
+    whatWeDontKnow: [
+      'Whether higher content volume from AI tools translates to proportionally higher audience engagement',
+      'Long-term sustainability of "sell systems" monetization vs traditional content monetization',
+      'How AI content production affects audience trust and perceived authenticity',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'investment-intelligence',
@@ -1544,6 +1767,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-14',
     sourceCount: 15,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Thomson Reuters 70% DD time reduction is from their own product marketing — independent validation varies',
+      '213K hours saved is from a single Anthropic case study — context and methodology unclear',
+      'IACOS is a proprietary framework, not a standard — transferability is limited',
+      'M&A AI adoption (21%) is from a 2025 Bain survey — sample may not represent full market',
+    ],
+    whatWeDontKnow: [
+      'Whether AI-assisted investment decisions outperform traditional analysis in risk-adjusted returns',
+      'How AI deal flow scoring compares to experienced human analyst screening in matched conditions',
+      'Regulatory implications of AI-driven investment decisions — fiduciary duty questions remain open',
+    ],
+    lastVerified: '2026-02-14',
   },
   {
     slug: 'agentic-game-development',
@@ -1669,6 +1905,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-14',
     sourceCount: 28,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      '$32.5B market projection is from a single industry report (Jenova AI) — wide confidence interval',
+      '87% AI agent usage by game devs is from a Google Games Report — survey may oversample tech-forward studios',
+      'WebGPU 15x performance gain is for specific rendering benchmarks, not general game performance',
+      '"70% faster dev" with AI tools is from case studies, not controlled studies',
+    ],
+    whatWeDontKnow: [
+      'Whether AI-generated game content achieves comparable player engagement to human-crafted content',
+      'How IP ownership works for games built primarily by AI agents',
+      'Whether the "prompt to playable game" pipeline works for anything beyond simple archetypes',
+      'Player perception and retention differences between AI-generated and human-designed games',
+    ],
+    lastVerified: '2026-02-14',
   },
   {
     slug: 'housing-crisis-decisions',
@@ -1762,6 +2012,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-03-26',
     sourceCount: 18,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Housing shortage estimates vary widely (3.8M–6.5M for US alone) depending on methodology',
+      'Vienna and Singapore models depend on unique political and cultural contexts — direct transfer is uncertain',
+      'Construction technology adoption rates (modular <5%) are from McKinsey 2019 — may have improved',
+      'Rent control debate is ideologically charged — evidence interpretation varies by researcher affiliation',
+    ],
+    whatWeDontKnow: [
+      'Whether zoning reform alone can close the housing gap without complementary financing mechanisms',
+      'Optimal public-private balance for different market conditions and demographics',
+      'How climate change adaptation costs will affect housing affordability projections',
+      'Whether AI and construction technology can achieve the productivity gains needed at scale',
+    ],
+    lastVerified: '2026-03-26',
   },
 ]
 
