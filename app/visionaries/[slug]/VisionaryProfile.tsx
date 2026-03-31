@@ -84,22 +84,28 @@ export default function VisionaryProfile({ person, category, related }: Props) {
   const fade = shouldReduceMotion ? {} : { initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.5 } }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <main className="min-h-screen bg-[#0a0a0b]">
+      {/* Page-level ambient glow */}
+      <div className="fixed inset-0 pointer-events-none -z-10">
+        <div className="absolute top-0 left-1/4 w-[60%] h-[40%]" style={{ background: `radial-gradient(ellipse at center, var(--glow-color, rgba(6, 182, 212, 0.06)) 0%, transparent 70%)`, filter: 'blur(100px)' }} />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
 
         {/* Breadcrumb */}
-        <motion.div {...fade} className="flex items-center gap-2 text-sm text-zinc-500 mb-8">
+        <motion.nav {...fade} aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-zinc-500 mb-8">
           <Link href="/visionaries" className="flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors">
             <ArrowLeft className="w-4 h-4" />
             Visionaries Hub
           </Link>
           <span>/</span>
           <span className="text-zinc-300">{person.name}</span>
-        </motion.div>
+        </motion.nav>
 
         {/* Hero */}
-        <motion.div {...fade} className={`relative rounded-2xl border ${colors.border} bg-gradient-to-br ${colors.gradient} p-6 sm:p-8 mb-8 overflow-hidden`}>
-          <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-white/[0.02] to-transparent rounded-full blur-3xl" />
+        <motion.div {...fade} className={`relative rounded-2xl border ${colors.border} bg-gradient-to-br ${colors.gradient} p-6 sm:p-10 mb-8 overflow-hidden`}>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/[0.03] to-transparent rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-white/[0.02] to-transparent rounded-full blur-2xl" />
 
           <div className="relative">
             {/* Rank badge */}
@@ -116,10 +122,10 @@ export default function VisionaryProfile({ person, category, related }: Props) {
             )}
 
             {/* Name + role */}
-            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 tracking-tight">
+            <h1 className="text-3xl sm:text-5xl font-bold text-white mb-3 tracking-tight leading-[1.1]">
               {person.name}
             </h1>
-            <p className={`text-lg ${colors.text} mb-4`}>{person.role}</p>
+            <p className={`text-lg sm:text-xl ${colors.text} mb-4 font-medium`}>{person.role}</p>
 
             {/* What they build */}
             <p className="text-zinc-300 text-base leading-relaxed mb-6 max-w-2xl">
@@ -174,9 +180,29 @@ export default function VisionaryProfile({ person, category, related }: Props) {
             <h2 className="text-lg font-semibold text-white">Why Study {person.name.split(' ')[0]}</h2>
           </div>
           <p className="text-zinc-300 leading-relaxed text-base">
-            {person.why}
+            {person.whyDeep || person.why}
           </p>
         </motion.div>
+
+        {/* Key Lessons */}
+        {person.keyLessons && person.keyLessons.length > 0 && (
+          <motion.div {...fade} transition={{ delay: 0.12 }} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 mb-8">
+            <h2 className="text-lg font-semibold text-white mb-5 flex items-center gap-2">
+              <Trophy className={`w-5 h-5 ${colors.text}`} />
+              Key Lessons
+            </h2>
+            <div className="space-y-4">
+              {person.keyLessons.map((lesson, i) => (
+                <div key={i} className="flex items-start gap-4">
+                  <div className={`flex-shrink-0 w-7 h-7 rounded-lg ${colors.bg} flex items-center justify-center`}>
+                    <span className={`text-xs font-bold ${colors.text}`}>{i + 1}</span>
+                  </div>
+                  <p className="text-zinc-300 text-sm leading-relaxed pt-0.5">{lesson}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* Frank's Take */}
         {person.frankTake && (
@@ -280,16 +306,16 @@ export default function VisionaryProfile({ person, category, related }: Props) {
           </motion.div>
         )}
 
-        {/* YouTube embed */}
-        {person.youtubeId && (
+        {/* YouTube embed — prefer curated featuredVideoId over legacy youtubeId */}
+        {(person.featuredVideoId || person.youtubeId) && (
           <motion.div {...fade} transition={{ delay: 0.3 }} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 mb-8">
             <h2 className="text-lg font-semibold text-white mb-5 flex items-center gap-2">
               <Play className={`w-5 h-5 ${colors.text}`} />
               Featured Video
             </h2>
-            <div className="aspect-video rounded-xl overflow-hidden">
+            <div className="aspect-video rounded-xl overflow-hidden bg-black/50">
               <iframe
-                src={`https://www.youtube.com/embed/${person.youtubeId}`}
+                src={`https://www.youtube.com/embed/${person.featuredVideoId || person.youtubeId}`}
                 title={`${person.name} featured video`}
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -330,11 +356,11 @@ export default function VisionaryProfile({ person, category, related }: Props) {
         )}
 
         {/* Back to hub */}
-        <Link href="/visionaries" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">
+        <Link href="/visionaries" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors mt-4">
           <ArrowLeft className="w-4 h-4" />
           Back to Visionaries Hub
         </Link>
       </div>
-    </div>
+    </main>
   )
 }

@@ -66,11 +66,14 @@ export interface VisionaryPerson {
   url: string
   youtubeId?: string
   top10Rank?: number
-  // Enrichment fields (populated for Top 10, optional for others)
+  // Enrichment fields (populated for Top 10+, optional for others)
   socials?: VisionarySocials
   startHere?: VisionaryStartHere
   products?: VisionaryProduct[]
   frankTake?: string
+  whyDeep?: string           // Extended paragraph explaining why to study this person
+  keyLessons?: string[]      // 3-5 specific, actionable lessons to take from this person
+  featuredVideoId?: string   // YouTube video ID for the profile page embed (overrides youtubeId)
 }
 
 export const visionaryUpdatedAt = '2026-02-17'
@@ -200,6 +203,15 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'Neural Networks: Zero to Hero', url: 'https://karpathy.ai/zero-to-hero.html', type: 'course', price: 'Free' },
     ],
     frankTake: 'Study his teaching method: he builds from first principles in code, never hand-waves. The Zero to Hero series is the gold standard for learning by building.',
+    whyDeep: 'Karpathy is rare: a researcher who can explain transformers to beginners while also having built Tesla Autopilot. After leaving OpenAI and Tesla, he launched a free education series that has become the gold standard for learning deep learning by building. His approach — write every line from scratch, explain every gradient — is the opposite of framework-first tutorials. For builders, the lesson is not just the neural network content but the teaching method itself: radical transparency, first principles, no abstraction until the concrete is mastered.',
+    keyLessons: [
+      'Build from scratch before using frameworks — understanding beats convenience',
+      'Teach by building in public: his entire YouTube catalog is live coding with explanations',
+      'Simplify complex systems by decomposing them into atomic operations',
+      'Ship educational content as a product — Zero to Hero has more impact than most startups',
+      'Bridge research and practice: he reads papers and writes code in the same session',
+    ],
+    featuredVideoId: 'kCc8FmEb1nY',
   },
   {
     id: 'fei-fei-li',
@@ -222,6 +234,14 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'The Worlds I See', url: 'https://www.amazon.com/Worlds-See-Curiosity-Exploration-Discovery/dp/1250897939', type: 'book', price: '~$18' },
     ],
     frankTake: 'Read her memoir for the long arc of building a research institution from nothing. ImageNet changed the field because she invested in data infrastructure before it was fashionable.',
+    whyDeep: 'Fei-Fei Li created ImageNet — the dataset that sparked the deep learning revolution — when the field thought vision was a solved problem. She built the Stanford Human-Centered AI Institute (HAI) to ensure AI development stays aligned with human values. Her memoir "The Worlds I See" reveals the 15-year arc from immigrant graduate student to one of the most influential voices in AI policy. For builders, the lesson is infrastructure investment: she spent years building a dataset everyone else thought was pointless, and it changed the entire field.',
+    keyLessons: [
+      'Invest in data infrastructure before it is fashionable — ImageNet was years ahead of its use',
+      'Build institutions, not just projects — HAI outlasts any individual paper',
+      'Bridge technical depth with policy influence — she advises governments on AI governance',
+      'The long game wins: 15 years from ImageNet inception to Nobel-adjacent impact',
+    ],
+    featuredVideoId: '40riCqvRoMs',
   },
   {
     id: 'demis-hassabis',
@@ -243,6 +263,14 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'AlphaFold Protein Structure Database', url: 'https://alphafold.ebi.ac.uk/', type: 'tool', price: 'Free' },
     ],
     frankTake: 'Study how he runs a 20-year research agenda inside a corporate structure. AlphaFold is the benchmark for turning pure science into a public good.',
+    whyDeep: 'Hassabis is the architect of the longest-running AGI research program in the world. He co-founded DeepMind in 2010 with the explicit mission of "solving intelligence" — a 20+ year bet that has produced AlphaGo, AlphaFold (which predicted the structure of virtually every known protein), and a Nobel Prize in Chemistry. Inside Google, he has maintained research independence while shipping products that matter. For builders, the lesson is how to run a multi-decade research program inside a corporate structure without losing the mission.',
+    keyLessons: [
+      'Set a 20-year mission and protect it through acquisitions and corporate politics',
+      'Turn pure research into public goods — AlphaFold database is free and used by 2M+ researchers',
+      'Combine game-playing intuition with scientific rigor (chess prodigy → neuroscience PhD → AI lab)',
+      'Build a team of researchers who stay for decades, not quarters',
+    ],
+    featuredVideoId: 'gNzNbCBr2Ak',
   },
   {
     id: 'andrew-ng',
@@ -265,6 +293,13 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'The Batch — weekly AI newsletter', url: 'https://www.deeplearning.ai/the-batch/', type: 'newsletter', price: 'Free' },
     ],
     frankTake: 'The most effective AI educator alive. His courses are the fastest path from zero to building. Subscribe to The Batch for a weekly signal-dense summary of what matters in AI.',
+    whyDeep: 'Andrew Ng is the bridge between AI research and the working professional. He co-founded Coursera to democratize education, built Google Brain, led AI at Baidu, and then created DeepLearning.AI to make AI skills accessible to millions. His courses have trained more people in machine learning than any university program in history. For builders, the lesson is how to create a teaching empire that scales: structured curriculum, progressive complexity, and a newsletter (The Batch) that keeps 500K+ subscribers current on AI developments.',
+    keyLessons: [
+      'Structure education for progressive mastery — his courses build from linear algebra to production systems',
+      'Build multiple vehicles for the same mission: Coursera (scale), Landing AI (enterprise), The Batch (signal)',
+      'Make advanced concepts accessible without dumbing them down',
+      'The teacher who reaches millions has more impact than the researcher who publishes dozens of papers',
+    ],
   },
   {
     id: 'dario-amodei',
@@ -449,6 +484,14 @@ export const visionaries: VisionaryPerson[] = [
       { title: "Simon Willison's Weblog", url: 'https://simonwillison.net/', type: 'newsletter', price: 'Free' },
     ],
     frankTake: 'The best builder-blogger in AI tooling. Watch how he ships small, composable tools fast and documents everything. His LLM CLI is how a craftsman integrates AI into real workflows.',
+    whyDeep: 'Simon Willison is the best example of shipping and writing as a single integrated system. He builds small, composable tools (LLM CLI, Datasette, shot-scraper), writes extensively about every decision, and maintains a daily blog that has become required reading for AI practitioners. His approach to open source — small tools with clear boundaries, documented decisions, and welcoming contributor culture — is a masterclass in sustainable solo development. He proves that one person with craft discipline can create more lasting impact than many teams.',
+    keyLessons: [
+      'Ship small, composable tools — LLM CLI does one thing excellently and composes with everything',
+      'Write about everything you build: the blog is the documentation, the marketing, and the thinking tool',
+      'Name things well and make excellent developer experiences — Datasette and LLM are instantly understandable',
+      'Maintain a daily practice of public learning — his TIL (Today I Learned) repository is legendary',
+      'Open source as a craft: clear README, welcoming issues, responsive to contributors',
+    ],
   },
   {
     id: 'guillermo-rauch',
@@ -471,6 +514,13 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'Next.js — React framework', url: 'https://nextjs.org/', type: 'tool', price: 'Free / Open Source' },
     ],
     frankTake: 'The best example of turning developer taste into a platform company. His "7 Principles" essay from 2014 is still the clearest articulation of what the modern web should be — and then he built it.',
+    whyDeep: 'Guillermo Rauch wrote "7 Principles of Rich Web Applications" in 2014 — then spent the next decade building the infrastructure to make them real. Socket.io, Next.js, Vercel, and v0 each represent a step in a coherent product vision: real-time → server-rendered → deployed → AI-generated. He demonstrates that product taste — knowing which abstractions developers need before they ask — is the ultimate competitive advantage. Vercel is not the biggest cloud company, but it has the strongest developer brand because of relentless focus on experience.',
+    keyLessons: [
+      'Write the essay first, build the product second — his 2014 post is still the vision Vercel executes',
+      'Product taste compounds: each product (Socket.io → Next.js → Vercel → v0) builds on the last',
+      'Developer experience is a moat — Vercel wins on DX, not on price or features',
+      'Ship fast and in public — Vercel Ship events are product launches that build community',
+    ],
   },
   {
     id: 'chip-huyen',
@@ -493,6 +543,13 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'Designing Machine Learning Systems (2022)', url: 'https://www.amazon.com/Designing-Machine-Learning-Systems-Production-Ready/dp/1098107969', type: 'book', price: '~$45' },
     ],
     frankTake: 'The clearest writer on ML systems in production. Her AI Engineering book is the practical bridge between "I can prompt an LLM" and "I can ship an AI product." Required reading.',
+    whyDeep: 'Chip Huyen bridges the gap between ML research and production engineering better than anyone writing today. Her first book "Designing Machine Learning Systems" became the standard reference for ML engineers. Her second, "AI Engineering," arrived at exactly the right moment — when the industry shifted from training models to building applications on top of them. She teaches at Stanford, advises startups, and maintains a blog that consistently ranks among the most-shared AI content. For builders, the lesson is clarity: she takes concepts that feel overwhelming and makes them architectural.',
+    keyLessons: [
+      'Write the book the industry needs right now — timing + clarity = category-defining impact',
+      'Make architecture decisions visible: her system design frameworks are immediately usable',
+      'Maintain a blog that industry leaders read — her "900 open source AI tools" post was shared 10K+ times',
+      'Bridge academia and industry: teach at Stanford while advising production teams',
+    ],
   },
   {
     id: 'harrison-chase',
@@ -686,6 +743,13 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'Ali Abdaal Newsletter', url: 'https://aliabdaal.com/newsletter/', type: 'newsletter', price: 'Free' },
     ],
     frankTake: 'Study his business model, not just his content. He turned a YouTube channel into a $4M+/year education business with clear product tiers. The system design behind his creator business is the real lesson.',
+    whyDeep: 'Ali Abdaal is the most legible case study in turning a personal brand into a multi-million dollar education business. Doctor-turned-YouTuber with 6M+ subscribers, he documents his creator journey with full revenue transparency. The Part-Time YouTuber Academy ($2K-5K), Feel-Good Productivity book, and newsletter form a clear product ladder. For builders, the lesson is not the individual tactics but the system: consistent publishing schedule, clear product tiers, team scaling at each revenue milestone, and data-driven content optimization.',
+    keyLessons: [
+      'Build a product ladder: free YouTube → newsletter → book → premium course → cohort program',
+      'Revenue transparency builds trust and creates a case study that attracts students',
+      'Systematize content production: templates, batching, team delegation at each revenue tier',
+      'Choose a niche intersection (productivity + medicine + YouTube) then expand from a position of authority',
+    ],
   },
   {
     id: 'dan-koe',
@@ -849,6 +913,14 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'Oblique Strategies — creative thinking cards', url: 'https://enoshop.co.uk/products/oblique-strategies', type: 'tool', price: '~$55' },
     ],
     frankTake: 'The original systems thinker in music. His generative music concept in 1996 predicted AI-assisted creation decades early. Oblique Strategies is still the best creative unblocking tool ever made.',
+    whyDeep: 'Brian Eno invented ambient music, coined the term, and then spent 50 years proving that the most important creative skill is designing systems that generate beauty without constant intervention. His 1996 generative music talk predicted AI-assisted creation decades before Suno or DALL-E existed. Oblique Strategies — a deck of cards with lateral thinking prompts — remains the most effective creative unblocking tool ever made. For builders, the lesson is that constraints and systems produce better art than raw inspiration. He produces by subtracting, not adding.',
+    keyLessons: [
+      'Design systems that generate output, not just individual pieces — generative music is a paradigm',
+      'Constraints produce creativity: his "Oblique Strategies" are structured randomness applied to art',
+      'Subtract to improve: his production philosophy is removing elements until only the essential remains',
+      'Think in decades, not quarters: ambient music was dismissed for 20 years before becoming a genre',
+      'Cross-pollinate: visual art, music, software, and philosophy are one practice for Eno',
+    ],
   },
   {
     id: 'rick-rubin',
@@ -870,6 +942,13 @@ export const visionaries: VisionaryPerson[] = [
       { title: 'Tetragrammaton Podcast', url: 'https://www.tetragrammaton.com/podcasts', type: 'newsletter', price: 'Free' },
     ],
     frankTake: 'Read The Creative Act for the meta-skill behind all creative work: taste as a practice, not a gift. His production method — stripping everything to its essence — applies directly to product design and code.',
+    whyDeep: 'Rick Rubin has produced genre-defining albums for Johnny Cash, Beastie Boys, Jay-Z, Red Hot Chili Peppers, Adele, and dozens more — across hip-hop, rock, country, and metal. His book "The Creative Act: A Way of Being" distills 40 years of production wisdom into a philosophy applicable far beyond music. His method: create the safest possible space for the artist, then strip everything non-essential until only the core remains. For builders, this is the product design philosophy most people miss — taste is not adding the right things, it is removing the wrong things.',
+    keyLessons: [
+      'Taste is subtraction: the producer\'s job is removing everything that does not serve the work',
+      'Create psychological safety first — the best work comes when people feel free to experiment',
+      'Genre is irrelevant: principles of quality apply identically across domains',
+      'The audience is not the customer — serve the work itself, and the audience follows',
+    ],
   },
   {
     id: 'jacob-collier',
