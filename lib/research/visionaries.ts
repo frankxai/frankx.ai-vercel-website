@@ -33,9 +33,31 @@ export interface VisionarySource {
   note: string
 }
 
+export interface VisionarySocials {
+  twitter?: string
+  youtube?: string
+  linkedin?: string
+  github?: string
+  website: string
+}
+
+export interface VisionaryStartHere {
+  bestTalk?: { title: string; url: string; platform: string }
+  bestArticle?: { title: string; url: string }
+  bestBook?: { title: string; url: string }
+}
+
+export interface VisionaryProduct {
+  title: string
+  url: string
+  type: 'book' | 'course' | 'tool' | 'newsletter'
+  price?: string
+}
+
 export interface VisionaryPerson {
   id: string
   name: string
+  slug?: string
   category: VisionaryCategoryId
   role: string
   builds: string
@@ -44,6 +66,11 @@ export interface VisionaryPerson {
   url: string
   youtubeId?: string
   top10Rank?: number
+  // Enrichment fields (populated for Top 10, optional for others)
+  socials?: VisionarySocials
+  startHere?: VisionaryStartHere
+  products?: VisionaryProduct[]
+  frankTake?: string
 }
 
 export const visionaryUpdatedAt = '2026-02-17'
@@ -155,6 +182,7 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'andrej-karpathy',
     name: 'Andrej Karpathy',
+    slug: 'andrej-karpathy',
     category: 'frontier-ai',
     role: 'AI educator and research engineer',
     builds: 'Neural network learning systems and practical AI education loops',
@@ -163,10 +191,20 @@ export const visionaries: VisionaryPerson[] = [
     url: 'https://karpathy.ai',
     youtubeId: 'VMj-3S1tku0',
     top10Rank: 1,
+    socials: { twitter: 'https://x.com/karpathy', youtube: 'https://www.youtube.com/@AndrejKarpathy', github: 'https://github.com/karpathy', website: 'https://karpathy.ai' },
+    startHere: {
+      bestTalk: { title: "Let's build GPT: from scratch, in code, spelled out", url: 'https://www.youtube.com/watch?v=kCc8FmEb1nY', platform: 'YouTube' },
+      bestArticle: { title: 'A Recipe for Training Neural Networks', url: 'https://karpathy.github.io/2019/04/25/recipe/' },
+    },
+    products: [
+      { title: 'Neural Networks: Zero to Hero', url: 'https://karpathy.ai/zero-to-hero.html', type: 'course', price: 'Free' },
+    ],
+    frankTake: 'Study his teaching method: he builds from first principles in code, never hand-waves. The Zero to Hero series is the gold standard for learning by building.',
   },
   {
     id: 'fei-fei-li',
     name: 'Fei-Fei Li',
+    slug: 'fei-fei-li',
     category: 'frontier-ai',
     role: 'Professor and AI institute builder',
     builds: 'Human-centered AI institutions and foundational vision datasets',
@@ -175,10 +213,20 @@ export const visionaries: VisionaryPerson[] = [
     url: 'https://profiles.stanford.edu/fei-fei-li',
     youtubeId: 'ad79nYk2keg',
     top10Rank: 3,
+    socials: { twitter: 'https://x.com/drfeifei', linkedin: 'https://www.linkedin.com/in/fei-fei-li-4541247/', website: 'https://profiles.stanford.edu/fei-fei-li' },
+    startHere: {
+      bestTalk: { title: 'How we teach computers to understand pictures', url: 'https://www.youtube.com/watch?v=40riCqvRoMs', platform: 'TED' },
+      bestBook: { title: 'The Worlds I See: Curiosity, Exploration, and Discovery at the Dawn of AI', url: 'https://www.amazon.com/Worlds-See-Curiosity-Exploration-Discovery/dp/1250897939' },
+    },
+    products: [
+      { title: 'The Worlds I See', url: 'https://www.amazon.com/Worlds-See-Curiosity-Exploration-Discovery/dp/1250897939', type: 'book', price: '~$18' },
+    ],
+    frankTake: 'Read her memoir for the long arc of building a research institution from nothing. ImageNet changed the field because she invested in data infrastructure before it was fashionable.',
   },
   {
     id: 'demis-hassabis',
     name: 'Demis Hassabis',
+    slug: 'demis-hassabis',
     category: 'frontier-ai',
     role: 'CEO, Google DeepMind',
     builds: 'Research organizations that convert deep science into world-scale products',
@@ -186,10 +234,20 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Long-Horizon Vision', 'Systems Thinking', 'Operational Excellence'],
     url: 'https://deepmind.google/about/people/demis-hassabis/',
     top10Rank: 4,
+    socials: { twitter: 'https://x.com/demishassabis', linkedin: 'https://www.linkedin.com/in/demishassabis/', website: 'https://deepmind.google/' },
+    startHere: {
+      bestTalk: { title: 'The Thinking Game — Full Documentary', url: 'https://www.youtube.com/watch?v=gNzNbCBr2Ak', platform: 'YouTube' },
+      bestBook: { title: 'Infinity Machine (by Sebastian Mallaby)', url: 'https://www.amazon.com/dp/0593831845' },
+    },
+    products: [
+      { title: 'AlphaFold Protein Structure Database', url: 'https://alphafold.ebi.ac.uk/', type: 'tool', price: 'Free' },
+    ],
+    frankTake: 'Study how he runs a 20-year research agenda inside a corporate structure. AlphaFold is the benchmark for turning pure science into a public good.',
   },
   {
     id: 'andrew-ng',
     name: 'Andrew Ng',
+    slug: 'andrew-ng',
     category: 'frontier-ai',
     role: 'AI educator and founder',
     builds: 'Applied AI education systems and enterprise adoption playbooks',
@@ -197,6 +255,16 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Public Teaching', 'Systems Thinking', 'Human-Centered Leadership'],
     url: 'https://www.andrewng.org',
     top10Rank: 5,
+    socials: { twitter: 'https://x.com/AndrewYNg', linkedin: 'https://www.linkedin.com/in/andrewyng/', website: 'https://www.andrewng.org' },
+    startHere: {
+      bestTalk: { title: 'Stanford CS229: Machine Learning (Full Course)', url: 'https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU', platform: 'YouTube' },
+    },
+    products: [
+      { title: 'Machine Learning Specialization', url: 'https://www.coursera.org/specializations/machine-learning-introduction', type: 'course', price: '~$49/mo' },
+      { title: 'Deep Learning Specialization', url: 'https://www.coursera.org/specializations/deep-learning', type: 'course', price: '~$49/mo' },
+      { title: 'The Batch — weekly AI newsletter', url: 'https://www.deeplearning.ai/the-batch/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'The most effective AI educator alive. His courses are the fastest path from zero to building. Subscribe to The Batch for a weekly signal-dense summary of what matters in AI.',
   },
   {
     id: 'dario-amodei',
@@ -362,6 +430,7 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'simon-willison',
     name: 'Simon Willison',
+    slug: 'simon-willison',
     category: 'ai-toolsmiths',
     role: 'Open source engineer and independent researcher',
     builds: 'Practical LLM tooling, knowledge pipelines, and daily research synthesis',
@@ -370,10 +439,21 @@ export const visionaries: VisionaryPerson[] = [
     url: 'https://simonwillison.net',
     youtubeId: 'eTTMUWP5B0s',
     top10Rank: 2,
+    socials: { twitter: 'https://x.com/simonw', linkedin: 'https://www.linkedin.com/in/simonwillison/', github: 'https://github.com/simonw', website: 'https://simonwillison.net' },
+    startHere: {
+      bestArticle: { title: 'What I learned from looking at 900 most popular open source AI tools', url: 'https://simonwillison.net/2024/Mar/22/ai-open-source/' },
+    },
+    products: [
+      { title: 'LLM — CLI tool for language models', url: 'https://llm.datasette.io/', type: 'tool', price: 'Free / Open Source' },
+      { title: 'Datasette — explore and publish data', url: 'https://datasette.io/', type: 'tool', price: 'Free / Open Source' },
+      { title: "Simon Willison's Weblog", url: 'https://simonwillison.net/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'The best builder-blogger in AI tooling. Watch how he ships small, composable tools fast and documents everything. His LLM CLI is how a craftsman integrates AI into real workflows.',
   },
   {
     id: 'guillermo-rauch',
     name: 'Guillermo Rauch',
+    slug: 'guillermo-rauch',
     category: 'ai-toolsmiths',
     role: 'CEO, Vercel',
     builds: 'Developer platforms and AI-native web product infrastructure',
@@ -381,10 +461,21 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Product Taste', 'Operational Excellence', 'Long-Horizon Vision'],
     url: 'https://vercel.com/about',
     top10Rank: 8,
+    socials: { twitter: 'https://x.com/rauchg', linkedin: 'https://www.linkedin.com/in/rauchg/', github: 'https://github.com/rauchg', website: 'https://rauchg.com/' },
+    startHere: {
+      bestArticle: { title: '7 Principles of Rich Web Applications', url: 'https://rauchg.com/2014/7-principles-of-rich-web-applications' },
+    },
+    products: [
+      { title: 'Vercel — frontend cloud platform', url: 'https://vercel.com/', type: 'tool', price: 'Free tier / Pro $20/mo' },
+      { title: 'v0 — AI web development', url: 'https://v0.dev/', type: 'tool', price: 'Free tier / Premium $20/mo' },
+      { title: 'Next.js — React framework', url: 'https://nextjs.org/', type: 'tool', price: 'Free / Open Source' },
+    ],
+    frankTake: 'The best example of turning developer taste into a platform company. His "7 Principles" essay from 2014 is still the clearest articulation of what the modern web should be — and then he built it.',
   },
   {
     id: 'chip-huyen',
     name: 'Chip Huyen',
+    slug: 'chip-huyen',
     category: 'ai-toolsmiths',
     role: 'AI systems educator and advisor',
     builds: 'Production ML and LLM systems playbooks',
@@ -392,6 +483,16 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Systems Thinking', 'Public Teaching', 'Operational Excellence'],
     url: 'https://huyenchip.com',
     top10Rank: 9,
+    socials: { twitter: 'https://x.com/chipro', linkedin: 'https://www.linkedin.com/in/chiphuyen/', github: 'https://github.com/chiphuyen', website: 'https://huyenchip.com/' },
+    startHere: {
+      bestArticle: { title: 'What I learned from looking at 900 most popular open source AI tools', url: 'https://huyenchip.com/2024/03/14/ai-oss.html' },
+      bestBook: { title: 'AI Engineering: Building Applications with Foundation Models', url: 'https://www.amazon.com/AI-Engineering-Building-Applications-Foundation/dp/1098166302' },
+    },
+    products: [
+      { title: 'AI Engineering (2025)', url: 'https://www.amazon.com/AI-Engineering-Building-Applications-Foundation/dp/1098166302', type: 'book', price: '~$50' },
+      { title: 'Designing Machine Learning Systems (2022)', url: 'https://www.amazon.com/Designing-Machine-Learning-Systems-Production-Ready/dp/1098107969', type: 'book', price: '~$45' },
+    ],
+    frankTake: 'The clearest writer on ML systems in production. Her AI Engineering book is the practical bridge between "I can prompt an LLM" and "I can ship an AI product." Required reading.',
   },
   {
     id: 'harrison-chase',
@@ -567,6 +668,7 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'ali-abdaal',
     name: 'Ali Abdaal',
+    slug: 'ali-abdaal',
     category: 'creator-systems',
     role: 'Creator and educator',
     builds: 'Education products and creator business systems',
@@ -574,6 +676,16 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Distribution Mastery', 'Operational Excellence', 'Public Teaching'],
     url: 'https://aliabdaal.com',
     top10Rank: 10,
+    socials: { twitter: 'https://x.com/AliAbdaal', youtube: 'https://www.youtube.com/@aliabdaal', linkedin: 'https://www.linkedin.com/in/ali-abdaal/', website: 'https://aliabdaal.com/' },
+    startHere: {
+      bestBook: { title: 'Feel-Good Productivity: How to Do More of What Matters to You', url: 'https://www.amazon.com/Feel-Good-Productivity-More-What-Matters/dp/1250865034' },
+    },
+    products: [
+      { title: 'Feel-Good Productivity', url: 'https://www.amazon.com/Feel-Good-Productivity-More-What-Matters/dp/1250865034', type: 'book', price: '~$18' },
+      { title: 'Part-Time YouTuber Academy', url: 'https://academy.aliabdaal.com/', type: 'course', price: '$2,000–$5,000' },
+      { title: 'Ali Abdaal Newsletter', url: 'https://aliabdaal.com/newsletter/', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'Study his business model, not just his content. He turned a YouTube channel into a $4M+/year education business with clear product tiers. The system design behind his creator business is the real lesson.',
   },
   {
     id: 'dan-koe',
@@ -719,6 +831,7 @@ export const visionaries: VisionaryPerson[] = [
   {
     id: 'brian-eno',
     name: 'Brian Eno',
+    slug: 'brian-eno',
     category: 'music-direction',
     role: 'Producer and composer',
     builds: 'Generative music systems and ambient production frameworks',
@@ -726,10 +839,21 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Creative Risk', 'Systems Thinking', 'Long-Horizon Vision'],
     url: 'https://en.wikipedia.org/wiki/Brian_Eno',
     top10Rank: 6,
+    socials: { twitter: 'https://x.com/brianeno', website: 'https://enoshop.co.uk/' },
+    startHere: {
+      bestArticle: { title: 'Generative Music (1996 talk transcript)', url: 'https://www.inmotionmagazine.com/eno1.html' },
+      bestBook: { title: "A Year with Swollen Appendices: Brian Eno's Diary", url: 'https://www.amazon.com/Year-Swollen-Appendices-Brian-Enos/dp/0571364616' },
+    },
+    products: [
+      { title: 'A Year with Swollen Appendices', url: 'https://www.amazon.com/Year-Swollen-Appendices-Brian-Enos/dp/0571364616', type: 'book', price: '~$17' },
+      { title: 'Oblique Strategies — creative thinking cards', url: 'https://enoshop.co.uk/products/oblique-strategies', type: 'tool', price: '~$55' },
+    ],
+    frankTake: 'The original systems thinker in music. His generative music concept in 1996 predicted AI-assisted creation decades early. Oblique Strategies is still the best creative unblocking tool ever made.',
   },
   {
     id: 'rick-rubin',
     name: 'Rick Rubin',
+    slug: 'rick-rubin',
     category: 'music-direction',
     role: 'Producer and creative director',
     builds: 'Creative decision frameworks for artists across genres',
@@ -737,6 +861,15 @@ export const visionaries: VisionaryPerson[] = [
     qualities: ['Product Taste', 'Human-Centered Leadership', 'Craft Discipline'],
     url: 'https://en.wikipedia.org/wiki/Rick_Rubin',
     top10Rank: 7,
+    socials: { twitter: 'https://x.com/RickRubin', website: 'https://www.tetragrammaton.com/' },
+    startHere: {
+      bestBook: { title: 'The Creative Act: A Way of Being', url: 'https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886' },
+    },
+    products: [
+      { title: 'The Creative Act: A Way of Being', url: 'https://www.amazon.com/Creative-Act-Way-Being/dp/0593652886', type: 'book', price: '~$20' },
+      { title: 'Tetragrammaton Podcast', url: 'https://www.tetragrammaton.com/podcasts', type: 'newsletter', price: 'Free' },
+    ],
+    frankTake: 'Read The Creative Act for the meta-skill behind all creative work: taste as a practice, not a gift. His production method — stripping everything to its essence — applies directly to product design and code.',
   },
   {
     id: 'jacob-collier',
@@ -1175,6 +1308,20 @@ export const visionaries: VisionaryPerson[] = [
 export const topVisionaries = [...visionaries]
   .filter((person) => person.top10Rank)
   .sort((a, b) => (a.top10Rank ?? 999) - (b.top10Rank ?? 999))
+
+export function getVisionaryBySlug(slug: string): VisionaryPerson | undefined {
+  return visionaries.find(v => v.slug === slug)
+}
+
+export function getRelatedVisionaries(person: VisionaryPerson): VisionaryPerson[] {
+  return visionaries
+    .filter(v => v.id !== person.id && v.category === person.category)
+    .slice(0, 4)
+}
+
+export function getEnrichedVisionaries(): VisionaryPerson[] {
+  return visionaries.filter(v => v.slug)
+}
 
 export const qualityLegend: VisionaryQualityTag[] = [
   'Systems Thinking',
