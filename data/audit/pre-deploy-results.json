@@ -1,0 +1,245 @@
+{
+  "timestamp": "2026-03-28T14:56:41.665Z",
+  "durationMs": 6337,
+  "routeCount": 302,
+  "results": [
+    {
+      "name": "Internal Links",
+      "status": "FAIL",
+      "count": 24,
+      "issues": [
+        {
+          "href": "/admin",
+          "file": "app/admin/map/page.tsx"
+        },
+        {
+          "href": "/admin",
+          "file": "app/admin/revenue/RevenueClient.tsx"
+        },
+        {
+          "href": "/ai-architect-academy/patterns",
+          "file": "app/ai-architect-academy/page.tsx"
+        },
+        {
+          "href": "/orchestration",
+          "file": "app/automation/page.tsx"
+        },
+        {
+          "href": "/rss.xml",
+          "file": "app/changelog/page.tsx"
+        },
+        {
+          "href": "/generate-social",
+          "file": "app/command-center/page.tsx"
+        },
+        {
+          "href": "/agentic-ai-center",
+          "file": "app/contact/page.tsx"
+        },
+        {
+          "href": "/community/office-hours",
+          "file": "app/dashboard/page.tsx"
+        },
+        {
+          "href": "/docs/design/LIQUID_GLASS_SYSTEM.md",
+          "file": "app/design-lab/arcanea/liquid-glass/page.tsx"
+        },
+        {
+          "href": "/docs/design/ARCANEA_VISUAL_LANGUAGE.md",
+          "file": "app/design-lab/arcanea/liquid-glass/page.tsx"
+        },
+        {
+          "href": "/components/liquid-glass/README.md",
+          "file": "app/design-lab/arcanea/liquid-glass/page.tsx"
+        },
+        {
+          "href": "/page",
+          "file": "app/design-lab/page.tsx"
+        },
+        {
+          "href": "/arcanea",
+          "file": "app/lab/page.tsx"
+        },
+        {
+          "href": "/prompts",
+          "file": "app/music/create/page.tsx"
+        },
+        {
+          "href": "/agentic-ai-center",
+          "file": "app/resources/page.tsx"
+        },
+        {
+          "href": "/ai-music-academy",
+          "file": "app/showcase/page.tsx"
+        },
+        {
+          "href": "/vibe-os",
+          "file": "app/showcase/page.tsx"
+        },
+        {
+          "href": "/templates/coe-checklist.html",
+          "file": "app/templates/page.tsx"
+        },
+        {
+          "href": "/templates/evaluation-rubric.html",
+          "file": "app/templates/page.tsx"
+        },
+        {
+          "href": "/templates/risk-register.html",
+          "file": "app/templates/page.tsx"
+        },
+        {
+          "href": "/templates/governance-overview.html",
+          "file": "app/templates/page.tsx"
+        },
+        {
+          "href": "/pdf-templates/vibe-os-guide.html",
+          "file": "app/templates/page.tsx"
+        },
+        {
+          "href": "/pdf-templates/5-suno-prompts.html",
+          "file": "app/templates/page.tsx"
+        },
+        {
+          "href": "/vibe/agents",
+          "file": "app/vibe/VibeOSContent.tsx"
+        }
+      ]
+    },
+    {
+      "name": "Blog Quality",
+      "status": "WARN",
+      "total": 118,
+      "belowThreshold": 9,
+      "issues": [
+        {
+          "file": "02-the-soul-frequency-framework.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "08-golden-age-of-intelligence.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "agentic-seo-publishing-masterplan.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "ai-coe-launch.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "ai-guide-for-families-and-professionals.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "enterprise-agent-roadmap.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "frankx-business-plan-canvas.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "frankx-vision-mission-values.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        },
+        {
+          "file": "golden-age-field-guide.mdx",
+          "score": 0,
+          "problems": [
+            "missing title",
+            "missing description",
+            "missing date",
+            "missing category/tags"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "status": "WARN",
+      "total": 16,
+      "issueCount": 1,
+      "issues": [
+        {
+          "slug": "golden-age",
+          "problems": [
+            "no download mechanism (no blobKey, no ctaPrimaryHref)",
+            "no pricing or CTA defined"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nav/Footer Links",
+      "status": "PASS",
+      "count": 0,
+      "issues": []
+    },
+    {
+      "name": "Brand Compliance",
+      "status": "FAIL",
+      "term": "AI Systems Architect",
+      "count": 2,
+      "violations": [
+        {
+          "file": "app/page-v2-generic-backup.tsx",
+          "line": 33
+        },
+        {
+          "file": "data/audit/cta-funnel-audit.json",
+          "line": 508
+        }
+      ]
+    }
+  ]
+}

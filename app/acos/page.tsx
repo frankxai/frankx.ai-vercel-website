@@ -189,7 +189,7 @@ export default function ACOSPage() {
               <p><span className="text-emerald-400">$</span> claude</p>
               <p className="text-purple-400">/acos</p>
               <p className="mt-2 text-cyan-300">
-                ACOS v10.2 loaded. 75 skills active. 38 agents ready.
+                ACOS v11.0 loaded. 75+ skills active. 38 agents ready. Visual Quality System armed.
               </p>
               <p className="text-white/40">
                 Agentic Creator OS loaded. What would you like to create today?
@@ -495,6 +495,39 @@ export default function ACOSPage() {
                 <p className="mt-3 text-sm leading-relaxed text-white/60">{item.a}</p>
               </details>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Related Tools ─── */}
+      <section className="border-t border-white/[0.08] py-16">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 className="text-center text-2xl font-bold text-white mb-8">Related Tools</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link
+              href="/assess/ai-coe"
+              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:border-cyan-500/30 hover:bg-white/[0.06]"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10">
+                  <Sparkles className="h-5 w-5 text-cyan-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">AI CoE Assessment</h3>
+              </div>
+              <p className="text-sm text-white/50">Interactive quiz to evaluate your AI Center of Excellence maturity level.</p>
+            </Link>
+            <Link
+              href="/intelligence-map"
+              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:border-purple-500/30 hover:bg-white/[0.06]"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10">
+                  <Layers className="h-5 w-5 text-purple-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">Intelligence Map</h3>
+              </div>
+              <p className="text-sm text-white/50">Visual map of the FrankX intelligence infrastructure and automation stack.</p>
+            </Link>
           </div>
         </div>
       </section>
