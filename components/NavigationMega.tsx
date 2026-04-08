@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -37,146 +38,173 @@ import {
   Gamepad2,
   Puzzle,
   Brain,
-  Trophy,
-  Search,
-  Scroll,
-  Map,
-  Flame,
-  Briefcase,
+  Play,
+  Zap,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
-// Navigation structure — 7 menus + Blog + Search + CTA
-const navigation = {
-  music: {
-    label: 'Music',
-    featured: {
-      title: 'AI Music Portfolio',
-      description: '12,000+ songs created with Suno AI. Explore the catalog.',
-      href: '/music',
-      badge: '12K+ Tracks',
-    },
-    items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: '12K+ AI-generated tracks' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
-      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive music tools' },
-      { name: 'Music School', href: '/music-school', icon: GraduationCap, description: 'Full curriculum: theory to production' },
-      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
-    ],
-  },
-  gencreators: {
-    label: 'GenCreators',
+// ── 4-Pillar Navigation ──
+// Steve Jobs rule: say no to a thousand things.
+// 9 dropdowns → 4 pillars + 2 direct links.
+
+const pillars = {
+  gencreator: {
+    label: 'GenCreator',
     featured: {
       title: 'The GenCreator Framework',
-      description: 'Principles. Handbook. Blueprints. The operating system for generative creators.',
+      description: 'Principles, handbook, blueprints, and soul — the complete creator OS.',
       href: '/gencreator',
       badge: 'Framework',
     },
-    items: [
-      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'The complete creator OS' },
-      { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
-      { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters: identity to legacy' },
-      { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: '12 actionable frameworks' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
-      { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Behind the build' },
-      { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
+    groups: [
+      {
+        label: 'Framework',
+        items: [
+          { name: 'GenCreator Hub', href: '/gencreator', icon: Sparkles, description: 'The complete framework' },
+          { name: '12 Principles', href: '/gencreator/principles', icon: Compass, description: 'Foundation philosophy' },
+          { name: "Creator's Handbook", href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters, full playbook' },
+          { name: "Creator's Blueprints", href: '/gencreator/blueprints', icon: Layers, description: '12 actionable frameworks' },
+          { name: 'GenCreator Soul', href: '/gencreator/soul', icon: Heart, description: 'Build your soul.md' },
+          { name: 'The Manifesto', href: '/gencreator/manifesto', icon: FileText, description: 'Read the declaration' },
+        ],
+      },
+      {
+        label: 'Create',
+        items: [
+          { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
+          { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
+          { name: 'Creation Chronicles', href: '/creation-chronicles', icon: BookOpen, description: 'Behind the scenes' },
+          { name: 'Full Presence', href: '/presence', icon: Brain, description: 'Arrive before you create' },
+        ],
+      },
     ],
   },
   learn: {
     label: 'Learn',
     featured: {
-      title: 'Learning Paths',
-      description: 'Courses, guides, books, and assessments. Find your level and grow.',
-      href: '/courses',
-      badge: 'Free + Premium',
+      title: 'Learn AI — Your Way',
+      description: 'Courses, workshops, assessments, and a curated video vault.',
+      href: '/students',
+      badge: 'Free Resources',
     },
-    items: [
-      { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },
-      { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
-      { name: 'Books', href: '/books', icon: BookOpen, description: '23 books, 411K+ words' },
-      { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your level' },
-      { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
-      { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Learn through play' },
+    groups: [
+      {
+        label: 'Start Here',
+        items: [
+          { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
+          { name: 'AI Assessment', href: '/assess', icon: Target, description: 'Test your AI readiness' },
+          { name: 'AI Briefing', href: '/students/ai-briefing', icon: Zap, description: 'AI in 2026 session' },
+          { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
+        ],
+      },
+      {
+        label: 'Go Deeper',
+        items: [
+          { name: 'Courses', href: '/courses', icon: BookOpen, description: 'Structured learning paths' },
+          { name: 'AI Workshops', href: '/workshops', icon: GraduationCap, description: 'Pre-built workshop templates' },
+          { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
+          { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence' },
+        ],
+      },
+      {
+        label: 'Read',
+        items: [
+          { name: 'The Golden Age of Creators', href: '/golden-age', icon: Star, description: 'Book on creative transformation' },
+          { name: "The Creator's Soulbook", href: '/soulbook', icon: Heart, description: 'Your life transformation system' },
+          { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Compass, description: 'Flagship research' },
+          { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
+        ],
+      },
     ],
   },
   build: {
     label: 'Build',
     featured: {
       title: 'AI Architecture Hub',
-      description: 'Blueprints, prototypes, and production templates. From idea to deployment.',
+      description: 'Blueprints, BYOK prototypes, and production templates for builders.',
       href: '/ai-architecture',
-      badge: 'Hub',
+      badge: 'New Hub',
     },
-    items: [
-      { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI builders' },
-      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
-      { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
-      { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },
-      { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'Live architecture demos' },
-      { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Tools & workflows' },
-      { name: 'AI Studio', href: '/consulting', icon: Briefcase, description: 'Architecture consulting' },
-    ],
-  },
-  invest: {
-    label: 'Invest',
-    featured: {
-      title: 'Invest with AI',
-      description: 'Platforms, research tools, and AI prompts to invest smarter.',
-      href: '/investor',
-      badge: 'Intelligence',
-    },
-    items: [
-      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing' },
-      { name: 'Platform Picks', href: '/investor#platforms', icon: Star, description: 'Revolut, eToro & more' },
-      { name: 'AI Research Stack', href: '/investor#ai-tools', icon: Brain, description: 'Claude, GPT for investing' },
-      { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis agents' },
+    groups: [
+      {
+        label: 'Architecture',
+        items: [
+          { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI architecture' },
+          { name: 'AI Architect', href: '/ai-architect', icon: Building, description: 'Solution design & patterns' },
+          { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
+          { name: 'AI World Showcase', href: '/ai-world', icon: Workflow, description: 'Oracle AI demo architectures' },
+        ],
+      },
+      {
+        label: 'Ship',
+        items: [
+          { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
+          { name: 'Templates', href: '/ai-architecture/templates', icon: Code2, description: 'Starter kits ($29-199)' },
+          { name: 'Developer Hub', href: '/developers', icon: Bot, description: 'Build faster with AI workflows' },
+          { name: 'Tools', href: '/ai-architecture/tools', icon: Wrench, description: 'Curated resources' },
+        ],
+      },
     ],
   },
   explore: {
     label: 'Explore',
     featured: {
-      title: 'The FrankX Ecosystem',
-      description: 'Research, products, world-building, and the story behind it all.',
-      href: '/resources',
-      badge: 'Ecosystem',
+      title: 'AI Music Portfolio',
+      description: '12,000+ songs created with Suno AI. Explore the catalog.',
+      href: '/music',
+      badge: '500+ Public',
     },
-    items: [
-      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems & tools' },
-      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence operations' },
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
-      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
-      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
-      { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
-      { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
-      { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
-    ],
     groups: [
       {
-        label: 'Research & Knowledge',
-        items: ['Research Hub', 'Intelligence Atlas', 'Downloads'],
+        label: 'Music',
+        items: [
+          { name: 'Music Showcase', href: '/music', icon: Music, description: '500+ AI-generated tracks' },
+          { name: 'Create with AI', href: '/music/create', icon: Sparkles, description: 'Suno mastery & prompts' },
+          { name: 'Music Academy', href: '/music/learn', icon: Palette, description: 'Piano, violin, theory & more' },
+        ],
       },
       {
-        label: 'Products & Systems',
-        items: ['Resource Hub', 'ACOS', 'ArcaneaVault', 'Arcanea'],
+        label: 'Play & Discover',
+        items: [
+          { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Browser games built with AI' },
+          { name: 'Arcanea World', href: '/arcanea', icon: Wand2, description: 'Creative civilization system' },
+          { name: 'Vibe OS', href: '/vibe', icon: Sparkles, description: 'AI agent ecosystem' },
+          { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
+        ],
       },
       {
-        label: 'Connect',
-        items: ['About', 'Contact'],
+        label: 'Invest & Connect',
+        items: [
+          { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing tools' },
+          { name: 'About', href: '/about', icon: Users, description: 'Story, mission & team' },
+          { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
+          { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
+        ],
       },
     ],
   },
 }
 
-// Logo component - clean gradient wordmark
+type PillarKey = keyof typeof pillars
+type NavItem = { name: string; href: string; icon: any; description: string; external?: boolean }
+
+// ── Logo ──
 function Logo() {
   return (
     <Link
       href="/"
-      className="rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5"
+      className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5"
       aria-label="FrankX.AI - Home"
     >
+      <Image
+        src="/images/mascot/axi-v3-icon.png"
+        alt="Axi"
+        width={28}
+        height={28}
+        className="rounded-md"
+        priority
+      />
       <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
         FrankX.AI
       </span>
@@ -184,10 +212,10 @@ function Logo() {
   )
 }
 
-// Shared menu link renderer
-function MenuLink({ item }: { item: (typeof navigation)[keyof typeof navigation]['items'][0] }) {
+// ── Menu link ──
+function MenuLink({ item }: { item: NavItem }) {
   const Icon = item.icon
-  const isExternal = 'external' in item && item.external
+  const isExternal = item.external
   const LinkComponent = isExternal ? 'a' : Link
   const linkProps = isExternal
     ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
@@ -198,17 +226,17 @@ function MenuLink({ item }: { item: (typeof navigation)[keyof typeof navigation]
       <NavigationMenu.Link asChild>
         <LinkComponent
           {...linkProps}
-          className="group flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-white/5"
+          className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/[0.06]"
         >
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/[0.04] text-slate-400 ring-1 ring-white/[0.06] transition-all group-hover:bg-white/[0.08] group-hover:text-white group-hover:ring-white/[0.12]">
             <Icon className="h-3.5 w-3.5" />
           </div>
           <div className="flex-1 min-w-0">
-            <span className="flex items-center gap-1.5 text-[13px] font-medium text-white">
+            <span className="flex items-center gap-1.5 text-[13px] font-medium text-slate-200 group-hover:text-white">
               {item.name}
               {isExternal && <ExternalLink className="h-3 w-3 text-slate-500" />}
             </span>
-            <p className="text-[11px] leading-tight text-slate-500">{item.description}</p>
+            <p className="mt-0.5 text-[11px] leading-tight text-slate-500 group-hover:text-slate-400">{item.description}</p>
           </div>
         </LinkComponent>
       </NavigationMenu.Link>
@@ -216,117 +244,74 @@ function MenuLink({ item }: { item: (typeof navigation)[keyof typeof navigation]
   )
 }
 
-// Featured card component used in all mega menus
-function FeaturedCard({ data }: { data: (typeof navigation)[keyof typeof navigation] }) {
+// ── Featured card ──
+function FeaturedCard({ data }: { data: typeof pillars[PillarKey] }) {
   return (
     <Link
       href={data.featured.href}
-      className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900"
+      className="group relative flex h-full flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/60 to-slate-900/90 p-5 ring-1 ring-white/[0.06] transition-all hover:ring-white/[0.12]"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
-      <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/8 via-cyan-500/8 to-violet-500/8 opacity-0 transition-opacity group-hover:opacity-100" />
+      <span className="mb-3 inline-block w-fit rounded-full bg-white/[0.08] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white/60">
         {data.featured.badge}
       </span>
-      <h4 className="text-base font-semibold text-white">{data.featured.title}</h4>
-      <p className="mt-1 text-xs leading-relaxed text-slate-400">
+      <h4 className="text-[15px] font-semibold text-white">{data.featured.title}</h4>
+      <p className="mt-1.5 text-xs leading-relaxed text-slate-400">
         {data.featured.description}
       </p>
-      <ArrowRight className="mt-3 h-4 w-4 text-white/50 transition-transform group-hover:translate-x-1 group-hover:text-white" />
+      <ArrowRight className="mt-4 h-4 w-4 text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-white" />
     </Link>
   )
 }
 
-// Adaptive mega menu content — layout scales with item count
-function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
-  const data = navigation[section]
-  const itemCount = data.items.length
-  const hasGroups = 'groups' in data && data.groups
+// ── Mega menu content — always multi-column grouped ──
+function MegaMenuContent({ section }: { section: PillarKey }) {
+  const data = pillars[section]
+  const groupCount = data.groups.length
 
-  // Large grouped layout (Resources: 9+ items with semantic groups)
-  if (hasGroups) {
-    const groups = (data as typeof data & { groups: { label: string; items: string[] }[] }).groups
-    return (
-      <div className="w-[820px] p-4">
-        <div className="grid grid-cols-[200px_1fr] gap-4">
-          <FeaturedCard data={data} />
-          <div className="grid grid-cols-3 gap-4">
-            {groups.map((group) => {
-              const groupItems = group.items
-                .map((name) => data.items.find((i) => i.name === name))
-                .filter(Boolean) as (typeof data.items)[0][]
-              return (
-                <div key={group.label}>
-                  <h5 className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">
-                    {group.label}
-                  </h5>
-                  <ul className="space-y-0.5">
-                    {groupItems.map((item) => (
-                      <MenuLink key={item.name} item={item} />
-                    ))}
-                  </ul>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  // Medium 2-column layout (Developers: 6-8 items)
-  if (itemCount > 5) {
-    const midpoint = Math.ceil(itemCount / 2)
-    const col1 = data.items.slice(0, midpoint)
-    const col2 = data.items.slice(midpoint)
-    return (
-      <div className="w-[700px] p-4">
-        <div className="grid grid-cols-[200px_1fr] gap-4">
-          <FeaturedCard data={data} />
-          <div className="grid grid-cols-2 gap-3">
-            <ul className="space-y-0.5">
-              {col1.map((item) => (
-                <MenuLink key={item.name} item={item} />
-              ))}
-            </ul>
-            <ul className="space-y-0.5">
-              {col2.map((item) => (
-                <MenuLink key={item.name} item={item} />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  // Compact single-column layout (Music, Creators, Students, Investor: ≤5 items)
   return (
-    <div className="w-[560px] p-4">
-      <div className="grid grid-cols-[200px_1fr] gap-4">
+    <div className="w-[720px] p-5">
+      <div className={cn(
+        'grid gap-5',
+        groupCount === 2 ? 'grid-cols-[200px_1fr]' : 'grid-cols-[200px_1fr]'
+      )}>
         <FeaturedCard data={data} />
-        <ul className="space-y-0.5">
-          {data.items.map((item) => (
-            <MenuLink key={item.name} item={item} />
+        <div className={cn(
+          'grid gap-4',
+          groupCount >= 3 ? 'grid-cols-3' : 'grid-cols-2'
+        )}>
+          {data.groups.map((group) => (
+            <div key={group.label}>
+              <h5 className="mb-2.5 px-2.5 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">
+                {group.label}
+              </h5>
+              <ul className="space-y-0.5">
+                {group.items.map((item) => (
+                  <MenuLink key={item.name} item={item} />
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </div>
   )
 }
 
-// Trigger button component
+// ── Trigger ──
 function NavTrigger({ children }: { children: React.ReactNode }) {
   return (
-    <NavigationMenu.Trigger className="group flex items-center gap-1 rounded-md px-2.5 py-1.5 text-[13px] font-semibold text-slate-300 outline-none transition-all hover:bg-white/5 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-400/50 data-[state=open]:bg-white/5 data-[state=open]:text-white">
+    <NavigationMenu.Trigger className="group flex items-center gap-1 rounded-lg px-3 py-2 text-[13px] font-semibold text-slate-300 outline-none transition-all hover:bg-white/[0.05] hover:text-white focus-visible:ring-2 focus-visible:ring-white/20 data-[state=open]:bg-white/[0.05] data-[state=open]:text-white">
       {children}
       <ChevronDown
-        className="h-3.5 w-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
+        className="h-3 w-3 text-slate-500 transition-transform duration-200 group-data-[state=open]:rotate-180"
         aria-hidden
       />
     </NavigationMenu.Trigger>
   )
 }
 
+// ── Main Nav ──
 export default function NavigationMega() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -334,12 +319,10 @@ export default function NavigationMega() {
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -351,28 +334,21 @@ export default function NavigationMega() {
     }
   }, [isOpen])
 
-  // Intelligent scroll behavior: hide on scroll down, show on scroll up
   useEffect(() => {
     let lastScrollY = window.scrollY
     let ticking = false
 
     const updateScrollState = () => {
       const scrollY = window.scrollY
-
-      // Detect if we've scrolled past threshold
       setIsScrolled(scrollY > 20)
 
-      // Show/hide logic: only hide if menus are closed and scrolled past threshold
       if (!menuOpen && !isOpen && scrollY > 80) {
         if (scrollY > lastScrollY) {
-          // Scrolling DOWN - hide header
           setIsVisible(false)
         } else if (scrollY < lastScrollY) {
-          // Scrolling UP - show header
           setIsVisible(true)
         }
       } else {
-        // At top or menu open - always show
         setIsVisible(true)
       }
 
@@ -400,80 +376,53 @@ export default function NavigationMega() {
     <header
       className={cn(
         'fixed top-0 z-50 w-full border-b transition-all duration-300 ease-in-out',
-        // Visibility and transform
         isVisible ? 'translate-y-0' : '-translate-y-full',
-        // Background and border intensity based on scroll
         isScrolled
-          ? 'border-white/10 bg-[#030712]/95 backdrop-blur-xl shadow-lg shadow-black/10'
-          : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
+          ? 'border-white/[0.08] bg-[#0a0a0b]/95 backdrop-blur-2xl shadow-lg shadow-black/20'
+          : 'border-white/[0.04] bg-[#0a0a0b]/80 backdrop-blur-2xl'
       )}
     >
       <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo />
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation — 4 pillars + 2 direct links */}
         <NavigationMenu.Root
           className="relative hidden lg:block"
           onValueChange={(value) => setMenuOpen(!!value)}
         >
           <NavigationMenu.List className="flex items-center gap-0.5">
-            {/* Music */}
+            {(Object.keys(pillars) as PillarKey[]).map((key) => (
+              <NavigationMenu.Item key={key}>
+                <NavTrigger>{pillars[key].label}</NavTrigger>
+                <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                  <MegaMenuContent section={key} />
+                </NavigationMenu.Content>
+              </NavigationMenu.Item>
+            ))}
+
+            {/* Direct links — no dropdown needed */}
             <NavigationMenu.Item>
-              <NavTrigger>Music</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="music" />
-              </NavigationMenu.Content>
+              <Link
+                href="/music"
+                className={cn(
+                  'rounded-lg px-3 py-2 text-[13px] font-semibold transition-all',
+                  isActive('/music')
+                    ? 'text-white bg-white/[0.05]'
+                    : 'text-slate-300 hover:text-white hover:bg-white/[0.05]'
+                )}
+              >
+                Music
+              </Link>
             </NavigationMenu.Item>
 
-            {/* GenCreators — merged from Creators + GenCreator framework */}
-            <NavigationMenu.Item>
-              <NavTrigger>GenCreators</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="gencreators" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Learn — expanded from Students */}
-            <NavigationMenu.Item>
-              <NavTrigger>Learn</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="learn" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Build — AI Architecture + consulting */}
-            <NavigationMenu.Item>
-              <NavTrigger>Build</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="build" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Invest */}
-            <NavigationMenu.Item>
-              <NavTrigger>Invest</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="invest" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Explore — trimmed resources */}
-            <NavigationMenu.Item>
-              <NavTrigger>Explore</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="explore" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Blog — direct link */}
             <NavigationMenu.Item>
               <Link
                 href="/blog"
                 className={cn(
-                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
+                  'rounded-lg px-3 py-2 text-[13px] font-semibold transition-all',
                   isActive('/blog')
-                    ? 'text-white bg-white/5'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    ? 'text-white bg-white/[0.05]'
+                    : 'text-slate-300 hover:text-white hover:bg-white/[0.05]'
                 )}
               >
                 Blog
@@ -481,28 +430,21 @@ export default function NavigationMega() {
             </NavigationMenu.Item>
 
             <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
-              <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
+              <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-[#0a0a0b] ring-1 ring-white/[0.08]" />
             </NavigationMenu.Indicator>
           </NavigationMenu.List>
 
-          <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+          {/* Viewport — centered to prevent clipping */}
+          <div className="perspective-[2000px] absolute top-full left-1/2 -translate-x-1/2 flex justify-center pt-1">
+            <NavigationMenu.Viewport className="relative h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-2xl border border-white/[0.08] bg-[#0a0a0b]/[0.97] shadow-2xl shadow-black/60 backdrop-blur-2xl backdrop-saturate-150 transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
           </div>
         </NavigationMenu.Root>
 
-        {/* Desktop CTAs — Search + Primary */}
-        <div className="hidden items-center gap-2 lg:flex">
-          <Link
-            href="/search"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
-            aria-label="Search"
-            title="Search (Ctrl+K)"
-          >
-            <Search className="h-4 w-4" />
-          </Link>
+        {/* CTA */}
+        <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/start"
-            className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20"
+            className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#0a0a0b] transition-all hover:bg-slate-100 hover:shadow-lg hover:shadow-white/10"
           >
             Start Here
           </Link>
@@ -526,15 +468,21 @@ export default function NavigationMega() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-white/5 bg-[#030712]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
+            className="border-t border-white/[0.06] bg-[#0a0a0b]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
           >
             <div className="mx-auto max-w-6xl space-y-1 px-4 sm:px-6 py-3 sm:py-4">
-              {/* Mobile dropdowns */}
-              {(Object.keys(navigation) as Array<keyof typeof navigation>).map((section) => (
-                <MobileSection key={section} section={section} onClose={() => setIsOpen(false)} />
+              {(Object.keys(pillars) as PillarKey[]).map((key) => (
+                <MobileSection key={key} section={key} onClose={() => setIsOpen(false)} />
               ))}
 
-              {/* Simple links */}
+              {/* Direct links */}
+              <Link
+                href="/music"
+                onClick={() => setIsOpen(false)}
+                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                Music
+              </Link>
               <Link
                 href="/blog"
                 onClick={() => setIsOpen(false)}
@@ -544,19 +492,11 @@ export default function NavigationMega() {
               </Link>
 
               {/* Mobile CTA */}
-              <div className="pt-3 sm:pt-4 pb-2 space-y-2">
-                <Link
-                  href="/search"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2.5 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
-                >
-                  <Search className="h-4 w-4 flex-shrink-0" />
-                  Search
-                </Link>
+              <div className="pt-3 sm:pt-4 pb-2">
                 <Link
                   href="/start"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
+                  className="block w-full rounded-full bg-white py-2.5 sm:py-3 text-center text-sm font-semibold text-[#0a0a0b]"
                 >
                   Start Here
                 </Link>
@@ -569,10 +509,11 @@ export default function NavigationMega() {
   )
 }
 
-// Mobile section accordion
-function MobileSection({ section, onClose }: { section: keyof typeof navigation; onClose: () => void }) {
+// ── Mobile accordion ──
+function MobileSection({ section, onClose }: { section: PillarKey; onClose: () => void }) {
   const [expanded, setExpanded] = useState(false)
-  const data = navigation[section]
+  const data = pillars[section]
+  const allItems = data.groups.flatMap((g) => g.items)
 
   return (
     <div>
@@ -593,7 +534,7 @@ function MobileSection({ section, onClose }: { section: keyof typeof navigation;
             className="overflow-hidden"
           >
             <div className="space-y-0.5 pb-2 pl-2 sm:pl-4">
-              {data.items.map((item) => {
+              {allItems.map((item) => {
                 const Icon = item.icon
                 return (
                   <Link
