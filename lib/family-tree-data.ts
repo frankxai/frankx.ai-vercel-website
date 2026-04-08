@@ -1,2 +1,2 @@
-/ Removed — private data moved to secure storage
+// Removed — private data moved to secure storage
 export const familyTreeData = null;
