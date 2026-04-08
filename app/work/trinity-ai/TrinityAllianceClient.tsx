@@ -362,65 +362,287 @@ export default function TrinityAllianceClient() {
         </motion.div>
       </Section>
 
-      {/* ───────────────── SOVEREIGNTY ───────────────── */}
+      {/* ───────────────── PLATFORM ARCHITECTURE ───────────────── */}
       <Section>
         <motion.div {...fadeUp}>
-          <SectionLabel>Architecture</SectionLabel>
-          <SectionHeading>Your data. Your sovereignty. Your AI.</SectionHeading>
+          <SectionLabel>The Platform</SectionLabel>
+          <SectionHeading>OpenClaw evolves. Claude powers it.</SectionHeading>
           <SectionSub>
-            Trinity AI is built on a principle most AI companies reject:
-            the user owns everything. Every memory, every pattern, every insight —
-            stored in your sovereign vault, portable, deletable, and never sold.
+            OpenClaw already works — subagents, tool calling, the foundation is real.
+            Now we wrap it in Claude Agent SDK for managed intelligence, connect it to
+            production infrastructure, and make every brother's AI a sovereign instance
+            that shares collective wisdom without sharing private data.
           </SectionSub>
         </motion.div>
 
-        <motion.div className="mb-10 flex flex-col gap-6 md:flex-row" {...fadeUp}>
-          <div className="flex-1 rounded-xl border border-white/[0.06] bg-white/[0.03] p-6">
-            <div className="mb-5 text-xs tracking-widest" style={{ color: gold }}>
-              ARCANEA — THE ARCHITECTURE
-            </div>
-            <div className="space-y-3 text-sm">
-              <div className="text-white">Conscious AI Protocols</div>
-              <div className="space-y-1 text-xs text-zinc-500">
-                <div>• Guardian Protocol — ethics + personality engine</div>
-                <div>• ACOS — multi-agent orchestration layer</div>
-                <div>• Living Memory — sovereign knowledge graph</div>
-                <div>• Vital Intelligence — biometric integration</div>
-                <div>• Innovation Box IP — 9% tax advantage</div>
+        {/* Technical stack */}
+        <motion.div
+          className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {[
+            {
+              name: 'Claude Agent SDK',
+              role: 'Intelligence Core',
+              desc: 'Managed agents with subagent orchestration, MCP connectivity, 200K context. OpenClaw\'s brain — upgraded.',
+              color: 'rgba(139, 92, 246, 0.5)',
+            },
+            {
+              name: 'Vercel',
+              role: 'Edge Runtime',
+              desc: 'SSE streaming, Vercel Sandbox for isolated agent execution, global edge for instant response. The UI and API layer.',
+              color: teal,
+            },
+            {
+              name: 'Supabase',
+              role: 'Sovereign Data',
+              desc: 'Per-user Postgres + vector store. Living Memory lives here. Row-level security = each brother\'s data is theirs alone.',
+              color: 'rgba(16, 185, 129, 0.5)',
+            },
+            {
+              name: 'MCP Servers',
+              role: 'Connectivity',
+              desc: 'Notion for knowledge, Linear for tasks, Slack for comms, Calendar for scheduling — all connected via Model Context Protocol.',
+              color: 'rgba(59, 130, 246, 0.5)',
+            },
+            {
+              name: 'Stripe',
+              role: 'Revenue Engine',
+              desc: 'Subscriptions, usage-based billing, marketplace payouts. Every tier, every transaction, every split — automated.',
+              color: 'rgba(245, 158, 11, 0.5)',
+            },
+            {
+              name: 'OpenClaw',
+              role: 'Agent Framework',
+              desc: 'The existing subagent system — battle-tested. Enhanced with Guardian Protocol guardrails, personality persistence, and Living Memory.',
+              color: gold,
+            },
+          ].map((tech, i) => (
+            <motion.div
+              key={tech.name}
+              variants={itemVariants}
+              className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5"
+            >
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-sm font-medium text-white">{tech.name}</span>
+                <span className="rounded-full px-2 py-0.5 text-[10px] tracking-wider" style={{ color: tech.color, backgroundColor: `${tech.color}15` }}>
+                  {tech.role}
+                </span>
+              </div>
+              <p className="text-xs leading-relaxed text-zinc-500">{tech.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Per-user architecture */}
+        <motion.div
+          className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8"
+          {...fadeUp}
+        >
+          <div className="mb-6 text-xs tracking-widest" style={{ color: gold }}>
+            EVERY MEMBER GETS
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <div>
+              <h4 className="mb-3 text-sm font-medium text-white">Their Own Jarvis</h4>
+              <div className="space-y-2 text-xs text-zinc-500">
+                <div>• Personal Claude agent with persistent personality</div>
+                <div>• Private Living Memory — only they can access</div>
+                <div>• Custom subagents for their specific needs</div>
+                <div>• Biometric integration with their wearables</div>
+                <div>• MCP connections to their Notion, calendar, tools</div>
               </div>
             </div>
-          </div>
-
-          <div className="flex items-center justify-center">
-            <div className="flex flex-row items-center gap-3 md:flex-col">
-              <span className="text-xs tracking-widest" style={{ color: goldMuted }}>LICENSE</span>
-              <div className="h-px w-12 md:h-16 md:w-px" style={{ background: `linear-gradient(to bottom, ${goldMuted}, ${gold}33, ${goldMuted})` }} />
-              <span className="text-xs tracking-widest" style={{ color: goldMuted }}>EQUITY</span>
-            </div>
-          </div>
-
-          <div className="flex-1 rounded-xl border border-white/[0.06] bg-white/[0.03] p-6">
-            <div className="mb-5 text-xs tracking-widest" style={{ color: gold }}>
-              TRINITY AI — THE PRODUCT
-            </div>
-            <div className="space-y-3 text-sm">
-              <div className="text-white">Conscious AI for People</div>
-              <div className="space-y-1 text-xs text-zinc-500">
-                <div>• Consumer app — your personal AI OS</div>
-                <div>• Guardian agents — 4 specialized intelligences</div>
-                <div>• Family wisdom vaults — Hashems model, replicated</div>
-                <div>• Coach platform — white-label conscious AI</div>
-                <div>• Community — the conscious AI movement</div>
+            <div>
+              <h4 className="mb-3 text-sm font-medium text-white">Shared Brotherhood Intelligence</h4>
+              <div className="space-y-2 text-xs text-zinc-500">
+                <div>• Collective wisdom layer — shared knowledge graph</div>
+                <div>• Hashems family memory — queryable by all</div>
+                <div>• Community skill marketplace — contribute & earn</div>
+                <div>• Shared agent templates — fork, customize, deploy</div>
+                <div>• Group coordination — agents that talk to each other</div>
               </div>
             </div>
           </div>
         </motion.div>
+      </Section>
 
-        <motion.div className="border-l-2 pl-6" style={{ borderColor: `${gold}4D` }} {...fadeUp}>
+      {/* ───────────────── REVENUE ENGINE ───────────────── */}
+      <Section>
+        <motion.div {...fadeUp}>
+          <SectionLabel>The Revenue Engine</SectionLabel>
+          <SectionHeading>Every brother pays. Every brother earns.</SectionHeading>
+          <SectionSub>
+            Not a flat fee. A living ecosystem where subscribing to Trinity gives you
+            AI superpowers — and contributing back (skills, agents, workflows) creates
+            passive income. The more the community builds, the more everyone earns.
+          </SectionSub>
+        </motion.div>
+
+        <motion.div
+          className="mb-8 space-y-4"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {[
+            {
+              tier: 'Trinity Core',
+              price: '€49/mo',
+              target: 'Every conscious gentleman',
+              features: 'Personal Jarvis agent · Living Memory (10K interactions/mo) · 2 Guardian agents · Community marketplace access',
+              revenue: '500 users = €24,500/mo',
+            },
+            {
+              tier: 'Trinity Pro',
+              price: '€199/mo',
+              target: 'Entrepreneurs & builders',
+              features: 'Unlimited context · All 4 Guardian agents · Custom subagents · Vital Intelligence (biometric) · Priority Claude API · Private MCP servers',
+              revenue: '100 users = €19,900/mo',
+            },
+            {
+              tier: 'Trinity Sovereign',
+              price: '€999/mo',
+              target: 'Families & organizations',
+              features: 'Self-hosted option · Own LLM integration · Collective Wisdom vault · White-label capability · Dedicated infrastructure · Full data export',
+              revenue: '20 orgs = €19,980/mo',
+            },
+            {
+              tier: 'Marketplace',
+              price: '70/30 split',
+              target: 'Community contributors',
+              features: 'Sell skills, agent templates, MCP integrations, workflow automations · Brothers contribute their best systems · Community curates quality',
+              revenue: 'Passive — scales with every contributor',
+            },
+          ].map((plan, i) => (
+            <motion.div
+              key={plan.tier}
+              variants={itemVariants}
+              className="flex flex-col gap-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 sm:flex-row sm:items-start sm:justify-between"
+            >
+              <div className="flex-1">
+                <div className="mb-1 flex items-center gap-3">
+                  <span className="text-sm font-medium text-white">{plan.tier}</span>
+                  <span className="text-sm font-light" style={{ color: gold }}>{plan.price}</span>
+                </div>
+                <div className="mb-2 text-[11px] text-zinc-600">{plan.target}</div>
+                <div className="text-xs leading-relaxed text-zinc-500">{plan.features}</div>
+              </div>
+              <div className="shrink-0 text-right">
+                <div className="text-xs text-zinc-600">{plan.revenue}</div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div
+          className="rounded-xl border p-5"
+          style={{ borderColor: `${gold}33`, background: `linear-gradient(to right, ${goldSubtle}, transparent)` }}
+          {...fadeUp}
+        >
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+            <div>
+              <div className="text-sm" style={{ color: gold }}>Combined Potential at Scale</div>
+              <div className="text-xs text-zinc-500">620 subscribers + marketplace revenue + white-label licensing</div>
+            </div>
+            <div className="text-3xl font-extralight text-white">
+              €64K+<span className="text-sm text-zinc-500">/mo</span>
+            </div>
+          </div>
+        </motion.div>
+      </Section>
+
+      {/* ───────────────── SOVEREIGNTY LADDER ───────────────── */}
+      <Section>
+        <motion.div {...fadeUp}>
+          <SectionLabel>The Sovereignty Ladder</SectionLabel>
+          <SectionHeading>Start cloud. Graduate to sovereign.</SectionHeading>
+          <SectionSub>
+            Day one: deploy on Vercel + Supabase + Claude API. Fast, cheap, proven.
+            But the architecture is designed so every layer can be swapped for
+            self-hosted alternatives — no lock-in, no re-architecture, no compromise.
+          </SectionSub>
+        </motion.div>
+
+        <motion.div
+          className="space-y-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {[
+            {
+              phase: 'Phase 1',
+              title: 'Cloud-Native',
+              subtitle: 'Ship fast, prove the model',
+              items: [
+                { service: 'Intelligence', cloud: 'Claude API (Anthropic)', icon: '◆' },
+                { service: 'Hosting', cloud: 'Vercel Edge + Sandbox', icon: '◆' },
+                { service: 'Database', cloud: 'Supabase (managed Postgres)', icon: '◆' },
+                { service: 'Payments', cloud: 'Stripe', icon: '◆' },
+                { service: 'Connectivity', cloud: 'Remote MCP servers', icon: '◆' },
+              ],
+            },
+            {
+              phase: 'Phase 2',
+              title: 'Hybrid',
+              subtitle: 'Sensitive data moves on-premise',
+              items: [
+                { service: 'Intelligence', cloud: 'Claude API + local Llama/Mistral for private queries', icon: '◇' },
+                { service: 'Hosting', cloud: 'Vercel (public) + own servers (private)', icon: '◇' },
+                { service: 'Database', cloud: 'Self-hosted Postgres + vector DB', icon: '◇' },
+                { service: 'Payments', cloud: 'Stripe (unchanged)', icon: '◆' },
+                { service: 'Connectivity', cloud: 'Self-hosted MCP server hub', icon: '◇' },
+              ],
+            },
+            {
+              phase: 'Phase 3',
+              title: 'Full Sovereignty',
+              subtitle: 'Own everything. Trust no one.',
+              items: [
+                { service: 'Intelligence', cloud: 'Own fine-tuned LLM (Llama 4, Mistral, DeepSeek)', icon: '◈' },
+                { service: 'Hosting', cloud: 'Own infrastructure (bare metal or private cloud)', icon: '◈' },
+                { service: 'Database', cloud: 'Own encrypted vault with zero-knowledge proofs', icon: '◈' },
+                { service: 'Skill Hub', cloud: 'Community-curated skill marketplace (self-hosted)', icon: '◈' },
+                { service: 'Agent Hub', cloud: 'Brothers contribute, fork, and deploy agent systems', icon: '◈' },
+              ],
+            },
+          ].map((phase, i) => (
+            <motion.div
+              key={phase.phase}
+              variants={itemVariants}
+              className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6"
+            >
+              <div className="mb-5 flex items-center gap-3">
+                <span className="text-xs tracking-widest" style={{ color: gold }}>{phase.phase}</span>
+                <span className="text-sm font-medium text-white">{phase.title}</span>
+                <span className="text-xs text-zinc-600">— {phase.subtitle}</span>
+              </div>
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                {phase.items.map((item) => (
+                  <div key={item.service} className="flex items-start gap-2">
+                    <span className="mt-0.5 text-xs" style={{ color: goldMuted }}>{item.icon}</span>
+                    <div>
+                      <div className="text-xs font-medium text-zinc-300">{item.service}</div>
+                      <div className="text-[11px] text-zinc-600">{item.cloud}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <motion.div className="mt-8 border-l-2 pl-6" style={{ borderColor: `${gold}4D` }} {...fadeUp}>
           <p className="text-sm italic leading-relaxed text-zinc-400">
             Brotherhood protected by structure. Love protected by clarity.
             <br />
-            The contract is the gift to the future relationship.
+            The architecture protects the future — every layer swappable, every byte portable.
           </p>
         </motion.div>
       </Section>
