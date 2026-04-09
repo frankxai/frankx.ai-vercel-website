@@ -1377,5 +1377,259 @@
     "publishedAt": "2026-04-09T00:00:00Z",
     "metaDescription": "Build a community-driven marketplace for AI agents, MCP servers, and workflow automations with Stripe Connect payouts and one-click deployment.",
     "keywords": ["mcp marketplace", "agent marketplace", "stripe connect", "mcp servers", "ai agents", "community platform"]
+  },
+  {
+    "id": "starlight-intelligence-system",
+    "slug": "starlight-intelligence-system",
+    "title": "Starlight Intelligence System (SIS)",
+    "subtitle": "Strategic AI orchestration layer with multi-model routing, agent coordination, and purpose-driven decision intelligence",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "expert",
+    "overview": "The Starlight Intelligence System is a meta-orchestration layer that sits above individual agents and coordinates them toward strategic outcomes. It routes requests to optimal models (Claude, Gemini, GPT, local LLMs), maintains a shared reasoning bank for pattern learning, and provides a unified intelligence API for all downstream applications. Think of it as the brain's prefrontal cortex — it doesn't do the work, it decides what work needs doing and who does it best.",
+    "problem": "Multi-agent systems lack strategic coordination. Individual agents optimize locally but miss global context. Model routing is static (always Claude or always GPT), wasting cost on simple tasks and quality on complex ones. There's no learning layer that captures what worked and applies it to future decisions.",
+    "solution": "Deploy a strategic orchestration layer with intent classification (16 categories), dynamic model routing based on task complexity and budget, a reasoning bank that learns from past trajectories, and an agent coordination protocol that enables agents to hand off context without losing state.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "sis-gateway", "name": "SIS Gateway", "type": "gateway", "description": "Unified API endpoint for all intelligence requests. Classifies intent, determines complexity, and routes to optimal processing path.", "cloudService": "Vercel Edge Functions" },
+        { "id": "intent-classifier", "name": "Intent Classifier", "type": "ai-service", "description": "16-category intent classification. Maps requests to domains: code, research, creative, strategy, health, communication, analysis, etc.", "cloudService": "Claude Haiku (fast)" },
+        { "id": "model-router", "name": "Model Router", "type": "compute", "description": "Selects optimal model based on task complexity, budget tier, and historical performance. Routes between Claude Opus, Sonnet, Haiku, Gemini, GPT, and local LLMs.", "cloudService": "Custom routing engine" },
+        { "id": "claude-pool", "name": "Claude Models", "type": "ai-service", "description": "Opus 4.6 for complex reasoning, Sonnet 4.6 for balanced tasks, Haiku 4.5 for fast classification and routing.", "cloudService": "Anthropic API" },
+        { "id": "gemini-pool", "name": "Gemini Models", "type": "ai-service", "description": "Gemini 3 Pro for multimodal tasks, image generation, and visual understanding.", "cloudService": "Google AI API" },
+        { "id": "local-llm", "name": "Local LLM Pool", "type": "ai-service", "description": "Llama 4 / Mistral for private queries that shouldn't leave the network. Sovereignty-first option.", "cloudService": "Ollama / vLLM" },
+        { "id": "reasoning-bank", "name": "Reasoning Bank", "type": "database", "description": "Stores decision trajectories, success/failure patterns, and strategy outcomes. Each trajectory includes context, action, result, and quality score.", "cloudService": "Supabase + pgvector" },
+        { "id": "agent-coordinator", "name": "Agent Coordinator", "type": "compute", "description": "Manages multi-agent workflows. Handles task decomposition, parallel execution, context handoffs, and result aggregation.", "cloudService": "Claude Agent SDK" },
+        { "id": "starlight-vault", "name": "Starlight Vault", "type": "storage", "description": "Strategic memory — long-term patterns, organizational priorities, decision history, and learned preferences. The system's institutional wisdom.", "cloudService": "Supabase encrypted storage" },
+        { "id": "telemetry", "name": "Intelligence Telemetry", "type": "compute", "description": "Cost tracking, latency monitoring, quality scoring, and model performance comparison across all routes.", "cloudService": "Vercel Analytics + custom" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "sis-gateway", "to": "intent-classifier", "label": "Classify request", "dataType": "Text" },
+        { "id": "f2", "from": "intent-classifier", "to": "model-router", "label": "Intent + complexity", "dataType": "Classification" },
+        { "id": "f3", "from": "model-router", "to": "claude-pool", "label": "Complex tasks", "dataType": "API call" },
+        { "id": "f4", "from": "model-router", "to": "gemini-pool", "label": "Multimodal tasks", "dataType": "API call" },
+        { "id": "f5", "from": "model-router", "to": "local-llm", "label": "Private queries", "dataType": "Local inference" },
+        { "id": "f6", "from": "model-router", "to": "agent-coordinator", "label": "Multi-step tasks", "dataType": "Task graph" },
+        { "id": "f7", "from": "agent-coordinator", "to": "reasoning-bank", "label": "Store trajectory", "dataType": "Decision log" },
+        { "id": "f8", "from": "reasoning-bank", "to": "model-router", "label": "Historical patterns", "dataType": "Learned routes" },
+        { "id": "f9", "from": "agent-coordinator", "to": "starlight-vault", "label": "Strategic memory", "dataType": "Long-term patterns" },
+        { "id": "f10", "from": "telemetry", "to": "model-router", "label": "Performance data", "dataType": "Metrics" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Gateway & Classification",
+        "description": "Build the unified API gateway with intent classification",
+        "tasks": [
+          "Deploy SIS Gateway on Vercel Edge Functions",
+          "Train 16-category intent classifier on Claude Haiku",
+          "Implement complexity scoring (1-10 scale)",
+          "Build request normalization pipeline",
+          "Add authentication and rate limiting per tier"
+        ],
+        "deliverables": ["Working gateway with intent classification", "Complexity scoring"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "Model Router & Multi-Provider",
+        "description": "Implement dynamic model selection across providers",
+        "tasks": [
+          "Configure Claude API (Opus/Sonnet/Haiku)",
+          "Add Gemini API for multimodal routing",
+          "Set up Ollama for local LLM inference",
+          "Build routing algorithm (complexity × budget × history)",
+          "Implement fallback chains (primary → secondary → tertiary)"
+        ],
+        "deliverables": ["Multi-provider model router", "Automatic fallback chains"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Reasoning Bank & Learning",
+        "description": "Build the trajectory learning system",
+        "tasks": [
+          "Design trajectory schema (context, action, result, score)",
+          "Implement trajectory capture on every request",
+          "Build pattern recognition (which routes work best for which intents)",
+          "Create feedback loop: trajectory → router weights",
+          "Deploy Starlight Vault for long-term strategic memory"
+        ],
+        "deliverables": ["Learning reasoning bank", "Self-improving routing"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 4,
+        "title": "Agent Coordination & Telemetry",
+        "description": "Multi-agent orchestration and observability",
+        "tasks": [
+          "Implement task decomposition for multi-step workflows",
+          "Build context handoff protocol between agents",
+          "Add parallel execution with result aggregation",
+          "Deploy telemetry dashboard (cost, latency, quality)",
+          "Create model performance comparison reports"
+        ],
+        "deliverables": ["Agent coordination layer", "Full observability dashboard"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "model-routing",
+        "title": "Dynamic Model Routing with Learning",
+        "description": "Routes requests to optimal models based on intent, complexity, budget, and historical performance",
+        "language": "typescript",
+        "code": "type ModelTier = 'opus' | 'sonnet' | 'haiku' | 'gemini-pro' | 'local'\n\nasync function routeRequest(req: IntelligenceRequest): Promise<ModelTier> {\n  const { intent, complexity, budget, userId } = req\n  \n  // Check reasoning bank for learned patterns\n  const history = await reasoningBank.getPatterns({\n    intent,\n    minScore: 0.8,\n    limit: 10,\n  })\n  \n  // If we have strong historical signal, use it\n  if (history.length >= 5) {\n    const bestModel = history\n      .sort((a, b) => b.qualityScore - a.qualityScore)[0]\n    return bestModel.modelUsed as ModelTier\n  }\n  \n  // Default routing logic\n  if (req.isPrivate) return 'local'\n  if (req.hasImages) return 'gemini-pro'\n  if (complexity >= 8) return 'opus'\n  if (complexity >= 5) return 'sonnet'\n  if (budget === 'minimal') return 'haiku'\n  \n  return 'sonnet' // balanced default\n}"
+      }
+    ],
+    "technologies": [
+      "Claude Agent SDK", "Anthropic API", "Google Gemini API", "Ollama",
+      "Vercel Edge Functions", "Supabase", "pgvector", "TypeScript", "Next.js"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 1800,
+      "annual": 21600,
+      "breakdown": [
+        { "category": "Claude API (multi-tier)", "amount": "800", "percentage": 44 },
+        { "category": "Gemini API", "amount": "300", "percentage": 17 },
+        { "category": "Supabase Pro", "amount": "300", "percentage": 17 },
+        { "category": "Vercel Pro", "amount": "200", "percentage": 11 },
+        { "category": "Local GPU (Ollama)", "amount": "200", "percentage": 11 }
+      ],
+      "assumptions": ["200 active users", "~1000 routed requests/day", "30% Opus, 50% Sonnet, 20% Haiku"]
+    },
+    "timeToImplement": "8 weeks",
+    "useCases": [
+      "Multi-model AI orchestration",
+      "Cost-optimized inference routing",
+      "Self-improving agent systems",
+      "Enterprise AI gateway",
+      "Privacy-first hybrid AI deployment"
+    ],
+    "createdAt": "2026-04-09T00:00:00Z",
+    "updatedAt": "2026-04-09T00:00:00Z",
+    "publishedAt": "2026-04-09T00:00:00Z",
+    "metaDescription": "Build a strategic AI orchestration layer with multi-model routing, reasoning bank learning, and agent coordination across Claude, Gemini, and local LLMs.",
+    "keywords": ["ai orchestration", "model routing", "multi-agent", "reasoning bank", "starlight intelligence", "claude agent sdk"]
+  },
+  {
+    "id": "vital-intelligence-health-system",
+    "slug": "vital-intelligence-health-system",
+    "title": "Vital Intelligence Health System",
+    "subtitle": "Biometric-aware AI assistant that reads your body and adapts assistance to your physiological state",
+    "category": "ai-coe",
+    "status": "published",
+    "difficulty": "advanced",
+    "overview": "A production health integration system that connects wearable devices (Apple Watch, Oura Ring, Whoop) to your AI assistant. The system ingests biometric data — sleep quality, heart rate variability, stress markers, activity levels — and uses it to adapt AI behavior in real time. When you're sleep-deprived, it reschedules cognitive tasks. When your HRV drops, it suggests recovery. When your energy peaks, it queues your hardest work. Deploys as an MCP server that any Claude agent can connect to.",
+    "problem": "AI assistants ignore your body. They schedule deep work when you slept 4 hours. They push notifications during recovery. They treat you the same at 6am after great sleep and at 3pm in a cortisol crash. The body has data — AI should use it.",
+    "solution": "Deploy a Vital Intelligence MCP server that ingests wearable data via HealthKit/Oura/Whoop APIs, computes a cognitive state model, and exposes tools that any Claude agent can call: get_energy_level, suggest_task_timing, check_stress, recommend_recovery. The agent becomes body-aware.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "wearable-api", "name": "Wearable Data Ingest", "type": "external", "description": "Connects to Apple HealthKit, Oura API, Whoop API, and Garmin Connect. Pulls sleep, HRV, resting HR, activity, and recovery data.", "cloudService": "OAuth2 integrations" },
+        { "id": "vitals-processor", "name": "Vitals Processor", "type": "compute", "description": "Normalizes biometric data from multiple sources. Computes rolling averages, trend detection, and anomaly flags.", "cloudService": "Railway (Node.js)" },
+        { "id": "cognitive-model", "name": "Cognitive State Model", "type": "ai-service", "description": "Maps biometric signals to cognitive states: focus capacity, creativity window, recovery need, stress level. Uses Claude for interpretation.", "cloudService": "Claude Haiku + custom model" },
+        { "id": "vitals-store", "name": "Vitals Time-Series DB", "type": "database", "description": "Stores biometric history with per-user isolation. Time-series optimized for trend queries and pattern detection.", "cloudService": "Supabase (TimescaleDB extension)" },
+        { "id": "mcp-server", "name": "Vital Intelligence MCP", "type": "gateway", "description": "MCP server exposing health tools to any Claude agent. Tools: get_energy_level, suggest_task_timing, check_stress, recommend_recovery, get_sleep_report.", "cloudService": "Railway (MCP SDK)" },
+        { "id": "scheduler", "name": "Adaptive Scheduler", "type": "compute", "description": "Reorders task queue based on cognitive state. Moves deep work to high-energy windows, admin to low-energy periods.", "cloudService": "Vercel Cron + Calendar API" },
+        { "id": "intervention", "name": "Wellness Interventions", "type": "ai-service", "description": "Generates personalized recovery suggestions: breathing exercises calibrated to HR, movement breaks, hydration reminders.", "cloudService": "Claude Sonnet" },
+        { "id": "dashboard", "name": "Health Dashboard", "type": "gateway", "description": "Real-time vitals dashboard showing energy levels, sleep trends, stress patterns, and AI adaptation history.", "cloudService": "Next.js on Vercel" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "wearable-api", "to": "vitals-processor", "label": "Raw biometrics", "dataType": "HealthKit/Oura/Whoop" },
+        { "id": "f2", "from": "vitals-processor", "to": "vitals-store", "label": "Normalized data", "dataType": "Time-series" },
+        { "id": "f3", "from": "vitals-processor", "to": "cognitive-model", "label": "Current state", "dataType": "Biometric snapshot" },
+        { "id": "f4", "from": "cognitive-model", "to": "mcp-server", "label": "Cognitive state", "dataType": "Energy/stress/focus" },
+        { "id": "f5", "from": "mcp-server", "to": "scheduler", "label": "Task reordering", "dataType": "Priority updates" },
+        { "id": "f6", "from": "cognitive-model", "to": "intervention", "label": "Low state detected", "dataType": "Alert trigger" },
+        { "id": "f7", "from": "intervention", "to": "mcp-server", "label": "Recovery suggestion", "dataType": "Guided exercise" },
+        { "id": "f8", "from": "vitals-store", "to": "dashboard", "label": "Trends & history", "dataType": "Charts" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Wearable Integration",
+        "description": "Connect to health data sources and build the ingest pipeline",
+        "tasks": [
+          "Implement Apple HealthKit OAuth flow",
+          "Add Oura Ring API connector",
+          "Add Whoop API connector",
+          "Build data normalization layer (unified schema)",
+          "Deploy time-series storage on Supabase"
+        ],
+        "deliverables": ["Multi-wearable data pipeline", "Unified biometric schema"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "Cognitive State Model",
+        "description": "Build the model that maps biometrics to cognitive states",
+        "tasks": [
+          "Define cognitive state dimensions (energy, focus, creativity, stress)",
+          "Build scoring algorithm from biometric inputs",
+          "Train pattern detection on personal history",
+          "Implement anomaly detection (unusual HRV, poor sleep)",
+          "Create adaptive thresholds per user"
+        ],
+        "deliverables": ["Cognitive state scoring engine", "Personal baseline calibration"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "MCP Server & Interventions",
+        "description": "Deploy the MCP server and wellness intervention system",
+        "tasks": [
+          "Build Vital Intelligence MCP server (5 tools)",
+          "Deploy on Railway with auto-scaling",
+          "Implement adaptive scheduling integration",
+          "Create wellness intervention library (breathing, movement, hydration)",
+          "Build health dashboard with real-time charts"
+        ],
+        "deliverables": ["Production MCP server on Railway", "Health dashboard", "Intervention system"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "mcp-health-tools",
+        "title": "Vital Intelligence MCP Server — Health Tools",
+        "description": "MCP server that exposes biometric-aware tools to any Claude agent",
+        "language": "typescript",
+        "code": "import { Server } from '@modelcontextprotocol/sdk/server'\nimport { StdioTransport } from '@modelcontextprotocol/sdk/server/stdio'\n\nconst server = new Server({ name: 'vital-intelligence', version: '1.0.0' })\n\nserver.tool('get_energy_level', 'Current energy level based on sleep, HRV, and activity', {\n  type: 'object', properties: {}, required: []\n}, async () => {\n  const vitals = await getLatestVitals(userId)\n  const energy = computeEnergyScore(vitals)\n  return {\n    content: [{\n      type: 'text',\n      text: JSON.stringify({\n        score: energy.score, // 0-100\n        level: energy.level, // 'high' | 'medium' | 'low' | 'critical'\n        factors: {\n          sleep: vitals.sleepScore,\n          hrv: vitals.hrvTrend,\n          activity: vitals.activityLevel,\n        },\n        recommendation: energy.recommendation,\n      })\n    }]\n  }\n})\n\nserver.tool('suggest_task_timing', 'Optimal time windows for different task types', {\n  type: 'object',\n  properties: { taskType: { type: 'string', enum: ['deep-work', 'creative', 'admin', 'exercise'] } },\n  required: ['taskType']\n}, async ({ taskType }) => {\n  const schedule = await getOptimalWindows(userId, taskType)\n  return { content: [{ type: 'text', text: JSON.stringify(schedule) }] }\n})\n\nconst transport = new StdioTransport()\nawait server.connect(transport)"
+      }
+    ],
+    "technologies": [
+      "MCP SDK", "Apple HealthKit", "Oura API", "Whoop API",
+      "Railway", "Supabase", "TimescaleDB", "Claude API",
+      "Next.js", "Chart.js", "TypeScript"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 400,
+      "annual": 4800,
+      "breakdown": [
+        { "category": "Railway (MCP server)", "amount": "100", "percentage": 25 },
+        { "category": "Supabase Pro", "amount": "100", "percentage": 25 },
+        { "category": "Claude API (scoring)", "amount": "100", "percentage": 25 },
+        { "category": "Vercel (dashboard)", "amount": "100", "percentage": 25 }
+      ],
+      "assumptions": ["1 user (personal)", "~100 biometric syncs/day", "5 MCP tool calls/hour"]
+    },
+    "timeToImplement": "6 weeks",
+    "useCases": [
+      "Personal health-aware AI assistant",
+      "Executive performance optimization",
+      "Athlete recovery and training AI",
+      "Wellness coaching platform",
+      "Burnout prevention system"
+    ],
+    "createdAt": "2026-04-09T00:00:00Z",
+    "updatedAt": "2026-04-09T00:00:00Z",
+    "publishedAt": "2026-04-09T00:00:00Z",
+    "metaDescription": "Build a biometric-aware AI system with wearable integration, cognitive state modeling, and MCP server deployment on Railway.",
+    "keywords": ["health ai", "biometric integration", "mcp server", "apple health", "oura ring", "cognitive state", "vital intelligence"]
   }
 ]
