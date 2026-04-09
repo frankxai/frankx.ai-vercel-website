@@ -1002,5 +1002,380 @@
       "ai governance",
       "risk scoring"
     ]
+  },
+  {
+    "id": "conscious-ai-multi-agent-platform",
+    "slug": "conscious-ai-multi-agent-platform",
+    "title": "Conscious AI Multi-Agent Platform",
+    "subtitle": "Multi-tenant agent platform with guardian ethics, persistent memory, and biometric integration",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "expert",
+    "overview": "A complete multi-tenant AI platform where each user gets a sovereign agent instance (their own 'Jarvis') powered by Claude Agent SDK. Agents share a collective intelligence layer while maintaining strict data isolation. Includes guardian protocol for ethical AI behavior, living memory for 24/7 context capture, and vital intelligence for biometric-aware assistance. Built for OpenClaw-style subagent orchestration at scale.",
+    "problem": "Current AI products are stateless — every conversation starts from zero. No persistent identity, no body awareness, no ethical continuity. Multi-user AI platforms lack data sovereignty, and there's no architecture for conscious, health-aware AI assistance.",
+    "solution": "Deploy a multi-tenant agent platform on Claude Agent SDK with per-user Supabase vaults (row-level security), MCP connectivity for tool integration, Stripe for subscription management, and a guardian protocol layer that ensures ethical AI behavior across all interactions.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "user-app", "name": "User Application", "type": "gateway", "description": "Next.js frontend with real-time SSE streaming. Each user authenticates and gets their personal agent UI.", "cloudService": "Vercel Edge Runtime" },
+        { "id": "agent-router", "name": "Agent Router", "type": "compute", "description": "Routes requests to the correct user agent instance. Handles session management, rate limiting, and tier-based access.", "cloudService": "Vercel Serverless" },
+        { "id": "claude-sdk", "name": "Claude Agent SDK", "type": "ai-service", "description": "Core intelligence layer. Managed agent runtime with subagent orchestration, tool calling, and 200K context window.", "cloudService": "Anthropic API" },
+        { "id": "guardian-protocol", "name": "Guardian Protocol", "type": "ai-service", "description": "Ethical guardrails engine. Personality persistence, emotional awareness, trust scoring, and harmful pattern detection.", "cloudService": "Custom middleware" },
+        { "id": "openclaw", "name": "OpenClaw Subagents", "type": "compute", "description": "4 specialized agents — Wellness, Strategy, Creative, Legacy — each with distinct personality and expertise domain.", "cloudService": "Claude Agent SDK Subagents" },
+        { "id": "living-memory", "name": "Living Memory Vault", "type": "database", "description": "Per-user sovereign vector store. Captures conversations, decisions, patterns. Row-level security ensures isolation.", "cloudService": "Supabase pgvector + RLS" },
+        { "id": "collective-wisdom", "name": "Collective Wisdom Layer", "type": "database", "description": "Shared knowledge graph across family/organization. Queryable institutional memory (Hashems 1959 model).", "cloudService": "Supabase shared schema" },
+        { "id": "vital-intel", "name": "Vital Intelligence", "type": "external", "description": "Biometric data integration — sleep, HRV, stress markers. Adapts agent behavior to user's physiological state.", "cloudService": "Apple Health / Oura / Whoop API" },
+        { "id": "mcp-hub", "name": "MCP Server Hub", "type": "gateway", "description": "Model Context Protocol servers for Notion, Linear, Slack, Calendar, and custom integrations.", "cloudService": "Remote MCP Servers" },
+        { "id": "stripe", "name": "Stripe Billing", "type": "external", "description": "Subscription management (Core/Pro/Sovereign tiers), usage-based billing, marketplace payouts.", "cloudService": "Stripe Billing + Connect" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "user-app", "to": "agent-router", "label": "User request", "dataType": "SSE" },
+        { "id": "f2", "from": "agent-router", "to": "claude-sdk", "label": "Routed to agent", "dataType": "JSON" },
+        { "id": "f3", "from": "claude-sdk", "to": "guardian-protocol", "label": "Ethics check", "dataType": "Pre/post filter" },
+        { "id": "f4", "from": "claude-sdk", "to": "openclaw", "label": "Delegate to specialist", "dataType": "Subagent call" },
+        { "id": "f5", "from": "claude-sdk", "to": "living-memory", "label": "Store + retrieve", "dataType": "Vectors" },
+        { "id": "f6", "from": "claude-sdk", "to": "collective-wisdom", "label": "Query shared knowledge", "dataType": "SQL + vectors" },
+        { "id": "f7", "from": "vital-intel", "to": "claude-sdk", "label": "Biometric context", "dataType": "Health API" },
+        { "id": "f8", "from": "claude-sdk", "to": "mcp-hub", "label": "Tool calls", "dataType": "MCP protocol" },
+        { "id": "f9", "from": "agent-router", "to": "stripe", "label": "Usage tracking", "dataType": "Events" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Foundation — Agent Core",
+        "description": "Set up Claude Agent SDK with basic per-user agent instances and Supabase authentication",
+        "tasks": [
+          "Deploy Next.js app on Vercel with SSE streaming",
+          "Configure Claude Agent SDK with tool calling",
+          "Set up Supabase auth with row-level security",
+          "Implement basic agent router with session management",
+          "Create OpenClaw subagent framework (4 specialist agents)"
+        ],
+        "deliverables": ["Working multi-user agent with streaming", "Authenticated per-user sessions"],
+        "estimatedDuration": "3 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "Memory & Knowledge",
+        "description": "Build the Living Memory vault and Collective Wisdom layer",
+        "tasks": [
+          "Deploy pgvector extension on Supabase",
+          "Implement ambient capture pipeline (conversations → embeddings)",
+          "Build semantic retrieval for personal memory",
+          "Create shared knowledge schema for family/org vaults",
+          "Encode Hashems 1959 knowledge as proof case"
+        ],
+        "deliverables": ["Per-user vector store with RLS", "Queryable collective wisdom vault"],
+        "estimatedDuration": "3 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Guardian Protocol & Vitals",
+        "description": "Add ethical guardrails and biometric integration",
+        "tasks": [
+          "Implement personality persistence layer",
+          "Build ethical boundary engine (pre/post filters)",
+          "Integrate Apple Health / Oura / Whoop APIs",
+          "Create cognitive state model (sleep → energy → task routing)",
+          "Add trust score system"
+        ],
+        "deliverables": ["Guardian protocol middleware", "Biometric-aware agent behavior"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 4,
+        "title": "MCP Connectivity & Billing",
+        "description": "Connect external tools and monetize",
+        "tasks": [
+          "Deploy MCP servers for Notion, Linear, Slack, Calendar",
+          "Configure Stripe subscriptions (3 tiers)",
+          "Implement usage-based billing for API calls",
+          "Build marketplace foundation for community agents",
+          "Add Stripe Connect for contributor payouts"
+        ],
+        "deliverables": ["Full MCP connectivity", "Working subscription system", "Marketplace MVP"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "agent-init",
+        "title": "Initialize Per-User Agent with Guardian Protocol",
+        "description": "Create a Claude agent instance with personality persistence and ethical guardrails",
+        "language": "typescript",
+        "code": "import { Agent } from '@anthropic-ai/agent-sdk'\nimport { createClient } from '@supabase/supabase-js'\n\nasync function createUserAgent(userId: string, tier: 'core' | 'pro' | 'sovereign') {\n  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)\n  \n  // Load user's personality profile and memory\n  const { data: profile } = await supabase\n    .from('user_profiles')\n    .select('personality, guardian_config, memory_summary')\n    .eq('id', userId)\n    .single()\n\n  // Load biometric context if available\n  const { data: vitals } = await supabase\n    .from('vital_intelligence')\n    .select('sleep_score, hrv, stress_level, energy_level')\n    .eq('user_id', userId)\n    .order('timestamp', { ascending: false })\n    .limit(1)\n    .single()\n\n  const agent = new Agent({\n    model: tier === 'core' ? 'claude-sonnet-4-6' : 'claude-opus-4-6',\n    systemPrompt: buildGuardianPrompt(profile, vitals),\n    tools: await loadUserMCPTools(userId),\n    maxTurns: tier === 'core' ? 10 : 50,\n  })\n\n  return agent\n}"
+      },
+      {
+        "id": "living-memory",
+        "title": "Living Memory — Ambient Capture Pipeline",
+        "description": "Store and retrieve user context with sovereign vector search",
+        "language": "typescript",
+        "code": "import { embed } from '@anthropic-ai/embed'\n\nasync function captureMemory(userId: string, interaction: Interaction) {\n  const embedding = await embed(interaction.summary)\n  \n  await supabase.from('living_memory').insert({\n    user_id: userId,\n    content: interaction.summary,\n    embedding,\n    context: {\n      type: interaction.type, // 'decision' | 'insight' | 'conversation'\n      energy_level: interaction.vitals?.energy,\n      tags: interaction.extractedTags,\n    },\n    created_at: new Date().toISOString(),\n  })\n}\n\nasync function recallMemory(userId: string, query: string, limit = 5) {\n  const queryEmbedding = await embed(query)\n  \n  const { data } = await supabase.rpc('match_memories', {\n    query_embedding: queryEmbedding,\n    match_user_id: userId, // RLS enforced\n    match_count: limit,\n    match_threshold: 0.7,\n  })\n  \n  return data\n}"
+      }
+    ],
+    "technologies": [
+      "Claude Agent SDK", "Next.js 16", "Vercel Edge", "Supabase", "pgvector",
+      "Stripe", "MCP Protocol", "OpenClaw", "TypeScript", "Framer Motion"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 2400,
+      "annual": 28800,
+      "breakdown": [
+        { "category": "Claude API (100 users)", "amount": "1200", "percentage": 50 },
+        { "category": "Supabase Pro", "amount": "300", "percentage": 12 },
+        { "category": "Vercel Pro", "amount": "200", "percentage": 8 },
+        { "category": "Stripe fees (3%)", "amount": "400", "percentage": 17 },
+        { "category": "MCP hosting + misc", "amount": "300", "percentage": 13 }
+      ],
+      "assumptions": ["100 active users", "Pro plan average", "~500 agent calls/user/month"]
+    },
+    "timeToImplement": "10 weeks",
+    "useCases": [
+      "Personal AI assistant with persistent memory",
+      "Family knowledge preservation system",
+      "Health-aware AI coaching platform",
+      "Multi-agent business intelligence",
+      "Community AI platform with marketplace"
+    ],
+    "createdAt": "2026-04-09T00:00:00Z",
+    "updatedAt": "2026-04-09T00:00:00Z",
+    "publishedAt": "2026-04-09T00:00:00Z",
+    "metaDescription": "Deploy a multi-tenant conscious AI platform with Claude Agent SDK, per-user sovereign memory, biometric intelligence, and OpenClaw subagent orchestration.",
+    "keywords": ["claude agent sdk", "multi-agent", "conscious ai", "sovereign data", "mcp servers", "supabase", "openClaw"]
+  },
+  {
+    "id": "sovereign-knowledge-vault",
+    "slug": "sovereign-knowledge-vault",
+    "title": "Sovereign Knowledge Vault",
+    "subtitle": "Multi-generational family and business intelligence system with shared and private vaults",
+    "category": "vector-databases",
+    "status": "published",
+    "difficulty": "advanced",
+    "overview": "A sovereign data architecture for families and organizations that preserves institutional knowledge across generations. Each member gets a private vault (personal AI memory) plus access to shared vaults (family wisdom, business intelligence). Built on Supabase with pgvector for semantic search, row-level security for isolation, and a knowledge encoding pipeline that converts oral history into queryable intelligence. The Hashems 1959 system — encoding 67 years of business knowledge — is the proof case.",
+    "problem": "Institutional knowledge dies with people. Family businesses lose decades of wisdom when founders retire. Personal insights are scattered across apps. There's no architecture for preserving and querying multi-generational knowledge with proper access controls.",
+    "solution": "Deploy a vault architecture with three tiers — Personal (private, per-user), Family (shared, read-all write-own), and Business Intelligence (structured, role-based). Each tier uses pgvector for semantic search with Supabase RLS for access control. A knowledge encoding pipeline converts conversations, documents, and oral history into structured, queryable intelligence.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "capture-api", "name": "Knowledge Capture API", "type": "gateway", "description": "Ingestion endpoint for voice recordings, documents, conversations, and structured data.", "cloudService": "Vercel API Routes" },
+        { "id": "encoder", "name": "Knowledge Encoder", "type": "compute", "description": "Processes raw input into structured knowledge: entity extraction, relationship mapping, embedding generation.", "cloudService": "Claude API + custom pipeline" },
+        { "id": "personal-vault", "name": "Personal Vault", "type": "database", "description": "Private per-user memory store. Conversations, decisions, insights. RLS-enforced — only the owner can access.", "cloudService": "Supabase pgvector (user schema)" },
+        { "id": "family-vault", "name": "Family Vault", "type": "database", "description": "Shared family knowledge. Recipes, stories, business wisdom, ancestral history. Read-all, write-own policy.", "cloudService": "Supabase pgvector (family schema)" },
+        { "id": "business-vault", "name": "Business Intelligence Vault", "type": "database", "description": "Structured business knowledge — supplier relationships, negotiation patterns, market intelligence, financial history.", "cloudService": "Supabase pgvector (org schema)" },
+        { "id": "query-engine", "name": "Semantic Query Engine", "type": "ai-service", "description": "Natural language queries across vaults with automatic scope resolution. Knows which vaults the user can access.", "cloudService": "Claude + pgvector RPC" },
+        { "id": "access-control", "name": "Access Control Layer", "type": "gateway", "description": "Row-level security policies. Personal = owner only. Family = family members. Business = role-based (admin/member/viewer).", "cloudService": "Supabase RLS policies" },
+        { "id": "export-engine", "name": "Sovereignty Export", "type": "storage", "description": "Full data portability. Export all vaults as encrypted packages. Delete on request. Your data, your control.", "cloudService": "Supabase Storage + encryption" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "capture-api", "to": "encoder", "label": "Raw knowledge", "dataType": "Voice/text/docs" },
+        { "id": "f2", "from": "encoder", "to": "personal-vault", "label": "Personal memories", "dataType": "Embeddings + metadata" },
+        { "id": "f3", "from": "encoder", "to": "family-vault", "label": "Family wisdom", "dataType": "Embeddings + metadata" },
+        { "id": "f4", "from": "encoder", "to": "business-vault", "label": "Business intel", "dataType": "Structured + vectors" },
+        { "id": "f5", "from": "query-engine", "to": "personal-vault", "label": "Personal search", "dataType": "Vector similarity" },
+        { "id": "f6", "from": "query-engine", "to": "family-vault", "label": "Family search", "dataType": "Vector similarity" },
+        { "id": "f7", "from": "query-engine", "to": "business-vault", "label": "Business search", "dataType": "Vector similarity" },
+        { "id": "f8", "from": "access-control", "to": "query-engine", "label": "Scope resolution", "dataType": "RLS policies" },
+        { "id": "f9", "from": "personal-vault", "to": "export-engine", "label": "Data export", "dataType": "Encrypted backup" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Vault Infrastructure",
+        "description": "Set up Supabase schemas with pgvector and row-level security",
+        "tasks": [
+          "Create three-schema architecture (personal, family, org)",
+          "Enable pgvector extension on each schema",
+          "Configure RLS policies for each vault tier",
+          "Build auth integration with user/family/org membership",
+          "Deploy Knowledge Capture API endpoints"
+        ],
+        "deliverables": ["Three-tier vault with RLS", "Capture API with auth"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "Knowledge Encoding Pipeline",
+        "description": "Build the pipeline that converts raw input into structured intelligence",
+        "tasks": [
+          "Implement voice transcription (Whisper API)",
+          "Build entity extraction with Claude",
+          "Create relationship mapping between entities",
+          "Generate embeddings for semantic search",
+          "Implement auto-categorization (personal/family/business)"
+        ],
+        "deliverables": ["Working encoding pipeline", "Auto-categorized knowledge entries"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Semantic Query Engine",
+        "description": "Natural language access to vault knowledge",
+        "tasks": [
+          "Build cross-vault semantic search with scope resolution",
+          "Implement pgvector RPC functions for each vault tier",
+          "Create Claude-powered answer generation with citations",
+          "Add temporal queries (what happened in 1990?)",
+          "Build export engine with encryption"
+        ],
+        "deliverables": ["Cross-vault query engine", "Data export with full portability"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "vault-rls",
+        "title": "Row-Level Security for Three-Tier Vaults",
+        "description": "Supabase RLS policies ensuring data sovereignty across personal, family, and business vaults",
+        "language": "sql",
+        "code": "-- Personal Vault: only the owner can read/write\nCREATE POLICY personal_vault_owner ON personal_memories\n  FOR ALL USING (auth.uid() = user_id);\n\n-- Family Vault: all family members can read, write own\nCREATE POLICY family_vault_read ON family_knowledge\n  FOR SELECT USING (\n    auth.uid() IN (\n      SELECT user_id FROM family_memberships\n      WHERE family_id = family_knowledge.family_id\n    )\n  );\n\nCREATE POLICY family_vault_write ON family_knowledge\n  FOR INSERT WITH CHECK (auth.uid() = contributed_by);\n\n-- Business Vault: role-based access\nCREATE POLICY business_vault_access ON business_intelligence\n  FOR ALL USING (\n    auth.uid() IN (\n      SELECT user_id FROM org_memberships\n      WHERE org_id = business_intelligence.org_id\n      AND role IN ('admin', 'member')\n    )\n  );"
+      }
+    ],
+    "technologies": [
+      "Supabase", "pgvector", "PostgreSQL", "Claude API", "Whisper",
+      "Next.js", "Vercel", "TypeScript", "Row-Level Security"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 800,
+      "annual": 9600,
+      "breakdown": [
+        { "category": "Supabase Pro (pgvector)", "amount": "300", "percentage": 37 },
+        { "category": "Claude API (encoding)", "amount": "250", "percentage": 31 },
+        { "category": "Whisper API (voice)", "amount": "100", "percentage": 13 },
+        { "category": "Vercel + storage", "amount": "150", "percentage": 19 }
+      ],
+      "assumptions": ["50 family members", "~200 knowledge entries/month", "10GB vault storage"]
+    },
+    "timeToImplement": "6 weeks",
+    "useCases": [
+      "Family legacy preservation",
+      "SMB institutional knowledge capture",
+      "Multi-generational business intelligence",
+      "Personal AI memory with data sovereignty",
+      "Cultural heritage documentation"
+    ],
+    "createdAt": "2026-04-09T00:00:00Z",
+    "updatedAt": "2026-04-09T00:00:00Z",
+    "publishedAt": "2026-04-09T00:00:00Z",
+    "metaDescription": "Build a sovereign knowledge vault with personal, family, and business tiers — pgvector semantic search, row-level security, and full data portability.",
+    "keywords": ["sovereign data", "knowledge vault", "pgvector", "family intelligence", "supabase rls", "institutional knowledge"]
+  },
+  {
+    "id": "mcp-agent-marketplace",
+    "slug": "mcp-agent-marketplace",
+    "title": "MCP Agent & Skill Marketplace",
+    "subtitle": "Community-driven marketplace for AI agents, MCP servers, skills, and workflow automations",
+    "category": "mcp-servers",
+    "status": "published",
+    "difficulty": "advanced",
+    "overview": "A full-stack marketplace platform where community members contribute and monetize AI agents, MCP server integrations, workflow automations, and skill packages. Built on Vercel + Supabase + Stripe Connect for instant payouts. Contributors submit packages via GitHub, automated quality checks validate them, and approved packages are listed with 70/30 revenue split. Buyers get one-click deployment to their own agent constellation.",
+    "problem": "AI agent ecosystems are siloed. Developers build great MCP servers and agent workflows but have no distribution channel. Users want specialized agents but lack the technical skills to build them. There's no marketplace that connects agent builders with agent users while handling payments and quality.",
+    "solution": "Deploy a marketplace platform with GitHub-based submission, automated testing, Stripe Connect for contributor payments, and a one-click deployment pipeline. Each listing includes an interactive architecture diagram, live preview, and deploy button.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "marketplace-ui", "name": "Marketplace Frontend", "type": "gateway", "description": "Browse, search, preview, and purchase agents and MCP servers. Glassmorphic design, real-time search.", "cloudService": "Next.js on Vercel" },
+        { "id": "submission-api", "name": "Submission Pipeline", "type": "compute", "description": "GitHub webhook-triggered pipeline. Validates package structure, runs automated tests, checks for security issues.", "cloudService": "Vercel Serverless + GitHub Actions" },
+        { "id": "quality-engine", "name": "Quality & Review Engine", "type": "ai-service", "description": "Claude-powered code review and quality scoring. Checks for best practices, security vulnerabilities, and documentation quality.", "cloudService": "Claude API" },
+        { "id": "package-registry", "name": "Package Registry", "type": "database", "description": "Catalog of all published agents, MCP servers, skills, and automations with metadata, ratings, and version history.", "cloudService": "Supabase PostgreSQL" },
+        { "id": "deploy-engine", "name": "One-Click Deploy", "type": "compute", "description": "Deploys purchased packages to buyer's agent constellation. Handles environment setup, MCP server registration, and agent configuration.", "cloudService": "Vercel Sandbox" },
+        { "id": "stripe-connect", "name": "Stripe Connect", "type": "external", "description": "Handles marketplace payments with automatic 70/30 split. Contributor payouts, refunds, and usage-based billing.", "cloudService": "Stripe Connect + Billing" },
+        { "id": "analytics", "name": "Marketplace Analytics", "type": "compute", "description": "Download counts, revenue tracking, user reviews, trending packages. Powers the recommendation engine.", "cloudService": "Supabase + Vercel Analytics" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "submission-api", "to": "quality-engine", "label": "Review package", "dataType": "Code + manifest" },
+        { "id": "f2", "from": "quality-engine", "to": "package-registry", "label": "Approved listing", "dataType": "Package metadata" },
+        { "id": "f3", "from": "marketplace-ui", "to": "package-registry", "label": "Browse & search", "dataType": "API queries" },
+        { "id": "f4", "from": "marketplace-ui", "to": "stripe-connect", "label": "Purchase", "dataType": "Payment intent" },
+        { "id": "f5", "from": "stripe-connect", "to": "deploy-engine", "label": "License granted", "dataType": "Webhook" },
+        { "id": "f6", "from": "deploy-engine", "to": "marketplace-ui", "label": "Deployed", "dataType": "Agent config" },
+        { "id": "f7", "from": "marketplace-ui", "to": "analytics", "label": "Usage events", "dataType": "Telemetry" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Registry & Catalog",
+        "description": "Build the package registry and marketplace frontend",
+        "tasks": [
+          "Design package manifest format (agents, MCP servers, skills, workflows)",
+          "Build Supabase schema for package registry",
+          "Create marketplace UI with search, filtering, and categories",
+          "Implement package detail pages with architecture diagrams",
+          "Add rating and review system"
+        ],
+        "deliverables": ["Package registry", "Marketplace UI with search"],
+        "estimatedDuration": "3 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "Submission & Quality",
+        "description": "Build the contributor submission and automated review pipeline",
+        "tasks": [
+          "Create GitHub-based submission workflow",
+          "Build automated test runner for packages",
+          "Implement Claude-powered code review",
+          "Add security scanning for MCP servers",
+          "Create contributor dashboard"
+        ],
+        "deliverables": ["Automated quality pipeline", "Contributor portal"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Payments & Deployment",
+        "description": "Stripe Connect integration and one-click deployment",
+        "tasks": [
+          "Configure Stripe Connect with 70/30 split",
+          "Build one-click deployment engine (Vercel Sandbox)",
+          "Implement MCP server auto-registration for buyers",
+          "Add usage-based billing for premium packages",
+          "Create payout dashboard for contributors"
+        ],
+        "deliverables": ["Working marketplace with payments", "One-click deploy"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "package-manifest",
+        "title": "Agent Package Manifest",
+        "description": "The manifest format for submitting an agent, MCP server, or skill to the marketplace",
+        "language": "json",
+        "code": "{\n  \"name\": \"wellness-guardian-agent\",\n  \"version\": \"1.0.0\",\n  \"type\": \"agent\",\n  \"category\": \"health-wellness\",\n  \"title\": \"Wellness Guardian Agent\",\n  \"description\": \"A health-aware AI agent that integrates biometric data for personalized wellness guidance.\",\n  \"author\": { \"name\": \"Ahmed\", \"org\": \"Trinity AI\" },\n  \"pricing\": { \"model\": \"one-time\", \"amount\": 49, \"currency\": \"EUR\" },\n  \"requirements\": {\n    \"runtime\": \"claude-agent-sdk\",\n    \"mcpServers\": [\"apple-health\", \"calendar\"],\n    \"minTier\": \"pro\"\n  },\n  \"files\": {\n    \"agent\": \"src/wellness-guardian.ts\",\n    \"config\": \"config/guardian-protocol.json\",\n    \"tests\": \"tests/wellness.test.ts\"\n  }\n}"
+      }
+    ],
+    "technologies": [
+      "Next.js 16", "Vercel", "Supabase", "Stripe Connect",
+      "GitHub Actions", "Claude API", "MCP Protocol", "TypeScript"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 600,
+      "annual": 7200,
+      "breakdown": [
+        { "category": "Supabase Pro", "amount": "200", "percentage": 33 },
+        { "category": "Vercel Pro", "amount": "200", "percentage": 33 },
+        { "category": "Claude API (reviews)", "amount": "100", "percentage": 17 },
+        { "category": "GitHub Actions + misc", "amount": "100", "percentage": 17 }
+      ],
+      "assumptions": ["50 packages listed", "200 monthly purchases", "10 active contributors"]
+    },
+    "timeToImplement": "7 weeks",
+    "useCases": [
+      "Community AI agent marketplace",
+      "MCP server distribution platform",
+      "Workflow automation store",
+      "White-label agent marketplace for enterprises",
+      "Open-source agent discovery"
+    ],
+    "createdAt": "2026-04-09T00:00:00Z",
+    "updatedAt": "2026-04-09T00:00:00Z",
+    "publishedAt": "2026-04-09T00:00:00Z",
+    "metaDescription": "Build a community-driven marketplace for AI agents, MCP servers, and workflow automations with Stripe Connect payouts and one-click deployment.",
+    "keywords": ["mcp marketplace", "agent marketplace", "stripe connect", "mcp servers", "ai agents", "community platform"]
   }
 ]
