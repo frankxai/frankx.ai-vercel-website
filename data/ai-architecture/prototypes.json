@@ -1631,5 +1631,371 @@
     "publishedAt": "2026-04-09T00:00:00Z",
     "metaDescription": "Build a biometric-aware AI system with wearable integration, cognitive state modeling, and MCP server deployment on Railway.",
     "keywords": ["health ai", "biometric integration", "mcp server", "apple health", "oura ring", "cognitive state", "vital intelligence"]
+  },
+  {
+    "id": "ollama-openwebui-railway",
+    "slug": "ollama-openwebui-railway",
+    "title": "Ollama + OpenWebUI on Railway",
+    "subtitle": "Self-hosted ChatGPT alternative in 10 minutes",
+    "category": "llm-ops",
+    "status": "published",
+    "difficulty": "beginner",
+    "overview": "Deploy a fully self-hosted ChatGPT alternative with Ollama (LLM runtime) + OpenWebUI (polished chat interface) on Railway. Get a private, auth-protected AI chat for your team with zero per-token costs. Supports Llama 3.3, Mistral, Qwen, and any GGUF model. Includes GPU support via RunPod for production workloads.",
+    "problem": "ChatGPT Plus costs $20/user/month, sends your data to OpenAI, and locks you into one model. Enterprise teams need a self-hosted alternative that runs Llama 3.3 and other OSS models with proper auth, multi-user support, and data sovereignty — but production deployment guides are thin.",
+    "solution": "One-click deploy a containerized Ollama + OpenWebUI stack on Railway with persistent volume for models, PostgreSQL for users/auth, and optional Cloudflare tunnel for SSL. Add GPU via RunPod serverless for heavy workloads. Zero vendor lock-in, zero per-token cost.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "openwebui", "name": "OpenWebUI Chat Interface", "type": "gateway", "description": "React/Svelte frontend with multi-user auth, conversation history, model switching, RAG support, and prompt library.", "cloudService": "Railway (Docker)" },
+        { "id": "ollama", "name": "Ollama Runtime", "type": "ai-service", "description": "LLM inference server supporting Llama 3.3, Mistral, Qwen, Phi, Gemma, and any GGUF model. Exposes OpenAI-compatible API.", "cloudService": "Railway (Docker)" },
+        { "id": "postgres", "name": "PostgreSQL", "type": "database", "description": "User accounts, conversation history, settings, and RBAC. Managed Postgres with automated backups.", "cloudService": "Railway Postgres" },
+        { "id": "model-volume", "name": "Model Volume", "type": "storage", "description": "Persistent disk for downloaded GGUF models (10-80GB). Survives container restarts and redeploys.", "cloudService": "Railway Volume" },
+        { "id": "cloudflare", "name": "Cloudflare Tunnel", "type": "gateway", "description": "Optional SSL + custom domain with zero config. Zero-trust access and DDoS protection.", "cloudService": "Cloudflare" },
+        { "id": "runpod-gpu", "name": "RunPod Serverless GPU", "type": "external", "description": "Optional: offload heavy models (70B+) to serverless GPU. Pay per second, auto-scale to zero.", "cloudService": "RunPod Serverless" },
+        { "id": "backup", "name": "Automated Backups", "type": "storage", "description": "Daily snapshots of conversations, users, and settings. S3-compatible storage with retention policy.", "cloudService": "Railway Scheduled Jobs" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "openwebui", "to": "ollama", "label": "User → chat UI", "dataType": "HTTPS" },
+        { "id": "f2", "from": "cloudflare", "to": "openwebui", "label": "SSL termination", "dataType": "TLS tunnel" },
+        { "id": "f3", "from": "openwebui", "to": "ollama", "label": "Inference requests", "dataType": "OpenAI API" },
+        { "id": "f4", "from": "openwebui", "to": "postgres", "label": "Auth + history", "dataType": "SQL" },
+        { "id": "f5", "from": "ollama", "to": "model-volume", "label": "Load models", "dataType": "GGUF files" },
+        { "id": "f6", "from": "ollama", "to": "runpod-gpu", "label": "Heavy inference overflow", "dataType": "GPU requests" },
+        { "id": "f7", "from": "postgres", "to": "backup", "label": "Daily snapshot", "dataType": "pg_dump" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Core Deploy",
+        "description": "One-click deploy the core stack and pull your first model",
+        "tasks": [
+          "Click Railway template for Ollama + OpenWebUI",
+          "Configure persistent volume for model storage (50GB)",
+          "Set OLLAMA_BASE_URL and WEBUI_SECRET_KEY env vars",
+          "Pull first model via OpenWebUI (llama3.3:8b or mistral:7b)",
+          "Verify chat works with default admin user"
+        ],
+        "deliverables": ["Running OpenWebUI instance", "First model loaded", "Admin access"],
+        "estimatedDuration": "15 minutes"
+      },
+      {
+        "phase": 2,
+        "title": "Authentication & Multi-User",
+        "description": "Configure auth, add team members, and set model permissions",
+        "tasks": [
+          "Enable ENABLE_SIGNUP=false to lock down registration",
+          "Create admin and regular user accounts",
+          "Configure model-level permissions (admin-only vs all users)",
+          "Add conversation sharing and workspace features",
+          "Connect PostgreSQL for persistent user state"
+        ],
+        "deliverables": ["Multi-user auth", "Permission system", "Persistent history"],
+        "estimatedDuration": "30 minutes"
+      },
+      {
+        "phase": 3,
+        "title": "Production Hardening",
+        "description": "Add custom domain, backups, monitoring, and optional GPU overflow",
+        "tasks": [
+          "Configure Cloudflare tunnel for custom domain + SSL",
+          "Set up daily PostgreSQL backups to S3",
+          "Add Railway observability (logs, metrics, alerts)",
+          "Optional: configure RunPod serverless GPU for 70B models",
+          "Load test with concurrent users and verify performance"
+        ],
+        "deliverables": ["Custom domain", "Daily backups", "GPU overflow", "Monitoring"],
+        "estimatedDuration": "1 hour"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "railway-deploy-config",
+        "title": "Railway Deployment Config",
+        "description": "railway.json and docker-compose.yml for Ollama + OpenWebUI stack",
+        "language": "yaml",
+        "code": "# docker-compose.yml\nversion: '3.9'\nservices:\n  ollama:\n    image: ollama/ollama:latest\n    volumes:\n      - ollama-models:/root/.ollama\n    ports:\n      - '11434:11434'\n    environment:\n      - OLLAMA_KEEP_ALIVE=24h\n      - OLLAMA_HOST=0.0.0.0\n\n  openwebui:\n    image: ghcr.io/open-webui/open-webui:main\n    depends_on:\n      - ollama\n    ports:\n      - '3000:8080'\n    environment:\n      - OLLAMA_BASE_URL=http://ollama:11434\n      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}\n      - ENABLE_SIGNUP=false\n      - DATABASE_URL=${DATABASE_URL}\n    volumes:\n      - openwebui-data:/app/backend/data\n\nvolumes:\n  ollama-models:\n  openwebui-data:\n\n# railway.json\n{\n  \"$schema\": \"https://railway.app/railway.schema.json\",\n  \"build\": { \"builder\": \"DOCKERFILE\" },\n  \"deploy\": {\n    \"restartPolicyType\": \"ON_FAILURE\",\n    \"restartPolicyMaxRetries\": 10,\n    \"healthcheckPath\": \"/health\"\n  }\n}"
+      },
+      {
+        "id": "pull-model-script",
+        "title": "Pull Model Bootstrap Script",
+        "description": "Shell script to pre-pull models on first deploy",
+        "language": "bash",
+        "code": "#!/bin/bash\n# bootstrap-models.sh — run on first deploy\nset -e\n\nMODELS=(\n  'llama3.3:8b'\n  'mistral:7b'\n  'qwen2.5-coder:7b'\n)\n\necho 'Waiting for Ollama to be ready...'\nuntil curl -sf http://ollama:11434/api/tags > /dev/null; do\n  sleep 2\ndone\n\nfor model in \"${MODELS[@]}\"; do\n  echo \"Pulling $model...\"\n  curl -X POST http://ollama:11434/api/pull \\\n    -H 'Content-Type: application/json' \\\n    -d \"{\\\"name\\\": \\\"$model\\\"}\"\ndone\n\necho 'All models pulled successfully'"
+      }
+    ],
+    "technologies": [
+      "Ollama", "OpenWebUI", "Railway", "PostgreSQL",
+      "Cloudflare", "RunPod", "Docker", "Llama 3.3", "Mistral"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 80,
+      "annual": 960,
+      "breakdown": [
+        { "category": "Railway (Ollama + OpenWebUI)", "amount": "40", "percentage": 50 },
+        { "category": "Railway Postgres", "amount": "10", "percentage": 12 },
+        { "category": "Railway Volume (50GB)", "amount": "5", "percentage": 6 },
+        { "category": "Cloudflare (custom domain)", "amount": "0", "percentage": 0 },
+        { "category": "RunPod GPU (optional overflow)", "amount": "25", "percentage": 32 }
+      ],
+      "assumptions": ["Small team (5-10 users)", "7B-8B models on CPU", "Occasional GPU overflow for 70B models", "~500 chats/day"]
+    },
+    "timeToImplement": "1 hour",
+    "useCases": [
+      "Private team ChatGPT alternative",
+      "Confidential data analysis without OpenAI",
+      "Offline AI development environment",
+      "Cost-conscious AI deployment for startups",
+      "Regulated industry AI (healthcare, legal, finance)"
+    ],
+    "createdAt": "2026-04-10T00:00:00Z",
+    "updatedAt": "2026-04-10T00:00:00Z",
+    "publishedAt": "2026-04-10T00:00:00Z",
+    "metaDescription": "Deploy a self-hosted ChatGPT alternative with Ollama and OpenWebUI on Railway in 10 minutes. Zero per-token costs, full data sovereignty.",
+    "keywords": ["ollama", "openwebui", "self-hosted ai", "llama 3.3", "railway deployment", "chatgpt alternative", "llm ops", "private ai"]
+  },
+  {
+    "id": "claude-agent-sdk-vercel",
+    "slug": "claude-agent-sdk-vercel",
+    "title": "Claude Agent SDK on Vercel Sandbox",
+    "subtitle": "Production agent deployment on Vercel Edge with secure code execution",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "intermediate",
+    "overview": "Deploy Claude Agent SDK agents to production on Vercel using Vercel Sandbox for isolated code execution. Build Claude Code-style agents that can read files, run shell commands, browse the web, and execute code — all in secure per-request sandboxes. Stream responses via SSE, handle tool calls, and scale to millions of requests on Vercel Edge.",
+    "problem": "Building production agents with code execution is hard. Lambda times out. Docker-in-Docker is complex. Self-hosted runners require ops. You need ephemeral, isolated environments that start in milliseconds and support arbitrary code execution — plus streaming, tool calling, and MCP connectivity.",
+    "solution": "Use Vercel Sandbox (released Jan 2026) for isolated agent execution. Deploy Next.js API routes that spawn sandboxes on demand, run Claude Agent SDK inside them, and stream results back via SSE. Each request gets a fresh isolated environment. Zero ops.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "nextjs-app", "name": "Next.js App", "type": "gateway", "description": "Vercel-hosted frontend with SSE streaming, chat UI, and real-time agent updates.", "cloudService": "Vercel Edge" },
+        { "id": "agent-route", "name": "Agent API Route", "type": "compute", "description": "Next.js route handler that spawns sandboxes, manages sessions, and streams responses.", "cloudService": "Vercel Serverless" },
+        { "id": "vercel-sandbox", "name": "Vercel Sandbox", "type": "compute", "description": "Ephemeral isolated execution environment with filesystem, shell, and network access. Spawns in milliseconds.", "cloudService": "Vercel Sandbox" },
+        { "id": "claude-sdk", "name": "Claude Agent SDK", "type": "ai-service", "description": "Running inside sandbox with tool access: read/write files, run bash, web search, MCP connections.", "cloudService": "Anthropic API" },
+        { "id": "mcp-servers", "name": "MCP Servers", "type": "gateway", "description": "Remote MCP servers for tool connectivity: GitHub, Linear, Supabase, custom tools.", "cloudService": "Various" },
+        { "id": "supabase-state", "name": "Supabase State", "type": "database", "description": "Persistent state, user sessions, conversation history, and agent memory.", "cloudService": "Supabase" },
+        { "id": "blob-storage", "name": "Vercel Blob", "type": "storage", "description": "File uploads and generated artifacts (reports, code, images).", "cloudService": "Vercel Blob" },
+        { "id": "stream-client", "name": "SSE Client", "type": "gateway", "description": "Real-time streaming to browser via EventSource for token-level updates.", "cloudService": "EventSource API" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "stream-client", "to": "nextjs-app", "label": "User request", "dataType": "HTTPS POST" },
+        { "id": "f2", "from": "nextjs-app", "to": "agent-route", "label": "API call", "dataType": "Internal" },
+        { "id": "f3", "from": "agent-route", "to": "vercel-sandbox", "label": "Spawn sandbox", "dataType": "Sandbox API" },
+        { "id": "f4", "from": "vercel-sandbox", "to": "claude-sdk", "label": "Initialize agent", "dataType": "SDK init" },
+        { "id": "f5", "from": "claude-sdk", "to": "mcp-servers", "label": "Tool calls", "dataType": "MCP protocol" },
+        { "id": "f6", "from": "claude-sdk", "to": "supabase-state", "label": "Load context", "dataType": "SQL" },
+        { "id": "f7", "from": "vercel-sandbox", "to": "blob-storage", "label": "Save artifacts", "dataType": "Files" },
+        { "id": "f8", "from": "claude-sdk", "to": "stream-client", "label": "SSE response", "dataType": "Server-Sent Events" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Setup & Sandbox",
+        "description": "Create Next.js app and wire up Vercel Sandbox with Claude Agent SDK",
+        "tasks": [
+          "Create Next.js 16 app with App Router",
+          "Install @vercel/sandbox and @anthropic-ai/claude-agent-sdk",
+          "Create /api/agent route handler",
+          "Initialize sandbox and run 'hello world' agent",
+          "Verify sandbox isolation and cleanup"
+        ],
+        "deliverables": ["Next.js app", "Working sandbox", "Basic agent execution"],
+        "estimatedDuration": "2 hours"
+      },
+      {
+        "phase": 2,
+        "title": "Streaming & Tools",
+        "description": "Wire up SSE streaming, MCP connectivity, and tool call handling",
+        "tasks": [
+          "Implement SSE streaming in route handler",
+          "Add EventSource client in frontend",
+          "Connect MCP servers (GitHub, web search, custom)",
+          "Handle tool call events and stream progress",
+          "Test multi-turn conversations with tool use"
+        ],
+        "deliverables": ["SSE streaming", "MCP tool calls", "Multi-turn agent"],
+        "estimatedDuration": "4 hours"
+      },
+      {
+        "phase": 3,
+        "title": "Production",
+        "description": "Add auth, rate limiting, observability, and Supabase persistence",
+        "tasks": [
+          "Add Clerk or NextAuth for user authentication",
+          "Implement rate limiting with Upstash Redis",
+          "Add Supabase for session and conversation persistence",
+          "Configure OpenTelemetry for agent observability",
+          "Deploy to production and load test"
+        ],
+        "deliverables": ["Auth system", "Rate limiting", "Persistence", "Observability"],
+        "estimatedDuration": "4 hours"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "sandbox-agent-route",
+        "title": "Agent API Route with Vercel Sandbox",
+        "description": "Next.js route that spawns a sandbox, runs Claude Agent SDK, and streams via SSE",
+        "language": "typescript",
+        "code": "import { Sandbox } from '@vercel/sandbox'\nimport { query } from '@anthropic-ai/claude-agent-sdk'\n\nexport const runtime = 'nodejs'\nexport const maxDuration = 300\n\nexport async function POST(req: Request) {\n  const { prompt, sessionId } = await req.json()\n\n  const encoder = new TextEncoder()\n  const stream = new ReadableStream({\n    async start(controller) {\n      const send = (event: string, data: any) => {\n        controller.enqueue(\n          encoder.encode(`event: ${event}\\ndata: ${JSON.stringify(data)}\\n\\n`)\n        )\n      }\n\n      // Spawn ephemeral sandbox\n      const sandbox = await Sandbox.create({\n        runtime: 'node22',\n        resources: { cpu: 2, memory: 4096 },\n        timeout: 300_000,\n      })\n\n      try {\n        send('status', { message: 'Sandbox ready', sandboxId: sandbox.id })\n\n        // Run Claude Agent SDK inside sandbox context\n        const result = query({\n          prompt,\n          options: {\n            cwd: sandbox.workdir,\n            allowedTools: ['Read', 'Write', 'Bash', 'WebSearch'],\n            mcpServers: {\n              github: { url: process.env.GITHUB_MCP_URL! },\n            },\n            executeInSandbox: async (cmd) => sandbox.exec(cmd),\n          },\n        })\n\n        for await (const message of result) {\n          if (message.type === 'assistant') {\n            send('token', { text: message.text })\n          } else if (message.type === 'tool_use') {\n            send('tool', { name: message.name, input: message.input })\n          } else if (message.type === 'result') {\n            send('done', { result: message.result })\n          }\n        }\n      } finally {\n        await sandbox.destroy()\n        controller.close()\n      }\n    },\n  })\n\n  return new Response(stream, {\n    headers: {\n      'Content-Type': 'text/event-stream',\n      'Cache-Control': 'no-cache',\n      'Connection': 'keep-alive',\n    },\n  })\n}"
+      }
+    ],
+    "technologies": [
+      "Claude Agent SDK", "Vercel Sandbox", "Next.js 16", "Vercel Edge",
+      "MCP", "Supabase", "TypeScript", "Server-Sent Events", "Upstash Redis"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 200,
+      "annual": 2400,
+      "breakdown": [
+        { "category": "Vercel Pro", "amount": "20", "percentage": 10 },
+        { "category": "Vercel Sandbox usage", "amount": "80", "percentage": 40 },
+        { "category": "Anthropic API", "amount": "80", "percentage": 40 },
+        { "category": "Supabase Pro", "amount": "20", "percentage": 10 }
+      ],
+      "assumptions": ["~1000 agent sessions/month", "Average 5 tool calls per session", "Sonnet model", "Small-medium production workload"]
+    },
+    "timeToImplement": "1 day",
+    "useCases": [
+      "Production AI agents with code execution",
+      "Claude Code-like hosted experiences",
+      "Multi-step autonomous research agents",
+      "Customer support agents with tool access",
+      "Developer productivity agents on Vercel"
+    ],
+    "createdAt": "2026-04-10T00:00:00Z",
+    "updatedAt": "2026-04-10T00:00:00Z",
+    "publishedAt": "2026-04-10T00:00:00Z",
+    "metaDescription": "Deploy Claude Agent SDK agents to production on Vercel with Sandbox for secure code execution. Stream via SSE, scale on Edge.",
+    "keywords": ["claude agent sdk", "vercel sandbox", "production agents", "next.js agents", "mcp", "sse streaming", "anthropic api"]
+  },
+  {
+    "id": "claude-code-multi-agent-team-railway",
+    "slug": "claude-code-multi-agent-team-railway",
+    "title": "Claude Code Multi-Agent Team on Railway",
+    "subtitle": "Coordinate multiple Claude Code agents working in parallel on a shared codebase",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "advanced",
+    "overview": "Deploy a team of Claude Code agents coordinated through a central orchestrator on Railway. Each agent handles a specific domain (frontend, backend, tests, docs) and they coordinate through a shared task queue and git worktrees. Perfect for autonomous development workflows and long-running agent tasks.",
+    "problem": "Single-agent development has limits — one agent context, sequential execution, single perspective. Production AI development teams need coordinated multi-agent systems where specialists work in parallel on different parts of a codebase without conflicts.",
+    "solution": "Deploy an orchestrator (Claude Agent SDK) on Railway that spawns specialized Claude Code subagents, each working on isolated git worktrees. Use Redis for task queue, Supabase for shared state, and GitHub Actions for CI/CD. Agents coordinate through structured handoffs.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "components": [
+        { "id": "orchestrator", "name": "Orchestrator Agent", "type": "compute", "description": "Main Claude Agent SDK process that decomposes tasks, assigns to specialists, and manages coordination.", "cloudService": "Railway (Node.js)" },
+        { "id": "redis-queue", "name": "Redis Task Queue", "type": "queue", "description": "Bull queue for task distribution with priorities, retries, and dead letter handling.", "cloudService": "Railway Redis" },
+        { "id": "frontend-agent", "name": "Frontend Specialist", "type": "compute", "description": "Claude Code agent for UI/UX tasks: components, styling, accessibility, and frontend testing.", "cloudService": "Railway (Docker)" },
+        { "id": "backend-agent", "name": "Backend Specialist", "type": "compute", "description": "Claude Code agent for API/database tasks: endpoints, migrations, business logic, and integrations.", "cloudService": "Railway (Docker)" },
+        { "id": "test-agent", "name": "Test Specialist", "type": "compute", "description": "Claude Code agent for test coverage: unit tests, integration tests, E2E, and regression suites.", "cloudService": "Railway (Docker)" },
+        { "id": "docs-agent", "name": "Documentation Specialist", "type": "compute", "description": "Claude Code agent for docs/README: API docs, architecture diagrams, changelogs, and guides.", "cloudService": "Railway (Docker)" },
+        { "id": "git-worktrees", "name": "Git Worktrees", "type": "storage", "description": "Isolated working directories per agent — one worktree per specialist to avoid merge conflicts.", "cloudService": "Railway Volume" },
+        { "id": "shared-state", "name": "Shared State", "type": "database", "description": "Supabase for cross-agent coordination: task status, handoffs, decisions log, and conflict resolution.", "cloudService": "Supabase" },
+        { "id": "github-actions", "name": "GitHub Actions", "type": "external", "description": "CI/CD pipeline for agent PRs: linting, tests, type checks, and auto-merge on green.", "cloudService": "GitHub" }
+      ],
+      "flows": [
+        { "id": "f1", "from": "orchestrator", "to": "redis-queue", "label": "Decomposed tasks", "dataType": "Task objects" },
+        { "id": "f2", "from": "redis-queue", "to": "frontend-agent", "label": "UI tasks", "dataType": "Task claims" },
+        { "id": "f3", "from": "redis-queue", "to": "backend-agent", "label": "API tasks", "dataType": "Task claims" },
+        { "id": "f4", "from": "redis-queue", "to": "test-agent", "label": "Test tasks", "dataType": "Task claims" },
+        { "id": "f5", "from": "redis-queue", "to": "docs-agent", "label": "Doc tasks", "dataType": "Task claims" },
+        { "id": "f6", "from": "frontend-agent", "to": "git-worktrees", "label": "Isolated work", "dataType": "Git commits" },
+        { "id": "f7", "from": "backend-agent", "to": "shared-state", "label": "Coordination", "dataType": "State updates" },
+        { "id": "f8", "from": "orchestrator", "to": "github-actions", "label": "Trigger CI", "dataType": "Pull requests" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Orchestrator + Queue",
+        "description": "Deploy the orchestrator, Redis queue, and task decomposition logic",
+        "tasks": [
+          "Deploy orchestrator (Claude Agent SDK) on Railway",
+          "Provision Railway Redis and configure Bull queue",
+          "Implement task decomposition prompts (user goal → specialist tasks)",
+          "Build task routing logic (which specialist handles which type)",
+          "Add task status tracking in Supabase"
+        ],
+        "deliverables": ["Orchestrator service", "Redis queue", "Task decomposition"],
+        "estimatedDuration": "1 day"
+      },
+      {
+        "phase": 2,
+        "title": "Specialist Agents",
+        "description": "Deploy 4 specialist agents with domain-specific prompts and tools",
+        "tasks": [
+          "Build frontend specialist Docker image with Claude Code CLI",
+          "Build backend specialist with database tooling (psql, migrations)",
+          "Build test specialist with Playwright, Vitest, and coverage tools",
+          "Build docs specialist with mermaid, typedoc, and markdown linters",
+          "Deploy all 4 specialists on Railway with queue consumers"
+        ],
+        "deliverables": ["4 specialist agents", "Domain prompts", "Queue consumers"],
+        "estimatedDuration": "1 day"
+      },
+      {
+        "phase": 3,
+        "title": "Coordination & CI",
+        "description": "Wire up shared state, git worktrees, and GitHub Actions integration",
+        "tasks": [
+          "Configure git worktrees per specialist (isolated branches)",
+          "Implement handoff protocol via Supabase shared state",
+          "Build conflict detection and resolution logic",
+          "Set up GitHub Actions for agent PR validation",
+          "Add auto-merge on green CI with human override"
+        ],
+        "deliverables": ["Git worktree isolation", "Handoff protocol", "CI/CD integration"],
+        "estimatedDuration": "1 day"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "orchestrator-decompose",
+        "title": "Orchestrator Task Decomposition",
+        "description": "Orchestrator that decomposes a user goal into specialist tasks and pushes to Redis queue",
+        "language": "typescript",
+        "code": "import { query } from '@anthropic-ai/claude-agent-sdk'\nimport { Queue } from 'bullmq'\nimport { createClient } from '@supabase/supabase-js'\n\nconst taskQueue = new Queue('agent-tasks', {\n  connection: { url: process.env.REDIS_URL! },\n})\n\nconst supabase = createClient(\n  process.env.SUPABASE_URL!,\n  process.env.SUPABASE_SERVICE_KEY!\n)\n\ninterface SpecialistTask {\n  specialist: 'frontend' | 'backend' | 'test' | 'docs'\n  title: string\n  description: string\n  worktree: string\n  dependencies: string[]\n}\n\nexport async function decomposeGoal(goal: string, sessionId: string) {\n  const decomposition = query({\n    prompt: `Decompose this development goal into specialist tasks.\n\nGoal: ${goal}\n\nOutput a JSON array of tasks. Each task must specify:\n- specialist: one of 'frontend', 'backend', 'test', 'docs'\n- title: short task title\n- description: detailed requirements\n- dependencies: array of task titles that must complete first\n\nRespect parallelism where possible. Tests depend on implementation. Docs depend on everything.`,\n    options: {\n      systemPrompt: 'You are an orchestrator that decomposes development goals into parallel specialist tasks.',\n      outputFormat: 'json',\n    },\n  })\n\n  let tasks: SpecialistTask[] = []\n  for await (const msg of decomposition) {\n    if (msg.type === 'result') {\n      tasks = JSON.parse(msg.result)\n    }\n  }\n\n  // Persist and enqueue\n  await supabase.from('sessions').insert({\n    id: sessionId,\n    goal,\n    task_count: tasks.length,\n    status: 'in_progress',\n  })\n\n  for (const task of tasks) {\n    const worktree = `/worktrees/${sessionId}/${task.specialist}`\n    await taskQueue.add(\n      task.specialist,\n      { ...task, sessionId, worktree },\n      {\n        priority: task.dependencies.length === 0 ? 1 : 2,\n        attempts: 3,\n        backoff: { type: 'exponential', delay: 5000 },\n      }\n    )\n  }\n\n  return { sessionId, taskCount: tasks.length }\n}"
+      },
+      {
+        "id": "specialist-worker",
+        "title": "Specialist Agent Worker",
+        "description": "Worker process for a specialist agent that pulls from queue and runs Claude Code",
+        "language": "typescript",
+        "code": "import { Worker } from 'bullmq'\nimport { query } from '@anthropic-ai/claude-agent-sdk'\nimport { execSync } from 'node:child_process'\n\nconst SPECIALIST = process.env.SPECIALIST_ROLE! // 'frontend' | 'backend' | 'test' | 'docs'\n\nconst systemPrompts: Record<string, string> = {\n  frontend: 'You are a frontend specialist. Focus on React components, Tailwind, accessibility (WCAG 2.2), and responsive design.',\n  backend: 'You are a backend specialist. Focus on API design, database migrations, business logic, and integration.',\n  test: 'You are a test specialist. Write comprehensive tests: unit, integration, and E2E with Playwright.',\n  docs: 'You are a documentation specialist. Write clear READMEs, API docs, and architecture diagrams.',\n}\n\nconst worker = new Worker(\n  'agent-tasks',\n  async (job) => {\n    const { title, description, worktree, sessionId } = job.data\n\n    // Create isolated worktree\n    execSync(`git worktree add ${worktree} -b ${SPECIALIST}/${sessionId}`, { cwd: '/repo' })\n\n    // Run Claude Code agent in worktree\n    const result = query({\n      prompt: `${title}\\n\\n${description}`,\n      options: {\n        cwd: worktree,\n        systemPrompt: systemPrompts[SPECIALIST],\n        allowedTools: ['Read', 'Write', 'Edit', 'Bash', 'Grep', 'Glob'],\n      },\n    })\n\n    for await (const msg of result) {\n      if (msg.type === 'result') {\n        // Commit and push branch\n        execSync(`git add -A && git commit -m 'feat(${SPECIALIST}): ${title}'`, { cwd: worktree })\n        execSync(`git push origin ${SPECIALIST}/${sessionId}`, { cwd: worktree })\n        return { success: true, branch: `${SPECIALIST}/${sessionId}` }\n      }\n    }\n  },\n  {\n    connection: { url: process.env.REDIS_URL! },\n    concurrency: 1, // One task at a time per specialist\n  }\n)\n\nworker.on('completed', (job) => console.log(`${SPECIALIST} completed task ${job.id}`))\nworker.on('failed', (job, err) => console.error(`${SPECIALIST} failed task ${job?.id}:`, err))"
+      }
+    ],
+    "technologies": [
+      "Claude Agent SDK", "Claude Code", "Railway", "Redis",
+      "BullMQ", "Supabase", "Git Worktrees", "GitHub Actions",
+      "Docker", "TypeScript"
+    ],
+    "cloudProviders": ["multi-cloud"],
+    "estimatedCost": {
+      "monthly": 180,
+      "annual": 2160,
+      "breakdown": [
+        { "category": "Railway (orchestrator + 4 specialists)", "amount": "100", "percentage": 56 },
+        { "category": "Railway Redis", "amount": "15", "percentage": 8 },
+        { "category": "Supabase Pro", "amount": "25", "percentage": 14 },
+        { "category": "Anthropic API (Claude Sonnet)", "amount": "40", "percentage": 22 }
+      ],
+      "assumptions": ["Moderate workload (~20 sessions/day)", "Average 10 tasks per session", "Sonnet model for all agents", "Small team codebase"]
+    },
+    "timeToImplement": "2-3 days",
+    "useCases": [
+      "Autonomous development teams",
+      "Long-running agent workflows with specialist handoffs",
+      "Parallel feature development across domains",
+      "AI-powered code review and refactoring",
+      "Continuous maintenance agents for legacy codebases"
+    ],
+    "createdAt": "2026-04-10T00:00:00Z",
+    "updatedAt": "2026-04-10T00:00:00Z",
+    "publishedAt": "2026-04-10T00:00:00Z",
+    "metaDescription": "Deploy a coordinated team of Claude Code agents on Railway. Orchestrator, Redis queue, git worktrees, and specialist subagents working in parallel.",
+    "keywords": ["claude code", "multi-agent", "agent orchestration", "railway deployment", "git worktrees", "bullmq", "autonomous development", "claude agent sdk"]
   }
 ]
