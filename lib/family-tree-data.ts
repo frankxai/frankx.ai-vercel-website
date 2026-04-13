@@ -22,14 +22,24 @@ export interface FamilyEdge {
 }
 
 export const familyNodes: FamilyNode[] = [
-  // Generation 0: Grandparents - Gorte
+  // Generation -1: Urgroßeltern (Great-Grandparents) - Riemer
+  {
+    id: 'christian-riemer',
+    name: 'Christian Riemer',
+    role: 'Urgroßvater',
+    generation: -1,
+    side: 'riemer',
+    location: 'Karaganda, Kasachstan',
+    details: ['Geb. 1914', 'Wolgadeutscher', 'Trudarmee-Überlebender'],
+  },
+  // Generation 0: Großeltern - Gorte
   {
     id: 'david-gorte',
     name: 'David Gorte',
     role: 'Opa',
     generation: 0,
     side: 'gorte',
-    details: ['Maternal grandfather'],
+    details: ['Großvater mütterlicherseits'],
   },
   {
     id: 'dorothea-gorte',
@@ -38,16 +48,16 @@ export const familyNodes: FamilyNode[] = [
     role: 'Oma',
     generation: 0,
     side: 'gorte',
-    details: ['Maternal grandmother'],
+    details: ['Großmutter mütterlicherseits'],
   },
-  // Generation 0: Grandparents - Riemer
+  // Generation 0: Großeltern - Riemer
   {
     id: 'alexander-riemer',
     name: 'Alexander Riemer',
     role: 'Opa',
     generation: 0,
     side: 'riemer',
-    details: ['Paternal grandfather'],
+    details: ['Großvater väterlicherseits', 'Sohn von Christian Riemer'],
   },
   {
     id: 'paulina-riemer',
@@ -55,9 +65,9 @@ export const familyNodes: FamilyNode[] = [
     role: 'Oma',
     generation: 0,
     side: 'riemer',
-    details: ['Paternal grandmother'],
+    details: ['Großmutter väterlicherseits'],
   },
-  // Generation 1: Parents
+  // Generation 1: Eltern
   {
     id: 'dora-riemer',
     name: 'Dora Riemer',
@@ -65,7 +75,7 @@ export const familyNodes: FamilyNode[] = [
     role: 'Mama',
     generation: 1,
     side: 'bridge',
-    details: ['Daughter of David & Dorothea'],
+    details: ['Tochter von David & Dorothea'],
   },
   {
     id: 'witali-riemer',
@@ -73,22 +83,22 @@ export const familyNodes: FamilyNode[] = [
     role: 'Papa',
     generation: 1,
     side: 'bridge',
-    details: ['Son of Alexander & Paulina'],
+    details: ['Sohn von Alexander & Paulina'],
   },
-  // Generation 2: Current
+  // Generation 2: Heute
   {
     id: 'frank-riemer',
     name: 'Frank Riemer',
-    role: "That's me",
+    role: 'Das bin ich',
     generation: 2,
     side: 'current',
     location: 'Amsterdam',
-    details: ['AI Architect', 'Music Creator'],
+    details: ['AI Architect', 'Musik-Produzent'],
   },
   {
     id: 'tien',
     name: 'Tien',
-    role: 'Partner',
+    role: 'Partnerin',
     generation: 2,
     side: 'partner',
     location: 'Amsterdam',
@@ -96,12 +106,13 @@ export const familyNodes: FamilyNode[] = [
 ]
 
 export const familyEdges: FamilyEdge[] = [
-  // Marriages
+  // Ehen / Marriages
   { source: 'david-gorte', target: 'dorothea-gorte', type: 'spouse' },
   { source: 'alexander-riemer', target: 'paulina-riemer', type: 'spouse' },
   { source: 'dora-riemer', target: 'witali-riemer', type: 'spouse' },
   { source: 'frank-riemer', target: 'tien', type: 'partner' },
-  // Parent-child
+  // Eltern-Kind / Parent-child
+  { source: 'christian-riemer', target: 'alexander-riemer', type: 'parent-child' },
   { source: 'david-gorte', target: 'dora-riemer', type: 'parent-child' },
   { source: 'dorothea-gorte', target: 'dora-riemer', type: 'parent-child' },
   { source: 'alexander-riemer', target: 'witali-riemer', type: 'parent-child' },
