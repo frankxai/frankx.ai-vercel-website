@@ -52,6 +52,22 @@ const nextConfig = {
         destination: '/inner-circle',
         permanent: true,
       },
+      // Family Hub → Familie (German-first)
+      {
+        source: '/family',
+        destination: '/familie',
+        permanent: true,
+      },
+      {
+        source: '/family/tree',
+        destination: '/familie/stammbaum',
+        permanent: true,
+      },
+      {
+        source: '/family/:path*',
+        destination: '/familie/:path*',
+        permanent: true,
+      },
       // Creator Lab signup → product page
       {
         source: '/creator-lab',
