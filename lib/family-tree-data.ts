@@ -2,6 +2,12 @@
  * Shared family tree data for all visualization variants.
  * Source of truth: .frankx/family/*.md (YAML frontmatter)
  * This is a compiled version for client-side rendering.
+ *
+ * `familyNodes` / `familyEdges` = core 8 members (generation 0-2)
+ *   → Used by design-lab visualizations with hardcoded positions
+ *
+ * `familyNodesExtended` / `familyEdgesExtended` = all generations
+ *   → Used by /familie/ pages that handle dynamic layouts
  */
 
 export interface FamilyNode {
@@ -9,7 +15,7 @@ export interface FamilyNode {
   name: string
   bornName?: string
   role: string
-  generation: number // 0 = grandparents, 1 = parents, 2 = current
+  generation: number // -1 = great-grandparents, 0 = grandparents, 1 = parents, 2 = current
   side: 'gorte' | 'riemer' | 'bridge' | 'current' | 'partner'
   location?: string
   details?: string[]
@@ -21,8 +27,9 @@ export interface FamilyEdge {
   type: 'spouse' | 'parent-child' | 'partner'
 }
 
-export const familyNodes: FamilyNode[] = [
-  // Generation -1: Urgroßeltern (Great-Grandparents) - Riemer
+// ── Generation -1: Urgroßeltern (extended only) ─────────────────────────────
+
+const urgroßeltern: FamilyNode[] = [
   {
     id: 'christian-riemer',
     name: 'Christian Riemer',
@@ -32,6 +39,11 @@ export const familyNodes: FamilyNode[] = [
     location: 'Karaganda, Kasachstan',
     details: ['Geb. 1914', 'Wolgadeutscher', 'Trudarmee-Überlebender'],
   },
+]
+
+// ── Core family: Generation 0-2 (used by design-lab) ────────────────────────
+
+const coreNodes: FamilyNode[] = [
   // Generation 0: Großeltern - Gorte
   {
     id: 'david-gorte',
@@ -105,14 +117,13 @@ export const familyNodes: FamilyNode[] = [
   },
 ]
 
-export const familyEdges: FamilyEdge[] = [
-  // Ehen / Marriages
+const coreEdges: FamilyEdge[] = [
+  // Ehen
   { source: 'david-gorte', target: 'dorothea-gorte', type: 'spouse' },
   { source: 'alexander-riemer', target: 'paulina-riemer', type: 'spouse' },
   { source: 'dora-riemer', target: 'witali-riemer', type: 'spouse' },
   { source: 'frank-riemer', target: 'tien', type: 'partner' },
-  // Eltern-Kind / Parent-child
-  { source: 'christian-riemer', target: 'alexander-riemer', type: 'parent-child' },
+  // Eltern-Kind
   { source: 'david-gorte', target: 'dora-riemer', type: 'parent-child' },
   { source: 'dorothea-gorte', target: 'dora-riemer', type: 'parent-child' },
   { source: 'alexander-riemer', target: 'witali-riemer', type: 'parent-child' },
@@ -120,6 +131,21 @@ export const familyEdges: FamilyEdge[] = [
   { source: 'dora-riemer', target: 'frank-riemer', type: 'parent-child' },
   { source: 'witali-riemer', target: 'frank-riemer', type: 'parent-child' },
 ]
+
+// ── Default exports: core 8 members (backward compatible) ───────────────────
+
+export const familyNodes = coreNodes
+export const familyEdges = coreEdges
+
+// ── Extended exports: all generations including Urgroßeltern ─────────────────
+
+export const familyNodesExtended: FamilyNode[] = [...urgroßeltern, ...coreNodes]
+export const familyEdgesExtended: FamilyEdge[] = [
+  ...coreEdges,
+  { source: 'christian-riemer', target: 'alexander-riemer', type: 'parent-child' },
+]
+
+// ── Colors ──────────────────────────────────────────────────────────────────
 
 export const sideColors = {
   gorte: { bg: 'bg-amber-500/10', border: 'border-amber-500/30', text: 'text-amber-400', hex: '#f59e0b' },
