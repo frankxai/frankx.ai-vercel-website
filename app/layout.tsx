@@ -16,8 +16,9 @@ import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
+// latin-ext adds full German diacritic support (ä, ö, ü, ß render natively)
 const inter = Inter({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-inter',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700'],
@@ -25,15 +26,16 @@ const inter = Inter({
 
 // Poppins for display headings (≥18px only per brand guidelines)
 const poppins = Poppins({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-poppins',
   display: 'swap',
   weight: ['600', '700', '800'],
 })
 
 // Playfair Display for editorial touches (italic quotes only per brand)
+// latin-ext critical for German umlauts in serif display text
 const playfair = Playfair_Display({
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-serif',
   display: 'swap',
   style: ['normal', 'italic'],
