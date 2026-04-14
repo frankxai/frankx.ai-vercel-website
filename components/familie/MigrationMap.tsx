@@ -87,6 +87,7 @@ export function MigrationMap() {
 
   const pathLength = useTransform(smoothProgress, [0, 1], [0, 1])
   const pathOpacity = useTransform(smoothProgress, [0, 0.05], [0, 1])
+  const glowOpacity = useTransform(smoothProgress, [0, 1], [0, 0.15])
 
   // Each waypoint appears at a different scroll progress
   const wp1Opacity = useTransform(smoothProgress, [0, 0.05], [0.3, 1])
@@ -168,7 +169,7 @@ export function MigrationMap() {
               fill="none"
               style={{
                 pathLength: shouldReduceMotion ? 1 : pathLength,
-                opacity: shouldReduceMotion ? 0.15 : useTransform(smoothProgress, [0, 1], [0, 0.15]),
+                opacity: shouldReduceMotion ? 0.15 : glowOpacity,
               }}
               filter="url(#glow)"
             />
