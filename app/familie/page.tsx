@@ -49,6 +49,16 @@ const familieLinks = [
     iconColor: 'text-rose-400',
   },
   {
+    title: 'Interview-Kit',
+    description: 'Fragenkataloge für die Gespräche mit Opa David, Oma Dorothea, Opa Alexander und Oma Paulina. Ausdruckbar.',
+    href: '/familie/interview-kit',
+    icon: MessageCircle,
+    color: 'from-rose-500/20 to-rose-600/5',
+    borderColor: 'border-rose-500/20 hover:border-rose-500/40',
+    iconColor: 'text-rose-400',
+    badge: 'Zeitkritisch',
+  },
+  {
     title: 'Mitmachen',
     description: 'Teile Erinnerungen, Fotos, Korrekturen oder Forschungsfragen. Diese Geschichte gehört uns allen.',
     href: '/familie/mitmachen',
@@ -59,13 +69,12 @@ const familieLinks = [
   },
   {
     title: 'Selbst forschen',
-    description: 'Kostenlose Anleitung: Wie du mit KI und Archiven deine eigene Familiengeschichte erforschen kannst.',
+    description: 'Wie man Vorfahren findet, ohne zu erfinden. Die Methode hinter unserer Familienforschung — mit KI und Archiven.',
     href: '/familie/forsche-selbst',
     icon: GraduationCap,
     color: 'from-cyan-500/20 to-cyan-600/5',
     borderColor: 'border-cyan-500/20 hover:border-cyan-500/40',
     iconColor: 'text-cyan-400',
-    badge: 'Kostenlos',
   },
 ]
 
@@ -176,27 +185,38 @@ export default function FamilieHubPage() {
         </div>
       </section>
 
-      {/* Aktuelle Entdeckung */}
+      {/* Aktueller Forschungsstand */}
       <section className="mx-auto max-w-4xl px-6 py-12">
-        <div className="rounded-2xl border border-amber-500/10 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent p-8">
-          <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-amber-400/60">
-            Neueste Entdeckung
+        <div className="rounded-2xl border border-slate-500/15 bg-gradient-to-br from-slate-900/40 via-transparent to-transparent p-8">
+          <p className="mb-2 text-xs font-medium uppercase tracking-[0.15em] text-slate-400/70">
+            Aktueller Forschungsstand
           </p>
           <h2 className="mb-3 text-xl font-semibold text-white">
-            Riemer-Linie zurückverfolgt bis 1729
+            Ein Kandidat aus 1729 — und 116 Jahre Lücke
           </h2>
           <p className="mb-4 text-sm leading-relaxed text-white/50">
             Ein KI-Forschungsteam hat Johann Konrad Reimer gefunden — getauft 1729 in
-            Freudental (Baden-Württemberg), Gründungssiedler der Kolonie Reinwald an
-            der Wolga (1766). Die Verbindung Reimer → Riemer ist bestätigt.
+            Freudental, Gründungssiedler der Kolonie Reinwald (1766). Ob er unser
+            direkter Vorfahre ist, ist nicht bewiesen. Zwischen ihm und unserem
+            gesicherten Urgroßvater Christian Riemer (1914, Karaganda) liegen 116 Jahre
+            ohne dokumentierte Kette. Ein plausibler Kandidat, keine Tatsache.
           </p>
-          <Link
-            href="/familie/geschichte/riemer-linie"
-            className="inline-flex items-center gap-2 text-sm font-medium text-amber-400 hover:text-amber-300"
-          >
-            Mehr erfahren
-            <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/familie/geschichte/riemer-linie"
+              className="inline-flex items-center gap-2 text-sm font-medium text-slate-300 hover:text-white"
+            >
+              Die Riemer-Linie ansehen
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+            <Link
+              href="/familie/geschichte/offene-fragen"
+              className="inline-flex items-center gap-2 text-sm font-medium text-amber-400 hover:text-amber-300"
+            >
+              Alle offenen Fragen
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
         </div>
       </section>
 

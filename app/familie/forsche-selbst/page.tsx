@@ -17,12 +17,12 @@ import {
 } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'Forsche selbst — Wie ich meine Familie 300 Jahre zurückverfolgt habe | FrankX',
-  description: 'Vor Kurzem habe ich Johann Konrad Reimer gefunden — getauft 1729 in Freudental, Gründungssiedler der Kolonie Reinwald an der Wolga. Hier ist die Methode, und warum sie für dich genauso funktioniert.',
+  title: 'Forsche selbst — Wie man Vorfahren findet, ohne zu erfinden | FrankX',
+  description: 'Ich habe einen Kandidaten gefunden — getauft 1729 in Freudental, Gründungssiedler einer Wolga-Kolonie. Ob er mein Vorfahr ist, weiß ich nicht. Hier ist, wie ich den Unterschied zwischen Hypothese und Beweis handhabe — und wie du es auch kannst.',
   robots: { index: true, follow: true },
   openGraph: {
-    title: '300 Jahre zurück — mit KI und offenen Archiven',
-    description: 'Die Methode, die meine Familie bis 1729 zurückverfolgt hat. Frei. Nachvollziehbar. Deine Familie wartet auch.',
+    title: 'Kandidat gefunden. Beweis offen. So forsche ich ehrlich.',
+    description: 'Die Methode, um Familienforschung mit KI zu betreiben, ohne sich selbst zu belügen. Drei Bewegungen: zuhören, suchen, bewahren — mit Konfidenzlevel in jedem Schritt.',
     type: 'article',
     locale: 'de_DE',
   },
@@ -100,44 +100,48 @@ export default function ForscheSelbstPage() {
             Familie
           </Link>
 
-          {/* Hook — the discovery */}
+          {/* Hook — honest framing */}
           <p className="mb-6 font-serif text-sm uppercase tracking-[0.25em] text-amber-400/50">
-            Was letzte Woche passiert ist
+            Was ich gefunden habe — und was ich noch nicht weiß
           </p>
 
           <h1 className="mb-8 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Ich habe meinen
-            <br />
+            Ein
             <span className="bg-gradient-to-r from-amber-200 via-amber-100 to-white bg-clip-text text-transparent">
-              Ur-ur-ur-urgroßvater
+              {' '}Kandidat{' '}
             </span>
+            aus
             <br />
-            gefunden.
+            dem Jahr 1729.
           </h1>
 
           <div className="mb-10 space-y-5 font-serif text-lg leading-[1.75] text-white/60">
             <p>
               Johann Konrad Reimer. Getauft am 6. Mai 1729 in der evangelischen
               Kirche in Freudental, 35 Kilometer nördlich von Stuttgart.
+              Gründungssiedler der Kolonie Reinwald an der Wolga, 1766.
             </p>
             <p>
-              Er kam am 14. Juli 1766 in der Kolonie Reinwald an der Wolga an —
-              Haushalt Nummer 17 im ersten Census. Seine Urenkel würden später
-              nach Karaganda deportiert. Einer davon war mein Urgroßvater Christian.
+              Ein KI-Agenten-Team hat diesen Mann gefunden. Er existiert. Er ist
+              archivisch belegt. Und er könnte mein Ur-ur-ur-urgroßvater sein.
+              Er könnte es aber auch nicht sein.
             </p>
             <p className="text-white/50">
-              Das war vorher nicht verloren. Es war nur still. In Archiven, die
-              niemand durchsucht hatte. Bis jetzt.
+              Weil zwischen ihm (1798 letzter Census-Eintrag) und meinem bekannten
+              Urgroßvater Christian Riemer (Karaganda, 1914) 116 Jahre liegen —
+              116 Jahre ohne dokumentierte Kette. Das ist der Unterschied zwischen
+              einem plausiblen Kandidaten und einem bewiesenen Vorfahren.
             </p>
           </div>
 
-          {/* Lead with promise */}
+          {/* Lead with honesty */}
           <div className="border-l-2 border-amber-400/30 pl-6">
             <p className="font-serif text-base leading-relaxed text-white/70">
-              Was ich hier beschreibe, kannst du auch. Die Methode, die Werkzeuge,
-              die Archive — alles frei verfügbar. Keine Kurse. Keine Abos. Nur
-              Zeit, Aufmerksamkeit, und die Bereitschaft, deine Großeltern zu
-              fragen, bevor es niemanden mehr gibt, der antwortet.
+              Was ich hier beschreibe, ist nicht, wie man Ahnen findet. Es ist,
+              wie man Kandidaten findet — und dann ehrlich mit ihnen umgeht. Wie
+              man Hypothesen von Beweisen unterscheidet, und beides transparent
+              macht. Diese Disziplin ist der Unterschied zwischen Familienforschung
+              und Folklore.
             </p>
           </div>
         </div>
@@ -185,7 +189,7 @@ export default function ForscheSelbstPage() {
             Die Methode
           </p>
           <h2 className="mb-12 font-serif text-2xl font-semibold leading-tight text-white sm:text-3xl">
-            Drei Bewegungen. Mehr nicht.
+            Vier Bewegungen. Eine Disziplin.
           </h2>
 
           <div className="space-y-16">
@@ -308,10 +312,79 @@ export default function ForscheSelbstPage() {
               </div>
             </div>
 
-            {/* Movement 3 */}
+            {/* Movement 3 — Verifizieren (the critical step) */}
             <div>
               <div className="mb-6 flex items-baseline gap-4">
-                <span className="font-serif text-5xl font-light text-violet-400/40">III.</span>
+                <span className="font-serif text-5xl font-light text-rose-400/40">III.</span>
+                <div>
+                  <h3 className="font-serif text-xl font-semibold text-white">
+                    Verifizieren
+                  </h3>
+                  <p className="mt-1 font-serif text-sm italic text-white/30">
+                    Vom Kandidaten zum Beweis.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4 pl-0 sm:pl-12 font-serif text-base leading-[1.8] text-white/55">
+                <p>
+                  Das hier ist die Bewegung, die die meisten Familienforscher
+                  überspringen. Sie finden einen plausiblen Kandidaten, jubeln,
+                  und erzählen der Familie, sie stamme von dort ab. Das ist
+                  Folklore, keine Forschung.
+                </p>
+                <p>
+                  Ein Kandidat wird erst zum Vorfahren, wenn die Kette
+                  dazwischen — Generation für Generation — durch Dokumente
+                  belegt ist. Kirchenbücher, Census-Listen, Taufzeugnisse,
+                  Heiratsregister. Jedes Glied einzeln.
+                </p>
+                <p>
+                  Bei mir fehlen zwischen dem Kandidaten von 1798 und dem
+                  gesicherten Urgroßvater von 1914 genau 116 Jahre. Das sind
+                  etwa vier Generationen. Ohne diese vier Generationen ist die
+                  Zuordnung eine Hypothese — keine Tatsache. Und ich schreibe
+                  es genau so auf.
+                </p>
+              </div>
+
+              <div className="mt-8 sm:ml-12 rounded-2xl border border-rose-500/10 bg-gradient-to-br from-rose-500/5 via-transparent to-transparent p-6 sm:p-8">
+                <div className="mb-4 flex items-center gap-2">
+                  <Sparkles className="h-4 w-4 text-rose-400/60" />
+                  <p className="font-serif text-xs uppercase tracking-[0.15em] text-rose-400/60">
+                    Die vier Konfidenzstufen
+                  </p>
+                </div>
+                <ul className="space-y-3 font-serif text-sm leading-relaxed text-white/55">
+                  <li className="flex items-start gap-3">
+                    <span className="mt-0.5">🟢</span>
+                    <span><span className="text-white/80">Verifiziert.</span> Durch mindestens eine primäre Archivquelle belegt. Kirchenbuch, Urkunde, Census-Eintrag. Kann zitiert werden.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-0.5">🟡</span>
+                    <span><span className="text-white/80">Überlieferung.</span> Von lebenden Familienmitgliedern berichtet. Wertvoll — aber nicht unabhängig bestätigt. Kann trügen.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-0.5">🔍</span>
+                    <span><span className="text-white/80">Hypothese.</span> Plausibel, aber unbewiesen. Ein Kandidat. Darf benannt werden — mit dem Label „Hypothese" davor.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-0.5">🔴</span>
+                    <span><span className="text-white/80">Unbekannt.</span> Noch nicht erforscht. Die ehrlichste Kategorie — und oft die größte, wenn man beginnt.</span>
+                  </li>
+                </ul>
+                <p className="mt-5 font-serif text-sm italic text-white/35">
+                  Jede Aussage auf unserer Familien-Seite trägt eines dieser
+                  Zeichen. Das ist nicht Bescheidenheit. Das ist die Grundlage
+                  von Vertrauen.
+                </p>
+              </div>
+            </div>
+
+            {/* Movement 4 — Bewahren */}
+            <div>
+              <div className="mb-6 flex items-baseline gap-4">
+                <span className="font-serif text-5xl font-light text-violet-400/40">IV.</span>
                 <div>
                   <h3 className="font-serif text-xl font-semibold text-white">
                     Bewahren
@@ -371,11 +444,12 @@ export default function ForscheSelbstPage() {
             Was ich benutzt habe
           </p>
           <h2 className="mb-4 font-serif text-2xl font-semibold leading-tight text-white sm:text-3xl">
-            Alles, was ich für Reinwald gebraucht habe.
+            Alles, was ich für den Reinwald-Kandidaten benutzt habe.
           </h2>
           <p className="mb-12 font-serif text-base leading-relaxed text-white/45">
             Keine Affiliate-Links. Keine Kurse. Alles frei verfügbar. Die
-            Reihenfolge, in der ich sie tatsächlich benutzt habe.
+            Reihenfolge, in der ich sie tatsächlich benutzt habe — um zu einer
+            Hypothese zu kommen, nicht zu einer Gewissheit.
           </p>
 
           <div className="space-y-4">
@@ -522,17 +596,18 @@ export default function ForscheSelbstPage() {
         <div className="mx-auto max-w-2xl px-6 py-24 text-center">
           <Sparkles className="mx-auto mb-6 h-8 w-8 text-amber-400/40" />
           <h2 className="mb-6 font-serif text-3xl font-semibold leading-tight text-white sm:text-4xl">
-            Deine Familie hat auch eine Geschichte.
+            Deine Familie hat auch eine Geschichte —<br />die meisten Kapitel noch unbewiesen.
           </h2>
           <div className="space-y-5 font-serif text-lg leading-[1.8] text-white/55">
             <p>
-              Sie wartet nicht. Sie wird nicht interessanter mit der Zeit.
-              Aber sie ist auch nicht verloren — noch nicht.
+              Das ist keine Schwäche. Das ist der ehrliche Ausgangspunkt. Jede
+              wirkliche Familienforschung beginnt mit weißen Flecken, nicht
+              mit Stammbäumen.
             </p>
             <p>
               Was immer du findest — teile es mit mir, wenn du magst. Ich
-              sammle diese Geschichten. Nicht für ein Produkt. Nur weil sie
-              es wert sind.
+              sammle diese Geschichten. Nicht für ein Produkt. Nur weil die
+              Methode besser wird, je mehr Menschen sie ehrlich anwenden.
             </p>
           </div>
 

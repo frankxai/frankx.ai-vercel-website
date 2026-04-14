@@ -232,30 +232,46 @@ export default function GeschichteHubPage() {
           <div className="pointer-events-none absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-amber-400/20 to-transparent" />
 
           <p className="mb-2 font-serif text-xs uppercase tracking-[0.2em] text-amber-400/60">
-            Unsere Verbindung
+            Unsere Forschungsarbeit
           </p>
           <h2 className="mb-4 font-serif text-2xl font-semibold text-white sm:text-3xl">
-            Warum diese Geschichte unsere ist
+            Mehr offene Fragen als Antworten.
           </h2>
           <p className="mb-4 max-w-3xl font-serif text-base leading-relaxed text-white/50">
-            Die Familien Riemer, Schneider, Gorte und Prager sind Teil der
-            Russlanddeutschen Geschichte. Urgroßvater Christian Riemer (1914, Karaganda)
-            überlebte die Trudarmee. Urgroßeltern Franz und Amalia Schneider kommen
-            aus dem gleichen Umfeld. Die Riemer-Linie führt möglicherweise zurück
-            zur Kolonie Reinwald an der Wolga.
+            Die Familien Riemer, Schneider, Gorte und Prager sind vermutlich
+            Teil der Russlanddeutschen Geschichte — aber jede konkrete Verbindung
+            ist noch unbewiesen. Wir kennen sicher fünf Generationen zurück bis
+            zum Urgroßvater Christian Riemer (geboren 1914, Karaganda — Familienüberlieferung).
+            Davor: Hypothesen und offene Fragen.
           </p>
           <p className="mb-6 max-w-3xl font-serif text-sm leading-relaxed text-white/35 italic">
-            Vieles wird noch erforscht. Diese Seiten sind ein lebendiges
-            Forschungsprojekt — keine endgültige Quelle. Wir laden die ganze Familie
-            ein, Wissen und Erinnerungen beizutragen.
+            Wir machen die Unsicherheit sichtbar, weil sie der ehrliche
+            Ausgangspunkt ist. Jede Aussage auf diesen Seiten trägt eines
+            von vier Konfidenz-Zeichen: 🟢 verifiziert, 🟡 überlieferung,
+            🔍 hypothese, 🔴 unbekannt.
           </p>
-          <Link
-            href="/familie/stammbaum"
-            className="inline-flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/10 px-5 py-2.5 font-serif text-sm font-medium text-amber-200 transition-all hover:bg-amber-500/20"
-          >
-            Stammbaum ansehen
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/familie/geschichte/offene-fragen"
+              className="inline-flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/10 px-5 py-2.5 font-serif text-sm font-medium text-amber-200 transition-all hover:bg-amber-500/20"
+            >
+              Offene Fragen ansehen
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/familie/interview-kit"
+              className="inline-flex items-center gap-2 rounded-lg border border-rose-500/20 bg-rose-500/10 px-5 py-2.5 font-serif text-sm font-medium text-rose-200 transition-all hover:bg-rose-500/20"
+            >
+              Interview-Kit für Großeltern
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/familie/stammbaum"
+              className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-5 py-2.5 font-serif text-sm font-medium text-white/50 transition-all hover:bg-white/10"
+            >
+              Stammbaum
+            </Link>
+          </div>
         </motion.div>
       </section>
 
