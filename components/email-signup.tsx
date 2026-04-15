@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface EmailSignupProps {
-  listType?: 'newsletter' | 'creation-chronicles' | 'ai-architect' | 'inner-circle' | 'music-lab' | 'arcanea' | 'investor' | 'courses-waitlist' | 'all'
+  listType?: 'newsletter' | 'creation-chronicles' | 'ai-architect' | 'inner-circle' | 'music-lab' | 'arcanea' | 'investor' | 'courses-waitlist' | 'ikigai-branding' | 'all'
   placeholder?: string
   buttonText?: string
   className?: string
@@ -63,10 +63,12 @@ export function EmailSignup({
 
       setStatus('success')
 
-      // Redirect after success
+      // Redirect after success with stream context
       if (redirectTo) {
+        const separator = redirectTo.includes('?') ? '&' : '?'
+        const url = `${redirectTo}${separator}stream=${listType}`
         setTimeout(() => {
-          router.push(redirectTo)
+          router.push(url)
         }, 1500)
       }
     } catch (error) {
