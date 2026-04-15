@@ -202,8 +202,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Video and Ritual pages
   const videoPages = [
     { url: '/watch', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/watch/shorts', priority: 0.85, changeFrequency: 'weekly' as const },
     { url: '/rituals', priority: 0.8, changeFrequency: 'monthly' as const },
   ]
+
+  // Individual Short detail pages — SEO gold per Short
+  let shortDetailPages: { url: string; priority: number; changeFrequency: 'weekly' }[] = []
+  try {
+    const vault = require('@/data/video-vault-100.json') as Array<{
+      id: string
+      format?: string
+    }>
+    shortDetailPages = vault
+      .filter((v) => v.format === 'short')
+      .map((v) => ({
+        url: `/watch/shorts/${v.id}`,
+        priority: 0.75,
+        changeFrequency: 'weekly' as const,
+      }))
+  } catch {
+    /* vault may not exist */
+  }
 
   // Section pages (important navigation destinations)
   const sectionPages = [
@@ -323,6 +342,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     
       // Video pages
       videoPages.forEach(page => {
+        entries.push({
+          url: `${BASE_URL}${page.url}`,
+          lastModified: currentDate,
+          changeFrequency: page.changeFrequency,
+          priority: page.priority,
+        })
+      })
+
+      // Individual Short detail pages
+      shortDetailPages.forEach(page => {
         entries.push({
           url: `${BASE_URL}${page.url}`,
           lastModified: currentDate,

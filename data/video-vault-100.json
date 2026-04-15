@@ -709,5 +709,19 @@
     "topic": "AI Memes",
     "embeddable": true,
     "tags": ["meme", "viral", "absurdist"]
+  },
+  {
+    "id": "1Edv43k15cY",
+    "title": "The Real Reason You're Always Tired",
+    "channel": "OptimalMind",
+    "author": "OptimalMind",
+    "url": "https://www.youtube.com/shorts/1Edv43k15cY",
+    "duration": "0:45",
+    "topic": "Mindset & Growth",
+    "category": "Mindset & Growth",
+    "embeddable": true,
+    "format": "short",
+    "tags": ["energy", "health", "peak-performance", "human-edge", "short"],
+    "commentary": "Peak performance starts upstream of the prompt. Before you build the AI Architect's mind, fix the operator's body — energy is the substrate every great creator compounds from."
   }
 ]

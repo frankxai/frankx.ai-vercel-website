@@ -1,7 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Play } from 'lucide-react'
+import { Play, Zap, ArrowUpRight } from 'lucide-react'
 
 interface WatchHeroProps {
   stats: {
@@ -39,7 +40,7 @@ export function WatchHero({ stats }: WatchHeroProps) {
             {' '}{stats.totalVideos}+ videos curated across {stats.totalCategories} categories.
           </p>
 
-          <div className="flex flex-wrap gap-6">
+          <div className="flex flex-wrap items-center gap-6 mb-6">
             {[
               { label: 'Videos', value: `${stats.totalVideos}+` },
               { label: 'Categories', value: stats.totalCategories },
@@ -54,6 +55,17 @@ export function WatchHero({ stats }: WatchHeroProps) {
               </div>
             ))}
           </div>
+
+          <Link
+            href="/watch/shorts"
+            className="group inline-flex items-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-rose-500/20 to-fuchsia-500/20 border border-rose-500/30 hover:border-rose-400/60 transition-all"
+          >
+            <Zap className="w-4 h-4 text-rose-400" />
+            <span className="text-sm font-semibold text-white">
+              New: AI Shorts &mdash; 60-second signal
+            </span>
+            <ArrowUpRight className="w-4 h-4 text-rose-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </Link>
         </motion.div>
       </div>
     </section>

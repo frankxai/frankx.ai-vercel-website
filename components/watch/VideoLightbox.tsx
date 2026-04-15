@@ -97,9 +97,21 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
         </div>
 
         <div className="flex gap-6">
-          <div className="flex-grow">
-            <div className="aspect-video w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black">
-              <UniversalEmbed type="youtube" id={video.id} autoplay={true} />
+          <div className="flex-grow flex justify-center">
+            <div
+              className={
+                video.format === 'short'
+                  ? 'aspect-[9/16] w-full max-w-[400px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black'
+                  : 'aspect-video w-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-black'
+              }
+            >
+              <UniversalEmbed
+                type="youtube"
+                id={video.id}
+                autoplay={true}
+                aspectRatio={video.format === 'short' ? '9:16' : '16:9'}
+                showControls={false}
+              />
             </div>
             <div className="mt-6 flex flex-wrap gap-2">
               {video.tags.map((tag) => (
