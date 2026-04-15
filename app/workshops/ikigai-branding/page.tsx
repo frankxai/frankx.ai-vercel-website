@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
   ArrowLeft,
@@ -117,6 +118,22 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
+      {/* Ikigai Venn — visual anchor */}
+      <section className="pb-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl overflow-hidden border border-white/[0.06] bg-white/[0.01]">
+            <Image
+              src="/images/workshops/ikigai-branding/ikigai-venn.jpg"
+              alt="Ikigai Venn diagram: four circles — what you love, what you are good at, what the world needs, what pays — intersecting at IKIGAI, with Passion, Mission, Profession, and Vocation at the pairwise overlaps."
+              width={1920}
+              height={960}
+              priority
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Objectives */}
       <section className="pb-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -152,6 +169,16 @@ export default function IkigaiBrandingWorkshopPage() {
             <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
               Your Ikigai points at what to build. The 3Cs are how you build it without getting automated around.
             </p>
+          </div>
+
+          <div className="mb-6 rounded-3xl overflow-hidden border border-white/[0.06] bg-white/[0.01]">
+            <Image
+              src="/images/workshops/ikigai-branding/three-cs-triad.jpg"
+              alt="The 3Cs as three interlocking clay forms — a violet sphere (Collaboration), an amber cube (Communication), and an emerald prism (Creation) — fused at a warm glowing core."
+              width={1200}
+              height={1200}
+              className="w-full h-auto max-w-2xl mx-auto"
+            />
           </div>
 
           <div className="grid md:grid-cols-3 gap-4">
@@ -251,7 +278,16 @@ export default function IkigaiBrandingWorkshopPage() {
 
       {/* Module 3: Brand Bridge */}
       <section className="pb-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          <div className="rounded-3xl overflow-hidden border border-white/[0.06] bg-white/[0.01]">
+            <Image
+              src="/images/workshops/ikigai-branding/purpose-to-brand-flow.jpg"
+              alt="Four-step flow: Ikigai Statement → Positioning → Audience of One → Content Pillars, rendered as glass cards with gradient arrows."
+              width={1920}
+              height={1080}
+              className="w-full h-auto"
+            />
+          </div>
           <BrandingBridge value={ikigai} />
         </div>
       </section>
