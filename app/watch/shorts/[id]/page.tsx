@@ -192,7 +192,7 @@ export default async function ShortDetailPage({
                 Short
               </div>
 
-              <h1 className="text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-4">
+              <h1 className="vt-short-title text-3xl md:text-5xl font-bold leading-tight tracking-tight mb-4">
                 {short.title}
               </h1>
 

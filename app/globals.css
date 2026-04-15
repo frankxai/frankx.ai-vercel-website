@@ -436,6 +436,35 @@
 }
 
 /* ============================================================================
+   VIEW TRANSITIONS API — buttery page transitions for modern browsers
+   Graceful fallback: browsers without support just see instant navigation.
+   Chrome 111+, Safari 18.2+, Firefox 141+ (as of April 2026, ~92% coverage)
+   ============================================================================ */
+@supports (view-transition-name: none) {
+  /* Opt the Shorts detail page title + hero image into named transitions */
+  .vt-short-title {
+    view-transition-name: short-title;
+  }
+  .vt-short-hero {
+    view-transition-name: short-hero;
+  }
+
+  /* Tune the default cross-fade */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.35s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Custom smoother slide for named pairs */
+  ::view-transition-old(short-title),
+  ::view-transition-new(short-title) {
+    animation-duration: 0.45s;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* ============================================================================
    CSS HOUDINI: Animatable shimmer angle property
    @property enables smooth conic-gradient rotation without the 200%×200% div hack.
    Browser support: Chrome 85+, Edge 85+, Safari 16.4+ (~94% global coverage)

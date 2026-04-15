@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -17,6 +17,17 @@ import {
   VolumeX,
 } from 'lucide-react'
 import type { EnhancedVideo } from '@/lib/video-types'
+import { trackShortEvent } from '@/lib/analytics'
+
+/** Fire a haptic tick if supported. Silent on desktop. */
+function haptic(pattern: number | number[] = 8) {
+  if (typeof window === 'undefined') return
+  try {
+    navigator.vibrate?.(pattern)
+  } catch {
+    /* noop */
+  }
+}
 
 interface ShortsPlayerProps {
   shorts: EnhancedVideo[]
@@ -57,6 +68,13 @@ export function ShortsPlayer({ shorts, initialIndex = 0, onClose }: ShortsPlayer
   const containerRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<Array<HTMLDivElement | null>>([])
   const wheelLockRef = useRef(false)
+  const lastTrackedIdRef = useRef<string | null>(null)
+  const prevIndexRef = useRef(initialIndex)
+
+  // Swipe-to-dismiss (mobile): track vertical drag on the top region
+  const dragY = useMotionValue(0)
+  const dragOpacity = useTransform(dragY, [0, 200], [1, 0.3])
+  const dragScale = useTransform(dragY, [0, 200], [1, 0.92])
 
   const active = shorts[activeIndex]
 
@@ -68,6 +86,53 @@ export function ShortsPlayer({ shorts, initialIndex = 0, onClose }: ShortsPlayer
       document.body.style.overflow = prev
     }
   }, [])
+
+  // Analytics: fire open_player once + view per active short
+  useEffect(() => {
+    if (active && lastTrackedIdRef.current !== active.id) {
+      lastTrackedIdRef.current = active.id
+      trackShortEvent('view', {
+        id: active.id,
+        category: active.category,
+        author: active.author,
+      })
+    }
+  }, [active])
+
+  // Analytics: open/close player lifecycle
+  useEffect(() => {
+    if (shorts[initialIndex]) {
+      trackShortEvent('open_player', {
+        id: shorts[initialIndex].id,
+        category: shorts[initialIndex].category,
+        author: shorts[initialIndex].author,
+      })
+    }
+    return () => {
+      if (shorts[initialIndex]) {
+        trackShortEvent('close_player', {
+          id: shorts[initialIndex].id,
+          category: shorts[initialIndex].category,
+          author: shorts[initialIndex].author,
+        })
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Analytics: direction of navigation
+  useEffect(() => {
+    if (activeIndex !== prevIndexRef.current && active) {
+      const direction = activeIndex > prevIndexRef.current ? 'next' : 'prev'
+      prevIndexRef.current = activeIndex
+      trackShortEvent(direction, {
+        id: active.id,
+        category: active.category,
+        author: active.author,
+      })
+      haptic(6)
+    }
+  }, [activeIndex, active])
 
   // Scroll to initial short
   useEffect(() => {
@@ -168,8 +233,27 @@ export function ShortsPlayer({ shorts, initialIndex = 0, onClose }: ShortsPlayer
     const url = `https://frankx.ai/watch/shorts/${active.id}`
     navigator.clipboard?.writeText(url)
     setCopied(true)
+    haptic([4, 30, 4])
+    trackShortEvent('share', {
+      id: active.id,
+      category: active.category,
+      author: active.author,
+    })
     setTimeout(() => setCopied(false), 1400)
   }, [active])
+
+  // Handle swipe-to-dismiss drag end — if dragged > 140px down, close
+  const handleDragEnd = useCallback(
+    (_: unknown, info: { offset: { y: number }; velocity: { y: number } }) => {
+      if (info.offset.y > 140 || info.velocity.y > 500) {
+        haptic([8, 20, 8])
+        onClose()
+      } else {
+        dragY.set(0)
+      }
+    },
+    [onClose, dragY]
+  )
 
   const gradient = useMemo(
     () => categoryGradient[active?.category ?? ''] || defaultGradient,
@@ -187,8 +271,21 @@ export function ShortsPlayer({ shorts, initialIndex = 0, onClose }: ShortsPlayer
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.35 }}
+      style={{ opacity: dragOpacity, scale: dragScale }}
       className="fixed inset-0 z-[60] bg-black"
     >
+      {/* Mobile-only swipe-to-dismiss drag strip (top edge) */}
+      <motion.div
+        drag="y"
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={0.5}
+        onDrag={(_, info) => dragY.set(Math.max(0, info.offset.y))}
+        onDragEnd={handleDragEnd}
+        className="md:hidden absolute top-0 inset-x-0 h-14 z-30 touch-pan-y flex items-start justify-center pt-2"
+        aria-hidden
+      >
+        <div className="w-10 h-1 rounded-full bg-white/30" />
+      </motion.div>
       {/* Ambient gradient behind everything */}
       <AnimatePresence mode="wait">
         <motion.div
