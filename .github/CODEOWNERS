@@ -1,0 +1,4 @@
+# CODEOWNERS — Frank is the required reviewer on every path.
+# Bots may comment, but cannot approve. Merges require Frank's explicit approval.
+
+*       @frankxai
