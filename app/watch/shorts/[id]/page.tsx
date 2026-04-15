@@ -12,6 +12,7 @@ import {
 } from '@/lib/schema-builders'
 import Image from 'next/image'
 import { UniversalEmbed } from '@/components/embeds/UniversalEmbed'
+import { ShortDetailClient } from '@/components/watch/ShortDetailClient'
 
 // Static params for SSG — all known Shorts pre-rendered at build time
 export async function generateStaticParams() {
@@ -119,6 +120,11 @@ export default async function ShortDetailPage({
         id={`video-${short.id}`}
       />
       <JsonLd type="BreadcrumbList" data={breadcrumb} id={`breadcrumb-${short.id}`} />
+      <ShortDetailClient
+        shortId={short.id}
+        shortTitle={short.title}
+        shortAuthor={short.author}
+      />
 
       <main className="min-h-screen bg-void text-white">
         {/* Breadcrumb */}
