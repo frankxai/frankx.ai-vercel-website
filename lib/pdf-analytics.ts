@@ -1,4 +1,3 @@
-import { kv } from '@vercel/kv'
 import type {
   PDFView,
   PDFDownload,
@@ -8,15 +7,23 @@ import type {
   WeeklyStats
 } from './types/pdf-analytics'
 
+// Lazy KV import — fails gracefully if env vars not set
+async function getKV() {
+  const { kv } = await import('@vercel/kv')
+  return kv
+}
+
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 }
 
 async function getList<T>(key: string): Promise<T[]> {
+  const kv = await getKV()
   return await kv.get<T[]>(key) || []
 }
 
 async function appendToList<T>(key: string, item: T): Promise<void> {
+  const kv = await getKV()
   const existing = await getList<T>(key)
   existing.push(item)
   await kv.set(key, existing)
@@ -74,6 +81,7 @@ export async function updateEmailStatus(
     emails[emailIndex].status = status
     if (emailId) emails[emailIndex].emailId = emailId
     if (error) emails[emailIndex].error = error
+    const kv = await getKV()
     await kv.set('pdf_emails', emails)
   }
 }
