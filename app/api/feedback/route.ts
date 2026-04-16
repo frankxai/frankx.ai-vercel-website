@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { kv } from '@vercel/kv';
 import { notifyAdmin } from '@/lib/notify-admin';
 
 interface FeedbackPayload {
@@ -28,9 +27,16 @@ export async function POST(request: NextRequest) {
       receivedAt: new Date().toISOString(),
     };
 
-    const key = `feedback:${Date.now()}:${body.chapter}`;
-    await kv.set(key, feedbackEntry);
-    await kv.lpush('feedback:list', JSON.stringify(feedbackEntry));
+    // Store in KV if available, log otherwise
+    try {
+      const { kv } = await import('@vercel/kv');
+      const key = `feedback:${Date.now()}:${body.chapter}`;
+      await kv.set(key, feedbackEntry);
+      await kv.lpush('feedback:list', JSON.stringify(feedbackEntry));
+    } catch {
+      // KV not configured — log only (still better than crashing)
+      console.log('[Feedback] KV unavailable, logged to console:', JSON.stringify(feedbackEntry));
+    }
 
     console.log('[Feedback]', {
       type: body.type,

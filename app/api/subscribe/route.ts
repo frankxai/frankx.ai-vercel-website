@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { kv } from '@vercel/kv'
 import { musicPromptsEmail, newsletterWelcomeEmail } from '@/lib/email-templates'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 import { notifyAdmin } from '@/lib/notify-admin'
@@ -142,12 +141,15 @@ export async function POST(request: NextRequest) {
     )
 
     // Enqueue for welcome sequence (Day 2 + Day 5 follow-ups)
-    kv.set(`welcome:${email}`, {
-      email,
-      name: name || '',
-      subscribedAt: new Date().toISOString(),
-      step1SentAt: new Date().toISOString(),
-    }).catch((err) => console.error('Welcome queue error:', err))
+    // Dynamic import — KV may not be configured in all environments
+    import('@vercel/kv').then(({ kv }) =>
+      kv.set(`welcome:${email}`, {
+        email,
+        name: name || '',
+        subscribedAt: new Date().toISOString(),
+        step1SentAt: new Date().toISOString(),
+      })
+    ).catch((err) => console.error('Welcome queue error:', err))
 
     // Notify admin (non-blocking)
     notifyAdmin({
