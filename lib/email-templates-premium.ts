@@ -361,10 +361,10 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                         </td>
                         <td style="vertical-align: middle;">
                           <p style="margin: 0 0 2px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; font-weight: 600; color: #E2E8F0;">
-                            Frank Guzman
+                            Frank Riemer
                           </p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: #64748b;">
-                            Musician &rarr; AI Systems Architect
+                            AI Architect &middot; Creator
                           </p>
                         </td>
                       </tr>
@@ -391,7 +391,7 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                     <table role="presentation" cellpadding="0" cellspacing="0" style="background: rgba(30, 41, 59, 0.5); border-radius: 12px; margin-bottom: 24px;">
                       <tr>
                         <td style="padding: 16px 24px; text-align: center; border-right: 1px solid rgba(100, 116, 139, 0.2);">
-                          <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #22d3ee;">500+</p>
+                          <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #22d3ee;">12K+</p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">AI Songs</p>
                         </td>
                         <td style="padding: 16px 24px; text-align: center; border-right: 1px solid rgba(100, 116, 139, 0.2);">
