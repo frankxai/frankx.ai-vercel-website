@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import Link from 'next/link'
 import { ArrowLeft, Sparkles, Zap } from 'lucide-react'
 import { getShorts, getAllVideos } from '@/lib/video'
@@ -46,6 +48,17 @@ export default function ShortsPage() {
   const shorts = getShorts()
   const allVideos = getAllVideos()
   const hero = shorts[0] // First short is the featured hero
+
+  // Load transcript for hero Short (if exists)
+  let heroTranscript: string | null = null
+  if (hero) {
+    try {
+      heroTranscript = fs.readFileSync(
+        path.join(process.cwd(), 'data/video-transcripts', `${hero.id}.txt`),
+        'utf8'
+      ).trim() || null
+    } catch { /* not yet transcribed */ }
+  }
 
   // Build VideoObject schema for every Short — required for Google video rich results
   const videoSchemas = shorts.map((short) =>
@@ -183,20 +196,24 @@ export default function ShortsPage() {
               </p>
             </div>
 
-            {/* Transcript slot — AEO gold */}
-            <details className="mt-6 group">
+            {/* Transcript — AEO gold */}
+            <details className="mt-6 group" open={!!heroTranscript}>
               <summary className="cursor-pointer list-none px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-sm font-medium text-white/70 hover:bg-white/10 transition-colors flex items-center justify-between">
-                <span>View transcript (coming soon)</span>
+                <span>
+                  {heroTranscript ? 'Full transcript' : 'View transcript (coming soon)'}
+                </span>
                 <span className="text-xs text-white/40 group-open:rotate-180 transition-transform">
                   &#9662;
                 </span>
               </summary>
-              <div className="mt-3 p-5 rounded-2xl bg-black/30 border border-white/5 text-sm text-white/50 leading-relaxed">
-                Full transcript will be generated via{' '}
-                <code className="text-emerald-400 font-mono text-xs">/video-transcribe</code>{' '}
-                and appear here &mdash; making this Short indexable by ChatGPT, Perplexity, and
-                Google AI Overviews. Transcripts are the #1 signal for AI citation of video
-                content.
+              <div className="mt-3 p-5 rounded-2xl bg-black/30 border border-white/5 text-sm text-white/60 leading-relaxed">
+                {heroTranscript || (
+                  <>
+                    Transcript generated via{' '}
+                    <code className="text-emerald-400 font-mono text-xs">/video-transcribe</code>{' '}
+                    &mdash; making this Short citable by ChatGPT, Perplexity, and Google AI Overviews.
+                  </>
+                )}
               </div>
             </details>
           </section>

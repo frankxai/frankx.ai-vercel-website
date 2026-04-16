@@ -1,8 +1,21 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import fs from 'fs'
+import path from 'path'
 import { ArrowLeft, Sparkles, Play, Clock, User, Tag } from 'lucide-react'
 import { getShorts, getVideoById } from '@/lib/video'
+
+function loadTranscript(videoId: string): string | null {
+  try {
+    return fs.readFileSync(
+      path.join(process.cwd(), 'data/video-transcripts', `${videoId}.txt`),
+      'utf8'
+    ).trim() || null
+  } catch {
+    return null
+  }
+}
 import JsonLd from '@/components/seo/JsonLd'
 import {
   buildVideoObjectSchema,
@@ -85,6 +98,7 @@ export default async function ShortDetailPage({
 
   const allShorts = getShorts()
   const related = allShorts.filter((s) => s.id !== short.id).slice(0, 6)
+  const transcript = loadTranscript(short.id)
 
   // Full schema stack
   const videoSchema = buildVideoObjectSchema({
@@ -103,6 +117,7 @@ export default async function ShortDetailPage({
     embedUrl: `https://www.youtube.com/embed/${short.id}`,
     author: short.author,
     keywords: short.tags,
+    ...(transcript && { transcript }),
   })
 
   const breadcrumb = buildBreadcrumbSchema([
@@ -243,21 +258,26 @@ export default async function ShortDetailPage({
                 </div>
               )}
 
-              {/* Transcript slot — AEO */}
-              <details className="group mb-8">
+              {/* Transcript — AEO gold (full text = citable by AI engines) */}
+              <details className="group mb-8" open={!!transcript}>
                 <summary className="cursor-pointer list-none px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-sm font-medium text-white/70 hover:bg-white/10 transition-colors flex items-center justify-between">
-                  <span>Transcript</span>
+                  <span>
+                    Transcript{transcript ? '' : ' (coming soon)'}
+                  </span>
                   <span className="text-xs text-white/40 group-open:rotate-180 transition-transform">
                     &#9662;
                   </span>
                 </summary>
-                <div className="mt-3 p-5 rounded-2xl bg-black/30 border border-white/5 text-sm text-white/50 leading-relaxed">
-                  Transcript generates via{' '}
-                  <code className="text-emerald-400 font-mono text-xs">
-                    /video-transcribe {short.id}
-                  </code>{' '}
-                  &mdash; lands here automatically, unlocks citation by Google AI
-                  Overviews, Perplexity, and ChatGPT.
+                <div className="mt-3 p-5 rounded-2xl bg-black/30 border border-white/5 text-sm text-white/60 leading-relaxed">
+                  {transcript || (
+                    <>
+                      Transcript generates via{' '}
+                      <code className="text-emerald-400 font-mono text-xs">
+                        /video-transcribe {short.id}
+                      </code>{' '}
+                      &mdash; lands here automatically.
+                    </>
+                  )}
                 </div>
               </details>
 
