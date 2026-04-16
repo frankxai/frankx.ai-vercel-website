@@ -4,6 +4,7 @@ import { storeLead } from '@/lib/kv'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 import { validateLeadData } from '@/lib/validation'
 import { pdfDeliveryEmail } from '@/lib/email-templates'
+import { notifyAdmin } from '@/lib/notify-admin'
 
 export async function POST(request: NextRequest) {
   try {
@@ -101,6 +102,14 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       )
     }
+
+    // Notify admin (non-blocking)
+    notifyAdmin({
+      formType: 'pdf-lead',
+      email: leadData.email,
+      name: leadData.name,
+      details: { 'PDF Title': pdfTitle, 'Guide Slug': guideSlug },
+    }).catch(console.error)
 
     return NextResponse.json({ success: true, emailId: data?.id })
   } catch (error) {
