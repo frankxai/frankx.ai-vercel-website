@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { musicPromptsEmail } from '@/lib/email-templates'
-import { welcomeEmail1 } from '@/lib/email-templates-welcome'
+import { musicPromptsEmail, newsletterWelcomeEmail } from '@/lib/email-templates'
 import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
+import { notifyAdmin } from '@/lib/notify-admin'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -61,7 +61,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
       recipientName: name || 'Creator',
     })
   } else {
-    template = welcomeEmail1({
+    template = newsletterWelcomeEmail({
       recipientName: name || 'Creator',
     })
   }
@@ -139,6 +139,14 @@ export async function POST(request: NextRequest) {
     sendWelcomeEmail(email, name, listType).catch((err) =>
       console.error('Welcome email error:', err)
     )
+
+    // Notify admin (non-blocking)
+    notifyAdmin({
+      formType: 'newsletter',
+      email,
+      name,
+      details: { 'List Type': listType, ...(source ? { Source: source } : {}) },
+    }).catch(console.error)
 
     return NextResponse.json({
       success: true,
