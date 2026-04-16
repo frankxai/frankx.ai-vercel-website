@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { musicPromptsEmail } from '@/lib/email-templates'
 import { welcomeEmail1 } from '@/lib/email-templates-welcome'
+import { ikigaiBrandingEmail } from '@/lib/email-templates-ikigai'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -38,6 +39,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'courses-waitlist': {
     topics: [TOPICS.newsletter],
   },
+  'ikigai-branding': {
+    topics: [TOPICS.newsletter],
+  },
   all: {
     topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']],
   },
@@ -51,6 +55,10 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
     template = musicPromptsEmail({
       recipientName: name || 'Creator',
       downloadUrl: 'https://frankx.ai/api/download?product=5-suno-prompts',
+    })
+  } else if (listType === 'ikigai-branding') {
+    template = ikigaiBrandingEmail({
+      recipientName: name || 'Creator',
     })
   } else {
     template = welcomeEmail1({

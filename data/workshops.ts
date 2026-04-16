@@ -23,6 +23,78 @@ export interface Workshop {
 
 export const workshops: Workshop[] = [
   {
+    slug: 'ikigai-branding',
+    title: 'Ikigai & Branding Workshop',
+    subtitle: 'Find your purpose, then turn it into a brand the world recognizes',
+    duration: '45-75 min',
+    audience: 'Creators, students, professionals reshaping their path',
+    difficulty: 'Beginner',
+    moduleCount: 4,
+    color: 'violet',
+    overview:
+      'An interactive, coach-guided workshop. You map your Ikigai through a 4-step wizard (what you love, what you are good at, what the world needs, what pays), synthesize your purpose statement, and immediately translate it into a brand: positioning, audience-of-one, and three content pillars. Pair it with the free Ikigai & Branding Coach GPT for deeper Socratic questioning.',
+    objectives: [
+      'Map your Ikigai with specific, evidence-backed inputs (not vague feelings)',
+      'Write a 2-3 line purpose statement that fits on a business card',
+      'Translate purpose into a brand positioning sentence and audience-of-one avatar',
+      'Leave with three content pillars and a 30-day expression plan',
+    ],
+    prerequisites: [
+      'A willingness to be specific (vague answers produce vague brands)',
+      '45-75 minutes of uninterrupted time',
+      'Optional: a free ChatGPT account to chat with the Coach GPT',
+    ],
+    modules: [
+      {
+        title: 'The Ikigai Map',
+        duration: '20 min',
+        description:
+          'Work through the four circles of Ikigai as a guided wizard. Each question comes with Socratic prompts and real examples. Progress saves in your browser automatically — nothing leaves your device until you explicitly export.',
+        instructorNotes:
+          'Encourage participants to write evidence-backed answers — specific moments, real skills others named, actual markets they have been paid from. Vague inputs create vague outputs. If stuck, open the Coach GPT side-by-side.',
+        resources: [
+          { label: 'Coach GPT (free)', href: '/go/ikigai-coach' },
+          { label: 'The 3Cs: Human Skills That Compound', href: '#three-cs' },
+        ],
+      },
+      {
+        title: 'Your Purpose Statement',
+        duration: '10 min',
+        description:
+          'Distill your four circles into one sentence: "I help [who] achieve [outcome] by [how], using [skills] in [domain]." The synthesis panel writes a draft from your inputs — you sharpen it.',
+        instructorNotes:
+          'The fastest shortcut to a great statement is naming the audience precisely. "Early-career data analysts" beats "professionals". Push participants to replace any word a competitor could also use.',
+        resources: [
+          { label: 'Export your Ikigai (JSON + Markdown)', href: '#synthesis' },
+        ],
+      },
+      {
+        title: 'Ikigai → Brand Bridge',
+        duration: '15 min',
+        description:
+          'Turn your purpose statement into a positioning sentence, an audience-of-one avatar, and three content pillars. This is where most ikigai workshops stop — here it is where yours begins producing visible work.',
+        instructorNotes:
+          'Positioning = what you are for and what you are not. Force a trade-off. The pillars should be publishable for 12 months straight without repeating yourself. If not, sharpen them.',
+        resources: [
+          { label: 'Coach GPT (free)', href: '/go/ikigai-coach' },
+          { label: 'Prompt Library: Branding', href: '/prompt-library/marketing' },
+        ],
+      },
+      {
+        title: 'Activation: 30-Day Expression Plan',
+        duration: '10 min',
+        description:
+          'Ship your brand into reality. Pick one pillar, commit to 4 visible artifacts in the next 30 days (a post, a video, a conversation, a small product). Subscribe to receive the Resource Pack with templates and a check-in email at Day 7.',
+        instructorNotes:
+          'Shipping calibrates the brand. Two weeks of visible output teaches you more than two months of planning. Keep artifacts small — one tweet, one 2-minute video, one coffee chat.',
+        resources: [
+          { label: 'GenCreator Principles', href: '/gencreator/principles' },
+          { label: 'Creator Economy Guide', href: '/for/creators' },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'ai-2026-graduates',
     title: 'AI in 2026: What Graduates Need to Know',
     subtitle: 'A practical orientation to AI literacy for students entering the workforce',

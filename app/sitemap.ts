@@ -141,7 +141,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/courses/conscious-ai-foundations',
     '/courses/agent-architecture-systems',
     '/courses/creator-business-systems',
-    '/students/ikigai',
+    '/workshops/ikigai-branding',
+    '/workshops/ai-2026-graduates',
+    '/workshops/build-first-ai-agent',
+    '/workshops/ai-music-masterclass',
   ]
 
   // Content and creation pages
