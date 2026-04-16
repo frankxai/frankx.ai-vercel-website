@@ -5,6 +5,11 @@ import { getToken } from 'next-auth/jwt'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  const publicApiPaths = ['/api/leads/create']
+  if (publicApiPaths.some(path => pathname === path)) {
+    return NextResponse.next()
+  }
+
   const protectedPaths = ['/dashboard', '/api/dashboard', '/api/leads']
   const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path))
 
