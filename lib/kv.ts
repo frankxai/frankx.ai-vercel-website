@@ -1,4 +1,10 @@
-import { kv } from '@vercel/kv'
+// Lazy KV — import at first use, not at module load
+// Prevents crash when KV_REST_API_URL/TOKEN aren't set
+let _kv: Awaited<typeof import('@vercel/kv')>['kv'] | null = null
+async function getKV() {
+  if (!_kv) _kv = (await import('@vercel/kv')).kv
+  return _kv
+}
 
 /**
  * Vercel KV Client
@@ -63,6 +69,7 @@ export async function trackPDFView(
     metadata
   }
 
+  const kv = await getKV()
   const key = `pdf_views:${guideId}`
   const existing = await kv.get<PDFView[]>(key) || []
   existing.push(view)
@@ -91,6 +98,7 @@ export async function trackPDFDownload(
     metadata
   }
 
+  const kv = await getKV()
   const key = `pdf_downloads:${guideId}`
   const existing = await kv.get<PDFDownload[]>(key) || []
   existing.push(download)
@@ -113,6 +121,7 @@ export async function storeLead(lead: Omit<Lead, 'id' | 'timestamp'>): Promise<v
     timestamp: new Date().toISOString()
   }
 
+  const kv = await getKV()
   const existing = await kv.get<Lead[]>('leads') || []
   existing.push(fullLead)
 
@@ -123,6 +132,7 @@ export async function storeLead(lead: Omit<Lead, 'id' | 'timestamp'>): Promise<v
  * Get all PDF views
  */
 export async function getAllPDFViews(): Promise<PDFView[]> {
+  const kv = await getKV()
   return await kv.get<PDFView[]>('pdf_views:all') || []
 }
 
@@ -130,6 +140,7 @@ export async function getAllPDFViews(): Promise<PDFView[]> {
  * Get all PDF downloads
  */
 export async function getAllPDFDownloads(): Promise<PDFDownload[]> {
+  const kv = await getKV()
   return await kv.get<PDFDownload[]>('pdf_downloads:all') || []
 }
 
@@ -137,6 +148,7 @@ export async function getAllPDFDownloads(): Promise<PDFDownload[]> {
  * Get all leads
  */
 export async function getAllLeads(): Promise<Lead[]> {
+  const kv = await getKV()
   return await kv.get<Lead[]>('leads') || []
 }
 
@@ -144,6 +156,7 @@ export async function getAllLeads(): Promise<Lead[]> {
  * Get views for specific guide
  */
 export async function getGuideViews(guideId: string): Promise<PDFView[]> {
+  const kv = await getKV()
   return await kv.get<PDFView[]>(`pdf_views:${guideId}`) || []
 }
 
@@ -151,6 +164,7 @@ export async function getGuideViews(guideId: string): Promise<PDFView[]> {
  * Get downloads for specific guide
  */
 export async function getGuideDownloads(guideId: string): Promise<PDFDownload[]> {
+  const kv = await getKV()
   return await kv.get<PDFDownload[]>(`pdf_downloads:${guideId}`) || []
 }
 
@@ -158,11 +172,11 @@ export async function getGuideDownloads(guideId: string): Promise<PDFDownload[]>
  * Clear all analytics data (use with caution)
  */
 export async function clearAllAnalytics(): Promise<void> {
+  const kv = await getKV()
   await kv.del('pdf_views:all')
   await kv.del('pdf_downloads:all')
   await kv.del('leads')
 
-  // Clear guide-specific keys (you may need to track guide IDs)
   const guides = ['vibe-os', 'soulbook']
   for (const guideId of guides) {
     await kv.del(`pdf_views:${guideId}`)
