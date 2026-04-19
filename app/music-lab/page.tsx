@@ -592,7 +592,7 @@ function CTASection() {
           </h2>
           <p className="text-xl text-white/50 mb-8 max-w-2xl mx-auto">
             Vibe OS is a complete system for creating transformative music with AI.
-            Prompt templates, workflows, and techniques refined over 12,000+ AI songs.
+            Prompt templates, workflows, and techniques refined over 12,000+ songs.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -617,7 +617,7 @@ function CTASection() {
           </div>
 
           <p className="text-sm text-white/30 mt-8">
-            Frank has created 12,000+ AI songs using Suno AI, exploring ambient,
+            Frank has created 12,000+ songs using Suno AI, exploring ambient,
             electronic, cinematic, and experimental genres.
           </p>
         </motion.div>

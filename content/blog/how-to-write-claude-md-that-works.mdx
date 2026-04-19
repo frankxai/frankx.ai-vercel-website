@@ -1,16 +1,23 @@
 ---
-title: 'How to Write a CLAUDE.md That Actually Works'
-description: 'The file Claude Code reads first every session. Structure, anti-patterns, and the exact template I use to ship 170+ pages.'
-date: '2026-03-21'
-author: 'FrankX'
-category: 'Creator Systems'
-tags: ['Claude Code', 'CLAUDE.md', 'AI Development', 'ACOS', 'Productivity']
-image: '/images/blog/build-your-own-jarvis-hero.png'
+title: "How to Write a CLAUDE.md That Actually Works"
+description: "The file Claude Code reads first every session. Structure, anti-patterns, and the exact template I use to ship 170+ pages."
+date: '2026-03-20'
+author: "FrankX"
+category: "Creator Systems"
+tags: ["Claude Code", "CLAUDE.md", "AI Development", "ACOS", "Productivity"]
+image: "/images/blog/build-your-own-jarvis-hero.png"
 featured: true
-keywords: ['CLAUDE.md', 'claude code setup', 'CLAUDE.md best practices', 'claude code project file', 'how to write CLAUDE.md']
-readingGoal: 'You will know how to write a CLAUDE.md that makes Claude Code 10x more effective — with the exact structure, anti-patterns, and template I use daily.'
-tldr: 'CLAUDE.md is the file Claude Code reads at the start of every session. It is your project memory — brand voice, architecture decisions, deployment workflow, anti-patterns. A good one makes Claude Code dramatically more effective. A bad one wastes context window on noise. This guide covers the exact structure I use across 170+ pages of frankx.ai, the anti-patterns that hurt performance, and a template you can copy.'
-schema: ['Article', 'FAQPage']
+keywords:
+  [
+    "CLAUDE.md",
+    "claude code setup",
+    "CLAUDE.md best practices",
+    "claude code project file",
+    "how to write CLAUDE.md",
+  ]
+readingGoal: "You will know how to write a CLAUDE.md that makes Claude Code 10x more effective — with the exact structure, anti-patterns, and template I use daily."
+tldr: "CLAUDE.md is the file Claude Code reads at the start of every session. It is your project memory — brand voice, architecture decisions, deployment workflow, anti-patterns. A good one makes Claude Code dramatically more effective. A bad one wastes context window on noise. This guide covers the exact structure I use across 170+ pages of frankx.ai, the anti-patterns that hurt performance, and a template you can copy."
+schema: ["Article", "FAQPage"]
 ---
 
 **TL;DR:** CLAUDE.md is the file Claude Code reads first. It is active operating instructions, not documentation. Keep it under 1,500 words. Front-load critical rules in the first 500 words. Update it every time you catch Claude making a project-specific mistake. This guide covers structure, anti-patterns, and a copy-paste template.
@@ -48,10 +55,10 @@ Most projects need two: global + project root.
 
 First thing in the file. Maps actions to commands:
 
-| Action | Command |
-|--------|---------|
+| Action               | Command             |
+| -------------------- | ------------------- |
 | Deploy to production | `/frankx-ai-deploy` |
-| Create blog post | `/frankx-ai-blog` |
+| Create blog post     | `/frankx-ai-blog`   |
 
 ~50 tokens. Saves Claude from guessing which of your 40+ commands applies.
 
@@ -74,11 +81,11 @@ Content must be pushed to BOTH repos to go live.
 
 Highest-leverage section. Each entry represents a real mistake:
 
-| Bad Instinct | Correct Behavior |
-|---|---|
-| Rename URLs for consistency | Never rename working URLs — SEO loss |
-| Delete orphan pages | Unlink from nav, keep the page |
-| Consolidate routes by deletion | Fix navigation, not routes |
+| Bad Instinct                   | Correct Behavior                     |
+| ------------------------------ | ------------------------------------ |
+| Rename URLs for consistency    | Never rename working URLs — SEO loss |
+| Delete orphan pages            | Unlink from nav, keep the page       |
+| Consolidate routes by deletion | Fix navigation, not routes           |
 
 Update this every time you catch Claude about to do something wrong.
 
@@ -150,28 +157,34 @@ CLAUDE.md is the project constitution. ACOS is the role system. They work togeth
 # [Project Name] Claude Code Configuration
 
 ## Quick Reference
-| Action | Command |
-|--------|---------|
+
+| Action   | Command   |
+| -------- | --------- |
 | [Action] | [command] |
 
 ## Deployment
+
 [Exact steps with code blocks]
 
 ## Tech Stack
+
 - Framework: [e.g., Next.js 15]
 - Styling: [e.g., Tailwind CSS + shadcn/ui]
 - Deployment: [e.g., Vercel]
 
 ## Brand Rules
+
 - [Non-negotiable voice constraint]
 - [Terminology rule]
 
 ## Anti-Patterns
-| Never | Instead |
-|-------|---------|
+
+| Never | Instead   |
+| ----- | --------- |
 | [Bad] | [Correct] |
 
 ## Decision Protocol
+
 1. What specific problem?
 2. Simplest fix?
 3. What could go wrong?
@@ -192,16 +205,21 @@ Keep under 1,500 words. Update anti-patterns on every near-miss. Treat it as liv
 ## FAQ
 
 ### How long should CLAUDE.md be?
+
 Under 1,500 words for the project file. Extract overflow into skills or reference documents.
 
 ### Can I have multiple CLAUDE.md files?
+
 Yes — global (`~/.claude/CLAUDE.md`), project root, and `.claude/CLAUDE.md`. They merge in that order.
 
 ### Does CLAUDE.md work with Cursor?
+
 Cursor uses `.cursorrules` — different syntax, same principles. The concepts transfer.
 
 ### How often should I update it?
+
 After every session where you corrected Claude on something project-specific. The anti-patterns table should grow as you discover mistakes.
 
 ### What is the difference between CLAUDE.md and skills?
+
 CLAUDE.md loads every session. Skills activate for specific tasks. Brand rules that apply to everything go in CLAUDE.md. SEO patterns for blog posts go in a skill.

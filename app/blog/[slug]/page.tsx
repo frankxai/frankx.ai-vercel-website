@@ -192,7 +192,7 @@ export default async function BlogPostPage({
               {/* Author Card */}
               <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-4">
-                  <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20" />
+                  <Image src="/images/portraits/frankx-magical-forest.png" alt="Frank Riemer" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20 object-cover" />
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
                     <div className="text-sm text-white/50">AI Architect & Creator</div>
@@ -309,26 +309,6 @@ export default async function BlogPostPage({
               description="Weekly field notes on AI systems, production patterns, and builder strategy."
               listType="newsletter"
             />
-          </div>
-        </div>
-
-        {/* AI CoE Level Check */}
-        <div className="px-6 pt-8">
-          <div className="mx-auto max-w-3xl">
-            <Link
-              href="/research/personal-ai-coe"
-              className="group block rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/[0.08] via-amber-500/[0.04] to-transparent p-6 hover:border-amber-500/30 transition-all"
-            >
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400/60 mb-1">Personal AI Center of Excellence</p>
-                  <p className="text-sm text-white/70">
-                    Most professionals use AI at Level 2. The enterprise framework — adapted for individuals, free.
-                  </p>
-                </div>
-                <ArrowRight className="h-5 w-5 text-amber-400/40 group-hover:text-amber-400/70 group-hover:translate-x-0.5 transition-all shrink-0" />
-              </div>
-            </Link>
           </div>
         </div>
 

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import InteractivePiano from '@/components/music/InteractivePiano'
 
 // ── Structured Curriculum Data ──────────────────────────────────────────────
 
@@ -174,6 +175,74 @@ export default function PianoLearnPage() {
             Alle Lehrer sprechen Deutsch 🇩🇪 · Alle Noten sind kostenlos 📄
           </p>
         </motion.header>
+
+        {/* ── Interactive Piano ──────────────────────────────────── */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 rounded-3xl bg-gradient-to-br from-violet-50/80 to-rose-50/80 p-6 shadow-lg sm:p-10"
+        >
+          <h2 className="mb-2 text-center text-2xl font-bold text-slate-800 sm:text-3xl">
+            🎹 Dein Klavier
+          </h2>
+          <p className="mb-6 text-center text-base text-slate-600">
+            Tippe auf die Tasten! Oder wähle ein Lied — die Tasten leuchten violett.
+          </p>
+          <InteractivePiano showLabels childMode />
+        </motion.section>
+
+        {/* ── Ghibli & Lieblingsstücke ──────────────────────────── */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-12 rounded-3xl bg-white/70 p-6 shadow-lg backdrop-blur-sm sm:p-10"
+        >
+          <h2 className="mb-6 text-center text-2xl font-bold text-slate-800">
+            🎬 Filmmusik & Lieblingsstücke
+          </h2>
+          <p className="mb-6 text-center text-base text-slate-600">
+            Wunderschöne Musik aus Filmen — kostenlose Noten zum Drucken und Spielen.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              { name: 'Always With Me (Spirited Away)', composer: 'Joe Hisaishi', emoji: '🐉', sheet: 'https://musescore.com/sheetmusic?text=always+with+me+spirited+away+piano+easy', difficulty: '⭐⭐' },
+              { name: 'Merry-Go-Round of Life (Howl)', composer: 'Joe Hisaishi', emoji: '🏰', sheet: 'https://musescore.com/sheetmusic?text=merry+go+round+of+life+piano+easy', difficulty: '⭐⭐⭐' },
+              { name: 'My Neighbor Totoro', composer: 'Joe Hisaishi', emoji: '🌳', sheet: 'https://musescore.com/sheetmusic?text=my+neighbor+totoro+piano+easy', difficulty: '⭐' },
+              { name: 'One Summer\'s Day (Spirited Away)', composer: 'Joe Hisaishi', emoji: '☀️', sheet: 'https://musescore.com/sheetmusic?text=one+summers+day+piano+easy', difficulty: '⭐⭐' },
+              { name: 'River Flows in You', composer: 'Yiruma', emoji: '🌊', sheet: 'https://musescore.com/user/13340/scores/6142311', difficulty: '⭐⭐⭐' },
+              { name: 'Comptine d\'un autre été (Amélie)', composer: 'Yann Tiersen', emoji: '🎬', sheet: 'https://musescore.com/user/107279/scores/116268', difficulty: '⭐⭐⭐' },
+              { name: 'Für Elise', composer: 'Beethoven', emoji: '🎵', sheet: 'https://musescore.com/user/19710/scores/33816', difficulty: '⭐⭐' },
+              { name: 'Canon in D (einfach)', composer: 'Pachelbel', emoji: '🎶', sheet: 'https://musescore.com/sheetmusic?text=canon+in+d+piano+easy', difficulty: '⭐⭐' },
+            ].map((song) => (
+              <div key={song.name} className="rounded-2xl bg-white/80 p-4 shadow-sm">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <p className="text-base font-bold text-slate-800">
+                      <span className="mr-1">{song.emoji}</span> {song.name}
+                    </p>
+                    <p className="mt-0.5 text-sm text-slate-500">{song.composer} · {song.difficulty}</p>
+                  </div>
+                  <a
+                    href={song.sheet}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 rounded-full bg-rose-100 px-3 py-1.5 text-sm font-medium text-rose-700 transition hover:bg-rose-200 active:scale-95"
+                  >
+                    Noten 📄
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-sm text-slate-500">
+            Alle Noten kostenlos auf{' '}
+            <a href="https://musescore.com" target="_blank" rel="noopener noreferrer" className="font-medium text-rose-600 hover:text-rose-700">
+              MuseScore.com
+            </a>
+          </p>
+        </motion.section>
 
         {/* ── Level Curriculum ────────────────────────────────────── */}
         <div className="mb-12 space-y-6">

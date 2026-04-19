@@ -1445,56 +1445,5 @@
     },
     "tags": ["book", "creator-economy", "ai", "golden-age"],
     "pillar": "creator"
-  },
-  {
-    "id": "book-hoffnung",
-    "slug": "hoffnung",
-    "name": "Hoffnung",
-    "category": "Books",
-    "badge": "FREE PDF",
-    "headline": "The Poetry of Hope — A Companion for the Journey",
-    "subheadline": "Poetry, music, meditation, and guided exercises for anyone walking through grief, loss, or the valley of uncertainty.",
-    "promise": "Eight chapters of curated beauty from Rumi, Rilke, Mary Oliver, sacred texts, and original verse — paired with healing frequencies and daily hope rituals.",
-    "summary": "A complete healing experience combining poetry from the world's greatest voices, guided meditations, breathing exercises, healing frequencies, and practical daily rituals for hope.",
-    "transformation": [],
-    "socialProof": {
-      "stats": [
-        {
-          "number": "8",
-          "label": "Chapters"
-        },
-        {
-          "number": "96",
-          "label": "Min Read"
-        }
-      ],
-      "quotes": []
-    },
-    "offer": {
-      "primaryPrice": 0,
-      "primaryPriceDisplay": "Free",
-      "currency": "USD",
-      "ctaPrimary": "Read Online",
-      "ctaPrimaryHref": "/books/hoffnung",
-      "ctaPrimaryTracking": "book-hoffnung-read"
-    },
-    "modules": [],
-    "analyticsId": "book-hoffnung",
-    "delivery": {
-      "methods": ["download", "gated"],
-      "requiresEmail": true,
-      "files": [
-        {
-          "name": "Hoffnung (PDF)",
-          "blobKey": "books/hoffnung/hoffnung.pdf",
-          "format": "pdf",
-          "size": "0.8 MB"
-        }
-      ]
-    },
-    "cta": {
-      "label": "Download Free PDF",
-      "href": "/books/hoffnung"
-    }
   }
 ]

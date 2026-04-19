@@ -1,0 +1,259 @@
+---
+title: "Vercel + Claude Code: Ship a Next.js Site in One Session"
+description: "The deployment pipeline I use daily — Claude Code builds, Vercel deploys, MCP monitors. From code to production in minutes."
+date: '2026-03-13'
+author: "FrankX"
+category: "Creator Systems"
+tags: ["Vercel", "Claude Code", "Next.js", "Deployment", "MCP"]
+image: "/images/blog/claude-code-mcp.png"
+featured: false
+keywords:
+  [
+    "vercel claude code",
+    "nextjs deployment ai",
+    "claude code vercel mcp",
+    "ai deployment pipeline",
+    "vercel mcp server",
+  ]
+readingGoal: "You will know how to wire Claude Code to Vercel via MCP for a production deployment pipeline that ships with one command."
+tldr: "I deploy frankx.ai — a 170+ page Next.js site — using Claude Code with a Vercel MCP server. The workflow: Claude Code writes code, runs TypeScript checks, commits to the production repo, and Vercel auto-deploys. The Vercel MCP server lets me check build logs, deployment status, and environment variables without leaving the terminal. One slash command — /frankx-ai-deploy — handles the full pipeline. This is the exact setup."
+schema: ["Article", "FAQPage"]
+---
+
+**TL;DR:** I deploy frankx.ai — a 170+ page Next.js site — using Claude Code with a Vercel MCP server. The workflow: Claude Code writes code, runs TypeScript checks, commits to the production repo, and Vercel auto-deploys. The Vercel MCP server lets me check build logs, deployment status, and environment variables without leaving the terminal. One slash command — `/frankx-ai-deploy` — handles the full pipeline. This is the exact setup.
+
+---
+
+## Why This Setup Changed How I Ship
+
+Before wiring up this pipeline, shipping to production meant switching between editor, terminal, GitHub, and the Vercel dashboard. Context-switching is the enemy of velocity. Every tab switch breaks flow.
+
+Now I type `/frankx-ai-deploy` in Claude Code and walk away. By the time I'm back with coffee, frankx.ai is live with the changes.
+
+This isn't about laziness. It's about compressing the feedback loop so tight that building feels like thinking out loud. When deploy time drops from 15 minutes to 90 seconds of attention, you ship 10x more.
+
+Here's the exact architecture and how to replicate it.
+
+---
+
+## The Two-Repo Architecture
+
+frankx.ai runs on two repositories with distinct roles. This isn't over-engineering — it's a deliberate separation that keeps the production repo clean and the private repo free for experimentation.
+
+**Private development repo** (`frankxai/FrankX`): This is where everything gets built. Draft blog posts, experimental components, Claude configuration files, agent definitions, research documents, n8n automation specs. Nothing here goes live automatically.
+
+**Production repo** (`frankxai/frankx.ai-vercel-website`): This is what Vercel watches. Every push to `main` triggers a deployment. Only polished, validated work lands here.
+
+The production repo lives as a git worktree inside the private repo at `.worktrees/vercel-ui-ux`. That means I can work across both repos from a single terminal session without any path gymnastics.
+
+```bash
+# Worktree setup (one-time)
+git worktree add .worktrees/vercel-ui-ux main --track origin/main
+
+# From the private repo, the production repo is always at:
+/mnt/c/Users/Frank/FrankX/.worktrees/vercel-ui-ux/
+```
+
+When Claude Code builds something in the private repo, the deploy command copies the relevant files to the worktree, stages them, commits, and pushes. Vercel picks up the push and builds.
+
+This architecture also protects against accidents. There's no way to accidentally push a draft blog post or an API key to production because the repos are separate. The worktree is the deliberate bridge.
+
+---
+
+## Adding the Vercel MCP Server
+
+The Vercel MCP server is what turns Claude Code from a code editor into a deployment control room. With it installed, I can ask Claude to check build status, read deployment logs, inspect environment variables, and list recent deployments — all in natural language, inside the same terminal session.
+
+Installation takes one command:
+
+```bash
+claude mcp add vercel
+```
+
+Claude Code adds it to the project's MCP configuration. After that, restart Claude Code and the Vercel tools show up automatically.
+
+The tools I use most frequently:
+
+**`get_deployment`** — Pulls the full status of a specific deployment. When I want to confirm that a build succeeded and what URL it deployed to.
+
+**`get_deployment_build_logs`** — Reads the raw build output. When a build fails, this is faster than opening the Vercel dashboard. Claude Code can read the logs and diagnose the issue in the same response.
+
+**`list_deployments`** — Shows recent deployments with status and timestamps. Good for confirming that a push triggered a new build.
+
+**`get_project`** — Reads project settings including framework, build command, and output directory. Useful when troubleshooting why Vercel is generating unexpected behavior.
+
+**`search_vercel_documentation`** — Queries Vercel's docs directly. When I hit an edge case with Next.js App Router caching or PPR, I get authoritative documentation without leaving Claude Code.
+
+The setup requires authentication. The MCP server uses your Vercel token, which Claude Code stores securely in its MCP configuration. One-time setup, permanent access.
+
+---
+
+## The `/frankx-ai-deploy` Slash Command
+
+Slash commands in Claude Code are markdown files that define a reusable prompt template. Mine lives at `.claude/commands/frankx-ai-deploy.md` in the private repo.
+
+When I run `/frankx-ai-deploy`, Claude Code reads the command file and executes the defined sequence. Here's the logic it follows:
+
+```markdown
+## Deploy to Production
+
+1. Run TypeScript check: `npx tsc --noEmit`
+2. If TypeScript passes, identify changed files
+3. Copy changed files to .worktrees/vercel-ui-ux/
+4. Stage files in the production repo
+5. Create commit with conventional commit format
+6. Push to origin main
+7. Wait 30 seconds
+8. Check deployment status via Vercel MCP
+9. Report: deployed URL or error logs
+```
+
+The TypeScript check before commit is non-negotiable. `npx tsc --noEmit` runs in ~60 seconds on this codebase and catches the errors that would otherwise surface as a failed Vercel build 3 minutes later. Type errors in the terminal are 10x faster to fix than type errors in a build log.
+
+The commit format matters too. Conventional commits (`feat:`, `fix:`, `content:`) make the Vercel deployment history readable. When something breaks, you can scan the history and identify exactly which commit introduced the regression.
+
+---
+
+## The Deployment Flow, Step by Step
+
+Here's what actually happens when the command runs:
+
+**Step 1: TypeScript validation**
+
+```bash
+cd /mnt/c/Users/Frank/FrankX && npx tsc --noEmit
+```
+
+If this fails, Claude Code stops, reports the errors, and waits. No bad code reaches the production repo.
+
+**Step 2: File copy to production worktree**
+
+Changed files get copied to the appropriate paths in `.worktrees/vercel-ui-ux/`. For a blog post this means:
+
+```bash
+cp content/blog/new-article.mdx .worktrees/vercel-ui-ux/content/blog/
+cp public/images/blog/new-article-hero.png .worktrees/vercel-ui-ux/public/images/blog/
+```
+
+For component changes, the `app/`, `components/`, and `lib/` directories sync. Environment configuration stays in the private repo — it never touches production directly.
+
+**Step 3: Commit and push**
+
+```bash
+cd /mnt/c/Users/Frank/FrankX/.worktrees/vercel-ui-ux
+git add content/blog/new-article.mdx public/images/blog/new-article-hero.png
+git commit -m "content: Add new article — Vercel + Claude Code deployment pipeline"
+git push origin main
+```
+
+Vercel detects the push immediately and queues a build.
+
+**Step 4: Monitor via MCP**
+
+Claude Code waits approximately 30 seconds — enough time for Vercel to initialize the build — then queries the Vercel MCP server:
+
+```
+Check the latest deployment status for the frankx.ai-vercel-website project
+```
+
+The MCP server returns the deployment ID, status (queued / building / ready / error), and the preview URL. If the status is `ready`, the response includes the production URL and confirmation that the deployment is live.
+
+If the status is `error`, Claude Code immediately fetches the build logs and presents a diagnosis. Usually it's a missing dependency, an invalid import path, or an edge case in the Next.js App Router that only surfaces during production builds.
+
+---
+
+## Monitoring Builds Without the Dashboard
+
+The Vercel dashboard is well-designed. It's also completely unnecessary once the MCP server is running.
+
+Every piece of information I used to get from the dashboard is now available in Claude Code:
+
+**Build status:** `list_deployments` shows the last 10 builds with status and timestamps.
+
+**Build logs:** `get_deployment_build_logs` returns the full output including any warnings that aren't errors but indicate potential problems (large bundle sizes, unoptimized images, deprecated API usage).
+
+**Environment variables:** `get_project` shows which environment variables are configured. When a new API route needs an env var that isn't set in Vercel, Claude Code can flag it before the build even runs.
+
+**Runtime logs:** `get_runtime_logs` pulls logs from the deployed edge functions and API routes. This is the most powerful one — when a production API route fails silently, the runtime logs show the exact error with stack trace.
+
+I keep a running conversation with Claude Code during active development sessions. Instead of switching to the browser, I ask: "What's the status of the last deployment?" The answer comes back in seconds, inline, without breaking context.
+
+---
+
+## WSL Performance: The One Gotcha
+
+If you're running this on Windows with WSL — as I do — there's a critical performance trap that will cost you significant time if you're unaware of it.
+
+Never run `npm run build` on paths under `/mnt/c/` from WSL.
+
+The Next.js build process on an NTFS-mounted drive (which is what `/mnt/c/` is) runs 10-15x slower than on native ext4. The issue is filesystem I/O. Next.js's build process reads and writes thousands of files — module resolution, compilation, optimization passes. Every one of those file operations crosses the NTFS bridge in WSL, and the overhead compounds.
+
+A build that takes 45 seconds on native Linux takes 8-12 minutes on `/mnt/c/` under WSL. And because Next.js buffers output until completion, the terminal appears frozen for the entire duration. It looks broken. It's not broken — it's just NTFS-slow.
+
+The solution is to trust Vercel's build rather than running local production builds. The validation workflow I use:
+
+1. `npx tsc --noEmit` — TypeScript check, ~60 seconds, reliable
+2. ESLint via lint-staged — runs automatically on commit
+3. Let Vercel build — authoritative production build, runs in ~45 seconds on Vercel's Linux infrastructure
+
+Vercel's build is faster, more accurate (it uses the same environment as production), and doesn't require me to do anything. The Vercel MCP server then gives me the logs. There's no reason to run local production builds in this setup.
+
+---
+
+## The Production Patterns That Matter
+
+This deployment pipeline is part of a larger system for building at speed. A few patterns that compound over time:
+
+**Worktree discipline:** The production worktree only receives validated content. If I'm unsure whether something is ready, it stays in the private repo. The worktree is a gate, not a staging area.
+
+**Conventional commits with context:** Good commit messages make incident response faster. `content: Add Vercel deployment guide` tells me immediately what changed. `update files` doesn't.
+
+**MCP-first debugging:** When something breaks, the first question to Claude Code is always "read the last deployment logs for frankx.ai-vercel-website." This gets me to the error faster than any other path.
+
+**Environment variable parity:** Every environment variable in my local `.env.local` has a corresponding entry in Vercel's production environment. I check this before adding any new API integration. Missing env vars are the most common cause of builds that pass TypeScript but fail in production.
+
+**Single push, single truth:** The production repo has one source of truth: the `main` branch. No feature branches, no environment-specific branches. Everything tested in development, then pushed straight to main. Vercel handles the rest.
+
+If you're building your own AI-native creator system, the [ACOS framework at frankx.ai/acos](/acos) covers how to structure your tooling, automation, and MCP integrations as a coherent operating system rather than a collection of disconnected tools.
+
+For a broader view of the MCP ecosystem — including how to discover and evaluate MCP servers beyond Vercel — see [the MCP ecosystem guide](/blog/mcp-ecosystem-2026-clawhub-smithery-guide). And for the full Claude Code + ACOS setup that this deployment pipeline runs inside of, see [the AI coding agent setup guide](/blog/ultimate-ai-coding-agent-setup-acos-claude-code-mcp).
+
+---
+
+## What This Enables That Manual Deployment Doesn't
+
+Speed is the obvious answer. But the deeper benefit is confidence.
+
+When every deploy is validated by TypeScript, gated by a deliberate copy step, and monitored by MCP, the cognitive overhead of shipping drops to near zero. I don't worry about breaking production because the pipeline catches the breakage before it reaches production.
+
+That confidence changes what I build. Instead of batching changes to minimize deploy risk, I ship small, fast, and often. A typo fix gets a commit. A new internal link gets a commit. A refined component gets a commit. Each one is a clean, monitored deployment.
+
+The frankx.ai production history shows ~3-5 deployments per active working day. With manual deployment, that would be exhausting. With this pipeline, it's the natural rhythm of building.
+
+---
+
+## FAQ
+
+**Do I need the Vercel MCP server if I'm already using the Vercel CLI?**
+
+The Vercel CLI (`vercel` command) is great for manual operations. The MCP server is different — it lets Claude Code query Vercel programmatically within a conversation. You can ask questions in natural language and get structured responses without constructing CLI commands. For an AI-driven workflow, the MCP server is the right layer. The CLI is for humans running commands directly.
+
+**Does this work with Next.js 15 and App Router?**
+
+Yes. The frankx.ai site runs Next.js 15 with App Router throughout. The TypeScript check and deployment flow are version-agnostic. The Vercel MCP server uses the Vercel API, which handles all framework versions automatically.
+
+**What if the Vercel build fails after the push?**
+
+Claude Code detects the failure via `get_deployment_build_logs` and presents the error. Usually it's one of three things: a TypeScript error that slipped through (rare, since we check locally first), a missing environment variable, or an import path issue specific to the production build. In each case, the fix is in the private repo, then another deploy cycle.
+
+**Can I use this with a monorepo setup?**
+
+Yes, with adjustments. The worktree pattern works well for monorepos — you'd configure the copy step to include only the relevant package, and set the Vercel root directory to match. The core pattern (private dev repo → production worktree → Vercel) scales to more complex structures.
+
+**Is there a risk of the production repo getting out of sync with the private repo?**
+
+Only if you modify files directly in the production worktree, which the workflow discourages. All changes originate in the private repo. The worktree is write-destination-only. As long as that discipline holds, the repos stay in sync by construction. I've never had a meaningful divergence using this setup.
+
+---
+
+_The pipeline described here is part of the [ACOS system](/acos) — an AI-native operating system for creators and builders. If you want to see how all the pieces fit together — MCP servers, slash commands, deployment automation, and skill libraries — that's the place to start._

@@ -37,6 +37,9 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
     <section className="relative overflow-hidden bg-[#0a0a0b]">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/30 via-[#02030b] to-blue-950/35" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(45,212,191,0.12),transparent_55%)]" />
+      {/* Aurora orbs */}
+      <div className="absolute top-10 right-1/4 h-72 w-72 rounded-full bg-violet-500/[0.08] blur-[128px] pointer-events-none" aria-hidden />
+      <div className="absolute bottom-0 left-1/3 h-48 w-64 rounded-full bg-cyan-400/[0.06] blur-[100px] pointer-events-none" aria-hidden />
       <div className="relative mx-auto max-w-5xl px-6 pb-16 pt-24 text-center text-slate-100">
         {COMING_SOON_MODE ? (
           <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-amber-100">

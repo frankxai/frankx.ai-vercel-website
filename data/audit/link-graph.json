@@ -1,0 +1,5658 @@
+{
+  "timestamp": "2026-03-28T12:30:37.148Z",
+  "nodes": [
+    {
+      "route": "/",
+      "type": "page",
+      "inbound": 39,
+      "outbound": 0
+    },
+    {
+      "route": "/products/[slug]",
+      "type": "dynamic",
+      "inbound": 39,
+      "outbound": 0
+    },
+    {
+      "route": "/blog",
+      "type": "page",
+      "inbound": 31,
+      "outbound": 3
+    },
+    {
+      "route": "/ai-architecture/[slug]",
+      "type": "dynamic",
+      "inbound": 23,
+      "outbound": 3
+    },
+    {
+      "route": "/design-lab",
+      "type": "page",
+      "inbound": 20,
+      "outbound": 5
+    },
+    {
+      "route": "/products",
+      "type": "page",
+      "inbound": 19,
+      "outbound": 2
+    },
+    {
+      "route": "/music-lab",
+      "type": "page",
+      "inbound": 18,
+      "outbound": 2
+    },
+    {
+      "route": "/newsletter",
+      "type": "page",
+      "inbound": 18,
+      "outbound": 0
+    },
+    {
+      "route": "/start",
+      "type": "page",
+      "inbound": 18,
+      "outbound": 1
+    },
+    {
+      "route": "/music",
+      "type": "page",
+      "inbound": 17,
+      "outbound": 3
+    },
+    {
+      "route": "/acos",
+      "type": "page",
+      "inbound": 16,
+      "outbound": 0
+    },
+    {
+      "route": "/blog/[slug]",
+      "type": "dynamic",
+      "inbound": 16,
+      "outbound": 0
+    },
+    {
+      "route": "/research",
+      "type": "page",
+      "inbound": 16,
+      "outbound": 4
+    },
+    {
+      "route": "/books/[bookSlug]",
+      "type": "dynamic",
+      "inbound": 15,
+      "outbound": 1
+    },
+    {
+      "route": "/contact",
+      "type": "page",
+      "inbound": 14,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/[slug]",
+      "type": "dynamic",
+      "inbound": 14,
+      "outbound": 2
+    },
+    {
+      "route": "/products/vibe-os",
+      "type": "page",
+      "inbound": 14,
+      "outbound": 0
+    },
+    {
+      "route": "/research/[slug]",
+      "type": "dynamic",
+      "inbound": 14,
+      "outbound": 1
+    },
+    {
+      "route": "/inner-circle",
+      "type": "page",
+      "inbound": 12,
+      "outbound": 1
+    },
+    {
+      "route": "/products/agentic-creator-os",
+      "type": "page",
+      "inbound": 12,
+      "outbound": 0
+    },
+    {
+      "route": "/books/[bookSlug]/[chapterSlug]",
+      "type": "dynamic",
+      "inbound": 11,
+      "outbound": 0
+    },
+    {
+      "route": "/music/learn",
+      "type": "page",
+      "inbound": 11,
+      "outbound": 1
+    },
+    {
+      "route": "/ai-architecture",
+      "type": "page",
+      "inbound": 10,
+      "outbound": 3
+    },
+    {
+      "route": "/alea",
+      "type": "page",
+      "inbound": 10,
+      "outbound": 4
+    },
+    {
+      "route": "/prompt-library",
+      "type": "page",
+      "inbound": 10,
+      "outbound": 0
+    },
+    {
+      "route": "/prompt-library/[category]",
+      "type": "dynamic",
+      "inbound": 10,
+      "outbound": 0
+    },
+    {
+      "route": "/students",
+      "type": "page",
+      "inbound": 10,
+      "outbound": 4
+    },
+    {
+      "route": "/ai-architecture/blueprints",
+      "type": "page",
+      "inbound": 9,
+      "outbound": 2
+    },
+    {
+      "route": "/assessment",
+      "type": "page",
+      "inbound": 9,
+      "outbound": 2
+    },
+    {
+      "route": "/music/learn/piano",
+      "type": "page",
+      "inbound": 9,
+      "outbound": 3
+    },
+    {
+      "route": "/vault",
+      "type": "page",
+      "inbound": 9,
+      "outbound": 2
+    },
+    {
+      "route": "/ai-architect-academy",
+      "type": "page",
+      "inbound": 7,
+      "outbound": 3
+    },
+    {
+      "route": "/ai-architecture/prototypes",
+      "type": "page",
+      "inbound": 7,
+      "outbound": 2
+    },
+    {
+      "route": "/design-lab/family-tree",
+      "type": "page",
+      "inbound": 7,
+      "outbound": 1
+    },
+    {
+      "route": "/golden-age/[chapter]",
+      "type": "dynamic",
+      "inbound": 7,
+      "outbound": 0
+    },
+    {
+      "route": "/resources",
+      "type": "page",
+      "inbound": 7,
+      "outbound": 1
+    },
+    {
+      "route": "/about",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 5
+    },
+    {
+      "route": "/ai-architecture/templates",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 2
+    },
+    {
+      "route": "/ai-ops",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 6
+    },
+    {
+      "route": "/gencreator",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 4
+    },
+    {
+      "route": "/guides/[slug]",
+      "type": "dynamic",
+      "inbound": 6,
+      "outbound": 0
+    },
+    {
+      "route": "/infogenius",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 3
+    },
+    {
+      "route": "/investor",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 1
+    },
+    {
+      "route": "/watch",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 0
+    },
+    {
+      "route": "/workshops",
+      "type": "page",
+      "inbound": 6,
+      "outbound": 1
+    },
+    {
+      "route": "/admin/content/[slug]",
+      "type": "dynamic",
+      "inbound": 5,
+      "outbound": 1
+    },
+    {
+      "route": "/ai-ops/accelerator-packs",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 1
+    },
+    {
+      "route": "/books",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 1
+    },
+    {
+      "route": "/feed",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 3
+    },
+    {
+      "route": "/free-playbook",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 0
+    },
+    {
+      "route": "/guides",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 2
+    },
+    {
+      "route": "/investor/agents",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 2
+    },
+    {
+      "route": "/plan",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 3
+    },
+    {
+      "route": "/plan/[slug]",
+      "type": "dynamic",
+      "inbound": 5,
+      "outbound": 1
+    },
+    {
+      "route": "/products/agentic-creator-os/docs/[slug]",
+      "type": "dynamic",
+      "inbound": 5,
+      "outbound": 0
+    },
+    {
+      "route": "/products/creative-ai-toolkit",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 0
+    },
+    {
+      "route": "/shop",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 1
+    },
+    {
+      "route": "/soulbook",
+      "type": "page",
+      "inbound": 5,
+      "outbound": 5
+    },
+    {
+      "route": "/tools/[slug]",
+      "type": "dynamic",
+      "inbound": 5,
+      "outbound": 1
+    },
+    {
+      "route": "/gallery",
+      "type": "page",
+      "inbound": 4,
+      "outbound": 2
+    },
+    {
+      "route": "/lab",
+      "type": "page",
+      "inbound": 4,
+      "outbound": 2
+    },
+    {
+      "route": "/music/learn/violin",
+      "type": "page",
+      "inbound": 4,
+      "outbound": 3
+    },
+    {
+      "route": "/presence",
+      "type": "page",
+      "inbound": 4,
+      "outbound": 2
+    },
+    {
+      "route": "/products/generative-creator-os",
+      "type": "page",
+      "inbound": 4,
+      "outbound": 0
+    },
+    {
+      "route": "/prototype/[id]",
+      "type": "dynamic",
+      "inbound": 4,
+      "outbound": 2
+    },
+    {
+      "route": "/prototypes",
+      "type": "page",
+      "inbound": 4,
+      "outbound": 1
+    },
+    {
+      "route": "/workshops/[slug]",
+      "type": "dynamic",
+      "inbound": 4,
+      "outbound": 2
+    },
+    {
+      "route": "/admin/content",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 1
+    },
+    {
+      "route": "/agents",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 2
+    },
+    {
+      "route": "/ai-assessment",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 1
+    },
+    {
+      "route": "/blueprint/[slug]",
+      "type": "dynamic",
+      "inbound": 3,
+      "outbound": 3
+    },
+    {
+      "route": "/courses",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 2
+    },
+    {
+      "route": "/courses/[slug]",
+      "type": "dynamic",
+      "inbound": 3,
+      "outbound": 1
+    },
+    {
+      "route": "/gencreator/manifesto",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 2
+    },
+    {
+      "route": "/music/create",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 4
+    },
+    {
+      "route": "/music/learn/theory",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 5
+    },
+    {
+      "route": "/music-lab/piano",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 1
+    },
+    {
+      "route": "/prompt-library/[category]/[id]",
+      "type": "dynamic",
+      "inbound": 3,
+      "outbound": 0
+    },
+    {
+      "route": "/roadmap",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 0
+    },
+    {
+      "route": "/templates",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 2
+    },
+    {
+      "route": "/tools",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 2
+    },
+    {
+      "route": "/vibe",
+      "type": "page",
+      "inbound": 3,
+      "outbound": 2
+    },
+    {
+      "route": "/achievements",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/admin/content/pipeline",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/admin/youtube",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/affiliates",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/ai-architect",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 6
+    },
+    {
+      "route": "/alea/musik",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/changelog",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/coaching",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/collectibles",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/community",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/courses/build-your-ai-creator-os/module-1",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/courses/build-your-ai-creator-os",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/dashboard",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 6
+    },
+    {
+      "route": "/design-lab/arcanea",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/design-lab/nature",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/design-lab/nature/variants",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/developers",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 4
+    },
+    {
+      "route": "/downloads",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/family",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/family/tree",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/frankx",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/games",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/gencreator/blueprints",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/gencreator/handbook",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/gencreator/principles",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/goals",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/golden-age",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/investor/workflows",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/learn",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/legal/imprint",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/legal/privacy",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/legal/refund",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/legal/terms",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/library",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/library/[slug]",
+      "type": "dynamic",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/music/brainstorm",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/privacy",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/product-development",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/products/agentic-creator-os/docs",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/rituals",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/search",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/skills/builder",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/skills",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 4
+    },
+    {
+      "route": "/soulbook/assessment",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 0
+    },
+    {
+      "route": "/students/ai-briefing",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/students/ikigai",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/terms",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/tools/builder",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 3
+    },
+    {
+      "route": "/vault/[collection]",
+      "type": "dynamic",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/vibe/producer",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 2
+    },
+    {
+      "route": "/workshops/for-educators",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/year-of-the-fire-horse",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/youtube",
+      "type": "page",
+      "inbound": 2,
+      "outbound": 1
+    },
+    {
+      "route": "/admin/bv-command-center",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 0
+    },
+    {
+      "route": "/agent-team",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/ai-architect/multi-cloud-comparison",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/ai-architecture/multi-cloud-comparison",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/ai-ops/agi-ready",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/ai-ops/architecture",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/ai-ops/maturity",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/ai-ops/models-2026",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 4
+    },
+    {
+      "route": "/ai-ops/patterns",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/alea/musik/geige",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/alea/musik/klavier",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/assess",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 0
+    },
+    {
+      "route": "/auctions",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/auctions/[id]",
+      "type": "dynamic",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/automation",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/blog/intelligence-revolution-2025",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/content-strategy/video-creation",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/creation-chronicles",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/design-excellence",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/design-lab/frontend-design",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/design-lab/nature/variants/homepage",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 4
+    },
+    {
+      "route": "/drops",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/founder-playbook",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/gallery/instruments",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/gencreator/soul",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/insights",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/investor/architectures",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/investor/tools",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/learn/[slug]",
+      "type": "dynamic",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/legal",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 5
+    },
+    {
+      "route": "/linktree",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/linktree/[audience]",
+      "type": "dynamic",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/map",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 0
+    },
+    {
+      "route": "/music/learn/production",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 5
+    },
+    {
+      "route": "/music/tools",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/n8n",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/opa-und-oma",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/opus-pro",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/products/creation-chronicles",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 0
+    },
+    {
+      "route": "/products/vibe-os/app",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/research/methodology",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/research/sources",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/resources/skills",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/shop/templates",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 5
+    },
+    {
+      "route": "/soulbook/vault",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 0
+    },
+    {
+      "route": "/sprint",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 5
+    },
+    {
+      "route": "/students/coe-builder",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/students/prompts",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/students/workshop",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 2
+    },
+    {
+      "route": "/tools/roi-calculator",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/tools/strategy-canvas",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 3
+    },
+    {
+      "route": "/valentines-day",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/valentines-day/tien",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/valentines-day/tien/piano",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/year-of-the-fire-horse/vision",
+      "type": "page",
+      "inbound": 1,
+      "outbound": 1
+    },
+    {
+      "route": "/acos/presence",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/admin/community",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/admin/content-studio",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/admin/image-lab",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/admin/legal",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/admin/map",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/admin/music",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/admin/revenue",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/admin/subscriptions",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/admin/vault",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/admin/wealth",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/ai-architect/ai-coe-hub",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/ai-architecture/tools",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/ai-architectures",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/ai-art",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/ai-evolution",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/ai-world",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/alea/katze",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/artists/[slug]",
+      "type": "dynamic",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/assess/ai-coe",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/assessment/advanced",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/assessment/creative",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/auth/signin",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/blog/soul-frequency-framework",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/books/[bookSlug]/glossary",
+      "type": "dynamic",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/business-plan",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/checkout/cancel",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/checkout/success",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/collectibles/instruments",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/collectibles/trading-cards",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/command-center",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/consulting",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/content-studio",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/creators",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/dashboard/leads",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/dashboard/pdf-analytics",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/de/valentines-day",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/acos",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/design-lab/arcanea/iridescence",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/arcanea/liquid-glass",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/design-lab/brand",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v1",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v10",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/family-tree/v11",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v12",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/family-tree/v13",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/family-tree/v14",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/family-tree/v15",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/family-tree/v2",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v3",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v4",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v5",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v6",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/family-tree/v7",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/family-tree/v8",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/family-tree/v9",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/design-lab/newsletter",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/design-lab/strategy",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-lab/v0",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/design-system",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/downloads/preview/soulbook",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/downloads/preview/vibe-os",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/for/architects",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/for/creators",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/frankx-investment-dashboard",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/gallery/heroes",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/games/memory-match",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/hoffnung",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/inspiration",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/intelligence-atlas",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/intelligence-map",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/labs",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/links",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/magic",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/music/learn/guitar",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/music/learn/orchestration",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 6
+    },
+    {
+      "route": "/music/learn/reading",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/music/learn/science",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/music-lab/dj-pads",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/music-lab/drums",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/music-lab/for-kids/xylophone",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/music-lab/piano/songs",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/newsletter/thank-you",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/onboarding",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/product-development/acos-v11",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 5
+    },
+    {
+      "route": "/products/bv-kit",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/products/prompt-vault",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/products/suno-prompt-library",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/products/vibe-os/docs",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/progress",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/prototype/chat-playground",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/realm",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/resources/templates",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/see-through-the-noise",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/showcase",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/soul-frequency-quiz",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/soulbook/7-pillars",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 0
+    },
+    {
+      "route": "/soulbook/framework",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/soulbook/golden-path",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/soulbook/life-symphony",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/students/cohort",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/students/roles",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/team",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/testimonials",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/thank-you",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 3
+    },
+    {
+      "route": "/tools/visual-intelligence",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 4
+    },
+    {
+      "route": "/tools/[slug]/docs",
+      "type": "dynamic",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/updates",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    },
+    {
+      "route": "/vision",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 5
+    },
+    {
+      "route": "/visionaries",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/work-with-me",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 1
+    },
+    {
+      "route": "/youtube-strategy",
+      "type": "page",
+      "inbound": 0,
+      "outbound": 2
+    }
+  ],
+  "edges": [
+    {
+      "from": "/about",
+      "to": "/frankx",
+      "sourceFile": "app/about/page.tsx"
+    },
+    {
+      "from": "/about",
+      "to": "/lab",
+      "sourceFile": "app/about/page.tsx"
+    },
+    {
+      "from": "/about",
+      "to": "/start",
+      "sourceFile": "app/about/page.tsx"
+    },
+    {
+      "from": "/about",
+      "to": "/music-lab",
+      "sourceFile": "app/about/page.tsx"
+    },
+    {
+      "from": "/about",
+      "to": "/blog",
+      "sourceFile": "app/about/page.tsx"
+    },
+    {
+      "from": "/achievements",
+      "to": "/blog",
+      "sourceFile": "app/achievements/page.tsx"
+    },
+    {
+      "from": "/achievements",
+      "to": "/products",
+      "sourceFile": "app/achievements/page.tsx"
+    },
+    {
+      "from": "/acos/presence",
+      "to": "/acos",
+      "sourceFile": "app/acos/presence/page.tsx"
+    },
+    {
+      "from": "/acos/presence",
+      "to": "/presence",
+      "sourceFile": "app/acos/presence/page.tsx"
+    },
+    {
+      "from": "/acos/presence",
+      "to": "/presence",
+      "sourceFile": "app/acos/presence/page.tsx"
+    },
+    {
+      "from": "/acos/presence",
+      "to": "/rituals",
+      "sourceFile": "app/acos/presence/page.tsx"
+    },
+    {
+      "from": "/acos/presence",
+      "to": "/acos",
+      "sourceFile": "app/acos/presence/page.tsx"
+    },
+    {
+      "from": "/admin/content",
+      "to": "/admin/content/pipeline",
+      "sourceFile": "app/admin/content/page.tsx"
+    },
+    {
+      "from": "/admin/content",
+      "to": "/admin/content/pipeline",
+      "sourceFile": "app/admin/content/page.tsx"
+    },
+    {
+      "from": "/admin/content/pipeline",
+      "to": "/admin/content",
+      "sourceFile": "app/admin/content/pipeline/page.tsx"
+    },
+    {
+      "from": "/admin/content/[slug]",
+      "to": "/admin/content",
+      "sourceFile": "app/admin/content/[slug]/page.tsx"
+    },
+    {
+      "from": "/admin/content/[slug]",
+      "to": "/admin/content",
+      "sourceFile": "app/admin/content/[slug]/page.tsx"
+    },
+    {
+      "from": "/admin/legal",
+      "to": "/admin/bv-command-center",
+      "sourceFile": "app/admin/legal/page.tsx"
+    },
+    {
+      "from": "/admin/map",
+      "to": "/map",
+      "sourceFile": "app/admin/map/page.tsx"
+    },
+    {
+      "from": "/admin/map",
+      "to": "/sprint",
+      "sourceFile": "app/admin/map/page.tsx"
+    },
+    {
+      "from": "/admin/map",
+      "to": "/admin",
+      "sourceFile": "app/admin/map/page.tsx"
+    },
+    {
+      "from": "/admin/music",
+      "to": "/music",
+      "sourceFile": "app/admin/music/MusicDashboardClient.tsx"
+    },
+    {
+      "from": "/admin/revenue",
+      "to": "/admin",
+      "sourceFile": "app/admin/revenue/RevenueClient.tsx"
+    },
+    {
+      "from": "/admin/vault",
+      "to": "/vault",
+      "sourceFile": "app/admin/vault/VaultAdminClient.tsx"
+    },
+    {
+      "from": "/admin/youtube",
+      "to": "/watch",
+      "sourceFile": "app/admin/youtube/YouTubeAdminClient.tsx"
+    },
+    {
+      "from": "/agent-team",
+      "to": "/start",
+      "sourceFile": "app/agent-team/page.tsx"
+    },
+    {
+      "from": "/agent-team",
+      "to": "/guides/agent-collective-operating-system",
+      "sourceFile": "app/agent-team/page.tsx"
+    },
+    {
+      "from": "/agent-team",
+      "to": "/guides/skills-library-playbook",
+      "sourceFile": "app/agent-team/page.tsx"
+    },
+    {
+      "from": "/agent-team",
+      "to": "/start",
+      "sourceFile": "app/agent-team/page.tsx"
+    },
+    {
+      "from": "/agents",
+      "to": "/products/soulbook",
+      "sourceFile": "app/agents/page.tsx"
+    },
+    {
+      "from": "/agents",
+      "to": "/products",
+      "sourceFile": "app/agents/page.tsx"
+    },
+    {
+      "from": "/ai-architect/ai-coe-hub",
+      "to": "/blog/production-llm-agents-oci-part-1-architecture",
+      "sourceFile": "app/ai-architect/ai-coe-hub/page.tsx"
+    },
+    {
+      "from": "/ai-architect/ai-coe-hub",
+      "to": "/contact",
+      "sourceFile": "app/ai-architect/ai-coe-hub/page.tsx"
+    },
+    {
+      "from": "/ai-architect/ai-coe-hub",
+      "to": "/ai-architect-academy",
+      "sourceFile": "app/ai-architect/ai-coe-hub/page.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/ai-architect-academy",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/prototypes",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/ai-architect-academy",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/ai-architect-academy",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/prototype/frankx-ai-platform",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/prototype/arcanea-game-engine",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/prototypes",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/ai-architect/multi-cloud-comparison",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/ai-architect-academy",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect",
+      "to": "/contact",
+      "sourceFile": "app/ai-architect/AIArchitectClient.tsx"
+    },
+    {
+      "from": "/ai-architect/multi-cloud-comparison",
+      "to": "/",
+      "sourceFile": "app/ai-architect/multi-cloud-comparison/page.tsx"
+    },
+    {
+      "from": "/ai-architect/multi-cloud-comparison",
+      "to": "/contact",
+      "sourceFile": "app/ai-architect/multi-cloud-comparison/page.tsx"
+    },
+    {
+      "from": "/ai-architect-academy",
+      "to": "/prototypes",
+      "sourceFile": "app/ai-architect-academy/page.tsx"
+    },
+    {
+      "from": "/ai-architect-academy",
+      "to": "/developers",
+      "sourceFile": "app/ai-architect-academy/page.tsx"
+    },
+    {
+      "from": "/ai-architect-academy",
+      "to": "/ai-architecture/multi-cloud-comparison",
+      "sourceFile": "app/ai-architect-academy/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/blueprints",
+      "to": "/ai-architecture",
+      "sourceFile": "app/ai-architecture/blueprints/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/blueprints",
+      "to": "/ai-architecture/prototypes",
+      "sourceFile": "app/ai-architecture/blueprints/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/multi-cloud-comparison",
+      "to": "/",
+      "sourceFile": "app/ai-architecture/multi-cloud-comparison/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/multi-cloud-comparison",
+      "to": "/contact",
+      "sourceFile": "app/ai-architecture/multi-cloud-comparison/page.tsx"
+    },
+    {
+      "from": "/ai-architecture",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/ai-architecture/page.tsx"
+    },
+    {
+      "from": "/ai-architecture",
+      "to": "/ai-architecture/prototypes",
+      "sourceFile": "app/ai-architecture/page.tsx"
+    },
+    {
+      "from": "/ai-architecture",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/ai-architecture/page.tsx"
+    },
+    {
+      "from": "/ai-architecture",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/ai-architecture/page.tsx"
+    },
+    {
+      "from": "/ai-architecture",
+      "to": "/ai-architecture/templates",
+      "sourceFile": "app/ai-architecture/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/prototypes",
+      "to": "/ai-architecture",
+      "sourceFile": "app/ai-architecture/prototypes/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/prototypes",
+      "to": "/ai-architecture/templates",
+      "sourceFile": "app/ai-architecture/prototypes/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/templates",
+      "to": "/ai-architecture",
+      "sourceFile": "app/ai-architecture/templates/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/templates",
+      "to": "/newsletter",
+      "sourceFile": "app/ai-architecture/templates/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/tools",
+      "to": "/ai-architecture",
+      "sourceFile": "app/ai-architecture/tools/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/[slug]",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/ai-architecture/[slug]/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/[slug]",
+      "to": "/ai-architecture/prototypes",
+      "sourceFile": "app/ai-architecture/[slug]/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/[slug]",
+      "to": "/ai-architecture/templates",
+      "sourceFile": "app/ai-architecture/[slug]/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/[slug]",
+      "to": "/ai-architecture/prototypes",
+      "sourceFile": "app/ai-architecture/[slug]/page.tsx"
+    },
+    {
+      "from": "/ai-architecture/[slug]",
+      "to": "/ai-architecture/templates",
+      "sourceFile": "app/ai-architecture/[slug]/page.tsx"
+    },
+    {
+      "from": "/ai-architectures",
+      "to": "/prototypes",
+      "sourceFile": "app/ai-architectures/page.tsx"
+    },
+    {
+      "from": "/ai-architectures",
+      "to": "/ai-architecture",
+      "sourceFile": "app/ai-architectures/page.tsx"
+    },
+    {
+      "from": "/ai-architectures",
+      "to": "/ai-architecture",
+      "sourceFile": "app/ai-architectures/page.tsx"
+    },
+    {
+      "from": "/ai-architectures",
+      "to": "/contact",
+      "sourceFile": "app/ai-architectures/page.tsx"
+    },
+    {
+      "from": "/ai-art",
+      "to": "/",
+      "sourceFile": "app/ai-art/page.tsx"
+    },
+    {
+      "from": "/ai-art",
+      "to": "/guides",
+      "sourceFile": "app/ai-art/page.tsx"
+    },
+    {
+      "from": "/ai-art",
+      "to": "/products/creative-ai-toolkit",
+      "sourceFile": "app/ai-art/page.tsx"
+    },
+    {
+      "from": "/ai-assessment",
+      "to": "/products",
+      "sourceFile": "app/ai-assessment/page.tsx"
+    },
+    {
+      "from": "/ai-evolution",
+      "to": "/research",
+      "sourceFile": "app/ai-evolution/page.tsx"
+    },
+    {
+      "from": "/ai-evolution",
+      "to": "/acos",
+      "sourceFile": "app/ai-evolution/page.tsx"
+    },
+    {
+      "from": "/ai-evolution",
+      "to": "/research",
+      "sourceFile": "app/ai-evolution/page.tsx"
+    },
+    {
+      "from": "/ai-ops/accelerator-packs",
+      "to": "/ai-ops",
+      "sourceFile": "app/ai-ops/accelerator-packs/page.tsx"
+    },
+    {
+      "from": "/ai-ops/agi-ready",
+      "to": "/ai-ops",
+      "sourceFile": "app/ai-ops/agi-ready/page.tsx"
+    },
+    {
+      "from": "/ai-ops/architecture",
+      "to": "/ai-ops",
+      "sourceFile": "app/ai-ops/architecture/page.tsx"
+    },
+    {
+      "from": "/ai-ops/maturity",
+      "to": "/ai-ops",
+      "sourceFile": "app/ai-ops/maturity/page.tsx"
+    },
+    {
+      "from": "/ai-ops/models-2026",
+      "to": "/ai-ops",
+      "sourceFile": "app/ai-ops/models-2026/page.tsx"
+    },
+    {
+      "from": "/ai-ops/models-2026",
+      "to": "/blog/claude-opus-4-6-analysis-2026",
+      "sourceFile": "app/ai-ops/models-2026/page.tsx"
+    },
+    {
+      "from": "/ai-ops/models-2026",
+      "to": "/research/agent-benchmarks",
+      "sourceFile": "app/ai-ops/models-2026/page.tsx"
+    },
+    {
+      "from": "/ai-ops/models-2026",
+      "to": "/blog/claude-opus-4-6-analysis-2026",
+      "sourceFile": "app/ai-ops/models-2026/page.tsx"
+    },
+    {
+      "from": "/ai-ops/models-2026",
+      "to": "/research/enterprise-ai",
+      "sourceFile": "app/ai-ops/models-2026/page.tsx"
+    },
+    {
+      "from": "/ai-ops/models-2026",
+      "to": "/research/agent-benchmarks",
+      "sourceFile": "app/ai-ops/models-2026/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/accelerator-packs",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/accelerator-packs",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/accelerator-packs",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/accelerator-packs",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/accelerator-packs",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/models-2026",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/architecture",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/patterns",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/maturity",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops",
+      "to": "/ai-ops/agi-ready",
+      "sourceFile": "app/ai-ops/page.tsx"
+    },
+    {
+      "from": "/ai-ops/patterns",
+      "to": "/ai-ops",
+      "sourceFile": "app/ai-ops/patterns/page.tsx"
+    },
+    {
+      "from": "/ai-world",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/ai-world/page.tsx"
+    },
+    {
+      "from": "/ai-world",
+      "to": "/research",
+      "sourceFile": "app/ai-world/page.tsx"
+    },
+    {
+      "from": "/ai-world",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "app/ai-world/page.tsx"
+    },
+    {
+      "from": "/alea/katze",
+      "to": "/alea",
+      "sourceFile": "app/alea/katze/page.tsx"
+    },
+    {
+      "from": "/alea/katze",
+      "to": "/alea",
+      "sourceFile": "app/alea/katze/page.tsx"
+    },
+    {
+      "from": "/alea/musik/geige",
+      "to": "/alea",
+      "sourceFile": "app/alea/musik/geige/page.tsx"
+    },
+    {
+      "from": "/alea/musik/geige",
+      "to": "/alea/musik/klavier",
+      "sourceFile": "app/alea/musik/geige/page.tsx"
+    },
+    {
+      "from": "/alea/musik/geige",
+      "to": "/alea/musik",
+      "sourceFile": "app/alea/musik/geige/page.tsx"
+    },
+    {
+      "from": "/alea/musik/geige",
+      "to": "/alea",
+      "sourceFile": "app/alea/musik/geige/page.tsx"
+    },
+    {
+      "from": "/alea/musik/klavier",
+      "to": "/alea",
+      "sourceFile": "app/alea/musik/klavier/page.tsx"
+    },
+    {
+      "from": "/alea/musik/klavier",
+      "to": "/alea/musik/geige",
+      "sourceFile": "app/alea/musik/klavier/page.tsx"
+    },
+    {
+      "from": "/alea/musik/klavier",
+      "to": "/alea/musik",
+      "sourceFile": "app/alea/musik/klavier/page.tsx"
+    },
+    {
+      "from": "/alea/musik/klavier",
+      "to": "/alea",
+      "sourceFile": "app/alea/musik/klavier/page.tsx"
+    },
+    {
+      "from": "/alea/musik",
+      "to": "/alea",
+      "sourceFile": "app/alea/musik/page.tsx"
+    },
+    {
+      "from": "/alea",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/alea/page.tsx"
+    },
+    {
+      "from": "/alea",
+      "to": "/music/learn/violin",
+      "sourceFile": "app/alea/page.tsx"
+    },
+    {
+      "from": "/alea",
+      "to": "/music/learn",
+      "sourceFile": "app/alea/page.tsx"
+    },
+    {
+      "from": "/alea",
+      "to": "/music/learn",
+      "sourceFile": "app/alea/page.tsx"
+    },
+    {
+      "from": "/alea",
+      "to": "/",
+      "sourceFile": "app/alea/page.tsx"
+    },
+    {
+      "from": "/artists/[slug]/client.tsx",
+      "to": "/music-lab",
+      "sourceFile": "app/artists/[slug]/client.tsx"
+    },
+    {
+      "from": "/assess/ai-coe",
+      "to": "/research/personal-ai-coe",
+      "sourceFile": "app/assess/ai-coe/page.tsx"
+    },
+    {
+      "from": "/assess/ai-coe",
+      "to": "/prompt-library",
+      "sourceFile": "app/assess/ai-coe/page.tsx"
+    },
+    {
+      "from": "/assess/ai-coe",
+      "to": "/blog/why-everyone-needs-personal-ai-coe",
+      "sourceFile": "app/assess/ai-coe/page.tsx"
+    },
+    {
+      "from": "/assessment/advanced",
+      "to": "/dashboard",
+      "sourceFile": "app/assessment/advanced/page.tsx"
+    },
+    {
+      "from": "/assessment/advanced",
+      "to": "/products",
+      "sourceFile": "app/assessment/advanced/page.tsx"
+    },
+    {
+      "from": "/assessment/creative",
+      "to": "/products/creation-chronicles",
+      "sourceFile": "app/assessment/creative/page.tsx"
+    },
+    {
+      "from": "/assessment/creative",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/assessment/creative/page.tsx"
+    },
+    {
+      "from": "/assessment/creative",
+      "to": "/assessment",
+      "sourceFile": "app/assessment/creative/page.tsx"
+    },
+    {
+      "from": "/assessment",
+      "to": "/ai-assessment",
+      "sourceFile": "app/assessment/page.tsx"
+    },
+    {
+      "from": "/assessment",
+      "to": "/ai-assessment",
+      "sourceFile": "app/assessment/page.tsx"
+    },
+    {
+      "from": "/assessment",
+      "to": "/contact",
+      "sourceFile": "app/assessment/page.tsx"
+    },
+    {
+      "from": "/auctions",
+      "to": "/",
+      "sourceFile": "app/auctions/page.tsx"
+    },
+    {
+      "from": "/auctions",
+      "to": "/shop",
+      "sourceFile": "app/auctions/page.tsx"
+    },
+    {
+      "from": "/auctions/[id]",
+      "to": "/",
+      "sourceFile": "app/auctions/[id]/page.tsx"
+    },
+    {
+      "from": "/auctions/[id]",
+      "to": "/auctions",
+      "sourceFile": "app/auctions/[id]/page.tsx"
+    },
+    {
+      "from": "/automation",
+      "to": "/n8n",
+      "sourceFile": "app/automation/page.tsx"
+    },
+    {
+      "from": "/automation",
+      "to": "/orchestration",
+      "sourceFile": "app/automation/page.tsx"
+    },
+    {
+      "from": "/automation",
+      "to": "/blog",
+      "sourceFile": "app/automation/page.tsx"
+    },
+    {
+      "from": "/blog",
+      "to": "/youtube",
+      "sourceFile": "app/blog/BlogPageClient.tsx"
+    },
+    {
+      "from": "/blog",
+      "to": "/opus-pro",
+      "sourceFile": "app/blog/BlogPageClient.tsx"
+    },
+    {
+      "from": "/blog",
+      "to": "/newsletter",
+      "sourceFile": "app/blog/BlogPageClient.tsx"
+    },
+    {
+      "from": "/blog/error.tsx",
+      "to": "/blog",
+      "sourceFile": "app/blog/error.tsx"
+    },
+    {
+      "from": "/blog/intelligence-revolution-2025",
+      "to": "/blog",
+      "sourceFile": "app/blog/intelligence-revolution-2025/page.tsx"
+    },
+    {
+      "from": "/blog/intelligence-revolution-2025",
+      "to": "/ai-architect",
+      "sourceFile": "app/blog/intelligence-revolution-2025/page.tsx"
+    },
+    {
+      "from": "/blog/intelligence-revolution-2025",
+      "to": "/founder-playbook",
+      "sourceFile": "app/blog/intelligence-revolution-2025/page.tsx"
+    },
+    {
+      "from": "/blog/intelligence-revolution-2025",
+      "to": "/blog",
+      "sourceFile": "app/blog/intelligence-revolution-2025/page.tsx"
+    },
+    {
+      "from": "/blog/intelligence-revolution-2025",
+      "to": "/blog",
+      "sourceFile": "app/blog/intelligence-revolution-2025/page.tsx"
+    },
+    {
+      "from": "/blog/soul-frequency-framework",
+      "to": "/blog",
+      "sourceFile": "app/blog/soul-frequency-framework/page.tsx"
+    },
+    {
+      "from": "/blog/soul-frequency-framework",
+      "to": "/ai-assessment",
+      "sourceFile": "app/blog/soul-frequency-framework/page.tsx"
+    },
+    {
+      "from": "/blog/soul-frequency-framework",
+      "to": "/resources",
+      "sourceFile": "app/blog/soul-frequency-framework/page.tsx"
+    },
+    {
+      "from": "/blog/soul-frequency-framework",
+      "to": "/blog/intelligence-revolution-2025",
+      "sourceFile": "app/blog/soul-frequency-framework/page.tsx"
+    },
+    {
+      "from": "/blog/soul-frequency-framework",
+      "to": "/blog",
+      "sourceFile": "app/blog/soul-frequency-framework/page.tsx"
+    },
+    {
+      "from": "/blueprint/[slug]",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/blueprint/[slug]/page.tsx"
+    },
+    {
+      "from": "/blueprint/[slug]",
+      "to": "/ai-architecture/prototypes",
+      "sourceFile": "app/blueprint/[slug]/page.tsx"
+    },
+    {
+      "from": "/blueprint/[slug]",
+      "to": "/ai-architecture/templates",
+      "sourceFile": "app/blueprint/[slug]/page.tsx"
+    },
+    {
+      "from": "/blueprint/[slug]",
+      "to": "/ai-architecture/prototypes",
+      "sourceFile": "app/blueprint/[slug]/page.tsx"
+    },
+    {
+      "from": "/blueprint/[slug]",
+      "to": "/ai-architecture/templates",
+      "sourceFile": "app/blueprint/[slug]/page.tsx"
+    },
+    {
+      "from": "/books",
+      "to": "/library",
+      "sourceFile": "app/books/page.tsx"
+    },
+    {
+      "from": "/books/[bookSlug]",
+      "to": "/books",
+      "sourceFile": "app/books/[bookSlug]/page.tsx"
+    },
+    {
+      "from": "/business-plan",
+      "to": "/",
+      "sourceFile": "app/business-plan/page.tsx"
+    },
+    {
+      "from": "/business-plan",
+      "to": "/inner-circle",
+      "sourceFile": "app/business-plan/page.tsx"
+    },
+    {
+      "from": "/business-plan",
+      "to": "/coaching",
+      "sourceFile": "app/business-plan/page.tsx"
+    },
+    {
+      "from": "/business-plan",
+      "to": "/products",
+      "sourceFile": "app/business-plan/page.tsx"
+    },
+    {
+      "from": "/changelog",
+      "to": "/",
+      "sourceFile": "app/changelog/page.tsx"
+    },
+    {
+      "from": "/changelog",
+      "to": "/feed",
+      "sourceFile": "app/changelog/page.tsx"
+    },
+    {
+      "from": "/changelog",
+      "to": "/rss.xml",
+      "sourceFile": "app/changelog/page.tsx"
+    },
+    {
+      "from": "/checkout/cancel",
+      "to": "/products",
+      "sourceFile": "app/checkout/cancel/page.tsx"
+    },
+    {
+      "from": "/checkout/success",
+      "to": "/resources",
+      "sourceFile": "app/checkout/success/page.tsx"
+    },
+    {
+      "from": "/checkout/success",
+      "to": "/",
+      "sourceFile": "app/checkout/success/page.tsx"
+    },
+    {
+      "from": "/collectibles/instruments",
+      "to": "/",
+      "sourceFile": "app/collectibles/instruments/page.tsx"
+    },
+    {
+      "from": "/collectibles/instruments",
+      "to": "/shop",
+      "sourceFile": "app/collectibles/instruments/page.tsx"
+    },
+    {
+      "from": "/collectibles/instruments",
+      "to": "/collectibles",
+      "sourceFile": "app/collectibles/instruments/page.tsx"
+    },
+    {
+      "from": "/collectibles/instruments",
+      "to": "/gallery/instruments",
+      "sourceFile": "app/collectibles/instruments/page.tsx"
+    },
+    {
+      "from": "/collectibles",
+      "to": "/",
+      "sourceFile": "app/collectibles/page.tsx"
+    },
+    {
+      "from": "/collectibles",
+      "to": "/shop",
+      "sourceFile": "app/collectibles/page.tsx"
+    },
+    {
+      "from": "/collectibles/trading-cards",
+      "to": "/",
+      "sourceFile": "app/collectibles/trading-cards/page.tsx"
+    },
+    {
+      "from": "/collectibles/trading-cards",
+      "to": "/shop",
+      "sourceFile": "app/collectibles/trading-cards/page.tsx"
+    },
+    {
+      "from": "/collectibles/trading-cards",
+      "to": "/collectibles",
+      "sourceFile": "app/collectibles/trading-cards/page.tsx"
+    },
+    {
+      "from": "/community",
+      "to": "/inner-circle",
+      "sourceFile": "app/community/page.tsx"
+    },
+    {
+      "from": "/community",
+      "to": "/blog",
+      "sourceFile": "app/community/page.tsx"
+    },
+    {
+      "from": "/contact",
+      "to": "/agentic-ai-center",
+      "sourceFile": "app/contact/page.tsx"
+    },
+    {
+      "from": "/content-strategy/video-creation",
+      "to": "/admin/youtube",
+      "sourceFile": "app/content-strategy/video-creation/VideoCreationClient.tsx"
+    },
+    {
+      "from": "/content-studio",
+      "to": "/dashboard",
+      "sourceFile": "app/content-studio/page.tsx"
+    },
+    {
+      "from": "/courses/build-your-ai-creator-os/module-1",
+      "to": "/courses/build-your-ai-creator-os",
+      "sourceFile": "app/courses/build-your-ai-creator-os/module-1/page.tsx"
+    },
+    {
+      "from": "/courses/build-your-ai-creator-os/module-1",
+      "to": "/assess",
+      "sourceFile": "app/courses/build-your-ai-creator-os/module-1/page.tsx"
+    },
+    {
+      "from": "/courses/build-your-ai-creator-os/module-1",
+      "to": "/acos",
+      "sourceFile": "app/courses/build-your-ai-creator-os/module-1/page.tsx"
+    },
+    {
+      "from": "/courses/build-your-ai-creator-os/module-1",
+      "to": "/courses/build-your-ai-creator-os",
+      "sourceFile": "app/courses/build-your-ai-creator-os/module-1/page.tsx"
+    },
+    {
+      "from": "/courses/build-your-ai-creator-os",
+      "to": "/courses/build-your-ai-creator-os/module-1",
+      "sourceFile": "app/courses/build-your-ai-creator-os/page.tsx"
+    },
+    {
+      "from": "/courses/build-your-ai-creator-os",
+      "to": "/courses/build-your-ai-creator-os/module-1",
+      "sourceFile": "app/courses/build-your-ai-creator-os/page.tsx"
+    },
+    {
+      "from": "/courses",
+      "to": "/courses/conscious-ai-foundations",
+      "sourceFile": "app/courses/page.tsx"
+    },
+    {
+      "from": "/courses",
+      "to": "/students",
+      "sourceFile": "app/courses/page.tsx"
+    },
+    {
+      "from": "/courses/[slug]",
+      "to": "/courses",
+      "sourceFile": "app/courses/[slug]/page.tsx"
+    },
+    {
+      "from": "/creation-chronicles",
+      "to": "/blog",
+      "sourceFile": "app/creation-chronicles/page.tsx"
+    },
+    {
+      "from": "/creation-chronicles",
+      "to": "/blog",
+      "sourceFile": "app/creation-chronicles/page.tsx"
+    },
+    {
+      "from": "/creators",
+      "to": "/products/generative-creator-os",
+      "sourceFile": "app/creators/page.tsx"
+    },
+    {
+      "from": "/creators",
+      "to": "/prompt-library/music-creation",
+      "sourceFile": "app/creators/page.tsx"
+    },
+    {
+      "from": "/creators",
+      "to": "/products/generative-creator-os",
+      "sourceFile": "app/creators/page.tsx"
+    },
+    {
+      "from": "/creators",
+      "to": "/prompt-library/music-creation",
+      "sourceFile": "app/creators/page.tsx"
+    },
+    {
+      "from": "/creators",
+      "to": "/prompt-library/writing",
+      "sourceFile": "app/creators/page.tsx"
+    },
+    {
+      "from": "/creators",
+      "to": "/prompt-library/image-generation",
+      "sourceFile": "app/creators/page.tsx"
+    },
+    {
+      "from": "/dashboard",
+      "to": "/goals",
+      "sourceFile": "app/dashboard/page.tsx"
+    },
+    {
+      "from": "/dashboard",
+      "to": "/achievements",
+      "sourceFile": "app/dashboard/page.tsx"
+    },
+    {
+      "from": "/dashboard",
+      "to": "/tools",
+      "sourceFile": "app/dashboard/page.tsx"
+    },
+    {
+      "from": "/dashboard",
+      "to": "/community",
+      "sourceFile": "app/dashboard/page.tsx"
+    },
+    {
+      "from": "/dashboard",
+      "to": "/courses",
+      "sourceFile": "app/dashboard/page.tsx"
+    },
+    {
+      "from": "/dashboard",
+      "to": "/assessment",
+      "sourceFile": "app/dashboard/page.tsx"
+    },
+    {
+      "from": "/de/valentines-day",
+      "to": "/valentines-day",
+      "sourceFile": "app/de/valentines-day/page.tsx"
+    },
+    {
+      "from": "/design-lab/acos",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/acos/page.tsx"
+    },
+    {
+      "from": "/design-lab/acos",
+      "to": "/acos",
+      "sourceFile": "app/design-lab/acos/page.tsx"
+    },
+    {
+      "from": "/design-lab/acos",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/acos/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea/iridescence",
+      "to": "/design-lab/arcanea",
+      "sourceFile": "app/design-lab/arcanea/iridescence/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea/liquid-glass",
+      "to": "/design-lab/arcanea",
+      "sourceFile": "app/design-lab/arcanea/liquid-glass/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea/liquid-glass",
+      "to": "/docs/design/LIQUID_GLASS_SYSTEM.md",
+      "sourceFile": "app/design-lab/arcanea/liquid-glass/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea/liquid-glass",
+      "to": "/docs/design/ARCANEA_VISUAL_LANGUAGE.md",
+      "sourceFile": "app/design-lab/arcanea/liquid-glass/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea/liquid-glass",
+      "to": "/components/liquid-glass/README.md",
+      "sourceFile": "app/design-lab/arcanea/liquid-glass/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/arcanea/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea",
+      "to": "/books",
+      "sourceFile": "app/design-lab/arcanea/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea",
+      "to": "/books",
+      "sourceFile": "app/design-lab/arcanea/page.tsx"
+    },
+    {
+      "from": "/design-lab/arcanea",
+      "to": "/vault",
+      "sourceFile": "app/design-lab/arcanea/page.tsx"
+    },
+    {
+      "from": "/design-lab/brand",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/brand/page.tsx"
+    },
+    {
+      "from": "/design-lab/design-excellence",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/design-excellence/page.tsx"
+    },
+    {
+      "from": "/design-lab/design-excellence",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/design-excellence/page.tsx"
+    },
+    {
+      "from": "/design-lab/design-excellence",
+      "to": "/design-lab/frontend-design",
+      "sourceFile": "app/design-lab/design-excellence/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/family-tree/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v1",
+      "to": "/design-lab/family-tree",
+      "sourceFile": "app/design-lab/family-tree/v1/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v11",
+      "to": "/design-lab/family-tree",
+      "sourceFile": "app/design-lab/family-tree/v11/FamilyTreeV11Inner.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v11",
+      "to": "/design-lab/family-tree",
+      "sourceFile": "app/design-lab/family-tree/v11/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v2",
+      "to": "/design-lab/family-tree",
+      "sourceFile": "app/design-lab/family-tree/v2/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v3",
+      "to": "/design-lab/family-tree",
+      "sourceFile": "app/design-lab/family-tree/v3/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v4",
+      "to": "/design-lab/family-tree",
+      "sourceFile": "app/design-lab/family-tree/v4/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v5",
+      "to": "/design-lab/family-tree",
+      "sourceFile": "app/design-lab/family-tree/v5/page.tsx"
+    },
+    {
+      "from": "/design-lab/family-tree/v7",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/family-tree/v7/page.tsx"
+    },
+    {
+      "from": "/design-lab/frontend-design",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/frontend-design/page.tsx"
+    },
+    {
+      "from": "/design-lab/frontend-design",
+      "to": "/design-lab/design-excellence",
+      "sourceFile": "app/design-lab/frontend-design/page.tsx"
+    },
+    {
+      "from": "/design-lab/frontend-design",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/frontend-design/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature",
+      "to": "/design-lab/nature/variants",
+      "sourceFile": "app/design-lab/nature/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/nature/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants/homepage",
+      "to": "/start",
+      "sourceFile": "app/design-lab/nature/variants/homepage/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants/homepage",
+      "to": "/music-lab",
+      "sourceFile": "app/design-lab/nature/variants/homepage/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants/homepage",
+      "to": "/",
+      "sourceFile": "app/design-lab/nature/variants/homepage/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants/homepage",
+      "to": "/design-lab/nature/variants",
+      "sourceFile": "app/design-lab/nature/variants/homepage/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/nature/variants/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants",
+      "to": "/design-lab/nature",
+      "sourceFile": "app/design-lab/nature/variants/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants",
+      "to": "/design-lab/nature/variants/homepage",
+      "sourceFile": "app/design-lab/nature/variants/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants",
+      "to": "/design-lab/nature",
+      "sourceFile": "app/design-lab/nature/variants/page.tsx"
+    },
+    {
+      "from": "/design-lab/nature/variants",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/nature/variants/page.tsx"
+    },
+    {
+      "from": "/design-lab/newsletter",
+      "to": "/newsletter",
+      "sourceFile": "app/design-lab/newsletter/page.tsx"
+    },
+    {
+      "from": "/design-lab/newsletter",
+      "to": "/newsletter",
+      "sourceFile": "app/design-lab/newsletter/page.tsx"
+    },
+    {
+      "from": "/design-lab/newsletter",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/newsletter/page.tsx"
+    },
+    {
+      "from": "/design-lab",
+      "to": "/plan/design-lab",
+      "sourceFile": "app/design-lab/page.tsx"
+    },
+    {
+      "from": "/design-lab",
+      "to": "/page",
+      "sourceFile": "app/design-lab/page.tsx"
+    },
+    {
+      "from": "/design-lab",
+      "to": "/products",
+      "sourceFile": "app/design-lab/page.tsx"
+    },
+    {
+      "from": "/design-lab",
+      "to": "/plan",
+      "sourceFile": "app/design-lab/page.tsx"
+    },
+    {
+      "from": "/design-lab",
+      "to": "/inner-circle",
+      "sourceFile": "app/design-lab/page.tsx"
+    },
+    {
+      "from": "/design-lab/strategy",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/strategy/page.tsx"
+    },
+    {
+      "from": "/design-lab/v0",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/v0/page.tsx"
+    },
+    {
+      "from": "/design-lab/v0",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/v0/page.tsx"
+    },
+    {
+      "from": "/design-lab/[slug]",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/[slug]/DesignLabExperimentPage.tsx"
+    },
+    {
+      "from": "/design-lab/[slug]",
+      "to": "/design-lab",
+      "sourceFile": "app/design-lab/[slug]/DesignLabExperimentPage.tsx"
+    },
+    {
+      "from": "/design-lab/[slug]",
+      "to": "/products",
+      "sourceFile": "app/design-lab/[slug]/DesignLabExperimentPage.tsx"
+    },
+    {
+      "from": "/developers",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "app/developers/page.tsx"
+    },
+    {
+      "from": "/developers",
+      "to": "/prompt-library/agent-development",
+      "sourceFile": "app/developers/page.tsx"
+    },
+    {
+      "from": "/developers",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "app/developers/page.tsx"
+    },
+    {
+      "from": "/developers",
+      "to": "/prompt-library/agent-development",
+      "sourceFile": "app/developers/page.tsx"
+    },
+    {
+      "from": "/developers",
+      "to": "/prompt-library/coding",
+      "sourceFile": "app/developers/page.tsx"
+    },
+    {
+      "from": "/developers",
+      "to": "/blog",
+      "sourceFile": "app/developers/page.tsx"
+    },
+    {
+      "from": "/downloads/preview/soulbook",
+      "to": "/downloads",
+      "sourceFile": "app/downloads/preview/soulbook/page.tsx"
+    },
+    {
+      "from": "/downloads/preview/vibe-os",
+      "to": "/downloads",
+      "sourceFile": "app/downloads/preview/vibe-os/page.tsx"
+    },
+    {
+      "from": "/drops",
+      "to": "/inner-circle",
+      "sourceFile": "app/drops/page.tsx"
+    },
+    {
+      "from": "/drops",
+      "to": "/vault",
+      "sourceFile": "app/drops/page.tsx"
+    },
+    {
+      "from": "/drops",
+      "to": "/skills",
+      "sourceFile": "app/drops/page.tsx"
+    },
+    {
+      "from": "/drops",
+      "to": "/vault",
+      "sourceFile": "app/drops/page.tsx"
+    },
+    {
+      "from": "/drops",
+      "to": "/inner-circle",
+      "sourceFile": "app/drops/page.tsx"
+    },
+    {
+      "from": "/error.tsx",
+      "to": "/",
+      "sourceFile": "app/error.tsx"
+    },
+    {
+      "from": "/family",
+      "to": "/opa-und-oma",
+      "sourceFile": "app/family/page.tsx"
+    },
+    {
+      "from": "/family/tree",
+      "to": "/family",
+      "sourceFile": "app/family/tree/page.tsx"
+    },
+    {
+      "from": "/feed",
+      "to": "/insights",
+      "sourceFile": "app/feed/page.tsx"
+    },
+    {
+      "from": "/feed",
+      "to": "/roadmap",
+      "sourceFile": "app/feed/page.tsx"
+    },
+    {
+      "from": "/feed",
+      "to": "/newsletter",
+      "sourceFile": "app/feed/page.tsx"
+    },
+    {
+      "from": "/for/architects",
+      "to": "/ai-architecture",
+      "sourceFile": "app/for/architects/page.tsx"
+    },
+    {
+      "from": "/for/architects",
+      "to": "/research",
+      "sourceFile": "app/for/architects/page.tsx"
+    },
+    {
+      "from": "/for/architects",
+      "to": "/blog",
+      "sourceFile": "app/for/architects/page.tsx"
+    },
+    {
+      "from": "/for/architects",
+      "to": "/ai-architecture",
+      "sourceFile": "app/for/architects/page.tsx"
+    },
+    {
+      "from": "/for/architects",
+      "to": "/acos",
+      "sourceFile": "app/for/architects/page.tsx"
+    },
+    {
+      "from": "/for/architects",
+      "to": "/research",
+      "sourceFile": "app/for/architects/page.tsx"
+    },
+    {
+      "from": "/for/creators",
+      "to": "/music-lab",
+      "sourceFile": "app/for/creators/page.tsx"
+    },
+    {
+      "from": "/for/creators",
+      "to": "/prompt-library",
+      "sourceFile": "app/for/creators/page.tsx"
+    },
+    {
+      "from": "/for/creators",
+      "to": "/blog",
+      "sourceFile": "app/for/creators/page.tsx"
+    },
+    {
+      "from": "/for/creators",
+      "to": "/music-lab",
+      "sourceFile": "app/for/creators/page.tsx"
+    },
+    {
+      "from": "/for/creators",
+      "to": "/prompt-library",
+      "sourceFile": "app/for/creators/page.tsx"
+    },
+    {
+      "from": "/for/creators",
+      "to": "/acos",
+      "sourceFile": "app/for/creators/page.tsx"
+    },
+    {
+      "from": "/founder-playbook",
+      "to": "/guides/modern-guide",
+      "sourceFile": "app/founder-playbook/page.tsx"
+    },
+    {
+      "from": "/founder-playbook",
+      "to": "/templates",
+      "sourceFile": "app/founder-playbook/page.tsx"
+    },
+    {
+      "from": "/founder-playbook",
+      "to": "/guides/modern-guide",
+      "sourceFile": "app/founder-playbook/page.tsx"
+    },
+    {
+      "from": "/founder-playbook",
+      "to": "/templates",
+      "sourceFile": "app/founder-playbook/page.tsx"
+    },
+    {
+      "from": "/frankx",
+      "to": "/infogenius",
+      "sourceFile": "app/frankx/page.tsx"
+    },
+    {
+      "from": "/frankx",
+      "to": "/about",
+      "sourceFile": "app/frankx/page.tsx"
+    },
+    {
+      "from": "/frankx",
+      "to": "/infogenius",
+      "sourceFile": "app/frankx/page.tsx"
+    },
+    {
+      "from": "/frankx",
+      "to": "/infogenius",
+      "sourceFile": "app/frankx/page.tsx"
+    },
+    {
+      "from": "/frankx",
+      "to": "/agents",
+      "sourceFile": "app/frankx/page.tsx"
+    },
+    {
+      "from": "/frankx-investment-dashboard",
+      "to": "/investor",
+      "sourceFile": "app/frankx-investment-dashboard/page.tsx"
+    },
+    {
+      "from": "/gallery/heroes",
+      "to": "/gallery",
+      "sourceFile": "app/gallery/heroes/page.tsx"
+    },
+    {
+      "from": "/gallery/instruments",
+      "to": "/",
+      "sourceFile": "app/gallery/instruments/page.tsx"
+    },
+    {
+      "from": "/gallery/instruments",
+      "to": "/gallery",
+      "sourceFile": "app/gallery/instruments/page.tsx"
+    },
+    {
+      "from": "/gallery/instruments",
+      "to": "/gallery",
+      "sourceFile": "app/gallery/instruments/page.tsx"
+    },
+    {
+      "from": "/gallery",
+      "to": "/",
+      "sourceFile": "app/gallery/page.tsx"
+    },
+    {
+      "from": "/gallery",
+      "to": "/vault",
+      "sourceFile": "app/gallery/page.tsx"
+    },
+    {
+      "from": "/games/memory-match",
+      "to": "/games",
+      "sourceFile": "app/games/memory-match/page.tsx"
+    },
+    {
+      "from": "/games/memory-match",
+      "to": "/games",
+      "sourceFile": "app/games/memory-match/page.tsx"
+    },
+    {
+      "from": "/games",
+      "to": "/research/agentic-game-development",
+      "sourceFile": "app/games/page.tsx"
+    },
+    {
+      "from": "/games",
+      "to": "/music-lab",
+      "sourceFile": "app/games/page.tsx"
+    },
+    {
+      "from": "/games",
+      "to": "/research/agentic-game-development",
+      "sourceFile": "app/games/page.tsx"
+    },
+    {
+      "from": "/games",
+      "to": "/music-lab",
+      "sourceFile": "app/games/page.tsx"
+    },
+    {
+      "from": "/games",
+      "to": "/developers",
+      "sourceFile": "app/games/page.tsx"
+    },
+    {
+      "from": "/gencreator/blueprints",
+      "to": "/gencreator/soul",
+      "sourceFile": "app/gencreator/blueprints/page.tsx"
+    },
+    {
+      "from": "/gencreator/blueprints",
+      "to": "/gencreator",
+      "sourceFile": "app/gencreator/blueprints/page.tsx"
+    },
+    {
+      "from": "/gencreator/handbook",
+      "to": "/gencreator/blueprints",
+      "sourceFile": "app/gencreator/handbook/page.tsx"
+    },
+    {
+      "from": "/gencreator/handbook",
+      "to": "/gencreator",
+      "sourceFile": "app/gencreator/handbook/page.tsx"
+    },
+    {
+      "from": "/gencreator/manifesto",
+      "to": "/gencreator/principles",
+      "sourceFile": "app/gencreator/manifesto/page.tsx"
+    },
+    {
+      "from": "/gencreator/manifesto",
+      "to": "/gencreator",
+      "sourceFile": "app/gencreator/manifesto/page.tsx"
+    },
+    {
+      "from": "/gencreator",
+      "to": "/gencreator/principles",
+      "sourceFile": "app/gencreator/page.tsx"
+    },
+    {
+      "from": "/gencreator",
+      "to": "/gencreator/manifesto",
+      "sourceFile": "app/gencreator/page.tsx"
+    },
+    {
+      "from": "/gencreator",
+      "to": "/gencreator/manifesto",
+      "sourceFile": "app/gencreator/page.tsx"
+    },
+    {
+      "from": "/gencreator",
+      "to": "/gencreator/handbook",
+      "sourceFile": "app/gencreator/page.tsx"
+    },
+    {
+      "from": "/gencreator",
+      "to": "/gencreator/blueprints",
+      "sourceFile": "app/gencreator/page.tsx"
+    },
+    {
+      "from": "/gencreator/principles",
+      "to": "/gencreator/handbook",
+      "sourceFile": "app/gencreator/principles/page.tsx"
+    },
+    {
+      "from": "/gencreator/principles",
+      "to": "/gencreator",
+      "sourceFile": "app/gencreator/principles/page.tsx"
+    },
+    {
+      "from": "/gencreator/soul",
+      "to": "/gencreator/manifesto",
+      "sourceFile": "app/gencreator/soul/page.tsx"
+    },
+    {
+      "from": "/gencreator/soul",
+      "to": "/gencreator",
+      "sourceFile": "app/gencreator/soul/page.tsx"
+    },
+    {
+      "from": "/goals",
+      "to": "/newsletter",
+      "sourceFile": "app/goals/page.tsx"
+    },
+    {
+      "from": "/golden-age/components",
+      "to": "/golden-age",
+      "sourceFile": "app/golden-age/components/ChapterReader.tsx"
+    },
+    {
+      "from": "/golden-age/components",
+      "to": "/golden-age",
+      "sourceFile": "app/golden-age/components/PremiumReader.tsx"
+    },
+    {
+      "from": "/golden-age",
+      "to": "/golden-age/chapter-01-when-creation-calls",
+      "sourceFile": "app/golden-age/page.tsx"
+    },
+    {
+      "from": "/golden-age",
+      "to": "/golden-age/chapter-01-when-creation-calls",
+      "sourceFile": "app/golden-age/page.tsx"
+    },
+    {
+      "from": "/guides",
+      "to": "/products",
+      "sourceFile": "app/guides/GuidesPageClient.tsx"
+    },
+    {
+      "from": "/guides",
+      "to": "/resources",
+      "sourceFile": "app/guides/GuidesPageClient.tsx"
+    },
+    {
+      "from": "/hoffnung",
+      "to": "/books/hoffnung",
+      "sourceFile": "app/hoffnung/page.tsx"
+    },
+    {
+      "from": "/hoffnung",
+      "to": "/books/hope",
+      "sourceFile": "app/hoffnung/page.tsx"
+    },
+    {
+      "from": "/infogenius",
+      "to": "/lab",
+      "sourceFile": "app/infogenius/page.tsx"
+    },
+    {
+      "from": "/infogenius",
+      "to": "/blog",
+      "sourceFile": "app/infogenius/page.tsx"
+    },
+    {
+      "from": "/infogenius",
+      "to": "/lab",
+      "sourceFile": "app/infogenius/page.tsx"
+    },
+    {
+      "from": "/infogenius",
+      "to": "/agents",
+      "sourceFile": "app/infogenius/page.tsx"
+    },
+    {
+      "from": "/inner-circle",
+      "to": "/creation-chronicles",
+      "sourceFile": "app/inner-circle/page.tsx"
+    },
+    {
+      "from": "/insights",
+      "to": "/feed",
+      "sourceFile": "app/insights/page.tsx"
+    },
+    {
+      "from": "/insights",
+      "to": "/roadmap",
+      "sourceFile": "app/insights/page.tsx"
+    },
+    {
+      "from": "/insights",
+      "to": "/blog",
+      "sourceFile": "app/insights/page.tsx"
+    },
+    {
+      "from": "/inspiration",
+      "to": "/",
+      "sourceFile": "app/inspiration/page.tsx"
+    },
+    {
+      "from": "/intelligence-map",
+      "to": "/gencreator",
+      "sourceFile": "app/intelligence-map/page.tsx"
+    },
+    {
+      "from": "/intelligence-map",
+      "to": "/acos",
+      "sourceFile": "app/intelligence-map/page.tsx"
+    },
+    {
+      "from": "/intelligence-map",
+      "to": "/workshops",
+      "sourceFile": "app/intelligence-map/page.tsx"
+    },
+    {
+      "from": "/investor/agents",
+      "to": "/investor",
+      "sourceFile": "app/investor/agents/page.tsx"
+    },
+    {
+      "from": "/investor/agents",
+      "to": "/investor/workflows",
+      "sourceFile": "app/investor/agents/page.tsx"
+    },
+    {
+      "from": "/investor/architectures",
+      "to": "/investor",
+      "sourceFile": "app/investor/architectures/page.tsx"
+    },
+    {
+      "from": "/investor/architectures",
+      "to": "/investor/agents",
+      "sourceFile": "app/investor/architectures/page.tsx"
+    },
+    {
+      "from": "/investor/architectures",
+      "to": "/investor/workflows",
+      "sourceFile": "app/investor/architectures/page.tsx"
+    },
+    {
+      "from": "/investor",
+      "to": "/investor/agents",
+      "sourceFile": "app/investor/page.tsx"
+    },
+    {
+      "from": "/investor",
+      "to": "/investor/agents",
+      "sourceFile": "app/investor/page.tsx"
+    },
+    {
+      "from": "/investor/tools",
+      "to": "/investor",
+      "sourceFile": "app/investor/tools/page.tsx"
+    },
+    {
+      "from": "/investor/tools",
+      "to": "/investor/agents",
+      "sourceFile": "app/investor/tools/page.tsx"
+    },
+    {
+      "from": "/investor/workflows",
+      "to": "/investor",
+      "sourceFile": "app/investor/workflows/page.tsx"
+    },
+    {
+      "from": "/investor/workflows",
+      "to": "/investor/architectures",
+      "sourceFile": "app/investor/workflows/page.tsx"
+    },
+    {
+      "from": "/lab",
+      "to": "/newsletter",
+      "sourceFile": "app/lab/page.tsx"
+    },
+    {
+      "from": "/lab",
+      "to": "/infogenius",
+      "sourceFile": "app/lab/page.tsx"
+    },
+    {
+      "from": "/labs",
+      "to": "/inner-circle",
+      "sourceFile": "app/labs/page.tsx"
+    },
+    {
+      "from": "/labs",
+      "to": "/vault",
+      "sourceFile": "app/labs/page.tsx"
+    },
+    {
+      "from": "/labs",
+      "to": "/inner-circle",
+      "sourceFile": "app/labs/page.tsx"
+    },
+    {
+      "from": "/labs",
+      "to": "/drops",
+      "sourceFile": "app/labs/page.tsx"
+    },
+    {
+      "from": "/learn",
+      "to": "/guides",
+      "sourceFile": "app/learn/page.tsx"
+    },
+    {
+      "from": "/learn/[slug]",
+      "to": "/learn",
+      "sourceFile": "app/learn/[slug]/page.tsx"
+    },
+    {
+      "from": "/learn/[slug]",
+      "to": "/guides",
+      "sourceFile": "app/learn/[slug]/page.tsx"
+    },
+    {
+      "from": "/learn/[slug]",
+      "to": "/learn",
+      "sourceFile": "app/learn/[slug]/page.tsx"
+    },
+    {
+      "from": "/legal/layout.tsx",
+      "to": "/legal/imprint",
+      "sourceFile": "app/legal/layout.tsx"
+    },
+    {
+      "from": "/legal/layout.tsx",
+      "to": "/legal/privacy",
+      "sourceFile": "app/legal/layout.tsx"
+    },
+    {
+      "from": "/legal/layout.tsx",
+      "to": "/legal/terms",
+      "sourceFile": "app/legal/layout.tsx"
+    },
+    {
+      "from": "/legal/layout.tsx",
+      "to": "/legal/refund",
+      "sourceFile": "app/legal/layout.tsx"
+    },
+    {
+      "from": "/legal",
+      "to": "/",
+      "sourceFile": "app/legal/page.tsx"
+    },
+    {
+      "from": "/legal",
+      "to": "/legal/imprint",
+      "sourceFile": "app/legal/page.tsx"
+    },
+    {
+      "from": "/legal",
+      "to": "/legal/privacy",
+      "sourceFile": "app/legal/page.tsx"
+    },
+    {
+      "from": "/legal",
+      "to": "/legal/terms",
+      "sourceFile": "app/legal/page.tsx"
+    },
+    {
+      "from": "/legal",
+      "to": "/legal/refund",
+      "sourceFile": "app/legal/page.tsx"
+    },
+    {
+      "from": "/library",
+      "to": "/books",
+      "sourceFile": "app/library/page.tsx"
+    },
+    {
+      "from": "/library/[slug]",
+      "to": "/library",
+      "sourceFile": "app/library/[slug]/page.tsx"
+    },
+    {
+      "from": "/links",
+      "to": "/privacy",
+      "sourceFile": "app/links/page.tsx"
+    },
+    {
+      "from": "/links",
+      "to": "/terms",
+      "sourceFile": "app/links/page.tsx"
+    },
+    {
+      "from": "/linktree",
+      "to": "/",
+      "sourceFile": "app/linktree/page.tsx"
+    },
+    {
+      "from": "/linktree/[audience]",
+      "to": "/linktree",
+      "sourceFile": "app/linktree/[audience]/page.tsx"
+    },
+    {
+      "from": "/linktree/[audience]",
+      "to": "/",
+      "sourceFile": "app/linktree/[audience]/page.tsx"
+    },
+    {
+      "from": "/magic",
+      "to": "/music-lab",
+      "sourceFile": "app/magic/page.tsx"
+    },
+    {
+      "from": "/magic",
+      "to": "/music-lab",
+      "sourceFile": "app/magic/page.tsx"
+    },
+    {
+      "from": "/magic",
+      "to": "/prompt-library",
+      "sourceFile": "app/magic/page.tsx"
+    },
+    {
+      "from": "/music/brainstorm",
+      "to": "/music",
+      "sourceFile": "app/music/brainstorm/page.tsx"
+    },
+    {
+      "from": "/music/brainstorm",
+      "to": "/music",
+      "sourceFile": "app/music/brainstorm/page.tsx"
+    },
+    {
+      "from": "/music/create",
+      "to": "/music",
+      "sourceFile": "app/music/create/page.tsx"
+    },
+    {
+      "from": "/music/create",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/music/create/page.tsx"
+    },
+    {
+      "from": "/music/create",
+      "to": "/music",
+      "sourceFile": "app/music/create/page.tsx"
+    },
+    {
+      "from": "/music/create",
+      "to": "/music/learn",
+      "sourceFile": "app/music/create/page.tsx"
+    },
+    {
+      "from": "/music/create",
+      "to": "/prompts",
+      "sourceFile": "app/music/create/page.tsx"
+    },
+    {
+      "from": "/music/learn/guitar",
+      "to": "/music",
+      "sourceFile": "app/music/learn/guitar/page.tsx"
+    },
+    {
+      "from": "/music/learn/guitar",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music/learn/guitar/page.tsx"
+    },
+    {
+      "from": "/music/learn/guitar",
+      "to": "/music/learn/violin",
+      "sourceFile": "app/music/learn/guitar/page.tsx"
+    },
+    {
+      "from": "/music/learn/guitar",
+      "to": "/music/learn",
+      "sourceFile": "app/music/learn/guitar/page.tsx"
+    },
+    {
+      "from": "/music/learn/guitar",
+      "to": "/music",
+      "sourceFile": "app/music/learn/guitar/page.tsx"
+    },
+    {
+      "from": "/music/learn/orchestration",
+      "to": "/music",
+      "sourceFile": "app/music/learn/orchestration/page.tsx"
+    },
+    {
+      "from": "/music/learn/orchestration",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music/learn/orchestration/page.tsx"
+    },
+    {
+      "from": "/music/learn/orchestration",
+      "to": "/music/learn/violin",
+      "sourceFile": "app/music/learn/orchestration/page.tsx"
+    },
+    {
+      "from": "/music/learn/orchestration",
+      "to": "/music/learn/theory",
+      "sourceFile": "app/music/learn/orchestration/page.tsx"
+    },
+    {
+      "from": "/music/learn/orchestration",
+      "to": "/music/create",
+      "sourceFile": "app/music/learn/orchestration/page.tsx"
+    },
+    {
+      "from": "/music/learn/orchestration",
+      "to": "/music/learn",
+      "sourceFile": "app/music/learn/orchestration/page.tsx"
+    },
+    {
+      "from": "/music/learn",
+      "to": "/alea",
+      "sourceFile": "app/music/learn/page.tsx"
+    },
+    {
+      "from": "/music/learn/piano",
+      "to": "/music/learn/violin",
+      "sourceFile": "app/music/learn/piano/page.tsx"
+    },
+    {
+      "from": "/music/learn/piano",
+      "to": "/music/learn",
+      "sourceFile": "app/music/learn/piano/page.tsx"
+    },
+    {
+      "from": "/music/learn/piano",
+      "to": "/alea",
+      "sourceFile": "app/music/learn/piano/page.tsx"
+    },
+    {
+      "from": "/music/learn/production",
+      "to": "/music/create",
+      "sourceFile": "app/music/learn/production/page.tsx"
+    },
+    {
+      "from": "/music/learn/production",
+      "to": "/music",
+      "sourceFile": "app/music/learn/production/page.tsx"
+    },
+    {
+      "from": "/music/learn/production",
+      "to": "/music/learn/theory",
+      "sourceFile": "app/music/learn/production/page.tsx"
+    },
+    {
+      "from": "/music/learn/production",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music/learn/production/page.tsx"
+    },
+    {
+      "from": "/music/learn/production",
+      "to": "/music/learn",
+      "sourceFile": "app/music/learn/production/page.tsx"
+    },
+    {
+      "from": "/music/learn/production",
+      "to": "/music",
+      "sourceFile": "app/music/learn/production/page.tsx"
+    },
+    {
+      "from": "/music/learn/reading",
+      "to": "/music/learn/theory",
+      "sourceFile": "app/music/learn/reading/page.tsx"
+    },
+    {
+      "from": "/music/learn/reading",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music/learn/reading/page.tsx"
+    },
+    {
+      "from": "/music/learn/reading",
+      "to": "/music/learn",
+      "sourceFile": "app/music/learn/reading/page.tsx"
+    },
+    {
+      "from": "/music/learn/reading",
+      "to": "/music",
+      "sourceFile": "app/music/learn/reading/page.tsx"
+    },
+    {
+      "from": "/music/learn/theory",
+      "to": "/music",
+      "sourceFile": "app/music/learn/theory/page.tsx"
+    },
+    {
+      "from": "/music/learn/theory",
+      "to": "/music/create",
+      "sourceFile": "app/music/learn/theory/page.tsx"
+    },
+    {
+      "from": "/music/learn/theory",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music/learn/theory/page.tsx"
+    },
+    {
+      "from": "/music/learn/theory",
+      "to": "/music/learn/production",
+      "sourceFile": "app/music/learn/theory/page.tsx"
+    },
+    {
+      "from": "/music/learn/theory",
+      "to": "/music/learn",
+      "sourceFile": "app/music/learn/theory/page.tsx"
+    },
+    {
+      "from": "/music/learn/theory",
+      "to": "/music",
+      "sourceFile": "app/music/learn/theory/page.tsx"
+    },
+    {
+      "from": "/music/learn/violin",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music/learn/violin/page.tsx"
+    },
+    {
+      "from": "/music/learn/violin",
+      "to": "/music/learn",
+      "sourceFile": "app/music/learn/violin/page.tsx"
+    },
+    {
+      "from": "/music/learn/violin",
+      "to": "/alea",
+      "sourceFile": "app/music/learn/violin/page.tsx"
+    },
+    {
+      "from": "/music",
+      "to": "/music/brainstorm",
+      "sourceFile": "app/music/page.tsx"
+    },
+    {
+      "from": "/music",
+      "to": "/infogenius",
+      "sourceFile": "app/music/page.tsx"
+    },
+    {
+      "from": "/music",
+      "to": "/music/brainstorm",
+      "sourceFile": "app/music/page.tsx"
+    },
+    {
+      "from": "/music",
+      "to": "/music-lab",
+      "sourceFile": "app/music/page.tsx"
+    },
+    {
+      "from": "/music",
+      "to": "/infogenius",
+      "sourceFile": "app/music/page.tsx"
+    },
+    {
+      "from": "/music/tools",
+      "to": "/music/learn",
+      "sourceFile": "app/music/tools/page.tsx"
+    },
+    {
+      "from": "/music/tools",
+      "to": "/music",
+      "sourceFile": "app/music/tools/page.tsx"
+    },
+    {
+      "from": "/music/tools",
+      "to": "/acos",
+      "sourceFile": "app/music/tools/page.tsx"
+    },
+    {
+      "from": "/music-lab/dj-pads",
+      "to": "/music-lab",
+      "sourceFile": "app/music-lab/dj-pads/page.tsx"
+    },
+    {
+      "from": "/music-lab/drums",
+      "to": "/music-lab",
+      "sourceFile": "app/music-lab/drums/page.tsx"
+    },
+    {
+      "from": "/music-lab/drums",
+      "to": "/music-lab/piano",
+      "sourceFile": "app/music-lab/drums/page.tsx"
+    },
+    {
+      "from": "/music-lab/drums",
+      "to": "/music",
+      "sourceFile": "app/music-lab/drums/page.tsx"
+    },
+    {
+      "from": "/music-lab/for-kids/xylophone",
+      "to": "/music-lab",
+      "sourceFile": "app/music-lab/for-kids/xylophone/page.tsx"
+    },
+    {
+      "from": "/music-lab",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/music-lab/page.tsx"
+    },
+    {
+      "from": "/music-lab",
+      "to": "/prompt-library",
+      "sourceFile": "app/music-lab/page.tsx"
+    },
+    {
+      "from": "/music-lab",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/music-lab/page.tsx"
+    },
+    {
+      "from": "/music-lab/piano",
+      "to": "/music-lab",
+      "sourceFile": "app/music-lab/piano/page.tsx"
+    },
+    {
+      "from": "/music-lab/piano/songs",
+      "to": "/music-lab/piano",
+      "sourceFile": "app/music-lab/piano/songs/page.tsx"
+    },
+    {
+      "from": "/music-lab/piano/songs",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music-lab/piano/songs/page.tsx"
+    },
+    {
+      "from": "/music-lab/piano/songs",
+      "to": "/music-lab/piano",
+      "sourceFile": "app/music-lab/piano/songs/page.tsx"
+    },
+    {
+      "from": "/music-lab/piano/songs",
+      "to": "/music/learn/piano",
+      "sourceFile": "app/music-lab/piano/songs/page.tsx"
+    },
+    {
+      "from": "/music-lab/piano/songs",
+      "to": "/music-lab",
+      "sourceFile": "app/music-lab/piano/songs/page.tsx"
+    },
+    {
+      "from": "/music-lab/piano/songs",
+      "to": "/music/tools",
+      "sourceFile": "app/music-lab/piano/songs/page.tsx"
+    },
+    {
+      "from": "/n8n",
+      "to": "/automation",
+      "sourceFile": "app/n8n/page.tsx"
+    },
+    {
+      "from": "/n8n",
+      "to": "/blog",
+      "sourceFile": "app/n8n/page.tsx"
+    },
+    {
+      "from": "/newsletter/thank-you",
+      "to": "/products",
+      "sourceFile": "app/newsletter/thank-you/ThankYouContent.tsx"
+    },
+    {
+      "from": "/newsletter/thank-you",
+      "to": "/",
+      "sourceFile": "app/newsletter/thank-you/ThankYouContent.tsx"
+    },
+    {
+      "from": "/not-found.tsx",
+      "to": "/start",
+      "sourceFile": "app/not-found.tsx"
+    },
+    {
+      "from": "/opa-und-oma",
+      "to": "/family/tree",
+      "sourceFile": "app/opa-und-oma/page.tsx"
+    },
+    {
+      "from": "/opa-und-oma",
+      "to": "/family",
+      "sourceFile": "app/opa-und-oma/page.tsx"
+    },
+    {
+      "from": "/opa-und-oma",
+      "to": "/family/tree",
+      "sourceFile": "app/opa-und-oma/page.tsx"
+    },
+    {
+      "from": "/opa-und-oma",
+      "to": "/",
+      "sourceFile": "app/opa-und-oma/page.tsx"
+    },
+    {
+      "from": "/opus-pro",
+      "to": "/contact",
+      "sourceFile": "app/opus-pro/page.tsx"
+    },
+    {
+      "from": "/plan",
+      "to": "/feed",
+      "sourceFile": "app/plan/page.tsx"
+    },
+    {
+      "from": "/plan",
+      "to": "/feed",
+      "sourceFile": "app/plan/page.tsx"
+    },
+    {
+      "from": "/plan",
+      "to": "/research",
+      "sourceFile": "app/plan/page.tsx"
+    },
+    {
+      "from": "/plan",
+      "to": "/inner-circle",
+      "sourceFile": "app/plan/page.tsx"
+    },
+    {
+      "from": "/plan/[slug]",
+      "to": "/plan",
+      "sourceFile": "app/plan/[slug]/PlanInitiativePage.tsx"
+    },
+    {
+      "from": "/plan/[slug]",
+      "to": "/plan",
+      "sourceFile": "app/plan/[slug]/PlanInitiativePage.tsx"
+    },
+    {
+      "from": "/presence",
+      "to": "/acos",
+      "sourceFile": "app/presence/PresenceClient.tsx"
+    },
+    {
+      "from": "/presence",
+      "to": "/rituals",
+      "sourceFile": "app/presence/PresenceClient.tsx"
+    },
+    {
+      "from": "/privacy",
+      "to": "/",
+      "sourceFile": "app/privacy/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/product-development",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/watch",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/admin/youtube",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/content-strategy/video-creation",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/acos",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/product-development",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/acos",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development/acos-v11",
+      "to": "/watch",
+      "sourceFile": "app/product-development/acos-v11/page.tsx"
+    },
+    {
+      "from": "/product-development",
+      "to": "/feed",
+      "sourceFile": "app/product-development/page.tsx"
+    },
+    {
+      "from": "/product-development",
+      "to": "/changelog",
+      "sourceFile": "app/product-development/page.tsx"
+    },
+    {
+      "from": "/product-development",
+      "to": "/blog",
+      "sourceFile": "app/product-development/page.tsx"
+    },
+    {
+      "from": "/products/agentic-creator-os/docs/layout.tsx",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "app/products/agentic-creator-os/docs/layout.tsx"
+    },
+    {
+      "from": "/products/agentic-creator-os/docs/layout.tsx",
+      "to": "/products/agentic-creator-os/docs",
+      "sourceFile": "app/products/agentic-creator-os/docs/layout.tsx"
+    },
+    {
+      "from": "/products/agentic-creator-os/docs/layout.tsx",
+      "to": "/products/agentic-creator-os/docs",
+      "sourceFile": "app/products/agentic-creator-os/docs/layout.tsx"
+    },
+    {
+      "from": "/products/agentic-creator-os/docs/layout.tsx",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "app/products/agentic-creator-os/docs/layout.tsx"
+    },
+    {
+      "from": "/products/agentic-creator-os/docs",
+      "to": "/products/agentic-creator-os/docs/getting-started",
+      "sourceFile": "app/products/agentic-creator-os/docs/page.tsx"
+    },
+    {
+      "from": "/products",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/products/page.tsx"
+    },
+    {
+      "from": "/products",
+      "to": "/newsletter",
+      "sourceFile": "app/products/page.tsx"
+    },
+    {
+      "from": "/products/vibe-os/app",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/products/vibe-os/app/page.tsx"
+    },
+    {
+      "from": "/products/vibe-os/app",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/products/vibe-os/app/page.tsx"
+    },
+    {
+      "from": "/products/vibe-os/app",
+      "to": "/newsletter",
+      "sourceFile": "app/products/vibe-os/app/page.tsx"
+    },
+    {
+      "from": "/products/vibe-os/components",
+      "to": "/newsletter",
+      "sourceFile": "app/products/vibe-os/components/VibeOSFinalCTA.tsx"
+    },
+    {
+      "from": "/products/vibe-os/components",
+      "to": "/newsletter",
+      "sourceFile": "app/products/vibe-os/components/VibeOSHero.tsx"
+    },
+    {
+      "from": "/products/vibe-os/components",
+      "to": "/newsletter",
+      "sourceFile": "app/products/vibe-os/components/VibeOSModules.tsx"
+    },
+    {
+      "from": "/products/vibe-os/docs",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/products/vibe-os/docs/page.tsx"
+    },
+    {
+      "from": "/products/vibe-os/docs",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/products/vibe-os/docs/page.tsx"
+    },
+    {
+      "from": "/products/vibe-os/docs",
+      "to": "/products/vibe-os/app",
+      "sourceFile": "app/products/vibe-os/docs/page.tsx"
+    },
+    {
+      "from": "/progress",
+      "to": "/inner-circle",
+      "sourceFile": "app/progress/page.tsx"
+    },
+    {
+      "from": "/prototype/chat-playground",
+      "to": "/ai-architecture/prototypes",
+      "sourceFile": "app/prototype/chat-playground/page.tsx"
+    },
+    {
+      "from": "/prototype/[id]",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/prototype/[id]/page.tsx"
+    },
+    {
+      "from": "/prototype/[id]",
+      "to": "/ai-architect-academy",
+      "sourceFile": "app/prototype/[id]/page.tsx"
+    },
+    {
+      "from": "/prototypes",
+      "to": "/ai-architect-academy",
+      "sourceFile": "app/prototypes/page.tsx"
+    },
+    {
+      "from": "/realm",
+      "to": "/newsletter",
+      "sourceFile": "app/realm/page.tsx"
+    },
+    {
+      "from": "/realm",
+      "to": "/",
+      "sourceFile": "app/realm/page.tsx"
+    },
+    {
+      "from": "/research/methodology",
+      "to": "/research",
+      "sourceFile": "app/research/methodology/page.tsx"
+    },
+    {
+      "from": "/research/methodology",
+      "to": "/research",
+      "sourceFile": "app/research/methodology/page.tsx"
+    },
+    {
+      "from": "/research",
+      "to": "/research/methodology",
+      "sourceFile": "app/research/page.tsx"
+    },
+    {
+      "from": "/research",
+      "to": "/research/sources",
+      "sourceFile": "app/research/page.tsx"
+    },
+    {
+      "from": "/research",
+      "to": "/inner-circle",
+      "sourceFile": "app/research/page.tsx"
+    },
+    {
+      "from": "/research",
+      "to": "/blog",
+      "sourceFile": "app/research/page.tsx"
+    },
+    {
+      "from": "/research/sources",
+      "to": "/research",
+      "sourceFile": "app/research/sources/page.tsx"
+    },
+    {
+      "from": "/research/sources",
+      "to": "/research",
+      "sourceFile": "app/research/sources/page.tsx"
+    },
+    {
+      "from": "/research/[slug]",
+      "to": "/research",
+      "sourceFile": "app/research/[slug]/ResearchDomainPage.tsx"
+    },
+    {
+      "from": "/research/[slug]",
+      "to": "/research",
+      "sourceFile": "app/research/[slug]/ResearchDomainPage.tsx"
+    },
+    {
+      "from": "/resources",
+      "to": "/products",
+      "sourceFile": "app/resources/page.tsx"
+    },
+    {
+      "from": "/resources/skills",
+      "to": "/resources",
+      "sourceFile": "app/resources/skills/page.tsx"
+    },
+    {
+      "from": "/resources/skills",
+      "to": "/soulbook",
+      "sourceFile": "app/resources/skills/page.tsx"
+    },
+    {
+      "from": "/resources/skills",
+      "to": "/soulbook/vault",
+      "sourceFile": "app/resources/skills/page.tsx"
+    },
+    {
+      "from": "/resources/templates",
+      "to": "/resources",
+      "sourceFile": "app/resources/templates/page.tsx"
+    },
+    {
+      "from": "/rituals",
+      "to": "/presence",
+      "sourceFile": "app/rituals/page.tsx"
+    },
+    {
+      "from": "/rituals",
+      "to": "/achievements",
+      "sourceFile": "app/rituals/page.tsx"
+    },
+    {
+      "from": "/rituals",
+      "to": "/presence",
+      "sourceFile": "app/rituals/page.tsx"
+    },
+    {
+      "from": "/rituals",
+      "to": "/music",
+      "sourceFile": "app/rituals/page.tsx"
+    },
+    {
+      "from": "/see-through-the-noise",
+      "to": "/blueprint/misinformation-guardian-platform",
+      "sourceFile": "app/see-through-the-noise/page.tsx"
+    },
+    {
+      "from": "/see-through-the-noise",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "app/see-through-the-noise/page.tsx"
+    },
+    {
+      "from": "/shop",
+      "to": "/",
+      "sourceFile": "app/shop/page.tsx"
+    },
+    {
+      "from": "/shop/templates",
+      "to": "/",
+      "sourceFile": "app/shop/templates/page.tsx"
+    },
+    {
+      "from": "/shop/templates",
+      "to": "/shop",
+      "sourceFile": "app/shop/templates/page.tsx"
+    },
+    {
+      "from": "/shop/templates",
+      "to": "/ai-architecture",
+      "sourceFile": "app/shop/templates/page.tsx"
+    },
+    {
+      "from": "/shop/templates",
+      "to": "/start",
+      "sourceFile": "app/shop/templates/page.tsx"
+    },
+    {
+      "from": "/shop/templates",
+      "to": "/affiliates",
+      "sourceFile": "app/shop/templates/page.tsx"
+    },
+    {
+      "from": "/skills/builder",
+      "to": "/skills",
+      "sourceFile": "app/skills/builder/page.tsx"
+    },
+    {
+      "from": "/skills",
+      "to": "/skills/builder",
+      "sourceFile": "app/skills/page.tsx"
+    },
+    {
+      "from": "/skills",
+      "to": "/resources/skills",
+      "sourceFile": "app/skills/page.tsx"
+    },
+    {
+      "from": "/skills",
+      "to": "/vault",
+      "sourceFile": "app/skills/page.tsx"
+    },
+    {
+      "from": "/skills",
+      "to": "/skills/builder",
+      "sourceFile": "app/skills/page.tsx"
+    },
+    {
+      "from": "/skills",
+      "to": "/inner-circle",
+      "sourceFile": "app/skills/page.tsx"
+    },
+    {
+      "from": "/soul-frequency-quiz",
+      "to": "/agent-team",
+      "sourceFile": "app/soul-frequency-quiz/page.tsx"
+    },
+    {
+      "from": "/soulbook/framework",
+      "to": "/soulbook",
+      "sourceFile": "app/soulbook/framework/page.tsx"
+    },
+    {
+      "from": "/soulbook/framework",
+      "to": "/products/soulbook-7-pillars-framework.pdf",
+      "sourceFile": "app/soulbook/framework/page.tsx"
+    },
+    {
+      "from": "/soulbook/framework",
+      "to": "/products/soulbook-7-pillars-framework.pdf",
+      "sourceFile": "app/soulbook/framework/page.tsx"
+    },
+    {
+      "from": "/soulbook/framework",
+      "to": "/soulbook",
+      "sourceFile": "app/soulbook/framework/page.tsx"
+    },
+    {
+      "from": "/soulbook/golden-path",
+      "to": "/soulbook",
+      "sourceFile": "app/soulbook/golden-path/page.tsx"
+    },
+    {
+      "from": "/soulbook/golden-path",
+      "to": "/soulbook/assessment",
+      "sourceFile": "app/soulbook/golden-path/page.tsx"
+    },
+    {
+      "from": "/soulbook/life-symphony",
+      "to": "/soulbook",
+      "sourceFile": "app/soulbook/life-symphony/page.tsx"
+    },
+    {
+      "from": "/soulbook/life-symphony",
+      "to": "/soulbook/assessment",
+      "sourceFile": "app/soulbook/life-symphony/page.tsx"
+    },
+    {
+      "from": "/soulbook",
+      "to": "/assessment",
+      "sourceFile": "app/soulbook/page.tsx"
+    },
+    {
+      "from": "/soulbook",
+      "to": "/contact",
+      "sourceFile": "app/soulbook/page.tsx"
+    },
+    {
+      "from": "/soulbook",
+      "to": "/about",
+      "sourceFile": "app/soulbook/page.tsx"
+    },
+    {
+      "from": "/soulbook",
+      "to": "/blog",
+      "sourceFile": "app/soulbook/page.tsx"
+    },
+    {
+      "from": "/soulbook",
+      "to": "/community",
+      "sourceFile": "app/soulbook/page.tsx"
+    },
+    {
+      "from": "/soulbook",
+      "to": "/contact",
+      "sourceFile": "app/soulbook/page.tsx"
+    },
+    {
+      "from": "/sprint",
+      "to": "/",
+      "sourceFile": "app/sprint/page.tsx"
+    },
+    {
+      "from": "/sprint",
+      "to": "/plan",
+      "sourceFile": "app/sprint/page.tsx"
+    },
+    {
+      "from": "/sprint",
+      "to": "/changelog",
+      "sourceFile": "app/sprint/page.tsx"
+    },
+    {
+      "from": "/sprint",
+      "to": "/plan",
+      "sourceFile": "app/sprint/page.tsx"
+    },
+    {
+      "from": "/sprint",
+      "to": "/goals",
+      "sourceFile": "app/sprint/page.tsx"
+    },
+    {
+      "from": "/sprint",
+      "to": "/roadmap",
+      "sourceFile": "app/sprint/page.tsx"
+    },
+    {
+      "from": "/start",
+      "to": "/about",
+      "sourceFile": "app/start/page.tsx"
+    },
+    {
+      "from": "/students/ai-briefing",
+      "to": "/students",
+      "sourceFile": "app/students/ai-briefing/page.tsx"
+    },
+    {
+      "from": "/students/ai-briefing",
+      "to": "/students",
+      "sourceFile": "app/students/ai-briefing/page.tsx"
+    },
+    {
+      "from": "/students/ai-briefing",
+      "to": "/students/ikigai",
+      "sourceFile": "app/students/ai-briefing/page.tsx"
+    },
+    {
+      "from": "/students/ai-briefing",
+      "to": "/prompt-library",
+      "sourceFile": "app/students/ai-briefing/page.tsx"
+    },
+    {
+      "from": "/students/coe-builder",
+      "to": "/students",
+      "sourceFile": "app/students/coe-builder/page.tsx"
+    },
+    {
+      "from": "/students/cohort",
+      "to": "/",
+      "sourceFile": "app/students/cohort/CohortClient.tsx"
+    },
+    {
+      "from": "/students/ikigai",
+      "to": "/students",
+      "sourceFile": "app/students/ikigai/page.tsx"
+    },
+    {
+      "from": "/students/ikigai",
+      "to": "/blog",
+      "sourceFile": "app/students/ikigai/page.tsx"
+    },
+    {
+      "from": "/students/ikigai",
+      "to": "/students",
+      "sourceFile": "app/students/ikigai/page.tsx"
+    },
+    {
+      "from": "/students",
+      "to": "/students/ai-briefing",
+      "sourceFile": "app/students/page.tsx"
+    },
+    {
+      "from": "/students",
+      "to": "/students/ikigai",
+      "sourceFile": "app/students/page.tsx"
+    },
+    {
+      "from": "/students",
+      "to": "/prompt-library",
+      "sourceFile": "app/students/page.tsx"
+    },
+    {
+      "from": "/students",
+      "to": "/students/ai-briefing",
+      "sourceFile": "app/students/page.tsx"
+    },
+    {
+      "from": "/students",
+      "to": "/watch",
+      "sourceFile": "app/students/page.tsx"
+    },
+    {
+      "from": "/students/prompts",
+      "to": "/students",
+      "sourceFile": "app/students/prompts/page.tsx"
+    },
+    {
+      "from": "/students/roles",
+      "to": "/students",
+      "sourceFile": "app/students/roles/page.tsx"
+    },
+    {
+      "from": "/students/roles",
+      "to": "/students/prompts",
+      "sourceFile": "app/students/roles/page.tsx"
+    },
+    {
+      "from": "/students/roles",
+      "to": "/students/workshop",
+      "sourceFile": "app/students/roles/page.tsx"
+    },
+    {
+      "from": "/students/roles",
+      "to": "/students/coe-builder",
+      "sourceFile": "app/students/roles/page.tsx"
+    },
+    {
+      "from": "/students/workshop",
+      "to": "/students",
+      "sourceFile": "app/students/workshop/page.tsx"
+    },
+    {
+      "from": "/students/workshop",
+      "to": "/workshops",
+      "sourceFile": "app/students/workshop/page.tsx"
+    },
+    {
+      "from": "/students/workshop",
+      "to": "/workshops",
+      "sourceFile": "app/students/workshop/page.tsx"
+    },
+    {
+      "from": "/team",
+      "to": "/start",
+      "sourceFile": "app/team/page.tsx"
+    },
+    {
+      "from": "/team",
+      "to": "/acos",
+      "sourceFile": "app/team/page.tsx"
+    },
+    {
+      "from": "/templates",
+      "to": "/shop/templates",
+      "sourceFile": "app/templates/page.tsx"
+    },
+    {
+      "from": "/templates",
+      "to": "/coaching",
+      "sourceFile": "app/templates/page.tsx"
+    },
+    {
+      "from": "/terms",
+      "to": "/",
+      "sourceFile": "app/terms/page.tsx"
+    },
+    {
+      "from": "/testimonials",
+      "to": "/prompt-library",
+      "sourceFile": "app/testimonials/page.tsx"
+    },
+    {
+      "from": "/testimonials",
+      "to": "/guides",
+      "sourceFile": "app/testimonials/page.tsx"
+    },
+    {
+      "from": "/testimonials",
+      "to": "/music-lab",
+      "sourceFile": "app/testimonials/page.tsx"
+    },
+    {
+      "from": "/thank-you",
+      "to": "/blog",
+      "sourceFile": "app/thank-you/page.tsx"
+    },
+    {
+      "from": "/thank-you",
+      "to": "/products",
+      "sourceFile": "app/thank-you/page.tsx"
+    },
+    {
+      "from": "/thank-you",
+      "to": "/",
+      "sourceFile": "app/thank-you/page.tsx"
+    },
+    {
+      "from": "/tools/builder",
+      "to": "/tools",
+      "sourceFile": "app/tools/builder/page.tsx"
+    },
+    {
+      "from": "/tools/builder",
+      "to": "/contact",
+      "sourceFile": "app/tools/builder/page.tsx"
+    },
+    {
+      "from": "/tools/builder",
+      "to": "/ai-architect",
+      "sourceFile": "app/tools/builder/page.tsx"
+    },
+    {
+      "from": "/tools",
+      "to": "/contact",
+      "sourceFile": "app/tools/page.tsx"
+    },
+    {
+      "from": "/tools",
+      "to": "/tools/builder",
+      "sourceFile": "app/tools/page.tsx"
+    },
+    {
+      "from": "/tools/roi-calculator",
+      "to": "/tools/strategy-canvas",
+      "sourceFile": "app/tools/roi-calculator/page.tsx"
+    },
+    {
+      "from": "/tools/roi-calculator",
+      "to": "/products",
+      "sourceFile": "app/tools/roi-calculator/page.tsx"
+    },
+    {
+      "from": "/tools/roi-calculator",
+      "to": "/contact",
+      "sourceFile": "app/tools/roi-calculator/page.tsx"
+    },
+    {
+      "from": "/tools/strategy-canvas",
+      "to": "/tools",
+      "sourceFile": "app/tools/strategy-canvas/StrategyCanvasClient.tsx"
+    },
+    {
+      "from": "/tools/strategy-canvas",
+      "to": "/contact",
+      "sourceFile": "app/tools/strategy-canvas/StrategyCanvasClient.tsx"
+    },
+    {
+      "from": "/tools/strategy-canvas",
+      "to": "/tools/roi-calculator",
+      "sourceFile": "app/tools/strategy-canvas/StrategyCanvasClient.tsx"
+    },
+    {
+      "from": "/tools/visual-intelligence",
+      "to": "/research",
+      "sourceFile": "app/tools/visual-intelligence/page.tsx"
+    },
+    {
+      "from": "/tools/visual-intelligence",
+      "to": "/acos",
+      "sourceFile": "app/tools/visual-intelligence/page.tsx"
+    },
+    {
+      "from": "/tools/visual-intelligence",
+      "to": "/products",
+      "sourceFile": "app/tools/visual-intelligence/page.tsx"
+    },
+    {
+      "from": "/tools/visual-intelligence",
+      "to": "/blog",
+      "sourceFile": "app/tools/visual-intelligence/page.tsx"
+    },
+    {
+      "from": "/tools/visual-intelligence",
+      "to": "/research",
+      "sourceFile": "app/tools/visual-intelligence/page.tsx"
+    },
+    {
+      "from": "/tools/[slug]/docs",
+      "to": "/resources",
+      "sourceFile": "app/tools/[slug]/docs/page.tsx"
+    },
+    {
+      "from": "/tools/[slug]",
+      "to": "/tools/builder",
+      "sourceFile": "app/tools/[slug]/page.tsx"
+    },
+    {
+      "from": "/updates",
+      "to": "/",
+      "sourceFile": "app/updates/page.tsx"
+    },
+    {
+      "from": "/updates",
+      "to": "/inner-circle",
+      "sourceFile": "app/updates/page.tsx"
+    },
+    {
+      "from": "/valentines-day",
+      "to": "/books/love-and-poetry",
+      "sourceFile": "app/valentines-day/page.tsx"
+    },
+    {
+      "from": "/valentines-day/tien",
+      "to": "/valentines-day/tien/piano",
+      "sourceFile": "app/valentines-day/tien/page.tsx"
+    },
+    {
+      "from": "/valentines-day/tien/piano",
+      "to": "/valentines-day/tien",
+      "sourceFile": "app/valentines-day/tien/piano/page.tsx"
+    },
+    {
+      "from": "/vault",
+      "to": "/",
+      "sourceFile": "app/vault/VaultHubClient.tsx"
+    },
+    {
+      "from": "/vault",
+      "to": "/gallery",
+      "sourceFile": "app/vault/VaultHubClient.tsx"
+    },
+    {
+      "from": "/vault/[collection]",
+      "to": "/",
+      "sourceFile": "app/vault/[collection]/VaultCollectionClient.tsx"
+    },
+    {
+      "from": "/vault/[collection]",
+      "to": "/vault",
+      "sourceFile": "app/vault/[collection]/VaultCollectionClient.tsx"
+    },
+    {
+      "from": "/vault/[collection]",
+      "to": "/vault",
+      "sourceFile": "app/vault/[collection]/VaultCollectionClient.tsx"
+    },
+    {
+      "from": "/vibe/producer",
+      "to": "/vibe",
+      "sourceFile": "app/vibe/producer/page.tsx"
+    },
+    {
+      "from": "/vibe/producer",
+      "to": "/vibe",
+      "sourceFile": "app/vibe/producer/page.tsx"
+    },
+    {
+      "from": "/vibe/producer",
+      "to": "/vibe",
+      "sourceFile": "app/vibe/producer/page.tsx"
+    },
+    {
+      "from": "/vibe/producer",
+      "to": "/products/vibe-os",
+      "sourceFile": "app/vibe/producer/page.tsx"
+    },
+    {
+      "from": "/vibe",
+      "to": "/vibe/producer",
+      "sourceFile": "app/vibe/VibeOSContent.tsx"
+    },
+    {
+      "from": "/vibe",
+      "to": "/blog/vibe-os-platform-introduction",
+      "sourceFile": "app/vibe/VibeOSContent.tsx"
+    },
+    {
+      "from": "/vibe",
+      "to": "/vibe/producer",
+      "sourceFile": "app/vibe/VibeOSContent.tsx"
+    },
+    {
+      "from": "/vibe",
+      "to": "/blog/vibe-os-platform-introduction",
+      "sourceFile": "app/vibe/VibeOSContent.tsx"
+    },
+    {
+      "from": "/vision",
+      "to": "/start",
+      "sourceFile": "app/vision/VisionContent.tsx"
+    },
+    {
+      "from": "/vision",
+      "to": "/about",
+      "sourceFile": "app/vision/VisionContent.tsx"
+    },
+    {
+      "from": "/vision",
+      "to": "/blog/the-great-transition",
+      "sourceFile": "app/vision/VisionContent.tsx"
+    },
+    {
+      "from": "/vision",
+      "to": "/start",
+      "sourceFile": "app/vision/VisionContent.tsx"
+    },
+    {
+      "from": "/vision",
+      "to": "/blog",
+      "sourceFile": "app/vision/VisionContent.tsx"
+    },
+    {
+      "from": "/vision",
+      "to": "/products",
+      "sourceFile": "app/vision/VisionContent.tsx"
+    },
+    {
+      "from": "/visionaries",
+      "to": "/research",
+      "sourceFile": "app/visionaries/VisionariesHub.tsx"
+    },
+    {
+      "from": "/work-with-me",
+      "to": "/research",
+      "sourceFile": "app/work-with-me/StudioClient.tsx"
+    },
+    {
+      "from": "/workshops/for-educators",
+      "to": "/workshops",
+      "sourceFile": "app/workshops/for-educators/page.tsx"
+    },
+    {
+      "from": "/workshops",
+      "to": "/workshops/for-educators",
+      "sourceFile": "app/workshops/page.tsx"
+    },
+    {
+      "from": "/workshops/[slug]",
+      "to": "/workshops",
+      "sourceFile": "app/workshops/[slug]/page.tsx"
+    },
+    {
+      "from": "/workshops/[slug]",
+      "to": "/workshops",
+      "sourceFile": "app/workshops/[slug]/page.tsx"
+    },
+    {
+      "from": "/workshops/[slug]",
+      "to": "/workshops/for-educators",
+      "sourceFile": "app/workshops/[slug]/page.tsx"
+    },
+    {
+      "from": "/year-of-the-fire-horse",
+      "to": "/year-of-the-fire-horse/vision",
+      "sourceFile": "app/year-of-the-fire-horse/page.tsx"
+    },
+    {
+      "from": "/year-of-the-fire-horse/vision",
+      "to": "/year-of-the-fire-horse",
+      "sourceFile": "app/year-of-the-fire-horse/vision/page.tsx"
+    },
+    {
+      "from": "/year-of-the-fire-horse/vision",
+      "to": "/year-of-the-fire-horse",
+      "sourceFile": "app/year-of-the-fire-horse/vision/page.tsx"
+    },
+    {
+      "from": "/youtube",
+      "to": "/watch",
+      "sourceFile": "app/youtube/page.tsx"
+    },
+    {
+      "from": "/youtube-strategy",
+      "to": "/youtube",
+      "sourceFile": "app/youtube-strategy/page.tsx"
+    },
+    {
+      "from": "/youtube-strategy",
+      "to": "/products/generative-creator-os",
+      "sourceFile": "app/youtube-strategy/page.tsx"
+    },
+    {
+      "from": "components/deploy",
+      "to": "/affiliates",
+      "sourceFile": "components/deploy/DeployButtonGroup.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/music-lab",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/prompt-library",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/acos",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/templates",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/blog",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/courses",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/guides",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/students",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/watch",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/ai-architecture",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/ai-architecture/blueprints",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/products",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/acos",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/about",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/investor",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/investor/agents",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/investor/tools",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/newsletter",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/contact",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/privacy",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/terms",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/legal",
+      "sourceFile": "components/Footer.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/soul-frequency-assessment",
+      "sourceFile": "components/home/HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/resources",
+      "sourceFile": "components/home/HomePage2025.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/start",
+      "sourceFile": "components/home/HomePage2025.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/about",
+      "sourceFile": "components/home/HomePage2025.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/music",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/start",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/blog",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/design-lab",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/books",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/blog",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/lab",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/frankx",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/start",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/newsletter",
+      "sourceFile": "components/home/HomePageElite.tsx"
+    },
+    {
+      "from": "components/home/sections",
+      "to": "/start",
+      "sourceFile": "components/home/sections/FinalCTA.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/assessment",
+      "sourceFile": "components/home/V2HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/vibe-os",
+      "sourceFile": "components/home/V2HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/creative-ai-toolkit",
+      "sourceFile": "components/home/V2HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "components/home/V2HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/assessment",
+      "sourceFile": "components/home/V2HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/assessment",
+      "sourceFile": "components/home/V2HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products",
+      "sourceFile": "components/home/V2HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/assessment",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/vibe-os",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/music-lab",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/vibe-os",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/creative-ai-toolkit",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/assessment",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/vibe-os",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/creative-ai-toolkit",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/assessment",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/home",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "components/home/V3HomePage.tsx"
+    },
+    {
+      "from": "components/intelligence-atlas",
+      "to": "/products/creative-ai-toolkit",
+      "sourceFile": "components/intelligence-atlas/IntelligenceAtlas.tsx"
+    },
+    {
+      "from": "components/intelligence-atlas",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "components/intelligence-atlas/IntelligenceAtlas.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/free-playbook",
+      "sourceFile": "components/MobileFullMenu.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/products",
+      "sourceFile": "components/MobileFullMenu.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/",
+      "sourceFile": "components/Navigation.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/free-playbook",
+      "sourceFile": "components/Navigation.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/start",
+      "sourceFile": "components/Navigation.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/free-playbook",
+      "sourceFile": "components/Navigation.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/free-playbook",
+      "sourceFile": "components/Navigation.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/products",
+      "sourceFile": "components/Navigation.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/",
+      "sourceFile": "components/Navigation2025.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/start",
+      "sourceFile": "components/Navigation2025.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/start",
+      "sourceFile": "components/Navigation2025.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/",
+      "sourceFile": "components/NavigationMega.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/blog",
+      "sourceFile": "components/NavigationMega.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/search",
+      "sourceFile": "components/NavigationMega.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/start",
+      "sourceFile": "components/NavigationMega.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/blog",
+      "sourceFile": "components/NavigationMega.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/search",
+      "sourceFile": "components/NavigationMega.tsx"
+    },
+    {
+      "from": "components",
+      "to": "/start",
+      "sourceFile": "components/NavigationMega.tsx"
+    },
+    {
+      "from": "components/newsletter",
+      "to": "/blog",
+      "sourceFile": "components/newsletter/NewsletterCTA.tsx"
+    },
+    {
+      "from": "components/products",
+      "to": "/newsletter",
+      "sourceFile": "components/products/FinalCTA.tsx"
+    },
+    {
+      "from": "components/products",
+      "to": "/newsletter",
+      "sourceFile": "components/products/OfferStack.tsx"
+    },
+    {
+      "from": "components/products",
+      "to": "/newsletter",
+      "sourceFile": "components/products/ProductHero.tsx"
+    },
+    {
+      "from": "components/prompt-library",
+      "to": "/products/generative-creator-os",
+      "sourceFile": "components/prompt-library/PromptLibraryView.tsx"
+    },
+    {
+      "from": "components/prompt-library",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "components/prompt-library/PromptLibraryView.tsx"
+    },
+    {
+      "from": "components/sections",
+      "to": "/agents",
+      "sourceFile": "components/sections/AgentGrid.tsx"
+    },
+    {
+      "from": "components/seo",
+      "to": "/",
+      "sourceFile": "components/seo/Breadcrumbs.tsx"
+    },
+    {
+      "from": "components/soulbook",
+      "to": "/books/self-development",
+      "sourceFile": "components/soulbook/PillarProgress.tsx"
+    },
+    {
+      "from": "components/soulbook",
+      "to": "/free-playbook",
+      "sourceFile": "components/soulbook/SoulbookHero.tsx"
+    },
+    {
+      "from": "components/soulbook",
+      "to": "/",
+      "sourceFile": "components/soulbook/SoulbookNavigation.tsx"
+    },
+    {
+      "from": "components/strategy",
+      "to": "/products/agentic-creator-os",
+      "sourceFile": "components/strategy/StrategyPageLayout.tsx"
+    },
+    {
+      "from": "components/ui/glow-card.tsx",
+      "to": "/blog/post",
+      "sourceFile": "components/ui/glow-card.tsx"
+    },
+    {
+      "from": "components/prompt-library",
+      "to": "/prompt-library",
+      "sourceFile": "components/prompt-library/PromptCategoryView.tsx"
+    }
+  ],
+  "stats": {
+    "totalNodes": 302,
+    "totalEdges": 742,
+    "avgInbound": "2.9",
+    "avgOutbound": "1.7",
+    "mostLinkedPages": [
+      {
+        "route": "/",
+        "type": "page",
+        "inbound": 39,
+        "outbound": 0
+      },
+      {
+        "route": "/products/[slug]",
+        "type": "dynamic",
+        "inbound": 39,
+        "outbound": 0
+      },
+      {
+        "route": "/blog",
+        "type": "page",
+        "inbound": 31,
+        "outbound": 3
+      },
+      {
+        "route": "/ai-architecture/[slug]",
+        "type": "dynamic",
+        "inbound": 23,
+        "outbound": 3
+      },
+      {
+        "route": "/design-lab",
+        "type": "page",
+        "inbound": 20,
+        "outbound": 5
+      },
+      {
+        "route": "/products",
+        "type": "page",
+        "inbound": 19,
+        "outbound": 2
+      },
+      {
+        "route": "/music-lab",
+        "type": "page",
+        "inbound": 18,
+        "outbound": 2
+      },
+      {
+        "route": "/newsletter",
+        "type": "page",
+        "inbound": 18,
+        "outbound": 0
+      },
+      {
+        "route": "/start",
+        "type": "page",
+        "inbound": 18,
+        "outbound": 1
+      },
+      {
+        "route": "/music",
+        "type": "page",
+        "inbound": 17,
+        "outbound": 3
+      },
+      {
+        "route": "/acos",
+        "type": "page",
+        "inbound": 16,
+        "outbound": 0
+      },
+      {
+        "route": "/blog/[slug]",
+        "type": "dynamic",
+        "inbound": 16,
+        "outbound": 0
+      },
+      {
+        "route": "/research",
+        "type": "page",
+        "inbound": 16,
+        "outbound": 4
+      },
+      {
+        "route": "/books/[bookSlug]",
+        "type": "dynamic",
+        "inbound": 15,
+        "outbound": 1
+      },
+      {
+        "route": "/contact",
+        "type": "page",
+        "inbound": 14,
+        "outbound": 1
+      },
+      {
+        "route": "/design-lab/[slug]",
+        "type": "dynamic",
+        "inbound": 14,
+        "outbound": 2
+      },
+      {
+        "route": "/products/vibe-os",
+        "type": "page",
+        "inbound": 14,
+        "outbound": 0
+      },
+      {
+        "route": "/research/[slug]",
+        "type": "dynamic",
+        "inbound": 14,
+        "outbound": 1
+      },
+      {
+        "route": "/inner-circle",
+        "type": "page",
+        "inbound": 12,
+        "outbound": 1
+      },
+      {
+        "route": "/products/agentic-creator-os",
+        "type": "page",
+        "inbound": 12,
+        "outbound": 0
+      }
+    ],
+    "zeroInbound": 112
+  }
+}

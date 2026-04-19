@@ -27,9 +27,9 @@
     ],
     "cta": {
       "label": "Download Free",
-      "href": "#"
+      "href": "/investor/tools"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-deal-flow-crm",
@@ -60,9 +60,9 @@
     ],
     "cta": {
       "label": "Get Template",
-      "href": "#"
+      "href": "/investor/tools"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-deal-sourcing-n8n",
@@ -93,9 +93,9 @@
     ],
     "cta": {
       "label": "Get Workflow",
-      "href": "#"
+      "href": "/investor/workflows"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-due-diligence-pack",
@@ -129,9 +129,9 @@
     ],
     "cta": {
       "label": "Get Agent Pack",
-      "href": "#"
+      "href": "/investor/agents"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-lp-reporting",
@@ -163,9 +163,9 @@
     ],
     "cta": {
       "label": "Get System",
-      "href": "#"
+      "href": "/investor/agents"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-competitive-intel",
@@ -196,9 +196,9 @@
     ],
     "cta": {
       "label": "Get System",
-      "href": "#"
+      "href": "/investor/workflows"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-intelligence-platform",
@@ -231,9 +231,9 @@
     ],
     "cta": {
       "label": "Get Architecture",
-      "href": "#"
+      "href": "/investor/architectures"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-deal-flow-engine",
@@ -267,9 +267,9 @@
     ],
     "cta": {
       "label": "Get Engine",
-      "href": "#"
+      "href": "/investor/workflows"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-portfolio-tracker",
@@ -296,13 +296,13 @@
       "Company metric tracking dashboards",
       "Investment thesis journal templates",
       "Performance logging with graph views",
-      "Private, offline-first — your data stays local"
+      "Private, offline-first \u2014 your data stays local"
     ],
     "cta": {
       "label": "Get Vault",
-      "href": "#"
+      "href": "/investor/tools"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-market-research-prompts",
@@ -335,9 +335,9 @@
     ],
     "cta": {
       "label": "Get Prompt Pack",
-      "href": "#"
+      "href": "/investor/agents"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-stock-research-agent",
@@ -370,9 +370,9 @@
     ],
     "cta": {
       "label": "Get Agent",
-      "href": "#"
+      "href": "/investor/agents"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-sentiment-analyzer",
@@ -400,9 +400,9 @@
     ],
     "cta": {
       "label": "Get Analyzer",
-      "href": "#"
+      "href": "/investor/workflows"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-research-workspace",
@@ -434,16 +434,16 @@
     ],
     "cta": {
       "label": "Get Workspace",
-      "href": "#"
+      "href": "/investor/tools"
     },
-    "status": "published"
+    "status": "draft"
   },
   {
     "id": "inv-complete-stack",
     "slug": "complete-investor-ai-stack",
     "title": "The Complete Investor AI Stack",
     "subtitle": "Everything bundled at 40% off",
-    "description": "The ultimate bundle: every institutional product in one package. Includes Due Diligence Agent Pack, Competitive Intelligence System, Investor Intelligence Platform architecture, and LP Reporting Automation. All agents, workflows, architectures, and templates — shipped as one cohesive system.",
+    "description": "The ultimate bundle: every institutional product in one package. Includes Due Diligence Agent Pack, Competitive Intelligence System, Investor Intelligence Platform architecture, and LP Reporting Automation. All agents, workflows, architectures, and templates \u2014 shipped as one cohesive system.",
     "category": "architectures",
     "track": "institutional",
     "price": 697,
@@ -470,14 +470,14 @@
       "Competitive Intelligence System ($97 value)",
       "Investor Intelligence Platform ($497 value)",
       "LP Reporting Automation ($297 value)",
-      "Total value: $1,088 — You pay: $697",
+      "Total value: $1,088 \u2014 You pay: $697",
       "One cohesive system, not separate tools",
       "Priority setup support via email"
     ],
     "cta": {
       "label": "Get Full Stack",
-      "href": "#"
+      "href": "/investor/architectures"
     },
-    "status": "published"
+    "status": "draft"
   }
 ]

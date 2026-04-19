@@ -9,7 +9,7 @@
     "persona": "architect"
   },
   {
-    "id": "pOLR5jE5Vjw",
+    "id": "eTTMUWP5B0s",
     "title": "The State of AI Engineering",
     "channel": "Simon Willison",
     "category": "AI Engineering",
@@ -93,7 +93,7 @@
     "id": "zjkBMFhNj_g",
     "title": "Intro to Large Language Models",
     "channel": "Andrej Karpathy",
-    "category": "AI Foundations",
+    "category": "AI Architecture",
     "status": "published",
     "tags": ["llm", "intro", "education"],
     "persona": "architect"
@@ -102,7 +102,7 @@
     "id": "sal78ACtGTc",
     "title": "What's Next for AI Agentic Workflows",
     "channel": "Andrew Ng",
-    "category": "AI Agents",
+    "category": "AI Architecture",
     "status": "published",
     "tags": ["agents", "workflow", "design patterns"],
     "persona": "architect"
@@ -111,7 +111,7 @@
     "id": "jvqFAi7vkBc",
     "title": "Sam Altman: GPT-5, Sora, Board Saga, AGI",
     "channel": "Lex Fridman",
-    "category": "Strategy & Business",
+    "category": "Strategy",
     "status": "published",
     "tags": ["openai", "gpt5", "agi"],
     "persona": "investor"
@@ -120,7 +120,7 @@
     "id": "CBYhVcO4WgI",
     "title": "How to Start a Startup (Lecture 1)",
     "channel": "Y Combinator",
-    "category": "Strategy & Business",
+    "category": "Strategy",
     "status": "published",
     "tags": ["startup", "yc", "business"],
     "persona": "investor"
@@ -138,7 +138,7 @@
     "id": "yb5zpo5WDG4",
     "title": "Focus Toolkit: Tools to Improve Focus",
     "channel": "Huberman Lab",
-    "category": "Mindset & Growth",
+    "category": "Mindset",
     "status": "staged",
     "tags": ["focus", "neuroscience", "tools"],
     "persona": "student"
@@ -147,7 +147,7 @@
     "id": "iE39q-IKOzA",
     "title": "Harry Potter by Balenciaga",
     "channel": "demonflyingfox",
-    "category": "AI Culture",
+    "category": "AI Memes",
     "status": "published",
     "tags": ["balenciaga", "viral", "ai"],
     "persona": "creator"

@@ -179,8 +179,8 @@ export default function FreePlaybookPage() {
 
             <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-8">
               Three battle-tested playbooks from 12,000+ AI songs and years of Claude Code mastery.
-              Three premium playbooks.
-              <span className="text-emerald-400 font-semibold"> Yours free.</span>
+              Normally <span className="text-white font-semibold line-through">$111</span> total value.
+              <span className="text-emerald-400 font-semibold"> Free today.</span>
             </p>
 
             {/* Email Capture */}
@@ -298,7 +298,7 @@ export default function FreePlaybookPage() {
           >
             <div className="flex flex-wrap items-center justify-center gap-8 text-slate-400">
               {[
-                { value: '60+', label: 'AI Tracks Published' },
+                { value: '12,000+', label: 'AI Songs Created' },
                 { value: '74', label: 'Prompts Included' },
                 { value: '5+', label: 'Years Experience' },
               ].map((stat) => (

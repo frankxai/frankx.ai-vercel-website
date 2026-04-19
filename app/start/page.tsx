@@ -16,9 +16,39 @@ import {
   Terminal,
   TrendingUp,
 } from 'lucide-react'
-import FrankOmega from '@/components/FrankOmega'
-import { GlowCard } from '@/components/ui/glow-card'
-import type { GlowColor } from '@/components/ui/glow-card'
+
+// Premium background matching the site aesthetic
+function StartBackground() {
+  return (
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
+
+      {/* Static gradient orbs — ambient depth */}
+      <div
+        className="absolute -left-40 top-20 h-[600px] w-[600px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)', filter: 'blur(128px)' }}
+      />
+      <div
+        className="absolute -right-40 top-1/2 h-[700px] w-[700px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)', filter: 'blur(128px)' }}
+      />
+      <div
+        className="absolute bottom-20 left-1/3 h-[500px] w-[500px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)', filter: 'blur(128px)' }}
+      />
+
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+        }}
+      />
+    </div>
+  )
+}
 
 const journeyPaths = [
   {
@@ -103,10 +133,17 @@ export default function StartPage() {
         {/* Hero */}
         <section className="pt-28 pb-12">
           <div className="mx-auto max-w-6xl px-6">
-            <motion.div variants={fadeUp} className="mb-8 flex items-center gap-4">
-              <FrankOmega variant="chibi-avatar" size="sm" glow rounded className="border-2 border-emerald-500/20" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mb-8 flex items-center gap-3"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
+                <Compass className="h-5 w-5" />
+              </div>
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/40">
-                Free Access
+                Your Starting Point
               </span>
             </motion.div>
 
@@ -121,7 +158,9 @@ export default function StartPage() {
             </motion.h1>
 
             <motion.p
-              variants={fadeUp}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-white/40 sm:text-xl"
             >
               Free tools, guides, and systems built by an AI architect who ships.
@@ -135,47 +174,72 @@ export default function StartPage() {
             <div className="grid gap-5 md:grid-cols-2">
               {journeyPaths.map((path) => {
                 const Icon = path.icon
+                const colorMap = {
+                  emerald: {
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-emerald-500/30',
+                    icon: 'bg-emerald-500/10 text-emerald-400',
+                    text: 'text-emerald-400',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-emerald-500/10',
+                  },
+                  cyan: {
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-cyan-500/30',
+                    icon: 'bg-cyan-500/10 text-cyan-400',
+                    text: 'text-cyan-400',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-cyan-500/10',
+                  },
+                  violet: {
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-violet-500/30',
+                    icon: 'bg-violet-500/10 text-violet-400',
+                    text: 'text-violet-400',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
+                  },
+                  amber: {
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-amber-500/30',
+                    icon: 'bg-amber-500/10 text-amber-400',
+                    text: 'text-amber-400',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-amber-500/10',
+                  },
+                }
+                const colors = colorMap[path.color as keyof typeof colorMap]
+
                 return (
-                  <motion.div key={path.id} variants={fadeUp}>
-                    <GlowCard color={path.color} href={path.href} className="!rounded-3xl">
-                      <div className="relative overflow-hidden p-7">
-                        {/* Background image */}
-                        {path.image && (
-                          <div className="absolute inset-0">
-                            <Image
-                              src={path.image}
-                              alt=""
-                              fill
-                              className="object-cover opacity-[0.08]"
-                              sizes="(max-width: 768px) 100vw, 50vw"
-                            />
+                  <motion.div
+                    key={path.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                  >
+                    <Link href={path.href} className="group block h-full">
+                      <div
+                        className={`relative h-full overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 ${colors.glow}`}
+                      >
+                        {/* Icon and Stats Row */}
+                        <div className="mb-6 flex items-start justify-between">
+                          <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>
+                            <Icon className="h-7 w-7" />
                           </div>
                         )}
 
-                        <div className="relative">
-                          <div className="mb-5 flex items-start justify-between">
-                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06]">
-                              <Icon className="h-6 w-6 text-white/60" />
-                            </div>
-                            <span className="rounded-full bg-white/[0.06] px-3 py-1 text-xs font-medium text-white/50">
-                              {path.stats}
-                            </span>
-                          </div>
-
-                          <p className="mb-1 text-[11px] font-medium uppercase tracking-[0.15em] text-white/30">
+                        {/* Content */}
+                        <div className="space-y-2">
+                          <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/40">
                             {path.subtitle}
                           </p>
                           <h3 className="mb-2 text-xl font-bold text-white">
                             {path.title}
                           </h3>
-                          <p className="mb-5 text-sm leading-relaxed text-white/35">
+                          <p className="leading-relaxed text-white/40">
                             {path.description}
                           </p>
 
-                          <div className="flex items-center gap-2 text-sm font-medium text-white/40">
-                            Get started free
-                            <ArrowRight className="h-4 w-4" />
-                          </div>
+                        {/* Arrow */}
+                        <div className="mt-6 flex items-center gap-2 text-white/40 transition-colors group-hover:text-white">
+                          <span className="text-sm font-medium">Explore</span>
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </div>
                       </div>
                     </GlowCard>
@@ -189,9 +253,15 @@ export default function StartPage() {
         {/* Quick Links */}
         <section className="py-14">
           <div className="mx-auto max-w-6xl px-6">
-            <motion.div variants={fadeUp} className="mb-8">
-              <h2 className="text-2xl font-bold text-white">More to explore</h2>
-              <p className="mt-2 text-white/30">All free. All worth your time.</p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <h2 className="text-2xl font-bold text-white">Quick links</h2>
+              <p className="mt-2 text-white/40">More ways to explore</p>
             </motion.div>
 
             <div className="space-y-3">
@@ -201,18 +271,18 @@ export default function StartPage() {
                   <motion.div key={item.title} variants={fadeUp}>
                     <Link
                       href={item.href}
-                      className="group flex items-center justify-between rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]"
+                      className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300 hover:border-white/15 hover:bg-white/[0.05]"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/[0.04] text-white/30 group-hover:text-white/60 transition-colors">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors group-hover:text-white">
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>
-                          <h3 className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">{item.title}</h3>
-                          <p className="text-xs text-white/30">{item.description}</p>
+                          <h3 className="font-medium text-white">{item.title}</h3>
+                          <p className="text-sm text-white/40">{item.description}</p>
                         </div>
                       </div>
-                      <ChevronRight className="h-4 w-4 text-white/20 group-hover:translate-x-0.5 group-hover:text-white/40 transition-all" />
+                      <ChevronRight className="h-5 w-5 text-white/30 transition-all group-hover:translate-x-1 group-hover:text-white/40" />
                     </Link>
                   </motion.div>
                 )
@@ -224,34 +294,33 @@ export default function StartPage() {
         {/* Coaching CTA */}
         <section className="py-14 pb-24">
           <div className="mx-auto max-w-6xl px-6">
-            <motion.div variants={fadeUp}>
-              <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-10">
-                <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/15 to-cyan-500/15 blur-3xl" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-10 backdrop-blur-xl"
+            >
+              {/* Decorative gradient */}
+              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 blur-3xl" />
 
-                <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-                  <div className="flex items-start gap-5">
-                    <FrankOmega variant="portrait" size="sm" glow rounded className="shrink-0 border-2 border-violet-500/20" />
-                    <div className="max-w-lg">
-                      <div className="mb-2 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-400">
-                        <Sparkles className="h-3 w-3" />
-                        Premium
-                      </div>
-                      <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                        Ready to go deeper?
-                      </h2>
-                      <p className="mt-2 text-sm text-white/35">
-                        1-on-1 coaching, architecture reviews, and direct access to an AI architect who ships.
-                      </p>
-                    </div>
-                  </div>
-                  <Link
-                    href="/coaching"
-                    className="group inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 px-6 py-3.5 font-semibold text-white shadow-lg shadow-violet-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-violet-500/30"
-                  >
-                    Apply for coaching
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                  </Link>
+              <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-xl">
+                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                    Want the full story?
+                  </h2>
+                  <p className="mt-3 text-white/40">
+                    Learn about my journey from enterprise architecture to AI music creation,
+                    and why I built this hub to share everything openly.
+                  </p>
                 </div>
+                <Link
+                  href="/about"
+                  className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
+                >
+                  About me
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </motion.div>
           </div>

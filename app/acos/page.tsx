@@ -190,7 +190,7 @@ export default function ACOSPage() {
               <p><span className="text-emerald-400">$</span> claude</p>
               <p className="text-purple-400">/acos</p>
               <p className="mt-2 text-cyan-300">
-                ACOS v10.2 loaded. 75 skills active. 38 agents ready.
+                ACOS v11.0 loaded. 75+ skills active. 38 agents ready. Visual Quality System armed.
               </p>
               <p className="text-white/40">
                 Agentic Creator OS loaded. What would you like to create today?
@@ -500,40 +500,35 @@ export default function ACOSPage() {
         </div>
       </section>
 
-      {/* ─── GenCreator Bridge ─── */}
-      <section className="border-t border-white/[0.08] bg-white/[0.03] py-16">
-        <div className="mx-auto max-w-3xl px-6">
-          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-            <div className="flex-1 text-center sm:text-left">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400/60">The Bigger Picture</p>
-              <h3 className="mt-2 text-xl font-bold text-white">ACOS powers the engine. GenCreator is the framework.</h3>
-              <p className="mt-2 text-sm text-white/50">
-                The GenCreator Framework teaches you <em>what</em> to build and <em>why</em>. ACOS gives you the AI agents to build it. Together — a complete creator operating system.
-              </p>
-            </div>
-            <PremiumButton variant="ghost" size="lg" href="/gencreator">
-              Explore GenCreator
-              <ArrowRight className="h-4 w-4" />
-            </PremiumButton>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Personal AI CoE Bridge ─── */}
-      <section className="border-t border-white/[0.08] bg-white/[0.03] py-16">
-        <div className="mx-auto max-w-3xl px-6">
-          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
-            <div className="flex-1 text-center sm:text-left">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400/60">The Architecture</p>
-              <h3 className="mt-2 text-xl font-bold text-white">ACOS is the implementation. The Personal AI CoE is the blueprint.</h3>
-              <p className="mt-2 text-sm text-white/50">
-                Enterprise AI Centers of Excellence cost millions. The same framework — adapted for individuals — powers ACOS. Seven life domains. Five maturity levels. One system.
-              </p>
-            </div>
-            <PremiumButton variant="ghost" size="lg" href="/research/personal-ai-coe">
-              Read the Research
-              <ArrowRight className="h-4 w-4" />
-            </PremiumButton>
+      {/* ─── Related Tools ─── */}
+      <section className="border-t border-white/[0.08] py-16">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 className="text-center text-2xl font-bold text-white mb-8">Related Tools</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Link
+              href="/assess/ai-coe"
+              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:border-cyan-500/30 hover:bg-white/[0.06]"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10">
+                  <Sparkles className="h-5 w-5 text-cyan-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">AI CoE Assessment</h3>
+              </div>
+              <p className="text-sm text-white/50">Interactive quiz to evaluate your AI Center of Excellence maturity level.</p>
+            </Link>
+            <Link
+              href="/intelligence-map"
+              className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all hover:border-purple-500/30 hover:bg-white/[0.06]"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10">
+                  <Layers className="h-5 w-5 text-purple-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white">Intelligence Map</h3>
+              </div>
+              <p className="text-sm text-white/50">Visual map of the FrankX intelligence infrastructure and automation stack.</p>
+            </Link>
           </div>
         </div>
       </section>

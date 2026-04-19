@@ -397,8 +397,8 @@ function CollectionCard({
 // ── Main Page ────────────────────────────────────────────────────────────────
 
 export default function GalleryPage() {
-  const artworks = curationData.artworks as GalleryArtwork[]
-  const hero = curationData.heroFeature
+  const artworks = (curationData.artworks || []) as GalleryArtwork[]
+  const hero = curationData.heroFeature as GalleryArtwork | null
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [activeCategory, setActiveCategory] = useState<string>('all')
@@ -470,6 +470,7 @@ export default function GalleryPage() {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Hero Image */}
+              {hero && (
               <div className="relative aspect-square max-w-lg mx-auto lg:mx-0 rounded-2xl overflow-hidden border border-white/10 group">
                 <Image
                   src={hero.src}
@@ -490,6 +491,7 @@ export default function GalleryPage() {
                   <h2 className="text-xl font-bold text-white">{hero.title}</h2>
                 </div>
               </div>
+              )}
 
               {/* Hero Text */}
               <div>
@@ -506,7 +508,7 @@ export default function GalleryPage() {
                 </h1>
 
                 <p className="text-lg text-white/50 mb-8 leading-relaxed">
-                  {hero.curatorNote}
+                  {hero?.curatorNote || 'Curated collection of AI-generated visual art'}
                 </p>
 
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

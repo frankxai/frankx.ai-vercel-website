@@ -70,6 +70,8 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
         ...normalizeFrontmatter(data),
       } as BlogPost
     })
+    // Hide drafts from public listings and static generation
+    .filter((post) => !(post as BlogPost & { draft?: boolean }).draft)
 
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 })
@@ -83,12 +85,17 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
     const { data, content } = matter(fileContents)
     const readTime = readingTime(content)
 
-    return {
+    const post = {
       slug,
       content,
       readingTime: readTime.text,
       ...normalizeFrontmatter(data),
-    } as BlogPost
+    } as BlogPost & { draft?: boolean }
+
+    // Draft posts return null so the page renders 404
+    if (post.draft) return null
+
+    return post
   } catch {
     return null
   }

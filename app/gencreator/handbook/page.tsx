@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Script from 'next/script'
 
 export const metadata: Metadata = {
@@ -32,6 +33,18 @@ export default function HandbookPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       <GenCreatorNav />
+
+      {/* Hero Image */}
+      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-5xl mt-6 px-6">
+        <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
+          <Image src="/images/blog/30-minute-creator-os-quick-start-hero.png" alt="The GenCreator Handbook — 8 chapters for creative mastery" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 left-0 p-6">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">GenCreator</p>
+          <h1 className="text-2xl font-bold text-white">The GenCreator&apos;s Handbook</h1>
+        </div>
+      </div>
 
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden pt-20 pb-16">

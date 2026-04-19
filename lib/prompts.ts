@@ -4087,6 +4087,268 @@ Compare this week to last week:
     updatedAt: '2026-03-21T00:00:00.000Z',
   },
 
+  // ============================================================================
+  // MARCH 2026 EXPANSION — Fitness, Video, Voice, Research, CLAUDE.md
+  // ============================================================================
+
+  {
+    id: 'claude-md-generator',
+    title: 'CLAUDE.md Generator for Any Project',
+    description: 'Generate a production-grade CLAUDE.md file for any codebase — with architecture decisions, deploy workflow, anti-patterns, and a decision protocol.',
+    content: `You are an expert at writing CLAUDE.md files — the operating instructions that Claude Code reads at the start of every session.
+
+## My Project
+- Framework: [e.g., Next.js 15, App Router]
+- Styling: [e.g., Tailwind CSS + shadcn/ui]
+- Database: [e.g., Supabase PostgreSQL]
+- Deployment: [e.g., Vercel]
+- Repo structure: [monorepo / single repo / multi-repo]
+- Team size: [solo / small team / large team]
+- Primary language: [TypeScript / Python / Go / etc.]
+
+## Generate My CLAUDE.md
+
+Create a complete CLAUDE.md file with these sections:
+
+1. **Quick Reference Table** — Map the 5 most common actions to commands or steps
+2. **Deployment Workflow** — Exact numbered steps with code blocks
+3. **Tech Stack** — Framework, styling, database, deployment in a clean list
+4. **Brand/Voice Rules** — 3 non-negotiable constraints (if applicable)
+5. **Architecture Decisions** — 2-3 decisions that go against the obvious choice, with reasoning
+6. **Anti-Patterns Table** — 5 "Never do X, instead do Y" rules based on common mistakes for this stack
+7. **File Structure** — Key directories only (not every file)
+8. **Decision Protocol** — 4-question checklist before any structural change
+
+Keep the total under 1,500 words. Front-load critical rules in the first 500 words.`,
+    category: 'ai-architecture',
+    tags: ['CLAUDE.md', 'claude-code', 'setup', 'configuration', 'ai-development'],
+    aiTool: 'claude-code',
+    difficulty: 'Beginner',
+    useCase: 'Any developer starting a new project with Claude Code who wants a properly structured CLAUDE.md from day one.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['CLAUDE.md generator', 'claude code setup', 'CLAUDE.md template', 'claude code configuration'],
+    createdAt: '2026-03-22T00:00:00.000Z',
+    updatedAt: '2026-03-22T00:00:00.000Z',
+  },
+  {
+    id: 'ai-video-script-generator',
+    title: 'AI Video Script Generator',
+    description: 'Generate a complete video script with hook, segments, transitions, and CTA — optimized for YouTube, short-form, or educational content.',
+    content: `You are a video production specialist. Generate a complete video script based on the brief below.
+
+## Video Brief
+- Topic: [YOUR TOPIC]
+- Format: [YouTube long-form / YouTube Shorts / TikTok / Course module / Product demo]
+- Target length: [30 seconds / 2 minutes / 5 minutes / 10 minutes / 15+ minutes]
+- Audience: [developers / creators / beginners / executives]
+- Tone: [educational / entertaining / inspirational / technical]
+- Key message: [the one thing the viewer should remember]
+
+## Generate Script
+
+### HOOK (first 5 seconds)
+Write 2-3 hook options. Each must:
+- Create immediate curiosity or tension
+- Use a specific number, claim, or question
+- Be deliverable in under 5 seconds of speech
+
+### SEGMENTS
+For each segment, provide:
+- **Segment title** (internal reference)
+- **Duration** (estimated seconds)
+- **Script** (word-for-word what to say)
+- **Visual direction** (what should be on screen)
+- **B-roll suggestion** (if applicable)
+
+### TRANSITIONS
+Between each segment, write a 1-sentence transition that bridges naturally.
+
+### CTA (final 10 seconds)
+- Primary CTA (subscribe / visit link / try tool)
+- Verbal script for the CTA
+- Screen graphic suggestion
+
+### METADATA
+- Suggested title (under 60 chars, optimized for YouTube search)
+- Description (first 2 lines visible before "show more")
+- 5 tags
+- Thumbnail concept (1 sentence describing the ideal thumbnail)`,
+    category: 'creative',
+    tags: ['video', 'script', 'youtube', 'content-creation', 'production'],
+    aiTool: 'general',
+    difficulty: 'Intermediate',
+    useCase: 'Content creators who want to produce professional video content with structured scripts, not improvised recordings.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['ai video script', 'youtube script generator', 'video content ai', 'ai video production'],
+    createdAt: '2026-03-22T00:00:00.000Z',
+    updatedAt: '2026-03-22T00:00:00.000Z',
+  },
+  {
+    id: 'fitness-content-creator-system',
+    title: 'Fitness Creator Content System',
+    description: 'Build a complete AI-powered content system for fitness influencers — training guides, nutrition posts, client check-ins, and social content at scale.',
+    content: `You are a fitness content strategist specializing in AI-powered content creation for fitness influencers and coaches.
+
+## My Fitness Creator Profile
+- Niche: [e.g., strength training, endurance, yoga, CrossFit, bodybuilding, general fitness]
+- Audience size: [followers/subscribers count]
+- Content platforms: [Instagram / YouTube / TikTok / Blog / Newsletter]
+- Publishing frequency: [daily / 3x week / weekly]
+- Monetization: [coaching / programs / sponsorships / products]
+- Unique angle: [what makes your approach different]
+
+## Build My Content System
+
+### 1. Content Pillars (5 pillars)
+Define 5 recurring content categories with:
+- Pillar name and description
+- Publishing frequency for each
+- Content format (video / carousel / reel / blog / story)
+- Example titles (3 per pillar)
+
+### 2. Training Content Templates
+Create 3 reusable templates:
+- **Exercise Breakdown** — form cues, common mistakes, progressions
+- **Workout of the Week** — structured program with sets/reps/rest
+- **Science Spotlight** — research finding translated to practical advice
+
+### 3. Nutrition Content Templates
+Create 2 templates:
+- **Meal Prep Guide** — macros, ingredients, prep steps, photo direction
+- **Nutrition Myth Buster** — claim, evidence, practical takeaway
+
+### 4. Client Success Template
+- Before/after framing (ethical, consent-aware)
+- Key metrics to highlight
+- Client quote integration
+- CTA to coaching application
+
+### 5. Weekly Content Calendar
+| Day | Platform | Content Type | Template | Time to Create |
+Design a sustainable weekly rhythm that one person can maintain.
+
+### 6. AI Acceleration Points
+For each template, specify:
+- What AI generates (first draft, outline, research summary)
+- What the creator adds (personal experience, form demonstration, client stories)
+- Quality check before posting`,
+    category: 'social-media',
+    tags: ['fitness', 'content-creation', 'social-media', 'coaching', 'creator'],
+    aiTool: 'general',
+    difficulty: 'Intermediate',
+    useCase: 'Fitness influencers and online coaches who want to systematize their content production without sacrificing authenticity.',
+    tier: 'free',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['fitness content system', 'fitness influencer ai', 'fitness creator content', 'ai fitness content'],
+    createdAt: '2026-03-22T00:00:00.000Z',
+    updatedAt: '2026-03-22T00:00:00.000Z',
+  },
+  {
+    id: 'research-paper-summarizer',
+    title: 'Research Paper Summarizer for Practitioners',
+    description: 'Summarize any research paper into a practitioner-friendly brief — key findings, methodology assessment, practical applications, and limitations.',
+    content: `You are a research analyst who translates academic papers into actionable briefs for practitioners.
+
+## The Paper
+[PASTE the paper abstract, or the full text, or a link/DOI]
+
+## Summarize for Practitioners
+
+### 1. One-Line Summary
+What did this study find? One sentence, no jargon.
+
+### 2. Key Numbers
+| Metric | Value | Context |
+Extract the 3-5 most important quantitative findings.
+
+### 3. Methodology Assessment
+- Study type: [meta-analysis / RCT / observational / case study / review]
+- Sample size: [N=?]
+- Duration: [how long]
+- Confidence level: [how much should I trust this?]
+- Limitations the authors acknowledge:
+- Limitations the authors missed:
+
+### 4. Evidence Grade
+Rate A-D:
+- **A**: Meta-analysis or large RCT (strong evidence)
+- **B**: Systematic review or peer-reviewed study (good evidence)
+- **C**: Observational or small sample (directional evidence)
+- **D**: Expert opinion or case study (preliminary)
+
+### 5. Practical Applications
+- Who should care about this finding?
+- What should they do differently based on this?
+- What should they NOT do based on this? (common misinterpretations)
+
+### 6. One-Paragraph Brief
+Write a paragraph I can share with my audience that accurately conveys this finding without oversimplifying or overclaiming.`,
+    category: 'learning',
+    tags: ['research', 'papers', 'science', 'evidence', 'learning'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Anyone who reads research papers and needs to translate findings into practical, shareable insights — especially fitness, health, and AI practitioners.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['research paper summarizer', 'academic paper summary ai', 'research to practice', 'evidence grading'],
+    createdAt: '2026-03-22T00:00:00.000Z',
+    updatedAt: '2026-03-22T00:00:00.000Z',
+  },
+  {
+    id: 'voice-ai-product-narrator',
+    title: 'Voice AI Product Narrator',
+    description: 'Generate a complete narration script for product demos, course modules, or podcast intros — with voice direction for ElevenLabs or similar tools.',
+    content: `You are a voice AI production specialist. Generate a narration script with voice direction optimized for text-to-speech platforms like ElevenLabs, OpenAI TTS, or Hume AI.
+
+## Project Brief
+- Content type: [product demo / course module / podcast intro / audiobook chapter / explainer video]
+- Duration target: [30 seconds / 1 minute / 3 minutes / 5 minutes / 10+ minutes]
+- Voice personality: [professional / warm / energetic / calm / authoritative / conversational]
+- Audience: [technical / general / executive / student]
+- Key message: [what the listener should take away]
+- Brand voice notes: [any specific tone requirements]
+
+## Generate Narration Package
+
+### Script
+Write the complete narration script with:
+- **[PAUSE 0.5s]** markers for natural breathing points
+- **[EMPHASIS]** markers for words that should be stressed
+- **[SLOW]** and **[NORMAL]** markers for pacing changes
+- Sentence lengths varied for natural rhythm (mix 5-word punches with 15-word explanations)
+- No tongue-twisters or awkward consonant clusters (TTS struggle points)
+
+### Voice Direction
+- Recommended voice: [ElevenLabs voice name or OpenAI voice ID]
+- Stability setting: [0.0-1.0 — lower = more expressive]
+- Similarity boost: [0.0-1.0 — higher = more consistent]
+- Style: [0.0-1.0 — higher = more stylistic interpretation]
+- Speed: [0.8x / 1.0x / 1.2x recommended playback]
+
+### Production Notes
+- Total word count: [N words]
+- Estimated duration at 150 WPM: [N minutes]
+- Recommended background music: [genre/mood suggestion]
+- Audio format: [mono/stereo, sample rate recommendation]
+
+### Cost Estimate
+- ElevenLabs: ~$[X] for this script at current per-character pricing
+- OpenAI TTS: ~$[X] at $15/1M characters
+- Self-hosted: [Coqui/Bark recommendation if applicable]`,
+    category: 'creative',
+    tags: ['voice-ai', 'narration', 'elevenlabs', 'audio', 'production'],
+    aiTool: 'general',
+    difficulty: 'Intermediate',
+    useCase: 'Creators producing audio content — product demos, course narration, podcast intros — who want professional voice AI output.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['voice ai narration', 'elevenlabs script', 'tts narration prompt', 'ai voice production'],
+    createdAt: '2026-03-22T00:00:00.000Z',
+    updatedAt: '2026-03-22T00:00:00.000Z',
+  },
+
 ]
 
 // ============================================================================

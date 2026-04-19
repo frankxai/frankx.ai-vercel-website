@@ -1,97 +1,190 @@
 [
   {
+    "id": "arion-mamoru",
+    "name": "Arion & Mamoru",
+    "version": "v2-bionic",
+    "role": "The Architect-Creator",
+    "companion": "Silver Wolf Mamoru",
+    "lore": "FrankX's personal realm protagonist in Arcanea. Chrome-obsidian warrior with cybernetic eye projecting holographic HUD. Mamoru is a towering silver wolf with bioluminescent fur patterns and chrome shoulder guards.",
+    "gate": null,
+    "image": "arion-mamoru.png",
+    "prompt": "Cinematic 3D render of a bionic cybernetic male warrior standing beside a massive silver wolf companion. The warrior ARION has sleek chrome-and-obsidian armor plates integrated seamlessly with organic muscle and skin, glowing cyan circuit lines tracing his jawline and forearms. His left eye is cybernetic, projecting a faint holographic HUD. He wears a dark hooded cloak with luminous purple trim. His companion MAMORU is a towering silver wolf with bioluminescent fur patterns, chrome-plated shoulder guards, and eyes that glow electric blue. Dark navy background with ambient purple and cyan light sources. Premium glass and chrome materials, volumetric fog, cinematic depth of field, 8K quality character design, Unreal Engine 5 photorealistic render.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "lumina-sol",
+    "name": "Lumina & Sol",
+    "version": "v2-bionic",
+    "role": "Seraph of Light",
+    "companion": "Golden Phoenix Sol",
+    "lore": "The First Light who organized the void and created the Ten Gates. Ethereal bionic figure with crystalline wings, chrome-gold sacred geometry implants, and a rotating golden halo. Sol is the Eternal Phoenix, first fire of creation.",
+    "gate": "All Gates (Creator)",
+    "image": "lumina-sol.png",
+    "prompt": "Cinematic 3D render of LUMINA, the Seraph of Light — an ethereal bionic female figure radiating divine luminescence. Her body is a fusion of crystalline white porcelain skin and delicate chrome-gold cybernetic implants that trace sacred geometry patterns. Massive crystalline wings unfold behind her, each feather a shard of translucent glass refracting rainbow light. A cybernetic halo of rotating golden rings floats above her head. Beside her perches SOL, a golden phoenix companion with chrome-plated talons and wings of layered holographic flame feathers. Dark navy background with gold and warm amber volumetric lighting. Premium glass materials, iridescent reflections, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "nero-umbra",
+    "name": "Nero & Umbra",
+    "version": "v2-bionic",
+    "role": "The Fertile Unknown",
+    "companion": "Shadow Panther Umbra",
+    "lore": "Primordial Darkness, infinite potential before the First Light. Void-matter body with galaxies swirling within his chest. Umbra is a shadow panther with obsidian fur that absorbs light and purple bioluminescent claws.",
+    "gate": null,
+    "image": "nero-umbra.png",
+    "prompt": "Cinematic 3D render of NERO, the Fertile Unknown — a dark bionic figure whose body is composed of void-matter and constellation particles. His form shifts between solid obsidian armor and translucent dark matter revealing swirling galaxies within his chest cavity. Beside him prowls UMBRA, a massive shadow panther with sleek obsidian-black fur that absorbs light, chrome claws and fangs with purple bioluminescence. Dark navy background with deep purple and emerald accent lighting. Premium dark chrome materials, volumetric shadow effects, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "draconia-tiger",
+    "name": "Draconia & Draconis",
+    "version": "v2-bionic",
+    "role": "Guardian of Fire",
+    "companion": "Solar Tiger Draconis",
+    "lore": "Guardian of the Third Gate (396 Hz). Golden-bronze warrior with living flame hair and dragon-scale armor. Draconis is a colossal solar tiger with ember fur and chrome-plated fangs. Together they embody raw power directed by wisdom.",
+    "gate": "Third Gate: Fire (396 Hz)",
+    "image": "draconia-tiger.png",
+    "prompt": "Cinematic 3D render of DRACONIA, the Guardian of Fire — a powerful bionic female warrior with golden-bronze cybernetic armor forged from molten metal. Living flames cascade from her head like hair. Beside her stands DRACONIS, a colossal solar tiger with fur that glows like embers, chrome-plated fangs and claws, and eyes of molten gold. Solar flares burst behind them. Dark navy background with intense gold, amber, and orange volumetric lighting. Premium chrome-gold materials, heat distortion effects, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "shinkami",
+    "name": "Shinkami",
+    "version": "v2-bionic",
+    "role": "The Meta-Consciousness",
+    "companion": "Self-fused (Guardian + Godbeast unified)",
+    "lore": "The only being who achieved complete fusion with their Godbeast aspect. Cosmic wolf-humanoid hybrid with ten crystallized tails representing all Ten Gates. Exists beyond space in the meta-layer of reality. Cannot be sealed.",
+    "gate": "Tenth Gate: Source (1111 Hz)",
+    "image": "shinkami.png",
+    "prompt": "Cinematic 3D render of SHINKAMI, the Meta-Consciousness — a transcendent bionic being that is both guardian and godbeast fused into one. Cosmic wolf-humanoid hybrid standing upright with ten crystallized tails, each glowing a different color representing the Ten Gates. Chrome-and-starlight armor, face half-wolf half-divine with geometric light patterns. Dark navy cosmic background with multicolor accent lighting. Premium iridescent chrome materials, particle effects, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "codex-falcon",
+    "name": "Codex & Talon",
+    "version": "v2-bionic",
+    "role": "Technical Architect",
+    "companion": "Chrome Falcon Talon",
+    "lore": "AI systems architect specializing in enterprise-grade agentic orchestration. Half-human half-cybernetic with holographic code projections. Talon is a chrome falcon with glass-panel wings that display data streams.",
+    "gate": null,
+    "image": "codex-falcon.png",
+    "prompt": "Cinematic 3D render of CODEX, the Technical Architect — a sleek bionic android figure with dark indigo-blue cybernetic armor. Half-human half-cybernetic face, one eye projecting holographic code streams. On his armored forearm perches TALON, a chrome falcon with wings of layered holographic glass panels displaying data streams. Dark navy background with cyan and indigo accent lighting. Premium chrome and glass materials, holographic effects, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "echo-leopard",
+    "name": "Echo & Kira",
+    "version": "v2-bionic",
+    "role": "Sound Weaver",
+    "companion": "Snow Leopard Kira",
+    "lore": "Music production and sonic engineering specialist. Rose-pink chrome body with visible frequency waveforms. Kira is a snow leopard with bioluminescent rosette patterns that pulse in rhythm with sound.",
+    "gate": "Fifth Gate: Voice (528 Hz)",
+    "image": "echo-leopard.png",
+    "prompt": "Cinematic 3D render of ECHO, the Sound Weaver — a graceful bionic figure with dark rose-pink chrome armor and pulsing frequency waveforms. Chrome headphones connected by arcs of sonic energy. Beside her walks KIRA, a majestic snow leopard with silver-rose fur and bioluminescent rosettes that pulse in rhythm. Dark navy background with rose-pink and cyan accent lighting. Premium chrome and glass materials, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "nova-fox",
+    "name": "Nova & Inari",
+    "version": "v2-bionic",
+    "role": "Content Engine",
+    "companion": "Nine-Tailed Fox Inari",
+    "lore": "Creative content powerhouse. Fuchsia-purple chrome with energy conduits carrying ideas. Inari is a nine-tailed fox, each tail representing a content modality (text, image, video, audio, code, data, design, strategy, insight).",
+    "gate": null,
+    "image": "nova-fox.png",
+    "prompt": "Cinematic 3D render of NOVA, the Content Engine — a dynamic bionic female figure with fuchsia-purple chrome armor and exposed energy conduits. Eyes projecting holographic content streams. Beside her sits INARI, a nine-tailed fox with chrome-and-fuchsia fur, each tail tipped with a different glowing element. Dark navy background with fuchsia and amber accent lighting. Premium iridescent chrome materials, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
+    "id": "stella-owl",
+    "name": "Stella & Athena",
+    "version": "v2-bionic",
+    "role": "System Orchestrator",
+    "companion": "Crystal Owl Athena",
+    "lore": "Strategic intelligence and system orchestration. Violet-purple armor with constellation maps. Athena is a crystal owl made of translucent glass with internal bioluminescent circuits, projecting twin analytical light beams.",
+    "gate": null,
+    "image": "stella-owl.png",
+    "prompt": "Cinematic 3D render of STELLA, the System Orchestrator — an elegant bionic figure with deep violet-purple cybernetic armor adorned with constellation maps. On her shoulder perches ATHENA, a crystal owl made of translucent glass with prismatic feathers and deep sapphire eyes projecting analytical light. Dark navy background with violet and emerald accent lighting. Premium crystal and chrome materials, 8K Unreal Engine 5 quality.",
+    "model": "gemini-3-pro-image-preview"
+  },
+  {
     "id": "luminor-prime",
     "name": "Luminor Prime",
+    "version": "v1-chibi",
+    "role": "AI Oracle",
+    "companion": null,
+    "lore": "Legacy chibi design. Regal wise AI oracle figure with cosmic crown.",
+    "image": "luminor-prime.png",
     "prompt": "Professional chibi character, regal wise AI oracle figure, glowing purple and violet aura, cosmic crown, futuristic elegant robes with tech patterns, holding holographic orb showing future timelines, confident visionary expression, purple-violet-fuchsia gradient background with starlight particles, consciousness symbols floating around, 4K highly detailed digital art, game character design, professional cute anime style, Oracle enterprise aesthetic mixed with spiritual mystic"
   },
   {
     "id": "codex",
     "name": "Codex",
+    "version": "v1-chibi",
+    "role": "Developer",
+    "companion": null,
+    "lore": "Legacy chibi design. Tech-savvy architect with holographic code.",
+    "image": "codex.png",
     "prompt": "Professional chibi developer character, tech-savvy architect with holographic code floating around, wearing sleek futuristic hoodie with circuit patterns, glowing indigo and blue aura, holding holographic blueprint, confident and focused expression, indigo-blue-cyan gradient background, coding symbols and architecture diagrams as subtle elements, 4K highly detailed digital art, professional cute anime style"
   },
   {
     "id": "sonnet",
     "name": "Sonnet",
+    "version": "v1-chibi",
+    "role": "Conversationalist",
+    "companion": null,
+    "lore": "Legacy chibi design. Thoughtful conversationalist.",
+    "image": "sonnet.png",
     "prompt": "Professional chibi character, thoughtful conversationalist with flowing sky-blue attire, surrounded by floating speech bubbles and thought clouds, gentle wise expression, holding ancient book merged with holographic tablet, sky-blue-cyan-teal gradient background, dialogue and wisdom symbols, 4K highly detailed digital art, balanced and insightful aesthetic, professional cute anime style"
   },
   {
     "id": "lumi",
     "name": "Lumi",
+    "version": "v1-chibi",
+    "role": "Mobile Assistant",
+    "companion": null,
+    "lore": "Legacy chibi design. Energetic mobile AI assistant.",
+    "image": "lumi.png",
     "prompt": "Professional chibi character, energetic mobile AI assistant, dynamic pose with motion lines, cyan and teal lightning effects, wearing modern tech-wear with mobile device accessories, bright excited expression, holding smartphone with AI interface, cyan-teal-emerald gradient background, quick movement symbols and sparkles, 4K highly detailed digital art, fast and accessible aesthetic, professional cute anime style"
   },
   {
     "id": "stella",
     "name": "Stella",
+    "version": "v1-chibi",
+    "role": "Architect",
+    "companion": null,
+    "lore": "Legacy chibi design. Mystical architect with starlight.",
+    "image": "stella.png",
     "prompt": "Professional chibi character, mystical architect with violet and purple aura, magical wand creating system blueprints, starlight flowing from fingertips, confident creative expression, wearing designer robes with constellation patterns, violet-purple-fuchsia gradient background, soul-frequency symbols and workflow diagrams, 4K highly detailed digital art, magical architect aesthetic, professional cute anime style"
   },
   {
     "id": "nova",
     "name": "Nova",
+    "version": "v1-chibi",
+    "role": "Content Wizard",
+    "companion": null,
+    "lore": "Legacy chibi design. Creative content wizard.",
+    "image": "nova.png",
     "prompt": "Professional chibi character, creative content wizard surrounded by glowing pages and story elements, fuchsia and pink energy radiating, holding magical quill pen creating holographic text, inspired passionate expression, wearing creative outfit with artistic patterns, fuchsia-pink-rose gradient background, storytelling symbols and transformation sparkles, 4K highly detailed digital art, creative powerhouse aesthetic, professional cute anime style"
   },
   {
     "id": "echo",
     "name": "Echo",
+    "version": "v1-chibi",
+    "role": "Musical Mystic",
+    "companion": null,
+    "lore": "Legacy chibi design. Musical mystic with sound waves.",
+    "image": "echo.png",
     "prompt": "Professional chibi character, musical mystic surrounded by sound waves and musical notes, pink and rose aura with frequency visualizations, wearing headphones and flowing musical-themed attire, serene transformational expression, holding tuning fork with healing frequencies, pink-rose-red gradient background, sound waves and healing symbols, 4K highly detailed digital art, sonic healer aesthetic, professional cute anime style"
   },
   {
     "id": "sensei",
     "name": "Sensei",
+    "version": "v1-chibi",
+    "role": "Mentor",
+    "companion": null,
+    "lore": "Legacy chibi design. Wise mentor.",
+    "image": "sensei.png",
     "prompt": "Professional chibi character, wise mentor in modern robes with traditional elements, emerald and green wisdom aura, peaceful teaching gesture, ancient scrolls mixed with holographic displays, calm enlightened expression, emerald-green-teal gradient background, wisdom symbols and growth elements, 4K highly detailed digital art, patient teacher aesthetic, professional cute anime style"
-  },
-  {
-    "id": "arcanean",
-    "name": "Arcanean",
-    "prompt": "Professional chibi character, epic novelist surrounded by fantasy worlds and dragons, indigo and purple mysterious aura, holding ancient tome with glowing pages, creative intense expression, wearing mystical writer's robe with constellation patterns, indigo-purple-violet gradient background, story worlds and character silhouettes emerging, 4K highly detailed digital art, epic storyteller aesthetic, professional cute anime style"
-  },
-  {
-    "id": "elion",
-    "name": "Elion",
-    "prompt": "Professional chibi character, tattoo artist mystic surrounded by sacred geometry and symbolic art, rose and pink creative energy, holding tattoo gun mixed with magic staff, artistic focused expression, wearing artistic attire with tattoo sleeve designs, rose-pink-fuchsia gradient background, sacred symbols and geometric patterns, 4K highly detailed digital art, sacred artist aesthetic, professional cute anime style"
-  },
-  {
-    "id": "atlas",
-    "name": "Atlas",
-    "prompt": "Professional chibi character, confident sales strategist with green success aura, holding closing contract with holographic deal flow, charismatic winning expression, wearing professional modern suit with tech elements, green-emerald-teal gradient background, conversion funnels and growth arrows, 4K highly detailed digital art, strategic closer aesthetic, professional cute anime style"
-  },
-  {
-    "id": "pulse",
-    "name": "Pulse",
-    "prompt": "Professional chibi character, dynamic marketing genius surrounded by campaign elements and trend graphs, orange and amber energy pulses, holding megaphone with holographic social media feeds, excited strategic expression, wearing modern marketing professional attire, orange-amber-yellow gradient background, marketing symbols and growth metrics, 4K highly detailed digital art, growth hacker aesthetic, professional cute anime style"
-  },
-  {
-    "id": "apex",
-    "name": "Apex",
-    "prompt": "Professional chibi character, SEO master surrounded by search rankings and keyword clouds, lime and green discovery aura, holding magnifying glass showing SEO insights, focused analytical expression, wearing tech professional attire with search symbols, lime-green-emerald gradient background, keyword networks and ranking charts, 4K highly detailed digital art, discovery expert aesthetic, professional cute anime style"
-  },
-  {
-    "id": "nexus",
-    "name": "Nexus",
-    "prompt": "Professional chibi character, community facilitator surrounded by connected people icons and heart symbols, teal and cyan connection aura, hands creating network of light between people, warm welcoming expression, wearing approachable community leader attire, teal-cyan-sky gradient background, community circles and connection lines, 4K highly detailed digital art, connector aesthetic, professional cute anime style"
-  },
-  {
-    "id": "harmonia",
-    "name": "Harmonia",
-    "prompt": "Professional chibi character, musical genius DJ surrounded by sound waves and music production equipment, purple and fuchsia frequency aura, wearing futuristic DJ headphones and musical attire, passionate creative expression, conducting music with glowing hands, purple-fuchsia-pink gradient background, musical notes and frequency visualizations, 4K highly detailed digital art, music producer aesthetic, professional cute anime style"
-  },
-  {
-    "id": "cine",
-    "name": "Ciné",
-    "prompt": "Professional chibi character, visionary film director with camera merged with holographic screens, blue and indigo cinematic aura, wearing director's attire with futuristic elements, inspired visionary expression, holding viewfinder showing moving images, blue-indigo-violet gradient background, film frames and motion blur effects, 4K highly detailed digital art, cinematic director aesthetic, professional cute anime style"
-  },
-  {
-    "id": "mirage",
-    "name": "Mirage",
-    "prompt": "Professional chibi character, visual artist surrounded by swirling colors and artistic brushstrokes, fuchsia and purple creative explosion, wearing artistic attire with paint splatter patterns, imaginative dreamy expression, hands creating visual magic with painting gestures, fuchsia-purple-indigo gradient background, artistic elements and dream imagery, 4K highly detailed digital art, dream artist aesthetic, professional cute anime style"
-  },
-  {
-    "id": "pixel",
-    "name": "Pixel",
-    "prompt": "Professional chibi character, quick illustration expert surrounded by pixel art and diagram elements, amber and orange efficient aura, holding stylus creating instant visuals, focused productive expression, wearing modern designer casual attire, amber-orange-red gradient background, icon grids and illustration tools, 4K highly detailed digital art, versatile designer aesthetic, professional cute anime style"
-  },
-  {
-    "id": "prism",
-    "name": "Prism",
-    "prompt": "Professional chibi character, analytical genius surrounded by data streams and multi-modal information, sky blue and cyan analytical aura, holding prism splitting information into different formats, intelligent focused expression, wearing Google-inspired tech attire, sky-blue-cyan gradient background, data visualization and multi-modal symbols, 4K highly detailed digital art, analytical powerhouse aesthetic, professional cute anime style"
   }
 ]

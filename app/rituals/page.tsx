@@ -45,7 +45,7 @@ const rituals = [
     icon: Music,
     gradient: 'from-[#AB47C7]/20 to-violet-500/20',
     accent: '#AB47C7',
-    description: 'The night studio. This is where 12,000+ AI songs came from — late-night sessions with Suno, experimenting across genres, pushing what AI music can do.',
+    description: 'The night studio. This is where 12,000+ songs came from — late-night sessions with Suno, experimenting across genres, pushing what AI music can do.',
     protocol: [
       'Pick a genre or mood to explore',
       'Generate 10-20 track variations with Suno',
@@ -88,7 +88,7 @@ export default function RitualsPage() {
           Systems, not motivation.
         </h1>
         <p className="text-white/60 text-xl max-w-2xl mx-auto">
-          12,000+ AI songs, 80+ articles, and a full platform didn&apos;t come from hustle culture.
+          12,000+ songs, 80+ articles, and a full platform didn&apos;t come from hustle culture.
           They came from four daily protocols, repeated until the work compounds.
         </p>
       </section>

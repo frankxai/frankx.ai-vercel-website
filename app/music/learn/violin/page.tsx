@@ -3,372 +3,323 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.5 },
-}
+// ── Data ────────────────────────────────────────────────────────────────────
 
-const youtubeChannels = [
+const TEACHERS = [
   {
-    name: 'Violinspiration',
-    handle: '@violinspiration',
-    url: 'https://www.youtube.com/@violinspiration',
-    lang: 'EN',
-    desc: 'Julia Bushkova\'s channel with Suzuki-method lessons, technique breakdowns, and practice routines for beginners through intermediate players.',
+    name: 'Esther Abrami',
+    channel: '@EstherAbrami',
+    description:
+      'Französische Geigenspielerin. Macht klassische Musik zugänglich und cool. Zeigt, wie das Leben als professionelle Musikerin aussieht. Wunderschönes Spiel.',
+    tags: ['Klassik', 'Inspiration', 'Lifestyle'],
+    color: 'violet',
+    url: 'https://www.youtube.com/@EstherAbrami',
   },
   {
     name: 'Hilary Hahn',
-    handle: '@hilaryhahn',
+    channel: '@hilaryhahn',
+    description:
+      'Eine der besten Geigerinnen der Welt. Grammy-Gewinnerin. Teilt Übungsroutinen, Konzerteinblicke und Tipps für junge Musiker.',
+    tags: ['Weltklasse', 'Praxis', 'Tipps'],
+    color: 'rose',
     url: 'https://www.youtube.com/@hilaryhahn',
-    lang: 'EN',
-    desc: 'World-class violinist sharing practice insights, performance clips, and the mindset behind mastering the instrument at the highest level.',
   },
   {
     name: 'TwoSet Violin',
-    handle: '@TwoSetViolin',
+    channel: '@TwoSetViolin',
+    description:
+      'Zwei Geiger aus Australien. Lustig, lehrreich, inspirierend. Zeigen, dass Geige üben auch Spaß machen kann.',
+    tags: ['Humor', 'Motivation', 'Community'],
+    color: 'amber',
     url: 'https://www.youtube.com/@TwoSetViolin',
-    lang: 'EN',
-    desc: 'Entertaining and educational — classical music commentary, technique challenges, and a community of millions. Makes practice feel less solitary.',
-  },
-  {
-    name: 'Esther Abrami',
-    handle: '@EstherAbrami',
-    url: 'https://www.youtube.com/@EstherAbrami',
-    lang: 'EN',
-    desc: 'Making classical violin accessible to a modern audience. Beautiful performances and behind-the-scenes looks at a professional violinist\'s life.',
-  },
-  {
-    name: 'Antoine Morales',
-    handle: '@AntoineMoralesViolin',
-    url: 'https://www.youtube.com/@AntoineMoralesViolin',
-    lang: 'DE',
-    desc: 'Methodical German violin lessons with clear explanations. Excellent for German-speaking learners who want structured, step-by-step progression.',
   },
   {
     name: 'Violin MD',
-    handle: '@ViolinMD',
+    channel: '@ViolinMD',
+    description:
+      'Klar strukturierte Lektionen für Anfänger. Von der Haltung bis zum ersten Stück — alles Schritt für Schritt erklärt.',
+    tags: ['Anfänger', 'Technik', 'Lektionen'],
+    color: 'emerald',
     url: 'https://www.youtube.com/@ViolinMD',
-    lang: 'EN',
-    desc: 'Structured lessons covering technique, repertoire, and practice strategies. Well-organized content for self-directed learners.',
   },
 ]
 
-const fourStrings = [
-  { note: 'G', pitch: 'Lowest', color: 'from-amber-500/20 to-amber-600/5', accent: 'text-amber-400', desc: 'Rich, warm tone. The foundation string for deep melodies and lower register playing.' },
-  { note: 'D', pitch: 'Low-Mid', color: 'from-emerald-500/20 to-emerald-600/5', accent: 'text-emerald-400', desc: 'Versatile middle string. Many folk and classical melodies sit naturally on the D string.' },
-  { note: 'A', pitch: 'Mid-High', color: 'from-blue-500/20 to-blue-600/5', accent: 'text-blue-400', desc: 'Bright, singing quality. The primary melody string for most beginner and intermediate repertoire.' },
-  { note: 'E', pitch: 'Highest', color: 'from-violet-500/20 to-violet-600/5', accent: 'text-violet-400', desc: 'Brilliant, piercing tone. Used for soaring melodies and virtuosic passages in upper positions.' },
+const FIRST_PIECES = [
+  { name: 'Twinkle Twinkle Little Star', difficulty: '⭐', style: 'Suzuki Methode #1', emoji: '⭐' },
+  { name: 'Ode an die Freude', difficulty: '⭐', style: 'Offene Saiten + 1. Lage', emoji: '🎵' },
+  { name: 'Lightly Row', difficulty: '⭐', style: 'Suzuki Methode #2', emoji: '🚣' },
+  { name: 'Allegro (Suzuki)', difficulty: '⭐⭐', style: '1. Lage', emoji: '🏃' },
+  { name: 'Gavotte (Gossec)', difficulty: '⭐⭐', style: 'Barock', emoji: '💃' },
+  { name: 'Czardas', difficulty: '⭐⭐⭐', style: 'Ungarisch', emoji: '🔥' },
 ]
 
-const firstPieces = [
-  { title: 'Twinkle Twinkle (Suzuki)', composer: 'Traditional / Suzuki', difficulty: 1, genre: 'Method' },
-  { title: 'Lightly Row', composer: 'Traditional / Suzuki', difficulty: 1, genre: 'Folk' },
-  { title: 'Allegro', composer: 'Suzuki Book 1', difficulty: 1, genre: 'Classical' },
-  { title: 'Long Long Ago', composer: 'T.H. Bayly / Suzuki', difficulty: 2, genre: 'Classical' },
-  { title: 'Minuet No. 1', composer: 'J.S. Bach / Suzuki', difficulty: 2, genre: 'Baroque' },
-  { title: 'Hunters\' Chorus', composer: 'Weber / Suzuki', difficulty: 2, genre: 'Classical' },
-  { title: 'Gavotte in D Major', composer: 'J.S. Bach', difficulty: 3, genre: 'Baroque' },
-  { title: 'Concerto in A Minor', composer: 'Vivaldi', difficulty: 3, genre: 'Baroque' },
-  { title: 'Czardas', composer: 'Monti', difficulty: 4, genre: 'Hungarian' },
-  { title: 'Meditation from Thais', composer: 'Massenet', difficulty: 4, genre: 'Romantic' },
+const PRACTICE_TIPS = [
+  { tip: 'Halte den Bogen locker — wie ein kleines Vögelchen, das du halten willst, ohne es zu drücken.', emoji: '🐦' },
+  { tip: 'Übe offene Saiten, bis dein Ton klar und gleichmäßig klingt. Das ist das Fundament.', emoji: '🏗️' },
+  { tip: 'Höre dir Profis an. Dein Ohr lernt mit, auch wenn deine Finger noch üben.', emoji: '👂' },
+  { tip: 'Stelle dich vor einen Spiegel. So siehst du deine Haltung und den Bogenwinkel.', emoji: '🪞' },
+  { tip: 'Spiele Tonleitern mit dem Metronom. Langsam starten, dann schneller werden.', emoji: '⏱️' },
+  { tip: 'Die Intonation kommt mit der Zeit. Geduld ist das wichtigste Instrument.', emoji: '🧘' },
 ]
 
-const sheetMusicSources = [
-  { name: 'MuseScore', url: 'https://musescore.com', desc: 'Community sheet music with playback, transposition, and part extraction for violin' },
-  { name: 'IMSLP', url: 'https://imslp.org', desc: 'Enormous public domain archive — Suzuki books, concertos, sonatas, chamber music parts' },
-  { name: 'Violinspiration Free Sheets', url: 'https://violinspiration.com/free-violin-sheet-music/', desc: 'Curated free sheet music organized by difficulty level with play-along tracks' },
+const VIOLIN_FACTS = [
+  'Die Violine hat nur 4 Saiten, aber einen Tonumfang von über 4 Oktaven.',
+  'Eine Stradivarius-Geige von 1721 wurde für 15,9 Millionen Dollar verkauft.',
+  'Der Bogen einer Geige besteht aus etwa 150-200 Pferdehaaren.',
+  'Antonio Vivaldi war Geigenlehrer, bevor er „Die vier Jahreszeiten" komponierte.',
+  'Die Geige ist über 500 Jahre alt — sie wurde im 16. Jahrhundert in Italien entwickelt.',
+  'Niccolò Paganini konnte so schnell spielen, dass man glaubte, er hätte einen Pakt mit dem Teufel.',
 ]
 
-const inspiringViolinists = [
-  { name: 'Karolina Protsenko', desc: 'Young street performer turned viral sensation. Proof that dedication and public performance accelerate growth.' },
-  { name: 'Anne-Sophie Mutter', desc: 'One of the greatest living violinists. Her interpretations of Mozart and Beethoven set the standard for classical excellence.' },
-  { name: 'Lindsey Stirling', desc: 'Bridged violin and electronic music, performing while dancing. Expanded what the instrument can be in modern pop culture.' },
-  { name: 'David Garrett', desc: 'Classical virtuoso who crossed into rock and pop. Holds the Guinness record for fastest violin playing.' },
-  { name: 'Itzhak Perlman', desc: 'Legendary performer and teacher whose warmth and technical mastery have defined violin playing for half a century.' },
+const INSPIRING_VIOLINISTS = [
+  { name: 'Karolina Protsenko', desc: 'Begann mit 6, spielt auf der Straße, Millionen Fans', emoji: '🌟' },
+  { name: 'Lindsey Stirling', desc: 'Geige + Tanz + Elektronische Musik = pure Energie', emoji: '⚡' },
+  { name: 'Itzhak Perlman', desc: 'Einer der größten Geiger aller Zeiten, inspirierend und warm', emoji: '❤️' },
+  { name: 'Anne-Sophie Mutter', desc: 'Deutsche Weltklasse-Geigerin, Debüt mit 13 bei den Berliner Philharmonikern', emoji: '🇩🇪' },
 ]
 
-const practiceTips = [
-  { title: 'Posture Before Notes', desc: 'Spend the first week perfecting your hold — chin rest contact, straight wrist, relaxed shoulders. Bad posture compounds into injury.' },
-  { title: 'Open Strings Daily', desc: 'Even advanced players warm up with open string bowing. Focus on straight bow path, consistent contact point, and even tone.' },
-  { title: 'Tune By Ear, Verify With App', desc: 'Develop relative pitch by tuning your A string to a reference, then tuning G-D-E in perfect fifths. Check with a chromatic tuner.' },
-  { title: 'Slow Practice With Metronome', desc: 'Set the metronome to half your target tempo. Clean intonation at slow speed transfers to fast playing. Sloppy slow practice does not.' },
-  { title: 'Scales In Every Key', desc: 'Two-octave scales build finger patterns, shifting confidence, and intonation. Prioritize G, D, A, and B-flat major first.' },
-  { title: 'Record and Compare', desc: 'Record yourself playing a passage, then listen to a professional recording of the same piece. The gap reveals your next practice focus.' },
-]
+const colorMap: Record<string, { bg: string; text: string; tag: string }> = {
+  rose: { bg: 'bg-rose-50', text: 'text-rose-700', tag: 'bg-rose-100 text-rose-600' },
+  amber: { bg: 'bg-amber-50', text: 'text-amber-700', tag: 'bg-amber-100 text-amber-600' },
+  violet: { bg: 'bg-violet-50', text: 'text-violet-700', tag: 'bg-violet-100 text-violet-600' },
+  emerald: { bg: 'bg-emerald-50', text: 'text-emerald-700', tag: 'bg-emerald-100 text-emerald-600' },
+}
 
-const aiTools = [
-  { name: 'Trala', desc: 'AI violin tutor with real-time pitch detection. Identifies intonation errors note-by-note and tracks improvement over time.' },
-  { name: 'Tunable / Pano Tuner', desc: 'Chromatic tuners with visual pitch feedback. Essential for developing accurate intonation when practicing alone.' },
-  { name: 'Modacity', desc: 'Practice journal and tracker designed for string players. Set goals, log sessions, and visualize progress patterns.' },
-  { name: 'Tomplay', desc: 'Interactive sheet music with orchestra accompaniment. Play along with professional backing tracks at adjustable tempos.' },
-]
+// ── Page ────────────────────────────────────────────────────────────────────
 
 export default function ViolinLearnPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
+    <div className="min-h-screen bg-gradient-to-b from-violet-50 via-white to-rose-50/30">
       <div className="mx-auto max-w-4xl px-4 py-16 sm:py-24">
         {/* Hero */}
         <motion.header
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-12 text-center"
         >
-          <p className="text-5xl">🎻</p>
-          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-            Learn Violin
+          <p className="text-6xl">🎻</p>
+          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+            Geige Lernen
           </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">
-            A curated guide to learning violin — from holding the bow to performing concertos. The best teachers, Suzuki method progression, free sheet music, and AI tools that sharpen your intonation and accelerate your growth.
+          <p className="mx-auto mt-4 max-w-lg text-lg text-slate-500">
+            Die Stimme des Orchesters. Kein Instrument kommt der menschlichen Stimme
+            so nahe wie die Violine — und keines belohnt Geduld so sehr.
           </p>
         </motion.header>
 
-        {/* Why Violin */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-white">Why Violin?</h2>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              {
-                title: 'Emotional Expression',
-                desc: 'The violin is the closest instrument to the human voice. It can whisper, cry, soar, and rage — often within a single phrase.',
-                icon: '🎶',
-              },
-              {
-                title: 'Orchestral Versatility',
-                desc: 'From solo concertos to string quartets to film scores, the violin sits at the center of Western music\'s most powerful ensembles.',
-                icon: '🏛️',
-              },
-              {
-                title: 'Discipline That Transfers',
-                desc: 'Violin demands precision, patience, and daily commitment. The discipline built here strengthens every other area of your life.',
-                icon: '⚡',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="rounded-xl border border-white/10 bg-white/[0.03] p-6"
-              >
-                <p className="text-2xl">{item.icon}</p>
-                <h3 className="mt-3 text-lg font-semibold text-white">{item.title}</h3>
-                <p className="mt-2 text-sm text-white/50">{item.desc}</p>
-              </div>
-            ))}
+        {/* Quick Start */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-10 rounded-3xl bg-gradient-to-r from-violet-100/80 to-purple-100/80 p-8 shadow-sm"
+        >
+          <h2 className="text-2xl font-bold text-violet-800">🚀 Sofort Starten</h2>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            <div className="rounded-2xl bg-white/80 p-4 text-center">
+              <p className="text-3xl">1️⃣</p>
+              <p className="mt-2 font-bold text-slate-800">Haltung lernen</p>
+              <p className="mt-1 text-sm text-slate-500">Kinn auf die Kinnstütze, Bogen locker halten. Das ist die Basis für alles.</p>
+            </div>
+            <div className="rounded-2xl bg-white/80 p-4 text-center">
+              <p className="text-3xl">2️⃣</p>
+              <p className="mt-2 font-bold text-slate-800">Offene Saiten spielen</p>
+              <p className="mt-1 text-sm text-slate-500">G, D, A, E — vier Saiten, vier Klänge. Übe gleichmäßige Bogenstriche.</p>
+            </div>
+            <div className="rounded-2xl bg-white/80 p-4 text-center">
+              <p className="text-3xl">3️⃣</p>
+              <p className="mt-2 font-bold text-slate-800">Twinkle Twinkle</p>
+              <p className="mt-1 text-sm text-slate-500">Die Suzuki-Methode beginnt hier. Millionen Kinder haben damit angefangen.</p>
+            </div>
           </div>
         </motion.section>
 
         {/* The 4 Strings */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-2 text-2xl font-bold text-white">The 4 Strings</h2>
-          <p className="mb-6 text-white/50">From lowest to highest pitch — each string has a distinct character.</p>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {fourStrings.map((s) => (
-              <div
-                key={s.note}
-                className={`rounded-xl border border-white/10 bg-gradient-to-br ${s.color} p-5`}
-              >
-                <div className="flex items-center gap-3">
-                  <span className={`text-3xl font-black ${s.accent}`}>{s.note}</span>
-                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-white/40">{s.pitch}</span>
-                </div>
-                <p className="mt-2 text-sm text-white/50">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Getting Started */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-white">Getting Started: Foundations First</h2>
-          <div className="space-y-4">
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 rounded-3xl bg-white/70 p-8 shadow-sm backdrop-blur-sm"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">🎵 Die vier Saiten</h2>
+          <div className="grid grid-cols-2 gap-3 text-center sm:grid-cols-4">
             {[
-              { step: 1, title: 'Master Your Posture', desc: 'Stand straight, chin rests gently on the chin rest, left hand supports the neck without gripping. The violin should feel balanced, not clamped.' },
-              { step: 2, title: 'Learn the Bow Hold', desc: 'Curved fingers, relaxed thumb on the frog, pinky on top for balance. The bow hold determines your entire tone quality — spend real time here.' },
-              { step: 3, title: 'Play Open Strings', desc: 'Draw the bow across G, D, A, and E strings individually. Focus on straight bowing, consistent pressure, and a clear, even tone without scratching.' },
-              { step: 4, title: 'Start the Suzuki Method', desc: 'Begin with "Twinkle Twinkle" variations — they teach rhythm patterns, bow control, and basic finger placement on the A and E strings.' },
-              { step: 5, title: 'Build Daily Practice Habits', desc: '15-20 minutes daily: 5 min open strings, 5 min scales, 10 min current piece. Increase duration gradually as stamina builds.' },
-            ].map((item) => (
-              <div
-                key={item.step}
-                className="flex gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-5"
-              >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-500/20 text-sm font-bold text-violet-400">
-                  {item.step}
-                </div>
-                <div>
-                  <h3 className="font-semibold text-white">{item.title}</h3>
-                  <p className="mt-1 text-sm text-white/50">{item.desc}</p>
-                </div>
+              { note: 'G', name: 'Die tiefste', color: 'bg-amber-100 text-amber-700', desc: 'Warm und dunkel' },
+              { note: 'D', name: 'Die warme', color: 'bg-rose-100 text-rose-700', desc: 'Voll und rund' },
+              { note: 'A', name: 'Die helle', color: 'bg-violet-100 text-violet-700', desc: 'Klar und strahlend' },
+              { note: 'E', name: 'Die höchste', color: 'bg-cyan-100 text-cyan-700', desc: 'Brillant und hell' },
+            ].map((s) => (
+              <div key={s.note} className={`rounded-2xl ${s.color} p-4`}>
+                <p className="text-3xl font-black">{s.note}</p>
+                <p className="mt-1 text-xs font-medium">{s.name}</p>
+                <p className="mt-1 text-xs opacity-70">{s.desc}</p>
               </div>
             ))}
           </div>
         </motion.section>
 
-        {/* YouTube Teachers */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-2 text-2xl font-bold text-white">Best YouTube Violin Teachers</h2>
-          <p className="mb-6 text-white/50">Curated channels for structured learning and musical inspiration.</p>
+        {/* Teachers */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">🎓 Die besten Lehrer auf YouTube</h2>
           <div className="grid gap-4 sm:grid-cols-2">
-            {youtubeChannels.map((ch) => (
-              <a
-                key={ch.handle}
-                href={ch.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-violet-400/30 hover:bg-white/[0.05]"
-              >
-                <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-white group-hover:text-violet-400">{ch.name}</h3>
-                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs text-white/40">{ch.lang}</span>
-                </div>
-                <p className="mt-1 text-xs text-white/30">{ch.handle}</p>
-                <p className="mt-2 text-sm text-white/50">{ch.desc}</p>
-              </a>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* First 10 Pieces */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-2 text-2xl font-bold text-white">Your First 10 Pieces</h2>
-          <p className="mb-6 text-white/50">A Suzuki-inspired progression from first notes to intermediate repertoire.</p>
-          <div className="overflow-hidden rounded-xl border border-white/10">
-            <div className="hidden grid-cols-[1fr_1fr_auto_auto] gap-4 border-b border-white/10 bg-white/[0.05] px-5 py-3 text-xs font-medium uppercase tracking-wider text-white/40 sm:grid">
-              <span>Title</span>
-              <span>Composer</span>
-              <span>Genre</span>
-              <span>Level</span>
-            </div>
-            {firstPieces.map((piece, i) => (
-              <div
-                key={piece.title}
-                className={`grid grid-cols-1 gap-1 px-5 py-3 sm:grid-cols-[1fr_1fr_auto_auto] sm:gap-4 sm:items-center ${
-                  i % 2 === 0 ? 'bg-white/[0.02]' : 'bg-white/[0.04]'
-                }`}
-              >
-                <span className="font-medium text-white">{piece.title}</span>
-                <span className="text-sm text-white/50">{piece.composer}</span>
-                <span className="text-xs text-white/30">{piece.genre}</span>
-                <span className="flex gap-0.5">
-                  {Array.from({ length: 5 }, (_, j) => (
-                    <span
-                      key={j}
-                      className={`h-1.5 w-3 rounded-full ${
-                        j < piece.difficulty ? 'bg-violet-400' : 'bg-white/10'
-                      }`}
-                    />
-                  ))}
-                </span>
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Free Sheet Music */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-white">Free Sheet Music Resources</h2>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {sheetMusicSources.map((src) => (
-              <a
-                key={src.name}
-                href={src.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group rounded-xl border border-white/10 bg-white/[0.03] p-5 transition hover:border-violet-400/30"
-              >
-                <h3 className="font-semibold text-white group-hover:text-violet-400">{src.name}</h3>
-                <p className="mt-2 text-sm text-white/50">{src.desc}</p>
-              </a>
-            ))}
+            {TEACHERS.map((teacher) => {
+              const c = colorMap[teacher.color]
+              return (
+                <a
+                  key={teacher.name}
+                  href={teacher.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`group rounded-2xl ${c.bg} border border-transparent p-5 shadow-sm transition hover:shadow-md hover:border-white active:scale-[0.98]`}
+                >
+                  <h3 className={`text-lg font-bold ${c.text}`}>{teacher.name}</h3>
+                  <p className="mt-1 text-xs text-slate-400">{teacher.channel}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-600">{teacher.description}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {teacher.tags.map((tag) => (
+                      <span key={tag} className={`rounded-full ${c.tag} px-2 py-0.5 text-xs font-medium`}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </a>
+              )
+            })}
           </div>
         </motion.section>
 
         {/* Inspiring Violinists */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-white">Inspiring Violinists</h2>
-          <div className="space-y-3">
-            {inspiringViolinists.map((v) => (
-              <div
-                key={v.name}
-                className="rounded-xl border border-white/10 bg-white/[0.03] p-5"
-              >
-                <h3 className="font-semibold text-white">{v.name}</h3>
-                <p className="mt-1 text-sm text-white/50">{v.desc}</p>
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 rounded-3xl bg-gradient-to-br from-rose-50/80 to-violet-50/80 p-8 shadow-sm"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">🌟 Inspirierende Geiger*innen</h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {INSPIRING_VIOLINISTS.map((v) => (
+              <div key={v.name} className="flex items-center gap-3 rounded-2xl bg-white/70 p-4 shadow-sm">
+                <span className="text-2xl">{v.emoji}</span>
+                <div>
+                  <p className="font-bold text-slate-800">{v.name}</p>
+                  <p className="text-xs text-slate-500">{v.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* First Pieces */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 rounded-3xl bg-white/70 p-8 shadow-sm backdrop-blur-sm"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">🎶 Deine ersten Stücke</h2>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {FIRST_PIECES.map((piece) => (
+              <div key={piece.name} className="flex items-center gap-3 rounded-2xl bg-slate-50 p-4">
+                <span className="text-2xl">{piece.emoji}</span>
+                <div className="flex-1">
+                  <p className="font-bold text-slate-800">{piece.name}</p>
+                  <p className="text-xs text-slate-400">{piece.style}</p>
+                </div>
+                <span className="text-sm">{piece.difficulty}</span>
               </div>
             ))}
           </div>
         </motion.section>
 
         {/* Practice Tips */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-white">Violin-Specific Practice Tips</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {practiceTips.map((tip) => (
-              <div
-                key={tip.title}
-                className="rounded-xl border border-white/10 bg-white/[0.03] p-5"
-              >
-                <h3 className="font-semibold text-violet-400">{tip.title}</h3>
-                <p className="mt-2 text-sm text-white/50">{tip.desc}</p>
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 rounded-3xl bg-gradient-to-br from-amber-50/80 to-violet-50/80 p-8 shadow-sm"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">💡 Übe-Tipps</h2>
+          <div className="space-y-3">
+            {PRACTICE_TIPS.map((tip) => (
+              <div key={tip.tip} className="flex items-start gap-3 rounded-xl bg-white/70 p-4">
+                <span className="text-xl">{tip.emoji}</span>
+                <p className="text-sm leading-relaxed text-slate-700">{tip.tip}</p>
               </div>
             ))}
           </div>
         </motion.section>
 
-        {/* AI Tools */}
-        <motion.section {...fadeUp} className="mb-16">
-          <h2 className="mb-2 text-2xl font-bold text-white">AI Tools for Violin</h2>
-          <p className="mb-6 text-white/50">Technology that listens to your playing and helps you improve faster.</p>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {aiTools.map((tool) => (
-              <div
-                key={tool.name}
-                className="rounded-xl border border-white/10 bg-white/[0.03] p-5"
-              >
-                <h3 className="font-semibold text-blue-400">{tool.name}</h3>
-                <p className="mt-2 text-sm text-white/50">{tool.desc}</p>
+        {/* Fun Facts */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 rounded-3xl bg-white/70 p-8 shadow-sm backdrop-blur-sm"
+        >
+          <h2 className="mb-6 text-2xl font-bold text-slate-800">🤓 Wusstest du?</h2>
+          <div className="space-y-3">
+            {VIOLIN_FACTS.map((fact, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-xl bg-violet-50 p-4">
+                <span className="text-sm font-bold text-violet-400">{i + 1}</span>
+                <p className="text-sm text-slate-700">{fact}</p>
               </div>
             ))}
           </div>
         </motion.section>
 
-        {/* Frank's Orchestral Music */}
-        <motion.section {...fadeUp} className="mb-16">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-violet-500/5 to-blue-500/5 p-8 text-center">
-            <h2 className="text-2xl font-bold text-white">Frank&apos;s Orchestral Music</h2>
-            <p className="mt-3 text-white/50">
-              Explore AI-generated orchestral and string compositions — from cinematic scores to neoclassical arrangements.
-            </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <Link
-                href="/music"
-                className="rounded-full bg-violet-500/20 px-6 py-2.5 text-sm font-medium text-violet-400 transition hover:bg-violet-500/30"
-              >
-                Browse All Music
-              </Link>
-            </div>
+        {/* Listen to Uncle Frank's Orchestral */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-10 rounded-3xl bg-gradient-to-br from-cyan-50/80 to-violet-50/80 p-8 text-center shadow-sm"
+        >
+          <h2 className="text-2xl font-bold text-slate-800">🎧 Orchestrale Musik von Onkel Frank</h2>
+          <p className="mt-2 text-slate-500">Arcanean Choir — orchestral, fantasy, mit Geige und Chor</p>
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <a
+              href="https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-violet-100 px-6 py-3 font-medium text-violet-700 transition hover:bg-violet-200 active:scale-95"
+            >
+              Arcanean Choir Playlist 🎻
+            </a>
+            <a
+              href="https://suno.com/playlist/0625352a-74c5-478a-933e-1204549efd36"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-rose-100 px-6 py-3 font-medium text-rose-700 transition hover:bg-rose-200 active:scale-95"
+            >
+              Orchestral Beauty 🎶
+            </a>
           </div>
         </motion.section>
 
         {/* Navigation */}
-        <div className="mt-12 flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/music/learn/piano"
-            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80"
+            className="rounded-full bg-rose-100 px-6 py-3 text-sm font-medium text-rose-700 transition hover:bg-rose-200"
           >
-            🎹 Learn Piano
+            🎹 Klavier lernen →
           </Link>
           <Link
             href="/music/learn"
-            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80"
+            className="rounded-full bg-slate-100 px-6 py-3 text-sm font-medium text-slate-600 transition hover:bg-slate-200"
           >
-            All Instruments
+            ← Alle Instrumente
           </Link>
           <Link
-            href="/music"
-            className="rounded-full border border-white/10 px-6 py-3 text-sm text-white/60 transition hover:border-white/20 hover:text-white/80"
+            href="/alea"
+            className="rounded-full bg-amber-100 px-6 py-3 text-sm font-medium text-amber-600 transition hover:bg-amber-200"
           >
-            Music
+            ← Aleas Welt
           </Link>
         </div>
       </div>

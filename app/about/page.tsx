@@ -107,43 +107,66 @@ export default function AboutPage() {
             />
           </div>
           <div className="mx-auto max-w-5xl px-6">
-            <motion.div
-              {...fadeIn}
-              transition={transition}
-              className="mb-6"
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
-                <Compass className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">About</span>
+            <div className="grid gap-8 lg:grid-cols-5 items-center">
+              <div className="lg:col-span-3">
+                <motion.div
+                  {...fadeIn}
+                  transition={transition}
+                  className="mb-6"
+                >
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
+                    <Compass className="w-4 h-4 text-emerald-400" />
+                    <span className="text-sm text-white/60">About</span>
+                  </div>
+                </motion.div>
+
+                <motion.h1
+                  {...fadeIn}
+                  transition={{ ...transition, delay: 0.1 }}
+                  className="mb-8 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+                >
+                  The Architect.{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
+                    The Creator.
+                  </span>{' '}
+                  The Explorer.
+                </motion.h1>
+
+                <motion.div
+                  {...fadeIn}
+                  transition={{ ...transition, delay: 0.2 }}
+                  className="max-w-3xl space-y-5 text-lg leading-relaxed text-white/50"
+                >
+                  <p className="text-white/70 text-xl">
+                    Enterprise AI architect. Creator of 12,000+ AI songs. Builder of
+                    the Agentic Creator OS. Based in Amsterdam, on the water.
+                  </p>
+                  <p>
+                    Everything I build goes here — not as a portfolio, but as a living
+                    system you can use. Open, documented, yours to adapt.
+                  </p>
+                </motion.div>
               </div>
-            </motion.div>
 
-            <motion.h1
-              {...fadeIn}
-              transition={{ ...transition, delay: 0.1 }}
-              className="mb-8 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
-            >
-              The Architect.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                The Creator.
-              </span>{' '}
-              The Explorer.
-            </motion.h1>
-
-            <motion.div
-              {...fadeIn}
-              transition={{ ...transition, delay: 0.2 }}
-              className="max-w-3xl space-y-5 text-lg leading-relaxed text-white/50"
-            >
-              <p className="text-white/70 text-xl">
-                Oracle AI Architect. 12,000+ AI songs. Builder of ACOS — an
-                open-source OS used by 1,000+ creators. Amsterdam, IJburg.
-              </p>
-              <p>
-                Everything I build goes here — not as a portfolio, but as a living
-                system you can use. Open, documented, yours to adapt.
-              </p>
-            </motion.div>
+              <motion.div
+                {...fadeIn}
+                transition={{ ...transition, delay: 0.15 }}
+                className="lg:col-span-2 hidden lg:flex justify-center"
+              >
+                <div className="relative w-64 h-64 xl:w-72 xl:h-72">
+                  <Image
+                    src="/images/portraits/frank-presenting-oracle-2025.jpg"
+                    alt="Frank Riemer"
+                    fill
+                    className="object-cover rounded-2xl"
+                    sizes="(min-width: 1024px) 288px, 256px"
+                    priority
+                  />
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10" />
+                  <div className="absolute inset-0 -z-10 bg-emerald-500/10 rounded-2xl blur-[40px]" />
+                </div>
+              </motion.div>
+            </div>
 
             {/* Social links */}
             <motion.div
@@ -322,7 +345,7 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-white/50 leading-relaxed">
                     4+ years architecting production AI systems for global
-                    organizations. Multi-cloud
+                    organizations. 500+ customer implementations. Multi-cloud
                     infrastructure, RAG architectures, agentic workflows, multi-agent
                     orchestration. The systems I build handle real scale.
                   </p>
@@ -341,7 +364,7 @@ export default function AboutPage() {
                     By night — Music & creation
                   </h3>
                   <p className="text-white/50 leading-relaxed">
-                    12,000+ AI songs with Suno. Not casual experiments — a
+                    12,000+ AI-generated songs with Suno. Not casual experiments — a
                     deliberate practice of exploring what happens when humans and AI
                     create together. Ambient, electronic, cinematic, healing. Creation
                     Season starts at midnight.
@@ -539,12 +562,7 @@ export default function AboutPage() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <p className="text-base text-white/50 leading-relaxed">
-                      {belief.text}
-                      {belief.href && (
-                        <a href={belief.href} className="ml-2 text-emerald-400/80 hover:text-emerald-400 transition-colors text-sm">
-                          Read the research →
-                        </a>
-                      )}
+                      {belief}
                     </p>
                   </GlowCard>
                 </motion.div>

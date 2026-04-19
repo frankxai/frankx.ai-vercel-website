@@ -22,6 +22,7 @@ import {
   Workflow,
   ExternalLink,
 } from 'lucide-react'
+import CheckoutButton from '@/components/commerce/CheckoutButton'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { GlowButton } from '@/components/ui/GlowButton'
 import templates from '@/data/templates.json'

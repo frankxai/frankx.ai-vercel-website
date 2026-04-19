@@ -4,7 +4,15 @@ description: "How to run Claude Code without 5 VS Code tabs killing your machine
 date: "2026-03-01"
 author: "Frank"
 category: "AI Architecture"
-tags: ["claude-code", "terminal", "workflow", "tmux", "developer-tools", "ai-development"]
+tags:
+  [
+    "claude-code",
+    "terminal",
+    "workflow",
+    "tmux",
+    "developer-tools",
+    "ai-development",
+  ]
 keywords:
   [
     "claude code workflow",
@@ -42,6 +50,7 @@ If you're doing serious AI-assisted development — multiple agents running, lor
 The problem isn't Claude Code. Claude Code is a terminal-native tool. The problem is wrapping it in a GUI that wasn't designed for this.
 
 Each VS Code window on a WSL/Windows setup carries:
+
 - Electron renderer process
 - Language server
 - Git integration polling
@@ -71,6 +80,7 @@ New: Claude reads file → Claude edits → Claude commits → you review
 ```
 
 In the new model, you need:
+
 1. A way to **read** files comfortably (not edit)
 2. A way to **describe** what you want changed (plain English)
 3. A way to **review** output before approving (browser or terminal)
@@ -86,6 +96,7 @@ You never need to touch the file. VS Code isn't the interface — the terminal c
 [Glow](https://github.com/charmbracelet/glow) is a terminal markdown renderer from Charmbracelet. It renders `.md` and `.mdx` files with proper formatting — headers, tables, code blocks, colored output — directly in your terminal.
 
 **Install:**
+
 ```bash
 # Ubuntu/WSL
 sudo apt install glow
@@ -98,6 +109,7 @@ brew install glow
 ```
 
 **Use:**
+
 ```bash
 # Read a single file
 glow /path/to/CANON_LOCKED.md
@@ -118,11 +130,13 @@ That's it. No browser, no VS Code, no GUI. Rendered markdown in the same termina
 [tmux](https://github.com/tmux/tmux) is a terminal multiplexer. One terminal process, unlimited panes and windows. Claude Code sessions run inside tmux — when you close the terminal, the session persists. When your laptop gets slow, detach (don't close) and reattach later.
 
 **Install:**
+
 ```bash
 sudo apt install tmux
 ```
 
 **The workflow:**
+
 ```bash
 # Start a named session
 tmux new-session -s frankx
@@ -139,6 +153,7 @@ tmux attach -t frankx
 ```
 
 **Real layout I use:**
+
 ```
 Window 1: main Claude Code session (primary feature work)
 Window 2: watch/monitor (deployments, build logs)
@@ -160,6 +175,7 @@ github.com/frankxai/arcanea/blob/main/.arcanea/lore/ELDRIANS_STAGING.md
 Fully rendered. Tables work. Code blocks work. Mobile-readable. No install.
 
 **The approval loop:**
+
 ```
 Claude writes file → commits → pushes to GitHub
 You: open GitHub URL in browser
@@ -208,6 +224,7 @@ tmux attach -t work
 ```
 
 **Optional: Add to `~/.bashrc` for convenience:**
+
 ```bash
 # Quick alias to reattach or create session
 alias ws='tmux attach -t work 2>/dev/null || tmux new-session -s work'
@@ -253,6 +270,7 @@ No files opened in an editor. No manual saves. No merge conflicts from editing t
 Running this setup on WSL/Windows with multiple Claude Code sessions:
 
 **Before (VS Code tabs):**
+
 - 5 Electron processes + 5 Claude Code Node processes
 - Full language server for each window
 - Extensions running in each
@@ -260,6 +278,7 @@ Running this setup on WSL/Windows with multiple Claude Code sessions:
 - Laptop at 80°C+
 
 **After (tmux + terminal):**
+
 - 1 tmux server process
 - N lightweight terminal panes sharing that process
 - Claude Code Node processes only (no Electron overhead)
@@ -279,6 +298,7 @@ This setup doesn't eliminate VS Code — it makes it optional. Use VS Code when:
 - You want the file tree for navigation in a codebase you don't know well
 
 Don't use VS Code when:
+
 - Claude is already reading and editing the files
 - You just need to review proposed changes
 - You're running multiple parallel Claude Code sessions

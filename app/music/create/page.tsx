@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { EmailSignup } from '@/components/email-signup'
 import {
   Music2,
   Sparkles,
@@ -559,6 +560,47 @@ export default function CreateMusicPage() {
               @frankx on Suno <ExternalLink className="h-4 w-4" />
             </a>
           </motion.div>
+        </motion.section>
+
+        {/* ── Email Capture ── */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 to-cyan-500/5 p-8 text-center"
+        >
+          <h2 className="text-2xl font-bold text-white">Get 5 Free Suno Prompts</h2>
+          <p className="mx-auto mt-3 max-w-lg text-white/50">
+            Professional-quality prompts for neoclassical, orchestral, electronic, hip hop, and ambient — tested across 500+ tracks. Plus weekly AI music tips.
+          </p>
+          <div className="mx-auto mt-6 max-w-sm">
+            <EmailSignup
+              listType="music-lab"
+              placeholder="your@email.com"
+              buttonText="Send Me the Prompts"
+            />
+          </div>
+          <p className="mt-3 text-xs text-white/30">Pure signal. Unsubscribe anytime.</p>
+        </motion.section>
+
+        {/* ── Vibe OS Product ── */}
+        <motion.section
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          <Link href="/products/vibe-os" className="group block rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition hover:border-violet-500/30 hover:bg-white/[0.05]">
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet-500/20">
+                <Sparkles className="h-6 w-6 text-violet-400" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-white group-hover:text-violet-400">Vibe OS — The AI Music Creation System</h3>
+                <p className="mt-1 text-sm text-white/50">The complete framework for creating AI music at scale. Prompts, workflows, genre templates, and production pipelines.</p>
+              </div>
+              <ArrowRight className="hidden h-5 w-5 shrink-0 text-white/30 group-hover:text-violet-400 sm:block" />
+            </div>
+          </Link>
         </motion.section>
 
         {/* ── Navigation ── */}

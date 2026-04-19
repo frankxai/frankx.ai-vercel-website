@@ -8,9 +8,13 @@ import FrankOmega from '@/components/FrankOmega'
 export default function NewsletterCTA() {
   return (
     <>
-      {/* How it works */}
-      <section className="border-t border-white/5 py-16">
-        <div className="mx-auto max-w-4xl px-6">
+      {/* How it works — Aurora accented */}
+      <section className="relative border-t border-white/5 py-16 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden>
+          <div className="absolute top-0 right-0 h-56 w-72 rounded-full bg-cyan-500/[0.05] blur-[120px]" />
+          <div className="absolute bottom-0 left-0 h-48 w-60 rounded-full bg-violet-500/[0.04] blur-[100px]" />
+        </div>
+        <div className="relative mx-auto max-w-4xl px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -69,22 +73,26 @@ export default function NewsletterCTA() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-white/10 bg-gradient-to-b from-violet-900/20 to-cyan-900/20 p-10 text-center"
+            className="relative rounded-2xl border border-white/10 bg-gradient-to-b from-violet-900/20 to-cyan-900/20 p-10 text-center overflow-hidden"
           >
-            <div className="mx-auto mb-6">
+            {/* Aurora orbs inside card */}
+            <div className="absolute -top-20 -left-20 h-64 w-64 rounded-full bg-violet-500/[0.12] blur-[80px] pointer-events-none" aria-hidden />
+            <div className="absolute -bottom-16 -right-16 h-48 w-48 rounded-full bg-cyan-500/[0.10] blur-[80px] pointer-events-none" aria-hidden />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-32 w-32 rounded-full bg-emerald-500/[0.06] blur-[60px] pointer-events-none" aria-hidden />
+            <div className="relative mx-auto mb-6">
               <FrankOmega variant="pixar-blue" size="sm" glow rounded />
             </div>
-            <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="relative mb-3 text-2xl font-bold text-white sm:text-3xl">
               Not sure which stream?
             </h2>
-            <p className="mx-auto mb-4 max-w-md text-slate-400">
+            <p className="relative mx-auto mb-4 max-w-md text-slate-400">
               Start with Creation Chronicles — it covers everything and
               you&apos;ll see what resonates.
             </p>
-            <p className="mx-auto mb-8 max-w-sm text-xs text-blue-400/60 italic">
+            <p className="relative mx-auto mb-8 max-w-sm text-xs text-blue-400/60 italic">
               &ldquo;I&apos;ll be in your inbox. No fluff. Just the signal.&rdquo; — FRANK-Ω
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="relative flex flex-wrap justify-center gap-4">
               <a
                 href="#creation-chronicles"
                 className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5"

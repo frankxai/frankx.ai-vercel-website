@@ -3,235 +3,173 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 
-// ── Data ────────────────────────────────────────────────────────────────────
-
 const INSTRUMENTS = [
   {
-    name: 'Piano',
+    slug: 'piano',
+    name: 'Klavier / Piano',
     emoji: '🎹',
-    description: 'The most versatile instrument — melody and harmony in your hands. From classical to jazz to electronic production.',
-    accent: 'text-rose-400',
-    border: 'hover:border-rose-500/30',
-    href: '/music/learn/piano',
-    meta: '6 teachers · 10 songs · AI tools',
+    gradient: 'from-rose-100 to-pink-50',
+    border: 'border-rose-200',
+    text: 'text-rose-700',
+    description: 'Das vielseitigste Instrument — Melodie und Harmonie in deinen Händen.',
+    funFact: 'Ein Klavier hat 88 Tasten, 52 weiße und 36 schwarze.',
+    difficulty: 'Einfach zu starten',
+    ageRange: 'Ab 4 Jahren',
   },
   {
-    name: 'Violin',
+    slug: 'violin',
+    name: 'Geige / Violin',
     emoji: '🎻',
-    description: 'The voice of the orchestra — full of emotion and expression. Suzuki method progression from first bow to concertos.',
-    accent: 'text-violet-400',
-    border: 'hover:border-violet-500/30',
-    href: '/music/learn/violin',
-    meta: '6 teachers · 10 pieces · 5 role models',
+    gradient: 'from-violet-100 to-purple-50',
+    border: 'border-violet-200',
+    text: 'text-violet-700',
+    description: 'Die Stimme des Orchesters — voller Emotion und Ausdruck.',
+    funFact: 'Eine Geige besteht aus über 70 einzelnen Teilen aus Holz.',
+    difficulty: 'Braucht Geduld',
+    ageRange: 'Ab 5 Jahren',
   },
   {
-    name: 'Guitar',
+    slug: null,
+    name: 'Gitarre / Guitar',
     emoji: '🎸',
-    description: 'Three chords and the truth — the campfire instrument. Acoustic, electric, classical.',
-    accent: 'text-amber-400',
-    border: '',
-    href: null,
-    meta: 'Coming soon',
+    gradient: 'from-amber-100 to-orange-50',
+    border: 'border-amber-200',
+    text: 'text-amber-700',
+    description: 'Drei Akkorde und die Wahrheit — das Lagerfeuer-Instrument.',
+    funFact: 'Die älteste bekannte Gitarre ist über 3.500 Jahre alt.',
+    difficulty: 'Einfach zu starten',
+    ageRange: 'Ab 6 Jahren',
   },
   {
-    name: 'Voice',
+    slug: null,
+    name: 'Singen / Voice',
     emoji: '🎤',
-    description: 'The first instrument of humanity — your own voice. Technique, range, and expression.',
-    accent: 'text-emerald-400',
-    border: '',
-    href: null,
-    meta: 'Coming soon',
+    gradient: 'from-emerald-100 to-teal-50',
+    border: 'border-emerald-200',
+    text: 'text-emerald-700',
+    description: 'Das erste Instrument der Menschheit — deine eigene Stimme.',
+    funFact: 'Deine Stimmbänder schwingen bis zu 1.000 Mal pro Sekunde beim Singen.',
+    difficulty: 'Jeder kann anfangen',
+    ageRange: 'Ab 3 Jahren',
   },
-]
-
-const FOUNDATIONS = [
-  {
-    title: 'Music Theory',
-    emoji: '📐',
-    description: 'Notes, scales, chords, keys, time signatures — the universal language every musician needs.',
-    href: '/music/learn/theory',
-    accent: 'text-cyan-400',
-    border: 'hover:border-cyan-500/30',
-    meta: 'Scales · Chords · Keys · Rhythm',
-  },
-  {
-    title: 'Music Production',
-    emoji: '🎛️',
-    description: 'From recording to mixing to mastering. DAWs, plugins, and how to turn ideas into finished tracks.',
-    href: '/music/learn/production',
-    accent: 'text-orange-400',
-    border: 'hover:border-orange-500/30',
-    meta: 'DAWs · Recording · Mixing',
-  },
-]
-
-const ECOSYSTEM = [
-  {
-    title: 'Create Music with AI',
-    emoji: '🤖',
-    description: 'Suno AI mastery, prompt engineering for music, genre techniques, and production workflows. 500+ tracks and counting.',
-    href: '/music/create',
-    accent: 'text-emerald-400',
-    border: 'hover:border-emerald-500/30',
-  },
-  {
-    title: 'Music Tools & Apps',
-    emoji: '🛠️',
-    description: 'Curated collection of 30+ apps for learning, practice, theory, sheet music, AI creation, and recording.',
-    href: '/music/tools',
-    accent: 'text-cyan-400',
-    border: 'hover:border-cyan-500/30',
-  },
-]
-
-const WHY_LEARN = [
-  { icon: '🧠', title: 'Cognitive Power', desc: 'Music training strengthens working memory, attention, and executive function more than any other activity studied.' },
-  { icon: '💪', title: 'Discipline That Transfers', desc: 'The daily practice habit builds resilience, patience, and focus that compound across every area of your life.' },
-  { icon: '🤖', title: 'AI Amplification', desc: 'AI tools now provide real-time feedback, adaptive difficulty, and practice tracking — learning alone is no longer learning blind.' },
-  { icon: '🌍', title: 'Universal Language', desc: 'Music crosses every border. A musician can connect with people anywhere in the world without sharing a spoken language.' },
-  { icon: '🎯', title: 'Creative Expression', desc: 'Playing music is one of the few activities that engages analytical, emotional, and motor systems simultaneously.' },
-  { icon: '📈', title: 'Lifelong Skill', desc: 'Unlike most skills, musical ability deepens with age. A 70-year-old pianist can play with more expression than a 20-year-old.' },
 ]
 
 const stagger = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 }
 
-// ── Page ────────────────────────────────────────────────────────────────────
-
 export default function LearnMusicPage() {
   return (
-    <div className="min-h-screen bg-[#0a0a0b]">
-      <div className="mx-auto max-w-5xl px-4 py-16 sm:py-24">
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-rose-50/30 to-white">
+      <div className="mx-auto max-w-4xl px-4 py-16 sm:py-24">
         {/* Hero */}
         <motion.header
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-16 text-center"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-white/30">FrankX</p>
-          <h1 className="mt-2 text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
-            Music Academy
+          <p className="text-5xl">🎵</p>
+          <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">
+            Musik Lernen
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-white/50">
-            Learn instruments, master music theory, create with AI, and discover the best tools — all curated by an AI Architect who builds music at scale. Structured guides. Real teachers. Free resources.
+          <p className="mx-auto mt-4 max-w-xl text-lg text-slate-500">
+            Die besten Lehrer, die besten Übungen, die besten Instrumente —
+            alles an einem Ort. Für Anfänger jeden Alters.
           </p>
         </motion.header>
 
-        {/* Instruments */}
-        <motion.section variants={stagger} initial="hidden" animate="visible" className="mb-16">
-          <h2 className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-white/30">Learn an Instrument</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {INSTRUMENTS.map((inst) => {
-              const card = (
-                <motion.div
-                  key={inst.name}
-                  variants={fadeUp}
-                  className={`group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 ${
-                    inst.href
-                      ? `cursor-pointer hover:bg-white/[0.06] ${inst.border}`
-                      : 'opacity-35'
-                  }`}
-                >
-                  <div className="flex items-start justify-between">
-                    <span className="text-4xl">{inst.emoji}</span>
-                    {inst.href && <span className={`text-xs font-medium ${inst.accent}`}>→</span>}
-                  </div>
-                  <h3 className="mt-3 text-xl font-bold text-white">{inst.name}</h3>
-                  <p className="mt-2 text-sm text-white/50">{inst.description}</p>
-                  <p className={`mt-3 text-xs font-medium ${inst.href ? inst.accent : 'text-white/20'}`}>
-                    {inst.meta}
-                  </p>
-                </motion.div>
-              )
-              return inst.href ? (
-                <Link key={inst.name} href={inst.href}>{card}</Link>
-              ) : (
-                <div key={inst.name}>{card}</div>
-              )
-            })}
-          </div>
-        </motion.section>
-
-        {/* Foundations */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-16"
+        {/* Instrument Grid */}
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          animate="visible"
+          className="grid gap-6 sm:grid-cols-2"
         >
-          <h2 className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-white/30">Foundations</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {FOUNDATIONS.map((item) => (
-              <Link key={item.title} href={item.href}>
-                <div className={`group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:bg-white/[0.06] ${item.border}`}>
-                  <div className="flex items-start justify-between">
-                    <span className="text-3xl">{item.emoji}</span>
-                    <span className={`text-xs font-medium ${item.accent}`}>→</span>
-                  </div>
-                  <h3 className="mt-3 text-lg font-bold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm text-white/50">{item.description}</p>
-                  <p className={`mt-3 text-xs font-medium ${item.accent}`}>{item.meta}</p>
+          {INSTRUMENTS.map((inst) => {
+            const Card = (
+              <motion.div
+                key={inst.name}
+                variants={fadeUp}
+                className={`group rounded-3xl border ${inst.border} bg-gradient-to-br ${inst.gradient} p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${inst.slug ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+              >
+                <div className="text-center">
+                  <span className="text-5xl">{inst.emoji}</span>
+                  <h2 className={`mt-3 text-2xl font-bold ${inst.text}`}>{inst.name}</h2>
+                  <p className="mt-2 text-sm text-slate-600">{inst.description}</p>
                 </div>
-              </Link>
-            ))}
-          </div>
-        </motion.section>
 
-        {/* Why Learn Music */}
+                <div className="mt-5 space-y-2">
+                  <div className="flex items-center gap-2 rounded-xl bg-white/60 px-3 py-2 text-sm">
+                    <span>💡</span>
+                    <span className="text-slate-600">{inst.funFact}</span>
+                  </div>
+                  <div className="flex gap-4 text-xs text-slate-500">
+                    <span className="rounded-full bg-white/80 px-3 py-1">{inst.difficulty}</span>
+                    <span className="rounded-full bg-white/80 px-3 py-1">{inst.ageRange}</span>
+                  </div>
+                </div>
+
+                {inst.slug ? (
+                  <div className={`mt-4 text-center text-sm font-medium ${inst.text}`}>
+                    Kurs starten →
+                  </div>
+                ) : (
+                  <div className="mt-4 text-center text-xs text-slate-400">
+                    Bald verfügbar
+                  </div>
+                )}
+              </motion.div>
+            )
+
+            return inst.slug ? (
+              <Link key={inst.name} href={`/music/learn/${inst.slug}`}>
+                {Card}
+              </Link>
+            ) : (
+              <div key={inst.name}>{Card}</div>
+            )
+          })}
+        </motion.div>
+
+        {/* Why Music Section */}
         <motion.section
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mt-16 rounded-3xl bg-white/70 p-8 text-center shadow-sm backdrop-blur-sm"
         >
-          <h2 className="mb-6 text-xs font-medium uppercase tracking-[0.2em] text-white/30">Why Learn Music?</h2>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {WHY_LEARN.map((item) => (
-              <div key={item.title} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-                <span className="text-2xl">{item.icon}</span>
-                <h3 className="mt-2 text-sm font-bold text-white">{item.title}</h3>
-                <p className="mt-1 text-xs text-white/40 leading-relaxed">{item.desc}</p>
+          <h2 className="text-2xl font-bold text-slate-800">🧠 Warum Musik lernen?</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {[
+              { emoji: '🎯', title: 'Konzentration', desc: 'Musik trainiert Fokus und Ausdauer — besser als jede App.' },
+              { emoji: '💪', title: 'Selbstvertrauen', desc: 'Ein Lied spielen zu können, das fühlt sich wie eine Superkraft an.' },
+              { emoji: '🌍', title: 'Sprache', desc: 'Musik ist die einzige Sprache, die alle Menschen verstehen.' },
+              { emoji: '🧮', title: 'Mathematik', desc: 'Rhythmus ist Mathematik zum Anfassen — Brüche, Muster, Strukturen.' },
+              { emoji: '❤️', title: 'Gefühle', desc: 'Musik hilft dir, Gefühle auszudrücken, die Worte nicht fassen können.' },
+              { emoji: '🤝', title: 'Gemeinschaft', desc: 'Zusammen Musik machen verbindet — im Chor, in der Band, im Orchester.' },
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl bg-slate-50 p-4">
+                <p className="text-2xl">{item.emoji}</p>
+                <p className="mt-1 font-bold text-slate-800">{item.title}</p>
+                <p className="mt-1 text-sm text-slate-500">{item.desc}</p>
               </div>
             ))}
           </div>
         </motion.section>
 
-        {/* Ecosystem Links */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h2 className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-white/30">More from FrankX Music</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {ECOSYSTEM.map((item) => (
-              <Link key={item.title} href={item.href}>
-                <div className={`group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:bg-white/[0.06] ${item.border}`}>
-                  <span className="text-3xl">{item.emoji}</span>
-                  <h3 className="mt-3 text-lg font-bold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm text-white/50">{item.description}</p>
-                  <p className={`mt-3 text-sm font-medium ${item.accent}`}>Explore →</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Navigation */}
-        <div className="flex justify-center gap-6">
-          <Link href="/music" className="text-sm text-white/30 hover:text-white/60 transition">
-            ← Music
-          </Link>
-          <Link href="/music/create" className="text-sm text-emerald-400/60 hover:text-emerald-400 transition">
-            Create with AI →
+        {/* Link to Alea */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/alea"
+            className="inline-block rounded-full bg-violet-100 px-6 py-3 text-sm font-medium text-violet-700 transition hover:bg-violet-200"
+          >
+            ← Zurück zu Aleas Welt
           </Link>
         </div>
       </div>

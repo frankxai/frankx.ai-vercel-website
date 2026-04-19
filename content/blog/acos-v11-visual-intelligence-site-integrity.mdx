@@ -1,0 +1,363 @@
+---
+title: "ACOS v11: Visual Intelligence and Site Integrity — What Changed and Why"
+description: "How 8 broken AI-generated images led to a 5-layer quality enforcement system, a 302-page site integrity audit, and a better way to create at scale."
+date: "2026-03-31"
+image: "/images/blog/acos-v11-visual-intelligence-site-integrity.webp"
+author: "Frank Riemer"
+categories: ["ACOS", "AI", "Creator Tools", "Architecture"]
+published: true
+readingGoal: "Understand the 5-layer visual quality system, the site integrity audit framework, and the prompt optimizer pattern shipping in ACOS v11."
+readingTime: "12 min"
+---
+
+# ACOS v11: Visual Intelligence and Site Integrity
+
+_What changed, what broke first, and the systems that make sure it stays fixed._
+
+---
+
+## TL;DR
+
+ACOS v11 ships two major systems born from real failures: a **5-layer Visual Quality System** (after 8 out of 21 batch-generated hero images shipped with critical defects) and a **Site Integrity Audit** that checked 302 pages, 816 links, 16 products, and 118 blog articles — finding 13 broken links, 97 orphan pages, and 17 articles with missing frontmatter. Also new: a two-model **Prompt Optimizer** that raises image prompt scores from ~49 to 95/100, and a **VIS Registry Dedup Check** across 408 indexed images. Everything runs automatically through hooks in Claude Code. [Free on GitHub](https://github.com/frankxai/agentic-creator-os).
+
+---
+
+## What Went Wrong With 21 Blog Hero Images?
+
+In late March 2026, I batch-generated 21 hero images for blog articles. The generation itself was fast — roughly 20 minutes for all 21. The review happened after.
+
+Eight of them had critical issues:
+
+- **Outdated model names** baked into the image (referencing models that no longer exist or were renamed)
+- **Fake UI screenshots** that looked plausible at thumbnail size but contained nonsense text
+- **Unauthorized logos** — corporate logos that should never appear on frankx.ai (see: [Oracle logo restriction](/blog/acos-hooks-system-quality-gates))
+- **Leaked prompt text** rendered directly into the image, visible at full resolution
+
+None of these were caught before the images hit the blog. The generation pipeline had zero quality gates. The workflow was: prompt → generate → save → publish.
+
+That sequence is the problem. Not the generation model. Not the prompts. The process.
+
+---
+
+## How Does the 5-Layer Visual Quality System Work?
+
+The fix is not "be more careful." The fix is five automated layers that make carelessness structurally impossible.
+
+### Layer 1: CLAUDE.md Rules
+
+The foundation. Written rules in the project's CLAUDE.md that define three image categories with different quality requirements:
+
+| Image Type | Text Allowed? | Review Required? | Example |
+|---|---|---|---|
+| **Atmospheric** | No text, ever | Auto-approved | Blog hero backgrounds, mood images |
+| **Informational** | Yes — researched, verified text only | Manual review | Architecture diagrams, comparison tables |
+| **Branded** | Yes — council-reviewed | Council agent sign-off | Product shots, marketing assets |
+
+The key distinction: the rule is not "never use text in images." That rule is wrong. The MCP server architecture diagram — which included labeled components, protocol names, and connection types — was the single best image in the batch. The rule is: **never use unverified text.**
+
+Accurate diagrams with researched labels are excellent. Random text from an LLM's imagination is not.
+
+### Layer 2: Skill Auto-Triggers
+
+When ACOS detects image-related work (keywords like "generate," "hero image," "visual," "diagram"), it automatically loads the `visual-creation` and `vis` skills. These inject the full quality protocol into the session context without the user needing to remember to activate them.
+
+```yaml
+# Skill auto-trigger pattern
+triggers:
+  - pattern: "generate.*image|hero.*image|visual|diagram|infographic"
+    skills: ["visual-creation", "vis", "design-thinking"]
+    priority: high
+```
+
+### Layer 3: PreToolUse Hook
+
+This is the enforcement layer. Before any image generation tool fires, a hook script runs four checks:
+
+```bash
+#!/bin/bash
+# PreToolUse hook — visual quality gate
+# Runs before: nanobanana.generate_image, vis.*, image tools
+
+TOOL_NAME="$1"
+TOOL_INPUT="$2"
+
+# 1. Model tier check — no cheap models for final assets
+if echo "$TOOL_INPUT" | grep -q "flash"; then
+  echo "BLOCKED: Flash-tier models produce inconsistent text rendering."
+  echo "Use pro-tier for any image containing text or branded elements."
+  exit 1
+fi
+
+# 2. Grounding check — text content must reference verified sources
+if echo "$TOOL_INPUT" | grep -qi "diagram\|architecture\|label\|text"; then
+  echo "WARNING: Image contains text elements."
+  echo "Verify all labels against source documentation before generating."
+  echo "Required: list each text element and its verification source."
+fi
+
+# 3. Batch limit — max 3 images before mandatory review
+BATCH_COUNT=$(cat /tmp/acos-image-batch-count 2>/dev/null || echo "0")
+if [ "$BATCH_COUNT" -ge 3 ]; then
+  echo "PAUSED: Batch limit reached (3 images)."
+  echo "Review generated images before continuing."
+  echo "Run: vis-audit to check quality."
+  exit 1
+fi
+echo $((BATCH_COUNT + 1)) > /tmp/acos-image-batch-count
+
+# 4. Risk pattern detection
+if echo "$TOOL_INPUT" | grep -qi "oracle\|logo\|brand\|trademark"; then
+  echo "BLOCKED: Potential trademark/brand content detected."
+  echo "Corporate logos and trademarks require explicit approval."
+  exit 1
+fi
+
+# 5. VIS dedup check — prevent regenerating existing assets
+PROMPT_HASH=$(echo "$TOOL_INPUT" | md5sum | cut -d' ' -f1)
+if grep -q "$PROMPT_HASH" data/visual-registry.json 2>/dev/null; then
+  echo "SKIPPED: Similar image already exists in VIS registry."
+  echo "Check data/visual-registry.json before generating duplicates."
+  exit 1
+fi
+```
+
+The batch limit is the most important check. The original failure was a batch of 21. With a hard limit of 3 before forced review, the worst case drops from "21 broken images in production" to "3 images waiting for review."
+
+### Layer 4: PostToolUse Hook
+
+After generation, the PostToolUse hook:
+
+1. Logs the generation to `data/visual-registry.json` with metadata (prompt, model, timestamp, tags)
+2. Flags the image as `"reviewStatus": "pending"` — it exists but is not approved
+3. Emits a warning if the session has pending reviews: _"You have 3 unreviewed images. Run /vis-audit before publishing."_
+
+### Layer 5: Council Agent Review
+
+For branded and high-stakes images, ACOS spawns a council review. Three perspectives evaluate the image:
+
+- **Brand Guardian**: Does this match frankx.ai visual identity? Correct colors, no unauthorized marks?
+- **Technical Reviewer**: Is all text accurate? Do diagrams reflect real architecture?
+- **Accessibility Auditor**: Sufficient contrast? Alt text prepared? Works at mobile sizes?
+
+The council pattern is already proven in ACOS for content review. Extending it to visual assets was straightforward.
+
+---
+
+## The Design Thinking 80/20 Rule
+
+The deeper lesson from the image failure is about time allocation. The original workflow spent approximately:
+
+- **5%** of time on concepting (what should this image communicate?)
+- **10%** on prompting (writing the generation prompt)
+- **80%** on generating (running the model, waiting for results)
+- **5%** on review (a quick glance before publishing)
+
+ACOS v11 inverts this:
+
+- **80%** concepting and prompt engineering (what, why, verified text, reference images)
+- **20%** generating (one or two targeted generations with a refined prompt)
+
+The prompt optimizer (described below) is the tool that makes this inversion practical.
+
+---
+
+## What Did the Site Integrity Audit Find?
+
+Before v11, frankx.ai had never been audited as a whole. Individual pages got attention. The site as a system did not.
+
+The audit script (`scripts/pre-deploy-audit.mjs`) runs in 6.3 seconds and checks everything:
+
+### The Numbers
+
+| Metric | Count | Issues Found |
+|---|---|---|
+| Pages audited | 302 | 97 orphan pages (no inbound links) |
+| Links checked | 816 | 13 broken (404s, wrong anchors) |
+| Products verified | 16 | 15/16 had broken delivery pipelines |
+| Blog articles scored | 118 | 17 missing frontmatter entirely |
+| Blog categories | — | 56 articles had no category assigned |
+
+### What "97 Orphan Pages" Actually Means
+
+An orphan page is a page that exists but has zero inbound links from the rest of the site. Users can only reach it via direct URL or search. On a 302-page site, having 97 orphans means **32% of the site is effectively invisible** to navigation.
+
+The fix was not deleting orphan pages — that violates the [decision-making principle](/blog/agentic-creator-os-complete-guide) of never removing content that might have external links or search traffic. Instead, 14 new navigation links were added to connect the most valuable orphans to existing page structures. The remaining orphans are monitored but intentionally unlinked (admin pages, draft content, utility routes).
+
+### What "15/16 Products With Broken Delivery" Means
+
+Fifteen out of sixteen [products](/products) had checkout flows that either pointed to placeholder Stripe links, returned 404 on the download endpoint, or had email delivery templates referencing non-existent assets. Only one product — the ACOS guide PDF — had a fully working purchase-to-delivery pipeline.
+
+This is a revenue problem masquerading as a technical problem. Every product page looks correct. The CTAs work. The forms submit. But the backend delivery was incomplete for 94% of the catalog.
+
+### The Dashboard
+
+All audit data flows into seven JSON files and renders at [`/admin/site-health`](/admin/site-health):
+
+```
+data/
+├── audit-broken-links.json      # 13 broken links with source pages
+├── audit-orphan-pages.json       # 97 orphan pages with traffic data
+├── audit-product-delivery.json   # 16 products, delivery status
+├── audit-blog-quality.json       # 118 articles, quality scores
+├── audit-blog-categories.json    # Category coverage map
+├── audit-nav-coverage.json       # Navigation completeness
+└── audit-summary.json            # Roll-up metrics, timestamp
+```
+
+The pre-deploy audit runs automatically before every production push. If broken links exceed the threshold, the deploy pauses.
+
+---
+
+## How Does the Prompt Optimizer Work?
+
+The prompt optimizer uses a two-model pattern: a text model enhances the prompt before an image model generates the visual.
+
+### The Problem With Raw Prompts
+
+A typical first-draft image prompt:
+
+> "Create a hero image for a blog post about AI agent orchestration"
+
+This prompt scores roughly **49/100** on our quality rubric (specificity, visual detail, composition guidance, style consistency, brand alignment).
+
+### The Two-Model Pattern
+
+**Step 1 — Text model enriches the prompt:**
+
+The text model (Claude, in this case) receives the raw prompt plus the brand visual DNA (`data/brand-visual-dna.json`) and outputs an enhanced prompt with:
+
+- Specific lighting direction and color temperature
+- Texture and material descriptions
+- Camera angle and focal length
+- Composition rules (rule of thirds, negative space)
+- Brand color constraints (dark gunmetal `#1a1a1a`, electric blue `#00bfff`, violet `#7c3aed`)
+- Explicit exclusions (no text unless verified, no logos, no fake UI)
+
+**Step 2 — Image model generates from the enriched prompt.**
+
+The enhanced prompt scores **95/100** on the same rubric. The difference is not the image model — it is the input quality.
+
+```
+Raw prompt:    "AI agent orchestration hero image"
+                → Score: 49/100
+                → Result: Generic, off-brand, random composition
+
+Enhanced prompt: "Isometric dark workspace, gunmetal #1a1a1a background,
+                  three luminous agent nodes connected by electric blue
+                  #00bfff data streams, subtle violet #7c3aed core glow
+                  on central orchestrator, volumetric fog, 45-degree
+                  camera angle, cinematic depth of field f/2.8, no text,
+                  no logos, no UI elements, 16:9 aspect ratio"
+                → Score: 95/100
+                → Result: On-brand, intentional, reproducible
+```
+
+The optimizer runs automatically when the `visual-creation` skill is active. It adds roughly 10 seconds per prompt but eliminates most regeneration cycles.
+
+---
+
+## What Does the VIS Registry Dedup Check Do?
+
+The Visual Intelligence System (VIS) tracks 408 images across 37 directories in `data/visual-registry.json`. Each entry includes:
+
+- File path and dimensions
+- Tags, mood, theme, suitability scores
+- Generation prompt (if AI-generated)
+- Content hash for dedup
+
+The PreToolUse hook queries this registry before every generation. If a semantically similar image already exists — same subject, similar composition, matching tags — the hook blocks generation and points to the existing asset.
+
+This prevents the most common waste pattern: generating a new "AI architecture" hero image when three already exist in the registry. Over 21 articles, this check would have prevented at least 6 redundant generations.
+
+---
+
+## What Changed From v10 to v11?
+
+| Capability | v10.2 | v11.0 |
+|---|---|---|
+| Visual quality gates | None | 5-layer enforcement |
+| Site health monitoring | Manual spot checks | Automated 302-page audit in 6.3s |
+| Prompt optimization | Raw prompts only | Two-model enhancement (49 → 95/100) |
+| Image dedup | None | VIS registry check (408 images) |
+| Blog quality scoring | None | 118 articles scored, categorized |
+| Product delivery verification | None | 16 products checked, 15 failures caught |
+| Orphan page detection | None | 97 orphans identified, 14 reconnected |
+| Deploy safety | Basic type checks | Pre-deploy audit with blocking thresholds |
+
+ACOS v10 was about autonomous intelligence — making the system learn from itself. v11 is about **integrity** — making sure what the system produces and what the site contains are both correct.
+
+---
+
+## How to Use the New Systems
+
+### Run a Site Integrity Audit
+
+```bash
+node scripts/pre-deploy-audit.mjs
+```
+
+Output: seven JSON files in `data/`, summary printed to console, dashboard updated at `/admin/site-health`.
+
+### Check Visual Registry Before Generating
+
+```bash
+# Search existing assets before generating new ones
+/vis-search "agent orchestration architecture"
+```
+
+### Enable the Full Quality Pipeline
+
+The visual quality system activates automatically when ACOS detects image work. To manually ensure it is loaded:
+
+```bash
+# In Claude Code
+/acos-score  # Check current system status
+```
+
+All hooks, skills, and audit infrastructure ship with ACOS v11. No additional dependencies.
+
+---
+
+## FAQ
+
+### Is ACOS v11 backwards compatible with v10?
+
+Yes. The visual quality system and site integrity audit are additive — they add new hooks and scripts without modifying existing v10 systems. Experience Replay, Agent IAM, Circuit Breaker, and all v10 features continue to work unchanged.
+
+### Does the 5-layer visual system slow down image generation?
+
+The PreToolUse hook adds approximately 200ms per generation (registry lookup, risk pattern scan). The prompt optimizer adds roughly 10 seconds (text model enhancement). Total overhead per image: ~10 seconds. Given that it eliminates most regeneration cycles (which cost 30-60 seconds each), the net effect is faster.
+
+### Can I use the site integrity audit on my own Next.js site?
+
+The audit script (`scripts/pre-deploy-audit.mjs`) is designed for Next.js App Router projects. It crawls the `app/` directory for routes, checks `content/` for MDX frontmatter, and validates links. You would need to adjust product verification logic for your own checkout system, but the page and link auditing works on any Next.js 14+ project.
+
+### Why a batch limit of 3 instead of 5 or 10?
+
+Three is the maximum number of images a single reviewer can meaningfully evaluate in one pass without quality degradation. At 5+, reviewers start rubber-stamping. The number comes from design review literature, not arbitrary choice. You can adjust it in the PreToolUse hook.
+
+### What happens when the pre-deploy audit finds issues?
+
+Broken links above the threshold (currently set to 0) block the deploy with a non-zero exit code. Missing frontmatter and orphan pages generate warnings but do not block. Product delivery failures are logged and flagged on the dashboard but do not block deploys — they require manual intervention since fixing delivery pipelines involves Stripe configuration, not code.
+
+### How does the prompt optimizer handle non-English content?
+
+The text model enhancement works in any language the underlying LLM supports. Brand visual DNA constraints (colors, composition rules) are language-independent. The optimizer has been tested with English and German prompts.
+
+### Where can I get ACOS v11?
+
+ACOS is open source: [github.com/frankxai/agentic-creator-os](https://github.com/frankxai/agentic-creator-os). The visual quality system, site integrity audit, and prompt optimizer all ship in v11. Setup takes roughly 15 minutes for an existing Claude Code project.
+
+---
+
+## What Comes Next
+
+The site integrity audit revealed something that manual reviews consistently missed: the gap between "pages that exist" and "pages that work end-to-end." Having 302 pages means nothing if 97 are unreachable and 15 out of 16 products cannot deliver what they sell.
+
+ACOS v11 is the first version where the system checks its own output _and_ the platform it publishes to. Visual quality and site integrity are two sides of the same principle: **what ships must be correct, complete, and verified.**
+
+The visual quality system did not emerge from a planning document. It emerged from 8 broken images that made it to production. That is how most good systems start — with a failure specific enough to design against.
+
+---
+
+_ACOS is free and open source. Built for creators who ship._

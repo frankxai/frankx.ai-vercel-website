@@ -446,6 +446,7 @@ export default function AIArchitectClient() {
                     key={pattern.name}
                     variants={fadeInUp}
                     transition={{ delay: index * 0.1 }}
+                    className="group rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-white/20 hover:bg-white/[0.04]"
                   >
                     <GlowCard color="violet" className="p-5 h-full">
                       <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:bg-violet-500/20 group-hover:text-violet-400">
@@ -526,7 +527,7 @@ export default function AIArchitectClient() {
                   />
                 </div>
                 <div className="space-y-4">
-                  <GlowCard color="violet" className="p-5">
+                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
                     <h4 className="mb-3 font-semibold text-white">Key Components</h4>
                     <ul className="space-y-2 text-sm text-slate-400">
                       <li className="flex items-start gap-2">
@@ -596,7 +597,7 @@ export default function AIArchitectClient() {
                   />
                 </div>
                 <div className="space-y-4">
-                  <GlowCard color="rose" className="p-5">
+                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
                     <h4 className="mb-3 font-semibold text-white">Key Components</h4>
                     <ul className="space-y-2 text-sm text-slate-400">
                       <li className="flex items-start gap-2">

@@ -1,0 +1,147 @@
+{
+  "lastUpdated": "2026-03-22",
+  "profile": {
+    "name": "Frank Riemer",
+    "age": 28,
+    "partner": "Tien",
+    "location": "Amsterdam",
+    "employmentType": "permanent",
+    "employer": "Oracle",
+    "bv": "Arcanea Labs BV (forming April 2026)"
+  },
+  "income": {
+    "oracleSalaryGross": null,
+    "oracleSalaryNet": null,
+    "bvRevenue": 0,
+    "bvDgaSalary": 0,
+    "productIncome": 0,
+    "rentalIncome": 0,
+    "totalMonthlyNet": null,
+    "note": "Fill in Oracle salary to calculate mortgage capacity"
+  },
+  "expenses": {
+    "monthly": {
+      "rent": null,
+      "subscriptions": 346,
+      "living": null,
+      "entertainment": null,
+      "travel": null,
+      "insurance": null,
+      "total": null
+    }
+  },
+  "assets": {
+    "cash": 3000,
+    "stocks": 3000,
+    "crypto": 0,
+    "bvEquity": 0,
+    "properties": [],
+    "other": 0,
+    "totalAssets": 6000
+  },
+  "liabilities": {
+    "studentLoan": null,
+    "mortgages": [],
+    "bvLoans": [],
+    "personalLoans": [],
+    "totalLiabilities": 0
+  },
+  "netWorth": {
+    "current": 6000,
+    "history": [
+      {
+        "date": "2026-03-22",
+        "amount": 6000
+      }
+    ]
+  },
+  "mortgageCapacity": {
+    "nhgLimit2026": 470000,
+    "nhgWithEnergy": 498200,
+    "nhgPremium": "0.4%",
+    "startersvrijstellingLimit": 555000,
+    "startersvrijstellingAge": "18-34",
+    "interestRate10yrNHG": 3.7,
+    "interestRate10yrNoNHG": 4.04,
+    "interestRate20yr": 4.3,
+    "maxDeductionRate": 37.56,
+    "eigenwoningforfait": 0.35,
+    "transferTaxOwnerOccupied": 2.0,
+    "transferTaxInvestment": 8.0,
+    "firstTimeBuyerExemption": true,
+    "opkoopbeschermingLimit": 623000,
+    "note": "NHG limit \u20ac470K (2026). Startersvrijstelling up to \u20ac555K (no transfer tax). Rates ~3.7% with NHG."
+  },
+  "propertyTargets": [
+    {
+      "id": "primary-residence",
+      "type": "primary",
+      "targetArea": "IJburg / Amsterdam-Oost",
+      "budgetRange": {
+        "min": 300000,
+        "max": 500000
+      },
+      "targetTimeline": "2026-2027",
+      "status": "researching",
+      "notes": "First-time buyer exemption available (no 2% transfer tax)"
+    }
+  ],
+  "propertyWatchlist": [
+    {
+      "area": "IJburg",
+      "avgPriceM2": 5962,
+      "trend": "+5.6% YoY, 30% below Amsterdam avg"
+    },
+    {
+      "area": "Amsterdam Oost",
+      "avgPriceM2": 8801,
+      "trend": "87% sell above asking"
+    },
+    {
+      "area": "Diemen",
+      "avgPriceM2": 5500,
+      "trend": "Avg transaction \u20ac524K"
+    },
+    {
+      "area": "Muiden",
+      "avgPriceM2": 5750,
+      "trend": "Limited supply, Gooi region"
+    },
+    {
+      "area": "Almere Poort",
+      "avgPriceM2": 4500,
+      "trend": "Steady growth, family-friendly"
+    },
+    {
+      "area": "Amstelveen",
+      "avgPriceM2": 6092,
+      "trend": "+6.6% YoY, avg \u20ac727K"
+    },
+    {
+      "area": "Haarlem",
+      "avgPriceM2": 5865,
+      "trend": "Stabilizing, avg \u20ac550-650K"
+    },
+    {
+      "area": "Amsterdam Zuidoost",
+      "avgPriceM2": 5200,
+      "trend": "Cheapest in Amsterdam"
+    }
+  ],
+  "fireTarget": {
+    "annualExpenses": 60000,
+    "multiple": 25,
+    "target": 1500000,
+    "currentProgress": 6000,
+    "progressPercent": 0.4
+  },
+  "taxStrategy": {
+    "hypotheekrenteaftrek": "Deduct mortgage interest at max 37.56% in Box 1. 30-year max.",
+    "eigenwoningforfait": "Add 0.35% of WOZ value to income. Net benefit: deduction > forfait.",
+    "startersvrijstelling": "First purchase under \u20ac555K, age 18-34: ZERO transfer tax. Save up to \u20ac11,100.",
+    "bvMortgage": "Borrow from own BV at market rate. Deduct interest at 37.56%, BV pays VPB 19%. Tax arbitrage.",
+    "investmentProperty": "Buy-to-let: 8% transfer tax + Box 3 (6% deemed return \u00d7 36% tax = ~2.16%/yr effective).",
+    "dgaExcessiveBorrowing": "Max \u20ac500K loan from BV before Box 2 tax. Applies to all DGA loans combined.",
+    "opkoopbescherming": "Amsterdam: properties WOZ < \u20ac623K must be owner-occupied. 4yr self-occupation before renting."
+  }
+}

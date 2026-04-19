@@ -22,7 +22,7 @@ export interface ResearchFAQ {
   answer: string
 }
 
-export type DomainCategory = 'ai-systems' | 'models-tools' | 'creative-productivity' | 'health-science'
+export type DomainCategory = 'ai-systems' | 'models-tools' | 'creative-productivity' | 'health-science' | 'policy-systems'
 
 export interface ResearchDomain {
   slug: string
@@ -42,6 +42,11 @@ export interface ResearchDomain {
   lastUpdated: string
   sourceCount: number
   status: 'active' | 'emerging' | 'foundational'
+  // Research quality fields
+  evidenceGrade?: 'A' | 'B' | 'C' | 'D' // A=peer-reviewed, B=industry reports, C=mixed, D=editorial
+  limitations?: string[]
+  whatWeDontKnow?: string[]
+  lastVerified?: string // ISO date
 }
 
 export const domainCategories: Record<DomainCategory, { label: string; description: string }> = {
@@ -49,6 +54,7 @@ export const domainCategories: Record<DomainCategory, { label: string; descripti
   'models-tools': { label: 'Models & Developer Tools', description: 'Frontier models, coding assistants, benchmarks, and configuration' },
   'creative-productivity': { label: 'Creative & Productivity', description: 'Creative tools, creator economy, education, and personal productivity' },
   'health-science': { label: 'Health & Science', description: 'Neuroscience, mental health, healthcare, and clinical AI' },
+  'policy-systems': { label: 'Policy & Systems Thinking', description: 'Infrastructure, housing, governance, and systemic decision frameworks' },
 }
 
 export const researchDomains: ResearchDomain[] = [
@@ -109,6 +115,17 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 8,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Market size projections vary significantly between research firms',
+      'Multi-agent adoption statistics are self-reported by vendors',
+      'Enterprise deployment failure rates are estimates',
+    ],
+    whatWeDontKnow: [
+      'True ROI of multi-agent vs single-agent architectures in matched conditions',
+      'Long-term maintenance costs of agentic systems at scale',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'multi-agent-systems',
@@ -169,6 +186,16 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-01-27',
     sourceCount: 11,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Market share percentages come from community surveys, not independent audits',
+      'Framework comparison is fast-moving — new releases change the landscape weekly',
+    ],
+    whatWeDontKnow: [
+      'Production failure rates per framework in matched enterprise conditions',
+      'How Agent2Agent (A2A) protocol will shift framework dynamics',
+    ],
+    lastVerified: '2026-01-27',
   },
   {
     slug: 'production-patterns',
@@ -227,6 +254,16 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-01-27',
     sourceCount: 6,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'Sources lean heavily toward Oracle OCI documentation',
+      'RAG performance claims vary widely depending on dataset and methodology',
+    ],
+    whatWeDontKnow: [
+      'Optimal RAG architecture for different domain types',
+      'True cost of observability overhead in production AI systems',
+    ],
+    lastVerified: '2026-01-27',
   },
   {
     slug: 'mcp-ecosystem',
@@ -297,6 +334,18 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 13,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'MCP ecosystem metrics (340% growth, 50+ servers) are GitHub-derived, not independently audited',
+      'Claude Code token reduction claims are vendor-reported (Anthropic)',
+      'Claude model benchmark scores are from vendor announcements — independent replication varies',
+    ],
+    whatWeDontKnow: [
+      'MCP adoption in enterprise vs hobby projects — no breakdown available',
+      'Whether MCP will become a true standard or remain Anthropic-centric',
+      'Long-term maintenance burden of MCP server ecosystem',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-ops',
@@ -357,6 +406,18 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-01-27',
     sourceCount: 11,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'The 5-layer stack and 6-level maturity model are synthesized frameworks, not peer-reviewed standards',
+      'Memory architecture taxonomy (4 types) draws on cognitive science analogies — real implementations vary',
+      'Maturity level distribution ("most at Level 1-2") is estimated, not surveyed',
+    ],
+    whatWeDontKnow: [
+      'Whether the 5-layer stack is the right abstraction for all organization sizes',
+      'Optimal investment allocation across the 5 layers for different maturity levels',
+      'How quickly organizations actually progress through maturity levels',
+    ],
+    lastVerified: '2026-01-27',
   },
   {
     slug: 'ai-neuroscience',
@@ -426,6 +487,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 15,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Neuralink trial data is from the company itself — no independent peer-reviewed outcomes yet',
+      'Apple BCI HID protocol is announced but no shipping products confirm consumer viability',
+      '91% thought decoding accuracy is from a single study with small sample size',
+      'Neuromorphic "100x efficiency" claims are for specific workloads, not general computing',
+    ],
+    whatWeDontKnow: [
+      'Long-term safety profile of implanted BCIs beyond 72-month tracking window',
+      'Whether non-invasive BCIs can achieve implant-level signal quality',
+      'Timeline for consumer BCI applications beyond focus/meditation',
+      'How neuromorphic computing will integrate with transformer-based AI architectures',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'vector-databases',
@@ -499,6 +574,18 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 5,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Benchmark latency numbers are from vendor-run tests, not independent head-to-head evaluations',
+      'Market valuations and funding data can change rapidly — verify before citing',
+      'pgvector "10M vector sweet spot" is approximate and depends heavily on hardware and index type',
+    ],
+    whatWeDontKnow: [
+      'True total cost of ownership comparison across all 7 platforms at matched scale',
+      'How multi-tenant performance degrades under real production load',
+      'Whether cloud provider acquisitions will fragment or consolidate the ecosystem',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-security',
@@ -575,6 +662,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 6,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'OWASP Agentic AI Top 10 is a first edition — attack taxonomy will evolve as real-world incidents emerge',
+      'Lakera acquisition price (~$300M) is from a single source (Calcalist)',
+      'EU AI Act enforcement impact is too early to assess — first investigation just launched',
+      '"Intent Capsule" pattern effectiveness lacks independent benchmarks',
+    ],
+    whatWeDontKnow: [
+      'How effective current guardrails are against adversarial attacks at scale',
+      'Whether regulatory fragmentation (EU, US state-level, China) will help or hinder security',
+      'Real-world prevalence and impact of delegation attacks in multi-agent systems',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'coding-assistants',
@@ -645,6 +745,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 5,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Cursor valuation ($29.3B) and ARR ($1B+) are from press reports, not audited financials',
+      'Market share percentages are derived from GitHub PR analysis, not comprehensive surveys',
+      'Benchmark scores are point-in-time snapshots — models update frequently',
+      'Copilot 20M+ user count includes free tier, not all paying subscribers',
+    ],
+    whatWeDontKnow: [
+      'Actual developer productivity gains from AI coding tools in controlled studies',
+      'Whether Cursor\'s growth is sustainable or a bubble driven by VC-subsidized pricing',
+      'How AI coding assistants affect code quality and maintainability long-term',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-adoption',
@@ -716,6 +829,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 5,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'McKinsey "88% regular AI use" is self-reported and includes trivial usage (ChatGPT for emails)',
+      'The 120K survey is a single source for the 8.6% production figure — may not be representative',
+      '63.7% "no formalized initiative" conflicts with 88% usage — definitions matter',
+      'Gartner 40% prediction is a forecast, not observed data',
+    ],
+    whatWeDontKnow: [
+      'How to reliably measure AI ROI across different enterprise contexts',
+      'Whether the "pilot purgatory" problem is structural or just a timing lag',
+      'Which industries will adopt fastest and why — current data is anecdotal',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'agent-benchmarks',
@@ -784,6 +910,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 6,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Benchmark scores are point-in-time — models update weekly and rankings shift',
+      'SWE-bench and Terminal-Bench test specific coding patterns, not general software engineering ability',
+      'Qwen3-Coder 3B result is remarkable but from a single benchmark run — needs independent replication',
+      'ARC-AGI-2 has limited public test set — overfitting concerns exist for all models',
+    ],
+    whatWeDontKnow: [
+      'How benchmark performance correlates with real-world developer productivity',
+      'Whether efficiency gains (small models matching large) will continue scaling',
+      'True cost-adjusted performance across all benchmarks simultaneously',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-mental-health',
@@ -853,6 +992,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Woebot and Wysa RCTs have relatively small sample sizes compared to pharmaceutical trials',
+      'Most studies are 2-8 weeks — long-term efficacy data is limited',
+      '91% prediction accuracy is from a single study population — generalizability unknown',
+      'Publication bias likely — failed AI therapy studies are less likely to be published',
+    ],
+    whatWeDontKnow: [
+      'Long-term retention of therapeutic gains from AI-only interventions',
+      'Optimal dosage/frequency of AI therapy interactions for different conditions',
+      'Whether AI therapy apps work equally well across demographics and cultures',
+      'Risk of over-reliance on AI therapy delaying professional help for severe conditions',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'generative-ai',
@@ -935,6 +1088,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Benchmark scores are vendor-reported — independent replication sometimes differs',
+      'Pricing changes rapidly — Opus 4.6 67% cut happened mid-cycle, others may follow',
+      'Context window sizes are maximums — effective use at 1M+ tokens is still unproven at scale',
+      'Open-source comparisons (Llama, DeepSeek) depend on hardware and quantization choices',
+    ],
+    whatWeDontKnow: [
+      'How pricing will evolve as competition intensifies — race to bottom or differentiation?',
+      'Whether 1M+ context windows are practically useful vs. RAG for most applications',
+      'How reasoning benchmark scores translate to real-world task completion rates',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-agent-config',
@@ -1025,6 +1191,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'Configuration patterns are derived from a single production system (ACOS) — may not generalize',
+      '500+ skills claim is self-counted from the FrankX ecosystem, not independently verified',
+      'Scaling claims lack controlled comparisons against simpler approaches',
+      'Hook-based automation benefits are qualitative, not quantitatively measured',
+    ],
+    whatWeDontKnow: [
+      'Whether CLAUDE.md-style constitution files improve agent output quality in controlled tests',
+      'Optimal number of concurrent skills before context pollution degrades performance',
+      'How these patterns transfer to non-Claude agents (GPT, Gemini, open-source)',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'prompt-engineering',
@@ -1091,6 +1270,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      '90% cost reduction via caching is the theoretical maximum — real-world savings vary by workload',
+      'Adaptive thinking effort levels are Anthropic-specific — pattern may not transfer to other providers',
+      'Anti-pattern recommendations are experience-based, not empirically validated',
+      'Prompt architecture patterns are emerging best practices, not established standards',
+    ],
+    whatWeDontKnow: [
+      'Whether prompt caching benefits diminish as models get faster at processing uncached prompts',
+      'Optimal template hierarchy depth before complexity exceeds benefit',
+      'How to reliably benchmark prompt quality across different domains and tasks',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-education',
@@ -1160,6 +1352,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Learning gains (0.36-0.70 SD) are averaged across diverse interventions — individual tool results vary',
+      '92% student AI usage is self-reported and includes any AI tool, not just educational ones',
+      'Most studies are short-term (weeks to months) — long-term retention data is sparse',
+      'MagicSchool "7-10 hours saved" is from user surveys, not time-motion studies',
+    ],
+    whatWeDontKnow: [
+      'Whether AI tutoring improves deep understanding or primarily helps with procedural knowledge',
+      'Long-term impact on critical thinking skills when students regularly use AI',
+      'How AI education tools perform across socioeconomic and linguistic demographics',
+      'Optimal balance between AI and human instruction for different age groups',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-creative-tools',
@@ -1229,6 +1435,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 9,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Midjourney market share and revenue estimates are unofficial — the company does not disclose financials',
+      '86% "daily AI use by creatives" conflates different survey methodologies',
+      'Video generation quality claims evolve monthly — comparisons date quickly',
+      'Suno $300M+ valuation is estimated, not confirmed by the company',
+    ],
+    whatWeDontKnow: [
+      'Whether AI creative tools enhance or homogenize creative output over time',
+      'How copyright and licensing will resolve for AI-generated content commercially',
+      'Whether human-AI creative collaboration produces work that audiences perceive as higher quality',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-personal-productivity',
@@ -1298,6 +1517,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 9,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      'Oura Advisor engagement data (60% weekly active) is from a beta cohort — may not reflect general population',
+      'BetterUp $4.8B valuation is from 2021 funding round — current valuation may differ significantly',
+      '"50%+ behavior change" from Oura is self-reported, not clinically measured',
+      'AI coaching meta-analyses are still limited compared to traditional therapy evidence bases',
+    ],
+    whatWeDontKnow: [
+      'Whether AI coaching produces lasting behavioral change beyond the novelty period',
+      'Optimal frequency and depth of AI coaching interactions for different goals',
+      'How AI coaching effectiveness compares to human coaching in matched conditions',
+      'Privacy and data security implications of long-term AI coaching relationships',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'ai-healthcare',
@@ -1362,6 +1595,20 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 11,
     status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'FDA clearance does not guarantee clinical superiority — it means "substantially equivalent" to existing devices',
+      '800+ AI/ML device count includes many incremental updates to existing products',
+      '30-50% diagnostic time reduction varies widely by condition and implementation context',
+      'Algorithmic bias data is still emerging — most devices lack comprehensive demographic testing',
+    ],
+    whatWeDontKnow: [
+      'Long-term patient outcomes from AI-assisted vs traditional diagnosis at population scale',
+      'How AI diagnostic tools perform in resource-limited healthcare settings',
+      'Whether AI diagnostics will reduce or exacerbate healthcare cost growth',
+      'Liability frameworks for AI-assisted clinical decisions that lead to adverse outcomes',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'creator-economy-ai',
@@ -1423,6 +1670,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-06',
     sourceCount: 10,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'n8n valuation ($2.5B) and ARR ($40M+) are from press reports during a funding round — may be peak pricing',
+      '"3-5x content production" is anecdotal from creator case studies, not controlled research',
+      'Zapier "2B+ tasks" includes trivial automations — high-value task share is unknown',
+      '"86% daily AI use" for creatives is from Adobe/Envato surveys of their own user bases',
+    ],
+    whatWeDontKnow: [
+      'Whether higher content volume from AI tools translates to proportionally higher audience engagement',
+      'Long-term sustainability of "sell systems" monetization vs traditional content monetization',
+      'How AI content production affects audience trust and perceived authenticity',
+    ],
+    lastVerified: '2026-02-06',
   },
   {
     slug: 'investment-intelligence',
@@ -1507,6 +1767,19 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-14',
     sourceCount: 15,
     status: 'active',
+    evidenceGrade: 'B',
+    limitations: [
+      'Thomson Reuters 70% DD time reduction is from their own product marketing — independent validation varies',
+      '213K hours saved is from a single Anthropic case study — context and methodology unclear',
+      'IACOS is a proprietary framework, not a standard — transferability is limited',
+      'M&A AI adoption (21%) is from a 2025 Bain survey — sample may not represent full market',
+    ],
+    whatWeDontKnow: [
+      'Whether AI-assisted investment decisions outperform traditional analysis in risk-adjusted returns',
+      'How AI deal flow scoring compares to experienced human analyst screening in matched conditions',
+      'Regulatory implications of AI-driven investment decisions — fiduciary duty questions remain open',
+    ],
+    lastVerified: '2026-02-14',
   },
   {
     slug: 'agentic-game-development',
@@ -1632,6 +1905,127 @@ export const researchDomains: ResearchDomain[] = [
     lastUpdated: '2026-02-14',
     sourceCount: 28,
     status: 'active',
+    evidenceGrade: 'C',
+    limitations: [
+      '$32.5B market projection is from a single industry report (Jenova AI) — wide confidence interval',
+      '87% AI agent usage by game devs is from a Google Games Report — survey may oversample tech-forward studios',
+      'WebGPU 15x performance gain is for specific rendering benchmarks, not general game performance',
+      '"70% faster dev" with AI tools is from case studies, not controlled studies',
+    ],
+    whatWeDontKnow: [
+      'Whether AI-generated game content achieves comparable player engagement to human-crafted content',
+      'How IP ownership works for games built primarily by AI agents',
+      'Whether the "prompt to playable game" pipeline works for anything beyond simple archetypes',
+      'Player perception and retention differences between AI-generated and human-designed games',
+    ],
+    lastVerified: '2026-02-14',
+  },
+  {
+    slug: 'housing-crisis-decisions',
+    title: 'Solving the Housing Crisis: Managerial Decisions That Work',
+    subtitle: 'Evidence-based policy frameworks for housing affordability',
+    description: 'A data-driven analysis of how decision-makers are solving the global housing crisis. Covers supply-side vs demand-side interventions, zoning reform, construction technology, public-private partnerships, and the five-lever framework for housing delivery — drawn from McKinsey, OECD, Harvard JCHS, and Brookings research.',
+    tldr: 'The housing crisis is fundamentally a supply problem: the US is short 3.8–6.5 million units, the EU faces a 4–5 million unit gap. Zoning reform is the single highest-leverage intervention — Tokyo builds 120,000–180,000 units annually with permissive national zoning, keeping real rents flat despite population growth. Construction productivity has grown only ~1% per year for 20 years. The five-lever framework (Land, Permitting, Construction Tech, Financing, Governance) provides a structured decision model for leaders at every level.',
+    icon: 'Building2',
+    color: 'amber',
+    category: 'policy-systems',
+    highlights: [
+      { stat: '3.8–6.5M', label: 'US housing unit shortage', source: 'Freddie Mac / NAR' },
+      { stat: '22.4M', label: 'US cost-burdened renters', source: 'Harvard JCHS 2024' },
+      { stat: '~1%/yr', label: 'Construction productivity growth', source: 'McKinsey Global Institute' },
+      { stat: '60%', label: 'Vienna residents in social housing', source: 'City of Vienna' },
+    ],
+    sections: [
+      {
+        title: 'The Scale of the Crisis',
+        content: 'The global housing crisis is driven by decades of underbuilding relative to population growth. In the US, housing starts averaged 1.0–1.4 million units per year through the 2010s against demand of 1.5–1.7 million annually. The cumulative deficit has grown every year since the 2008 financial crisis. In the EU, residential building permits declined 25–30% between 2022 and 2024. McKinsey estimates 440 million households worldwide will live in substandard or unaffordable housing by 2025.',
+        items: [
+          { title: 'United States', description: '3.8–6.5 million unit shortage. 50% of renters cost-burdened. Median home price-to-income ratio exceeds 5:1, far above the affordable benchmark of 3:1.', badge: 'Critical' },
+          { title: 'European Union', description: '4–5 million unit combined deficit. Germany alone short 700,000–800,000 units. 8.5% of EU population exceeds the 40% housing cost overburden threshold.', badge: 'Severe' },
+          { title: 'Global', description: 'UN-Habitat estimates 96,000 new affordable units needed per day. 1 billion people live in slums or informal settlements worldwide.', badge: 'Systemic' },
+        ],
+      },
+      {
+        title: 'The Five-Lever Framework for Housing Decision-Makers',
+        content: 'Drawing from McKinsey Global Institute, OECD, and Brookings research, managerial decisions can be organized around five high-impact levers. The dominant expert consensus is that the crisis is fundamentally a supply problem — demand-side interventions alone redistribute scarcity rather than resolving it.',
+        items: [
+          { title: 'Lever 1: Land & Zoning', description: 'Reform exclusionary zoning, release public land, implement land value capture. Up-zoning near transit reduces rents 10–20% (UC Berkeley Terner Center).', badge: 'Highest Impact' },
+          { title: 'Lever 2: Permitting & Regulation', description: 'Streamline to weeks instead of years. Reduce parking minimums ($30K–$75K per unit saved). California SB 35 achieved 50–70% faster approvals.', badge: 'Quick Win' },
+          { title: 'Lever 3: Construction Technology', description: 'Modular/prefab reduces time 30–50%, costs 10–25%. 3D printing enables homes in 24–48 hours. AI scheduling cuts project costs 10–20%.', badge: 'Innovation' },
+          { title: 'Lever 4: Financing & Incentives', description: 'LIHTC produces ~110,000 affordable units/year. Community land trusts maintain affordability for 40+ years. Social impact bonds fund construction.', badge: 'Capital' },
+          { title: 'Lever 5: Governance & Institutions', description: 'Dedicated housing delivery agencies outperform fragmented local governance. Federal/state intervention overcomes local NIMBYism.', badge: 'Structural' },
+        ],
+      },
+      {
+        title: 'What Works: Proven Models from Around the World',
+        content: 'Several cities and countries have demonstrated that the housing crisis is solvable with sustained political commitment and the right institutional design.',
+        items: [
+          { title: 'Vienna, Austria', description: '60% of residents in subsidized housing. EUR 600M annual investment. Land banking prevents speculation. Rents 25–40% below market.', badge: 'Social Housing' },
+          { title: 'Singapore (HDB)', description: '80% of residents in public-built flats. 87–89% homeownership rate. Demand-linked construction with integrated CPF financing.', badge: 'Public Build' },
+          { title: 'Tokyo, Japan', description: 'National zoning code preempts local restrictions. Builds 120K–180K units/year. Real rents flat for 20+ years despite population growth.', badge: 'Zoning Reform' },
+          { title: 'Houston, Texas', description: 'Largest US city without traditional zoning. Median home prices 30–50% below comparable Sun Belt metros.', badge: 'Deregulation' },
+          { title: 'Minneapolis 2040', description: 'Eliminated single-family zoning citywide in 2018. Rents growing slower than comparable Midwestern metros.', badge: 'Missing Middle' },
+        ],
+      },
+      {
+        title: 'Supply-Side vs. Demand-Side: The Decision Matrix',
+        content: 'The dominant expert consensus from McKinsey, OECD, Harvard JCHS, and Brookings is that the housing crisis is fundamentally a supply problem. Demand-side interventions provide immediate relief but cannot solve the crisis alone.',
+        items: [
+          { title: 'Supply-Side Primacy', description: 'Zoning reform, public construction, modular building, permitting acceleration. Medium-long timeframe (2–10 years). High scalability.', badge: 'Root Cause' },
+          { title: 'Demand-Side Complement', description: 'Vouchers (US Section 8 serves 2.3M households, 2+ year waitlists), tax credits, rent subsidies. Immediate but limited by funding.', badge: 'Support' },
+          { title: 'Rent Control', description: 'Stanford study found San Francisco rent control reduced rental supply by 15%. OECD recommends tenancy protections over hard caps.', badge: 'Contested' },
+        ],
+      },
+      {
+        title: 'Technology and AI in Housing Delivery',
+        content: 'The construction industry is one of the least digitized sectors globally, with productivity growth of only ~1% per year for two decades versus 3.6% in manufacturing.',
+        items: [
+          { title: 'Modular/Prefab', description: 'Factory-built modules reduce build time 30–50% and costs 10–25%. Adoption remains below 5% of US construction (McKinsey 2019).', badge: 'Proven' },
+          { title: '3D-Printed Housing', description: 'ICON (Austin, TX) prints homes in 24–48 hours at $10K–$200K. Scalable for disaster recovery and affordable communities.', badge: 'Emerging' },
+          { title: 'AI Construction Management', description: 'Predictive scheduling, drone monitoring, generative floor plan design. Autodesk/Procore report 10–20% cost reductions.', badge: 'Growing' },
+          { title: 'Digital Twins', description: "Singapore's Virtual Singapore simulates housing development impacts before construction. Enables data-driven urban planning.", badge: 'Advanced' },
+        ],
+      },
+    ],
+    faq: [
+      { question: 'What is the main cause of the housing crisis?', answer: 'The dominant expert consensus is that the housing crisis is primarily caused by insufficient construction relative to population growth. Restrictive zoning, slow permitting, rising construction costs, and NIMBY opposition are the key barriers. The US has a cumulative deficit of 3.8–6.5 million units built up since 2008.' },
+      { question: 'Does building more housing actually reduce prices?', answer: 'Yes. Tokyo, Houston, and Minneapolis demonstrate that increased supply constrains price growth. A 2023 Journal of Urban Economics meta-analysis found new market-rate construction reduces nearby rents 5–7% within 3–5 years through filtering effects.' },
+      { question: 'Does rent control work?', answer: 'Research leans negative on supply effects. A Stanford study on San Francisco found rent control reduced rental housing supply by 15% as landlords converted units. The OECD recommends tenancy protections over hard rent caps.' },
+      { question: 'What is the missing middle in housing?', answer: 'Housing types between single-family homes and large apartment buildings — duplexes, triplexes, fourplexes, townhomes, courtyard apartments. Common before mid-20th century zoning banned them in most US residential zones.' },
+      { question: 'How much would it cost to close the US housing gap?', answer: 'At $250K–$350K per unit, closing a 4-million-unit gap requires $1.0–$1.4 trillion. This means sustained above-trend construction for 7–10 years.' },
+      { question: 'Which countries handle housing best?', answer: 'Top performers: Vienna (60% social housing), Singapore (87–89% homeownership via HDB), Japan (permissive zoning keeps rents flat), Finland (Housing First nearly eliminated chronic homelessness), Netherlands (30% social housing stock).' },
+      { question: 'What role can AI play in solving the housing crisis?', answer: 'AI reduces construction costs 10–20% via predictive scheduling, automated monitoring, and generative design. Modular/prefab cuts time 30–50%. But technology alone cannot overcome regulatory barriers.' },
+      { question: 'What is the Five-Lever Framework for housing?', answer: 'A decision model from McKinsey, OECD, and Brookings: (1) Land & Zoning reform, (2) Permitting acceleration, (3) Construction technology, (4) Financing & incentives, (5) Governance & institutional design.' },
+    ],
+    keyFindings: [
+      'The US is short 3.8–6.5 million housing units; the EU faces a 4–5 million unit gap (Freddie Mac, Harvard JCHS, OECD)',
+      'Zoning reform is the highest-leverage intervention: Tokyo builds 120K–180K units/year with permissive national zoning',
+      'Construction productivity has grown only ~1%/year for 20 years vs 3.6% in manufacturing (McKinsey)',
+      'Vienna houses 60% of residents in social housing at rents 25–40% below market',
+      'Parking minimums add $30K–$75K per unit (Victoria Transport Policy Institute)',
+      '22.4 million US renter households are cost-burdened, the highest level ever recorded (Harvard JCHS 2024)',
+      'Community land trusts maintain affordability for 40+ years, solving the subsidy expiration problem',
+      'Federal/state intervention is necessary to overcome local NIMBYism (CA SB 35, Oregon HB 2001, Japan national zoning)',
+    ],
+    relatedDomains: ['enterprise-ai', 'ai-adoption'],
+    relatedBlogPosts: [],
+    lastUpdated: '2026-03-26',
+    sourceCount: 18,
+    status: 'active',
+    evidenceGrade: 'A',
+    limitations: [
+      'Housing shortage estimates vary widely (3.8M–6.5M for US alone) depending on methodology',
+      'Vienna and Singapore models depend on unique political and cultural contexts — direct transfer is uncertain',
+      'Construction technology adoption rates (modular <5%) are from McKinsey 2019 — may have improved',
+      'Rent control debate is ideologically charged — evidence interpretation varies by researcher affiliation',
+    ],
+    whatWeDontKnow: [
+      'Whether zoning reform alone can close the housing gap without complementary financing mechanisms',
+      'Optimal public-private balance for different market conditions and demographics',
+      'How climate change adaptation costs will affect housing affordability projections',
+      'Whether AI and construction technology can achieve the productivity gains needed at scale',
+    ],
+    lastVerified: '2026-03-26',
   },
   {
     slug: 'state-of-ai-2026',

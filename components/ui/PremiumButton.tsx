@@ -31,7 +31,7 @@ type PremiumButtonProps = PremiumButtonAsButton | PremiumButtonAsAnchor
 const variantStyles = {
   primary: 'bg-gradient-to-r from-[#AB47C7] via-blue-600 to-[#43BFE3] text-white shadow-lg shadow-[#AB47C7]/25',
   secondary: 'bg-gradient-to-r from-slate-700 to-slate-800 text-slate-100 border border-slate-600/50',
-  ghost: 'bg-slate-800/40 backdrop-blur-md border border-slate-600/50 text-slate-100 hover:bg-slate-700/50 hover:border-slate-500/60',
+  ghost: 'bg-slate-900/20 backdrop-blur-md border border-slate-700/30 text-slate-200 hover:bg-slate-800/30',
   luxury: 'bg-gradient-to-r from-[#AB47C7] via-violet-600 to-indigo-600 text-white shadow-xl shadow-[#AB47C7]/40'
 }
 
@@ -45,7 +45,7 @@ const sizeStyles = {
 const glowStyles = {
   primary: 'shadow-2xl shadow-[#AB47C7]/50 hover:shadow-[#AB47C7]/60',
   secondary: 'shadow-lg shadow-slate-500/20 hover:shadow-slate-500/30',
-  ghost: 'shadow-sm shadow-slate-500/10 hover:shadow-lg hover:shadow-slate-500/25',
+  ghost: 'hover:shadow-lg hover:shadow-slate-500/20',
   luxury: 'shadow-2xl shadow-[#AB47C7]/60 hover:shadow-[#AB47C7]/80'
 }
 

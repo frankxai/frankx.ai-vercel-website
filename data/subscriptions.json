@@ -1,0 +1,258 @@
+{
+  "lastUpdated": "2026-03-22",
+  "currency": "EUR",
+  "subscriptions": [
+    {
+      "id": "claude-pro",
+      "name": "Claude Pro (Max)",
+      "provider": "Anthropic",
+      "cost": 200,
+      "interval": "monthly",
+      "category": "ai-core",
+      "tier": "Max",
+      "status": "active",
+      "renewsOn": 1,
+      "bvDeductible": true,
+      "businessPurpose": "Primary AI assistant \u2014 Claude Code, content creation, coding, business ops",
+      "roi": "critical",
+      "notes": "Powers entire ACOS system, Claude Code, all development. Non-negotiable.",
+      "alternatives": ["ChatGPT Pro ($200)", "Gemini Advanced ($20)"],
+      "utilizationEstimate": 95,
+      "features": [
+        "Claude Code CLI",
+        "Opus 4.6 model",
+        "1M context",
+        "MCP servers",
+        "Agent SDK"
+      ]
+    },
+    {
+      "id": "chatgpt-plus",
+      "name": "ChatGPT Plus",
+      "provider": "OpenAI",
+      "cost": 20,
+      "interval": "monthly",
+      "category": "ai-secondary",
+      "tier": "Plus",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "Secondary AI \u2014 GPT-4o for comparison, DALL-E, voice mode, browsing",
+      "roi": "moderate",
+      "notes": "Useful for second opinion, image gen, voice conversations. Could downgrade if budget tight.",
+      "utilizationEstimate": 30,
+      "features": [
+        "GPT-4o",
+        "DALL-E 3",
+        "Voice mode",
+        "Code Interpreter",
+        "Browsing"
+      ]
+    },
+    {
+      "id": "gemini-advanced",
+      "name": "Google One AI Premium",
+      "provider": "Google",
+      "cost": 22,
+      "interval": "monthly",
+      "category": "ai-secondary",
+      "tier": "AI Premium",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "Gemini Pro, 2TB Google storage, NotebookLM, Gemini in Workspace",
+      "roi": "moderate",
+      "notes": "2TB storage is valuable standalone. Gemini for image gen (nano banana uses it). NotebookLM for research.",
+      "utilizationEstimate": 40,
+      "features": [
+        "Gemini 2.5 Pro",
+        "2TB Google Drive",
+        "NotebookLM",
+        "Gemini in Gmail/Docs"
+      ],
+      "costOptimization": "Keep \u2014 2TB storage alone worth it. Nano Banana image gen depends on Gemini API."
+    },
+    {
+      "id": "revolut-premium",
+      "name": "Revolut Premium",
+      "provider": "Revolut",
+      "cost": 20,
+      "interval": "monthly",
+      "category": "fintech",
+      "tier": "Premium",
+      "status": "active",
+      "bvDeductible": false,
+      "businessPurpose": "Personal banking, Perplexity Pro included, currency exchange, travel insurance",
+      "roi": "high",
+      "notes": "Perplexity Pro alone is worth \u20ac20/mo. Currency exchange for international purchases. Travel insurance for Japan trip.",
+      "utilizationEstimate": 60,
+      "features": [
+        "Perplexity Pro included",
+        "Currency exchange",
+        "Travel insurance",
+        "Crypto trading"
+      ],
+      "costOptimization": "Excellent value \u2014 Perplexity Pro + banking + insurance for \u20ac20."
+    },
+    {
+      "id": "vercel-pro",
+      "name": "Vercel Pro",
+      "provider": "Vercel",
+      "cost": 20,
+      "interval": "monthly",
+      "category": "infrastructure",
+      "tier": "Pro",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "frankx.ai hosting, Vercel Blob storage, Analytics, Edge Functions",
+      "roi": "critical",
+      "notes": "Hosts production website. Blob stores music MP3s + product PDFs. Non-negotiable.",
+      "utilizationEstimate": 90,
+      "features": [
+        "Custom domains",
+        "Blob storage",
+        "Analytics",
+        "Edge Functions",
+        "Preview deployments"
+      ]
+    },
+    {
+      "id": "supabase-pro",
+      "name": "Supabase Pro",
+      "provider": "Supabase",
+      "cost": 25,
+      "interval": "monthly",
+      "category": "infrastructure",
+      "tier": "Pro",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "Database, auth, storage for future SaaS products",
+      "roi": "low-currently",
+      "notes": "Currently underutilized. Needed for ACOS Cloud / SaaS products. Consider downgrading to free tier until SaaS launches.",
+      "utilizationEstimate": 15
+    },
+    {
+      "id": "railway",
+      "name": "Railway",
+      "provider": "Railway",
+      "cost": 5,
+      "interval": "monthly",
+      "category": "infrastructure",
+      "tier": "Starter",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "n8n automation hosting, workflow engine",
+      "roi": "high",
+      "notes": "Hosts all n8n automation workflows. 9 active workflows. Very cost-effective.",
+      "utilizationEstimate": 80,
+      "features": ["n8n hosting", "PostgreSQL", "Auto-deploy"]
+    },
+    {
+      "id": "cursor-pro",
+      "name": "Cursor Pro",
+      "provider": "Cursor",
+      "cost": 20,
+      "interval": "monthly",
+      "category": "dev-tools",
+      "tier": "Pro",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "AI-powered IDE for development",
+      "roi": "moderate",
+      "notes": "Useful but overlaps heavily with Claude Code CLI. Consider canceling if Claude Code covers all needs.",
+      "utilizationEstimate": 25
+    },
+    {
+      "id": "github-pro",
+      "name": "GitHub Pro",
+      "provider": "GitHub",
+      "cost": 4,
+      "interval": "monthly",
+      "category": "dev-tools",
+      "tier": "Pro",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "Private repos, GitHub Actions, code hosting",
+      "roi": "critical",
+      "notes": "Hosts all code. Private repos essential for BV IP protection.",
+      "utilizationEstimate": 95
+    },
+    {
+      "id": "suno-pro",
+      "name": "Suno Pro",
+      "provider": "Suno",
+      "cost": 10,
+      "interval": "monthly",
+      "category": "creative",
+      "tier": "Pro",
+      "status": "active",
+      "bvDeductible": true,
+      "businessPurpose": "AI music generation \u2014 12,000+ tracks, commercial licensing",
+      "roi": "high",
+      "notes": "Core creative tool. Commercial license for selling/licensing music.",
+      "utilizationEstimate": 70
+    }
+  ],
+  "apis": [
+    {
+      "id": "openrouter",
+      "name": "OpenRouter",
+      "cost": "usage-based",
+      "monthlyEstimate": 10,
+      "category": "ai-api",
+      "bvDeductible": true,
+      "purpose": "Multi-model API access for n8n workflows and automation"
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "cost": "free-tier",
+      "monthlyEstimate": 0,
+      "category": "email",
+      "bvDeductible": true,
+      "purpose": "Transactional email \u2014 newsletter, product delivery, sequences"
+    },
+    {
+      "id": "nano-banana",
+      "name": "Nano Banana (Gemini Image)",
+      "cost": "usage-based",
+      "monthlyEstimate": 5,
+      "category": "ai-api",
+      "bvDeductible": true,
+      "purpose": "Image generation via Gemini Flash \u2014 blog heroes, product images"
+    }
+  ],
+  "pendingEvaluation": [
+    {
+      "name": "Perplexity Computer",
+      "cost": "unknown",
+      "verdict": "SKIP \u2014 Claude Coworker (included in Max) provides same browser automation. Use Playwright MCP instead for free.",
+      "reasoning": "You already have: (1) Claude Code with Playwright MCP for browser automation, (2) Claude Max which includes Coworker mode, (3) Perplexity Pro via Revolut for research. Adding Perplexity Computer would be redundant."
+    },
+    {
+      "name": "Paddle (MoR)",
+      "cost": "5% + $0.50/txn",
+      "verdict": "ADD when first product ships \u2014 handles all EU VAT",
+      "reasoning": "No monthly fee. Only pay per transaction. Eliminates VAT filing for digital sales."
+    },
+    {
+      "name": "Moneybird",
+      "cost": 28,
+      "verdict": "ADD after BV formation",
+      "reasoning": "Required for BV bookkeeping. \u20ac28/mo for 50 transactions."
+    },
+    {
+      "name": "Bunq Business",
+      "cost": 12.99,
+      "verdict": "ADD after BV formation",
+      "reasoning": "Required for BV bank account."
+    }
+  ],
+  "summary": {
+    "totalMonthly": 346,
+    "totalAnnual": 4152,
+    "bvDeductible": 304,
+    "personal": 42,
+    "taxSavingsAnnual": 693,
+    "optimizedMonthly": 346,
+    "potentialSavings": 0
+  }
+}

@@ -48,7 +48,7 @@ export default function PrinciplesPage() {
           <p className="mt-6 text-lg text-white/60 sm:text-xl">
             The philosophical foundation of every GenCreator.
             <br className="hidden sm:block" />
-            The bedrock code every GenCreator runs on.
+            These are not suggestions — they are operating principles.
           </p>
         </div>
       </section>

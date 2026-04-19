@@ -66,8 +66,21 @@ export default function BookReader({
     });
     const rawHtml = marked.parse(processed);
     return DOMPurify.sanitize(rawHtml as string, {
-      ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'code', 'pre', 'span', 'hr'],
-      ALLOWED_ATTR: ['href', 'id', 'class', 'target', 'rel'],
+      ALLOWED_TAGS: [
+        'p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li',
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+        'blockquote', 'code', 'pre', 'span', 'hr',
+        'img', 'figure', 'figcaption', 'picture', 'source',
+        'table', 'thead', 'tbody', 'tr', 'td', 'th', 'caption',
+        'div', 'section', 'aside', 'details', 'summary',
+        'sup', 'sub', 'mark', 'del', 'ins', 'abbr', 'small',
+      ],
+      ALLOWED_ATTR: [
+        'href', 'id', 'class', 'target', 'rel',
+        'src', 'alt', 'width', 'height', 'loading', 'title',
+        'colspan', 'rowspan', 'scope',
+        'open', 'datetime', 'cite',
+      ],
     });
   }, [content, tocItems]);
 
@@ -149,8 +162,9 @@ export default function BookReader({
               )}
 
               {/* Chapter Content */}
+              {/* Content is sanitized by DOMPurify above — safe to render */}
               <div
-                className={`${bodyFontClass} prose prose-lg prose-invert max-w-none
+                className={`${bodyFontClass} prose prose-lg prose-invert max-w-none book-reader-content
                   ${isPoetry ? 'text-center leading-loose' : ''}
                   prose-headings:font-serif prose-headings:font-bold prose-headings:text-white
                   prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pt-8 prose-h2:border-t prose-h2:border-white/10
@@ -166,9 +180,53 @@ export default function BookReader({
                   prose-li:text-white/70
                   prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                   prose-hr:border-white/10 prose-hr:my-12
+                  prose-img:rounded-xl prose-img:my-8 prose-img:shadow-2xl
+                  prose-table:border-collapse prose-table:w-full
+                  prose-th:text-left prose-th:text-white/90 prose-th:border-b prose-th:border-white/20 prose-th:pb-3
+                  prose-td:text-white/70 prose-td:border-b prose-td:border-white/5 prose-td:py-3
                 `}
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
+              <style jsx global>{`
+                .book-reader-content > h1 + p:first-letter,
+                .book-reader-content > h2 + p:first-letter {
+                  float: left;
+                  font-family: Georgia, 'Times New Roman', serif;
+                  font-size: 3.5em;
+                  line-height: 0.8;
+                  padding-right: 0.12em;
+                  padding-top: 0.08em;
+                  color: rgba(255,255,255,0.9);
+                  font-weight: 700;
+                }
+                .book-reader-content blockquote strong {
+                  font-size: 1.15em;
+                  color: rgba(255,255,255,0.95);
+                  letter-spacing: -0.01em;
+                }
+                .book-reader-content figure { margin: 2rem 0; }
+                .book-reader-content figcaption {
+                  text-align: center; font-size: 0.875rem;
+                  color: rgba(255,255,255,0.4); margin-top: 0.75rem; font-style: italic;
+                }
+                .book-reader-content details {
+                  background: rgba(255,255,255,0.03);
+                  border: 1px solid rgba(255,255,255,0.08);
+                  border-radius: 0.75rem; padding: 1rem 1.25rem; margin: 1.5rem 0;
+                }
+                .book-reader-content summary {
+                  cursor: pointer; font-weight: 600; color: rgba(255,255,255,0.85);
+                }
+                .book-reader-content hr {
+                  border: none; height: 1px;
+                  background: linear-gradient(to right, transparent, rgba(255,255,255,0.15), transparent);
+                  margin: 3rem 0;
+                }
+                .book-reader-content mark {
+                  background: rgba(250, 204, 21, 0.15);
+                  color: rgba(255,255,255,0.95); padding: 0.1em 0.3em; border-radius: 0.2em;
+                }
+              `}</style>
 
               <BookChapterNav
                 bookSlug={bookSlug}

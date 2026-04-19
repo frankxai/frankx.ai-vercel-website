@@ -1,188 +1,33 @@
 {
   "videoToBlog": {
-    "uRuLgar5XZw": [
-      "ai-engineering-without-hype-willison"
-    ],
-    "pOLR5jE5Vjw": [
-      "claude-code-mastery-top-resources"
-    ],
-    "VMj-3S1tku0": [
-      "karpathys-ai-vision-deep-dive"
-    ]
+    "uRuLgar5XZw": ["ai-engineering-without-hype-willison"],
+    "eTTMUWP5B0s": ["claude-code-mastery-top-resources"],
+    "VMj-3S1tku0": ["karpathys-ai-vision-deep-dive"]
   },
   "blogToVideo": {
-    "ai-engineering-without-hype-willison": [
-      "uRuLgar5XZw"
-    ],
-    "claude-code-mastery-top-resources": [
-      "pOLR5jE5Vjw"
-    ],
-    "karpathys-ai-vision-deep-dive": [
-      "VMj-3S1tku0"
-    ]
+    "ai-engineering-without-hype-willison": ["uRuLgar5XZw"],
+    "claude-code-mastery-top-resources": ["eTTMUWP5B0s"],
+    "karpathys-ai-vision-deep-dive": ["VMj-3S1tku0"]
   },
   "videoToWatchlist": {
-    "VMj-3S1tku0": [
-      "ai-engineering"
-    ],
-    "zjkBMFhNj_g": [
-      "ai-engineering"
-    ],
-    "pOLR5jE5Vjw": [
-      "ai-engineering"
-    ],
-    "uRuLgar5XZw": [
-      "ai-engineering"
-    ],
-    "QUXQNi6jQ30": [
-      "ai-engineering"
-    ],
-    "ORMx45xqWkA": [
-      "ai-engineering"
-    ],
-    "sal78ACtGTc": [
-      "ai-agents"
-    ],
-    "KrRD7r7y7NY": [
-      "ai-agents"
-    ],
-    "5-2W--zGO0Y": [
-      "ai-agents"
-    ],
-    "o0Fc5_zHvzo": [
-      "ai-agents"
-    ],
-    "EIi5k9TJUvY": [
-      "music-production",
-      "creative-ai"
-    ],
-    "jDHMPSSgaMw": [
-      "music-production",
-      "creative-ai"
-    ],
-    "u2pYNRNdcNc": [
-      "music-production"
-    ],
-    "1bZ0OSEViyo": [
-      "music-production"
-    ],
-    "9WVZbitXbck": [
-      "creative-ai"
-    ],
-    "n9iv24yI04nI": [
-      "creative-ai"
-    ],
-    "5MUvJv_sB64": [
-      "strategy"
-    ],
-    "BSjQk-7j3X0": [
-      "strategy"
-    ],
-    "jvqFAi7vkBc": [
-      "strategy"
-    ],
-    "CBYhVcO4WgI": [
-      "strategy"
-    ],
-    "0wIUK0nsyUg": [
-      "strategy"
-    ],
-    "tqfPCE_gfuc": [
-      "strategy"
-    ],
-    "BZ2nSULolKI": [
-      "creator-economy"
-    ],
-    "cNGpxfcDKms": [
-      "creator-economy"
-    ],
-    "H_lZr0BAWhM": [
-      "creator-economy"
-    ],
-    "BBAuhqvT_ds": [
-      "creator-economy"
-    ],
-    "RKXZ7t_RiOE": [
-      "creator-economy"
-    ],
-    "Cqbleas1mmo": [
-      "mindset"
-    ],
-    "arj7oStGLkU": [
-      "mindset"
-    ],
-    "yb5zpo5WDG4": [
-      "mindset"
-    ],
-    "mNeXuCYiE0U": [
-      "mindset"
-    ],
-    "heh5XLwZVOY": [
-      "mindset",
-      "philosophy-stoicism"
-    ],
-    "aircAruvnKk": [
-      "learning"
-    ],
-    "zdkGXDq1jqM": [
-      "learning"
-    ],
-    "kCc8FmEb1nY": [
-      "learning"
-    ],
-    "3E7hkPZ-HTk": [
-      "learning"
-    ],
-    "Cpc-t-Uwv1I": [
-      "peak-performance"
-    ],
-    "fXIeFJCqsPs": [
-      "peak-performance"
-    ],
-    "y1MHyyWsMeE": [
-      "peak-performance"
-    ],
-    "IdTMDpizis8": [
-      "peak-performance"
-    ],
-    "SwQhKFMxmDY": [
-      "peak-performance"
-    ],
-    "UFKCLjhO2bo": [
-      "peak-performance"
-    ],
-    "3qHkcs3kG44": [
-      "entrepreneurship"
-    ],
-    "GwIo3gDZCVQ": [
-      "entrepreneurship"
-    ],
-    "UEEsdXn8oG8": [
-      "entrepreneurship"
-    ],
-    "RVKofRN1dyI": [
-      "entrepreneurship"
-    ],
-    "0lJKucu6HJc": [
-      "entrepreneurship"
-    ],
-    "YTmJlKZ3mKQ": [
-      "entrepreneurship"
-    ],
-    "5J6jAC6XxAI": [
-      "philosophy-stoicism"
-    ],
-    "iPE2_iCCo0w": [
-      "philosophy-stoicism"
-    ],
-    "ZVeUIclaMTE": [
-      "philosophy-stoicism"
-    ],
-    "aMcjxSThD54": [
-      "philosophy-stoicism"
-    ],
-    "f-wWBGo6a2w": [
-      "philosophy-stoicism"
-    ]
+    "VMj-3S1tku0": ["ai-engineering", "learning"],
+    "dWr1eTeK6p4": ["ai-engineering"],
+    "eTTMUWP5B0s": ["ai-engineering"],
+    "uRuLgar5XZw": ["ai-engineering"],
+    "2ftykwXA408": ["ai-engineering"],
+    "vcBD0hn48ig": ["ai-engineering"],
+    "Ta5g-OxjPO4": ["ai-agents", "creator-economy"],
+    "EIi5k9TJUvY": ["music-production", "creative-ai"],
+    "jDHMPSSgaMw": ["music-production", "creative-ai"],
+    "n9iv24yI04nI": ["creative-ai", "mindset"],
+    "5MUvJv_sB64": ["strategy"],
+    "BSjQk-7j3X0": ["strategy", "mindset"],
+    "9g-wcfo091E": ["strategy"],
+    "fL_l8mxU148": ["strategy"],
+    "OI0zRk7Mau4": ["strategy"],
+    "SifHlXe7B2k": ["strategy"],
+    "tqfPCE_gfuc": ["strategy"],
+    "Cqbleas1mmo": ["mindset"],
+    "aircAruvnKk": ["learning"]
   }
 }

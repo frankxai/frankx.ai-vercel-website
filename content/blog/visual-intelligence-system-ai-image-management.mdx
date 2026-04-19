@@ -1,11 +1,22 @@
 ---
 title: "How I Built a Visual Intelligence System After Losing Track of 408 Images"
 description: "I discovered 82% of my site's images were orphaned, flagship posts used placeholder SVGs, and 3 blog posts showed the same hero twice. Here's the system I built to fix it — and how you can use it too."
-date: "2026-03-21"
+date: '2026-03-17'
 category: "Creator Systems"
-image: "/images/blog/visual-intelligence-system-ai-image-management-hero.png"
+image: "/images/blog/visual-intelligence-system-ai-image-management-hero.webp"
 readingTime: "8 min read"
-tags: ["visual-intelligence", "acos", "creator-tools", "image-management", "ai-images"]
+tags:
+  [
+    "visual-intelligence",
+    "acos",
+    "creator-tools",
+    "image-management",
+    "ai-images",
+  ]
+categories:
+  - "Creator Tools"
+  - "ACOS"
+  - "AI"
 ---
 
 # How I Built a Visual Intelligence System After Losing Track of 408 Images
@@ -20,15 +31,15 @@ It started with a small request. I asked Claude to fix two homepage images that 
 
 The full audit uncovered a landscape far worse than expected:
 
-| Finding | Count |
-|---|---|
-| Total images in `/public/images/` | 408 |
+| Finding                                      | Count     |
+| -------------------------------------------- | --------- |
+| Total images in `/public/images/`            | 408       |
 | Orphaned images (referenced nowhere in code) | 333 (82%) |
-| Placeholder SVGs on flagship posts | 2 |
-| Duplicate hero images across blog posts | 3 |
-| Oversized images (7-9 MB each) | 12 |
+| Placeholder SVGs on flagship posts           | 2         |
+| Duplicate hero images across blog posts      | 3         |
+| Oversized images (7-9 MB each)               | 12        |
 
-Every one of those 333 orphans burned disk and deploy time. The placeholder SVGs sat on two of the highest-traffic articles — [GenCreator](/gencreator) and [Personal AI CoE](/research/visual-intelligence). The duplicate heroes made three distinct posts look interchangeable in social previews.
+Every one of those 333 orphans burned disk and deploy time. The placeholder SVGs sat on two of the highest-traffic articles — [GenCreator](/gencreator) and [Personal AI CoE](/tools/visual-intelligence). The duplicate heroes made three distinct posts look interchangeable in social previews.
 
 The root cause was straightforward: images accumulated across months of shipping — AI-generated art, diagrams, screenshots, mascot variants — with zero tracking layer between the filesystem and the pages that consumed them.
 
@@ -87,13 +98,13 @@ Here are four specific fixes that moved the needle:
 
 **Aggregate result:**
 
-| Metric | Before | After |
-|---|---|---|
-| Visual health score | 1/100 | 76/100 |
-| Orphaned images | 333 | 214 (cleanup ongoing) |
-| Placeholder SVGs on published pages | 2 | 0 |
-| Duplicate heroes | 3 | 0 |
-| Oversized images addressed | 0/12 | 8/12 |
+| Metric                              | Before | After                 |
+| ----------------------------------- | ------ | --------------------- |
+| Visual health score                 | 1/100  | 76/100                |
+| Orphaned images                     | 333    | 214 (cleanup ongoing) |
+| Placeholder SVGs on published pages | 2      | 0                     |
+| Duplicate heroes                    | 3      | 0                     |
+| Oversized images addressed          | 0/12   | 8/12                  |
 
 The remaining 24 points on the health score come from orphan cleanup (still in progress) and the 4 oversized images that require manual re-export from source files.
 

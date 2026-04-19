@@ -1,16 +1,23 @@
 ---
-title: 'AI Agent Memory: From Chat History to Persistent Systems'
-description: 'How to give AI agents memory that persists across sessions — CLAUDE.md, mem0, ChromaDB, and the architecture that makes agents smarter over time.'
-date: '2026-03-21'
-author: 'FrankX'
-category: 'Intelligence Dispatches'
-tags: ['AI Memory', 'Agent Architecture', 'Claude Code', 'RAG', 'MCP']
-image: '/images/blog/blog-hero-aurora.svg'
+title: "AI Agent Memory: From Chat History to Persistent Systems"
+description: "How to give AI agents memory that persists across sessions — CLAUDE.md, mem0, ChromaDB, and the architecture that makes agents smarter over time."
+date: '2026-03-16'
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags: ["AI Memory", "Agent Architecture", "Claude Code", "RAG", "MCP"]
+image: "/images/ai-art/digital-knowledge-flow.png"
 featured: false
-keywords: ['ai agent memory', 'persistent memory ai', 'claude code memory', 'mem0 mcp', 'ai agent context']
-readingGoal: 'You will understand the memory architecture for AI agents — from ephemeral chats to persistent systems that compound knowledge across sessions.'
-tldr: 'Most AI conversations start from zero. Every session, you re-explain your project, your preferences, your constraints. Agent memory systems solve this. The stack: CLAUDE.md for project memory, mem0 for cross-session user memory, ChromaDB for semantic search over documents, and knowledge graphs for entity relationships. This guide covers each layer, how they connect, and the exact setup I run.'
-schema: ['Article', 'FAQPage']
+keywords:
+  [
+    "ai agent memory",
+    "persistent memory ai",
+    "claude code memory",
+    "mem0 mcp",
+    "ai agent context",
+  ]
+readingGoal: "You will understand the memory architecture for AI agents — from ephemeral chats to persistent systems that compound knowledge across sessions."
+tldr: "Most AI conversations start from zero. Every session, you re-explain your project, your preferences, your constraints. Agent memory systems solve this. The stack: CLAUDE.md for project memory, mem0 for cross-session user memory, ChromaDB for semantic search over documents, and knowledge graphs for entity relationships. This guide covers each layer, how they connect, and the exact setup I run."
+schema: ["Article", "FAQPage"]
 ---
 
 **TL;DR:** Most AI conversations start from zero. Agent memory fixes this with four layers: session memory (ephemeral), project memory (CLAUDE.md — persistent in the codebase), user memory (mem0 — cross-session facts), and knowledge memory (ChromaDB — semantic search). Together they create agents that compound — getting smarter with every session.
@@ -28,12 +35,15 @@ That is solved now. Here is how.
 ## The 4 Layers
 
 ### Layer 1: Session Memory
+
 The conversation context. Ephemeral. Dies when the session ends. Essential while running, gone when it stops.
 
 ### Layer 2: Project Memory (CLAUDE.md)
+
 Structured files loaded into every session automatically. Persistent in the codebase.
 
 I run three levels:
+
 - `~/CLAUDE.md` — global identity
 - `project/CLAUDE.md` — architecture, deployment, brand rules
 - `project/.claude/CLAUDE.md` — agent-level memory, recent activity
@@ -41,6 +51,7 @@ I run three levels:
 My project CLAUDE.md includes: two-repo architecture, voice rules, anti-patterns, decision framework. None of this needs re-explaining each session.
 
 ### Layer 3: User Memory (mem0)
+
 Cross-session, cross-project facts. Preferences that travel with you.
 
 mem0 via MCP stores retrievable facts: "Frank prefers positive framing." "Use Resend not SendGrid." Open a new project, connect the same mem0 instance, and Claude already knows who you are.
@@ -48,6 +59,7 @@ mem0 via MCP stores retrievable facts: "Frank prefers positive framing." "Use Re
 I also use Claude Code's auto-memory system — structured topic files in `/home/frankx/.claude/projects/.../memory/`. MEMORY.md as the index. Topic files for music production, architecture, visual intelligence.
 
 ### Layer 4: Knowledge Memory (ChromaDB/RAG)
+
 Semantic search over documents. You embed your content, store as vectors, and retrieve relevant chunks on demand.
 
 Unlike CLAUDE.md (loaded in full), a vector database holds thousands of documents and retrieves only the relevant ones. You do not pay context cost for irrelevant information.
@@ -79,16 +91,21 @@ The [Starlight Intelligence System](/blog/starlight-intelligence-system-how-ai-a
 ## FAQ
 
 ### CLAUDE.md vs mem0?
+
 CLAUDE.md is project-specific, version-controlled. mem0 stores user-level facts that persist across projects. Use both.
 
 ### How much in CLAUDE.md?
+
 200-500 lines of high-signal content. Enough to brief a collaborator, not document the project.
 
 ### Can the agent write to memory?
+
 Yes. Claude Code auto-memory writes during sessions. mem0 via MCP allows explicit writes. I review CLAUDE.md changes manually before committing.
 
 ### What about stale memory?
+
 Stale memory is worse than none — confident wrong information. Review quarterly. Archive what no longer applies.
 
 ### How to start from zero?
+
 Create a CLAUDE.md. Add the 3 things you explain most at session start. Use it for a week. Add what is still missing. Layer in auto-memory after the first month.

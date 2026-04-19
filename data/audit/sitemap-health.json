@@ -1,0 +1,2511 @@
+{
+  "timestamp": "2026-03-28T13:25:42.715Z",
+  "version": "1.0",
+  "totalPages": 302,
+  "scores": {
+    "/": {
+      "score": 80,
+      "inbound": 39,
+      "outbound": 0,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/products/[slug]": {
+      "score": 80,
+      "inbound": 39,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/blog": {
+      "score": 90,
+      "inbound": 31,
+      "outbound": 3,
+      "category": "blog",
+      "isOrphan": false
+    },
+    "/ai-architecture/[slug]": {
+      "score": 90,
+      "inbound": 23,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/design-lab": {
+      "score": 90,
+      "inbound": 20,
+      "outbound": 5,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/products": {
+      "score": 90,
+      "inbound": 19,
+      "outbound": 2,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/music-lab": {
+      "score": 90,
+      "inbound": 18,
+      "outbound": 2,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/newsletter": {
+      "score": 80,
+      "inbound": 18,
+      "outbound": 0,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/start": {
+      "score": 90,
+      "inbound": 18,
+      "outbound": 1,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/music": {
+      "score": 90,
+      "inbound": 17,
+      "outbound": 3,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/acos": {
+      "score": 80,
+      "inbound": 16,
+      "outbound": 0,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/blog/[slug]": {
+      "score": 80,
+      "inbound": 16,
+      "outbound": 0,
+      "category": "blog",
+      "isOrphan": false
+    },
+    "/research": {
+      "score": 90,
+      "inbound": 16,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/books/[bookSlug]": {
+      "score": 90,
+      "inbound": 15,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/contact": {
+      "score": 90,
+      "inbound": 14,
+      "outbound": 1,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/design-lab/[slug]": {
+      "score": 90,
+      "inbound": 14,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/products/vibe-os": {
+      "score": 80,
+      "inbound": 14,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/research/[slug]": {
+      "score": 90,
+      "inbound": 14,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/inner-circle": {
+      "score": 90,
+      "inbound": 12,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/products/agentic-creator-os": {
+      "score": 80,
+      "inbound": 12,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/books/[bookSlug]/[chapterSlug]": {
+      "score": 80,
+      "inbound": 11,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/music/learn": {
+      "score": 90,
+      "inbound": 11,
+      "outbound": 1,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/ai-architecture": {
+      "score": 90,
+      "inbound": 10,
+      "outbound": 3,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/alea": {
+      "score": 90,
+      "inbound": 10,
+      "outbound": 4,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/prompt-library": {
+      "score": 80,
+      "inbound": 10,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/prompt-library/[category]": {
+      "score": 80,
+      "inbound": 10,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/students": {
+      "score": 90,
+      "inbound": 10,
+      "outbound": 4,
+      "category": "students",
+      "isOrphan": false
+    },
+    "/ai-architecture/blueprints": {
+      "score": 90,
+      "inbound": 9,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/assessment": {
+      "score": 90,
+      "inbound": 9,
+      "outbound": 2,
+      "category": "tools",
+      "isOrphan": false
+    },
+    "/music/learn/piano": {
+      "score": 90,
+      "inbound": 9,
+      "outbound": 3,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/vault": {
+      "score": 90,
+      "inbound": 9,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-architect-academy": {
+      "score": 90,
+      "inbound": 7,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-architecture/prototypes": {
+      "score": 90,
+      "inbound": 7,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/design-lab/family-tree": {
+      "score": 90,
+      "inbound": 7,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/golden-age/[chapter]": {
+      "score": 80,
+      "inbound": 7,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/resources": {
+      "score": 90,
+      "inbound": 7,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/about": {
+      "score": 90,
+      "inbound": 6,
+      "outbound": 5,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/ai-architecture/templates": {
+      "score": 90,
+      "inbound": 6,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-ops": {
+      "score": 90,
+      "inbound": 6,
+      "outbound": 6,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/gencreator": {
+      "score": 90,
+      "inbound": 6,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/guides/[slug]": {
+      "score": 80,
+      "inbound": 6,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/infogenius": {
+      "score": 90,
+      "inbound": 6,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/investor": {
+      "score": 90,
+      "inbound": 6,
+      "outbound": 1,
+      "category": "investor",
+      "isOrphan": false
+    },
+    "/watch": {
+      "score": 80,
+      "inbound": 6,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/workshops": {
+      "score": 90,
+      "inbound": 6,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/admin/content/[slug]": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/ai-ops/accelerator-packs": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/books": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 1,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/feed": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/free-playbook": {
+      "score": 70,
+      "inbound": 5,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/guides": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 2,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/investor/agents": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 2,
+      "category": "investor",
+      "isOrphan": false
+    },
+    "/plan": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/plan/[slug]": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/products/agentic-creator-os/docs/[slug]": {
+      "score": 70,
+      "inbound": 5,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/products/creative-ai-toolkit": {
+      "score": 70,
+      "inbound": 5,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/shop": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 1,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/soulbook": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 5,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/tools/[slug]": {
+      "score": 80,
+      "inbound": 5,
+      "outbound": 1,
+      "category": "tools",
+      "isOrphan": false
+    },
+    "/gallery": {
+      "score": 80,
+      "inbound": 4,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/lab": {
+      "score": 80,
+      "inbound": 4,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/music/learn/violin": {
+      "score": 80,
+      "inbound": 4,
+      "outbound": 3,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/presence": {
+      "score": 80,
+      "inbound": 4,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/products/generative-creator-os": {
+      "score": 70,
+      "inbound": 4,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/prototype/[id]": {
+      "score": 80,
+      "inbound": 4,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/prototypes": {
+      "score": 80,
+      "inbound": 4,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/workshops/[slug]": {
+      "score": 80,
+      "inbound": 4,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/admin/content": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/agents": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-assessment": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/blueprint/[slug]": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/courses": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 2,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/courses/[slug]": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/gencreator/manifesto": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/music/create": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 4,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/music/learn/theory": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 5,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/music-lab/piano": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 1,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/prompt-library/[category]/[id]": {
+      "score": 70,
+      "inbound": 3,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/roadmap": {
+      "score": 70,
+      "inbound": 3,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/templates": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/tools": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 2,
+      "category": "tools",
+      "isOrphan": false
+    },
+    "/vibe": {
+      "score": 80,
+      "inbound": 3,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/achievements": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/admin/content/pipeline": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/youtube": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/affiliates": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-architect": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 6,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/alea/musik": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/changelog": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/coaching": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/collectibles": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/community": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/courses/build-your-ai-creator-os/module-1": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/courses/build-your-ai-creator-os": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/dashboard": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 6,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/design-lab/arcanea": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/design-lab/nature": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/design-lab/nature/variants": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/developers": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/downloads": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/family": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/family/tree": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/frankx": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/games": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/gencreator/blueprints": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/gencreator/handbook": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/gencreator/principles": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/goals": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/golden-age": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/investor/workflows": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "investor",
+      "isOrphan": false
+    },
+    "/learn": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/legal/imprint": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "legal",
+      "isOrphan": false
+    },
+    "/legal/privacy": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "legal",
+      "isOrphan": false
+    },
+    "/legal/refund": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "legal",
+      "isOrphan": false
+    },
+    "/legal/terms": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "legal",
+      "isOrphan": false
+    },
+    "/library": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/library/[slug]": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/music/brainstorm": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/privacy": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "legal",
+      "isOrphan": false
+    },
+    "/product-development": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/products/agentic-creator-os/docs": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/rituals": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/search": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "core",
+      "isOrphan": false
+    },
+    "/skills/builder": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/skills": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/soulbook/assessment": {
+      "score": 70,
+      "inbound": 2,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/students/ai-briefing": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "students",
+      "isOrphan": false
+    },
+    "/students/ikigai": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "students",
+      "isOrphan": false
+    },
+    "/terms": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "legal",
+      "isOrphan": false
+    },
+    "/tools/builder": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 3,
+      "category": "tools",
+      "isOrphan": false
+    },
+    "/vault/[collection]": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/vibe/producer": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/workshops/for-educators": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/year-of-the-fire-horse": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/youtube": {
+      "score": 80,
+      "inbound": 2,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/admin/bv-command-center": {
+      "score": 70,
+      "inbound": 1,
+      "outbound": 0,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/agent-team": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-architect/multi-cloud-comparison": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-architecture/multi-cloud-comparison": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-ops/agi-ready": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-ops/architecture": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-ops/maturity": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-ops/models-2026": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/ai-ops/patterns": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/alea/musik/geige": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/alea/musik/klavier": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/assess": {
+      "score": 70,
+      "inbound": 1,
+      "outbound": 0,
+      "category": "tools",
+      "isOrphan": false
+    },
+    "/auctions": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/auctions/[id]": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/automation": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/blog/intelligence-revolution-2025": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "blog",
+      "isOrphan": false
+    },
+    "/content-strategy/video-creation": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "blog",
+      "isOrphan": false
+    },
+    "/creation-chronicles": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/design-lab/design-excellence": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/design-lab/frontend-design": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/design-lab/nature/variants/homepage": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 4,
+      "category": "lab",
+      "isOrphan": false
+    },
+    "/drops": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/founder-playbook": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/gallery/instruments": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/gencreator/soul": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/insights": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/investor/architectures": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "investor",
+      "isOrphan": false
+    },
+    "/investor/tools": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "investor",
+      "isOrphan": false
+    },
+    "/learn/[slug]": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/legal": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 5,
+      "category": "legal",
+      "isOrphan": false
+    },
+    "/linktree": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/linktree/[audience]": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/map": {
+      "score": 70,
+      "inbound": 1,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/music/learn/production": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 5,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/music/tools": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "music",
+      "isOrphan": false
+    },
+    "/n8n": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/opa-und-oma": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/opus-pro": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/products/creation-chronicles": {
+      "score": 70,
+      "inbound": 1,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/products/vibe-os/app": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/research/methodology": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/research/sources": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/resources/skills": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/shop/templates": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 5,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/soulbook/vault": {
+      "score": 70,
+      "inbound": 1,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/sprint": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 5,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/students/coe-builder": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "students",
+      "isOrphan": false
+    },
+    "/students/prompts": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "students",
+      "isOrphan": false
+    },
+    "/students/workshop": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 2,
+      "category": "students",
+      "isOrphan": false
+    },
+    "/tools/roi-calculator": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "tools",
+      "isOrphan": false
+    },
+    "/tools/strategy-canvas": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 3,
+      "category": "tools",
+      "isOrphan": false
+    },
+    "/valentines-day": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/valentines-day/tien": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/valentines-day/tien/piano": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": false
+    },
+    "/year-of-the-fire-horse/vision": {
+      "score": 80,
+      "inbound": 1,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/acos/presence": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/admin/community": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/content-studio": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/image-lab": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/legal": {
+      "score": 60,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/map": {
+      "score": 60,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/music": {
+      "score": 60,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/revenue": {
+      "score": 60,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/subscriptions": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/vault": {
+      "score": 60,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/admin/wealth": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "admin",
+      "isOrphan": false
+    },
+    "/ai-architect/ai-coe-hub": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/ai-architecture/tools": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/ai-architectures": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/ai-art": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/ai-evolution": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/ai-world": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/alea/katze": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": true
+    },
+    "/artists/[slug]": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/assess/ai-coe": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "tools",
+      "isOrphan": true
+    },
+    "/assessment/advanced": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "tools",
+      "isOrphan": true
+    },
+    "/assessment/creative": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "tools",
+      "isOrphan": true
+    },
+    "/auth/signin": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/blog/soul-frequency-framework": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "blog",
+      "isOrphan": true
+    },
+    "/books/[bookSlug]/glossary": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/business-plan": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/checkout/cancel": {
+      "score": 60,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/checkout/success": {
+      "score": 60,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "product",
+      "isOrphan": false
+    },
+    "/collectibles/instruments": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/collectibles/trading-cards": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/command-center": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/consulting": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/content-studio": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "blog",
+      "isOrphan": true
+    },
+    "/creators": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/dashboard/leads": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/dashboard/pdf-analytics": {
+      "score": 50,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": false
+    },
+    "/de/valentines-day": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": true
+    },
+    "/design-lab/acos": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/arcanea/iridescence": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/arcanea/liquid-glass": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/brand": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v1": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v10": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v11": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v12": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v13": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v14": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v15": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v2": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v3": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v4": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v5": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v6": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v7": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v8": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/family-tree/v9": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/newsletter": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/strategy": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-lab/v0": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/design-system": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/downloads/preview/soulbook": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/downloads/preview/vibe-os": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/for/architects": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/for/creators": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/frankx-investment-dashboard": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "investor",
+      "isOrphan": true
+    },
+    "/gallery/heroes": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/games/memory-match": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "family",
+      "isOrphan": true
+    },
+    "/hoffnung": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "family",
+      "isOrphan": true
+    },
+    "/inspiration": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/intelligence-atlas": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/intelligence-map": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/labs": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/links": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "core",
+      "isOrphan": true
+    },
+    "/magic": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/music/learn/guitar": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/music/learn/orchestration": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 6,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/music/learn/reading": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/music/learn/science": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/music-lab/dj-pads": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/music-lab/drums": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/music-lab/for-kids/xylophone": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/music-lab/piano/songs": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "music",
+      "isOrphan": true
+    },
+    "/newsletter/thank-you": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/onboarding": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/product-development/acos-v11": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 5,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/products/bv-kit": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": true
+    },
+    "/products/prompt-vault": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": true
+    },
+    "/products/suno-prompt-library": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "product",
+      "isOrphan": true
+    },
+    "/products/vibe-os/docs": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "product",
+      "isOrphan": true
+    },
+    "/progress": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/prototype/chat-playground": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "lab",
+      "isOrphan": true
+    },
+    "/realm": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/resources/templates": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/see-through-the-noise": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/showcase": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/soul-frequency-quiz": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/soulbook/7-pillars": {
+      "score": 20,
+      "inbound": 0,
+      "outbound": 0,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/soulbook/framework": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/soulbook/golden-path": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/soulbook/life-symphony": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/students/cohort": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "students",
+      "isOrphan": true
+    },
+    "/students/roles": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "students",
+      "isOrphan": true
+    },
+    "/team": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "core",
+      "isOrphan": true
+    },
+    "/testimonials": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "core",
+      "isOrphan": true
+    },
+    "/thank-you": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 3,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/tools/visual-intelligence": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 4,
+      "category": "tools",
+      "isOrphan": true
+    },
+    "/tools/[slug]/docs": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "tools",
+      "isOrphan": true
+    },
+    "/updates": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/vision": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 5,
+      "category": "core",
+      "isOrphan": true
+    },
+    "/visionaries": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "other",
+      "isOrphan": true
+    },
+    "/work-with-me": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 1,
+      "category": "core",
+      "isOrphan": true
+    },
+    "/youtube-strategy": {
+      "score": 30,
+      "inbound": 0,
+      "outbound": 2,
+      "category": "other",
+      "isOrphan": true
+    }
+  },
+  "categories": {
+    "core": [
+      "/",
+      "/newsletter",
+      "/start",
+      "/acos",
+      "/contact",
+      "/ai-architecture",
+      "/about",
+      "/books",
+      "/guides",
+      "/courses",
+      "/ai-architect",
+      "/coaching",
+      "/community",
+      "/search",
+      "/links",
+      "/team",
+      "/testimonials",
+      "/vision",
+      "/work-with-me"
+    ],
+    "product": [
+      "/products/[slug]",
+      "/products",
+      "/products/vibe-os",
+      "/products/agentic-creator-os",
+      "/products/agentic-creator-os/docs/[slug]",
+      "/products/creative-ai-toolkit",
+      "/shop",
+      "/products/generative-creator-os",
+      "/products/agentic-creator-os/docs",
+      "/products/creation-chronicles",
+      "/products/vibe-os/app",
+      "/shop/templates",
+      "/checkout/cancel",
+      "/checkout/success",
+      "/products/bv-kit",
+      "/products/prompt-vault",
+      "/products/suno-prompt-library",
+      "/products/vibe-os/docs"
+    ],
+    "blog": [
+      "/blog",
+      "/blog/[slug]",
+      "/blog/intelligence-revolution-2025",
+      "/content-strategy/video-creation",
+      "/blog/soul-frequency-framework",
+      "/content-studio"
+    ],
+    "music": [
+      "/music-lab",
+      "/music",
+      "/music/learn",
+      "/music/learn/piano",
+      "/music/learn/violin",
+      "/music/create",
+      "/music/learn/theory",
+      "/music-lab/piano",
+      "/music/brainstorm",
+      "/music/learn/production",
+      "/music/tools",
+      "/music/learn/guitar",
+      "/music/learn/orchestration",
+      "/music/learn/reading",
+      "/music/learn/science",
+      "/music-lab/dj-pads",
+      "/music-lab/drums",
+      "/music-lab/for-kids/xylophone",
+      "/music-lab/piano/songs"
+    ],
+    "admin": [
+      "/admin/content/[slug]",
+      "/admin/content",
+      "/admin/content/pipeline",
+      "/admin/youtube",
+      "/admin/bv-command-center",
+      "/admin/community",
+      "/admin/content-studio",
+      "/admin/image-lab",
+      "/admin/legal",
+      "/admin/map",
+      "/admin/music",
+      "/admin/revenue",
+      "/admin/subscriptions",
+      "/admin/vault",
+      "/admin/wealth"
+    ],
+    "family": [
+      "/alea",
+      "/alea/musik",
+      "/family",
+      "/family/tree",
+      "/games",
+      "/alea/musik/geige",
+      "/alea/musik/klavier",
+      "/opa-und-oma",
+      "/valentines-day",
+      "/valentines-day/tien",
+      "/valentines-day/tien/piano",
+      "/alea/katze",
+      "/de/valentines-day",
+      "/games/memory-match",
+      "/hoffnung"
+    ],
+    "lab": [
+      "/design-lab",
+      "/design-lab/[slug]",
+      "/design-lab/family-tree",
+      "/lab",
+      "/prototype/[id]",
+      "/prototypes",
+      "/design-lab/arcanea",
+      "/design-lab/nature",
+      "/design-lab/nature/variants",
+      "/design-lab/design-excellence",
+      "/design-lab/frontend-design",
+      "/design-lab/nature/variants/homepage",
+      "/design-lab/acos",
+      "/design-lab/arcanea/iridescence",
+      "/design-lab/arcanea/liquid-glass",
+      "/design-lab/brand",
+      "/design-lab/family-tree/v1",
+      "/design-lab/family-tree/v10",
+      "/design-lab/family-tree/v11",
+      "/design-lab/family-tree/v12",
+      "/design-lab/family-tree/v13",
+      "/design-lab/family-tree/v14",
+      "/design-lab/family-tree/v15",
+      "/design-lab/family-tree/v2",
+      "/design-lab/family-tree/v3",
+      "/design-lab/family-tree/v4",
+      "/design-lab/family-tree/v5",
+      "/design-lab/family-tree/v6",
+      "/design-lab/family-tree/v7",
+      "/design-lab/family-tree/v8",
+      "/design-lab/family-tree/v9",
+      "/design-lab/newsletter",
+      "/design-lab/strategy",
+      "/design-lab/v0",
+      "/labs",
+      "/prototype/chat-playground"
+    ],
+    "tools": [
+      "/assessment",
+      "/tools/[slug]",
+      "/tools",
+      "/tools/builder",
+      "/assess",
+      "/tools/roi-calculator",
+      "/tools/strategy-canvas",
+      "/assess/ai-coe",
+      "/assessment/advanced",
+      "/assessment/creative",
+      "/tools/visual-intelligence",
+      "/tools/[slug]/docs"
+    ],
+    "investor": [
+      "/investor",
+      "/investor/agents",
+      "/investor/workflows",
+      "/investor/architectures",
+      "/investor/tools",
+      "/frankx-investment-dashboard"
+    ],
+    "students": [
+      "/students",
+      "/students/ai-briefing",
+      "/students/ikigai",
+      "/students/coe-builder",
+      "/students/prompts",
+      "/students/workshop",
+      "/students/cohort",
+      "/students/roles"
+    ],
+    "legal": [
+      "/legal/imprint",
+      "/legal/privacy",
+      "/legal/refund",
+      "/legal/terms",
+      "/privacy",
+      "/terms",
+      "/legal"
+    ],
+    "other": [
+      "/ai-architecture/[slug]",
+      "/research",
+      "/books/[bookSlug]",
+      "/research/[slug]",
+      "/inner-circle",
+      "/books/[bookSlug]/[chapterSlug]",
+      "/prompt-library",
+      "/prompt-library/[category]",
+      "/ai-architecture/blueprints",
+      "/vault",
+      "/ai-architect-academy",
+      "/ai-architecture/prototypes",
+      "/golden-age/[chapter]",
+      "/resources",
+      "/ai-architecture/templates",
+      "/ai-ops",
+      "/gencreator",
+      "/guides/[slug]",
+      "/infogenius",
+      "/watch",
+      "/workshops",
+      "/ai-ops/accelerator-packs",
+      "/feed",
+      "/free-playbook",
+      "/plan",
+      "/plan/[slug]",
+      "/soulbook",
+      "/gallery",
+      "/presence",
+      "/workshops/[slug]",
+      "/agents",
+      "/ai-assessment",
+      "/blueprint/[slug]",
+      "/courses/[slug]",
+      "/gencreator/manifesto",
+      "/prompt-library/[category]/[id]",
+      "/roadmap",
+      "/templates",
+      "/vibe",
+      "/achievements",
+      "/affiliates",
+      "/changelog",
+      "/collectibles",
+      "/courses/build-your-ai-creator-os/module-1",
+      "/courses/build-your-ai-creator-os",
+      "/dashboard",
+      "/developers",
+      "/downloads",
+      "/frankx",
+      "/gencreator/blueprints",
+      "/gencreator/handbook",
+      "/gencreator/principles",
+      "/goals",
+      "/golden-age",
+      "/learn",
+      "/library",
+      "/library/[slug]",
+      "/product-development",
+      "/rituals",
+      "/skills/builder",
+      "/skills",
+      "/soulbook/assessment",
+      "/vault/[collection]",
+      "/vibe/producer",
+      "/workshops/for-educators",
+      "/year-of-the-fire-horse",
+      "/youtube",
+      "/agent-team",
+      "/ai-architect/multi-cloud-comparison",
+      "/ai-architecture/multi-cloud-comparison",
+      "/ai-ops/agi-ready",
+      "/ai-ops/architecture",
+      "/ai-ops/maturity",
+      "/ai-ops/models-2026",
+      "/ai-ops/patterns",
+      "/auctions",
+      "/auctions/[id]",
+      "/automation",
+      "/creation-chronicles",
+      "/drops",
+      "/founder-playbook",
+      "/gallery/instruments",
+      "/gencreator/soul",
+      "/insights",
+      "/learn/[slug]",
+      "/linktree",
+      "/linktree/[audience]",
+      "/map",
+      "/n8n",
+      "/opus-pro",
+      "/research/methodology",
+      "/research/sources",
+      "/resources/skills",
+      "/soulbook/vault",
+      "/sprint",
+      "/year-of-the-fire-horse/vision",
+      "/acos/presence",
+      "/ai-architect/ai-coe-hub",
+      "/ai-architecture/tools",
+      "/ai-architectures",
+      "/ai-art",
+      "/ai-evolution",
+      "/ai-world",
+      "/artists/[slug]",
+      "/auth/signin",
+      "/books/[bookSlug]/glossary",
+      "/business-plan",
+      "/collectibles/instruments",
+      "/collectibles/trading-cards",
+      "/command-center",
+      "/consulting",
+      "/creators",
+      "/dashboard/leads",
+      "/dashboard/pdf-analytics",
+      "/design-system",
+      "/downloads/preview/soulbook",
+      "/downloads/preview/vibe-os",
+      "/for/architects",
+      "/for/creators",
+      "/gallery/heroes",
+      "/inspiration",
+      "/intelligence-atlas",
+      "/intelligence-map",
+      "/magic",
+      "/newsletter/thank-you",
+      "/onboarding",
+      "/product-development/acos-v11",
+      "/progress",
+      "/realm",
+      "/resources/templates",
+      "/see-through-the-noise",
+      "/showcase",
+      "/soul-frequency-quiz",
+      "/soulbook/7-pillars",
+      "/soulbook/framework",
+      "/soulbook/golden-path",
+      "/soulbook/life-symphony",
+      "/thank-you",
+      "/updates",
+      "/visionaries",
+      "/youtube-strategy"
+    ]
+  },
+  "summary": {
+    "core": {
+      "count": 19,
+      "avgScore": 68,
+      "orphans": 5
+    },
+    "product": {
+      "count": 18,
+      "avgScore": 63,
+      "orphans": 4
+    },
+    "blog": {
+      "count": 6,
+      "avgScore": 65,
+      "orphans": 2
+    },
+    "music": {
+      "count": 19,
+      "avgScore": 61,
+      "orphans": 8
+    },
+    "admin": {
+      "count": 15,
+      "avgScore": 63,
+      "orphans": 0
+    },
+    "family": {
+      "count": 15,
+      "avgScore": 67,
+      "orphans": 4
+    },
+    "lab": {
+      "count": 36,
+      "avgScore": 45,
+      "orphans": 24
+    },
+    "tools": {
+      "count": 12,
+      "avgScore": 59,
+      "orphans": 5
+    },
+    "investor": {
+      "count": 6,
+      "avgScore": 73,
+      "orphans": 1
+    },
+    "students": {
+      "count": 8,
+      "avgScore": 69,
+      "orphans": 2
+    },
+    "legal": {
+      "count": 7,
+      "avgScore": 74,
+      "orphans": 0
+    },
+    "other": {
+      "count": 141,
+      "avgScore": 64,
+      "orphans": 42
+    }
+  }
+}

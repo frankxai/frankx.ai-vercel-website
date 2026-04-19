@@ -235,7 +235,7 @@ export default function MagicPage() {
               className="flex flex-wrap justify-center gap-4"
             >
               <a
-                href="https://arcanea.app"
+                href="https://arcanea.ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-violet-600 to-pink-600 text-white font-semibold rounded-full transition-all hover:scale-105 hover:shadow-lg hover:shadow-violet-500/25"
@@ -440,7 +440,7 @@ export default function MagicPage() {
               <div className="prose prose-lg prose-invert mx-auto text-slate-300">
                 <p>
                   As a musician who discovered the transformative power of AI creation—producing
-                  hundreds of songs with Suno—I realized that the future of creativity isn't about
+                  over 12,000 songs with Suno—I realized that the future of creativity isn't about
                   tools. It's about <em>partnership</em>.
                 </p>
                 <p>
@@ -456,7 +456,7 @@ export default function MagicPage() {
               </div>
               <div className="mt-10">
                 <a
-                  href="https://arcanea.app"
+                  href="https://arcanea.ai"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 text-lg text-violet-400 hover:text-violet-300 transition-colors"
@@ -492,7 +492,7 @@ export default function MagicPage() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <a
-                    href="https://arcanea.app"
+                    href="https://arcanea.ai"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full transition-all hover:scale-105"

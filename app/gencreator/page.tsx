@@ -21,13 +21,6 @@ import {
   Heart,
   Map,
   Scroll,
-  Users,
-  GraduationCap,
-  Wrench,
-  CreditCard,
-  Target,
-  Trophy,
-  HelpCircle,
 } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
@@ -69,84 +62,12 @@ const sections = [
     count: '7 dimensions',
   },
   {
-    title: 'Self-Assessment',
-    description: 'Score yourself across 7 dimensions. See your radar chart and get personalized growth recommendations.',
-    href: '/gencreator/assess',
-    icon: Target,
-    color: 'violet' as const,
-    count: '2 min quiz',
-  },
-  {
-    title: 'Learning Paths',
-    description: '12-week progressive curriculum. Foundation, Builder, Master. Ship something real every week.',
-    href: '/gencreator/learn',
-    icon: GraduationCap,
-    color: 'teal' as const,
-    count: '3 tracks',
-  },
-  {
-    title: 'Creator Toolkit',
-    description: 'Curated tools that power the GenCreator workflow. AI, automation, publishing, design.',
-    href: '/gencreator/toolkit',
-    icon: Wrench,
-    color: 'orange' as const,
-    count: '13 tools',
-  },
-  {
-    title: 'Community',
-    description: 'Build together, ship together. Discord channels, weekly challenges, peer review circles.',
-    href: '/gencreator/community',
-    icon: Users,
-    color: 'indigo' as const,
-    count: 'Growing',
-  },
-  {
-    title: 'Shipping Tracker',
-    description: 'Log your daily creative output. Build streaks. Track your 3-tier shipping habit with a visual calendar.',
-    href: '/gencreator/tracker',
-    icon: Flame,
-    color: 'orange' as const,
-    count: 'Free tool',
-  },
-  {
-    title: 'Showcase',
-    description: 'Real projects built with the GenCreator approach. Music, code, products, automations — proof the framework works.',
-    href: '/gencreator/showcase',
-    icon: Trophy,
-    color: 'cyan' as const,
-    count: '8 projects',
-  },
-  {
-    title: 'Glossary',
-    description: 'Every concept, principle, and term defined with precision. The language shapes the thinking.',
-    href: '/gencreator/glossary',
-    icon: BookOpen,
-    color: 'teal' as const,
-    count: '30 terms',
-  },
-  {
-    title: 'FAQ',
-    description: 'Everything about the framework answered — from first steps to mastery-level questions.',
-    href: '/gencreator/faq',
-    icon: HelpCircle,
-    color: 'blue' as const,
-    count: '20+ questions',
-  },
-  {
     title: 'The Manifesto',
     description: 'A short, powerful declaration of what it means to be a GenCreator. Read it. Share it. Live it.',
     href: '/gencreator/manifesto',
     icon: Scroll,
     color: 'rose' as const,
     count: 'One page',
-  },
-  {
-    title: 'Join GenCreator',
-    description: 'Free Starter Kit, Pro membership, or Mastery coaching. Choose the path that fits your ambition.',
-    href: '/gencreator/join',
-    icon: CreditCard,
-    color: 'cyan' as const,
-    count: '3 tiers',
   },
 ]
 
@@ -305,14 +226,14 @@ export default function GenCreatorHubPage() {
           </h2>
           <div className="mx-auto mt-8 max-w-3xl space-y-6 text-lg leading-relaxed text-white/60">
             <p>
-              A GenCreator is the new breed of creator — someone who wields AI as a creative force multiplier.
-              They build systems that compound, ship daily, own their infrastructure,
+              A GenCreator is the new breed of creator — someone who wields AI as a creative force multiplier,
+              not a replacement. They build systems that compound, ship daily, own their infrastructure,
               and leave artifacts that outlive trends.
             </p>
             <p>
-              Part architect. Part artist. Part engineer of the invisible.
-              A GenCreator lives at the intersection of <span className="text-emerald-300">human taste</span> and{' '}
-              <span className="text-teal-300">machine scale</span> — where one person builds what entire studios once required.
+              Not a content creator. Not a developer. Not an influencer.
+              A GenCreator sits at the intersection of <span className="text-emerald-300">human taste</span> and{' '}
+              <span className="text-teal-300">machine scale</span>.
             </p>
           </div>
           <div className="mt-10">

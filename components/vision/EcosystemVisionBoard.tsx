@@ -24,7 +24,7 @@ const visionImages = [
     src: '/images/ecosystem/07-arcanea-10-gates.png',
     alt: 'Arcanea 10 Gates — mythology-infused creative development system',
     title: 'Arcanea 10 Gates',
-    href: '/arcanea',
+    href: 'https://arcanea.ai',
     aspect: 'landscape' as const,
   },
   {

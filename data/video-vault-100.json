@@ -5,7 +5,7 @@
     "channel": "Andrej Karpathy",
     "url": "https://www.youtube.com/watch?v=VMj-3S1tku0",
     "duration": "2:25:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["neural networks", "coding", "education"]
   },
@@ -15,7 +15,7 @@
     "channel": "Andrej Karpathy",
     "url": "https://www.youtube.com/watch?v=zjkBMFhNj_g",
     "duration": "1:00:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["llm", "intro", "education"]
   },
@@ -25,7 +25,7 @@
     "channel": "Andrej Karpathy",
     "url": "https://www.youtube.com/watch?v=kCc8FmEb1nY",
     "duration": "2:00:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["gpt", "coding", "transformer"]
   },
@@ -35,7 +35,7 @@
     "channel": "Andrej Karpathy",
     "url": "https://www.youtube.com/watch?v=7xTGNNLPyMI",
     "duration": "3:30:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["llm", "chatgpt", "deep dive"]
   },
@@ -45,7 +45,7 @@
     "channel": "3Blue1Brown",
     "url": "https://www.youtube.com/watch?v=aircAruvnKk",
     "duration": "0:19:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["math", "visualization", "learning"]
   },
@@ -55,7 +55,7 @@
     "channel": "3Blue1Brown",
     "url": "https://www.youtube.com/watch?v=IHZwWFHWa-w",
     "duration": "0:21:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["math", "gradient descent", "backprop"]
   },
@@ -65,7 +65,7 @@
     "channel": "3Blue1Brown",
     "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc",
     "duration": "0:26:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["attention", "transformers", "visualization"]
   },
@@ -75,7 +75,7 @@
     "channel": "Two Minute Papers",
     "url": "https://www.youtube.com/watch?v=nbPbK1xYSNY",
     "duration": "0:08:00",
-    "topic": "AI Foundations",
+    "topic": "AI Fundamentals",
     "embeddable": true,
     "tags": ["sora", "video generation", "research"]
   },
@@ -85,7 +85,7 @@
     "channel": "Andrej Karpathy",
     "url": "https://www.youtube.com/watch?v=dWr1eTeK6p4",
     "duration": "1:00:00",
-    "topic": "AI Foundations",
+    "topic": "LLM Fundamentals",
     "embeddable": true,
     "tags": ["llm", "architecture", "deep dive"]
   },
@@ -132,10 +132,10 @@
   },
 
   {
-    "id": "pOLR5jE5Vjw",
+    "id": "eTTMUWP5B0s",
     "title": "The State of AI Engineering",
     "channel": "Simon Willison",
-    "url": "https://www.youtube.com/watch?v=pOLR5jE5Vjw",
+    "url": "https://www.youtube.com/watch?v=eTTMUWP5B0s",
     "duration": "0:45:00",
     "topic": "AI Engineering",
     "embeddable": true,
@@ -218,7 +218,7 @@
     "channel": "David Ondrej",
     "url": "https://www.youtube.com/watch?v=Ta5g-OxjPO4",
     "duration": "0:35:00",
-    "topic": "AI Engineering",
+    "topic": "AI Tools",
     "embeddable": true,
     "tags": ["claude", "coding", "tutorial"]
   },
@@ -228,7 +228,7 @@
     "channel": "Matthew Berman",
     "url": "https://www.youtube.com/watch?v=9GCWgebD-AU",
     "duration": "0:20:00",
-    "topic": "AI Engineering",
+    "topic": "AI Tools",
     "embeddable": true,
     "tags": ["claude", "review", "anthropic"]
   },
@@ -238,7 +238,7 @@
     "channel": "Matt Wolfe",
     "url": "https://www.youtube.com/watch?v=DeeVKUuEv6Y",
     "duration": "0:15:00",
-    "topic": "AI Engineering",
+    "topic": "AI Tools",
     "embeddable": true,
     "tags": ["tools", "marketing", "roundup"]
   },
@@ -249,7 +249,7 @@
     "channel": "Lex Fridman",
     "url": "https://www.youtube.com/watch?v=5MUvJv_sB64",
     "duration": "2:15:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["openai", "agi", "future"]
   },
@@ -259,7 +259,7 @@
     "channel": "Simon Sinek",
     "url": "https://www.youtube.com/watch?v=BSjQk-7j3X0",
     "duration": "0:50:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["leadership", "long-term", "mindset"]
   },
@@ -269,7 +269,7 @@
     "channel": "Bloomberg",
     "url": "https://www.youtube.com/watch?v=9g-wcfo091E",
     "duration": "0:18:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["roi", "enterprise", "strategy"]
   },
@@ -279,7 +279,7 @@
     "channel": "Entrepreneur AI",
     "url": "https://www.youtube.com/watch?v=fL_l8mxU148",
     "duration": "0:15:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["ideas", "startup", "monetization"]
   },
@@ -289,7 +289,7 @@
     "channel": "C-Suite AI",
     "url": "https://www.youtube.com/watch?v=OI0zRk7Mau4",
     "duration": "0:22:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["business", "roi", "executive"]
   },
@@ -299,7 +299,7 @@
     "channel": "Y Combinator",
     "url": "https://www.youtube.com/watch?v=SifHlXe7B2k",
     "duration": "0:10:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["startup", "pitch", "agents"]
   },
@@ -309,7 +309,7 @@
     "channel": "Greylock",
     "url": "https://www.youtube.com/watch?v=tqfPCE_gfuc",
     "duration": "0:45:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["business", "scaling", "vc"]
   },
@@ -319,7 +319,7 @@
     "channel": "Lex Fridman",
     "url": "https://www.youtube.com/watch?v=jvqFAi7vkBc",
     "duration": "2:02:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["openai", "gpt5", "agi"]
   },
@@ -329,7 +329,7 @@
     "channel": "Lex Fridman",
     "url": "https://www.youtube.com/watch?v=L_Guz73e6fw",
     "duration": "2:28:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["openai", "chatgpt", "future"]
   },
@@ -339,7 +339,7 @@
     "channel": "Lex Fridman",
     "url": "https://www.youtube.com/watch?v=JN3KPFbWCy8",
     "duration": "2:27:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["tesla", "spacex", "ai"]
   },
@@ -349,7 +349,7 @@
     "channel": "Lex Fridman",
     "url": "https://www.youtube.com/watch?v=Gfr50f6ZBvo",
     "duration": "2:18:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["deepmind", "agi", "science"]
   },
@@ -359,7 +359,7 @@
     "channel": "Lex Fridman",
     "url": "https://www.youtube.com/watch?v=cdiD-9MMpb0",
     "duration": "3:34:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["tesla", "autonomy", "agi"]
   },
@@ -369,7 +369,7 @@
     "channel": "Y Combinator",
     "url": "https://www.youtube.com/watch?v=CBYhVcO4WgI",
     "duration": "0:44:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["startup", "yc", "business"]
   },
@@ -379,7 +379,7 @@
     "channel": "a16z",
     "url": "https://www.youtube.com/watch?v=0wIUK0nsyUg",
     "duration": "0:32:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["optimism", "future", "venture"]
   },
@@ -389,7 +389,7 @@
     "channel": "Neil Patel",
     "url": "https://www.youtube.com/watch?v=NCeq1r2LRUM",
     "duration": "0:45:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["seo", "marketing", "search"]
   },
@@ -399,7 +399,7 @@
     "channel": "Neil Patel",
     "url": "https://www.youtube.com/watch?v=Q_lySNxCag0",
     "duration": "0:12:00",
-    "topic": "Strategy & Business",
+    "topic": "Strategy",
     "embeddable": true,
     "tags": ["seo", "course", "free"]
   },
@@ -451,7 +451,7 @@
     "channel": "60 Minutes",
     "url": "https://www.youtube.com/watch?v=n9iv24yI04nI",
     "duration": "0:12:00",
-    "topic": "Creative AI & Music",
+    "topic": "Creativity",
     "embeddable": true,
     "tags": ["art", "mindset", "philosophy"]
   },
@@ -461,7 +461,7 @@
     "channel": "The Futur",
     "url": "https://www.youtube.com/watch?v=RKXZ7t_RiOE",
     "duration": "0:47:00",
-    "topic": "Creative AI & Music",
+    "topic": "Creativity",
     "embeddable": true,
     "tags": ["pricing", "design", "business"]
   },
@@ -471,7 +471,7 @@
     "channel": "Rick Beato",
     "url": "https://www.youtube.com/watch?v=1bZ0OSEViyo",
     "duration": "0:20:00",
-    "topic": "Creative AI & Music",
+    "topic": "Creativity",
     "embeddable": true,
     "tags": ["music", "industry", "quality"]
   },
@@ -482,7 +482,7 @@
     "channel": "Suno AI",
     "url": "https://www.youtube.com/watch?v=EIi5k9TJUvY",
     "duration": "0:12:00",
-    "topic": "Creative AI & Music",
+    "topic": "Creative AI",
     "embeddable": true,
     "tags": ["suno", "lyrics", "prompting"]
   },
@@ -492,7 +492,7 @@
     "channel": "FrankX Music",
     "url": "https://www.youtube.com/watch?v=jDHMPSSgaMw",
     "duration": "0:25:00",
-    "topic": "Creative AI & Music",
+    "topic": "Creative AI",
     "embeddable": true,
     "tags": ["suno", "distribution", "workflow"]
   },
@@ -502,7 +502,7 @@
     "channel": "Suno Tutorial",
     "url": "https://www.youtube.com/watch?v=u2pYNRNdcNc",
     "duration": "0:15:00",
-    "topic": "Creative AI & Music",
+    "topic": "Creative AI",
     "embeddable": true,
     "tags": ["suno", "tutorial", "music"]
   },
@@ -512,7 +512,7 @@
     "channel": "Midjourney Guide",
     "url": "https://www.youtube.com/watch?v=9WVZbitXbck",
     "duration": "0:20:00",
-    "topic": "Creative AI & Music",
+    "topic": "Creative AI",
     "embeddable": true,
     "tags": ["midjourney", "art", "tutorial"]
   },
@@ -523,7 +523,7 @@
     "channel": "TED",
     "url": "https://www.youtube.com/watch?v=Cqbleas1mmo",
     "duration": "0:18:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["psychology", "planning", "vision"]
   },
@@ -533,7 +533,7 @@
     "channel": "Huberman Lab",
     "url": "https://www.youtube.com/watch?v=yb5zpo5WDG4",
     "duration": "2:00:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["focus", "neuroscience", "tools"]
   },
@@ -543,7 +543,7 @@
     "channel": "Huberman Lab",
     "url": "https://www.youtube.com/watch?v=QmOF0crdyRU",
     "duration": "2:00:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["dopamine", "neuroscience", "motivation"]
   },
@@ -553,7 +553,7 @@
     "channel": "Huberman Lab",
     "url": "https://www.youtube.com/watch?v=vA50EK70whE",
     "duration": "2:00:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["motivation", "drive", "neuroscience"]
   },
@@ -563,7 +563,7 @@
     "channel": "TED",
     "url": "https://www.youtube.com/watch?v=arj7oStGLkU",
     "duration": "0:14:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["procrastination", "humor", "psychology"]
   },
@@ -573,7 +573,7 @@
     "channel": "James Clear",
     "url": "https://www.youtube.com/watch?v=mNeXuCYiE0U",
     "duration": "0:25:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["habits", "growth", "compound"]
   },
@@ -583,7 +583,7 @@
     "channel": "Cal Newport",
     "url": "https://www.youtube.com/watch?v=3E7hkPZ-HTk",
     "duration": "0:14:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["focus", "minimalism", "digital"]
   },
@@ -593,7 +593,7 @@
     "channel": "Daily Stoic",
     "url": "https://www.youtube.com/watch?v=heh5XLwZVOY",
     "duration": "0:15:00",
-    "topic": "Mindset & Growth",
+    "topic": "Mindset",
     "embeddable": true,
     "tags": ["stoicism", "rules", "philosophy"]
   },
@@ -604,7 +604,7 @@
     "channel": "Freedom in Thought",
     "url": "https://www.youtube.com/watch?v=zdkGXDq1jqM",
     "duration": "0:10:00",
-    "topic": "Mindset & Growth",
+    "topic": "Learning",
     "embeddable": true,
     "tags": ["learning", "feynman", "mental models"]
   },
@@ -615,7 +615,7 @@
     "channel": "Lofi Girl",
     "url": "https://www.youtube.com/watch?v=jfKfPfyJRdk",
     "duration": "LIVE",
-    "topic": "Mindset & Growth",
+    "topic": "Rituals",
     "embeddable": true,
     "tags": ["lofi", "study", "focus"]
   },
@@ -625,7 +625,7 @@
     "channel": "Binaural Beats",
     "url": "https://www.youtube.com/watch?v=1_G60OdEzXs",
     "duration": "1:00:00",
-    "topic": "Mindset & Growth",
+    "topic": "Rituals",
     "embeddable": true,
     "tags": ["binaural", "focus", "music"]
   },
@@ -636,7 +636,7 @@
     "channel": "AI Parody",
     "url": "https://www.youtube.com/watch?v=xsV7DGfIqIg",
     "duration": "0:05:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["parody", "satire", "politics"]
   },
@@ -646,7 +646,7 @@
     "channel": "Diesel AI",
     "url": "https://www.youtube.com/watch?v=szq_4zvswiM",
     "duration": "0:03:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["deepfake", "parody", "short"]
   },
@@ -656,7 +656,7 @@
     "channel": "AI Balenciaga",
     "url": "https://www.youtube.com/watch?v=mPHHLrpraS4",
     "duration": "0:04:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["balenciaga", "parody", "fashion"]
   },
@@ -666,7 +666,7 @@
     "channel": "Vocal Memes",
     "url": "https://www.youtube.com/watch?v=tlooPT4pB1Y",
     "duration": "0:08:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["music", "remix", "funny"]
   },
@@ -676,7 +676,7 @@
     "channel": "Remix Era",
     "url": "https://www.youtube.com/watch?v=UeFTkveHajE",
     "duration": "0:10:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["remix", "music", "ai"]
   },
@@ -686,7 +686,7 @@
     "channel": "demonflyingfox",
     "url": "https://www.youtube.com/watch?v=iE39q-IKOzA",
     "duration": "0:05:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["balenciaga", "fashion", "viral"]
   },
@@ -696,7 +696,7 @@
     "channel": "AI Presidents",
     "url": "https://www.youtube.com/watch?v=q6ra0KDgVbg",
     "duration": "0:10:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["presidents", "gaming", "parody"]
   },
@@ -706,203 +706,8 @@
     "channel": "Glorb",
     "url": "https://www.youtube.com/watch?v=pL9o_BwSN-o",
     "duration": "0:05:00",
-    "topic": "AI Culture",
+    "topic": "AI Memes",
     "embeddable": true,
     "tags": ["meme", "viral", "absurdist"]
-  },
-
-  {
-    "id": "Cpc-t-Uwv1I",
-    "title": "Why We Do What We Do",
-    "channel": "TED",
-    "url": "https://www.youtube.com/watch?v=Cpc-t-Uwv1I",
-    "duration": "0:22:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["tony robbins", "motivation", "ted"]
-  },
-  {
-    "id": "fXIeFJCqsPs",
-    "title": "Flow, the Secret to Happiness",
-    "channel": "TED",
-    "url": "https://www.youtube.com/watch?v=fXIeFJCqsPs",
-    "duration": "0:19:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["flow state", "csikszentmihalyi", "happiness"]
-  },
-  {
-    "id": "y1MHyyWsMeE",
-    "title": "Decoding the Science of Ultimate Human Performance",
-    "channel": "Talks at Google",
-    "url": "https://www.youtube.com/watch?v=y1MHyyWsMeE",
-    "duration": "2:20:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["steven kotler", "flow", "performance"]
-  },
-  {
-    "id": "IdTMDpizis8",
-    "title": "Jocko Motivation \"GOOD\"",
-    "channel": "Jocko Podcast",
-    "url": "https://www.youtube.com/watch?v=IdTMDpizis8",
-    "duration": "0:02:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["jocko willink", "discipline", "motivation"]
-  },
-  {
-    "id": "ljqra3BcqWM",
-    "title": "Extreme Ownership",
-    "channel": "TEDx",
-    "url": "https://www.youtube.com/watch?v=ljqra3BcqWM",
-    "duration": "0:13:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["jocko willink", "leadership", "ownership"]
-  },
-  {
-    "id": "SwQhKFMxmDY",
-    "title": "How to Focus to Change Your Brain",
-    "channel": "Andrew Huberman",
-    "url": "https://www.youtube.com/watch?v=SwQhKFMxmDY",
-    "duration": "1:30:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["huberman", "focus", "neuroplasticity"]
-  },
-
-  {
-    "id": "3qHkcs3kG44",
-    "title": "Naval Ravikant on Wealth & Happiness",
-    "channel": "Joe Rogan Experience",
-    "url": "https://www.youtube.com/watch?v=3qHkcs3kG44",
-    "duration": "2:11:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["naval ravikant", "wealth", "happiness"]
-  },
-  {
-    "id": "GwIo3gDZCVQ",
-    "title": "How to Create an Online Course",
-    "channel": "Pat Flynn",
-    "url": "https://www.youtube.com/watch?v=GwIo3gDZCVQ",
-    "duration": "0:25:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["pat flynn", "courses", "passive income"]
-  },
-  {
-    "id": "UEEsdXn8oG8",
-    "title": "How to Start a Podcast (Complete Tutorial)",
-    "channel": "Pat Flynn",
-    "url": "https://www.youtube.com/watch?v=UEEsdXn8oG8",
-    "duration": "0:30:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["pat flynn", "podcast", "tutorial"]
-  },
-  {
-    "id": "RVKofRN1dyI",
-    "title": "5 Passive Income Ideas ($1000+/Month)",
-    "channel": "Pat Flynn",
-    "url": "https://www.youtube.com/watch?v=RVKofRN1dyI",
-    "duration": "0:15:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["pat flynn", "passive income", "business"]
-  },
-  {
-    "id": "0lJKucu6HJc",
-    "title": "How to Succeed with a Startup",
-    "channel": "Y Combinator",
-    "url": "https://www.youtube.com/watch?v=0lJKucu6HJc",
-    "duration": "0:16:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["sam altman", "startup", "yc"]
-  },
-  {
-    "id": "YTmJlKZ3mKQ",
-    "title": "One Life, No Regrets",
-    "channel": "GaryVee",
-    "url": "https://www.youtube.com/watch?v=YTmJlKZ3mKQ",
-    "duration": "0:06:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["garyvee", "hustle", "motivation"]
-  },
-
-  {
-    "id": "5J6jAC6XxAI",
-    "title": "Why You Should Define Your Fears Instead of Your Goals",
-    "channel": "TED",
-    "url": "https://www.youtube.com/watch?v=5J6jAC6XxAI",
-    "duration": "0:13:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["tim ferriss", "stoicism", "fear-setting"]
-  },
-  {
-    "id": "iPE2_iCCo0w",
-    "title": "Smash Fear, Learn Anything",
-    "channel": "TED",
-    "url": "https://www.youtube.com/watch?v=iPE2_iCCo0w",
-    "duration": "0:16:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["tim ferriss", "learning", "fear"]
-  },
-  {
-    "id": "ZVeUIclaMTE",
-    "title": "7 Ways Marcus Aurelius Will Help You Journal",
-    "channel": "Daily Stoic",
-    "url": "https://www.youtube.com/watch?v=ZVeUIclaMTE",
-    "duration": "0:12:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["stoicism", "marcus aurelius", "journaling"]
-  },
-
-  {
-    "id": "aMcjxSThD54",
-    "title": "Jordan Peterson vs Cathy Newman",
-    "channel": "Channel 4 News",
-    "url": "https://www.youtube.com/watch?v=aMcjxSThD54",
-    "duration": "0:30:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["jordan peterson", "debate", "free speech"]
-  },
-  {
-    "id": "f-wWBGo6a2w",
-    "title": "Introduction to the Idea of God",
-    "channel": "Jordan B Peterson",
-    "url": "https://www.youtube.com/watch?v=f-wWBGo6a2w",
-    "duration": "2:30:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["jordan peterson", "philosophy", "psychology"]
-  },
-
-  {
-    "id": "BltRufe5kkI",
-    "title": "Abundance is Our Future",
-    "channel": "TED",
-    "url": "https://www.youtube.com/watch?v=BltRufe5kkI",
-    "duration": "0:16:00",
-    "topic": "Strategy & Business",
-    "embeddable": true,
-    "tags": ["peter diamandis", "abundance", "future"]
-  },
-  {
-    "id": "UFKCLjhO2bo",
-    "title": "Tony Robbins Motivational Compilation",
-    "channel": "Mulligan Brothers",
-    "url": "https://www.youtube.com/watch?v=UFKCLjhO2bo",
-    "duration": "0:27:00",
-    "topic": "Mindset & Growth",
-    "embeddable": true,
-    "tags": ["tony robbins", "motivation", "compilation"]
   }
 ]

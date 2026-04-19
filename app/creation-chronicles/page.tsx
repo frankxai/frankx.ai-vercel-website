@@ -286,40 +286,12 @@ export default function CreationChroniclesPage() {
                   <h3 className="text-xl font-semibold text-white">Soundtrack of the Build</h3>
                 </div>
 
-                <div className="space-y-4">
-                  {featuredTracks.map((track, i) => (
-                    <motion.div
-                      key={track.sunoId}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
-                      className="rounded-2xl overflow-hidden border border-white/[0.06] bg-white/[0.02]"
-                    >
-                      <div className="px-4 pt-4 pb-1 flex items-center justify-between">
-                        <div>
-                          <p className="text-xs font-semibold text-white">{track.title}</p>
-                          <p className="text-xs text-white/40">{track.genre}</p>
-                        </div>
-                        <a
-                          href={`https://suno.com/song/${track.sunoId}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
-                        >
-                          Open in Suno ↗
-                        </a>
-                      </div>
-                      <iframe
-                        src={`https://suno.com/embed/${track.sunoId}`}
-                        className="w-full h-[200px]"
-                        style={{ border: 'none' }}
-                        allow="autoplay; clipboard-write"
-                        loading="lazy"
-                        title={track.title}
-                      />
-                    </motion.div>
-                  ))}
+                <p className="text-sm text-white/50 mb-6">
+                  Use these tracks as ritual soundtracks for writing, strategy, or launching new offers.
+                </p>
+
+                <div className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                  <SongGrid songs={songRecords} limit={3} />
                 </div>
 
                 <a
@@ -370,26 +342,12 @@ export default function CreationChroniclesPage() {
                   <span className="text-sm text-emerald-400">Weekly Transmission</span>
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                  Stay in the Signal Loop
-                </h2>
-                <p className="text-white/50 mb-8 max-w-sm mx-auto">
-                  One focused transmission a week. No noise—just the latest story,
-                  framework, and soundtrack I&apos;m shipping.
-                </p>
-
-                <div className="max-w-sm mx-auto">
-                  <EmailSignup
-                    listType="creation-chronicles"
-                    placeholder="your@email.com"
-                    buttonText="Join the Signal"
-                    compact
-                  />
-                </div>
-
-                <p className="mt-4 text-xs text-white/20">
-                  No spam. Unsubscribe anytime.
-                </p>
+              <div className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
+                <iframe
+                  src="https://embeds.beehiiv.com/3dca3b4d-918d-48fe-8d02-838d92d93a08?slim=true"
+                  title="Creation Chronicles Newsletter"
+                  className="w-full h-32 rounded-xl"
+                />
               </div>
             </motion.div>
           </div>

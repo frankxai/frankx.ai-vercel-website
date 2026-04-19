@@ -2,7 +2,6 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 
 // ── Data ────────────────────────────────────────────────────────────────────
@@ -597,26 +596,6 @@ export default function AleaPage() {
             <p className="mt-4 text-lg text-slate-500">Jahre voller Wunder</p>
           </motion.header>
 
-          {/* ── Quick Navigation (child-friendly jump links) ─────── */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {[
-              { href: '#game', emoji: '🧩', label: 'Spiele' },
-              { href: '#draw', emoji: '🎨', label: 'Malen' },
-              { href: '/alea/katze', emoji: '🐱', label: 'Mia' },
-              { href: '#music', emoji: '🎵', label: 'Musik' },
-              { href: '#stories', emoji: '📖', label: 'Geschichten' },
-              { href: '#languages', emoji: '🗣️', label: 'Sprachen' },
-            ].map((nav) => (
-              <Link
-                key={nav.label}
-                href={nav.href}
-                className="flex items-center gap-1.5 rounded-full bg-white/70 px-4 py-2.5 text-base font-medium text-slate-700 shadow-sm transition hover:bg-white hover:shadow-md active:scale-95"
-              >
-                <span>{nav.emoji}</span> {nav.label}
-              </Link>
-            ))}
-          </div>
-
           {/* ── Multilingual Wishes ────────────────────────────────── */}
           <Section id="wishes" emoji="🌍" title="Geburtstagswünsche" bg="bg-white/60">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -682,26 +661,6 @@ export default function AleaPage() {
             </p>
             <DrawingCanvas />
           </Section>
-
-          {/* ── Mias Katzenwelt ──────────────────────────────────── */}
-          <Link href="/alea/katze">
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group overflow-hidden rounded-3xl bg-gradient-to-br from-rose-100 to-amber-50 border border-rose-200 p-6 shadow-lg transition hover:shadow-xl"
-            >
-              <div className="flex items-center gap-5">
-                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl shadow-md">
-                  <Image src="/images/alea/katze-mia-mascot_thumb.jpeg" alt="Mia" width={96} height={96} className="object-cover" />
-                </div>
-                <div>
-                  <h2 className="text-2xl font-extrabold text-rose-700 group-hover:text-rose-800">🐱 Mias Katzenwelt</h2>
-                  <p className="mt-1 text-base text-slate-600">Dein eigenes virtuelles Kätzchen! Füttere Mia, lerne Katzenwissen, erfinde Namen und lies Geschichten.</p>
-                  <p className="mt-2 text-sm font-medium text-rose-500">Tippe hier um Mia zu besuchen →</p>
-                </div>
-              </div>
-            </motion.div>
-          </Link>
 
           {/* ── Stories ────────────────────────────────────────────── */}
           <Section id="stories" emoji="📖" title="Geschichten" bg="bg-gradient-to-br from-amber-50/80 to-rose-50/80">
@@ -794,7 +753,7 @@ export default function AleaPage() {
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               <Link
-                href="/alea/musik/klavier"
+                href="/music/learn/piano"
                 className="group rounded-2xl bg-gradient-to-br from-rose-100 to-pink-50 border border-rose-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
@@ -805,7 +764,7 @@ export default function AleaPage() {
                 </div>
               </Link>
               <Link
-                href="/alea/musik/geige"
+                href="/music/learn/violin"
                 className="group rounded-2xl bg-gradient-to-br from-violet-100 to-purple-50 border border-violet-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
@@ -816,7 +775,7 @@ export default function AleaPage() {
                 </div>
               </Link>
               <Link
-                href="/alea/musik"
+                href="/music/learn"
                 className="group rounded-2xl bg-gradient-to-br from-amber-100 to-orange-50 border border-amber-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
@@ -827,7 +786,7 @@ export default function AleaPage() {
                 </div>
               </Link>
               <Link
-                href="/alea/musik"
+                href="/music/learn"
                 className="group rounded-2xl bg-gradient-to-br from-emerald-100 to-teal-50 border border-emerald-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
@@ -842,47 +801,21 @@ export default function AleaPage() {
 
           {/* ── Language Corner ─────────────────────────────────────── */}
           <Section id="languages" emoji="🗣️" title="Sprachen Ecke" bg="bg-gradient-to-br from-emerald-50/80 to-cyan-50/80">
-            <p className="mb-6 text-center text-base text-slate-600">
-              Alea spricht viele Sprachen! Tippe auf ein Wort und lerne es in vier Sprachen.
+            <p className="mb-6 text-center text-slate-500">
+              Alea spricht viele Sprachen! Hier sind einige Wörter zum Üben.
             </p>
-
-            {/* Animals */}
-            <h3 className="mb-3 text-lg font-bold text-emerald-700">🐾 Tiere</h3>
-            <div className="mb-6 grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-2">
               {[
                 { de: 'Schmetterling', en: 'Butterfly', hr: 'Leptir', ru: 'Бабочка', emoji: '🦋' },
-                { de: 'Katze', en: 'Cat', hr: 'Mačka', ru: 'Кошка', emoji: '🐱' },
-                { de: 'Hund', en: 'Dog', hr: 'Pas', ru: 'Собака', emoji: '🐶' },
-                { de: 'Vogel', en: 'Bird', hr: 'Ptica', ru: 'Птица', emoji: '🐦' },
-                { de: 'Fisch', en: 'Fish', hr: 'Riba', ru: 'Рыба', emoji: '🐟' },
-                { de: 'Frosch', en: 'Frog', hr: 'Žaba', ru: 'Лягушка', emoji: '🐸' },
-              ].map((word) => (
-                <div key={word.de} className="flex items-center gap-3 rounded-2xl bg-white/70 p-4 shadow-sm">
-                  <span className="text-3xl">{word.emoji}</span>
-                  <div className="text-base leading-relaxed">
-                    <p><span className="font-bold text-slate-800">🇩🇪</span> {word.de}</p>
-                    <p><span className="font-bold text-slate-800">🇬🇧</span> {word.en}</p>
-                    <p><span className="font-bold text-slate-800">🇭🇷</span> {word.hr}</p>
-                    <p><span className="font-bold text-slate-800">🇷🇺</span> {word.ru}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Nature */}
-            <h3 className="mb-3 text-lg font-bold text-emerald-700">🌍 Natur</h3>
-            <div className="mb-6 grid gap-3 sm:grid-cols-2">
-              {[
                 { de: 'Stern', en: 'Star', hr: 'Zvijezda', ru: 'Звезда', emoji: '⭐' },
                 { de: 'Regenbogen', en: 'Rainbow', hr: 'Duga', ru: 'Радуга', emoji: '🌈' },
                 { de: 'Mond', en: 'Moon', hr: 'Mjesec', ru: 'Луна', emoji: '🌙' },
                 { de: 'Blume', en: 'Flower', hr: 'Cvijet', ru: 'Цветок', emoji: '🌸' },
-                { de: 'Sonne', en: 'Sun', hr: 'Sunce', ru: 'Солнце', emoji: '☀️' },
-                { de: 'Wasser', en: 'Water', hr: 'Voda', ru: 'Вода', emoji: '💧' },
+                { de: 'Herz', en: 'Heart', hr: 'Srce', ru: 'Сердце', emoji: '💖' },
               ].map((word) => (
                 <div key={word.de} className="flex items-center gap-3 rounded-2xl bg-white/70 p-4 shadow-sm">
                   <span className="text-3xl">{word.emoji}</span>
-                  <div className="text-base leading-relaxed">
+                  <div className="text-sm leading-relaxed">
                     <p><span className="font-bold text-slate-800">🇩🇪</span> {word.de}</p>
                     <p><span className="font-bold text-slate-800">🇬🇧</span> {word.en}</p>
                     <p><span className="font-bold text-slate-800">🇭🇷</span> {word.hr}</p>
@@ -891,31 +824,6 @@ export default function AleaPage() {
                 </div>
               ))}
             </div>
-
-            {/* Feelings */}
-            <h3 className="mb-3 text-lg font-bold text-emerald-700">💖 Gefühle</h3>
-            <div className="grid gap-3 sm:grid-cols-2">
-              {[
-                { de: 'Liebe', en: 'Love', hr: 'Ljubav', ru: 'Любовь', emoji: '❤️' },
-                { de: 'Freude', en: 'Joy', hr: 'Radost', ru: 'Радость', emoji: '😊' },
-                { de: 'Freundschaft', en: 'Friendship', hr: 'Prijateljstvo', ru: 'Дружба', emoji: '🤝' },
-                { de: 'Mut', en: 'Courage', hr: 'Hrabrost', ru: 'Храбрость', emoji: '💪' },
-              ].map((word) => (
-                <div key={word.de} className="flex items-center gap-3 rounded-2xl bg-white/70 p-4 shadow-sm">
-                  <span className="text-3xl">{word.emoji}</span>
-                  <div className="text-base leading-relaxed">
-                    <p><span className="font-bold text-slate-800">🇩🇪</span> {word.de}</p>
-                    <p><span className="font-bold text-slate-800">🇬🇧</span> {word.en}</p>
-                    <p><span className="font-bold text-slate-800">🇭🇷</span> {word.hr}</p>
-                    <p><span className="font-bold text-slate-800">🇷🇺</span> {word.ru}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-6 text-center text-base text-slate-600">
-              16 Wörter in 4 Sprachen — das sind 64 neue Wörter!
-            </p>
           </Section>
 
           {/* ── From Uncle Frank ────────────────────────────────────── */}
@@ -923,7 +831,7 @@ export default function AleaPage() {
             <div className="rounded-2xl bg-white/80 p-6 sm:p-8 shadow-sm">
               <div className="prose prose-slate mx-auto max-w-none text-center">
                 <p className="text-lg leading-relaxed">
-                  Liebe Alea Sophia Riemer,
+                  Liebe Alea,
                 </p>
                 <p className="mt-4 text-base leading-relaxed">
                   heute wirst du sechs Jahre alt. Sechs! Das sind sechs Sommer,

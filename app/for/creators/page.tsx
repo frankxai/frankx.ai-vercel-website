@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -138,6 +139,18 @@ export default function CreatorsLandingPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white">
+      {/* Hero Image */}
+      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-5xl mt-6 px-6">
+        <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
+          <Image src="/images/blog/acos-use-cases-creator-types-hero.png" alt="Creator tools and AI-powered creative workflows" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 left-0 p-6">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">For Creators</p>
+          <h1 className="text-2xl font-bold text-white">Build Your Creator Empire with AI</h1>
+        </div>
+      </div>
+
       {/* Background orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.4) 0%, transparent 70%)' }} />

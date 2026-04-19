@@ -10,6 +10,7 @@ import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
 import { FrankOmegaAvatar } from '@/components/FrankOmega'
+import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 
 // ============================================================================
 // TYPES
@@ -276,7 +277,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
                 AI Architect at Oracle. 12,000+ songs with Suno.
-                75+ open-source skills shipped. Everything documented.
+                630+ AI skills shipped. Everything documented.
               </p>
 
               <div className="flex items-center gap-3">
@@ -323,9 +324,16 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               {featuredTrack ? (
                 <FeaturedTrack track={featuredTrack} />
               ) : (
-                <GlowCard color="emerald" className="p-8">
-                  <p className="text-white/50 text-center">Music player loading...</p>
-                </GlowCard>
+                <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02]">
+                  <iframe
+                    src="https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db"
+                    className="w-full h-[380px]"
+                    style={{ border: 'none' }}
+                    allow="autoplay; clipboard-write"
+                    loading="lazy"
+                    title="Vibe OS — Featured Track"
+                  />
+                </div>
               )}
             </motion.div>
           </div>
@@ -358,7 +366,7 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 const credentials = [
   'AI Architect at Oracle',
   '12,000+ AI Songs Created',
-  '75+ Open Source Skills',
+  '630+ AI Skills Shipped',
   'Everything Documented',
 ]
 
@@ -586,101 +594,6 @@ function HubShowcase({
             </>
           )}
         </div>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================================
-// AI CoE LEVEL CHECK — Curiosity-driven awareness strip
-// ============================================================================
-
-function AICoELevelCheck() {
-  const levels = [
-    { level: 1, name: 'Exploring', pct: '40%', active: false },
-    { level: 2, name: 'Experimenting', pct: '30%', active: false },
-    { level: 3, name: 'Integrating', pct: '20%', active: false },
-    { level: 4, name: 'Orchestrating', pct: '8%', active: true },
-    { level: 5, name: 'Compounding', pct: '2%', active: false },
-  ]
-
-  return (
-    <section className="py-20 lg:py-28 border-t border-white/5">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/70 mb-3">
-            Personal AI Center of Excellence
-          </p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-            Most professionals are at Level 2.
-            <br />
-            <span className="text-white/40">Where are you?</span>
-          </h2>
-          <p className="text-sm text-white/50 max-w-2xl mx-auto">
-            The same AI CoE framework enterprises pay $500K to build — adapted for individuals. Free.
-          </p>
-        </motion.div>
-
-        {/* Level progression bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-30px' }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex items-stretch gap-1 sm:gap-2 mb-8"
-        >
-          {levels.map((l, i) => (
-            <div
-              key={l.level}
-              className={`flex-1 rounded-lg p-3 sm:p-4 text-center transition-all ${
-                l.active
-                  ? 'bg-amber-500/20 border border-amber-500/40 shadow-lg shadow-amber-500/10'
-                  : 'bg-white/[0.03] border border-white/[0.06]'
-              }`}
-            >
-              <div className={`text-lg sm:text-xl font-bold ${l.active ? 'text-amber-400' : 'text-white/30'}`}>
-                {l.level}
-              </div>
-              <div className={`text-[10px] sm:text-xs mt-1 ${l.active ? 'text-amber-400/80' : 'text-white/25'}`}>
-                {l.name}
-              </div>
-              <div className={`text-[9px] sm:text-[10px] mt-0.5 ${l.active ? 'text-amber-400/60' : 'text-white/15'}`}>
-                {l.pct} of users
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
-        {/* CTA row */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <Link
-            href="/prompt-library"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-sm font-medium hover:bg-amber-500/25 hover:border-amber-500/50 transition-all"
-          >
-            <Sparkles className="h-4 w-4" />
-            Score yourself — free assessment
-            <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-          <Link
-            href="/research/personal-ai-coe"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
-          >
-            Read the research
-            <ArrowRight className="h-3 w-3" />
-          </Link>
-        </motion.div>
       </div>
     </section>
   )
@@ -1337,6 +1250,9 @@ export default function HomePageElite({
         {/* 4. Authority bar */}
         <AuthorityBar />
 
+        {/* 4b. AI Stack — tool logos with guide links */}
+        <TrustedByBlock />
+
         {/* 5. Products & Tools — moved up, expanded to 6 cards */}
         <ProductsTools />
 
@@ -1363,8 +1279,8 @@ export default function HomePageElite({
           eyebrow="Music Production"
           title="Music Lab"
           description="12,000+ AI songs produced with Suno. Genre mastery from orchestral to hip hop. Prompt engineering that creates radio-ready tracks."
-          imageSrc="/images/music/infogenius/music-revenue-flywheel-v1.png"
-          imageAlt="Suno AI Music Workflow — from idea to published track in five steps"
+          imageSrc="/images/blog/suno-prompt-engineering-complete-guide-hero.png"
+          imageAlt="Suno Prompt Engineering Guide"
           links={[
             { label: 'Suno Prompt Engineering Guide', href: '/blog/suno-prompt-engineering-complete-guide' },
             { label: 'Science of State Change', href: '/blog/science-of-state-change-music' },
@@ -1375,28 +1291,7 @@ export default function HomePageElite({
           color="orange"
         />
 
-        {/* 8. GenCreator Framework hub showcase */}
-        <HubShowcase
-          eyebrow="Creator Framework"
-          title="GenCreator"
-          description="The complete operating system for AI-native creators. 12 principles, a handbook, actionable blueprints, soul dimensions, a self-assessment — and a community shipping daily."
-          imageSrc="/images/gencreator/gencreator-framework-hero.png"
-          imageAlt="GenCreator Framework — holographic creator command center with emerald nexus"
-          links={[
-            { label: '12 Principles', href: '/gencreator/principles' },
-            { label: 'Self-Assessment', href: '/gencreator/assess' },
-            { label: 'Build Your soul.md', href: '/gencreator/soul' },
-          ]}
-          ctaLabel="Explore the Framework"
-          ctaHref="/gencreator"
-          color="emerald"
-          imageFirst
-        />
-
-        {/* 8.5. AI CoE Level Check — Curiosity Strip */}
-        <AICoELevelCheck />
-
-        {/* 9. Creative Worlds — Arcanea banner */}
+        {/* 8. Creative Worlds — Arcanea banner */}
         <CreativeWorlds />
 
         {/* 9. Design Lab — image grid */}

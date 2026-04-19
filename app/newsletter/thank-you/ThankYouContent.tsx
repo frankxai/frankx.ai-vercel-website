@@ -43,7 +43,7 @@ const STREAM_RECOMMENDATIONS: Record<
     streamName: 'FrankX Music Letters',
     character: { src: '/images/team/echo-leopard.png', name: 'Echo & Kira' },
     resources: [
-      { href: '/music', label: 'Music Hub', desc: '60+ AI-crafted tracks', gradient: 'from-pink-500/10 to-pink-600/10', border: 'border-pink-500/30' },
+      { href: '/music', label: 'Music Hub', desc: '12,000+ AI-crafted songs', gradient: 'from-pink-500/10 to-pink-600/10', border: 'border-pink-500/30' },
       { href: '/music-lab', label: 'Music Lab', desc: 'Interactive production tools', gradient: 'from-rose-500/10 to-rose-600/10', border: 'border-rose-500/30' },
       { href: '/products/suno-prompt-library', label: 'Suno Prompts', desc: 'Prompt engineering for music', gradient: 'from-cyan-500/10 to-cyan-600/10', border: 'border-cyan-500/30' },
     ],

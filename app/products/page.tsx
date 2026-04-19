@@ -128,7 +128,7 @@ const products = [
     description:
       'A digital kit with prompts, templates, and rollout rituals for consistent output.',
     status: 'early-access',
-    href: '/newsletter?ref=creative-ai-toolkit',
+    href: '/newsletter?ref=creative-ai-toolkit-early-access',
     color: 'amber',
     highlights: [
       '100+ validated prompts across storytelling, marketing, and operations',
@@ -144,7 +144,7 @@ const products = [
     description:
       'Story frameworks, editorial calendars, and prompt stacks to build authority.',
     status: 'early-access',
-    href: '/newsletter?ref=creation-chronicles',
+    href: '/newsletter?ref=creation-chronicles-early-access',
     color: 'cyan',
     highlights: [
       'Strategic story architecture and messaging frameworks',
@@ -160,7 +160,7 @@ const products = [
     description:
       'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
     status: 'early-access',
-    href: '/newsletter?ref=generative-creator-os',
+    href: '/newsletter?ref=generative-creator-os-early-access',
     color: 'violet',
     highlights: [
       'Multi-modal asset generation pipelines',
@@ -176,7 +176,7 @@ const products = [
     description:
       'Agentic playbooks, prompt stacks, and governance checklists for builders.',
     status: 'early-access',
-    href: '/acos',
+    href: '/newsletter?ref=agentic-creator-os-early-access',
     color: 'rose',
     highlights: [
       'Claude Code and Cursor mastery systems',

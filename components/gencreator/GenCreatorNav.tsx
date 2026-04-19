@@ -10,15 +10,6 @@ const links = [
   { href: '/gencreator/handbook', label: 'Handbook' },
   { href: '/gencreator/blueprints', label: 'Blueprints' },
   { href: '/gencreator/soul', label: 'Soul' },
-  { href: '/gencreator/assess', label: 'Assess' },
-  { href: '/gencreator/learn', label: 'Learn' },
-  { href: '/gencreator/toolkit', label: 'Toolkit' },
-  { href: '/gencreator/tracker', label: 'Tracker' },
-  { href: '/gencreator/showcase', label: 'Showcase' },
-  { href: '/gencreator/glossary', label: 'Glossary' },
-  { href: '/gencreator/products', label: 'Products' },
-  { href: '/gencreator/community', label: 'Community' },
-  { href: '/gencreator/join', label: 'Join' },
   { href: '/gencreator/manifesto', label: 'Manifesto' },
 ]
 

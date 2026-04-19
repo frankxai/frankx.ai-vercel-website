@@ -43,7 +43,7 @@ const visionPillars = [
     color: 'from-violet-400 to-pink-400',
     borderColor: 'border-violet-500/20',
     bgColor: 'bg-violet-500/5',
-    metrics: ['12K+ AI Songs', '7 Books Written', 'Visual Art System'],
+    metrics: ['12,000+ AI Songs', '7 Books Written', 'Visual Art System'],
   },
   {
     icon: Zap,
@@ -94,7 +94,7 @@ const timeline = [
     items: [
       'frankx.ai launched and live',
       'First 80+ blog articles published',
-      'AI music catalog started (12,000+ songs)',
+      'AI music catalog started (12,000+ tracks)',
       'ACOS v1 — first autonomous coding system',
       'Arcanea mythology and creative universe born',
     ],
@@ -155,7 +155,7 @@ const ecosystemNodes = [
   { label: 'Vibe OS', href: '/vibe', group: 'systems' },
   { label: 'Courses', href: '/courses', group: 'content' },
   { label: 'Soulbook', href: '/soulbook', group: 'creative' },
-  { label: 'Arcanea', href: '/arcanea', group: 'creative' },
+  { label: 'Arcanea', href: 'https://arcanea.ai', group: 'creative' },
   { label: 'Research', href: '/research', group: 'systems' },
   { label: 'Design Lab', href: '/design-lab', group: 'creative' },
   { label: 'Investor Intel', href: '/investor', group: 'products' },
@@ -293,7 +293,7 @@ export default function VisionContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            One person. Enterprise-grade AI architecture. 12,000+ AI songs. 7 books.
+            One person. Enterprise-grade AI architecture. 12,000+ songs. 7 books.
             Production systems. An entire creative ecosystem — built not to be
             impressive, but to prove what&apos;s now possible for anyone willing
             to build.

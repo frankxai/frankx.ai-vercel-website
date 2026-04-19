@@ -185,7 +185,7 @@ function AlphaCardDemo() {
             <h4 className="text-sm font-semibold text-white mb-1">{title}</h4>
             <p className="text-xs text-white/40 leading-relaxed">
               {i === 0 && 'Enterprise AI systems and workflows.'}
-              {i === 1 && '12,000+ AI songs, generative art.'}
+              {i === 1 && '12,000+ songs, generative art.'}
               {i === 2 && '75+ skills, 38 agents shipped.'}
             </p>
           </div>

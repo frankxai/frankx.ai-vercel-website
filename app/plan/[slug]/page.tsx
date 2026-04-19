@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       planTrackConfig[initiative.track].label.toLowerCase(),
       'build in public',
       'AI roadmap',
-      'frank van den bergh',
+      'Frank Riemer',
     ],
     openGraph: {
       title: `${initiative.title} | The Plan`,

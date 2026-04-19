@@ -1,11 +1,11 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-02-28T16:28:35.059Z",
-  "totalAssets": 522,
+  "generatedAt": "2026-02-20T17:38:23.665Z",
+  "totalAssets": 525,
   "totalCollections": 33,
-  "totalSize": 408103890,
+  "totalSize": 404385116,
   "formats": {
-    "png": 355,
+    "png": 358,
     "svg": 153,
     "jpeg": 5,
     "jpg": 9
@@ -83,7 +83,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 141,
+      "count": 158,
       "coverImage": "/images/blog/122e43a8-45fe-4476-b36c-378c1abb8fa5.png",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -470,6 +470,26 @@
           "createdAt": "2026-01-26"
         },
         {
+          "id": "blog/acos-v10-social-infographic-v2",
+          "filename": "acos-v10-social-infographic-v2.png",
+          "src": "/images/blog/acos-v10-social-infographic-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1474316,
+          "title": "Acos V10 Social Infographic V2",
+          "tags": [
+            "blog",
+            "acos",
+            "v10",
+            "social",
+            "infographic"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/acos-v10-social-infographic",
           "filename": "acos-v10-social-infographic.png",
           "src": "/images/blog/acos-v10-social-infographic.png",
@@ -508,6 +528,26 @@
             "architecture"
           ],
           "createdAt": "2026-01-29"
+        },
+        {
+          "id": "blog/agentic-ai-roadmap-2026-hero-v2",
+          "filename": "agentic-ai-roadmap-2026-hero-v2.png",
+          "src": "/images/blog/agentic-ai-roadmap-2026-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1228702,
+          "title": "Agentic Ai Roadmap 2026 Hero V2",
+          "tags": [
+            "blog",
+            "agentic",
+            "roadmap",
+            "2026",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
         },
         {
           "id": "blog/agentic-ai-roadmap-2026-hero",
@@ -685,6 +725,27 @@
           "createdAt": "2026-01-27"
         },
         {
+          "id": "blog/agentic-workflows-save-hours-hero-v2",
+          "filename": "agentic-workflows-save-hours-hero-v2.png",
+          "src": "/images/blog/agentic-workflows-save-hours-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1171429,
+          "title": "Agentic Workflows Save Hours Hero V2",
+          "tags": [
+            "blog",
+            "agentic",
+            "workflows",
+            "save",
+            "hours",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/agentic-workflows-save-hours-hero",
           "filename": "agentic-workflows-save-hours-hero.png",
           "src": "/images/blog/agentic-workflows-save-hours-hero.png",
@@ -745,6 +806,23 @@
             "hero"
           ],
           "createdAt": "2026-01-26"
+        },
+        {
+          "id": "blog/ai-dd-agents-v2",
+          "filename": "ai-dd-agents-v2.png",
+          "src": "/images/blog/ai-dd-agents-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 994743,
+          "title": "Ai Dd Agents V2",
+          "tags": [
+            "blog",
+            "agents"
+          ],
+          "createdAt": "2026-02-20"
         },
         {
           "id": "blog/ai-dd-agents",
@@ -975,6 +1053,26 @@
           "createdAt": "2026-01-26"
         },
         {
+          "id": "blog/building-custom-skills-hero-v2",
+          "filename": "building-custom-skills-hero-v2.png",
+          "src": "/images/blog/building-custom-skills-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 2305898,
+          "title": "Building Custom Skills Hero V2",
+          "tags": [
+            "blog",
+            "building",
+            "custom",
+            "skills",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/building-custom-skills-hero",
           "filename": "building-custom-skills-hero.png",
           "src": "/images/blog/building-custom-skills-hero.png",
@@ -1051,6 +1149,25 @@
           "createdAt": "2026-01-26"
         },
         {
+          "id": "blog/conscious-ai-entrepreneurs-hero-v2",
+          "filename": "conscious-ai-entrepreneurs-hero-v2.png",
+          "src": "/images/blog/conscious-ai-entrepreneurs-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1101324,
+          "title": "Conscious Ai Entrepreneurs Hero V2",
+          "tags": [
+            "blog",
+            "conscious",
+            "entrepreneurs",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/conscious-ai-entrepreneurs-hero",
           "filename": "conscious-ai-entrepreneurs-hero.png",
           "src": "/images/blog/conscious-ai-entrepreneurs-hero.png",
@@ -1089,6 +1206,25 @@
           "createdAt": "2026-01-23"
         },
         {
+          "id": "blog/conscious-ai-framework-hero-v2",
+          "filename": "conscious-ai-framework-hero-v2.png",
+          "src": "/images/blog/conscious-ai-framework-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1420594,
+          "title": "Conscious Ai Framework Hero V2",
+          "tags": [
+            "blog",
+            "conscious",
+            "framework",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/conscious-ai-framework-hero",
           "filename": "conscious-ai-framework-hero.png",
           "src": "/images/blog/conscious-ai-framework-hero.png",
@@ -1106,6 +1242,25 @@
             "hero"
           ],
           "createdAt": "2026-01-27"
+        },
+        {
+          "id": "blog/conscious-ai-integration-os-hero-v2",
+          "filename": "conscious-ai-integration-os-hero-v2.png",
+          "src": "/images/blog/conscious-ai-integration-os-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1193271,
+          "title": "Conscious Ai Integration Os Hero V2",
+          "tags": [
+            "blog",
+            "conscious",
+            "integration",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
         },
         {
           "id": "blog/conscious-ai-integration-os-hero",
@@ -1219,6 +1374,26 @@
           "createdAt": "2026-01-26"
         },
         {
+          "id": "blog/creators-ai-toolkit-workshop-hero-v2",
+          "filename": "creators-ai-toolkit-workshop-hero-v2.png",
+          "src": "/images/blog/creators-ai-toolkit-workshop-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1112187,
+          "title": "Creators Ai Toolkit Workshop Hero V2",
+          "tags": [
+            "blog",
+            "creators",
+            "toolkit",
+            "workshop",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/creators-ai-toolkit-workshop-hero",
           "filename": "creators-ai-toolkit-workshop-hero.png",
           "src": "/images/blog/creators-ai-toolkit-workshop-hero.png",
@@ -1237,6 +1412,27 @@
             "hero"
           ],
           "createdAt": "2026-01-26"
+        },
+        {
+          "id": "blog/creators-life-architecture-guide-hero-v2",
+          "filename": "creators-life-architecture-guide-hero-v2.png",
+          "src": "/images/blog/creators-life-architecture-guide-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1369861,
+          "title": "Creators Life Architecture Guide Hero V2",
+          "tags": [
+            "blog",
+            "creators",
+            "life",
+            "architecture",
+            "guide",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
         },
         {
           "id": "blog/creators-life-architecture-guide-hero",
@@ -1564,6 +1760,27 @@
           "createdAt": "2026-01-30"
         },
         {
+          "id": "blog/getting-started-agentic-creator-os-hero-v2",
+          "filename": "getting-started-agentic-creator-os-hero-v2.png",
+          "src": "/images/blog/getting-started-agentic-creator-os-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1032276,
+          "title": "Getting Started Agentic Creator Os Hero V2",
+          "tags": [
+            "blog",
+            "getting",
+            "started",
+            "agentic",
+            "creator",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/getting-started-agentic-creator-os-hero",
           "filename": "getting-started-agentic-creator-os-hero.png",
           "src": "/images/blog/getting-started-agentic-creator-os-hero.png",
@@ -1662,6 +1879,26 @@
             "intelligence"
           ],
           "createdAt": "2026-01-23"
+        },
+        {
+          "id": "blog/golden-age-of-intelligence-hero-v2",
+          "filename": "golden-age-of-intelligence-hero-v2.png",
+          "src": "/images/blog/golden-age-of-intelligence-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1773145,
+          "title": "Golden Age Of Intelligence Hero V2",
+          "tags": [
+            "blog",
+            "golden",
+            "age",
+            "intelligence",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
         },
         {
           "id": "blog/golden-age-of-intelligence-hero",
@@ -1914,6 +2151,26 @@
           "createdAt": "2026-01-26"
         },
         {
+          "id": "blog/mcp-server-integration-hero-v2",
+          "filename": "mcp-server-integration-hero-v2.png",
+          "src": "/images/blog/mcp-server-integration-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1100453,
+          "title": "Mcp Server Integration Hero V2",
+          "tags": [
+            "blog",
+            "mcp",
+            "server",
+            "integration",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/mcp-server-integration-hero",
           "filename": "mcp-server-integration-hero.png",
           "src": "/images/blog/mcp-server-integration-hero.png",
@@ -2036,6 +2293,25 @@
           "createdAt": "2026-02-12"
         },
         {
+          "id": "blog/multi-agent-orchestration-v2",
+          "filename": "multi-agent-orchestration-v2.png",
+          "src": "/images/blog/multi-agent-orchestration-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1314427,
+          "title": "Multi Agent Orchestration V2",
+          "tags": [
+            "blog",
+            "multi",
+            "agent",
+            "orchestration"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/multi-agent-orchestration",
           "filename": "multi-agent-orchestration.png",
           "src": "/images/blog/multi-agent-orchestration.png",
@@ -2053,6 +2329,26 @@
             "orchestration"
           ],
           "createdAt": "2026-01-26"
+        },
+        {
+          "id": "blog/music-as-consciousness-technology-hero-v2",
+          "filename": "music-as-consciousness-technology-hero-v2.png",
+          "src": "/images/blog/music-as-consciousness-technology-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 972992,
+          "title": "Music As Consciousness Technology Hero V2",
+          "tags": [
+            "blog",
+            "music",
+            "consciousness",
+            "technology",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
         },
         {
           "id": "blog/music-as-consciousness-technology-hero",
@@ -2312,6 +2608,26 @@
           "createdAt": "2026-01-23"
         },
         {
+          "id": "blog/production-agentic-ai-systems-hero-v2",
+          "filename": "production-agentic-ai-systems-hero-v2.png",
+          "src": "/images/blog/production-agentic-ai-systems-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1273679,
+          "title": "Production Agentic Ai Systems Hero V2",
+          "tags": [
+            "blog",
+            "production",
+            "agentic",
+            "systems",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
+        },
+        {
           "id": "blog/production-agentic-ai-systems-hero",
           "filename": "production-agentic-ai-systems-hero.png",
           "src": "/images/blog/production-agentic-ai-systems-hero.png",
@@ -2433,6 +2749,27 @@
             "hero"
           ],
           "createdAt": "2026-01-26"
+        },
+        {
+          "id": "blog/prompt-engineering-mastery-workshop-hero-v2",
+          "filename": "prompt-engineering-mastery-workshop-hero-v2.png",
+          "src": "/images/blog/prompt-engineering-mastery-workshop-hero-v2.png",
+          "thumbnail": null,
+          "collection": "blog",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 1142854,
+          "title": "Prompt Engineering Mastery Workshop Hero V2",
+          "tags": [
+            "blog",
+            "prompt",
+            "engineering",
+            "mastery",
+            "workshop",
+            "hero"
+          ],
+          "createdAt": "2026-02-20"
         },
         {
           "id": "blog/prompt-engineering-mastery-workshop-hero",
@@ -7336,7 +7673,7 @@
             "creation",
             "calls"
           ],
-          "createdAt": "2026-02-28"
+          "createdAt": "2026-01-29"
         },
         {
           "id": "golden-age/chapter-02-the-orchestration-age",
@@ -7356,7 +7693,7 @@
             "orchestration",
             "age"
           ],
-          "createdAt": "2026-02-28"
+          "createdAt": "2026-01-29"
         },
         {
           "id": "golden-age/chapter-03-the-first-gesture",
@@ -7376,67 +7713,7 @@
             "first",
             "gesture"
           ],
-          "createdAt": "2026-02-28"
-        },
-        {
-          "id": "golden-age/golden-age-hero-council-v1",
-          "filename": "golden-age-hero-council-v1.png",
-          "src": "/images/golden-age/golden-age-hero-council-v1.png",
-          "thumbnail": "/images/golden-age/golden-age-hero-council-v1_thumb.jpeg",
-          "collection": "golden-age",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 901584,
-          "title": "Golden Age Hero Council V1",
-          "tags": [
-            "golden-age",
-            "golden",
-            "age",
-            "hero",
-            "council"
-          ],
-          "createdAt": "2026-02-28"
-        },
-        {
-          "id": "golden-age/golden-age-hero-council-v2",
-          "filename": "golden-age-hero-council-v2.png",
-          "src": "/images/golden-age/golden-age-hero-council-v2.png",
-          "thumbnail": "/images/golden-age/golden-age-hero-council-v2_thumb.jpeg",
-          "collection": "golden-age",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 875485,
-          "title": "Golden Age Hero Council V2",
-          "tags": [
-            "golden-age",
-            "golden",
-            "age",
-            "hero",
-            "council"
-          ],
-          "createdAt": "2026-02-28"
-        },
-        {
-          "id": "golden-age/golden-age-hero-test-01",
-          "filename": "golden-age-hero-test-01.png",
-          "src": "/images/golden-age/golden-age-hero-test-01.png",
-          "thumbnail": "/images/golden-age/golden-age-hero-test-01_thumb.jpeg",
-          "collection": "golden-age",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 945270,
-          "title": "Golden Age Hero Test 01",
-          "tags": [
-            "golden-age",
-            "golden",
-            "age",
-            "hero",
-            "test"
-          ],
-          "createdAt": "2026-02-28"
+          "createdAt": "2026-01-29"
         },
         {
           "id": "golden-age/hero-golden-age",
@@ -7455,43 +7732,7 @@
             "golden",
             "age"
           ],
-          "createdAt": "2026-02-28"
-        },
-        {
-          "id": "golden-age/sis-architecture-v1",
-          "filename": "sis-architecture-v1.png",
-          "src": "/images/golden-age/sis-architecture-v1.png",
-          "thumbnail": "/images/golden-age/sis-architecture-v1_thumb.jpeg",
-          "collection": "golden-age",
-          "format": "png",
-          "width": 5504,
-          "height": 3072,
-          "fileSize": 7978900,
-          "title": "Sis Architecture V1",
-          "tags": [
-            "golden-age",
-            "sis",
-            "architecture"
-          ],
-          "createdAt": "2026-02-28"
-        },
-        {
-          "id": "golden-age/starlight-intelligence-v2",
-          "filename": "starlight-intelligence-v2.png",
-          "src": "/images/golden-age/starlight-intelligence-v2.png",
-          "thumbnail": "/images/golden-age/starlight-intelligence-v2_thumb.jpeg",
-          "collection": "golden-age",
-          "format": "png",
-          "width": 5504,
-          "height": 3072,
-          "fileSize": 7982531,
-          "title": "Starlight Intelligence V2",
-          "tags": [
-            "golden-age",
-            "starlight",
-            "intelligence"
-          ],
-          "createdAt": "2026-02-28"
+          "createdAt": "2026-01-29"
         }
       ]
     },

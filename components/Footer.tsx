@@ -6,8 +6,14 @@ import Image from 'next/image'
 export default function Footer() {
   return (
     <footer className="relative border-t border-white/5 bg-[#0a0a0b] text-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
-        <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
+      {/* Aurora ambient glow */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <div className="absolute -top-32 left-1/4 h-64 w-96 rounded-full bg-cyan-500/[0.07] blur-[128px]" />
+        <div className="absolute top-1/2 right-1/4 h-48 w-80 rounded-full bg-violet-500/[0.05] blur-[120px]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-40 w-72 rounded-full bg-emerald-500/[0.04] blur-[100px]" />
+      </div>
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
+        <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
@@ -102,37 +108,28 @@ export default function Footer() {
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
               <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
-              <li><Link href="/investor" className="hover:text-white transition-colors">Investor Hub</Link></li>
-            </ul>
-          </div>
-
-          {/* GenCreator */}
-          <div>
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">GenCreator</h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
-              <li><Link href="/gencreator" className="hover:text-white transition-colors">Framework Hub</Link></li>
-              <li><Link href="/gencreator/principles" className="hover:text-white transition-colors">12 Principles</Link></li>
-              <li><Link href="/gencreator/handbook" className="hover:text-white transition-colors">Handbook</Link></li>
-              <li><Link href="/gencreator/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
-              <li><Link href="/gencreator/join" className="hover:text-white transition-colors">Join</Link></li>
-            </ul>
-          </div>
-
-          {/* Connect */}
-          <div>
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Connect</h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
-              <li><Link href="/newsletter" className="hover:text-white transition-colors">Newsletter</Link></li>
-              <li><Link href="/gencreator/community" className="hover:text-white transition-colors">Community</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/acos" className="hover:text-white transition-colors">ACOS</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+            </ul>
+          </div>
+
+          {/* Invest */}
+          <div>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Invest</h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+              <li><Link href="/investor" className="hover:text-white transition-colors">Intelligence Hub</Link></li>
+              <li><Link href="/investor/agents" className="hover:text-white transition-colors">Agent Packs</Link></li>
+              <li><Link href="/investor/tools" className="hover:text-white transition-colors">Tools</Link></li>
+              <li><Link href="/newsletter" className="hover:text-white transition-colors">Newsletter</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/5">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+        {/* Newsletter — Aurora accent */}
+        <div className="relative mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/5">
+          <div className="absolute inset-0 -mx-4 sm:-mx-6 rounded-2xl bg-gradient-to-r from-cyan-950/20 via-transparent to-violet-950/20 pointer-events-none" aria-hidden />
+          <div className="relative flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-white">Weekly dispatch — AI architecture & creative systems</p>
               <p className="text-xs text-white/40">One email per week. Unsubscribe anytime.</p>

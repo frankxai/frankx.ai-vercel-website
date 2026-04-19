@@ -1,16 +1,32 @@
 ---
-title: 'How I Configured Claude Code with ACOS and 21 MCP Servers'
-description: 'Step-by-step guide to building a production-grade AI coding environment with ACOS, Claude Code, MCP servers, and custom agent workflows. From zero to shipping.'
-date: '2026-03-21'
-author: 'FrankX'
-category: 'Creator Systems'
-tags: ['ACOS', 'Claude Code', 'MCP', 'Coding Agents', 'AI Development', 'Setup Guide']
-image: '/images/blog/build-your-own-jarvis-hero.png'
+title: "How I Configured Claude Code with ACOS and 21 MCP Servers"
+description: "Step-by-step guide to building a production-grade AI coding environment with ACOS, Claude Code, MCP servers, and custom agent workflows. From zero to shipping."
+date: "2026-03-21"
+author: "FrankX"
+category: "Creator Systems"
+tags:
+  [
+    "ACOS",
+    "Claude Code",
+    "MCP",
+    "Coding Agents",
+    "AI Development",
+    "Setup Guide",
+  ]
+image: "/images/blog/build-your-own-jarvis-hero.png"
 featured: true
-keywords: ['acos setup guide', 'claude code setup 2026', 'mcp server setup', 'ai coding agent configuration', 'agentic creator os guide', 'claude code mcp tutorial']
-readingGoal: 'You will have a fully configured AI coding environment — Claude Code with ACOS, MCP servers, custom skills, and agent profiles — shipping production code.'
-tldr: 'ACOS turns Claude Code from a coding assistant into a complete creative production environment. This guide covers: installing Claude Code, configuring ACOS with 75+ skills and 38 agents, setting up MCP servers for your stack, creating CLAUDE.md project files, building custom slash commands, and deploying to production. Includes the exact configuration I use to ship frankx.ai.'
-schema: ['Article', 'FAQPage']
+keywords:
+  [
+    "acos setup guide",
+    "claude code setup 2026",
+    "mcp server setup",
+    "ai coding agent configuration",
+    "agentic creator os guide",
+    "claude code mcp tutorial",
+  ]
+readingGoal: "You will have a fully configured AI coding environment — Claude Code with ACOS, MCP servers, custom skills, and agent profiles — shipping production code."
+tldr: "ACOS turns Claude Code from a coding assistant into a complete creative production environment. This guide covers: installing Claude Code, configuring ACOS with 75+ skills and 38 agents, setting up MCP servers for your stack, creating CLAUDE.md project files, building custom slash commands, and deploying to production. Includes the exact configuration I use to ship frankx.ai."
+schema: ["Article", "FAQPage"]
 ---
 
 ## TL;DR
@@ -25,14 +41,14 @@ This guide covers the exact setup process I use. By the end, you will have Claud
 
 ## What ACOS Adds to Claude Code
 
-| Layer | What it provides |
-|---|---|
-| Skills library | Domain-specific prompt rules loaded per task context |
-| Agent profiles | Specialized personas that activate based on trigger keywords |
-| Slash commands | One-command workflows: `/frankx-ai-deploy` ships to Vercel |
-| CLAUDE.md | Project memory — brand voice, architecture decisions, anti-patterns |
-| Hook system | Automated session logging, skill activation, pre/post-commit actions |
-| MCP servers | Live connections to Vercel, GitHub, Linear, Notion, Slack, databases |
+| Layer          | What it provides                                                     |
+| -------------- | -------------------------------------------------------------------- |
+| Skills library | Domain-specific prompt rules loaded per task context                 |
+| Agent profiles | Specialized personas that activate based on trigger keywords         |
+| Slash commands | One-command workflows: `/frankx-ai-deploy` ships to Vercel           |
+| CLAUDE.md      | Project memory — brand voice, architecture decisions, anti-patterns  |
+| Hook system    | Automated session logging, skill activation, pre/post-commit actions |
+| MCP servers    | Live connections to Vercel, GitHub, Linear, Notion, Slack, databases |
 
 The net effect: when I type `/frankx-ai-deploy`, Claude Code reads the branch state, runs TypeScript checks, stages files, writes a commit message in my style, pushes to production, and confirms the Vercel deployment. One command. No mental overhead.
 
@@ -75,15 +91,18 @@ The `CLAUDE.md` file is what Claude Code reads at the start of every session. It
 # My Project Configuration
 
 ## Brand Voice
+
 **DO:** Lead with results. Precise technical language.
 **DON'T:** Grandiose claims. Over-explain philosophy.
 
 ## Architecture
+
 - Next.js App Router
 - Tailwind CSS + shadcn/ui
 - Vercel deployment
 
 ## Anti-Patterns: NEVER Do
+
 - Never rename working URLs
 - Never delete pages with traffic
 - Never commit .env files
@@ -129,14 +148,17 @@ Create `.claude/skills/my-brand-voice/SKILL.md`:
 # Brand Voice Skill
 
 ## Activation
+
 Activates when: writing copy, blog posts, landing pages
 
 ## Core Rules
+
 - Lead with outcomes, not features
 - Paragraph lengths: mix short punches with longer technical explanations
 - Never use: "revolutionary", "game-changing", "unlock your potential"
 
 ## Sentence Patterns
+
 Good: "The build deploys in 43 seconds. No configuration required."
 Bad: "Experience the revolutionary power of instant deployment!"
 ```
@@ -147,9 +169,11 @@ Create `.claude/commands/deploy.md`:
 
 ```markdown
 # /deploy
+
 Deploy the current branch to production.
 
 ## Steps
+
 1. Run TypeScript check: `npx tsc --noEmit`
 2. Stage changed files (list them for review)
 3. Write conventional commit message
@@ -157,6 +181,7 @@ Deploy the current branch to production.
 5. Confirm Vercel deployment
 
 ## Rules
+
 - Never skip TypeScript check
 - Never commit .env files
 ```
@@ -233,16 +258,21 @@ Each command took 20-30 minutes to build. Collectively they've saved hundreds of
 ## FAQ
 
 ### Do I need ACOS to use Claude Code effectively?
+
 No. Claude Code is capable out of the box. ACOS is the configuration layer for serious, repeated use. Start with a good `CLAUDE.md` and a few slash commands — that alone delivers most of the value.
 
 ### How long does the full ACOS setup take?
+
 Core installation — 2-3 hours. The full 38-agent, 40-command system took months to build incrementally. Start with what you need today.
 
 ### What's the difference between a skill and a slash command?
-A skill shapes *how* the AI operates (rules and patterns). A command specifies *what sequence of steps* to execute. Skills are declarative. Commands are procedural.
+
+A skill shapes _how_ the AI operates (rules and patterns). A command specifies _what sequence of steps_ to execute. Skills are declarative. Commands are procedural.
 
 ### Can I use ACOS with Python or Go projects?
+
 ACOS is language-agnostic. The architecture — CLAUDE.md, agent profiles, slash commands, hooks — works with any language and framework.
 
 ### What if Claude Code ignores my CLAUDE.md rules?
+
 Usually a context length issue. Keep CLAUDE.md under 2,000 words. Front-load critical rules in the first 500 words. Use hooks for rules that must always be enforced.
