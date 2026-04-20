@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Pair Programming Commands Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/pair/commands.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Pair Programming Commands Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands%2Fpair">pair</a> / <span>commands.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Pair Programming Commands Reference</h1>
+<p>Complete reference for all pair programming session commands.</p>
+<h2>Session Control Commands</h2>
+<h3>/start</h3>
+<p>Start a new pair programming session.</p>
+<pre><code>/start [--mode &lt;mode&gt;] [--agent &lt;agent&gt;]
+</code></pre>
+<h3>/end</h3>
+<p>End the current session.</p>
+<pre><code>/end [--save] [--report]
+</code></pre>
+<h3>/pause</h3>
+<p>Pause the current session.</p>
+<pre><code>/pause [--reason &lt;reason&gt;]
+</code></pre>
+<h3>/resume</h3>
+<p>Resume a paused session.</p>
+<pre><code>/resume
+</code></pre>
+<h3>/status</h3>
+<p>Show current session status.</p>
+<pre><code>/status [--verbose]
+</code></pre>
+<h3>/switch</h3>
+<p>Switch driver/navigator roles.</p>
+<pre><code>/switch [--immediate]
+</code></pre>
+<h2>Code Commands</h2>
+<h3>/explain</h3>
+<p>Explain the current code or selection.</p>
+<pre><code>/explain [--level basic|detailed|expert]
+</code></pre>
+<h3>/suggest</h3>
+<p>Get improvement suggestions.</p>
+<pre><code>/suggest [--type refactor|optimize|security|style]
+</code></pre>
+<h3>/implement</h3>
+<p>Request implementation (navigator mode).</p>
+<pre><code>/implement &lt;description&gt;
+</code></pre>
+<h3>/refactor</h3>
+<p>Refactor selected code.</p>
+<pre><code>/refactor [--pattern &lt;pattern&gt;] [--scope function|file|module]
+</code></pre>
+<h3>/optimize</h3>
+<p>Optimize code for performance.</p>
+<pre><code>/optimize [--target speed|memory|both]
+</code></pre>
+<h3>/document</h3>
+<p>Add documentation to code.</p>
+<pre><code>/document [--format jsdoc|markdown|inline]
+</code></pre>
+<h3>/comment</h3>
+<p>Add inline comments.</p>
+<pre><code>/comment [--verbose]
+</code></pre>
+<h3>/pattern</h3>
+<p>Apply a design pattern.</p>
+<pre><code>/pattern &lt;pattern-name&gt; [--example]
+</code></pre>
+<h2>Testing Commands</h2>
+<h3>/test</h3>
+<p>Run test suite.</p>
+<pre><code>/test [--watch] [--coverage] [--only &lt;pattern&gt;]
+</code></pre>
+<h3>/test-gen</h3>
+<p>Generate tests for current code.</p>
+<pre><code>/test-gen [--type unit|integration|e2e]
+</code></pre>
+<h3>/coverage</h3>
+<p>Check test coverage.</p>
+<pre><code>/coverage [--report html|json|terminal]
+</code></pre>
+<h3>/mock</h3>
+<p>Generate mock data or functions.</p>
+<pre><code>/mock &lt;target&gt; [--realistic]
+</code></pre>
+<h3>/test-watch</h3>
+<p>Enable test watching.</p>
+<pre><code>/test-watch [--on-save]
+</code></pre>
+<h3>/snapshot</h3>
+<p>Create test snapshots.</p>
+<pre><code>/snapshot [--update]
+</code></pre>
+<h2>Review Commands</h2>
+<h3>/review</h3>
+<p>Perform code review.</p>
+<pre><code>/review [--scope current|file|changes] [--strict]
+</code></pre>
+<h3>/security</h3>
+<p>Security analysis.</p>
+<pre><code>/security [--deep] [--fix]
+</code></pre>
+<h3>/perf</h3>
+<p>Performance analysis.</p>
+<pre><code>/perf [--profile] [--suggestions]
+</code></pre>
+<h3>/quality</h3>
+<p>Check code quality metrics.</p>
+<pre><code>/quality [--detailed]
+</code></pre>
+<h3>/lint</h3>
+<p>Run linters.</p>
+<pre><code>/lint [--fix] [--config &lt;config&gt;]
+</code></pre>
+<h3>/complexity</h3>
+<p>Analyze code complexity.</p>
+<pre><code>/complexity [--threshold &lt;value&gt;]
+</code></pre>
+<h2>Navigation Commands</h2>
+<h3>/goto</h3>
+<p>Navigate to file or location.</p>
+<pre><code>/goto &lt;file&gt;[:line[:column]]
+</code></pre>
+<h3>/find</h3>
+<p>Search in project.</p>
+<pre><code>/find &lt;pattern&gt; [--regex] [--case-sensitive]
+</code></pre>
+<h3>/recent</h3>
+<p>Show recent files.</p>
+<pre><code>/recent [--limit &lt;n&gt;]
+</code></pre>
+<h3>/bookmark</h3>
+<p>Manage bookmarks.</p>
+<pre><code>/bookmark [add|list|goto|remove] [&lt;name&gt;]
+</code></pre>
+<h3>/history</h3>
+<p>Show command history.</p>
+<pre><code>/history [--limit &lt;n&gt;] [--filter &lt;pattern&gt;]
+</code></pre>
+<h3>/tree</h3>
+<p>Show project structure.</p>
+<pre><code>/tree [--depth &lt;n&gt;] [--filter &lt;pattern&gt;]
+</code></pre>
+<h2>Git Commands</h2>
+<h3>/diff</h3>
+<p>Show git diff.</p>
+<pre><code>/diff [--staged] [--file &lt;file&gt;]
+</code></pre>
+<h3>/commit</h3>
+<p>Commit with verification.</p>
+<pre><code>/commit [--message &lt;msg&gt;] [--amend]
+</code></pre>
+<h3>/branch</h3>
+<p>Branch operations.</p>
+<pre><code>/branch [create|switch|delete|list] [&lt;name&gt;]
+</code></pre>
+<h3>/stash</h3>
+<p>Stash operations.</p>
+<pre><code>/stash [save|pop|list|apply] [&lt;message&gt;]
+</code></pre>
+<h3>/log</h3>
+<p>View git log.</p>
+<pre><code>/log [--oneline] [--limit &lt;n&gt;]
+</code></pre>
+<h3>/blame</h3>
+<p>Show git blame.</p>
+<pre><code>/blame [&lt;file&gt;]
+</code></pre>
+<h2>AI Partner Commands</h2>
+<h3>/agent</h3>
+<p>Manage AI agent.</p>
+<pre><code>/agent [switch|info|config] [&lt;agent-name&gt;]
+</code></pre>
+<h3>/teach</h3>
+<p>Teach the AI your preferences.</p>
+<pre><code>/teach &lt;preference&gt;
+</code></pre>
+<h3>/feedback</h3>
+<p>Provide feedback to AI.</p>
+<pre><code>/feedback [positive|negative] &lt;message&gt;
+</code></pre>
+<h3>/personality</h3>
+<p>Adjust AI personality.</p>
+<pre><code>/personality [professional|friendly|concise|verbose]
+</code></pre>
+<h3>/expertise</h3>
+<p>Set AI expertise focus.</p>
+<pre><code>/expertise [add|remove|list] [&lt;domain&gt;]
+</code></pre>
+<h2>Metrics Commands</h2>
+<h3>/metrics</h3>
+<p>Show session metrics.</p>
+<pre><code>/metrics [--period today|session|week|all]
+</code></pre>
+<h3>/score</h3>
+<p>Show quality scores.</p>
+<pre><code>/score [--breakdown]
+</code></pre>
+<h3>/productivity</h3>
+<p>Show productivity metrics.</p>
+<pre><code>/productivity [--chart]
+</code></pre>
+<h3>/leaderboard</h3>
+<p>Show improvement leaderboard.</p>
+<pre><code>/leaderboard [--personal|team]
+</code></pre>
+<h2>Configuration Commands</h2>
+<h3>/config</h3>
+<p>Manage configuration.</p>
+<pre><code>/config [get|set|reset] [&lt;key&gt;] [&lt;value&gt;]
+</code></pre>
+<h3>/profile</h3>
+<p>Manage profiles.</p>
+<pre><code>/profile [use|create|list|delete] [&lt;name&gt;]
+</code></pre>
+<h3>/theme</h3>
+<p>Change interface theme.</p>
+<pre><code>/theme [dark|light|auto|&lt;custom&gt;]
+</code></pre>
+<h3>/shortcuts</h3>
+<p>Manage keyboard shortcuts.</p>
+<pre><code>/shortcuts [list|set|reset] [&lt;action&gt;] [&lt;keys&gt;]
+</code></pre>
+<h2>Collaboration Commands</h2>
+<h3>/share</h3>
+<p>Share session or code.</p>
+<pre><code>/share [session|code|screen] [--with &lt;user&gt;]
+</code></pre>
+<h3>/invite</h3>
+<p>Invite collaborator.</p>
+<pre><code>/invite &lt;email&gt; [--role observer|participant]
+</code></pre>
+<h3>/chat</h3>
+<p>Send message to team.</p>
+<pre><code>/chat &lt;message&gt;
+</code></pre>
+<h3>/note</h3>
+<p>Add session note.</p>
+<pre><code>/note &lt;text&gt; [--tag &lt;tag&gt;]
+</code></pre>
+<h2>Learning Commands</h2>
+<h3>/learn</h3>
+<p>Access learning resources.</p>
+<pre><code>/learn [&lt;topic&gt;] [--level beginner|intermediate|advanced]
+</code></pre>
+<h3>/example</h3>
+<p>Show code examples.</p>
+<pre><code>/example &lt;pattern-or-concept&gt; [--language &lt;lang&gt;]
+</code></pre>
+<h3>/quiz</h3>
+<p>Take a quiz on current topic.</p>
+<pre><code>/quiz [--difficulty easy|medium|hard]
+</code></pre>
+<h3>/tip</h3>
+<p>Get a coding tip.</p>
+<pre><code>/tip [--topic &lt;topic&gt;]
+</code></pre>
+<h2>Utility Commands</h2>
+<h3>/help</h3>
+<p>Show help.</p>
+<pre><code>/help [&lt;command&gt;]
+</code></pre>
+<h3>/undo</h3>
+<p>Undo last action.</p>
+<pre><code>/undo [--steps &lt;n&gt;]
+</code></pre>
+<h3>/redo</h3>
+<p>Redo undone action.</p>
+<pre><code>/redo [--steps &lt;n&gt;]
+</code></pre>
+<h3>/clear</h3>
+<p>Clear screen or cache.</p>
+<pre><code>/clear [screen|cache|history]
+</code></pre>
+<h3>/export</h3>
+<p>Export session data.</p>
+<pre><code>/export [--format json|md|html] [--file &lt;path&gt;]
+</code></pre>
+<h3>/import</h3>
+<p>Import configuration or data.</p>
+<pre><code>/import &lt;file&gt; [--type config|session|profile]
+</code></pre>
+<h2>Debugging Commands</h2>
+<h3>/debug</h3>
+<p>Enter debug mode.</p>
+<pre><code>/debug [on|off|toggle]
+</code></pre>
+<h3>/breakpoint</h3>
+<p>Manage breakpoints.</p>
+<pre><code>/breakpoint [add|remove|list|clear] [&lt;location&gt;]
+</code></pre>
+<h3>/trace</h3>
+<p>Enable tracing.</p>
+<pre><code>/trace [on|off|show]
+</code></pre>
+<h3>/inspect</h3>
+<p>Inspect variable or object.</p>
+<pre><code>/inspect &lt;variable&gt; [--deep]
+</code></pre>
+<h3>/watch</h3>
+<p>Watch expression.</p>
+<pre><code>/watch [add|remove|list] [&lt;expression&gt;]
+</code></pre>
+<h2>Advanced Commands</h2>
+<h3>/macro</h3>
+<p>Record or run macros.</p>
+<pre><code>/macro [record|stop|play|list|delete] [&lt;name&gt;]
+</code></pre>
+<h3>/plugin</h3>
+<p>Manage plugins.</p>
+<pre><code>/plugin [install|remove|list|config] [&lt;plugin&gt;]
+</code></pre>
+<h3>/api</h3>
+<p>API operations.</p>
+<pre><code>/api &lt;endpoint&gt; [--method GET|POST|PUT|DELETE] [--data &lt;json&gt;]
+</code></pre>
+<h3>/exec</h3>
+<p>Execute system command.</p>
+<pre><code>/exec &lt;command&gt; [--background]
+</code></pre>
+<h2>Quick Command Aliases</h2>
+<table>
+<thead>
+<tr>
+<th>Alias</th>
+<th>Full Command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/s</code></td>
+<td><code>/suggest</code></td>
+</tr>
+<tr>
+<td><code>/e</code></td>
+<td><code>/explain</code></td>
+</tr>
+<tr>
+<td><code>/t</code></td>
+<td><code>/test</code></td>
+</tr>
+<tr>
+<td><code>/r</code></td>
+<td><code>/review</code></td>
+</tr>
+<tr>
+<td><code>/c</code></td>
+<td><code>/commit</code></td>
+</tr>
+<tr>
+<td><code>/g</code></td>
+<td><code>/goto</code></td>
+</tr>
+<tr>
+<td><code>/f</code></td>
+<td><code>/find</code></td>
+</tr>
+<tr>
+<td><code>/h</code></td>
+<td><code>/help</code></td>
+</tr>
+<tr>
+<td><code>/sw</code></td>
+<td><code>/switch</code></td>
+</tr>
+<tr>
+<td><code>/st</code></td>
+<td><code>/status</code></td>
+</tr>
+</tbody></table>
+<h2>Command Modifiers</h2>
+<h3>Global Modifiers</h3>
+<ul>
+<li><code>--quiet</code> - Suppress output</li>
+<li><code>--verbose</code> - Detailed output</li>
+<li><code>--json</code> - JSON output format</li>
+<li><code>--no-cache</code> - Skip cache</li>
+<li><code>--timeout &lt;s&gt;</code> - Command timeout</li>
+</ul>
+<h3>Chaining Commands</h3>
+<p>Use <code>&amp;&amp;</code> to chain commands:</p>
+<pre><code>/test &amp;&amp; /commit &amp;&amp; /push
+</code></pre>
+<h3>Command History</h3>
+<ul>
+<li><code>↑/↓</code> - Navigate history</li>
+<li><code>Ctrl+R</code> - Search history</li>
+<li><code>!!</code> - Repeat last command</li>
+<li><code>!&lt;n&gt;</code> - Run command n from history</li>
+</ul>
+<h2>Custom Commands</h2>
+<p>Define custom commands in configuration:</p>
+<pre><code class="language-json">{
+  &quot;customCommands&quot;: {
+    &quot;tdd&quot;: &quot;/test-gen &amp;&amp; /test --watch&quot;,
+    &quot;full-review&quot;: &quot;/lint --fix &amp;&amp; /test &amp;&amp; /review --strict&quot;,
+    &quot;quick-fix&quot;: &quot;/suggest --type fix &amp;&amp; /implement &amp;&amp; /test&quot;
+  }
+}
+</code></pre>
+<p>Use custom commands:</p>
+<pre><code>/custom tdd
+/custom full-review
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Learn Core Commands</strong> - Master frequently used commands</li>
+<li><strong>Use Aliases</strong> - Speed up common operations</li>
+<li><strong>Chain Commands</strong> - Automate workflows</li>
+<li><strong>Custom Commands</strong> - Create your workflows</li>
+<li><strong>Keyboard Shortcuts</strong> - Faster than typing</li>
+</ol>
+<h2>Related Documentation</h2>
+<ul>
+<li><a href="./session.md">Session Management</a></li>
+<li><a href="./config.md">Configuration</a></li>
+<li><a href="./shortcuts.md">Keyboard Shortcuts</a></li>
+<li><a href="./README.md">Getting Started</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

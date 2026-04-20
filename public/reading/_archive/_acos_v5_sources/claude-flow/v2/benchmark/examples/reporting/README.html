@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Enhanced Benchmark Reporting Tools</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/examples/reporting/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Enhanced Benchmark Reporting Tools</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark%2Fexamples%2Freporting">reporting</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Enhanced Benchmark Reporting Tools</h1>
+<p>This directory contains advanced tools for viewing, analyzing, and comparing Claude Flow benchmark reports with detailed metrics and file references.</p>
+<h2>🛠️ Available Tools</h2>
+<h3>1. Enhanced Report Viewer (<code>enhanced_report_viewer.py</code>)</h3>
+<p>Advanced report analysis with detailed metrics and file references.</p>
+<pre><code class="language-bash"># View summary of all reports
+python enhanced_report_viewer.py --summary
+
+# View detailed report for specific benchmark
+python enhanced_report_viewer.py --id &lt;benchmark-id&gt;
+
+# View latest benchmark report
+python enhanced_report_viewer.py --latest
+
+# Analyze trends across multiple benchmarks
+python enhanced_report_viewer.py --trends
+
+# Use custom report directory
+python enhanced_report_viewer.py --dir ./my-reports --summary
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>📄 Complete file references (reports, metrics, process logs)</li>
+<li>📊 Detailed performance metrics</li>
+<li>💾 Resource usage tracking</li>
+<li>📈 Trend analysis across runs</li>
+<li>🏆 Best/worst performance identification</li>
+</ul>
+<h3>2. Real-time Monitor (<code>realtime_monitor.py</code>)</h3>
+<p>Monitor benchmark execution with live metrics updates.</p>
+<pre><code class="language-bash"># Monitor a simple task
+python realtime_monitor.py &quot;Create a REST API&quot;
+
+# Monitor with specific strategy
+python realtime_monitor.py &quot;Build authentication system&quot; --strategy development
+
+# Monitor with more workers
+python realtime_monitor.py &quot;Complex analysis task&quot; --max-workers 8
+
+# Custom output directory
+python realtime_monitor.py &quot;Test task&quot; --output-dir ./live-reports
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>⏱️ Live execution tracking</li>
+<li>📊 Real-time metrics display</li>
+<li>💻 CPU and memory monitoring</li>
+<li>❌ Error tracking as they occur</li>
+<li>📁 Automatic file reference updates</li>
+</ul>
+<h3>3. Benchmark Comparator (<code>compare_benchmarks.py</code>)</h3>
+<p>Run and compare multiple benchmarks with detailed analysis.</p>
+<pre><code class="language-bash"># Quick comparison (3 different tasks)
+python compare_benchmarks.py --preset quick
+
+# Thorough comparison (5 configurations)
+python compare_benchmarks.py --preset thorough
+
+# Strategy comparison (6 strategies, same task)
+python compare_benchmarks.py --preset strategies
+
+# Custom output directory
+python compare_benchmarks.py --preset quick --output-dir ./comparisons
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>🔬 Side-by-side performance comparison</li>
+<li>🎯 Strategy effectiveness analysis</li>
+<li>🏆 Best performer identification</li>
+<li>📊 Aggregated metrics per strategy</li>
+<li>📄 Comparison report generation</li>
+</ul>
+<h2>📊 Report Format</h2>
+<p>Each benchmark generates multiple report files:</p>
+<h3>Main Report (<code>benchmark_&lt;id&gt;.json</code>)</h3>
+<pre><code class="language-json">{
+  &quot;benchmark_id&quot;: &quot;uuid&quot;,
+  &quot;status&quot;: &quot;success&quot;,
+  &quot;duration&quot;: 12.34,
+  &quot;metrics&quot;: {
+    &quot;wall_clock_time&quot;: 12.34,
+    &quot;tasks_per_second&quot;: 0.81,
+    &quot;success_rate&quot;: 1.0,
+    &quot;peak_memory_mb&quot;: 256.5,
+    &quot;average_cpu_percent&quot;: 45.2
+  },
+  &quot;results&quot;: [...]
+}
+</code></pre>
+<h3>Metrics Report (<code>metrics_&lt;id&gt;.json</code>)</h3>
+<pre><code class="language-json">{
+  &quot;summary&quot;: {...},
+  &quot;performance&quot;: {...},
+  &quot;resources&quot;: {...},
+  &quot;process_executions&quot;: {...}
+}
+</code></pre>
+<h3>Process Report (<code>process_report_&lt;id&gt;.json</code>)</h3>
+<pre><code class="language-json">{
+  &quot;summary&quot;: {...},
+  &quot;command_statistics&quot;: {...},
+  &quot;executions&quot;: [...]
+}
+</code></pre>
+<h2>🎯 Usage Examples</h2>
+<h3>Complete Workflow Example</h3>
+<pre><code class="language-bash"># 1. Run a monitored benchmark
+python realtime_monitor.py &quot;Build user authentication&quot; --strategy development
+
+# 2. View the detailed report
+python enhanced_report_viewer.py --latest
+
+# 3. Compare with other strategies
+python compare_benchmarks.py --preset strategies
+
+# 4. Analyze trends over time
+python enhanced_report_viewer.py --trends
+</code></pre>
+<h3>Batch Analysis</h3>
+<pre><code class="language-bash"># Run multiple benchmarks
+for task in &quot;Create API&quot; &quot;Add tests&quot; &quot;Optimize code&quot;; do
+  swarm-benchmark real swarm &quot;$task&quot; --output-dir ./batch-reports
+done
+
+# Analyze all results
+python enhanced_report_viewer.py --dir ./batch-reports --summary
+python enhanced_report_viewer.py --dir ./batch-reports --trends
+</code></pre>
+<h2>📈 Metrics Explained</h2>
+<h3>Performance Metrics</h3>
+<ul>
+<li><strong>Wall Clock Time</strong>: Total real-world execution time</li>
+<li><strong>Tasks/Second</strong>: Throughput measure</li>
+<li><strong>Success Rate</strong>: Percentage of successful task completions</li>
+</ul>
+<h3>Resource Metrics</h3>
+<ul>
+<li><strong>Peak Memory</strong>: Maximum memory usage during execution</li>
+<li><strong>Average CPU</strong>: Mean CPU utilization</li>
+<li><strong>Total Tokens</strong>: LLM tokens consumed (if available)</li>
+</ul>
+<h3>Process Metrics</h3>
+<ul>
+<li><strong>Command Statistics</strong>: Breakdown by command type</li>
+<li><strong>Execution Count</strong>: Number of subprocess calls</li>
+<li><strong>Average Duration</strong>: Mean time per command</li>
+</ul>
+<h2>🔍 Troubleshooting</h2>
+<h3>No Reports Found</h3>
+<pre><code class="language-bash"># Check report directory exists
+ls -la reports/
+
+# Ensure benchmarks are saving to correct location
+swarm-benchmark real swarm &quot;test&quot; --output-dir ./reports
+</code></pre>
+<h3>Incomplete Metrics</h3>
+<ul>
+<li>Some metrics require longer-running benchmarks (&gt;5s)</li>
+<li>Memory metrics need appropriate permissions</li>
+<li>Token metrics only available with LLM integrations</li>
+</ul>
+<h3>Permission Issues</h3>
+<pre><code class="language-bash"># Make scripts executable
+chmod +x *.py
+
+# Ensure write permissions for reports
+chmod 755 reports/
+</code></pre>
+<h2>🚀 Advanced Features</h2>
+<h3>Custom Report Processing</h3>
+<pre><code class="language-python">from enhanced_report_viewer import BenchmarkReport, EnhancedReportViewer
+
+# Load and process reports programmatically
+viewer = EnhancedReportViewer()
+viewer.load_reports()
+
+for report in viewer.reports:
+    print(f&quot;ID: {report.benchmark_id}&quot;)
+    print(f&quot;Success Rate: {report.success_rate:.1%}&quot;)
+    print(f&quot;Tokens: {report.total_tokens}&quot;)
+</code></pre>
+<h3>Integration with CI/CD</h3>
+<pre><code class="language-yaml"># GitHub Actions example
+- name: Run Benchmarks
+  run: |
+    python compare_benchmarks.py --preset quick
+    python enhanced_report_viewer.py --trends
+</code></pre>
+<h2>📝 Notes</h2>
+<ul>
+<li>Reports are saved with UUIDs for unique identification</li>
+<li>All timestamps are in ISO format for consistency</li>
+<li>Metrics are aggregated at multiple levels for flexibility</li>
+<li>File references use absolute paths when possible</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

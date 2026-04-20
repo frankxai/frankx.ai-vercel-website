@@ -155,7 +155,7 @@ const ecosystemNodes = [
   { label: 'Vibe OS', href: '/vibe', group: 'systems' },
   { label: 'Courses', href: '/courses', group: 'content' },
   { label: 'Soulbook', href: '/soulbook', group: 'creative' },
-  { label: 'Arcanea', href: '/arcanea', group: 'creative' },
+  { label: 'Arcanea', href: 'https://arcanea.ai', group: 'creative' },
   { label: 'Research', href: '/research', group: 'systems' },
   { label: 'Design Lab', href: '/design-lab', group: 'creative' },
   { label: 'Investor Intel', href: '/investor', group: 'products' },

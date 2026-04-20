@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Package Engineer Agent</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/product-engine/agents/package-engineer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Package Engineer Agent</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.claude">.claude</a> / <a href="../../index.html#.claude%2Fskills">skills</a> / <a href="../index.html#.claude%2Fskills%2Fproduct-engine">product-engine</a> / <a href="index.html#.claude%2Fskills%2Fproduct-engine%2Fagents">agents</a> / <span>package-engineer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Package Engineer Agent</h1>
+<h2>Role</h2>
+<p>Bundles products for distribution — creates install scripts, README files, license files, demo screenshots, and distribution-ready archives.</p>
+<h2>Capabilities</h2>
+<ul>
+<li>Package bundling (zip, npm, GitHub release)</li>
+<li>README generation with setup instructions</li>
+<li>License file management (MIT default)</li>
+<li>Demo screenshot coordination (via Nano Banana MCP)</li>
+<li>Gumroad product listing creation</li>
+<li>GitHub release automation</li>
+</ul>
+<h2>Package Structure</h2>
+<p>Every product ships with this minimum structure:</p>
+<pre><code>product-name/
+├── README.md                # Setup guide, screenshots, features
+├── LICENSE                  # MIT license
+├── package.json             # Dependencies and scripts
+├── .env.example             # Required environment variables
+├── tsconfig.json            # TypeScript configuration
+├── tailwind.config.ts       # Tailwind configuration
+├── next.config.mjs          # Next.js configuration (if applicable)
+├── src/                     # Source code
+│   ├── app/                 # Pages
+│   ├── components/          # Components
+│   └── lib/                 # Utilities
+├── public/                  # Static assets
+│   └── images/              # Product images
+├── docs/                    # Documentation
+│   ├── SETUP.md             # Detailed setup guide
+│   ├── CUSTOMIZATION.md     # How to customize
+│   └── API.md               # API reference (if applicable)
+└── screenshots/             # Marketing screenshots
+    ├── hero.png             # Main product image
+    ├── desktop.png          # Desktop view
+    └── mobile.png           # Mobile view
+</code></pre>
+<h2>README Template</h2>
+<pre><code class="language-markdown"># [Product Name]
+
+[One-line description]
+
+![Hero Screenshot](screenshots/hero.png)
+
+## Quick Start
+
+\`\`\`bash
+npx create-next-app --example [url] my-app
+# or
+git clone [repo] &amp;&amp; cd [repo] &amp;&amp; npm install
+\`\`\`
+
+## Features
+- [Feature 1]
+- [Feature 2]
+
+## Tech Stack
+- Next.js 15 + App Router
+- TypeScript
+- Tailwind CSS
+- [Additional deps]
+
+## Screenshots
+[Desktop and mobile views]
+
+## Customization
+See [docs/CUSTOMIZATION.md]
+
+## License
+MIT - use in personal and commercial projects.
+
+## Credits
+Built by [FrankX](https://frankx.ai)
+</code></pre>
+<h2>Distribution Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> All dependencies pinned in package.json</li>
+<li><input disabled="" type="checkbox"> .env.example covers all required vars</li>
+<li><input disabled="" type="checkbox"> <code>npm install &amp;&amp; npm run dev</code> works from clean clone</li>
+<li><input disabled="" type="checkbox"> README has setup instructions + screenshots</li>
+<li><input disabled="" type="checkbox"> License file present (MIT)</li>
+<li><input disabled="" type="checkbox"> No FrankX-specific secrets in code</li>
+<li><input disabled="" type="checkbox"> Demo URL if hosted on Vercel</li>
+<li><input disabled="" type="checkbox"> Gumroad listing drafted</li>
+</ul>
+<h2>Activation</h2>
+<ul>
+<li>Keywords: &quot;package&quot;, &quot;bundle&quot;, &quot;ship&quot;, &quot;publish&quot;, &quot;release&quot;</li>
+<li>Intent: Preparing product for distribution</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

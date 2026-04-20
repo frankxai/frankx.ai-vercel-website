@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Oracle Diagram Generator - Complete Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/oracle-diagram-generator/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Oracle Diagram Generator - Complete Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Foracle-diagram-generator">oracle-diagram-generator</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Oracle Diagram Generator - Complete Reference</h1>
+<h2>Official Oracle Icon Library</h2>
+<h3>Download Sources</h3>
+<ul>
+<li><strong>Primary</strong>: <a href="https://docs.oracle.com/en-us/iaas/Content/General/Reference/graphicsfordiagrams.htm">https://docs.oracle.com/en-us/iaas/Content/General/Reference/graphicsfordiagrams.htm</a></li>
+<li><strong>Draw.io Library</strong>: Download XML and import via File → Open Library From</li>
+<li><strong>GitHub</strong>: <a href="https://github.com/oracle-quickstart/oci-arch-template">https://github.com/oracle-quickstart/oci-arch-template</a></li>
+</ul>
+<hr>
+<h2>Complete Draw.io OCI Shape Reference</h2>
+<h3>Compute Services</h3>
+<pre><code>mxgraph.oci.compute_vm           - Virtual Machine
+mxgraph.oci.compute_bm           - Bare Metal
+mxgraph.oci.container_engine     - OKE (Kubernetes)
+mxgraph.oci.container_instance   - Container Instance
+mxgraph.oci.functions            - Functions (Serverless)
+mxgraph.oci.instance_pool        - Instance Pool
+mxgraph.oci.autoscaling          - Autoscaling Configuration
+</code></pre>
+<h3>Database Services</h3>
+<pre><code>mxgraph.oci.autonomous_database  - Autonomous Database (ATP/ADW/AJD)
+mxgraph.oci.database_system      - DB System (VM/BM)
+mxgraph.oci.exadata              - Exadata Cloud Service
+mxgraph.oci.mysql                - MySQL HeatWave
+mxgraph.oci.nosql                - NoSQL Database
+</code></pre>
+<h3>AI &amp; Machine Learning</h3>
+<pre><code>mxgraph.oci.generative_ai        - OCI Generative AI
+mxgraph.oci.data_science         - Data Science Platform
+mxgraph.oci.ai_vision            - AI Vision
+mxgraph.oci.ai_language          - AI Language
+mxgraph.oci.ai_speech            - AI Speech
+mxgraph.oci.ai_document          - Document Understanding
+mxgraph.oci.anomaly_detection    - Anomaly Detection
+</code></pre>
+<h3>Storage Services</h3>
+<pre><code>mxgraph.oci.object_storage       - Object Storage
+mxgraph.oci.block_storage        - Block Volume
+mxgraph.oci.file_storage         - File Storage (NFS)
+mxgraph.oci.archive_storage      - Archive Storage
+</code></pre>
+<h3>Networking Services</h3>
+<pre><code>mxgraph.oci.vcn                  - Virtual Cloud Network
+mxgraph.oci.subnet               - Subnet
+mxgraph.oci.load_balancer        - Load Balancer (L7)
+mxgraph.oci.network_load_balancer - Network Load Balancer (L4)
+mxgraph.oci.api_gateway          - API Gateway
+mxgraph.oci.fastconnect          - FastConnect
+mxgraph.oci.drg                  - Dynamic Routing Gateway
+mxgraph.oci.nat_gateway          - NAT Gateway
+mxgraph.oci.internet_gateway     - Internet Gateway
+mxgraph.oci.service_gateway      - Service Gateway
+mxgraph.oci.waf                  - Web Application Firewall
+</code></pre>
+<h3>Integration &amp; Streaming</h3>
+<pre><code>mxgraph.oci.streaming            - Streaming (Kafka)
+mxgraph.oci.integration          - Integration Cloud
+mxgraph.oci.events               - Events Service
+mxgraph.oci.notifications        - Notifications
+mxgraph.oci.queue                - Queue Service
+</code></pre>
+<h3>Security &amp; Identity</h3>
+<pre><code>mxgraph.oci.iam                  - IAM
+mxgraph.oci.vault                - Vault (KMS)
+mxgraph.oci.bastion              - Bastion Service
+mxgraph.oci.cloud_guard          - Cloud Guard
+mxgraph.oci.data_safe            - Data Safe
+</code></pre>
+<h3>DevOps &amp; Management</h3>
+<pre><code>mxgraph.oci.devops               - DevOps Service
+mxgraph.oci.resource_manager     - Resource Manager (Terraform)
+mxgraph.oci.logging              - Logging Service
+mxgraph.oci.monitoring           - Monitoring
+mxgraph.oci.apm                  - APM (Application Performance)
+</code></pre>
+<hr>
+<h2>Draw.io XML Templates</h2>
+<h3>Template 1: Basic Three-Tier Architecture</h3>
+<pre><code class="language-xml">&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-01-21T00:00:00.000Z&quot; agent=&quot;OCI Diagram Generator&quot; version=&quot;21.0.0&quot;&gt;
+  &lt;diagram id=&quot;three-tier&quot; name=&quot;Three-Tier Web App&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1422&quot; dy=&quot;794&quot; grid=&quot;1&quot; gridSize=&quot;10&quot; guides=&quot;1&quot; tooltips=&quot;1&quot; connect=&quot;1&quot; arrows=&quot;1&quot; fold=&quot;1&quot; page=&quot;1&quot; pageScale=&quot;1&quot; pageWidth=&quot;1169&quot; pageHeight=&quot;827&quot; math=&quot;0&quot; shadow=&quot;0&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+
+        &lt;!-- Title --&gt;
+        &lt;mxCell id=&quot;title&quot; value=&quot;OCI Three-Tier Web Application&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#312D2A;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;384&quot; y=&quot;20&quot; width=&quot;400&quot; height=&quot;40&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Internet --&gt;
+        &lt;mxCell id=&quot;internet&quot; value=&quot;Internet&quot; style=&quot;ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#E6E6E6;strokeColor=#312D2A;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;534&quot; y=&quot;80&quot; width=&quot;100&quot; height=&quot;60&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- VCN Container --&gt;
+        &lt;mxCell id=&quot;vcn&quot; value=&quot;Virtual Cloud Network (VCN)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5F3;strokeColor=#C74634;strokeWidth=2;dashed=1;verticalAlign=top;fontStyle=1;fontSize=14;fontColor=#C74634;spacingTop=10;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;200&quot; y=&quot;180&quot; width=&quot;768&quot; height=&quot;500&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Public Subnet --&gt;
+        &lt;mxCell id=&quot;public-subnet&quot; value=&quot;Public Subnet&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#1E8E3E;strokeWidth=1;dashed=1;verticalAlign=top;fontStyle=1;fontSize=12;fontColor=#1E8E3E;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;220&quot; y=&quot;220&quot; width=&quot;300&quot; height=&quot;200&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Private Subnet --&gt;
+        &lt;mxCell id=&quot;private-subnet&quot; value=&quot;Private Subnet&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F9A825;strokeWidth=1;dashed=1;verticalAlign=top;fontStyle=1;fontSize=12;fontColor=#F9A825;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;550&quot; y=&quot;220&quot; width=&quot;400&quot; height=&quot;440&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Load Balancer --&gt;
+        &lt;mxCell id=&quot;lb&quot; value=&quot;Load Balancer&quot; style=&quot;shape=mxgraph.oci.load_balancer;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;strokeColor=none;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;345&quot; y=&quot;280&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Compute Instance Pool --&gt;
+        &lt;mxCell id=&quot;compute-cluster&quot; value=&quot;Instance Pool (Auto-scaling)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#312D2A;verticalAlign=top;fontStyle=1;fontSize=11;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;580&quot; y=&quot;260&quot; width=&quot;180&quot; height=&quot;120&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- VM 1 --&gt;
+        &lt;mxCell id=&quot;vm1&quot; value=&quot;VM-1&quot; style=&quot;shape=mxgraph.oci.compute_vm;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;strokeColor=none;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;600&quot; y=&quot;300&quot; width=&quot;45&quot; height=&quot;45&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- VM 2 --&gt;
+        &lt;mxCell id=&quot;vm2&quot; value=&quot;VM-2&quot; style=&quot;shape=mxgraph.oci.compute_vm;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;strokeColor=none;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;695&quot; y=&quot;300&quot; width=&quot;45&quot; height=&quot;45&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Autonomous Database --&gt;
+        &lt;mxCell id=&quot;adb&quot; value=&quot;Autonomous&amp;#xa;Database 26ai&quot; style=&quot;shape=mxgraph.oci.autonomous_database;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;strokeColor=none;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;720&quot; y=&quot;450&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Object Storage --&gt;
+        &lt;mxCell id=&quot;storage&quot; value=&quot;Object&amp;#xa;Storage&quot; style=&quot;shape=mxgraph.oci.object_storage;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;strokeColor=none;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;600&quot; y=&quot;550&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Connections --&gt;
+        &lt;mxCell id=&quot;conn1&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#312D2A;strokeWidth=2;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;internet&quot; target=&quot;lb&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;conn2&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#312D2A;strokeWidth=2;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;lb&quot; target=&quot;compute-cluster&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;conn3&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#312D2A;strokeWidth=2;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;compute-cluster&quot; target=&quot;adb&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;conn4&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#312D2A;strokeWidth=1;dashed=1;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;compute-cluster&quot; target=&quot;storage&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Cost Annotation --&gt;
+        &lt;mxCell id=&quot;cost&quot; value=&quot;💰 Estimated: $50-200/mo&quot; style=&quot;text;html=1;strokeColor=none;fillColor=#FFF9C4;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=12;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;700&quot; y=&quot;660&quot; width=&quot;150&quot; height=&quot;30&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;
+</code></pre>
+<h3>Template 2: AI RAG Platform</h3>
+<pre><code class="language-xml">&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-01-21T00:00:00.000Z&quot; agent=&quot;OCI Diagram Generator&quot;&gt;
+  &lt;diagram id=&quot;rag-platform&quot; name=&quot;Enterprise RAG Platform&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1422&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+
+        &lt;!-- Title --&gt;
+        &lt;mxCell id=&quot;title&quot; value=&quot;OCI Enterprise RAG Platform&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#312D2A;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;350&quot; y=&quot;20&quot; width=&quot;400&quot; height=&quot;40&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Ingestion Layer --&gt;
+        &lt;mxCell id=&quot;ingestion-layer&quot; value=&quot;INGESTION LAYER&quot; style=&quot;swimlane;horizontal=0;fillColor=#E3F2FD;strokeColor=#1976D2;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;100&quot; y=&quot;80&quot; width=&quot;900&quot; height=&quot;120&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;s3&quot; value=&quot;S3&quot; style=&quot;shape=mxgraph.aws4.s3;verticalLabelPosition=bottom;verticalAlign=top;&quot; vertex=&quot;1&quot; parent=&quot;ingestion-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;100&quot; y=&quot;35&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;sharepoint&quot; value=&quot;SharePoint&quot; style=&quot;shape=mxgraph.azure.office_365;verticalLabelPosition=bottom;verticalAlign=top;&quot; vertex=&quot;1&quot; parent=&quot;ingestion-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;200&quot; y=&quot;35&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;apis&quot; value=&quot;APIs&quot; style=&quot;shape=mxgraph.oci.api_gateway;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;ingestion-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;300&quot; y=&quot;35&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;streaming&quot; value=&quot;OCI Streaming&quot; style=&quot;shape=mxgraph.oci.streaming;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;ingestion-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;35&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;functions-ingest&quot; value=&quot;Functions&amp;#xa;(Chunking)&quot; style=&quot;shape=mxgraph.oci.functions;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;ingestion-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;700&quot; y=&quot;35&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Embedding Layer --&gt;
+        &lt;mxCell id=&quot;embedding-layer&quot; value=&quot;EMBEDDING LAYER&quot; style=&quot;swimlane;horizontal=0;fillColor=#F3E5F5;strokeColor=#7B1FA2;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;100&quot; y=&quot;220&quot; width=&quot;900&quot; height=&quot;140&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;genai&quot; value=&quot;OCI Generative AI&amp;#xa;Cohere Embed 4&amp;#xa;$0.0001/1K tokens&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;embedding-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;200&quot; y=&quot;30&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;adb-vector&quot; value=&quot;Autonomous DB 26ai&amp;#xa;AI Vector Search&amp;#xa;$0 (Always Free)&quot; style=&quot;shape=mxgraph.oci.autonomous_database;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;embedding-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;30&quot; width=&quot;60&quot; height=&quot;60&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Agent Layer --&gt;
+        &lt;mxCell id=&quot;agent-layer&quot; value=&quot;AGENT LAYER&quot; style=&quot;swimlane;horizontal=0;fillColor=#FFF3E0;strokeColor=#F57C00;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;100&quot; y=&quot;380&quot; width=&quot;900&quot; height=&quot;160&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;router-agent&quot; value=&quot;Router&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;agent-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;150&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;retriever-agent&quot; value=&quot;Retriever&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;agent-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;350&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;synthesizer-agent&quot; value=&quot;Synthesizer&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;agent-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;550&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;adk-label&quot; value=&quot;Oracle ADK Multi-Agent System&amp;#xa;Cohere Command A | $0.0015/1K tokens&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=11;fontStyle=2;&quot; vertex=&quot;1&quot; parent=&quot;agent-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;250&quot; y=&quot;120&quot; width=&quot;300&quot; height=&quot;30&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Application Layer --&gt;
+        &lt;mxCell id=&quot;app-layer&quot; value=&quot;APPLICATION LAYER&quot; style=&quot;swimlane;horizontal=0;fillColor=#E8F5E9;strokeColor=#388E3C;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;100&quot; y=&quot;560&quot; width=&quot;900&quot; height=&quot;120&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;nextjs&quot; value=&quot;Next.js&amp;#xa;Chat UI&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#312D2A;&quot; vertex=&quot;1&quot; parent=&quot;app-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;150&quot; y=&quot;35&quot; width=&quot;80&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;slack&quot; value=&quot;Slack&amp;#xa;Bot&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#312D2A;&quot; vertex=&quot;1&quot; parent=&quot;app-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;300&quot; y=&quot;35&quot; width=&quot;80&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;api-gw&quot; value=&quot;API Gateway&quot; style=&quot;shape=mxgraph.oci.api_gateway;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;app-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;500&quot; y=&quot;30&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Cost Summary --&gt;
+        &lt;mxCell id=&quot;cost-box&quot; value=&quot;💰 MONTHLY COST ESTIMATE&amp;#xa;━━━━━━━━━━━━━━━━━━━━━━━━&amp;#xa;ADB (Always Free): $0&amp;#xa;GenAI Embeddings: $2-5&amp;#xa;GenAI Chat: $10-30&amp;#xa;Compute: $0-20&amp;#xa;━━━━━━━━━━━━━━━━━━━━━━━━&amp;#xa;TOTAL: $12-55/mo&quot; style=&quot;text;html=1;strokeColor=#C74634;fillColor=#FFF5F3;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=11;fontFamily=Courier New;spacingLeft=10;spacingTop=5;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;780&quot; y=&quot;560&quot; width=&quot;200&quot; height=&quot;140&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;
+</code></pre>
+<h3>Template 3: Multi-Agent Factory</h3>
+<pre><code class="language-xml">&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2026-01-21T00:00:00.000Z&quot; agent=&quot;OCI Diagram Generator&quot;&gt;
+  &lt;diagram id=&quot;agent-factory&quot; name=&quot;Autonomous Agent Factory&quot;&gt;
+    &lt;mxGraphModel dx=&quot;1422&quot; dy=&quot;900&quot; grid=&quot;1&quot; gridSize=&quot;10&quot;&gt;
+      &lt;root&gt;
+        &lt;mxCell id=&quot;0&quot; /&gt;
+        &lt;mxCell id=&quot;1&quot; parent=&quot;0&quot; /&gt;
+
+        &lt;!-- Title --&gt;
+        &lt;mxCell id=&quot;title&quot; value=&quot;OCI Autonomous AI Agent Factory&quot; style=&quot;text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=24;fontStyle=1;fontColor=#312D2A;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;300&quot; y=&quot;20&quot; width=&quot;500&quot; height=&quot;40&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Agent Hub --&gt;
+        &lt;mxCell id=&quot;agent-hub&quot; value=&quot;AGENT HUB&amp;#xa;(OCI Generative AI)&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#C74634;strokeColor=#312D2A;fontColor=#FFFFFF;fontStyle=1;fontSize=14;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;450&quot; y=&quot;80&quot; width=&quot;200&quot; height=&quot;60&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Supervisor --&gt;
+        &lt;mxCell id=&quot;supervisor&quot; value=&quot;SUPERVISOR AGENT&amp;#xa;Cohere Command A&amp;#xa;256K Context&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5F3;strokeColor=#C74634;strokeWidth=2;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;450&quot; y=&quot;180&quot; width=&quot;200&quot; height=&quot;80&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Specialist Agents --&gt;
+        &lt;mxCell id=&quot;specialists-box&quot; value=&quot;SPECIALIST AGENT POOL&quot; style=&quot;swimlane;fillColor=#F5F5F5;strokeColor=#312D2A;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;150&quot; y=&quot;300&quot; width=&quot;800&quot; height=&quot;180&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;data-agent&quot; value=&quot;Data&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;specialists-box&quot;&gt;
+          &lt;mxGeometry x=&quot;80&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;sql-agent&quot; value=&quot;SQL&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;specialists-box&quot;&gt;
+          &lt;mxGeometry x=&quot;200&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;api-agent&quot; value=&quot;API&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;specialists-box&quot;&gt;
+          &lt;mxGeometry x=&quot;320&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;code-agent&quot; value=&quot;Code&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;specialists-box&quot;&gt;
+          &lt;mxGeometry x=&quot;440&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;test-agent&quot; value=&quot;Test&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;specialists-box&quot;&gt;
+          &lt;mxGeometry x=&quot;560&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;deploy-agent&quot; value=&quot;Deploy&amp;#xa;Agent&quot; style=&quot;shape=mxgraph.oci.generative_ai;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;specialists-box&quot;&gt;
+          &lt;mxGeometry x=&quot;680&quot; y=&quot;50&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Tool Layer --&gt;
+        &lt;mxCell id=&quot;tool-layer&quot; value=&quot;TOOL LAYER (MCP + Function Tools)&quot; style=&quot;swimlane;fillColor=#E3F2FD;strokeColor=#1976D2;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;150&quot; y=&quot;520&quot; width=&quot;800&quot; height=&quot;100&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;db-tool&quot; value=&quot;Select AI&amp;#xa;Vector Search&quot; style=&quot;shape=mxgraph.oci.autonomous_database;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;tool-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;100&quot; y=&quot;25&quot; width=&quot;45&quot; height=&quot;45&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;api-tool&quot; value=&quot;REST&amp;#xa;APIs&quot; style=&quot;shape=mxgraph.oci.api_gateway;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;tool-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;250&quot; y=&quot;25&quot; width=&quot;45&quot; height=&quot;45&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;fusion-tool&quot; value=&quot;Fusion&amp;#xa;Apps&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#C74634;fontColor=#FFFFFF;fontSize=10;&quot; vertex=&quot;1&quot; parent=&quot;tool-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;380&quot; y=&quot;30&quot; width=&quot;60&quot; height=&quot;40&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;functions-tool&quot; value=&quot;Functions&quot; style=&quot;shape=mxgraph.oci.functions;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;tool-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;520&quot; y=&quot;25&quot; width=&quot;45&quot; height=&quot;45&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;mcp-tool&quot; value=&quot;MCP&amp;#xa;Servers&quot; style=&quot;rounded=1;whiteSpace=wrap;html=1;fillColor=#312D2A;fontColor=#FFFFFF;fontSize=10;&quot; vertex=&quot;1&quot; parent=&quot;tool-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;650&quot; y=&quot;30&quot; width=&quot;60&quot; height=&quot;40&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Data Layer --&gt;
+        &lt;mxCell id=&quot;data-layer&quot; value=&quot;DATA LAYER&quot; style=&quot;swimlane;fillColor=#FFF3E0;strokeColor=#F57C00;fontStyle=1;&quot; vertex=&quot;1&quot; parent=&quot;1&quot;&gt;
+          &lt;mxGeometry x=&quot;150&quot; y=&quot;660&quot; width=&quot;800&quot; height=&quot;100&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;adb-main&quot; value=&quot;Oracle ADB 26ai&amp;#xa;(Agent Memory + Specs)&quot; style=&quot;shape=mxgraph.oci.autonomous_database;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;data-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;200&quot; y=&quot;20&quot; width=&quot;55&quot; height=&quot;55&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;object-store&quot; value=&quot;Object Storage&amp;#xa;(Artifacts)&quot; style=&quot;shape=mxgraph.oci.object_storage;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;data-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;400&quot; y=&quot;20&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;vault&quot; value=&quot;OCI Vault&amp;#xa;(Secrets)&quot; style=&quot;shape=mxgraph.oci.vault;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#C74634;&quot; vertex=&quot;1&quot; parent=&quot;data-layer&quot;&gt;
+          &lt;mxGeometry x=&quot;580&quot; y=&quot;20&quot; width=&quot;50&quot; height=&quot;50&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;!-- Connections --&gt;
+        &lt;mxCell id=&quot;c1&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#312D2A;strokeWidth=2;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;agent-hub&quot; target=&quot;supervisor&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+        &lt;mxCell id=&quot;c2&quot; style=&quot;edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#312D2A;strokeWidth=2;&quot; edge=&quot;1&quot; parent=&quot;1&quot; source=&quot;supervisor&quot; target=&quot;specialists-box&quot;&gt;
+          &lt;mxGeometry relative=&quot;1&quot; as=&quot;geometry&quot; /&gt;
+        &lt;/mxCell&gt;
+
+      &lt;/root&gt;
+    &lt;/mxGraphModel&gt;
+  &lt;/diagram&gt;
+&lt;/mxfile&gt;
+</code></pre>
+<hr>
+<h2>Python Diagrams Library</h2>
+<h3>Installation</h3>
+<pre><code class="language-bash">pip install diagrams
+# Requires Graphviz: brew install graphviz (macOS) or apt install graphviz (Linux)
+</code></pre>
+<h3>Complete RAG Platform Example</h3>
+<pre><code class="language-python">from diagrams import Diagram, Cluster, Edge
+from diagrams.oci.compute import Container, Functions, OKE
+from diagrams.oci.database import AutonomousDatabase
+from diagrams.oci.network import LoadBalancer, ApiGateway
+from diagrams.oci.storage import ObjectStorage
+from diagrams.oci.connectivity import FastConnect
+from diagrams.oci.devops import ResourceManager
+from diagrams.generic.compute import Rack
+from diagrams.onprem.client import Users
+
+# Graph attributes for Oracle styling
+graph_attr = {
+    &quot;fontsize&quot;: &quot;20&quot;,
+    &quot;bgcolor&quot;: &quot;#FFFFFF&quot;,
+    &quot;splines&quot;: &quot;ortho&quot;,
+    &quot;nodesep&quot;: &quot;0.8&quot;,
+    &quot;ranksep&quot;: &quot;1.0&quot;,
+    &quot;fontname&quot;: &quot;Arial&quot;,
+    &quot;fontcolor&quot;: &quot;#312D2A&quot;,
+    &quot;pad&quot;: &quot;0.5&quot;
+}
+
+node_attr = {
+    &quot;fontsize&quot;: &quot;11&quot;,
+    &quot;fontname&quot;: &quot;Arial&quot;,
+    &quot;fontcolor&quot;: &quot;#312D2A&quot;
+}
+
+edge_attr = {
+    &quot;color&quot;: &quot;#312D2A&quot;,
+    &quot;penwidth&quot;: &quot;2.0&quot;
+}
+
+with Diagram(
+    &quot;OCI Enterprise RAG Platform&quot;,
+    show=False,
+    filename=&quot;oci_rag_platform&quot;,
+    direction=&quot;TB&quot;,
+    graph_attr=graph_attr,
+    node_attr=node_attr,
+    edge_attr=edge_attr
+):
+    users = Users(&quot;Users&quot;)
+
+    with Cluster(&quot;OCI Region - us-ashburn-1&quot;):
+        with Cluster(&quot;Public Subnet&quot;):
+            lb = LoadBalancer(&quot;Load Balancer\n$13/mo&quot;)
+            apigw = ApiGateway(&quot;API Gateway&quot;)
+
+        with Cluster(&quot;Private Subnet - Application&quot;):
+            with Cluster(&quot;OKE Cluster&quot;):
+                app = [
+                    Container(&quot;Chat UI&quot;),
+                    Container(&quot;RAG API&quot;),
+                    Container(&quot;Admin&quot;)
+                ]
+
+            functions = Functions(&quot;Chunking\nFunctions&quot;)
+
+        with Cluster(&quot;Private Subnet - AI&quot;):
+            with Cluster(&quot;OCI Generative AI&quot;):
+                embedding = Rack(&quot;Cohere Embed 4\n$0.0001/1K&quot;)
+                llm = Rack(&quot;Cohere Cmd A\n$0.0015/1K&quot;)
+
+        with Cluster(&quot;Private Subnet - Data&quot;):
+            adb = AutonomousDatabase(&quot;ADB 26ai\nVector Search\n$0 Free Tier&quot;)
+            storage = ObjectStorage(&quot;Documents\n$0.0255/GB&quot;)
+
+    # Data flow
+    users &gt;&gt; Edge(label=&quot;HTTPS&quot;) &gt;&gt; lb &gt;&gt; apigw
+    apigw &gt;&gt; app
+    app[1] &gt;&gt; Edge(label=&quot;embed&quot;) &gt;&gt; embedding
+    app[1] &gt;&gt; Edge(label=&quot;chat&quot;) &gt;&gt; llm
+    app[1] &gt;&gt; Edge(label=&quot;search&quot;) &gt;&gt; adb
+    functions &gt;&gt; embedding &gt;&gt; adb
+    storage &gt;&gt; functions
+</code></pre>
+<h3>Multi-Agent System Example</h3>
+<pre><code class="language-python">from diagrams import Diagram, Cluster, Edge
+from diagrams.oci.compute import Functions
+from diagrams.oci.database import AutonomousDatabase
+from diagrams.oci.network import ApiGateway
+from diagrams.oci.storage import ObjectStorage
+from diagrams.generic.compute import Rack
+
+with Diagram(&quot;OCI Multi-Agent Architecture&quot;, show=False, filename=&quot;oci_agents&quot;):
+
+    with Cluster(&quot;OCI Generative AI&quot;):
+        hub = Rack(&quot;Agent Hub&quot;)
+
+        with Cluster(&quot;Supervisor Layer&quot;):
+            supervisor = Rack(&quot;Supervisor Agent\nCohere Command A&quot;)
+
+        with Cluster(&quot;Specialist Pool&quot;):
+            agents = [
+                Rack(&quot;Data Agent&quot;),
+                Rack(&quot;SQL Agent&quot;),
+                Rack(&quot;Code Agent&quot;),
+                Rack(&quot;Report Agent&quot;)
+            ]
+
+    with Cluster(&quot;Tool Layer&quot;):
+        tools = [
+            Functions(&quot;Functions&quot;),
+            ApiGateway(&quot;REST APIs&quot;),
+            AutonomousDatabase(&quot;Select AI&quot;)
+        ]
+
+    with Cluster(&quot;Data Layer&quot;):
+        adb = AutonomousDatabase(&quot;ADB 26ai\n(Memory + Specs)&quot;)
+        storage = ObjectStorage(&quot;Artifacts&quot;)
+
+    # Orchestration flow
+    hub &gt;&gt; supervisor
+    supervisor &gt;&gt; agents
+    for agent in agents:
+        for tool in tools:
+            agent &gt;&gt; Edge(style=&quot;dashed&quot;) &gt;&gt; tool
+    tools[2] &gt;&gt; adb
+    agents &gt;&gt; storage
+</code></pre>
+<h3>NVIDIA NIM Deployment Example</h3>
+<pre><code class="language-python">from diagrams import Diagram, Cluster, Edge
+from diagrams.oci.compute import BM, VM
+from diagrams.oci.database import AutonomousDatabase
+from diagrams.oci.network import LoadBalancer, Vcn
+from diagrams.oci.storage import ObjectStorage, BlockStorage
+from diagrams.oci.security import Vault
+from diagrams.generic.compute import Rack
+from diagrams.onprem.network import Internet
+
+with Diagram(&quot;NVIDIA NIM on OCI&quot;, show=False, filename=&quot;oci_nim&quot;):
+
+    internet = Internet(&quot;Global Traffic&quot;)
+
+    with Cluster(&quot;OCI - Multi-Region&quot;):
+
+        with Cluster(&quot;us-ashburn-1 (Primary)&quot;):
+            lb_us = LoadBalancer(&quot;Traffic Mgmt&quot;)
+
+            with Cluster(&quot;GPU Cluster&quot;):
+                gpus_us = [
+                    BM(&quot;BM.GPU.H100.8\n$30/hr&quot;),
+                    BM(&quot;BM.GPU.H100.8\n$30/hr&quot;)
+                ]
+
+            with Cluster(&quot;NIM Services&quot;):
+                nims_us = [
+                    Rack(&quot;LLM NIM\nLlama 405B&quot;),
+                    Rack(&quot;Embed NIM&quot;),
+                    Rack(&quot;Guardrail NIM&quot;)
+                ]
+
+        with Cluster(&quot;eu-frankfurt-1 (EU Sovereign)&quot;):
+            lb_eu = LoadBalancer(&quot;Traffic Mgmt&quot;)
+            gpu_eu = BM(&quot;BM.GPU.H100.8&quot;)
+
+        with Cluster(&quot;Shared Services&quot;):
+            storage = ObjectStorage(&quot;Model Weights&quot;)
+            vault = Vault(&quot;API Keys&quot;)
+            adb = AutonomousDatabase(&quot;ADB 26ai&quot;)
+
+    # Flow
+    internet &gt;&gt; [lb_us, lb_eu]
+    lb_us &gt;&gt; gpus_us
+    for gpu in gpus_us:
+        gpu &gt;&gt; nims_us
+    nims_us &gt;&gt; adb
+    storage &gt;&gt; gpus_us
+</code></pre>
+<hr>
+<h2>Mermaid.js Templates</h2>
+<h3>RAG Architecture</h3>
+<pre><code class="language-mermaid">flowchart TB
+    subgraph Sources[&quot;Data Sources&quot;]
+        S3[S3]
+        SP[SharePoint]
+        API[APIs]
+    end
+
+    subgraph Ingestion[&quot;OCI Ingestion&quot;]
+        STR[OCI Streaming]
+        FN[Functions&lt;br/&gt;Chunking]
+    end
+
+    subgraph AI[&quot;OCI AI Layer&quot;]
+        EMB[Cohere Embed 4&lt;br/&gt;$0.0001/1K]
+        LLM[Cohere Command A&lt;br/&gt;$0.0015/1K]
+    end
+
+    subgraph Data[&quot;OCI Data Layer&quot;]
+        ADB[(ADB 26ai&lt;br/&gt;Vector Search&lt;br/&gt;$0 Free)]
+        OBJ[Object Storage]
+    end
+
+    subgraph App[&quot;Application&quot;]
+        CHAT[Chat UI]
+        APIGW[API Gateway]
+    end
+
+    Sources --&gt; STR
+    STR --&gt; FN
+    FN --&gt; EMB
+    EMB --&gt; ADB
+    CHAT --&gt; APIGW
+    APIGW --&gt; LLM
+    LLM --&gt; ADB
+    OBJ --&gt; FN
+
+    style ADB fill:#C74634,color:#fff
+    style LLM fill:#C74634,color:#fff
+    style EMB fill:#C74634,color:#fff
+</code></pre>
+<h3>Agent Hierarchy</h3>
+<pre><code class="language-mermaid">flowchart TB
+    HUB[Agent Hub&lt;br/&gt;OCI Generative AI]
+    SUP[Supervisor Agent&lt;br/&gt;Cohere Command A]
+
+    subgraph Specialists[&quot;Specialist Agents&quot;]
+        DA[Data Agent]
+        SA[SQL Agent]
+        CA[Code Agent]
+        RA[Report Agent]
+    end
+
+    subgraph Tools[&quot;Tool Layer&quot;]
+        SEL[Select AI]
+        REST[REST APIs]
+        FN[Functions]
+    end
+
+    ADB[(ADB 26ai)]
+
+    HUB --&gt; SUP
+    SUP --&gt; DA &amp; SA &amp; CA &amp; RA
+    DA &amp; SA &amp; CA &amp; RA -.-&gt; SEL &amp; REST &amp; FN
+    SEL --&gt; ADB
+
+    style HUB fill:#C74634,color:#fff
+    style SUP fill:#C74634,color:#fff
+    style ADB fill:#C74634,color:#fff
+</code></pre>
+<hr>
+<h2>Generation Workflow</h2>
+<p>When generating diagrams:</p>
+<ol>
+<li><p><strong>Analyze Request</strong></p>
+<ul>
+<li>Identify architecture pattern (RAG, Agent, Web, Analytics)</li>
+<li>List required OCI services</li>
+<li>Determine output format preference</li>
+</ul>
+</li>
+<li><p><strong>Select Template</strong></p>
+<ul>
+<li>Choose closest matching template</li>
+<li>Customize service icons and labels</li>
+<li>Add connections and data flows</li>
+</ul>
+</li>
+<li><p><strong>Apply Oracle Styling</strong></p>
+<ul>
+<li>Use Oracle Red (#C74634) for primary elements</li>
+<li>Use proper icon shapes from mxgraph.oci.*</li>
+<li>Add cost annotations where relevant</li>
+</ul>
+</li>
+<li><p><strong>Generate Output</strong></p>
+<ul>
+<li>For Draw.io: Complete XML file</li>
+<li>For Python: Executable script</li>
+<li>For Mermaid: Markdown-embeddable code</li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul>
+<li>Check all icon references are valid</li>
+<li>Verify connections make logical sense</li>
+<li>Ensure costs are from verified pricing</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>File Output</h2>
+<p>When outputting Draw.io XML:</p>
+<ul>
+<li>Save as <code>.drawio</code> or <code>.xml</code> extension</li>
+<li>User can open directly in Draw.io or diagrams.net</li>
+<li>File → Open → Select the XML file</li>
+</ul>
+<p>When outputting Python:</p>
+<ul>
+<li>Save as <code>.py</code> file</li>
+<li>Run with <code>python filename.py</code></li>
+<li>Outputs PNG image to same directory</li>
+</ul>
+<hr>
+<p><em>Generate professional OCI architecture diagrams with verified Oracle styling and icons.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

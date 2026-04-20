@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V3 Hooks System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/shared/src/hooks/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V3 Hooks System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fshared">shared</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fshared%2Fsrc">src</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fshared%2Fsrc%2Fhooks">hooks</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>V3 Hooks System</h1>
+<p>Extensible hook points for tool execution, file operations, and lifecycle events. Integrates with the event bus for coordination and monitoring.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>26 Hook Events</strong>: Comprehensive lifecycle hooks for tools, files, commands, sessions, agents, tasks, memory, and errors</li>
+<li><strong>Priority-Based Execution</strong>: Control execution order with 5 priority levels</li>
+<li><strong>Timeout Handling</strong>: Configurable timeouts per hook with graceful degradation</li>
+<li><strong>Error Recovery</strong>: Continue execution on errors or abort based on configuration</li>
+<li><strong>Context Modification</strong>: Hooks can modify context for downstream hooks</li>
+<li><strong>Parallel &amp; Sequential Execution</strong>: Execute hooks in parallel or chain them sequentially</li>
+<li><strong>Event Bus Integration</strong>: Emit coordination events to the event bus</li>
+<li><strong>Statistics Tracking</strong>: Monitor hook performance and execution metrics</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-typescript">import {
+  createHookRegistry,
+  createHookExecutor,
+  HookEvent,
+  HookPriority
+} from &#39;@claude-flow/shared/hooks&#39;;
+</code></pre>
+<h2>Quick Start</h2>
+<h3>1. Create Registry and Executor</h3>
+<pre><code class="language-typescript">import { createHookRegistry, createHookExecutor } from &#39;@claude-flow/shared/hooks&#39;;
+import { createEventBus } from &#39;@claude-flow/shared/core&#39;;
+
+const registry = createHookRegistry();
+const eventBus = createEventBus();
+const executor = createHookExecutor(registry, eventBus);
+</code></pre>
+<h3>2. Register a Hook</h3>
+<pre><code class="language-typescript">const hookId = registry.register(
+  HookEvent.PreToolUse,
+  async (context) =&gt; {
+    console.log(`About to use tool: ${context.tool?.name}`);
+
+    // Validate tool parameters
+    if (!context.tool?.parameters) {
+      return {
+        success: false,
+        error: new Error(&#39;Missing tool parameters&#39;),
+        abort: true // Abort tool execution
+      };
+    }
+
+    return { success: true };
+  },
+  HookPriority.High,
+  {
+    name: &#39;Tool Validation Hook&#39;,
+    timeout: 5000
+  }
+);
+</code></pre>
+<h3>3. Execute Hooks</h3>
+<pre><code class="language-typescript">const result = await executor.execute(
+  HookEvent.PreToolUse,
+  {
+    event: HookEvent.PreToolUse,
+    timestamp: new Date(),
+    tool: {
+      name: &#39;Read&#39;,
+      parameters: { path: &#39;/path/to/file.ts&#39; },
+      category: &#39;file&#39;
+    }
+  }
+);
+
+if (result.success) {
+  console.log(`✓ All hooks passed (${result.hooksExecuted} executed)`);
+} else {
+  console.log(`✗ Hook execution failed: ${result.hooksFailed} failures`);
+}
+</code></pre>
+<h2>Hook Events</h2>
+<h3>Tool Execution</h3>
+<pre><code class="language-typescript">HookEvent.PreToolUse   // Before any tool is used
+HookEvent.PostToolUse  // After tool execution completes
+</code></pre>
+<h3>File Operations</h3>
+<pre><code class="language-typescript">HookEvent.PreRead      // Before reading a file
+HookEvent.PostRead     // After reading a file
+HookEvent.PreWrite     // Before writing a file
+HookEvent.PostWrite    // After writing a file
+HookEvent.PreEdit      // Before editing a file
+HookEvent.PostEdit     // After editing a file
+</code></pre>
+<h3>Command Execution</h3>
+<pre><code class="language-typescript">HookEvent.PreCommand   // Before executing bash command
+HookEvent.PostCommand  // After command execution
+</code></pre>
+<h3>Session Lifecycle</h3>
+<pre><code class="language-typescript">HookEvent.SessionStart   // When session starts
+HookEvent.SessionEnd     // When session ends
+HookEvent.SessionPause   // When session is paused
+HookEvent.SessionResume  // When session resumes
+</code></pre>
+<h3>Agent Lifecycle</h3>
+<pre><code class="language-typescript">HookEvent.PreAgentSpawn       // Before spawning agent
+HookEvent.PostAgentSpawn      // After agent spawned
+HookEvent.PreAgentTerminate   // Before terminating agent
+HookEvent.PostAgentTerminate  // After agent terminated
+</code></pre>
+<h3>Task Lifecycle</h3>
+<pre><code class="language-typescript">HookEvent.PreTaskExecute    // Before task execution
+HookEvent.PostTaskExecute   // After task execution
+HookEvent.PreTaskComplete   // Before marking task complete
+HookEvent.PostTaskComplete  // After task completed
+</code></pre>
+<h3>Memory Operations</h3>
+<pre><code class="language-typescript">HookEvent.PreMemoryStore      // Before storing memory
+HookEvent.PostMemoryStore     // After storing memory
+HookEvent.PreMemoryRetrieve   // Before retrieving memory
+HookEvent.PostMemoryRetrieve  // After retrieving memory
+</code></pre>
+<h3>Error Handling</h3>
+<pre><code class="language-typescript">HookEvent.OnError     // When error occurs
+HookEvent.OnWarning   // When warning occurs
+</code></pre>
+<h2>Hook Priorities</h2>
+<p>Control execution order with priority levels:</p>
+<pre><code class="language-typescript">HookPriority.Critical = 1000    // Execute first
+HookPriority.High     = 500
+HookPriority.Normal   = 0       // Default
+HookPriority.Low      = -500
+HookPriority.Lowest   = -1000   // Execute last
+</code></pre>
+<h2>Advanced Usage</h2>
+<h3>Context Modification</h3>
+<p>Hooks can modify context for downstream hooks:</p>
+<pre><code class="language-typescript">registry.register(
+  HookEvent.PreCommand,
+  async (context) =&gt; {
+    // Add risk assessment to context
+    const isDestructive = context.command?.command.includes(&#39;rm -rf&#39;);
+
+    return {
+      success: true,
+      data: {
+        metadata: {
+          ...context.metadata,
+          riskLevel: isDestructive ? &#39;high&#39; : &#39;low&#39;
+        }
+      }
+    };
+  },
+  HookPriority.High
+);
+
+// Later hook can access the risk level
+registry.register(
+  HookEvent.PreCommand,
+  async (context) =&gt; {
+    if (context.metadata?.riskLevel === &#39;high&#39;) {
+      console.warn(&#39;⚠️  High-risk command detected!&#39;);
+    }
+    return { success: true };
+  },
+  HookPriority.Normal
+);
+</code></pre>
+<h3>Abort Operations</h3>
+<p>Hooks can abort the operation:</p>
+<pre><code class="language-typescript">registry.register(
+  HookEvent.PreCommand,
+  async (context) =&gt; {
+    const isDangerous = context.command?.command.includes(&#39;format c:&#39;);
+
+    if (isDangerous) {
+      return {
+        success: false,
+        abort: true, // Prevent command execution
+        error: new Error(&#39;Dangerous command blocked by security hook&#39;)
+      };
+    }
+
+    return { success: true };
+  },
+  HookPriority.Critical
+);
+</code></pre>
+<h3>Timeout Handling</h3>
+<p>Configure timeouts per hook:</p>
+<pre><code class="language-typescript">registry.register(
+  HookEvent.PreToolUse,
+  async (context) =&gt; {
+    // Expensive operation
+    await analyzeCodeComplexity(context.tool?.parameters);
+    return { success: true };
+  },
+  HookPriority.Normal,
+  {
+    timeout: 3000 // 3 second timeout
+  }
+);
+</code></pre>
+<h3>Parallel Execution</h3>
+<p>Execute hooks for multiple events in parallel:</p>
+<pre><code class="language-typescript">const results = await executor.executeParallel(
+  [HookEvent.PreRead, HookEvent.PreWrite, HookEvent.PreEdit],
+  [
+    { event: HookEvent.PreRead, timestamp: new Date(), file: { path: &#39;a.ts&#39;, operation: &#39;read&#39; } },
+    { event: HookEvent.PreWrite, timestamp: new Date(), file: { path: &#39;b.ts&#39;, operation: &#39;write&#39; } },
+    { event: HookEvent.PreEdit, timestamp: new Date(), file: { path: &#39;c.ts&#39;, operation: &#39;edit&#39; } }
+  ],
+  { maxParallel: 3 }
+);
+</code></pre>
+<h3>Sequential Execution with Context Chaining</h3>
+<p>Execute hooks sequentially, passing context modifications:</p>
+<pre><code class="language-typescript">const result = await executor.executeSequential(
+  [
+    HookEvent.PreTaskExecute,
+    HookEvent.PostTaskExecute,
+    HookEvent.PreTaskComplete,
+    HookEvent.PostTaskComplete
+  ],
+  {
+    event: HookEvent.PreTaskExecute,
+    timestamp: new Date(),
+    task: { id: &#39;task-1&#39;, description: &#39;Process data&#39; }
+  }
+);
+
+// result.finalContext contains all modifications from all hooks
+</code></pre>
+<h2>Hook Statistics</h2>
+<p>Track hook performance:</p>
+<pre><code class="language-typescript">const stats = registry.getStats();
+
+console.log(`Total hooks: ${stats.totalHooks}`);
+console.log(`Total executions: ${stats.totalExecutions}`);
+console.log(`Total failures: ${stats.totalFailures}`);
+console.log(`Average execution time: ${stats.avgExecutionTime}ms`);
+
+// Hooks by event type
+for (const [event, count] of Object.entries(stats.byEvent)) {
+  console.log(`${event}: ${count} hooks`);
+}
+</code></pre>
+<h2>Integration with Event Bus</h2>
+<p>The executor emits coordination events to the event bus:</p>
+<pre><code class="language-typescript">eventBus.on(&#39;hooks:pre-execute&#39;, (event) =&gt; {
+  console.log(`Executing ${event.payload.hookCount} hooks for ${event.payload.event}`);
+});
+
+eventBus.on(&#39;hooks:post-execute&#39;, (event) =&gt; {
+  console.log(`Completed in ${event.payload.totalExecutionTime}ms`);
+});
+
+eventBus.on(&#39;hooks:error&#39;, (event) =&gt; {
+  console.error(`Hook ${event.payload.hookId} failed:`, event.payload.error);
+});
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Use Appropriate Priorities</h3>
+<ul>
+<li><code>Critical</code>: Security checks, validation that must happen first</li>
+<li><code>High</code>: Important preprocessing (risk assessment, logging)</li>
+<li><code>Normal</code>: Standard business logic</li>
+<li><code>Low</code>: Optional enhancements, metrics</li>
+<li><code>Lowest</code>: Cleanup, final logging</li>
+</ul>
+<h3>2. Handle Errors Gracefully</h3>
+<pre><code class="language-typescript">registry.register(
+  HookEvent.PreToolUse,
+  async (context) =&gt; {
+    try {
+      await performValidation(context);
+      return { success: true };
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error : new Error(String(error)),
+        continueChain: true // Allow other hooks to run
+      };
+    }
+  }
+);
+</code></pre>
+<h3>3. Keep Hooks Fast</h3>
+<p>Hooks should be fast (&lt;100ms). For expensive operations:</p>
+<pre><code class="language-typescript">registry.register(
+  HookEvent.PostToolUse,
+  async (context) =&gt; {
+    // Queue expensive work for background processing
+    backgroundQueue.add({
+      type: &#39;analyze-tool-usage&#39;,
+      context
+    });
+
+    return { success: true };
+  },
+  HookPriority.Low
+);
+</code></pre>
+<h3>4. Use Descriptive Names</h3>
+<pre><code class="language-typescript">registry.register(
+  HookEvent.PreCommand,
+  handler,
+  HookPriority.Critical,
+  {
+    name: &#39;Security: Prevent Destructive Commands&#39;,
+    metadata: {
+      purpose: &#39;Block dangerous shell commands&#39;,
+      blockedPatterns: [&#39;rm -rf /&#39;, &#39;format c:&#39;]
+    }
+  }
+);
+</code></pre>
+<h2>Example: Pre-Edit Hook for Learning</h2>
+<pre><code class="language-typescript">import { HookEvent, HookPriority } from &#39;@claude-flow/shared/hooks&#39;;
+
+// Register pre-edit hook for context retrieval
+registry.register(
+  HookEvent.PreEdit,
+  async (context) =&gt; {
+    const filePath = context.file?.path;
+
+    if (!filePath) {
+      return { success: true };
+    }
+
+    // Get similar past edits from ReasoningBank
+    const similarEdits = await reasoningBank.searchPatterns({
+      task: `Edit file: ${filePath}`,
+      k: 5,
+      minReward: 0.85
+    });
+
+    console.log(`📚 Found ${similarEdits.length} similar past edits`);
+
+    return {
+      success: true,
+      data: {
+        metadata: {
+          ...context.metadata,
+          learningContext: similarEdits,
+          editCount: similarEdits.length
+        }
+      }
+    };
+  },
+  HookPriority.High,
+  {
+    name: &#39;Learning: Pre-Edit Context Retrieval&#39;,
+    timeout: 2000
+  }
+);
+
+// Register post-edit hook for learning storage
+registry.register(
+  HookEvent.PostEdit,
+  async (context) =&gt; {
+    const success = context.metadata?.success ?? true;
+    const filePath = context.file?.path;
+
+    if (!filePath) {
+      return { success: true };
+    }
+
+    // Store edit pattern for future learning
+    await reasoningBank.storePattern({
+      sessionId: context.session?.id || &#39;unknown&#39;,
+      task: `Edit file: ${filePath}`,
+      input: context.file?.previousContent || &#39;&#39;,
+      output: context.file?.content || &#39;&#39;,
+      reward: success ? 0.9 : 0.3,
+      success,
+      tokensUsed: estimateTokens(context.file?.content),
+      latencyMs: context.metadata?.executionTime || 0
+    });
+
+    return { success: true };
+  },
+  HookPriority.Normal,
+  {
+    name: &#39;Learning: Post-Edit Pattern Storage&#39;,
+    timeout: 1000
+  }
+);
+</code></pre>
+<h2>API Reference</h2>
+<h3>HookRegistry</h3>
+<ul>
+<li><code>register(event, handler, priority, options)</code> - Register a hook</li>
+<li><code>unregister(hookId)</code> - Unregister a hook</li>
+<li><code>unregisterAll(event?)</code> - Unregister all hooks for an event</li>
+<li><code>getHandlers(event, includeDisabled)</code> - Get handlers for an event</li>
+<li><code>getHook(hookId)</code> - Get hook by ID</li>
+<li><code>enable(hookId)</code> - Enable a hook</li>
+<li><code>disable(hookId)</code> - Disable a hook</li>
+<li><code>listHooks(filter)</code> - List all hooks with optional filter</li>
+<li><code>getEventTypes()</code> - Get all event types with hooks</li>
+<li><code>count(event?)</code> - Get hook count</li>
+<li><code>getStats()</code> - Get execution statistics</li>
+<li><code>resetStats()</code> - Reset statistics</li>
+<li><code>has(hookId)</code> - Check if hook exists</li>
+<li><code>clear()</code> - Clear all hooks</li>
+</ul>
+<h3>HookExecutor</h3>
+<ul>
+<li><code>execute(event, context, options)</code> - Execute hooks for an event</li>
+<li><code>executeWithTimeout(event, context, timeout)</code> - Execute with timeout</li>
+<li><code>executeParallel(events, contexts, options)</code> - Execute multiple events in parallel</li>
+<li><code>executeSequential(events, initialContext, options)</code> - Execute sequentially with context chaining</li>
+<li><code>setEventBus(eventBus)</code> - Set event bus for coordination</li>
+<li><code>getRegistry()</code> - Get hook registry</li>
+</ul>
+<h2>Testing</h2>
+<p>Run the test suite:</p>
+<pre><code class="language-bash">cd /workspaces/claude-flow/v3/@claude-flow/shared
+npm test -- hooks.test.ts
+</code></pre>
+<p>All 23 tests pass:</p>
+<ul>
+<li>11 registry tests</li>
+<li>12 executor tests</li>
+</ul>
+<h2>File Structure</h2>
+<pre><code>v3/@claude-flow/shared/src/hooks/
+├── types.ts           # Type definitions (~150 lines)
+├── registry.ts        # Hook registry (~200 lines)
+├── executor.ts        # Hook executor (~250 lines)
+├── index.ts           # Main exports
+├── hooks.test.ts      # Test suite (~20 tests)
+└── README.md          # This file
+</code></pre>
+<h2>Integration Points</h2>
+<ul>
+<li><strong>Event Bus</strong>: Emits coordination events (<code>hooks:pre-execute</code>, <code>hooks:post-execute</code>, <code>hooks:error</code>)</li>
+<li><strong>Event Store</strong>: Can log hook executions for audit trail (ADR-007)</li>
+<li><strong>ReasoningBank</strong>: Hooks can integrate with learning system for context retrieval and pattern storage</li>
+<li><strong>Security</strong>: Critical hooks can enforce security policies (CVE-1, CVE-2, CVE-3)</li>
+</ul>
+<h2>License</h2>
+<p>Part of Claude-Flow V3 - See main LICENSE file</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

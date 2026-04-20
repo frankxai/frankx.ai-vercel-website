@@ -38,7 +38,11 @@
         "newsletter": "Weekly 'AI Architecture Digest' with 1 deep insight + 3 links"
       },
       "tools": {
-        "infogenius": { "style": "futuristic", "audience": "expert", "aspectRatio": "16:9" },
+        "infogenius": {
+          "style": "futuristic",
+          "audience": "expert",
+          "aspectRatio": "16:9"
+        },
         "opusPro": "Clip key segments from YouTube index videos (Karpathy, Willison)",
         "canva": "Architecture comparison cards (16:9 for LinkedIn, 1:1 for X)"
       }
@@ -79,7 +83,11 @@
         "newsletter": "Monthly 'ACOS Changelog' + one power-user tip"
       },
       "tools": {
-        "infogenius": { "style": "technical", "audience": "college", "aspectRatio": "16:9" },
+        "infogenius": {
+          "style": "technical",
+          "audience": "college",
+          "aspectRatio": "16:9"
+        },
         "opusPro": "Screen recordings of Claude Code workflows, before/after demos",
         "canva": "Feature announcement cards, version comparison graphics"
       }
@@ -119,7 +127,11 @@
         "newsletter": "Bi-weekly 'Golden Age Dispatch' with market signals + one action item"
       },
       "tools": {
-        "infogenius": { "style": "standard", "audience": "highschool", "aspectRatio": "16:9" },
+        "infogenius": {
+          "style": "standard",
+          "audience": "highschool",
+          "aspectRatio": "16:9"
+        },
         "opusPro": "Pull key stats/claims from blog for Shorts with text overlay",
         "canva": "Data visualization cards, quote graphics, carousel posts"
       }
@@ -155,7 +167,11 @@
         "newsletter": "Monthly 'Studio Sessions' with 3 songs + production notes"
       },
       "tools": {
-        "infogenius": { "style": "3d", "audience": "highschool", "aspectRatio": "1:1" },
+        "infogenius": {
+          "style": "3d",
+          "audience": "highschool",
+          "aspectRatio": "1:1"
+        },
         "opusPro": "Clip Suno generation sessions, music + visual overlay",
         "canva": "Album art style cards, genre cheat sheet carousels, before/after prompts"
       }
@@ -192,7 +208,11 @@
         "newsletter": "Weekly 'Build Log' with what shipped + what's next"
       },
       "tools": {
-        "infogenius": { "style": "minimalist", "audience": "college", "aspectRatio": "16:9" },
+        "infogenius": {
+          "style": "minimalist",
+          "audience": "college",
+          "aspectRatio": "16:9"
+        },
         "opusPro": "Screen recordings of Claude Code sessions, real development footage",
         "canva": "Weekly recap cards, milestone announcements, changelog graphics"
       }
@@ -207,20 +227,76 @@
     "blogToCarousel": "Break into 5-8 slides in Canva. Slide 1 = hook, slides 2-7 = points, slide 8 = CTA."
   },
   "distributionSchedule": {
-    "monday": { "platform": "linkedin", "type": "thought leadership", "pillar": "ai-architecture" },
-    "tuesday": { "platform": "x", "type": "technical thread", "pillar": "creator-tools" },
-    "wednesday": { "platform": "linkedin", "type": "business insight", "pillar": "ai-business" },
-    "thursday": { "platform": "x", "type": "behind the scenes", "pillar": "meta-content" },
-    "friday": { "platform": "all", "type": "creative/fun", "pillar": "creative-systems" },
-    "saturday": { "platform": "newsletter", "type": "weekly digest", "pillar": "all" },
+    "monday": {
+      "platform": "linkedin",
+      "type": "thought leadership",
+      "pillar": "ai-architecture"
+    },
+    "tuesday": {
+      "platform": "x",
+      "type": "technical thread",
+      "pillar": "creator-tools"
+    },
+    "wednesday": {
+      "platform": "linkedin",
+      "type": "business insight",
+      "pillar": "ai-business"
+    },
+    "thursday": {
+      "platform": "x",
+      "type": "behind the scenes",
+      "pillar": "meta-content"
+    },
+    "friday": {
+      "platform": "all",
+      "type": "creative/fun",
+      "pillar": "creative-systems"
+    },
+    "saturday": {
+      "platform": "newsletter",
+      "type": "weekly digest",
+      "pillar": "all"
+    },
     "sunday": { "platform": "youtube", "type": "short", "pillar": "rotating" }
   },
   "youtubeShorts": {
     "sources": [
-      { "videoId": "VMj-3S1tku0", "title": "Karpathy Neural Nets", "clipIdeas": ["What is a neural network in 60s", "The backpropagation trick", "Why neural nets learn"] },
-      { "videoId": "pOLR5jE5Vjw", "title": "Willison AI Engineering", "clipIdeas": ["The exploratory coding loop", "Why RAG is overhyped", "Prompt injection in 60s"] },
-      { "videoId": "uRuLgar5XZw", "title": "Willison AI Tools", "clipIdeas": ["Type hints beat prompt tricks", "The no-hype AI stack", "LLMs are not magic"] },
-      { "videoId": "n9iv24yI04nI", "title": "Rick Rubin Creative Act", "clipIdeas": ["Remove ego from creation", "Listening is the art", "The universe creates through you"] }
+      {
+        "videoId": "VMj-3S1tku0",
+        "title": "Karpathy Neural Nets",
+        "clipIdeas": [
+          "What is a neural network in 60s",
+          "The backpropagation trick",
+          "Why neural nets learn"
+        ]
+      },
+      {
+        "videoId": "eTTMUWP5B0s",
+        "title": "Willison AI Engineering",
+        "clipIdeas": [
+          "The exploratory coding loop",
+          "Why RAG is overhyped",
+          "Prompt injection in 60s"
+        ]
+      },
+      {
+        "videoId": "uRuLgar5XZw",
+        "title": "Willison AI Tools",
+        "clipIdeas": [
+          "Type hints beat prompt tricks",
+          "The no-hype AI stack",
+          "LLMs are not magic"
+        ]
+      },
+      {
+        "videoId": "n9iv24yI04nI",
+        "title": "Rick Rubin Creative Act",
+        "clipIdeas": [
+          "Remove ego from creation",
+          "Listening is the art",
+          "The universe creates through you"
+        ]
+      }
     ],
     "tool": "Opus Pro (opus.pro) — AI-powered video clipping. Upload YouTube URL, auto-generates viral clips with captions.",
     "workflow": "1. Upload video to Opus Pro → 2. Select top 3 clips → 3. Add FrankX watermark in Canva → 4. Upload to YouTube Shorts + X + LinkedIn"

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Incremental Updates Guide for Claude Flow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/04-testing/incremental-updates-guide.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Incremental Updates Guide for Claude Flow</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F04-testing">04-testing</a> / <span>incremental-updates-guide.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Incremental Updates Guide for Claude Flow</h1>
+<p>This guide demonstrates and tests various incremental update mechanisms implemented throughout the Claude Flow system.</p>
+<h2>Overview</h2>
+<p>Incremental updates are a core pattern in Claude Flow, enabling:</p>
+<ul>
+<li>Version tracking for memory entries</li>
+<li>Atomic counter operations for metrics</li>
+<li>Progressive task execution monitoring</li>
+<li>Efficient resource allocation tracking</li>
+<li>Configuration management with partial updates</li>
+</ul>
+<h2>Key Update Mechanisms</h2>
+<h3>1. Memory Manager Version Tracking</h3>
+<p>The Memory Manager tracks versions for all stored entries:</p>
+<pre><code class="language-typescript">// Each update increments the version
+await memoryManager.store(&#39;key&#39;, &#39;initial&#39;); // version: 1
+await memoryManager.update(id, { content: &#39;updated&#39; }); // version: 2
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Automatic version incrementing</li>
+<li>Timestamp preservation (createdAt remains unchanged)</li>
+<li>Support for partial updates</li>
+<li>Event emission on updates</li>
+</ul>
+<h3>2. Swarm Memory Version History</h3>
+<p>SwarmMemory maintains a history of previous versions:</p>
+<pre><code class="language-typescript">// Updates maintain version history
+await swarmMemory.set(&#39;key&#39;, &#39;v1&#39;);
+await swarmMemory.update(&#39;key&#39;, &#39;v2&#39;);
+// Entry now has: version: 2, previousVersions: [{value: &#39;v1&#39;, version: 1}]
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Up to 10 previous versions stored</li>
+<li>Version counter increments on each update</li>
+<li>Timestamp tracking for each version</li>
+<li>Support for rollback scenarios</li>
+</ul>
+<h3>3. Configuration Manager Updates</h3>
+<p>Supports nested configuration updates using deep merge:</p>
+<pre><code class="language-typescript">configManager.update({
+  temperature: 0.9,
+  tools: { webSearch: false }
+  // Other settings preserved
+});
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Deep merge for nested objects</li>
+<li>Validation after updates</li>
+<li>Diff tracking between current and default</li>
+<li>Profile-based configurations</li>
+</ul>
+<h3>4. Cache Hit/Miss Counters</h3>
+<p>Simple cache tracks access patterns:</p>
+<pre><code class="language-typescript">cache.get(&#39;existing&#39;); // hits++
+cache.get(&#39;missing&#39;);  // misses++
+const stats = cache.stats(); // { hits: 1, misses: 1, hitRate: 0.5 }
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Atomic counter increments</li>
+<li>Hit rate calculation</li>
+<li>LRU eviction with size tracking</li>
+<li>Real-time statistics</li>
+</ul>
+<h3>5. Task Progress Tracking</h3>
+<p>Coordinator tracks incremental progress:</p>
+<pre><code class="language-typescript">task.progress = 0;
+// During execution
+task.progress = 25;  // 25% complete
+task.progress = 50;  // 50% complete
+task.progress = 100; // Complete
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Progress percentage tracking</li>
+<li>Status history maintenance</li>
+<li>Retry count increments</li>
+<li>Event emission on progress updates</li>
+</ul>
+<h3>6. Resource Allocation Tracking</h3>
+<p>Resource Manager tracks incremental allocations:</p>
+<pre><code class="language-typescript">await resourceManager.allocate(&#39;task1&#39;, { memory: 100MB, cpu: 1 });
+// usage.memory += 100MB, usage.cpu += 1
+await resourceManager.deallocate(&#39;task1&#39;);
+// usage.memory -= 100MB, usage.cpu -= 1
+</code></pre>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Atomic resource counting</li>
+<li>Capacity limit enforcement</li>
+<li>Allocation history tracking</li>
+<li>Real-time usage monitoring</li>
+</ul>
+<h2>Test Scenarios</h2>
+<h3>Scenario 1: Version Increment Test</h3>
+<p>Tests that versions increment correctly on each update:</p>
+<ul>
+<li>Store initial entry (version 1)</li>
+<li>Update entry multiple times</li>
+<li>Verify version increments by 1 each time</li>
+</ul>
+<h3>Scenario 2: Concurrent Update Handling</h3>
+<p>Tests concurrent updates maintain consistency:</p>
+<ul>
+<li>Multiple agents update same key</li>
+<li>Verify final version equals total updates</li>
+<li>Check version history completeness</li>
+</ul>
+<h3>Scenario 3: Partial Update Preservation</h3>
+<p>Tests that partial updates preserve existing data:</p>
+<ul>
+<li>Store complex object</li>
+<li>Update only specific fields</li>
+<li>Verify other fields remain unchanged</li>
+</ul>
+<h3>Scenario 4: Counter Accuracy</h3>
+<p>Tests atomic counter operations:</p>
+<ul>
+<li>Increment counters from multiple sources</li>
+<li>Verify final count matches expected total</li>
+<li>Check for race condition handling</li>
+</ul>
+<h3>Scenario 5: Batch Update Efficiency</h3>
+<p>Tests batch update performance:</p>
+<ul>
+<li>Update multiple entries in parallel</li>
+<li>Verify all updates complete</li>
+<li>Check version consistency</li>
+</ul>
+<h3>Scenario 6: Progress Tracking</h3>
+<p>Tests incremental progress updates:</p>
+<ul>
+<li>Track progress through task execution</li>
+<li>Verify progress increases monotonically</li>
+<li>Check progress events are emitted</li>
+</ul>
+<h2>Implementation Patterns</h2>
+<h3>Pattern 1: Optimistic Updates</h3>
+<pre><code class="language-typescript">// Update cache immediately, sync to backend async
+cache.set(key, value);
+backend.update(key, value).catch(rollback);
+</code></pre>
+<h3>Pattern 2: Version Conflict Resolution</h3>
+<pre><code class="language-typescript">// Use version to detect conflicts
+if (remote.version &gt; local.version) {
+  // Merge or resolve conflict
+}
+</code></pre>
+<h3>Pattern 3: Incremental Aggregation</h3>
+<pre><code class="language-typescript">// Aggregate metrics incrementally
+metrics.sum += newValue;
+metrics.count++;
+metrics.average = metrics.sum / metrics.count;
+</code></pre>
+<h3>Pattern 4: Progress Reporting</h3>
+<pre><code class="language-typescript">// Report progress at intervals
+for (let i = 0; i &lt; items.length; i++) {
+  processItem(items[i]);
+  if (i % 10 === 0) {
+    reportProgress(i / items.length * 100);
+  }
+}
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Always increment versions atomically</strong> - Use database transactions or atomic operations</li>
+<li><strong>Preserve immutability</strong> - Don&#39;t mutate existing objects during updates</li>
+<li><strong>Emit events for monitoring</strong> - Allow real-time tracking of updates</li>
+<li><strong>Implement proper error handling</strong> - Rollback on failed updates</li>
+<li><strong>Use batch operations</strong> - Group multiple updates for efficiency</li>
+<li><strong>Track update metadata</strong> - Store who/what/when for audit trails</li>
+</ol>
+<h2>Running Tests</h2>
+<p>Execute the test demonstrations:</p>
+<pre><code class="language-bash"># Run simple demonstration
+node examples/04-testing/test-incremental-demo.js
+
+# Run unit tests (requires Deno)
+deno test tests/unit/incremental-updates.test.ts
+
+# Run integration tests
+npm test -- incremental
+</code></pre>
+<h2>Monitoring Incremental Updates</h2>
+<p>Use Claude Flow&#39;s built-in monitoring:</p>
+<pre><code class="language-bash"># Monitor memory updates
+npx claude-flow memory monitor
+
+# Track swarm progress
+npx claude-flow swarm status --watch
+
+# View cache statistics
+npx claude-flow cache stats
+</code></pre>
+<h2>Troubleshooting</h2>
+<p>Common issues and solutions:</p>
+<ol>
+<li><strong>Version conflicts</strong>: Use optimistic locking or merge strategies</li>
+<li><strong>Counter drift</strong>: Implement atomic operations or use locks</li>
+<li><strong>Progress not updating</strong>: Check event emitter connections</li>
+<li><strong>Memory leaks</strong>: Limit version history size</li>
+<li><strong>Performance issues</strong>: Use batch updates and caching</li>
+</ol>
+<h2>Conclusion</h2>
+<p>Incremental updates are fundamental to Claude Flow&#39;s distributed architecture. By following these patterns and best practices, you can build reliable, scalable systems that track changes efficiently and maintain consistency across distributed components.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

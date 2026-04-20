@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Plugin Store Security Review</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/src/plugins/SECURITY.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Plugin Store Security Review</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2Fsrc">src</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2Fsrc%2Fplugins">plugins</a> / <span>SECURITY.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Plugin Store Security Review</h1>
+<h2>Overview</h2>
+<p>This document reviews the security mechanisms implemented in the IPFS-based Plugin Store for Claude Flow V3.</p>
+<h2>Security Mechanisms Implemented</h2>
+<h3>1. Trust Levels (4-Tier System)</h3>
+<pre><code class="language-typescript">type TrustLevel = &#39;official&#39; | &#39;verified&#39; | &#39;community&#39; | &#39;unverified&#39;;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Official</strong></td>
+<td>Claude Flow team maintained</td>
+<td>Core team, security audit passed</td>
+</tr>
+<tr>
+<td><strong>Verified</strong></td>
+<td>Audited by trusted parties</td>
+<td>Third-party security audit</td>
+</tr>
+<tr>
+<td><strong>Community</strong></td>
+<td>Community contributed</td>
+<td>Author identity verified</td>
+</tr>
+<tr>
+<td><strong>Unverified</strong></td>
+<td>Unknown origin</td>
+<td>None (use with caution)</td>
+</tr>
+</tbody></table>
+<h3>2. Content Integrity (IPFS CID)</h3>
+<ul>
+<li>All plugins stored with Content IDentifiers (CID)</li>
+<li>CID is cryptographic hash of content</li>
+<li>Any modification changes the CID</li>
+<li>Checksum verification on download</li>
+</ul>
+<pre><code class="language-typescript">interface PluginEntry {
+  cid: string;           // IPFS content identifier
+  checksum: string;      // SHA-256 hash
+  signature?: string;    // Ed25519 signature
+  publicKey?: string;    // Author&#39;s public key
+}
+</code></pre>
+<h3>3. Permission System</h3>
+<p>Plugins must declare required permissions:</p>
+<pre><code class="language-typescript">type PluginPermission =
+  | &#39;network&#39;      // Network access
+  | &#39;filesystem&#39;   // File system access
+  | &#39;execute&#39;      // Execute external commands
+  | &#39;memory&#39;       // Access memory system
+  | &#39;agents&#39;       // Spawn/manage agents
+  | &#39;credentials&#39;  // Access credentials (⚠️ High Risk)
+  | &#39;config&#39;       // Modify configuration
+  | &#39;hooks&#39;        // Register hooks
+  | &#39;privileged&#39;;  // Full system access (⚠️ Critical)
+</code></pre>
+<p><strong>High-Risk Permissions</strong>: <code>credentials</code>, <code>execute</code>, <code>privileged</code></p>
+<h3>4. Security Audit Tracking</h3>
+<pre><code class="language-typescript">interface SecurityAudit {
+  auditor: string;       // Who audited
+  auditDate: string;     // When
+  auditVersion: string;  // Which version
+  passed: boolean;       // Result
+  issues: SecurityIssue[];
+  reportCid?: string;    // Full audit report on IPFS
+}
+
+interface SecurityIssue {
+  severity: &#39;low&#39; | &#39;medium&#39; | &#39;high&#39; | &#39;critical&#39;;
+  description: string;
+  resolved: boolean;
+  resolvedVersion?: string;
+}
+</code></pre>
+<h3>5. Store Configuration Security</h3>
+<pre><code class="language-typescript">interface PluginStoreConfig {
+  // Security settings
+  requireVerification: boolean;     // Require signature verification
+  requireSecurityAudit: boolean;    // Only install audited plugins
+  minTrustLevel: TrustLevel;        // Minimum trust level
+  trustedAuthors: string[];         // Whitelist
+  blockedPlugins: string[];         // Blacklist
+  allowedPermissions: PluginPermission[];  // Allowed permissions
+  requirePermissionPrompt: boolean; // Prompt before installing
+}
+</code></pre>
+<p>Default secure settings:</p>
+<pre><code class="language-typescript">{
+  requireVerification: true,
+  requireSecurityAudit: false,
+  minTrustLevel: &#39;community&#39;,
+  allowedPermissions: [&#39;network&#39;, &#39;filesystem&#39;, &#39;memory&#39;, &#39;hooks&#39;],
+  requirePermissionPrompt: true,
+}
+</code></pre>
+<h3>6. Registry Signature Verification</h3>
+<p>Registry itself is signed:</p>
+<pre><code class="language-typescript">interface PluginRegistry {
+  registrySignature?: string;
+  registryPublicKey?: string;
+}
+</code></pre>
+<h2>Security Recommendations</h2>
+<h3>For Users</h3>
+<ol>
+<li><strong>Always verify trust level</strong> before installing</li>
+<li><strong>Review permissions</strong> - avoid <code>credentials</code>, <code>execute</code>, <code>privileged</code></li>
+<li><strong>Prefer official/verified</strong> plugins when available</li>
+<li><strong>Check security audits</strong> for sensitive workloads</li>
+<li><strong>Use blocklist</strong> for known malicious plugins</li>
+</ol>
+<h3>For Plugin Authors</h3>
+<ol>
+<li><strong>Request minimum permissions</strong> needed</li>
+<li><strong>Get security audited</strong> for sensitive operations</li>
+<li><strong>Sign your plugins</strong> with Ed25519</li>
+<li><strong>Document all permissions</strong> clearly</li>
+<li><strong>No hardcoded secrets</strong> in plugin code</li>
+</ol>
+<h2>Known Limitations (Demo Mode)</h2>
+<p>In the current demo implementation:</p>
+<ol>
+<li>IPNS resolution returns null (uses local demo data)</li>
+<li>Signatures are not cryptographically verified</li>
+<li>Downloads don&#39;t actually fetch from IPFS gateway</li>
+</ol>
+<p><strong>Production requirements</strong>:</p>
+<ul>
+<li>Implement actual IPNS resolution via ipfs-http-client</li>
+<li>Implement Ed25519 signature verification</li>
+<li>Connect to real IPFS gateway</li>
+<li>Add rate limiting and abuse prevention</li>
+</ul>
+<h2>Threat Model</h2>
+<table>
+<thead>
+<tr>
+<th>Threat</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Malicious plugin</td>
+<td>Trust levels, security audits, permission system</td>
+</tr>
+<tr>
+<td>Tampered plugin</td>
+<td>CID integrity, checksum verification, signatures</td>
+</tr>
+<tr>
+<td>Registry compromise</td>
+<td>Registry signing, multiple bootstrap nodes</td>
+</tr>
+<tr>
+<td>MITM attack</td>
+<td>IPFS content addressing (CID is hash)</td>
+</tr>
+<tr>
+<td>Supply chain attack</td>
+<td>Verified author IDs, audit trail</td>
+</tr>
+<tr>
+<td>Privilege escalation</td>
+<td>Permission whitelist, prompt on install</td>
+</tr>
+</tbody></table>
+<h2>Compliance Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Plugin declares all required permissions</li>
+<li><input disabled="" type="checkbox"> Plugin has valid CID and checksum</li>
+<li><input disabled="" type="checkbox"> Plugin author is identifiable</li>
+<li><input disabled="" type="checkbox"> Security audit for high-risk operations</li>
+<li><input disabled="" type="checkbox"> No known vulnerabilities (CVE check)</li>
+<li><input disabled="" type="checkbox"> Dependencies are audited</li>
+</ul>
+<h2>Version</h2>
+<p>Security Review Version: 1.0.0
+Last Updated: 2026-01-08
+Reviewed By: Claude Flow Security Team</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

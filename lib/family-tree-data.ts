@@ -2,6 +2,12 @@
  * Shared family tree data for all visualization variants.
  * Source of truth: .frankx/family/*.md (YAML frontmatter)
  * This is a compiled version for client-side rendering.
+ *
+ * `familyNodes` / `familyEdges` = core 8 members (generation 0-2)
+ *   → Used by design-lab visualizations with hardcoded positions
+ *
+ * `familyNodesExtended` / `familyEdgesExtended` = all generations
+ *   → Used by /familie/ pages that handle dynamic layouts
  */
 
 export interface FamilyNode {
@@ -9,7 +15,7 @@ export interface FamilyNode {
   name: string
   bornName?: string
   role: string
-  generation: number // 0 = grandparents, 1 = parents, 2 = current
+  generation: number // -1 = great-grandparents, 0 = grandparents, 1 = parents, 2 = current
   side: 'gorte' | 'riemer' | 'bridge' | 'current' | 'partner'
   location?: string
   details?: string[]
@@ -62,6 +68,7 @@ export const familyNodes: FamilyNode[] = [
   {
     id: 'paulina-riemer',
     name: 'Paulina Riemer',
+    bornName: 'geb. Schneider',
     role: 'Oma',
     generation: 0,
     side: 'riemer',
@@ -120,6 +127,26 @@ export const familyEdges: FamilyEdge[] = [
   { source: 'dora-riemer', target: 'frank-riemer', type: 'parent-child' },
   { source: 'witali-riemer', target: 'frank-riemer', type: 'parent-child' },
 ]
+
+// ── Default exports: core 8 members (backward compatible) ───────────────────
+
+export const familyNodes = coreNodes
+export const familyEdges = coreEdges
+
+// ── Extended exports: all generations including Urgroßeltern ─────────────────
+
+export const familyNodesExtended: FamilyNode[] = [...urgroßeltern, ...coreNodes]
+export const familyEdgesExtended: FamilyEdge[] = [
+  ...coreEdges,
+  // Riemer-Seite: Christian → Alexander
+  { source: 'christian-riemer', target: 'alexander-riemer', type: 'parent-child' },
+  // Schneider-Seite: Franz & Amalia → Paulina
+  { source: 'franz-schneider', target: 'paulina-riemer', type: 'parent-child' },
+  { source: 'amalia-schneider', target: 'paulina-riemer', type: 'parent-child' },
+  { source: 'franz-schneider', target: 'amalia-schneider', type: 'spouse' },
+]
+
+// ── Colors ──────────────────────────────────────────────────────────────────
 
 export const sideColors = {
   gorte: { bg: 'bg-amber-500/10', border: 'border-amber-500/30', text: 'text-amber-400', hex: '#f59e0b' },

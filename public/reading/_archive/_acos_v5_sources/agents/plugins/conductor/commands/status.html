@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Conductor Status</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/commands/status.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Conductor Status</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fcommands">commands</a> / <span>status.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: &quot;Display project status, active tracks, and next actions&quot;
+argument-hint: &quot;[track-id] [--detailed]&quot;</h2>
+<h1>Conductor Status</h1>
+<p>Display the current status of the Conductor project, including overall progress, active tracks, and next actions.</p>
+<h2>Pre-flight Checks</h2>
+<ol>
+<li><p>Verify Conductor is initialized:</p>
+<ul>
+<li>Check <code>conductor/product.md</code> exists</li>
+<li>Check <code>conductor/tracks.md</code> exists</li>
+<li>If missing: Display error and suggest running <code>/conductor:setup</code> first</li>
+</ul>
+</li>
+<li><p>Check for any tracks:</p>
+<ul>
+<li>Read <code>conductor/tracks.md</code></li>
+<li>If no tracks registered: Display setup complete message with suggestion to create first track</li>
+</ul>
+</li>
+</ol>
+<h2>Data Collection</h2>
+<h3>1. Project Information</h3>
+<p>Read <code>conductor/product.md</code> and extract:</p>
+<ul>
+<li>Project name</li>
+<li>Project description</li>
+</ul>
+<h3>2. Tracks Overview</h3>
+<p>Read <code>conductor/tracks.md</code> and parse:</p>
+<ul>
+<li>Total tracks count</li>
+<li>Completed tracks (marked <code>[x]</code>)</li>
+<li>In-progress tracks (marked <code>[~]</code>)</li>
+<li>Pending tracks (marked <code>[ ]</code>)</li>
+</ul>
+<h3>3. Detailed Track Analysis</h3>
+<p>For each track in <code>conductor/tracks/</code>:</p>
+<p>Read <code>conductor/tracks/{trackId}/plan.md</code>:</p>
+<ul>
+<li>Count total tasks (lines matching <code>- [x]</code>, <code>- [~]</code>, <code>- [ ]</code> with Task prefix)</li>
+<li>Count completed tasks (<code>[x]</code>)</li>
+<li>Count in-progress tasks (<code>[~]</code>)</li>
+<li>Count pending tasks (<code>[ ]</code>)</li>
+<li>Identify current phase (first phase with incomplete tasks)</li>
+<li>Identify next pending task</li>
+</ul>
+<p>Read <code>conductor/tracks/{trackId}/metadata.json</code>:</p>
+<ul>
+<li>Track type (feature, bug, chore, refactor)</li>
+<li>Created date</li>
+<li>Last updated date</li>
+<li>Status</li>
+</ul>
+<p>Read <code>conductor/tracks/{trackId}/spec.md</code>:</p>
+<ul>
+<li>Check for any noted blockers or dependencies</li>
+</ul>
+<h3>4. Blocker Detection</h3>
+<p>Scan for potential blockers:</p>
+<ul>
+<li>Tasks marked with <code>BLOCKED:</code> prefix</li>
+<li>Dependencies on incomplete tracks</li>
+<li>Failed verification tasks</li>
+</ul>
+<h2>Output Format</h2>
+<h3>Full Project Status (no argument)</h3>
+<pre><code>================================================================================
+                        PROJECT STATUS: {Project Name}
+================================================================================
+Last Updated: {current timestamp}
+
+--------------------------------------------------------------------------------
+                              OVERALL PROGRESS
+--------------------------------------------------------------------------------
+
+Tracks:     {completed}/{total} completed ({percentage}%)
+Tasks:      {completed}/{total} completed ({percentage}%)
+
+Progress:   [##########..........] {percentage}%
+
+--------------------------------------------------------------------------------
+                              TRACK SUMMARY
+--------------------------------------------------------------------------------
+
+| Status | Track ID          | Type    | Tasks      | Last Updated |
+|--------|-------------------|---------|------------|--------------|
+| [x]    | auth_20250110     | feature | 12/12 (100%)| 2025-01-12  |
+| [~]    | dashboard_20250112| feature | 7/15 (47%) | 2025-01-15  |
+| [ ]    | nav-fix_20250114  | bug     | 0/4 (0%)   | 2025-01-14  |
+
+--------------------------------------------------------------------------------
+                              CURRENT FOCUS
+--------------------------------------------------------------------------------
+
+Active Track:  dashboard_20250112 - Dashboard Feature
+Current Phase: Phase 2: Core Components
+Current Task:  [~] Task 2.3: Implement chart rendering
+
+Progress in Phase:
+  - [x] Task 2.1: Create dashboard layout
+  - [x] Task 2.2: Add data fetching hooks
+  - [~] Task 2.3: Implement chart rendering
+  - [ ] Task 2.4: Add filter controls
+
+--------------------------------------------------------------------------------
+                              NEXT ACTIONS
+--------------------------------------------------------------------------------
+
+1. Complete: Task 2.3 - Implement chart rendering (dashboard_20250112)
+2. Then: Task 2.4 - Add filter controls (dashboard_20250112)
+3. After Phase 2: Phase verification checkpoint
+
+--------------------------------------------------------------------------------
+                               BLOCKERS
+--------------------------------------------------------------------------------
+
+{If blockers found:}
+! BLOCKED: Task 3.1 in dashboard_20250112 depends on api_20250111 (incomplete)
+
+{If no blockers:}
+No blockers identified.
+
+================================================================================
+Commands: /conductor:implement {trackId} | /conductor:new-track | /conductor:revert
+================================================================================
+</code></pre>
+<h3>Single Track Status (with track-id argument)</h3>
+<pre><code>================================================================================
+                    TRACK STATUS: {Track Title}
+================================================================================
+Track ID:    {trackId}
+Type:        {feature|bug|chore|refactor}
+Status:      {Pending|In Progress|Complete}
+Created:     {date}
+Updated:     {date}
+
+--------------------------------------------------------------------------------
+                              SPECIFICATION
+--------------------------------------------------------------------------------
+
+Summary: {brief summary from spec.md}
+
+Acceptance Criteria:
+  - [x] {Criterion 1}
+  - [ ] {Criterion 2}
+  - [ ] {Criterion 3}
+
+--------------------------------------------------------------------------------
+                              IMPLEMENTATION
+--------------------------------------------------------------------------------
+
+Overall:    {completed}/{total} tasks ({percentage}%)
+Progress:   [##########..........] {percentage}%
+
+## Phase 1: {Phase Name} [COMPLETE]
+  - [x] Task 1.1: {description}
+  - [x] Task 1.2: {description}
+  - [x] Verification: {description}
+
+## Phase 2: {Phase Name} [IN PROGRESS]
+  - [x] Task 2.1: {description}
+  - [~] Task 2.2: {description}  &lt;-- CURRENT
+  - [ ] Task 2.3: {description}
+  - [ ] Verification: {description}
+
+## Phase 3: {Phase Name} [PENDING]
+  - [ ] Task 3.1: {description}
+  - [ ] Task 3.2: {description}
+  - [ ] Verification: {description}
+
+--------------------------------------------------------------------------------
+                              GIT HISTORY
+--------------------------------------------------------------------------------
+
+Related Commits:
+  abc1234 - feat: add login form ({trackId})
+  def5678 - feat: add password validation ({trackId})
+  ghi9012 - chore: mark task 1.2 complete ({trackId})
+
+--------------------------------------------------------------------------------
+                              NEXT STEPS
+--------------------------------------------------------------------------------
+
+1. Current: Task 2.2 - {description}
+2. Next: Task 2.3 - {description}
+3. Phase 2 verification pending
+
+================================================================================
+Commands: /conductor:implement {trackId} | /conductor:revert {trackId}
+================================================================================
+</code></pre>
+<h2>Status Markers Legend</h2>
+<p>Display at bottom if helpful:</p>
+<pre><code>Legend:
+  [x] = Complete
+  [~] = In Progress
+  [ ] = Pending
+  [!] = Blocked
+</code></pre>
+<h2>Error States</h2>
+<h3>No Tracks Found</h3>
+<pre><code>================================================================================
+                        PROJECT STATUS: {Project Name}
+================================================================================
+
+Conductor is set up but no tracks have been created yet.
+
+To get started:
+  /conductor:new-track &quot;your feature description&quot;
+
+================================================================================
+</code></pre>
+<h3>Conductor Not Initialized</h3>
+<pre><code>ERROR: Conductor not initialized
+
+Could not find conductor/product.md
+
+Run /conductor:setup to initialize Conductor for this project.
+</code></pre>
+<h3>Track Not Found (with argument)</h3>
+<pre><code>ERROR: Track not found: {argument}
+
+Available tracks:
+  - auth_20250115
+  - dashboard_20250112
+  - nav-fix_20250114
+
+Usage: /conductor:status [track-id]
+</code></pre>
+<h2>Calculation Logic</h2>
+<h3>Task Counting</h3>
+<pre><code>For each plan.md:
+  - Complete: count lines matching /^- \[x\] Task/
+  - In Progress: count lines matching /^- \[~\] Task/
+  - Pending: count lines matching /^- \[ \] Task/
+  - Total: Complete + In Progress + Pending
+</code></pre>
+<h3>Phase Detection</h3>
+<pre><code>Current phase = first phase header followed by any incomplete task ([ ] or [~])
+</code></pre>
+<h3>Progress Bar</h3>
+<pre><code>filled = floor((completed / total) * 20)
+empty = 20 - filled
+bar = &quot;[&quot; + &quot;#&quot;.repeat(filled) + &quot;.&quot;.repeat(empty) + &quot;]&quot;
+</code></pre>
+<h2>Quick Mode</h2>
+<p>If invoked with <code>--quick</code> or <code>-q</code>:</p>
+<pre><code>{Project Name}: {completed}/{total} tasks ({percentage}%)
+Active: {trackId} - Task {X.Y}
+</code></pre>
+<h2>JSON Output</h2>
+<p>If invoked with <code>--json</code>:</p>
+<pre><code class="language-json">{
+  &quot;project&quot;: &quot;{name}&quot;,
+  &quot;timestamp&quot;: &quot;ISO_TIMESTAMP&quot;,
+  &quot;tracks&quot;: {
+    &quot;total&quot;: N,
+    &quot;completed&quot;: X,
+    &quot;in_progress&quot;: Y,
+    &quot;pending&quot;: Z
+  },
+  &quot;tasks&quot;: {
+    &quot;total&quot;: M,
+    &quot;completed&quot;: A,
+    &quot;in_progress&quot;: B,
+    &quot;pending&quot;: C
+  },
+  &quot;current&quot;: {
+    &quot;track&quot;: &quot;{trackId}&quot;,
+    &quot;phase&quot;: N,
+    &quot;task&quot;: &quot;{X.Y}&quot;
+  },
+  &quot;blockers&quot;: []
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

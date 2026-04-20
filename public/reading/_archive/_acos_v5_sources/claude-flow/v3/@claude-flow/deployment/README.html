@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/deployment</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/deployment/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/deployment</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fdeployment">deployment</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/deployment</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/deployment"><img src="https://img.shields.io/npm/v/@claude-flow/deployment.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/deployment"><img src="https://img.shields.io/npm/dm/@claude-flow/deployment.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0+-blue.svg" alt="TypeScript"></a>
+<a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/CI%2FCD-Automated-green.svg" alt="CI/CD"></a>
+<a href="https://semantic-release.gitbook.io/"><img src="https://img.shields.io/badge/Semantic-Release-brightgreen.svg" alt="Semantic Release"></a></p>
+<blockquote>
+<p>Release management, CI/CD, and versioning module for Claude Flow v3.</p>
+</blockquote>
+<h2>Features</h2>
+<ul>
+<li><strong>Version Bumping</strong>: Automatic version management (major, minor, patch, prerelease)</li>
+<li><strong>Changelog Generation</strong>: Generate changelogs from conventional commits</li>
+<li><strong>Git Integration</strong>: Automatic tagging and committing</li>
+<li><strong>NPM Publishing</strong>: Publish packages with tag support (alpha, beta, latest)</li>
+<li><strong>Pre-Release Validation</strong>: Lint, test, build, and dependency checks</li>
+<li><strong>Dry Run Mode</strong>: Test releases without making changes</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install @claude-flow/deployment
+</code></pre>
+<h2>Quick Start</h2>
+<h3>Prepare a Release</h3>
+<pre><code class="language-typescript">import { prepareRelease } from &#39;@claude-flow/deployment&#39;;
+
+// Bump patch version and generate changelog
+const result = await prepareRelease({
+  bumpType: &#39;patch&#39;,
+  generateChangelog: true,
+  createTag: true,
+  commit: true
+});
+
+console.log(`Released ${result.newVersion}`);
+</code></pre>
+<h3>Publish to NPM</h3>
+<pre><code class="language-typescript">import { publishToNpm } from &#39;@claude-flow/deployment&#39;;
+
+// Publish with &#39;latest&#39; tag
+const result = await publishToNpm({
+  tag: &#39;latest&#39;,
+  access: &#39;public&#39;
+});
+
+console.log(`Published ${result.packageName}@${result.version}`);
+</code></pre>
+<h3>Validate Package</h3>
+<pre><code class="language-typescript">import { validate } from &#39;@claude-flow/deployment&#39;;
+
+// Run all validation checks
+const result = await validate({
+  lint: true,
+  test: true,
+  build: true,
+  checkDependencies: true
+});
+
+if (!result.valid) {
+  console.error(&#39;Validation failed:&#39;, result.errors);
+}
+</code></pre>
+<h2>API Reference</h2>
+<h3>ReleaseManager</h3>
+<pre><code class="language-typescript">import { ReleaseManager } from &#39;@claude-flow/deployment&#39;;
+
+const manager = new ReleaseManager();
+
+// Prepare release with options
+const result = await manager.prepareRelease({
+  bumpType: &#39;minor&#39;,           // major | minor | patch | prerelease
+  version: &#39;2.0.0&#39;,            // Override version
+  channel: &#39;beta&#39;,             // alpha | beta | rc | latest
+  generateChangelog: true,     // Generate CHANGELOG.md
+  createTag: true,             // Create git tag
+  commit: true,                // Commit changes
+  dryRun: false,               // Test without changes
+  skipValidation: false,       // Skip validation checks
+  tagPrefix: &#39;v&#39;,              // Tag prefix (v2.0.0)
+  changelogPath: &#39;CHANGELOG.md&#39; // Changelog file path
+});
+</code></pre>
+<h4>Version Bumping</h4>
+<pre><code class="language-typescript">// Bump patch: 1.0.0 -&gt; 1.0.1
+await manager.prepareRelease({ bumpType: &#39;patch&#39; });
+
+// Bump minor: 1.0.0 -&gt; 1.1.0
+await manager.prepareRelease({ bumpType: &#39;minor&#39; });
+
+// Bump major: 1.0.0 -&gt; 2.0.0
+await manager.prepareRelease({ bumpType: &#39;major&#39; });
+
+// Bump prerelease: 1.0.0 -&gt; 1.0.0-alpha.1
+await manager.prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;alpha&#39; });
+
+// Increment prerelease: 1.0.0-alpha.1 -&gt; 1.0.0-alpha.2
+await manager.prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;alpha&#39; });
+</code></pre>
+<h4>Changelog Generation</h4>
+<p>Generates changelog from conventional commits:</p>
+<pre><code class="language-bash"># Commit format: type(scope): message
+git commit -m &quot;feat(api): add new endpoint&quot;
+git commit -m &quot;fix(auth): resolve login issue&quot;
+git commit -m &quot;feat(ui): update design BREAKING CHANGE: new layout&quot;
+</code></pre>
+<p>Generated changelog:</p>
+<pre><code class="language-markdown">## [2.0.0] - 2026-01-04
+
+### BREAKING CHANGES
+
+- **ui**: update design BREAKING CHANGE: new layout
+
+### Features
+
+- **api**: add new endpoint
+- **ui**: update design
+
+### Bug Fixes
+
+- **auth**: resolve login issue
+</code></pre>
+<h3>Publisher</h3>
+<pre><code class="language-typescript">import { Publisher } from &#39;@claude-flow/deployment&#39;;
+
+const publisher = new Publisher();
+
+// Publish to npm
+const result = await publisher.publishToNpm({
+  tag: &#39;latest&#39;,              // npm tag (alpha, beta, latest)
+  access: &#39;public&#39;,           // public | restricted
+  dryRun: false,              // Test publish without actual publish
+  registry: &#39;https://registry.npmjs.org/&#39;,
+  otp: &#39;123456&#39;,              // 2FA OTP code
+  skipBuild: false,           // Skip build step
+  buildCommand: &#39;npm run build&#39; // Custom build command
+});
+
+// Check if version exists
+const exists = await publisher.checkVersionExists(&#39;my-package&#39;, &#39;1.0.0&#39;);
+
+// Get latest version
+const latest = await publisher.getLatestVersion(&#39;my-package&#39;, &#39;latest&#39;);
+
+// Verify npm authentication
+const authenticated = await publisher.verifyAuth();
+
+// Pack to tarball
+const tarball = await publisher.pack(&#39;./dist&#39;);
+</code></pre>
+<h3>Validator</h3>
+<pre><code class="language-typescript">import { Validator } from &#39;@claude-flow/deployment&#39;;
+
+const validator = new Validator();
+
+// Validate package
+const result = await validator.validate({
+  lint: true,                 // Run linter
+  test: true,                 // Run tests
+  build: true,                // Run build
+  checkDependencies: true,    // Check dependencies
+  checkGitStatus: true,       // Check uncommitted changes
+  lintCommand: &#39;npm run lint&#39;,
+  testCommand: &#39;npm test&#39;,
+  buildCommand: &#39;npm run build&#39;
+});
+
+console.log(&#39;Valid:&#39;, result.valid);
+console.log(&#39;Errors:&#39;, result.errors);
+console.log(&#39;Warnings:&#39;, result.warnings);
+console.log(&#39;Checks:&#39;, result.checks);
+</code></pre>
+<h2>Complete Release Workflow</h2>
+<pre><code class="language-typescript">import { Validator, ReleaseManager, Publisher } from &#39;@claude-flow/deployment&#39;;
+
+async function release(version: string, tag: string) {
+  // 1. Validate package
+  console.log(&#39;Validating package...&#39;);
+  const validator = new Validator();
+  const validation = await validator.validate();
+
+  if (!validation.valid) {
+    console.error(&#39;Validation failed:&#39;, validation.errors);
+    process.exit(1);
+  }
+
+  // 2. Prepare release
+  console.log(&#39;Preparing release...&#39;);
+  const manager = new ReleaseManager();
+  const release = await manager.prepareRelease({
+    version,
+    generateChangelog: true,
+    createTag: true,
+    commit: true
+  });
+
+  if (!release.success) {
+    console.error(&#39;Release preparation failed:&#39;, release.error);
+    process.exit(1);
+  }
+
+  // 3. Publish to npm
+  console.log(&#39;Publishing to npm...&#39;);
+  const publisher = new Publisher();
+  const publish = await publisher.publishToNpm({
+    tag,
+    access: &#39;public&#39;
+  });
+
+  if (!publish.success) {
+    console.error(&#39;Publish failed:&#39;, publish.error);
+    process.exit(1);
+  }
+
+  console.log(`Successfully released ${publish.packageName}@${publish.version}`);
+}
+
+// Run release
+release(&#39;2.0.0&#39;, &#39;latest&#39;);
+</code></pre>
+<h2>CLI Usage</h2>
+<pre><code class="language-bash"># Prepare release
+npx @claude-flow/deployment release --version 2.0.0 --changelog --tag
+
+# Publish to npm
+npx @claude-flow/deployment publish --tag latest --access public
+
+# Validate package
+npx @claude-flow/deployment validate
+</code></pre>
+<h2>Dry Run Mode</h2>
+<p>Test releases without making changes:</p>
+<pre><code class="language-typescript">// Test release preparation
+await prepareRelease({
+  bumpType: &#39;minor&#39;,
+  dryRun: true
+});
+
+// Test npm publish
+await publishToNpm({
+  tag: &#39;beta&#39;,
+  dryRun: true
+});
+</code></pre>
+<h2>Channel/Tag Strategy</h2>
+<ul>
+<li><strong><code>alpha</code></strong>: Early development versions (1.0.0-alpha.1)</li>
+<li><strong><code>beta</code></strong>: Feature complete, testing (1.0.0-beta.1)</li>
+<li><strong><code>rc</code></strong>: Release candidate (1.0.0-rc.1)</li>
+<li><strong><code>latest</code></strong>: Stable production release (1.0.0)</li>
+</ul>
+<pre><code class="language-typescript">// Prerelease workflow
+await prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;alpha&#39; }); // 1.0.0-alpha.1
+await publishToNpm({ tag: &#39;alpha&#39; });
+
+await prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;beta&#39; });  // 1.0.0-beta.1
+await publishToNpm({ tag: &#39;beta&#39; });
+
+await prepareRelease({ bumpType: &#39;patch&#39; });  // 1.0.0
+await publishToNpm({ tag: &#39;latest&#39; });
+</code></pre>
+<h2>Environment Variables</h2>
+<pre><code class="language-bash"># NPM authentication
+export NPM_TOKEN=&quot;your-token&quot;
+
+# Custom registry
+export NPM_CONFIG_REGISTRY=&quot;https://registry.npmjs.org/&quot;
+</code></pre>
+<h2>Error Handling</h2>
+<pre><code class="language-typescript">try {
+  const result = await prepareRelease({ bumpType: &#39;minor&#39; });
+
+  if (!result.success) {
+    console.error(&#39;Release failed:&#39;, result.error);
+    console.warn(&#39;Warnings:&#39;, result.warnings);
+  }
+} catch (error) {
+  console.error(&#39;Unexpected error:&#39;, error);
+}
+</code></pre>
+<h2>License</h2>
+<p>MIT</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

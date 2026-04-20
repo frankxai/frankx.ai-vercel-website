@@ -131,6 +131,66 @@ export const plannedCourses: PlannedCourse[] = [
   },
 ]
 
+// Featured course — the flagship
+export const featuredCourse: PlannedCourse = {
+  slug: 'build-your-ai-creator-os',
+  title: 'Build Your AI Creator OS',
+  shortDescription: 'The complete blueprint for building an AI-powered creator business — from Claude Code to n8n automation to revenue.',
+  summary:
+    'Learn how to replicate the exact system behind frankx.ai: 500+ AI skills, 47 automated workflows, multi-agent swarms, content pipelines, and revenue automation. Built by an AI Architect who ships this daily.',
+  launchWindow: 'Early Access: Q2 2026',
+  commitment: '8 weeks — 3-4 focused hours per week',
+  format: 'Self-paced modules with live implementation sessions',
+  audience: [
+    'Creators who want to build AI-powered businesses',
+    'Developers learning agentic AI and automation',
+    'Professionals building their personal AI Center of Excellence',
+    'Anyone who wants to ship faster with Claude Code + n8n',
+  ],
+  outcomes: [
+    'Set up Claude Code with custom skills, agents, and brand voice',
+    'Build n8n automation workflows for content, email, and revenue',
+    'Create a multi-agent AI swarm for strategy and content',
+    'Launch a revenue-ready website with Stripe, workshops, and assessments',
+    'Deploy your own intelligence system that runs while you sleep',
+  ],
+  outline: [
+    {
+      title: 'Module 1: Your AI Foundation',
+      description: 'Set up Claude Code, install skills, configure CLAUDE.md, understand the ACOS framework.',
+    },
+    {
+      title: 'Module 2: The Skill System',
+      description: 'Build custom skills, create slash commands, set up auto-activation with skill-rules.json.',
+    },
+    {
+      title: 'Module 3: MCP and Tool Connectivity',
+      description: 'Connect Claude Code to external tools via MCP — Slack, Vercel, Resend, GitHub, n8n.',
+    },
+    {
+      title: 'Module 4: n8n Automation Empire',
+      description: 'Build your first 10 workflows: daily briefs, content pipeline, email sequences, social posting.',
+    },
+    {
+      title: 'Module 5: Multi-Agent Swarms',
+      description: 'Create AI agent swarms in n8n — content strategist, SEO analyst, product advisor working in parallel.',
+    },
+    {
+      title: 'Module 6: Content at Scale',
+      description: 'Blog-to-social pipeline, newsletter automation, workshop templates, assessment tools.',
+    },
+    {
+      title: 'Module 7: Revenue Systems',
+      description: 'Stripe checkout, product delivery, email welcome sequences, coaching application flow.',
+    },
+    {
+      title: 'Module 8: Ship Your Intelligence System',
+      description: 'Deploy everything: website on Vercel, n8n on Railway, community on Discord, products on Whop.',
+    },
+  ],
+}
+
 export function getPlannedCourse(slug: string): PlannedCourse | undefined {
-  return plannedCourses.find((course) => course.slug === slug)
+  const all = [...plannedCourses, featuredCourse]
+  return all.find((course) => course.slug === slug)
 }

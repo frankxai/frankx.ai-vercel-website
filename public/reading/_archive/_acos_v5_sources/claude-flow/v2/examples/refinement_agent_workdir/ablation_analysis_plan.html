@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>MLE-STAR Targeted Refinement Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/refinement_agent_workdir/ablation_analysis_plan.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">MLE-STAR Targeted Refinement Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2Frefinement_agent_workdir">refinement_agent_workdir</a> / <span>ablation_analysis_plan.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>MLE-STAR Targeted Refinement Plan</h1>
+<h2>Agent: Refinement Specialist</h2>
+<ul>
+<li><strong>Agent ID</strong>: refinement_agent</li>
+<li><strong>Session ID</strong>: automation-session-1754319839721-scewi2uw3</li>
+<li><strong>Execution ID</strong>: workflow-exec-1754319839721-454uw778d</li>
+<li><strong>Timestamp</strong>: 2025-08-04T15:05:33Z</li>
+</ul>
+<h2>Phase: Targeted Component Optimization</h2>
+<h3>Configured Capabilities:</h3>
+<ol>
+<li><strong>Feature Engineering</strong> - Advanced feature transformation and creation</li>
+<li><strong>Model Optimization</strong> - Hyperparameter tuning and architecture improvements</li>
+<li><strong>Hyperparameter Tuning</strong> - Grid search, Bayesian, and evolutionary optimization</li>
+<li><strong>Ablation Analysis</strong> - Component impact assessment</li>
+</ol>
+<h3>Optimization Methods Available:</h3>
+<ul>
+<li>Grid Search</li>
+<li>Bayesian Optimization</li>
+<li>Evolutionary Algorithms</li>
+</ul>
+<h2>Refinement Strategy</h2>
+<h3>1. Component Impact Analysis</h3>
+<p>I will perform systematic ablation analysis to identify which pipeline components have the highest impact on performance:</p>
+<h4>Components to Analyze:</h4>
+<ul>
+<li><p><strong>Data Preprocessing Pipeline</strong></p>
+<ul>
+<li>Scaling methods (StandardScaler vs MinMaxScaler vs RobustScaler)</li>
+<li>Missing value imputation strategies</li>
+<li>Outlier detection and handling</li>
+</ul>
+</li>
+<li><p><strong>Feature Engineering</strong></p>
+<ul>
+<li>Polynomial features</li>
+<li>Feature interactions</li>
+<li>Domain-specific feature creation</li>
+<li>Feature selection methods (RFE, L1 regularization, mutual information)</li>
+</ul>
+</li>
+<li><p><strong>Model Architecture</strong></p>
+<ul>
+<li>Base model selection (linear, tree-based, neural)</li>
+<li>Ensemble strategies</li>
+<li>Model complexity vs performance trade-off</li>
+</ul>
+</li>
+<li><p><strong>Hyperparameter Configuration</strong></p>
+<ul>
+<li>Learning rates</li>
+<li>Regularization parameters</li>
+<li>Tree depths / layers</li>
+<li>Optimization algorithms</li>
+</ul>
+</li>
+</ul>
+<h3>2. Iterative Refinement Process</h3>
+<h4>Step 1: Baseline Performance Assessment</h4>
+<ul>
+<li>Establish current performance metrics</li>
+<li>Identify performance bottlenecks</li>
+<li>Document baseline configurations</li>
+</ul>
+<h4>Step 2: Component-wise Ablation</h4>
+<ul>
+<li>Remove/modify one component at a time</li>
+<li>Measure performance impact</li>
+<li>Rank components by impact score</li>
+</ul>
+<h4>Step 3: Targeted Deep Optimization</h4>
+<ul>
+<li>Focus on top 3 high-impact components</li>
+<li>Apply advanced optimization techniques:<ul>
+<li>Bayesian optimization for continuous hyperparameters</li>
+<li>Evolutionary algorithms for discrete choices</li>
+<li>Grid search for exhaustive small spaces</li>
+</ul>
+</li>
+</ul>
+<h4>Step 4: Feature Engineering Enhancement</h4>
+<ul>
+<li>Create interaction features for high-importance variables</li>
+<li>Apply domain-specific transformations</li>
+<li>Implement automated feature selection</li>
+</ul>
+<h4>Step 5: Ensemble Optimization</h4>
+<ul>
+<li>Optimize base model diversity</li>
+<li>Tune ensemble weights using cross-validation</li>
+<li>Implement stacking with meta-learner</li>
+</ul>
+<h3>3. Performance Tracking</h3>
+<p>All refinements will be tracked with:</p>
+<ul>
+<li>Performance delta from baseline</li>
+<li>Computational cost</li>
+<li>Model complexity metrics</li>
+<li>Cross-validation stability</li>
+</ul>
+<h3>4. Coordination Protocol</h3>
+<p>As per MLE-STAR requirements, I will:</p>
+<ul>
+<li>Store all decisions in memory using <code>npx claude-flow@alpha memory store</code></li>
+<li>Log progress after each major step with hooks</li>
+<li>Share findings with other agents through the memory system</li>
+<li>Maintain full audit trail of optimizations</li>
+</ul>
+<h2>Next Steps</h2>
+<ol>
+<li>Create ablation analysis framework</li>
+<li>Implement component impact measurement</li>
+<li>Execute targeted optimizations on high-impact components</li>
+<li>Document and share results through coordination system</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

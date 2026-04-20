@@ -45,7 +45,7 @@ import {
 
 import { cn } from '@/lib/utils'
 
-// Navigation structure
+// Navigation structure — 7 menus + Blog + Search + CTA
 const navigation = {
   music: {
     label: 'Music',
@@ -53,7 +53,7 @@ const navigation = {
       title: 'AI Music Portfolio',
       description: '12,000+ songs created with Suno AI. Explore the catalog.',
       href: '/music',
-      badge: '500+ Public',
+      badge: '12K+ Tracks',
     },
     items: [
       { name: 'Music Showcase', href: '/music', icon: Music, description: '500+ AI-generated tracks' },
@@ -62,8 +62,8 @@ const navigation = {
       { name: 'Music Tools', href: '/music/tools', icon: Layers, description: '30+ apps for musicians' },
     ],
   },
-  vibe: {
-    label: 'Vibe OS',
+  gencreators: {
+    label: 'GenCreators',
     featured: {
       title: 'Vibe OS Ecosystem',
       description: 'AI agents, music creation, and intelligent orchestration.',
@@ -103,18 +103,22 @@ const navigation = {
       badge: 'Popular',
     },
     items: [
+      { name: 'GenCreator Hub', href: '/gencreator', icon: Flame, description: 'The complete creator OS' },
+      { name: 'Principles', href: '/gencreator/principles', icon: Compass, description: '12 GenCreator principles' },
+      { name: 'Handbook', href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters: identity to legacy' },
+      { name: 'Blueprints', href: '/gencreator/blueprints', icon: Map, description: '12 actionable frameworks' },
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
+      { name: 'Creation Chronicles', href: '/creation-chronicles', icon: Scroll, description: 'Behind the build' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
-      { name: 'Creation Chronicles', href: '/creation-chronicles', icon: BookOpen, description: 'Behind the scenes' },
     ],
   },
-  students: {
-    label: 'Students',
+  learn: {
+    label: 'Learn',
     featured: {
-      title: 'Student Hub',
-      description: 'AI-powered learning paths for creative professionals.',
-      href: '/students',
-      badge: 'Free Resources',
+      title: 'Learning Paths',
+      description: 'Courses, guides, books, and assessments. Find your level and grow.',
+      href: '/courses',
+      badge: 'Free + Premium',
     },
     items: [
       { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
@@ -125,61 +129,46 @@ const navigation = {
       { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
     ],
   },
-  games: {
-    label: 'Games',
-    featured: {
-      title: 'Games Lab',
-      description: 'Browser games built with AI. Play, learn, and build your own.',
-      href: '/games',
-      badge: 'New',
-    },
-    items: [
-      { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Hub for browser games' },
-      { name: 'Memory Match', href: '/games/memory-match', icon: Puzzle, description: 'AI-powered card game' },
-      { name: 'Game Dev Research', href: '/research/agentic-game-development', icon: Brain, description: 'Agentic game development' },
-    ],
-  },
-  developers: {
-    label: 'AI Architecture',
+  build: {
+    label: 'Build',
     featured: {
       title: 'AI Architecture Hub',
-      description: 'Learn. Try. Build. Blueprints, BYOK prototypes, and production templates.',
+      description: 'Blueprints, prototypes, and production templates. From idea to deployment.',
       href: '/ai-architecture',
-      badge: 'New Hub',
+      badge: 'Hub',
     },
     items: [
-      { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI architecture' },
-      { name: 'AI World Showcase', href: '/ai-world', icon: Workflow, description: 'Oracle AI demo architectures' },
+      { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI builders' },
       { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
-      { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
+      { name: 'Prototypes', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
       { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },
-      { name: 'Tools', href: '/ai-architecture/tools', icon: Code2, description: 'Curated resources' },
-      { name: 'Developer Hub', href: '/developers', icon: Bot, description: 'Build faster with AI workflows' },
+      { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'Live architecture demos' },
+      { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Tools & workflows' },
+      { name: 'AI Studio', href: '/consulting', icon: Briefcase, description: 'Architecture consulting' },
     ],
   },
-  investor: {
-    label: 'Investors',
+  invest: {
+    label: 'Invest',
     featured: {
       title: 'Invest with AI',
       description: 'Platforms, research tools, and AI prompts to invest smarter.',
       href: '/investor',
-      badge: 'New',
+      badge: 'Intelligence',
     },
     items: [
-      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing tools & research' },
-      { name: 'Platform Picks', href: '/investor#platforms', icon: Star, description: 'Revolut, eToro, Crypto.com & more' },
-      { name: 'AI Research Stack', href: '/investor#ai-tools', icon: Brain, description: 'Perplexity, Claude & GPT for investing' },
-      { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis & research agents' },
-      { name: 'Tools & Templates', href: '/investor/tools', icon: Wrench, description: 'Dashboards, trackers & workspace configs' },
+      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing' },
+      { name: 'Platform Picks', href: '/investor#platforms', icon: Star, description: 'Revolut, eToro & more' },
+      { name: 'AI Research Stack', href: '/investor#ai-tools', icon: Brain, description: 'Claude, GPT for investing' },
+      { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis agents' },
     ],
   },
-  resources: {
-    label: 'Resources',
+  explore: {
+    label: 'Explore',
     featured: {
-      title: 'Resource Hub',
-      description: 'Products, Arcanea, and learning paths to build your creative future.',
+      title: 'The FrankX Ecosystem',
+      description: 'Research, products, world-building, and the story behind it all.',
       href: '/resources',
-      badge: 'Explore',
+      badge: 'Ecosystem',
     },
     items: [
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
@@ -193,7 +182,7 @@ const navigation = {
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
-      { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
+      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
       { name: 'Full Presence', href: '/presence', icon: Brain, description: '8-gate mindfulness practice' },
@@ -205,6 +194,10 @@ const navigation = {
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
+      {
+        label: 'Research & Knowledge',
+        items: ['Research Hub', 'Intelligence Atlas', 'Downloads'],
+      },
       {
         label: 'Products & Systems',
         items: ['Resource Hub', 'Full Presence', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
@@ -476,8 +469,8 @@ export default function NavigationMega() {
           className="relative hidden lg:block"
           onValueChange={(value) => setMenuOpen(!!value)}
         >
-          <NavigationMenu.List className="flex items-center gap-1">
-            {/* Music - Lead with the portfolio */}
+          <NavigationMenu.List className="flex items-center gap-0.5">
+            {/* Music */}
             <NavigationMenu.Item>
               <NavTrigger>Music</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
@@ -495,53 +488,45 @@ export default function NavigationMega() {
 
             {/* Creators */}
             <NavigationMenu.Item>
-              <NavTrigger>Creators</NavTrigger>
+              <NavTrigger>GenCreators</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="creators" />
+                <MegaMenuContent section="gencreators" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
-            {/* Students */}
+            {/* Learn — expanded from Students */}
             <NavigationMenu.Item>
-              <NavTrigger>Students</NavTrigger>
+              <NavTrigger>Learn</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="students" />
+                <MegaMenuContent section="learn" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
-            {/* Games */}
+            {/* Build — AI Architecture + consulting */}
             <NavigationMenu.Item>
-              <NavTrigger>Games</NavTrigger>
+              <NavTrigger>Build</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="games" />
+                <MegaMenuContent section="build" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
-            {/* Developers */}
+            {/* Invest */}
             <NavigationMenu.Item>
-              <NavTrigger>Developers</NavTrigger>
+              <NavTrigger>Invest</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="developers" />
+                <MegaMenuContent section="invest" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
-            {/* Investors */}
+            {/* Explore — trimmed resources */}
             <NavigationMenu.Item>
-              <NavTrigger>Investors</NavTrigger>
+              <NavTrigger>Explore</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="investor" />
+                <MegaMenuContent section="explore" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
-            {/* Resources */}
-            <NavigationMenu.Item>
-              <NavTrigger>Resources</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="resources" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Simple links */}
+            {/* Blog — direct link */}
             <NavigationMenu.Item>
               <Link
                 href="/blog"
@@ -556,7 +541,6 @@ export default function NavigationMega() {
               </Link>
             </NavigationMenu.Item>
 
-
             <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
               <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
             </NavigationMenu.Indicator>
@@ -567,8 +551,8 @@ export default function NavigationMega() {
           </div>
         </NavigationMenu.Root>
 
-        {/* Desktop CTAs */}
-        <div className="hidden items-center gap-3 lg:flex">
+        {/* Desktop CTAs — Search + Primary */}
+        <div className="hidden items-center gap-2 lg:flex">
           <Link
             href="/start"
             className="rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20"
@@ -613,11 +597,11 @@ export default function NavigationMega() {
               </Link>
 
               {/* Mobile CTA */}
-              <div className="pt-3 sm:pt-4 pb-2">
+              <div className="pt-3 sm:pt-4 pb-2 space-y-2">
                 <Link
                   href="/start"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
+                  className="flex items-center gap-2.5 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
                 >
                   Start Here
                 </Link>

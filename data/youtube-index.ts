@@ -41,7 +41,7 @@ export const youtubeIndex: YoutubeIndexEntry[] = [
     "slug": "claude-code-mastery-top-resources",
     "title": "Claude Code Mastery: The Top 5 Resources of 2026",
     "videoIds": [
-      "pOLR5jE5Vjw"
+      "eTTMUWP5B0s"
     ],
     "category": "Curated"
   },

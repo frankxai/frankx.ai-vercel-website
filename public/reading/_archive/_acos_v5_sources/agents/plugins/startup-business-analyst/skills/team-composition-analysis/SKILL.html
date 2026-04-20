@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Team Composition Analysis</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/startup-business-analyst/skills/team-composition-analysis/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Team Composition Analysis</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst">startup-business-analyst</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst%2Fskills%2Fteam-composition-analysis">team-composition-analysis</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: team-composition-analysis
+description: This skill should be used when the user asks to &quot;plan team structure&quot;, &quot;determine hiring needs&quot;, &quot;design org chart&quot;, &quot;calculate compensation&quot;, &quot;plan equity allocation&quot;, or requests organizational design and headcount planning for a startup.
+version: 1.0.0</h2>
+<h1>Team Composition Analysis</h1>
+<p>Design optimal team structures, hiring plans, compensation strategies, and equity allocation for early-stage startups from pre-seed through Series A.</p>
+<h2>Overview</h2>
+<p>Build the right team at the right time with appropriate compensation and equity. Plan role-by-role hiring aligned with revenue milestones, budget constraints, and market benchmarks.</p>
+<h2>Team Structure by Stage</h2>
+<h3>Pre-Seed (0-$500K ARR)</h3>
+<p><strong>Team Size: 2-5 people</strong></p>
+<p><strong>Core Roles:</strong></p>
+<ul>
+<li>Founders (2-3): Product, engineering, business</li>
+<li>First engineer (if needed)</li>
+<li>Contract roles: Design, marketing</li>
+</ul>
+<p><strong>Focus:</strong> Build and validate product-market fit</p>
+<h3>Seed ($500K-$2M ARR)</h3>
+<p><strong>Team Size: 5-15 people</strong></p>
+<p><strong>Key Hires:</strong></p>
+<ul>
+<li>Engineering lead + 2-3 engineers</li>
+<li>First sales/business development</li>
+<li>Product manager</li>
+<li>Marketing/growth lead</li>
+</ul>
+<p><strong>Focus:</strong> Scale product and prove repeatable sales</p>
+<h3>Series A ($2M-$10M ARR)</h3>
+<p><strong>Team Size: 15-50 people</strong></p>
+<p><strong>Department Build-Out:</strong></p>
+<ul>
+<li>Engineering (40%): 6-20 people</li>
+<li>Sales &amp; Marketing (30%): 5-15 people</li>
+<li>Customer Success (10%): 2-5 people</li>
+<li>G&amp;A (10%): 2-5 people</li>
+<li>Product (10%): 2-5 people</li>
+</ul>
+<p><strong>Focus:</strong> Scale revenue and build repeatable processes</p>
+<h2>Role-by-Role Planning</h2>
+<h3>Engineering Team</h3>
+<p><strong>Pre-Seed:</strong></p>
+<ul>
+<li>Founders write code</li>
+<li>0-1 contract developers</li>
+</ul>
+<p><strong>Seed:</strong></p>
+<ul>
+<li>Engineering Lead (first $150K-$180K)</li>
+<li>2-3 Full-Stack Engineers ($120K-$150K)</li>
+<li>1 Frontend or Backend Specialist ($130K-$160K)</li>
+</ul>
+<p><strong>Series A:</strong></p>
+<ul>
+<li>VP Engineering ($180K-$250K + equity)</li>
+<li>2-3 Senior Engineers ($150K-$180K)</li>
+<li>3-5 Mid-Level Engineers ($120K-$150K)</li>
+<li>1-2 Junior Engineers ($90K-$120K)</li>
+<li>1 DevOps/Infrastructure ($140K-$170K)</li>
+</ul>
+<h3>Sales &amp; Marketing</h3>
+<p><strong>Pre-Seed:</strong></p>
+<ul>
+<li>Founders do sales</li>
+<li>Contract marketing help</li>
+</ul>
+<p><strong>Seed:</strong></p>
+<ul>
+<li>First Sales Hire / Head of Sales ($120K-$150K + commission)</li>
+<li>Marketing/Growth Lead ($100K-$140K)</li>
+<li>SDR or BDR (if B2B) ($50K-$70K + commission)</li>
+</ul>
+<p><strong>Series A:</strong></p>
+<ul>
+<li>VP Sales ($150K-$200K + commission + equity)</li>
+<li>3-5 Account Executives ($80K-$120K + commission)</li>
+<li>2-3 SDRs/BDRs ($50K-$70K + commission)</li>
+<li>Marketing Manager ($90K-$130K)</li>
+<li>Content/Demand Gen ($70K-$100K)</li>
+</ul>
+<h3>Product Team</h3>
+<p><strong>Pre-Seed:</strong></p>
+<ul>
+<li>Founder as product lead</li>
+</ul>
+<p><strong>Seed:</strong></p>
+<ul>
+<li>First Product Manager ($120K-$150K)</li>
+<li>Contract designer</li>
+</ul>
+<p><strong>Series A:</strong></p>
+<ul>
+<li>Head of Product ($150K-$180K)</li>
+<li>1-2 Product Managers ($120K-$150K)</li>
+<li>Product Designer ($100K-$140K)</li>
+<li>UX Researcher (optional) ($90K-$130K)</li>
+</ul>
+<h3>Customer Success</h3>
+<p><strong>Pre-Seed:</strong></p>
+<ul>
+<li>Founders handle support</li>
+</ul>
+<p><strong>Seed:</strong></p>
+<ul>
+<li>First CS hire (optional) ($60K-$90K)</li>
+</ul>
+<p><strong>Series A:</strong></p>
+<ul>
+<li>CS Manager ($100K-$130K)</li>
+<li>2-4 CS Representatives ($60K-$90K)</li>
+<li>Support Engineer (technical) ($80K-$120K)</li>
+</ul>
+<h3>G&amp;A (General &amp; Administrative)</h3>
+<p><strong>Pre-Seed:</strong></p>
+<ul>
+<li>Contractors (accounting, legal)</li>
+</ul>
+<p><strong>Seed:</strong></p>
+<ul>
+<li>Operations/Office Manager ($70K-$100K)</li>
+<li>Contract CFO</li>
+</ul>
+<p><strong>Series A:</strong></p>
+<ul>
+<li>CFO or Finance Lead ($150K-$200K)</li>
+<li>Recruiter ($80K-$120K)</li>
+<li>Office Manager / EA ($60K-$90K)</li>
+</ul>
+<h2>Compensation Strategy</h2>
+<h3>Base Salary Benchmarks (US, 2024)</h3>
+<p><strong>Engineering:</strong></p>
+<ul>
+<li>Junior: $90K-$120K</li>
+<li>Mid-Level: $120K-$150K</li>
+<li>Senior: $150K-$180K</li>
+<li>Staff/Principal: $180K-$220K</li>
+<li>Engineering Manager: $160K-$200K</li>
+<li>VP Engineering: $180K-$250K</li>
+</ul>
+<p><strong>Sales:</strong></p>
+<ul>
+<li>SDR/BDR: $50K-$70K base + $50K-$70K commission</li>
+<li>Account Executive: $80K-$120K base + $80K-$120K commission</li>
+<li>Sales Manager: $120K-$160K base + $80K-$120K commission</li>
+<li>VP Sales: $150K-$200K base + $150K-$200K commission</li>
+</ul>
+<p><strong>Product:</strong></p>
+<ul>
+<li>Product Manager: $120K-$150K</li>
+<li>Senior PM: $150K-$180K</li>
+<li>Head of Product: $150K-$180K</li>
+<li>VP Product: $180K-$220K</li>
+</ul>
+<p><strong>Marketing:</strong></p>
+<ul>
+<li>Marketing Manager: $90K-$130K</li>
+<li>Content/Demand Gen: $70K-$100K</li>
+<li>Head of Marketing: $130K-$170K</li>
+<li>VP Marketing: $150K-$200K</li>
+</ul>
+<p><strong>Customer Success:</strong></p>
+<ul>
+<li>CS Representative: $60K-$90K</li>
+<li>CS Manager: $100K-$130K</li>
+<li>VP Customer Success: $140K-$180K</li>
+</ul>
+<h3>Total Compensation Formula</h3>
+<pre><code>Total Comp = Base Salary × 1.30 (benefits &amp; taxes) + Equity Value
+</code></pre>
+<p><strong>Fully-Loaded Cost:</strong></p>
+<ul>
+<li>Base salary</li>
+<li>Payroll taxes (7.65% FICA)</li>
+<li>Benefits (health insurance, 401k): $10K-$15K per employee</li>
+<li>Other (workspace, equipment, software): $5K-$10K per employee</li>
+</ul>
+<p><strong>Rule of Thumb:</strong> Multiply base salary by 1.3-1.4 for fully-loaded cost</p>
+<h3>Geographic Adjustments</h3>
+<p><strong>San Francisco / New York:</strong> +20-30% above benchmarks
+<strong>Seattle / Boston / Los Angeles:</strong> +10-20%
+<strong>Austin / Denver / Chicago:</strong> +0-10%
+<strong>Remote / Other US Cities:</strong> -10-20%
+<strong>International:</strong> Varies widely by country</p>
+<h2>Equity Allocation</h2>
+<h3>Equity by Role and Stage</h3>
+<p><strong>Founders:</strong></p>
+<ul>
+<li>First founder: 40-60%</li>
+<li>Second founder: 20-40%</li>
+<li>Third founder: 10-20%</li>
+<li>Vesting: 4 years with 1-year cliff</li>
+</ul>
+<p><strong>Early Employees (Pre-Seed):</strong></p>
+<ul>
+<li>First engineer: 0.5-2.0%</li>
+<li>First 5 employees: 0.25-1.0% each</li>
+</ul>
+<p><strong>Seed Stage Hires:</strong></p>
+<ul>
+<li>VP/Head level: 0.5-1.5%</li>
+<li>Senior IC: 0.1-0.5%</li>
+<li>Mid-level: 0.05-0.25%</li>
+<li>Junior: 0.01-0.1%</li>
+</ul>
+<p><strong>Series A Hires:</strong></p>
+<ul>
+<li>C-level (CTO, CFO): 1.0-3.0%</li>
+<li>VP level: 0.3-1.0%</li>
+<li>Director level: 0.1-0.5%</li>
+<li>Senior IC: 0.05-0.2%</li>
+<li>Mid-level: 0.01-0.1%</li>
+<li>Junior: 0.005-0.05%</li>
+</ul>
+<h3>Equity Pool Sizing</h3>
+<p><strong>Option Pool by Round:</strong></p>
+<ul>
+<li>Pre-Seed: 10-15% reserved</li>
+<li>Seed: 10-15% top-up</li>
+<li>Series A: 10-15% top-up</li>
+<li>Series B+: 5-10% per round</li>
+</ul>
+<p><strong>Pre-Funding Dilution:</strong>
+Investors often require option pool creation before investment, diluting founders.</p>
+<p><strong>Example:</strong></p>
+<pre><code>Pre-money: $10M
+Investors want 15% option pool post-money
+
+Calculation:
+Post-money: $15M ($10M + $5M investment)
+Option pool: $2.25M (15% × $15M)
+Founders diluted by pool creation before new money
+</code></pre>
+<h2>Organizational Design</h2>
+<h3>Reporting Structure</h3>
+<p><strong>Pre-Seed:</strong></p>
+<pre><code>Founders (flat structure)
+├── Contractors
+└── First hires (report to founders)
+</code></pre>
+<p><strong>Seed:</strong></p>
+<pre><code>CEO
+├── Engineering Lead (2-4 engineers)
+├── Sales/Growth Lead (1-2 reps)
+├── Product Manager
+└── Operations
+</code></pre>
+<p><strong>Series A:</strong></p>
+<pre><code>CEO
+├── CTO / VP Engineering (6-20 people)
+│   ├── Engineering Manager(s)
+│   └── Individual Contributors
+├── VP Sales (5-15 people)
+│   ├── Sales Manager
+│   ├── Account Executives
+│   └── SDRs
+├── Head of Product (2-5 people)
+│   ├── Product Managers
+│   └── Designers
+├── Head of Customer Success (2-5 people)
+└── CFO / Finance Lead (2-5 people)
+    ├── Recruiter
+    └── Operations
+</code></pre>
+<h3>Span of Control</h3>
+<p><strong>Manager Ratios:</strong></p>
+<ul>
+<li>First-line managers: 4-8 direct reports</li>
+<li>Directors: 3-5 direct reports (managers)</li>
+<li>VPs: 3-5 direct reports (directors)</li>
+<li>CEO: 5-8 direct reports (executive team)</li>
+</ul>
+<h2>Full-Time vs. Contract</h2>
+<h3>Use Full-Time for:</h3>
+<ul>
+<li>Core product development</li>
+<li>Sales (revenue-generating roles)</li>
+<li>Mission-critical operations</li>
+<li>Institutional knowledge roles</li>
+</ul>
+<h3>Use Contractors for:</h3>
+<ul>
+<li>Specialized short-term needs (legal, accounting)</li>
+<li>Variable workload (design, marketing campaigns)</li>
+<li>Skills outside core competency</li>
+<li>Testing role before FTE hire</li>
+<li>Geographic expansion before permanent presence</li>
+</ul>
+<h3>Cost Comparison</h3>
+<p><strong>Full-Time:</strong></p>
+<ul>
+<li>Lower hourly cost</li>
+<li>Benefits and overhead</li>
+<li>Long-term commitment</li>
+<li>Cultural fit matters</li>
+</ul>
+<p><strong>Contract:</strong></p>
+<ul>
+<li>Higher hourly rate ($75-$200/hour vs. $40-$100/hour FTE equivalent)</li>
+<li>No benefits or overhead</li>
+<li>Flexible engagement</li>
+<li>Easier to scale up/down</li>
+</ul>
+<h2>Hiring Velocity</h2>
+<h3>Realistic Timeline</h3>
+<p><strong>Role Opening to Hire:</strong></p>
+<ul>
+<li>Junior: 6-8 weeks</li>
+<li>Mid-Level: 8-12 weeks</li>
+<li>Senior: 12-16 weeks</li>
+<li>Executive: 16-24 weeks</li>
+</ul>
+<p><strong>Time to Productivity:</strong></p>
+<ul>
+<li>Junior: 4-6 months</li>
+<li>Mid-Level: 2-4 months</li>
+<li>Senior: 1-3 months</li>
+<li>Executive: 3-6 months</li>
+</ul>
+<h3>Planning Buffer</h3>
+<p>Always add 2-3 months buffer to hiring plans.</p>
+<p><strong>Example:</strong>
+If need engineer by July 1:</p>
+<ul>
+<li>Start recruiting: April 1 (12 weeks)</li>
+<li>Productivity: September 1 (2 months ramp)</li>
+</ul>
+<h2>Budget Planning</h2>
+<h3>Compensation as % of Revenue</h3>
+<p><strong>Early Stage (Seed):</strong></p>
+<ul>
+<li>Total comp: 120-150% of revenue (burning cash to grow)</li>
+<li>Engineering: 50-60%</li>
+<li>Sales: 30-40%</li>
+<li>Other: 20-30%</li>
+</ul>
+<p><strong>Growth Stage (Series A):</strong></p>
+<ul>
+<li>Total comp: 70-100% of revenue</li>
+<li>Engineering: 35-45%</li>
+<li>Sales: 25-35%</li>
+<li>Other: 20-30%</li>
+</ul>
+<h3>Headcount Budget Formula</h3>
+<pre><code>Total Comp Budget = Σ (Role Count × Fully-Loaded Cost × % of Year)
+
+Example:
+3 Engineers × $202K × 100% = $606K
+2 AEs × $230K × 75% (mid-year start) = $345K
+1 PM × $162K × 100% = $162K
+Total: $1.1M
+</code></pre>
+<h2>Additional Resources</h2>
+<h3>Reference Files</h3>
+<ul>
+<li><strong><code>references/compensation-benchmarks.md</code></strong> - Detailed salary data by role, level, and location</li>
+<li><strong><code>references/equity-calculator.md</code></strong> - Equity sizing formulas and dilution scenarios</li>
+</ul>
+<h3>Example Files</h3>
+<ul>
+<li><strong><code>examples/seed-stage-hiring-plan.md</code></strong> - Complete hiring plan for seed-stage SaaS company</li>
+<li><strong><code>examples/org-chart-evolution.md</code></strong> - Organizational design from 5 to 50 people</li>
+</ul>
+<h2>Quick Start</h2>
+<p>To plan team composition:</p>
+<ol>
+<li><strong>Identify stage</strong> - Pre-seed, seed, or Series A</li>
+<li><strong>Define roles</strong> - What functions are needed now</li>
+<li><strong>Prioritize hires</strong> - Critical path for business goals</li>
+<li><strong>Set compensation</strong> - Base salary + equity by level</li>
+<li><strong>Plan timeline</strong> - Account for recruiting and ramp time</li>
+<li><strong>Calculate budget</strong> - Fully-loaded cost × headcount</li>
+<li><strong>Design org chart</strong> - Reporting structure and span of control</li>
+<li><strong>Allocate equity</strong> - Fair allocation that preserves pool</li>
+</ol>
+<p>For detailed compensation benchmarks and hiring plan templates, see <code>references/</code> and <code>examples/</code>.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

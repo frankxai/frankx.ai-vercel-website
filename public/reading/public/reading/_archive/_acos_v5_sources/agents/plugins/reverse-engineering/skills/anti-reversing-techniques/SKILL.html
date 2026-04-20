@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Anti-Reversing Techniques</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/reverse-engineering/skills/anti-reversing-techniques/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Anti-Reversing Techniques</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Freverse-engineering">reverse-engineering</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Freverse-engineering%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Freverse-engineering%2Fskills%2Fanti-reversing-techniques">anti-reversing-techniques</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: anti-reversing-techniques
+description: Understand anti-reversing, obfuscation, and protection techniques encountered during software analysis. Use when analyzing protected binaries, bypassing anti-debugging for authorized analysis, or understanding software protection mechanisms.</h2>
+<blockquote>
+<p><strong>AUTHORIZED USE ONLY</strong>: This skill contains dual-use security techniques. Before proceeding with any bypass or analysis:</p>
+<ol>
+<li><strong>Verify authorization</strong>: Confirm you have explicit written permission from the software owner, or are operating within a legitimate security context (CTF, authorized pentest, malware analysis, security research)</li>
+<li><strong>Document scope</strong>: Ensure your activities fall within the defined scope of your authorization</li>
+<li><strong>Legal compliance</strong>: Understand that unauthorized bypassing of software protection may violate laws (CFAA, DMCA anti-circumvention, etc.)</li>
+</ol>
+<p><strong>Legitimate use cases</strong>: Malware analysis, authorized penetration testing, CTF competitions, academic security research, analyzing software you own/have rights to</p>
+</blockquote>
+<h1>Anti-Reversing Techniques</h1>
+<p>Understanding protection mechanisms encountered during authorized software analysis, security research, and malware analysis. This knowledge helps analysts bypass protections to complete legitimate analysis tasks.</p>
+<h2>Anti-Debugging Techniques</h2>
+<h3>Windows Anti-Debugging</h3>
+<h4>API-Based Detection</h4>
+<pre><code class="language-c">// IsDebuggerPresent
+if (IsDebuggerPresent()) {
+    exit(1);
+}
+
+// CheckRemoteDebuggerPresent
+BOOL debugged = FALSE;
+CheckRemoteDebuggerPresent(GetCurrentProcess(), &amp;debugged);
+if (debugged) exit(1);
+
+// NtQueryInformationProcess
+typedef NTSTATUS (NTAPI *pNtQueryInformationProcess)(
+    HANDLE, PROCESSINFOCLASS, PVOID, ULONG, PULONG);
+
+DWORD debugPort = 0;
+NtQueryInformationProcess(
+    GetCurrentProcess(),
+    ProcessDebugPort,        // 7
+    &amp;debugPort,
+    sizeof(debugPort),
+    NULL
+);
+if (debugPort != 0) exit(1);
+
+// Debug flags
+DWORD debugFlags = 0;
+NtQueryInformationProcess(
+    GetCurrentProcess(),
+    ProcessDebugFlags,       // 0x1F
+    &amp;debugFlags,
+    sizeof(debugFlags),
+    NULL
+);
+if (debugFlags == 0) exit(1);  // 0 means being debugged
+</code></pre>
+<p><strong>Bypass Approaches:</strong></p>
+<pre><code class="language-python"># x64dbg: ScyllaHide plugin
+# Patches common anti-debug checks
+
+# Manual patching in debugger:
+# - Set IsDebuggerPresent return to 0
+# - Patch PEB.BeingDebugged to 0
+# - Hook NtQueryInformationProcess
+
+# IDAPython: Patch checks
+ida_bytes.patch_byte(check_addr, 0x90)  # NOP
+</code></pre>
+<h4>PEB-Based Detection</h4>
+<pre><code class="language-c">// Direct PEB access
+#ifdef _WIN64
+    PPEB peb = (PPEB)__readgsqword(0x60);
+#else
+    PPEB peb = (PPEB)__readfsdword(0x30);
+#endif
+
+// BeingDebugged flag
+if (peb-&gt;BeingDebugged) exit(1);
+
+// NtGlobalFlag
+// Debugged: 0x70 (FLG_HEAP_ENABLE_TAIL_CHECK |
+//                 FLG_HEAP_ENABLE_FREE_CHECK |
+//                 FLG_HEAP_VALIDATE_PARAMETERS)
+if (peb-&gt;NtGlobalFlag &amp; 0x70) exit(1);
+
+// Heap flags
+PDWORD heapFlags = (PDWORD)((PBYTE)peb-&gt;ProcessHeap + 0x70);
+if (*heapFlags &amp; 0x50000062) exit(1);
+</code></pre>
+<p><strong>Bypass Approaches:</strong></p>
+<pre><code class="language-assembly">; In debugger, modify PEB directly
+; x64dbg: dump at gs:[60] (x64) or fs:[30] (x86)
+; Set BeingDebugged (offset 2) to 0
+; Clear NtGlobalFlag (offset 0xBC for x64)
+</code></pre>
+<h4>Timing-Based Detection</h4>
+<pre><code class="language-c">// RDTSC timing
+uint64_t start = __rdtsc();
+// ... some code ...
+uint64_t end = __rdtsc();
+if ((end - start) &gt; THRESHOLD) exit(1);
+
+// QueryPerformanceCounter
+LARGE_INTEGER start, end, freq;
+QueryPerformanceFrequency(&amp;freq);
+QueryPerformanceCounter(&amp;start);
+// ... code ...
+QueryPerformanceCounter(&amp;end);
+double elapsed = (double)(end.QuadPart - start.QuadPart) / freq.QuadPart;
+if (elapsed &gt; 0.1) exit(1);  // Too slow = debugger
+
+// GetTickCount
+DWORD start = GetTickCount();
+// ... code ...
+if (GetTickCount() - start &gt; 1000) exit(1);
+</code></pre>
+<p><strong>Bypass Approaches:</strong></p>
+<pre><code>- Use hardware breakpoints instead of software
+- Patch timing checks
+- Use VM with controlled time
+- Hook timing APIs to return consistent values
+</code></pre>
+<h4>Exception-Based Detection</h4>
+<pre><code class="language-c">// SEH-based detection
+__try {
+    __asm { int 3 }  // Software breakpoint
+}
+__except(EXCEPTION_EXECUTE_HANDLER) {
+    // Normal execution: exception caught
+    return;
+}
+// Debugger ate the exception
+exit(1);
+
+// VEH-based detection
+LONG CALLBACK VectoredHandler(PEXCEPTION_POINTERS ep) {
+    if (ep-&gt;ExceptionRecord-&gt;ExceptionCode == EXCEPTION_BREAKPOINT) {
+        ep-&gt;ContextRecord-&gt;Rip++;  // Skip INT3
+        return EXCEPTION_CONTINUE_EXECUTION;
+    }
+    return EXCEPTION_CONTINUE_SEARCH;
+}
+</code></pre>
+<h3>Linux Anti-Debugging</h3>
+<pre><code class="language-c">// ptrace self-trace
+if (ptrace(PTRACE_TRACEME, 0, NULL, NULL) == -1) {
+    // Already being traced
+    exit(1);
+}
+
+// /proc/self/status
+FILE *f = fopen(&quot;/proc/self/status&quot;, &quot;r&quot;);
+char line[256];
+while (fgets(line, sizeof(line), f)) {
+    if (strncmp(line, &quot;TracerPid:&quot;, 10) == 0) {
+        int tracer_pid = atoi(line + 10);
+        if (tracer_pid != 0) exit(1);
+    }
+}
+
+// Parent process check
+if (getppid() != 1 &amp;&amp; strcmp(get_process_name(getppid()), &quot;bash&quot;) != 0) {
+    // Unusual parent (might be debugger)
+}
+</code></pre>
+<p><strong>Bypass Approaches:</strong></p>
+<pre><code class="language-bash"># LD_PRELOAD to hook ptrace
+# Compile: gcc -shared -fPIC -o hook.so hook.c
+long ptrace(int request, ...) {
+    return 0;  // Always succeed
+}
+
+# Usage
+LD_PRELOAD=./hook.so ./target
+</code></pre>
+<h2>Anti-VM Detection</h2>
+<h3>Hardware Fingerprinting</h3>
+<pre><code class="language-c">// CPUID-based detection
+int cpuid_info[4];
+__cpuid(cpuid_info, 1);
+// Check hypervisor bit (bit 31 of ECX)
+if (cpuid_info[2] &amp; (1 &lt;&lt; 31)) {
+    // Running in hypervisor
+}
+
+// CPUID brand string
+__cpuid(cpuid_info, 0x40000000);
+char vendor[13] = {0};
+memcpy(vendor, &amp;cpuid_info[1], 12);
+// &quot;VMwareVMware&quot;, &quot;Microsoft Hv&quot;, &quot;KVMKVMKVM&quot;, &quot;VBoxVBoxVBox&quot;
+
+// MAC address prefix
+// VMware: 00:0C:29, 00:50:56
+// VirtualBox: 08:00:27
+// Hyper-V: 00:15:5D
+</code></pre>
+<h3>Registry/File Detection</h3>
+<pre><code class="language-c">// Windows registry keys
+// HKLM\SOFTWARE\VMware, Inc.\VMware Tools
+// HKLM\SOFTWARE\Oracle\VirtualBox Guest Additions
+// HKLM\HARDWARE\ACPI\DSDT\VBOX__
+
+// Files
+// C:\Windows\System32\drivers\vmmouse.sys
+// C:\Windows\System32\drivers\vmhgfs.sys
+// C:\Windows\System32\drivers\VBoxMouse.sys
+
+// Processes
+// vmtoolsd.exe, vmwaretray.exe
+// VBoxService.exe, VBoxTray.exe
+</code></pre>
+<h3>Timing-Based VM Detection</h3>
+<pre><code class="language-c">// VM exits cause timing anomalies
+uint64_t start = __rdtsc();
+__cpuid(cpuid_info, 0);  // Causes VM exit
+uint64_t end = __rdtsc();
+if ((end - start) &gt; 500) {
+    // Likely in VM (CPUID takes longer)
+}
+</code></pre>
+<p><strong>Bypass Approaches:</strong></p>
+<pre><code>- Use bare-metal analysis environment
+- Harden VM (remove guest tools, change MAC)
+- Patch detection code
+- Use specialized analysis VMs (FLARE-VM)
+</code></pre>
+<h2>Code Obfuscation</h2>
+<h3>Control Flow Obfuscation</h3>
+<h4>Control Flow Flattening</h4>
+<pre><code class="language-c">// Original
+if (cond) {
+    func_a();
+} else {
+    func_b();
+}
+func_c();
+
+// Flattened
+int state = 0;
+while (1) {
+    switch (state) {
+        case 0:
+            state = cond ? 1 : 2;
+            break;
+        case 1:
+            func_a();
+            state = 3;
+            break;
+        case 2:
+            func_b();
+            state = 3;
+            break;
+        case 3:
+            func_c();
+            return;
+    }
+}
+</code></pre>
+<p><strong>Analysis Approach:</strong></p>
+<ul>
+<li>Identify state variable</li>
+<li>Map state transitions</li>
+<li>Reconstruct original flow</li>
+<li>Tools: D-810 (IDA), SATURN</li>
+</ul>
+<h4>Opaque Predicates</h4>
+<pre><code class="language-c">// Always true, but complex to analyze
+int x = rand();
+if ((x * x) &gt;= 0) {  // Always true
+    real_code();
+} else {
+    junk_code();  // Dead code
+}
+
+// Always false
+if ((x * (x + 1)) % 2 == 1) {  // Product of consecutive = even
+    junk_code();
+}
+</code></pre>
+<p><strong>Analysis Approach:</strong></p>
+<ul>
+<li>Identify constant expressions</li>
+<li>Symbolic execution to prove predicates</li>
+<li>Pattern matching for known opaque predicates</li>
+</ul>
+<h3>Data Obfuscation</h3>
+<h4>String Encryption</h4>
+<pre><code class="language-c">// XOR encryption
+char decrypt_string(char *enc, int len, char key) {
+    char *dec = malloc(len + 1);
+    for (int i = 0; i &lt; len; i++) {
+        dec[i] = enc[i] ^ key;
+    }
+    dec[len] = 0;
+    return dec;
+}
+
+// Stack strings
+char url[20];
+url[0] = &#39;h&#39;; url[1] = &#39;t&#39;; url[2] = &#39;t&#39;; url[3] = &#39;p&#39;;
+url[4] = &#39;:&#39;; url[5] = &#39;/&#39;; url[6] = &#39;/&#39;;
+// ...
+</code></pre>
+<p><strong>Analysis Approach:</strong></p>
+<pre><code class="language-python"># FLOSS for automatic string deobfuscation
+floss malware.exe
+
+# IDAPython string decryption
+def decrypt_xor(ea, length, key):
+    result = &quot;&quot;
+    for i in range(length):
+        byte = ida_bytes.get_byte(ea + i)
+        result += chr(byte ^ key)
+    return result
+</code></pre>
+<h4>API Obfuscation</h4>
+<pre><code class="language-c">// Dynamic API resolution
+typedef HANDLE (WINAPI *pCreateFileW)(LPCWSTR, DWORD, DWORD,
+    LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE);
+
+HMODULE kernel32 = LoadLibraryA(&quot;kernel32.dll&quot;);
+pCreateFileW myCreateFile = (pCreateFileW)GetProcAddress(
+    kernel32, &quot;CreateFileW&quot;);
+
+// API hashing
+DWORD hash_api(char *name) {
+    DWORD hash = 0;
+    while (*name) {
+        hash = ((hash &gt;&gt; 13) | (hash &lt;&lt; 19)) + *name++;
+    }
+    return hash;
+}
+// Resolve by hash comparison instead of string
+</code></pre>
+<p><strong>Analysis Approach:</strong></p>
+<ul>
+<li>Identify hash algorithm</li>
+<li>Build hash database of known APIs</li>
+<li>Use HashDB plugin for IDA</li>
+<li>Dynamic analysis to resolve at runtime</li>
+</ul>
+<h3>Instruction-Level Obfuscation</h3>
+<h4>Dead Code Insertion</h4>
+<pre><code class="language-asm">; Original
+mov eax, 1
+
+; With dead code
+push ebx           ; Dead
+mov eax, 1
+pop ebx            ; Dead
+xor ecx, ecx       ; Dead
+add ecx, ecx       ; Dead
+</code></pre>
+<h4>Instruction Substitution</h4>
+<pre><code class="language-asm">; Original: xor eax, eax (set to 0)
+; Substitutions:
+sub eax, eax
+mov eax, 0
+and eax, 0
+lea eax, [0]
+
+; Original: mov eax, 1
+; Substitutions:
+xor eax, eax
+inc eax
+
+push 1
+pop eax
+</code></pre>
+<h2>Packing and Encryption</h2>
+<h3>Common Packers</h3>
+<pre><code>UPX          - Open source, easy to unpack
+Themida      - Commercial, VM-based protection
+VMProtect    - Commercial, code virtualization
+ASPack       - Compression packer
+PECompact    - Compression packer
+Enigma       - Commercial protector
+</code></pre>
+<h3>Unpacking Methodology</h3>
+<pre><code>1. Identify packer (DIE, Exeinfo PE, PEiD)
+
+2. Static unpacking (if known packer):
+   - UPX: upx -d packed.exe
+   - Use existing unpackers
+
+3. Dynamic unpacking:
+   a. Find Original Entry Point (OEP)
+   b. Set breakpoint on OEP
+   c. Dump memory when OEP reached
+   d. Fix import table (Scylla, ImpREC)
+
+4. OEP finding techniques:
+   - Hardware breakpoint on stack (ESP trick)
+   - Break on common API calls (GetCommandLineA)
+   - Trace and look for typical entry patterns
+</code></pre>
+<h3>Manual Unpacking Example</h3>
+<pre><code>1. Load packed binary in x64dbg
+2. Note entry point (packer stub)
+3. Use ESP trick:
+   - Run to entry
+   - Set hardware breakpoint on [ESP]
+   - Run until breakpoint hits (after PUSHAD/POPAD)
+4. Look for JMP to OEP
+5. At OEP, use Scylla to:
+   - Dump process
+   - Find imports (IAT autosearch)
+   - Fix dump
+</code></pre>
+<h2>Virtualization-Based Protection</h2>
+<h3>Code Virtualization</h3>
+<pre><code>Original x86 code is converted to custom bytecode
+interpreted by embedded VM at runtime.
+
+Original:     VM Protected:
+mov eax, 1    push vm_context
+add eax, 2    call vm_entry
+              ; VM interprets bytecode
+              ; equivalent to original
+</code></pre>
+<h3>Analysis Approaches</h3>
+<pre><code>1. Identify VM components:
+   - VM entry (dispatcher)
+   - Handler table
+   - Bytecode location
+   - Virtual registers/stack
+
+2. Trace execution:
+   - Log handler calls
+   - Map bytecode to operations
+   - Understand instruction set
+
+3. Lifting/devirtualization:
+   - Map VM instructions back to native
+   - Tools: VMAttack, SATURN, NoVmp
+
+4. Symbolic execution:
+   - Analyze VM semantically
+   - angr, Triton
+</code></pre>
+<h2>Bypass Strategies Summary</h2>
+<h3>General Principles</h3>
+<ol>
+<li><strong>Understand the protection</strong>: Identify what technique is used</li>
+<li><strong>Find the check</strong>: Locate protection code in binary</li>
+<li><strong>Patch or hook</strong>: Modify check to always pass</li>
+<li><strong>Use appropriate tools</strong>: ScyllaHide, x64dbg plugins</li>
+<li><strong>Document findings</strong>: Keep notes on bypassed protections</li>
+</ol>
+<h3>Tool Recommendations</h3>
+<pre><code>Anti-debug bypass:    ScyllaHide, TitanHide
+Unpacking:           x64dbg + Scylla, OllyDumpEx
+Deobfuscation:       D-810, SATURN, miasm
+VM analysis:         VMAttack, NoVmp, manual tracing
+String decryption:   FLOSS, custom scripts
+Symbolic execution:  angr, Triton
+</code></pre>
+<h3>Ethical Considerations</h3>
+<p>This knowledge should only be used for:</p>
+<ul>
+<li>Authorized security research</li>
+<li>Malware analysis (defensive)</li>
+<li>CTF competitions</li>
+<li>Understanding protections for legitimate purposes</li>
+<li>Educational purposes</li>
+</ul>
+<p>Never use to bypass protections for:</p>
+<ul>
+<li>Software piracy</li>
+<li>Unauthorized access</li>
+<li>Malicious purposes</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

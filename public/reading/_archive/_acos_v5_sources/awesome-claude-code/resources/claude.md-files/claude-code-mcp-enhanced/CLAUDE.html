@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GLOBAL CODING STANDARDS</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/claude.md-files/claude-code-mcp-enhanced/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GLOBAL CODING STANDARDS</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fclaude.md-files">claude.md-files</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fclaude.md-files%2Fclaude-code-mcp-enhanced">claude-code-mcp-enhanced</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>GLOBAL CODING STANDARDS</h1>
+<blockquote>
+<p>Reference guide for all project development. For detailed task planning, see <a href="./docs/memory_bank/guides/TASK_PLAN_GUIDE.md">TASK_PLAN_GUIDE.md</a></p>
+</blockquote>
+<h2>🔴 AGENT INSTRUCTIONS</h2>
+<p><strong>IMPORTANT</strong>: As an agent, you MUST read and follow ALL guidelines in this document BEFORE executing any task in a task list. DO NOT skip or ignore any part of these standards. These standards supersede any conflicting instructions you may have received previously.</p>
+<h2>Project Structure</h2>
+<pre><code>project_name/
+├── docs/
+│   ├── CHANGELOG.md
+│   ├── memory_bank/
+│   └── tasks/
+├── examples/
+├── pyproject.toml
+├── README.md
+├── src/
+│   └── project_name/
+├── tests/
+│   ├── fixtures/
+│   └── project_name/
+└── uv.lock
+</code></pre>
+<ul>
+<li><strong>Package Management</strong>: Always use uv with pyproject.toml, never pip</li>
+<li><strong>Mirror Structure</strong>: examples/, tests/ mirror the project structure in src/</li>
+<li><strong>Documentation</strong>: Keep comprehensive docs in docs/ directory</li>
+</ul>
+<h2>Module Requirements</h2>
+<ul>
+<li><strong>Size</strong>: Maximum 500 lines of code per file</li>
+<li><strong>Documentation Header</strong>: Every file must include:<ul>
+<li>Description of purpose</li>
+<li>Links to third-party package documentation</li>
+<li>Sample input</li>
+<li>Expected output</li>
+</ul>
+</li>
+<li><strong>Validation Function</strong>: Every file needs a main block (<code>if __name__ == &quot;__main__&quot;:</code>) that tests with real data</li>
+</ul>
+<h2>Architecture Principles</h2>
+<ul>
+<li><p><strong>Function-First</strong>: Prefer simple functions over classes</p>
+</li>
+<li><p><strong>Class Usage</strong>: Only use classes when:</p>
+<ul>
+<li>Maintaining state</li>
+<li>Implementing data validation models</li>
+<li>Following established design patterns</li>
+</ul>
+</li>
+<li><p><strong>Async Code</strong>: Never use <code>asyncio.run()</code> inside functions - only in main blocks</p>
+</li>
+<li><p><strong>Type Hints</strong>: Use the typing library for clear type annotations to improve code understanding and tooling</p>
+<ul>
+<li>Type hints should be used for all function parameters and return values</li>
+<li>Use type hints for key variables where it improves clarity</li>
+<li>Prefer concrete types over Any when possible</li>
+<li>Do not add type hints if they significantly reduce code readability</li>
+</ul>
+<pre><code class="language-python"># Good type hint usage:
+from typing import Dict, List, Optional, Union, Tuple
+
+def process_document(doc_id: str, options: Optional[Dict[str, str]] = None) -&gt; Dict[str, Any]:
+    &quot;&quot;&quot;Process a document with optional configuration.&quot;&quot;&quot;
+    # Implementation
+    return result
+    
+# Simple types don&#39;t need annotations inside functions if obvious:
+def get_user_name(user_id: int) -&gt; str:
+    name = &quot;John&quot;  # Type inference works here, no annotation needed
+    return name
+</code></pre>
+</li>
+<li><p><strong>NO Conditional Imports</strong>: </p>
+<ul>
+<li>Never use try/except blocks for imports of required packages</li>
+<li>If a package is in pyproject.toml, import it directly at the top of the file</li>
+<li>Handle specific errors during usage, not during import</li>
+<li>Only use conditional imports for truly optional features (rare)</li>
+</ul>
+<pre><code class="language-python"># INCORRECT - DO NOT DO THIS:
+try:
+    import tiktoken
+    TIKTOKEN_AVAILABLE = True
+except ImportError:
+    TIKTOKEN_AVAILABLE = False
+    
+# CORRECT APPROACH:
+import tiktoken  # Listed in pyproject.toml as a dependency
+
+def count_tokens(text, model=&quot;gpt-3.5-turbo&quot;):
+    # Handle errors during usage, not import
+    try:
+        encoding = tiktoken.encoding_for_model(model)
+        return len(encoding.encode(text))
+    except Exception as e:
+        logger.error(f&quot;Token counting error: {e}&quot;)
+        return len(text) // 4  # Fallback estimation
+</code></pre>
+</li>
+</ul>
+<h2>Validation &amp; Testing</h2>
+<ul>
+<li><strong>Real Data</strong>: Always test with actual data, never fake inputs</li>
+<li><strong>Expected Results</strong>: Verify outputs against concrete expected results</li>
+<li><strong>No Mocking</strong>: NEVER mock core functionality</li>
+<li><strong>MagicMock Ban</strong>: MagicMock is strictly forbidden for testing core functionality</li>
+<li><strong>Meaningful Assertions</strong>: Use assertions that verify specific expected values</li>
+<li><strong>🔴 Usage Functions Before Tests</strong>: ALL relevant usage functions MUST successfully output expected results BEFORE any creation of tests. Tests are a future-proofing step when Agents improve at test-writing capabilities.</li>
+<li><strong>🔴 Results Before Lint</strong>: ALL usage functionality MUST produce expected results BEFORE addressing ANY Pylint or other linter warnings. Functionality correctness ALWAYS comes before style compliance.</li>
+<li><strong>🔴 External Research After 3 Failures</strong>: If a usage function fails validation 3 consecutive times with different approaches, the agent MUST use external research tools (perplexity_ask, perplexity_research, web_search) to find current best practices, package updates, or solutions for the specific problem. Document the research findings in comments.</li>
+<li><strong>🔴 NO UNCONDITIONAL &quot;TESTS PASSED&quot; MESSAGES</strong>: NEVER include unconditional &quot;All Tests Passed&quot; or similar validation success messages. Success messages MUST be conditional on ACTUAL test results.</li>
+<li><strong>🔴 TRACK ALL VALIDATION FAILURES</strong>: ALWAYS track ALL validation failures and report them at the end. NEVER stop validation after the first failure.<pre><code class="language-python"># INCORRECT - DO NOT DO THIS:
+if __name__ == &quot;__main__&quot;:
+    test_data = &quot;test input&quot;
+    result = process_data(test_data)
+    # This always prints regardless of success/failure
+    print(&quot;✅ VALIDATION PASSED - All tests successful&quot;)
+
+# CORRECT IMPLEMENTATION:
+if __name__ == &quot;__main__&quot;:
+    import sys
+    
+    # List to track all validation failures
+    all_validation_failures = []
+    total_tests = 0
+    
+    # Test 1: Basic functionality
+    total_tests += 1
+    test_data = &quot;example input&quot;
+    result = process_data(test_data)
+    expected = {&quot;key&quot;: &quot;processed value&quot;}
+    if result != expected:
+        all_validation_failures.append(f&quot;Basic test: Expected {expected}, got {result}&quot;)
+    
+    # Test 2: Edge case handling
+    total_tests += 1
+    edge_case = &quot;empty&quot;
+    edge_result = process_data(edge_case)
+    edge_expected = {&quot;key&quot;: &quot;&quot;}
+    if edge_result != edge_expected:
+        all_validation_failures.append(f&quot;Edge case: Expected {edge_expected}, got {edge_result}&quot;)
+    
+    # Test 3: Error handling
+    total_tests += 1
+    try:
+        error_result = process_data(None)
+        all_validation_failures.append(&quot;Error handling: Expected exception for None input, but no exception was raised&quot;)
+    except ValueError:
+        # This is expected - test passes
+        pass
+    except Exception as e:
+        all_validation_failures.append(f&quot;Error handling: Expected ValueError for None input, but got {type(e).__name__}&quot;)
+    
+    # Final validation result
+    if all_validation_failures:
+        print(f&quot;❌ VALIDATION FAILED - {len(all_validation_failures)} of {total_tests} tests failed:&quot;)
+        for failure in all_validation_failures:
+            print(f&quot;  - {failure}&quot;)
+        sys.exit(1)  # Exit with error code
+    else:
+        print(f&quot;✅ VALIDATION PASSED - All {total_tests} tests produced expected results&quot;)
+        print(&quot;Function is validated and formal tests can now be written&quot;)
+        sys.exit(0)  # Exit with success code
+</code></pre>
+</li>
+</ul>
+<h2>Standard Components</h2>
+<ul>
+<li><strong>Logging</strong>: Always use loguru for logging<pre><code class="language-python">from loguru import logger
+
+# Configure logger
+logger.add(&quot;app.log&quot;, rotation=&quot;10 MB&quot;)
+</code></pre>
+</li>
+<li><strong>CLI Structure</strong>: Every command-line tool must use typer in a <code>cli.py</code> file<pre><code class="language-python">import typer
+
+app = typer.Typer()
+
+@app.command()
+def command_name(param: str = typer.Argument(..., help=&quot;Description&quot;)):
+    &quot;&quot;&quot;Command description.&quot;&quot;&quot;
+    # Implementation
+
+if __name__ == &quot;__main__&quot;:
+    app()
+</code></pre>
+</li>
+</ul>
+<h2>Package Selection</h2>
+<ul>
+<li><strong>Research First</strong>: Always research packages before adding dependencies</li>
+<li><strong>95/5 Rule</strong>: Use 95% package functionality, 5% customization</li>
+<li><strong>Documentation</strong>: Include links to current documentation in comments</li>
+</ul>
+<h2>Development Priority</h2>
+<ol>
+<li>Working Code</li>
+<li>Validation</li>
+<li>Readability</li>
+<li>Static Analysis (address only after code works)</li>
+</ol>
+<h2>Execution Standards</h2>
+<ul>
+<li>Run scripts with: <code>uv run script.py</code></li>
+<li>Use environment variables: <code>env VAR_NAME=&quot;value&quot; uv run command</code></li>
+</ul>
+<h2>Task Planning</h2>
+<p>All task plans must follow the standard structure defined in the Task Plan Guide:</p>
+<ul>
+<li><strong>Document Location</strong>: Store in <code>docs/memory_bank/guides/TASK_PLAN_GUIDE.md</code></li>
+<li><strong>Core Principles</strong>: <ul>
+<li>Detailed task descriptions for consistent understanding</li>
+<li>Verification-first development approach</li>
+<li>Version control discipline with frequent commits</li>
+<li>Human-friendly documentation with usage examples</li>
+</ul>
+</li>
+<li><strong>Structure Elements</strong>:<ul>
+<li>Clear objectives and requirements</li>
+<li>Step-by-step implementation tasks</li>
+<li>Verification methods for each function</li>
+<li>Usage tables with examples</li>
+<li>Version control plan</li>
+<li>Progress tracking</li>
+</ul>
+</li>
+</ul>
+<p>Refer to the full <a href="./docs/memory_bank/guides/TASK_PLAN_GUIDE.md">Task Plan Guide</a> for comprehensive details.</p>
+<h2>🔴 VALIDATION OUTPUT REQUIREMENTS</h2>
+<ul>
+<li><strong>NEVER print &quot;All Tests Passed&quot; or similar unless ALL tests actually passed</strong></li>
+<li><strong>ALWAYS verify actual results against expected results BEFORE printing ANY success message</strong></li>
+<li><strong>ALWAYS test multiple cases, including normal cases, edge cases, and error handling</strong></li>
+<li><strong>ALWAYS track ALL failures and report them at the end - don&#39;t stop at first failure</strong></li>
+<li><strong>ALL validation functions MUST exit with code 1 if ANY tests fail</strong></li>
+<li><strong>ALL validation functions MUST exit with code 0 ONLY if ALL tests pass</strong></li>
+<li><strong>ALWAYS include count of failed tests and total tests in the output (e.g., &quot;3 of 5 tests failed&quot;)</strong></li>
+<li><strong>ALWAYS include details of each failure when tests fail</strong></li>
+<li><strong>NEVER include irrelevant test output that could hide failures</strong></li>
+<li><strong>ALWAYS structure validation in a way that explicitly checks EACH test case</strong></li>
+</ul>
+<h2>🔴 COMPLIANCE CHECK</h2>
+<p>As an agent, before completing a task, verify that your work adheres to ALL standards in this document. Confirm each of the following:</p>
+<ol>
+<li>All files have appropriate documentation headers</li>
+<li>Each module has a working validation function that produces expected results</li>
+<li>Type hints are used properly and consistently</li>
+<li>All functionality is validated with real data before addressing linting issues</li>
+<li>No asyncio.run() is used inside functions - only in the main block</li>
+<li>Code is under the 500-line limit for each file</li>
+<li>If function failed validation 3+ times, external research was conducted and documented</li>
+<li>Validation functions NEVER include unconditional &quot;All Tests Passed&quot; messages</li>
+<li>Validation functions ONLY report success if explicitly verified by comparing actual to expected results</li>
+<li>Validation functions track and report ALL failures, not just the first one encountered</li>
+<li>Validation output includes count of failed tests out of total tests run</li>
+</ol>
+<p>If any standard is not met, fix the issue before submitting the work.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

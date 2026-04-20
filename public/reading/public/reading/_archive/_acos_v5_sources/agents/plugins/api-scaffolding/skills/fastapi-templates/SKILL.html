@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FastAPI Project Templates</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/api-scaffolding/skills/fastapi-templates/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FastAPI Project Templates</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fapi-scaffolding">api-scaffolding</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fapi-scaffolding%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fapi-scaffolding%2Fskills%2Ffastapi-templates">fastapi-templates</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: fastapi-templates
+description: Create production-ready FastAPI projects with async patterns, dependency injection, and comprehensive error handling. Use when building new FastAPI applications or setting up backend API projects.</h2>
+<h1>FastAPI Project Templates</h1>
+<p>Production-ready FastAPI project structures with async patterns, dependency injection, middleware, and best practices for building high-performance APIs.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Starting new FastAPI projects from scratch</li>
+<li>Implementing async REST APIs with Python</li>
+<li>Building high-performance web services and microservices</li>
+<li>Creating async applications with PostgreSQL, MongoDB</li>
+<li>Setting up API projects with proper structure and testing</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Project Structure</h3>
+<p><strong>Recommended Layout:</strong></p>
+<pre><code>app/
+├── api/                    # API routes
+│   ├── v1/
+│   │   ├── endpoints/
+│   │   │   ├── users.py
+│   │   │   ├── auth.py
+│   │   │   └── items.py
+│   │   └── router.py
+│   └── dependencies.py     # Shared dependencies
+├── core/                   # Core configuration
+│   ├── config.py
+│   ├── security.py
+│   └── database.py
+├── models/                 # Database models
+│   ├── user.py
+│   └── item.py
+├── schemas/                # Pydantic schemas
+│   ├── user.py
+│   └── item.py
+├── services/               # Business logic
+│   ├── user_service.py
+│   └── auth_service.py
+├── repositories/           # Data access
+│   ├── user_repository.py
+│   └── item_repository.py
+└── main.py                 # Application entry
+</code></pre>
+<h3>2. Dependency Injection</h3>
+<p>FastAPI&#39;s built-in DI system using <code>Depends</code>:</p>
+<ul>
+<li>Database session management</li>
+<li>Authentication/authorization</li>
+<li>Shared business logic</li>
+<li>Configuration injection</li>
+</ul>
+<h3>3. Async Patterns</h3>
+<p>Proper async/await usage:</p>
+<ul>
+<li>Async route handlers</li>
+<li>Async database operations</li>
+<li>Async background tasks</li>
+<li>Async middleware</li>
+</ul>
+<h2>Implementation Patterns</h2>
+<h3>Pattern 1: Complete FastAPI Application</h3>
+<pre><code class="language-python"># main.py
+from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    &quot;&quot;&quot;Application lifespan events.&quot;&quot;&quot;
+    # Startup
+    await database.connect()
+    yield
+    # Shutdown
+    await database.disconnect()
+
+app = FastAPI(
+    title=&quot;API Template&quot;,
+    version=&quot;1.0.0&quot;,
+    lifespan=lifespan
+)
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[&quot;*&quot;],
+    allow_credentials=True,
+    allow_methods=[&quot;*&quot;],
+    allow_headers=[&quot;*&quot;],
+)
+
+# Include routers
+from app.api.v1.router import api_router
+app.include_router(api_router, prefix=&quot;/api/v1&quot;)
+
+# core/config.py
+from pydantic_settings import BaseSettings
+from functools import lru_cache
+
+class Settings(BaseSettings):
+    &quot;&quot;&quot;Application settings.&quot;&quot;&quot;
+    DATABASE_URL: str
+    SECRET_KEY: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    API_V1_STR: str = &quot;/api/v1&quot;
+
+    class Config:
+        env_file = &quot;.env&quot;
+
+@lru_cache()
+def get_settings() -&gt; Settings:
+    return Settings()
+
+# core/database.py
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from app.core.config import get_settings
+
+settings = get_settings()
+
+engine = create_async_engine(
+    settings.DATABASE_URL,
+    echo=True,
+    future=True
+)
+
+AsyncSessionLocal = sessionmaker(
+    engine,
+    class_=AsyncSession,
+    expire_on_commit=False
+)
+
+Base = declarative_base()
+
+async def get_db() -&gt; AsyncSession:
+    &quot;&quot;&quot;Dependency for database session.&quot;&quot;&quot;
+    async with AsyncSessionLocal() as session:
+        try:
+            yield session
+            await session.commit()
+        except Exception:
+            await session.rollback()
+            raise
+        finally:
+            await session.close()
+</code></pre>
+<h3>Pattern 2: CRUD Repository Pattern</h3>
+<pre><code class="language-python"># repositories/base_repository.py
+from typing import Generic, TypeVar, Type, Optional, List
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import select
+from pydantic import BaseModel
+
+ModelType = TypeVar(&quot;ModelType&quot;)
+CreateSchemaType = TypeVar(&quot;CreateSchemaType&quot;, bound=BaseModel)
+UpdateSchemaType = TypeVar(&quot;UpdateSchemaType&quot;, bound=BaseModel)
+
+class BaseRepository(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
+    &quot;&quot;&quot;Base repository for CRUD operations.&quot;&quot;&quot;
+
+    def __init__(self, model: Type[ModelType]):
+        self.model = model
+
+    async def get(self, db: AsyncSession, id: int) -&gt; Optional[ModelType]:
+        &quot;&quot;&quot;Get by ID.&quot;&quot;&quot;
+        result = await db.execute(
+            select(self.model).where(self.model.id == id)
+        )
+        return result.scalars().first()
+
+    async def get_multi(
+        self,
+        db: AsyncSession,
+        skip: int = 0,
+        limit: int = 100
+    ) -&gt; List[ModelType]:
+        &quot;&quot;&quot;Get multiple records.&quot;&quot;&quot;
+        result = await db.execute(
+            select(self.model).offset(skip).limit(limit)
+        )
+        return result.scalars().all()
+
+    async def create(
+        self,
+        db: AsyncSession,
+        obj_in: CreateSchemaType
+    ) -&gt; ModelType:
+        &quot;&quot;&quot;Create new record.&quot;&quot;&quot;
+        db_obj = self.model(**obj_in.dict())
+        db.add(db_obj)
+        await db.flush()
+        await db.refresh(db_obj)
+        return db_obj
+
+    async def update(
+        self,
+        db: AsyncSession,
+        db_obj: ModelType,
+        obj_in: UpdateSchemaType
+    ) -&gt; ModelType:
+        &quot;&quot;&quot;Update record.&quot;&quot;&quot;
+        update_data = obj_in.dict(exclude_unset=True)
+        for field, value in update_data.items():
+            setattr(db_obj, field, value)
+        await db.flush()
+        await db.refresh(db_obj)
+        return db_obj
+
+    async def delete(self, db: AsyncSession, id: int) -&gt; bool:
+        &quot;&quot;&quot;Delete record.&quot;&quot;&quot;
+        obj = await self.get(db, id)
+        if obj:
+            await db.delete(obj)
+            return True
+        return False
+
+# repositories/user_repository.py
+from app.repositories.base_repository import BaseRepository
+from app.models.user import User
+from app.schemas.user import UserCreate, UserUpdate
+
+class UserRepository(BaseRepository[User, UserCreate, UserUpdate]):
+    &quot;&quot;&quot;User-specific repository.&quot;&quot;&quot;
+
+    async def get_by_email(self, db: AsyncSession, email: str) -&gt; Optional[User]:
+        &quot;&quot;&quot;Get user by email.&quot;&quot;&quot;
+        result = await db.execute(
+            select(User).where(User.email == email)
+        )
+        return result.scalars().first()
+
+    async def is_active(self, db: AsyncSession, user_id: int) -&gt; bool:
+        &quot;&quot;&quot;Check if user is active.&quot;&quot;&quot;
+        user = await self.get(db, user_id)
+        return user.is_active if user else False
+
+user_repository = UserRepository(User)
+</code></pre>
+<h3>Pattern 3: Service Layer</h3>
+<pre><code class="language-python"># services/user_service.py
+from typing import Optional
+from sqlalchemy.ext.asyncio import AsyncSession
+from app.repositories.user_repository import user_repository
+from app.schemas.user import UserCreate, UserUpdate, User
+from app.core.security import get_password_hash, verify_password
+
+class UserService:
+    &quot;&quot;&quot;Business logic for users.&quot;&quot;&quot;
+
+    def __init__(self):
+        self.repository = user_repository
+
+    async def create_user(
+        self,
+        db: AsyncSession,
+        user_in: UserCreate
+    ) -&gt; User:
+        &quot;&quot;&quot;Create new user with hashed password.&quot;&quot;&quot;
+        # Check if email exists
+        existing = await self.repository.get_by_email(db, user_in.email)
+        if existing:
+            raise ValueError(&quot;Email already registered&quot;)
+
+        # Hash password
+        user_in_dict = user_in.dict()
+        user_in_dict[&quot;hashed_password&quot;] = get_password_hash(user_in_dict.pop(&quot;password&quot;))
+
+        # Create user
+        user = await self.repository.create(db, UserCreate(**user_in_dict))
+        return user
+
+    async def authenticate(
+        self,
+        db: AsyncSession,
+        email: str,
+        password: str
+    ) -&gt; Optional[User]:
+        &quot;&quot;&quot;Authenticate user.&quot;&quot;&quot;
+        user = await self.repository.get_by_email(db, email)
+        if not user:
+            return None
+        if not verify_password(password, user.hashed_password):
+            return None
+        return user
+
+    async def update_user(
+        self,
+        db: AsyncSession,
+        user_id: int,
+        user_in: UserUpdate
+    ) -&gt; Optional[User]:
+        &quot;&quot;&quot;Update user.&quot;&quot;&quot;
+        user = await self.repository.get(db, user_id)
+        if not user:
+            return None
+
+        if user_in.password:
+            user_in_dict = user_in.dict(exclude_unset=True)
+            user_in_dict[&quot;hashed_password&quot;] = get_password_hash(
+                user_in_dict.pop(&quot;password&quot;)
+            )
+            user_in = UserUpdate(**user_in_dict)
+
+        return await self.repository.update(db, user, user_in)
+
+user_service = UserService()
+</code></pre>
+<h3>Pattern 4: API Endpoints with Dependencies</h3>
+<pre><code class="language-python"># api/v1/endpoints/users.py
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List
+
+from app.core.database import get_db
+from app.schemas.user import User, UserCreate, UserUpdate
+from app.services.user_service import user_service
+from app.api.dependencies import get_current_user
+
+router = APIRouter()
+
+@router.post(&quot;/&quot;, response_model=User, status_code=status.HTTP_201_CREATED)
+async def create_user(
+    user_in: UserCreate,
+    db: AsyncSession = Depends(get_db)
+):
+    &quot;&quot;&quot;Create new user.&quot;&quot;&quot;
+    try:
+        user = await user_service.create_user(db, user_in)
+        return user
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.get(&quot;/me&quot;, response_model=User)
+async def read_current_user(
+    current_user: User = Depends(get_current_user)
+):
+    &quot;&quot;&quot;Get current user.&quot;&quot;&quot;
+    return current_user
+
+@router.get(&quot;/{user_id}&quot;, response_model=User)
+async def read_user(
+    user_id: int,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    &quot;&quot;&quot;Get user by ID.&quot;&quot;&quot;
+    user = await user_service.repository.get(db, user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail=&quot;User not found&quot;)
+    return user
+
+@router.patch(&quot;/{user_id}&quot;, response_model=User)
+async def update_user(
+    user_id: int,
+    user_in: UserUpdate,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    &quot;&quot;&quot;Update user.&quot;&quot;&quot;
+    if current_user.id != user_id:
+        raise HTTPException(status_code=403, detail=&quot;Not authorized&quot;)
+
+    user = await user_service.update_user(db, user_id, user_in)
+    if not user:
+        raise HTTPException(status_code=404, detail=&quot;User not found&quot;)
+    return user
+
+@router.delete(&quot;/{user_id}&quot;, status_code=status.HTTP_204_NO_CONTENT)
+async def delete_user(
+    user_id: int,
+    db: AsyncSession = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    &quot;&quot;&quot;Delete user.&quot;&quot;&quot;
+    if current_user.id != user_id:
+        raise HTTPException(status_code=403, detail=&quot;Not authorized&quot;)
+
+    deleted = await user_service.repository.delete(db, user_id)
+    if not deleted:
+        raise HTTPException(status_code=404, detail=&quot;User not found&quot;)
+</code></pre>
+<h3>Pattern 5: Authentication &amp; Authorization</h3>
+<pre><code class="language-python"># core/security.py
+from datetime import datetime, timedelta
+from typing import Optional
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+from app.core.config import get_settings
+
+settings = get_settings()
+pwd_context = CryptContext(schemes=[&quot;bcrypt&quot;], deprecated=&quot;auto&quot;)
+
+ALGORITHM = &quot;HS256&quot;
+
+def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
+    &quot;&quot;&quot;Create JWT access token.&quot;&quot;&quot;
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.utcnow() + timedelta(minutes=15)
+    to_encode.update({&quot;exp&quot;: expire})
+    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+def verify_password(plain_password: str, hashed_password: str) -&gt; bool:
+    &quot;&quot;&quot;Verify password against hash.&quot;&quot;&quot;
+    return pwd_context.verify(plain_password, hashed_password)
+
+def get_password_hash(password: str) -&gt; str:
+    &quot;&quot;&quot;Hash password.&quot;&quot;&quot;
+    return pwd_context.hash(password)
+
+# api/dependencies.py
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.core.database import get_db
+from app.core.security import ALGORITHM
+from app.core.config import get_settings
+from app.repositories.user_repository import user_repository
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl=f&quot;{settings.API_V1_STR}/auth/login&quot;)
+
+async def get_current_user(
+    db: AsyncSession = Depends(get_db),
+    token: str = Depends(oauth2_scheme)
+):
+    &quot;&quot;&quot;Get current authenticated user.&quot;&quot;&quot;
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail=&quot;Could not validate credentials&quot;,
+        headers={&quot;WWW-Authenticate&quot;: &quot;Bearer&quot;},
+    )
+
+    try:
+        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: int = payload.get(&quot;sub&quot;)
+        if user_id is None:
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+
+    user = await user_repository.get(db, user_id)
+    if user is None:
+        raise credentials_exception
+
+    return user
+</code></pre>
+<h2>Testing</h2>
+<pre><code class="language-python"># tests/conftest.py
+import pytest
+import asyncio
+from httpx import AsyncClient
+from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
+from sqlalchemy.orm import sessionmaker
+
+from app.main import app
+from app.core.database import get_db, Base
+
+TEST_DATABASE_URL = &quot;sqlite+aiosqlite:///:memory:&quot;
+
+@pytest.fixture(scope=&quot;session&quot;)
+def event_loop():
+    loop = asyncio.get_event_loop_policy().new_event_loop()
+    yield loop
+    loop.close()
+
+@pytest.fixture
+async def db_session():
+    engine = create_async_engine(TEST_DATABASE_URL, echo=True)
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+    AsyncSessionLocal = sessionmaker(
+        engine, class_=AsyncSession, expire_on_commit=False
+    )
+
+    async with AsyncSessionLocal() as session:
+        yield session
+
+@pytest.fixture
+async def client(db_session):
+    async def override_get_db():
+        yield db_session
+
+    app.dependency_overrides[get_db] = override_get_db
+
+    async with AsyncClient(app=app, base_url=&quot;http://test&quot;) as client:
+        yield client
+
+# tests/test_users.py
+import pytest
+
+@pytest.mark.asyncio
+async def test_create_user(client):
+    response = await client.post(
+        &quot;/api/v1/users/&quot;,
+        json={
+            &quot;email&quot;: &quot;test@example.com&quot;,
+            &quot;password&quot;: &quot;testpass123&quot;,
+            &quot;name&quot;: &quot;Test User&quot;
+        }
+    )
+    assert response.status_code == 201
+    data = response.json()
+    assert data[&quot;email&quot;] == &quot;test@example.com&quot;
+    assert &quot;id&quot; in data
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/fastapi-architecture.md</strong>: Detailed architecture guide</li>
+<li><strong>references/async-best-practices.md</strong>: Async/await patterns</li>
+<li><strong>references/testing-strategies.md</strong>: Comprehensive testing guide</li>
+<li><strong>assets/project-template/</strong>: Complete FastAPI project</li>
+<li><strong>assets/docker-compose.yml</strong>: Development environment setup</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Async All The Way</strong>: Use async for database, external APIs</li>
+<li><strong>Dependency Injection</strong>: Leverage FastAPI&#39;s DI system</li>
+<li><strong>Repository Pattern</strong>: Separate data access from business logic</li>
+<li><strong>Service Layer</strong>: Keep business logic out of routes</li>
+<li><strong>Pydantic Schemas</strong>: Strong typing for request/response</li>
+<li><strong>Error Handling</strong>: Consistent error responses</li>
+<li><strong>Testing</strong>: Test all layers independently</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li><strong>Blocking Code in Async</strong>: Using synchronous database drivers</li>
+<li><strong>No Service Layer</strong>: Business logic in route handlers</li>
+<li><strong>Missing Type Hints</strong>: Loses FastAPI&#39;s benefits</li>
+<li><strong>Ignoring Sessions</strong>: Not properly managing database sessions</li>
+<li><strong>No Testing</strong>: Skipping integration tests</li>
+<li><strong>Tight Coupling</strong>: Direct database access in routes</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

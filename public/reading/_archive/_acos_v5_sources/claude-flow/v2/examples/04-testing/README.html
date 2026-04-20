@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Testing Examples</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/04-testing/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Testing Examples</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F04-testing">04-testing</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Testing Examples</h1>
+<p>Scripts for testing Claude Flow functionality and validating system features.</p>
+<h2>Directory Structure</h2>
+<pre><code>04-testing/
+├── unit/           # Unit tests for individual components
+├── integration/    # Integration tests for workflows
+├── performance/    # Performance benchmarks
+├── sparc/          # SPARC-specific tests
+├── sparc-swarm-test.sh    # Original SPARC test suite
+└── test-swarm-cli.sh      # Original CLI tests
+</code></pre>
+<h2>Test Categories</h2>
+<h3>Unit Tests (<code>unit/</code>)</h3>
+<ul>
+<li><strong>test-memory-system.sh</strong>: Complete memory system unit tests<ul>
+<li>Store, query, update, delete operations</li>
+<li>Bulk operations and stats</li>
+<li>Export/import functionality</li>
+</ul>
+<pre><code class="language-bash">cd examples/04-testing/unit
+./test-memory-system.sh
+</code></pre>
+</li>
+</ul>
+<h3>Integration Tests (<code>integration/</code>)</h3>
+<ul>
+<li><strong>test-workflow-execution.sh</strong>: End-to-end workflow testing<ul>
+<li>Workflow execution verification</li>
+<li>Output validation</li>
+<li>Error handling</li>
+<li>Resource cleanup</li>
+</ul>
+<pre><code class="language-bash">cd examples/04-testing/integration
+./test-workflow-execution.sh
+</code></pre>
+</li>
+</ul>
+<h3>Performance Tests (<code>performance/</code>)</h3>
+<ul>
+<li><strong>benchmark-swarm.sh</strong>: Performance benchmarking suite<ul>
+<li>Execution time measurements</li>
+<li>Resource usage analysis</li>
+<li>Performance recommendations</li>
+</ul>
+<pre><code class="language-bash">cd examples/04-testing/performance
+./benchmark-swarm.sh
+</code></pre>
+</li>
+</ul>
+<h2>Original Test Files</h2>
+<h3>sparc-swarm-test.sh</h3>
+<p><strong>Comprehensive SPARC TDD test suite</strong> (235 lines)</p>
+<ul>
+<li>Tests all SPARC modes</li>
+<li>Validates TDD workflow</li>
+<li>Memory integration tests</li>
+</ul>
+<h3>test-swarm-cli.sh</h3>
+<p><strong>CLI functionality tests</strong> (129 lines)</p>
+<ul>
+<li>Command validation</li>
+<li>Strategy testing</li>
+<li>Error handling</li>
+</ul>
+<h2>Running Tests</h2>
+<pre><code class="language-bash"># Run full SPARC test suite
+./sparc-swarm-test.sh
+
+# Run CLI tests
+./test-swarm-cli.sh
+
+# Verbose mode for debugging
+./sparc-swarm-test.sh --verbose
+
+# Test specific strategy
+./test-swarm-cli.sh --strategy development
+</code></pre>
+<h2>Test Coverage</h2>
+<h3>SPARC Modes Tested</h3>
+<ul>
+<li><code>spec-pseudocode</code>: Requirements and pseudocode</li>
+<li><code>architect</code>: System design</li>
+<li><code>tdd</code>: Test-driven development</li>
+<li><code>code</code>: Implementation</li>
+<li><code>debug</code>: Troubleshooting</li>
+<li><code>security-review</code>: Vulnerability scanning</li>
+<li><code>integration</code>: System integration</li>
+</ul>
+<h3>Strategies Tested</h3>
+<ul>
+<li><code>development</code>: Building applications</li>
+<li><code>research</code>: Information gathering</li>
+<li><code>analysis</code>: Code quality review</li>
+<li><code>testing</code>: Test creation</li>
+<li><code>optimization</code>: Performance tuning</li>
+</ul>
+<h3>Features Validated</h3>
+<ul>
+<li>Multi-agent coordination</li>
+<li>Task scheduling</li>
+<li>Memory persistence</li>
+<li>Quality thresholds</li>
+<li>Error recovery</li>
+<li>Progress monitoring</li>
+</ul>
+<h2>Writing New Tests</h2>
+<p>When adding tests:</p>
+<ol>
+<li>Follow existing test structure</li>
+<li>Use clear test names</li>
+<li>Include both positive and negative cases</li>
+<li>Test edge conditions</li>
+<li>Verify output quality</li>
+<li>Check performance impact</li>
+</ol>
+<h2>Test Utilities</h2>
+<p>Both scripts include helper functions:</p>
+<ul>
+<li><code>run_test</code>: Execute test with timing</li>
+<li><code>check_output</code>: Validate results</li>
+<li><code>assert_equals</code>: Value comparison</li>
+<li><code>assert_contains</code>: String matching</li>
+<li><code>measure_performance</code>: Timing checks</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

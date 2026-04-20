@@ -1,15 +1,8 @@
 {
-  "framework": "nextjs",
-  "cleanUrls": true,
-  "headers": [
+  "crons": [
     {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
-      ]
+      "path": "/api/cron/welcome-sequence",
+      "schedule": "0 */6 * * *"
     }
   ]
 }
-

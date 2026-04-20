@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Check config.json first</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/references/planning-config.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Check config.json first</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Freferences">references</a> / <span>planning-config.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <planning_config>
+
+<p>Configuration options for <code>.planning/</code> directory behavior.</p>
+<config_schema>
+```json
+"planning": {
+  "commit_docs": true,
+  "search_gitignored": false
+}
+```
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>commit_docs</code></td>
+<td><code>true</code></td>
+<td>Whether to commit planning artifacts to git</td>
+</tr>
+<tr>
+<td><code>search_gitignored</code></td>
+<td><code>false</code></td>
+<td>Add <code>--no-ignore</code> to broad rg searches</td>
+</tr>
+<tr>
+<td></config_schema></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<commit_docs_behavior>
+
+<p><strong>When <code>commit_docs: true</code> (default):</strong></p>
+<ul>
+<li>Planning files committed normally</li>
+<li>SUMMARY.md, STATE.md, ROADMAP.md tracked in git</li>
+<li>Full history of planning decisions preserved</li>
+</ul>
+<p><strong>When <code>commit_docs: false</code>:</strong></p>
+<ul>
+<li>Skip all <code>git add</code>/<code>git commit</code> for <code>.planning/</code> files</li>
+<li>User must add <code>.planning/</code> to <code>.gitignore</code></li>
+<li>Useful for: OSS contributions, client projects, keeping planning private</li>
+</ul>
+<p><strong>Checking the config:</strong></p>
+<pre><code class="language-bash"># Check config.json first
+COMMIT_DOCS=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;commit_docs&quot;[[:space:]]*:[[:space:]]*[^,}]*&#39; | grep -o &#39;true\|false&#39; || echo &quot;true&quot;)
+
+# Auto-detect gitignored (overrides config)
+git check-ignore -q .planning 2&gt;/dev/null &amp;&amp; COMMIT_DOCS=false
+</code></pre>
+<p><strong>Auto-detection:</strong> If <code>.planning/</code> is gitignored, <code>commit_docs</code> is automatically <code>false</code> regardless of config.json. This prevents git errors when users have <code>.planning/</code> in <code>.gitignore</code>.</p>
+<p><strong>Conditional git operations:</strong></p>
+<pre><code class="language-bash">if [ &quot;$COMMIT_DOCS&quot; = &quot;true&quot; ]; then
+  git add .planning/STATE.md
+  git commit -m &quot;docs: update state&quot;
+fi
+</code></pre>
+</commit_docs_behavior>
+
+<search_behavior>
+
+<p><strong>When <code>search_gitignored: false</code> (default):</strong></p>
+<ul>
+<li>Standard rg behavior (respects .gitignore)</li>
+<li>Direct path searches work: <code>rg &quot;pattern&quot; .planning/</code> finds files</li>
+<li>Broad searches skip gitignored: <code>rg &quot;pattern&quot;</code> skips <code>.planning/</code></li>
+</ul>
+<p><strong>When <code>search_gitignored: true</code>:</strong></p>
+<ul>
+<li>Add <code>--no-ignore</code> to broad rg searches that should include <code>.planning/</code></li>
+<li>Only needed when searching entire repo and expecting <code>.planning/</code> matches</li>
+</ul>
+<p><strong>Note:</strong> Most GSD operations use direct file reads or explicit paths, which work regardless of gitignore status.</p>
+</search_behavior>
+
+<setup_uncommitted_mode>
+
+<p>To use uncommitted mode:</p>
+<ol>
+<li><p><strong>Set config:</strong></p>
+<pre><code class="language-json">&quot;planning&quot;: {
+  &quot;commit_docs&quot;: false,
+  &quot;search_gitignored&quot;: true
+}
+</code></pre>
+</li>
+<li><p><strong>Add to .gitignore:</strong></p>
+<pre><code>.planning/
+</code></pre>
+</li>
+<li><p><strong>Existing tracked files:</strong> If <code>.planning/</code> was previously tracked:</p>
+<pre><code class="language-bash">git rm -r --cached .planning/
+git commit -m &quot;chore: stop tracking planning docs&quot;
+</code></pre>
+</li>
+</ol>
+</setup_uncommitted_mode>
+
+</planning_config>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

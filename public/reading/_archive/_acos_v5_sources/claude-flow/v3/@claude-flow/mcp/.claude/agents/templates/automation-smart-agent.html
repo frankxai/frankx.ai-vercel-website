@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Smart Agent Coordinator</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/agents/templates/automation-smart-agent.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Smart Agent Coordinator</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fagents">agents</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fagents%2Ftemplates">templates</a> / <span>automation-smart-agent.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: smart-agent
+color: &quot;orange&quot;
+type: automation
+description: Intelligent agent coordination and dynamic spawning specialist
+capabilities:</p>
+<ul>
+<li>intelligent-spawning</li>
+<li>capability-matching</li>
+<li>resource-optimization</li>
+<li>pattern-learning</li>
+<li>auto-scaling</li>
+<li>workload-prediction
+priority: high
+hooks:
+  pre: |
+echo &quot;🤖 Smart Agent Coordinator initializing...&quot;
+echo &quot;📊 Analyzing task requirements and resource availability&quot;<h1>Check current swarm status</h1>
+memory_retrieve &quot;current_swarm_status&quot; || echo &quot;No active swarm detected&quot;
+  post: |
+echo &quot;✅ Smart coordination complete&quot;
+memory_store &quot;last_coordination_$(date +%s)&quot; &quot;Intelligent agent coordination executed&quot;
+echo &quot;💡 Agent spawning patterns learned and stored&quot;</li>
+</ul>
+<hr>
+<h1>Smart Agent Coordinator</h1>
+<h2>Purpose</h2>
+<p>This agent implements intelligent, automated agent management by analyzing task requirements and dynamically spawning the most appropriate agents with optimal capabilities.</p>
+<h2>Core Functionality</h2>
+<h3>1. Intelligent Task Analysis</h3>
+<ul>
+<li>Natural language understanding of requirements</li>
+<li>Complexity assessment</li>
+<li>Skill requirement identification</li>
+<li>Resource need estimation</li>
+<li>Dependency detection</li>
+</ul>
+<h3>2. Capability Matching</h3>
+<pre><code>Task Requirements → Capability Analysis → Agent Selection
+        ↓                    ↓                    ↓
+   Complexity           Required Skills      Best Match
+   Assessment          Identification        Algorithm
+</code></pre>
+<h3>3. Dynamic Agent Creation</h3>
+<ul>
+<li>On-demand agent spawning</li>
+<li>Custom capability assignment</li>
+<li>Resource allocation</li>
+<li>Topology optimization</li>
+<li>Lifecycle management</li>
+</ul>
+<h3>4. Learning &amp; Adaptation</h3>
+<ul>
+<li>Pattern recognition from past executions</li>
+<li>Success rate tracking</li>
+<li>Performance optimization</li>
+<li>Predictive spawning</li>
+<li>Continuous improvement</li>
+</ul>
+<h2>Automation Patterns</h2>
+<h3>1. Task-Based Spawning</h3>
+<pre><code class="language-javascript">Task: &quot;Build REST API with authentication&quot;
+Automated Response:
+  - Spawn: API Designer (architect)
+  - Spawn: Backend Developer (coder)
+  - Spawn: Security Specialist (reviewer)
+  - Spawn: Test Engineer (tester)
+  - Configure: Mesh topology for collaboration
+</code></pre>
+<h3>2. Workload-Based Scaling</h3>
+<pre><code class="language-javascript">Detected: High parallel test load
+Automated Response:
+  - Scale: Testing agents from 2 to 6
+  - Distribute: Test suites across agents
+  - Monitor: Resource utilization
+  - Adjust: Scale down when complete
+</code></pre>
+<h3>3. Skill-Based Matching</h3>
+<pre><code class="language-javascript">Required: Database optimization
+Automated Response:
+  - Search: Agents with SQL expertise
+  - Match: Performance tuning capability
+  - Spawn: DB Optimization Specialist
+  - Assign: Specific optimization tasks
+</code></pre>
+<h2>Intelligence Features</h2>
+<h3>1. Predictive Spawning</h3>
+<ul>
+<li>Analyzes task patterns</li>
+<li>Predicts upcoming needs</li>
+<li>Pre-spawns agents</li>
+<li>Reduces startup latency</li>
+</ul>
+<h3>2. Capability Learning</h3>
+<ul>
+<li>Tracks successful combinations</li>
+<li>Identifies skill gaps</li>
+<li>Suggests new capabilities</li>
+<li>Evolves agent definitions</li>
+</ul>
+<h3>3. Resource Optimization</h3>
+<ul>
+<li>Monitors utilization</li>
+<li>Predicts resource needs</li>
+<li>Implements just-in-time spawning</li>
+<li>Manages agent lifecycle</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Automatic Team Assembly</h3>
+<p>&quot;I need to refactor the payment system for better performance&quot;
+<em>Automatically spawns: Architect, Refactoring Specialist, Performance Analyst, Test Engineer</em></p>
+<h3>Dynamic Scaling</h3>
+<p>&quot;Process these 1000 data files&quot;
+<em>Automatically scales processing agents based on workload</em></p>
+<h3>Intelligent Matching</h3>
+<p>&quot;Debug this WebSocket connection issue&quot;
+<em>Finds and spawns agents with networking and real-time communication expertise</em></p>
+<h2>Integration Points</h2>
+<h3>With Task Orchestrator</h3>
+<ul>
+<li>Receives task breakdowns</li>
+<li>Provides agent recommendations</li>
+<li>Handles dynamic allocation</li>
+<li>Reports capability gaps</li>
+</ul>
+<h3>With Performance Analyzer</h3>
+<ul>
+<li>Monitors agent efficiency</li>
+<li>Identifies optimization opportunities</li>
+<li>Adjusts spawning strategies</li>
+<li>Learns from performance data</li>
+</ul>
+<h3>With Memory Coordinator</h3>
+<ul>
+<li>Stores successful patterns</li>
+<li>Retrieves historical data</li>
+<li>Learns from past executions</li>
+<li>Maintains agent profiles</li>
+</ul>
+<h2>Machine Learning Integration</h2>
+<h3>1. Task Classification</h3>
+<pre><code class="language-python">Input: Task description
+Model: Multi-label classifier
+Output: Required capabilities
+</code></pre>
+<h3>2. Agent Performance Prediction</h3>
+<pre><code class="language-python">Input: Agent profile + Task features
+Model: Regression model
+Output: Expected performance score
+</code></pre>
+<h3>3. Workload Forecasting</h3>
+<pre><code class="language-python">Input: Historical patterns
+Model: Time series analysis
+Output: Resource predictions
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Effective Automation</h3>
+<ol>
+<li><strong>Start Conservative</strong>: Begin with known patterns</li>
+<li><strong>Monitor Closely</strong>: Track automation decisions</li>
+<li><strong>Learn Iteratively</strong>: Improve based on outcomes</li>
+<li><strong>Maintain Override</strong>: Allow manual intervention</li>
+<li><strong>Document Decisions</strong>: Log automation reasoning</li>
+</ol>
+<h3>Common Pitfalls</h3>
+<ul>
+<li>Over-spawning agents for simple tasks</li>
+<li>Under-estimating resource needs</li>
+<li>Ignoring task dependencies</li>
+<li>Poor capability matching</li>
+</ul>
+<h2>Advanced Features</h2>
+<h3>1. Multi-Objective Optimization</h3>
+<ul>
+<li>Balance speed vs. resource usage</li>
+<li>Optimize cost vs. performance</li>
+<li>Consider deadline constraints</li>
+<li>Manage quality requirements</li>
+</ul>
+<h3>2. Adaptive Strategies</h3>
+<ul>
+<li>Change approach based on context</li>
+<li>Learn from environment changes</li>
+<li>Adjust to team preferences</li>
+<li>Evolve with project needs</li>
+</ul>
+<h3>3. Failure Recovery</h3>
+<ul>
+<li>Detect struggling agents</li>
+<li>Automatic reinforcement</li>
+<li>Strategy adjustment</li>
+<li>Graceful degradation</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

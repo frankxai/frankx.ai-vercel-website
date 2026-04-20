@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitHub Sync Coordinator</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/github/sync-coordinator.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitHub Sync Coordinator</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands%2Fgithub">github</a> / <span>sync-coordinator.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>GitHub Sync Coordinator</h1>
+<h2>Purpose</h2>
+<p>Multi-package synchronization and version alignment with ruv-swarm coordination for seamless integration between claude-code-flow and ruv-swarm packages.</p>
+<h2>Capabilities</h2>
+<ul>
+<li><strong>Package synchronization</strong> with intelligent dependency resolution</li>
+<li><strong>Version alignment</strong> across multiple repositories</li>
+<li><strong>Cross-package integration</strong> with automated testing</li>
+<li><strong>Documentation synchronization</strong> for consistent user experience</li>
+<li><strong>Release coordination</strong> with automated deployment pipelines</li>
+</ul>
+<h2>Tools Available</h2>
+<ul>
+<li><code>mcp__github__push_files</code></li>
+<li><code>mcp__github__create_or_update_file</code></li>
+<li><code>mcp__github__get_file_contents</code></li>
+<li><code>mcp__github__create_pull_request</code></li>
+<li><code>mcp__github__search_repositories</code></li>
+<li><code>mcp__claude-flow__*</code> (all swarm coordination tools)</li>
+<li><code>TodoWrite</code>, <code>TodoRead</code>, <code>Task</code>, <code>Bash</code>, <code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>MultiEdit</code></li>
+</ul>
+<h2>Usage Patterns</h2>
+<h3>1. Synchronize Package Dependencies</h3>
+<pre><code class="language-javascript">// Initialize sync coordination swarm
+mcp__claude-flow__swarm_init { topology: &quot;hierarchical&quot;, maxAgents: 5 }
+mcp__claude-flow__agent_spawn { type: &quot;coordinator&quot;, name: &quot;Sync Coordinator&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;analyst&quot;, name: &quot;Dependency Analyzer&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;coder&quot;, name: &quot;Integration Developer&quot; }
+mcp__claude-flow__agent_spawn { type: &quot;tester&quot;, name: &quot;Validation Engineer&quot; }
+
+// Analyze current package states
+Read(&quot;/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json&quot;)
+Read(&quot;/workspaces/ruv-FANN/ruv-swarm/npm/package.json&quot;)
+
+// Synchronize versions and dependencies using gh CLI
+// First create branch
+Bash(&quot;gh api repos/:owner/:repo/git/refs -f ref=&#39;refs/heads/sync/package-alignment&#39; -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq &#39;.object.sha&#39;)&quot;)
+
+// Update file using gh CLI
+Bash(`gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/package.json \
+  --method PUT \
+  -f message=&quot;feat: Align Node.js version requirements across packages&quot; \
+  -f branch=&quot;sync/package-alignment&quot; \
+  -f content=&quot;$(echo &#39;{ updated package.json with aligned versions }&#39; | base64)&quot; \
+  -f sha=&quot;$(gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/package.json?ref=sync/package-alignment --jq &#39;.sha&#39;)&quot;)`)
+
+// Orchestrate validation
+mcp__claude-flow__task_orchestrate {
+  task: &quot;Validate package synchronization and run integration tests&quot;,
+  strategy: &quot;parallel&quot;,
+  priority: &quot;high&quot;
+}
+</code></pre>
+<h3>2. Documentation Synchronization</h3>
+<pre><code class="language-javascript">// Synchronize CLAUDE.md files across packages using gh CLI
+// Get file contents
+CLAUDE_CONTENT=$(Bash(&quot;gh api repos/:owner/:repo/contents/ruv-swarm/docs/CLAUDE.md --jq &#39;.content&#39; | base64 -d&quot;))
+
+// Update claude-code-flow CLAUDE.md to match using gh CLI
+// Create or update branch
+Bash(&quot;gh api repos/:owner/:repo/git/refs -f ref=&#39;refs/heads/sync/documentation&#39; -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq &#39;.object.sha&#39;) 2&gt;/dev/null || gh api repos/:owner/:repo/git/refs/heads/sync/documentation --method PATCH -f sha=$(gh api repos/:owner/:repo/git/refs/heads/main --jq &#39;.object.sha&#39;)&quot;)
+
+// Update file
+Bash(`gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/CLAUDE.md \
+  --method PUT \
+  -f message=&quot;docs: Synchronize CLAUDE.md with ruv-swarm integration patterns&quot; \
+  -f branch=&quot;sync/documentation&quot; \
+  -f content=&quot;$(echo &#39;# Claude Code Configuration for ruv-swarm\n\n[synchronized content]&#39; | base64)&quot; \
+  -f sha=&quot;$(gh api repos/:owner/:repo/contents/claude-code-flow/claude-code-flow/CLAUDE.md?ref=sync/documentation --jq &#39;.sha&#39; 2&gt;/dev/null || echo &#39;&#39;)&quot;)`)
+
+// Store sync state in memory
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  key: &quot;sync/documentation/status&quot;,
+  value: { timestamp: Date.now(), status: &quot;synchronized&quot;, files: [&quot;CLAUDE.md&quot;] }
+}
+</code></pre>
+<h3>3. Cross-Package Feature Integration</h3>
+<pre><code class="language-javascript">// Coordinate feature implementation across packages
+mcp__github__push_files {
+  owner: &quot;ruvnet&quot;,
+  repo: &quot;ruv-FANN&quot;,
+  branch: &quot;feature/github-commands&quot;,
+  files: [
+    {
+      path: &quot;claude-code-flow/claude-code-flow/.claude/commands/github/github-modes.md&quot;,
+      content: &quot;[GitHub modes documentation]&quot;
+    },
+    {
+      path: &quot;claude-code-flow/claude-code-flow/.claude/commands/github/pr-manager.md&quot;, 
+      content: &quot;[PR manager documentation]&quot;
+    },
+    {
+      path: &quot;ruv-swarm/npm/src/github-coordinator/claude-hooks.js&quot;,
+      content: &quot;[GitHub coordination hooks]&quot;
+    }
+  ],
+  message: &quot;feat: Add comprehensive GitHub workflow integration&quot;
+}
+
+// Create coordinated pull request using gh CLI
+Bash(`gh pr create \
+  --repo :owner/:repo \
+  --title &quot;Feature: GitHub Workflow Integration with Swarm Coordination&quot; \
+  --head &quot;feature/github-commands&quot; \
+  --base &quot;main&quot; \
+  --body &quot;## 🚀 GitHub Workflow Integration
+
+### Features Added
+- ✅ Comprehensive GitHub command modes
+- ✅ Swarm-coordinated PR management  
+- ✅ Automated issue tracking
+- ✅ Cross-package synchronization
+
+### Integration Points
+- Claude-code-flow: GitHub command modes in .claude/commands/github/
+- ruv-swarm: GitHub coordination hooks and utilities
+- Documentation: Synchronized CLAUDE.md instructions
+
+### Testing
+- [x] Package dependency verification
+- [x] Integration test suite
+- [x] Documentation validation
+- [x] Cross-package compatibility
+
+### Swarm Coordination
+This integration uses ruv-swarm agents for:
+- Multi-agent GitHub workflow management
+- Automated testing and validation
+- Progress tracking and coordination
+- Memory-based state management
+
+---
+🤖 Generated with Claude Code using ruv-swarm coordination`
+}
+</code></pre>
+<h2>Batch Synchronization Example</h2>
+<h3>Complete Package Sync Workflow:</h3>
+<pre><code class="language-javascript">[Single Message - Complete Synchronization]:
+  // Initialize comprehensive sync swarm
+  mcp__claude-flow__swarm_init { topology: &quot;mesh&quot;, maxAgents: 6 }
+  mcp__claude-flow__agent_spawn { type: &quot;coordinator&quot;, name: &quot;Master Sync Coordinator&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;analyst&quot;, name: &quot;Package Analyzer&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;coder&quot;, name: &quot;Integration Coder&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;tester&quot;, name: &quot;Validation Tester&quot; }
+  mcp__claude-flow__agent_spawn { type: &quot;reviewer&quot;, name: &quot;Quality Reviewer&quot; }
+  
+  // Read current state of both packages
+  Read(&quot;/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/package.json&quot;)
+  Read(&quot;/workspaces/ruv-FANN/ruv-swarm/npm/package.json&quot;)
+  Read(&quot;/workspaces/ruv-FANN/claude-code-flow/claude-code-flow/CLAUDE.md&quot;)
+  Read(&quot;/workspaces/ruv-FANN/ruv-swarm/docs/CLAUDE.md&quot;)
+  
+  // Synchronize multiple files simultaneously
+  mcp__github__push_files {
+    branch: &quot;sync/complete-integration&quot;,
+    files: [
+      { path: &quot;claude-code-flow/claude-code-flow/package.json&quot;, content: &quot;[aligned package.json]&quot; },
+      { path: &quot;claude-code-flow/claude-code-flow/CLAUDE.md&quot;, content: &quot;[synchronized CLAUDE.md]&quot; },
+      { path: &quot;claude-code-flow/claude-code-flow/.claude/commands/github/github-modes.md&quot;, content: &quot;[GitHub modes]&quot; }
+    ],
+    message: &quot;feat: Complete package synchronization with GitHub integration&quot;
+  }
+  
+  // Run validation tests
+  Bash(&quot;cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow &amp;&amp; npm install&quot;)
+  Bash(&quot;cd /workspaces/ruv-FANN/claude-code-flow/claude-code-flow &amp;&amp; npm test&quot;)
+  Bash(&quot;cd /workspaces/ruv-FANN/ruv-swarm/npm &amp;&amp; npm test&quot;)
+  
+  // Track synchronization progress
+  TodoWrite { todos: [
+    { id: &quot;sync-deps&quot;, content: &quot;Synchronize package dependencies&quot;, status: &quot;completed&quot;, priority: &quot;high&quot; },
+    { id: &quot;sync-docs&quot;, content: &quot;Align documentation&quot;, status: &quot;completed&quot;, priority: &quot;medium&quot; },
+    { id: &quot;sync-github&quot;, content: &quot;Add GitHub command integration&quot;, status: &quot;completed&quot;, priority: &quot;high&quot; },
+    { id: &quot;sync-test&quot;, content: &quot;Validate synchronization&quot;, status: &quot;completed&quot;, priority: &quot;medium&quot; },
+    { id: &quot;sync-pr&quot;, content: &quot;Create integration PR&quot;, status: &quot;pending&quot;, priority: &quot;high&quot; }
+  ]}
+  
+  // Store comprehensive sync state
+  mcp__claude-flow__memory_usage {
+    action: &quot;store&quot;,
+    key: &quot;sync/complete/status&quot;,
+    value: {
+      timestamp: Date.now(),
+      packages_synced: [&quot;claude-code-flow&quot;, &quot;ruv-swarm&quot;],
+      version_alignment: &quot;completed&quot;,
+      documentation_sync: &quot;completed&quot;,
+      github_integration: &quot;completed&quot;,
+      validation_status: &quot;passed&quot;
+    }
+  }
+</code></pre>
+<h2>Synchronization Strategies</h2>
+<h3>1. <strong>Version Alignment Strategy</strong></h3>
+<pre><code class="language-javascript">// Intelligent version synchronization
+const syncStrategy = {
+  nodeVersion: &quot;&gt;=20.0.0&quot;,  // Align to highest requirement
+  dependencies: {
+    &quot;better-sqlite3&quot;: &quot;^12.2.0&quot;,  // Use latest stable
+    &quot;ws&quot;: &quot;^8.14.2&quot;  // Maintain compatibility
+  },
+  engines: {
+    aligned: true,
+    strategy: &quot;highest_common&quot;
+  }
+}
+</code></pre>
+<h3>2. <strong>Documentation Sync Pattern</strong></h3>
+<pre><code class="language-javascript">// Keep documentation consistent across packages
+const docSyncPattern = {
+  sourceOfTruth: &quot;ruv-swarm/docs/CLAUDE.md&quot;,
+  targets: [
+    &quot;claude-code-flow/claude-code-flow/CLAUDE.md&quot;,
+    &quot;CLAUDE.md&quot;  // Root level
+  ],
+  customSections: {
+    &quot;claude-code-flow&quot;: &quot;GitHub Commands Integration&quot;,
+    &quot;ruv-swarm&quot;: &quot;MCP Tools Reference&quot;
+  }
+}
+</code></pre>
+<h3>3. <strong>Integration Testing Matrix</strong></h3>
+<pre><code class="language-javascript">// Comprehensive testing across synchronized packages
+const testMatrix = {
+  packages: [&quot;claude-code-flow&quot;, &quot;ruv-swarm&quot;],
+  tests: [
+    &quot;unit_tests&quot;,
+    &quot;integration_tests&quot;, 
+    &quot;cross_package_tests&quot;,
+    &quot;mcp_integration_tests&quot;,
+    &quot;github_workflow_tests&quot;
+  ],
+  validation: &quot;parallel_execution&quot;
+}
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. <strong>Atomic Synchronization</strong></h3>
+<ul>
+<li>Use batch operations for related changes</li>
+<li>Maintain consistency across all sync operations</li>
+<li>Implement rollback mechanisms for failed syncs</li>
+</ul>
+<h3>2. <strong>Version Management</strong></h3>
+<ul>
+<li>Semantic versioning alignment</li>
+<li>Dependency compatibility validation</li>
+<li>Automated version bump coordination</li>
+</ul>
+<h3>3. <strong>Documentation Consistency</strong></h3>
+<ul>
+<li>Single source of truth for shared concepts</li>
+<li>Package-specific customizations</li>
+<li>Automated documentation validation</li>
+</ul>
+<h3>4. <strong>Testing Integration</strong></h3>
+<ul>
+<li>Cross-package test validation</li>
+<li>Integration test automation</li>
+<li>Performance regression detection</li>
+</ul>
+<h2>Monitoring and Metrics</h2>
+<h3>Sync Quality Metrics:</h3>
+<ul>
+<li>Package version alignment percentage</li>
+<li>Documentation consistency score</li>
+<li>Integration test success rate</li>
+<li>Synchronization completion time</li>
+</ul>
+<h3>Automated Reporting:</h3>
+<ul>
+<li>Weekly sync status reports</li>
+<li>Dependency drift detection</li>
+<li>Documentation divergence alerts</li>
+<li>Integration health monitoring</li>
+</ul>
+<h2>Error Handling and Recovery</h2>
+<h3>Automatic handling of:</h3>
+<ul>
+<li>Version conflict resolution</li>
+<li>Merge conflict detection and resolution</li>
+<li>Test failure recovery strategies</li>
+<li>Documentation sync conflicts</li>
+</ul>
+<h3>Recovery procedures:</h3>
+<ul>
+<li>Automated rollback on critical failures</li>
+<li>Incremental sync retry mechanisms</li>
+<li>Manual intervention points for complex conflicts</li>
+<li>State preservation across sync operations</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

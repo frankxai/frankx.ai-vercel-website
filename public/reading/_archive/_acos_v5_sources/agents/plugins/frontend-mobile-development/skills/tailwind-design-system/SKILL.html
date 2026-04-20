@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Tailwind Design System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/frontend-mobile-development/skills/tailwind-design-system/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Tailwind Design System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development">frontend-mobile-development</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ffrontend-mobile-development%2Fskills%2Ftailwind-design-system">tailwind-design-system</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: tailwind-design-system
+description: Build scalable design systems with Tailwind CSS, design tokens, component libraries, and responsive patterns. Use when creating component libraries, implementing design systems, or standardizing UI patterns.</h2>
+<h1>Tailwind Design System</h1>
+<p>Build production-ready design systems with Tailwind CSS, including design tokens, component variants, responsive patterns, and accessibility.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Creating a component library with Tailwind</li>
+<li>Implementing design tokens and theming</li>
+<li>Building responsive and accessible components</li>
+<li>Standardizing UI patterns across a codebase</li>
+<li>Migrating to or extending Tailwind CSS</li>
+<li>Setting up dark mode and color schemes</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Design Token Hierarchy</h3>
+<pre><code>Brand Tokens (abstract)
+    └── Semantic Tokens (purpose)
+        └── Component Tokens (specific)
+
+Example:
+    blue-500 → primary → button-bg
+</code></pre>
+<h3>2. Component Architecture</h3>
+<pre><code>Base styles → Variants → Sizes → States → Overrides
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">// tailwind.config.ts
+import type { Config } from &quot;tailwindcss&quot;;
+
+const config: Config = {
+  content: [&quot;./src/**/*.{js,ts,jsx,tsx,mdx}&quot;],
+  darkMode: &quot;class&quot;,
+  theme: {
+    extend: {
+      colors: {
+        // Semantic color tokens
+        primary: {
+          DEFAULT: &quot;hsl(var(--primary))&quot;,
+          foreground: &quot;hsl(var(--primary-foreground))&quot;,
+        },
+        secondary: {
+          DEFAULT: &quot;hsl(var(--secondary))&quot;,
+          foreground: &quot;hsl(var(--secondary-foreground))&quot;,
+        },
+        destructive: {
+          DEFAULT: &quot;hsl(var(--destructive))&quot;,
+          foreground: &quot;hsl(var(--destructive-foreground))&quot;,
+        },
+        muted: {
+          DEFAULT: &quot;hsl(var(--muted))&quot;,
+          foreground: &quot;hsl(var(--muted-foreground))&quot;,
+        },
+        accent: {
+          DEFAULT: &quot;hsl(var(--accent))&quot;,
+          foreground: &quot;hsl(var(--accent-foreground))&quot;,
+        },
+        background: &quot;hsl(var(--background))&quot;,
+        foreground: &quot;hsl(var(--foreground))&quot;,
+        border: &quot;hsl(var(--border))&quot;,
+        ring: &quot;hsl(var(--ring))&quot;,
+      },
+      borderRadius: {
+        lg: &quot;var(--radius)&quot;,
+        md: &quot;calc(var(--radius) - 2px)&quot;,
+        sm: &quot;calc(var(--radius) - 4px)&quot;,
+      },
+    },
+  },
+  plugins: [require(&quot;tailwindcss-animate&quot;)],
+};
+
+export default config;
+</code></pre>
+<pre><code class="language-css">/* globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+</code></pre>
+<h2>Patterns</h2>
+<h3>Pattern 1: CVA (Class Variance Authority) Components</h3>
+<pre><code class="language-typescript">// components/ui/button.tsx
+import { cva, type VariantProps } from &#39;class-variance-authority&#39;
+import { forwardRef } from &#39;react&#39;
+import { cn } from &#39;@/lib/utils&#39;
+
+const buttonVariants = cva(
+  // Base styles
+  &#39;inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50&#39;,
+  {
+    variants: {
+      variant: {
+        default: &#39;bg-primary text-primary-foreground hover:bg-primary/90&#39;,
+        destructive: &#39;bg-destructive text-destructive-foreground hover:bg-destructive/90&#39;,
+        outline: &#39;border border-input bg-background hover:bg-accent hover:text-accent-foreground&#39;,
+        secondary: &#39;bg-secondary text-secondary-foreground hover:bg-secondary/80&#39;,
+        ghost: &#39;hover:bg-accent hover:text-accent-foreground&#39;,
+        link: &#39;text-primary underline-offset-4 hover:underline&#39;,
+      },
+      size: {
+        default: &#39;h-10 px-4 py-2&#39;,
+        sm: &#39;h-9 rounded-md px-3&#39;,
+        lg: &#39;h-11 rounded-md px-8&#39;,
+        icon: &#39;h-10 w-10&#39;,
+      },
+    },
+    defaultVariants: {
+      variant: &#39;default&#39;,
+      size: &#39;default&#39;,
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;,
+    VariantProps&lt;typeof buttonVariants&gt; {
+  asChild?: boolean
+}
+
+const Button = forwardRef&lt;HTMLButtonElement, ButtonProps&gt;(
+  ({ className, variant, size, asChild = false, ...props }, ref) =&gt; {
+    const Comp = asChild ? Slot : &#39;button&#39;
+    return (
+      &lt;Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      /&gt;
+    )
+  }
+)
+Button.displayName = &#39;Button&#39;
+
+export { Button, buttonVariants }
+
+// Usage
+&lt;Button variant=&quot;destructive&quot; size=&quot;lg&quot;&gt;Delete&lt;/Button&gt;
+&lt;Button variant=&quot;outline&quot;&gt;Cancel&lt;/Button&gt;
+&lt;Button asChild&gt;&lt;Link href=&quot;/home&quot;&gt;Home&lt;/Link&gt;&lt;/Button&gt;
+</code></pre>
+<h3>Pattern 2: Compound Components</h3>
+<pre><code class="language-typescript">// components/ui/card.tsx
+import { cn } from &#39;@/lib/utils&#39;
+import { forwardRef } from &#39;react&#39;
+
+const Card = forwardRef&lt;HTMLDivElement, React.HTMLAttributes&lt;HTMLDivElement&gt;&gt;(
+  ({ className, ...props }, ref) =&gt; (
+    &lt;div
+      ref={ref}
+      className={cn(
+        &#39;rounded-lg border bg-card text-card-foreground shadow-sm&#39;,
+        className
+      )}
+      {...props}
+    /&gt;
+  )
+)
+Card.displayName = &#39;Card&#39;
+
+const CardHeader = forwardRef&lt;HTMLDivElement, React.HTMLAttributes&lt;HTMLDivElement&gt;&gt;(
+  ({ className, ...props }, ref) =&gt; (
+    &lt;div
+      ref={ref}
+      className={cn(&#39;flex flex-col space-y-1.5 p-6&#39;, className)}
+      {...props}
+    /&gt;
+  )
+)
+CardHeader.displayName = &#39;CardHeader&#39;
+
+const CardTitle = forwardRef&lt;HTMLHeadingElement, React.HTMLAttributes&lt;HTMLHeadingElement&gt;&gt;(
+  ({ className, ...props }, ref) =&gt; (
+    &lt;h3
+      ref={ref}
+      className={cn(&#39;text-2xl font-semibold leading-none tracking-tight&#39;, className)}
+      {...props}
+    /&gt;
+  )
+)
+CardTitle.displayName = &#39;CardTitle&#39;
+
+const CardDescription = forwardRef&lt;HTMLParagraphElement, React.HTMLAttributes&lt;HTMLParagraphElement&gt;&gt;(
+  ({ className, ...props }, ref) =&gt; (
+    &lt;p
+      ref={ref}
+      className={cn(&#39;text-sm text-muted-foreground&#39;, className)}
+      {...props}
+    /&gt;
+  )
+)
+CardDescription.displayName = &#39;CardDescription&#39;
+
+const CardContent = forwardRef&lt;HTMLDivElement, React.HTMLAttributes&lt;HTMLDivElement&gt;&gt;(
+  ({ className, ...props }, ref) =&gt; (
+    &lt;div ref={ref} className={cn(&#39;p-6 pt-0&#39;, className)} {...props} /&gt;
+  )
+)
+CardContent.displayName = &#39;CardContent&#39;
+
+const CardFooter = forwardRef&lt;HTMLDivElement, React.HTMLAttributes&lt;HTMLDivElement&gt;&gt;(
+  ({ className, ...props }, ref) =&gt; (
+    &lt;div
+      ref={ref}
+      className={cn(&#39;flex items-center p-6 pt-0&#39;, className)}
+      {...props}
+    /&gt;
+  )
+)
+CardFooter.displayName = &#39;CardFooter&#39;
+
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
+
+// Usage
+&lt;Card&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle&gt;Account&lt;/CardTitle&gt;
+    &lt;CardDescription&gt;Manage your account settings&lt;/CardDescription&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardContent&gt;
+    &lt;form&gt;...&lt;/form&gt;
+  &lt;/CardContent&gt;
+  &lt;CardFooter&gt;
+    &lt;Button&gt;Save&lt;/Button&gt;
+  &lt;/CardFooter&gt;
+&lt;/Card&gt;
+</code></pre>
+<h3>Pattern 3: Form Components</h3>
+<pre><code class="language-typescript">// components/ui/input.tsx
+import { forwardRef } from &#39;react&#39;
+import { cn } from &#39;@/lib/utils&#39;
+
+export interface InputProps extends React.InputHTMLAttributes&lt;HTMLInputElement&gt; {
+  error?: string
+}
+
+const Input = forwardRef&lt;HTMLInputElement, InputProps&gt;(
+  ({ className, type, error, ...props }, ref) =&gt; {
+    return (
+      &lt;div className=&quot;relative&quot;&gt;
+        &lt;input
+          type={type}
+          className={cn(
+            &#39;flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50&#39;,
+            error &amp;&amp; &#39;border-destructive focus-visible:ring-destructive&#39;,
+            className
+          )}
+          ref={ref}
+          aria-invalid={!!error}
+          aria-describedby={error ? `${props.id}-error` : undefined}
+          {...props}
+        /&gt;
+        {error &amp;&amp; (
+          &lt;p
+            id={`${props.id}-error`}
+            className=&quot;mt-1 text-sm text-destructive&quot;
+            role=&quot;alert&quot;
+          &gt;
+            {error}
+          &lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    )
+  }
+)
+Input.displayName = &#39;Input&#39;
+
+// components/ui/label.tsx
+import { cva, type VariantProps } from &#39;class-variance-authority&#39;
+
+const labelVariants = cva(
+  &#39;text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70&#39;
+)
+
+const Label = forwardRef&lt;HTMLLabelElement, React.LabelHTMLAttributes&lt;HTMLLabelElement&gt;&gt;(
+  ({ className, ...props }, ref) =&gt; (
+    &lt;label ref={ref} className={cn(labelVariants(), className)} {...props} /&gt;
+  )
+)
+Label.displayName = &#39;Label&#39;
+
+// Usage with React Hook Form
+import { useForm } from &#39;react-hook-form&#39;
+import { zodResolver } from &#39;@hookform/resolvers/zod&#39;
+import * as z from &#39;zod&#39;
+
+const schema = z.object({
+  email: z.string().email(&#39;Invalid email address&#39;),
+  password: z.string().min(8, &#39;Password must be at least 8 characters&#39;),
+})
+
+function LoginForm() {
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema),
+  })
+
+  return (
+    &lt;form onSubmit={handleSubmit(onSubmit)} className=&quot;space-y-4&quot;&gt;
+      &lt;div className=&quot;space-y-2&quot;&gt;
+        &lt;Label htmlFor=&quot;email&quot;&gt;Email&lt;/Label&gt;
+        &lt;Input
+          id=&quot;email&quot;
+          type=&quot;email&quot;
+          {...register(&#39;email&#39;)}
+          error={errors.email?.message}
+        /&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;space-y-2&quot;&gt;
+        &lt;Label htmlFor=&quot;password&quot;&gt;Password&lt;/Label&gt;
+        &lt;Input
+          id=&quot;password&quot;
+          type=&quot;password&quot;
+          {...register(&#39;password&#39;)}
+          error={errors.password?.message}
+        /&gt;
+      &lt;/div&gt;
+      &lt;Button type=&quot;submit&quot; className=&quot;w-full&quot;&gt;Sign In&lt;/Button&gt;
+    &lt;/form&gt;
+  )
+}
+</code></pre>
+<h3>Pattern 4: Responsive Grid System</h3>
+<pre><code class="language-typescript">// components/ui/grid.tsx
+import { cn } from &#39;@/lib/utils&#39;
+import { cva, type VariantProps } from &#39;class-variance-authority&#39;
+
+const gridVariants = cva(&#39;grid&#39;, {
+  variants: {
+    cols: {
+      1: &#39;grid-cols-1&#39;,
+      2: &#39;grid-cols-1 sm:grid-cols-2&#39;,
+      3: &#39;grid-cols-1 sm:grid-cols-2 lg:grid-cols-3&#39;,
+      4: &#39;grid-cols-1 sm:grid-cols-2 lg:grid-cols-4&#39;,
+      5: &#39;grid-cols-2 sm:grid-cols-3 lg:grid-cols-5&#39;,
+      6: &#39;grid-cols-2 sm:grid-cols-3 lg:grid-cols-6&#39;,
+    },
+    gap: {
+      none: &#39;gap-0&#39;,
+      sm: &#39;gap-2&#39;,
+      md: &#39;gap-4&#39;,
+      lg: &#39;gap-6&#39;,
+      xl: &#39;gap-8&#39;,
+    },
+  },
+  defaultVariants: {
+    cols: 3,
+    gap: &#39;md&#39;,
+  },
+})
+
+interface GridProps
+  extends React.HTMLAttributes&lt;HTMLDivElement&gt;,
+    VariantProps&lt;typeof gridVariants&gt; {}
+
+export function Grid({ className, cols, gap, ...props }: GridProps) {
+  return (
+    &lt;div className={cn(gridVariants({ cols, gap, className }))} {...props} /&gt;
+  )
+}
+
+// Container component
+const containerVariants = cva(&#39;mx-auto w-full px-4 sm:px-6 lg:px-8&#39;, {
+  variants: {
+    size: {
+      sm: &#39;max-w-screen-sm&#39;,
+      md: &#39;max-w-screen-md&#39;,
+      lg: &#39;max-w-screen-lg&#39;,
+      xl: &#39;max-w-screen-xl&#39;,
+      &#39;2xl&#39;: &#39;max-w-screen-2xl&#39;,
+      full: &#39;max-w-full&#39;,
+    },
+  },
+  defaultVariants: {
+    size: &#39;xl&#39;,
+  },
+})
+
+interface ContainerProps
+  extends React.HTMLAttributes&lt;HTMLDivElement&gt;,
+    VariantProps&lt;typeof containerVariants&gt; {}
+
+export function Container({ className, size, ...props }: ContainerProps) {
+  return (
+    &lt;div className={cn(containerVariants({ size, className }))} {...props} /&gt;
+  )
+}
+
+// Usage
+&lt;Container&gt;
+  &lt;Grid cols={4} gap=&quot;lg&quot;&gt;
+    {products.map((product) =&gt; (
+      &lt;ProductCard key={product.id} product={product} /&gt;
+    ))}
+  &lt;/Grid&gt;
+&lt;/Container&gt;
+</code></pre>
+<h3>Pattern 5: Animation Utilities</h3>
+<pre><code class="language-typescript">// lib/animations.ts - Tailwind CSS Animate utilities
+import { cn } from &#39;./utils&#39;
+
+export const fadeIn = &#39;animate-in fade-in duration-300&#39;
+export const fadeOut = &#39;animate-out fade-out duration-300&#39;
+export const slideInFromTop = &#39;animate-in slide-in-from-top duration-300&#39;
+export const slideInFromBottom = &#39;animate-in slide-in-from-bottom duration-300&#39;
+export const slideInFromLeft = &#39;animate-in slide-in-from-left duration-300&#39;
+export const slideInFromRight = &#39;animate-in slide-in-from-right duration-300&#39;
+export const zoomIn = &#39;animate-in zoom-in-95 duration-300&#39;
+export const zoomOut = &#39;animate-out zoom-out-95 duration-300&#39;
+
+// Compound animations
+export const modalEnter = cn(fadeIn, zoomIn, &#39;duration-200&#39;)
+export const modalExit = cn(fadeOut, zoomOut, &#39;duration-200&#39;)
+export const dropdownEnter = cn(fadeIn, slideInFromTop, &#39;duration-150&#39;)
+export const dropdownExit = cn(fadeOut, &#39;slide-out-to-top&#39;, &#39;duration-150&#39;)
+
+// components/ui/dialog.tsx
+import * as DialogPrimitive from &#39;@radix-ui/react-dialog&#39;
+
+const DialogOverlay = forwardRef&lt;
+  React.ElementRef&lt;typeof DialogPrimitive.Overlay&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DialogPrimitive.Overlay&gt;
+&gt;(({ className, ...props }, ref) =&gt; (
+  &lt;DialogPrimitive.Overlay
+    ref={ref}
+    className={cn(
+      &#39;fixed inset-0 z-50 bg-black/80&#39;,
+      &#39;data-[state=open]:animate-in data-[state=closed]:animate-out&#39;,
+      &#39;data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0&#39;,
+      className
+    )}
+    {...props}
+  /&gt;
+))
+
+const DialogContent = forwardRef&lt;
+  React.ElementRef&lt;typeof DialogPrimitive.Content&gt;,
+  React.ComponentPropsWithoutRef&lt;typeof DialogPrimitive.Content&gt;
+&gt;(({ className, children, ...props }, ref) =&gt; (
+  &lt;DialogPortal&gt;
+    &lt;DialogOverlay /&gt;
+    &lt;DialogPrimitive.Content
+      ref={ref}
+      className={cn(
+        &#39;fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg&#39;,
+        &#39;data-[state=open]:animate-in data-[state=closed]:animate-out&#39;,
+        &#39;data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0&#39;,
+        &#39;data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95&#39;,
+        &#39;data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]&#39;,
+        &#39;data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]&#39;,
+        &#39;sm:rounded-lg&#39;,
+        className
+      )}
+      {...props}
+    &gt;
+      {children}
+    &lt;/DialogPrimitive.Content&gt;
+  &lt;/DialogPortal&gt;
+))
+</code></pre>
+<h3>Pattern 6: Dark Mode Implementation</h3>
+<pre><code class="language-typescript">// providers/ThemeProvider.tsx
+&#39;use client&#39;
+
+import { createContext, useContext, useEffect, useState } from &#39;react&#39;
+
+type Theme = &#39;dark&#39; | &#39;light&#39; | &#39;system&#39;
+
+interface ThemeProviderProps {
+  children: React.ReactNode
+  defaultTheme?: Theme
+  storageKey?: string
+}
+
+interface ThemeContextType {
+  theme: Theme
+  setTheme: (theme: Theme) =&gt; void
+  resolvedTheme: &#39;dark&#39; | &#39;light&#39;
+}
+
+const ThemeContext = createContext&lt;ThemeContextType | undefined&gt;(undefined)
+
+export function ThemeProvider({
+  children,
+  defaultTheme = &#39;system&#39;,
+  storageKey = &#39;theme&#39;,
+}: ThemeProviderProps) {
+  const [theme, setTheme] = useState&lt;Theme&gt;(defaultTheme)
+  const [resolvedTheme, setResolvedTheme] = useState&lt;&#39;dark&#39; | &#39;light&#39;&gt;(&#39;light&#39;)
+
+  useEffect(() =&gt; {
+    const stored = localStorage.getItem(storageKey) as Theme | null
+    if (stored) setTheme(stored)
+  }, [storageKey])
+
+  useEffect(() =&gt; {
+    const root = window.document.documentElement
+    root.classList.remove(&#39;light&#39;, &#39;dark&#39;)
+
+    let resolved: &#39;dark&#39; | &#39;light&#39;
+
+    if (theme === &#39;system&#39;) {
+      resolved = window.matchMedia(&#39;(prefers-color-scheme: dark)&#39;).matches
+        ? &#39;dark&#39;
+        : &#39;light&#39;
+    } else {
+      resolved = theme
+    }
+
+    root.classList.add(resolved)
+    setResolvedTheme(resolved)
+  }, [theme])
+
+  const value = {
+    theme,
+    setTheme: (newTheme: Theme) =&gt; {
+      localStorage.setItem(storageKey, newTheme)
+      setTheme(newTheme)
+    },
+    resolvedTheme,
+  }
+
+  return (
+    &lt;ThemeContext.Provider value={value}&gt;{children}&lt;/ThemeContext.Provider&gt;
+  )
+}
+
+export const useTheme = () =&gt; {
+  const context = useContext(ThemeContext)
+  if (!context) throw new Error(&#39;useTheme must be used within ThemeProvider&#39;)
+  return context
+}
+
+// components/ThemeToggle.tsx
+import { Moon, Sun } from &#39;lucide-react&#39;
+import { useTheme } from &#39;@/providers/ThemeProvider&#39;
+
+export function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme()
+
+  return (
+    &lt;Button
+      variant=&quot;ghost&quot;
+      size=&quot;icon&quot;
+      onClick={() =&gt; setTheme(resolvedTheme === &#39;dark&#39; ? &#39;light&#39; : &#39;dark&#39;)}
+    &gt;
+      &lt;Sun className=&quot;h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0&quot; /&gt;
+      &lt;Moon className=&quot;absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100&quot; /&gt;
+      &lt;span className=&quot;sr-only&quot;&gt;Toggle theme&lt;/span&gt;
+    &lt;/Button&gt;
+  )
+}
+</code></pre>
+<h2>Utility Functions</h2>
+<pre><code class="language-typescript">// lib/utils.ts
+import { type ClassValue, clsx } from &quot;clsx&quot;;
+import { twMerge } from &quot;tailwind-merge&quot;;
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
+// Focus ring utility
+export const focusRing = cn(
+  &quot;focus-visible:outline-none focus-visible:ring-2&quot;,
+  &quot;focus-visible:ring-ring focus-visible:ring-offset-2&quot;,
+);
+
+// Disabled utility
+export const disabled = &quot;disabled:pointer-events-none disabled:opacity-50&quot;;
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Use CSS variables</strong> - Enable runtime theming</li>
+<li><strong>Compose with CVA</strong> - Type-safe variants</li>
+<li><strong>Use semantic colors</strong> - <code>primary</code> not <code>blue-500</code></li>
+<li><strong>Forward refs</strong> - Enable composition</li>
+<li><strong>Add accessibility</strong> - ARIA attributes, focus states</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t use arbitrary values</strong> - Extend theme instead</li>
+<li><strong>Don&#39;t nest @apply</strong> - Hurts readability</li>
+<li><strong>Don&#39;t skip focus states</strong> - Keyboard users need them</li>
+<li><strong>Don&#39;t hardcode colors</strong> - Use semantic tokens</li>
+<li><strong>Don&#39;t forget dark mode</strong> - Test both themes</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://tailwindcss.com/docs">Tailwind CSS Documentation</a></li>
+<li><a href="https://cva.style/docs">CVA Documentation</a></li>
+<li><a href="https://ui.shadcn.com/">shadcn/ui</a></li>
+<li><a href="https://www.radix-ui.com/primitives">Radix Primitives</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

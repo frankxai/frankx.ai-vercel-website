@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Product Retro — Team Retrospective</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/product-retro.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Product Retro — Team Retrospective</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>product-retro.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Product Retro — Team Retrospective</h1>
+<p>Analyze what worked and what didn&#39;t in a product build cycle. Codify successful patterns into reusable knowledge.</p>
+<h2>Input</h2>
+<ul>
+<li><strong>Product</strong>: $ARGUMENTS (product name or page path that was recently built/deployed)</li>
+</ul>
+<h2>Step 1: Gather Data</h2>
+<ol>
+<li>Check git log for recent commits related to this product</li>
+<li>Read the product&#39;s page files (what was built)</li>
+<li>Check if QA issues were found and fixed</li>
+<li>Review any deployment issues</li>
+</ol>
+<h2>Step 2: Analyze Patterns</h2>
+<h3>What Worked</h3>
+<ul>
+<li>Which components were reused effectively?</li>
+<li>Which design patterns shipped cleanly?</li>
+<li>What was the build → QA → deploy cycle time?</li>
+<li>Which Task agents produced good results?</li>
+</ul>
+<h3>What Didn&#39;t Work</h3>
+<ul>
+<li>Where did we hit errors or need rework?</li>
+<li>Which quality gates caught real issues?</li>
+<li>What was missing from the spec?</li>
+<li>Where did agents need human intervention?</li>
+</ul>
+<h3>Lessons Learned</h3>
+<ul>
+<li>New patterns to codify (add to skill.md files)</li>
+<li>Anti-patterns to document (add to agent definitions)</li>
+<li>Missing components that should exist</li>
+<li>Process improvements for next sprint</li>
+</ul>
+<h2>Step 3: Update Knowledge Base</h2>
+<p>If clear patterns emerged:</p>
+<ol>
+<li><strong>Update skill.md files</strong> with new best practices</li>
+<li><strong>Update PRODUCT_TEAMS.md</strong> if workflow needs adjustment</li>
+<li><strong>Log to memory</strong> if the insight is worth remembering across sessions</li>
+</ol>
+<h2>Step 4: Report</h2>
+<pre><code>## Retrospective: [product]
+
+### Summary
+[1-2 sentences on what was built and shipped]
+
+### What Worked Well
+- [pattern] — [why it worked]
+
+### What Needs Improvement
+- [issue] — [proposed fix]
+
+### Patterns Codified
+- [new pattern added to X skill.md]
+
+### Next Sprint Priorities
+1. [priority]
+2. [priority]
+3. [priority]
+</code></pre>
+<h2>Iteration Mindset</h2>
+<ul>
+<li>Small improvements compound. Don&#39;t try to fix everything at once.</li>
+<li>Codify ONE new pattern per retro. Quality over quantity.</li>
+<li>Focus on patterns that will save time across ALL future products, not just this one.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

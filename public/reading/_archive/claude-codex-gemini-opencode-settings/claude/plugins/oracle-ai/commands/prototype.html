@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/prototype - AI Architecture Prototyping Command</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/claude/plugins/oracle-ai/commands/prototype.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/prototype - AI Architecture Prototyping Command</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <a href="../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude">claude</a> / <a href="../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins">plugins</a> / <a href="../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Foracle-ai">oracle-ai</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Foracle-ai%2Fcommands">commands</a> / <span>prototype.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: AI Architecture prototyping with AI CoE methodology - guided wizard
+thinking: true</h2>
+<h1>/prototype - AI Architecture Prototyping Command</h1>
+<p><strong>Purpose</strong>: Guide through a structured process to create production-ready AI architecture prototypes using enterprise patterns and AI CoE methodology.</p>
+<h2>Command Invocation</h2>
+<ul>
+<li><code>/prototype</code> - Start the guided wizard</li>
+<li><code>/prototype ai-architecture</code> - Start with AI Architecture context</li>
+<li><code>/prototype [use-case]</code> - Start with a specific use case in mind</li>
+</ul>
+<hr>
+<h2>Phase 1: Discovery (5-10 min)</h2>
+<h3>Objective</h3>
+<p>Understand the business problem, technical constraints, and success criteria before selecting any patterns or technologies.</p>
+<h3>Questions to Ask</h3>
+<p><strong>Business Context:</strong></p>
+<ol>
+<li>What business problem are we solving?</li>
+<li>Who are the primary users/stakeholders?</li>
+<li>What does success look like? (KPIs, metrics)</li>
+<li>What&#39;s the project scope? (PoC / MVP / Production)</li>
+<li>What&#39;s the timeline and budget?</li>
+</ol>
+<p><strong>Technical Context:</strong></p>
+<ol>
+<li>Which cloud provider(s)? (AWS, GCP, Azure, OCI, Multi-cloud)</li>
+<li>Existing infrastructure and services?</li>
+<li>Security and compliance requirements?</li>
+<li>Integration points (APIs, databases, systems)?</li>
+<li>Team expertise and constraints?</li>
+</ol>
+<p><strong>AI Use Case:</strong></p>
+<ol>
+<li>What type of AI workload?<ul>
+<li>Document Q&amp;A / RAG</li>
+<li>Autonomous Agents</li>
+<li>Content Generation</li>
+<li>Code Assistance</li>
+<li>Data Analysis</li>
+<li>Other</li>
+</ul>
+</li>
+<li>Expected scale (users, requests/day)?</li>
+<li>Latency requirements?</li>
+<li>Data sensitivity (public, internal, PII, PHI)?</li>
+</ol>
+<h3>Discovery Template</h3>
+<pre><code class="language-markdown">## Architecture Prototype: [NAME]
+
+### Business Context
+- **Problem**: [What problem does this solve?]
+- **Stakeholders**: [Who benefits?]
+- **Success Metrics**: [How will we measure success?]
+- **Scope**: PoC / MVP / Production
+- **Timeline**: [Expected timeline]
+
+### Technical Context
+- **Cloud Provider(s)**: [AWS / GCP / Azure / OCI / Multi-cloud]
+- **Existing Infrastructure**: [What already exists?]
+- **Security Requirements**: [Compliance, data handling]
+- **Integrations**: [APIs, databases, systems]
+- **Team Expertise**: [What the team knows]
+
+### AI Use Case
+- **Type**: [RAG / Agents / Generation / etc.]
+- **Scale**: [Users, requests/day]
+- **Latency**: [Requirements]
+- **Data Sensitivity**: [Classification]
+</code></pre>
+<hr>
+<h2>Phase 2: Pattern Selection (5 min)</h2>
+<h3>Objective</h3>
+<p>Match the use case to appropriate enterprise patterns from the AI Architect Academy pattern library.</p>
+<h3>Pattern Matching Guide</h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Primary Pattern</th>
+<th>Supporting Patterns</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Document Q&amp;A</td>
+<td>RAG Production</td>
+<td>Vector DB, AI Gateway</td>
+</tr>
+<tr>
+<td>Customer Support Bot</td>
+<td>RAG Production</td>
+<td>Multi-Agent, Security</td>
+</tr>
+<tr>
+<td>Autonomous Coding</td>
+<td>Multi-Agent Orchestration</td>
+<td>MCP Servers, LLMOps</td>
+</tr>
+<tr>
+<td>Enterprise AI Platform</td>
+<td>AI Gateway</td>
+<td>AI CoE, Security, Cost Opt</td>
+</tr>
+<tr>
+<td>Content Generation</td>
+<td>AI Gateway</td>
+<td>LLMOps, Observability</td>
+</tr>
+<tr>
+<td>Data Analysis</td>
+<td>RAG Production</td>
+<td>AI Gateway, Cost Opt</td>
+</tr>
+</tbody></table>
+<h3>Available Patterns</h3>
+<ol>
+<li><strong>AI Gateway</strong> - Unified access, auth, rate limiting</li>
+<li><strong>RAG Production</strong> - Document retrieval and augmented generation</li>
+<li><strong>Multi-Agent Orchestration</strong> - Coordinated autonomous agents</li>
+<li><strong>MCP Servers</strong> - Standardized tool integration</li>
+<li><strong>LLMOps</strong> - Versioning, evaluation, deployment</li>
+<li><strong>Vector DB Selection</strong> - Right-sizing vector storage</li>
+<li><strong>AI CoE Framework</strong> - Enterprise governance</li>
+<li><strong>Security &amp; Governance</strong> - Guardrails and compliance</li>
+</ol>
+<h3>Pattern Selection Template</h3>
+<pre><code class="language-markdown">## Selected Patterns
+
+### Primary Pattern: [PATTERN NAME]
+- **Why**: [Justification for selection]
+- **Key Components**: [What it provides]
+
+### Supporting Patterns
+1. **[Pattern]**: [Why needed]
+2. **[Pattern]**: [Why needed]
+
+### Rejected Patterns
+- **[Pattern]**: [Why not appropriate]
+</code></pre>
+<hr>
+<h2>Phase 3: Architecture Design (15-30 min)</h2>
+<h3>Objective</h3>
+<p>Design the technical architecture with components, data flows, and cloud service mappings.</p>
+<h3>Design Process</h3>
+<ol>
+<li><p><strong>Component Identification</strong></p>
+<ul>
+<li>List all required components</li>
+<li>Map to cloud services</li>
+<li>Define interfaces</li>
+</ul>
+</li>
+<li><p><strong>Data Flow Design</strong></p>
+<ul>
+<li>Document data sources</li>
+<li>Map transformation points</li>
+<li>Define storage requirements</li>
+</ul>
+</li>
+<li><p><strong>Security Design</strong></p>
+<ul>
+<li>Authentication/authorization</li>
+<li>Data encryption</li>
+<li>Audit logging</li>
+</ul>
+</li>
+<li><p><strong>Cost Estimation</strong></p>
+<ul>
+<li>Compute costs</li>
+<li>Storage costs</li>
+<li>API costs</li>
+<li>Operational overhead</li>
+</ul>
+</li>
+</ol>
+<h3>Architecture Diagram</h3>
+<p>Generate a Mermaid diagram:</p>
+<pre><code class="language-mermaid">graph TB
+    subgraph Frontend
+        A[User Interface]
+    end
+    subgraph Backend
+        B[API Gateway]
+        C[Application Logic]
+    end
+    subgraph AI Layer
+        D[LLM Service]
+        E[Vector DB]
+        F[Embedding Service]
+    end
+    subgraph Data
+        G[Document Store]
+        H[Metadata DB]
+    end
+
+    A --&gt; B
+    B --&gt; C
+    C --&gt; D
+    C --&gt; E
+    C --&gt; F
+    C --&gt; G
+    C --&gt; H
+</code></pre>
+<h3>Component Specification Template</h3>
+<pre><code class="language-markdown">## Component: [NAME]
+
+### Purpose
+[What this component does]
+
+### Cloud Service
+[AWS/GCP/Azure/OCI service mapping]
+
+### Configuration
+- CPU/Memory: [Requirements]
+- Scaling: [Auto-scaling rules]
+- Networking: [VPC, security groups]
+
+### Dependencies
+- [Upstream components]
+- [Downstream components]
+
+### Cost Estimate
+- Monthly: $[amount]
+- Assumptions: [scaling, usage]
+</code></pre>
+<hr>
+<h2>Phase 4: Implementation Plan (10 min)</h2>
+<h3>Objective</h3>
+<p>Create a phased implementation roadmap with clear deliverables, resource requirements, and risk mitigation.</p>
+<h3>Phase Structure</h3>
+<p><strong>Phase 1: Foundation (Weeks 1-2)</strong></p>
+<ul>
+<li>Infrastructure setup</li>
+<li>Core services deployment</li>
+<li>Basic integration testing</li>
+</ul>
+<p><strong>Phase 2: Core Features (Weeks 3-4)</strong></p>
+<ul>
+<li>Primary AI components</li>
+<li>Data pipelines</li>
+<li>Initial testing</li>
+</ul>
+<p><strong>Phase 3: Integration (Weeks 5-6)</strong></p>
+<ul>
+<li>System integration</li>
+<li>Security hardening</li>
+<li>Performance optimization</li>
+</ul>
+<p><strong>Phase 4: Production (Weeks 7-8)</strong></p>
+<ul>
+<li>Load testing</li>
+<li>Documentation</li>
+<li>Deployment &amp; monitoring</li>
+</ul>
+<h3>Risk Assessment Template</h3>
+<pre><code class="language-markdown">| Risk | Impact | Probability | Mitigation |
+|------|--------|-------------|------------|
+| [Risk 1] | High/Med/Low | High/Med/Low | [Action] |
+| [Risk 2] | High/Med/Low | High/Med/Low | [Action] |
+</code></pre>
+<hr>
+<h2>Phase 5: Output Generation</h2>
+<h3>Deliverables</h3>
+<p>Generate complete prototype documentation in this structure:</p>
+<pre><code>prototypes/[prototype-id]/
+├── README.md              # Overview and quick start
+├── ARCHITECTURE.md        # Detailed architecture
+├── IMPLEMENTATION.md      # Step-by-step implementation guide
+├── COST_ESTIMATE.md       # Cost breakdown and assumptions
+├── diagrams/
+│   ├── architecture.mmd   # Mermaid source
+│   └── data-flow.mmd      # Data flow diagram
+├── code/
+│   ├── terraform/         # Infrastructure as Code
+│   ├── python/            # Python implementations
+│   └── typescript/        # TypeScript implementations
+└── tests/
+    └── integration/       # Integration test specifications
+</code></pre>
+<h3>README Template</h3>
+<pre><code class="language-markdown"># [Prototype Name]
+
+&gt; [One-line description]
+
+## Overview
+
+[2-3 paragraph overview of the architecture and its purpose]
+
+## Quick Start
+
+1. [Step 1]
+2. [Step 2]
+3. [Step 3]
+
+## Architecture
+
+![Architecture Diagram](diagrams/architecture.svg)
+
+### Key Components
+
+| Component | Purpose | Technology |
+|-----------|---------|------------|
+| [Name] | [Purpose] | [Tech] |
+
+## Cost Estimate
+
+| Category | Monthly | Annual |
+|----------|---------|--------|
+| Compute | $X | $X |
+| Storage | $X | $X |
+| AI/ML | $X | $X |
+| **Total** | **$X** | **$X** |
+
+## Implementation Timeline
+
+- **Phase 1** (2 weeks): Foundation
+- **Phase 2** (2 weeks): Core Features
+- **Phase 3** (2 weeks): Integration
+- **Phase 4** (2 weeks): Production
+
+## Related Patterns
+
+- [Pattern 1](link)
+- [Pattern 2](link)
+
+## Resources
+
+- [AI Architect Academy](https://github.com/frankxai/ai-architect-academy)
+- [Pattern Library](https://frankx.ai/ai-architect-academy/patterns)
+</code></pre>
+<hr>
+<h2>Agent Activation</h2>
+<p>When this command is invoked, channel the following agent personas:</p>
+<h3>Primary: AI Architect</h3>
+<ul>
+<li>Enterprise architecture expertise</li>
+<li>Multi-cloud platform knowledge</li>
+<li>Pattern selection wisdom</li>
+<li>Cost optimization mindset</li>
+<li>Security-first thinking</li>
+</ul>
+<h3>Support: Technical Translator</h3>
+<ul>
+<li>Make complex concepts accessible</li>
+<li>Ensure documentation clarity</li>
+<li>Bridge technical and business language</li>
+</ul>
+<hr>
+<h2>Related Commands</h2>
+<ul>
+<li><code>/skill ai-architecture-patterns</code> - Deep dive into specific patterns</li>
+<li><code>/skill mcp-architecture</code> - MCP server design guidance</li>
+<li><code>/skill claude-sdk</code> - Agent development patterns</li>
+<li><code>/skill oci-services-expert</code> - OCI-specific guidance</li>
+</ul>
+<hr>
+<h2>Quality Checklist</h2>
+<p>Before completing a prototype, verify:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Business problem clearly articulated</li>
+<li><input disabled="" type="checkbox"> Patterns selected with justification</li>
+<li><input disabled="" type="checkbox"> Architecture diagram complete</li>
+<li><input disabled="" type="checkbox"> All components specified</li>
+<li><input disabled="" type="checkbox"> Data flows documented</li>
+<li><input disabled="" type="checkbox"> Security considerations addressed</li>
+<li><input disabled="" type="checkbox"> Cost estimates provided with assumptions</li>
+<li><input disabled="" type="checkbox"> Implementation phases defined</li>
+<li><input disabled="" type="checkbox"> Risks identified with mitigations</li>
+<li><input disabled="" type="checkbox"> README is comprehensive</li>
+</ul>
+<hr>
+<h2>Examples</h2>
+<h3>Example 1: Enterprise RAG Platform</h3>
+<pre><code>/prototype Document Q&amp;A for internal knowledge base
+
+Discovery reveals:
+- 50K employees need access
+- SharePoint and Confluence as sources
+- PII present in some documents
+- OCI as primary cloud
+
+Pattern Selection:
+- Primary: RAG Production
+- Support: Vector DB Selection, Security &amp; Governance, AI Gateway
+
+Architecture: [See prototypes/enterprise-rag-platform]
+</code></pre>
+<h3>Example 2: Multi-Agent Code Assistant</h3>
+<pre><code>/prototype Autonomous coding system for development team
+
+Discovery reveals:
+- 20 developers
+- TypeScript/Python codebase
+- GitHub integration required
+- Cost-sensitive (startup)
+
+Pattern Selection:
+- Primary: Multi-Agent Orchestration
+- Support: MCP Servers, LLMOps
+
+Architecture: [See prototypes/multi-agent-code-assistant]
+</code></pre>
+<hr>
+<p><em>This command is part of the AI Architect Academy by FrankX.AI</em>
+<em>GitHub: <a href="https://github.com/frankxai/ai-architect-academy">https://github.com/frankxai/ai-architect-academy</a></em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

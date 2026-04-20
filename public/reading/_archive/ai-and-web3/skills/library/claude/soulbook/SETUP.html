@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Soulbook Skill Setup Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/soulbook/SETUP.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Soulbook Skill Setup Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Fsoulbook">soulbook</a> / <span>SETUP.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Soulbook Skill Setup Guide</h1>
+<h2>✅ What&#39;s Been Set Up</h2>
+<p>Your <code>/soulbook</code> skill is now fully configured and ready to use! Here&#39;s what was created:</p>
+<ol>
+<li><p><strong>Main Skill Definition</strong> (<code>SKILL.md</code>)</p>
+<ul>
+<li>Complete process overview</li>
+<li>Session structure</li>
+<li>File templates</li>
+<li>Usage instructions</li>
+</ul>
+</li>
+<li><p><strong>Soulbook Creator Agent</strong> (<code>soulbook-creator-agent.md</code>)</p>
+<ul>
+<li>Detailed agent personality and behavior</li>
+<li>5-phase creation process</li>
+<li>Question templates for each pillar</li>
+<li>Markdown file templates</li>
+</ul>
+</li>
+<li><p><strong>Existing Framework</strong></p>
+<ul>
+<li>3 Life Books (Life Symphony, Golden Path, 7 Pillars)</li>
+<li>7 Pillars detailed content</li>
+<li>AI coaching agents</li>
+<li>Complete documentation</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>🚀 Quick Start</h2>
+<p>To use your Soulbook skill:</p>
+<pre><code class="language-bash">/skill soulbook
+</code></pre>
+<p>Or if Claude Code supports shortcuts:</p>
+<pre><code class="language-bash">/soulbook
+</code></pre>
+<hr>
+<h2>📋 PDF Generation Setup (Optional but Recommended)</h2>
+<p>To generate beautiful PDFs from your Soulbook markdown files, you need <code>pandoc</code>.</p>
+<h3>Install Pandoc on WSL/Linux</h3>
+<pre><code class="language-bash"># Update package list
+sudo apt update
+
+# Install pandoc (basic)
+sudo apt install pandoc
+
+# Install full LaTeX support for better PDFs (optional, ~500MB)
+sudo apt install texlive-xelatex texlive-fonts-recommended texlive-fonts-extra
+</code></pre>
+<h3>Verify Installation</h3>
+<pre><code class="language-bash">pandoc --version
+</code></pre>
+<h3>Alternative: Node.js markdown-pdf</h3>
+<p>If you prefer a lighter option:</p>
+<pre><code class="language-bash">npm install -g markdown-pdf
+</code></pre>
+<h3>Without Installation</h3>
+<p>The skill will still work without pandoc! It will:</p>
+<ol>
+<li>Create all markdown files</li>
+<li>Skip PDF generation</li>
+<li>Provide instructions to generate PDF manually online</li>
+</ol>
+<p><strong>Online PDF converters:</strong></p>
+<ul>
+<li><a href="https://www.markdowntopdf.com/">https://www.markdowntopdf.com/</a></li>
+<li><a href="https://dillinger.io/">https://dillinger.io/</a> (with export)</li>
+<li><a href="https://cloudconvert.com/md-to-pdf">https://cloudconvert.com/md-to-pdf</a></li>
+</ul>
+<hr>
+<h2>📁 What Gets Created</h2>
+<p>When you complete the Soulbook process, you&#39;ll have:</p>
+<pre><code>soulbook-personal/
+├── _meta.md                      # Session metadata and progress
+├── 00-introduction.md            # Your personal introduction
+├── 01-energy.md                  # Physical foundation pillar
+├── 02-mind.md                    # Mental &amp; emotional pillar
+├── 03-soul.md                    # Values &amp; purpose pillar
+├── 04-craft.md                   # Skills &amp; mastery pillar
+├── 05-capital.md                 # Resources &amp; freedom pillar
+├── 06-circle.md                  # Relationships pillar
+├── 07-legacy.md                  # Vision &amp; impact pillar
+├── 08-integration.md             # Integration &amp; roadmap
+└── outputs/
+    └── MY-SOULBOOK-2026-01-14.pdf  # Your final PDF
+</code></pre>
+<p>Each file contains:</p>
+<ul>
+<li>Current state assessment</li>
+<li>Future vision</li>
+<li>Systems and habits</li>
+<li>30-day action plan</li>
+<li>Progress tracking</li>
+<li>Reflection prompts</li>
+</ul>
+<hr>
+<h2>🎯 Session Types</h2>
+<p>Choose your creation approach:</p>
+<h3>Quick Start (1 hour)</h3>
+<ul>
+<li>Brief questions for each pillar</li>
+<li>High-level vision setting</li>
+<li>Basic action plans</li>
+<li>Good for: First-time users, getting overview</li>
+</ul>
+<h3>Deep Dive (2-3 hours)</h3>
+<ul>
+<li>Comprehensive exploration</li>
+<li>Detailed vision work</li>
+<li>Full system design</li>
+<li>Good for: Serious transformation, complete clarity</li>
+</ul>
+<h3>Focus Mode (30 min per pillar)</h3>
+<ul>
+<li>One pillar per session</li>
+<li>Deep work on single area</li>
+<li>Can be done over days/weeks</li>
+<li>Good for: Busy schedules, gradual building</li>
+</ul>
+<hr>
+<h2>💡 How It Works</h2>
+<ol>
+<li><p><strong>Invocation</strong>: You type <code>/skill soulbook</code> (or <code>/soulbook</code>)</p>
+</li>
+<li><p><strong>Agent Activation</strong>: Claude becomes the Soulbook Creator Agent</p>
+</li>
+<li><p><strong>Guided Process</strong>:</p>
+<ul>
+<li>Welcome and Life Book selection</li>
+<li>Session preference</li>
+<li>7 pillars exploration (one by one)</li>
+<li>File creation as you go</li>
+<li>Integration and PDF generation</li>
+</ul>
+</li>
+<li><p><strong>Output</strong>: Complete Soulbook with markdown + PDF</p>
+</li>
+</ol>
+<hr>
+<h2>🔄 Continuing Your Journey</h2>
+<p>After initial creation:</p>
+<pre><code class="language-bash"># Monthly review
+/skill soulbook --review
+
+# Deep dive single pillar
+/skill soulbook --pillar energy
+
+# Resume interrupted session
+/skill soulbook --resume
+
+# Regenerate PDF only
+/skill soulbook --pdf
+</code></pre>
+<hr>
+<h2>🌟 The Three Life Books</h2>
+<p>Choose the metaphor that resonates with you:</p>
+<h3>Life Symphony 🎵</h3>
+<p><strong>For</strong>: Artists, musicians, creative souls
+<strong>Metaphor</strong>: Musical composition
+<strong>Language</strong>: Rhythms, melodies, harmonies
+<strong>Pillars become</strong>: 7 Movements</p>
+<h3>Golden Path 🛤️</h3>
+<p><strong>For</strong>: Seekers, visionaries, spiritual explorers
+<strong>Metaphor</strong>: Hero&#39;s journey
+<strong>Language</strong>: Waypoints, paths, destinations
+<strong>Pillars become</strong>: 7 Waypoints</p>
+<h3>The 7 Pillars 🏛️</h3>
+<p><strong>For</strong>: Builders, architects, systems thinkers
+<strong>Metaphor</strong>: Construction and architecture
+<strong>Language</strong>: Foundations, structures, building
+<strong>Pillars stay</strong>: 7 Pillars</p>
+<hr>
+<h2>📖 The 7 Pillars</h2>
+<pre><code>                ╔═══════════════════════════════════════╗
+                ║         PILLAR 7: LEGACY              ║
+                ║    Vision • Purpose • Impact          ║
+                ╚═══════════════════╤═══════════════════╝
+                                    │
+        ┌───────────────────────────┼───────────────────────────┐
+        │                           │                           │
+╔════════╧════════╗        ╔════════╧════════╗        ╔════════╧════════╗
+║ PILLAR 4: CRAFT ║        ║PILLAR 5: CAPITAL║        ║PILLAR 6: CIRCLE ║
+║                 ║        ║                 ║        ║                 ║
+║ Skills          ║        ║ Money           ║        ║ Relationships   ║
+║ Mastery         ║        ║ Business        ║        ║ Community       ║
+╚════════╤════════╝        ╚════════╤════════╝        ╚════════╤════════╝
+        │                           │                           │
+        └───────────────────────────┼───────────────────────────┘
+                                    │
+╔════════════════════════════════════╧════════════════════════════════════╗
+║                        FOUNDATION PILLARS                               ║
+╠══════════════════╦═══════════════════════╦══════════════════════════════╣
+║ PILLAR 1: ENERGY ║   PILLAR 2: MIND      ║      PILLAR 3: SOUL          ║
+║                  ║                       ║                              ║
+║ Body             ║   Intellect           ║      Values                  ║
+║ Health           ║   Emotions            ║      Purpose                 ║
+║ Vitality         ║   Focus               ║      Character               ║
+╚══════════════════╩═══════════════════════╩══════════════════════════════╝
+</code></pre>
+<hr>
+<h2>🎓 Tips for Success</h2>
+<ol>
+<li><strong>Block Time</strong>: Reserve 1-3 hours (or do Focus Mode)</li>
+<li><strong>Be Honest</strong>: This is for you - radical honesty creates transformation</li>
+<li><strong>Go Deep</strong>: Don&#39;t rush - the insights come from reflection</li>
+<li><strong>Take Breaks</strong>: It&#39;s okay to pause and resume</li>
+<li><strong>Use It Daily</strong>: Your Soulbook is a living document</li>
+<li><strong>Review Regularly</strong>: Monthly reviews keep you aligned</li>
+<li><strong>Update Often</strong>: As you grow, update your vision</li>
+</ol>
+<hr>
+<h2>❓ Troubleshooting</h2>
+<h3>Skill not found?</h3>
+<p>Make sure you&#39;re in the FrankX directory and using:</p>
+<pre><code class="language-bash">/skill soulbook
+</code></pre>
+<h3>PDF generation fails?</h3>
+<ul>
+<li>Check pandoc installation: <code>pandoc --version</code></li>
+<li>Use online converter as fallback</li>
+<li>Markdown files are still created and usable</li>
+</ul>
+<h3>Want to restart?</h3>
+<ul>
+<li>Delete or rename <code>soulbook-personal/</code> directory</li>
+<li>Run <code>/skill soulbook</code> again</li>
+</ul>
+<h3>Session interrupted?</h3>
+<ul>
+<li>Your progress is auto-saved in <code>_meta.md</code></li>
+<li>Run <code>/skill soulbook --resume</code> to continue</li>
+</ul>
+<hr>
+<h2>📞 Support</h2>
+<p>Questions about:</p>
+<ul>
+<li><strong>The Framework</strong>: Read <code>SOULBOOK_OVERVIEW.md</code></li>
+<li><strong>The Process</strong>: Read <code>SKILL.md</code></li>
+<li><strong>Agent Behavior</strong>: Read <code>soulbook-creator-agent.md</code></li>
+<li><strong>Using Files</strong>: Each pillar has detailed instructions</li>
+</ul>
+<hr>
+<h2>🚀 Ready to Begin?</h2>
+<p>Your extraordinary life is waiting to be architected.</p>
+<p>When you&#39;re ready, simply type:</p>
+<pre><code class="language-bash">/skill soulbook
+</code></pre>
+<p>And the journey begins. 🌟</p>
+<hr>
+<p><em>&quot;Write the book your soul came here to write.&quot;</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/embeddings</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/embeddings/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/embeddings</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fembeddings">embeddings</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/embeddings</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/embeddings"><img src="https://img.shields.io/npm/v/@claude-flow/embeddings.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/embeddings"><img src="https://img.shields.io/npm/dm/@claude-flow/embeddings.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0+-blue.svg" alt="TypeScript"></a>
+<a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/Performance-%3C5ms-brightgreen.svg" alt="Performance"></a></p>
+<blockquote>
+<p>High-performance embedding generation module for Claude Flow V3 - multi-provider support with persistent caching, document chunking, normalization, hyperbolic embeddings, and neural substrate integration.</p>
+</blockquote>
+<h2>Features</h2>
+<h3>Core Embedding</h3>
+<ul>
+<li><strong>Multiple Providers</strong> - Agentic-Flow (ONNX), OpenAI, Transformers.js, and Mock</li>
+<li><strong>Auto-Install</strong> - Automatically installs agentic-flow when using <code>provider: &#39;auto&#39;</code></li>
+<li><strong>Smart Fallback</strong> - Graceful fallback chain: agentic-flow → transformers → mock</li>
+<li><strong>LRU + Disk Caching</strong> - In-memory LRU + SQLite persistent cache with TTL</li>
+<li><strong>Batch Processing</strong> - Efficient batch embedding with partial cache hits</li>
+<li><strong>Similarity Functions</strong> - Cosine, Euclidean, and dot product metrics</li>
+<li><strong>75x Faster</strong> - Agentic-flow ONNX is 75x faster than Transformers.js</li>
+</ul>
+<h3>Advanced Features (New in v3.0.0-alpha.11)</h3>
+<ul>
+<li><strong>Document Chunking</strong> - Character, sentence, paragraph, and token-based chunking with overlap</li>
+<li><strong>Multiple Normalization</strong> - L2, L1, min-max, and z-score normalization</li>
+<li><strong>Hyperbolic Embeddings</strong> - Poincaré ball model for hierarchical representations</li>
+<li><strong>Neural Substrate</strong> - Semantic drift detection, memory physics, swarm coordination</li>
+<li><strong>Persistent Cache</strong> - SQLite-backed disk cache with LRU eviction and TTL</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install @claude-flow/embeddings
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">import { createEmbeddingService, cosineSimilarity } from &#39;@claude-flow/embeddings&#39;;
+
+// Create embedding service
+const service = createEmbeddingService({
+  provider: &#39;openai&#39;,
+  apiKey: process.env.OPENAI_API_KEY!,
+  model: &#39;text-embedding-3-small&#39;,
+  dimensions: 1536,
+});
+
+// Generate embedding
+const result = await service.embed(&#39;Hello, world!&#39;);
+console.log(`Embedding dimension: ${result.embedding.length}`);
+console.log(`Latency: ${result.latencyMs}ms`);
+
+// Batch embed
+const batchResult = await service.embedBatch([
+  &#39;First document&#39;,
+  &#39;Second document&#39;,
+  &#39;Third document&#39;,
+]);
+console.log(`Processed ${batchResult.embeddings.length} embeddings`);
+console.log(`Cache hits: ${batchResult.cacheStats?.hits}`);
+
+// Calculate similarity
+const similarity = cosineSimilarity(
+  batchResult.embeddings[0],
+  batchResult.embeddings[1]
+);
+console.log(`Similarity: ${similarity.toFixed(4)}`);
+</code></pre>
+<h2>CLI Usage</h2>
+<pre><code class="language-bash"># Generate embedding from CLI
+claude-flow embeddings embed &quot;Your text here&quot;
+
+# Batch embed from file
+claude-flow embeddings batch documents.txt -o embeddings.json
+
+# Similarity search
+claude-flow embeddings search &quot;query&quot; --index ./vectors
+
+# Initialize agentic-flow model
+claude-flow embeddings init --provider agentic-flow
+</code></pre>
+<h2>API Reference</h2>
+<h3>Factory Functions</h3>
+<pre><code class="language-typescript">import {
+  createEmbeddingService,
+  createEmbeddingServiceAsync,
+  getEmbedding
+} from &#39;@claude-flow/embeddings&#39;;
+
+// Sync: Create with known provider
+const service = createEmbeddingService({
+  provider: &#39;openai&#39;,
+  apiKey: &#39;your-api-key&#39;,
+  model: &#39;text-embedding-3-small&#39;,
+});
+
+// Async: Auto-select best provider with fallback
+const autoService = await createEmbeddingServiceAsync({
+  provider: &#39;auto&#39;,       // agentic-flow → transformers → mock
+  autoInstall: true,      // Install agentic-flow if missing
+  fallback: &#39;transformers&#39;, // Custom fallback
+});
+
+// Quick one-off embedding
+const embedding = await getEmbedding(&#39;Hello world&#39;, {
+  provider: &#39;mock&#39;,
+  dimensions: 384,
+});
+</code></pre>
+<h3>OpenAI Provider</h3>
+<pre><code class="language-typescript">import { OpenAIEmbeddingService } from &#39;@claude-flow/embeddings&#39;;
+
+const service = new OpenAIEmbeddingService({
+  provider: &#39;openai&#39;,
+  apiKey: process.env.OPENAI_API_KEY!,
+  model: &#39;text-embedding-3-small&#39;,  // or &#39;text-embedding-3-large&#39;
+  dimensions: 1536,                  // Adjustable for v3 models
+  baseURL: &#39;https://api.openai.com/v1/embeddings&#39;,
+  timeout: 30000,
+  maxRetries: 3,
+  cacheSize: 1000,
+});
+
+const result = await service.embed(&#39;Your text here&#39;);
+console.log(&#39;Tokens used:&#39;, result.usage?.totalTokens);
+</code></pre>
+<h3>Agentic-Flow Provider (Fastest)</h3>
+<pre><code class="language-typescript">import { AgenticFlowEmbeddingService } from &#39;@claude-flow/embeddings&#39;;
+
+const service = new AgenticFlowEmbeddingService({
+  provider: &#39;agentic-flow&#39;,
+  modelId: &#39;default&#39;,     // Uses optimized ONNX model
+  cacheSize: 256,
+});
+
+// 75x faster than Transformers.js (3ms vs 233ms)
+const result = await service.embed(&#39;Your text here&#39;);
+console.log(`ONNX embedding in ${result.latencyMs}ms`);
+</code></pre>
+<h3>Transformers.js Provider (Local)</h3>
+<pre><code class="language-typescript">import { TransformersEmbeddingService } from &#39;@claude-flow/embeddings&#39;;
+
+const service = new TransformersEmbeddingService({
+  provider: &#39;transformers&#39;,
+  model: &#39;Xenova/all-MiniLM-L6-v2&#39;,  // Any HuggingFace model
+  cacheSize: 1000,
+});
+
+// First call downloads the model
+const result = await service.embed(&#39;Your text here&#39;);
+console.log(`Local embedding generated in ${result.latencyMs}ms`);
+</code></pre>
+<h3>Mock Provider (Testing)</h3>
+<pre><code class="language-typescript">import { MockEmbeddingService } from &#39;@claude-flow/embeddings&#39;;
+
+const service = new MockEmbeddingService({
+  provider: &#39;mock&#39;,
+  dimensions: 384,
+  simulatedLatency: 10,  // Optional delay
+  cacheSize: 100,
+});
+
+// Deterministic embeddings based on text hash
+const result = await service.embed(&#39;Your text here&#39;);
+</code></pre>
+<h3>Batch Processing</h3>
+<pre><code class="language-typescript">const result = await service.embedBatch([
+  &#39;Document 1: Introduction to machine learning&#39;,
+  &#39;Document 2: Deep learning fundamentals&#39;,
+  &#39;Document 3: Natural language processing&#39;,
+  &#39;Document 4: Computer vision basics&#39;,
+]);
+
+console.log(&#39;Batch Results:&#39;, {
+  count: result.embeddings.length,
+  totalLatency: `${result.totalLatencyMs}ms`,
+  avgLatency: `${result.avgLatencyMs}ms`,
+  cacheHits: result.cacheStats?.hits,
+  cacheMisses: result.cacheStats?.misses,
+  tokensUsed: result.usage?.totalTokens,
+});
+</code></pre>
+<h3>Similarity Functions</h3>
+<pre><code class="language-typescript">import {
+  cosineSimilarity,
+  euclideanDistance,
+  dotProduct,
+  computeSimilarity,
+} from &#39;@claude-flow/embeddings&#39;;
+
+// Cosine similarity (most common for embeddings)
+const cosine = cosineSimilarity(embedding1, embedding2);
+// Returns: 0.0 to 1.0 (higher = more similar)
+
+// Euclidean distance
+const distance = euclideanDistance(embedding1, embedding2);
+// Returns: 0.0 to infinity (lower = more similar)
+
+// Dot product
+const dot = dotProduct(embedding1, embedding2);
+// Returns: unbounded (higher = more similar for normalized vectors)
+
+// Generic similarity with metric selection
+const result = computeSimilarity(embedding1, embedding2, &#39;cosine&#39;);
+// Returns: { score: 0.95, metric: &#39;cosine&#39; }
+</code></pre>
+<h3>Cache Management</h3>
+<pre><code class="language-typescript">// Get cache statistics
+const stats = service.getCacheStats();
+console.log(&#39;Cache Stats:&#39;, {
+  size: stats.size,
+  maxSize: stats.maxSize,
+  hitRate: `${(stats.hitRate * 100).toFixed(1)}%`,
+});
+
+// Clear cache
+service.clearCache();
+
+// Shutdown service
+await service.shutdown();
+</code></pre>
+<h3>Event System</h3>
+<pre><code class="language-typescript">// Subscribe to embedding events
+service.addEventListener((event) =&gt; {
+  switch (event.type) {
+    case &#39;embed_start&#39;:
+      console.log(`Starting: ${event.text.substring(0, 50)}...`);
+      break;
+    case &#39;embed_complete&#39;:
+      console.log(`Completed in ${event.latencyMs}ms`);
+      break;
+    case &#39;embed_error&#39;:
+      console.error(`Error: ${event.error}`);
+      break;
+    case &#39;cache_hit&#39;:
+      console.log(&#39;Cache hit!&#39;);
+      break;
+    case &#39;batch_start&#39;:
+      console.log(`Batch of ${event.count} started`);
+      break;
+    case &#39;batch_complete&#39;:
+      console.log(`Batch completed in ${event.latencyMs}ms`);
+      break;
+    case &#39;cache_eviction&#39;:
+      console.log(`Cache evicted ${event.size} entries`);
+      break;
+  }
+});
+
+// Remove listener
+service.removeEventListener(listener);
+</code></pre>
+<h2>Provider Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Latency</th>
+<th>Quality</th>
+<th>Cost</th>
+<th>Offline</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Agentic-Flow</strong></td>
+<td>~3ms</td>
+<td>Good</td>
+<td>Free</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>OpenAI</strong></td>
+<td>~50-100ms</td>
+<td>Excellent</td>
+<td>$0.02-0.13/1M tokens</td>
+<td>No</td>
+</tr>
+<tr>
+<td><strong>Transformers.js</strong></td>
+<td>~230ms</td>
+<td>Good</td>
+<td>Free</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Mock</strong></td>
+<td>&lt;1ms</td>
+<td>N/A</td>
+<td>Free</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<h3>Agentic-Flow (Recommended)</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Dimensions</th>
+<th>Speed</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>default</code></td>
+<td>384</td>
+<td>3ms</td>
+<td>General purpose, fastest</td>
+</tr>
+</tbody></table>
+<h3>OpenAI Models</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Dimensions</th>
+<th>Max Tokens</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>text-embedding-3-small</code></td>
+<td>1536</td>
+<td>8191</td>
+<td>General purpose, cost-effective</td>
+</tr>
+<tr>
+<td><code>text-embedding-3-large</code></td>
+<td>3072</td>
+<td>8191</td>
+<td>Highest quality</td>
+</tr>
+<tr>
+<td><code>text-embedding-ada-002</code></td>
+<td>1536</td>
+<td>8191</td>
+<td>Legacy support</td>
+</tr>
+</tbody></table>
+<h3>Transformers.js Models</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Dimensions</th>
+<th>Size</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Xenova/all-MiniLM-L6-v2</code></td>
+<td>384</td>
+<td>23MB</td>
+<td>Fast, general purpose</td>
+</tr>
+<tr>
+<td><code>Xenova/all-mpnet-base-v2</code></td>
+<td>768</td>
+<td>110MB</td>
+<td>Higher quality</td>
+</tr>
+<tr>
+<td><code>Xenova/bge-small-en-v1.5</code></td>
+<td>384</td>
+<td>33MB</td>
+<td>Retrieval optimized</td>
+</tr>
+</tbody></table>
+<h2>TypeScript Types</h2>
+<pre><code class="language-typescript">import type {
+  // Provider types
+  EmbeddingProvider,
+  EmbeddingConfig,
+  OpenAIEmbeddingConfig,
+  TransformersEmbeddingConfig,
+  AgenticFlowEmbeddingConfig,
+  MockEmbeddingConfig,
+  AutoEmbeddingConfig,
+
+  // Result types
+  EmbeddingResult,
+  BatchEmbeddingResult,
+
+  // Service interface
+  IEmbeddingService,
+
+  // Event types
+  EmbeddingEvent,
+  EmbeddingEventListener,
+
+  // Similarity types
+  SimilarityMetric,
+  SimilarityResult,
+} from &#39;@claude-flow/embeddings&#39;;
+</code></pre>
+<h2>Environment Variables</h2>
+<pre><code class="language-bash"># OpenAI configuration
+OPENAI_API_KEY=sk-...
+
+# Optional: Custom base URL (for Azure OpenAI, etc.)
+OPENAI_BASE_URL=https://your-endpoint.openai.azure.com/
+</code></pre>
+<h2>Error Handling</h2>
+<pre><code class="language-typescript">try {
+  const result = await service.embed(&#39;Your text&#39;);
+} catch (error) {
+  if (error instanceof Error) {
+    if (error.message.includes(&#39;API error&#39;)) {
+      // Handle API errors (rate limits, auth, etc.)
+    } else if (error.message.includes(&#39;Failed to initialize&#39;)) {
+      // Handle model loading errors (Transformers.js)
+    }
+  }
+}
+</code></pre>
+<h2>Integration with Memory Module</h2>
+<pre><code class="language-typescript">import { createEmbeddingService } from &#39;@claude-flow/embeddings&#39;;
+import { HNSWIndex } from &#39;@claude-flow/memory&#39;;
+
+// Create embedding service
+const embeddings = createEmbeddingService({
+  provider: &#39;openai&#39;,
+  apiKey: process.env.OPENAI_API_KEY!,
+  model: &#39;text-embedding-3-small&#39;,
+});
+
+// Create HNSW index
+const index = new HNSWIndex({
+  dimensions: 1536,
+  metric: &#39;cosine&#39;,
+});
+
+// Index documents
+const documents = [&#39;Doc 1 content&#39;, &#39;Doc 2 content&#39;, &#39;Doc 3 content&#39;];
+const { embeddings: vectors } = await embeddings.embedBatch(documents);
+
+vectors.forEach((vector, i) =&gt; {
+  index.addPoint(`doc-${i}`, new Float32Array(vector));
+});
+
+// Search
+const queryResult = await embeddings.embed(&#39;Search query&#39;);
+const results = await index.search(new Float32Array(queryResult.embedding), 5);
+</code></pre>
+<h2>Document Chunking</h2>
+<p>Split long documents into overlapping chunks for embedding:</p>
+<pre><code class="language-typescript">import { chunkText, estimateTokens, reconstructFromChunks } from &#39;@claude-flow/embeddings&#39;;
+
+// Chunk by sentence (default)
+const result = chunkText(longDocument, {
+  maxChunkSize: 512,
+  overlap: 50,
+  strategy: &#39;sentence&#39;,  // &#39;character&#39; | &#39;sentence&#39; | &#39;paragraph&#39; | &#39;token&#39;
+  minChunkSize: 100,
+});
+
+console.log(&#39;Chunks:&#39;, result.totalChunks);
+result.chunks.forEach((chunk, i) =&gt; {
+  console.log(`Chunk ${i}: ${chunk.length} chars, ~${chunk.tokenCount} tokens`);
+});
+
+// Estimate tokens
+const tokens = estimateTokens(&#39;Hello world&#39;);  // ~3 tokens
+
+// Reconstruct (approximate)
+const reconstructed = reconstructFromChunks(result.chunks);
+</code></pre>
+<h2>Normalization</h2>
+<p>Normalize embeddings for consistent similarity computation:</p>
+<pre><code class="language-typescript">import {
+  l2Normalize,    // Unit vector (Euclidean norm = 1)
+  l1Normalize,    // Manhattan norm = 1
+  minMaxNormalize, // Values in [0, 1]
+  zScoreNormalize, // Mean 0, std 1
+  normalize,       // Generic with type option
+  l2Norm,
+  isNormalized,
+} from &#39;@claude-flow/embeddings&#39;;
+
+const embedding = new Float32Array([3, 4, 0]);
+
+// L2 normalize (most common for cosine similarity)
+const l2 = l2Normalize(embedding);  // [0.6, 0.8, 0]
+console.log(&#39;L2 norm:&#39;, l2Norm(l2));  // 1.0
+
+// Check if already normalized
+console.log(isNormalized(l2));  // true
+console.log(isNormalized(embedding));  // false
+
+// Generic normalize with type
+const normalized = normalize(embedding, { type: &#39;l2&#39; });
+</code></pre>
+<h2>Hyperbolic Embeddings (Poincaré Ball)</h2>
+<p>Transform embeddings to hyperbolic space for better hierarchical representation:</p>
+<pre><code class="language-typescript">import {
+  euclideanToPoincare,
+  poincareToEuclidean,
+  hyperbolicDistance,
+  mobiusAdd,
+  isInPoincareBall,
+  batchEuclideanToPoincare,
+  hyperbolicCentroid,
+} from &#39;@claude-flow/embeddings&#39;;
+
+// Convert Euclidean embedding to Poincaré ball
+const euclidean = new Float32Array([0.5, 0.3, 0.2]);
+const poincare = euclideanToPoincare(euclidean);
+
+// Check if point is in the ball
+console.log(isInPoincareBall(poincare));  // true
+
+// Round-trip conversion
+const back = poincareToEuclidean(poincare);
+
+// Hyperbolic distance (geodesic in Poincaré ball)
+const a = euclideanToPoincare(new Float32Array([0.1, 0.2, 0.1]));
+const b = euclideanToPoincare(new Float32Array([0.3, 0.1, 0.2]));
+const dist = hyperbolicDistance(a, b);
+
+// Möbius addition (hyperbolic &quot;plus&quot;)
+const sum = mobiusAdd(a, b);
+
+// Batch conversion
+const embeddings = [vec1, vec2, vec3];
+const hyperbolic = batchEuclideanToPoincare(embeddings);
+
+// Hyperbolic centroid (Fréchet mean)
+const centroid = hyperbolicCentroid(hyperbolic);
+</code></pre>
+<h3>Why Hyperbolic?</h3>
+<p>Hyperbolic space has natural properties for representing hierarchical data:</p>
+<ul>
+<li><strong>Exponential growth</strong> - Tree-like structures fit naturally</li>
+<li><strong>Better hierarchy</strong> - Parent-child relationships preserved</li>
+<li><strong>Lower distortion</strong> - Taxonomies represented with less error</li>
+</ul>
+<h2>Neural Substrate Integration</h2>
+<p>Access agentic-flow&#39;s neural features for advanced embedding operations:</p>
+<pre><code class="language-typescript">import {
+  NeuralEmbeddingService,
+  createNeuralService,
+  isNeuralAvailable,
+  listEmbeddingModels,
+  downloadEmbeddingModel,
+} from &#39;@claude-flow/embeddings&#39;;
+
+// Check if neural features are available
+const available = await isNeuralAvailable();
+
+// Create neural service
+const neural = createNeuralService({ dimension: 384 });
+await neural.init();
+
+if (neural.isAvailable()) {
+  // Semantic drift detection
+  await neural.setDriftBaseline(&#39;Initial context about the topic&#39;);
+  const drift = await neural.detectDrift(&#39;New input to check for drift&#39;);
+  console.log(&#39;Drift:&#39;, drift?.trend);  // &#39;stable&#39; | &#39;drifting&#39; | &#39;accelerating&#39;
+
+  // Memory with interference detection
+  const stored = await neural.storeMemory(&#39;mem-1&#39;, &#39;Important information&#39;);
+  console.log(&#39;Interference:&#39;, stored?.interference);
+
+  // Recall by similarity
+  const memories = await neural.recallMemories(&#39;query&#39;, 5);
+
+  // Swarm coordination
+  await neural.addSwarmAgent(&#39;agent-1&#39;, &#39;researcher&#39;);
+  const coordination = await neural.coordinateSwarm(&#39;Analyze this task&#39;);
+
+  // Coherence checking
+  await neural.calibrateCoherence([&#39;good output 1&#39;, &#39;good output 2&#39;]);
+  const coherence = await neural.checkCoherence(&#39;Output to check&#39;);
+
+  // Health status
+  const health = neural.health();
+  console.log(&#39;Memory count:&#39;, health?.memoryCount);
+}
+
+// List available ONNX models
+const models = await listEmbeddingModels();
+console.log(models);
+// [{ id: &#39;all-MiniLM-L6-v2&#39;, dimension: 384, size: &#39;23MB&#39;, ... }]
+
+// Download model
+const path = await downloadEmbeddingModel(&#39;all-MiniLM-L6-v2&#39;, &#39;.models&#39;);
+</code></pre>
+<h2>Persistent Disk Cache</h2>
+<p>SQLite-backed persistent cache for embeddings:</p>
+<pre><code class="language-typescript">import { PersistentEmbeddingCache, isPersistentCacheAvailable } from &#39;@claude-flow/embeddings&#39;;
+
+// Check if SQLite is available
+const hasSQLite = await isPersistentCacheAvailable();
+
+// Create persistent cache
+const cache = new PersistentEmbeddingCache({
+  dbPath: &#39;./embeddings.db&#39;,  // SQLite database path
+  maxSize: 10000,             // Max entries before LRU eviction
+  ttlMs: 7 * 24 * 60 * 60 * 1000,  // 7 day TTL
+});
+
+// Initialize
+await cache.init();
+
+// Store embedding
+await cache.set(&#39;my text&#39;, new Float32Array([0.1, 0.2, 0.3]));
+
+// Retrieve
+const embedding = await cache.get(&#39;my text&#39;);
+
+// Get stats
+const stats = await cache.getStats();
+console.log(&#39;Cache stats:&#39;, {
+  size: stats.totalEntries,
+  hitRate: stats.hitRate,
+  avgLatency: stats.avgLatencyMs,
+});
+
+// Close when done
+await cache.close();
+</code></pre>
+<h3>Enable in Embedding Service</h3>
+<pre><code class="language-typescript">const service = createEmbeddingService({
+  provider: &#39;openai&#39;,
+  apiKey: process.env.OPENAI_API_KEY!,
+  persistentCache: {
+    enabled: true,
+    dbPath: &#39;./cache/embeddings.db&#39;,
+    maxSize: 50000,
+    ttlMs: 30 * 24 * 60 * 60 * 1000,  // 30 days
+  },
+  normalization: &#39;l2&#39;,  // Auto-normalize embeddings
+});
+</code></pre>
+<h2>CLI Commands (New)</h2>
+<pre><code class="language-bash"># Document chunking
+claude-flow embeddings chunk document.txt --strategy sentence --max-size 512
+
+# Normalize embedding file
+claude-flow embeddings normalize embeddings.json --type l2 -o normalized.json
+
+# Convert to hyperbolic
+claude-flow embeddings hyperbolic embeddings.json -o poincare.json
+
+# Neural operations
+claude-flow embeddings neural drift --baseline &quot;context&quot; --input &quot;check this&quot;
+claude-flow embeddings neural store --id mem-1 --content &quot;data&quot;
+claude-flow embeddings neural recall &quot;query&quot; --top-k 5
+
+# List/download models
+claude-flow embeddings models list
+claude-flow embeddings models download all-MiniLM-L6-v2
+
+# Cache management
+claude-flow embeddings cache stats
+claude-flow embeddings cache clear --older-than 7d
+</code></pre>
+<h2>Related Packages</h2>
+<ul>
+<li><a href="../memory">@claude-flow/memory</a> - HNSW indexing and vector storage</li>
+<li><a href="../providers">@claude-flow/providers</a> - Multi-LLM provider system</li>
+<li><a href="../neural">@claude-flow/neural</a> - SONA learning integration</li>
+</ul>
+<h2>License</h2>
+<p>MIT</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

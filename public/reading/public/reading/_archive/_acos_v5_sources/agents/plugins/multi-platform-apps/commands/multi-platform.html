@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Multi-Platform Feature Development Workflow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/multi-platform-apps/commands/multi-platform.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Multi-Platform Feature Development Workflow</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fmulti-platform-apps">multi-platform-apps</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fmulti-platform-apps%2Fcommands">commands</a> / <span>multi-platform.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Multi-Platform Feature Development Workflow</h1>
+<p>Build and deploy the same feature consistently across web, mobile, and desktop platforms using API-first architecture and parallel implementation strategies.</p>
+<p>[Extended thinking: This workflow orchestrates multiple specialized agents to ensure feature parity across platforms while maintaining platform-specific optimizations. The coordination strategy emphasizes shared contracts and parallel development with regular synchronization points. By establishing API contracts and data models upfront, teams can work independently while ensuring consistency. The workflow benefits include faster time-to-market, reduced integration issues, and maintainable cross-platform codebases.]</p>
+<h2>Phase 1: Architecture and API Design (Sequential)</h2>
+<h3>1. Define Feature Requirements and API Contracts</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;backend-architect&quot;</li>
+<li>Prompt: &quot;Design the API contract for feature: $ARGUMENTS. Create OpenAPI 3.1 specification with:<ul>
+<li>RESTful endpoints with proper HTTP methods and status codes</li>
+<li>GraphQL schema if applicable for complex data queries</li>
+<li>WebSocket events for real-time features</li>
+<li>Request/response schemas with validation rules</li>
+<li>Authentication and authorization requirements</li>
+<li>Rate limiting and caching strategies</li>
+<li>Error response formats and codes
+Define shared data models that all platforms will consume.&quot;</li>
+</ul>
+</li>
+<li>Expected output: Complete API specification, data models, and integration guidelines</li>
+</ul>
+<h3>2. Design System and UI/UX Consistency</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;ui-ux-designer&quot;</li>
+<li>Prompt: &quot;Create cross-platform design system for feature using API spec: [previous output]. Include:<ul>
+<li>Component specifications for each platform (Material Design, iOS HIG, Fluent)</li>
+<li>Responsive layouts for web (mobile-first approach)</li>
+<li>Native patterns for iOS (SwiftUI) and Android (Material You)</li>
+<li>Desktop-specific considerations (keyboard shortcuts, window management)</li>
+<li>Accessibility requirements (WCAG 2.2 Level AA)</li>
+<li>Dark/light theme specifications</li>
+<li>Animation and transition guidelines&quot;</li>
+</ul>
+</li>
+<li>Context from previous: API endpoints, data structures, authentication flows</li>
+<li>Expected output: Design system documentation, component library specs, platform guidelines</li>
+</ul>
+<h3>3. Shared Business Logic Architecture</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;comprehensive-review::architect-review&quot;</li>
+<li>Prompt: &quot;Design shared business logic architecture for cross-platform feature. Define:<ul>
+<li>Core domain models and entities (platform-agnostic)</li>
+<li>Business rules and validation logic</li>
+<li>State management patterns (MVI/Redux/BLoC)</li>
+<li>Caching and offline strategies</li>
+<li>Error handling and retry policies</li>
+<li>Platform-specific adapter patterns
+Consider Kotlin Multiplatform for mobile or TypeScript for web/desktop sharing.&quot;</li>
+</ul>
+</li>
+<li>Context from previous: API contracts, data models, UI requirements</li>
+<li>Expected output: Shared code architecture, platform abstraction layers, implementation guide</li>
+</ul>
+<h2>Phase 2: Parallel Platform Implementation</h2>
+<h3>4a. Web Implementation (React/Next.js)</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;frontend-developer&quot;</li>
+<li>Prompt: &quot;Implement web version of feature using:<ul>
+<li>React 18+ with Next.js 14+ App Router</li>
+<li>TypeScript for type safety</li>
+<li>TanStack Query for API integration: [API spec]</li>
+<li>Zustand/Redux Toolkit for state management</li>
+<li>Tailwind CSS with design system: [design specs]</li>
+<li>Progressive Web App capabilities</li>
+<li>SSR/SSG optimization where appropriate</li>
+<li>Web vitals optimization (LCP &lt; 2.5s, FID &lt; 100ms)
+Follow shared business logic: [architecture doc]&quot;</li>
+</ul>
+</li>
+<li>Context from previous: API contracts, design system, shared logic patterns</li>
+<li>Expected output: Complete web implementation with tests</li>
+</ul>
+<h3>4b. iOS Implementation (SwiftUI)</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;ios-developer&quot;</li>
+<li>Prompt: &quot;Implement iOS version using:<ul>
+<li>SwiftUI with iOS 17+ features</li>
+<li>Swift 5.9+ with async/await</li>
+<li>URLSession with Combine for API: [API spec]</li>
+<li>Core Data/SwiftData for persistence</li>
+<li>Design system compliance: [iOS HIG specs]</li>
+<li>Widget extensions if applicable</li>
+<li>Platform-specific features (Face ID, Haptics, Live Activities)</li>
+<li>Testable MVVM architecture
+Follow shared patterns: [architecture doc]&quot;</li>
+</ul>
+</li>
+<li>Context from previous: API contracts, iOS design guidelines, shared models</li>
+<li>Expected output: Native iOS implementation with unit/UI tests</li>
+</ul>
+<h3>4c. Android Implementation (Kotlin/Compose)</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;mobile-developer&quot;</li>
+<li>Prompt: &quot;Implement Android version using:<ul>
+<li>Jetpack Compose with Material 3</li>
+<li>Kotlin coroutines and Flow</li>
+<li>Retrofit/Ktor for API: [API spec]</li>
+<li>Room database for local storage</li>
+<li>Hilt for dependency injection</li>
+<li>Material You dynamic theming: [design specs]</li>
+<li>Platform features (biometric auth, widgets)</li>
+<li>Clean architecture with MVI pattern
+Follow shared logic: [architecture doc]&quot;</li>
+</ul>
+</li>
+<li>Context from previous: API contracts, Material Design specs, shared patterns</li>
+<li>Expected output: Native Android implementation with tests</li>
+</ul>
+<h3>4d. Desktop Implementation (Optional - Electron/Tauri)</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;frontend-mobile-development::frontend-developer&quot;</li>
+<li>Prompt: &quot;Implement desktop version using Tauri 2.0 or Electron with:<ul>
+<li>Shared web codebase where possible</li>
+<li>Native OS integration (system tray, notifications)</li>
+<li>File system access if needed</li>
+<li>Auto-updater functionality</li>
+<li>Code signing and notarization setup</li>
+<li>Keyboard shortcuts and menu bar</li>
+<li>Multi-window support if applicable
+Reuse web components: [web implementation]&quot;</li>
+</ul>
+</li>
+<li>Context from previous: Web implementation, desktop-specific requirements</li>
+<li>Expected output: Desktop application with platform packages</li>
+</ul>
+<h2>Phase 3: Integration and Validation</h2>
+<h3>5. API Documentation and Testing</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;documentation-generation::api-documenter&quot;</li>
+<li>Prompt: &quot;Create comprehensive API documentation including:<ul>
+<li>Interactive OpenAPI/Swagger documentation</li>
+<li>Platform-specific integration guides</li>
+<li>SDK examples for each platform</li>
+<li>Authentication flow diagrams</li>
+<li>Rate limiting and quota information</li>
+<li>Postman/Insomnia collections</li>
+<li>WebSocket connection examples</li>
+<li>Error handling best practices</li>
+<li>API versioning strategy
+Test all endpoints with platform implementations.&quot;</li>
+</ul>
+</li>
+<li>Context from previous: Implemented platforms, API usage patterns</li>
+<li>Expected output: Complete API documentation portal, test results</li>
+</ul>
+<h3>6. Cross-Platform Testing and Feature Parity</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;unit-testing::test-automator&quot;</li>
+<li>Prompt: &quot;Validate feature parity across all platforms:<ul>
+<li>Functional testing matrix (features work identically)</li>
+<li>UI consistency verification (follows design system)</li>
+<li>Performance benchmarks per platform</li>
+<li>Accessibility testing (platform-specific tools)</li>
+<li>Network resilience testing (offline, slow connections)</li>
+<li>Data synchronization validation</li>
+<li>Platform-specific edge cases</li>
+<li>End-to-end user journey tests
+Create test report with any platform discrepancies.&quot;</li>
+</ul>
+</li>
+<li>Context from previous: All platform implementations, API documentation</li>
+<li>Expected output: Test report, parity matrix, performance metrics</li>
+</ul>
+<h3>7. Platform-Specific Optimizations</h3>
+<ul>
+<li>Use Task tool with subagent_type=&quot;application-performance::performance-engineer&quot;</li>
+<li>Prompt: &quot;Optimize each platform implementation:<ul>
+<li>Web: Bundle size, lazy loading, CDN setup, SEO</li>
+<li>iOS: App size, launch time, memory usage, battery</li>
+<li>Android: APK size, startup time, frame rate, battery</li>
+<li>Desktop: Binary size, resource usage, startup time</li>
+<li>API: Response time, caching, compression
+Maintain feature parity while leveraging platform strengths.
+Document optimization techniques and trade-offs.&quot;</li>
+</ul>
+</li>
+<li>Context from previous: Test results, performance metrics</li>
+<li>Expected output: Optimized implementations, performance improvements</li>
+</ul>
+<h2>Configuration Options</h2>
+<ul>
+<li><strong>--platforms</strong>: Specify target platforms (web,ios,android,desktop)</li>
+<li><strong>--api-first</strong>: Generate API before UI implementation (default: true)</li>
+<li><strong>--shared-code</strong>: Use Kotlin Multiplatform or similar (default: evaluate)</li>
+<li><strong>--design-system</strong>: Use existing or create new (default: create)</li>
+<li><strong>--testing-strategy</strong>: Unit, integration, e2e (default: all)</li>
+</ul>
+<h2>Success Criteria</h2>
+<ul>
+<li>API contract defined and validated before implementation</li>
+<li>All platforms achieve feature parity with &lt;5% variance</li>
+<li>Performance metrics meet platform-specific standards</li>
+<li>Accessibility standards met (WCAG 2.2 AA minimum)</li>
+<li>Cross-platform testing shows consistent behavior</li>
+<li>Documentation complete for all platforms</li>
+<li>Code reuse &gt;40% between platforms where applicable</li>
+<li>User experience optimized for each platform&#39;s conventions</li>
+</ul>
+<h2>Platform-Specific Considerations</h2>
+<p><strong>Web</strong>: PWA capabilities, SEO optimization, browser compatibility
+<strong>iOS</strong>: App Store guidelines, TestFlight distribution, iOS-specific features
+<strong>Android</strong>: Play Store requirements, Android App Bundles, device fragmentation
+<strong>Desktop</strong>: Code signing, auto-updates, OS-specific installers</p>
+<p>Initial feature specification: $ARGUMENTS</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

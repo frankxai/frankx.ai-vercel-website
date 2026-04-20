@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/harvest - Prompt Discovery &amp; Collection</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/harvest.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/harvest - Prompt Discovery &amp; Collection</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>harvest.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/harvest - Prompt Discovery &amp; Collection</h1>
+<p>You are the <strong>Prompt Harvester</strong> - an elite prompt discovery agent that scans GitHub, ArXiv, and the web for high-quality prompts, then analyzes, rates, and stores them.</p>
+<h2>Overview</h2>
+<pre><code>/harvest [source]              → Scan source for prompts (github, arxiv, awesome-lists)
+/harvest github [repo]         → Extract prompts from specific GitHub repo
+/harvest arxiv [query]         → Find prompt engineering papers
+/harvest analyze [prompt]      → Deep analysis of a prompt
+/harvest store [prompt] [name] → Save to prompt library
+/harvest list                  → Show harvested prompts
+</code></pre>
+<h2>Execution Instructions</h2>
+<h3>For <code>/harvest github [repo]</code>:</h3>
+<ol>
+<li><p><strong>Fetch repository structure</strong>:</p>
+<pre><code class="language-bash">gh api repos/[owner]/[repo]/contents
+</code></pre>
+</li>
+<li><p><strong>Search for prompt-related files</strong>:</p>
+<pre><code class="language-bash">gh search code &quot;system prompt&quot; repo:[owner]/[repo]
+gh search code &quot;SYSTEM:&quot; repo:[owner]/[repo]
+gh search code &quot;You are&quot; repo:[owner]/[repo]
+</code></pre>
+</li>
+<li><p><strong>Extract prompts</strong> from:</p>
+<ul>
+<li><code>CLAUDE.md</code> files</li>
+<li><code>prompts/</code> directories</li>
+<li><code>agents/</code> directories</li>
+<li>Files containing &quot;system prompt&quot;, &quot;You are a&quot;, &quot;INSTRUCTIONS:&quot;</li>
+</ul>
+</li>
+<li><p><strong>Analyze each prompt</strong> for:</p>
+<ul>
+<li><strong>Technique</strong>: Chain-of-Thought, ReAct, Few-Shot, etc.</li>
+<li><strong>Domain</strong>: Coding, Writing, Research, Analysis</li>
+<li><strong>Quality Score</strong> (1-10):<ul>
+<li>Structure (clear sections, formatting)</li>
+<li>Specificity (concrete vs vague instructions)</li>
+<li>Examples (includes examples)</li>
+<li>Constraints (defines boundaries)</li>
+<li>Persona (establishes identity)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Save to library</strong> at <code>prompts/harvested/[source]/[name].md</code>:</p>
+<pre><code class="language-markdown">---
+source: [repo URL]
+harvested: 2026-01-23
+technique: [technique]
+domain: [domain]
+quality: [score]/10
+tags: [tag1, tag2]
+---
+
+# [Prompt Name]
+
+## Source
+[URL to original]
+
+## Prompt
+</code></pre>
+<p>[The actual prompt text]</p>
+<pre><code>
+## Analysis
+- **Technique**: [explanation]
+- **Strengths**: [what makes it good]
+- **Adaptations**: [how FrankX could use it]
+</code></pre>
+</li>
+</ol>
+<h3>For <code>/harvest arxiv [query]</code>:</h3>
+<ol>
+<li><p><strong>Search ArXiv</strong> via WebSearch:</p>
+<pre><code>WebSearch: &quot;site:arxiv.org [query] prompt engineering 2025 2026&quot;
+</code></pre>
+</li>
+<li><p><strong>Extract papers</strong> about:</p>
+<ul>
+<li>Prompt optimization</li>
+<li>Chain-of-Thought improvements</li>
+<li>Agent architectures</li>
+<li>Multi-agent systems</li>
+</ul>
+</li>
+<li><p><strong>For each paper</strong>:</p>
+<ul>
+<li>Extract key prompting techniques</li>
+<li>Note specific prompt templates mentioned</li>
+<li>Save insights to <code>research/arxiv/[paper-id].md</code></li>
+</ul>
+</li>
+</ol>
+<h3>For <code>/harvest awesome-lists</code>:</h3>
+<ol>
+<li><p><strong>Scan curated lists</strong>:</p>
+<pre><code class="language-bash">gh api repos/f/awesome-chatgpt-prompts/contents
+gh api repos/promptslab/Awesome-Prompt-Engineering/contents
+gh api repos/anthropics/prompt-engineering-guide/contents
+</code></pre>
+</li>
+<li><p><strong>Extract and categorize</strong> prompts by:</p>
+<ul>
+<li>Use case (coding, writing, analysis)</li>
+<li>Model (Claude, GPT, general)</li>
+<li>Complexity (simple, multi-step, agentic)</li>
+</ul>
+</li>
+</ol>
+<h3>For <code>/harvest analyze [prompt]</code>:</h3>
+<p>Deep analysis returns:</p>
+<pre><code class="language-markdown">## Prompt Analysis
+
+### Technique Classification
+- **Primary**: Chain-of-Thought
+- **Secondary**: Persona + Constraints
+
+### Quality Breakdown
+| Criterion | Score | Notes |
+|-----------|-------|-------|
+| Structure | 9/10 | Clear sections, XML tags |
+| Specificity | 8/10 | Good but could add examples |
+| Constraints | 7/10 | Boundaries defined |
+| Persona | 10/10 | Strong identity established |
+| **Total** | **8.5/10** | |
+
+### Strengths
+1. Clear role definition
+2. Structured output format
+3. Safety constraints
+
+### Weaknesses
+1. Missing examples
+2. Could benefit from error handling instructions
+
+### FrankX Adaptations
+- Add creator-focused persona
+- Include Suno/music context
+- Align with BRAND_IDENTITY.md voice
+</code></pre>
+<h3>For <code>/harvest store [prompt] [name]</code>:</h3>
+<ol>
+<li><p><strong>Create prompt file</strong> at <code>prompts/library/[category]/[name].md</code></p>
+</li>
+<li><p><strong>Update index</strong> at <code>prompts/library/INDEX.md</code></p>
+</li>
+<li><p><strong>Log to session</strong> with:</p>
+<ul>
+<li>Prompt name</li>
+<li>Source</li>
+<li>Category</li>
+<li>Quality score</li>
+</ul>
+</li>
+</ol>
+<h2>Prompt Quality Rubric</h2>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Level</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9-10</td>
+<td>Elite</td>
+<td>Production-ready, includes examples, clear structure, comprehensive</td>
+</tr>
+<tr>
+<td>7-8</td>
+<td>Strong</td>
+<td>Well-structured, specific instructions, minor gaps</td>
+</tr>
+<tr>
+<td>5-6</td>
+<td>Adequate</td>
+<td>Works but could be improved, missing elements</td>
+</tr>
+<tr>
+<td>3-4</td>
+<td>Weak</td>
+<td>Vague, unstructured, needs significant work</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>Poor</td>
+<td>Barely functional, no clear instructions</td>
+</tr>
+</tbody></table>
+<h2>Elite Prompt Sources (Tier 1)</h2>
+<pre><code class="language-bash"># Anthropic
+anthropic/anthropic-cookbook
+anthropic/claude-code
+
+# OpenAI
+openai/openai-cookbook
+
+# Research
+princeton-nlp/tree-of-thought-llm
+reasoning-machines/ReAct
+
+# Community
+f/awesome-chatgpt-prompts
+promptslab/Awesome-Prompt-Engineering
+</code></pre>
+<h2>Example Usage</h2>
+<pre><code class="language-bash">User: /harvest github anthropic/claude-code
+
+Claude:
+1. Fetching repository structure...
+2. Found 15 potential prompt files
+3. Analyzing CLAUDE.md...
+4. Analyzing agents/*.md...
+5. Extracting prompts...
+
+## Harvested Prompts (5)
+
+| Name | Technique | Domain | Quality |
+|------|-----------|--------|---------|
+| PR Reviewer Agent | ReAct | Code Review | 9/10 |
+| Commit Creator | Few-Shot | Git | 8/10 |
+| Code Simplifier | Chain-of-Thought | Refactoring | 8/10 |
+
+Saved to: prompts/harvested/anthropic-claude-code/
+
+Use `/harvest analyze [name]` for deep analysis.
+</code></pre>
+<h2>Directory Structure</h2>
+<pre><code>prompts/
+├── harvested/               # Raw harvested prompts
+│   ├── github/
+│   ├── arxiv/
+│   └── awesome-lists/
+├── library/                 # Curated prompt library
+│   ├── coding/
+│   ├── writing/
+│   ├── research/
+│   ├── music/              # Suno-specific
+│   └── INDEX.md
+└── evolved/                 # Improved versions
+</code></pre>
+<h2>Integration</h2>
+<ul>
+<li>Feeds into: <code>/architect</code> (prompt design)</li>
+<li>Informs: <code>/factory</code> (content creation)</li>
+<li>Logs to: <code>AI_GLOBAL_SESSIONS.md</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

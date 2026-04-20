@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Tavily Search and Extract</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-plugins-fcakyon/plugins/tavily-tools/skills/tavily-usage/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Tavily Search and Extract</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.claude-plugins-fcakyon">.claude-plugins-fcakyon</a> / <a href="../../../index.html#.claude-plugins-fcakyon%2Fplugins">plugins</a> / <a href="../../index.html#.claude-plugins-fcakyon%2Fplugins%2Ftavily-tools">tavily-tools</a> / <a href="../index.html#.claude-plugins-fcakyon%2Fplugins%2Ftavily-tools%2Fskills">skills</a> / <a href="index.html#.claude-plugins-fcakyon%2Fplugins%2Ftavily-tools%2Fskills%2Ftavily-usage">tavily-usage</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: tavily-usage
+description: This skill should be used when user asks to &quot;search the web&quot;, &quot;fetch content from URL&quot;, &quot;extract page content&quot;, &quot;use Tavily search&quot;, &quot;scrape this website&quot;, &quot;get information from this link&quot;, or &quot;web search for X&quot;.</h2>
+<h1>Tavily Search and Extract</h1>
+<p>Use Tavily MCP tools for web search and content retrieval operations.</p>
+<h2>Tool Selection</h2>
+<h3>Tavily Search (<code>mcp__tavily__tavily_search</code>)</h3>
+<p>Use for:</p>
+<ul>
+<li>Keyword-based searches across the web</li>
+<li>Finding relevant pages and content</li>
+<li>Quick answer gathering</li>
+<li>Multiple result discovery</li>
+</ul>
+<p><strong>Best for</strong>: Initial research, finding sources, broad queries</p>
+<h3>Tavily Extract (<code>mcp__tavily__tavily-extract</code>)</h3>
+<p>Use for:</p>
+<ul>
+<li>Getting detailed content from specific URLs</li>
+<li>Deep analysis of page content</li>
+<li>Structured data extraction</li>
+<li>Following up on search results</li>
+</ul>
+<p><strong>Best for</strong>: In-depth analysis, specific URL content, detailed information</p>
+<h2>Hook Behavior</h2>
+<p><code>tavily_extract_to_advanced.py</code> hook automatically upgrades extract calls to advanced mode for better accuracy when needed.</p>
+<h2>Integration Pattern</h2>
+<ol>
+<li>Use <code>mcp__tavily__tavily_search</code> for discovery phase</li>
+<li>Analyze results to find relevant URLs</li>
+<li>Use <code>mcp__tavily__tavily-extract</code> for detailed content on specific URLs</li>
+<li>Process extracted content for user needs</li>
+</ol>
+<h2>Environment Variables</h2>
+<p>Tavily MCP requires:</p>
+<ul>
+<li><code>TAVILY_API_KEY</code> - API key from Tavily (tvly-...)</li>
+</ul>
+<p>Configure in shell before using the plugin.</p>
+<h2>Cost Considerations</h2>
+<ul>
+<li>Search is cheaper than extract</li>
+<li>Use search to filter relevant URLs first</li>
+<li>Only extract URLs that are likely relevant</li>
+<li>Cache results when possible</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

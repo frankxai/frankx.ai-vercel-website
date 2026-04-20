@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Links Page - Accessibility Checklist</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="app/links/ACCESSIBILITY_CHECKLIST.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Links Page - Accessibility Checklist</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#app">app</a> / <a href="index.html#app%2Flinks">links</a> / <span>ACCESSIBILITY_CHECKLIST.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Links Page - Accessibility Checklist</h1>
+<p><strong>WCAG AAA Compliance Verification</strong></p>
+<p><em>Last Reviewed: 2026-01-14</em>
+<em>Reviewer: Claude (AI Agent)</em></p>
+<hr>
+<h2>✅ WCAG Success Criteria</h2>
+<h3>Level A (Critical)</h3>
+<h4>1.1 Text Alternatives</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> All icons have <code>aria-hidden=&quot;true&quot;</code> when decorative</li>
+<li><input checked="" disabled="" type="checkbox"> Social links have descriptive <code>aria-label</code> attributes</li>
+<li><input checked="" disabled="" type="checkbox"> Form inputs have visible, persistent labels</li>
+<li><input checked="" disabled="" type="checkbox"> Images (when added) will have descriptive alt text</li>
+</ul>
+<h4>1.3 Adaptable</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Semantic HTML structure (headings, nav, main, footer implied by structure)</li>
+<li><input checked="" disabled="" type="checkbox"> Logical heading hierarchy (H1 for name, implicit structure)</li>
+<li><input checked="" disabled="" type="checkbox"> Form labels properly associated with inputs</li>
+</ul>
+<h4>1.4 Distinguishable</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Text has sufficient color contrast:<ul>
+<li>White on dark: 21:1 ratio ✅</li>
+<li><code>text-white/60</code> on dark: ~8:1 ratio ✅</li>
+<li><code>text-tech-cyan</code> on dark: ~6:1 ratio ✅</li>
+</ul>
+</li>
+<li><input checked="" disabled="" type="checkbox"> No information conveyed by color alone</li>
+<li><input checked="" disabled="" type="checkbox"> Text can be resized up to 200% without loss of functionality</li>
+</ul>
+<h4>2.1 Keyboard Accessible</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> All interactive elements accessible via keyboard</li>
+<li><input checked="" disabled="" type="checkbox"> No keyboard traps present</li>
+<li><input checked="" disabled="" type="checkbox"> Logical tab order follows visual order</li>
+</ul>
+<h4>2.4 Navigable</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Page has descriptive title (via metadata)</li>
+<li><input checked="" disabled="" type="checkbox"> Focus order is logical</li>
+<li><input checked="" disabled="" type="checkbox"> Link purposes clear from link text or context</li>
+<li><input checked="" disabled="" type="checkbox"> Multiple navigation mechanisms (internal links)</li>
+</ul>
+<h4>2.5 Input Modalities</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Touch targets meet minimum 44x44px requirement:<ul>
+<li>Buttons: <code>min-h-[44px]</code> or larger ✅</li>
+<li>Social icons: <code>w-10 h-10</code> = 40px (close, but could be larger)</li>
+<li>Links: Adequate padding for touch</li>
+</ul>
+</li>
+</ul>
+<p><strong>ACTION ITEM</strong>: Consider increasing social icon size to 44px minimum</p>
+<h4>3.1 Readable</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Page language specified (via HTML lang attribute in root layout)</li>
+<li><input checked="" disabled="" type="checkbox"> Text content readable and understandable</li>
+</ul>
+<h4>3.2 Predictable</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Navigation behavior consistent</li>
+<li><input checked="" disabled="" type="checkbox"> Components function predictably</li>
+<li><input checked="" disabled="" type="checkbox"> No unexpected context changes</li>
+</ul>
+<h4>3.3 Input Assistance</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Form validation present (HTML5 <code>required</code> attribute)</li>
+<li><input checked="" disabled="" type="checkbox"> Labels and instructions provided</li>
+<li><input checked="" disabled="" type="checkbox"> Error prevention for newsletter form</li>
+</ul>
+<h3>Level AA (Important)</h3>
+<h4>1.4.3 Contrast (Minimum)</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Text contrast ratio 4.5:1 minimum ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Large text contrast ratio 3:1 minimum ✅</li>
+<li><input checked="" disabled="" type="checkbox"> UI component contrast 3:1 minimum ✅</li>
+</ul>
+<h4>1.4.5 Images of Text</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> No images of text used (gradient text uses actual text)</li>
+</ul>
+<h4>1.4.10 Reflow</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Content reflows to 320px width without horizontal scrolling</li>
+<li><input checked="" disabled="" type="checkbox"> Mobile-first responsive design implemented</li>
+</ul>
+<h4>1.4.11 Non-text Contrast</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> UI components have 3:1 contrast against background</li>
+<li><input checked="" disabled="" type="checkbox"> Border visibility adequate on interactive elements</li>
+</ul>
+<h4>2.4.7 Focus Visible</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Focus indicators present on ALL interactive elements:<pre><code class="language-tsx">focus-visible:ring-2
+focus-visible:ring-tech-cyan
+focus-visible:ring-offset-2
+</code></pre>
+</li>
+<li><input checked="" disabled="" type="checkbox"> Focus indicators clearly visible against background</li>
+</ul>
+<h4>4.1.3 Status Messages</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Newsletter submission should provide screen-reader-accessible feedback</li>
+</ul>
+<p><strong>ACTION ITEM</strong>: Add <code>role=&quot;status&quot;</code> and <code>aria-live=&quot;polite&quot;</code> to newsletter success/error messages</p>
+<h3>Level AAA (Excellence)</h3>
+<h4>1.4.6 Contrast (Enhanced)</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Text contrast ratio 7:1 minimum ✅<ul>
+<li>Most text meets this standard</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> Large text contrast ratio 4.5:1 minimum<ul>
+<li>Some <code>text-white/40</code> instances may fall short</li>
+</ul>
+</li>
+</ul>
+<p><strong>ACTION ITEM</strong>: Review low-opacity text (<code>.text-white/40</code>) for AAA compliance</p>
+<h4>1.4.8 Visual Presentation</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Text not fully justified</li>
+<li><input checked="" disabled="" type="checkbox"> Line height minimum 1.5 (using <code>leading-relaxed</code>)</li>
+<li><input checked="" disabled="" type="checkbox"> Paragraph spacing adequate</li>
+<li><input checked="" disabled="" type="checkbox"> Text can be resized without assistive technology</li>
+</ul>
+<h4>2.4.8 Location</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> User knows where they are (clear page title and structure)</li>
+</ul>
+<h4>2.4.9 Link Purpose (Link Only)</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Link purposes clear from link text alone</li>
+<li><input checked="" disabled="" type="checkbox"> Descriptive link text (e.g., &quot;Creative AI Toolkit&quot; not &quot;Click here&quot;)</li>
+</ul>
+<h4>2.4.10 Section Headings</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Content organized with headings</li>
+<li><input checked="" disabled="" type="checkbox"> Heading hierarchy logical</li>
+</ul>
+<h4>2.5.5 Target Size</h4>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Touch targets minimum 44x44px ✅</li>
+<li><input disabled="" type="checkbox"> Ideal target size 48x48px for primary actions</li>
+</ul>
+<p><strong>ACTION ITEM</strong>: Consider increasing button sizes to 48px minimum for AAA</p>
+<hr>
+<h2>🎯 Accessibility Features Implemented</h2>
+<h3>Semantic HTML</h3>
+<pre><code class="language-tsx">- Proper heading structure (H1, H2, H3)
+- Form elements with labels
+- Links with descriptive text
+- ARIA labels on icon-only elements
+</code></pre>
+<h3>Keyboard Navigation</h3>
+<pre><code class="language-tsx">- Tab order follows visual order
+- Focus indicators on all interactive elements
+- Enter/Space work on all buttons and links
+- Escape key (if modals added in future)
+</code></pre>
+<h3>Screen Reader Support</h3>
+<pre><code class="language-tsx">- aria-label on social icons
+- aria-describedby potential for complex elements
+- Semantic form structure
+- Descriptive link text
+</code></pre>
+<h3>Touch Targets (Mobile)</h3>
+<pre><code class="language-tsx">- Minimum 44x44px on all buttons
+- Adequate spacing between interactive elements
+- Larger touch areas on mobile
+</code></pre>
+<h3>Color Contrast</h3>
+<pre><code class="language-tsx">- White text on dark: 21:1 ✅
+- Mid-opacity text: 7-8:1 ✅
+- Low-opacity text: 4-5:1 (AA compliant)
+- Borders: 3:1 minimum ✅
+</code></pre>
+<h3>Animation Respect</h3>
+<pre><code class="language-tsx">// TODO: Add prefers-reduced-motion support
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse {
+    animation: none;
+  }
+}
+</code></pre>
+<p><strong>ACTION ITEM</strong>: Add <code>prefers-reduced-motion</code> media query support</p>
+<hr>
+<h2>🔧 Recommended Improvements</h2>
+<h3>Priority 1 (Critical)</h3>
+<ol>
+<li><p><strong>Add reduced motion support</strong></p>
+<ul>
+<li>Detect <code>prefers-reduced-motion: reduce</code></li>
+<li>Disable animations for users who prefer less motion</li>
+<li>Keep essential transitions only</li>
+</ul>
+</li>
+<li><p><strong>Newsletter feedback messages</strong></p>
+<ul>
+<li>Add <code>role=&quot;status&quot;</code> for success message</li>
+<li>Add <code>aria-live=&quot;polite&quot;</code> for error messages</li>
+<li>Provide clear confirmation to screen readers</li>
+</ul>
+</li>
+</ol>
+<h3>Priority 2 (Important)</h3>
+<ol start="3">
+<li><p><strong>Increase social icon touch targets</strong></p>
+<ul>
+<li>Change from <code>w-10 h-10</code> (40px) to <code>w-12 h-12</code> (48px)</li>
+<li>Or increase padding to reach 44px minimum</li>
+</ul>
+</li>
+<li><p><strong>Review low-contrast text</strong></p>
+<ul>
+<li>Audit all <code>.text-white/40</code> instances</li>
+<li>Increase to <code>.text-white/50</code> or <code>.text-white/60</code> where needed</li>
+</ul>
+</li>
+</ol>
+<h3>Priority 3 (Nice to Have)</h3>
+<ol start="5">
+<li><p><strong>Add skip navigation link</strong></p>
+<ul>
+<li>Hidden link to skip to main content</li>
+<li>Visible on keyboard focus</li>
+<li>Improves screen reader experience</li>
+</ul>
+</li>
+<li><p><strong>Add focus trapping</strong> (if modals added)</p>
+<ul>
+<li>Trap focus within modal when open</li>
+<li>Return focus to trigger element on close</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>🧪 Testing Checklist</h2>
+<h3>Manual Testing</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Keyboard navigation (Tab through entire page)</li>
+<li><input disabled="" type="checkbox"> Screen reader test (VoiceOver on macOS/iOS, NVDA on Windows)</li>
+<li><input disabled="" type="checkbox"> Zoom to 200% (verify no content loss)</li>
+<li><input disabled="" type="checkbox"> Mobile device testing (iOS Safari, Android Chrome)</li>
+<li><input disabled="" type="checkbox"> Touch target testing (tap all elements on mobile)</li>
+</ul>
+<h3>Automated Testing</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Lighthouse Accessibility score (target: 100)</li>
+<li><input disabled="" type="checkbox"> axe DevTools scan (target: 0 violations)</li>
+<li><input disabled="" type="checkbox"> WAVE browser extension (target: 0 errors)</li>
+<li><input disabled="" type="checkbox"> Color contrast analyzer (WebAIM)</li>
+</ul>
+<h3>Browser Testing</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Chrome (latest)</li>
+<li><input disabled="" type="checkbox"> Safari (latest)</li>
+<li><input disabled="" type="checkbox"> Firefox (latest)</li>
+<li><input disabled="" type="checkbox"> Edge (latest)</li>
+<li><input disabled="" type="checkbox"> iOS Safari</li>
+<li><input disabled="" type="checkbox"> Android Chrome</li>
+</ul>
+<hr>
+<h2>📊 Current Compliance Status</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>WCAG A</strong></td>
+<td>✅ Compliant</td>
+<td>All critical requirements met</td>
+</tr>
+<tr>
+<td><strong>WCAG AA</strong></td>
+<td>✅ Compliant</td>
+<td>1 action item (newsletter feedback)</td>
+</tr>
+<tr>
+<td><strong>WCAG AAA</strong></td>
+<td>⚠️ Partial</td>
+<td>3 action items (reduced motion, contrast, touch targets)</td>
+</tr>
+</tbody></table>
+<p><strong>Overall Assessment</strong>: <strong>AA Compliant</strong> with path to AAA</p>
+<hr>
+<h2>🎯 Action Items Summary</h2>
+<ol>
+<li>Add <code>prefers-reduced-motion</code> support</li>
+<li>Add newsletter form status messages</li>
+<li>Increase social icon touch targets to 48px</li>
+<li>Review and increase low-contrast text opacity</li>
+<li>Consider adding skip navigation link</li>
+</ol>
+<hr>
+<h2>📝 Testing Results Log</h2>
+<h3>To Be Completed in Staging:</h3>
+<ul>
+<li>Lighthouse audit</li>
+<li>Manual keyboard navigation</li>
+<li>Screen reader test (VoiceOver)</li>
+<li>Mobile touch target verification</li>
+<li>Color contrast validation</li>
+</ul>
+<p><strong>Testing will be performed after deployment to Vercel staging.</strong></p>
+<hr>
+<p><em>Maintained by: FrankX Design &amp; Development Team</em>
+<em>Next Review: After staging deployment</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Script from 'next/script'
 import products from '@/data/products.json'
 import { createMetadata } from '@/lib/seo'

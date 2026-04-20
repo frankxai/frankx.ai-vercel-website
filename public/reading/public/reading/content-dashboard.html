@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    .fc-daygrid-day-number {
+      color: white;
+    }
+  </style>
+</head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold text-center">Content Dashboard</h1>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-semibold">Content Strategy</h2>
+      <div id="content-strategy" class="mt-6"></div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-semibold">Article Production</h2>
+      <div id="calendar" class="mt-6"></div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-semibold">Interlinking</h2>
+      <div id="interlinking" class="mt-6"></div>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+
+    const renderContentStrategy = async () => {
+      const response = await fetch('./data/specs-roadmap.json');
+      const roadmap = await response.json();
+
+      const contentStrategy = document.getElementById('content-strategy');
+      contentStrategy.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
+            <h3 class="text-xl font-semibold">Vision</h3>
+            <p class="mt-2 text-neutral-400">${roadmap.vision}</p>
+          </div>
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
+            <h3 class="text-xl font-semibold">Pillars</h3>
+            <ul class="mt-2 space-y-2">
+              ${roadmap.pillars.map(pillar => `<li>${pillar.title}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    };
+
+    const renderCalendar = async () => {
+      const response = await fetch('/api/content');
+      const files = await response.json();
+
+      const articles = await Promise.all(files.map(async (file) => {
+        const response = await fetch(`./content/blog/${file}`);
+        const content = await response.text();
+        const date = content.match(/date: "(.*?)"/)                        ?.[1] || '';
+        return { file, date };
+      }));
+
+      const calendarEl = document.getElementById('calendar');
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: articles.map(article => ({
+          title: article.file,
+          start: article.date,
+          url: `./content/blog/${article.file}`
+        }))
+      });
+      calendar.render();
+    };
+
+    const renderInterlinking = async () => {
+      const response = await fetch('/api/content');
+      const files = await response.json();
+
+      let graph = 'graph TD;\n';
+      for (const file of files) {
+        const response = await fetch(`./content/blog/${file}`);
+        const content = await response.text();
+        const links = content.match(/\((.*?)\)/g) || [];
+        for (const link of links) {
+          if (link.includes('/blog/')) {
+            const to = link.substring(link.lastIndexOf('/') + 1, link.length - 1);
+            graph += `  ${file.replace('.mdx', '')} --> ${to.replace('.mdx', '')};\n`;
+          }
+        }
+      }
+
+      const interlinking = document.getElementById('interlinking');
+      interlinking.innerHTML = `<div class="mermaid">${graph}</div>`;
+      mermaid.init(undefined, interlinking.querySelector('.mermaid'));
+    };
+
+    renderContentStrategy();
+    renderCalendar();
+    renderInterlinking();
+  </script>
+</body>
+</html>

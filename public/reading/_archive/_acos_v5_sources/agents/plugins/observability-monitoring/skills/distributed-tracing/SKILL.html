@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Distributed Tracing</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/observability-monitoring/skills/distributed-tracing/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Distributed Tracing</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fobservability-monitoring">observability-monitoring</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fobservability-monitoring%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fobservability-monitoring%2Fskills%2Fdistributed-tracing">distributed-tracing</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: distributed-tracing
+description: Implement distributed tracing with Jaeger and Tempo to track requests across microservices and identify performance bottlenecks. Use when debugging microservices, analyzing request flows, or implementing observability for distributed systems.</h2>
+<h1>Distributed Tracing</h1>
+<p>Implement distributed tracing with Jaeger and Tempo for request flow visibility across microservices.</p>
+<h2>Purpose</h2>
+<p>Track requests across distributed systems to understand latency, dependencies, and failure points.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Debug latency issues</li>
+<li>Understand service dependencies</li>
+<li>Identify bottlenecks</li>
+<li>Trace error propagation</li>
+<li>Analyze request paths</li>
+</ul>
+<h2>Distributed Tracing Concepts</h2>
+<h3>Trace Structure</h3>
+<pre><code>Trace (Request ID: abc123)
+  ↓
+Span (frontend) [100ms]
+  ↓
+Span (api-gateway) [80ms]
+  ├→ Span (auth-service) [10ms]
+  └→ Span (user-service) [60ms]
+      └→ Span (database) [40ms]
+</code></pre>
+<h3>Key Components</h3>
+<ul>
+<li><strong>Trace</strong> - End-to-end request journey</li>
+<li><strong>Span</strong> - Single operation within a trace</li>
+<li><strong>Context</strong> - Metadata propagated between services</li>
+<li><strong>Tags</strong> - Key-value pairs for filtering</li>
+<li><strong>Logs</strong> - Timestamped events within a span</li>
+</ul>
+<h2>Jaeger Setup</h2>
+<h3>Kubernetes Deployment</h3>
+<pre><code class="language-bash"># Deploy Jaeger Operator
+kubectl create namespace observability
+kubectl create -f https://github.com/jaegertracing/jaeger-operator/releases/download/v1.51.0/jaeger-operator.yaml -n observability
+
+# Deploy Jaeger instance
+kubectl apply -f - &lt;&lt;EOF
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: jaeger
+  namespace: observability
+spec:
+  strategy: production
+  storage:
+    type: elasticsearch
+    options:
+      es:
+        server-urls: http://elasticsearch:9200
+  ingress:
+    enabled: true
+EOF
+</code></pre>
+<h3>Docker Compose</h3>
+<pre><code class="language-yaml">version: &quot;3.8&quot;
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - &quot;5775:5775/udp&quot;
+      - &quot;6831:6831/udp&quot;
+      - &quot;6832:6832/udp&quot;
+      - &quot;5778:5778&quot;
+      - &quot;16686:16686&quot; # UI
+      - &quot;14268:14268&quot; # Collector
+      - &quot;14250:14250&quot; # gRPC
+      - &quot;9411:9411&quot; # Zipkin
+    environment:
+      - COLLECTOR_ZIPKIN_HOST_PORT=:9411
+</code></pre>
+<p><strong>Reference:</strong> See <code>references/jaeger-setup.md</code></p>
+<h2>Application Instrumentation</h2>
+<h3>OpenTelemetry (Recommended)</h3>
+<h4>Python (Flask)</h4>
+<pre><code class="language-python">from opentelemetry import trace
+from opentelemetry.exporter.jaeger.thrift import JaegerExporter
+from opentelemetry.sdk.resources import SERVICE_NAME, Resource
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from flask import Flask
+
+# Initialize tracer
+resource = Resource(attributes={SERVICE_NAME: &quot;my-service&quot;})
+provider = TracerProvider(resource=resource)
+processor = BatchSpanProcessor(JaegerExporter(
+    agent_host_name=&quot;jaeger&quot;,
+    agent_port=6831,
+))
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+
+# Instrument Flask
+app = Flask(__name__)
+FlaskInstrumentor().instrument_app(app)
+
+@app.route(&#39;/api/users&#39;)
+def get_users():
+    tracer = trace.get_tracer(__name__)
+
+    with tracer.start_as_current_span(&quot;get_users&quot;) as span:
+        span.set_attribute(&quot;user.count&quot;, 100)
+        # Business logic
+        users = fetch_users_from_db()
+        return {&quot;users&quot;: users}
+
+def fetch_users_from_db():
+    tracer = trace.get_tracer(__name__)
+
+    with tracer.start_as_current_span(&quot;database_query&quot;) as span:
+        span.set_attribute(&quot;db.system&quot;, &quot;postgresql&quot;)
+        span.set_attribute(&quot;db.statement&quot;, &quot;SELECT * FROM users&quot;)
+        # Database query
+        return query_database()
+</code></pre>
+<h4>Node.js (Express)</h4>
+<pre><code class="language-javascript">const { NodeTracerProvider } = require(&quot;@opentelemetry/sdk-trace-node&quot;);
+const { JaegerExporter } = require(&quot;@opentelemetry/exporter-jaeger&quot;);
+const { BatchSpanProcessor } = require(&quot;@opentelemetry/sdk-trace-base&quot;);
+const { registerInstrumentations } = require(&quot;@opentelemetry/instrumentation&quot;);
+const { HttpInstrumentation } = require(&quot;@opentelemetry/instrumentation-http&quot;);
+const {
+  ExpressInstrumentation,
+} = require(&quot;@opentelemetry/instrumentation-express&quot;);
+
+// Initialize tracer
+const provider = new NodeTracerProvider({
+  resource: { attributes: { &quot;service.name&quot;: &quot;my-service&quot; } },
+});
+
+const exporter = new JaegerExporter({
+  endpoint: &quot;http://jaeger:14268/api/traces&quot;,
+});
+
+provider.addSpanProcessor(new BatchSpanProcessor(exporter));
+provider.register();
+
+// Instrument libraries
+registerInstrumentations({
+  instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
+});
+
+const express = require(&quot;express&quot;);
+const app = express();
+
+app.get(&quot;/api/users&quot;, async (req, res) =&gt; {
+  const tracer = trace.getTracer(&quot;my-service&quot;);
+  const span = tracer.startSpan(&quot;get_users&quot;);
+
+  try {
+    const users = await fetchUsers();
+    span.setAttributes({ &quot;user.count&quot;: users.length });
+    res.json({ users });
+  } finally {
+    span.end();
+  }
+});
+</code></pre>
+<h4>Go</h4>
+<pre><code class="language-go">package main
+
+import (
+    &quot;context&quot;
+    &quot;go.opentelemetry.io/otel&quot;
+    &quot;go.opentelemetry.io/otel/exporters/jaeger&quot;
+    &quot;go.opentelemetry.io/otel/sdk/resource&quot;
+    sdktrace &quot;go.opentelemetry.io/otel/sdk/trace&quot;
+    semconv &quot;go.opentelemetry.io/otel/semconv/v1.4.0&quot;
+)
+
+func initTracer() (*sdktrace.TracerProvider, error) {
+    exporter, err := jaeger.New(jaeger.WithCollectorEndpoint(
+        jaeger.WithEndpoint(&quot;http://jaeger:14268/api/traces&quot;),
+    ))
+    if err != nil {
+        return nil, err
+    }
+
+    tp := sdktrace.NewTracerProvider(
+        sdktrace.WithBatcher(exporter),
+        sdktrace.WithResource(resource.NewWithAttributes(
+            semconv.SchemaURL,
+            semconv.ServiceNameKey.String(&quot;my-service&quot;),
+        )),
+    )
+
+    otel.SetTracerProvider(tp)
+    return tp, nil
+}
+
+func getUsers(ctx context.Context) ([]User, error) {
+    tracer := otel.Tracer(&quot;my-service&quot;)
+    ctx, span := tracer.Start(ctx, &quot;get_users&quot;)
+    defer span.End()
+
+    span.SetAttributes(attribute.String(&quot;user.filter&quot;, &quot;active&quot;))
+
+    users, err := fetchUsersFromDB(ctx)
+    if err != nil {
+        span.RecordError(err)
+        return nil, err
+    }
+
+    span.SetAttributes(attribute.Int(&quot;user.count&quot;, len(users)))
+    return users, nil
+}
+</code></pre>
+<p><strong>Reference:</strong> See <code>references/instrumentation.md</code></p>
+<h2>Context Propagation</h2>
+<h3>HTTP Headers</h3>
+<pre><code>traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
+tracestate: congo=t61rcWkgMzE
+</code></pre>
+<h3>Propagation in HTTP Requests</h3>
+<h4>Python</h4>
+<pre><code class="language-python">from opentelemetry.propagate import inject
+
+headers = {}
+inject(headers)  # Injects trace context
+
+response = requests.get(&#39;http://downstream-service/api&#39;, headers=headers)
+</code></pre>
+<h4>Node.js</h4>
+<pre><code class="language-javascript">const { propagation } = require(&quot;@opentelemetry/api&quot;);
+
+const headers = {};
+propagation.inject(context.active(), headers);
+
+axios.get(&quot;http://downstream-service/api&quot;, { headers });
+</code></pre>
+<h2>Tempo Setup (Grafana)</h2>
+<h3>Kubernetes Deployment</h3>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tempo-config
+data:
+  tempo.yaml: |
+    server:
+      http_listen_port: 3200
+
+    distributor:
+      receivers:
+        jaeger:
+          protocols:
+            thrift_http:
+            grpc:
+        otlp:
+          protocols:
+            http:
+            grpc:
+
+    storage:
+      trace:
+        backend: s3
+        s3:
+          bucket: tempo-traces
+          endpoint: s3.amazonaws.com
+
+    querier:
+      frontend_worker:
+        frontend_address: tempo-query-frontend:9095
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tempo
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: tempo
+          image: grafana/tempo:latest
+          args:
+            - -config.file=/etc/tempo/tempo.yaml
+          volumeMounts:
+            - name: config
+              mountPath: /etc/tempo
+      volumes:
+        - name: config
+          configMap:
+            name: tempo-config
+</code></pre>
+<p><strong>Reference:</strong> See <code>assets/jaeger-config.yaml.template</code></p>
+<h2>Sampling Strategies</h2>
+<h3>Probabilistic Sampling</h3>
+<pre><code class="language-yaml"># Sample 1% of traces
+sampler:
+  type: probabilistic
+  param: 0.01
+</code></pre>
+<h3>Rate Limiting Sampling</h3>
+<pre><code class="language-yaml"># Sample max 100 traces per second
+sampler:
+  type: ratelimiting
+  param: 100
+</code></pre>
+<h3>Adaptive Sampling</h3>
+<pre><code class="language-python">from opentelemetry.sdk.trace.sampling import ParentBased, TraceIdRatioBased
+
+# Sample based on trace ID (deterministic)
+sampler = ParentBased(root=TraceIdRatioBased(0.01))
+</code></pre>
+<h2>Trace Analysis</h2>
+<h3>Finding Slow Requests</h3>
+<p><strong>Jaeger Query:</strong></p>
+<pre><code>service=my-service
+duration &gt; 1s
+</code></pre>
+<h3>Finding Errors</h3>
+<p><strong>Jaeger Query:</strong></p>
+<pre><code>service=my-service
+error=true
+tags.http.status_code &gt;= 500
+</code></pre>
+<h3>Service Dependency Graph</h3>
+<p>Jaeger automatically generates service dependency graphs showing:</p>
+<ul>
+<li>Service relationships</li>
+<li>Request rates</li>
+<li>Error rates</li>
+<li>Average latencies</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Sample appropriately</strong> (1-10% in production)</li>
+<li><strong>Add meaningful tags</strong> (user_id, request_id)</li>
+<li><strong>Propagate context</strong> across all service boundaries</li>
+<li><strong>Log exceptions</strong> in spans</li>
+<li><strong>Use consistent naming</strong> for operations</li>
+<li><strong>Monitor tracing overhead</strong> (&lt;1% CPU impact)</li>
+<li><strong>Set up alerts</strong> for trace errors</li>
+<li><strong>Implement distributed context</strong> (baggage)</li>
+<li><strong>Use span events</strong> for important milestones</li>
+<li><strong>Document instrumentation</strong> standards</li>
+</ol>
+<h2>Integration with Logging</h2>
+<h3>Correlated Logs</h3>
+<pre><code class="language-python">import logging
+from opentelemetry import trace
+
+logger = logging.getLogger(__name__)
+
+def process_request():
+    span = trace.get_current_span()
+    trace_id = span.get_span_context().trace_id
+
+    logger.info(
+        &quot;Processing request&quot;,
+        extra={&quot;trace_id&quot;: format(trace_id, &#39;032x&#39;)}
+    )
+</code></pre>
+<h2>Troubleshooting</h2>
+<p><strong>No traces appearing:</strong></p>
+<ul>
+<li>Check collector endpoint</li>
+<li>Verify network connectivity</li>
+<li>Check sampling configuration</li>
+<li>Review application logs</li>
+</ul>
+<p><strong>High latency overhead:</strong></p>
+<ul>
+<li>Reduce sampling rate</li>
+<li>Use batch span processor</li>
+<li>Check exporter configuration</li>
+</ul>
+<h2>Reference Files</h2>
+<ul>
+<li><code>references/jaeger-setup.md</code> - Jaeger installation</li>
+<li><code>references/instrumentation.md</code> - Instrumentation patterns</li>
+<li><code>assets/jaeger-config.yaml.template</code> - Jaeger configuration</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>prometheus-configuration</code> - For metrics</li>
+<li><code>grafana-dashboards</code> - For visualization</li>
+<li><code>slo-implementation</code> - For latency SLOs</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

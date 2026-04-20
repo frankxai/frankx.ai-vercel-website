@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude Code Configuration - Claude Flow V3</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Code Configuration - Claude Flow V3</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude Code Configuration - Claude Flow V3</h1>
+<h2>🚨 AUTOMATIC SWARM ORCHESTRATION</h2>
+<p><strong>When starting work on complex tasks, Claude Code MUST automatically:</strong></p>
+<ol>
+<li><strong>Initialize the swarm</strong> using CLI tools via Bash</li>
+<li><strong>Spawn concurrent agents</strong> using Claude Code&#39;s Task tool</li>
+<li><strong>Coordinate via hooks</strong> and memory</li>
+</ol>
+<h3>🚨 CRITICAL: CLI + Task Tool in SAME Message</h3>
+<p><strong>When user says &quot;spawn swarm&quot; or requests complex work, Claude Code MUST in ONE message:</strong></p>
+<ol>
+<li>Call CLI tools via Bash to initialize coordination</li>
+<li><strong>IMMEDIATELY</strong> call Task tool to spawn REAL working agents</li>
+<li>Both CLI and Task calls must be in the SAME response</li>
+</ol>
+<p><strong>CLI coordinates, Task tool agents do the actual work!</strong></p>
+<h3>🤖 INTELLIGENT 3-TIER MODEL ROUTING (ADR-026)</h3>
+<p><strong>The routing system has 3 tiers for optimal cost/performance:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Handler</th>
+<th>Latency</th>
+<th>Cost</th>
+<th>Use Cases</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1</strong></td>
+<td>Agent Booster</td>
+<td>&lt;1ms</td>
+<td>$0</td>
+<td>Simple transforms (var→const, add-types, remove-console)</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Haiku</td>
+<td>~500ms</td>
+<td>$0.0002</td>
+<td>Simple tasks, bug fixes, low complexity</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Sonnet/Opus</td>
+<td>2-5s</td>
+<td>$0.003-$0.015</td>
+<td>Architecture, security, complex reasoning</td>
+</tr>
+</tbody></table>
+<p><strong>Before spawning agents, get routing recommendation:</strong></p>
+<pre><code class="language-bash">npx @claude-flow/cli@latest hooks pre-task --description &quot;[task description]&quot;
+</code></pre>
+<p><strong>When you see these recommendations:</strong></p>
+<ol>
+<li><p><code>[AGENT_BOOSTER_AVAILABLE]</code> → Skip LLM entirely, use Edit tool directly</p>
+<ul>
+<li>Intent types: <code>var-to-const</code>, <code>add-types</code>, <code>add-error-handling</code>, <code>async-await</code>, <code>add-logging</code>, <code>remove-console</code></li>
+</ul>
+</li>
+<li><p><code>[TASK_MODEL_RECOMMENDATION] Use model=&quot;X&quot;</code> → Use that model in Task tool:</p>
+</li>
+</ol>
+<pre><code class="language-javascript">Task({
+  prompt: &quot;...&quot;,
+  subagent_type: &quot;coder&quot;,
+  model: &quot;haiku&quot;  // ← USE THE RECOMMENDED MODEL (haiku/sonnet/opus)
+})
+</code></pre>
+<p><strong>Benefits:</strong> 75% cost reduction, 352x faster for Tier 1 tasks</p>
+<hr>
+<h3>🛡️ Anti-Drift Config (PREFERRED)</h3>
+<p><strong>Use this to prevent agent drift:</strong></p>
+<pre><code class="language-bash"># Small teams (6-8 agents) - use hierarchical for tight control
+npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+
+# Large teams (10-15 agents) - use hierarchical-mesh for V3 queen + peer communication
+npx @claude-flow/cli@latest swarm init --topology hierarchical-mesh --max-agents 15 --strategy specialized
+</code></pre>
+<p><strong>Valid Topologies:</strong></p>
+<ul>
+<li><code>hierarchical</code> - Queen controls workers directly (anti-drift for small teams)</li>
+<li><code>hierarchical-mesh</code> - V3 queen + peer communication (recommended for 10+ agents)</li>
+<li><code>mesh</code> - Fully connected peer network</li>
+<li><code>ring</code> - Circular communication pattern</li>
+<li><code>star</code> - Central coordinator with spokes</li>
+<li><code>hybrid</code> - Dynamic topology switching</li>
+</ul>
+<p><strong>Anti-Drift Guidelines:</strong></p>
+<ul>
+<li><strong>hierarchical</strong>: Coordinator catches divergence</li>
+<li><strong>max-agents 6-8</strong>: Smaller team = less drift</li>
+<li><strong>specialized</strong>: Clear roles, no overlap</li>
+<li><strong>consensus</strong>: raft (leader maintains state)</li>
+</ul>
+<hr>
+<h3>🔄 Auto-Start Swarm Protocol (Background Execution)</h3>
+<p>When the user requests a complex task, <strong>spawn agents in background and WAIT for completion:</strong></p>
+<pre><code class="language-javascript">// STEP 1: Initialize swarm coordination (anti-drift config)
+Bash(&quot;npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized&quot;)
+
+// STEP 2: Spawn ALL agents IN BACKGROUND in a SINGLE message
+// Use run_in_background: true so agents work concurrently
+Task({
+  prompt: &quot;Research requirements, analyze codebase patterns, store findings in memory&quot;,
+  subagent_type: &quot;researcher&quot;,
+  description: &quot;Research phase&quot;,
+  run_in_background: true  // ← CRITICAL: Run in background
+})
+Task({
+  prompt: &quot;Design architecture based on research. Document decisions.&quot;,
+  subagent_type: &quot;system-architect&quot;,
+  description: &quot;Architecture phase&quot;,
+  run_in_background: true
+})
+Task({
+  prompt: &quot;Implement the solution following the design. Write clean code.&quot;,
+  subagent_type: &quot;coder&quot;,
+  description: &quot;Implementation phase&quot;,
+  run_in_background: true
+})
+Task({
+  prompt: &quot;Write comprehensive tests for the implementation.&quot;,
+  subagent_type: &quot;tester&quot;,
+  description: &quot;Testing phase&quot;,
+  run_in_background: true
+})
+Task({
+  prompt: &quot;Review code quality, security, and best practices.&quot;,
+  subagent_type: &quot;reviewer&quot;,
+  description: &quot;Review phase&quot;,
+  run_in_background: true
+})
+
+// STEP 3: WAIT - Tell user agents are working, then STOP
+// Say: &quot;I&#39;ve spawned 5 agents to work on this in parallel. They&#39;ll report back when done.&quot;
+// DO NOT check status repeatedly. Just wait for user or agent responses.
+</code></pre>
+<h3>⏸️ CRITICAL: Spawn and Wait Pattern</h3>
+<p><strong>After spawning background agents:</strong></p>
+<ol>
+<li><strong>TELL USER</strong> - &quot;I&#39;ve spawned X agents working in parallel on: [list tasks]&quot;</li>
+<li><strong>STOP</strong> - Do not continue with more tool calls</li>
+<li><strong>WAIT</strong> - Let the background agents complete their work</li>
+<li><strong>RESPOND</strong> - When agents return results, review and synthesize</li>
+</ol>
+<p><strong>Example response after spawning:</strong></p>
+<pre><code>I&#39;ve launched 5 concurrent agents to work on this:
+- 🔍 Researcher: Analyzing requirements and codebase
+- 🏗️ Architect: Designing the implementation approach
+- 💻 Coder: Implementing the solution
+- 🧪 Tester: Writing tests
+- 👀 Reviewer: Code review and security check
+
+They&#39;re working in parallel. I&#39;ll synthesize their results when they complete.
+</code></pre>
+<h3>🚫 DO NOT:</h3>
+<ul>
+<li>Continuously check swarm status</li>
+<li>Poll TaskOutput repeatedly</li>
+<li>Add more tool calls after spawning</li>
+<li>Ask &quot;should I check on the agents?&quot;</li>
+</ul>
+<h3>✅ DO:</h3>
+<ul>
+<li>Spawn all agents in ONE message</li>
+<li>Tell user what&#39;s happening</li>
+<li>Wait for agent results to arrive</li>
+<li>Synthesize results when they return</li>
+</ul>
+<h2>🧠 AUTO-LEARNING PROTOCOL</h2>
+<h3>Before Starting Any Task</h3>
+<pre><code class="language-bash"># 1. Search memory for relevant patterns from past successes
+Bash(&quot;npx @claude-flow/cli@latest memory search --query &#39;[task keywords]&#39; --namespace patterns&quot;)
+
+# 2. Check if similar task was done before
+Bash(&quot;npx @claude-flow/cli@latest memory search --query &#39;[task type]&#39; --namespace tasks&quot;)
+
+# 3. Load learned optimizations
+Bash(&quot;npx @claude-flow/cli@latest hooks route --task &#39;[task description]&#39;&quot;)
+</code></pre>
+<h3>After Completing Any Task Successfully</h3>
+<pre><code class="language-bash"># 1. Store successful pattern for future reference
+Bash(&quot;npx @claude-flow/cli@latest memory store --namespace patterns --key &#39;[pattern-name]&#39; --value &#39;[what worked]&#39;&quot;)
+
+# 2. Train neural patterns on the successful approach
+Bash(&quot;npx @claude-flow/cli@latest hooks post-edit --file &#39;[main-file]&#39; --train-neural true&quot;)
+
+# 3. Record task completion with metrics
+Bash(&quot;npx @claude-flow/cli@latest hooks post-task --task-id &#39;[id]&#39; --success true --store-results true&quot;)
+
+# 4. Trigger optimization worker if performance-related
+Bash(&quot;npx @claude-flow/cli@latest hooks worker dispatch --trigger optimize&quot;)
+</code></pre>
+<h3>Continuous Improvement Triggers</h3>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Worker</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>After major refactor</td>
+<td><code>optimize</code></td>
+<td>Performance optimization</td>
+</tr>
+<tr>
+<td>After adding features</td>
+<td><code>testgaps</code></td>
+<td>Find missing test coverage</td>
+</tr>
+<tr>
+<td>After security changes</td>
+<td><code>audit</code></td>
+<td>Security analysis</td>
+</tr>
+<tr>
+<td>After API changes</td>
+<td><code>document</code></td>
+<td>Update documentation</td>
+</tr>
+<tr>
+<td>Every 5+ file changes</td>
+<td><code>map</code></td>
+<td>Update codebase map</td>
+</tr>
+<tr>
+<td>Complex debugging</td>
+<td><code>deepdive</code></td>
+<td>Deep code analysis</td>
+</tr>
+</tbody></table>
+<h3>Memory-Enhanced Development</h3>
+<p><strong>ALWAYS check memory before:</strong></p>
+<ul>
+<li>Starting a new feature (search for similar implementations)</li>
+<li>Debugging an issue (search for past solutions)</li>
+<li>Refactoring code (search for learned patterns)</li>
+<li>Performance work (search for optimization strategies)</li>
+</ul>
+<p><strong>ALWAYS store in memory after:</strong></p>
+<ul>
+<li>Solving a tricky bug (store the solution pattern)</li>
+<li>Completing a feature (store the approach)</li>
+<li>Finding a performance fix (store the optimization)</li>
+<li>Discovering a security issue (store the vulnerability pattern)</li>
+</ul>
+<h3>📋 Agent Routing (Anti-Drift)</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Task</th>
+<th>Agents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Bug Fix</td>
+<td>coordinator, researcher, coder, tester</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Feature</td>
+<td>coordinator, architect, coder, tester, reviewer</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Refactor</td>
+<td>coordinator, architect, coder, reviewer</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Performance</td>
+<td>coordinator, perf-engineer, coder</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Security</td>
+<td>coordinator, security-architect, auditor</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Docs</td>
+<td>researcher, api-docs</td>
+</tr>
+</tbody></table>
+<p><strong>Codes 1-9: hierarchical/specialized (anti-drift). Code 11: mesh/balanced</strong></p>
+<h3>🎯 Task Complexity Detection</h3>
+<p><strong>AUTO-INVOKE SWARM when task involves:</strong></p>
+<ul>
+<li>Multiple files (3+)</li>
+<li>New feature implementation</li>
+<li>Refactoring across modules</li>
+<li>API changes with tests</li>
+<li>Security-related changes</li>
+<li>Performance optimization</li>
+<li>Database schema changes</li>
+</ul>
+<p><strong>SKIP SWARM for:</strong></p>
+<ul>
+<li>Single file edits</li>
+<li>Simple bug fixes (1-2 lines)</li>
+<li>Documentation updates</li>
+<li>Configuration changes</li>
+<li>Quick questions/exploration</li>
+</ul>
+<h2>🚨 CRITICAL: CONCURRENT EXECUTION &amp; FILE MANAGEMENT</h2>
+<p><strong>ABSOLUTE RULES</strong>:</p>
+<ol>
+<li>ALL operations MUST be concurrent/parallel in a single message</li>
+<li><strong>NEVER save working files, text/mds and tests to the root folder</strong></li>
+<li>ALWAYS organize files in appropriate subdirectories</li>
+<li><strong>USE CLAUDE CODE&#39;S TASK TOOL</strong> for spawning agents concurrently, not just MCP</li>
+</ol>
+<h3>⚡ GOLDEN RULE: &quot;1 MESSAGE = ALL RELATED OPERATIONS&quot;</h3>
+<p><strong>MANDATORY PATTERNS:</strong></p>
+<ul>
+<li><strong>TodoWrite</strong>: ALWAYS batch ALL todos in ONE call (5-10+ todos minimum)</li>
+<li><strong>Task tool (Claude Code)</strong>: ALWAYS spawn ALL agents in ONE message with full instructions</li>
+<li><strong>File operations</strong>: ALWAYS batch ALL reads/writes/edits in ONE message</li>
+<li><strong>Bash commands</strong>: ALWAYS batch ALL terminal operations in ONE message</li>
+<li><strong>Memory operations</strong>: ALWAYS batch ALL memory store/retrieve in ONE message</li>
+</ul>
+<h3>📁 File Organization Rules</h3>
+<p><strong>NEVER save to root folder. Use these directories:</strong></p>
+<ul>
+<li><code>/src</code> - Source code files</li>
+<li><code>/tests</code> - Test files</li>
+<li><code>/docs</code> - Documentation and markdown files</li>
+<li><code>/config</code> - Configuration files</li>
+<li><code>/scripts</code> - Utility scripts</li>
+<li><code>/examples</code> - Example code</li>
+</ul>
+<h2>Project Config (Anti-Drift Defaults)</h2>
+<ul>
+<li><strong>Topology</strong>: hierarchical (prevents drift)</li>
+<li><strong>Max Agents</strong>: 8 (smaller = less drift)</li>
+<li><strong>Strategy</strong>: specialized (clear roles)</li>
+<li><strong>Consensus</strong>: raft</li>
+<li><strong>Memory</strong>: hybrid</li>
+<li><strong>HNSW</strong>: Enabled</li>
+<li><strong>Neural</strong>: Enabled</li>
+</ul>
+<h2>🚀 V3 CLI Commands (26 Commands, 140+ Subcommands)</h2>
+<h3>Core Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Subcommands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>init</code></td>
+<td>4</td>
+<td>Project initialization with wizard, presets, skills, hooks</td>
+</tr>
+<tr>
+<td><code>agent</code></td>
+<td>8</td>
+<td>Agent lifecycle (spawn, list, status, stop, metrics, pool, health, logs)</td>
+</tr>
+<tr>
+<td><code>swarm</code></td>
+<td>6</td>
+<td>Multi-agent swarm coordination and orchestration</td>
+</tr>
+<tr>
+<td><code>memory</code></td>
+<td>11</td>
+<td>AgentDB memory with vector search (150x-12,500x faster)</td>
+</tr>
+<tr>
+<td><code>mcp</code></td>
+<td>9</td>
+<td>MCP server management and tool execution</td>
+</tr>
+<tr>
+<td><code>task</code></td>
+<td>6</td>
+<td>Task creation, assignment, and lifecycle</td>
+</tr>
+<tr>
+<td><code>session</code></td>
+<td>7</td>
+<td>Session state management and persistence</td>
+</tr>
+<tr>
+<td><code>config</code></td>
+<td>7</td>
+<td>Configuration management and provider setup</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>3</td>
+<td>System status monitoring with watch mode</td>
+</tr>
+<tr>
+<td><code>workflow</code></td>
+<td>6</td>
+<td>Workflow execution and template management</td>
+</tr>
+<tr>
+<td><code>hooks</code></td>
+<td>17</td>
+<td>Self-learning hooks + 12 background workers</td>
+</tr>
+<tr>
+<td><code>hive-mind</code></td>
+<td>6</td>
+<td>Queen-led Byzantine fault-tolerant consensus</td>
+</tr>
+</tbody></table>
+<h3>Advanced Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Subcommands</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>daemon</code></td>
+<td>5</td>
+<td>Background worker daemon (start, stop, status, trigger, enable)</td>
+</tr>
+<tr>
+<td><code>neural</code></td>
+<td>5</td>
+<td>Neural pattern training (train, status, patterns, predict, optimize)</td>
+</tr>
+<tr>
+<td><code>security</code></td>
+<td>6</td>
+<td>Security scanning (scan, audit, cve, threats, validate, report)</td>
+</tr>
+<tr>
+<td><code>performance</code></td>
+<td>5</td>
+<td>Performance profiling (benchmark, profile, metrics, optimize, report)</td>
+</tr>
+<tr>
+<td><code>providers</code></td>
+<td>5</td>
+<td>AI providers (list, add, remove, test, configure)</td>
+</tr>
+<tr>
+<td><code>plugins</code></td>
+<td>5</td>
+<td>Plugin management (list, install, uninstall, enable, disable)</td>
+</tr>
+<tr>
+<td><code>deployment</code></td>
+<td>5</td>
+<td>Deployment management (deploy, rollback, status, environments, release)</td>
+</tr>
+<tr>
+<td><code>embeddings</code></td>
+<td>4</td>
+<td>Vector embeddings (embed, batch, search, init) - 75x faster with agentic-flow</td>
+</tr>
+<tr>
+<td><code>claims</code></td>
+<td>4</td>
+<td>Claims-based authorization (check, grant, revoke, list)</td>
+</tr>
+<tr>
+<td><code>migrate</code></td>
+<td>5</td>
+<td>V2 to V3 migration with rollback support</td>
+</tr>
+<tr>
+<td><code>doctor</code></td>
+<td>1</td>
+<td>System diagnostics with health checks</td>
+</tr>
+<tr>
+<td><code>completions</code></td>
+<td>4</td>
+<td>Shell completions (bash, zsh, fish, powershell)</td>
+</tr>
+</tbody></table>
+<h3>Quick CLI Examples</h3>
+<pre><code class="language-bash"># Initialize project
+npx @claude-flow/cli@latest init --wizard
+
+# Start daemon with background workers
+npx @claude-flow/cli@latest daemon start
+
+# Spawn an agent
+npx @claude-flow/cli@latest agent spawn -t coder --name my-coder
+
+# Initialize swarm
+npx @claude-flow/cli@latest swarm init --v3-mode
+
+# Search memory (HNSW-indexed)
+npx @claude-flow/cli@latest memory search --query &quot;authentication patterns&quot;
+
+# System diagnostics
+npx @claude-flow/cli@latest doctor --fix
+
+# Security scan
+npx @claude-flow/cli@latest security scan --depth full
+
+# Performance benchmark
+npx @claude-flow/cli@latest performance benchmark --suite all
+</code></pre>
+<h2>🚀 Available Agents (60+ Types)</h2>
+<h3>Core Development</h3>
+<p><code>coder</code>, <code>reviewer</code>, <code>tester</code>, <code>planner</code>, <code>researcher</code></p>
+<h3>V3 Specialized Agents</h3>
+<p><code>security-architect</code>, <code>security-auditor</code>, <code>memory-specialist</code>, <code>performance-engineer</code></p>
+<h3>🔐 @claude-flow/security</h3>
+<p>CVE remediation, input validation, path security:</p>
+<ul>
+<li><code>InputValidator</code> - Zod validation</li>
+<li><code>PathValidator</code> - Traversal prevention</li>
+<li><code>SafeExecutor</code> - Injection protection</li>
+</ul>
+<h3>Swarm Coordination</h3>
+<p><code>hierarchical-coordinator</code>, <code>mesh-coordinator</code>, <code>adaptive-coordinator</code>, <code>collective-intelligence-coordinator</code>, <code>swarm-memory-manager</code></p>
+<h3>Consensus &amp; Distributed</h3>
+<p><code>byzantine-coordinator</code>, <code>raft-manager</code>, <code>gossip-coordinator</code>, <code>consensus-builder</code>, <code>crdt-synchronizer</code>, <code>quorum-manager</code>, <code>security-manager</code></p>
+<h3>Performance &amp; Optimization</h3>
+<p><code>perf-analyzer</code>, <code>performance-benchmarker</code>, <code>task-orchestrator</code>, <code>memory-coordinator</code>, <code>smart-agent</code></p>
+<h3>GitHub &amp; Repository</h3>
+<p><code>github-modes</code>, <code>pr-manager</code>, <code>code-review-swarm</code>, <code>issue-tracker</code>, <code>release-manager</code>, <code>workflow-automation</code>, <code>project-board-sync</code>, <code>repo-architect</code>, <code>multi-repo-swarm</code></p>
+<h3>SPARC Methodology</h3>
+<p><code>sparc-coord</code>, <code>sparc-coder</code>, <code>specification</code>, <code>pseudocode</code>, <code>architecture</code>, <code>refinement</code></p>
+<h3>Specialized Development</h3>
+<p><code>backend-dev</code>, <code>mobile-dev</code>, <code>ml-developer</code>, <code>cicd-engineer</code>, <code>api-docs</code>, <code>system-architect</code>, <code>code-analyzer</code>, <code>base-template-generator</code></p>
+<h3>Testing &amp; Validation</h3>
+<p><code>tdd-london-swarm</code>, <code>production-validator</code></p>
+<h2>🪝 V3 Hooks System (27 Hooks + 12 Workers)</h2>
+<h3>All Available Hooks</h3>
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Description</th>
+<th>Key Options</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pre-edit</code></td>
+<td>Get context before editing files</td>
+<td><code>--file</code>, <code>--operation</code></td>
+</tr>
+<tr>
+<td><code>post-edit</code></td>
+<td>Record editing outcome for learning</td>
+<td><code>--file</code>, <code>--success</code>, <code>--train-neural</code></td>
+</tr>
+<tr>
+<td><code>pre-command</code></td>
+<td>Assess risk before commands</td>
+<td><code>--command</code>, <code>--validate-safety</code></td>
+</tr>
+<tr>
+<td><code>post-command</code></td>
+<td>Record command execution outcome</td>
+<td><code>--command</code>, <code>--track-metrics</code></td>
+</tr>
+<tr>
+<td><code>pre-task</code></td>
+<td>Record task start, get agent suggestions</td>
+<td><code>--description</code>, <code>--coordinate-swarm</code></td>
+</tr>
+<tr>
+<td><code>post-task</code></td>
+<td>Record task completion for learning</td>
+<td><code>--task-id</code>, <code>--success</code>, <code>--store-results</code></td>
+</tr>
+<tr>
+<td><code>session-start</code></td>
+<td>Start/restore session (v2 compat)</td>
+<td><code>--session-id</code>, <code>--auto-configure</code></td>
+</tr>
+<tr>
+<td><code>session-end</code></td>
+<td>End session and persist state</td>
+<td><code>--generate-summary</code>, <code>--export-metrics</code></td>
+</tr>
+<tr>
+<td><code>session-restore</code></td>
+<td>Restore a previous session</td>
+<td><code>--session-id</code>, <code>--latest</code></td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td>Route task to optimal agent</td>
+<td><code>--task</code>, <code>--context</code>, <code>--top-k</code></td>
+</tr>
+<tr>
+<td><code>route-task</code></td>
+<td>(v2 compat) Alias for route</td>
+<td><code>--task</code>, <code>--auto-swarm</code></td>
+</tr>
+<tr>
+<td><code>explain</code></td>
+<td>Explain routing decision</td>
+<td><code>--topic</code>, <code>--detailed</code></td>
+</tr>
+<tr>
+<td><code>pretrain</code></td>
+<td>Bootstrap intelligence from repo</td>
+<td><code>--model-type</code>, <code>--epochs</code></td>
+</tr>
+<tr>
+<td><code>build-agents</code></td>
+<td>Generate optimized agent configs</td>
+<td><code>--agent-types</code>, <code>--focus</code></td>
+</tr>
+<tr>
+<td><code>metrics</code></td>
+<td>View learning metrics dashboard</td>
+<td><code>--v3-dashboard</code>, <code>--format</code></td>
+</tr>
+<tr>
+<td><code>transfer</code></td>
+<td>Transfer patterns via IPFS registry</td>
+<td><code>store</code>, <code>from-project</code></td>
+</tr>
+<tr>
+<td><code>list</code></td>
+<td>List all registered hooks</td>
+<td><code>--format</code></td>
+</tr>
+<tr>
+<td><code>intelligence</code></td>
+<td>RuVector intelligence system</td>
+<td><code>trajectory-*</code>, <code>pattern-*</code>, <code>stats</code></td>
+</tr>
+<tr>
+<td><code>worker</code></td>
+<td>Background worker management</td>
+<td><code>list</code>, <code>dispatch</code>, <code>status</code>, <code>detect</code></td>
+</tr>
+<tr>
+<td><code>progress</code></td>
+<td>Check V3 implementation progress</td>
+<td><code>--detailed</code>, <code>--format</code></td>
+</tr>
+<tr>
+<td><code>statusline</code></td>
+<td>Generate dynamic statusline</td>
+<td><code>--json</code>, <code>--compact</code>, <code>--no-color</code></td>
+</tr>
+<tr>
+<td><code>coverage-route</code></td>
+<td>Route based on test coverage gaps</td>
+<td><code>--task</code>, <code>--path</code></td>
+</tr>
+<tr>
+<td><code>coverage-suggest</code></td>
+<td>Suggest coverage improvements</td>
+<td><code>--path</code></td>
+</tr>
+<tr>
+<td><code>coverage-gaps</code></td>
+<td>List coverage gaps with priorities</td>
+<td><code>--format</code>, <code>--limit</code></td>
+</tr>
+<tr>
+<td><code>pre-bash</code></td>
+<td>(v2 compat) Alias for pre-command</td>
+<td>Same as pre-command</td>
+</tr>
+<tr>
+<td><code>post-bash</code></td>
+<td>(v2 compat) Alias for post-command</td>
+<td>Same as post-command</td>
+</tr>
+</tbody></table>
+<h3>12 Background Workers</h3>
+<table>
+<thead>
+<tr>
+<th>Worker</th>
+<th>Priority</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ultralearn</code></td>
+<td>normal</td>
+<td>Deep knowledge acquisition</td>
+</tr>
+<tr>
+<td><code>optimize</code></td>
+<td>high</td>
+<td>Performance optimization</td>
+</tr>
+<tr>
+<td><code>consolidate</code></td>
+<td>low</td>
+<td>Memory consolidation</td>
+</tr>
+<tr>
+<td><code>predict</code></td>
+<td>normal</td>
+<td>Predictive preloading</td>
+</tr>
+<tr>
+<td><code>audit</code></td>
+<td>critical</td>
+<td>Security analysis</td>
+</tr>
+<tr>
+<td><code>map</code></td>
+<td>normal</td>
+<td>Codebase mapping</td>
+</tr>
+<tr>
+<td><code>preload</code></td>
+<td>low</td>
+<td>Resource preloading</td>
+</tr>
+<tr>
+<td><code>deepdive</code></td>
+<td>normal</td>
+<td>Deep code analysis</td>
+</tr>
+<tr>
+<td><code>document</code></td>
+<td>normal</td>
+<td>Auto-documentation</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>normal</td>
+<td>Refactoring suggestions</td>
+</tr>
+<tr>
+<td><code>benchmark</code></td>
+<td>normal</td>
+<td>Performance benchmarking</td>
+</tr>
+<tr>
+<td><code>testgaps</code></td>
+<td>normal</td>
+<td>Test coverage analysis</td>
+</tr>
+</tbody></table>
+<h3>Essential Hook Commands</h3>
+<pre><code class="language-bash"># Core hooks
+npx @claude-flow/cli@latest hooks pre-task --description &quot;[task]&quot;
+npx @claude-flow/cli@latest hooks post-task --task-id &quot;[id]&quot; --success true
+npx @claude-flow/cli@latest hooks post-edit --file &quot;[file]&quot; --train-neural true
+
+# Session management
+npx @claude-flow/cli@latest hooks session-start --session-id &quot;[id]&quot;
+npx @claude-flow/cli@latest hooks session-end --export-metrics true
+npx @claude-flow/cli@latest hooks session-restore --session-id &quot;[id]&quot;
+
+# Intelligence routing
+npx @claude-flow/cli@latest hooks route --task &quot;[task]&quot;
+npx @claude-flow/cli@latest hooks explain --topic &quot;[topic]&quot;
+
+# Neural learning
+npx @claude-flow/cli@latest hooks pretrain --model-type moe --epochs 10
+npx @claude-flow/cli@latest hooks build-agents --agent-types coder,tester
+
+# Background workers
+npx @claude-flow/cli@latest hooks worker list
+npx @claude-flow/cli@latest hooks worker dispatch --trigger audit
+npx @claude-flow/cli@latest hooks worker status
+
+# Coverage-aware routing
+npx @claude-flow/cli@latest hooks coverage-gaps --format table
+npx @claude-flow/cli@latest hooks coverage-route --task &quot;[task]&quot;
+
+# Statusline (for Claude Code integration)
+npx @claude-flow/cli@latest hooks statusline
+npx @claude-flow/cli@latest hooks statusline --json
+</code></pre>
+<h2>🔄 Migration (V2 to V3)</h2>
+<pre><code class="language-bash"># Check migration status
+npx @claude-flow/cli@latest migrate status
+
+# Run migration with backup
+npx @claude-flow/cli@latest migrate run --backup
+
+# Rollback if needed
+npx @claude-flow/cli@latest migrate rollback
+
+# Validate migration
+npx @claude-flow/cli@latest migrate validate
+</code></pre>
+<h2>🧠 Intelligence System (RuVector)</h2>
+<p>V3 includes the RuVector Intelligence System:</p>
+<ul>
+<li><strong>SONA</strong>: Self-Optimizing Neural Architecture (&lt;0.05ms adaptation)</li>
+<li><strong>MoE</strong>: Mixture of Experts for specialized routing</li>
+<li><strong>HNSW</strong>: 150x-12,500x faster pattern search</li>
+<li><strong>EWC++</strong>: Elastic Weight Consolidation (prevents forgetting)</li>
+<li><strong>Flash Attention</strong>: 2.49x-7.47x speedup</li>
+</ul>
+<p>The 4-step intelligence pipeline:</p>
+<ol>
+<li><strong>RETRIEVE</strong> - Fetch relevant patterns via HNSW</li>
+<li><strong>JUDGE</strong> - Evaluate with verdicts (success/failure)</li>
+<li><strong>DISTILL</strong> - Extract key learnings via LoRA</li>
+<li><strong>CONSOLIDATE</strong> - Prevent catastrophic forgetting via EWC++</li>
+</ol>
+<h2>📦 Embeddings Package (v3.0.0-alpha.12)</h2>
+<p>Features:</p>
+<ul>
+<li><strong>sql.js</strong>: Cross-platform SQLite persistent cache (WASM, no native compilation)</li>
+<li><strong>Document chunking</strong>: Configurable overlap and size</li>
+<li><strong>Normalization</strong>: L2, L1, min-max, z-score</li>
+<li><strong>Hyperbolic embeddings</strong>: Poincaré ball model for hierarchical data</li>
+<li><strong>75x faster</strong>: With agentic-flow ONNX integration</li>
+<li><strong>Neural substrate</strong>: Integration with RuVector</li>
+</ul>
+<h2>🐝 Hive-Mind Consensus</h2>
+<h3>Topologies</h3>
+<ul>
+<li><code>hierarchical</code> - Queen controls workers directly</li>
+<li><code>mesh</code> - Fully connected peer network</li>
+<li><code>hierarchical-mesh</code> - Hybrid (recommended)</li>
+<li><code>adaptive</code> - Dynamic based on load</li>
+</ul>
+<h3>Consensus Strategies</h3>
+<ul>
+<li><code>byzantine</code> - BFT (tolerates f &lt; n/3 faulty)</li>
+<li><code>raft</code> - Leader-based (tolerates f &lt; n/2)</li>
+<li><code>gossip</code> - Epidemic for eventual consistency</li>
+<li><code>crdt</code> - Conflict-free replicated data types</li>
+<li><code>quorum</code> - Configurable quorum-based</li>
+</ul>
+<h2>V3 Performance Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flash Attention</td>
+<td>2.49x-7.47x speedup</td>
+</tr>
+<tr>
+<td>HNSW Search</td>
+<td>150x-12,500x faster</td>
+</tr>
+<tr>
+<td>Memory Reduction</td>
+<td>50-75% with quantization</td>
+</tr>
+<tr>
+<td>MCP Response</td>
+<td>&lt;100ms</td>
+</tr>
+<tr>
+<td>CLI Startup</td>
+<td>&lt;500ms</td>
+</tr>
+<tr>
+<td>SONA Adaptation</td>
+<td>&lt;0.05ms</td>
+</tr>
+</tbody></table>
+<h2>📊 Performance Optimization Protocol</h2>
+<h3>Automatic Performance Tracking</h3>
+<pre><code class="language-bash"># After any significant operation, track metrics
+Bash(&quot;npx @claude-flow/cli@latest hooks post-command --command &#39;[operation]&#39; --track-metrics true&quot;)
+
+# Periodically run benchmarks (every major feature)
+Bash(&quot;npx @claude-flow/cli@latest performance benchmark --suite all&quot;)
+
+# Analyze bottlenecks when performance degrades
+Bash(&quot;npx @claude-flow/cli@latest performance profile --target &#39;[component]&#39;&quot;)
+</code></pre>
+<h3>Session Persistence (Cross-Conversation Learning)</h3>
+<pre><code class="language-bash"># At session start - restore previous context
+Bash(&quot;npx @claude-flow/cli@latest session restore --latest&quot;)
+
+# At session end - persist learned patterns
+Bash(&quot;npx @claude-flow/cli@latest hooks session-end --generate-summary true --persist-state true --export-metrics true&quot;)
+</code></pre>
+<h3>Neural Pattern Training</h3>
+<pre><code class="language-bash"># Train on successful code patterns
+Bash(&quot;npx @claude-flow/cli@latest neural train --pattern-type coordination --epochs 10&quot;)
+
+# Predict optimal approach for new tasks
+Bash(&quot;npx @claude-flow/cli@latest neural predict --input &#39;[task description]&#39;&quot;)
+
+# View learned patterns
+Bash(&quot;npx @claude-flow/cli@latest neural patterns --list&quot;)
+</code></pre>
+<h2>🔧 Environment Variables</h2>
+<pre><code class="language-bash"># Configuration
+CLAUDE_FLOW_CONFIG=./claude-flow.config.json
+CLAUDE_FLOW_LOG_LEVEL=info
+
+# Provider API Keys
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-...
+GOOGLE_API_KEY=...
+
+# MCP Server
+CLAUDE_FLOW_MCP_PORT=3000
+CLAUDE_FLOW_MCP_HOST=localhost
+CLAUDE_FLOW_MCP_TRANSPORT=stdio
+
+# Memory
+CLAUDE_FLOW_MEMORY_BACKEND=hybrid
+CLAUDE_FLOW_MEMORY_PATH=./data/memory
+</code></pre>
+<h2>🔍 Doctor Health Checks</h2>
+<p>Run <code>npx @claude-flow/cli@latest doctor</code> to check:</p>
+<ul>
+<li>Node.js version (20+)</li>
+<li>npm version (9+)</li>
+<li>Git installation</li>
+<li>Config file validity</li>
+<li>Daemon status</li>
+<li>Memory database</li>
+<li>API keys</li>
+<li>MCP servers</li>
+<li>Disk space</li>
+<li>TypeScript installation</li>
+</ul>
+<h2>🚀 Quick Setup</h2>
+<pre><code class="language-bash"># Add MCP servers (auto-detects MCP mode when stdin is piped)
+claude mcp add claude-flow -- npx -y @claude-flow/cli@latest
+claude mcp add ruv-swarm -- npx -y ruv-swarm mcp start  # Optional
+claude mcp add flow-nexus -- npx -y flow-nexus@latest mcp start  # Optional
+
+# Start daemon
+npx @claude-flow/cli@latest daemon start
+
+# Run doctor
+npx @claude-flow/cli@latest doctor --fix
+</code></pre>
+<h2>🎯 Claude Code vs CLI Tools</h2>
+<h3>Claude Code Handles ALL EXECUTION:</h3>
+<ul>
+<li><strong>Task tool</strong>: Spawn and run agents concurrently</li>
+<li>File operations (Read, Write, Edit, MultiEdit, Glob, Grep)</li>
+<li>Code generation and programming</li>
+<li>Bash commands and system operations</li>
+<li>TodoWrite and task management</li>
+<li>Git operations</li>
+</ul>
+<h3>CLI Tools Handle Coordination (via Bash):</h3>
+<ul>
+<li><strong>Swarm init</strong>: <code>npx @claude-flow/cli@latest swarm init --topology &lt;type&gt;</code></li>
+<li><strong>Swarm status</strong>: <code>npx @claude-flow/cli@latest swarm status</code></li>
+<li><strong>Agent spawn</strong>: <code>npx @claude-flow/cli@latest agent spawn -t &lt;type&gt; --name &lt;name&gt;</code></li>
+<li><strong>Memory store</strong>: <code>npx @claude-flow/cli@latest memory store --key &quot;mykey&quot; --value &quot;myvalue&quot; --namespace patterns</code></li>
+<li><strong>Memory search</strong>: <code>npx @claude-flow/cli@latest memory search --query &quot;search terms&quot;</code></li>
+<li><strong>Memory list</strong>: <code>npx @claude-flow/cli@latest memory list --namespace patterns</code></li>
+<li><strong>Memory retrieve</strong>: <code>npx @claude-flow/cli@latest memory retrieve --key &quot;mykey&quot; --namespace patterns</code></li>
+<li><strong>Hooks</strong>: <code>npx @claude-flow/cli@latest hooks &lt;hook-name&gt; [options]</code></li>
+</ul>
+<h2>📝 Memory Commands Reference (IMPORTANT)</h2>
+<h3>Store Data (ALL options shown)</h3>
+<pre><code class="language-bash"># REQUIRED: --key and --value
+# OPTIONAL: --namespace (default: &quot;default&quot;), --ttl, --tags
+npx @claude-flow/cli@latest memory store --key &quot;pattern-auth&quot; --value &quot;JWT with refresh tokens&quot; --namespace patterns
+npx @claude-flow/cli@latest memory store --key &quot;bug-fix-123&quot; --value &quot;Fixed null check&quot; --namespace solutions --tags &quot;bugfix,auth&quot;
+</code></pre>
+<h3>Search Data (semantic vector search)</h3>
+<pre><code class="language-bash"># REQUIRED: --query (full flag, not -q)
+# OPTIONAL: --namespace, --limit, --threshold
+npx @claude-flow/cli@latest memory search --query &quot;authentication patterns&quot;
+npx @claude-flow/cli@latest memory search --query &quot;error handling&quot; --namespace patterns --limit 5
+</code></pre>
+<h3>List Entries</h3>
+<pre><code class="language-bash"># OPTIONAL: --namespace, --limit
+npx @claude-flow/cli@latest memory list
+npx @claude-flow/cli@latest memory list --namespace patterns --limit 10
+</code></pre>
+<h3>Retrieve Specific Entry</h3>
+<pre><code class="language-bash"># REQUIRED: --key
+# OPTIONAL: --namespace (default: &quot;default&quot;)
+npx @claude-flow/cli@latest memory retrieve --key &quot;pattern-auth&quot;
+npx @claude-flow/cli@latest memory retrieve --key &quot;pattern-auth&quot; --namespace patterns
+</code></pre>
+<h3>Initialize Memory Database</h3>
+<pre><code class="language-bash">npx @claude-flow/cli@latest memory init --force --verbose
+</code></pre>
+<p><strong>KEY</strong>: CLI coordinates the strategy via Bash, Claude Code&#39;s Task tool executes with real agents.</p>
+<h2>Support</h2>
+<ul>
+<li>Documentation: <a href="https://github.com/ruvnet/claude-flow">https://github.com/ruvnet/claude-flow</a></li>
+<li>Issues: <a href="https://github.com/ruvnet/claude-flow/issues">https://github.com/ruvnet/claude-flow/issues</a></li>
+</ul>
+<hr>
+<p>Remember: <strong>Claude Flow CLI coordinates, Claude Code Task tool creates!</strong></p>
+<h1>important-instruction-reminders</h1>
+<p>Do what has been asked; nothing more, nothing less.
+NEVER create files unless they&#39;re absolutely necessary for achieving your goal.
+ALWAYS prefer editing an existing file to creating a new one.
+NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+Never save working files, text/mds and tests to the root folder.</p>
+<h2>🚨 SWARM EXECUTION RULES (CRITICAL)</h2>
+<ol>
+<li><strong>SPAWN IN BACKGROUND</strong>: Use <code>run_in_background: true</code> for all agent Task calls</li>
+<li><strong>SPAWN ALL AT ONCE</strong>: Put ALL agent Task calls in ONE message for parallel execution</li>
+<li><strong>TELL USER</strong>: After spawning, list what each agent is doing (use emojis for clarity)</li>
+<li><strong>STOP AND WAIT</strong>: After spawning, STOP - do NOT add more tool calls or check status</li>
+<li><strong>NO POLLING</strong>: Never poll TaskOutput or check swarm status - trust agents to return</li>
+<li><strong>SYNTHESIZE</strong>: When agent results arrive, review ALL results before proceeding</li>
+<li><strong>NO CONFIRMATION</strong>: Don&#39;t ask &quot;should I check?&quot; - just wait for results</li>
+</ol>
+<p>Example spawn message:</p>
+<pre><code>&quot;I&#39;ve launched 4 agents in background:
+- 🔍 Researcher: [task]
+- 💻 Coder: [task]
+- 🧪 Tester: [task]
+- 👀 Reviewer: [task]
+Working in parallel - I&#39;ll synthesize when they complete.&quot;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

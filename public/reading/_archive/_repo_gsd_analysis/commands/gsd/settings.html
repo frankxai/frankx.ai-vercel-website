@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>settings</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/commands/gsd/settings.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">settings</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fcommands">commands</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fcommands%2Fgsd">gsd</a> / <span>settings.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: gsd:settings
+description: Configure GSD workflow toggles and model profile
+allowed-tools:
+  - Read
+  - Write
+  - AskUserQuestion</h2>
+<objective>
+Allow users to toggle workflow agents on/off and select model profile via interactive settings.
+
+<p>Updates <code>.planning/config.json</code> with workflow preferences and model profile selection.
+</objective></p>
+<process>
+
+<h2>1. Validate Environment</h2>
+<pre><code class="language-bash">ls .planning/config.json 2&gt;/dev/null
+</code></pre>
+<p><strong>If not found:</strong> Error - run <code>/gsd:new-project</code> first.</p>
+<h2>2. Read Current Config</h2>
+<pre><code class="language-bash">cat .planning/config.json
+</code></pre>
+<p>Parse current values (default to <code>true</code> if not present):</p>
+<ul>
+<li><code>workflow.research</code> — spawn researcher during plan-phase</li>
+<li><code>workflow.plan_check</code> — spawn plan checker during plan-phase</li>
+<li><code>workflow.verifier</code> — spawn verifier during execute-phase</li>
+<li><code>model_profile</code> — which model each agent uses (default: <code>balanced</code>)</li>
+</ul>
+<h2>3. Present Settings</h2>
+<p>Use AskUserQuestion with current values shown:</p>
+<pre><code>AskUserQuestion([
+  {
+    question: &quot;Which model profile for agents?&quot;,
+    header: &quot;Model&quot;,
+    multiSelect: false,
+    options: [
+      { label: &quot;Quality&quot;, description: &quot;Opus everywhere except verification (highest cost)&quot; },
+      { label: &quot;Balanced (Recommended)&quot;, description: &quot;Opus for planning, Sonnet for execution/verification&quot; },
+      { label: &quot;Budget&quot;, description: &quot;Sonnet for writing, Haiku for research/verification (lowest cost)&quot; }
+    ]
+  },
+  {
+    question: &quot;Spawn Plan Researcher? (researches domain before planning)&quot;,
+    header: &quot;Research&quot;,
+    multiSelect: false,
+    options: [
+      { label: &quot;Yes&quot;, description: &quot;Research phase goals before planning&quot; },
+      { label: &quot;No&quot;, description: &quot;Skip research, plan directly&quot; }
+    ]
+  },
+  {
+    question: &quot;Spawn Plan Checker? (verifies plans before execution)&quot;,
+    header: &quot;Plan Check&quot;,
+    multiSelect: false,
+    options: [
+      { label: &quot;Yes&quot;, description: &quot;Verify plans meet phase goals&quot; },
+      { label: &quot;No&quot;, description: &quot;Skip plan verification&quot; }
+    ]
+  },
+  {
+    question: &quot;Spawn Execution Verifier? (verifies phase completion)&quot;,
+    header: &quot;Verifier&quot;,
+    multiSelect: false,
+    options: [
+      { label: &quot;Yes&quot;, description: &quot;Verify must-haves after execution&quot; },
+      { label: &quot;No&quot;, description: &quot;Skip post-execution verification&quot; }
+    ]
+  }
+])
+</code></pre>
+<p><strong>Pre-select based on current config values.</strong></p>
+<h2>4. Update Config</h2>
+<p>Merge new settings into existing config.json:</p>
+<pre><code class="language-json">{
+  ...existing_config,
+  &quot;model_profile&quot;: &quot;quality&quot; | &quot;balanced&quot; | &quot;budget&quot;,
+  &quot;workflow&quot;: {
+    &quot;research&quot;: true/false,
+    &quot;plan_check&quot;: true/false,
+    &quot;verifier&quot;: true/false
+  }
+}
+</code></pre>
+<p>Write updated config to <code>.planning/config.json</code>.</p>
+<h2>5. Confirm Changes</h2>
+<p>Display:</p>
+<pre><code>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ GSD ► SETTINGS UPDATED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+| Setting              | Value |
+|----------------------|-------|
+| Model Profile        | {quality/balanced/budget} |
+| Plan Researcher      | {On/Off} |
+| Plan Checker         | {On/Off} |
+| Execution Verifier   | {On/Off} |
+
+These settings apply to future /gsd:plan-phase and /gsd:execute-phase runs.
+
+Quick commands:
+- /gsd:set-profile &lt;profile&gt; — switch model profile
+- /gsd:plan-phase --research — force research
+- /gsd:plan-phase --skip-research — skip research
+- /gsd:plan-phase --skip-verify — skip plan check
+</code></pre>
+</process>
+
+<success_criteria>
+- [ ] Current config read
+- [ ] User presented with 4 settings (profile + 3 toggles)
+- [ ] Config updated with model_profile and workflow section
+- [ ] Changes confirmed to user
+</success_criteria>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

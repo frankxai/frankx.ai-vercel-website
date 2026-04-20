@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Video Production Skill v1.0</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/video-production/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Video Production Skill v1.0</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Fvideo-production">video-production</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Video Production Skill v1.0</h1>
+<h2>Identity</h2>
+<p>End-to-end video intelligence system for the FrankX content pipeline.
+Covers script generation, timestamp annotation, clip extraction, and multi-platform publishing.
+Part of ACOS v11 intelligence layer — Track 5: Video Production.</p>
+<h2>Trigger Keywords</h2>
+<p>video, produce, clip, publish, thumbnail, youtube, tiktok, reels, shorts, script, timestamp, annotation, viral, clip queue, video vault, video production</p>
+<h2>Architecture</h2>
+<h3>Workflow Pipeline</h3>
+<pre><code>Discovery → Annotation → Clip Queue → Platform Publish
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Command</th>
+<th>Input</th>
+<th>Output</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1. Produce</td>
+<td><code>/video-produce</code></td>
+<td>Topic + format</td>
+<td>Script, thumbnail prompt, tags, description</td>
+</tr>
+<tr>
+<td>2. Annotate</td>
+<td><code>/video-clip</code></td>
+<td>Video ID or title</td>
+<td>Timestamps, clip candidates, viral scores</td>
+</tr>
+<tr>
+<td>3. Publish</td>
+<td><code>/video-publish</code></td>
+<td>Video title or URL</td>
+<td>Platform metadata, cross-promo schedule</td>
+</tr>
+</tbody></table>
+<h3>Commands</h3>
+<h4><code>/video-produce {topic} [format] [minutes]</code></h4>
+<p>Generates a complete video production package:</p>
+<ul>
+<li>Structured script (hook, intro, sections, recap, CTA)</li>
+<li>Thumbnail prompt following IMAGE_STYLE_DNA.md (dark premium glass)</li>
+<li>30 YouTube tags (long-tail + brand + broad)</li>
+<li>YouTube description with chapters</li>
+<li>Saves to <code>data/video-productions/</code></li>
+</ul>
+<h4><code>/video-clip {videoId | title | &quot;batch&quot;}</code></h4>
+<p>Annotates timestamps and extracts clip candidates:</p>
+<ul>
+<li>Analyzes video context from vault</li>
+<li>Generates timestamp annotations with types (highlight, chapter, quote, clip-start, clip-end)</li>
+<li>Rates each clip with viral score (1-10)</li>
+<li>Saves to <code>data/video-annotations.json</code></li>
+<li>Queues clips with viral score &gt;= 7 to <code>data/clip-queue.json</code></li>
+</ul>
+<h4><code>/video-publish {title} [url] [source]</code></h4>
+<p>Generates platform-optimized metadata:</p>
+<ul>
+<li>YouTube (title, description, tags, chapters)</li>
+<li>TikTok (hook-first title, hashtags, duration target)</li>
+<li>Instagram Reels (caption structure, 15-20 hashtags by reach tier)</li>
+<li>X/Twitter (standalone tweet, link tweet, optional thread)</li>
+<li>7-day cross-promotion schedule</li>
+<li>Saves to <code>data/video-publish/</code></li>
+</ul>
+<h2>Data Sources</h2>
+<h3>Primary Data</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data/video-vault-100.json</code></td>
+<td>Curated video library (100+ entries with ID, title, channel, topic, tags)</td>
+</tr>
+<tr>
+<td><code>data/video-watchlists.json</code></td>
+<td>Category-organized watchlists for topic alignment</td>
+</tr>
+<tr>
+<td><code>data/video-library.json</code></td>
+<td>Extended video library</td>
+</tr>
+<tr>
+<td><code>data/video-staging.json</code></td>
+<td>Videos pending review</td>
+</tr>
+</tbody></table>
+<h3>Generated Data</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data/video-annotations.json</code></td>
+<td>Timestamp annotations and clip candidates per video</td>
+</tr>
+<tr>
+<td><code>data/clip-queue.json</code></td>
+<td>High-scoring clips queued for extraction (viral score &gt;= 7)</td>
+</tr>
+<tr>
+<td><code>data/video-productions/</code></td>
+<td>Production packages from <code>/video-produce</code></td>
+</tr>
+<tr>
+<td><code>data/video-publish/</code></td>
+<td>Platform metadata packages from <code>/video-publish</code></td>
+</tr>
+</tbody></table>
+<h3>Strategy &amp; Voice</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docs/strategy/CONTENT_VOICE_DNA.md</code></td>
+<td>Voice rules — no emojis, no guru, lead with results</td>
+</tr>
+<tr>
+<td><code>docs/strategy/IMAGE_STYLE_DNA.md</code></td>
+<td>Thumbnail style — dark premium glass, 3+ accents</td>
+</tr>
+<tr>
+<td><code>docs/strategy/ACOS_V11_VIDEO_STRATEGY.md</code></td>
+<td>Full video intelligence strategy and rollout plan</td>
+</tr>
+<tr>
+<td><code>docs/strategy/VIDEO_PIPELINE.md</code></td>
+<td>Original pipeline architecture (Discovery -&gt; Staging -&gt; Integration -&gt; Multiplier)</td>
+</tr>
+</tbody></table>
+<h2>MCP Integrations</h2>
+<table>
+<thead>
+<tr>
+<th>MCP Server</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>nano-banana</td>
+<td>Thumbnail generation from prompts (Gemini 2.5 Flash Image)</td>
+</tr>
+<tr>
+<td>Slack</td>
+<td>Send production packages to #content (C09CCMAQXB7) for review</td>
+</tr>
+<tr>
+<td>Resend</td>
+<td>Newsletter integration for video announcements</td>
+</tr>
+<tr>
+<td>Zapier</td>
+<td>Cross-platform distribution (X/Twitter, LinkedIn — setup pending)</td>
+</tr>
+</tbody></table>
+<h2>Quality Rules</h2>
+<h3>Voice (CRITICAL)</h3>
+<ol>
+<li>READ <code>docs/strategy/CONTENT_VOICE_DNA.md</code> before generating ANY content</li>
+<li>No emojis — ever, on any platform</li>
+<li>No &quot;smash that like button&quot;, &quot;hey guys&quot;, &quot;game-changer&quot;, &quot;unlock&quot;</li>
+<li>Lead with results, specific numbers, real architecture</li>
+<li>Fragment-declaration rhythm: short punches alternating with depth</li>
+<li>12,000+ songs (NOT 500) when referencing Frank&#39;s catalog</li>
+</ol>
+<h3>Thumbnails (CRITICAL)</h3>
+<ol>
+<li>READ <code>docs/strategy/IMAGE_STYLE_DNA.md</code> before generating ANY thumbnail prompt</li>
+<li>Default to Dark Premium Glass style (70% of all thumbnails)</li>
+<li>NEVER generic brain imagery, single-color saturation, flat clipart</li>
+<li>ALWAYS 3+ accent colors (#AB47C7, #43BFE3, #F59E0B), 3+ depth layers</li>
+<li>Text overlay: 2-4 words maximum, readable at mobile size</li>
+</ol>
+<h3>Clips</h3>
+<ol>
+<li>Viral score must be justified with a specific reason</li>
+<li>Clips must work as standalones — no &quot;as I mentioned earlier&quot; dependency</li>
+<li>Each clip gets a hook rewrite for short-form context</li>
+<li>Duration: 15-60s for shorts, 60-180s for extended reels</li>
+</ol>
+<h3>Platform Metadata</h3>
+<ol>
+<li>Validate all character counts against platform limits</li>
+<li>Front-load keywords in YouTube titles and descriptions</li>
+<li>TikTok/Reels hashtags: mix trending (mega), mid-range, and niche</li>
+<li>X/Twitter: no hashtags in tweets, one link max per tweet</li>
+</ol>
+<h2>Status Lifecycle</h2>
+<h3>Production Package</h3>
+<p><code>draft</code> -&gt; <code>recording</code> -&gt; <code>editing</code> -&gt; <code>published</code></p>
+<h3>Clip Queue</h3>
+<p><code>queued</code> -&gt; <code>extracted</code> -&gt; <code>reviewed</code> -&gt; <code>published</code></p>
+<h3>Publish Package</h3>
+<p><code>draft</code> -&gt; <code>scheduled</code> -&gt; <code>published</code></p>
+<h2>ICP Alignment</h2>
+<table>
+<thead>
+<tr>
+<th>Audience</th>
+<th>Video Types</th>
+<th>Platforms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI Engineers</td>
+<td>Tutorials, deep-dives, architecture walkthroughs</td>
+<td>YouTube, X/Twitter</td>
+</tr>
+<tr>
+<td>Creators</td>
+<td>Showcases, tool breakdowns, workflow demos</td>
+<td>YouTube, TikTok, Instagram</td>
+</tr>
+<tr>
+<td>Investors</td>
+<td>Market analysis, trend reports, ROI breakdowns</td>
+<td>YouTube, LinkedIn</td>
+</tr>
+<tr>
+<td>Students</td>
+<td>Fundamentals, step-by-step tutorials</td>
+<td>YouTube, TikTok</td>
+</tr>
+</tbody></table>
+<h2>Future Roadmap</h2>
+<p>See <code>docs/strategy/ACOS_V11_VIDEO_STRATEGY.md</code> for the 4-phase rollout:</p>
+<ol>
+<li>Phase 1 (Now): Commands + Skill — <code>/video-produce</code>, <code>/video-clip</code>, <code>/video-publish</code></li>
+<li>Phase 2 (Q2): YouTube Data API v3 — trending feed, analytics dashboard</li>
+<li>Phase 3 (Q3): OpusClip workflow — auto-clip pipeline, viral score optimization</li>
+<li>Phase 4 (Q4): DaVinci MCP — full editing automation</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

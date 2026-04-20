@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>hook post-edit</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/cli/simple-commands/init/templates/commands/hooks/post-edit.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">hook post-edit</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli">cli</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli%2Fsimple-commands">simple-commands</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli%2Fsimple-commands%2Finit">init</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli%2Fsimple-commands%2Finit%2Ftemplates">templates</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli%2Fsimple-commands%2Finit%2Ftemplates%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli%2Fsimple-commands%2Finit%2Ftemplates%2Fcommands%2Fhooks">hooks</a> / <span>post-edit.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>hook post-edit</h1>
+<p>Execute post-edit processing including formatting, validation, and memory updates.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">npx claude-flow hook post-edit [options]
+</code></pre>
+<h2>Options</h2>
+<ul>
+<li><code>--file, -f &lt;path&gt;</code> - File path that was edited</li>
+<li><code>--auto-format</code> - Automatically format code (default: true)</li>
+<li><code>--memory-key, -m &lt;key&gt;</code> - Store edit context in memory</li>
+<li><code>--train-patterns</code> - Train neural patterns from edit</li>
+<li><code>--validate-output</code> - Validate edited file</li>
+</ul>
+<h2>Examples</h2>
+<h3>Basic post-edit hook</h3>
+<pre><code class="language-bash">npx claude-flow hook post-edit --file &quot;src/components/Button.jsx&quot;
+</code></pre>
+<h3>With memory storage</h3>
+<pre><code class="language-bash">npx claude-flow hook post-edit -f &quot;api/auth.js&quot; --memory-key &quot;auth/login-implementation&quot;
+</code></pre>
+<h3>Format and validate</h3>
+<pre><code class="language-bash">npx claude-flow hook post-edit -f &quot;config/webpack.js&quot; --auto-format --validate-output
+</code></pre>
+<h3>Neural training</h3>
+<pre><code class="language-bash">npx claude-flow hook post-edit -f &quot;utils/helpers.ts&quot; --train-patterns --memory-key &quot;utils/refactor&quot;
+</code></pre>
+<h2>Features</h2>
+<h3>Auto Formatting</h3>
+<ul>
+<li>Language-specific formatters</li>
+<li>Prettier for JS/TS/JSON</li>
+<li>Black for Python</li>
+<li>gofmt for Go</li>
+<li>Maintains consistency</li>
+</ul>
+<h3>Memory Storage</h3>
+<ul>
+<li>Saves edit context</li>
+<li>Records decisions made</li>
+<li>Tracks implementation details</li>
+<li>Enables knowledge sharing</li>
+</ul>
+<h3>Pattern Training</h3>
+<ul>
+<li>Learns from successful edits</li>
+<li>Improves future suggestions</li>
+<li>Adapts to coding style</li>
+<li>Enhances coordination</li>
+</ul>
+<h3>Output Validation</h3>
+<ul>
+<li>Checks syntax correctness</li>
+<li>Runs linting rules</li>
+<li>Validates formatting</li>
+<li>Ensures quality</li>
+</ul>
+<h2>Integration</h2>
+<p>This hook is automatically called by Claude Code when:</p>
+<ul>
+<li>After Edit tool completes</li>
+<li>Following MultiEdit operations</li>
+<li>During file saves</li>
+<li>After code generation</li>
+</ul>
+<p>Manual usage in agents:</p>
+<pre><code class="language-bash"># After editing files
+npx claude-flow hook post-edit --file &quot;path/to/edited.js&quot; --memory-key &quot;feature/step1&quot;
+</code></pre>
+<h2>Output</h2>
+<p>Returns JSON with:</p>
+<pre><code class="language-json">{
+  &quot;file&quot;: &quot;src/components/Button.jsx&quot;,
+  &quot;formatted&quot;: true,
+  &quot;formatterUsed&quot;: &quot;prettier&quot;,
+  &quot;lintPassed&quot;: true,
+  &quot;memorySaved&quot;: &quot;component/button-refactor&quot;,
+  &quot;patternsTrained&quot;: 3,
+  &quot;warnings&quot;: [],
+  &quot;stats&quot;: {
+    &quot;linesChanged&quot;: 45,
+    &quot;charactersAdded&quot;: 234
+  }
+}
+</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><code>hook pre-edit</code> - Pre-edit preparation</li>
+<li><code>Edit</code> - File editing tool</li>
+<li><code>memory usage</code> - Memory management</li>
+<li><code>neural train</code> - Pattern training</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Quality Standards &amp; Brand Values Application</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="QUALITY_STANDARDS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Quality Standards &amp; Brand Values Application</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>QUALITY_STANDARDS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Quality Standards &amp; Brand Values Application</h1>
+<p><strong>Document Purpose</strong>: Define quality standards and brand value application for all FrankX development
+<strong>Authority</strong>: This document is a companion to <code>BRAND_IDENTITY.md</code> - the immutable ground truth
+<strong>Last Updated</strong>: 2026-01-13
+<strong>Maintained By</strong>: Arcanea (Master Creative Intelligence)</p>
+<hr>
+<h2>🎯 FRANKX CORE VALUES (From Vision-Mission)</h2>
+<p>These values MUST inform every code decision, test, and deployment:</p>
+<h3>1. Soul Alignment</h3>
+<blockquote>
+<p>Technology serves consciousness, not vice versa</p>
+</blockquote>
+<p><strong>Application in Code</strong>:</p>
+<ul>
+<li>Interfaces respond to human intention naturally</li>
+<li>Motion design feels organic, not mechanical  </li>
+<li>Accessibility is foundational, not optional</li>
+<li>No friction between user intent and system response</li>
+</ul>
+<p><strong>Quality Standards</strong>:</p>
+<ul>
+<li>WCAG 2.2 AA compliance (target: AAA)</li>
+<li>Response latency &lt; 100ms for user interactions</li>
+<li>Motion respects <code>prefers-reduced-motion</code></li>
+<li>Intuitive navigation requiring no cognitive load</li>
+</ul>
+<h3>2. Beautiful Simplicity</h3>
+<blockquote>
+<p>Elegance in design and function</p>
+</blockquote>
+<p><strong>Application in Code</strong>:</p>
+<ul>
+<li>Clean, readable TypeScript with strong typing</li>
+<li>Self-documenting APIs with minimal comments needed</li>
+<li>Composable components with single responsibilities</li>
+<li>Complexity abstracted behind simple interfaces</li>
+</ul>
+<p><strong>Quality Standards</strong>:</p>
+<ul>
+<li>TypeScript strict mode enabled ✅</li>
+<li>ESLint with flat config v9 enabled ✅</li>
+<li>Component props documented in TypeScript interfaces</li>
+<li>Code coverage target: 70% unit, 50% integration</li>
+</ul>
+<h3>3. Generative Abundance</h3>
+<blockquote>
+<p>Sharing knowledge multiplies impact</p>
+</blockquote>
+<p><strong>Application in Code</strong>:</p>
+<ul>
+<li>Tests serve as documentation for behavior</li>
+<li>Clear examples showing how to use features</li>
+<li>Knowledge sharing through code structure</li>
+<li>Scalable architecture supporting growth</li>
+</ul>
+<p><strong>Quality Standards</strong>:</p>
+<ul>
+<li>Every public function has typed parameters and return values</li>
+<li>README files explain &quot;why&quot; not just &quot;what&quot;</li>
+<li>Integration examples for all major features</li>
+<li>Performance tests validate scalability</li>
+</ul>
+<h3>4. Transformative Impact</h3>
+<blockquote>
+<p>Tools that change lives, not just complete tasks</p>
+</blockquote>
+<p><strong>Application in Code</strong>:</p>
+<ul>
+<li>UX that creates confidence, not confusion</li>
+<li>Onboarding that delivers immediate value</li>
+<li>Error messages that educate, not frustrate</li>
+<li>Success states that celebrate progress</li>
+</ul>
+<p><strong>Quality Standards</strong>:</p>
+<ul>
+<li>User journey tests verify transformation flow</li>
+<li>Error handling provides actionable guidance</li>
+<li>Loading states maintain engagement</li>
+<li>First-time user value delivered &lt; 30 seconds</li>
+</ul>
+<h3>5. Authentic Connection</h3>
+<blockquote>
+<p>Real relationships over transactions</p>
+</blockquote>
+<p><strong>Application in Code</strong>:</p>
+<ul>
+<li>Social links point to real profiles (not generic handles)</li>
+<li>Contact paths are direct, not gatekept</li>
+<li>Community features foster genuine connection</li>
+<li>Privacy respected, data minimized</li>
+</ul>
+<p><strong>Quality Standards</strong>:</p>
+<ul>
+<li>Social links verified against <code>BRAND_IDENTITY.md</code> ground truth</li>
+<li>Contact forms have human response SLA</li>
+<li>No dark patterns or manipulative UX</li>
+<li>Analytics opt-in only, data retention minimized</li>
+</ul>
+<hr>
+<h2>📋 QUALITY STANDARDS BY DOMAIN</h2>
+<h3>Code Quality</h3>
+<table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Target</th>
+<th>Current</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TypeScript Errors</td>
+<td>0</td>
+<td>0</td>
+<td>✅ PASS</td>
+</tr>
+<tr>
+<td>ESLint Warnings</td>
+<td>&lt; 100</td>
+<td>TBD</td>
+<td>🔄 Testing</td>
+</tr>
+<tr>
+<td>Unit Test Coverage</td>
+<td>70%</td>
+<td>0%</td>
+<td>🚀 Just Added</td>
+</tr>
+<tr>
+<td>Integration Test Coverage</td>
+<td>50%</td>
+<td>0%</td>
+<td>🚀 Just Added</td>
+</tr>
+<tr>
+<td>E2E Test Coverage</td>
+<td>30%</td>
+<td>0%</td>
+<td>🚀 Just Added</td>
+</tr>
+</tbody></table>
+<h3>Accessibility (WCAG 2.2)</h3>
+<table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Color Contrast</td>
+<td>7:1 (AAA)</td>
+<td>To Verify</td>
+</tr>
+<tr>
+<td>Keyboard Navigation</td>
+<td>Full</td>
+<td>To Verify</td>
+</tr>
+<tr>
+<td>Screen Reader</td>
+<td>Compatible</td>
+<td>To Verify</td>
+</tr>
+<tr>
+<td>Reduced Motion</td>
+<td>Respected</td>
+<td>✅ In Components</td>
+</tr>
+</tbody></table>
+<h3>Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LCP</td>
+<td>&lt; 2.5s</td>
+<td>To Verify</td>
+</tr>
+<tr>
+<td>FID</td>
+<td>&lt; 100ms</td>
+<td>To Verify</td>
+</tr>
+<tr>
+<td>CLS</td>
+<td>&lt; 0.1</td>
+<td>To Verify</td>
+</tr>
+<tr>
+<td>Bundle Size</td>
+<td>&lt; 200KB</td>
+<td>To Verify</td>
+</tr>
+</tbody></table>
+<h3>Content Quality</h3>
+<table>
+<thead>
+<tr>
+<th>Standard</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Blog SEO Keywords</td>
+<td>100%</td>
+<td>41% ❌</td>
+</tr>
+<tr>
+<td>Internal Links</td>
+<td>3+ per article</td>
+<td>&lt; 3 ❌</td>
+</tr>
+<tr>
+<td>Frontmatter Complete</td>
+<td>100%</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td>Reading Time Accurate</td>
+<td>±5min</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🧪 TESTING FRAMEWORK</h2>
+<h3>Installed Stack</h3>
+<pre><code class="language-bash"># Unit &amp; Integration Testing
+npm install --save-dev vitest @testing-library/react @testing-library/jest-dom
+
+# E2E Testing  
+npm install --save-dev @playwright/test
+</code></pre>
+<h3>Test Files Structure</h3>
+<pre><code>tests/
+├── unit/
+│   ├── brand-values.test.tsx    # Brand value verification
+│   ├── components/              # Component unit tests
+│   └── lib/                     # Utility function tests
+├── integration/
+│   ├── flows/                   # User journey tests
+│   └── features/                # Feature integration tests
+└── e2e/
+    ├── critical-paths/          # Core user flows
+    └── accessibility/           # A11y E2E tests
+</code></pre>
+<h3>Running Tests</h3>
+<pre><code class="language-bash"># Run all tests
+npm test
+
+# Run unit tests only
+npm run test:unit
+
+# Run with coverage
+npm run test:coverage
+
+# Run E2E tests
+npm run test:e2e
+
+# Run brand values verification
+npm run test:brand
+</code></pre>
+<hr>
+<h2>🔒 BRAND IDENTITY ENFORCEMENT</h2>
+<h3>Social Links - Ground Truth Verification</h3>
+<p>All social links MUST match <code>BRAND_IDENTITY.md</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Correct</th>
+<th>Incorrect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>X/Twitter</td>
+<td><code>https://x.com/frankxeth</code></td>
+<td><code>x.com/frankxai</code>, <code>twitter.com/frankxai</code></td>
+</tr>
+<tr>
+<td>LinkedIn</td>
+<td><code>https://linkedin.com/in/frank-x-riemer/</code></td>
+<td><code>linkedin.com/in/frankxai</code></td>
+</tr>
+<tr>
+<td>Instagram</td>
+<td><code>https://www.instagram.com/frank_riemer/</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Suno</td>
+<td><code>https://suno.com/@frankx</code></td>
+<td><code>suno.com/@frankxai</code></td>
+</tr>
+<tr>
+<td>Email</td>
+<td><code>hello@frankx.ai</code></td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3>Automated Verification</h3>
+<p>Create a test that scans for social link violations:</p>
+<pre><code class="language-typescript">// tests/unit/brand-links.test.ts
+describe(&#39;Brand Identity Links&#39;, () =&gt; {
+  it(&#39;all social links match BRAND_IDENTITY.md&#39;, () =&gt; {
+    // Scan components for social link patterns
+    // Compare against ground truth
+    // FAIL CI if mismatches found
+  });
+});
+</code></pre>
+<hr>
+<h2>📦 TESTING BRAND VALUES IN PRACTICE</h2>
+<h3>Example: Soul Alignment Test</h3>
+<pre><code class="language-typescript">describe(&#39;Soul Alignment&#39;, () =&gt; {
+  it(&#39;GlassmorphicCard responds naturally to user intention&#39;, () =&gt; {
+    // Verify technology serves consciousness
+    // Not: user has to learn system behavior
+    // But: system responds to natural interaction
+  });
+});
+</code></pre>
+<h3>Example: Authentic Connection Test</h3>
+<pre><code class="language-typescript">describe(&#39;Authentic Connection&#39;, () =&gt; {
+  it(&#39;Footer social links point to real profiles&#39;, () =&gt; {
+    // Verify links match BRAND_IDENTITY.md
+    // Not: generic handles
+    // But: frank-x-riemer, frank_riemer, @frankx
+  });
+});
+</code></pre>
+<h3>Example: Beautiful Simplicity Test</h3>
+<pre><code class="language-typescript">describe(&#39;Beautiful Simplicity&#39;, () =&gt; {
+  it(&#39;API has self-documenting TypeScript interfaces&#39;, () =&gt; {
+    // Verify type safety
+    // Not: any types
+    // But: precise interfaces with JSDoc
+  });
+});
+</code></pre>
+<hr>
+<h2>🚀 QUALITY GATES</h2>
+<h3>Pre-Commit Hooks</h3>
+<pre><code class="language-json">// package.json scripts
+{
+  &quot;precommit&quot;: &quot;npm run lint &amp;&amp; npm run type-check &amp;&amp; npm run test:unit -- --run&quot;
+}
+</code></pre>
+<h3>CI/CD Pipeline</h3>
+<ol>
+<li><strong>Type Check</strong>: <code>npm run type-check</code> (must pass)</li>
+<li><strong>Lint</strong>: <code>npm run lint</code> (warnings allowed, no errors)</li>
+<li><strong>Unit Tests</strong>: <code>npm run test:unit</code> (must pass)</li>
+<li><strong>Integration Tests</strong>: <code>npm run test:integration</code> (must pass)</li>
+<li><strong>Build</strong>: <code>npm run build</code> (must succeed)</li>
+</ol>
+<h3>Deployment Gates</h3>
+<ul>
+<li>✅ All tests passing</li>
+<li>✅ TypeScript clean</li>
+<li>✅ ESLint clean</li>
+<li>✅ Accessibility audit (Lighthouse 100)</li>
+<li>✅ Performance budget met</li>
+</ul>
+<hr>
+<h2>📚 DOCUMENTATION STANDARDS</h2>
+<h3>Code Documentation</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Required</th>
+<th>Template</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Component</td>
+<td>✅</td>
+<td>JSDoc with props interface</td>
+</tr>
+<tr>
+<td>Hook</td>
+<td>✅</td>
+<td>JSDoc with params, return, example</td>
+</tr>
+<tr>
+<td>Utility Function</td>
+<td>✅</td>
+<td>JSDoc with params, return, throws</td>
+</tr>
+<tr>
+<td>API Route</td>
+<td>✅</td>
+<td>JSDoc with request/response types</td>
+</tr>
+</tbody></table>
+<h3>README Requirements</h3>
+<p>Every major feature must have:</p>
+<ol>
+<li><strong>Purpose</strong> - What problem does it solve?</li>
+<li><strong>Usage</strong> - How do I use it?</li>
+<li><strong>Example</strong> - Working code example</li>
+<li><strong>Related</strong> - Links to related features</li>
+</ol>
+<hr>
+<h2>🎵 STUDIO ENERGY TESTING</h2>
+<p>FrankX has a &quot;studio energy&quot; - warm, intimate, late-night creative sessions.</p>
+<h3>Testing Studio Energy</h3>
+<pre><code class="language-typescript">describe(&#39;Studio Energy&#39;, () =&gt; {
+  it(&#39;Content feels warm and inviting, not corporate&#39;, () =&gt; {
+    // Verify tone in error messages
+    // Verify onboarding language
+    // Verify microcopy style
+  });
+  
+  it(&#39;Motion design feels organic, not mechanical&#39;, () =&gt; {
+    // Verify easing curves
+    // Verify duration values
+    // Verify reduced-motion support
+  });
+});
+</code></pre>
+<hr>
+<h2>📈 CONTINUOUS IMPROVEMENT</h2>
+<h3>Quality Metrics Dashboard</h3>
+<p>Track over time:</p>
+<ul>
+<li>Test coverage trend</li>
+<li>Bug reports by category</li>
+<li>Accessibility scores</li>
+<li>Performance metrics</li>
+<li>Brand compliance score</li>
+</ul>
+<h3>Quarterly Reviews</h3>
+<ol>
+<li>Review quality metrics trends</li>
+<li>Update quality targets</li>
+<li>Add new test categories</li>
+<li>Refine brand value tests</li>
+<li>Update documentation</li>
+</ol>
+<hr>
+<h2>🔗 RELATED DOCUMENTS</h2>
+<ul>
+<li><code>BRAND_IDENTITY.md</code> - Ground truth for brand elements</li>
+<li><code>docs/brand-foundation/VISION-MISSION.md</code> - Core values source</li>
+<li><code>CLAUDE.md</code> - Agent brand application guidelines</li>
+<li><code>CLAUDE_NEW.md</code> - Updated agent protocols</li>
+<li><code>FRANKX_STRATEGIC_PRIORITIES.md</code> - Strategic direction</li>
+</ul>
+<hr>
+<h2>✅ QUALITY CHECKLIST</h2>
+<p>Before any deployment, verify:</p>
+<ul>
+<li><input disabled="" type="checkbox"> TypeScript passes with 0 errors</li>
+<li><input disabled="" type="checkbox"> ESLint passes with &lt; 100 warnings  </li>
+<li><input disabled="" type="checkbox"> Unit tests pass (70% coverage target)</li>
+<li><input disabled="" type="checkbox"> Integration tests pass</li>
+<li><input disabled="" type="checkbox"> E2E critical paths pass</li>
+<li><input disabled="" type="checkbox"> Social links match BRAND_IDENTITY.md</li>
+<li><input disabled="" type="checkbox"> WCAG 2.2 AA compliance verified</li>
+<li><input disabled="" type="checkbox"> Performance budgets met</li>
+<li><input disabled="" type="checkbox"> Bundle size under limit</li>
+<li><input disabled="" type="checkbox"> Documentation updated</li>
+<li><input disabled="" type="checkbox"> Changelog updated</li>
+<li><input disabled="" type="checkbox"> Brand value tests pass</li>
+</ul>
+<hr>
+<p><strong>Quality is not a destination. It&#39;s a continuous practice aligned with our values.</strong></p>
+<p><em>&quot;Technology that amplifies your voice, not replaces it.&quot;</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Liquid Glass Component Library</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="components/liquid-glass/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Liquid Glass Component Library</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#components">components</a> / <a href="index.html#components%2Fliquid-glass">liquid-glass</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Liquid Glass Component Library</h1>
+<p>Premium UI components based on sophisticated material design principles.</p>
+<h2>📚 Documentation</h2>
+<ul>
+<li><strong><a href="../../docs/design/LIQUID_GLASS_SYSTEM.md">Design System Spec</a></strong> — Complete visual language, color systems, shadow rules</li>
+<li><strong><a href="../../docs/design/ARCANEA_VISUAL_LANGUAGE.md">Arcanea Visual Language</a></strong> — Element theming, iridescence, sacred geometry</li>
+</ul>
+<h2>🎨 Components</h2>
+<h3>LiquidButton</h3>
+<p>Liquid metal button with 3D gradient surface.</p>
+<pre><code class="language-tsx">import { LiquidButton } from &#39;@/components/liquid-glass&#39;;
+
+&lt;LiquidButton element=&quot;fire&quot; size=&quot;lg&quot; onClick={handleClick}&gt;
+  Launch Mission
+&lt;/LiquidButton&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>element</code>: &#39;fire&#39; | &#39;water&#39; | &#39;earth&#39; | &#39;wind&#39; | &#39;arcane&#39; | &#39;default&#39;</li>
+<li><code>size</code>: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;</li>
+<li><code>isLoading</code>: boolean</li>
+<li><code>fullWidth</code>: boolean</li>
+</ul>
+<h3>GlassCard</h3>
+<p>Multi-layer glass panel with depth perception.</p>
+<pre><code class="language-tsx">import { GlassCard } from &#39;@/components/liquid-glass&#39;;
+
+&lt;GlassCard
+  material=&quot;crystal&quot;
+  elevation=&quot;high&quot;
+  element=&quot;arcane&quot;
+  hoverable
+&gt;
+  &lt;h3&gt;Premium Content&lt;/h3&gt;
+  &lt;p&gt;With sophisticated glass depth.&lt;/p&gt;
+&lt;/GlassCard&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>material</code>: &#39;frosted&#39; | &#39;crystal&#39; | &#39;liquid&#39; | &#39;obsidian&#39;</li>
+<li><code>elevation</code>: &#39;flat&#39; | &#39;low&#39; | &#39;medium&#39; | &#39;high&#39; | &#39;floating&#39; | &#39;modal&#39;</li>
+<li><code>element</code>: ElementType | null</li>
+<li><code>hoverable</code>: boolean</li>
+<li><code>padding</code>: &#39;none&#39; | &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39; | &#39;xl&#39;</li>
+</ul>
+<h3>IridescentPill</h3>
+<p>Selection pill with bubble iridescence.</p>
+<pre><code class="language-tsx">import { IridescentPill } from &#39;@/components/liquid-glass&#39;;
+
+&lt;IridescentPill
+  element=&quot;water&quot;
+  selected={selectedElement === &#39;water&#39;}
+  onClick={() =&gt; setSelectedElement(&#39;water&#39;)}
+&gt;
+  Water
+&lt;/IridescentPill&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>element</code>: ElementType</li>
+<li><code>selected</code>: boolean</li>
+<li><code>size</code>: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;</li>
+<li><code>icon</code>: ReactNode</li>
+</ul>
+<h3>LoadingBubble</h3>
+<p>Breathing bubble loader with rotating shimmer.</p>
+<pre><code class="language-tsx">import { LoadingBubble } from &#39;@/components/liquid-glass&#39;;
+
+&lt;LoadingBubble
+  element=&quot;arcane&quot;
+  size=&quot;lg&quot;
+  label=&quot;Loading magic...&quot;
+/&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>element</code>: ElementType</li>
+<li><code>size</code>: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39; | &#39;xl&#39;</li>
+<li><code>label</code>: string</li>
+</ul>
+<h3>FloatingElement</h3>
+<p>3D perspective container for dimensional depth.</p>
+<pre><code class="language-tsx">import { FloatingElement } from &#39;@/components/liquid-glass&#39;;
+
+&lt;FloatingElement rotateX={2} rotateY={-2} animate&gt;
+  &lt;img src=&quot;/hero.png&quot; alt=&quot;Product&quot; /&gt;
+&lt;/FloatingElement&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>rotateX</code>, <code>rotateY</code>, <code>rotateZ</code>: number (degrees)</li>
+<li><code>animate</code>: boolean</li>
+<li><code>duration</code>: number (seconds)</li>
+<li><code>floatDistance</code>: number (pixels)</li>
+</ul>
+<h3>GlassInput</h3>
+<p>Input field with iridescent focus ring.</p>
+<pre><code class="language-tsx">import { GlassInput } from &#39;@/components/liquid-glass&#39;;
+
+&lt;GlassInput
+  label=&quot;Email&quot;
+  element=&quot;arcane&quot;
+  placeholder=&quot;you@example.com&quot;
+  type=&quot;email&quot;
+  error={!!errors.email}
+  errorMessage={errors.email}
+/&gt;
+</code></pre>
+<p><strong>Props:</strong></p>
+<ul>
+<li><code>element</code>: ElementType</li>
+<li><code>size</code>: &#39;sm&#39; | &#39;md&#39; | &#39;lg&#39;</li>
+<li><code>error</code>: boolean</li>
+<li><code>errorMessage</code>: string</li>
+<li><code>icon</code>: ReactNode</li>
+</ul>
+<h2>🎭 Element Themes</h2>
+<p>All components support 5 element themes + default:</p>
+<ul>
+<li><strong>fire</strong> — Ember glow, copper accents, warm shimmer</li>
+<li><strong>water</strong> — Ocean iridescence, silver-blue, flowing</li>
+<li><strong>earth</strong> — Mineral crystalline, bronze, stable</li>
+<li><strong>wind</strong> — Pearl white, chrome silver, ethereal</li>
+<li><strong>arcane</strong> — Void purple, cosmic shimmer, mystical</li>
+</ul>
+<h2>🚀 Usage Patterns</h2>
+<h3>Element Selection Interface</h3>
+<pre><code class="language-tsx">const elements = [&#39;fire&#39;, &#39;water&#39;, &#39;earth&#39;, &#39;wind&#39;, &#39;arcane&#39;] as const;
+
+&lt;div className=&quot;flex gap-2&quot;&gt;
+  {elements.map(el =&gt; (
+    &lt;IridescentPill
+      key={el}
+      element={el}
+      selected={selected === el}
+      onClick={() =&gt; setSelected(el)}
+    &gt;
+      {el.charAt(0).toUpperCase() + el.slice(1)}
+    &lt;/IridescentPill&gt;
+  ))}
+&lt;/div&gt;
+</code></pre>
+<h3>Loading State</h3>
+<pre><code class="language-tsx">{isLoading ? (
+  &lt;LoadingBubble element=&quot;arcane&quot; label=&quot;Processing...&quot; /&gt;
+) : (
+  &lt;GlassCard element=&quot;arcane&quot;&gt;
+    {/* Content */}
+  &lt;/GlassCard&gt;
+)}
+</code></pre>
+<h3>Form with Glass Inputs</h3>
+<pre><code class="language-tsx">&lt;form className=&quot;space-y-4&quot;&gt;
+  &lt;GlassInput
+    label=&quot;Username&quot;
+    element=&quot;wind&quot;
+    placeholder=&quot;Enter username&quot;
+  /&gt;
+  &lt;GlassInput
+    label=&quot;Password&quot;
+    element=&quot;wind&quot;
+    type=&quot;password&quot;
+    placeholder=&quot;Enter password&quot;
+  /&gt;
+  &lt;LiquidButton element=&quot;wind&quot; fullWidth type=&quot;submit&quot;&gt;
+    Sign In
+  &lt;/LiquidButton&gt;
+&lt;/form&gt;
+</code></pre>
+<h2>♿ Accessibility</h2>
+<p>All components include:</p>
+<ul>
+<li>Keyboard navigation support</li>
+<li>ARIA labels and roles</li>
+<li>Focus-visible states</li>
+<li>Screen reader compatibility</li>
+<li>WCAG AA contrast (7:1+ for body text)</li>
+</ul>
+<h2>🎨 Customization</h2>
+<h3>Custom Element Colors</h3>
+<p>Extend the element palette in <code>types.ts</code>:</p>
+<pre><code class="language-typescript">export const ELEMENT_MATERIALS: Record&lt;ElementType, ElementMaterial&gt; = {
+  // ... existing elements
+  lightning: {
+    base: &#39;#0A0E18&#39;,
+    primary: &#39;#60A5FA&#39;,
+    secondary: &#39;#3B82F6&#39;,
+    emission: &#39;#DBEAFE&#39;,
+    metal: &#39;#94A3B8&#39;,
+    glass: &#39;rgba(96,165,250,0.12)&#39;,
+    iridescence: [/* ... */],
+  },
+};
+</code></pre>
+<h3>Custom Glass Materials</h3>
+<p>Add new presets in <code>types.ts</code>:</p>
+<pre><code class="language-typescript">export const GLASS_MATERIALS = {
+  // ... existing materials
+  diamond: {
+    opacity: &#39;rgba(255,255,255,0.10)&#39;,
+    blur: &#39;80px&#39;,
+    border: &#39;rgba(255,255,255,0.20)&#39;,
+    description: &#39;Ultra-premium clarity&#39;,
+  },
+};
+</code></pre>
+<h2>📏 Design Tokens</h2>
+<p>All components use centralized design tokens:</p>
+<ul>
+<li><strong>Colors</strong>: Element materials, glass materials</li>
+<li><strong>Shadows</strong>: 3-layer elevation system</li>
+<li><strong>Easing</strong>: Physics-based motion curves</li>
+<li><strong>Duration</strong>: Consistent timing scale</li>
+</ul>
+<p>See <code>types.ts</code> for complete token definitions.</p>
+<h2>🔧 Dependencies</h2>
+<ul>
+<li><code>react</code> ^18.0.0</li>
+<li><code>framer-motion</code> ^11.0.0</li>
+<li><code>tailwindcss</code> ^3.4.0</li>
+</ul>
+<h2>📦 Future Components</h2>
+<p>Planned additions:</p>
+<ul>
+<li><code>GlassModal</code> — Full-screen overlay with blur</li>
+<li><code>IridescentCard</code> — Card with rotating border shimmer</li>
+<li><code>ElementSwitcher</code> — Animated element transition</li>
+<li><code>SacredPattern</code> — Geometric background patterns</li>
+<li><code>LuminorAvatar</code> — 3D character preview</li>
+</ul>
+<hr>
+<p><em>Light inhabits form. Form becomes vessel. Vessel holds power.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

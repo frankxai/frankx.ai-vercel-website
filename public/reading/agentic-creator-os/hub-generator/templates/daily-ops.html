@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Daily Creator Operations Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/hub-generator/templates/daily-ops.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Daily Creator Operations Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2Fhub-generator">hub-generator</a> / <a href="index.html#agentic-creator-os%2Fhub-generator%2Ftemplates">templates</a> / <span>daily-ops.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Daily Creator Operations Template</h1>
+<p>Template for <code>.creator-hub/workflows/daily-ops.md</code> — personalized daily workflow.</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown"># Daily Creator Operations
+
+## Morning Ritual (15 min)
+
+### 1. Load Context
+```bash
+cat .creator-hub/STATE.md
+</code></pre>
+<p><strong>Check:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Where did I stop last session?</li>
+<li><input disabled="" type="checkbox"> What&#39;s blocking me?</li>
+<li><input disabled="" type="checkbox"> What&#39;s today&#39;s focus?</li>
+</ul>
+<h3>2. Review Calendar</h3>
+<ul>
+<li>What content is due today?</li>
+<li>Any deadlines approaching?</li>
+<li>Scheduled publishing times?</li>
+</ul>
+<h3>3. Clear the Deck</h3>
+<ul>
+<li>Process pending ideas (keep/archive/trash)</li>
+<li>Review blockers (resolved?)</li>
+<li>Update STATE.md if needed</li>
+</ul>
+<hr>
+<h2>Creation Block ([TIME] - Focus Time)</h2>
+<p>Based on your primary workflow: <strong>[PRIMARY_WORKFLOW]</strong></p>
+<h3>Today&#39;s Creation Priority</h3>
+<p><strong>Main Task</strong>: [From STATE.md Today&#39;s Focus]</p>
+<p><strong>Creation Mode:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Research phase → Gather sources</li>
+<li><input disabled="" type="checkbox"> Draft phase → Write/create</li>
+<li><input disabled="" type="checkbox"> Edit phase → Refine</li>
+<li><input disabled="" type="checkbox"> Publish phase → Ship it</li>
+</ul>
+<h3>Quality Check Before Moving On</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Does this meet my standards?</li>
+<li><input disabled="" type="checkbox"> Is it on-brand (check HUB.md constraints)?</li>
+<li><input disabled="" type="checkbox"> Would I be proud to share this?</li>
+</ul>
+<hr>
+<h2>Distribution Block (30 min)</h2>
+<h3>1. Publish Ready Content</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Main content published to primary platform</li>
+<li><input disabled="" type="checkbox"> Cross-posted where appropriate</li>
+</ul>
+<h3>2. Create Social Versions</h3>
+<p><strong>From today&#39;s main content:</strong></p>
+<ul>
+<li><strong>Twitter/X</strong>: [Key insight in &lt;280 chars]</li>
+<li><strong>LinkedIn</strong>: [Professional angle, 3 paragraphs]</li>
+<li><strong>[Other platforms]</strong>: [Platform-specific version]</li>
+</ul>
+<h3>3. Engage</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Respond to comments on recent posts</li>
+<li><input disabled="" type="checkbox"> Engage with audience questions</li>
+<li><input disabled="" type="checkbox"> Thank shares/mentions</li>
+</ul>
+<hr>
+<h2>Capture Block (10 min)</h2>
+<h3>1. Log Ideas</h3>
+<p>Any ideas captured today? Add to STATE.md:</p>
+<pre><code class="language-markdown">### Pending Ideas
+- [New idea from today]
+</code></pre>
+<h3>2. Update STATE.md</h3>
+<pre><code class="language-markdown">Last activity: [TODAY] — [What you accomplished]
+Progress: [Update progress bar]
+
+## Session Continuity
+Last session: [NOW]
+Stopped at: [What you finished]
+Resume from: [Next action]
+</code></pre>
+<h3>3. Set Tomorrow&#39;s Focus</h3>
+<p>What&#39;s the ONE thing for tomorrow?</p>
+<hr>
+<h2>Weekly Review (Friday, 30 min)</h2>
+<h3>Metrics Check</h3>
+<ul>
+<li>Content pieces published this week: [N]</li>
+<li>Social engagement: [Up/Down/Stable]</li>
+<li>Newsletter growth: [+N subscribers]</li>
+<li>Revenue: [$N]</li>
+</ul>
+<h3>What Worked</h3>
+<ul>
+<li>[Win 1]</li>
+<li>[Win 2]</li>
+</ul>
+<h3>What Didn&#39;t</h3>
+<ul>
+<li>[Challenge 1]</li>
+<li>[Challenge 2]</li>
+</ul>
+<h3>Next Week&#39;s Focus</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Priority 1</li>
+<li><input disabled="" type="checkbox"> Priority 2</li>
+<li><input disabled="" type="checkbox"> Priority 3</li>
+</ul>
+<h3>Update HUB.md if Needed</h3>
+<ul>
+<li>Any key decisions to log?</li>
+<li>Project status changes?</li>
+<li>New tools/platforms added?</li>
+</ul>
+<hr>
+<h2>Quick Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Check state</td>
+<td><code>cat .creator-hub/STATE.md</code></td>
+</tr>
+<tr>
+<td>Start content</td>
+<td><code>/acos:create [type]</code></td>
+</tr>
+<tr>
+<td>Distribute</td>
+<td><code>/acos:distribute</code></td>
+</tr>
+<tr>
+<td>Review week</td>
+<td><code>/acos:weekly-review</code></td>
+</tr>
+<tr>
+<td>Update state</td>
+<td><code>/acos:update-state</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Context Quality Monitor</h2>
+<p>If Claude seems confused or quality degrades:</p>
+<pre><code>Context Fill Check:
+├── 0-30%: Peak zone ✓
+├── 30-50%: Good, continue
+├── 50-70%: Consider splitting
+└── 70%+: Start fresh session
+</code></pre>
+<p><strong>Signs of context degradation:</strong></p>
+<ul>
+<li>Repeating information unnecessarily</li>
+<li>Missing recent context</li>
+<li>Inconsistent with earlier decisions</li>
+<li>Generic responses</li>
+</ul>
+<p><strong>Fix:</strong> Start a fresh session, read STATE.md first.</p>
+<hr>
+<p><em>Personalized for: [CREATOR_NAME]</em>
+<em>Primary workflow: [PRIMARY_WORKFLOW]</em>
+<em>Generated: [DATE]</em></p>
+<pre><code>
+---
+
+## Customization Rules
+
+When generating daily-ops.md, customize based on:
+
+### By Primary Workflow
+
+**If Blog Writer:**
+```markdown
+## Creation Block (2-3 hours)
+1. Research phase (30 min)
+2. Outline (15 min)
+3. Draft (90 min)
+4. Edit (30 min)
+5. Publish
+</code></pre>
+<p><strong>If Music Producer:</strong></p>
+<pre><code class="language-markdown">## Creation Block (2-3 hours)
+1. Session intention (5 min)
+2. Sound exploration (30 min)
+3. Production (90 min)
+4. Mix review (30 min)
+5. Export/distribute
+</code></pre>
+<p><strong>If Course Creator:</strong></p>
+<pre><code class="language-markdown">## Creation Block (2-3 hours)
+1. Module outline (20 min)
+2. Content creation (60 min)
+3. Exercise design (30 min)
+4. Recording/writing (60 min)
+5. Quality check
+</code></pre>
+<h3>By Content Cadence</h3>
+<p><strong>Daily Publisher:</strong></p>
+<ul>
+<li>Morning: Create</li>
+<li>Afternoon: Distribute</li>
+<li>Evening: Engage</li>
+</ul>
+<p><strong>Weekly Publisher:</strong></p>
+<ul>
+<li>Mon-Wed: Research &amp; draft</li>
+<li>Thu: Edit &amp; finalize</li>
+<li>Fri: Publish &amp; distribute</li>
+</ul>
+<p><strong>Monthly Publisher:</strong></p>
+<ul>
+<li>Week 1: Research</li>
+<li>Week 2: Create</li>
+<li>Week 3: Edit</li>
+<li>Week 4: Publish &amp; promote</li>
+</ul>
+<hr>
+<h2>Integration with STATE.md</h2>
+<p>Daily-ops updates STATE.md at:</p>
+<ul>
+<li>Session start (read)</li>
+<li>After main creation (update progress)</li>
+<li>After distribution (log activity)</li>
+<li>Session end (continuity info)</li>
+</ul>
+<hr>
+<p><em>Creator Hub Generator - Part of Agentic Creator OS v4</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

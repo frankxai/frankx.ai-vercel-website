@@ -13,7 +13,7 @@ const navItems = [
   { name: 'For Students', href: '/students' },
   { name: 'Prompts', href: '/prompt-library' },
   { name: 'Products', href: '/products' },
-  { name: 'Magic', href: '/magic' },
+  { name: 'Magic', href: 'https://arcanea.ai' },
   { name: 'Blog', href: '/blog' },
 ]
 

@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Pair Programming Examples</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/commands/pair/examples.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Pair Programming Examples</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands%2Fpair">pair</a> / <span>examples.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Pair Programming Examples</h1>
+<p>Real-world examples and scenarios for pair programming sessions.</p>
+<h2>Example 1: Feature Implementation</h2>
+<h3>Scenario</h3>
+<p>Implementing a user authentication feature with JWT tokens.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode switch \
+  --agent senior-dev \
+  --focus implement \
+  --verify \
+  --test
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 Starting pair programming for authentication feature...
+
+[DRIVER: You - 10 minutes]
+/explain JWT authentication flow
+&gt; AI explains JWT concepts and best practices
+
+/suggest implementation approach
+&gt; AI suggests using middleware pattern with refresh tokens
+
+# You write the basic auth middleware structure
+
+[SWITCH TO NAVIGATOR]
+
+[NAVIGATOR: AI - 10 minutes]
+/implement JWT token generation with refresh tokens
+&gt; AI generates secure token implementation
+
+/test-gen
+&gt; AI creates comprehensive test suite
+
+[SWITCH TO DRIVER]
+
+[DRIVER: You - 10 minutes]
+# You refine the implementation
+/review --security
+&gt; AI performs security review, suggests improvements
+
+/commit --message &quot;feat: JWT authentication with refresh tokens&quot;
+✅ Truth Score: 0.98 - Committed successfully
+</code></pre>
+<h2>Example 2: Bug Fixing Session</h2>
+<h3>Scenario</h3>
+<p>Debugging a memory leak in a Node.js application.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode navigator \
+  --agent debugger-expert \
+  --focus debug \
+  --trace
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 Starting debugging session...
+
+/status
+&gt; Analyzing application for memory issues...
+
+/perf --profile
+&gt; Memory usage growing: 150MB → 450MB over 10 minutes
+
+/find &quot;new EventEmitter&quot; --regex
+&gt; Found 3 instances of EventEmitter creation
+
+/inspect eventEmitters --deep
+&gt; Discovering listeners not being removed
+
+/suggest fix for memory leak
+&gt; AI suggests: &quot;Add removeListener in cleanup functions&quot;
+
+/implement cleanup functions for all event emitters
+&gt; AI generates proper cleanup code
+
+/test
+&gt; Memory stable at 150MB ✅
+
+/commit --message &quot;fix: memory leak in event emitters&quot;
+</code></pre>
+<h2>Example 3: Test-Driven Development</h2>
+<h3>Scenario</h3>
+<p>Building a shopping cart feature using TDD.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode tdd \
+  --agent tdd-specialist \
+  --test-first
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 TDD Session: Shopping Cart Feature
+
+[RED PHASE]
+/test-gen &quot;add item to cart&quot;
+&gt; AI writes failing test:
+  ✗ should add item to cart
+  ✗ should update quantity for existing item
+  ✗ should calculate total price
+
+[GREEN PHASE]
+/implement minimal cart functionality
+&gt; You write just enough code to pass tests
+
+/test
+&gt; Tests passing: 3/3 ✅
+
+[REFACTOR PHASE]
+/refactor --pattern repository
+&gt; AI refactors to repository pattern
+
+/test
+&gt; Tests still passing: 3/3 ✅
+
+[NEXT CYCLE]
+/test-gen &quot;remove item from cart&quot;
+&gt; AI writes new failing tests...
+</code></pre>
+<h2>Example 4: Code Refactoring</h2>
+<h3>Scenario</h3>
+<p>Refactoring legacy code to modern patterns.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode driver \
+  --focus refactor \
+  --verify \
+  --threshold 0.98
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 Refactoring Session: Modernizing UserService
+
+/analyze UserService.js
+&gt; AI identifies:
+  - Callback hell (5 levels deep)
+  - No error handling
+  - Tight coupling
+  - No tests
+
+/suggest refactoring plan
+&gt; AI suggests:
+  1. Convert callbacks to async/await
+  2. Add error boundaries
+  3. Extract dependencies
+  4. Add unit tests
+
+/test-gen --before-refactor
+&gt; AI generates tests for current behavior
+
+/refactor callbacks to async/await
+# You refactor with AI guidance
+
+/test
+&gt; All tests passing ✅
+
+/review --compare
+&gt; AI shows before/after comparison
+&gt; Code complexity: 35 → 12
+&gt; Truth score: 0.99 ✅
+
+/commit --message &quot;refactor: modernize UserService with async/await&quot;
+</code></pre>
+<h2>Example 5: Learning Session</h2>
+<h3>Scenario</h3>
+<p>Learning React hooks with AI mentorship.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode mentor \
+  --agent react-expert \
+  --pace slow \
+  --examples
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 Learning Session: React Hooks
+
+/learn useState hook
+&gt; AI explains with interactive examples
+
+/example custom hook for API calls
+&gt; AI shows best practice implementation:
+```javascript
+function useApi(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() =&gt; {
+    // Implementation explained step by step
+  }, [url]);
+  
+  return { data, loading, error };
+}
+</code></pre>
+<p>/implement my own custom hook</p>
+<h1>You write with AI guidance</h1>
+<p>/review --educational</p>
+<blockquote>
+<p>AI provides detailed feedback with learning points</p>
+</blockquote>
+<p>/quiz react hooks</p>
+<blockquote>
+<p>AI tests your understanding
+Score: 8/10 - Good progress!</p>
+</blockquote>
+<pre><code>
+## Example 6: Performance Optimization
+
+### Scenario
+Optimizing a slow React application.
+
+### Session Setup
+```bash
+claude-flow pair --start \
+  --mode switch \
+  --agent performance-expert \
+  --focus optimize \
+  --profile
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 Performance Optimization Session
+
+/perf --profile
+&gt; React DevTools Profiler Results:
+  - ProductList: 450ms render
+  - CartSummary: 200ms render
+  - Unnecessary re-renders: 15
+
+/suggest optimizations for ProductList
+&gt; AI suggests:
+  1. Add React.memo
+  2. Use useMemo for expensive calculations
+  3. Implement virtualization for long lists
+
+/implement React.memo and useMemo
+# You implement with AI guidance
+
+/perf --profile
+&gt; ProductList: 45ms render (90% improvement!) ✅
+
+/implement virtualization with react-window
+&gt; AI implements virtual scrolling
+
+/perf --profile
+&gt; ProductList: 12ms render (97% improvement!) ✅
+&gt; FPS: 60 stable ✅
+
+/commit --message &quot;perf: optimize ProductList with memoization and virtualization&quot;
+</code></pre>
+<h2>Example 7: API Development</h2>
+<h3>Scenario</h3>
+<p>Building a RESTful API with Express.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode navigator \
+  --agent backend-expert \
+  --focus implement \
+  --test
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 API Development Session
+
+/design REST API for blog platform
+&gt; AI designs endpoints:
+  POST   /api/posts
+  GET    /api/posts
+  GET    /api/posts/:id
+  PUT    /api/posts/:id
+  DELETE /api/posts/:id
+
+/implement CRUD endpoints with validation
+&gt; AI implements with Express + Joi validation
+
+/test-gen --integration
+&gt; AI generates integration tests
+
+/security --api
+&gt; AI adds:
+  - Rate limiting
+  - Input sanitization
+  - JWT authentication
+  - CORS configuration
+
+/document --openapi
+&gt; AI generates OpenAPI documentation
+
+/test --integration
+&gt; All endpoints tested: 15/15 ✅
+
+/deploy --staging
+&gt; API deployed to staging environment
+</code></pre>
+<h2>Example 8: Database Migration</h2>
+<h3>Scenario</h3>
+<p>Migrating from MongoDB to PostgreSQL.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode switch \
+  --agent database-expert \
+  --verify \
+  --test
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 Database Migration Session
+
+/analyze MongoDB schema
+&gt; AI maps current structure:
+  - users collection → users table
+  - posts collection → posts table
+  - Embedded comments → comments table with FK
+
+/design PostgreSQL schema
+&gt; AI creates normalized schema with relations
+
+/implement migration script
+# You write migration with AI assistance
+
+/test --migration --sample-data
+&gt; Migration successful for 10,000 records ✅
+
+/implement data access layer
+&gt; AI creates repository pattern implementation
+
+/test --integration
+&gt; All queries working correctly ✅
+
+/verify data integrity
+&gt; Truth score: 0.995 ✅
+&gt; No data loss detected
+</code></pre>
+<h2>Example 9: CI/CD Pipeline</h2>
+<h3>Scenario</h3>
+<p>Setting up GitHub Actions CI/CD pipeline.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode navigator \
+  --agent devops-expert \
+  --focus implement
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 CI/CD Pipeline Setup
+
+/implement GitHub Actions workflow
+&gt; AI creates .github/workflows/ci.yml:
+  - Build on push/PR
+  - Run tests
+  - Check coverage
+  - Deploy to staging
+
+/test --ci --dry-run
+&gt; Pipeline simulation successful ✅
+
+/implement deployment to production
+&gt; AI adds:
+  - Manual approval step
+  - Rollback capability
+  - Health checks
+  - Notifications
+
+/security --scan-pipeline
+&gt; AI adds security scanning:
+  - Dependency scanning
+  - Container scanning
+  - Secret scanning
+
+/commit --message &quot;ci: complete CI/CD pipeline with security scanning&quot;
+</code></pre>
+<h2>Example 10: Mobile App Development</h2>
+<h3>Scenario</h3>
+<p>Building a React Native mobile feature.</p>
+<h3>Session Setup</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --mode switch \
+  --agent mobile-expert \
+  --language react-native \
+  --test
+</code></pre>
+<h3>Session Flow</h3>
+<pre><code>👥 Mobile Development Session
+
+/implement offline-first data sync
+&gt; AI implements:
+  - Local SQLite storage
+  - Queue for pending changes
+  - Sync on connection restore
+  - Conflict resolution
+
+/test --device ios simulator
+&gt; Feature working on iOS ✅
+
+/test --device android emulator
+&gt; Feature working on Android ✅
+
+/optimize --mobile
+&gt; AI optimizes:
+  - Reduces bundle size by 30%
+  - Implements lazy loading
+  - Adds image caching
+
+/review --accessibility
+&gt; AI ensures:
+  - Screen reader support
+  - Proper contrast ratios
+  - Touch target sizes
+
+/commit --message &quot;feat: offline-first sync with optimizations&quot;
+</code></pre>
+<h2>Common Patterns</h2>
+<h3>Starting Patterns</h3>
+<pre><code class="language-bash"># Quick start for common scenarios
+claude-flow pair --template &lt;template&gt;
+</code></pre>
+<p>Available templates:</p>
+<ul>
+<li><code>feature</code> - New feature development</li>
+<li><code>bugfix</code> - Bug fixing session</li>
+<li><code>refactor</code> - Code refactoring</li>
+<li><code>optimize</code> - Performance optimization</li>
+<li><code>test</code> - Test writing</li>
+<li><code>review</code> - Code review</li>
+<li><code>learn</code> - Learning session</li>
+</ul>
+<h3>Session Commands Flow</h3>
+<h4>Typical Feature Development</h4>
+<pre><code>/start → /explain → /design → /implement → /test → /review → /commit → /end
+</code></pre>
+<h4>Typical Bug Fix</h4>
+<pre><code>/start → /reproduce → /debug → /trace → /fix → /test → /verify → /commit → /end
+</code></pre>
+<h4>Typical Refactoring</h4>
+<pre><code>/start → /analyze → /plan → /test-gen → /refactor → /test → /review → /commit → /end
+</code></pre>
+<h2>Best Practices from Examples</h2>
+<ol>
+<li><strong>Always Start with Context</strong> - Use <code>/explain</code> or <code>/analyze</code></li>
+<li><strong>Test Early and Often</strong> - Run tests after each change</li>
+<li><strong>Verify Before Commit</strong> - Check truth scores</li>
+<li><strong>Document Decisions</strong> - Use <code>/note</code> for important choices</li>
+<li><strong>Review Security</strong> - Always run <code>/security</code> for sensitive code</li>
+<li><strong>Profile Performance</strong> - Use <code>/perf</code> for optimization</li>
+<li><strong>Save Sessions</strong> - Use <code>/save</code> for complex work</li>
+</ol>
+<h2>Related Documentation</h2>
+<ul>
+<li><a href="./README.md">Getting Started</a></li>
+<li><a href="./session.md">Session Management</a></li>
+<li><a href="./commands.md">Commands Reference</a></li>
+<li><a href="./config.md">Configuration</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

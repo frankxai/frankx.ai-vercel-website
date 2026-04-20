@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Publishing Command</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/claude/plugins/creator-tools/commands/publish.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">FrankX Publishing Command</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <a href="../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude">claude</a> / <a href="../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins">plugins</a> / <a href="../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fcreator-tools">creator-tools</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fcreator-tools%2Fcommands">commands</a> / <span>publish.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Publishing Command</h1>
+<p>You are the <strong>Publishing Orchestrator</strong> - Frank&#39;s intelligent content publishing pipeline that ensures every piece of content meets the highest standards before going live.</p>
+<h2>Overview</h2>
+<p>The <code>/publish</code> command runs a comprehensive quality pipeline:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    PUBLISHING PIPELINE                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  1. DISCOVERY    → Find content ready to publish                │
+│         ↓                                                       │
+│  2. VALIDATION   → Check frontmatter, structure, links          │
+│         ↓                                                       │
+│  3. QUALITY GATES → SEO, Voice, AEO, Schema, Readability       │
+│         ↓                                                       │
+│  4. IMAGE CHECK  → Verify hero images exist and are optimized   │
+│         ↓                                                       │
+│  5. AGENT REVIEW → Expert agents review for improvements        │
+│         ↓                                                       │
+│  6. ENHANCEMENT  → Apply suggested improvements                 │
+│         ↓                                                       │
+│  7. FINAL CHECK  → Re-validate after enhancements               │
+│         ↓                                                       │
+│  8. PUBLISH      → Commit, push, and deploy                     │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Usage</h2>
+<pre><code class="language-bash"># Publish specific post
+/publish content/blog/my-post.mdx
+
+# Publish all ready posts
+/publish --all
+
+# Dry run (no actual publish)
+/publish content/blog/my-post.mdx --dry-run
+
+# Skip agent review (faster)
+/publish content/blog/my-post.mdx --skip-review
+
+# Force publish (bypass gates)
+/publish content/blog/my-post.mdx --force
+</code></pre>
+<h2>Quality Gates</h2>
+<p>Each gate must pass before publishing. Gates return: PASS, WARN, or FAIL.</p>
+<h3>Gate 1: Structure Validation</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Valid frontmatter (title, description, date, category, tags)</li>
+<li><input disabled="" type="checkbox"> publishedAt date is today or in the past</li>
+<li><input disabled="" type="checkbox"> Description is 120-160 characters (SEO optimal)</li>
+<li><input disabled="" type="checkbox"> At least 3 tags</li>
+<li><input disabled="" type="checkbox"> Category matches allowed list</li>
+</ul>
+<h3>Gate 2: SEO Check</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Title is 50-60 characters</li>
+<li><input disabled="" type="checkbox"> Meta description is compelling and keyword-rich</li>
+<li><input disabled="" type="checkbox"> H1 matches title (or close)</li>
+<li><input disabled="" type="checkbox"> H2s contain target keywords</li>
+<li><input disabled="" type="checkbox"> Internal links: minimum 3</li>
+<li><input disabled="" type="checkbox"> External links: minimum 1 (authority sources)</li>
+<li><input disabled="" type="checkbox"> Alt text on all images</li>
+</ul>
+<h3>Gate 3: Voice &amp; Brand</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Matches FrankX voice (technical yet accessible)</li>
+<li><input disabled="" type="checkbox"> No AI-sounding phrases (&quot;I cannot&quot;, &quot;As an AI&quot;, &quot;delve&quot;)</li>
+<li><input disabled="" type="checkbox"> Active voice predominant</li>
+<li><input disabled="" type="checkbox"> First person used appropriately</li>
+<li><input disabled="" type="checkbox"> Consistent tone throughout</li>
+</ul>
+<h3>Gate 4: AEO (AI Engine Optimization)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> TL;DR in first 100 words</li>
+<li><input disabled="" type="checkbox"> FAQ section with 5+ questions</li>
+<li><input disabled="" type="checkbox"> Clear definitions for technical terms</li>
+<li><input disabled="" type="checkbox"> Structured data ready (Article + FAQPage)</li>
+<li><input disabled="" type="checkbox"> datePublished and dateModified present</li>
+</ul>
+<h3>Gate 5: Content Quality</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Flesch-Kincaid reading level: 8-12 (accessible but not dumbed down)</li>
+<li><input disabled="" type="checkbox"> Paragraph length: mostly under 4 sentences</li>
+<li><input disabled="" type="checkbox"> Code blocks have language specified</li>
+<li><input disabled="" type="checkbox"> No broken links (internal or external)</li>
+<li><input disabled="" type="checkbox"> No placeholder text ([TODO], [INSERT], etc.)</li>
+</ul>
+<h3>Gate 6: Image Verification</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Hero image exists at specified path</li>
+<li><input disabled="" type="checkbox"> Image is optimized (WebP/AVIF, &lt; 200KB)</li>
+<li><input disabled="" type="checkbox"> Image dimensions appropriate (1200x630 for social)</li>
+<li><input disabled="" type="checkbox"> Alt text provided</li>
+<li><input disabled="" type="checkbox"> No broken image references</li>
+</ul>
+<h2>Agent Review Panel</h2>
+<p>Top posts (featured: true) are reviewed by specialized agents:</p>
+<h3>Content Architect</h3>
+<ul>
+<li>Structure and flow analysis</li>
+<li>Argument coherence check</li>
+<li>Missing section identification</li>
+</ul>
+<h3>SEO Specialist</h3>
+<ul>
+<li>Keyword optimization opportunities</li>
+<li>SERP feature targeting (featured snippets, PAA)</li>
+<li>Competitive positioning</li>
+</ul>
+<h3>Brand Guardian</h3>
+<ul>
+<li>Voice consistency</li>
+<li>FrankX personality alignment</li>
+<li>Transformation narrative check</li>
+</ul>
+<h3>Technical Reviewer (for technical posts)</h3>
+<ul>
+<li>Code accuracy verification</li>
+<li>Best practice alignment</li>
+<li>Security consideration check</li>
+</ul>
+<h2>Enhancement Pipeline</h2>
+<p>Based on agent reviews, apply these enhancements:</p>
+<ol>
+<li><strong>TL;DR Optimization</strong>: Ensure it&#39;s citation-worthy</li>
+<li><strong>FAQ Expansion</strong>: Add questions based on &quot;People Also Ask&quot;</li>
+<li><strong>Internal Link Injection</strong>: Connect to related content</li>
+<li><strong>Schema Enhancement</strong>: Add structured data</li>
+<li><strong>Social Snippet Generation</strong>: Create share-ready excerpts</li>
+</ol>
+<h2>Execution Flow</h2>
+<p>When <code>/publish [path]</code> is called:</p>
+<h3>Step 1: Discovery</h3>
+<pre><code>Find the target content file(s)
+Validate file exists and is .mdx format
+Parse frontmatter and content
+</code></pre>
+<h3>Step 2: Run Quality Gates</h3>
+<pre><code>For each gate:
+  - Run validation
+  - Record result (PASS/WARN/FAIL)
+  - If FAIL and not --force: stop and report
+  - If WARN: continue but flag for review
+</code></pre>
+<h3>Step 3: Image Check</h3>
+<pre><code>Extract image paths from content
+Verify each image exists
+Check optimization status
+Generate missing images if nano-banana available
+</code></pre>
+<h3>Step 4: Agent Review (unless --skip-review)</h3>
+<pre><code>For featured posts or --full-review:
+  - Spawn Content Architect agent
+  - Spawn SEO Specialist agent
+  - Spawn Brand Guardian agent
+  - If technical: spawn Technical Reviewer
+  - Collect recommendations
+</code></pre>
+<h3>Step 5: Enhancement</h3>
+<pre><code>Apply automated enhancements:
+  - Inject missing internal links
+  - Add schema markup
+  - Optimize TL;DR if needed
+  - Generate social snippets
+</code></pre>
+<h3>Step 6: Final Validation</h3>
+<pre><code>Re-run all quality gates
+Ensure no regressions
+Generate publish report
+</code></pre>
+<h3>Step 7: Publish</h3>
+<pre><code>If --dry-run: show what would happen
+Else:
+  - Stage changes: git add [files]
+  - Commit with message: &quot;publish: [title]&quot;
+  - Push to main branch
+  - Trigger Vercel deployment
+  - Log to session file
+</code></pre>
+<h2>Output Format</h2>
+<pre><code>╔════════════════════════════════════════════════════════════════╗
+║                    PUBLISH REPORT                              ║
+╠════════════════════════════════════════════════════════════════╣
+║ Post: The 7 Pillars of Production Agent Systems                ║
+║ Path: content/blog/production-agent-patterns-7-pillars.mdx     ║
+║ Date: 2026-01-21                                               ║
+╠════════════════════════════════════════════════════════════════╣
+║                    QUALITY GATES                               ║
+╠════════════════════════════════════════════════════════════════╣
+║ ✅ Structure Validation    PASS                                ║
+║ ✅ SEO Check               PASS (score: 92/100)                ║
+║ ✅ Voice &amp; Brand           PASS                                ║
+║ ✅ AEO Optimization        PASS                                ║
+║ ⚠️  Content Quality        WARN (reading level: 13.2)          ║
+║ ✅ Image Verification      PASS                                ║
+╠════════════════════════════════════════════════════════════════╣
+║                    AGENT REVIEWS                               ║
+╠════════════════════════════════════════════════════════════════╣
+║ Content Architect: Structure excellent, flow logical           ║
+║ SEO Specialist: Add &quot;production AI&quot; to H2s                     ║
+║ Brand Guardian: Voice consistent, transformation clear         ║
+╠════════════════════════════════════════════════════════════════╣
+║                    ENHANCEMENTS APPLIED                        ║
+╠════════════════════════════════════════════════════════════════╣
+║ ✅ Added 2 internal links                                      ║
+║ ✅ Generated FAQPage schema                                    ║
+║ ✅ Created social snippet                                      ║
+╠════════════════════════════════════════════════════════════════╣
+║                    PUBLISH STATUS                              ║
+╠════════════════════════════════════════════════════════════════╣
+║ ✅ Committed: abc123f                                          ║
+║ ✅ Pushed to main                                              ║
+║ ✅ Vercel deployment triggered                                 ║
+║                                                                ║
+║ 🔗 Preview: https://frankx.ai/blog/production-agent-patterns   ║
+╚════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h2>Configuration</h2>
+<p>Settings in <code>.claude/settings/publish.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;quality_gates&quot;: {
+    &quot;structure&quot;: { &quot;required&quot;: true },
+    &quot;seo&quot;: { &quot;required&quot;: true, &quot;min_score&quot;: 80 },
+    &quot;voice&quot;: { &quot;required&quot;: true },
+    &quot;aeo&quot;: { &quot;required&quot;: true },
+    &quot;content&quot;: { &quot;required&quot;: false },
+    &quot;images&quot;: { &quot;required&quot;: true }
+  },
+  &quot;agent_review&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;for_featured_only&quot;: true,
+    &quot;timeout_seconds&quot;: 120
+  },
+  &quot;auto_enhance&quot;: {
+    &quot;internal_links&quot;: true,
+    &quot;schema&quot;: true,
+    &quot;social_snippets&quot;: true
+  },
+  &quot;git&quot;: {
+    &quot;branch&quot;: &quot;main&quot;,
+    &quot;auto_push&quot;: true,
+    &quot;commit_prefix&quot;: &quot;publish:&quot;
+  }
+}
+</code></pre>
+<h2>Error Handling</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>File not found</td>
+<td>Show similar files, ask for correction</td>
+</tr>
+<tr>
+<td>Gate FAIL</td>
+<td>Show specific failures, suggest fixes</td>
+</tr>
+<tr>
+<td>Image missing</td>
+<td>Offer to generate with nano-banana</td>
+</tr>
+<tr>
+<td>Agent timeout</td>
+<td>Continue without that review</td>
+</tr>
+<tr>
+<td>Push failed</td>
+<td>Show git error, suggest resolution</td>
+</tr>
+</tbody></table>
+<h2>Integration</h2>
+<p>The publish command integrates with:</p>
+<ul>
+<li><code>/factory</code> - Content creation pipeline</li>
+<li><code>/factory-qa</code> - Quality assurance</li>
+<li><code>/factory-seo</code> - SEO optimization</li>
+<li><code>/polish-content</code> - Voice refinement</li>
+<li><code>/generate-social</code> - Social content generation</li>
+</ul>
+<h2>Quick Reference</h2>
+<pre><code class="language-bash"># Standard publish
+/publish content/blog/my-post.mdx
+
+# Publish without agent review (faster)
+/publish content/blog/my-post.mdx --skip-review
+
+# See what would happen
+/publish content/blog/my-post.mdx --dry-run
+
+# Publish all staged content
+/publish --all
+
+# Force through gate failures
+/publish content/blog/my-post.mdx --force
+</code></pre>
+<hr>
+<p><em>Every piece of content that leaves this pipeline represents the FrankX brand. Make it count.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

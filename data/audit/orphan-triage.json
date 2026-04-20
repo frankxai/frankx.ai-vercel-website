@@ -1,0 +1,490 @@
+{
+  "timestamp": "2026-03-28T00:00:00.000Z",
+  "tiers": {
+    "A_core": [
+      {
+        "route": "/vision",
+        "linkFrom": ["footer", "/about"],
+        "reason": "Key brand page — Frank's vision and mission statement"
+      },
+      {
+        "route": "/work-with-me",
+        "linkFrom": ["nav:primary", "footer", "/about", "/ai-architect"],
+        "reason": "Revenue page — AI Architecture Studio with coaching/consulting offers"
+      },
+      {
+        "route": "/testimonials",
+        "linkFrom": ["footer", "/work-with-me", "homepage"],
+        "reason": "Social proof page — critical for conversion"
+      },
+      {
+        "route": "/links",
+        "linkFrom": ["footer", "social-bio-links"],
+        "reason": "Mobile-first link hub (Linktree alternative) — critical for social traffic"
+      },
+      {
+        "route": "/students/cohort",
+        "linkFrom": ["/students", "nav:learn", "homepage"],
+        "reason": "Free 4-week AI Creator Accelerator cohort — key lead gen program"
+      },
+      {
+        "route": "/updates",
+        "linkFrom": ["footer"],
+        "reason": "Changelog/release notes — shows active development"
+      },
+      {
+        "route": "/newsletter/thank-you",
+        "linkFrom": ["email-signup-flow"],
+        "reason": "Post-signup confirmation page — critical for email funnel"
+      },
+      {
+        "route": "/thank-you",
+        "linkFrom": ["email-signup-flow"],
+        "reason": "General thank-you page — part of conversion flow"
+      },
+      {
+        "route": "/for/architects",
+        "linkFrom": ["nav:learn", "/ai-architect", "homepage"],
+        "reason": "Audience landing page for technical architects with curated resources"
+      },
+      {
+        "route": "/for/creators",
+        "linkFrom": ["nav:learn", "/creators", "homepage"],
+        "reason": "Audience landing page for creators with curated tools and content"
+      },
+      {
+        "route": "/products/suno-prompt-library",
+        "linkFrom": ["/products", "/music", "nav:products"],
+        "reason": "Product page with full sales copy, schema markup, and Stripe integration"
+      },
+      {
+        "route": "/products/prompt-vault",
+        "linkFrom": ["/products", "nav:products"],
+        "reason": "66-prompt product page with full sales copy and structured data"
+      },
+      {
+        "route": "/products/bv-kit",
+        "linkFrom": ["/products", "nav:products"],
+        "reason": "Creator BV Kit product — Dutch business formation product"
+      },
+      {
+        "route": "/inspiration",
+        "linkFrom": ["footer", "/about"],
+        "reason": "Dream 100 page — curated creators and builders Frank learns from"
+      },
+      {
+        "route": "/team",
+        "linkFrom": ["footer", "/about"],
+        "reason": "AI team characters page — creative showcase of AI specialist personas"
+      },
+      {
+        "route": "/see-through-the-noise",
+        "linkFrom": ["/tools", "nav:tools"],
+        "reason": "Misinformation analysis tool with URL/text analysis — unique free tool"
+      },
+      {
+        "route": "/visionaries",
+        "linkFrom": ["/research", "nav:research"],
+        "reason": "Research hub — top 100 visionaries list with sources"
+      }
+    ],
+    "B_valuable": [
+      {
+        "route": "/ai-architect/ai-coe-hub",
+        "linkFrom": ["/ai-architect"],
+        "reason": "AI CoE resource hub with Oracle/architecture links"
+      },
+      {
+        "route": "/ai-architecture/tools",
+        "linkFrom": ["/ai-architecture"],
+        "reason": "AI tools directory with categories and recommendations"
+      },
+      {
+        "route": "/ai-architectures",
+        "linkFrom": ["/ai-architect", "/research"],
+        "reason": "Architecture showcase — enterprise RAG, multi-agent systems"
+      },
+      {
+        "route": "/ai-art",
+        "linkFrom": ["/gallery", "/music"],
+        "reason": "AI art gallery with mascot designs and character concepts"
+      },
+      {
+        "route": "/ai-evolution",
+        "linkFrom": ["/ai-architect", "/research"],
+        "reason": "AI evolution timeline — waves of foundation models to agents"
+      },
+      {
+        "route": "/assess/ai-coe",
+        "linkFrom": ["/acos", "/tools"],
+        "reason": "Interactive AI CoE maturity assessment quiz"
+      },
+      {
+        "route": "/assessment/advanced",
+        "linkFrom": ["/assessment", "/acos"],
+        "reason": "Advanced multi-step AI assessment with matrix questions"
+      },
+      {
+        "route": "/assessment/creative",
+        "linkFrom": ["/assessment", "/creators"],
+        "reason": "Creative AI assessment — evaluates AI creative workflow maturity"
+      },
+      {
+        "route": "/books/[bookSlug]/glossary",
+        "linkFrom": ["/books/[bookSlug]"],
+        "reason": "Dynamic book glossary pages — auto-generated per book"
+      },
+      {
+        "route": "/business-plan",
+        "linkFrom": ["/about", "footer"],
+        "reason": "Transparent business model page — pillars, revenue tiers"
+      },
+      {
+        "route": "/collectibles/instruments",
+        "linkFrom": ["/collectibles", "/music"],
+        "reason": "Bio-tech instrument art prints for sale with Stripe checkout"
+      },
+      {
+        "route": "/collectibles/trading-cards",
+        "linkFrom": ["/collectibles"],
+        "reason": "ACOS/Arcanea trading card collection with rarity filters"
+      },
+      {
+        "route": "/creators",
+        "linkFrom": ["nav:learn", "homepage"],
+        "reason": "Creator-focused landing page with tools and resources"
+      },
+      {
+        "route": "/downloads/preview/soulbook",
+        "linkFrom": ["/downloads", "/products/soulbook"],
+        "reason": "PDF preview page for Soulbook with email gate"
+      },
+      {
+        "route": "/downloads/preview/vibe-os",
+        "linkFrom": ["/downloads", "/products/vibe-os"],
+        "reason": "PDF preview page for Vibe OS with email gate"
+      },
+      {
+        "route": "/gallery/heroes",
+        "linkFrom": ["/gallery", "/blog"],
+        "reason": "Blog hero image gallery with prompts, scores, and metadata"
+      },
+      {
+        "route": "/hoffnung",
+        "linkFrom": ["/about", "footer"],
+        "reason": "Beautiful personal/philosophical page with music, quotes, meditation — German 'hope'"
+      },
+      {
+        "route": "/intelligence-atlas",
+        "linkFrom": ["/research", "/ai-architect"],
+        "reason": "FrankX Intelligence Atlas visualization"
+      },
+      {
+        "route": "/intelligence-map",
+        "linkFrom": ["/about", "/acos"],
+        "reason": "Visual map of FrankX intelligence infrastructure and automation"
+      },
+      {
+        "route": "/labs",
+        "linkFrom": ["nav:learn", "/community"],
+        "reason": "Live Build Labs and Ritual Labs — co-working format descriptions"
+      },
+      {
+        "route": "/music/learn/guitar",
+        "linkFrom": ["/music/learn"],
+        "reason": "Guitar learning resources — curated YouTube channels"
+      },
+      {
+        "route": "/music/learn/orchestration",
+        "linkFrom": ["/music/learn"],
+        "reason": "Orchestration guide — instrument families, ranges, AI tips"
+      },
+      {
+        "route": "/music/learn/reading",
+        "linkFrom": ["/music/learn"],
+        "reason": "Music reading fundamentals — notes, rests, time signatures, dynamics"
+      },
+      {
+        "route": "/music/learn/science",
+        "linkFrom": ["/music/learn"],
+        "reason": "Science of music — brain effects, dopamine, memory formation"
+      },
+      {
+        "route": "/music-lab/dj-pads",
+        "linkFrom": ["/music-lab"],
+        "reason": "Interactive DJ pad instrument — 16 pads with keyboard shortcuts"
+      },
+      {
+        "route": "/music-lab/drums",
+        "linkFrom": ["/music-lab"],
+        "reason": "Interactive drum machine — 16 drum pads with keyboard mapping"
+      },
+      {
+        "route": "/music-lab/for-kids/xylophone",
+        "linkFrom": ["/music-lab", "/alea"],
+        "reason": "Pentatonic xylophone for kids — Web Audio synthesized, no wrong notes"
+      },
+      {
+        "route": "/music-lab/piano/songs",
+        "linkFrom": ["/music-lab/piano", "/music/learn"],
+        "reason": "Piano song collections — Ghibli, film scores, sheet music links"
+      },
+      {
+        "route": "/products/vibe-os/docs",
+        "linkFrom": ["/products/vibe-os"],
+        "reason": "Vibe OS documentation page"
+      },
+      {
+        "route": "/resources/templates",
+        "linkFrom": ["/resources", "/downloads"],
+        "reason": "Template library for AI governance and agent architecture"
+      },
+      {
+        "route": "/students/roles",
+        "linkFrom": ["/students", "/students/cohort"],
+        "reason": "AI creator role tracks — career paths and skill maps"
+      },
+      {
+        "route": "/tools/visual-intelligence",
+        "linkFrom": ["/tools"],
+        "reason": "Visual Intelligence System architecture and capability showcase"
+      },
+      {
+        "route": "/tools/[slug]/docs",
+        "linkFrom": ["/tools/[slug]"],
+        "reason": "Dynamic tool documentation pages"
+      },
+      {
+        "route": "/artists/[slug]",
+        "linkFrom": ["/music"],
+        "reason": "Dynamic artist pages for music service clients"
+      },
+      {
+        "route": "/prototype/chat-playground",
+        "linkFrom": ["/tools", "/ai-architecture"],
+        "reason": "Multi-provider AI chat playground with API key management"
+      },
+      {
+        "route": "/blog/soul-frequency-framework",
+        "linkFrom": ["/blog", "/soulbook"],
+        "reason": "Blog article on Soul Frequency Framework — values mapping for AI"
+      },
+      {
+        "route": "/soul-frequency-quiz",
+        "linkFrom": ["/soulbook", "/assessment"],
+        "reason": "Interactive quiz to discover your creator frequency archetype"
+      },
+      {
+        "route": "/soulbook/7-pillars",
+        "linkFrom": ["/soulbook"],
+        "reason": "Interactive 7 pillars page with images and assessments"
+      },
+      {
+        "route": "/soulbook/framework",
+        "linkFrom": ["/soulbook"],
+        "reason": "One-page printable 7 Pillars framework"
+      },
+      {
+        "route": "/soulbook/golden-path",
+        "linkFrom": ["/soulbook"],
+        "reason": "4-week accelerated Soulbook breakthrough program page"
+      },
+      {
+        "route": "/soulbook/life-symphony",
+        "linkFrom": ["/soulbook"],
+        "reason": "Complete 7-pillar transformation program page"
+      },
+      {
+        "route": "/youtube-strategy",
+        "linkFrom": ["/about", "/content-studio"],
+        "reason": "YouTube content strategy page with production workflow"
+      },
+      {
+        "route": "/games/memory-match",
+        "linkFrom": ["/games", "/alea"],
+        "reason": "Memory match game with difficulty levels — family-friendly"
+      },
+      {
+        "route": "/showcase",
+        "linkFrom": ["/about", "footer"],
+        "reason": "UI component showcase with bento grid, marquee, shimmer buttons"
+      },
+      {
+        "route": "/onboarding",
+        "linkFrom": ["post-signup-flow"],
+        "reason": "Multi-step onboarding wizard with goal setting and recommendations"
+      }
+    ],
+    "C_lab": [
+      {
+        "route": "/design-lab/acos",
+        "reason": "ACOS design exploration — 3 concepts for 75+ skills UI"
+      },
+      {
+        "route": "/design-lab/arcanea/iridescence",
+        "reason": "Iridescence design showcase — prismatic light component demos"
+      },
+      {
+        "route": "/design-lab/arcanea/liquid-glass",
+        "reason": "Liquid glass component showcase — buttons, cards, inputs with element themes"
+      },
+      {
+        "route": "/design-lab/brand",
+        "reason": "Brand color palette, typography, and design token reference"
+      },
+      {
+        "route": "/design-lab/newsletter",
+        "reason": "Newsletter email design system exploration"
+      },
+      {
+        "route": "/design-lab/strategy",
+        "reason": "Homepage design strategy — 3 hero approaches (Alpha/Beta/Gamma)"
+      },
+      {
+        "route": "/design-lab/v0",
+        "reason": "v0 AI generation gallery — showcasing v0-generated components"
+      },
+      {
+        "route": "/design-lab/family-tree/v1",
+        "reason": "Family tree design iteration v1 — basic layout"
+      },
+      {
+        "route": "/design-lab/family-tree/v2",
+        "reason": "Family tree design iteration v2"
+      },
+      {
+        "route": "/design-lab/family-tree/v3",
+        "reason": "Family tree design iteration v3"
+      },
+      {
+        "route": "/design-lab/family-tree/v4",
+        "reason": "Family tree design iteration v4"
+      },
+      {
+        "route": "/design-lab/family-tree/v5",
+        "reason": "Family tree design iteration v5 — Suspense-wrapped"
+      },
+      {
+        "route": "/design-lab/family-tree/v6",
+        "reason": "Family tree design iteration v6 — D3 force-directed graph"
+      },
+      {
+        "route": "/design-lab/family-tree/v7",
+        "reason": "Family tree design iteration v7"
+      },
+      {
+        "route": "/design-lab/family-tree/v8",
+        "reason": "Family tree design iteration v8 — CSS scroll-driven timeline"
+      },
+      {
+        "route": "/design-lab/family-tree/v9",
+        "reason": "Family tree design iteration v9 — GSAP ScrollTrigger"
+      },
+      {
+        "route": "/design-lab/family-tree/v10",
+        "reason": "Family tree design iteration v10 — Three.js 3D"
+      },
+      {
+        "route": "/design-lab/family-tree/v11",
+        "reason": "Family tree design iteration v11 — Nivo sunburst chart"
+      },
+      {
+        "route": "/design-lab/family-tree/v12",
+        "reason": "Family tree design iteration v12 — canvas-based"
+      },
+      {
+        "route": "/design-lab/family-tree/v13",
+        "reason": "Family tree design iteration v13 — Mermaid diagrams"
+      },
+      {
+        "route": "/design-lab/family-tree/v14",
+        "reason": "Family tree design iteration v14 — React custom"
+      },
+      {
+        "route": "/design-lab/family-tree/v15",
+        "reason": "Family tree design iteration v15 — anime.js"
+      },
+      {
+        "route": "/design-system",
+        "reason": "Full design system reference — colors, typography, glass, spacing"
+      },
+      {
+        "route": "/command-center",
+        "reason": "Internal command center dashboard — operational overview"
+      },
+      {
+        "route": "/frankx-investment-dashboard",
+        "reason": "Internal investor product dashboard — status tracking"
+      },
+      {
+        "route": "/product-development/acos-v11",
+        "reason": "ACOS v11 product development roadmap — phases and costs"
+      },
+      {
+        "route": "/ai-world",
+        "reason": "Cosmic AI architecture visualization — Arcanea-themed intelligence atlas"
+      },
+      {
+        "route": "/de/valentines-day",
+        "reason": "Valentine's Day personal page — German, with rose petals and quotes"
+      },
+      {
+        "route": "/alea/katze",
+        "reason": "Virtual pet cat game for Alea — German, feed/play/sleep mechanics"
+      }
+    ],
+    "D_redirect": [
+      {
+        "route": "/consulting",
+        "redirectTo": "/work-with-me",
+        "reason": "Already a redirect — file contains redirect('/work-with-me')"
+      }
+    ],
+    "E_stub": [
+      {
+        "route": "/acos/presence",
+        "reason": "Spiritual/consciousness module for ACOS — 8 sensory gates. Conflicts with brand voice guidelines (no spiritual language)"
+      },
+      {
+        "route": "/content-studio",
+        "reason": "Content agent listing — 4 agents with spiritual framing ('Soul Strategist', 'Frequency Alchemist'). Conflicts with brand voice"
+      },
+      {
+        "route": "/magic",
+        "reason": "Cosmic-themed page with star field — minimal content, vague purpose"
+      },
+      {
+        "route": "/realm",
+        "reason": "Coming Soon placeholder for 'The FrankX Realm' — no actual content"
+      },
+      {
+        "route": "/progress",
+        "reason": "Progress tracker assessment — uses spiritual language ('archetype', 'soul'). Import paths may be broken (glassmorphic-card, premium-button)"
+      }
+    ]
+  },
+  "summary": {
+    "A": 17,
+    "B": 43,
+    "C": 30,
+    "D": 1,
+    "E": 5
+  },
+  "notes": {
+    "total_pages_triaged": 96,
+    "missing_from_count": "/consulting already redirects to /work-with-me so barely counts as orphan",
+    "high_priority_linking": [
+      "/work-with-me — must be in primary nav, this is the revenue page",
+      "/testimonials — needs links from homepage and /work-with-me for conversion",
+      "/products/* — all 3 product pages need links from /products hub and nav",
+      "/for/architects and /for/creators — audience landing pages need nav presence",
+      "/students/cohort — key program needs /students and homepage links",
+      "/links — needs to be the URL in social bios",
+      "/see-through-the-noise — unique tool, should be prominent in /tools"
+    ],
+    "family_tree_versions": "15 design iterations (v1-v15) all under /design-lab/family-tree/ — fine as lab experiments",
+    "music_learning_cluster": "4 pages under /music/learn/* all need links from /music/learn parent",
+    "music_lab_tools": "4 interactive instruments under /music-lab/* need links from /music-lab parent",
+    "soulbook_sub_pages": "4 pages under /soulbook/* need links from /soulbook parent"
+  }
+}

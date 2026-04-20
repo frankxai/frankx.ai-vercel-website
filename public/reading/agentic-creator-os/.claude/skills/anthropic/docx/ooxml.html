@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Office Open XML Technical Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/anthropic/docx/ooxml.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Office Open XML Technical Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills%2Fanthropic">anthropic</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fanthropic%2Fdocx">docx</a> / <span>ooxml.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Office Open XML Technical Reference</h1>
+<p><strong>Important: Read this entire document before starting.</strong> This document covers:</p>
+<ul>
+<li><a href="#technical-guidelines">Technical Guidelines</a> - Schema compliance rules and validation requirements</li>
+<li><a href="#document-content-patterns">Document Content Patterns</a> - XML patterns for headings, lists, tables, formatting, etc.</li>
+<li><a href="#document-library-python">Document Library (Python)</a> - Recommended approach for OOXML manipulation with automatic infrastructure setup</li>
+<li><a href="#tracked-changes-redlining">Tracked Changes (Redlining)</a> - XML patterns for implementing tracked changes</li>
+</ul>
+<h2>Technical Guidelines</h2>
+<h3>Schema Compliance</h3>
+<ul>
+<li><strong>Element ordering in <code>&lt;w:pPr&gt;</code></strong>: <code>&lt;w:pStyle&gt;</code>, <code>&lt;w:numPr&gt;</code>, <code>&lt;w:spacing&gt;</code>, <code>&lt;w:ind&gt;</code>, <code>&lt;w:jc&gt;</code></li>
+<li><strong>Whitespace</strong>: Add <code>xml:space=&#39;preserve&#39;</code> to <code>&lt;w:t&gt;</code> elements with leading/trailing spaces</li>
+<li><strong>Unicode</strong>: Escape characters in ASCII content: <code>&quot;</code> becomes <code>&amp;#8220;</code><ul>
+<li><strong>Character encoding reference</strong>: Curly quotes <code>&quot;&quot;</code> become <code>&amp;#8220;&amp;#8221;</code>, apostrophe <code>&#39;</code> becomes <code>&amp;#8217;</code>, em-dash <code>—</code> becomes <code>&amp;#8212;</code></li>
+</ul>
+</li>
+<li><strong>Tracked changes</strong>: Use <code>&lt;w:del&gt;</code> and <code>&lt;w:ins&gt;</code> tags with <code>w:author=&quot;Claude&quot;</code> outside <code>&lt;w:r&gt;</code> elements<ul>
+<li><strong>Critical</strong>: <code>&lt;w:ins&gt;</code> closes with <code>&lt;/w:ins&gt;</code>, <code>&lt;w:del&gt;</code> closes with <code>&lt;/w:del&gt;</code> - never mix</li>
+<li><strong>RSIDs must be 8-digit hex</strong>: Use values like <code>00AB1234</code> (only 0-9, A-F characters)</li>
+<li><strong>trackRevisions placement</strong>: Add <code>&lt;w:trackRevisions/&gt;</code> after <code>&lt;w:proofState&gt;</code> in settings.xml</li>
+</ul>
+</li>
+<li><strong>Images</strong>: Add to <code>word/media/</code>, reference in <code>document.xml</code>, set dimensions to prevent overflow</li>
+</ul>
+<h2>Document Content Patterns</h2>
+<h3>Basic Structure</h3>
+<pre><code class="language-xml">&lt;w:p&gt;
+  &lt;w:r&gt;&lt;w:t&gt;Text content&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+</code></pre>
+<h3>Headings and Styles</h3>
+<pre><code class="language-xml">&lt;w:p&gt;
+  &lt;w:pPr&gt;
+    &lt;w:pStyle w:val=&quot;Title&quot;/&gt;
+    &lt;w:jc w:val=&quot;center&quot;/&gt;
+  &lt;/w:pPr&gt;
+  &lt;w:r&gt;&lt;w:t&gt;Document Title&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+
+&lt;w:p&gt;
+  &lt;w:pPr&gt;&lt;w:pStyle w:val=&quot;Heading2&quot;/&gt;&lt;/w:pPr&gt;
+  &lt;w:r&gt;&lt;w:t&gt;Section Heading&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+</code></pre>
+<h3>Text Formatting</h3>
+<pre><code class="language-xml">&lt;!-- Bold --&gt;
+&lt;w:r&gt;&lt;w:rPr&gt;&lt;w:b/&gt;&lt;w:bCs/&gt;&lt;/w:rPr&gt;&lt;w:t&gt;Bold&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;!-- Italic --&gt;
+&lt;w:r&gt;&lt;w:rPr&gt;&lt;w:i/&gt;&lt;w:iCs/&gt;&lt;/w:rPr&gt;&lt;w:t&gt;Italic&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;!-- Underline --&gt;
+&lt;w:r&gt;&lt;w:rPr&gt;&lt;w:u w:val=&quot;single&quot;/&gt;&lt;/w:rPr&gt;&lt;w:t&gt;Underlined&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;!-- Highlight --&gt;
+&lt;w:r&gt;&lt;w:rPr&gt;&lt;w:highlight w:val=&quot;yellow&quot;/&gt;&lt;/w:rPr&gt;&lt;w:t&gt;Highlighted&lt;/w:t&gt;&lt;/w:r&gt;
+</code></pre>
+<h3>Lists</h3>
+<pre><code class="language-xml">&lt;!-- Numbered list --&gt;
+&lt;w:p&gt;
+  &lt;w:pPr&gt;
+    &lt;w:pStyle w:val=&quot;ListParagraph&quot;/&gt;
+    &lt;w:numPr&gt;&lt;w:ilvl w:val=&quot;0&quot;/&gt;&lt;w:numId w:val=&quot;1&quot;/&gt;&lt;/w:numPr&gt;
+    &lt;w:spacing w:before=&quot;240&quot;/&gt;
+  &lt;/w:pPr&gt;
+  &lt;w:r&gt;&lt;w:t&gt;First item&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+
+&lt;!-- Restart numbered list at 1 - use different numId --&gt;
+&lt;w:p&gt;
+  &lt;w:pPr&gt;
+    &lt;w:pStyle w:val=&quot;ListParagraph&quot;/&gt;
+    &lt;w:numPr&gt;&lt;w:ilvl w:val=&quot;0&quot;/&gt;&lt;w:numId w:val=&quot;2&quot;/&gt;&lt;/w:numPr&gt;
+    &lt;w:spacing w:before=&quot;240&quot;/&gt;
+  &lt;/w:pPr&gt;
+  &lt;w:r&gt;&lt;w:t&gt;New list item 1&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+
+&lt;!-- Bullet list (level 2) --&gt;
+&lt;w:p&gt;
+  &lt;w:pPr&gt;
+    &lt;w:pStyle w:val=&quot;ListParagraph&quot;/&gt;
+    &lt;w:numPr&gt;&lt;w:ilvl w:val=&quot;1&quot;/&gt;&lt;w:numId w:val=&quot;1&quot;/&gt;&lt;/w:numPr&gt;
+    &lt;w:spacing w:before=&quot;240&quot;/&gt;
+    &lt;w:ind w:left=&quot;900&quot;/&gt;
+  &lt;/w:pPr&gt;
+  &lt;w:r&gt;&lt;w:t&gt;Bullet item&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+</code></pre>
+<h3>Tables</h3>
+<pre><code class="language-xml">&lt;w:tbl&gt;
+  &lt;w:tblPr&gt;
+    &lt;w:tblStyle w:val=&quot;TableGrid&quot;/&gt;
+    &lt;w:tblW w:w=&quot;0&quot; w:type=&quot;auto&quot;/&gt;
+  &lt;/w:tblPr&gt;
+  &lt;w:tblGrid&gt;
+    &lt;w:gridCol w:w=&quot;4675&quot;/&gt;&lt;w:gridCol w:w=&quot;4675&quot;/&gt;
+  &lt;/w:tblGrid&gt;
+  &lt;w:tr&gt;
+    &lt;w:tc&gt;
+      &lt;w:tcPr&gt;&lt;w:tcW w:w=&quot;4675&quot; w:type=&quot;dxa&quot;/&gt;&lt;/w:tcPr&gt;
+      &lt;w:p&gt;&lt;w:r&gt;&lt;w:t&gt;Cell 1&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:p&gt;
+    &lt;/w:tc&gt;
+    &lt;w:tc&gt;
+      &lt;w:tcPr&gt;&lt;w:tcW w:w=&quot;4675&quot; w:type=&quot;dxa&quot;/&gt;&lt;/w:tcPr&gt;
+      &lt;w:p&gt;&lt;w:r&gt;&lt;w:t&gt;Cell 2&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:p&gt;
+    &lt;/w:tc&gt;
+  &lt;/w:tr&gt;
+&lt;/w:tbl&gt;
+</code></pre>
+<h3>Layout</h3>
+<pre><code class="language-xml">&lt;!-- Page break before new section (common pattern) --&gt;
+&lt;w:p&gt;
+  &lt;w:r&gt;
+    &lt;w:br w:type=&quot;page&quot;/&gt;
+  &lt;/w:r&gt;
+&lt;/w:p&gt;
+&lt;w:p&gt;
+  &lt;w:pPr&gt;
+    &lt;w:pStyle w:val=&quot;Heading1&quot;/&gt;
+  &lt;/w:pPr&gt;
+  &lt;w:r&gt;
+    &lt;w:t&gt;New Section Title&lt;/w:t&gt;
+  &lt;/w:r&gt;
+&lt;/w:p&gt;
+
+&lt;!-- Centered paragraph --&gt;
+&lt;w:p&gt;
+  &lt;w:pPr&gt;
+    &lt;w:spacing w:before=&quot;240&quot; w:after=&quot;0&quot;/&gt;
+    &lt;w:jc w:val=&quot;center&quot;/&gt;
+  &lt;/w:pPr&gt;
+  &lt;w:r&gt;&lt;w:t&gt;Centered text&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+
+&lt;!-- Font change - paragraph level (applies to all runs) --&gt;
+&lt;w:p&gt;
+  &lt;w:pPr&gt;
+    &lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Courier New&quot; w:hAnsi=&quot;Courier New&quot;/&gt;&lt;/w:rPr&gt;
+  &lt;/w:pPr&gt;
+  &lt;w:r&gt;&lt;w:t&gt;Monospace text&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+
+&lt;!-- Font change - run level (specific to this text) --&gt;
+&lt;w:p&gt;
+  &lt;w:r&gt;
+    &lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Courier New&quot; w:hAnsi=&quot;Courier New&quot;/&gt;&lt;/w:rPr&gt;
+    &lt;w:t&gt;This text is Courier New&lt;/w:t&gt;
+  &lt;/w:r&gt;
+  &lt;w:r&gt;&lt;w:t&gt; and this text uses default font&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:p&gt;
+</code></pre>
+<h2>File Updates</h2>
+<p>When adding content, update these files:</p>
+<p><strong><code>word/_rels/document.xml.rels</code>:</strong></p>
+<pre><code class="language-xml">&lt;Relationship Id=&quot;rId1&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/numbering&quot; Target=&quot;numbering.xml&quot;/&gt;
+&lt;Relationship Id=&quot;rId5&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/image&quot; Target=&quot;media/image1.png&quot;/&gt;
+</code></pre>
+<p><strong><code>[Content_Types].xml</code>:</strong></p>
+<pre><code class="language-xml">&lt;Default Extension=&quot;png&quot; ContentType=&quot;image/png&quot;/&gt;
+&lt;Override PartName=&quot;/word/numbering.xml&quot; ContentType=&quot;application/vnd.openxmlformats-officedocument.wordprocessingml.numbering+xml&quot;/&gt;
+</code></pre>
+<h3>Images</h3>
+<p><strong>CRITICAL</strong>: Calculate dimensions to prevent page overflow and maintain aspect ratio.</p>
+<pre><code class="language-xml">&lt;!-- Minimal required structure --&gt;
+&lt;w:p&gt;
+  &lt;w:r&gt;
+    &lt;w:drawing&gt;
+      &lt;wp:inline&gt;
+        &lt;wp:extent cx=&quot;2743200&quot; cy=&quot;1828800&quot;/&gt;
+        &lt;wp:docPr id=&quot;1&quot; name=&quot;Picture 1&quot;/&gt;
+        &lt;a:graphic xmlns:a=&quot;http://schemas.openxmlformats.org/drawingml/2006/main&quot;&gt;
+          &lt;a:graphicData uri=&quot;http://schemas.openxmlformats.org/drawingml/2006/picture&quot;&gt;
+            &lt;pic:pic xmlns:pic=&quot;http://schemas.openxmlformats.org/drawingml/2006/picture&quot;&gt;
+              &lt;pic:nvPicPr&gt;
+                &lt;pic:cNvPr id=&quot;0&quot; name=&quot;image1.png&quot;/&gt;
+                &lt;pic:cNvPicPr/&gt;
+              &lt;/pic:nvPicPr&gt;
+              &lt;pic:blipFill&gt;
+                &lt;a:blip r:embed=&quot;rId5&quot;/&gt;
+                &lt;!-- Add for stretch fill with aspect ratio preservation --&gt;
+                &lt;a:stretch&gt;
+                  &lt;a:fillRect/&gt;
+                &lt;/a:stretch&gt;
+              &lt;/pic:blipFill&gt;
+              &lt;pic:spPr&gt;
+                &lt;a:xfrm&gt;
+                  &lt;a:ext cx=&quot;2743200&quot; cy=&quot;1828800&quot;/&gt;
+                &lt;/a:xfrm&gt;
+                &lt;a:prstGeom prst=&quot;rect&quot;/&gt;
+              &lt;/pic:spPr&gt;
+            &lt;/pic:pic&gt;
+          &lt;/a:graphicData&gt;
+        &lt;/a:graphic&gt;
+      &lt;/wp:inline&gt;
+    &lt;/w:drawing&gt;
+  &lt;/w:r&gt;
+&lt;/w:p&gt;
+</code></pre>
+<h3>Links (Hyperlinks)</h3>
+<p><strong>IMPORTANT</strong>: All hyperlinks (both internal and external) require the Hyperlink style to be defined in styles.xml. Without this style, links will look like regular text instead of blue underlined clickable links.</p>
+<p><strong>External Links:</strong></p>
+<pre><code class="language-xml">&lt;!-- In document.xml --&gt;
+&lt;w:hyperlink r:id=&quot;rId5&quot;&gt;
+  &lt;w:r&gt;
+    &lt;w:rPr&gt;&lt;w:rStyle w:val=&quot;Hyperlink&quot;/&gt;&lt;/w:rPr&gt;
+    &lt;w:t&gt;Link Text&lt;/w:t&gt;
+  &lt;/w:r&gt;
+&lt;/w:hyperlink&gt;
+
+&lt;!-- In word/_rels/document.xml.rels --&gt;
+&lt;Relationship Id=&quot;rId5&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink&quot; 
+              Target=&quot;https://www.example.com/&quot; TargetMode=&quot;External&quot;/&gt;
+</code></pre>
+<p><strong>Internal Links:</strong></p>
+<pre><code class="language-xml">&lt;!-- Link to bookmark --&gt;
+&lt;w:hyperlink w:anchor=&quot;myBookmark&quot;&gt;
+  &lt;w:r&gt;
+    &lt;w:rPr&gt;&lt;w:rStyle w:val=&quot;Hyperlink&quot;/&gt;&lt;/w:rPr&gt;
+    &lt;w:t&gt;Link Text&lt;/w:t&gt;
+  &lt;/w:r&gt;
+&lt;/w:hyperlink&gt;
+
+&lt;!-- Bookmark target --&gt;
+&lt;w:bookmarkStart w:id=&quot;0&quot; w:name=&quot;myBookmark&quot;/&gt;
+&lt;w:r&gt;&lt;w:t&gt;Target content&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;w:bookmarkEnd w:id=&quot;0&quot;/&gt;
+</code></pre>
+<p><strong>Hyperlink Style (required in styles.xml):</strong></p>
+<pre><code class="language-xml">&lt;w:style w:type=&quot;character&quot; w:styleId=&quot;Hyperlink&quot;&gt;
+  &lt;w:name w:val=&quot;Hyperlink&quot;/&gt;
+  &lt;w:basedOn w:val=&quot;DefaultParagraphFont&quot;/&gt;
+  &lt;w:uiPriority w:val=&quot;99&quot;/&gt;
+  &lt;w:unhideWhenUsed/&gt;
+  &lt;w:rPr&gt;
+    &lt;w:color w:val=&quot;467886&quot; w:themeColor=&quot;hyperlink&quot;/&gt;
+    &lt;w:u w:val=&quot;single&quot;/&gt;
+  &lt;/w:rPr&gt;
+&lt;/w:style&gt;
+</code></pre>
+<h2>Document Library (Python)</h2>
+<p>Use the Document class from <code>scripts/document.py</code> for all tracked changes and comments. It automatically handles infrastructure setup (people.xml, RSIDs, settings.xml, comment files, relationships, content types). Only use direct XML manipulation for complex scenarios not supported by the library.</p>
+<p><strong>Working with Unicode and Entities:</strong></p>
+<ul>
+<li><strong>Searching</strong>: Both entity notation and Unicode characters work - <code>contains=&quot;&amp;#8220;Company&quot;</code> and <code>contains=&quot;\u201cCompany&quot;</code> find the same text</li>
+<li><strong>Replacing</strong>: Use either entities (<code>&amp;#8220;</code>) or Unicode (<code>\u201c</code>) - both work and will be converted appropriately based on the file&#39;s encoding (ascii → entities, utf-8 → Unicode)</li>
+</ul>
+<h3>Initialization</h3>
+<p><strong>Find the docx skill root</strong> (directory containing <code>scripts/</code> and <code>ooxml/</code>):</p>
+<pre><code class="language-bash"># Search for document.py to locate the skill root
+# Note: /mnt/skills is used here as an example; check your context for the actual location
+find /mnt/skills -name &quot;document.py&quot; -path &quot;*/docx/scripts/*&quot; 2&gt;/dev/null | head -1
+# Example output: /mnt/skills/docx/scripts/document.py
+# Skill root is: /mnt/skills/docx
+</code></pre>
+<p><strong>Run your script with PYTHONPATH</strong> set to the docx skill root:</p>
+<pre><code class="language-bash">PYTHONPATH=/mnt/skills/docx python your_script.py
+</code></pre>
+<p><strong>In your script</strong>, import from the skill root:</p>
+<pre><code class="language-python">from scripts.document import Document, DocxXMLEditor
+
+# Basic initialization (automatically creates temp copy and sets up infrastructure)
+doc = Document(&#39;unpacked&#39;)
+
+# Customize author and initials
+doc = Document(&#39;unpacked&#39;, author=&quot;John Doe&quot;, initials=&quot;JD&quot;)
+
+# Enable track revisions mode
+doc = Document(&#39;unpacked&#39;, track_revisions=True)
+
+# Specify custom RSID (auto-generated if not provided)
+doc = Document(&#39;unpacked&#39;, rsid=&quot;07DC5ECB&quot;)
+</code></pre>
+<h3>Creating Tracked Changes</h3>
+<p><strong>CRITICAL</strong>: Only mark text that actually changes. Keep ALL unchanged text outside <code>&lt;w:del&gt;</code>/<code>&lt;w:ins&gt;</code> tags. Marking unchanged text makes edits unprofessional and harder to review.</p>
+<p><strong>Attribute Handling</strong>: The Document class auto-injects attributes (w:id, w:date, w:rsidR, w:rsidDel, w16du:dateUtc, xml:space) into new elements. When preserving unchanged text from the original document, copy the original <code>&lt;w:r&gt;</code> element with its existing attributes to maintain document integrity.</p>
+<p><strong>Method Selection Guide</strong>:</p>
+<ul>
+<li><strong>Adding your own changes to regular text</strong>: Use <code>replace_node()</code> with <code>&lt;w:del&gt;</code>/<code>&lt;w:ins&gt;</code> tags, or <code>suggest_deletion()</code> for removing entire <code>&lt;w:r&gt;</code> or <code>&lt;w:p&gt;</code> elements</li>
+<li><strong>Partially modifying another author&#39;s tracked change</strong>: Use <code>replace_node()</code> to nest your changes inside their <code>&lt;w:ins&gt;</code>/<code>&lt;w:del&gt;</code></li>
+<li><strong>Completely rejecting another author&#39;s insertion</strong>: Use <code>revert_insertion()</code> on the <code>&lt;w:ins&gt;</code> element (NOT <code>suggest_deletion()</code>)</li>
+<li><strong>Completely rejecting another author&#39;s deletion</strong>: Use <code>revert_deletion()</code> on the <code>&lt;w:del&gt;</code> element to restore deleted content using tracked changes</li>
+</ul>
+<pre><code class="language-python"># Minimal edit - change one word: &quot;The report is monthly&quot; → &quot;The report is quarterly&quot;
+# Original: &lt;w:r w:rsidR=&quot;00AB12CD&quot;&gt;&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Calibri&quot;/&gt;&lt;/w:rPr&gt;&lt;w:t&gt;The report is monthly&lt;/w:t&gt;&lt;/w:r&gt;
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, contains=&quot;The report is monthly&quot;)
+rpr = tags[0].toxml() if (tags := node.getElementsByTagName(&quot;w:rPr&quot;)) else &quot;&quot;
+replacement = f&#39;&lt;w:r w:rsidR=&quot;00AB12CD&quot;&gt;{rpr}&lt;w:t&gt;The report is &lt;/w:t&gt;&lt;/w:r&gt;&lt;w:del&gt;&lt;w:r&gt;{rpr}&lt;w:delText&gt;monthly&lt;/w:delText&gt;&lt;/w:r&gt;&lt;/w:del&gt;&lt;w:ins&gt;&lt;w:r&gt;{rpr}&lt;w:t&gt;quarterly&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:ins&gt;&#39;
+doc[&quot;word/document.xml&quot;].replace_node(node, replacement)
+
+# Minimal edit - change number: &quot;within 30 days&quot; → &quot;within 45 days&quot;
+# Original: &lt;w:r w:rsidR=&quot;00XYZ789&quot;&gt;&lt;w:rPr&gt;&lt;w:rFonts w:ascii=&quot;Calibri&quot;/&gt;&lt;/w:rPr&gt;&lt;w:t&gt;within 30 days&lt;/w:t&gt;&lt;/w:r&gt;
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, contains=&quot;within 30 days&quot;)
+rpr = tags[0].toxml() if (tags := node.getElementsByTagName(&quot;w:rPr&quot;)) else &quot;&quot;
+replacement = f&#39;&lt;w:r w:rsidR=&quot;00XYZ789&quot;&gt;{rpr}&lt;w:t&gt;within &lt;/w:t&gt;&lt;/w:r&gt;&lt;w:del&gt;&lt;w:r&gt;{rpr}&lt;w:delText&gt;30&lt;/w:delText&gt;&lt;/w:r&gt;&lt;/w:del&gt;&lt;w:ins&gt;&lt;w:r&gt;{rpr}&lt;w:t&gt;45&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:ins&gt;&lt;w:r w:rsidR=&quot;00XYZ789&quot;&gt;{rpr}&lt;w:t&gt; days&lt;/w:t&gt;&lt;/w:r&gt;&#39;
+doc[&quot;word/document.xml&quot;].replace_node(node, replacement)
+
+# Complete replacement - preserve formatting even when replacing all text
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, contains=&quot;apple&quot;)
+rpr = tags[0].toxml() if (tags := node.getElementsByTagName(&quot;w:rPr&quot;)) else &quot;&quot;
+replacement = f&#39;&lt;w:del&gt;&lt;w:r&gt;{rpr}&lt;w:delText&gt;apple&lt;/w:delText&gt;&lt;/w:r&gt;&lt;/w:del&gt;&lt;w:ins&gt;&lt;w:r&gt;{rpr}&lt;w:t&gt;banana orange&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:ins&gt;&#39;
+doc[&quot;word/document.xml&quot;].replace_node(node, replacement)
+
+# Insert new content (no attributes needed - auto-injected)
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, contains=&quot;existing text&quot;)
+doc[&quot;word/document.xml&quot;].insert_after(node, &#39;&lt;w:ins&gt;&lt;w:r&gt;&lt;w:t&gt;new text&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:ins&gt;&#39;)
+
+# Partially delete another author&#39;s insertion
+# Original: &lt;w:ins w:author=&quot;Jane Smith&quot; w:date=&quot;...&quot;&gt;&lt;w:r&gt;&lt;w:t&gt;quarterly financial report&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:ins&gt;
+# Goal: Delete only &quot;financial&quot; to make it &quot;quarterly report&quot;
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:ins&quot;, attrs={&quot;w:id&quot;: &quot;5&quot;})
+# IMPORTANT: Preserve w:author=&quot;Jane Smith&quot; on the outer &lt;w:ins&gt; to maintain authorship
+replacement = &#39;&#39;&#39;&lt;w:ins w:author=&quot;Jane Smith&quot; w:date=&quot;2025-01-15T10:00:00Z&quot;&gt;
+  &lt;w:r&gt;&lt;w:t&gt;quarterly &lt;/w:t&gt;&lt;/w:r&gt;
+  &lt;w:del&gt;&lt;w:r&gt;&lt;w:delText&gt;financial &lt;/w:delText&gt;&lt;/w:r&gt;&lt;/w:del&gt;
+  &lt;w:r&gt;&lt;w:t&gt;report&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:ins&gt;&#39;&#39;&#39;
+doc[&quot;word/document.xml&quot;].replace_node(node, replacement)
+
+# Change part of another author&#39;s insertion
+# Original: &lt;w:ins w:author=&quot;Jane Smith&quot;&gt;&lt;w:r&gt;&lt;w:t&gt;in silence, safe and sound&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:ins&gt;
+# Goal: Change &quot;safe and sound&quot; to &quot;soft and unbound&quot;
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:ins&quot;, attrs={&quot;w:id&quot;: &quot;8&quot;})
+replacement = f&#39;&#39;&#39;&lt;w:ins w:author=&quot;Jane Smith&quot; w:date=&quot;2025-01-15T10:00:00Z&quot;&gt;
+  &lt;w:r&gt;&lt;w:t&gt;in silence, &lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:ins&gt;
+&lt;w:ins&gt;
+  &lt;w:r&gt;&lt;w:t&gt;soft and unbound&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:ins&gt;
+&lt;w:ins w:author=&quot;Jane Smith&quot; w:date=&quot;2025-01-15T10:00:00Z&quot;&gt;
+  &lt;w:del&gt;&lt;w:r&gt;&lt;w:delText&gt;safe and sound&lt;/w:delText&gt;&lt;/w:r&gt;&lt;/w:del&gt;
+&lt;/w:ins&gt;&#39;&#39;&#39;
+doc[&quot;word/document.xml&quot;].replace_node(node, replacement)
+
+# Delete entire run (use only when deleting all content; use replace_node for partial deletions)
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, contains=&quot;text to delete&quot;)
+doc[&quot;word/document.xml&quot;].suggest_deletion(node)
+
+# Delete entire paragraph (in-place, handles both regular and numbered list paragraphs)
+para = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, contains=&quot;paragraph to delete&quot;)
+doc[&quot;word/document.xml&quot;].suggest_deletion(para)
+
+# Add new numbered list item
+target_para = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, contains=&quot;existing list item&quot;)
+pPr = tags[0].toxml() if (tags := target_para.getElementsByTagName(&quot;w:pPr&quot;)) else &quot;&quot;
+new_item = f&#39;&lt;w:p&gt;{pPr}&lt;w:r&gt;&lt;w:t&gt;New item&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:p&gt;&#39;
+tracked_para = DocxXMLEditor.suggest_paragraph(new_item)
+doc[&quot;word/document.xml&quot;].insert_after(target_para, tracked_para)
+# Optional: add spacing paragraph before content for better visual separation
+# spacing = DocxXMLEditor.suggest_paragraph(&#39;&lt;w:p&gt;&lt;w:pPr&gt;&lt;w:pStyle w:val=&quot;ListParagraph&quot;/&gt;&lt;/w:pPr&gt;&lt;/w:p&gt;&#39;)
+# doc[&quot;word/document.xml&quot;].insert_after(target_para, spacing + tracked_para)
+</code></pre>
+<h3>Adding Comments</h3>
+<pre><code class="language-python"># Add comment spanning two existing tracked changes
+# Note: w:id is auto-generated. Only search by w:id if you know it from XML inspection
+start_node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:del&quot;, attrs={&quot;w:id&quot;: &quot;1&quot;})
+end_node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:ins&quot;, attrs={&quot;w:id&quot;: &quot;2&quot;})
+doc.add_comment(start=start_node, end=end_node, text=&quot;Explanation of this change&quot;)
+
+# Add comment on a paragraph
+para = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, contains=&quot;paragraph text&quot;)
+doc.add_comment(start=para, end=para, text=&quot;Comment on this paragraph&quot;)
+
+# Add comment on newly created tracked change
+# First create the tracked change
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, contains=&quot;old&quot;)
+new_nodes = doc[&quot;word/document.xml&quot;].replace_node(
+    node,
+    &#39;&lt;w:del&gt;&lt;w:r&gt;&lt;w:delText&gt;old&lt;/w:delText&gt;&lt;/w:r&gt;&lt;/w:del&gt;&lt;w:ins&gt;&lt;w:r&gt;&lt;w:t&gt;new&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:ins&gt;&#39;
+)
+# Then add comment on the newly created elements
+# new_nodes[0] is the &lt;w:del&gt;, new_nodes[1] is the &lt;w:ins&gt;
+doc.add_comment(start=new_nodes[0], end=new_nodes[1], text=&quot;Changed old to new per requirements&quot;)
+
+# Reply to existing comment
+doc.reply_to_comment(parent_comment_id=0, text=&quot;I agree with this change&quot;)
+</code></pre>
+<h3>Rejecting Tracked Changes</h3>
+<p><strong>IMPORTANT</strong>: Use <code>revert_insertion()</code> to reject insertions and <code>revert_deletion()</code> to restore deletions using tracked changes. Use <code>suggest_deletion()</code> only for regular unmarked content.</p>
+<pre><code class="language-python"># Reject insertion (wraps it in deletion)
+# Use this when another author inserted text that you want to delete
+ins = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:ins&quot;, attrs={&quot;w:id&quot;: &quot;5&quot;})
+nodes = doc[&quot;word/document.xml&quot;].revert_insertion(ins)  # Returns [ins]
+
+# Reject deletion (creates insertion to restore deleted content)
+# Use this when another author deleted text that you want to restore
+del_elem = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:del&quot;, attrs={&quot;w:id&quot;: &quot;3&quot;})
+nodes = doc[&quot;word/document.xml&quot;].revert_deletion(del_elem)  # Returns [del_elem, new_ins]
+
+# Reject all insertions in a paragraph
+para = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, contains=&quot;paragraph text&quot;)
+nodes = doc[&quot;word/document.xml&quot;].revert_insertion(para)  # Returns [para]
+
+# Reject all deletions in a paragraph
+para = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, contains=&quot;paragraph text&quot;)
+nodes = doc[&quot;word/document.xml&quot;].revert_deletion(para)  # Returns [para]
+</code></pre>
+<h3>Inserting Images</h3>
+<p><strong>CRITICAL</strong>: The Document class works with a temporary copy at <code>doc.unpacked_path</code>. Always copy images to this temp directory, not the original unpacked folder.</p>
+<pre><code class="language-python">from PIL import Image
+import shutil, os
+
+# Initialize document first
+doc = Document(&#39;unpacked&#39;)
+
+# Copy image and calculate full-width dimensions with aspect ratio
+media_dir = os.path.join(doc.unpacked_path, &#39;word/media&#39;)
+os.makedirs(media_dir, exist_ok=True)
+shutil.copy(&#39;image.png&#39;, os.path.join(media_dir, &#39;image1.png&#39;))
+img = Image.open(os.path.join(media_dir, &#39;image1.png&#39;))
+width_emus = int(6.5 * 914400)  # 6.5&quot; usable width, 914400 EMUs/inch
+height_emus = int(width_emus * img.size[1] / img.size[0])
+
+# Add relationship and content type
+rels_editor = doc[&#39;word/_rels/document.xml.rels&#39;]
+next_rid = rels_editor.get_next_rid()
+rels_editor.append_to(rels_editor.dom.documentElement,
+    f&#39;&lt;Relationship Id=&quot;{next_rid}&quot; Type=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships/image&quot; Target=&quot;media/image1.png&quot;/&gt;&#39;)
+doc[&#39;[Content_Types].xml&#39;].append_to(doc[&#39;[Content_Types].xml&#39;].dom.documentElement,
+    &#39;&lt;Default Extension=&quot;png&quot; ContentType=&quot;image/png&quot;/&gt;&#39;)
+
+# Insert image
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, line_number=100)
+doc[&quot;word/document.xml&quot;].insert_after(node, f&#39;&#39;&#39;&lt;w:p&gt;
+  &lt;w:r&gt;
+    &lt;w:drawing&gt;
+      &lt;wp:inline distT=&quot;0&quot; distB=&quot;0&quot; distL=&quot;0&quot; distR=&quot;0&quot;&gt;
+        &lt;wp:extent cx=&quot;{width_emus}&quot; cy=&quot;{height_emus}&quot;/&gt;
+        &lt;wp:docPr id=&quot;1&quot; name=&quot;Picture 1&quot;/&gt;
+        &lt;a:graphic xmlns:a=&quot;http://schemas.openxmlformats.org/drawingml/2006/main&quot;&gt;
+          &lt;a:graphicData uri=&quot;http://schemas.openxmlformats.org/drawingml/2006/picture&quot;&gt;
+            &lt;pic:pic xmlns:pic=&quot;http://schemas.openxmlformats.org/drawingml/2006/picture&quot;&gt;
+              &lt;pic:nvPicPr&gt;&lt;pic:cNvPr id=&quot;1&quot; name=&quot;image1.png&quot;/&gt;&lt;pic:cNvPicPr/&gt;&lt;/pic:nvPicPr&gt;
+              &lt;pic:blipFill&gt;&lt;a:blip r:embed=&quot;{next_rid}&quot;/&gt;&lt;a:stretch&gt;&lt;a:fillRect/&gt;&lt;/a:stretch&gt;&lt;/pic:blipFill&gt;
+              &lt;pic:spPr&gt;&lt;a:xfrm&gt;&lt;a:ext cx=&quot;{width_emus}&quot; cy=&quot;{height_emus}&quot;/&gt;&lt;/a:xfrm&gt;&lt;a:prstGeom prst=&quot;rect&quot;&gt;&lt;a:avLst/&gt;&lt;/a:prstGeom&gt;&lt;/pic:spPr&gt;
+            &lt;/pic:pic&gt;
+          &lt;/a:graphicData&gt;
+        &lt;/a:graphic&gt;
+      &lt;/wp:inline&gt;
+    &lt;/w:drawing&gt;
+  &lt;/w:r&gt;
+&lt;/w:p&gt;&#39;&#39;&#39;)
+</code></pre>
+<h3>Getting Nodes</h3>
+<pre><code class="language-python"># By text content
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, contains=&quot;specific text&quot;)
+
+# By line range
+para = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, line_number=range(100, 150))
+
+# By attributes
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:del&quot;, attrs={&quot;w:id&quot;: &quot;1&quot;})
+
+# By exact line number (must be line number where tag opens)
+para = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, line_number=42)
+
+# Combine filters
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, line_number=range(40, 60), contains=&quot;text&quot;)
+
+# Disambiguate when text appears multiple times - add line_number range
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, contains=&quot;Section&quot;, line_number=range(2400, 2500))
+</code></pre>
+<h3>Saving</h3>
+<pre><code class="language-python"># Save with automatic validation (copies back to original directory)
+doc.save()  # Validates by default, raises error if validation fails
+
+# Save to different location
+doc.save(&#39;modified-unpacked&#39;)
+
+# Skip validation (debugging only - needing this in production indicates XML issues)
+doc.save(validate=False)
+</code></pre>
+<h3>Direct DOM Manipulation</h3>
+<p>For complex scenarios not covered by the library:</p>
+<pre><code class="language-python"># Access any XML file
+editor = doc[&quot;word/document.xml&quot;]
+editor = doc[&quot;word/comments.xml&quot;]
+
+# Direct DOM access (defusedxml.minidom.Document)
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, line_number=5)
+parent = node.parentNode
+parent.removeChild(node)
+parent.appendChild(node)  # Move to end
+
+# General document manipulation (without tracked changes)
+old_node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:p&quot;, contains=&quot;original text&quot;)
+doc[&quot;word/document.xml&quot;].replace_node(old_node, &quot;&lt;w:p&gt;&lt;w:r&gt;&lt;w:t&gt;replacement text&lt;/w:t&gt;&lt;/w:r&gt;&lt;/w:p&gt;&quot;)
+
+# Multiple insertions - use return value to maintain order
+node = doc[&quot;word/document.xml&quot;].get_node(tag=&quot;w:r&quot;, line_number=100)
+nodes = doc[&quot;word/document.xml&quot;].insert_after(node, &quot;&lt;w:r&gt;&lt;w:t&gt;A&lt;/w:t&gt;&lt;/w:r&gt;&quot;)
+nodes = doc[&quot;word/document.xml&quot;].insert_after(nodes[-1], &quot;&lt;w:r&gt;&lt;w:t&gt;B&lt;/w:t&gt;&lt;/w:r&gt;&quot;)
+nodes = doc[&quot;word/document.xml&quot;].insert_after(nodes[-1], &quot;&lt;w:r&gt;&lt;w:t&gt;C&lt;/w:t&gt;&lt;/w:r&gt;&quot;)
+# Results in: original_node, A, B, C
+</code></pre>
+<h2>Tracked Changes (Redlining)</h2>
+<p><strong>Use the Document class above for all tracked changes.</strong> The patterns below are for reference when constructing replacement XML strings.</p>
+<h3>Validation Rules</h3>
+<p>The validator checks that the document text matches the original after reverting Claude&#39;s changes. This means:</p>
+<ul>
+<li><strong>NEVER modify text inside another author&#39;s <code>&lt;w:ins&gt;</code> or <code>&lt;w:del&gt;</code> tags</strong></li>
+<li><strong>ALWAYS use nested deletions</strong> to remove another author&#39;s insertions</li>
+<li><strong>Every edit must be properly tracked</strong> with <code>&lt;w:ins&gt;</code> or <code>&lt;w:del&gt;</code> tags</li>
+</ul>
+<h3>Tracked Change Patterns</h3>
+<p><strong>CRITICAL RULES</strong>:</p>
+<ol>
+<li>Never modify the content inside another author&#39;s tracked changes. Always use nested deletions.</li>
+<li><strong>XML Structure</strong>: Always place <code>&lt;w:del&gt;</code> and <code>&lt;w:ins&gt;</code> at paragraph level containing complete <code>&lt;w:r&gt;</code> elements. Never nest inside <code>&lt;w:r&gt;</code> elements - this creates invalid XML that breaks document processing.</li>
+</ol>
+<p><strong>Text Insertion:</strong></p>
+<pre><code class="language-xml">&lt;w:ins w:id=&quot;1&quot; w:author=&quot;Claude&quot; w:date=&quot;2025-07-30T23:05:00Z&quot; w16du:dateUtc=&quot;2025-07-31T06:05:00Z&quot;&gt;
+  &lt;w:r w:rsidR=&quot;00792858&quot;&gt;
+    &lt;w:t&gt;inserted text&lt;/w:t&gt;
+  &lt;/w:r&gt;
+&lt;/w:ins&gt;
+</code></pre>
+<p><strong>Text Deletion:</strong></p>
+<pre><code class="language-xml">&lt;w:del w:id=&quot;2&quot; w:author=&quot;Claude&quot; w:date=&quot;2025-07-30T23:05:00Z&quot; w16du:dateUtc=&quot;2025-07-31T06:05:00Z&quot;&gt;
+  &lt;w:r w:rsidDel=&quot;00792858&quot;&gt;
+    &lt;w:delText&gt;deleted text&lt;/w:delText&gt;
+  &lt;/w:r&gt;
+&lt;/w:del&gt;
+</code></pre>
+<p><strong>Deleting Another Author&#39;s Insertion (MUST use nested structure):</strong></p>
+<pre><code class="language-xml">&lt;!-- Nest deletion inside the original insertion --&gt;
+&lt;w:ins w:author=&quot;Jane Smith&quot; w:id=&quot;16&quot;&gt;
+  &lt;w:del w:author=&quot;Claude&quot; w:id=&quot;40&quot;&gt;
+    &lt;w:r&gt;&lt;w:delText&gt;monthly&lt;/w:delText&gt;&lt;/w:r&gt;
+  &lt;/w:del&gt;
+&lt;/w:ins&gt;
+&lt;w:ins w:author=&quot;Claude&quot; w:id=&quot;41&quot;&gt;
+  &lt;w:r&gt;&lt;w:t&gt;weekly&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:ins&gt;
+</code></pre>
+<p><strong>Restoring Another Author&#39;s Deletion:</strong></p>
+<pre><code class="language-xml">&lt;!-- Leave their deletion unchanged, add new insertion after it --&gt;
+&lt;w:del w:author=&quot;Jane Smith&quot; w:id=&quot;50&quot;&gt;
+  &lt;w:r&gt;&lt;w:delText&gt;within 30 days&lt;/w:delText&gt;&lt;/w:r&gt;
+&lt;/w:del&gt;
+&lt;w:ins w:author=&quot;Claude&quot; w:id=&quot;51&quot;&gt;
+  &lt;w:r&gt;&lt;w:t&gt;within 30 days&lt;/w:t&gt;&lt;/w:r&gt;
+&lt;/w:ins&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

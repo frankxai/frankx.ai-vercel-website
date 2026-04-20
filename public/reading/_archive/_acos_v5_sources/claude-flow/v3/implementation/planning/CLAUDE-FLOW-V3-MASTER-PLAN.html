@@ -1,0 +1,1565 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow v3: Complete Reimagining with agentic-flow@alpha Foundation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/planning/CLAUDE-FLOW-V3-MASTER-PLAN.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow v3: Complete Reimagining with agentic-flow@alpha Foundation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fplanning">planning</a> / <span>CLAUDE-FLOW-V3-MASTER-PLAN.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude-Flow v3: Complete Reimagining with agentic-flow@alpha Foundation</h1>
+<h2>Executive Summary</h2>
+<p>Claude-Flow v3 represents a complete architectural overhaul that builds on <strong>agentic-flow@alpha</strong> as its core foundation while maintaining full backward compatibility with v2.x. This plan consolidates findings from concurrent swarm analysis covering architecture, security, dead code, Windows compatibility, repository cleanup, and .claude/ optimization.</p>
+<h3>Key Objectives</h3>
+<table>
+<thead>
+<tr>
+<th>Objective</th>
+<th>Target</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Performance</strong></td>
+<td>2.49x-7.47x speedup</td>
+<td>Flash Attention integration</td>
+</tr>
+<tr>
+<td><strong>Quality</strong></td>
+<td>+55% improvement</td>
+<td>SONA adaptive learning</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>60-70% savings</td>
+<td>Intelligent LLM routing</td>
+</tr>
+<tr>
+<td><strong>Codebase</strong></td>
+<td>40% smaller</td>
+<td>130k → 78k lines</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>75% reduction</td>
+<td>14.2MB → 3.5MB config</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>90/100 score</td>
+<td>Fix critical vulnerabilities</td>
+</tr>
+</tbody></table>
+<h3>Timeline Overview</h3>
+<ul>
+<li><strong>Phase 1</strong> (Weeks 1-4): Foundation &amp; Security</li>
+<li><strong>Phase 2</strong> (Weeks 5-12): Core Domains</li>
+<li><strong>Phase 3</strong> (Weeks 13-16): Plugin Migration</li>
+<li><strong>Phase 4</strong> (Weeks 17-20): Testing &amp; Release</li>
+</ul>
+<p><strong>Target Release</strong>: v3.0.0 on 2026-06-01</p>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li><a href="#1-current-state-analysis">Current State Analysis</a></li>
+<li><a href="#2-security-remediation-critical">Security Remediation (CRITICAL)</a></li>
+<li><a href="#3-agentic-flowalpha-integration">agentic-flow@alpha Integration</a></li>
+<li><a href="#4-windows-support-via-sqljs">Windows Support via sql.js</a></li>
+<li><a href="#5-repository-cleanup">Repository Cleanup</a></li>
+<li><a href="#6-claude-optimization">.Claude/ Optimization</a></li>
+<li><a href="#7-agent-skills-commands--hooks">Agent, Skills, Commands &amp; Hooks</a></li>
+<li><a href="#8-backward-compatibility">Backward Compatibility</a></li>
+<li><a href="#9-implementation-roadmap">Implementation Roadmap</a></li>
+<li><a href="#10-success-metrics">Success Metrics</a></li>
+</ol>
+<hr>
+<h2>1. Current State Analysis</h2>
+<h3>1.1 Codebase Overview</h3>
+<pre><code>Claude-Flow v2.7.47
+├── Source Files: 376 TypeScript files (~130,000 lines)
+├── Dependencies: agentic-flow (^1.9.4), ruv-swarm, flow-nexus
+├── Architecture: Multi-layered (CLI, Core, MCP, Swarm, Hive-Mind)
+└── Configuration: 14.2 MB across 7 directories
+</code></pre>
+<h3>1.2 Architectural Strengths (Preserve)</h3>
+<ul>
+<li>✅ Event-driven architecture with centralized EventBus</li>
+<li>✅ Interface-based design with dependency injection</li>
+<li>✅ Clean backend abstraction (Memory, Transport)</li>
+<li>✅ Circuit breaker patterns for reliability</li>
+<li>✅ MCP protocol compliance (2024.11.5)</li>
+<li>✅ Comprehensive agent template system (10+ templates)</li>
+</ul>
+<h3>1.3 Critical Weaknesses (Redesign)</h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Current</th>
+<th>Impact</th>
+<th>v3 Solution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>4 coordination systems</strong></td>
+<td>SwarmCoordinator, Hive Mind, Maestro, AgentManager</td>
+<td>Confusion, duplication</td>
+<td>Single unified coordinator</td>
+</tr>
+<tr>
+<td><strong>God objects</strong></td>
+<td>Orchestrator (1,440 lines), AgentManager (1,736 lines)</td>
+<td>Maintenance nightmare</td>
+<td>Domain-driven decomposition</td>
+</tr>
+<tr>
+<td><strong>Monolithic files</strong></td>
+<td>index.ts (108KB), enterprise.ts (68KB)</td>
+<td>Poor modularity</td>
+<td>Microkernel architecture</td>
+</tr>
+<tr>
+<td><strong>6 memory implementations</strong></td>
+<td>No clear differentiation</td>
+<td>Redundancy</td>
+<td>AgentDB unified backend</td>
+</tr>
+<tr>
+<td><strong>agentic-flow as add-on</strong></td>
+<td>Not leveraged properly</td>
+<td>Missing performance</td>
+<td>Native foundation</td>
+</tr>
+</tbody></table>
+<h3>1.4 Dead Code Analysis</h3>
+<p><strong>Total Removable</strong>: 15-20% of codebase (~8,000-12,000 lines)</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Lines</th>
+<th>Files</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Deprecated API files</td>
+<td>524</td>
+<td>3</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>Duplicate variants</td>
+<td>3,500</td>
+<td>13</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td>Backup/disabled files</td>
+<td>~500</td>
+<td>8</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td>Dual hive-mind implementation</td>
+<td>150-200KB</td>
+<td>Multiple</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td>Incomplete TODO/FIXME</td>
+<td>50+ items</td>
+<td>Various</td>
+<td>LOW</td>
+</tr>
+</tbody></table>
+<p><strong>Key Files to Remove</strong>:</p>
+<ul>
+<li><code>src/api/claude-client-v2.5.ts</code> (deprecated)</li>
+<li><code>bin/pair-old.js</code>, <code>bin/pair-enhanced.backup.js</code></li>
+<li><code>bin/stream-chain.js.backup</code>, <code>bin/training-pipeline-old.js.bak</code></li>
+<li>8 pair programming variants (keep only <code>pair.js</code>)</li>
+<li>5 stream-chain variants (keep only <code>stream-chain.js</code>)</li>
+</ul>
+<hr>
+<h2>2. Security Remediation (CRITICAL)</h2>
+<h3>2.1 Critical Vulnerabilities (Fix Immediately)</h3>
+<h4>CVE-1: Vulnerable Dependencies</h4>
+<pre><code class="language-bash"># Immediate fix required
+npm update @anthropic-ai/claude-code@^2.0.31
+npm update @modelcontextprotocol/sdk@^1.24.0
+npm audit fix --force
+</code></pre>
+<p><strong>Impact</strong>: 13 vulnerabilities (7 high, 3 moderate, 3 low)</p>
+<h4>CVE-2: Weak Password Hashing</h4>
+<p><strong>Location</strong>: <code>src/api/auth-service.ts:580-588</code></p>
+<pre><code class="language-typescript">// CURRENT (INSECURE)
+const hash = crypto.createHash(&#39;sha256&#39;)
+  .update(&#39;salt&#39; + password)  // Hardcoded salt!
+  .digest(&#39;hex&#39;);
+
+// v3 FIX (SECURE)
+import * as bcrypt from &#39;bcrypt&#39;;
+const SALT_ROUNDS = 12;
+const hash = await bcrypt.hash(password, SALT_ROUNDS);
+</code></pre>
+<h4>CVE-3: Hardcoded Default Credentials</h4>
+<p><strong>Location</strong>: <code>src/api/auth-service.ts:602-643</code></p>
+<pre><code class="language-typescript">// REMOVE these hardcoded credentials
+email: &#39;admin@claude-flow.local&#39;
+password: &#39;admin123&#39;  // CRITICAL RISK
+
+// v3: Generate random on installation
+const adminPassword = crypto.randomBytes(32).toString(&#39;hex&#39;);
+</code></pre>
+<h3>2.2 High-Priority Issues</h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Location</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Command injection</td>
+<td>Multiple <code>spawn()</code> with <code>shell: true</code></td>
+<td>Use <code>execFile()</code> without shell</td>
+</tr>
+<tr>
+<td>Path traversal</td>
+<td>User-provided file paths</td>
+<td>Validate with <code>path.resolve()</code></td>
+</tr>
+<tr>
+<td>Weak token generation</td>
+<td><code>Math.random()</code></td>
+<td>Use <code>crypto.randomBytes()</code></td>
+</tr>
+<tr>
+<td>Input validation gaps</td>
+<td>Config commands</td>
+<td>Add Joi/Zod schema validation</td>
+</tr>
+</tbody></table>
+<h3>2.3 Security Score Targets</h3>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Score</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Current (v2.7.47)</td>
+<td>45/100</td>
+<td>❌ Not production ready</td>
+</tr>
+<tr>
+<td>After critical fixes</td>
+<td>70/100</td>
+<td>⚠️ Acceptable</td>
+</tr>
+<tr>
+<td>v3.0.0 target</td>
+<td>90/100</td>
+<td>✅ Production ready</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. agentic-flow@alpha Integration</h2>
+<h3>3.1 Package Capabilities</h3>
+<p><strong>Version</strong>: <code>agentic-flow@2.0.1-alpha.0</code></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Capability</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SONA Learning</strong></td>
+<td>Sub-millisecond adaptive</td>
+<td>+55% quality</td>
+</tr>
+<tr>
+<td><strong>Flash Attention</strong></td>
+<td>8 attention mechanisms</td>
+<td>2.49x-7.47x speedup</td>
+</tr>
+<tr>
+<td><strong>AgentDB</strong></td>
+<td>150x-12,500x search</td>
+<td>HNSW indexing</td>
+</tr>
+<tr>
+<td><strong>66 Agents</strong></td>
+<td>Pre-built specialists</td>
+<td>Full coverage</td>
+</tr>
+<tr>
+<td><strong>213 MCP Tools</strong></td>
+<td>Complete toolset</td>
+<td>Enterprise ready</td>
+</tr>
+<tr>
+<td><strong>9 RL Algorithms</strong></td>
+<td>PPO, MCTS, Q-Learning</td>
+<td>Continuous learning</td>
+</tr>
+</tbody></table>
+<h3>3.2 Integration Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                     Claude-Flow v3                          │
+├─────────────────────────────────────────────────────────────┤
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │              Compatibility Layer (v2 API)            │   │
+│  │   - SwarmCoordinator wrapper                         │   │
+│  │   - AgentManager adapter                             │   │
+│  │   - Memory system bridge                             │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                            │                                │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │           agentic-flow@alpha Core Engine             │   │
+│  │   ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐   │   │
+│  │   │  SONA   │ │  Flash  │ │ AgentDB │ │   MCP   │   │   │
+│  │   │Learning │ │Attention│ │ Vector  │ │  Tools  │   │   │
+│  │   └─────────┘ └─────────┘ └─────────┘ └─────────┘   │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                            │                                │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │              Plugin Architecture                     │   │
+│  │   - HiveMind (optional)                              │   │
+│  │   - Maestro (optional)                               │   │
+│  │   - Neural training (optional)                       │   │
+│  │   - GitHub integration (optional)                    │   │
+│  └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>3.3 Core Adapter Implementation</h3>
+<pre><code class="language-typescript">// src/v3/integrations/agentic-flow-adapter.ts
+import { EnhancedAgentDBWrapper, AttentionCoordinator } from &#39;agentic-flow/core&#39;;
+
+export class AgenticFlowAdapter {
+  private wrapper: EnhancedAgentDBWrapper;
+  private coordinator: AttentionCoordinator;
+
+  constructor(config: AgenticFlowConfig) {
+    this.wrapper = new EnhancedAgentDBWrapper({
+      enableAttention: config.enableAttention ?? true,
+      enableGNN: config.enableGNN ?? true,
+      attentionConfig: { type: config.attentionType ?? &#39;flash&#39; },
+      runtimePreference: config.runtime ?? &#39;napi&#39;
+    });
+  }
+
+  async initialize(): Promise&lt;void&gt; {
+    await this.wrapper.initialize();
+    this.coordinator = new AttentionCoordinator(
+      this.wrapper.getAttentionService()
+    );
+  }
+
+  // Backward compatible agent creation
+  async createAgent(template: string, options?: AgentOptions): Promise&lt;string&gt; {
+    return await this.wrapper.spawnAgent(template, {
+      sonaProfile: options?.learning ?? &#39;balanced&#39;,
+      reflexionEnabled: options?.reflexion ?? true
+    });
+  }
+
+  // Enhanced search with GNN
+  async searchPatterns(query: string, k = 5): Promise&lt;Pattern[]&gt; {
+    return await this.wrapper.gnnEnhancedSearch(query, { k });
+  }
+
+  // Consensus-based coordination
+  async coordinateAgents(outputs: AgentOutput[]): Promise&lt;Consensus&gt; {
+    return await this.coordinator.coordinateAgents(outputs, &#39;flash&#39;);
+  }
+}
+</code></pre>
+<h3>3.4 Migration Strategy</h3>
+<h4>Phase 1: Non-Breaking (v3.0.0)</h4>
+<ul>
+<li>Add agentic-flow as optional enhancement</li>
+<li>Feature flag: <code>config.agenticFlow.enabled</code></li>
+<li>All existing APIs continue to work</li>
+</ul>
+<h4>Phase 2: Gradual Enhancement (v3.1.0-v3.4.0)</h4>
+<ul>
+<li>v3.1.0: Memory → AgentDB vector search</li>
+<li>v3.2.0: Coordination → Flash Attention</li>
+<li>v3.3.0: Agent selection → GNN-enhanced</li>
+<li>v3.4.0: Full SONA learning profiles</li>
+</ul>
+<h4>Phase 3: Unified (v4.0.0)</h4>
+<ul>
+<li>agentic-flow as default engine</li>
+<li>Deprecate legacy implementations</li>
+<li>Full performance benefits</li>
+</ul>
+<hr>
+<h2>4. Windows Support via sql.js</h2>
+<h3>4.1 Current Problem</h3>
+<pre><code>Windows Installation Failure:
+- better-sqlite3 requires native compilation
+- node-gyp build fails on many Windows systems
+- 17 files directly use better-sqlite3
+</code></pre>
+<h3>4.2 Solution: Dual-Mode Provider</h3>
+<pre><code class="language-typescript">// src/v3/memory/backends/database-provider.ts
+export type DatabaseProvider = &#39;better-sqlite3&#39; | &#39;sql.js&#39; | &#39;json&#39; | &#39;auto&#39;;
+
+export async function createDatabase(
+  path: string,
+  options: { provider?: DatabaseProvider } = {}
+): Promise&lt;Database&gt; {
+  const provider = options.provider ?? &#39;auto&#39;;
+
+  if (provider === &#39;auto&#39;) {
+    // Platform-aware selection
+    if (process.platform === &#39;win32&#39;) {
+      try {
+        // Try native first (if build tools available)
+        return await createBetterSqlite(path);
+      } catch {
+        // Fall back to sql.js (always works)
+        return await createSqlJs(path);
+      }
+    } else {
+      // Linux/macOS: native is reliable
+      return await createBetterSqlite(path);
+    }
+  }
+
+  // Explicit provider selection
+  switch (provider) {
+    case &#39;better-sqlite3&#39;: return await createBetterSqlite(path);
+    case &#39;sql.js&#39;: return await createSqlJs(path);
+    case &#39;json&#39;: return await createJsonFallback(path);
+  }
+}
+</code></pre>
+<h3>4.3 sql.js Implementation</h3>
+<pre><code class="language-typescript">// src/v3/memory/backends/sqljs-backend.ts
+import initSqlJs, { Database as SqlJsDatabase } from &#39;sql.js&#39;;
+
+export class SqlJsBackend implements DatabaseBackend {
+  private db: SqlJsDatabase;
+  private wasmUrl: string;
+
+  async initialize(path: string): Promise&lt;void&gt; {
+    const SQL = await initSqlJs({
+      locateFile: file =&gt; `${this.wasmUrl}/${file}`
+    });
+
+    // Load existing data or create new
+    if (await fileExists(path)) {
+      const buffer = await fs.readFile(path);
+      this.db = new SQL.Database(buffer);
+    } else {
+      this.db = new SQL.Database();
+    }
+  }
+
+  // Same interface as better-sqlite3
+  prepare(sql: string): Statement {
+    return new SqlJsStatement(this.db.prepare(sql));
+  }
+
+  exec(sql: string): void {
+    this.db.exec(sql);
+  }
+
+  // Persist changes
+  async persist(): Promise&lt;void&gt; {
+    const data = this.db.export();
+    await fs.writeFile(this.path, Buffer.from(data));
+  }
+}
+</code></pre>
+<h3>4.4 Performance Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>better-sqlite3</th>
+<th>sql.js</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Create swarm</td>
+<td>0.5ms</td>
+<td>1.5ms</td>
+<td>✅ Acceptable</td>
+</tr>
+<tr>
+<td>Store memory</td>
+<td>1ms</td>
+<td>3ms</td>
+<td>✅ Acceptable</td>
+</tr>
+<tr>
+<td>Query agents</td>
+<td>2ms</td>
+<td>6ms</td>
+<td>✅ Acceptable</td>
+</tr>
+<tr>
+<td>Bulk insert (1000)</td>
+<td>10ms</td>
+<td>30ms</td>
+<td>⚠️ Noticeable</td>
+</tr>
+</tbody></table>
+<p><strong>Optimization strategies</strong>:</p>
+<ul>
+<li>Batch transactions (80% overhead reduction)</li>
+<li>Lazy persistence (30s intervals)</li>
+<li>Prepared statement caching</li>
+</ul>
+<h3>4.5 Package Changes</h3>
+<pre><code class="language-json">// package.json
+{
+  &quot;dependencies&quot;: {
+    &quot;sql.js&quot;: &quot;^1.10.0&quot;  // +1.2MB (WASM)
+  },
+  &quot;optionalDependencies&quot;: {
+    &quot;better-sqlite3&quot;: &quot;^12.2.0&quot;  // Native, optional
+  }
+}
+</code></pre>
+<h3>4.6 Feature Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Core Features</th>
+<th>ReasoningBank</th>
+<th>Vector Search</th>
+<th>Platform</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>better-sqlite3</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>Linux/macOS</td>
+</tr>
+<tr>
+<td>sql.js</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>All (Windows)</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>All (fallback)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. Repository Cleanup</h2>
+<h3>5.1 Files to Remove (49MB+ savings)</h3>
+<h4>High Priority (22.6MB)</h4>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Size</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dist-cjs/</code></td>
+<td>22MB</td>
+<td>Remove from git, add to .gitignore</td>
+</tr>
+<tr>
+<td>Duplicate lock file</td>
+<td>0.6MB</td>
+<td>Keep one (npm or pnpm)</td>
+</tr>
+<tr>
+<td><code>claude-flow-wiki/</code></td>
+<td>0</td>
+<td>Remove empty directory</td>
+</tr>
+</tbody></table>
+<h4>Medium Priority (26.6MB)</h4>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Size</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>docs/reasoningbank/models/*.backup</code></td>
+<td>25.3MB</td>
+<td>Delete backup databases</td>
+</tr>
+<tr>
+<td><code>bin/*.backup</code>, <code>bin/*-old.js</code></td>
+<td>0.19MB</td>
+<td>Remove old variants</td>
+</tr>
+<tr>
+<td>Training data duplicates</td>
+<td>~2.1MB</td>
+<td>Deduplicate</td>
+</tr>
+</tbody></table>
+<h3>5.2 Cleanup Commands</h3>
+<pre><code class="language-bash">#!/bin/bash
+# cleanup-v3.sh
+
+# 1. Remove build artifacts from git
+git rm -r --cached dist-cjs/
+echo &quot;dist-cjs/&quot; &gt;&gt; .gitignore
+
+# 2. Remove backup files
+rm -f bin/pair-old.js
+rm -f bin/pair-enhanced.backup.js
+rm -f bin/stream-chain.js.backup
+rm -f bin/training-pipeline-old.js.bak
+rm -f docs/reasoningbank/models/*/memory.db.backup
+
+# 3. Remove duplicate lock file (choose one)
+rm -f package-lock.json  # If using pnpm
+# OR
+rm -f pnpm-lock.yaml     # If using npm
+
+# 4. Remove empty directory
+rmdir claude-flow-wiki/
+
+# 5. Clean up .gitignore duplicates
+# (manual edit to remove 8 duplicate &quot;hive-mind-prompt-*.txt&quot; entries)
+
+# 6. Commit
+git add .
+git commit -m &quot;chore: v3 repository cleanup - remove 49MB of artifacts&quot;
+</code></pre>
+<h3>5.3 .gitignore Updates</h3>
+<pre><code class="language-gitignore"># Add to .gitignore
+dist-cjs/
+*.backup
+*-old.js
+*.bak
+
+# Runtime databases (shouldn&#39;t be tracked)
+.swarm/memory.db
+.hive-mind/memory.db
+.claude-flow/**/*.db
+</code></pre>
+<hr>
+<h2>6. .Claude/ Optimization</h2>
+<h3>6.1 Current State (14.2MB)</h3>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Size</th>
+<th>Issues</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.claude/</code></td>
+<td>11MB</td>
+<td>9 settings variants, 3,720 checkpoints</td>
+</tr>
+<tr>
+<td><code>.claude-flow/</code></td>
+<td>2.5MB</td>
+<td>Stale training data</td>
+</tr>
+<tr>
+<td><code>.claude-plugin/</code></td>
+<td>81KB</td>
+<td>Hook duplication</td>
+</tr>
+<tr>
+<td><code>.hive-mind/</code></td>
+<td>20KB</td>
+<td>Separate database</td>
+</tr>
+<tr>
+<td><code>.swarm/</code></td>
+<td>272KB</td>
+<td>Separate database</td>
+</tr>
+<tr>
+<td><code>.ruv-swarm/</code></td>
+<td>9.5KB</td>
+<td>Old benchmark</td>
+</tr>
+<tr>
+<td><code>.research/</code></td>
+<td>399KB</td>
+<td>Stale docs</td>
+</tr>
+</tbody></table>
+<h3>6.2 v3 Optimized Structure (3.5MB target)</h3>
+<pre><code>.claude/
+├── config.json                    # Single source of truth
+├── settings.prod.json             # Production (from settings-enhanced)
+├── settings.dev.json              # Development with debug
+├── settings.github.json           # GitHub automation
+├── sparc-modes.json               # Unchanged
+│
+├── agents/                        # Reorganized (76 files)
+│   ├── core/                      # coder, tester, reviewer, researcher, planner
+│   ├── orchestration/             # swarm, hive-mind, coordinators
+│   ├── platform/                  # github, flow-nexus, devops
+│   ├── specialized/               # ml, mobile, backend
+│   ├── methodology/               # sparc agents
+│   ├── consensus/                 # byzantine, raft, gossip
+│   └── testing/                   # validation, tdd
+│
+├── commands/                      # Reorganized (93 files → 5 categories)
+│   ├── core/                      # agents, swarm, sparc
+│   ├── platform/                  # github, hive-mind, flow-nexus
+│   ├── operations/                # memory, training, monitoring
+│   ├── automation/                # hooks, workflows, coordination
+│   └── utilities/                 # analysis, optimization
+│
+├── skills/                        # Reorganized (28 skills → 5 domains)
+│   ├── ai-coordination/           # swarm, hive-mind, orchestration
+│   ├── data-processing/           # agentdb, stream-chain, reasoningbank
+│   ├── development/               # pair-programming, sparc-methodology
+│   ├── platform/                  # flow-nexus, github
+│   └── optimization/              # performance, verification
+│
+├── checkpoints/
+│   ├── active/                    # Last 20 only
+│   └── archive/                   # Compressed older files
+│
+└── .meta/                         # NEW: Configuration reference
+    ├── CONFIGURATION.md
+    ├── MIGRATION_LOG.md
+    └── OPTIMIZATION_STATUS.md
+
+.claude-flow/
+├── swarm-config.json              # Includes agent profiles
+├── coordination/                  # NEW: Unified runtime
+│   ├── memory.db                  # Merged swarm + hive-mind
+│   ├── metrics/
+│   └── sessions/
+├── training/
+│   ├── models/                    # Latest only
+│   ├── latest-results.json        # Single rotated file
+│   └── archive/                   # Compressed old data
+└── validation/
+    └── latest-validation.json     # Single file
+
+# REMOVE these directories
+.swarm/                            # → .claude-flow/coordination/
+.hive-mind/                        # → .claude-flow/coordination/
+.ruv-swarm/                        # Archive or remove
+</code></pre>
+<h3>6.3 Settings Consolidation</h3>
+<p><strong>Current</strong>: 9 settings files with overlapping content</p>
+<p><strong>v3</strong>: 4 purpose-specific files</p>
+<pre><code class="language-typescript">// settings.prod.json - Production configuration
+{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [...],     // Full hook suite
+    &quot;PostToolUse&quot;: [...],
+    &quot;PreCompact&quot;: [...],
+    &quot;Stop&quot;: [...]
+  },
+  &quot;neural&quot;: { &quot;enabled&quot;: true },
+  &quot;agenticFlow&quot;: { &quot;enabled&quot;: true, &quot;sona&quot;: &quot;balanced&quot; }
+}
+
+// settings.dev.json - Development configuration
+{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [...],     // Debug hooks
+  },
+  &quot;debug&quot;: { &quot;verbose&quot;: true, &quot;tracing&quot;: true }
+}
+
+// settings.github.json - GitHub automation
+{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [...],     // GitHub-specific
+  },
+  &quot;github&quot;: { &quot;autoReview&quot;: true, &quot;swarmReview&quot;: true }
+}
+</code></pre>
+<h3>6.4 Checkpoint Cleanup</h3>
+<pre><code class="language-bash"># Archive old checkpoints (keep last 20)
+cd .claude/checkpoints
+
+# Count current
+ls -1 | wc -l  # 3,720 files!
+
+# Archive old ones
+mkdir -p archive
+find . -maxdepth 1 -name &quot;*.json&quot; -mtime +7 -exec mv {} archive/ \;
+
+# Compress archive
+tar -czf archive.tar.gz archive/
+rm -rf archive/
+
+# Result: 8.4MB → ~500KB
+</code></pre>
+<hr>
+<h2>7. Agent, Skills, Commands &amp; Hooks</h2>
+<h3>7.1 Agent Optimization</h3>
+<h4>Current: 76 agents across 22 scattered categories</h4>
+<h4>v3: 76 agents in 7 logical categories</h4>
+<pre><code>agents/
+├── core/           (5)   # Essential: coder, tester, reviewer, researcher, planner
+├── orchestration/  (8)   # Coordinators: hierarchical, mesh, adaptive, queen, etc.
+├── platform/       (15)  # External: github-*, flow-nexus-*, devops
+├── specialized/    (12)  # Domain: backend-dev, mobile-dev, ml-developer
+├── methodology/    (10)  # Process: sparc-*, tdd-london, production-validator
+├── consensus/      (14)  # Distributed: byzantine, raft, gossip, crdt
+└── testing/        (12)  # Quality: perf-analyzer, code-analyzer, benchmark
+</code></pre>
+<h4>Agent Template Enhancement</h4>
+<pre><code class="language-typescript">// .claude/agents/core/coder.md (v3 enhanced)
+---
+name: coder
+version: 3.0.0
+category: core
+agentic-flow:
+  sona-profile: research      # +55% quality
+  attention: flash            # 2.49x-7.47x speedup
+  learning: enabled
+  reflexion: enabled
+capabilities:
+  - code-generation
+  - refactoring
+  - debugging
+  - testing
+---
+
+# Coder Agent
+
+Implementation specialist leveraging agentic-flow@alpha for enhanced code generation.
+
+## Enhanced Capabilities (v3)
+
+- **SONA Learning**: Learns from past implementations
+- **Flash Attention**: Faster context processing
+- **Reflexion**: Self-improvement through feedback
+</code></pre>
+<h3>7.2 Skills Optimization</h3>
+<h4>Current: 28 skills flat in skills/</h4>
+<h4>v3: 28 skills in 5 domain groups</h4>
+<pre><code class="language-yaml"># .claude/skills/ai-coordination/swarm-orchestration/SKILL.md
+---
+name: swarm-orchestration
+domain: ai-coordination
+version: 3.0.0
+triggers:
+  - &quot;orchestrate swarm&quot;
+  - &quot;multi-agent&quot;
+  - &quot;parallel agents&quot;
+agentic-flow:
+  required: true
+  features:
+    - flash-attention
+    - consensus-coordination
+---
+</code></pre>
+<h3>7.3 Commands Optimization</h3>
+<h4>Current: 93 commands across 16 categories</h4>
+<h4>v3: 93 commands in 5 logical groups</h4>
+<pre><code>commands/
+├── core/           # agents, swarm, sparc (18 commands)
+├── platform/       # github, hive-mind, flow-nexus (22 commands)
+├── operations/     # memory, training, monitoring (25 commands)
+├── automation/     # hooks, workflows, coordination (18 commands)
+└── utilities/      # analysis, optimization, helpers (10 commands)
+</code></pre>
+<h3>7.4 Hooks Consolidation</h3>
+<p><strong>Problem</strong>: Hooks defined in 3 places</p>
+<ul>
+<li><code>.claude/settings-enhanced.json</code></li>
+<li><code>.claude/settings-complete.json</code></li>
+<li><code>.claude-plugin/hooks/hooks.json</code></li>
+</ul>
+<p><strong>v3 Solution</strong>: Single source in <code>config.json</code></p>
+<pre><code class="language-typescript">// .claude/config.json (v3)
+{
+  &quot;version&quot;: &quot;3.0.0&quot;,
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;commands&quot;: [&quot;npx claude-flow hooks pre-tool --tool=$TOOL_NAME&quot;]
+      }
+    ],
+    &quot;PostToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;*&quot;,
+        &quot;commands&quot;: [&quot;npx claude-flow hooks post-tool --tool=$TOOL_NAME&quot;]
+      }
+    ],
+    &quot;PreCompact&quot;: [
+      {
+        &quot;commands&quot;: [&quot;npx claude-flow hooks pre-compact --session=$SESSION_ID&quot;]
+      }
+    ],
+    &quot;Stop&quot;: [
+      {
+        &quot;commands&quot;: [&quot;npx claude-flow hooks session-end --export-metrics true&quot;]
+      }
+    ]
+  },
+  // Reference from other files
+  &quot;extends&quot;: {
+    &quot;production&quot;: &quot;./settings.prod.json&quot;,
+    &quot;development&quot;: &quot;./settings.dev.json&quot;,
+    &quot;github&quot;: &quot;./settings.github.json&quot;
+  }
+}
+</code></pre>
+<h3>7.5 Hook Integration with agentic-flow</h3>
+<pre><code class="language-typescript">// src/v3/hooks/learning-hooks.ts
+export const agenticFlowHooks = {
+  PreToolUse: async (context: HookContext) =&gt; {
+    // Query similar past operations
+    const patterns = await agenticFlow.searchPatterns(context.tool);
+    if (patterns.length &gt; 0) {
+      context.suggestions = patterns.map(p =&gt; p.recommendation);
+    }
+  },
+
+  PostToolUse: async (context: HookContext) =&gt; {
+    // Store for learning
+    await agenticFlow.storePattern(
+      context.tool,
+      context.result,
+      context.success ? 1.0 : 0.0
+    );
+  },
+
+  PostTask: async (context: HookContext) =&gt; {
+    // Update agent skill library
+    if (context.success &amp;&amp; context.quality &gt; 0.8) {
+      await agenticFlow.addToSkillLibrary(
+        context.agentId,
+        context.taskType,
+        context.output
+      );
+    }
+  }
+};
+</code></pre>
+<hr>
+<h2>8. Backward Compatibility</h2>
+<h3>8.1 Compatibility Layer Design</h3>
+<pre><code class="language-typescript">// src/v3/compatibility/v2-adapter.ts
+import { SwarmCoordinator as V3Coordinator } from &#39;../coordination&#39;;
+import { AgenticFlowAdapter } from &#39;../integrations&#39;;
+
+/**
+ * v2 API compatibility layer
+ * All v2.x code continues to work unchanged
+ */
+export class SwarmCoordinator {
+  private v3: V3Coordinator;
+  private adapter: AgenticFlowAdapter;
+
+  // v2 API method signatures preserved
+  async spawnAgent(profile: AgentProfile): Promise&lt;string&gt; {
+    // Internally uses v3 with agentic-flow
+    return await this.v3.createAgent(profile.type, {
+      learning: true,  // v3 enhancement, transparent to v2 callers
+      ...profile
+    });
+  }
+
+  async assignTask(task: Task): Promise&lt;void&gt; {
+    // v2 behavior preserved, v3 enhancements automatic
+    await this.v3.executeTask(task);
+  }
+
+  // v2 event emissions preserved
+  on(event: string, handler: Function): void {
+    this.v3.on(event, handler);
+  }
+}
+</code></pre>
+<h3>8.2 Configuration Migration</h3>
+<pre><code class="language-typescript">// src/v3/compatibility/config-migrator.ts
+export async function migrateConfig(v2Config: V2Config): Promise&lt;V3Config&gt; {
+  return {
+    version: &#39;3.0.0&#39;,
+
+    // Preserve all v2 settings
+    ...v2Config,
+
+    // Add v3 enhancements with sensible defaults
+    agenticFlow: {
+      enabled: true,
+      attention: &#39;flash&#39;,
+      sona: &#39;balanced&#39;,
+      learning: true
+    },
+
+    // Migrate deprecated fields
+    hooks: migrateHooks(v2Config.hooks),
+    agents: migrateAgents(v2Config.agents)
+  };
+}
+
+// Auto-migration on first run
+export async function autoMigrate(): Promise&lt;void&gt; {
+  const configPath = &#39;.claude/config.json&#39;;
+  const config = await loadConfig(configPath);
+
+  if (!config.version || config.version &lt; &#39;3.0.0&#39;) {
+    const migrated = await migrateConfig(config);
+    await saveConfig(configPath, migrated);
+    await backupConfig(configPath + &#39;.v2.backup&#39;, config);
+    console.log(&#39;✅ Configuration migrated to v3&#39;);
+  }
+}
+</code></pre>
+<h3>8.3 Deprecation Strategy</h3>
+<pre><code class="language-typescript">// Phase 1 (v3.0.0): Warnings only
+/** @deprecated Use AgenticFlowAdapter.createAgent() instead */
+export async function legacySpawnAgent(profile: AgentProfile): Promise&lt;string&gt; {
+  console.warn(&#39;⚠️ legacySpawnAgent is deprecated. Use AgenticFlowAdapter.&#39;);
+  return await agenticFlow.createAgent(profile.type, profile);
+}
+
+// Phase 2 (v3.2.0): Loud warnings
+// Phase 3 (v4.0.0): Remove deprecated APIs
+</code></pre>
+<h3>8.4 Testing Backward Compatibility</h3>
+<pre><code class="language-typescript">// tests/v3/backward-compatibility.test.ts
+describe(&#39;v2 API Compatibility&#39;, () =&gt; {
+  it(&#39;should work with v2 SwarmCoordinator API&#39;, async () =&gt; {
+    // v2 code unchanged
+    const coordinator = new SwarmCoordinator();
+    const agentId = await coordinator.spawnAgent({ type: &#39;coder&#39; });
+    await coordinator.assignTask({ description: &#39;test&#39; });
+
+    expect(agentId).toBeDefined();
+  });
+
+  it(&#39;should emit v2 events&#39;, async () =&gt; {
+    const events: string[] = [];
+    coordinator.on(&#39;agent:spawned&#39;, () =&gt; events.push(&#39;spawned&#39;));
+    coordinator.on(&#39;task:completed&#39;, () =&gt; events.push(&#39;completed&#39;));
+
+    await coordinator.spawnAgent({ type: &#39;coder&#39; });
+    await coordinator.assignTask({ description: &#39;test&#39; });
+
+    expect(events).toContain(&#39;spawned&#39;);
+    expect(events).toContain(&#39;completed&#39;);
+  });
+
+  it(&#39;should migrate v2 config automatically&#39;, async () =&gt; {
+    const v2Config = { agents: [...], hooks: [...] };  // v2 format
+    const v3Config = await migrateConfig(v2Config);
+
+    expect(v3Config.version).toBe(&#39;3.0.0&#39;);
+    expect(v3Config.agenticFlow.enabled).toBe(true);
+  });
+});
+</code></pre>
+<hr>
+<h2>9. Implementation Roadmap</h2>
+<h3>9.1 Phase 1: Foundation &amp; Security (Weeks 1-4)</h3>
+<h4>Week 1: Security Fixes</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Update vulnerable dependencies</li>
+<li><input disabled="" type="checkbox"> Implement bcrypt password hashing</li>
+<li><input disabled="" type="checkbox"> Remove hardcoded credentials</li>
+<li><input disabled="" type="checkbox"> Fix command injection vulnerabilities</li>
+<li><input disabled="" type="checkbox"> Add path traversal protection</li>
+</ul>
+<h4>Week 2: Repository Cleanup</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Remove dist-cjs from git</li>
+<li><input disabled="" type="checkbox"> Delete backup and deprecated files</li>
+<li><input disabled="" type="checkbox"> Clean up .gitignore duplicates</li>
+<li><input disabled="" type="checkbox"> Archive old checkpoints</li>
+<li><input disabled="" type="checkbox"> Consolidate lock files</li>
+</ul>
+<h4>Week 3: Foundation Setup</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Create v3 directory structure</li>
+<li><input disabled="" type="checkbox"> Install <a href="mailto:agentic-flow@2.0.1-alpha.0">agentic-flow@2.0.1-alpha.0</a></li>
+<li><input disabled="" type="checkbox"> Create AgenticFlowAdapter</li>
+<li><input disabled="" type="checkbox"> Set up sql.js dual-mode provider</li>
+<li><input disabled="" type="checkbox"> Create v2 compatibility layer</li>
+</ul>
+<h4>Week 4: Configuration Migration</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Consolidate settings files (9 → 4)</li>
+<li><input disabled="" type="checkbox"> Reorganize agents (22 → 7 categories)</li>
+<li><input disabled="" type="checkbox"> Reorganize commands (16 → 5 groups)</li>
+<li><input disabled="" type="checkbox"> Reorganize skills (flat → 5 domains)</li>
+<li><input disabled="" type="checkbox"> Consolidate hooks to config.json</li>
+</ul>
+<h3>9.2 Phase 2: Core Domains (Weeks 5-12)</h3>
+<h4>Weeks 5-6: Agent Lifecycle</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Implement EnhancedAgentManager</li>
+<li><input disabled="" type="checkbox"> Integrate SONA learning profiles</li>
+<li><input disabled="" type="checkbox"> Add GNN-enhanced agent selection</li>
+<li><input disabled="" type="checkbox"> Implement Reflexion for self-improvement</li>
+</ul>
+<h4>Weeks 7-8: Task Execution</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Create UnifiedTaskExecutor</li>
+<li><input disabled="" type="checkbox"> Implement Flash Attention coordination</li>
+<li><input disabled="" type="checkbox"> Add consensus-based decision making</li>
+<li><input disabled="" type="checkbox"> Integrate 9 RL algorithms</li>
+</ul>
+<h4>Weeks 9-10: Memory Management</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Implement HybridMemorySystem</li>
+<li><input disabled="" type="checkbox"> Add AgentDB vector search</li>
+<li><input disabled="" type="checkbox"> Create sql.js backend</li>
+<li><input disabled="" type="checkbox"> Migrate swarm + hive-mind databases</li>
+</ul>
+<h4>Weeks 11-12: Coordination</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Create SingleCoordinatorEngine</li>
+<li><input disabled="" type="checkbox"> Implement pluggable strategies</li>
+<li><input disabled="" type="checkbox"> Add Byzantine fault tolerance</li>
+<li><input disabled="" type="checkbox"> Integrate QUIC transport</li>
+</ul>
+<h3>9.3 Phase 3: Plugin Migration (Weeks 13-16)</h3>
+<h4>Weeks 13-14: HiveMind &amp; Maestro</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Convert HiveMind to plugin</li>
+<li><input disabled="" type="checkbox"> Convert Maestro to plugin</li>
+<li><input disabled="" type="checkbox"> Create plugin loader system</li>
+<li><input disabled="" type="checkbox"> Add plugin configuration</li>
+</ul>
+<h4>Weeks 15-16: Neural &amp; GitHub</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Convert Neural to plugin</li>
+<li><input disabled="" type="checkbox"> Enhance GitHub integration</li>
+<li><input disabled="" type="checkbox"> Add 213 MCP tools access</li>
+<li><input disabled="" type="checkbox"> Implement plugin marketplace</li>
+</ul>
+<h3>9.4 Phase 4: Testing &amp; Release (Weeks 17-20)</h3>
+<h4>Weeks 17-18: Testing</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Unit tests for all v3 components</li>
+<li><input disabled="" type="checkbox"> Integration tests with agentic-flow</li>
+<li><input disabled="" type="checkbox"> Backward compatibility tests</li>
+<li><input disabled="" type="checkbox"> Performance benchmarks</li>
+<li><input disabled="" type="checkbox"> Security audit</li>
+</ul>
+<h4>Weeks 19-20: Release</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Documentation updates</li>
+<li><input disabled="" type="checkbox"> Migration guide</li>
+<li><input disabled="" type="checkbox"> CHANGELOG</li>
+<li><input disabled="" type="checkbox"> npm publish v3.0.0</li>
+<li><input disabled="" type="checkbox"> GitHub release</li>
+</ul>
+<h3>9.5 Sprint Breakdown</h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Week</th>
+<th>Focus</th>
+<th>Deliverables</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>Security</td>
+<td>All critical vulnerabilities fixed</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>Cleanup</td>
+<td>49MB removed, repo organized</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>Foundation</td>
+<td>v3 structure, agentic-flow installed</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>Config</td>
+<td>Settings consolidated, hooks unified</td>
+</tr>
+<tr>
+<td>5-6</td>
+<td>5-6</td>
+<td>Agents</td>
+<td>EnhancedAgentManager with SONA</td>
+</tr>
+<tr>
+<td>7-8</td>
+<td>7-8</td>
+<td>Tasks</td>
+<td>Consensus-based execution</td>
+</tr>
+<tr>
+<td>9-10</td>
+<td>9-10</td>
+<td>Memory</td>
+<td>Hybrid system with AgentDB</td>
+</tr>
+<tr>
+<td>11-12</td>
+<td>11-12</td>
+<td>Coordination</td>
+<td>Single engine with strategies</td>
+</tr>
+<tr>
+<td>13-14</td>
+<td>13-14</td>
+<td>Plugins</td>
+<td>HiveMind, Maestro as plugins</td>
+</tr>
+<tr>
+<td>15-16</td>
+<td>15-16</td>
+<td>Integration</td>
+<td>Neural, GitHub, MCP tools</td>
+</tr>
+<tr>
+<td>17-18</td>
+<td>17-18</td>
+<td>Testing</td>
+<td>Full test suite, benchmarks</td>
+</tr>
+<tr>
+<td>19-20</td>
+<td>19-20</td>
+<td>Release</td>
+<td>v3.0.0 published</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>10. Success Metrics</h2>
+<h3>10.1 Performance Targets</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>v2 Current</th>
+<th>v3 Target</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent spawn</td>
+<td>500ms</td>
+<td>&lt;100ms</td>
+<td>5x faster</td>
+</tr>
+<tr>
+<td>Task assignment</td>
+<td>50ms</td>
+<td>&lt;10ms</td>
+<td>5x faster</td>
+</tr>
+<tr>
+<td>Memory query</td>
+<td>25ms</td>
+<td>&lt;5ms</td>
+<td>5x faster</td>
+</tr>
+<tr>
+<td>Codebase size</td>
+<td>130k lines</td>
+<td>78k lines</td>
+<td>40% smaller</td>
+</tr>
+<tr>
+<td>Config storage</td>
+<td>14.2MB</td>
+<td>3.5MB</td>
+<td>75% smaller</td>
+</tr>
+<tr>
+<td>Startup time</td>
+<td>~2s</td>
+<td>&lt;500ms</td>
+<td>4x faster</td>
+</tr>
+<tr>
+<td>Security score</td>
+<td>45/100</td>
+<td>90/100</td>
+<td>2x safer</td>
+</tr>
+</tbody></table>
+<h3>10.2 Quality Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SONA quality improvement</td>
+<td>+55%</td>
+<td>A/B testing vs v2</td>
+</tr>
+<tr>
+<td>GNN search accuracy</td>
+<td>+12.4%</td>
+<td>Precision@5 comparison</td>
+</tr>
+<tr>
+<td>Test coverage</td>
+<td>&gt;90%</td>
+<td>Jest coverage report</td>
+</tr>
+<tr>
+<td>Type safety</td>
+<td>100%</td>
+<td>No <code>any</code> types</td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td>Complete</td>
+<td>All APIs documented</td>
+</tr>
+</tbody></table>
+<h3>10.3 Compatibility Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v2 API compatibility</td>
+<td>100%</td>
+<td>All v2 tests pass</td>
+</tr>
+<tr>
+<td>Config auto-migration</td>
+<td>100%</td>
+<td>Migration test suite</td>
+</tr>
+<tr>
+<td>Windows installation</td>
+<td>100%</td>
+<td>CI/CD Windows matrix</td>
+</tr>
+<tr>
+<td>Zero breaking changes</td>
+<td>0</td>
+<td>Semantic versioning</td>
+</tr>
+</tbody></table>
+<h3>10.4 Adoption Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Tracking</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Migration guides read</td>
+<td>&gt;1000</td>
+<td>Analytics</td>
+</tr>
+<tr>
+<td>Issues reported</td>
+<td>&lt;10 critical</td>
+<td>GitHub issues</td>
+</tr>
+<tr>
+<td>npm downloads</td>
+<td>+50%</td>
+<td>npm stats</td>
+</tr>
+<tr>
+<td>Community PRs</td>
+<td>+100%</td>
+<td>GitHub metrics</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Appendix A: File Changes Summary</h2>
+<h3>New Files to Create</h3>
+<pre><code>src/v3/
+├── integrations/
+│   ├── agentic-flow-adapter.ts
+│   └── index.ts
+├── memory/
+│   ├── backends/
+│   │   ├── sqljs-backend.ts
+│   │   └── database-provider.ts
+│   └── hybrid-memory.ts
+├── coordination/
+│   ├── unified-coordinator.ts
+│   └── consensus-engine.ts
+├── compatibility/
+│   ├── v2-adapter.ts
+│   └── config-migrator.ts
+├── hooks/
+│   └── learning-hooks.ts
+└── plugins/
+    ├── plugin-loader.ts
+    ├── hive-mind/
+    ├── maestro/
+    └── neural/
+
+docs/v3/
+├── CLAUDE-FLOW-V3-MASTER-PLAN.md (this file)
+├── MIGRATION-GUIDE.md
+├── API-REFERENCE.md
+└── ARCHITECTURE.md
+</code></pre>
+<h3>Files to Remove</h3>
+<pre><code># Deprecated
+src/api/claude-client-v2.5.ts
+
+# Backups
+bin/pair-old.js
+bin/pair-enhanced.backup.js
+bin/stream-chain.js.backup
+bin/training-pipeline-old.js.bak
+docs/reasoningbank/models/*/memory.db.backup
+
+# Build artifacts
+dist-cjs/ (remove from git)
+
+# Empty
+claude-flow-wiki/
+
+# Duplicate settings
+.claude/settings-complete.json
+.claude/settings-enhanced.json (merge into settings.prod.json)
+.claude/settings-checkpoint-*.json
+.claude/settings.reasoningbank-*.json
+.claude/settings-npx-hooks.json
+</code></pre>
+<h3>Files to Modify</h3>
+<pre><code>package.json                    # Add sql.js, update agentic-flow
+.gitignore                      # Add dist-cjs, cleanup duplicates
+.claude/config.json             # Add v3 structure, unified hooks
+tsconfig.json                   # Add v3 paths
+</code></pre>
+<hr>
+<h2>Appendix B: Quick Reference</h2>
+<h3>Key Commands</h3>
+<pre><code class="language-bash"># Install v3 dependencies
+npm install agentic-flow@2.0.1-alpha.0 sql.js
+
+# Run security fixes
+npm audit fix --force
+
+# Cleanup repository
+./scripts/cleanup-v3.sh
+
+# Run migration
+npx claude-flow migrate --to v3
+
+# Verify backward compatibility
+npm run test:compatibility
+
+# Build v3
+npm run build:v3
+</code></pre>
+<h3>Configuration Quick Start</h3>
+<pre><code class="language-json">// .claude/config.json (minimal v3)
+{
+  &quot;version&quot;: &quot;3.0.0&quot;,
+  &quot;agenticFlow&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;attention&quot;: &quot;flash&quot;,
+    &quot;sona&quot;: &quot;balanced&quot;
+  },
+  &quot;extends&quot;: &quot;./settings.prod.json&quot;
+}
+</code></pre>
+<h3>API Quick Reference</h3>
+<pre><code class="language-typescript">// v3 with backward compatibility
+import { SwarmCoordinator } from &#39;claude-flow&#39;;  // v2 API still works
+
+// v3 native
+import { AgenticFlowAdapter } from &#39;claude-flow/v3&#39;;
+const adapter = new AgenticFlowAdapter({ sona: &#39;research&#39; });
+await adapter.initialize();
+</code></pre>
+<hr>
+<p><em>Document Version: 1.0.0</em>
+<em>Last Updated: 2026-01-03</em>
+<em>Authors: Concurrent Swarm Analysis Team</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

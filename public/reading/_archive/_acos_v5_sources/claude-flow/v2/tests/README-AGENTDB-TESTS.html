@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>AgentDB Integration Test Suite</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/tests/README-AGENTDB-TESTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">AgentDB Integration Test Suite</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Ftests">tests</a> / <span>README-AGENTDB-TESTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>AgentDB Integration Test Suite</h1>
+<p>Comprehensive test suite for AgentDB v1.3.9 integration into claude-flow.</p>
+<h2>Overview</h2>
+<p>This test suite validates the complete AgentDB integration with <strong>170+ tests</strong> covering:</p>
+<ul>
+<li>✅ <strong>50+ Unit Tests</strong> - AgentDB Memory Adapter</li>
+<li>✅ <strong>40+ Unit Tests</strong> - AgentDB Backend</li>
+<li>✅ <strong>30+ Unit Tests</strong> - Legacy Data Bridge (Migration)</li>
+<li>✅ <strong>30+ Integration Tests</strong> - System Integration</li>
+<li>✅ <strong>20+ Performance Tests</strong> - Benchmark Validation</li>
+</ul>
+<h2>Test Coverage</h2>
+<h3>Target: &gt;90% Code Coverage</h3>
+<ul>
+<li><strong>Statements</strong>: &gt;90%</li>
+<li><strong>Branches</strong>: &gt;85%</li>
+<li><strong>Functions</strong>: &gt;90%</li>
+<li><strong>Lines</strong>: &gt;90%</li>
+</ul>
+<h2>Test Structure</h2>
+<pre><code>tests/
+├── unit/memory/agentdb/
+│   ├── adapter.test.js        # AgentDBMemoryAdapter tests
+│   ├── backend.test.js        # AgentDBBackend tests
+│   └── migration.test.js      # LegacyDataBridge tests
+├── integration/agentdb/
+│   └── compatibility.test.js  # Full integration tests
+├── performance/agentdb/
+│   └── benchmarks.test.js     # Performance validation
+├── utils/
+│   └── agentdb-test-helpers.js  # Test utilities
+└── run-agentdb-tests.sh       # Test runner script
+</code></pre>
+<h2>Running Tests</h2>
+<h3>Run All Tests</h3>
+<pre><code class="language-bash"># Run complete test suite with coverage
+./tests/run-agentdb-tests.sh
+
+# Or using npm
+npm run test:agentdb
+</code></pre>
+<h3>Run Specific Test Suites</h3>
+<pre><code class="language-bash"># Adapter tests only
+npm test tests/unit/memory/agentdb/adapter.test.js
+
+# Backend tests only
+npm test tests/unit/memory/agentdb/backend.test.js
+
+# Migration tests only
+npm test tests/unit/memory/agentdb/migration.test.js
+
+# Integration tests only
+npm test tests/integration/agentdb/compatibility.test.js
+
+# Performance benchmarks only
+npm test tests/performance/agentdb/benchmarks.test.js
+</code></pre>
+<h3>Run with Coverage</h3>
+<pre><code class="language-bash"># Full coverage report
+npm run test:coverage -- tests/unit/memory/agentdb/ tests/integration/agentdb/
+
+# View coverage in browser
+open coverage/lcov-report/index.html
+</code></pre>
+<h3>Run in Watch Mode</h3>
+<pre><code class="language-bash">npm run test:watch -- tests/unit/memory/agentdb/
+</code></pre>
+<h2>Test Categories</h2>
+<h3>1. Adapter Unit Tests (50+ tests)</h3>
+<p><strong>File</strong>: <code>tests/unit/memory/agentdb/adapter.test.js</code></p>
+<p>Tests for <code>AgentDBMemoryAdapter</code>:</p>
+<h4>Initialization (10 tests)</h4>
+<ul>
+<li>Hybrid mode initialization</li>
+<li>AgentDB-only mode</li>
+<li>Legacy-only mode</li>
+<li>Custom database paths</li>
+<li>Quantization options</li>
+<li>HNSW configuration</li>
+<li>Error handling</li>
+<li>Auto-creation of directories</li>
+</ul>
+<h4>Backward Compatibility (15 tests)</h4>
+<ul>
+<li>All EnhancedMemory methods</li>
+<li>Session management</li>
+<li>Workflow tracking</li>
+<li>Agent coordination</li>
+<li>Knowledge management</li>
+<li>Performance tracking</li>
+<li>Namespace support</li>
+<li>Metadata handling</li>
+<li>TTL expiration</li>
+</ul>
+<h4>New AgentDB Methods (15 tests)</h4>
+<ul>
+<li><code>vectorSearch()</code> - Semantic search</li>
+<li><code>storeWithEmbedding()</code> - Vector storage</li>
+<li><code>semanticRetrieve()</code> - Similarity retrieval</li>
+<li>Distance metrics (cosine, euclidean, dot)</li>
+<li>Namespace/metadata filtering</li>
+<li>Batch operations</li>
+<li>Embedding statistics</li>
+</ul>
+<h4>Fallback Behavior (10 tests)</h4>
+<ul>
+<li>Graceful degradation</li>
+<li>Error recovery</li>
+<li>Mixed data handling</li>
+<li>Health checks</li>
+<li>Mode switching</li>
+</ul>
+<h3>2. Backend Unit Tests (40+ tests)</h3>
+<p><strong>File</strong>: <code>tests/unit/memory/agentdb/backend.test.js</code></p>
+<p>Tests for <code>AgentDBBackend</code>:</p>
+<h4>Database Initialization (10 tests)</h4>
+<ul>
+<li>Database file creation</li>
+<li>Schema validation</li>
+<li>HNSW index setup</li>
+<li>Custom configurations</li>
+<li>Directory auto-creation</li>
+</ul>
+<h4>Vector Storage (10 tests)</h4>
+<ul>
+<li>Embedding storage</li>
+<li>Normalization</li>
+<li>Metadata handling</li>
+<li>Namespace isolation</li>
+<li>Dimension validation</li>
+<li>Large value handling</li>
+<li>TTL support</li>
+<li>Concurrent writes</li>
+</ul>
+<h4>HNSW Search (10 tests)</h4>
+<ul>
+<li>Search accuracy</li>
+<li>Similarity scoring</li>
+<li>Distance metrics</li>
+<li>Namespace filtering</li>
+<li>Metadata filtering</li>
+<li>Performance tuning</li>
+<li>Empty result handling</li>
+</ul>
+<h4>Quantization (10 tests)</h4>
+<ul>
+<li>Binary quantization</li>
+<li>Scalar quantization</li>
+<li>Product quantization</li>
+<li>Memory reduction validation</li>
+<li>Search accuracy maintenance</li>
+<li>Performance benchmarks</li>
+</ul>
+<h3>3. Migration Tests (30+ tests)</h3>
+<p><strong>File</strong>: <code>tests/unit/memory/agentdb/migration.test.js</code></p>
+<p>Tests for <code>LegacyDataBridge</code>:</p>
+<h4>Data Migration (10 tests)</h4>
+<ul>
+<li>Complete migration</li>
+<li>Data preservation</li>
+<li>Namespace migration</li>
+<li>Metadata migration</li>
+<li>Batch processing</li>
+<li>Embedding generation</li>
+<li>Selective migration</li>
+<li>Duplicate handling</li>
+</ul>
+<h4>Data Integrity (10 tests)</h4>
+<ul>
+<li>Record count validation</li>
+<li>Value comparison</li>
+<li>Corruption detection</li>
+<li>Nested object preservation</li>
+<li>Checksum verification</li>
+<li>Encoding validation</li>
+</ul>
+<h4>Progress Tracking (5 tests)</h4>
+<ul>
+<li>Real-time progress</li>
+<li>ETA calculation</li>
+<li>Speed metrics</li>
+<li>Resumable migration</li>
+</ul>
+<h4>Rollback Mechanism (5 tests)</h4>
+<ul>
+<li>Backup creation</li>
+<li>Rollback on failure</li>
+<li>Database restoration</li>
+<li>Backup history</li>
+<li>Point-in-time recovery</li>
+</ul>
+<h3>4. Integration Tests (30+ tests)</h3>
+<p><strong>File</strong>: <code>tests/integration/agentdb/compatibility.test.js</code></p>
+<p>Full system integration tests:</p>
+<h4>MCP Tools Integration (10 tests)</h4>
+<ul>
+<li><code>memory_usage</code></li>
+<li><code>memory_search</code></li>
+<li><code>swarm_status</code></li>
+<li><code>agent_list</code></li>
+<li><code>task_orchestrate</code></li>
+<li><code>neural_patterns</code></li>
+<li><code>performance_report</code></li>
+<li><code>cache_manage</code></li>
+<li><code>workflow_status</code></li>
+<li><code>state_snapshot</code></li>
+</ul>
+<h4>Hooks System Integration (10 tests)</h4>
+<ul>
+<li><code>pre-task</code> hook</li>
+<li><code>post-edit</code> hook</li>
+<li><code>session-restore</code> hook</li>
+<li><code>session-end</code> hook</li>
+<li><code>notify</code> hook</li>
+<li>Auto-format hook</li>
+<li>Neural training hook</li>
+<li>Performance tracking hook</li>
+<li>Token usage hook</li>
+<li>Cache optimization hook</li>
+</ul>
+<h4>Swarm Coordination (5 tests)</h4>
+<ul>
+<li>Multi-agent coordination</li>
+<li>Knowledge sharing</li>
+<li>Task assignment</li>
+<li>Agent heartbeats</li>
+<li>Failure recovery</li>
+</ul>
+<h4>Session Persistence (5 tests)</h4>
+<ul>
+<li>Session restart persistence</li>
+<li>Active sessions list</li>
+<li>Session history tracking</li>
+<li>Old session cleanup</li>
+<li>Export/import</li>
+</ul>
+<h3>5. Performance Benchmarks (20+ tests)</h3>
+<p><strong>File</strong>: <code>tests/performance/agentdb/benchmarks.test.js</code></p>
+<p>Performance validation against targets:</p>
+<h4>Pattern Search (5 tests)</h4>
+<ul>
+<li>✅ Search under 100µs (vs 15ms baseline)</li>
+<li>✅ 150x speedup over legacy</li>
+<li>✅ Complex regex efficiency</li>
+<li>✅ Filtered search speed</li>
+<li>✅ Concurrent search handling</li>
+</ul>
+<h4>Batch Operations (5 tests)</h4>
+<ul>
+<li>✅ 100 items under 2ms (vs 1000ms baseline)</li>
+<li>✅ 500x speedup over legacy</li>
+<li>✅ Batch retrieve efficiency</li>
+<li>✅ Batch delete performance</li>
+<li>✅ Large batch handling</li>
+</ul>
+<h4>Large Queries (5 tests)</h4>
+<ul>
+<li>✅ 10K vectors under 10ms (vs 100s baseline)</li>
+<li>✅ HNSW search scaling</li>
+<li>✅ Complex filters on large datasets</li>
+<li>✅ Pagination efficiency</li>
+<li>✅ Index optimization</li>
+</ul>
+<h4>Memory Usage (3 tests)</h4>
+<ul>
+<li>✅ 4-32x reduction with quantization</li>
+<li>✅ Efficient memory under load</li>
+<li>✅ Memory cleanup on delete</li>
+</ul>
+<h4>Startup Time (2 tests)</h4>
+<ul>
+<li>✅ Initialize under 10ms</li>
+<li>✅ Quick reload with data</li>
+</ul>
+<h2>Test Utilities</h2>
+<p><strong>File</strong>: <code>tests/utils/agentdb-test-helpers.js</code></p>
+<p>Comprehensive test utilities:</p>
+<h3>Data Generation</h3>
+<ul>
+<li><code>generateRandomEmbedding(dimension)</code> - Create test vectors</li>
+<li><code>generateTestDataset(count, options)</code> - Generate datasets</li>
+<li><code>createPatternedData(patterns)</code> - Special test cases</li>
+</ul>
+<h3>Database Management</h3>
+<ul>
+<li><code>createTempDbPath(prefix)</code> - Temporary databases</li>
+<li><code>cleanupTestDb(dbPath)</code> - Database cleanup</li>
+<li><code>populateDatabase(backend, count)</code> - Bulk population</li>
+</ul>
+<h3>Testing Utilities</h3>
+<ul>
+<li><code>deepEqual(obj1, obj2)</code> - Deep comparison</li>
+<li><code>cosineSimilarity(vec1, vec2)</code> - Vector similarity</li>
+<li><code>measureTime(fn)</code> - Performance measurement</li>
+<li><code>runBenchmark(fn, iterations)</code> - Statistical benchmarking</li>
+</ul>
+<h3>Helpers</h3>
+<ul>
+<li><code>validateSchema(backend)</code> - Schema validation</li>
+<li><code>assertPerformance(time, threshold, op)</code> - Performance assertions</li>
+<li><code>MockAgentDBBackend</code> - Mock backend for unit tests</li>
+<li><code>withTimeout(promise, timeout)</code> - Timeout wrapper</li>
+<li><code>retry(fn, options)</code> - Retry with backoff</li>
+</ul>
+<h2>Performance Targets</h2>
+<p>All benchmarks must meet these targets:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Baseline</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Pattern Search</td>
+<td>&lt;100µs</td>
+<td>15ms</td>
+<td>150x</td>
+</tr>
+<tr>
+<td>Batch Insert (100)</td>
+<td>&lt;2ms</td>
+<td>1000ms</td>
+<td>500x</td>
+</tr>
+<tr>
+<td>Large Query (10K)</td>
+<td>&lt;10ms</td>
+<td>100s</td>
+<td>10,000x</td>
+</tr>
+<tr>
+<td>Memory Usage</td>
+<td>4-32x reduction</td>
+<td>-</td>
+<td>Quantization</td>
+</tr>
+<tr>
+<td>Startup Time</td>
+<td>&lt;10ms</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2>Continuous Integration</h2>
+<p>Tests run automatically on:</p>
+<ul>
+<li>✅ Pull request creation</li>
+<li>✅ Pull request updates</li>
+<li>✅ Merge to main</li>
+<li>✅ Nightly builds</li>
+</ul>
+<h3>CI Configuration</h3>
+<pre><code class="language-yaml"># .github/workflows/agentdb-tests.yml
+- name: Run AgentDB Tests
+  run: ./tests/run-agentdb-tests.sh
+
+- name: Upload Coverage
+  uses: codecov/codecov-action@v3
+  with:
+    files: ./coverage/lcov.info
+    flags: agentdb
+</code></pre>
+<h2>Test Data</h2>
+<h3>Sample Test Data</h3>
+<pre><code class="language-javascript">{
+  key: &#39;test-0&#39;,
+  value: {
+    content: &#39;Test content 0&#39;,
+    index: 0,
+    category: &#39;cat-0&#39;
+  },
+  embedding: [0.12, -0.34, 0.56, ...], // 384 dimensions
+  metadata: {
+    type: &#39;test&#39;,
+    category: 0,
+    tags: [&#39;tag-0&#39;, &#39;tag-0&#39;],
+    priority: 0
+  },
+  namespace: &#39;ns1&#39;
+}
+</code></pre>
+<h3>Edge Cases Tested</h3>
+<ul>
+<li>✅ Empty databases</li>
+<li>✅ Large values (&gt;1MB)</li>
+<li>✅ Special characters (Unicode, emojis)</li>
+<li>✅ Circular references</li>
+<li>✅ Null/undefined values</li>
+<li>✅ Concurrent operations</li>
+<li>✅ Database corruption</li>
+<li>✅ Memory limits</li>
+<li>✅ Invalid dimensions</li>
+<li>✅ Malformed metadata</li>
+</ul>
+<h2>Debugging Tests</h2>
+<h3>Enable Verbose Output</h3>
+<pre><code class="language-bash">VERBOSE=true ./tests/run-agentdb-tests.sh
+</code></pre>
+<h3>Debug Single Test</h3>
+<pre><code class="language-bash">npm run test:debug -- tests/unit/memory/agentdb/adapter.test.js
+</code></pre>
+<h3>View Test Logs</h3>
+<pre><code class="language-bash"># Run with console output
+npm test -- tests/unit/memory/agentdb/adapter.test.js --verbose
+
+# Save to file
+npm test -- tests/unit/memory/agentdb/adapter.test.js &gt; test-output.log 2&gt;&amp;1
+</code></pre>
+<h2>Common Issues</h2>
+<h3>Issue: Tests Timeout</h3>
+<p><strong>Solution</strong>: Increase test timeout in jest.config.js:</p>
+<pre><code class="language-javascript">testTimeout: 60000 // 60 seconds
+</code></pre>
+<h3>Issue: Database Locked</h3>
+<p><strong>Solution</strong>: Clean up test databases:</p>
+<pre><code class="language-bash">rm -f /tmp/test-*.db /tmp/*.db-shm /tmp/*.db-wal
+</code></pre>
+<h3>Issue: Coverage Below Threshold</h3>
+<p><strong>Solution</strong>: Check coverage report:</p>
+<pre><code class="language-bash">npm run test:coverage
+open coverage/lcov-report/index.html
+</code></pre>
+<h2>Contributing</h2>
+<p>When adding new tests:</p>
+<ol>
+<li>✅ Follow existing test structure</li>
+<li>✅ Use test utilities from <code>agentdb-test-helpers.js</code></li>
+<li>✅ Include performance assertions</li>
+<li>✅ Test both success and error cases</li>
+<li>✅ Clean up test databases in <code>afterEach</code></li>
+<li>✅ Update this README</li>
+</ol>
+<h2>Related Documentation</h2>
+<ul>
+<li><a href="../docs/AGENTDB_INTEGRATION_PLAN.md">AgentDB Integration Plan</a></li>
+<li><a href="../src/memory/enhanced-memory.js">EnhancedMemory API</a></li>
+<li><a href="../docs/TESTING.md">Test Writing Guide</a></li>
+<li><a href="../docs/PERFORMANCE.md">Performance Benchmarks</a></li>
+</ul>
+<h2>License</h2>
+<p>MIT - Same as claude-flow</p>
+<h2>Support</h2>
+<p>For test-related issues:</p>
+<ol>
+<li>Check existing tests for examples</li>
+<li>Review test utilities documentation</li>
+<li>Open an issue on GitHub</li>
+<li>Contact @agent2 (Testing Specialist)</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

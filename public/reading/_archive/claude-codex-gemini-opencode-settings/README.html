@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude + Codex + Gemini + OpenCode + Cline Settings</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude + Codex + Gemini + OpenCode + Cline Settings</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#_archive">_archive</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude + Codex + Gemini + OpenCode + Cline Settings</h1>
+<blockquote>
+<p><strong>One repo for ALL AI coding assistants</strong> - battle-tested settings from daily use</p>
+</blockquote>
+<p>Configuration, plugins, skills, and agents for:</p>
+<ul>
+<li><strong>Claude Code</strong> (Anthropic CLI) - 6 plugins, 20+ commands</li>
+<li><strong>OpenAI Codex</strong> (CLI) - Full config.toml with aliases</li>
+<li><strong>Gemini CLI</strong> (Google) - UI/UX Pro Max skill</li>
+<li><strong>OpenCode</strong> (Open source) - 4 specialized agents</li>
+<li><strong>Cline</strong> (VSCode extension) - MCP integration, design system</li>
+</ul>
+<h2>Quick Install</h2>
+<pre><code class="language-bash"># Clone
+git clone https://github.com/frankxai/claude-codex-gemini-opencode-settings.git ~/.ai-settings
+
+# Install for your tool
+cd ~/.ai-settings
+./install.sh claude    # Claude Code only
+./install.sh opencode  # OpenCode only
+./install.sh all       # Everything
+./install.sh list      # See all options
+</code></pre>
+<h2>What&#39;s Included</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Config</th>
+<th>Plugins</th>
+<th>Commands</th>
+<th>Agents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Code</td>
+<td>plugins dir</td>
+<td>6</td>
+<td>20+</td>
+<td>1</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td>oh-my-opencode.json</td>
+<td>-</td>
+<td>-</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td>skills dir</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>config.toml</td>
+<td>-</td>
+<td>8 aliases</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Cline</td>
+<td>settings.json + MCP</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2>Structure</h2>
+<pre><code>claude-codex-gemini-opencode-settings/
+├── claude/
+│   └── plugins/
+│       ├── prompt-library/     # Publishing factory (NEW)
+│       ├── research-tools/     # Research intelligence (NEW)
+│       ├── agentic-workflows/  # Multi-agent orchestration (NEW)
+│       ├── creator-tools/      # Content creation
+│       ├── oracle-ai/          # Enterprise AI
+│       └── suno-prompts/       # Music generation
+├── opencode/
+│   ├── oh-my-opencode.json     # Agent enhancements
+│   └── agents/                 # 4 specialized agents (NEW)
+├── gemini/                     # UI/UX Pro Max skill
+├── codex/                      # config.toml (NEW)
+├── cline/                      # Enhanced settings (NEW)
+├── AGENTS.md                   # Complete agent directory (NEW)
+├── install.sh                  # Universal installer
+└── sync.sh                     # Maintenance
+</code></pre>
+<h2>Featured Plugins (Claude Code)</h2>
+<h3>Prompt Library (NEW)</h3>
+<p>Publishing factory and content creation workflows:</p>
+<ul>
+<li><code>/factory</code> - Full publishing pipeline (research &gt; write &gt; edit &gt; publish)</li>
+<li><code>/factory-seo</code> - SEO optimization with checklist</li>
+<li><code>/factory-aeo</code> - AI Engine Optimization (TL;DR, FAQ, schema)</li>
+<li><code>/factory-qa</code> - Quality gate checks</li>
+<li><code>/factory-pdf</code> - PDF lead magnet creation</li>
+<li><code>/content-calendar</code> - Content scheduling</li>
+<li><code>/log-session</code> - Session logging</li>
+</ul>
+<h3>Research Tools (NEW)</h3>
+<p>Multi-agent research intelligence:</p>
+<ul>
+<li><code>/research</code> - Daily intelligence scans</li>
+<li><code>/research [topic]</code> - Deep dive research</li>
+<li><code>/research publish</code> - Transform research to content</li>
+<li><code>/research-visual</code> - Visual research and design inspiration</li>
+</ul>
+<h3>Agentic Workflows (NEW)</h3>
+<p>Multi-agent orchestration patterns:</p>
+<ul>
+<li><code>/agentic-creator-os</code> - AI department system (Content, Dev, Design, Marketing, Business)</li>
+<li><code>/creator-intelligence-system</code> - Personal AI brain (knowledge, execution, prediction)</li>
+<li><code>/agentic-orchestration</code> - Task decomposition, parallel execution, handoffs</li>
+</ul>
+<h3>Creator Tools</h3>
+<ul>
+<li><code>/publish</code> - Content deployment</li>
+<li><code>creation-engine</code> agent</li>
+</ul>
+<h3>Oracle AI</h3>
+<ul>
+<li><code>/oracle-work</code> - Day job workflows</li>
+<li><code>/prototype</code> - Architecture prototyping</li>
+<li>OCI GenAI patterns</li>
+<li><code>oci-services-expert</code> skill with verified pricing</li>
+</ul>
+<h3>Suno Prompts</h3>
+<ul>
+<li>500+ music prompt techniques</li>
+<li><code>suno-prompt-architect</code> skill</li>
+<li>Frequency specifications (Solfeggio, binaural)</li>
+</ul>
+<h2>OpenCode Agents (NEW)</h2>
+<p>Four specialized agents in <code>opencode/agents/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>workshop-builder</code></td>
+<td>Create technical workshops with labs</td>
+</tr>
+<tr>
+<td><code>content-strategist</code></td>
+<td>Plan content calendars and strategy</td>
+</tr>
+<tr>
+<td><code>code-architect</code></td>
+<td>Design software architectures</td>
+</tr>
+<tr>
+<td><code>seo-specialist</code></td>
+<td>SEO and AEO optimization</td>
+</tr>
+</tbody></table>
+<p>Plus enhanced built-in agents via <code>oh-my-opencode.json</code>:</p>
+<ul>
+<li>Sisyphus (FrankX override) - Master orchestrator</li>
+<li>Frontend UI/UX Engineer - Full design system</li>
+<li>Document Writer - Brand voice documentation</li>
+</ul>
+<p>See <a href="AGENTS.md">AGENTS.md</a> for complete documentation.</p>
+<h2>Codex Configuration (NEW)</h2>
+<p>Full <code>codex/config.toml</code> with:</p>
+<ul>
+<li>Custom system prompt for the tech stack</li>
+<li>Pre-configured aliases: <code>review</code>, <code>refactor</code>, <code>test</code>, <code>docs</code>, <code>explain</code>, <code>optimize</code>, <code>secure</code>, <code>type</code></li>
+<li>Safety settings (protected files, confirmation)</li>
+<li>Post-apply hooks (lint, format)</li>
+</ul>
+<h2>Cline Settings (NEW)</h2>
+<p>Enhanced <code>cline/settings.json</code> with:</p>
+<ul>
+<li>Claude Sonnet 4 configuration</li>
+<li>MCP servers (memory, filesystem)</li>
+<li>Full design system (colors, typography, style)</li>
+<li>Tech stack preferences</li>
+<li>Keyboard shortcuts</li>
+</ul>
+<h2>Also Integrated</h2>
+<p>From <a href="https://github.com/fcakyon/claude-codex-settings">fcakyon/claude-codex-settings</a>:</p>
+<ul>
+<li><code>github-dev</code> - PR review/commit agents</li>
+<li><code>tavily-tools</code> - Enhanced web search</li>
+<li><code>general-dev</code> - Code simplifier</li>
+</ul>
+<h2>Related Projects</h2>
+<table>
+<thead>
+<tr>
+<th>Repo</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/frankxai/agentic-creator-os">agentic-creator-os</a></td>
+<td>The signature creator system (separate)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/frankxai/suno-prompt-library">suno-prompt-library</a></td>
+<td>Standalone music prompts (optional)</td>
+</tr>
+</tbody></table>
+<h2>Maintenance</h2>
+<pre><code class="language-bash">./sync.sh update   # Pull upstream changes
+./sync.sh sync     # Copy from FrankX dev
+./sync.sh validate # Check plugin structure
+./sync.sh publish  # Push to GitHub
+</code></pre>
+<h2>License</h2>
+<p>Apache 2.0</p>
+<hr>
+<p><em>Built by <a href="https://frankx.ai">FrankX</a> - AI for creators</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

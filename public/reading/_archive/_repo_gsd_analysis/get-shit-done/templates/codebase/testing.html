@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Testing Patterns Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/codebase/testing.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Testing Patterns Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates%2Fcodebase">codebase</a> / <span>testing.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Testing Patterns Template</h1>
+<p>Template for <code>.planning/codebase/TESTING.md</code> - captures test framework and patterns.</p>
+<p><strong>Purpose:</strong> Document how tests are written and run. Guide for adding tests that match existing patterns.</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown"># Testing Patterns
+
+**Analysis Date:** [YYYY-MM-DD]
+
+## Test Framework
+
+**Runner:**
+- [Framework: e.g., &quot;Jest 29.x&quot;, &quot;Vitest 1.x&quot;]
+- [Config: e.g., &quot;jest.config.js in project root&quot;]
+
+**Assertion Library:**
+- [Library: e.g., &quot;built-in expect&quot;, &quot;chai&quot;]
+- [Matchers: e.g., &quot;toBe, toEqual, toThrow&quot;]
+
+**Run Commands:**
+```bash
+[e.g., &quot;npm test&quot; or &quot;npm run test&quot;]              # Run all tests
+[e.g., &quot;npm test -- --watch&quot;]                     # Watch mode
+[e.g., &quot;npm test -- path/to/file.test.ts&quot;]       # Single file
+[e.g., &quot;npm run test:coverage&quot;]                   # Coverage report
+</code></pre>
+<h2>Test File Organization</h2>
+<p><strong>Location:</strong></p>
+<ul>
+<li>[Pattern: e.g., &quot;*.test.ts alongside source files&quot;]</li>
+<li>[Alternative: e.g., &quot;<strong>tests</strong>/ directory&quot; or &quot;separate tests/ tree&quot;]</li>
+</ul>
+<p><strong>Naming:</strong></p>
+<ul>
+<li>[Unit tests: e.g., &quot;module-name.test.ts&quot;]</li>
+<li>[Integration: e.g., &quot;feature-name.integration.test.ts&quot;]</li>
+<li>[E2E: e.g., &quot;user-flow.e2e.test.ts&quot;]</li>
+</ul>
+<p><strong>Structure:</strong></p>
+<pre><code>[Show actual directory pattern, e.g.:
+src/
+  lib/
+    utils.ts
+    utils.test.ts
+  services/
+    user-service.ts
+    user-service.test.ts
+]
+</code></pre>
+<h2>Test Structure</h2>
+<p><strong>Suite Organization:</strong></p>
+<pre><code class="language-typescript">[Show actual pattern used, e.g.:
+
+describe(&#39;ModuleName&#39;, () =&gt; {
+  describe(&#39;functionName&#39;, () =&gt; {
+    it(&#39;should handle success case&#39;, () =&gt; {
+      // arrange
+      // act
+      // assert
+    });
+
+    it(&#39;should handle error case&#39;, () =&gt; {
+      // test code
+    });
+  });
+});
+]
+</code></pre>
+<p><strong>Patterns:</strong></p>
+<ul>
+<li>[Setup: e.g., &quot;beforeEach for shared setup, avoid beforeAll&quot;]</li>
+<li>[Teardown: e.g., &quot;afterEach to clean up, restore mocks&quot;]</li>
+<li>[Structure: e.g., &quot;arrange/act/assert pattern required&quot;]</li>
+</ul>
+<h2>Mocking</h2>
+<p><strong>Framework:</strong></p>
+<ul>
+<li>[Tool: e.g., &quot;Jest built-in mocking&quot;, &quot;Vitest vi&quot;, &quot;Sinon&quot;]</li>
+<li>[Import mocking: e.g., &quot;vi.mock() at top of file&quot;]</li>
+</ul>
+<p><strong>Patterns:</strong></p>
+<pre><code class="language-typescript">[Show actual mocking pattern, e.g.:
+
+// Mock external dependency
+vi.mock(&#39;./external-service&#39;, () =&gt; ({
+  fetchData: vi.fn()
+}));
+
+// Mock in test
+const mockFetch = vi.mocked(fetchData);
+mockFetch.mockResolvedValue({ data: &#39;test&#39; });
+]
+</code></pre>
+<p><strong>What to Mock:</strong></p>
+<ul>
+<li>[e.g., &quot;External APIs, file system, database&quot;]</li>
+<li>[e.g., &quot;Time/dates (use vi.useFakeTimers)&quot;]</li>
+<li>[e.g., &quot;Network calls (use mock fetch)&quot;]</li>
+</ul>
+<p><strong>What NOT to Mock:</strong></p>
+<ul>
+<li>[e.g., &quot;Pure functions, utilities&quot;]</li>
+<li>[e.g., &quot;Internal business logic&quot;]</li>
+</ul>
+<h2>Fixtures and Factories</h2>
+<p><strong>Test Data:</strong></p>
+<pre><code class="language-typescript">[Show pattern for creating test data, e.g.:
+
+// Factory pattern
+function createTestUser(overrides?: Partial&lt;User&gt;): User {
+  return {
+    id: &#39;test-id&#39;,
+    name: &#39;Test User&#39;,
+    email: &#39;test@example.com&#39;,
+    ...overrides
+  };
+}
+
+// Fixture file
+// tests/fixtures/users.ts
+export const mockUsers = [/* ... */];
+]
+</code></pre>
+<p><strong>Location:</strong></p>
+<ul>
+<li>[e.g., &quot;tests/fixtures/ for shared fixtures&quot;]</li>
+<li>[e.g., &quot;factory functions in test file or tests/factories/&quot;]</li>
+</ul>
+<h2>Coverage</h2>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>[Target: e.g., &quot;80% line coverage&quot;, &quot;no specific target&quot;]</li>
+<li>[Enforcement: e.g., &quot;CI blocks &lt;80%&quot;, &quot;coverage for awareness only&quot;]</li>
+</ul>
+<p><strong>Configuration:</strong></p>
+<ul>
+<li>[Tool: e.g., &quot;built-in coverage via --coverage flag&quot;]</li>
+<li>[Exclusions: e.g., &quot;exclude *.test.ts, config files&quot;]</li>
+</ul>
+<p><strong>View Coverage:</strong></p>
+<pre><code class="language-bash">[e.g., &quot;npm run test:coverage&quot;]
+[e.g., &quot;open coverage/index.html&quot;]
+</code></pre>
+<h2>Test Types</h2>
+<p><strong>Unit Tests:</strong></p>
+<ul>
+<li>[Scope: e.g., &quot;test single function/class in isolation&quot;]</li>
+<li>[Mocking: e.g., &quot;mock all external dependencies&quot;]</li>
+<li>[Speed: e.g., &quot;must run in &lt;1s per test&quot;]</li>
+</ul>
+<p><strong>Integration Tests:</strong></p>
+<ul>
+<li>[Scope: e.g., &quot;test multiple modules together&quot;]</li>
+<li>[Mocking: e.g., &quot;mock external services, use real internal modules&quot;]</li>
+<li>[Setup: e.g., &quot;use test database, seed data&quot;]</li>
+</ul>
+<p><strong>E2E Tests:</strong></p>
+<ul>
+<li>[Framework: e.g., &quot;Playwright for E2E&quot;]</li>
+<li>[Scope: e.g., &quot;test full user flows&quot;]</li>
+<li>[Location: e.g., &quot;e2e/ directory separate from unit tests&quot;]</li>
+</ul>
+<h2>Common Patterns</h2>
+<p><strong>Async Testing:</strong></p>
+<pre><code class="language-typescript">[Show pattern, e.g.:
+
+it(&#39;should handle async operation&#39;, async () =&gt; {
+  const result = await asyncFunction();
+  expect(result).toBe(&#39;expected&#39;);
+});
+]
+</code></pre>
+<p><strong>Error Testing:</strong></p>
+<pre><code class="language-typescript">[Show pattern, e.g.:
+
+it(&#39;should throw on invalid input&#39;, () =&gt; {
+  expect(() =&gt; functionCall()).toThrow(&#39;error message&#39;);
+});
+
+// Async error
+it(&#39;should reject on failure&#39;, async () =&gt; {
+  await expect(asyncCall()).rejects.toThrow(&#39;error message&#39;);
+});
+]
+</code></pre>
+<p><strong>Snapshot Testing:</strong></p>
+<ul>
+<li>[Usage: e.g., &quot;for React components only&quot; or &quot;not used&quot;]</li>
+<li>[Location: e.g., &quot;<strong>snapshots</strong>/ directory&quot;]</li>
+</ul>
+<hr>
+<p><em>Testing analysis: [date]</em>
+<em>Update when test patterns change</em></p>
+<pre><code>
+&lt;good_examples&gt;
+```markdown
+# Testing Patterns
+
+**Analysis Date:** 2025-01-20
+
+## Test Framework
+
+**Runner:**
+- Vitest 1.0.4
+- Config: vitest.config.ts in project root
+
+**Assertion Library:**
+- Vitest built-in expect
+- Matchers: toBe, toEqual, toThrow, toMatchObject
+
+**Run Commands:**
+```bash
+npm test                              # Run all tests
+npm test -- --watch                   # Watch mode
+npm test -- path/to/file.test.ts     # Single file
+npm run test:coverage                 # Coverage report
+</code></pre>
+<h2>Test File Organization</h2>
+<p><strong>Location:</strong></p>
+<ul>
+<li>*.test.ts alongside source files</li>
+<li>No separate tests/ directory</li>
+</ul>
+<p><strong>Naming:</strong></p>
+<ul>
+<li>unit-name.test.ts for all tests</li>
+<li>No distinction between unit/integration in filename</li>
+</ul>
+<p><strong>Structure:</strong></p>
+<pre><code>src/
+  lib/
+    parser.ts
+    parser.test.ts
+  services/
+    install-service.ts
+    install-service.test.ts
+  bin/
+    install.ts
+    (no test - integration tested via CLI)
+</code></pre>
+<h2>Test Structure</h2>
+<p><strong>Suite Organization:</strong></p>
+<pre><code class="language-typescript">import { describe, it, expect, beforeEach, afterEach, vi } from &#39;vitest&#39;;
+
+describe(&#39;ModuleName&#39;, () =&gt; {
+  describe(&#39;functionName&#39;, () =&gt; {
+    beforeEach(() =&gt; {
+      // reset state
+    });
+
+    it(&#39;should handle valid input&#39;, () =&gt; {
+      // arrange
+      const input = createTestInput();
+
+      // act
+      const result = functionName(input);
+
+      // assert
+      expect(result).toEqual(expectedOutput);
+    });
+
+    it(&#39;should throw on invalid input&#39;, () =&gt; {
+      expect(() =&gt; functionName(null)).toThrow(&#39;Invalid input&#39;);
+    });
+  });
+});
+</code></pre>
+<p><strong>Patterns:</strong></p>
+<ul>
+<li>Use beforeEach for per-test setup, avoid beforeAll</li>
+<li>Use afterEach to restore mocks: vi.restoreAllMocks()</li>
+<li>Explicit arrange/act/assert comments in complex tests</li>
+<li>One assertion focus per test (but multiple expects OK)</li>
+</ul>
+<h2>Mocking</h2>
+<p><strong>Framework:</strong></p>
+<ul>
+<li>Vitest built-in mocking (vi)</li>
+<li>Module mocking via vi.mock() at top of test file</li>
+</ul>
+<p><strong>Patterns:</strong></p>
+<pre><code class="language-typescript">import { vi } from &#39;vitest&#39;;
+import { externalFunction } from &#39;./external&#39;;
+
+// Mock module
+vi.mock(&#39;./external&#39;, () =&gt; ({
+  externalFunction: vi.fn()
+}));
+
+describe(&#39;test suite&#39;, () =&gt; {
+  it(&#39;mocks function&#39;, () =&gt; {
+    const mockFn = vi.mocked(externalFunction);
+    mockFn.mockReturnValue(&#39;mocked result&#39;);
+
+    // test code using mocked function
+
+    expect(mockFn).toHaveBeenCalledWith(&#39;expected arg&#39;);
+  });
+});
+</code></pre>
+<p><strong>What to Mock:</strong></p>
+<ul>
+<li>File system operations (fs-extra)</li>
+<li>Child process execution (child_process.exec)</li>
+<li>External API calls</li>
+<li>Environment variables (process.env)</li>
+</ul>
+<p><strong>What NOT to Mock:</strong></p>
+<ul>
+<li>Internal pure functions</li>
+<li>Simple utilities (string manipulation, array helpers)</li>
+<li>TypeScript types</li>
+</ul>
+<h2>Fixtures and Factories</h2>
+<p><strong>Test Data:</strong></p>
+<pre><code class="language-typescript">// Factory functions in test file
+function createTestConfig(overrides?: Partial&lt;Config&gt;): Config {
+  return {
+    targetDir: &#39;/tmp/test&#39;,
+    global: false,
+    ...overrides
+  };
+}
+
+// Shared fixtures in tests/fixtures/
+// tests/fixtures/sample-command.md
+export const sampleCommand = `---
+description: Test command
+---
+Content here`;
+</code></pre>
+<p><strong>Location:</strong></p>
+<ul>
+<li>Factory functions: define in test file near usage</li>
+<li>Shared fixtures: tests/fixtures/ (for multi-file test data)</li>
+<li>Mock data: inline in test when simple, factory when complex</li>
+</ul>
+<h2>Coverage</h2>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li>No enforced coverage target</li>
+<li>Coverage tracked for awareness</li>
+<li>Focus on critical paths (parsers, service logic)</li>
+</ul>
+<p><strong>Configuration:</strong></p>
+<ul>
+<li>Vitest coverage via c8 (built-in)</li>
+<li>Excludes: *.test.ts, bin/install.ts, config files</li>
+</ul>
+<p><strong>View Coverage:</strong></p>
+<pre><code class="language-bash">npm run test:coverage
+open coverage/index.html
+</code></pre>
+<h2>Test Types</h2>
+<p><strong>Unit Tests:</strong></p>
+<ul>
+<li>Test single function in isolation</li>
+<li>Mock all external dependencies (fs, child_process)</li>
+<li>Fast: each test &lt;100ms</li>
+<li>Examples: parser.test.ts, validator.test.ts</li>
+</ul>
+<p><strong>Integration Tests:</strong></p>
+<ul>
+<li>Test multiple modules together</li>
+<li>Mock only external boundaries (file system, process)</li>
+<li>Examples: install-service.test.ts (tests service + parser)</li>
+</ul>
+<p><strong>E2E Tests:</strong></p>
+<ul>
+<li>Not currently used</li>
+<li>CLI integration tested manually</li>
+</ul>
+<h2>Common Patterns</h2>
+<p><strong>Async Testing:</strong></p>
+<pre><code class="language-typescript">it(&#39;should handle async operation&#39;, async () =&gt; {
+  const result = await asyncFunction();
+  expect(result).toBe(&#39;expected&#39;);
+});
+</code></pre>
+<p><strong>Error Testing:</strong></p>
+<pre><code class="language-typescript">it(&#39;should throw on invalid input&#39;, () =&gt; {
+  expect(() =&gt; parse(null)).toThrow(&#39;Cannot parse null&#39;);
+});
+
+// Async error
+it(&#39;should reject on file not found&#39;, async () =&gt; {
+  await expect(readConfig(&#39;invalid.txt&#39;)).rejects.toThrow(&#39;ENOENT&#39;);
+});
+</code></pre>
+<p><strong>File System Mocking:</strong></p>
+<pre><code class="language-typescript">import { vi } from &#39;vitest&#39;;
+import * as fs from &#39;fs-extra&#39;;
+
+vi.mock(&#39;fs-extra&#39;);
+
+it(&#39;mocks file system&#39;, () =&gt; {
+  vi.mocked(fs.readFile).mockResolvedValue(&#39;file content&#39;);
+  // test code
+});
+</code></pre>
+<p><strong>Snapshot Testing:</strong></p>
+<ul>
+<li>Not used in this codebase</li>
+<li>Prefer explicit assertions for clarity</li>
+</ul>
+<hr>
+<p><em>Testing analysis: 2025-01-20</em>
+<em>Update when test patterns change</em></p>
+<pre><code>&lt;/good_examples&gt;
+
+&lt;guidelines&gt;
+**What belongs in TESTING.md:**
+- Test framework and runner configuration
+- Test file location and naming patterns
+- Test structure (describe/it, beforeEach patterns)
+- Mocking approach and examples
+- Fixture/factory patterns
+- Coverage requirements
+- How to run tests (commands)
+- Common testing patterns in actual code
+
+**What does NOT belong here:**
+- Specific test cases (defer to actual test files)
+- Technology choices (that&#39;s STACK.md)
+- CI/CD setup (that&#39;s deployment docs)
+
+**When filling this template:**
+- Check package.json scripts for test commands
+- Find test config file (jest.config.js, vitest.config.ts)
+- Read 3-5 existing test files to identify patterns
+- Look for test utilities in tests/ or test-utils/
+- Check for coverage configuration
+- Document actual patterns used, not ideal patterns
+
+**Useful for phase planning when:**
+- Adding new features (write matching tests)
+- Refactoring (maintain test patterns)
+- Fixing bugs (add regression tests)
+- Understanding verification approach
+- Setting up test infrastructure
+
+**Analysis approach:**
+- Check package.json for test framework and scripts
+- Read test config file for coverage, setup
+- Examine test file organization (collocated vs separate)
+- Review 5 test files for patterns (mocking, structure, assertions)
+- Look for test utilities, fixtures, factories
+- Note any test types (unit, integration, e2e)
+- Document commands for running tests
+&lt;/guidelines&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

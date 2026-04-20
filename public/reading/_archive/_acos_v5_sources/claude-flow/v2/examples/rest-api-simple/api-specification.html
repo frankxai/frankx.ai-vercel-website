@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>REST API Technical Specification</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/rest-api-simple/api-specification.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">REST API Technical Specification</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2Frest-api-simple">rest-api-simple</a> / <span>api-specification.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>REST API Technical Specification</h1>
+<h2>API Overview</h2>
+<p><strong>Base URL</strong>: <code>http://localhost:3000/api/v1</code><br><strong>Content-Type</strong>: <code>application/json</code><br><strong>API Version</strong>: 1.0.0</p>
+<h2>Data Models</h2>
+<h3>Task Resource</h3>
+<pre><code class="language-typescript">interface Task {
+  id: number;           // Auto-generated, unique
+  title: string;        // Required, task title
+  description: string;  // Optional, detailed description
+  completed: boolean;   // Default: false
+  createdAt: string;    // ISO 8601 timestamp
+  updatedAt: string;    // ISO 8601 timestamp
+}
+</code></pre>
+<h3>Error Response</h3>
+<pre><code class="language-typescript">interface ErrorResponse {
+  error: {
+    message: string;    // Human-readable error message
+    status: number;     // HTTP status code
+    timestamp: string;  // ISO 8601 timestamp
+  }
+}
+</code></pre>
+<h2>API Endpoints</h2>
+<h3>1. Health Check</h3>
+<p><strong>Endpoint</strong>: <code>GET /health</code><br><strong>Description</strong>: Check if the API is running and healthy<br><strong>Authentication</strong>: None</p>
+<h4>Response</h4>
+<pre><code class="language-json">{
+  &quot;status&quot;: &quot;healthy&quot;,
+  &quot;timestamp&quot;: &quot;2024-01-15T10:30:00.000Z&quot;,
+  &quot;uptime&quot;: 3600,
+  &quot;version&quot;: &quot;1.0.0&quot;
+}
+</code></pre>
+<p><strong>Status Codes</strong>:</p>
+<ul>
+<li><code>200 OK</code>: Service is healthy</li>
+</ul>
+<hr>
+<h3>2. List All Tasks</h3>
+<p><strong>Endpoint</strong>: <code>GET /api/v1/tasks</code><br><strong>Description</strong>: Retrieve all tasks<br><strong>Authentication</strong>: None</p>
+<h4>Query Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>completed</td>
+<td>boolean</td>
+<td>No</td>
+<td>Filter by completion status</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>number</td>
+<td>No</td>
+<td>Number of results (default: 100)</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>number</td>
+<td>No</td>
+<td>Pagination offset (default: 0)</td>
+</tr>
+</tbody></table>
+<h4>Response</h4>
+<pre><code class="language-json">{
+  &quot;tasks&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;title&quot;: &quot;Complete API documentation&quot;,
+      &quot;description&quot;: &quot;Write comprehensive API docs&quot;,
+      &quot;completed&quot;: false,
+      &quot;createdAt&quot;: &quot;2024-01-15T10:00:00.000Z&quot;,
+      &quot;updatedAt&quot;: &quot;2024-01-15T10:00:00.000Z&quot;
+    }
+  ],
+  &quot;total&quot;: 1,
+  &quot;limit&quot;: 100,
+  &quot;offset&quot;: 0
+}
+</code></pre>
+<p><strong>Status Codes</strong>:</p>
+<ul>
+<li><code>200 OK</code>: Success</li>
+</ul>
+<hr>
+<h3>3. Get Single Task</h3>
+<p><strong>Endpoint</strong>: <code>GET /api/v1/tasks/:id</code><br><strong>Description</strong>: Retrieve a specific task by ID<br><strong>Authentication</strong>: None</p>
+<h4>Path Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>number</td>
+<td>Yes</td>
+<td>Task ID</td>
+</tr>
+</tbody></table>
+<h4>Response</h4>
+<pre><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;title&quot;: &quot;Complete API documentation&quot;,
+  &quot;description&quot;: &quot;Write comprehensive API docs&quot;,
+  &quot;completed&quot;: false,
+  &quot;createdAt&quot;: &quot;2024-01-15T10:00:00.000Z&quot;,
+  &quot;updatedAt&quot;: &quot;2024-01-15T10:00:00.000Z&quot;
+}
+</code></pre>
+<p><strong>Status Codes</strong>:</p>
+<ul>
+<li><code>200 OK</code>: Success</li>
+<li><code>404 Not Found</code>: Task not found</li>
+</ul>
+<hr>
+<h3>4. Create Task</h3>
+<p><strong>Endpoint</strong>: <code>POST /api/v1/tasks</code><br><strong>Description</strong>: Create a new task<br><strong>Authentication</strong>: None</p>
+<h4>Request Body</h4>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;New task&quot;,
+  &quot;description&quot;: &quot;Task description (optional)&quot;,
+  &quot;completed&quot;: false
+}
+</code></pre>
+<h4>Validation Rules</h4>
+<ul>
+<li><code>title</code>: Required, string, 1-255 characters</li>
+<li><code>description</code>: Optional, string, max 1000 characters</li>
+<li><code>completed</code>: Optional, boolean, defaults to false</li>
+</ul>
+<h4>Response</h4>
+<pre><code class="language-json">{
+  &quot;id&quot;: 2,
+  &quot;title&quot;: &quot;New task&quot;,
+  &quot;description&quot;: &quot;Task description&quot;,
+  &quot;completed&quot;: false,
+  &quot;createdAt&quot;: &quot;2024-01-15T11:00:00.000Z&quot;,
+  &quot;updatedAt&quot;: &quot;2024-01-15T11:00:00.000Z&quot;
+}
+</code></pre>
+<p><strong>Status Codes</strong>:</p>
+<ul>
+<li><code>201 Created</code>: Success</li>
+<li><code>400 Bad Request</code>: Invalid input</li>
+</ul>
+<hr>
+<h3>5. Update Task</h3>
+<p><strong>Endpoint</strong>: <code>PUT /api/v1/tasks/:id</code><br><strong>Description</strong>: Update an existing task<br><strong>Authentication</strong>: None</p>
+<h4>Path Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>number</td>
+<td>Yes</td>
+<td>Task ID</td>
+</tr>
+</tbody></table>
+<h4>Request Body</h4>
+<pre><code class="language-json">{
+  &quot;title&quot;: &quot;Updated task title&quot;,
+  &quot;description&quot;: &quot;Updated description&quot;,
+  &quot;completed&quot;: true
+}
+</code></pre>
+<h4>Validation Rules</h4>
+<ul>
+<li>All fields are optional</li>
+<li>If provided, same rules as creation apply</li>
+</ul>
+<h4>Response</h4>
+<pre><code class="language-json">{
+  &quot;id&quot;: 1,
+  &quot;title&quot;: &quot;Updated task title&quot;,
+  &quot;description&quot;: &quot;Updated description&quot;,
+  &quot;completed&quot;: true,
+  &quot;createdAt&quot;: &quot;2024-01-15T10:00:00.000Z&quot;,
+  &quot;updatedAt&quot;: &quot;2024-01-15T12:00:00.000Z&quot;
+}
+</code></pre>
+<p><strong>Status Codes</strong>:</p>
+<ul>
+<li><code>200 OK</code>: Success</li>
+<li><code>400 Bad Request</code>: Invalid input</li>
+<li><code>404 Not Found</code>: Task not found</li>
+</ul>
+<hr>
+<h3>6. Delete Task</h3>
+<p><strong>Endpoint</strong>: <code>DELETE /api/v1/tasks/:id</code><br><strong>Description</strong>: Delete a task<br><strong>Authentication</strong>: None</p>
+<h4>Path Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>id</td>
+<td>number</td>
+<td>Yes</td>
+<td>Task ID</td>
+</tr>
+</tbody></table>
+<h4>Response</h4>
+<pre><code class="language-json">{
+  &quot;message&quot;: &quot;Task deleted successfully&quot;,
+  &quot;id&quot;: 1
+}
+</code></pre>
+<p><strong>Status Codes</strong>:</p>
+<ul>
+<li><code>200 OK</code>: Success</li>
+<li><code>404 Not Found</code>: Task not found</li>
+</ul>
+<hr>
+<h2>Common Headers</h2>
+<h3>Request Headers</h3>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Content-Type</td>
+<td>Yes (for POST/PUT)</td>
+<td>Must be <code>application/json</code></td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>No</td>
+<td>Preferred: <code>application/json</code></td>
+</tr>
+</tbody></table>
+<h3>Response Headers</h3>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Content-Type</td>
+<td>Always <code>application/json</code></td>
+</tr>
+<tr>
+<td>X-Request-ID</td>
+<td>Unique request identifier</td>
+</tr>
+</tbody></table>
+<h2>Error Handling</h2>
+<p>All errors follow a consistent format:</p>
+<pre><code class="language-json">{
+  &quot;error&quot;: {
+    &quot;message&quot;: &quot;Descriptive error message&quot;,
+    &quot;status&quot;: 400,
+    &quot;timestamp&quot;: &quot;2024-01-15T12:00:00.000Z&quot;
+  }
+}
+</code></pre>
+<h3>Common Error Codes</h3>
+<table>
+<thead>
+<tr>
+<th>Status Code</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400</td>
+<td>Bad Request - Invalid input</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found - Resource doesn&#39;t exist</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+</tbody></table>
+<h2>Rate Limiting</h2>
+<p>No rate limiting implemented in the simple version.</p>
+<h2>CORS</h2>
+<p>Currently allows all origins (<code>*</code>) for development purposes.</p>
+<h2>Example Usage</h2>
+<h3>Create a Task</h3>
+<pre><code class="language-bash">curl -X POST http://localhost:3000/api/v1/tasks \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{
+    &quot;title&quot;: &quot;Learn REST APIs&quot;,
+    &quot;description&quot;: &quot;Build a simple REST API with Express&quot;
+  }&#39;
+</code></pre>
+<h3>List All Tasks</h3>
+<pre><code class="language-bash">curl http://localhost:3000/api/v1/tasks
+</code></pre>
+<h3>Update a Task</h3>
+<pre><code class="language-bash">curl -X PUT http://localhost:3000/api/v1/tasks/1 \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#39;{
+    &quot;completed&quot;: true
+  }&#39;
+</code></pre>
+<h3>Delete a Task</h3>
+<pre><code class="language-bash">curl -X DELETE http://localhost:3000/api/v1/tasks/1
+</code></pre>
+<h2>Testing the API</h2>
+<p>The API includes a comprehensive test suite using Jest and Supertest. Tests cover:</p>
+<ul>
+<li>All endpoints with various scenarios</li>
+<li>Error cases and edge conditions</li>
+<li>Input validation</li>
+<li>Response format verification</li>
+</ul>
+<p>Run tests with:</p>
+<pre><code class="language-bash">npm test
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

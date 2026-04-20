@@ -1,0 +1,3781 @@
+{
+  "_summary": {
+    "generated": "2026-03-21T01:12:28.483Z",
+    "totalPages": 268,
+    "statusBreakdown": {
+      "complete": 46,
+      "needsImages": 84,
+      "placeholder": 8,
+      "acceptableNoImage": 130
+    },
+    "coverage": {
+      "pagesWithOgImage": 69,
+      "pagesWithHero": 38,
+      "totalImageReferences": 285
+    },
+    "topNeedsImages": [
+      "/achievements",
+      "/acos/presence",
+      "/affiliates",
+      "/ai-architect-academy",
+      "/ai-architect/ai-coe-hub",
+      "/ai-architect/multi-cloud-comparison",
+      "/ai-architecture/[slug]",
+      "/ai-architecture/blueprints",
+      "/ai-architecture/multi-cloud-comparison",
+      "/ai-architecture/prototypes",
+      "/ai-architecture/templates",
+      "/ai-architecture/tools",
+      "/ai-assessment",
+      "/ai-ops",
+      "/ai-ops/accelerator-packs",
+      "/ai-ops/agi-ready",
+      "/ai-ops/architecture",
+      "/ai-ops/maturity",
+      "/ai-ops/models-2026",
+      "/ai-ops/patterns",
+      "/automation",
+      "/books",
+      "/collectibles",
+      "/collectibles/trading-cards",
+      "/community",
+      "/courses",
+      "/creation-chronicles",
+      "/creators",
+      "/developers",
+      "/downloads",
+      "/for/creators",
+      "/gallery/heroes",
+      "/gencreator/blueprints",
+      "/gencreator/handbook",
+      "/gencreator/manifesto",
+      "/gencreator/principles",
+      "/guides",
+      "/insights",
+      "/inspiration",
+      "/intelligence-atlas",
+      "/investor",
+      "/investor/agents",
+      "/investor/architectures",
+      "/investor/tools",
+      "/investor/workflows",
+      "/lab",
+      "/labs",
+      "/learn",
+      "/learn/[slug]",
+      "/links",
+      "/music/brainstorm",
+      "/music/learn",
+      "/music/learn/piano",
+      "/music/learn/violin",
+      "/product-development/acos-v11",
+      "/products/[slug]",
+      "/products/agentic-creator-os",
+      "/products/creation-chronicles",
+      "/products/creative-ai-toolkit",
+      "/products/generative-creator-os",
+      "/products/suno-prompt-library",
+      "/products/vibe-os",
+      "/resources/skills",
+      "/resources/templates",
+      "/shop/templates",
+      "/skills",
+      "/soulbook/framework",
+      "/students",
+      "/students/ai-briefing",
+      "/students/coe-builder",
+      "/students/ikigai",
+      "/students/prompts",
+      "/students/roles",
+      "/students/workshop",
+      "/templates",
+      "/testimonials",
+      "/thank-you",
+      "/tools",
+      "/vault",
+      "/vibe",
+      "/vibe/producer",
+      "/workshops",
+      "/workshops/[slug]",
+      "/workshops/for-educators"
+    ],
+    "complete": 56,
+    "needs-images": 74
+  },
+  "pages": [
+    {
+      "route": "/",
+      "file": "app/page.tsx",
+      "images": [
+        {
+          "path": "https://frankx.ai/images/brand/logo-full.png",
+          "context": "schema.org logo"
+        },
+        {
+          "path": "/images/design-lab/nature-01-digital-garden-hero.png",
+          "context": "home nature gallery carousel"
+        },
+        {
+          "path": "/images/design-lab/nature-02-neural-roots.png",
+          "context": "home nature gallery carousel"
+        },
+        {
+          "path": "/images/design-lab/nature-03-code-vines.png",
+          "context": "home nature gallery carousel"
+        },
+        {
+          "path": "/images/design-lab/nature-04-data-streams.png",
+          "context": "home nature gallery carousel"
+        },
+        {
+          "path": "/images/design-lab/nature-05-forest-architecture.png",
+          "context": "home nature gallery carousel"
+        },
+        {
+          "path": "/images/design-lab/nature-07-intelligence-bloom.png",
+          "context": "home nature gallery carousel"
+        },
+        {
+          "path": "/images/blog/agi-2026-opportunities-students-creators-hero.png",
+          "context": "home featured article card"
+        },
+        {
+          "path": "/images/blog/ultimate-guide-ai-coding-agents-2026-hero-v2.png",
+          "context": "home featured article card"
+        },
+        {
+          "path": "/images/blog/creators-ai-toolkit-workshop-hero.png",
+          "context": "home featured article card"
+        },
+        {
+          "path": "/images/blog/golden-age-field-guide-hero.png",
+          "context": "home featured article card"
+        },
+        {
+          "path": "/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg",
+          "context": "home avatar"
+        },
+        {
+          "path": "/images/mascot/frank-omega-pixar-blue-v1.png",
+          "context": "home hero mascot"
+        },
+        {
+          "path": "/images/arcanea/eldrian-conclave-20260301.webp",
+          "context": "home Arcanea showcase"
+        },
+        {
+          "path": "/images/blog/production-agentic-ai-systems-hero.png",
+          "context": "home featured article imageSrc"
+        },
+        {
+          "path": "/images/blog/suno-prompt-engineering-complete-guide-hero.png",
+          "context": "home featured article imageSrc"
+        }
+      ],
+      "imageCount": 16,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/about",
+      "file": "app/about/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/frank-omega-hero-v1.png",
+          "context": "about hero image"
+        },
+        {
+          "path": "/images/team/codex-falcon.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/echo-leopard.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/nova-fox.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/stella-owl.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/draconia-tiger.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/arion-mamoru.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/nero-umbra.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/shinkami.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/team/lumina-sol.png",
+          "context": "about team grid"
+        },
+        {
+          "path": "/images/mascot/frank-omega-chill-v1.png",
+          "context": "about personal section"
+        },
+        {
+          "path": "/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg",
+          "context": "about avatar"
+        }
+      ],
+      "imageCount": 12,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/achievements",
+      "file": "app/achievements/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/acos",
+      "file": "app/acos/page.tsx",
+      "images": [
+        {
+          "path": "/images/acos/acos-architecture.png",
+          "context": "ACOS architecture diagram"
+        },
+        {
+          "path": "/images/acos/acos-smart-router.png",
+          "context": "ACOS smart router diagram"
+        },
+        {
+          "path": "/images/acos/acos-self-learning.png",
+          "context": "ACOS self-learning diagram"
+        }
+      ],
+      "imageCount": 3,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/acos/presence",
+      "file": "app/acos/presence/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/admin/content",
+      "file": "app/admin/content/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/content-studio",
+      "file": "app/admin/content-studio/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/content/[slug]",
+      "file": "app/admin/content/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/content/pipeline",
+      "file": "app/admin/content/pipeline/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/image-lab",
+      "file": "app/admin/image-lab/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/map",
+      "file": "app/admin/map/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/music",
+      "file": "app/admin/music/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/revenue",
+      "file": "app/admin/revenue/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/vault",
+      "file": "app/admin/vault/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/admin/youtube",
+      "file": "app/admin/youtube/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/affiliates",
+      "file": "app/affiliates/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/agent-team",
+      "file": "app/agent-team/page.tsx",
+      "images": [
+        {
+          "path": "/images/agents/creation-engine.svg",
+          "context": "agent showcase card"
+        },
+        {
+          "path": "/images/agents/frequency-alchemist.svg",
+          "context": "agent showcase card"
+        },
+        {
+          "path": "/images/agents/visionary.svg",
+          "context": "agent showcase card"
+        },
+        {
+          "path": "/images/agents/starlight-architect.svg",
+          "context": "agent showcase card"
+        }
+      ],
+      "imageCount": 4,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/agents",
+      "file": "app/agents/page.tsx",
+      "images": [
+        {
+          "path": "/images/agents/creation-engine.svg",
+          "context": "agent showcase card"
+        },
+        {
+          "path": "/images/agents/frequency-alchemist.svg",
+          "context": "agent showcase card"
+        },
+        {
+          "path": "/images/agents/visionary.svg",
+          "context": "agent showcase card"
+        },
+        {
+          "path": "/images/agents/starlight-architect.svg",
+          "context": "agent showcase card"
+        }
+      ],
+      "imageCount": 4,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architect",
+      "file": "app/ai-architect/page.tsx",
+      "images": [
+        {
+          "path": "/images/team/codex-falcon.png",
+          "context": "ai-architect hero (via AIArchitectClient)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architect-academy",
+      "file": "app/ai-architect-academy/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-architect/ai-coe-hub",
+      "file": "app/ai-architect/ai-coe-hub/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-architect/multi-cloud-comparison",
+      "file": "app/ai-architect/multi-cloud-comparison/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-architecture",
+      "file": "app/ai-architecture/page.tsx",
+      "images": [
+        {
+          "path": "/images/team/codex-falcon.png",
+          "context": "ai-architecture hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architecture/[slug]",
+      "file": "app/ai-architecture/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-architecture/blueprints",
+      "file": "app/ai-architecture/blueprints/page.tsx",
+      "images": [
+        {
+          "path": "/images/architectures/blueprints.png",
+          "context": "hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architecture/multi-cloud-comparison",
+      "file": "app/ai-architecture/multi-cloud-comparison/page.tsx",
+      "images": [
+        {
+          "path": "/images/architectures/multi-cloud-comparison.png",
+          "context": "hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architecture/prototypes",
+      "file": "app/ai-architecture/prototypes/page.tsx",
+      "images": [
+        {
+          "path": "/images/architectures/prototypes.png",
+          "context": "hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architecture/templates",
+      "file": "app/ai-architecture/templates/page.tsx",
+      "images": [
+        {
+          "path": "/images/architectures/templates.png",
+          "context": "hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architecture/tools",
+      "file": "app/ai-architecture/tools/page.tsx",
+      "images": [],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-architectures",
+      "file": "app/ai-architectures/page.tsx",
+      "images": [
+        {
+          "path": "/images/architectures/rag-platform.png",
+          "context": "architecture card"
+        },
+        {
+          "path": "/images/architectures/multi-agent.png",
+          "context": "architecture card"
+        },
+        {
+          "path": "/images/architectures/ai-gateway.png",
+          "context": "architecture card"
+        },
+        {
+          "path": "/images/architectures/llmops.png",
+          "context": "architecture card"
+        },
+        {
+          "path": "/images/architectures/mcp-hub.png",
+          "context": "architecture card"
+        },
+        {
+          "path": "/images/architectures/ai-coe.png",
+          "context": "architecture card"
+        }
+      ],
+      "imageCount": 6,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-art",
+      "file": "app/ai-art/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v05-techno-beast-standing.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v11-chrome-guardian.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v15-kitsune-mask.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v19-hero-command-center.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v20-evolution-stages.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v08-holographic-entity.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v10-data-constellation.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v16-organic-digital-split.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/mascot/mascot-v06-prowling-action.png",
+          "context": "ai-art gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-01-digital-garden-hero.png",
+          "context": "ai-art nature series"
+        },
+        {
+          "path": "/images/design-lab/nature-03-code-vines.png",
+          "context": "ai-art nature series"
+        },
+        {
+          "path": "/images/design-lab/nature-05-forest-architecture.png",
+          "context": "ai-art nature series"
+        },
+        {
+          "path": "/images/design-lab/nature-09-crystal-garden.png",
+          "context": "ai-art nature series"
+        },
+        {
+          "path": "/images/design-lab/nature-10-constellation-garden.png",
+          "context": "ai-art nature series"
+        },
+        {
+          "path": "/images/design-lab/nature-02-neural-roots.png",
+          "context": "ai-art nature series"
+        },
+        {
+          "path": "/images/ecosystem/01-frankx-ecosystem-overview.png",
+          "context": "ai-art ecosystem series"
+        },
+        {
+          "path": "/images/ecosystem/03-vibe-os-integration.png",
+          "context": "ai-art ecosystem series"
+        },
+        {
+          "path": "/images/ecosystem/07-arcanea-10-gates.png",
+          "context": "ai-art ecosystem series"
+        },
+        {
+          "path": "/images/ecosystem/09-agent-specialist-grid.png",
+          "context": "ai-art ecosystem series"
+        },
+        {
+          "path": "/images/ecosystem/15-acos-claude-code.png",
+          "context": "ai-art ecosystem series"
+        },
+        {
+          "path": "/images/blog/swarm-intelligence-orchestration-hero.png",
+          "context": "ai-art blog heroes"
+        },
+        {
+          "path": "/images/blog/build-your-own-jarvis-hero.png",
+          "context": "ai-art blog heroes"
+        },
+        {
+          "path": "/images/blog/mcp-doctor-hero.png",
+          "context": "ai-art blog heroes"
+        },
+        {
+          "path": "/images/blog/golden-age-of-intelligence-hero.png",
+          "context": "ai-art blog heroes"
+        },
+        {
+          "path": "/images/blog/agentic-creator-os-complete-guide-hero.png",
+          "context": "ai-art blog heroes"
+        }
+      ],
+      "imageCount": 26,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-assessment",
+      "file": "app/ai-assessment/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-ops",
+      "file": "app/ai-ops/page.tsx",
+      "images": [
+        {
+          "path": "/research/ai-ops/images/ai-ops-hero-banner.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-ops/accelerator-packs",
+      "file": "app/ai-ops/accelerator-packs/page.tsx",
+      "images": [
+        {
+          "path": "/research/ai-ops/images/ai-ops-hero-banner.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-ops/agi-ready",
+      "file": "app/ai-ops/agi-ready/page.tsx",
+      "images": [
+        {
+          "path": "/research/ai-ops/images/ai-ops-hero-banner.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-ops/architecture",
+      "file": "app/ai-ops/architecture/page.tsx",
+      "images": [
+        {
+          "path": "/research/ai-ops/images/ai-ops-hero-banner.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/ai-ops/maturity",
+      "file": "app/ai-ops/maturity/page.tsx",
+      "images": [
+        {
+          "path": "/research/ai-ops/images/ai-ops-hero-banner.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-ops/models-2026",
+      "file": "app/ai-ops/models-2026/page.tsx",
+      "images": [
+        {
+          "path": "/research/ai-ops/images/ai-ops-hero-banner.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-ops/patterns",
+      "file": "app/ai-ops/patterns/page.tsx",
+      "images": [
+        {
+          "path": "/research/ai-ops/images/ai-ops-hero-banner.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/ai-world",
+      "file": "app/ai-world/page.tsx",
+      "images": [
+        {
+          "path": "/images/ai-world/fire-gate-orchestration.png",
+          "context": "ai-world gate card"
+        },
+        {
+          "path": "/images/ai-world/flow-gate-knowledge.png",
+          "context": "ai-world gate card"
+        },
+        {
+          "path": "/images/ai-world/renewal-gate-production.png",
+          "context": "ai-world gate card"
+        },
+        {
+          "path": "/images/ai-world/source-gate-meta.png",
+          "context": "ai-world gate card"
+        },
+        {
+          "path": "/images/ai-world/intelligence-atlas-hero.png",
+          "context": "ai-world hero"
+        }
+      ],
+      "imageCount": 5,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/alea",
+      "file": "app/alea/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/artists/[slug]",
+      "file": "app/artists/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/assess",
+      "file": "app/assess/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/assessment",
+      "file": "app/assessment/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/assessment/advanced",
+      "file": "app/assessment/advanced/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/assessment/creative",
+      "file": "app/assessment/creative/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/auctions",
+      "file": "app/auctions/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/auctions/[id]",
+      "file": "app/auctions/[id]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/auth/signin",
+      "file": "app/auth/signin/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/automation",
+      "file": "app/automation/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/blog",
+      "file": "app/blog/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v06-prowling-action.png",
+          "context": "blog listing mascot"
+        },
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "blog listing Axi"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/blog/[slug]",
+      "file": "app/blog/[slug]/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "blog post Axi avatar"
+        },
+        {
+          "path": "/images/mascot/axi-v3-icon.png",
+          "context": "blog post Axi icon"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/blog/intelligence-revolution-2025",
+      "file": "app/blog/intelligence-revolution-2025/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/blog/soul-frequency-framework",
+      "file": "app/blog/soul-frequency-framework/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/blueprint/[slug]",
+      "file": "app/blueprint/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/books",
+      "file": "app/books/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/books/[bookSlug]",
+      "file": "app/books/[bookSlug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/books/[bookSlug]/[chapterSlug]",
+      "file": "app/books/[bookSlug]/[chapterSlug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/books/[bookSlug]/glossary",
+      "file": "app/books/[bookSlug]/glossary/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/business-plan",
+      "file": "app/business-plan/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/changelog",
+      "file": "app/changelog/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/checkout/cancel",
+      "file": "app/checkout/cancel/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/checkout/success",
+      "file": "app/checkout/success/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/coaching",
+      "file": "app/coaching/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v17-negative-space-mark.png",
+          "context": "coaching Axi accent"
+        },
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "coaching CTA Axi"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/collectibles",
+      "file": "app/collectibles/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/collectibles/instruments",
+      "file": "app/collectibles/instruments/page.tsx",
+      "images": [
+        {
+          "path": "/images/gallery/instruments/biotech-grand-piano.png",
+          "context": "collectibles instrument card"
+        },
+        {
+          "path": "/images/gallery/instruments/biotech-violin-blueprint.png",
+          "context": "collectibles instrument card"
+        },
+        {
+          "path": "/images/gallery/instruments/biotech-synthesis-controller.png",
+          "context": "collectibles instrument card"
+        },
+        {
+          "path": "/images/gallery/instruments/biotech-soundboard-mycelium.png",
+          "context": "collectibles instrument card"
+        },
+        {
+          "path": "/images/gallery/instruments/biotech-hex-drum-pads.png",
+          "context": "collectibles instrument card"
+        },
+        {
+          "path": "/images/gallery/instruments/biotech-future-lab.png",
+          "context": "collectibles instrument card"
+        }
+      ],
+      "imageCount": 6,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/collectibles/trading-cards",
+      "file": "app/collectibles/trading-cards/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/community",
+      "file": "app/community/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/contact",
+      "file": "app/contact/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/content-strategy/video-creation",
+      "file": "app/content-strategy/video-creation/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/content-studio",
+      "file": "app/content-studio/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/courses",
+      "file": "app/courses/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "courses Axi accent"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/courses/[slug]",
+      "file": "app/courses/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/creation-chronicles",
+      "file": "app/creation-chronicles/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/creators",
+      "file": "app/creators/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/dashboard",
+      "file": "app/dashboard/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/dashboard/leads",
+      "file": "app/dashboard/leads/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/dashboard/pdf-analytics",
+      "file": "app/dashboard/pdf-analytics/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/de/valentines-day",
+      "file": "app/de/valentines-day/page.tsx",
+      "images": [
+        {
+          "path": "/images/valentines/rose-petals-hero.png",
+          "context": "DE valentines hero"
+        },
+        {
+          "path": "/images/valentines/two-souls.png",
+          "context": "DE valentines section"
+        },
+        {
+          "path": "/images/valentines/og-valentines-2026.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 3,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/design-lab",
+      "file": "app/design-lab/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "placeholder"
+    },
+    {
+      "route": "/design-lab/[slug]",
+      "file": "app/design-lab/[slug]/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/acos",
+      "file": "app/design-lab/acos/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/arcanea",
+      "file": "app/design-lab/arcanea/page.tsx",
+      "images": [
+        {
+          "path": "/images/arcanea/10-gates-progression.png",
+          "context": "arcanea design gallery"
+        },
+        {
+          "path": "/images/arcanea/arc-cycle.png",
+          "context": "arcanea design gallery"
+        },
+        {
+          "path": "/images/arcanea/five-elements.png",
+          "context": "arcanea design gallery"
+        },
+        {
+          "path": "/images/arcanea/arcanea-grand-academy.png",
+          "context": "arcanea design gallery"
+        },
+        {
+          "path": "/images/books/arcanea-legends-cover.png",
+          "context": "arcanea book covers"
+        },
+        {
+          "path": "/images/books/arcanea-chronicles-cover.png",
+          "context": "arcanea book covers"
+        },
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 7,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/design-lab/arcanea/iridescence",
+      "file": "app/design-lab/arcanea/iridescence/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/arcanea/liquid-glass",
+      "file": "app/design-lab/arcanea/liquid-glass/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "placeholder"
+    },
+    {
+      "route": "/design-lab/brand",
+      "file": "app/design-lab/brand/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/design-excellence",
+      "file": "app/design-lab/design-excellence/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree",
+      "file": "app/design-lab/family-tree/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v1",
+      "file": "app/design-lab/family-tree/v1/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v10",
+      "file": "app/design-lab/family-tree/v10/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v11",
+      "file": "app/design-lab/family-tree/v11/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v12",
+      "file": "app/design-lab/family-tree/v12/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v13",
+      "file": "app/design-lab/family-tree/v13/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v14",
+      "file": "app/design-lab/family-tree/v14/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v15",
+      "file": "app/design-lab/family-tree/v15/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v2",
+      "file": "app/design-lab/family-tree/v2/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v3",
+      "file": "app/design-lab/family-tree/v3/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v4",
+      "file": "app/design-lab/family-tree/v4/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v5",
+      "file": "app/design-lab/family-tree/v5/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v6",
+      "file": "app/design-lab/family-tree/v6/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v7",
+      "file": "app/design-lab/family-tree/v7/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v8",
+      "file": "app/design-lab/family-tree/v8/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/family-tree/v9",
+      "file": "app/design-lab/family-tree/v9/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/frontend-design",
+      "file": "app/design-lab/frontend-design/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/nature",
+      "file": "app/design-lab/nature/page.tsx",
+      "images": [
+        {
+          "path": "/images/design-lab/nature-01-digital-garden-hero.png",
+          "context": "nature design gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-02-neural-roots.png",
+          "context": "nature design gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-03-code-vines.png",
+          "context": "nature design gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-04-data-streams.png",
+          "context": "nature design gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-05-forest-architecture.png",
+          "context": "nature design gallery"
+        },
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 6,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/design-lab/nature/variants",
+      "file": "app/design-lab/nature/variants/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "placeholder"
+    },
+    {
+      "route": "/design-lab/nature/variants/homepage",
+      "file": "app/design-lab/nature/variants/homepage/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "placeholder"
+    },
+    {
+      "route": "/design-lab/newsletter",
+      "file": "app/design-lab/newsletter/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/strategy",
+      "file": "app/design-lab/strategy/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-lab/v0",
+      "file": "app/design-lab/v0/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/design-system",
+      "file": "app/design-system/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/developers",
+      "file": "app/developers/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/downloads",
+      "file": "app/downloads/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/downloads/preview/soulbook",
+      "file": "app/downloads/preview/soulbook/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/downloads/preview/vibe-os",
+      "file": "app/downloads/preview/vibe-os/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/drops",
+      "file": "app/drops/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/family",
+      "file": "app/family/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/family/tree",
+      "file": "app/family/tree/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/feed",
+      "file": "app/feed/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/for/architects",
+      "file": "app/for/architects/page.tsx",
+      "images": [
+        {
+          "path": "/images/team/codex-falcon.png",
+          "context": "for-architects hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/for/creators",
+      "file": "app/for/creators/page.tsx",
+      "images": [],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/founder-playbook",
+      "file": "app/founder-playbook/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/frankx",
+      "file": "app/frankx/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/frank-omega-hero-v1.png",
+          "context": "frankx hero + og-image"
+        },
+        {
+          "path": "/images/mascot/frank-omega-pixar-blue-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-chill-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-portrait-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-chibi-avatar-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-pointing-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-thinking-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-chibi-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-pixar-chibi-v1.png",
+          "context": "frankx bento gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-v1.png",
+          "context": "frankx bento gallery"
+        }
+      ],
+      "imageCount": 10,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/frankx-investment-dashboard",
+      "file": "app/frankx-investment-dashboard/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/free-playbook",
+      "file": "app/free-playbook/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/gallery",
+      "file": "app/gallery/page.tsx",
+      "images": [
+        {
+          "path": "/images/gallery/instruments/biotech-grand-piano.png",
+          "context": "gallery card"
+        },
+        {
+          "path": "/images/blog/building-custom-skills-hero-v3-pro.png",
+          "context": "gallery card (repurposed blog hero)"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/gallery/heroes",
+      "file": "app/gallery/heroes/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/gallery/instruments",
+      "file": "app/gallery/instruments/page.tsx",
+      "images": [
+        {
+          "path": "/images/gallery/instruments/biotech-grand-piano.png",
+          "context": "instruments gallery"
+        },
+        {
+          "path": "/images/gallery/instruments/biotech-violin-blueprint.png",
+          "context": "instruments gallery"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/games",
+      "file": "app/games/page.tsx",
+      "images": [
+        {
+          "path": "/images/games/games-lab-hero.png",
+          "context": "games hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/games/memory-match",
+      "file": "app/games/memory-match/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/gencreator",
+      "file": "app/gencreator/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/frank-omega-thinking-v1.png",
+          "context": "gencreator hero"
+        },
+        {
+          "path": "/images/mascot/frank-omega-pixar-blue-v1.png",
+          "context": "gencreator hero secondary"
+        },
+        {
+          "path": "/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg",
+          "context": "gencreator avatar"
+        }
+      ],
+      "imageCount": 3,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/gencreator/blueprints",
+      "file": "app/gencreator/blueprints/page.tsx",
+      "images": [],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/gencreator/handbook",
+      "file": "app/gencreator/handbook/page.tsx",
+      "images": [],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/gencreator/manifesto",
+      "file": "app/gencreator/manifesto/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/gencreator/principles",
+      "file": "app/gencreator/principles/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/gencreator/soul",
+      "file": "app/gencreator/soul/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/frank-omega-thinking-v1.png",
+          "context": "soul hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/goals",
+      "file": "app/goals/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/golden-age",
+      "file": "app/golden-age/page.tsx",
+      "images": [
+        {
+          "path": "/images/golden-age/hero-golden-age.png",
+          "context": "golden-age hero + og"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/golden-age/[chapter]",
+      "file": "app/golden-age/[chapter]/page.tsx",
+      "images": [
+        {
+          "path": "/images/golden-age/hero-golden-age.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/guides",
+      "file": "app/guides/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/guides/[slug]",
+      "file": "app/guides/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/hoffnung",
+      "file": "app/hoffnung/page.tsx",
+      "images": [
+        {
+          "path": "/images/hoffnung/hoffnung-leaf-dewdrop.webp",
+          "context": "hoffnung hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/infogenius",
+      "file": "app/infogenius/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/frank-omega-pixar-blue-v1.png",
+          "context": "infogenius hero + gallery"
+        },
+        {
+          "path": "/images/mascot/frank-omega-v1.png",
+          "context": "infogenius gallery"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/inner-circle",
+      "file": "app/inner-circle/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v10-data-constellation.png",
+          "context": "inner-circle hero"
+        },
+        {
+          "path": "/images/mascot/mascot-v16-organic-digital-split.png",
+          "context": "inner-circle CTA Axi"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/insights",
+      "file": "app/insights/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/inspiration",
+      "file": "app/inspiration/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/intelligence-atlas",
+      "file": "app/intelligence-atlas/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/investor",
+      "file": "app/investor/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v14-dimensional-rift.png",
+          "context": "investor Axi accent"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/investor/agents",
+      "file": "app/investor/agents/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/investor/architectures",
+      "file": "app/investor/architectures/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/investor/tools",
+      "file": "app/investor/tools/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/investor/workflows",
+      "file": "app/investor/workflows/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/lab",
+      "file": "app/lab/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/frank-omega-thinking-v1.png",
+          "context": "og-image"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/labs",
+      "file": "app/labs/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/learn",
+      "file": "app/learn/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/learn/[slug]",
+      "file": "app/learn/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/legal",
+      "file": "app/legal/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/library",
+      "file": "app/library/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/library/[slug]",
+      "file": "app/library/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/links",
+      "file": "app/links/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/linktree",
+      "file": "app/linktree/page.tsx",
+      "images": [
+        {
+          "path": "/api/og?title=Frank X. Riemer&subtitle=AI Architect",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/linktree/[audience]",
+      "file": "app/linktree/[audience]/page.tsx",
+      "images": [
+        {
+          "path": "/api/og?title=Frank X. Riemer&subtitle=AI Architect",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/magic",
+      "file": "app/magic/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/map",
+      "file": "app/map/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/music",
+      "file": "app/music/page.tsx",
+      "images": [
+        {
+          "path": "/images/blog/music-as-consciousness-technology-hero-v3-pro.png",
+          "context": "music related article (repurposed blog hero)"
+        },
+        {
+          "path": "/images/blog/science-of-state-change-music-hero.png",
+          "context": "music related article (repurposed blog hero)"
+        },
+        {
+          "path": "/images/blog/suno-music-workflow-hero.png",
+          "context": "music related article (repurposed blog hero)"
+        },
+        {
+          "path": "/images/music/infogenius/music-revenue-flywheel-v1.png",
+          "context": "music infographic"
+        },
+        {
+          "path": "/images/team/echo-leopard.png",
+          "context": "music hero mascot"
+        }
+      ],
+      "imageCount": 5,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/music-lab",
+      "file": "app/music-lab/page.tsx",
+      "images": [
+        {
+          "path": "/images/team/echo-leopard.png",
+          "context": "music-lab mascot"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/music-lab/dj-pads",
+      "file": "app/music-lab/dj-pads/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/music-lab/for-kids/xylophone",
+      "file": "app/music-lab/for-kids/xylophone/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/music-lab/piano",
+      "file": "app/music-lab/piano/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/music/brainstorm",
+      "file": "app/music/brainstorm/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/music/learn",
+      "file": "app/music/learn/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/music/learn/piano",
+      "file": "app/music/learn/piano/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/music/learn/violin",
+      "file": "app/music/learn/violin/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/n8n",
+      "file": "app/n8n/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/newsletter",
+      "file": "app/newsletter/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "newsletter stream avatar"
+        },
+        {
+          "path": "/images/team/codex-falcon.png",
+          "context": "newsletter stream avatar"
+        },
+        {
+          "path": "/images/team/echo-leopard.png",
+          "context": "newsletter stream avatar"
+        },
+        {
+          "path": "/images/team/stella-owl.png",
+          "context": "newsletter stream avatar"
+        },
+        {
+          "path": "/images/team/draconia-tiger.png",
+          "context": "newsletter stream avatar"
+        },
+        {
+          "path": "/images/team/nero-umbra.png",
+          "context": "newsletter stream avatar"
+        },
+        {
+          "path": "/images/ecosystem/13-creation-chronicles.png",
+          "context": "newsletter stream content"
+        },
+        {
+          "path": "/images/ecosystem/15-acos-claude-code.png",
+          "context": "newsletter stream content"
+        },
+        {
+          "path": "/images/ecosystem/12-creative-ai-toolkit.png",
+          "context": "newsletter stream content"
+        },
+        {
+          "path": "/images/ecosystem/07-arcanea-10-gates.png",
+          "context": "newsletter stream content"
+        },
+        {
+          "path": "/images/ecosystem/05-value-ladder-progression.png",
+          "context": "newsletter stream content"
+        },
+        {
+          "path": "/images/design-lab/nature-09-crystal-garden.png",
+          "context": "newsletter stream content"
+        },
+        {
+          "path": "/images/design-lab/nature-10-constellation-garden.png",
+          "context": "newsletter hero background"
+        }
+      ],
+      "imageCount": 13,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/newsletter/thank-you",
+      "file": "app/newsletter/thank-you/page.tsx",
+      "images": [
+        {
+          "path": "/images/team/arion-mamoru.png",
+          "context": "thank-you character"
+        },
+        {
+          "path": "/images/team/codex-falcon.png",
+          "context": "thank-you character"
+        },
+        {
+          "path": "/images/team/echo-leopard.png",
+          "context": "thank-you character"
+        },
+        {
+          "path": "/images/team/nero-umbra.png",
+          "context": "thank-you character"
+        },
+        {
+          "path": "/images/team/draconia-tiger.png",
+          "context": "thank-you character"
+        },
+        {
+          "path": "/images/team/shinkami.png",
+          "context": "thank-you character"
+        },
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "thank-you Axi"
+        }
+      ],
+      "imageCount": 7,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/onboarding",
+      "file": "app/onboarding/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/opa-und-oma",
+      "file": "app/opa-und-oma/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/opus-pro",
+      "file": "app/opus-pro/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/plan",
+      "file": "app/plan/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "placeholder"
+    },
+    {
+      "route": "/plan/[slug]",
+      "file": "app/plan/[slug]/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/presence",
+      "file": "app/presence/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/privacy",
+      "file": "app/privacy/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/product-development",
+      "file": "app/product-development/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/product-development/acos-v11",
+      "file": "app/product-development/acos-v11/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/products",
+      "file": "app/products/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v05-techno-beast-standing.png",
+          "context": "products hero mascot"
+        },
+        {
+          "path": "/images/mascot/mascot-v17-negative-space-mark.png",
+          "context": "products Axi accent"
+        }
+      ],
+      "imageCount": 2,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/products/[slug]",
+      "file": "app/products/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/products/agentic-creator-os",
+      "file": "app/products/agentic-creator-os/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/products/agentic-creator-os/docs",
+      "file": "app/products/agentic-creator-os/docs/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/products/agentic-creator-os/docs/[slug]",
+      "file": "app/products/agentic-creator-os/docs/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/products/creation-chronicles",
+      "file": "app/products/creation-chronicles/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/products/creative-ai-toolkit",
+      "file": "app/products/creative-ai-toolkit/page.tsx",
+      "images": [],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/products/generative-creator-os",
+      "file": "app/products/generative-creator-os/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/products/suno-prompt-library",
+      "file": "app/products/suno-prompt-library/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/products/vibe-os",
+      "file": "app/products/vibe-os/page.tsx",
+      "images": [
+        {
+          "path": "https://frankx.ai/images/products/vibe-os-hero.jpg",
+          "context": "og-image"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/products/vibe-os/app",
+      "file": "app/products/vibe-os/app/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/products/vibe-os/docs",
+      "file": "app/products/vibe-os/docs/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/progress",
+      "file": "app/progress/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/prompt-library",
+      "file": "app/prompt-library/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/prompt-library/[category]",
+      "file": "app/prompt-library/[category]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/prompt-library/[category]/[id]",
+      "file": "app/prompt-library/[category]/[id]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/prototype/[id]",
+      "file": "app/prototype/[id]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/prototype/chat-playground",
+      "file": "app/prototype/chat-playground/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/prototypes",
+      "file": "app/prototypes/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/realm",
+      "file": "app/realm/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/research",
+      "file": "app/research/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "placeholder"
+    },
+    {
+      "route": "/research/[slug]",
+      "file": "app/research/[slug]/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/research/methodology",
+      "file": "app/research/methodology/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/research/sources",
+      "file": "app/research/sources/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/research/visionariers",
+      "file": "app/research/visionariers/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/research/visionaries",
+      "file": "app/research/visionaries/page.tsx",
+      "images": [
+        {
+          "path": "/images/brand/og-template.png",
+          "context": "og-image"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "placeholder"
+    },
+    {
+      "route": "/resources",
+      "file": "app/resources/page.tsx",
+      "images": [
+        {
+          "path": "/images/blog/blog-hero-aurora.svg",
+          "context": "resources fallback image"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "placeholder"
+    },
+    {
+      "route": "/resources/skills",
+      "file": "app/resources/skills/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/resources/templates",
+      "file": "app/resources/templates/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/rituals",
+      "file": "app/rituals/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/roadmap",
+      "file": "app/roadmap/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/search",
+      "file": "app/search/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/see-through-the-noise",
+      "file": "app/see-through-the-noise/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/shop",
+      "file": "app/shop/page.tsx",
+      "images": [
+        {
+          "path": "/images/blog/build-your-own-jarvis-hero.png",
+          "context": "shop product card (repurposed blog hero)"
+        },
+        {
+          "path": "/images/gallery/instruments/biotech-grand-piano.png",
+          "context": "shop product card"
+        },
+        {
+          "path": "/images/ecosystem/01-frankx-ecosystem-overview.png",
+          "context": "shop product card"
+        },
+        {
+          "path": "/images/blog/golden-age-of-intelligence-hero.png",
+          "context": "shop product card (repurposed blog hero)"
+        },
+        {
+          "path": "/images/team/draconia-tiger.png",
+          "context": "shop mascot"
+        }
+      ],
+      "imageCount": 5,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/shop/templates",
+      "file": "app/shop/templates/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/showcase",
+      "file": "app/showcase/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/skills",
+      "file": "app/skills/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/skills/builder",
+      "file": "app/skills/builder/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/soul-frequency-quiz",
+      "file": "app/soul-frequency-quiz/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/soulbook",
+      "file": "app/soulbook/page.tsx",
+      "images": [
+        {
+          "path": "/images/soulbook/hero-soulbook.png",
+          "context": "soulbook hero image"
+        },
+        {
+          "path": "/images/soulbook/pillar-consciousness.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-identity.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-emotional-mastery.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-relationships.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-vitality.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-purpose.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-creation.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/seven-pillars.png",
+          "context": "pillar visualizer"
+        }
+      ],
+      "imageCount": 9,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/soulbook/7-pillars",
+      "file": "app/soulbook/7-pillars/page.tsx",
+      "images": [
+        {
+          "path": "/images/soulbook/pillar-vitality.png",
+          "context": "7-pillars card"
+        },
+        {
+          "path": "/images/soulbook/seven-pillars.png",
+          "context": "7-pillars overview"
+        },
+        {
+          "path": "/images/soulbook/pillar-consciousness.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-identity.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-emotional-mastery.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-relationships.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-purpose.png",
+          "context": "pillar visualizer"
+        },
+        {
+          "path": "/images/soulbook/pillar-creation.png",
+          "context": "pillar visualizer"
+        }
+      ],
+      "imageCount": 8,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/soulbook/assessment",
+      "file": "app/soulbook/assessment/page.tsx",
+      "images": [
+        {
+          "path": "/images/soulbook/hero-assessment.png",
+          "context": "soulbook assessment hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/soulbook/framework",
+      "file": "app/soulbook/framework/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/soulbook/golden-path",
+      "file": "app/soulbook/golden-path/page.tsx",
+      "images": [
+        {
+          "path": "/images/soulbook/golden-path.png",
+          "context": "golden-path hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/soulbook/life-symphony",
+      "file": "app/soulbook/life-symphony/page.tsx",
+      "images": [
+        {
+          "path": "/images/soulbook/life-symphony.png",
+          "context": "life-symphony hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/soulbook/vault",
+      "file": "app/soulbook/vault/page.tsx",
+      "images": [
+        {
+          "path": "/images/soulbook/hero-vault.png",
+          "context": "soulbook vault hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/sprint",
+      "file": "app/sprint/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/start",
+      "file": "app/start/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/students",
+      "file": "app/students/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/students/ai-briefing",
+      "file": "app/students/ai-briefing/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/students/coe-builder",
+      "file": "app/students/coe-builder/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/students/ikigai",
+      "file": "app/students/ikigai/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/students/prompts",
+      "file": "app/students/prompts/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/students/roles",
+      "file": "app/students/roles/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/students/workshop",
+      "file": "app/students/workshop/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/team",
+      "file": "app/team/page.tsx",
+      "images": [
+        {
+          "path": "/images/team/codex-falcon.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/echo-leopard.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/nova-fox.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/stella-owl.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/arion-mamoru.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/draconia-tiger.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/nero-umbra.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/shinkami.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/team/lumina-sol.png",
+          "context": "team grid"
+        },
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "team Axi hero"
+        },
+        {
+          "path": "/images/mascot/mascot-v05-techno-beast-standing.png",
+          "context": "team mascot accent"
+        }
+      ],
+      "imageCount": 11,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/templates",
+      "file": "app/templates/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/terms",
+      "file": "app/terms/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/testimonials",
+      "file": "app/testimonials/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/thank-you",
+      "file": "app/thank-you/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/tools",
+      "file": "app/tools/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/tools/[slug]",
+      "file": "app/tools/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/tools/[slug]/docs",
+      "file": "app/tools/[slug]/docs/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/tools/builder",
+      "file": "app/tools/builder/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/tools/roi-calculator",
+      "file": "app/tools/roi-calculator/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/tools/strategy-canvas",
+      "file": "app/tools/strategy-canvas/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/updates",
+      "file": "app/updates/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/valentines-day",
+      "file": "app/valentines-day/page.tsx",
+      "images": [
+        {
+          "path": "/images/valentines/rose-petals-hero.png",
+          "context": "valentines hero"
+        },
+        {
+          "path": "/images/valentines/lotus-bloom.png",
+          "context": "valentines section"
+        },
+        {
+          "path": "/images/valentines/two-souls.png",
+          "context": "valentines section"
+        },
+        {
+          "path": "/images/valentines/og-valentines-2026.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 4,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/valentines-day/tien",
+      "file": "app/valentines-day/tien/page.tsx",
+      "images": [
+        {
+          "path": "/images/valentines/love-fireworks.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/cherry-blossom.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/german-poetry.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/vietnamese-love.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/cultures-united.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/two-souls.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/lotus-bloom.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/amsterdam-water.png",
+          "context": "tien valentines section"
+        },
+        {
+          "path": "/images/valentines/og-valentines-2026.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 9,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/valentines-day/tien/piano",
+      "file": "app/valentines-day/tien/piano/page.tsx",
+      "images": [
+        {
+          "path": "/images/valentines/og-valentines-2026.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/vault",
+      "file": "app/vault/page.tsx",
+      "images": [
+        {
+          "path": "/images/ecosystem/01-frankx-ecosystem-overview.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/vault/[collection]",
+      "file": "app/vault/[collection]/page.tsx",
+      "images": [
+        {
+          "path": "/images/ecosystem/01-frankx-ecosystem-overview.png",
+          "context": "og-image (from layout)"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/vibe",
+      "file": "app/vibe/page.tsx",
+      "images": [
+        {
+          "path": "/images/vibe-os/vibe-os-ecosystem-overview.png",
+          "context": "og-image"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": false,
+      "hasOgImage": true,
+      "status": "needs-images"
+    },
+    {
+      "route": "/vibe/producer",
+      "file": "app/vibe/producer/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/vision",
+      "file": "app/vision/page.tsx",
+      "images": [
+        {
+          "path": "/images/mascot/mascot-v16-organic-digital-split.png",
+          "context": "vision hero mascot"
+        },
+        {
+          "path": "/images/mascot/mascot-v25-crystal-familiar.png",
+          "context": "vision Axi"
+        },
+        {
+          "path": "/images/vision/hero-builder-empire.png",
+          "context": "vision hero"
+        },
+        {
+          "path": "/images/vision/community-builders.png",
+          "context": "vision section"
+        },
+        {
+          "path": "/images/vision/golden-age-horizon.png",
+          "context": "vision section"
+        },
+        {
+          "path": "/images/vision/ecosystem-constellation.png",
+          "context": "vision section"
+        },
+        {
+          "path": "/images/ecosystem/01-frankx-ecosystem-overview.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/ecosystem/02-acos-6-layer-architecture.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/ecosystem/07-arcanea-10-gates.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/ecosystem/09-agent-specialist-grid.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-01-digital-garden-hero.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-10-constellation-garden.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/social/claude-code-command-center.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/social/great-transition-split.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/ecosystem/05-value-ladder-progression.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/ecosystem/12-creative-ai-toolkit.png",
+          "context": "EcosystemVisionBoard gallery"
+        },
+        {
+          "path": "/images/design-lab/nature-05-forest-architecture.png",
+          "context": "EcosystemVisionBoard gallery"
+        }
+      ],
+      "imageCount": 17,
+      "hasHero": true,
+      "hasOgImage": true,
+      "status": "complete"
+    },
+    {
+      "route": "/watch",
+      "file": "app/watch/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/workshops",
+      "file": "app/workshops/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/workshops/[slug]",
+      "file": "app/workshops/[slug]/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/workshops/for-educators",
+      "file": "app/workshops/for-educators/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "needs-images"
+    },
+    {
+      "route": "/year-of-the-fire-horse",
+      "file": "app/year-of-the-fire-horse/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/year-of-the-fire-horse/vision",
+      "file": "app/year-of-the-fire-horse/vision/page.tsx",
+      "images": [],
+      "imageCount": 0,
+      "hasHero": false,
+      "hasOgImage": false,
+      "status": "acceptable-no-image"
+    },
+    {
+      "route": "/youtube",
+      "file": "app/youtube/page.tsx",
+      "images": [
+        {
+          "path": "/images/youtube/youtube-pipeline-infographic.png",
+          "context": "youtube hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    },
+    {
+      "route": "/youtube-strategy",
+      "file": "app/youtube-strategy/page.tsx",
+      "images": [
+        {
+          "path": "/images/youtube/youtube-pipeline-infographic.png",
+          "context": "youtube-strategy hero"
+        }
+      ],
+      "imageCount": 1,
+      "hasHero": true,
+      "hasOgImage": false,
+      "status": "complete"
+    }
+  ]
+}

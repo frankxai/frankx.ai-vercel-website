@@ -1,0 +1,684 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Visual CMS Testing Guide for FrankX</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="CMS-TESTING-GUIDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Visual CMS Testing Guide for FrankX</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>CMS-TESTING-GUIDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Visual CMS Testing Guide for FrankX</h1>
+<h2>Compare Two Git-Based Visual Editing Solutions</h2>
+<p><strong>Date Created:</strong> November 14, 2025
+<strong>Status:</strong> Ready for testing
+<strong>Branches Available:</strong> <code>cms/frontmatter-visual</code> &amp; <code>cms/tina-full</code></p>
+<hr>
+<h2>📋 Quick Summary</h2>
+<p>You now have <strong>two fully configured visual CMS options</strong> to test:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Front Matter CMS</th>
+<th>Tina CMS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Location</strong></td>
+<td>Inside VS Code</td>
+<td>Browser (<code>/admin</code>)</td>
+</tr>
+<tr>
+<td><strong>Setup Time</strong></td>
+<td>5 minutes</td>
+<td>Already installed</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Solo dev who lives in VS Code</td>
+<td>Teams, non-technical collaborators</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Minimal (VS Code extension)</td>
+<td>Moderate (new interface)</td>
+</tr>
+<tr>
+<td><strong>Editing Speed</strong></td>
+<td>Very fast (instant)</td>
+<td>Fast (real-time preview)</td>
+</tr>
+<tr>
+<td><strong>Preview</strong></td>
+<td>Side panel in VS Code</td>
+<td>Split-screen in browser</td>
+</tr>
+<tr>
+<td><strong>Mobile Editing</strong></td>
+<td>No (VS Code only)</td>
+<td>Yes (any browser)</td>
+</tr>
+<tr>
+<td><strong>Collaboration</strong></td>
+<td>Solo-focused</td>
+<td>Team-friendly</td>
+</tr>
+<tr>
+<td><strong>Content Storage</strong></td>
+<td>MDX files in git</td>
+<td>MDX files in git</td>
+</tr>
+<tr>
+<td><strong>Vendor Lock-in</strong></td>
+<td>None (just an extension)</td>
+<td>None (CMS reads/writes MDX)</td>
+</tr>
+<tr>
+<td><strong>Cost</strong></td>
+<td>Free (open source)</td>
+<td>Free (open source)</td>
+</tr>
+<tr>
+<td><strong>Dependencies</strong></td>
+<td>VS Code extension only</td>
+<td>933 npm packages</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>🎯 Testing Plan</h2>
+<h3>Phase 1: Front Matter CMS (20 minutes)</h3>
+<p><strong>Branch:</strong> <code>cms/frontmatter-visual</code></p>
+<h4>Step 1: Install Front Matter Extension (2 minutes)</h4>
+<pre><code class="language-bash"># Switch to the branch
+git checkout cms/frontmatter-visual
+
+# Open VS Code
+code .
+</code></pre>
+<ol>
+<li>Open VS Code Extensions panel (<code>Cmd/Ctrl + Shift + X</code>)</li>
+<li>Search for &quot;Front Matter CMS&quot;</li>
+<li>Click <strong>Install</strong> on &quot;Front Matter CMS&quot; by Elio Struyf</li>
+<li>Wait for installation to complete</li>
+<li>Click <strong>Reload</strong> if prompted</li>
+</ol>
+<h4>Step 2: Initialize Front Matter (1 minute)</h4>
+<ol>
+<li>Open Command Palette (<code>Cmd/Ctrl + Shift + P</code>)</li>
+<li>Type <code>Front Matter: Initialize</code></li>
+<li>Press Enter</li>
+<li>Front Matter will detect the existing <code>frontmatter.json</code> config</li>
+<li>You&#39;ll see the Front Matter icon appear in the sidebar</li>
+</ol>
+<h4>Step 3: Create a Test Blog Post (7 minutes)</h4>
+<ol>
+<li>Click the <strong>Front Matter icon</strong> in sidebar (looks like a document)</li>
+<li>Navigate to <strong>Content Dashboard</strong></li>
+<li>Select a domain folder (e.g., &quot;AI &amp; Tech Blog&quot;)</li>
+<li>Click <strong>Create new content</strong></li>
+<li>Fill in the form:<ul>
+<li><strong>Title:</strong> &quot;Testing Front Matter CMS Workflow&quot;</li>
+<li><strong>Description:</strong> &quot;Hands-on test of visual editing in VS Code&quot;</li>
+<li><strong>Category:</strong> Select from dropdown</li>
+<li><strong>Tags:</strong> Add 2-3 tags</li>
+<li><strong>Author:</strong> Frank X (default)</li>
+<li><strong>Date:</strong> Pick today&#39;s date</li>
+</ul>
+</li>
+<li>Click <strong>Create</strong></li>
+<li>Write some test content in the editor</li>
+<li>Use <strong>snippets</strong> (try typing <code>frankx-quote</code> and pressing Tab)</li>
+<li>Save the file (<code>Cmd/Ctrl + S</code>)</li>
+</ol>
+<h4>Step 4: Edit Existing Content (5 minutes)</h4>
+<ol>
+<li>Open an existing blog post from <code>content/blog/</code></li>
+<li>Notice the Front Matter panel appears on the right</li>
+<li>Edit frontmatter fields using the visual form</li>
+<li>Modify some content</li>
+<li>See changes immediately reflected in the MDX file</li>
+<li>Save your changes</li>
+</ol>
+<h4>Step 5: Evaluate Experience (5 minutes)</h4>
+<p>Answer these questions:</p>
+<ul>
+<li><strong>Speed:</strong> How fast was creating/editing content?</li>
+<li><strong>Interface:</strong> Did the VS Code integration feel natural?</li>
+<li><strong>Workflow:</strong> Does this fit your existing development flow?</li>
+<li><strong>Preview:</strong> Was the side panel preview sufficient?</li>
+<li><strong>Limitations:</strong> What features did you wish it had?</li>
+</ul>
+<hr>
+<h3>Phase 2: Tina CMS (30 minutes)</h3>
+<p><strong>Branch:</strong> <code>cms/tina-full</code></p>
+<h4>Step 1: Start Tina Dev Server (5 minutes)</h4>
+<pre><code class="language-bash"># Switch to the branch
+git checkout cms/tina-full
+
+# Tina is already installed!
+# Just start the dev server
+npm run dev
+</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre><code>&gt; tinacms dev -c &quot;next dev&quot;
+
+Tina CMS initialized
+Admin panel: http://localhost:3000/admin
+Next.js running: http://localhost:3000
+</code></pre>
+<p><strong>Note:</strong> First start may take 2-3 minutes while Tina builds the admin interface.</p>
+<h4>Step 2: Access Admin Panel (2 minutes)</h4>
+<ol>
+<li>Open browser to <code>http://localhost:3000/admin</code></li>
+<li>You&#39;ll see the Tina CMS admin interface</li>
+<li>Notice two collections:<ul>
+<li><strong>Blog Posts</strong> (all domains: ai-tech, conscious, music, etc.)</li>
+<li><strong>Vibe OS Sessions</strong></li>
+</ul>
+</li>
+</ol>
+<h4>Step 3: Create a Test Blog Post (8 minutes)</h4>
+<ol>
+<li>Click <strong>Blog Posts</strong> in sidebar</li>
+<li>Click <strong>Create New Post</strong> button</li>
+<li>Fill in the form fields:<ul>
+<li><strong>Title:</strong> &quot;Testing Tina CMS Visual Editing&quot;</li>
+<li><strong>Description:</strong> &quot;Exploring browser-based MDX editing&quot;</li>
+<li><strong>Date:</strong> Pick today</li>
+<li><strong>Category:</strong> Select from dropdown</li>
+<li><strong>Tags:</strong> Add tags (press Enter after each)</li>
+<li><strong>Keywords:</strong> Add SEO keywords</li>
+<li><strong>Featured Image:</strong><ul>
+<li>Click &quot;Upload Image&quot;</li>
+<li>Drag-and-drop or select a file</li>
+<li>Image saves to <code>/public/images/</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Write content in the <strong>rich text editor</strong>:<ul>
+<li>Type naturally (no MDX syntax needed)</li>
+<li>Use formatting toolbar (bold, italic, headings)</li>
+<li>Insert code blocks</li>
+<li>Add custom components (FrankX Quote, Code Block)</li>
+</ul>
+</li>
+<li>Watch the <strong>live preview</strong> on the right side</li>
+<li>Click <strong>Save</strong></li>
+<li>Check that file was created in <code>content/blog/[domain]/</code></li>
+</ol>
+<h4>Step 4: Edit Existing Content (5 minutes)</h4>
+<ol>
+<li>In Tina admin, click on an existing blog post</li>
+<li>Edit frontmatter using the form</li>
+<li>Modify content using the rich text editor</li>
+<li>Watch live preview update in real-time</li>
+<li>Click <strong>Save</strong></li>
+<li>Verify changes in the MDX file</li>
+</ol>
+<h4>Step 5: Test Media Management (5 minutes)</h4>
+<ol>
+<li>Create or edit a post</li>
+<li>Click the <strong>Featured Image</strong> field</li>
+<li>Click <strong>Upload Image</strong></li>
+<li>Try:<ul>
+<li>Drag-and-drop upload</li>
+<li>Browse and select file</li>
+<li>Preview before inserting</li>
+</ul>
+</li>
+<li>Notice the media library interface</li>
+<li>See file saved to <code>/public/images/</code></li>
+</ol>
+<h4>Step 6: Evaluate Experience (5 minutes)</h4>
+<p>Answer these questions:</p>
+<ul>
+<li><strong>Interface:</strong> How intuitive was the admin panel?</li>
+<li><strong>Editing:</strong> Did the rich text editor feel natural?</li>
+<li><strong>Preview:</strong> Was the live preview helpful?</li>
+<li><strong>Speed:</strong> How fast was the workflow?</li>
+<li><strong>Visual Appeal:</strong> Does this feel professional?</li>
+<li><strong>Collaboration:</strong> Could a non-technical person use this?</li>
+</ul>
+<hr>
+<h2>🔍 Detailed Comparison</h2>
+<h3>Setup &amp; Installation</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>✅ 5-minute setup (just install extension)</li>
+<li>✅ No npm dependencies</li>
+<li>✅ Works immediately in VS Code</li>
+<li>❌ Requires VS Code (not browser-based)</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>✅ Already installed (933 packages)</li>
+<li>✅ Works in any browser</li>
+<li>✅ Professional admin interface</li>
+<li>❌ Requires dev server running</li>
+<li>❌ Adds 933 npm packages to project</li>
+</ul>
+<hr>
+<h3>Editing Experience</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>✅ Edit directly in MDX (see the code)</li>
+<li>✅ VS Code shortcuts work (Cmd+F, etc.)</li>
+<li>✅ Instant saves (no delay)</li>
+<li>✅ Snippets available (frankx-quote, code-block)</li>
+<li>❌ No WYSIWYG (you see MDX syntax)</li>
+<li>❌ Preview in side panel (not full-screen)</li>
+<li>❌ Must know some MDX syntax</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>✅ True WYSIWYG editing (no code visible)</li>
+<li>✅ Rich text toolbar (like WordPress)</li>
+<li>✅ Split-screen live preview</li>
+<li>✅ Real-time updates</li>
+<li>✅ No MDX knowledge required</li>
+<li>❌ Slightly slower (browser rendering)</li>
+<li>❌ Can&#39;t see raw MDX easily</li>
+</ul>
+<hr>
+<h3>Content Management</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>✅ Content dashboard in VS Code</li>
+<li>✅ Filter by folder/domain</li>
+<li>✅ Search across content</li>
+<li>✅ Bulk operations possible</li>
+<li>❌ Limited media management</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>✅ Full-featured admin panel</li>
+<li>✅ Content collections (Blog, Sessions)</li>
+<li>✅ Visual media library</li>
+<li>✅ Drag-and-drop uploads</li>
+<li>✅ Content search</li>
+<li>❌ Requires browser open</li>
+</ul>
+<hr>
+<h3>Workflow Integration</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>✅ Never leave VS Code</li>
+<li>✅ Works with existing dev workflow</li>
+<li>✅ Git operations stay in VS Code</li>
+<li>✅ Terminal access always available</li>
+<li>❌ Desktop-only (no mobile)</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>✅ Separate admin interface</li>
+<li>✅ Edit from any device with browser</li>
+<li>✅ Non-technical collaborators can use</li>
+<li>✅ Could enable remote editing</li>
+<li>❌ Requires switching between tools</li>
+<li>❌ Must keep dev server running</li>
+</ul>
+<hr>
+<h3>Performance</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>✅ Instant startup (extension loads fast)</li>
+<li>✅ No build process</li>
+<li>✅ Lightweight (no extra packages)</li>
+<li>✅ Files save immediately</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>❌ 2-3 minute first startup (builds admin)</li>
+<li>❌ Heavier (933 dependencies)</li>
+<li>✅ Fast once running</li>
+<li>✅ Real-time preview</li>
+</ul>
+<hr>
+<h3>Collaboration</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>❌ Solo-focused (VS Code required)</li>
+<li>❌ Collaborators need technical knowledge</li>
+<li>❌ No easy way to share access</li>
+<li>✅ All changes still in git</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>✅ Team-friendly (browser-based)</li>
+<li>✅ Non-technical people can edit</li>
+<li>✅ Could enable cloud editing (Tina Cloud)</li>
+<li>✅ Professional admin interface</li>
+<li>✅ All changes still in git</li>
+</ul>
+<hr>
+<h3>Mobile Editing</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>❌ Not possible (VS Code required)</li>
+<li>❌ Desktop-only workflow</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>✅ Works on tablets</li>
+<li>✅ Works on phones (if dev server accessible)</li>
+<li>✅ Responsive admin interface</li>
+<li>✅ Touch-friendly</li>
+</ul>
+<hr>
+<h3>Advanced Features</h3>
+<p><strong>Front Matter CMS:</strong></p>
+<ul>
+<li>Content snippets (custom templates)</li>
+<li>SEO panel (meta fields)</li>
+<li>Content scheduling (draft dates)</li>
+<li>Tag/category management</li>
+<li>Custom scripts</li>
+<li>Git integration</li>
+</ul>
+<p><strong>Tina CMS:</strong></p>
+<ul>
+<li>Rich text templates (custom components)</li>
+<li>Visual media management</li>
+<li>Collection filtering</li>
+<li>Field validation</li>
+<li>Live preview</li>
+<li>Draft mode</li>
+<li>Could connect to Tina Cloud (optional hosting)</li>
+</ul>
+<hr>
+<h2>🎯 Decision Matrix</h2>
+<h3>Choose Front Matter CMS if:</h3>
+<ol>
+<li>✅ You work solo or with technical collaborators</li>
+<li>✅ You spend most of your time in VS Code</li>
+<li>✅ You want minimal dependencies</li>
+<li>✅ Speed and simplicity are top priorities</li>
+<li>✅ You&#39;re comfortable with MDX syntax</li>
+<li>✅ Desktop-only editing is fine</li>
+<li>✅ You want instant, lightweight setup</li>
+</ol>
+<h3>Choose Tina CMS if:</h3>
+<ol>
+<li>✅ You&#39;ll collaborate with non-technical people</li>
+<li>✅ WYSIWYG editing is important</li>
+<li>✅ You want a professional admin interface</li>
+<li>✅ Mobile/tablet editing would be useful</li>
+<li>✅ Visual media management is needed</li>
+<li>✅ You want Ghost/WordPress-like experience</li>
+<li>✅ Future team growth is likely</li>
+</ol>
+<h3>Use BOTH if:</h3>
+<ol>
+<li>✅ You want flexibility</li>
+<li>✅ Different tasks benefit from different tools</li>
+<li>✅ You value having options</li>
+<li>✅ You can switch between workflows easily</li>
+</ol>
+<p><strong>Note:</strong> Both can coexist! They both read/write the same MDX files.</p>
+<hr>
+<h2>💡 Recommended Workflow</h2>
+<h3>Option 1: Front Matter Primary</h3>
+<pre><code>Daily workflow:
+1. Use Front Matter for quick edits
+2. Use Front Matter for new posts
+3. Use git directly from VS Code
+
+Use Tina when:
+- Someone non-technical needs to edit
+- You want WYSIWYG for complex formatting
+- Mobile editing would be convenient
+</code></pre>
+<h3>Option 2: Tina Primary</h3>
+<pre><code>Daily workflow:
+1. Use Tina admin for content creation
+2. Use Tina for visual editing
+3. Commit from VS Code when done
+
+Use Front Matter when:
+- You need to bulk edit
+- You want to see raw MDX
+- Quick changes while coding
+</code></pre>
+<h3>Option 3: Hybrid (Recommended)</h3>
+<pre><code>Content creation: Tina CMS (visual, live preview)
+Quick edits: Front Matter (fast, in VS Code)
+Complex MDX: VS Code directly (full control)
+Collaboration: Tina CMS (team-friendly)
+</code></pre>
+<hr>
+<h2>🚀 Next Steps</h2>
+<h3>After Testing (This Week)</h3>
+<ol>
+<li><p><strong>Document your experience:</strong></p>
+<ul>
+<li>Which felt more natural?</li>
+<li>Which was faster for your workflow?</li>
+<li>What did you like/dislike about each?</li>
+</ul>
+</li>
+<li><p><strong>Make a decision:</strong></p>
+<ul>
+<li>Pick one as primary CMS</li>
+<li>Keep the other available (optional)</li>
+<li>Or decide to use both for different tasks</li>
+</ul>
+</li>
+<li><p><strong>Clean up:</strong></p>
+<ul>
+<li>Keep the branch you want</li>
+<li>Delete the other branch (or merge to main)</li>
+<li>Update documentation</li>
+</ul>
+</li>
+</ol>
+<h3>Implementation Recommendations</h3>
+<p><strong>If choosing Front Matter:</strong></p>
+<pre><code class="language-bash"># Merge to main
+git checkout main
+git merge cms/frontmatter-visual
+
+# Delete Tina branch (optional)
+git branch -D cms/tina-full
+</code></pre>
+<p><strong>If choosing Tina:</strong></p>
+<pre><code class="language-bash"># Merge to main
+git checkout main
+git merge cms/tina-full
+
+# Delete Front Matter branch (optional)
+git branch -D cms/frontmatter-visual
+</code></pre>
+<p><strong>If keeping both:</strong></p>
+<pre><code class="language-bash"># Keep both branches
+# Use Front Matter in VS Code
+# Use Tina when you run npm run dev
+
+# Note: They don&#39;t conflict - both read/write same MDX files
+</code></pre>
+<hr>
+<h2>📝 Testing Checklist</h2>
+<p>Use this checklist to ensure thorough testing:</p>
+<h3>Front Matter CMS</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Install extension in VS Code</li>
+<li><input disabled="" type="checkbox"> Initialize Front Matter</li>
+<li><input disabled="" type="checkbox"> Create a new blog post</li>
+<li><input disabled="" type="checkbox"> Edit an existing post</li>
+<li><input disabled="" type="checkbox"> Upload an image</li>
+<li><input disabled="" type="checkbox"> Use content snippets</li>
+<li><input disabled="" type="checkbox"> Test SEO panel</li>
+<li><input disabled="" type="checkbox"> Try content search</li>
+<li><input disabled="" type="checkbox"> Evaluate speed</li>
+<li><input disabled="" type="checkbox"> Rate user experience (1-10)</li>
+</ul>
+<h3>Tina CMS</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Start dev server</li>
+<li><input disabled="" type="checkbox"> Access admin panel</li>
+<li><input disabled="" type="checkbox"> Create a new blog post</li>
+<li><input disabled="" type="checkbox"> Edit an existing post</li>
+<li><input disabled="" type="checkbox"> Upload and manage media</li>
+<li><input disabled="" type="checkbox"> Use rich text editor</li>
+<li><input disabled="" type="checkbox"> Test live preview</li>
+<li><input disabled="" type="checkbox"> Try custom components</li>
+<li><input disabled="" type="checkbox"> Evaluate interface</li>
+<li><input disabled="" type="checkbox"> Rate user experience (1-10)</li>
+</ul>
+<h3>Comparison</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Which was faster?</li>
+<li><input disabled="" type="checkbox"> Which felt more intuitive?</li>
+<li><input disabled="" type="checkbox"> Which preview was better?</li>
+<li><input disabled="" type="checkbox"> Which fits your workflow?</li>
+<li><input disabled="" type="checkbox"> Would collaborators prefer one?</li>
+<li><input disabled="" type="checkbox"> Any deal-breakers found?</li>
+</ul>
+<hr>
+<h2>🎓 Additional Resources</h2>
+<h3>Front Matter CMS</h3>
+<ul>
+<li><strong>Docs:</strong> <a href="https://frontmatter.codes/docs">https://frontmatter.codes/docs</a></li>
+<li><strong>VS Code Marketplace:</strong> Search &quot;Front Matter CMS&quot;</li>
+<li><strong>GitHub:</strong> <a href="https://github.com/estruyf/vscode-front-matter">https://github.com/estruyf/vscode-front-matter</a></li>
+</ul>
+<h3>Tina CMS</h3>
+<ul>
+<li><strong>Docs:</strong> <a href="https://tina.io/docs">https://tina.io/docs</a></li>
+<li><strong>MDX Guide:</strong> <a href="https://tina.io/docs/editing/mdx">https://tina.io/docs/editing/mdx</a></li>
+<li><strong>Schema Reference:</strong> <a href="https://tina.io/docs/schema">https://tina.io/docs/schema</a></li>
+<li><strong>GitHub:</strong> <a href="https://github.com/tinacms/tinacms">https://github.com/tinacms/tinacms</a></li>
+</ul>
+<hr>
+<h2>🔧 Troubleshooting</h2>
+<h3>Front Matter Issues</h3>
+<p><strong>Extension not showing:</strong></p>
+<ul>
+<li>Reload VS Code window</li>
+<li>Check if extension is enabled</li>
+<li>Look for Front Matter icon in sidebar</li>
+</ul>
+<p><strong>Content dashboard empty:</strong></p>
+<ul>
+<li>Run <code>Front Matter: Initialize</code> again</li>
+<li>Check <code>frontmatter.json</code> configuration</li>
+<li>Ensure content folders exist</li>
+</ul>
+<h3>Tina Issues</h3>
+<p><strong>Admin panel 404:</strong></p>
+<pre><code class="language-bash"># Make sure dev server is running
+npm run dev
+
+# Navigate to exact URL
+http://localhost:3000/admin
+</code></pre>
+<p><strong>Can&#39;t save changes:</strong></p>
+<ul>
+<li>Check file permissions</li>
+<li>Ensure git status is clean</li>
+<li>Try restarting dev server</li>
+</ul>
+<p><strong>Preview not updating:</strong></p>
+<ul>
+<li>Hard refresh browser (Cmd/Ctrl + Shift + R)</li>
+<li>Clear Next.js cache: <code>rm -rf .next</code></li>
+<li>Restart dev server</li>
+</ul>
+<hr>
+<h2>📊 Cost Analysis</h2>
+<h3>Front Matter CMS</h3>
+<ul>
+<li><strong>Setup:</strong> 0 hours (5 minutes)</li>
+<li><strong>Learning Curve:</strong> 0.5 hours</li>
+<li><strong>Dependencies:</strong> 0 (just VS Code)</li>
+<li><strong>Maintenance:</strong> Minimal (auto-updates)</li>
+<li><strong>Total Cost:</strong> ~1 hour initial investment</li>
+</ul>
+<h3>Tina CMS</h3>
+<ul>
+<li><strong>Setup:</strong> 0 hours (already done!)</li>
+<li><strong>Learning Curve:</strong> 1-2 hours</li>
+<li><strong>Dependencies:</strong> 933 npm packages</li>
+<li><strong>Maintenance:</strong> <code>npm update</code> periodically</li>
+<li><strong>Total Cost:</strong> ~2 hours initial investment</li>
+</ul>
+<hr>
+<h2>🎉 Conclusion</h2>
+<p>You now have <strong>two professional-grade visual CMS options</strong> fully configured and ready to test.</p>
+<p><strong>Both solutions:</strong></p>
+<ul>
+<li>✅ Keep content in git (safe!)</li>
+<li>✅ Work with existing MDX files</li>
+<li>✅ Have zero vendor lock-in</li>
+<li>✅ Are free and open source</li>
+<li>✅ Can coexist (not mutually exclusive)</li>
+</ul>
+<p><strong>Your task:</strong></p>
+<ol>
+<li>Test both (30-50 minutes total)</li>
+<li>Document experience</li>
+<li>Choose what fits your workflow</li>
+<li>Start creating content!</li>
+</ol>
+<p><strong>Questions? Check:</strong></p>
+<ul>
+<li><code>TINA-CMS-SETUP-GUIDE.md</code> - Tina reference</li>
+<li><code>CMS-COMPARISON-FRONTMATTER-VS-TINA.md</code> - Side-by-side comparison</li>
+<li>Both CMSs have excellent documentation online</li>
+</ul>
+<p>Happy editing! 🚀</p>
+<hr>
+<p><strong>Last Updated:</strong> November 14, 2025
+<strong>Status:</strong> Ready for hands-on testing
+<strong>Next Action:</strong> Start with Front Matter (20 min test)</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

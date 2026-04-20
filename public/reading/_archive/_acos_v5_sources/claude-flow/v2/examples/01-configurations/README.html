@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Configuration Examples</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/01-configurations/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Configuration Examples</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F01-configurations">01-configurations</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Configuration Examples</h1>
+<p>This directory contains configuration files for Claude Flow system settings and orchestration, organized by complexity and use case.</p>
+<h2>Directory Structure</h2>
+<pre><code>01-configurations/
+├── basic/              # Simple configurations for getting started
+├── minimal/            # Bare minimum configs
+├── advanced/           # Production-ready configurations
+├── specialized/        # Task-specific configurations
+└── development-config.json  # Original comprehensive example
+</code></pre>
+<h2>Configuration Categories</h2>
+<h3>Basic Configurations (<code>basic/</code>)</h3>
+<ul>
+<li><strong>simple-config.json</strong>: Getting started configuration with essential settings<pre><code class="language-bash">cd examples
+../claude-flow orchestrate --config ./01-configurations/basic/simple-config.json workflow.json
+</code></pre>
+</li>
+</ul>
+<h3>Minimal Configurations (<code>minimal/</code>)</h3>
+<ul>
+<li><strong>minimal-config.json</strong>: Absolute minimum required - uses defaults for everything else<pre><code class="language-bash">../claude-flow sparc run tdd &quot;create feature&quot; --config ./01-configurations/minimal/minimal-config.json
+</code></pre>
+</li>
+</ul>
+<h3>Advanced Configurations (<code>advanced/</code>)</h3>
+<ul>
+<li><strong>production-config.json</strong>: Enterprise-ready with Redis, monitoring, security, and load balancing<pre><code class="language-bash">../claude-flow orchestrate --config ./01-configurations/advanced/production-config.json workflow.json
+</code></pre>
+</li>
+</ul>
+<h3>Specialized Configurations (<code>specialized/</code>)</h3>
+<ul>
+<li><strong>research-config.json</strong>: Optimized for research tasks with custom tools and memory schemas</li>
+<li><strong>testing-config.json</strong>: Test generation and execution with coverage requirements<pre><code class="language-bash">../claude-flow test generate --config ./01-configurations/specialized/testing-config.json src/
+</code></pre>
+</li>
+</ul>
+<h2>Legacy File</h2>
+<h3>development-config.json</h3>
+<p>The original comprehensive configuration example showing all available options:</p>
+<pre><code class="language-bash">../claude-flow orchestrate --config ./01-configurations/development-config.json workflow.json
+</code></pre>
+<h2>Configuration Sections</h2>
+<h3>Orchestrator</h3>
+<ul>
+<li><code>model</code>: Claude model to use (e.g., &quot;claude-3-sonnet-20240229&quot;)</li>
+<li><code>temperature</code>: Creativity level (0.0-1.0)</li>
+<li><code>maxTokens</code>: Maximum response length</li>
+<li><code>timeout</code>: Operation timeout in milliseconds</li>
+</ul>
+<h3>Memory</h3>
+<ul>
+<li><code>backend</code>: Storage type (&quot;json&quot;, &quot;sqlite&quot;, &quot;redis&quot;)</li>
+<li><code>location</code>: Where to store memory data</li>
+<li><code>maxEntries</code>: Maximum number of entries</li>
+<li><code>compressionLevel</code>: Data compression (0-9)</li>
+</ul>
+<h3>Coordination</h3>
+<ul>
+<li><code>mode</code>: How agents coordinate (&quot;direct&quot;, &quot;hub-spoke&quot;, &quot;mesh&quot;)</li>
+<li><code>maxRetries</code>: Failed task retry attempts</li>
+<li><code>retryDelay</code>: Wait time between retries</li>
+</ul>
+<h3>Logging</h3>
+<ul>
+<li><code>level</code>: Detail level (&quot;debug&quot;, &quot;info&quot;, &quot;warn&quot;, &quot;error&quot;)</li>
+<li><code>format</code>: Output format (&quot;json&quot;, &quot;text&quot;, &quot;pretty&quot;)</li>
+<li><code>destination</code>: Where logs go (&quot;console&quot;, &quot;file&quot;, &quot;both&quot;)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

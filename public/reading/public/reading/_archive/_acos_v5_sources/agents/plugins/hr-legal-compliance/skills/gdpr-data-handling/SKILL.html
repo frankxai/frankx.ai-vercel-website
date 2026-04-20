@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GDPR Data Handling</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/hr-legal-compliance/skills/gdpr-data-handling/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">GDPR Data Handling</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fhr-legal-compliance">hr-legal-compliance</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fhr-legal-compliance%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fhr-legal-compliance%2Fskills%2Fgdpr-data-handling">gdpr-data-handling</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: gdpr-data-handling
+description: Implement GDPR-compliant data handling with consent management, data subject rights, and privacy by design. Use when building systems that process EU personal data, implementing privacy controls, or conducting GDPR compliance reviews.</h2>
+<h1>GDPR Data Handling</h1>
+<p>Practical implementation guide for GDPR-compliant data processing, consent management, and privacy controls.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Building systems that process EU personal data</li>
+<li>Implementing consent management</li>
+<li>Handling data subject requests (DSRs)</li>
+<li>Conducting GDPR compliance reviews</li>
+<li>Designing privacy-first architectures</li>
+<li>Creating data processing agreements</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Personal Data Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Protection Level</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Basic</strong></td>
+<td>Name, email, phone</td>
+<td>Standard</td>
+</tr>
+<tr>
+<td><strong>Sensitive (Art. 9)</strong></td>
+<td>Health, religion, ethnicity</td>
+<td>Explicit consent</td>
+</tr>
+<tr>
+<td><strong>Criminal (Art. 10)</strong></td>
+<td>Convictions, offenses</td>
+<td>Official authority</td>
+</tr>
+<tr>
+<td><strong>Children&#39;s</strong></td>
+<td>Under 16 data</td>
+<td>Parental consent</td>
+</tr>
+</tbody></table>
+<h3>2. Legal Bases for Processing</h3>
+<pre><code>Article 6 - Lawful Bases:
+├── Consent: Freely given, specific, informed
+├── Contract: Necessary for contract performance
+├── Legal Obligation: Required by law
+├── Vital Interests: Protecting someone&#39;s life
+├── Public Interest: Official functions
+└── Legitimate Interest: Balanced against rights
+</code></pre>
+<h3>3. Data Subject Rights</h3>
+<pre><code>Right to Access (Art. 15)      ─┐
+Right to Rectification (Art. 16) │
+Right to Erasure (Art. 17)       │ Must respond
+Right to Restrict (Art. 18)      │ within 1 month
+Right to Portability (Art. 20)   │
+Right to Object (Art. 21)       ─┘
+</code></pre>
+<h2>Implementation Patterns</h2>
+<h3>Pattern 1: Consent Management</h3>
+<pre><code class="language-javascript">// Consent data model
+const consentSchema = {
+  userId: String,
+  consents: [
+    {
+      purpose: String, // &#39;marketing&#39;, &#39;analytics&#39;, etc.
+      granted: Boolean,
+      timestamp: Date,
+      source: String, // &#39;web_form&#39;, &#39;api&#39;, etc.
+      version: String, // Privacy policy version
+      ipAddress: String, // For proof
+      userAgent: String, // For proof
+    },
+  ],
+  auditLog: [
+    {
+      action: String, // &#39;granted&#39;, &#39;withdrawn&#39;, &#39;updated&#39;
+      purpose: String,
+      timestamp: Date,
+      source: String,
+    },
+  ],
+};
+
+// Consent service
+class ConsentManager {
+  async recordConsent(userId, purpose, granted, metadata) {
+    const consent = {
+      purpose,
+      granted,
+      timestamp: new Date(),
+      source: metadata.source,
+      version: await this.getCurrentPolicyVersion(),
+      ipAddress: metadata.ipAddress,
+      userAgent: metadata.userAgent,
+    };
+
+    // Store consent
+    await this.db.consents.updateOne(
+      { userId },
+      {
+        $push: {
+          consents: consent,
+          auditLog: {
+            action: granted ? &quot;granted&quot; : &quot;withdrawn&quot;,
+            purpose,
+            timestamp: consent.timestamp,
+            source: metadata.source,
+          },
+        },
+      },
+      { upsert: true },
+    );
+
+    // Emit event for downstream systems
+    await this.eventBus.emit(&quot;consent.changed&quot;, {
+      userId,
+      purpose,
+      granted,
+      timestamp: consent.timestamp,
+    });
+  }
+
+  async hasConsent(userId, purpose) {
+    const record = await this.db.consents.findOne({ userId });
+    if (!record) return false;
+
+    const latestConsent = record.consents
+      .filter((c) =&gt; c.purpose === purpose)
+      .sort((a, b) =&gt; b.timestamp - a.timestamp)[0];
+
+    return latestConsent?.granted === true;
+  }
+
+  async getConsentHistory(userId) {
+    const record = await this.db.consents.findOne({ userId });
+    return record?.auditLog || [];
+  }
+}
+</code></pre>
+<pre><code class="language-html">&lt;!-- GDPR-compliant consent UI --&gt;
+&lt;div class=&quot;consent-banner&quot; role=&quot;dialog&quot; aria-labelledby=&quot;consent-title&quot;&gt;
+  &lt;h2 id=&quot;consent-title&quot;&gt;Cookie Preferences&lt;/h2&gt;
+
+  &lt;p&gt;
+    We use cookies to improve your experience. Select your preferences below.
+  &lt;/p&gt;
+
+  &lt;form id=&quot;consent-form&quot;&gt;
+    &lt;!-- Necessary - always on, no consent needed --&gt;
+    &lt;div class=&quot;consent-category&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; id=&quot;necessary&quot; checked disabled /&gt;
+      &lt;label for=&quot;necessary&quot;&gt;
+        &lt;strong&gt;Necessary&lt;/strong&gt;
+        &lt;span&gt;Required for the website to function. Cannot be disabled.&lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Analytics - requires consent --&gt;
+    &lt;div class=&quot;consent-category&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; id=&quot;analytics&quot; name=&quot;analytics&quot; /&gt;
+      &lt;label for=&quot;analytics&quot;&gt;
+        &lt;strong&gt;Analytics&lt;/strong&gt;
+        &lt;span&gt;Help us understand how you use our site.&lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Marketing - requires consent --&gt;
+    &lt;div class=&quot;consent-category&quot;&gt;
+      &lt;input type=&quot;checkbox&quot; id=&quot;marketing&quot; name=&quot;marketing&quot; /&gt;
+      &lt;label for=&quot;marketing&quot;&gt;
+        &lt;strong&gt;Marketing&lt;/strong&gt;
+        &lt;span&gt;Personalized ads based on your interests.&lt;/span&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;consent-actions&quot;&gt;
+      &lt;button type=&quot;button&quot; id=&quot;accept-all&quot;&gt;Accept All&lt;/button&gt;
+      &lt;button type=&quot;button&quot; id=&quot;reject-all&quot;&gt;Reject All&lt;/button&gt;
+      &lt;button type=&quot;submit&quot;&gt;Save Preferences&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;p class=&quot;consent-links&quot;&gt;
+      &lt;a href=&quot;/privacy-policy&quot;&gt;Privacy Policy&lt;/a&gt; |
+      &lt;a href=&quot;/cookie-policy&quot;&gt;Cookie Policy&lt;/a&gt;
+    &lt;/p&gt;
+  &lt;/form&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>Pattern 2: Data Subject Access Request (DSAR)</h3>
+<pre><code class="language-python">from datetime import datetime, timedelta
+from typing import Dict, List, Optional
+import json
+
+class DSARHandler:
+    &quot;&quot;&quot;Handle Data Subject Access Requests.&quot;&quot;&quot;
+
+    RESPONSE_DEADLINE_DAYS = 30
+    EXTENSION_ALLOWED_DAYS = 60  # For complex requests
+
+    def __init__(self, data_sources: List[&#39;DataSource&#39;]):
+        self.data_sources = data_sources
+
+    async def submit_request(
+        self,
+        request_type: str,  # &#39;access&#39;, &#39;erasure&#39;, &#39;rectification&#39;, &#39;portability&#39;
+        user_id: str,
+        verified: bool,
+        details: Optional[Dict] = None
+    ) -&gt; str:
+        &quot;&quot;&quot;Submit a new DSAR.&quot;&quot;&quot;
+        request = {
+            &#39;id&#39;: self.generate_request_id(),
+            &#39;type&#39;: request_type,
+            &#39;user_id&#39;: user_id,
+            &#39;status&#39;: &#39;pending_verification&#39; if not verified else &#39;processing&#39;,
+            &#39;submitted_at&#39;: datetime.utcnow(),
+            &#39;deadline&#39;: datetime.utcnow() + timedelta(days=self.RESPONSE_DEADLINE_DAYS),
+            &#39;details&#39;: details or {},
+            &#39;audit_log&#39;: [{
+                &#39;action&#39;: &#39;submitted&#39;,
+                &#39;timestamp&#39;: datetime.utcnow(),
+                &#39;details&#39;: &#39;Request received&#39;
+            }]
+        }
+
+        await self.db.dsar_requests.insert_one(request)
+        await self.notify_dpo(request)
+
+        return request[&#39;id&#39;]
+
+    async def process_access_request(self, request_id: str) -&gt; Dict:
+        &quot;&quot;&quot;Process a data access request.&quot;&quot;&quot;
+        request = await self.get_request(request_id)
+
+        if request[&#39;type&#39;] != &#39;access&#39;:
+            raise ValueError(&quot;Not an access request&quot;)
+
+        # Collect data from all sources
+        user_data = {}
+        for source in self.data_sources:
+            try:
+                data = await source.get_user_data(request[&#39;user_id&#39;])
+                user_data[source.name] = data
+            except Exception as e:
+                user_data[source.name] = {&#39;error&#39;: str(e)}
+
+        # Format response
+        response = {
+            &#39;request_id&#39;: request_id,
+            &#39;generated_at&#39;: datetime.utcnow().isoformat(),
+            &#39;data_categories&#39;: list(user_data.keys()),
+            &#39;data&#39;: user_data,
+            &#39;retention_info&#39;: await self.get_retention_info(),
+            &#39;processing_purposes&#39;: await self.get_processing_purposes(),
+            &#39;third_party_recipients&#39;: await self.get_recipients()
+        }
+
+        # Update request status
+        await self.update_request(request_id, &#39;completed&#39;, response)
+
+        return response
+
+    async def process_erasure_request(self, request_id: str) -&gt; Dict:
+        &quot;&quot;&quot;Process a right to erasure request.&quot;&quot;&quot;
+        request = await self.get_request(request_id)
+
+        if request[&#39;type&#39;] != &#39;erasure&#39;:
+            raise ValueError(&quot;Not an erasure request&quot;)
+
+        results = {}
+        exceptions = []
+
+        for source in self.data_sources:
+            try:
+                # Check for legal exceptions
+                can_delete, reason = await source.can_delete(request[&#39;user_id&#39;])
+
+                if can_delete:
+                    await source.delete_user_data(request[&#39;user_id&#39;])
+                    results[source.name] = &#39;deleted&#39;
+                else:
+                    exceptions.append({
+                        &#39;source&#39;: source.name,
+                        &#39;reason&#39;: reason  # e.g., &#39;legal retention requirement&#39;
+                    })
+                    results[source.name] = f&#39;retained: {reason}&#39;
+            except Exception as e:
+                results[source.name] = f&#39;error: {str(e)}&#39;
+
+        response = {
+            &#39;request_id&#39;: request_id,
+            &#39;completed_at&#39;: datetime.utcnow().isoformat(),
+            &#39;results&#39;: results,
+            &#39;exceptions&#39;: exceptions
+        }
+
+        await self.update_request(request_id, &#39;completed&#39;, response)
+
+        return response
+
+    async def process_portability_request(self, request_id: str) -&gt; bytes:
+        &quot;&quot;&quot;Generate portable data export.&quot;&quot;&quot;
+        request = await self.get_request(request_id)
+        user_data = await self.process_access_request(request_id)
+
+        # Convert to machine-readable format (JSON)
+        portable_data = {
+            &#39;export_date&#39;: datetime.utcnow().isoformat(),
+            &#39;format_version&#39;: &#39;1.0&#39;,
+            &#39;data&#39;: user_data[&#39;data&#39;]
+        }
+
+        return json.dumps(portable_data, indent=2, default=str).encode()
+</code></pre>
+<h3>Pattern 3: Data Retention</h3>
+<pre><code class="language-python">from datetime import datetime, timedelta
+from enum import Enum
+
+class RetentionBasis(Enum):
+    CONSENT = &quot;consent&quot;
+    CONTRACT = &quot;contract&quot;
+    LEGAL_OBLIGATION = &quot;legal_obligation&quot;
+    LEGITIMATE_INTEREST = &quot;legitimate_interest&quot;
+
+class DataRetentionPolicy:
+    &quot;&quot;&quot;Define and enforce data retention policies.&quot;&quot;&quot;
+
+    POLICIES = {
+        &#39;user_account&#39;: {
+            &#39;retention_period_days&#39;: 365 * 3,  # 3 years after last activity
+            &#39;basis&#39;: RetentionBasis.CONTRACT,
+            &#39;trigger&#39;: &#39;last_activity_date&#39;,
+            &#39;archive_before_delete&#39;: True
+        },
+        &#39;transaction_records&#39;: {
+            &#39;retention_period_days&#39;: 365 * 7,  # 7 years for tax
+            &#39;basis&#39;: RetentionBasis.LEGAL_OBLIGATION,
+            &#39;trigger&#39;: &#39;transaction_date&#39;,
+            &#39;archive_before_delete&#39;: True,
+            &#39;legal_reference&#39;: &#39;Tax regulations require 7 year retention&#39;
+        },
+        &#39;marketing_consent&#39;: {
+            &#39;retention_period_days&#39;: 365 * 2,  # 2 years
+            &#39;basis&#39;: RetentionBasis.CONSENT,
+            &#39;trigger&#39;: &#39;consent_date&#39;,
+            &#39;archive_before_delete&#39;: False
+        },
+        &#39;support_tickets&#39;: {
+            &#39;retention_period_days&#39;: 365 * 2,
+            &#39;basis&#39;: RetentionBasis.LEGITIMATE_INTEREST,
+            &#39;trigger&#39;: &#39;ticket_closed_date&#39;,
+            &#39;archive_before_delete&#39;: True
+        },
+        &#39;analytics_data&#39;: {
+            &#39;retention_period_days&#39;: 365,  # 1 year
+            &#39;basis&#39;: RetentionBasis.CONSENT,
+            &#39;trigger&#39;: &#39;collection_date&#39;,
+            &#39;archive_before_delete&#39;: False,
+            &#39;anonymize_instead&#39;: True
+        }
+    }
+
+    async def apply_retention_policies(self):
+        &quot;&quot;&quot;Run retention policy enforcement.&quot;&quot;&quot;
+        for data_type, policy in self.POLICIES.items():
+            cutoff_date = datetime.utcnow() - timedelta(
+                days=policy[&#39;retention_period_days&#39;]
+            )
+
+            if policy.get(&#39;anonymize_instead&#39;):
+                await self.anonymize_old_data(data_type, cutoff_date)
+            else:
+                if policy.get(&#39;archive_before_delete&#39;):
+                    await self.archive_data(data_type, cutoff_date)
+                await self.delete_old_data(data_type, cutoff_date)
+
+            await self.log_retention_action(data_type, cutoff_date)
+
+    async def anonymize_old_data(self, data_type: str, before_date: datetime):
+        &quot;&quot;&quot;Anonymize data instead of deleting.&quot;&quot;&quot;
+        # Example: Replace identifying fields with hashes
+        if data_type == &#39;analytics_data&#39;:
+            await self.db.analytics.update_many(
+                {&#39;collection_date&#39;: {&#39;$lt&#39;: before_date}},
+                {&#39;$set&#39;: {
+                    &#39;user_id&#39;: None,
+                    &#39;ip_address&#39;: None,
+                    &#39;device_id&#39;: None,
+                    &#39;anonymized&#39;: True,
+                    &#39;anonymized_date&#39;: datetime.utcnow()
+                }}
+            )
+</code></pre>
+<h3>Pattern 4: Privacy by Design</h3>
+<pre><code class="language-python">class PrivacyFirstDataModel:
+    &quot;&quot;&quot;Example of privacy-by-design data model.&quot;&quot;&quot;
+
+    # Separate PII from behavioral data
+    user_profile_schema = {
+        &#39;user_id&#39;: str,  # UUID, not sequential
+        &#39;email_hash&#39;: str,  # Hashed for lookups
+        &#39;created_at&#39;: datetime,
+        # Minimal data collection
+        &#39;preferences&#39;: {
+            &#39;language&#39;: str,
+            &#39;timezone&#39;: str
+        }
+    }
+
+    # Encrypted at rest
+    user_pii_schema = {
+        &#39;user_id&#39;: str,
+        &#39;email&#39;: str,  # Encrypted
+        &#39;name&#39;: str,   # Encrypted
+        &#39;phone&#39;: str,  # Encrypted (optional)
+        &#39;address&#39;: dict,  # Encrypted (optional)
+        &#39;encryption_key_id&#39;: str
+    }
+
+    # Pseudonymized behavioral data
+    analytics_schema = {
+        &#39;session_id&#39;: str,  # Not linked to user_id
+        &#39;pseudonym_id&#39;: str,  # Rotating pseudonym
+        &#39;events&#39;: list,
+        &#39;device_category&#39;: str,  # Generalized, not specific
+        &#39;country&#39;: str,  # Not city-level
+    }
+
+class DataMinimization:
+    &quot;&quot;&quot;Implement data minimization principles.&quot;&quot;&quot;
+
+    @staticmethod
+    def collect_only_needed(form_data: dict, purpose: str) -&gt; dict:
+        &quot;&quot;&quot;Filter form data to only fields needed for purpose.&quot;&quot;&quot;
+        REQUIRED_FIELDS = {
+            &#39;account_creation&#39;: [&#39;email&#39;, &#39;password&#39;],
+            &#39;newsletter&#39;: [&#39;email&#39;],
+            &#39;purchase&#39;: [&#39;email&#39;, &#39;name&#39;, &#39;address&#39;, &#39;payment&#39;],
+            &#39;support&#39;: [&#39;email&#39;, &#39;message&#39;]
+        }
+
+        allowed = REQUIRED_FIELDS.get(purpose, [])
+        return {k: v for k, v in form_data.items() if k in allowed}
+
+    @staticmethod
+    def generalize_location(ip_address: str) -&gt; str:
+        &quot;&quot;&quot;Generalize IP to country level only.&quot;&quot;&quot;
+        import geoip2.database
+        reader = geoip2.database.Reader(&#39;GeoLite2-Country.mmdb&#39;)
+        try:
+            response = reader.country(ip_address)
+            return response.country.iso_code
+        except:
+            return &#39;UNKNOWN&#39;
+</code></pre>
+<h3>Pattern 5: Breach Notification</h3>
+<pre><code class="language-python">from datetime import datetime
+from enum import Enum
+
+class BreachSeverity(Enum):
+    LOW = &quot;low&quot;
+    MEDIUM = &quot;medium&quot;
+    HIGH = &quot;high&quot;
+    CRITICAL = &quot;critical&quot;
+
+class BreachNotificationHandler:
+    &quot;&quot;&quot;Handle GDPR breach notification requirements.&quot;&quot;&quot;
+
+    AUTHORITY_NOTIFICATION_HOURS = 72
+    AFFECTED_NOTIFICATION_REQUIRED_SEVERITY = BreachSeverity.HIGH
+
+    async def report_breach(
+        self,
+        description: str,
+        data_types: List[str],
+        affected_count: int,
+        severity: BreachSeverity
+    ) -&gt; dict:
+        &quot;&quot;&quot;Report and handle a data breach.&quot;&quot;&quot;
+        breach = {
+            &#39;id&#39;: self.generate_breach_id(),
+            &#39;reported_at&#39;: datetime.utcnow(),
+            &#39;description&#39;: description,
+            &#39;data_types_affected&#39;: data_types,
+            &#39;affected_individuals_count&#39;: affected_count,
+            &#39;severity&#39;: severity.value,
+            &#39;status&#39;: &#39;investigating&#39;,
+            &#39;timeline&#39;: [{
+                &#39;event&#39;: &#39;breach_reported&#39;,
+                &#39;timestamp&#39;: datetime.utcnow(),
+                &#39;details&#39;: description
+            }]
+        }
+
+        await self.db.breaches.insert_one(breach)
+
+        # Immediate notifications
+        await self.notify_dpo(breach)
+        await self.notify_security_team(breach)
+
+        # Authority notification required within 72 hours
+        if self.requires_authority_notification(severity, data_types):
+            breach[&#39;authority_notification_deadline&#39;] = (
+                datetime.utcnow() + timedelta(hours=self.AUTHORITY_NOTIFICATION_HOURS)
+            )
+            await self.schedule_authority_notification(breach)
+
+        # Affected individuals notification
+        if severity.value in [BreachSeverity.HIGH.value, BreachSeverity.CRITICAL.value]:
+            await self.schedule_individual_notifications(breach)
+
+        return breach
+
+    def requires_authority_notification(
+        self,
+        severity: BreachSeverity,
+        data_types: List[str]
+    ) -&gt; bool:
+        &quot;&quot;&quot;Determine if supervisory authority must be notified.&quot;&quot;&quot;
+        # Always notify for sensitive data
+        sensitive_types = [&#39;health&#39;, &#39;financial&#39;, &#39;credentials&#39;, &#39;biometric&#39;]
+        if any(t in sensitive_types for t in data_types):
+            return True
+
+        # Notify for medium+ severity
+        return severity in [BreachSeverity.MEDIUM, BreachSeverity.HIGH, BreachSeverity.CRITICAL]
+
+    async def generate_authority_report(self, breach_id: str) -&gt; dict:
+        &quot;&quot;&quot;Generate report for supervisory authority.&quot;&quot;&quot;
+        breach = await self.get_breach(breach_id)
+
+        return {
+            &#39;organization&#39;: {
+                &#39;name&#39;: self.config.org_name,
+                &#39;contact&#39;: self.config.dpo_contact,
+                &#39;registration&#39;: self.config.registration_number
+            },
+            &#39;breach&#39;: {
+                &#39;nature&#39;: breach[&#39;description&#39;],
+                &#39;categories_affected&#39;: breach[&#39;data_types_affected&#39;],
+                &#39;approximate_number_affected&#39;: breach[&#39;affected_individuals_count&#39;],
+                &#39;likely_consequences&#39;: self.assess_consequences(breach),
+                &#39;measures_taken&#39;: await self.get_remediation_measures(breach_id),
+                &#39;measures_proposed&#39;: await self.get_proposed_measures(breach_id)
+            },
+            &#39;timeline&#39;: breach[&#39;timeline&#39;],
+            &#39;submitted_at&#39;: datetime.utcnow().isoformat()
+        }
+</code></pre>
+<h2>Compliance Checklist</h2>
+<pre><code class="language-markdown">## GDPR Implementation Checklist
+
+### Legal Basis
+
+- [ ] Documented legal basis for each processing activity
+- [ ] Consent mechanisms meet GDPR requirements
+- [ ] Legitimate interest assessments completed
+
+### Transparency
+
+- [ ] Privacy policy is clear and accessible
+- [ ] Processing purposes clearly stated
+- [ ] Data retention periods documented
+
+### Data Subject Rights
+
+- [ ] Access request process implemented
+- [ ] Erasure request process implemented
+- [ ] Portability export available
+- [ ] Rectification process available
+- [ ] Response within 30-day deadline
+
+### Security
+
+- [ ] Encryption at rest implemented
+- [ ] Encryption in transit (TLS)
+- [ ] Access controls in place
+- [ ] Audit logging enabled
+
+### Breach Response
+
+- [ ] Breach detection mechanisms
+- [ ] 72-hour notification process
+- [ ] Breach documentation system
+
+### Documentation
+
+- [ ] Records of processing activities (Art. 30)
+- [ ] Data protection impact assessments
+- [ ] Data processing agreements with vendors
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Minimize data collection</strong> - Only collect what&#39;s needed</li>
+<li><strong>Document everything</strong> - Processing activities, legal bases</li>
+<li><strong>Encrypt PII</strong> - At rest and in transit</li>
+<li><strong>Implement access controls</strong> - Need-to-know basis</li>
+<li><strong>Regular audits</strong> - Verify compliance continuously</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t pre-check consent boxes</strong> - Must be opt-in</li>
+<li><strong>Don&#39;t bundle consent</strong> - Separate purposes separately</li>
+<li><strong>Don&#39;t retain indefinitely</strong> - Define and enforce retention</li>
+<li><strong>Don&#39;t ignore DSARs</strong> - 30-day response required</li>
+<li><strong>Don&#39;t transfer without safeguards</strong> - SCCs or adequacy decisions</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://gdpr-info.eu/">GDPR Full Text</a></li>
+<li><a href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/">ICO Guidance</a></li>
+<li><a href="https://edpb.europa.eu/our-work-tools/general-guidance/gdpr-guidelines-recommendations-best-practices_en">EDPB Guidelines</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

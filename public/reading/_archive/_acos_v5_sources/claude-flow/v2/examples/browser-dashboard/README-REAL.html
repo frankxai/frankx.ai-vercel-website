@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Real Claude Flow MCP Integration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/browser-dashboard/README-REAL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Real Claude Flow MCP Integration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2Fbrowser-dashboard">browser-dashboard</a> / <span>README-REAL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Real Claude Flow MCP Integration</h1>
+<p>This demonstrates the dashboard with <strong>actual Claude Flow MCP tools</strong> instead of simulation.</p>
+<h2>Architecture</h2>
+<pre><code>Browser Dashboard (dashboard.js)
+        ↓ WebSocket (JSON-RPC 2.0)
+Node.js Bridge (server-real.js)
+        ↓ stdio (JSON-RPC 2.0)
+Claude Flow MCP Server (npx claude-flow@alpha mcp start)
+        ↓ Direct function calls
+Real MCP Tools (90 tools)
+        ↓ Actual operations
+Claude Flow Core (swarm orchestration, agents, tasks)
+</code></pre>
+<h2>How It Works</h2>
+<ol>
+<li><strong>server-real.js</strong> spawns <code>npx claude-flow@alpha mcp start</code> as a child process</li>
+<li>Browser sends WebSocket messages (JSON-RPC 2.0)</li>
+<li>Bridge translates and forwards to MCP server via stdio</li>
+<li>MCP server executes real claude-flow operations</li>
+<li>Results broadcast back to all connected browsers</li>
+</ol>
+<h2>Usage</h2>
+<h3>Start Real MCP Server</h3>
+<pre><code class="language-bash">cd examples/browser-dashboard
+
+# Kill simulation server
+pkill -f &quot;node server.js&quot;
+
+# Start REAL MCP integration
+node server-real.js
+</code></pre>
+<h3>What You&#39;ll See</h3>
+<pre><code>🚀 Starting Claude Flow MCP server...
+✅ Claude Flow MCP ready
+
+🌐 Claude Flow Dashboard Server (REAL MCP)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📊 Dashboard: http://localhost:8080
+🔌 WebSocket: ws://localhost:8080
+🔥 Real MCP Integration Active
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+</code></pre>
+<h3>Test Real Operations</h3>
+<p>Open <a href="http://localhost:8080">http://localhost:8080</a> and try:</p>
+<ol>
+<li><p><strong>Spawn Real Agents</strong>: Click &quot;Spawn 5 Agents&quot;</p>
+<ul>
+<li>Uses <code>mcp__claude-flow__agents_spawn_parallel</code></li>
+<li>Actually creates agent processes</li>
+<li>Real 50-75ms spawn time per agent</li>
+</ul>
+</li>
+<li><p><strong>Real Swarm Status</strong>: Automatically queries</p>
+<ul>
+<li>Uses <code>mcp__claude-flow__swarm_status</code></li>
+<li>Shows actual active swarms</li>
+<li>Real agent count, topology, metrics</li>
+</ul>
+</li>
+<li><p><strong>Query Control</strong>: Click &quot;Pause Query&quot;</p>
+<ul>
+<li>Uses <code>mcp__claude-flow__query_control</code></li>
+<li>Actually pauses running queries</li>
+<li>Real state management</li>
+</ul>
+</li>
+<li><p><strong>Byzantine Consensus</strong>: Click &quot;Simulate $50K Payment&quot;</p>
+<ul>
+<li>Uses <code>mcp__agentic-payments__verify_consensus</code></li>
+<li>Real Ed25519 signature verification</li>
+<li>Actual 1ms consensus calculation</li>
+</ul>
+</li>
+</ol>
+<h2>Comparison</h2>
+<h3>Simulation Mode (<code>server.js</code>)</h3>
+<ul>
+<li>❌ Fake data</li>
+<li>❌ Random status changes</li>
+<li>❌ No real MCP calls</li>
+<li>✅ Works offline</li>
+<li>✅ No dependencies</li>
+</ul>
+<h3>Real Mode (<code>server-real.js</code>)</h3>
+<ul>
+<li>✅ Real MCP tools</li>
+<li>✅ Actual agent spawning</li>
+<li>✅ Real consensus verification</li>
+<li>✅ Live swarm orchestration</li>
+<li>❌ Requires claude-flow@alpha</li>
+</ul>
+<h2>Console Output (Real Mode)</h2>
+<pre><code>📨 Client Request: mcp__claude-flow__agents_spawn_parallel
+→ MCP: agents_spawn_parallel
+← MCP Response: agent_spawn_1727654321
+✅ Spawned 5 agents in 287ms
+
+📨 Client Request: mcp__claude-flow__swarm_status
+→ MCP: swarm_status
+← MCP Response: swarm_status_1727654322
+📊 Active swarms: 1, Agents: 5, Topology: mesh
+
+📨 Client Request: mcp__agentic-payments__verify_consensus
+→ MCP: verify_consensus
+← MCP Response: consensus_1727654323
+🗳️  Consensus reached: 13/20 in 1ms
+</code></pre>
+<h2>Real vs Simulated Features</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Simulated</th>
+<th>Real MCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent Spawning</td>
+<td>Fake (instant)</td>
+<td>Real (50-75ms)</td>
+</tr>
+<tr>
+<td>Consensus</td>
+<td>Random votes</td>
+<td>Real Ed25519 verification</td>
+</tr>
+<tr>
+<td>Swarm Status</td>
+<td>Static data</td>
+<td>Live orchestrator state</td>
+</tr>
+<tr>
+<td>Query Control</td>
+<td>UI only</td>
+<td>Actual process control</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Instant</td>
+<td>Measured latency</td>
+</tr>
+<tr>
+<td>Memory Usage</td>
+<td>N/A</td>
+<td>Real metrics</td>
+</tr>
+</tbody></table>
+<h2>Troubleshooting</h2>
+<p><strong>MCP Server Won&#39;t Start</strong>:</p>
+<pre><code class="language-bash"># Check if claude-flow is installed
+npx claude-flow@alpha --version
+
+# Test MCP server manually
+npx claude-flow@alpha mcp start
+</code></pre>
+<p><strong>Port Already in Use</strong>:</p>
+<pre><code class="language-bash"># Kill existing servers
+pkill -f &quot;node server&quot;
+lsof -ti:8080 | xargs kill -9
+
+# Start on different port
+PORT=8081 node server-real.js
+</code></pre>
+<p><strong>No Response from MCP</strong>:</p>
+<ul>
+<li>Check console for errors</li>
+<li>MCP server takes 2-3 seconds to initialize</li>
+<li>Refresh browser after &quot;✅ Claude Flow MCP ready&quot;</li>
+</ul>
+<h2>Performance</h2>
+<p><strong>Real Operations</strong>:</p>
+<ul>
+<li>Agent spawn: 50-75ms per agent (parallel)</li>
+<li>Consensus: 1ms for 20 agents</li>
+<li>Swarm status: 10-20ms</li>
+<li>Query control: 5-10ms</li>
+</ul>
+<p><strong>WebSocket Latency</strong>:</p>
+<ul>
+<li>Local: &lt;5ms round-trip</li>
+<li>Real MCP call: stdio overhead &lt;1ms</li>
+<li>Total: Browser → Real Agent in &lt;100ms</li>
+</ul>
+<h2>Next Steps</h2>
+<ol>
+<li>✅ Real MCP integration working</li>
+<li>⏳ Add real-time metrics streaming</li>
+<li>⏳ Live agent output logs</li>
+<li>⏳ Interactive query debugging</li>
+<li>⏳ Multi-swarm visualization</li>
+</ol>
+<p>This is <strong>actual</strong> Claude Flow running in the browser via WebSocket → stdio bridge!</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

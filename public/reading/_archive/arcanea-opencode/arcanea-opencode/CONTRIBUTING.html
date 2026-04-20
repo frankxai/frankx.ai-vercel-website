@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Contributing to Oh My OpenCode</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/arcanea-opencode/arcanea-opencode/CONTRIBUTING.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Contributing to Oh My OpenCode</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#_archive">_archive</a> / <a href="../index.html#_archive%2Farcanea-opencode">arcanea-opencode</a> / <a href="index.html#_archive%2Farcanea-opencode%2Farcanea-opencode">arcanea-opencode</a> / <span>CONTRIBUTING.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Contributing to Oh My OpenCode</h1>
+<p>First off, thanks for taking the time to contribute! This document provides guidelines and instructions for contributing to oh-my-opencode.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#code-of-conduct">Code of Conduct</a></li>
+<li><a href="#getting-started">Getting Started</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#development-setup">Development Setup</a></li>
+<li><a href="#testing-your-changes-locally">Testing Your Changes Locally</a></li>
+</ul>
+</li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#development-workflow">Development Workflow</a><ul>
+<li><a href="#build-commands">Build Commands</a></li>
+<li><a href="#code-style--conventions">Code Style &amp; Conventions</a></li>
+</ul>
+</li>
+<li><a href="#making-changes">Making Changes</a><ul>
+<li><a href="#adding-a-new-agent">Adding a New Agent</a></li>
+<li><a href="#adding-a-new-hook">Adding a New Hook</a></li>
+<li><a href="#adding-a-new-tool">Adding a New Tool</a></li>
+<li><a href="#adding-a-new-mcp-server">Adding a New MCP Server</a></li>
+</ul>
+</li>
+<li><a href="#pull-request-process">Pull Request Process</a></li>
+<li><a href="#publishing">Publishing</a></li>
+<li><a href="#getting-help">Getting Help</a></li>
+</ul>
+<h2>Code of Conduct</h2>
+<p>Be respectful, inclusive, and constructive. We&#39;re all here to make better tools together.</p>
+<h2>Language Policy</h2>
+<p><strong>English is the primary language for all communications in this repository.</strong></p>
+<p>This includes:</p>
+<ul>
+<li>Issues and bug reports</li>
+<li>Pull requests and code reviews</li>
+<li>Documentation and comments</li>
+<li>Discussions and community interactions</li>
+</ul>
+<h3>Why English?</h3>
+<ul>
+<li><strong>Global Accessibility</strong>: English allows contributors from all regions to collaborate effectively</li>
+<li><strong>Consistency</strong>: A single language keeps discussions organized and searchable</li>
+<li><strong>Open Source Best Practice</strong>: Most successful open-source projects use English as the lingua franca</li>
+</ul>
+<h3>Need Help with English?</h3>
+<p>If English isn&#39;t your first language, don&#39;t worry! We value your contributions regardless of perfect grammar. You can:</p>
+<ul>
+<li>Use translation tools to help compose messages</li>
+<li>Ask for help from other community members</li>
+<li>Focus on clear, simple communication rather than perfect prose</li>
+</ul>
+<h2>Getting Started</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li><strong>Bun</strong> (latest version) - The only supported package manager</li>
+<li><strong>TypeScript 5.7.3+</strong> - For type checking and declarations</li>
+<li><strong>OpenCode 1.0.150+</strong> - For testing the plugin</li>
+</ul>
+<h3>Development Setup</h3>
+<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/code-yeongyu/oh-my-opencode.git
+cd oh-my-opencode
+
+# Install dependencies (bun only - never use npm/yarn)
+bun install
+
+# Build the project
+bun run build
+</code></pre>
+<h3>Testing Your Changes Locally</h3>
+<p>After making changes, you can test your local build in OpenCode:</p>
+<ol>
+<li><p><strong>Build the project</strong>:</p>
+<pre><code class="language-bash">bun run build
+</code></pre>
+</li>
+<li><p><strong>Update your OpenCode config</strong> (<code>~/.config/opencode/opencode.json</code> or <code>opencode.jsonc</code>):</p>
+<pre><code class="language-json">{
+  &quot;plugin&quot;: [
+    &quot;file:///absolute/path/to/oh-my-opencode/dist/index.js&quot;
+  ]
+}
+</code></pre>
+<p>For example, if your project is at <code>/Users/yourname/projects/oh-my-opencode</code>:</p>
+<pre><code class="language-json">{
+  &quot;plugin&quot;: [
+    &quot;file:///Users/yourname/projects/oh-my-opencode/dist/index.js&quot;
+  ]
+}
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: Remove <code>&quot;oh-my-opencode&quot;</code> from the plugin array if it exists, to avoid conflicts with the npm version.</p>
+</blockquote>
+</li>
+<li><p><strong>Restart OpenCode</strong> to load the changes.</p>
+</li>
+<li><p><strong>Verify</strong> the plugin is loaded by checking for OmO agent availability or startup messages.</p>
+</li>
+</ol>
+<h2>Project Structure</h2>
+<pre><code>oh-my-opencode/
+├── src/
+│   ├── agents/        # AI agents (OmO, oracle, librarian, explore, etc.)
+│   ├── hooks/         # 21 lifecycle hooks
+│   ├── tools/         # LSP (11), AST-Grep, Grep, Glob, etc.
+│   ├── mcp/           # MCP server integrations (context7, grep_app)
+│   ├── features/      # Claude Code compatibility layers
+│   ├── config/        # Zod schemas and TypeScript types
+│   ├── auth/          # Google Antigravity OAuth
+│   ├── shared/        # Common utilities
+│   └── index.ts       # Main plugin entry (OhMyOpenCodePlugin)
+├── script/            # Build utilities (build-schema.ts, publish.ts)
+├── assets/            # JSON schema
+└── dist/              # Build output (ESM + .d.ts)
+</code></pre>
+<h2>Development Workflow</h2>
+<h3>Build Commands</h3>
+<pre><code class="language-bash"># Type check only
+bun run typecheck
+
+# Full build (ESM + TypeScript declarations + JSON schema)
+bun run build
+
+# Clean build output and rebuild
+bun run rebuild
+
+# Build schema only (after modifying src/config/schema.ts)
+bun run build:schema
+</code></pre>
+<h3>Code Style &amp; Conventions</h3>
+<table>
+<thead>
+<tr>
+<th>Convention</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Package Manager</td>
+<td><strong>Bun only</strong> (<code>bun run</code>, <code>bun build</code>, <code>bunx</code>)</td>
+</tr>
+<tr>
+<td>Types</td>
+<td>Use <code>bun-types</code>, not <code>@types/node</code></td>
+</tr>
+<tr>
+<td>Directory Naming</td>
+<td>kebab-case (<code>ast-grep/</code>, <code>claude-code-hooks/</code>)</td>
+</tr>
+<tr>
+<td>File Operations</td>
+<td>Never use bash commands (mkdir/touch/rm) for file creation in code</td>
+</tr>
+<tr>
+<td>Tool Structure</td>
+<td>Each tool: <code>index.ts</code>, <code>types.ts</code>, <code>constants.ts</code>, <code>tools.ts</code>, <code>utils.ts</code></td>
+</tr>
+<tr>
+<td>Hook Pattern</td>
+<td><code>createXXXHook(input: PluginInput)</code> function naming</td>
+</tr>
+<tr>
+<td>Exports</td>
+<td>Barrel pattern (<code>export * from &quot;./module&quot;</code> in index.ts)</td>
+</tr>
+</tbody></table>
+<p><strong>Anti-Patterns (Do Not Do)</strong>:</p>
+<ul>
+<li>Using npm/yarn instead of bun</li>
+<li>Using <code>@types/node</code> instead of <code>bun-types</code></li>
+<li>Suppressing TypeScript errors with <code>as any</code>, <code>@ts-ignore</code>, <code>@ts-expect-error</code></li>
+<li>Generic AI-generated comment bloat</li>
+<li>Direct <code>bun publish</code> (use GitHub Actions only)</li>
+<li>Local version modifications in <code>package.json</code></li>
+</ul>
+<h2>Making Changes</h2>
+<h3>Adding a New Agent</h3>
+<ol>
+<li>Create a new <code>.ts</code> file in <code>src/agents/</code></li>
+<li>Define the agent configuration following existing patterns</li>
+<li>Add to <code>builtinAgents</code> in <code>src/agents/index.ts</code></li>
+<li>Update <code>src/agents/types.ts</code> if needed</li>
+<li>Run <code>bun run build:schema</code> to update the JSON schema</li>
+</ol>
+<pre><code class="language-typescript">// src/agents/my-agent.ts
+import type { AgentConfig } from &quot;./types&quot;;
+
+export const myAgent: AgentConfig = {
+  name: &quot;my-agent&quot;,
+  model: &quot;anthropic/claude-sonnet-4-5&quot;,
+  description: &quot;Description of what this agent does&quot;,
+  prompt: `Your agent&#39;s system prompt here`,
+  temperature: 0.1,
+  // ... other config
+};
+</code></pre>
+<h3>Adding a New Hook</h3>
+<ol>
+<li>Create a new directory in <code>src/hooks/</code> (kebab-case)</li>
+<li>Implement <code>createXXXHook()</code> function returning event handlers</li>
+<li>Export from <code>src/hooks/index.ts</code></li>
+</ol>
+<pre><code class="language-typescript">// src/hooks/my-hook/index.ts
+import type { PluginInput } from &quot;@opencode-ai/plugin&quot;;
+
+export function createMyHook(input: PluginInput) {
+  return {
+    onSessionStart: async () =&gt; {
+      // Hook logic here
+    },
+  };
+}
+</code></pre>
+<h3>Adding a New Tool</h3>
+<ol>
+<li>Create a new directory in <code>src/tools/</code> with required files:<ul>
+<li><code>index.ts</code> - Main exports</li>
+<li><code>types.ts</code> - TypeScript interfaces</li>
+<li><code>constants.ts</code> - Constants and tool descriptions</li>
+<li><code>tools.ts</code> - Tool implementations</li>
+<li><code>utils.ts</code> - Helper functions</li>
+</ul>
+</li>
+<li>Add to <code>builtinTools</code> in <code>src/tools/index.ts</code></li>
+</ol>
+<h3>Adding a New MCP Server</h3>
+<ol>
+<li>Create configuration in <code>src/mcp/</code></li>
+<li>Add to <code>src/mcp/index.ts</code></li>
+<li>Document in README if it requires external setup</li>
+</ol>
+<h2>Pull Request Process</h2>
+<ol>
+<li><strong>Fork</strong> the repository and create your branch from <code>dev</code></li>
+<li><strong>Make changes</strong> following the conventions above</li>
+<li><strong>Build and test</strong> locally:<pre><code class="language-bash">bun run typecheck  # Ensure no type errors
+bun run build      # Ensure build succeeds
+</code></pre>
+</li>
+<li><strong>Test in OpenCode</strong> using the local build method described above</li>
+<li><strong>Commit</strong> with clear, descriptive messages:<ul>
+<li>Use present tense (&quot;Add feature&quot; not &quot;Added feature&quot;)</li>
+<li>Reference issues if applicable (&quot;Fix #123&quot;)</li>
+</ul>
+</li>
+<li><strong>Push</strong> to your fork and create a Pull Request</li>
+<li><strong>Describe</strong> your changes clearly in the PR description</li>
+</ol>
+<h3>PR Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Code follows project conventions</li>
+<li><input disabled="" type="checkbox"> <code>bun run typecheck</code> passes</li>
+<li><input disabled="" type="checkbox"> <code>bun run build</code> succeeds</li>
+<li><input disabled="" type="checkbox"> Tested locally with OpenCode</li>
+<li><input disabled="" type="checkbox"> Updated documentation if needed (README, AGENTS.md)</li>
+<li><input disabled="" type="checkbox"> No version changes in <code>package.json</code></li>
+</ul>
+<h2>Publishing</h2>
+<p><strong>Important</strong>: Publishing is handled exclusively through GitHub Actions.</p>
+<ul>
+<li><strong>Never</strong> run <code>bun publish</code> directly (OIDC provenance issues)</li>
+<li><strong>Never</strong> modify <code>package.json</code> version locally</li>
+<li>Maintainers use GitHub Actions workflow_dispatch:<pre><code class="language-bash">gh workflow run publish -f bump=patch  # or minor/major
+</code></pre>
+</li>
+</ul>
+<h2>Getting Help</h2>
+<ul>
+<li><strong>Project Knowledge</strong>: Check <code>AGENTS.md</code> for detailed project documentation</li>
+<li><strong>Code Patterns</strong>: Review existing implementations in <code>src/</code></li>
+<li><strong>Issues</strong>: Open an issue for bugs or feature requests</li>
+<li><strong>Discussions</strong>: Start a discussion for questions or ideas</li>
+</ul>
+<hr>
+<p>Thank you for contributing to Oh My OpenCode! Your efforts help make AI-assisted coding better for everyone.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

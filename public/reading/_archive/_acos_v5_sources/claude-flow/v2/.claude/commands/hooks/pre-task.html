@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>hook pre-task</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/.claude/commands/hooks/pre-task.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">hook pre-task</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fcommands%2Fhooks">hooks</a> / <span>pre-task.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>hook pre-task</h1>
+<p>Execute pre-task preparations and context loading.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">npx claude-flow hook pre-task [options]
+</code></pre>
+<h2>Options</h2>
+<ul>
+<li><code>--description, -d &lt;text&gt;</code> - Task description for context</li>
+<li><code>--auto-spawn-agents</code> - Automatically spawn required agents (default: true)</li>
+<li><code>--load-memory</code> - Load relevant memory from previous sessions</li>
+<li><code>--optimize-topology</code> - Select optimal swarm topology</li>
+<li><code>--estimate-complexity</code> - Analyze task complexity</li>
+</ul>
+<h2>Examples</h2>
+<h3>Basic pre-task hook</h3>
+<pre><code class="language-bash">npx claude-flow hook pre-task --description &quot;Implement user authentication&quot;
+</code></pre>
+<h3>With memory loading</h3>
+<pre><code class="language-bash">npx claude-flow hook pre-task -d &quot;Continue API development&quot; --load-memory
+</code></pre>
+<h3>Manual agent control</h3>
+<pre><code class="language-bash">npx claude-flow hook pre-task -d &quot;Debug issue #123&quot; --auto-spawn-agents false
+</code></pre>
+<h3>Full optimization</h3>
+<pre><code class="language-bash">npx claude-flow hook pre-task -d &quot;Refactor codebase&quot; --optimize-topology --estimate-complexity
+</code></pre>
+<h2>Features</h2>
+<h3>Auto Agent Assignment</h3>
+<ul>
+<li>Analyzes task requirements</li>
+<li>Determines needed agent types</li>
+<li>Spawns agents automatically</li>
+<li>Configures agent parameters</li>
+</ul>
+<h3>Memory Loading</h3>
+<ul>
+<li>Retrieves relevant past decisions</li>
+<li>Loads previous task contexts</li>
+<li>Restores agent configurations</li>
+<li>Maintains continuity</li>
+</ul>
+<h3>Topology Optimization</h3>
+<ul>
+<li>Analyzes task structure</li>
+<li>Selects best swarm topology</li>
+<li>Configures communication patterns</li>
+<li>Optimizes for performance</li>
+</ul>
+<h3>Complexity Estimation</h3>
+<ul>
+<li>Evaluates task difficulty</li>
+<li>Estimates time requirements</li>
+<li>Suggests agent count</li>
+<li>Identifies dependencies</li>
+</ul>
+<h2>Integration</h2>
+<p>This hook is automatically called by Claude Code when:</p>
+<ul>
+<li>Starting a new task</li>
+<li>Resuming work after a break</li>
+<li>Switching between projects</li>
+<li>Beginning complex operations</li>
+</ul>
+<p>Manual usage in agents:</p>
+<pre><code class="language-bash"># In agent coordination
+npx claude-flow hook pre-task --description &quot;Your task here&quot;
+</code></pre>
+<h2>Output</h2>
+<p>Returns JSON with:</p>
+<pre><code class="language-json">{
+  &quot;continue&quot;: true,
+  &quot;topology&quot;: &quot;hierarchical&quot;,
+  &quot;agentsSpawned&quot;: 5,
+  &quot;complexity&quot;: &quot;medium&quot;,
+  &quot;estimatedMinutes&quot;: 30,
+  &quot;memoryLoaded&quot;: true
+}
+</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><code>hook post-task</code> - Post-task cleanup</li>
+<li><code>agent spawn</code> - Manual agent creation</li>
+<li><code>memory usage</code> - Memory management</li>
+<li><code>swarm init</code> - Swarm initialization</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

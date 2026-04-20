@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agent Performance Optimization Workflow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/agent-orchestration/commands/improve-agent.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Agent Performance Optimization Workflow</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fagent-orchestration">agent-orchestration</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fagent-orchestration%2Fcommands">commands</a> / <span>improve-agent.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Agent Performance Optimization Workflow</h1>
+<p>Systematic improvement of existing agents through performance analysis, prompt engineering, and continuous iteration.</p>
+<p>[Extended thinking: Agent optimization requires a data-driven approach combining performance metrics, user feedback analysis, and advanced prompt engineering techniques. Success depends on systematic evaluation, targeted improvements, and rigorous testing with rollback capabilities for production safety.]</p>
+<h2>Phase 1: Performance Analysis and Baseline Metrics</h2>
+<p>Comprehensive analysis of agent performance using context-manager for historical data collection.</p>
+<h3>1.1 Gather Performance Data</h3>
+<pre><code>Use: context-manager
+Command: analyze-agent-performance $ARGUMENTS --days 30
+</code></pre>
+<p>Collect metrics including:</p>
+<ul>
+<li>Task completion rate (successful vs failed tasks)</li>
+<li>Response accuracy and factual correctness</li>
+<li>Tool usage efficiency (correct tools, call frequency)</li>
+<li>Average response time and token consumption</li>
+<li>User satisfaction indicators (corrections, retries)</li>
+<li>Hallucination incidents and error patterns</li>
+</ul>
+<h3>1.2 User Feedback Pattern Analysis</h3>
+<p>Identify recurring patterns in user interactions:</p>
+<ul>
+<li><strong>Correction patterns</strong>: Where users consistently modify outputs</li>
+<li><strong>Clarification requests</strong>: Common areas of ambiguity</li>
+<li><strong>Task abandonment</strong>: Points where users give up</li>
+<li><strong>Follow-up questions</strong>: Indicators of incomplete responses</li>
+<li><strong>Positive feedback</strong>: Successful patterns to preserve</li>
+</ul>
+<h3>1.3 Failure Mode Classification</h3>
+<p>Categorize failures by root cause:</p>
+<ul>
+<li><strong>Instruction misunderstanding</strong>: Role or task confusion</li>
+<li><strong>Output format errors</strong>: Structure or formatting issues</li>
+<li><strong>Context loss</strong>: Long conversation degradation</li>
+<li><strong>Tool misuse</strong>: Incorrect or inefficient tool selection</li>
+<li><strong>Constraint violations</strong>: Safety or business rule breaches</li>
+<li><strong>Edge case handling</strong>: Unusual input scenarios</li>
+</ul>
+<h3>1.4 Baseline Performance Report</h3>
+<p>Generate quantitative baseline metrics:</p>
+<pre><code>Performance Baseline:
+- Task Success Rate: [X%]
+- Average Corrections per Task: [Y]
+- Tool Call Efficiency: [Z%]
+- User Satisfaction Score: [1-10]
+- Average Response Latency: [Xms]
+- Token Efficiency Ratio: [X:Y]
+</code></pre>
+<h2>Phase 2: Prompt Engineering Improvements</h2>
+<p>Apply advanced prompt optimization techniques using prompt-engineer agent.</p>
+<h3>2.1 Chain-of-Thought Enhancement</h3>
+<p>Implement structured reasoning patterns:</p>
+<pre><code>Use: prompt-engineer
+Technique: chain-of-thought-optimization
+</code></pre>
+<ul>
+<li>Add explicit reasoning steps: &quot;Let&#39;s approach this step-by-step...&quot;</li>
+<li>Include self-verification checkpoints: &quot;Before proceeding, verify that...&quot;</li>
+<li>Implement recursive decomposition for complex tasks</li>
+<li>Add reasoning trace visibility for debugging</li>
+</ul>
+<h3>2.2 Few-Shot Example Optimization</h3>
+<p>Curate high-quality examples from successful interactions:</p>
+<ul>
+<li><strong>Select diverse examples</strong> covering common use cases</li>
+<li><strong>Include edge cases</strong> that previously failed</li>
+<li><strong>Show both positive and negative examples</strong> with explanations</li>
+<li><strong>Order examples</strong> from simple to complex</li>
+<li><strong>Annotate examples</strong> with key decision points</li>
+</ul>
+<p>Example structure:</p>
+<pre><code>Good Example:
+Input: [User request]
+Reasoning: [Step-by-step thought process]
+Output: [Successful response]
+Why this works: [Key success factors]
+
+Bad Example:
+Input: [Similar request]
+Output: [Failed response]
+Why this fails: [Specific issues]
+Correct approach: [Fixed version]
+</code></pre>
+<h3>2.3 Role Definition Refinement</h3>
+<p>Strengthen agent identity and capabilities:</p>
+<ul>
+<li><strong>Core purpose</strong>: Clear, single-sentence mission</li>
+<li><strong>Expertise domains</strong>: Specific knowledge areas</li>
+<li><strong>Behavioral traits</strong>: Personality and interaction style</li>
+<li><strong>Tool proficiency</strong>: Available tools and when to use them</li>
+<li><strong>Constraints</strong>: What the agent should NOT do</li>
+<li><strong>Success criteria</strong>: How to measure task completion</li>
+</ul>
+<h3>2.4 Constitutional AI Integration</h3>
+<p>Implement self-correction mechanisms:</p>
+<pre><code>Constitutional Principles:
+1. Verify factual accuracy before responding
+2. Self-check for potential biases or harmful content
+3. Validate output format matches requirements
+4. Ensure response completeness
+5. Maintain consistency with previous responses
+</code></pre>
+<p>Add critique-and-revise loops:</p>
+<ul>
+<li>Initial response generation</li>
+<li>Self-critique against principles</li>
+<li>Automatic revision if issues detected</li>
+<li>Final validation before output</li>
+</ul>
+<h3>2.5 Output Format Tuning</h3>
+<p>Optimize response structure:</p>
+<ul>
+<li><strong>Structured templates</strong> for common tasks</li>
+<li><strong>Dynamic formatting</strong> based on complexity</li>
+<li><strong>Progressive disclosure</strong> for detailed information</li>
+<li><strong>Markdown optimization</strong> for readability</li>
+<li><strong>Code block formatting</strong> with syntax highlighting</li>
+<li><strong>Table and list generation</strong> for data presentation</li>
+</ul>
+<h2>Phase 3: Testing and Validation</h2>
+<p>Comprehensive testing framework with A/B comparison.</p>
+<h3>3.1 Test Suite Development</h3>
+<p>Create representative test scenarios:</p>
+<pre><code>Test Categories:
+1. Golden path scenarios (common successful cases)
+2. Previously failed tasks (regression testing)
+3. Edge cases and corner scenarios
+4. Stress tests (complex, multi-step tasks)
+5. Adversarial inputs (potential breaking points)
+6. Cross-domain tasks (combining capabilities)
+</code></pre>
+<h3>3.2 A/B Testing Framework</h3>
+<p>Compare original vs improved agent:</p>
+<pre><code>Use: parallel-test-runner
+Config:
+  - Agent A: Original version
+  - Agent B: Improved version
+  - Test set: 100 representative tasks
+  - Metrics: Success rate, speed, token usage
+  - Evaluation: Blind human review + automated scoring
+</code></pre>
+<p>Statistical significance testing:</p>
+<ul>
+<li>Minimum sample size: 100 tasks per variant</li>
+<li>Confidence level: 95% (p &lt; 0.05)</li>
+<li>Effect size calculation (Cohen&#39;s d)</li>
+<li>Power analysis for future tests</li>
+</ul>
+<h3>3.3 Evaluation Metrics</h3>
+<p>Comprehensive scoring framework:</p>
+<p><strong>Task-Level Metrics:</strong></p>
+<ul>
+<li>Completion rate (binary success/failure)</li>
+<li>Correctness score (0-100% accuracy)</li>
+<li>Efficiency score (steps taken vs optimal)</li>
+<li>Tool usage appropriateness</li>
+<li>Response relevance and completeness</li>
+</ul>
+<p><strong>Quality Metrics:</strong></p>
+<ul>
+<li>Hallucination rate (factual errors per response)</li>
+<li>Consistency score (alignment with previous responses)</li>
+<li>Format compliance (matches specified structure)</li>
+<li>Safety score (constraint adherence)</li>
+<li>User satisfaction prediction</li>
+</ul>
+<p><strong>Performance Metrics:</strong></p>
+<ul>
+<li>Response latency (time to first token)</li>
+<li>Total generation time</li>
+<li>Token consumption (input + output)</li>
+<li>Cost per task (API usage fees)</li>
+<li>Memory/context efficiency</li>
+</ul>
+<h3>3.4 Human Evaluation Protocol</h3>
+<p>Structured human review process:</p>
+<ul>
+<li>Blind evaluation (evaluators don&#39;t know version)</li>
+<li>Standardized rubric with clear criteria</li>
+<li>Multiple evaluators per sample (inter-rater reliability)</li>
+<li>Qualitative feedback collection</li>
+<li>Preference ranking (A vs B comparison)</li>
+</ul>
+<h2>Phase 4: Version Control and Deployment</h2>
+<p>Safe rollout with monitoring and rollback capabilities.</p>
+<h3>4.1 Version Management</h3>
+<p>Systematic versioning strategy:</p>
+<pre><code>Version Format: agent-name-v[MAJOR].[MINOR].[PATCH]
+Example: customer-support-v2.3.1
+
+MAJOR: Significant capability changes
+MINOR: Prompt improvements, new examples
+PATCH: Bug fixes, minor adjustments
+</code></pre>
+<p>Maintain version history:</p>
+<ul>
+<li>Git-based prompt storage</li>
+<li>Changelog with improvement details</li>
+<li>Performance metrics per version</li>
+<li>Rollback procedures documented</li>
+</ul>
+<h3>4.2 Staged Rollout</h3>
+<p>Progressive deployment strategy:</p>
+<ol>
+<li><strong>Alpha testing</strong>: Internal team validation (5% traffic)</li>
+<li><strong>Beta testing</strong>: Selected users (20% traffic)</li>
+<li><strong>Canary release</strong>: Gradual increase (20% → 50% → 100%)</li>
+<li><strong>Full deployment</strong>: After success criteria met</li>
+<li><strong>Monitoring period</strong>: 7-day observation window</li>
+</ol>
+<h3>4.3 Rollback Procedures</h3>
+<p>Quick recovery mechanism:</p>
+<pre><code>Rollback Triggers:
+- Success rate drops &gt;10% from baseline
+- Critical errors increase &gt;5%
+- User complaints spike
+- Cost per task increases &gt;20%
+- Safety violations detected
+
+Rollback Process:
+1. Detect issue via monitoring
+2. Alert team immediately
+3. Switch to previous stable version
+4. Analyze root cause
+5. Fix and re-test before retry
+</code></pre>
+<h3>4.4 Continuous Monitoring</h3>
+<p>Real-time performance tracking:</p>
+<ul>
+<li>Dashboard with key metrics</li>
+<li>Anomaly detection alerts</li>
+<li>User feedback collection</li>
+<li>Automated regression testing</li>
+<li>Weekly performance reports</li>
+</ul>
+<h2>Success Criteria</h2>
+<p>Agent improvement is successful when:</p>
+<ul>
+<li>Task success rate improves by ≥15%</li>
+<li>User corrections decrease by ≥25%</li>
+<li>No increase in safety violations</li>
+<li>Response time remains within 10% of baseline</li>
+<li>Cost per task doesn&#39;t increase &gt;5%</li>
+<li>Positive user feedback increases</li>
+</ul>
+<h2>Post-Deployment Review</h2>
+<p>After 30 days of production use:</p>
+<ol>
+<li>Analyze accumulated performance data</li>
+<li>Compare against baseline and targets</li>
+<li>Identify new improvement opportunities</li>
+<li>Document lessons learned</li>
+<li>Plan next optimization cycle</li>
+</ol>
+<h2>Continuous Improvement Cycle</h2>
+<p>Establish regular improvement cadence:</p>
+<ul>
+<li><strong>Weekly</strong>: Monitor metrics and collect feedback</li>
+<li><strong>Monthly</strong>: Analyze patterns and plan improvements</li>
+<li><strong>Quarterly</strong>: Major version updates with new capabilities</li>
+<li><strong>Annually</strong>: Strategic review and architecture updates</li>
+</ul>
+<p>Remember: Agent optimization is an iterative process. Each cycle builds upon previous learnings, gradually improving performance while maintaining stability and safety.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

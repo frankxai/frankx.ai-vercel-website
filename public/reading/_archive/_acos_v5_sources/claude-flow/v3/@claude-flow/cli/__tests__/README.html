@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>CLI Module Tests</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/__tests__/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">CLI Module Tests</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F__tests__">__tests__</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>CLI Module Tests</h1>
+<p>This directory contains comprehensive tests for the V3 CLI module using Vitest.</p>
+<h2>Test Files</h2>
+<h3>1. <code>cli.test.ts</code> (~15+ tests)</h3>
+<p>Tests for the main CLI class covering:</p>
+<ul>
+<li>Version command (<code>--version</code>, <code>-V</code>)</li>
+<li>Help output (<code>--help</code>, <code>-h</code>)</li>
+<li>Command parsing (long flags, short flags, equals syntax)</li>
+<li>Positional arguments</li>
+<li>Boolean flags and negation</li>
+<li>Global flags (<code>--quiet</code>, <code>--format</code>, <code>--config</code>, <code>--no-color</code>)</li>
+<li>Error handling (unknown commands, missing options)</li>
+<li>Subcommand execution and aliases</li>
+<li>Exit codes</li>
+</ul>
+<h3>2. <code>mcp-client.test.ts</code> (~10+ tests)</h3>
+<p>Tests for MCP tool invocation:</p>
+<ul>
+<li><code>callMCPTool()</code> - Tool execution with various inputs</li>
+<li><code>getToolMetadata()</code> - Metadata retrieval</li>
+<li><code>listMCPTools()</code> - Tool listing and filtering by category</li>
+<li><code>hasTool()</code> - Tool existence checks</li>
+<li><code>getToolCategories()</code> - Category enumeration</li>
+<li><code>validateToolInput()</code> - Input validation against schemas</li>
+<li><code>MCPClientError</code> - Custom error handling</li>
+</ul>
+<h3>3. <code>commands.test.ts</code> (~48+ tests)</h3>
+<p>Tests for all CLI commands:</p>
+<p><strong>Agent Commands (spawn, list, status, stop, metrics):</strong></p>
+<ul>
+<li>Spawning agents with various configurations</li>
+<li>Listing agents with filters</li>
+<li>Getting agent status and metrics</li>
+<li>Stopping agents (graceful/force)</li>
+<li>Agent performance metrics</li>
+</ul>
+<p><strong>Swarm Commands (init, start, status, stop, scale, coordinate):</strong></p>
+<ul>
+<li>Initializing swarms with different topologies</li>
+<li>Starting swarm execution with objectives</li>
+<li>Checking swarm status</li>
+<li>Stopping and scaling swarms</li>
+<li>V3 15-agent coordination structure</li>
+</ul>
+<p><strong>Memory Commands (store, retrieve, search, list, delete, stats, configure):</strong></p>
+<ul>
+<li>Storing data in memory (with/without vectors)</li>
+<li>Retrieving data by key</li>
+<li>Semantic/vector search</li>
+<li>Listing memory entries</li>
+<li>Deleting entries</li>
+<li>Viewing statistics</li>
+<li>Backend configuration</li>
+</ul>
+<p><strong>Config Commands (init, get, set, providers, reset, export, import):</strong></p>
+<ul>
+<li>Initializing configuration</li>
+<li>Getting/setting config values</li>
+<li>Managing AI providers</li>
+<li>Resetting to defaults</li>
+<li>Exporting/importing configuration</li>
+</ul>
+<h2>Mocking Strategy</h2>
+<h3>MCP Tools</h3>
+<p>All MCP tools are mocked at the module level to prevent actual tool execution:</p>
+<ul>
+<li><code>agent-tools.js</code> - Mocked agent operations</li>
+<li><code>swarm-tools.js</code> - Mocked swarm coordination</li>
+<li><code>memory-tools.js</code> - Mocked memory operations</li>
+<li><code>config-tools.js</code> - Mocked configuration</li>
+</ul>
+<h3>Output</h3>
+<p>The <code>output</code> module is fully mocked to capture formatted output without console pollution.</p>
+<h3>Prompts</h3>
+<p>Interactive prompts (<code>select</code>, <code>confirm</code>, <code>input</code>, <code>multiSelect</code>) are mocked to return default values for non-interactive testing.</p>
+<h3>Process</h3>
+<p><code>process.exit()</code> is mocked to throw errors instead of terminating the test process.</p>
+<h2>Running Tests</h2>
+<pre><code class="language-bash"># Run all CLI tests
+npm test -- v3/@claude-flow/cli/__tests__/
+
+# Run specific test file
+npm test -- v3/@claude-flow/cli/__tests__/cli.test.ts
+
+# Run with coverage
+npm test -- v3/@claude-flow/cli/__tests__/ --coverage
+
+# Run in watch mode
+npm test -- v3/@claude-flow/cli/__tests__/ --watch
+</code></pre>
+<h2>Test Coverage Goals</h2>
+<ul>
+<li><strong>Statements</strong>: &gt;80%</li>
+<li><strong>Branches</strong>: &gt;75%</li>
+<li><strong>Functions</strong>: &gt;80%</li>
+<li><strong>Lines</strong>: &gt;80%</li>
+</ul>
+<h2>Key Testing Patterns</h2>
+<h3>1. Command Execution</h3>
+<pre><code class="language-typescript">const result = await command.action!(ctx);
+expect(result.success).toBe(true);
+expect(result.data).toHaveProperty(&#39;expectedField&#39;);
+</code></pre>
+<h3>2. Flag Parsing</h3>
+<pre><code class="language-typescript">ctx.flags = { myFlag: &#39;value&#39;, _: [] };
+await command.action!(ctx);
+// Assertions in action callback
+</code></pre>
+<h3>3. Error Handling</h3>
+<pre><code class="language-typescript">try {
+  await cli.run([&#39;invalid-command&#39;]);
+} catch (e) {
+  expect((e as Error).message).toContain(&#39;process.exit&#39;);
+}
+</code></pre>
+<h3>4. Output Validation</h3>
+<pre><code class="language-typescript">const output = consoleOutput.join(&#39;&#39;);
+expect(output).toContain(&#39;Expected text&#39;);
+</code></pre>
+<h2>Notes</h2>
+<ul>
+<li>All tests are non-interactive (<code>interactive: false</code>)</li>
+<li>Console output is captured for verification</li>
+<li>Process exits are converted to exceptions</li>
+<li>MCP client is fully isolated from actual MCP server</li>
+<li>Tests use unique command names to avoid conflicts</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

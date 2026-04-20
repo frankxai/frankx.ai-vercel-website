@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Debugging Strategies</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/developer-essentials/skills/debugging-strategies/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Debugging Strategies</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials">developer-essentials</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills%2Fdebugging-strategies">debugging-strategies</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: debugging-strategies
+description: Master systematic debugging techniques, profiling tools, and root cause analysis to efficiently track down bugs across any codebase or technology stack. Use when investigating bugs, performance issues, or unexpected behavior.</h2>
+<h1>Debugging Strategies</h1>
+<p>Transform debugging from frustrating guesswork into systematic problem-solving with proven strategies, powerful tools, and methodical approaches.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Tracking down elusive bugs</li>
+<li>Investigating performance issues</li>
+<li>Understanding unfamiliar codebases</li>
+<li>Debugging production issues</li>
+<li>Analyzing crash dumps and stack traces</li>
+<li>Profiling application performance</li>
+<li>Investigating memory leaks</li>
+<li>Debugging distributed systems</li>
+</ul>
+<h2>Core Principles</h2>
+<h3>1. The Scientific Method</h3>
+<p><strong>1. Observe</strong>: What&#39;s the actual behavior?
+<strong>2. Hypothesize</strong>: What could be causing it?
+<strong>3. Experiment</strong>: Test your hypothesis
+<strong>4. Analyze</strong>: Did it prove/disprove your theory?
+<strong>5. Repeat</strong>: Until you find the root cause</p>
+<h3>2. Debugging Mindset</h3>
+<p><strong>Don&#39;t Assume:</strong></p>
+<ul>
+<li>&quot;It can&#39;t be X&quot; - Yes it can</li>
+<li>&quot;I didn&#39;t change Y&quot; - Check anyway</li>
+<li>&quot;It works on my machine&quot; - Find out why</li>
+</ul>
+<p><strong>Do:</strong></p>
+<ul>
+<li>Reproduce consistently</li>
+<li>Isolate the problem</li>
+<li>Keep detailed notes</li>
+<li>Question everything</li>
+<li>Take breaks when stuck</li>
+</ul>
+<h3>3. Rubber Duck Debugging</h3>
+<p>Explain your code and problem out loud (to a rubber duck, colleague, or yourself). Often reveals the issue.</p>
+<h2>Systematic Debugging Process</h2>
+<h3>Phase 1: Reproduce</h3>
+<pre><code class="language-markdown">## Reproduction Checklist
+
+1. **Can you reproduce it?**
+   - Always? Sometimes? Randomly?
+   - Specific conditions needed?
+   - Can others reproduce it?
+
+2. **Create minimal reproduction**
+   - Simplify to smallest example
+   - Remove unrelated code
+   - Isolate the problem
+
+3. **Document steps**
+   - Write down exact steps
+   - Note environment details
+   - Capture error messages
+</code></pre>
+<h3>Phase 2: Gather Information</h3>
+<pre><code class="language-markdown">## Information Collection
+
+1. **Error Messages**
+   - Full stack trace
+   - Error codes
+   - Console/log output
+
+2. **Environment**
+   - OS version
+   - Language/runtime version
+   - Dependencies versions
+   - Environment variables
+
+3. **Recent Changes**
+   - Git history
+   - Deployment timeline
+   - Configuration changes
+
+4. **Scope**
+   - Affects all users or specific ones?
+   - All browsers or specific ones?
+   - Production only or also dev?
+</code></pre>
+<h3>Phase 3: Form Hypothesis</h3>
+<pre><code class="language-markdown">## Hypothesis Formation
+
+Based on gathered info, ask:
+
+1. **What changed?**
+   - Recent code changes
+   - Dependency updates
+   - Infrastructure changes
+
+2. **What&#39;s different?**
+   - Working vs broken environment
+   - Working vs broken user
+   - Before vs after
+
+3. **Where could this fail?**
+   - Input validation
+   - Business logic
+   - Data layer
+   - External services
+</code></pre>
+<h3>Phase 4: Test &amp; Verify</h3>
+<pre><code class="language-markdown">## Testing Strategies
+
+1. **Binary Search**
+   - Comment out half the code
+   - Narrow down problematic section
+   - Repeat until found
+
+2. **Add Logging**
+   - Strategic console.log/print
+   - Track variable values
+   - Trace execution flow
+
+3. **Isolate Components**
+   - Test each piece separately
+   - Mock dependencies
+   - Remove complexity
+
+4. **Compare Working vs Broken**
+   - Diff configurations
+   - Diff environments
+   - Diff data
+</code></pre>
+<h2>Debugging Tools</h2>
+<h3>JavaScript/TypeScript Debugging</h3>
+<pre><code class="language-typescript">// Chrome DevTools Debugger
+function processOrder(order: Order) {
+  debugger; // Execution pauses here
+
+  const total = calculateTotal(order);
+  console.log(&quot;Total:&quot;, total);
+
+  // Conditional breakpoint
+  if (order.items.length &gt; 10) {
+    debugger; // Only breaks if condition true
+  }
+
+  return total;
+}
+
+// Console debugging techniques
+console.log(&quot;Value:&quot;, value); // Basic
+console.table(arrayOfObjects); // Table format
+console.time(&quot;operation&quot;);
+/* code */ console.timeEnd(&quot;operation&quot;); // Timing
+console.trace(); // Stack trace
+console.assert(value &gt; 0, &quot;Value must be positive&quot;); // Assertion
+
+// Performance profiling
+performance.mark(&quot;start-operation&quot;);
+// ... operation code
+performance.mark(&quot;end-operation&quot;);
+performance.measure(&quot;operation&quot;, &quot;start-operation&quot;, &quot;end-operation&quot;);
+console.log(performance.getEntriesByType(&quot;measure&quot;));
+</code></pre>
+<p><strong>VS Code Debugger Configuration:</strong></p>
+<pre><code class="language-json">// .vscode/launch.json
+{
+  &quot;version&quot;: &quot;0.2.0&quot;,
+  &quot;configurations&quot;: [
+    {
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;name&quot;: &quot;Debug Program&quot;,
+      &quot;program&quot;: &quot;${workspaceFolder}/src/index.ts&quot;,
+      &quot;preLaunchTask&quot;: &quot;tsc: build - tsconfig.json&quot;,
+      &quot;outFiles&quot;: [&quot;${workspaceFolder}/dist/**/*.js&quot;],
+      &quot;skipFiles&quot;: [&quot;&lt;node_internals&gt;/**&quot;]
+    },
+    {
+      &quot;type&quot;: &quot;node&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;name&quot;: &quot;Debug Tests&quot;,
+      &quot;program&quot;: &quot;${workspaceFolder}/node_modules/jest/bin/jest&quot;,
+      &quot;args&quot;: [&quot;--runInBand&quot;, &quot;--no-cache&quot;],
+      &quot;console&quot;: &quot;integratedTerminal&quot;
+    }
+  ]
+}
+</code></pre>
+<h3>Python Debugging</h3>
+<pre><code class="language-python"># Built-in debugger (pdb)
+import pdb
+
+def calculate_total(items):
+    total = 0
+    pdb.set_trace()  # Debugger starts here
+
+    for item in items:
+        total += item.price * item.quantity
+
+    return total
+
+# Breakpoint (Python 3.7+)
+def process_order(order):
+    breakpoint()  # More convenient than pdb.set_trace()
+    # ... code
+
+# Post-mortem debugging
+try:
+    risky_operation()
+except Exception:
+    import pdb
+    pdb.post_mortem()  # Debug at exception point
+
+# IPython debugging (ipdb)
+from ipdb import set_trace
+set_trace()  # Better interface than pdb
+
+# Logging for debugging
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+def fetch_user(user_id):
+    logger.debug(f&#39;Fetching user: {user_id}&#39;)
+    user = db.query(User).get(user_id)
+    logger.debug(f&#39;Found user: {user}&#39;)
+    return user
+
+# Profile performance
+import cProfile
+import pstats
+
+cProfile.run(&#39;slow_function()&#39;, &#39;profile_stats&#39;)
+stats = pstats.Stats(&#39;profile_stats&#39;)
+stats.sort_stats(&#39;cumulative&#39;)
+stats.print_stats(10)  # Top 10 slowest
+</code></pre>
+<h3>Go Debugging</h3>
+<pre><code class="language-go">// Delve debugger
+// Install: go install github.com/go-delve/delve/cmd/dlv@latest
+// Run: dlv debug main.go
+
+import (
+    &quot;fmt&quot;
+    &quot;runtime&quot;
+    &quot;runtime/debug&quot;
+)
+
+// Print stack trace
+func debugStack() {
+    debug.PrintStack()
+}
+
+// Panic recovery with debugging
+func processRequest() {
+    defer func() {
+        if r := recover(); r != nil {
+            fmt.Println(&quot;Panic:&quot;, r)
+            debug.PrintStack()
+        }
+    }()
+
+    // ... code that might panic
+}
+
+// Memory profiling
+import _ &quot;net/http/pprof&quot;
+// Visit http://localhost:6060/debug/pprof/
+
+// CPU profiling
+import (
+    &quot;os&quot;
+    &quot;runtime/pprof&quot;
+)
+
+f, _ := os.Create(&quot;cpu.prof&quot;)
+pprof.StartCPUProfile(f)
+defer pprof.StopCPUProfile()
+// ... code to profile
+</code></pre>
+<h2>Advanced Debugging Techniques</h2>
+<h3>Technique 1: Binary Search Debugging</h3>
+<pre><code class="language-bash"># Git bisect for finding regression
+git bisect start
+git bisect bad                    # Current commit is bad
+git bisect good v1.0.0            # v1.0.0 was good
+
+# Git checks out middle commit
+# Test it, then:
+git bisect good   # if it works
+git bisect bad    # if it&#39;s broken
+
+# Continue until bug found
+git bisect reset  # when done
+</code></pre>
+<h3>Technique 2: Differential Debugging</h3>
+<p>Compare working vs broken:</p>
+<pre><code class="language-markdown">## What&#39;s Different?
+
+| Aspect       | Working     | Broken         |
+| ------------ | ----------- | -------------- |
+| Environment  | Development | Production     |
+| Node version | 18.16.0     | 18.15.0        |
+| Data         | Empty DB    | 1M records     |
+| User         | Admin       | Regular user   |
+| Browser      | Chrome      | Safari         |
+| Time         | During day  | After midnight |
+
+Hypothesis: Time-based issue? Check timezone handling.
+</code></pre>
+<h3>Technique 3: Trace Debugging</h3>
+<pre><code class="language-typescript">// Function call tracing
+function trace(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor,
+) {
+  const originalMethod = descriptor.value;
+
+  descriptor.value = function (...args: any[]) {
+    console.log(`Calling ${propertyKey} with args:`, args);
+    const result = originalMethod.apply(this, args);
+    console.log(`${propertyKey} returned:`, result);
+    return result;
+  };
+
+  return descriptor;
+}
+
+class OrderService {
+  @trace
+  calculateTotal(items: Item[]): number {
+    return items.reduce((sum, item) =&gt; sum + item.price, 0);
+  }
+}
+</code></pre>
+<h3>Technique 4: Memory Leak Detection</h3>
+<pre><code class="language-typescript">// Chrome DevTools Memory Profiler
+// 1. Take heap snapshot
+// 2. Perform action
+// 3. Take another snapshot
+// 4. Compare snapshots
+
+// Node.js memory debugging
+if (process.memoryUsage().heapUsed &gt; 500 * 1024 * 1024) {
+  console.warn(&quot;High memory usage:&quot;, process.memoryUsage());
+
+  // Generate heap dump
+  require(&quot;v8&quot;).writeHeapSnapshot();
+}
+
+// Find memory leaks in tests
+let beforeMemory: number;
+
+beforeEach(() =&gt; {
+  beforeMemory = process.memoryUsage().heapUsed;
+});
+
+afterEach(() =&gt; {
+  const afterMemory = process.memoryUsage().heapUsed;
+  const diff = afterMemory - beforeMemory;
+
+  if (diff &gt; 10 * 1024 * 1024) {
+    // 10MB threshold
+    console.warn(`Possible memory leak: ${diff / 1024 / 1024}MB`);
+  }
+});
+</code></pre>
+<h2>Debugging Patterns by Issue Type</h2>
+<h3>Pattern 1: Intermittent Bugs</h3>
+<pre><code class="language-markdown">## Strategies for Flaky Bugs
+
+1. **Add extensive logging**
+   - Log timing information
+   - Log all state transitions
+   - Log external interactions
+
+2. **Look for race conditions**
+   - Concurrent access to shared state
+   - Async operations completing out of order
+   - Missing synchronization
+
+3. **Check timing dependencies**
+   - setTimeout/setInterval
+   - Promise resolution order
+   - Animation frame timing
+
+4. **Stress test**
+   - Run many times
+   - Vary timing
+   - Simulate load
+</code></pre>
+<h3>Pattern 2: Performance Issues</h3>
+<pre><code class="language-markdown">## Performance Debugging
+
+1. **Profile first**
+   - Don&#39;t optimize blindly
+   - Measure before and after
+   - Find bottlenecks
+
+2. **Common culprits**
+   - N+1 queries
+   - Unnecessary re-renders
+   - Large data processing
+   - Synchronous I/O
+
+3. **Tools**
+   - Browser DevTools Performance tab
+   - Lighthouse
+   - Python: cProfile, line_profiler
+   - Node: clinic.js, 0x
+</code></pre>
+<h3>Pattern 3: Production Bugs</h3>
+<pre><code class="language-markdown">## Production Debugging
+
+1. **Gather evidence**
+   - Error tracking (Sentry, Bugsnag)
+   - Application logs
+   - User reports
+   - Metrics/monitoring
+
+2. **Reproduce locally**
+   - Use production data (anonymized)
+   - Match environment
+   - Follow exact steps
+
+3. **Safe investigation**
+   - Don&#39;t change production
+   - Use feature flags
+   - Add monitoring/logging
+   - Test fixes in staging
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Reproduce First</strong>: Can&#39;t fix what you can&#39;t reproduce</li>
+<li><strong>Isolate the Problem</strong>: Remove complexity until minimal case</li>
+<li><strong>Read Error Messages</strong>: They&#39;re usually helpful</li>
+<li><strong>Check Recent Changes</strong>: Most bugs are recent</li>
+<li><strong>Use Version Control</strong>: Git bisect, blame, history</li>
+<li><strong>Take Breaks</strong>: Fresh eyes see better</li>
+<li><strong>Document Findings</strong>: Help future you</li>
+<li><strong>Fix Root Cause</strong>: Not just symptoms</li>
+</ol>
+<h2>Common Debugging Mistakes</h2>
+<ul>
+<li><strong>Making Multiple Changes</strong>: Change one thing at a time</li>
+<li><strong>Not Reading Error Messages</strong>: Read the full stack trace</li>
+<li><strong>Assuming It&#39;s Complex</strong>: Often it&#39;s simple</li>
+<li><strong>Debug Logging in Prod</strong>: Remove before shipping</li>
+<li><strong>Not Using Debugger</strong>: console.log isn&#39;t always best</li>
+<li><strong>Giving Up Too Soon</strong>: Persistence pays off</li>
+<li><strong>Not Testing the Fix</strong>: Verify it actually works</li>
+</ul>
+<h2>Quick Debugging Checklist</h2>
+<pre><code class="language-markdown">## When Stuck, Check:
+
+- [ ] Spelling errors (typos in variable names)
+- [ ] Case sensitivity (fileName vs filename)
+- [ ] Null/undefined values
+- [ ] Array index off-by-one
+- [ ] Async timing (race conditions)
+- [ ] Scope issues (closure, hoisting)
+- [ ] Type mismatches
+- [ ] Missing dependencies
+- [ ] Environment variables
+- [ ] File paths (absolute vs relative)
+- [ ] Cache issues (clear cache)
+- [ ] Stale data (refresh database)
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/debugging-tools-guide.md</strong>: Comprehensive tool documentation</li>
+<li><strong>references/performance-profiling.md</strong>: Performance debugging guide</li>
+<li><strong>references/production-debugging.md</strong>: Debugging live systems</li>
+<li><strong>assets/debugging-checklist.md</strong>: Quick reference checklist</li>
+<li><strong>assets/common-bugs.md</strong>: Common bug patterns</li>
+<li><strong>scripts/debug-helper.ts</strong>: Debugging utility functions</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

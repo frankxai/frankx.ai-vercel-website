@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Oracle AI Center of Excellence (AI CoE) Resource Hub</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="frankx-oracle-genai-content/frankx-oracle-genai-content-backup/github-ai-coe/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Oracle AI Center of Excellence (AI CoE) Resource Hub</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#frankx-oracle-genai-content">frankx-oracle-genai-content</a> / <a href="../index.html#frankx-oracle-genai-content%2Ffrankx-oracle-genai-content-backup">frankx-oracle-genai-content-backup</a> / <a href="index.html#frankx-oracle-genai-content%2Ffrankx-oracle-genai-content-backup%2Fgithub-ai-coe">github-ai-coe</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Oracle AI Center of Excellence (AI CoE) Resource Hub</h1>
+<blockquote>
+<p>Production-grade patterns, reference architectures, and best practices for building LLM and AI Agent systems on Oracle Cloud Infrastructure.</p>
+</blockquote>
+<p><a href="https://www.oracle.com/artificial-intelligence/generative-ai/"><img src="https://img.shields.io/badge/OCI-GenAI-red" alt="OCI"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License"></a></p>
+<h2>🎯 What This Repository Provides</h2>
+<p>This repository is designed to help enterprise teams move from GenAI prototypes to production systems. It includes:</p>
+<ul>
+<li><strong>Reference Architectures</strong> - Tested patterns for enterprise AI systems</li>
+<li><strong>Best Practices</strong> - Production-hardened guidelines for security, observability, and governance</li>
+<li><strong>Code Samples</strong> - Working implementations you can adapt</li>
+<li><strong>Decision Frameworks</strong> - Clear guidance for choosing the right services and patterns</li>
+</ul>
+<h2>🏗️ Quick Start</h2>
+<h3>1. Understand the Architecture</h3>
+<p>Read the <a href="best-practices/PRODUCTION_LLM_SYSTEMS_ARCHITECTURE.md">Production LLM Architecture Guide</a> to understand the six-plane model for enterprise GenAI systems.</p>
+<h3>2. Choose Your Agent Pattern</h3>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Recommended Path</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fast time-to-value, managed infrastructure</td>
+<td><a href="https://docs.oracle.com/en/solutions/deploy-agentic-ai-agent-platform/">OCI AI Agent Platform</a></td>
+</tr>
+<tr>
+<td>Maximum control, custom workflows</td>
+<td><a href="https://github.com/oracle/langchain-oracle">LangGraph + OCI GenAI</a></td>
+</tr>
+<tr>
+<td>Multi-agent orchestration</td>
+<td><a href="https://blogs.oracle.com/cloud-infrastructure/ai-world-2025-artificial-intelligence">Agent Hub</a></td>
+</tr>
+</tbody></table>
+<h3>3. Deploy a Baseline Stack</h3>
+<pre><code class="language-bash"># Clone the OCI AI Blueprints
+git clone https://github.com/oracle-quickstart/oci-ai-blueprints.git
+cd oci-ai-blueprints
+
+# Configure OCI credentials
+oci setup config
+
+# Deploy baseline GenAI stack
+cd baseline-genai
+terraform init
+terraform apply
+</code></pre>
+<h3>4. Try the Quickstart CLI</h3>
+<pre><code class="language-bash"># Install dependencies
+pip install oci langchain-oracle
+
+# Run the quickstart
+python QUICKSTART.py setup
+python QUICKSTART.py chat --message &quot;What&#39;s the weather in San Francisco?&quot;
+python QUICKSTART.py models  # List available models
+python QUICKSTART.py costs   # Check pricing
+</code></pre>
+<h2>📚 Repository Structure</h2>
+<pre><code>github-ai-coe/
+├── README.md                           # This file
+├── QUICKSTART.py                       # Interactive CLI for getting started
+│
+├── best-practices/
+│   ├── PRODUCTION_LLM_SYSTEMS_ARCHITECTURE.md  # Six-plane architecture guide
+│   ├── security-compliance.md          # Security and compliance patterns
+│   └── cost-optimization.md            # Cost management strategies
+│
+├── reference-architectures/
+│   ├── enterprise-rag/                 # RAG at enterprise scale
+│   │   ├── README.md
+│   │   ├── architecture.png
+│   │   └── terraform/
+│   ├── multi-agent-system/             # Multi-agent orchestration
+│   │   └── README.md
+│   └── coding-agent-platform/          # Coding agents on OCI
+│       └── README.md
+│
+├── guides/
+│   ├── service-selection-guide.md      # Which OCI AI service to use
+│   ├── migration-guide.md              # Moving from other clouds
+│   └── team-composition-guide.md       # Building AI CoE teams
+│
+└── samples/
+    ├── oci-genai-quickstart.py         # Basic OCI GenAI usage
+    ├── agent-platform-demo/            # Agent Platform examples
+    └── rag-pipeline/                   # RAG implementation
+</code></pre>
+<h2>🔧 OCI AI Services Decision Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Service</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LLM API access</td>
+<td><a href="https://docs.oracle.com/en-us/iaas/generative-ai/">OCI GenAI Service</a></td>
+<td>Cohere, Meta, OpenAI, Mistral models</td>
+</tr>
+<tr>
+<td>Custom agents with tools</td>
+<td><a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/overview.htm">OCI AI Agent Platform</a></td>
+<td>RAG, SQL, custom tools</td>
+</tr>
+<tr>
+<td>Multi-agent orchestration</td>
+<td><a href="https://blogs.oracle.com/cloud-infrastructure/ai-world-2025-artificial-intelligence">Agent Hub</a></td>
+<td>Route across specialized agents</td>
+</tr>
+<tr>
+<td>Fusion Apps integration</td>
+<td><a href="https://docs.oracle.com/en/cloud/saas/fusion-apps/">AI Agent Studio</a></td>
+<td>Pre-built Fusion agents</td>
+</tr>
+<tr>
+<td>Maximum data sovereignty</td>
+<td><a href="https://www.oracle.com/database/ai/">Private Agent Factory (DB 26ai)</a></td>
+<td>On-premises or sovereign cloud</td>
+</tr>
+<tr>
+<td>Open-source flexibility</td>
+<td><a href="https://github.com/oracle/langchain-oracle">LangChain + OCI GenAI</a></td>
+<td>Full control with managed models</td>
+</tr>
+</tbody></table>
+<h2>📖 Blog Series</h2>
+<p>This repository accompanies the &quot;Production-Ready GenAI on Oracle Cloud Infrastructure&quot; blog series:</p>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Title</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="../content/blog/series-production-genai-oci/part-01-architecture-overview.md">Part 1</a></td>
+<td>Architecture Overview</td>
+<td>Six-plane enterprise model</td>
+</tr>
+<tr>
+<td><a href="../content/blog/series-production-genai-oci/part-02-agent-patterns.md">Part 2</a></td>
+<td>Agent Patterns</td>
+<td>Managed vs Framework agents</td>
+</tr>
+<tr>
+<td><a href="../content/blog/series-production-genai-oci/part-03-operating-model.md">Part 3</a></td>
+<td>Operating Model</td>
+<td>Governance, observability, lifecycle</td>
+</tr>
+</tbody></table>
+<h2>🔗 Essential Oracle References</h2>
+<h3>Architecture Center</h3>
+<ul>
+<li><a href="https://docs.oracle.com/en/solutions/oci-genai-enterprise/index.html">Enterprise GenAI Stack on OCI</a></li>
+<li><a href="https://docs.oracle.com/en/solutions/deploy-agentic-ai-agent-platform/index.html">Agentic AI with OCI AI Agent Platform</a></li>
+<li><a href="https://docs.oracle.com/en/solutions/select-ai-apex-framework/index.html">Select AI + APEX Framework</a></li>
+<li><a href="https://docs.oracle.com/en/solutions/oci-multicloud-genai-rag/index.html">Multicloud GenAI RAG</a></li>
+</ul>
+<h3>GitHub Repositories</h3>
+<table>
+<thead>
+<tr>
+<th>Repository</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://github.com/oracle/langchain-oracle">oracle/langchain-oracle</a></td>
+<td>Official LangChain integration</td>
+</tr>
+<tr>
+<td><a href="https://github.com/oracle/agent-spec">oracle/agent-spec</a></td>
+<td>Open Agent Specification</td>
+</tr>
+<tr>
+<td><a href="https://github.com/oracle-quickstart/oci-ai-blueprints">oracle-quickstart/oci-ai-blueprints</a></td>
+<td>Production deployments</td>
+</tr>
+<tr>
+<td><a href="https://github.com/oracle-devrel/ai-solutions">oracle-devrel/ai-solutions</a></td>
+<td>Reference implementations</td>
+</tr>
+<tr>
+<td><a href="https://github.com/oracle/wayflow">oracle/wayflow</a></td>
+<td>Agent Spec runtime</td>
+</tr>
+</tbody></table>
+<h3>LiveLabs</h3>
+<ul>
+<li><a href="https://apexapps.oracle.com/pls/apex/f?p=133:1">Getting Started with OCI GenAI</a></li>
+<li><a href="https://apexapps.oracle.com/pls/apex/f?p=133:1">Building AI Agents on OCI</a></li>
+</ul>
+<h2>✅ Production Checklist</h2>
+<p>Before deploying to production, ensure you have:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Security</strong>: RBAC, network isolation, secrets management, threat protection</li>
+<li><input disabled="" type="checkbox"> <strong>Data Access</strong>: Least privilege, audited retrieval, data residency compliance</li>
+<li><input disabled="" type="checkbox"> <strong>Reliability</strong>: Timeouts, retries, fallbacks, graceful degradation</li>
+<li><input disabled="" type="checkbox"> <strong>Quality</strong>: Online telemetry + offline evaluation + regression testing</li>
+<li><input disabled="" type="checkbox"> <strong>Cost</strong>: Quotas, rate limiting, caching, model selection policies</li>
+<li><input disabled="" type="checkbox"> <strong>Observability</strong>: OpenTelemetry traces, structured logs, SLOs defined</li>
+<li><input disabled="" type="checkbox"> <strong>Governance</strong>: Prompt versioning, audit trails, incident runbooks</li>
+<li><input disabled="" type="checkbox"> <strong>Testing</strong>: Golden sets, regression tests on prompt/tool changes</li>
+</ul>
+<h2>🤝 Contributing</h2>
+<p>Contributions are welcome! Please:</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Submit a pull request with clear description</li>
+</ol>
+<p>See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for detailed guidelines.</p>
+<h2>📄 License</h2>
+<p>This project is licensed under the Apache License 2.0 - see the <a href="LICENSE">LICENSE</a> file for details.</p>
+<hr>
+<h2>Pricing Note</h2>
+<blockquote>
+<p><strong>Oracle GenAI Pricing</strong>: Oracle charges per CHARACTER, not per token. For on-demand inference:</p>
+<ul>
+<li>Chat models: (prompt_length + response_length) in characters</li>
+<li>Embedding models: input_length in characters</li>
+<li>10,000 characters = 10,000 transactions</li>
+<li>See: <a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai/pay-on-demand.htm">https://docs.oracle.com/en-us/iaas/Content/generative-ai/pay-on-demand.htm</a></li>
+</ul>
+</blockquote>
+<hr>
+<p><strong>Maintained by FrankX AI Practice</strong></p>
+<p>For enterprise consulting and implementation support, visit <a href="https://frankx.ai">frankx.ai</a> or contact <a href="mailto:ai-practice@frankx.ai">ai-practice@frankx.ai</a>.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

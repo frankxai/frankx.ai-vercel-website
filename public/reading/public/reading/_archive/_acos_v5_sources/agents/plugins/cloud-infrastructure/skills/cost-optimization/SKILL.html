@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Cloud Cost Optimization</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cloud-infrastructure/skills/cost-optimization/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Cloud Cost Optimization</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure">cloud-infrastructure</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills%2Fcost-optimization">cost-optimization</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: cost-optimization
+description: Optimize cloud costs through resource rightsizing, tagging strategies, reserved instances, and spending analysis. Use when reducing cloud expenses, analyzing infrastructure costs, or implementing cost governance policies.</h2>
+<h1>Cloud Cost Optimization</h1>
+<p>Strategies and patterns for optimizing cloud costs across AWS, Azure, and GCP.</p>
+<h2>Purpose</h2>
+<p>Implement systematic cost optimization strategies to reduce cloud spending while maintaining performance and reliability.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Reduce cloud spending</li>
+<li>Right-size resources</li>
+<li>Implement cost governance</li>
+<li>Optimize multi-cloud costs</li>
+<li>Meet budget constraints</li>
+</ul>
+<h2>Cost Optimization Framework</h2>
+<h3>1. Visibility</h3>
+<ul>
+<li>Implement cost allocation tags</li>
+<li>Use cloud cost management tools</li>
+<li>Set up budget alerts</li>
+<li>Create cost dashboards</li>
+</ul>
+<h3>2. Right-Sizing</h3>
+<ul>
+<li>Analyze resource utilization</li>
+<li>Downsize over-provisioned resources</li>
+<li>Use auto-scaling</li>
+<li>Remove idle resources</li>
+</ul>
+<h3>3. Pricing Models</h3>
+<ul>
+<li>Use reserved capacity</li>
+<li>Leverage spot/preemptible instances</li>
+<li>Implement savings plans</li>
+<li>Use committed use discounts</li>
+</ul>
+<h3>4. Architecture Optimization</h3>
+<ul>
+<li>Use managed services</li>
+<li>Implement caching</li>
+<li>Optimize data transfer</li>
+<li>Use lifecycle policies</li>
+</ul>
+<h2>AWS Cost Optimization</h2>
+<h3>Reserved Instances</h3>
+<pre><code>Savings: 30-72% vs On-Demand
+Term: 1 or 3 years
+Payment: All/Partial/No upfront
+Flexibility: Standard or Convertible
+</code></pre>
+<h3>Savings Plans</h3>
+<pre><code>Compute Savings Plans: 66% savings
+EC2 Instance Savings Plans: 72% savings
+Applies to: EC2, Fargate, Lambda
+Flexible across: Instance families, regions, OS
+</code></pre>
+<h3>Spot Instances</h3>
+<pre><code>Savings: Up to 90% vs On-Demand
+Best for: Batch jobs, CI/CD, stateless workloads
+Risk: 2-minute interruption notice
+Strategy: Mix with On-Demand for resilience
+</code></pre>
+<h3>S3 Cost Optimization</h3>
+<pre><code class="language-hcl">resource &quot;aws_s3_bucket_lifecycle_configuration&quot; &quot;example&quot; {
+  bucket = aws_s3_bucket.example.id
+
+  rule {
+    id     = &quot;transition-to-ia&quot;
+    status = &quot;Enabled&quot;
+
+    transition {
+      days          = 30
+      storage_class = &quot;STANDARD_IA&quot;
+    }
+
+    transition {
+      days          = 90
+      storage_class = &quot;GLACIER&quot;
+    }
+
+    expiration {
+      days = 365
+    }
+  }
+}
+</code></pre>
+<h2>Azure Cost Optimization</h2>
+<h3>Reserved VM Instances</h3>
+<ul>
+<li>1 or 3 year terms</li>
+<li>Up to 72% savings</li>
+<li>Flexible sizing</li>
+<li>Exchangeable</li>
+</ul>
+<h3>Azure Hybrid Benefit</h3>
+<ul>
+<li>Use existing Windows Server licenses</li>
+<li>Up to 80% savings with RI</li>
+<li>Available for Windows and SQL Server</li>
+</ul>
+<h3>Azure Advisor Recommendations</h3>
+<ul>
+<li>Right-size VMs</li>
+<li>Delete unused resources</li>
+<li>Use reserved capacity</li>
+<li>Optimize storage</li>
+</ul>
+<h2>GCP Cost Optimization</h2>
+<h3>Committed Use Discounts</h3>
+<ul>
+<li>1 or 3 year commitment</li>
+<li>Up to 57% savings</li>
+<li>Applies to vCPUs and memory</li>
+<li>Resource-based or spend-based</li>
+</ul>
+<h3>Sustained Use Discounts</h3>
+<ul>
+<li>Automatic discounts</li>
+<li>Up to 30% for running instances</li>
+<li>No commitment required</li>
+<li>Applies to Compute Engine, GKE</li>
+</ul>
+<h3>Preemptible VMs</h3>
+<ul>
+<li>Up to 80% savings</li>
+<li>24-hour maximum runtime</li>
+<li>Best for batch workloads</li>
+</ul>
+<h2>Tagging Strategy</h2>
+<h3>AWS Tagging</h3>
+<pre><code class="language-hcl">locals {
+  common_tags = {
+    Environment = &quot;production&quot;
+    Project     = &quot;my-project&quot;
+    CostCenter  = &quot;engineering&quot;
+    Owner       = &quot;team@example.com&quot;
+    ManagedBy   = &quot;terraform&quot;
+  }
+}
+
+resource &quot;aws_instance&quot; &quot;example&quot; {
+  ami           = &quot;ami-12345678&quot;
+  instance_type = &quot;t3.medium&quot;
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = &quot;web-server&quot;
+    }
+  )
+}
+</code></pre>
+<p><strong>Reference:</strong> See <code>references/tagging-standards.md</code></p>
+<h2>Cost Monitoring</h2>
+<h3>Budget Alerts</h3>
+<pre><code class="language-hcl"># AWS Budget
+resource &quot;aws_budgets_budget&quot; &quot;monthly&quot; {
+  name              = &quot;monthly-budget&quot;
+  budget_type       = &quot;COST&quot;
+  limit_amount      = &quot;1000&quot;
+  limit_unit        = &quot;USD&quot;
+  time_period_start = &quot;2024-01-01_00:00&quot;
+  time_unit         = &quot;MONTHLY&quot;
+
+  notification {
+    comparison_operator        = &quot;GREATER_THAN&quot;
+    threshold                  = 80
+    threshold_type            = &quot;PERCENTAGE&quot;
+    notification_type         = &quot;ACTUAL&quot;
+    subscriber_email_addresses = [&quot;team@example.com&quot;]
+  }
+}
+</code></pre>
+<h3>Cost Anomaly Detection</h3>
+<ul>
+<li>AWS Cost Anomaly Detection</li>
+<li>Azure Cost Management alerts</li>
+<li>GCP Budget alerts</li>
+</ul>
+<h2>Architecture Patterns</h2>
+<h3>Pattern 1: Serverless First</h3>
+<ul>
+<li>Use Lambda/Functions for event-driven</li>
+<li>Pay only for execution time</li>
+<li>Auto-scaling included</li>
+<li>No idle costs</li>
+</ul>
+<h3>Pattern 2: Right-Sized Databases</h3>
+<pre><code>Development: t3.small RDS
+Staging: t3.large RDS
+Production: r6g.2xlarge RDS with read replicas
+</code></pre>
+<h3>Pattern 3: Multi-Tier Storage</h3>
+<pre><code>Hot data: S3 Standard
+Warm data: S3 Standard-IA (30 days)
+Cold data: S3 Glacier (90 days)
+Archive: S3 Deep Archive (365 days)
+</code></pre>
+<h3>Pattern 4: Auto-Scaling</h3>
+<pre><code class="language-hcl">resource &quot;aws_autoscaling_policy&quot; &quot;scale_up&quot; {
+  name                   = &quot;scale-up&quot;
+  scaling_adjustment     = 2
+  adjustment_type        = &quot;ChangeInCapacity&quot;
+  cooldown              = 300
+  autoscaling_group_name = aws_autoscaling_group.main.name
+}
+
+resource &quot;aws_cloudwatch_metric_alarm&quot; &quot;cpu_high&quot; {
+  alarm_name          = &quot;cpu-high&quot;
+  comparison_operator = &quot;GreaterThanThreshold&quot;
+  evaluation_periods  = &quot;2&quot;
+  metric_name         = &quot;CPUUtilization&quot;
+  namespace           = &quot;AWS/EC2&quot;
+  period              = &quot;60&quot;
+  statistic           = &quot;Average&quot;
+  threshold           = &quot;80&quot;
+  alarm_actions       = [aws_autoscaling_policy.scale_up.arn]
+}
+</code></pre>
+<h2>Cost Optimization Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Implement cost allocation tags</li>
+<li><input disabled="" type="checkbox"> Delete unused resources (EBS, EIPs, snapshots)</li>
+<li><input disabled="" type="checkbox"> Right-size instances based on utilization</li>
+<li><input disabled="" type="checkbox"> Use reserved capacity for steady workloads</li>
+<li><input disabled="" type="checkbox"> Implement auto-scaling</li>
+<li><input disabled="" type="checkbox"> Optimize storage classes</li>
+<li><input disabled="" type="checkbox"> Use lifecycle policies</li>
+<li><input disabled="" type="checkbox"> Enable cost anomaly detection</li>
+<li><input disabled="" type="checkbox"> Set budget alerts</li>
+<li><input disabled="" type="checkbox"> Review costs weekly</li>
+<li><input disabled="" type="checkbox"> Use spot/preemptible instances</li>
+<li><input disabled="" type="checkbox"> Optimize data transfer costs</li>
+<li><input disabled="" type="checkbox"> Implement caching layers</li>
+<li><input disabled="" type="checkbox"> Use managed services</li>
+<li><input disabled="" type="checkbox"> Monitor and optimize continuously</li>
+</ul>
+<h2>Tools</h2>
+<ul>
+<li><strong>AWS:</strong> Cost Explorer, Cost Anomaly Detection, Compute Optimizer</li>
+<li><strong>Azure:</strong> Cost Management, Advisor</li>
+<li><strong>GCP:</strong> Cost Management, Recommender</li>
+<li><strong>Multi-cloud:</strong> CloudHealth, Cloudability, Kubecost</li>
+</ul>
+<h2>Reference Files</h2>
+<ul>
+<li><code>references/tagging-standards.md</code> - Tagging conventions</li>
+<li><code>assets/cost-analysis-template.xlsx</code> - Cost analysis spreadsheet</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>terraform-module-library</code> - For resource provisioning</li>
+<li><code>multi-cloud-architecture</code> - For cloud selection</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

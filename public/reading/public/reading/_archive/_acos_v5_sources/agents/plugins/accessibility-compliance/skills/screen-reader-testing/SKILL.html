@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Screen Reader Testing</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/accessibility-compliance/skills/screen-reader-testing/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Screen Reader Testing</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Faccessibility-compliance">accessibility-compliance</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Faccessibility-compliance%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Faccessibility-compliance%2Fskills%2Fscreen-reader-testing">screen-reader-testing</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: screen-reader-testing
+description: Test web applications with screen readers including VoiceOver, NVDA, and JAWS. Use when validating screen reader compatibility, debugging accessibility issues, or ensuring assistive technology support.</h2>
+<h1>Screen Reader Testing</h1>
+<p>Practical guide to testing web applications with screen readers for comprehensive accessibility validation.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Validating screen reader compatibility</li>
+<li>Testing ARIA implementations</li>
+<li>Debugging assistive technology issues</li>
+<li>Verifying form accessibility</li>
+<li>Testing dynamic content announcements</li>
+<li>Ensuring navigation accessibility</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Major Screen Readers</h3>
+<table>
+<thead>
+<tr>
+<th>Screen Reader</th>
+<th>Platform</th>
+<th>Browser</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>VoiceOver</strong></td>
+<td>macOS/iOS</td>
+<td>Safari</td>
+<td>~15%</td>
+</tr>
+<tr>
+<td><strong>NVDA</strong></td>
+<td>Windows</td>
+<td>Firefox/Chrome</td>
+<td>~31%</td>
+</tr>
+<tr>
+<td><strong>JAWS</strong></td>
+<td>Windows</td>
+<td>Chrome/IE</td>
+<td>~40%</td>
+</tr>
+<tr>
+<td><strong>TalkBack</strong></td>
+<td>Android</td>
+<td>Chrome</td>
+<td>~10%</td>
+</tr>
+<tr>
+<td><strong>Narrator</strong></td>
+<td>Windows</td>
+<td>Edge</td>
+<td>~4%</td>
+</tr>
+</tbody></table>
+<h3>2. Testing Priority</h3>
+<pre><code>Minimum Coverage:
+1. NVDA + Firefox (Windows)
+2. VoiceOver + Safari (macOS)
+3. VoiceOver + Safari (iOS)
+
+Comprehensive Coverage:
++ JAWS + Chrome (Windows)
++ TalkBack + Chrome (Android)
++ Narrator + Edge (Windows)
+</code></pre>
+<h3>3. Screen Reader Modes</h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Purpose</th>
+<th>When Used</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Browse/Virtual</strong></td>
+<td>Read content</td>
+<td>Default reading</td>
+</tr>
+<tr>
+<td><strong>Focus/Forms</strong></td>
+<td>Interact with controls</td>
+<td>Filling forms</td>
+</tr>
+<tr>
+<td><strong>Application</strong></td>
+<td>Custom widgets</td>
+<td>ARIA applications</td>
+</tr>
+</tbody></table>
+<h2>VoiceOver (macOS)</h2>
+<h3>Setup</h3>
+<pre><code>Enable: System Preferences → Accessibility → VoiceOver
+Toggle: Cmd + F5
+Quick Toggle: Triple-press Touch ID
+</code></pre>
+<h3>Essential Commands</h3>
+<pre><code>Navigation:
+VO = Ctrl + Option (VoiceOver modifier)
+
+VO + Right Arrow   Next element
+VO + Left Arrow    Previous element
+VO + Shift + Down  Enter group
+VO + Shift + Up    Exit group
+
+Reading:
+VO + A             Read all from cursor
+Ctrl               Stop speaking
+VO + B             Read current paragraph
+
+Interaction:
+VO + Space         Activate element
+VO + Shift + M     Open menu
+Tab                Next focusable element
+Shift + Tab        Previous focusable element
+
+Rotor (VO + U):
+Navigate by: Headings, Links, Forms, Landmarks
+Left/Right Arrow   Change rotor category
+Up/Down Arrow      Navigate within category
+Enter              Go to item
+
+Web Specific:
+VO + Cmd + H       Next heading
+VO + Cmd + J       Next form control
+VO + Cmd + L       Next link
+VO + Cmd + T       Next table
+</code></pre>
+<h3>Testing Checklist</h3>
+<pre><code class="language-markdown">## VoiceOver Testing Checklist
+
+### Page Load
+
+- [ ] Page title announced
+- [ ] Main landmark found
+- [ ] Skip link works
+
+### Navigation
+
+- [ ] All headings discoverable via rotor
+- [ ] Heading levels logical (H1 → H2 → H3)
+- [ ] Landmarks properly labeled
+- [ ] Skip links functional
+
+### Links &amp; Buttons
+
+- [ ] Link purpose clear
+- [ ] Button actions described
+- [ ] New window/tab announced
+
+### Forms
+
+- [ ] All labels read with inputs
+- [ ] Required fields announced
+- [ ] Error messages read
+- [ ] Instructions available
+- [ ] Focus moves to errors
+
+### Dynamic Content
+
+- [ ] Alerts announced immediately
+- [ ] Loading states communicated
+- [ ] Content updates announced
+- [ ] Modals trap focus correctly
+
+### Tables
+
+- [ ] Headers associated with cells
+- [ ] Table navigation works
+- [ ] Complex tables have captions
+</code></pre>
+<h3>Common Issues &amp; Fixes</h3>
+<pre><code class="language-html">&lt;!-- Issue: Button not announcing purpose --&gt;
+&lt;button&gt;&lt;svg&gt;...&lt;/svg&gt;&lt;/button&gt;
+
+&lt;!-- Fix --&gt;
+&lt;button aria-label=&quot;Close dialog&quot;&gt;&lt;svg aria-hidden=&quot;true&quot;&gt;...&lt;/svg&gt;&lt;/button&gt;
+
+&lt;!-- Issue: Dynamic content not announced --&gt;
+&lt;div id=&quot;results&quot;&gt;New results loaded&lt;/div&gt;
+
+&lt;!-- Fix --&gt;
+&lt;div id=&quot;results&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;New results loaded&lt;/div&gt;
+
+&lt;!-- Issue: Form error not read --&gt;
+&lt;input type=&quot;email&quot; /&gt;
+&lt;span class=&quot;error&quot;&gt;Invalid email&lt;/span&gt;
+
+&lt;!-- Fix --&gt;
+&lt;input type=&quot;email&quot; aria-invalid=&quot;true&quot; aria-describedby=&quot;email-error&quot; /&gt;
+&lt;span id=&quot;email-error&quot; role=&quot;alert&quot;&gt;Invalid email&lt;/span&gt;
+</code></pre>
+<h2>NVDA (Windows)</h2>
+<h3>Setup</h3>
+<pre><code>Download: nvaccess.org
+Start: Ctrl + Alt + N
+Stop: Insert + Q
+</code></pre>
+<h3>Essential Commands</h3>
+<pre><code>Navigation:
+Insert = NVDA modifier
+
+Down Arrow         Next line
+Up Arrow           Previous line
+Tab                Next focusable
+Shift + Tab        Previous focusable
+
+Reading:
+NVDA + Down Arrow  Say all
+Ctrl               Stop speech
+NVDA + Up Arrow    Current line
+
+Headings:
+H                  Next heading
+Shift + H          Previous heading
+1-6                Heading level 1-6
+
+Forms:
+F                  Next form field
+B                  Next button
+E                  Next edit field
+X                  Next checkbox
+C                  Next combo box
+
+Links:
+K                  Next link
+U                  Next unvisited link
+V                  Next visited link
+
+Landmarks:
+D                  Next landmark
+Shift + D          Previous landmark
+
+Tables:
+T                  Next table
+Ctrl + Alt + Arrows Navigate cells
+
+Elements List (NVDA + F7):
+Shows all links, headings, form fields, landmarks
+</code></pre>
+<h3>Browse vs Focus Mode</h3>
+<pre><code>NVDA automatically switches modes:
+- Browse Mode: Arrow keys navigate content
+- Focus Mode: Arrow keys control interactive elements
+
+Manual switch: NVDA + Space
+
+Watch for:
+- &quot;Browse mode&quot; announcement when navigating
+- &quot;Focus mode&quot; when entering form fields
+- Application role forces forms mode
+</code></pre>
+<h3>Testing Script</h3>
+<pre><code class="language-markdown">## NVDA Test Script
+
+### Initial Load
+
+1. Navigate to page
+2. Let page finish loading
+3. Press Insert + Down to read all
+4. Note: Page title, main content identified?
+
+### Landmark Navigation
+
+1. Press D repeatedly
+2. Check: All main areas reachable?
+3. Check: Landmarks properly labeled?
+
+### Heading Navigation
+
+1. Press Insert + F7 → Headings
+2. Check: Logical heading structure?
+3. Press H to navigate headings
+4. Check: All sections discoverable?
+
+### Form Testing
+
+1. Press F to find first form field
+2. Check: Label read?
+3. Fill in invalid data
+4. Submit form
+5. Check: Errors announced?
+6. Check: Focus moved to error?
+
+### Interactive Elements
+
+1. Tab through all interactive elements
+2. Check: Each announces role and state
+3. Activate buttons with Enter/Space
+4. Check: Result announced?
+
+### Dynamic Content
+
+1. Trigger content update
+2. Check: Change announced?
+3. Open modal
+4. Check: Focus trapped?
+5. Close modal
+6. Check: Focus returns?
+</code></pre>
+<h2>JAWS (Windows)</h2>
+<h3>Essential Commands</h3>
+<pre><code>Start: Desktop shortcut or Ctrl + Alt + J
+Virtual Cursor: Auto-enabled in browsers
+
+Navigation:
+Arrow keys         Navigate content
+Tab                Next focusable
+Insert + Down      Read all
+Ctrl               Stop speech
+
+Quick Keys:
+H                  Next heading
+T                  Next table
+F                  Next form field
+B                  Next button
+G                  Next graphic
+L                  Next list
+;                  Next landmark
+
+Forms Mode:
+Enter              Enter forms mode
+Numpad +           Exit forms mode
+F5                 List form fields
+
+Lists:
+Insert + F7        Link list
+Insert + F6        Heading list
+Insert + F5        Form field list
+
+Tables:
+Ctrl + Alt + Arrows Table navigation
+</code></pre>
+<h2>TalkBack (Android)</h2>
+<h3>Setup</h3>
+<pre><code>Enable: Settings → Accessibility → TalkBack
+Toggle: Hold both volume buttons 3 seconds
+</code></pre>
+<h3>Gestures</h3>
+<pre><code>Explore: Drag finger across screen
+Next: Swipe right
+Previous: Swipe left
+Activate: Double tap
+Scroll: Two finger swipe
+
+Reading Controls (swipe up then right):
+- Headings
+- Links
+- Controls
+- Characters
+- Words
+- Lines
+- Paragraphs
+</code></pre>
+<h2>Common Test Scenarios</h2>
+<h3>1. Modal Dialog</h3>
+<pre><code class="language-html">&lt;!-- Accessible modal structure --&gt;
+&lt;div
+  role=&quot;dialog&quot;
+  aria-modal=&quot;true&quot;
+  aria-labelledby=&quot;dialog-title&quot;
+  aria-describedby=&quot;dialog-desc&quot;
+&gt;
+  &lt;h2 id=&quot;dialog-title&quot;&gt;Confirm Delete&lt;/h2&gt;
+  &lt;p id=&quot;dialog-desc&quot;&gt;This action cannot be undone.&lt;/p&gt;
+  &lt;button&gt;Cancel&lt;/button&gt;
+  &lt;button&gt;Delete&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">// Focus management
+function openModal(modal) {
+  // Store last focused element
+  lastFocus = document.activeElement;
+
+  // Move focus to modal
+  modal.querySelector(&quot;h2&quot;).focus();
+
+  // Trap focus
+  modal.addEventListener(&quot;keydown&quot;, trapFocus);
+}
+
+function closeModal(modal) {
+  // Return focus
+  lastFocus.focus();
+}
+
+function trapFocus(e) {
+  if (e.key === &quot;Tab&quot;) {
+    const focusable = modal.querySelectorAll(
+      &#39;button, [href], input, select, textarea, [tabindex]:not([tabindex=&quot;-1&quot;])&#39;,
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey &amp;&amp; document.activeElement === first) {
+      last.focus();
+      e.preventDefault();
+    } else if (!e.shiftKey &amp;&amp; document.activeElement === last) {
+      first.focus();
+      e.preventDefault();
+    }
+  }
+
+  if (e.key === &quot;Escape&quot;) {
+    closeModal(modal);
+  }
+}
+</code></pre>
+<h3>2. Live Regions</h3>
+<pre><code class="language-html">&lt;!-- Status messages (polite) --&gt;
+&lt;div role=&quot;status&quot; aria-live=&quot;polite&quot; aria-atomic=&quot;true&quot;&gt;
+  &lt;!-- Content updates will be announced after current speech --&gt;
+&lt;/div&gt;
+
+&lt;!-- Alerts (assertive) --&gt;
+&lt;div role=&quot;alert&quot; aria-live=&quot;assertive&quot;&gt;
+  &lt;!-- Content updates interrupt current speech --&gt;
+&lt;/div&gt;
+
+&lt;!-- Progress updates --&gt;
+&lt;div
+  role=&quot;progressbar&quot;
+  aria-valuenow=&quot;75&quot;
+  aria-valuemin=&quot;0&quot;
+  aria-valuemax=&quot;100&quot;
+  aria-label=&quot;Upload progress&quot;
+&gt;&lt;/div&gt;
+
+&lt;!-- Log (additions only) --&gt;
+&lt;div role=&quot;log&quot; aria-live=&quot;polite&quot; aria-relevant=&quot;additions&quot;&gt;
+  &lt;!-- New messages announced, removals not --&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>3. Tab Interface</h3>
+<pre><code class="language-html">&lt;div role=&quot;tablist&quot; aria-label=&quot;Product information&quot;&gt;
+  &lt;button role=&quot;tab&quot; id=&quot;tab-1&quot; aria-selected=&quot;true&quot; aria-controls=&quot;panel-1&quot;&gt;
+    Description
+  &lt;/button&gt;
+  &lt;button
+    role=&quot;tab&quot;
+    id=&quot;tab-2&quot;
+    aria-selected=&quot;false&quot;
+    aria-controls=&quot;panel-2&quot;
+    tabindex=&quot;-1&quot;
+  &gt;
+    Reviews
+  &lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div role=&quot;tabpanel&quot; id=&quot;panel-1&quot; aria-labelledby=&quot;tab-1&quot;&gt;
+  Product description content...
+&lt;/div&gt;
+
+&lt;div role=&quot;tabpanel&quot; id=&quot;panel-2&quot; aria-labelledby=&quot;tab-2&quot; hidden&gt;
+  Reviews content...
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-javascript">// Tab keyboard navigation
+tablist.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+  const tabs = [...tablist.querySelectorAll(&#39;[role=&quot;tab&quot;]&#39;)];
+  const index = tabs.indexOf(document.activeElement);
+
+  let newIndex;
+  switch (e.key) {
+    case &quot;ArrowRight&quot;:
+      newIndex = (index + 1) % tabs.length;
+      break;
+    case &quot;ArrowLeft&quot;:
+      newIndex = (index - 1 + tabs.length) % tabs.length;
+      break;
+    case &quot;Home&quot;:
+      newIndex = 0;
+      break;
+    case &quot;End&quot;:
+      newIndex = tabs.length - 1;
+      break;
+    default:
+      return;
+  }
+
+  tabs[newIndex].focus();
+  activateTab(tabs[newIndex]);
+  e.preventDefault();
+});
+</code></pre>
+<h2>Debugging Tips</h2>
+<pre><code class="language-javascript">// Log what screen reader sees
+function logAccessibleName(element) {
+  const computed = window.getComputedStyle(element);
+  console.log({
+    role: element.getAttribute(&quot;role&quot;) || element.tagName,
+    name:
+      element.getAttribute(&quot;aria-label&quot;) ||
+      element.getAttribute(&quot;aria-labelledby&quot;) ||
+      element.textContent,
+    state: {
+      expanded: element.getAttribute(&quot;aria-expanded&quot;),
+      selected: element.getAttribute(&quot;aria-selected&quot;),
+      checked: element.getAttribute(&quot;aria-checked&quot;),
+      disabled: element.disabled,
+    },
+    visible: computed.display !== &quot;none&quot; &amp;&amp; computed.visibility !== &quot;hidden&quot;,
+  });
+}
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Test with actual screen readers</strong> - Not just simulators</li>
+<li><strong>Use semantic HTML first</strong> - ARIA is supplemental</li>
+<li><strong>Test in browse and focus modes</strong> - Different experiences</li>
+<li><strong>Verify focus management</strong> - Especially for SPAs</li>
+<li><strong>Test keyboard only first</strong> - Foundation for SR testing</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t assume one SR is enough</strong> - Test multiple</li>
+<li><strong>Don&#39;t ignore mobile</strong> - Growing user base</li>
+<li><strong>Don&#39;t test only happy path</strong> - Test error states</li>
+<li><strong>Don&#39;t skip dynamic content</strong> - Most common issues</li>
+<li><strong>Don&#39;t rely on visual testing</strong> - Different experience</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://support.apple.com/guide/voiceover/welcome/mac">VoiceOver User Guide</a></li>
+<li><a href="https://www.nvaccess.org/files/nvda/documentation/userGuide.html">NVDA User Guide</a></li>
+<li><a href="https://support.freedomscientific.com/Products/Blindness/JAWS">JAWS Documentation</a></li>
+<li><a href="https://webaim.org/projects/screenreadersurvey/">WebAIM Screen Reader Survey</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

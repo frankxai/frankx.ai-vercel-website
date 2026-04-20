@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>rollback incident</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.github/ISSUE_TEMPLATE/rollback-incident.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">rollback incident</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.github">.github</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.github%2FISSUE_TEMPLATE">ISSUE_TEMPLATE</a> / <span>rollback-incident.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: 🔄 Rollback Incident Report
+about: Report an incident that requires or resulted from a rollback
+title: &#39;🔄 Rollback Incident: [Brief Description]&#39;
+labels: [&#39;rollback&#39;, &#39;incident&#39;, &#39;high-priority&#39;]
+assignees: []</h2>
+<h2>🔄 Rollback Incident Details</h2>
+<h3>Incident Summary</h3>
+<ul>
+<li><strong>Incident Type:</strong> <!-- Manual Rollback / Automated Rollback / Rollback Failure --></li>
+<li><strong>Severity:</strong> <!-- Critical / High / Medium / Low --></li>
+<li><strong>Status:</strong> <!-- Active / Investigating / Resolved --></li>
+<li><strong>Detected At:</strong> <!-- YYYY-MM-DD HH:MM UTC --></li>
+</ul>
+<h3>Rollback Information</h3>
+<ul>
+<li><strong>Rollback Session ID:</strong> <!-- From workflow logs --></li>
+<li><strong>Source Commit:</strong> <!-- SHA of problematic commit --></li>
+<li><strong>Target Commit:</strong> <!-- SHA of rollback target --></li>
+<li><strong>Rollback Reason:</strong> <!-- Brief description --></li>
+</ul>
+<h3>Impact Assessment</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Production services affected</li>
+<li><input disabled="" type="checkbox"> User-facing functionality impacted</li>
+<li><input disabled="" type="checkbox"> Data integrity concerns</li>
+<li><input disabled="" type="checkbox"> Performance degradation</li>
+<li><input disabled="" type="checkbox"> Security implications</li>
+</ul>
+<p><strong>Affected Components:</strong></p>
+<ul>
+<li><!-- List affected services/components --></li>
+</ul>
+<p><strong>Estimated User Impact:</strong></p>
+<ul>
+<li><strong>Users Affected:</strong> <!-- Number or percentage --></li>
+<li><strong>Duration:</strong> <!-- How long was the impact --></li>
+</ul>
+<h3>Timeline</h3>
+<!-- Provide a timeline of events -->
+
+<p><strong>Detection:</strong></p>
+<ul>
+<li><!-- When was the issue first detected --></li>
+</ul>
+<p><strong>Rollback Execution:</strong></p>
+<ul>
+<li><!-- When was rollback initiated and completed --></li>
+</ul>
+<p><strong>Resolution:</strong></p>
+<ul>
+<li><!-- When was normal service restored --></li>
+</ul>
+<h3>Root Cause Analysis</h3>
+<!-- What caused the original failure that required rollback -->
+
+<p><strong>Contributing Factors:</strong></p>
+<ul>
+<li><!-- List factors that led to the incident --></li>
+</ul>
+<p><strong>Failure Points:</strong></p>
+<ul>
+<li><!-- Identify where systems failed to prevent this --></li>
+</ul>
+<h3>Resolution Actions</h3>
+<!-- What was done to resolve the incident -->
+
+<ul>
+<li><input disabled="" type="checkbox"> Automated rollback executed successfully</li>
+<li><input disabled="" type="checkbox"> Manual intervention required</li>
+<li><input disabled="" type="checkbox"> Database rollback performed</li>
+<li><input disabled="" type="checkbox"> Configuration restored</li>
+<li><input disabled="" type="checkbox"> Monitoring alerts configured</li>
+</ul>
+<h3>Prevention Measures</h3>
+<!-- What will be done to prevent similar incidents -->
+
+<p><strong>Immediate Actions:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> <!-- Immediate steps taken --></li>
+</ul>
+<p><strong>Long-term Improvements:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> <!-- Process/system improvements --></li>
+</ul>
+<h3>Lessons Learned</h3>
+<!-- Key takeaways from this incident -->
+
+<ol>
+<li><!-- Lesson 1 --></li>
+<li><!-- Lesson 2 --></li>
+<li><!-- Lesson 3 --></li>
+</ol>
+<h3>Follow-up Actions</h3>
+<!-- Actions to be taken after incident resolution -->
+
+<ul>
+<li><input disabled="" type="checkbox"> Update rollback procedures</li>
+<li><input disabled="" type="checkbox"> Improve monitoring/alerting</li>
+<li><input disabled="" type="checkbox"> Enhance testing procedures</li>
+<li><input disabled="" type="checkbox"> Update documentation</li>
+<li><input disabled="" type="checkbox"> Team training/communication</li>
+</ul>
+<h3>Stakeholder Communication</h3>
+<!-- How stakeholders were informed -->
+
+<ul>
+<li><input disabled="" type="checkbox"> Team notified</li>
+<li><input disabled="" type="checkbox"> Management informed</li>
+<li><input disabled="" type="checkbox"> Users communicated (if applicable)</li>
+<li><input disabled="" type="checkbox"> Post-mortem scheduled</li>
+</ul>
+<hr>
+<p><strong>Additional Notes:</strong></p>
+<!-- Any additional context or information -->
+
+<p><strong>Related Issues/PRs:</strong></p>
+<!-- Link related issues or pull requests -->
+
+<p><strong>Rollback Artifacts:</strong></p>
+<!-- Links to workflow runs, logs, or reports -->
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

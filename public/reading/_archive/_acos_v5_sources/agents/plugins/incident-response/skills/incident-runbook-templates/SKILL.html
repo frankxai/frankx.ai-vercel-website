@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Incident Runbook Templates</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/incident-response/skills/incident-runbook-templates/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Incident Runbook Templates</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fincident-response">incident-response</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fincident-response%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fincident-response%2Fskills%2Fincident-runbook-templates">incident-runbook-templates</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: incident-runbook-templates
+description: Create structured incident response runbooks with step-by-step procedures, escalation paths, and recovery actions. Use when building runbooks, responding to incidents, or establishing incident response procedures.</h2>
+<h1>Incident Runbook Templates</h1>
+<p>Production-ready templates for incident response runbooks covering detection, triage, mitigation, resolution, and communication.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Creating incident response procedures</li>
+<li>Building service-specific runbooks</li>
+<li>Establishing escalation paths</li>
+<li>Documenting recovery procedures</li>
+<li>Responding to active incidents</li>
+<li>Onboarding on-call engineers</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Incident Severity Levels</h3>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Impact</th>
+<th>Response Time</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SEV1</strong></td>
+<td>Complete outage, data loss</td>
+<td>15 min</td>
+<td>Production down</td>
+</tr>
+<tr>
+<td><strong>SEV2</strong></td>
+<td>Major degradation</td>
+<td>30 min</td>
+<td>Critical feature broken</td>
+</tr>
+<tr>
+<td><strong>SEV3</strong></td>
+<td>Minor impact</td>
+<td>2 hours</td>
+<td>Non-critical bug</td>
+</tr>
+<tr>
+<td><strong>SEV4</strong></td>
+<td>Minimal impact</td>
+<td>Next business day</td>
+<td>Cosmetic issue</td>
+</tr>
+</tbody></table>
+<h3>2. Runbook Structure</h3>
+<pre><code>1. Overview &amp; Impact
+2. Detection &amp; Alerts
+3. Initial Triage
+4. Mitigation Steps
+5. Root Cause Investigation
+6. Resolution Procedures
+7. Verification &amp; Rollback
+8. Communication Templates
+9. Escalation Matrix
+</code></pre>
+<h2>Runbook Templates</h2>
+<h3>Template 1: Service Outage Runbook</h3>
+<pre><code class="language-markdown"># [Service Name] Outage Runbook
+
+## Overview
+
+**Service**: Payment Processing Service
+**Owner**: Platform Team
+**Slack**: #payments-incidents
+**PagerDuty**: payments-oncall
+
+## Impact Assessment
+
+- [ ] Which customers are affected?
+- [ ] What percentage of traffic is impacted?
+- [ ] Are there financial implications?
+- [ ] What&#39;s the blast radius?
+
+## Detection
+
+### Alerts
+
+- `payment_error_rate &gt; 5%` (PagerDuty)
+- `payment_latency_p99 &gt; 2s` (Slack)
+- `payment_success_rate &lt; 95%` (PagerDuty)
+
+### Dashboards
+
+- [Payment Service Dashboard](https://grafana/d/payments)
+- [Error Tracking](https://sentry.io/payments)
+- [Dependency Status](https://status.stripe.com)
+
+## Initial Triage (First 5 Minutes)
+
+### 1. Assess Scope
+
+```bash
+# Check service health
+kubectl get pods -n payments -l app=payment-service
+
+# Check recent deployments
+kubectl rollout history deployment/payment-service -n payments
+
+# Check error rates
+curl -s &quot;http://prometheus:9090/api/v1/query?query=sum(rate(http_requests_total{status=~&#39;5..&#39;}[5m]))&quot;
+```
+</code></pre>
+<h3>2. Quick Health Checks</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Can you reach the service? <code>curl -I https://api.company.com/payments/health</code></li>
+<li><input disabled="" type="checkbox"> Database connectivity? Check connection pool metrics</li>
+<li><input disabled="" type="checkbox"> External dependencies? Check Stripe, bank API status</li>
+<li><input disabled="" type="checkbox"> Recent changes? Check deploy history</li>
+</ul>
+<h3>3. Initial Classification</h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Likely Cause</th>
+<th>Go To Section</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>All requests failing</td>
+<td>Service down</td>
+<td>Section 4.1</td>
+</tr>
+<tr>
+<td>High latency</td>
+<td>Database/dependency</td>
+<td>Section 4.2</td>
+</tr>
+<tr>
+<td>Partial failures</td>
+<td>Code bug</td>
+<td>Section 4.3</td>
+</tr>
+<tr>
+<td>Spike in errors</td>
+<td>Traffic surge</td>
+<td>Section 4.4</td>
+</tr>
+</tbody></table>
+<h2>Mitigation Procedures</h2>
+<h3>4.1 Service Completely Down</h3>
+<pre><code class="language-bash"># Step 1: Check pod status
+kubectl get pods -n payments
+
+# Step 2: If pods are crash-looping, check logs
+kubectl logs -n payments -l app=payment-service --tail=100
+
+# Step 3: Check recent deployments
+kubectl rollout history deployment/payment-service -n payments
+
+# Step 4: ROLLBACK if recent deploy is suspect
+kubectl rollout undo deployment/payment-service -n payments
+
+# Step 5: Scale up if resource constrained
+kubectl scale deployment/payment-service -n payments --replicas=10
+
+# Step 6: Verify recovery
+kubectl rollout status deployment/payment-service -n payments
+</code></pre>
+<h3>4.2 High Latency</h3>
+<pre><code class="language-bash"># Step 1: Check database connections
+kubectl exec -n payments deploy/payment-service -- \
+  curl localhost:8080/metrics | grep db_pool
+
+# Step 2: Check slow queries (if DB issue)
+psql -h $DB_HOST -U $DB_USER -c &quot;
+  SELECT pid, now() - query_start AS duration, query
+  FROM pg_stat_activity
+  WHERE state = &#39;active&#39; AND duration &gt; interval &#39;5 seconds&#39;
+  ORDER BY duration DESC;&quot;
+
+# Step 3: Kill long-running queries if needed
+psql -h $DB_HOST -U $DB_USER -c &quot;SELECT pg_terminate_backend(pid);&quot;
+
+# Step 4: Check external dependency latency
+curl -w &quot;@curl-format.txt&quot; -o /dev/null -s https://api.stripe.com/v1/health
+
+# Step 5: Enable circuit breaker if dependency is slow
+kubectl set env deployment/payment-service \
+  STRIPE_CIRCUIT_BREAKER_ENABLED=true -n payments
+</code></pre>
+<h3>4.3 Partial Failures (Specific Errors)</h3>
+<pre><code class="language-bash"># Step 1: Identify error pattern
+kubectl logs -n payments -l app=payment-service --tail=500 | \
+  grep -i error | sort | uniq -c | sort -rn | head -20
+
+# Step 2: Check error tracking
+# Go to Sentry: https://sentry.io/payments
+
+# Step 3: If specific endpoint, enable feature flag to disable
+curl -X POST https://api.company.com/internal/feature-flags \
+  -d &#39;{&quot;flag&quot;: &quot;DISABLE_PROBLEMATIC_FEATURE&quot;, &quot;enabled&quot;: true}&#39;
+
+# Step 4: If data issue, check recent data changes
+psql -h $DB_HOST -c &quot;
+  SELECT * FROM audit_log
+  WHERE table_name = &#39;payment_methods&#39;
+  AND created_at &gt; now() - interval &#39;1 hour&#39;;&quot;
+</code></pre>
+<h3>4.4 Traffic Surge</h3>
+<pre><code class="language-bash"># Step 1: Check current request rate
+kubectl top pods -n payments
+
+# Step 2: Scale horizontally
+kubectl scale deployment/payment-service -n payments --replicas=20
+
+# Step 3: Enable rate limiting
+kubectl set env deployment/payment-service \
+  RATE_LIMIT_ENABLED=true \
+  RATE_LIMIT_RPS=1000 -n payments
+
+# Step 4: If attack, block suspicious IPs
+kubectl apply -f - &lt;&lt;EOF
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: block-suspicious
+  namespace: payments
+spec:
+  podSelector:
+    matchLabels:
+      app: payment-service
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+        - 192.168.1.0/24  # Suspicious range
+EOF
+</code></pre>
+<h2>Verification Steps</h2>
+<pre><code class="language-bash"># Verify service is healthy
+curl -s https://api.company.com/payments/health | jq
+
+# Verify error rate is back to normal
+curl -s &quot;http://prometheus:9090/api/v1/query?query=sum(rate(http_requests_total{status=~&#39;5..&#39;}[5m]))&quot; | jq &#39;.data.result[0].value[1]&#39;
+
+# Verify latency is acceptable
+curl -s &quot;http://prometheus:9090/api/v1/query?query=histogram_quantile(0.99,sum(rate(http_request_duration_seconds_bucket[5m]))by(le))&quot; | jq
+
+# Smoke test critical flows
+./scripts/smoke-test-payments.sh
+</code></pre>
+<h2>Rollback Procedures</h2>
+<pre><code class="language-bash"># Rollback Kubernetes deployment
+kubectl rollout undo deployment/payment-service -n payments
+
+# Rollback database migration (if applicable)
+./scripts/db-rollback.sh $MIGRATION_VERSION
+
+# Rollback feature flag
+curl -X POST https://api.company.com/internal/feature-flags \
+  -d &#39;{&quot;flag&quot;: &quot;NEW_PAYMENT_FLOW&quot;, &quot;enabled&quot;: false}&#39;
+</code></pre>
+<h2>Escalation Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Escalate To</th>
+<th>Contact</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&gt; 15 min unresolved SEV1</td>
+<td>Engineering Manager</td>
+<td>@manager (Slack)</td>
+</tr>
+<tr>
+<td>Data breach suspected</td>
+<td>Security Team</td>
+<td>#security-incidents</td>
+</tr>
+<tr>
+<td>Financial impact &gt; $10k</td>
+<td>Finance + Legal</td>
+<td>@finance-oncall</td>
+</tr>
+<tr>
+<td>Customer communication needed</td>
+<td>Support Lead</td>
+<td>@support-lead</td>
+</tr>
+</tbody></table>
+<h2>Communication Templates</h2>
+<h3>Initial Notification (Internal)</h3>
+<pre><code>🚨 INCIDENT: Payment Service Degradation
+
+Severity: SEV2
+Status: Investigating
+Impact: ~20% of payment requests failing
+Start Time: [TIME]
+Incident Commander: [NAME]
+
+Current Actions:
+- Investigating root cause
+- Scaling up service
+- Monitoring dashboards
+
+Updates in #payments-incidents
+</code></pre>
+<h3>Status Update</h3>
+<pre><code>📊 UPDATE: Payment Service Incident
+
+Status: Mitigating
+Impact: Reduced to ~5% failure rate
+Duration: 25 minutes
+
+Actions Taken:
+- Rolled back deployment v2.3.4 → v2.3.3
+- Scaled service from 5 → 10 replicas
+
+Next Steps:
+- Continuing to monitor
+- Root cause analysis in progress
+
+ETA to Resolution: ~15 minutes
+</code></pre>
+<h3>Resolution Notification</h3>
+<pre><code>✅ RESOLVED: Payment Service Incident
+
+Duration: 45 minutes
+Impact: ~5,000 affected transactions
+Root Cause: Memory leak in v2.3.4
+
+Resolution:
+- Rolled back to v2.3.3
+- Transactions auto-retried successfully
+
+Follow-up:
+- Postmortem scheduled for [DATE]
+- Bug fix in progress
+</code></pre>
+<pre><code>
+### Template 2: Database Incident Runbook
+
+```markdown
+# Database Incident Runbook
+
+## Quick Reference
+| Issue | Command |
+|-------|---------|
+| Check connections | `SELECT count(*) FROM pg_stat_activity;` |
+| Kill query | `SELECT pg_terminate_backend(pid);` |
+| Check replication lag | `SELECT extract(epoch from (now() - pg_last_xact_replay_timestamp()));` |
+| Check locks | `SELECT * FROM pg_locks WHERE NOT granted;` |
+
+## Connection Pool Exhaustion
+```sql
+-- Check current connections
+SELECT datname, usename, state, count(*)
+FROM pg_stat_activity
+GROUP BY datname, usename, state
+ORDER BY count(*) DESC;
+
+-- Identify long-running connections
+SELECT pid, usename, datname, state, query_start, query
+FROM pg_stat_activity
+WHERE state != &#39;idle&#39;
+ORDER BY query_start;
+
+-- Terminate idle connections
+SELECT pg_terminate_backend(pid)
+FROM pg_stat_activity
+WHERE state = &#39;idle&#39;
+AND query_start &lt; now() - interval &#39;10 minutes&#39;;
+</code></pre>
+<h2>Replication Lag</h2>
+<pre><code class="language-sql">-- Check lag on replica
+SELECT
+  CASE
+    WHEN pg_last_wal_receive_lsn() = pg_last_wal_replay_lsn() THEN 0
+    ELSE extract(epoch from now() - pg_last_xact_replay_timestamp())
+  END AS lag_seconds;
+
+-- If lag &gt; 60s, consider:
+-- 1. Check network between primary/replica
+-- 2. Check replica disk I/O
+-- 3. Consider failover if unrecoverable
+</code></pre>
+<h2>Disk Space Critical</h2>
+<pre><code class="language-bash"># Check disk usage
+df -h /var/lib/postgresql/data
+
+# Find large tables
+psql -c &quot;SELECT relname, pg_size_pretty(pg_total_relation_size(relid))
+FROM pg_catalog.pg_statio_user_tables
+ORDER BY pg_total_relation_size(relid) DESC
+LIMIT 10;&quot;
+
+# VACUUM to reclaim space
+psql -c &quot;VACUUM FULL large_table;&quot;
+
+# If emergency, delete old data or expand disk
+</code></pre>
+<pre><code>
+## Best Practices
+
+### Do&#39;s
+- **Keep runbooks updated** - Review after every incident
+- **Test runbooks regularly** - Game days, chaos engineering
+- **Include rollback steps** - Always have an escape hatch
+- **Document assumptions** - What must be true for steps to work
+- **Link to dashboards** - Quick access during stress
+
+### Don&#39;ts
+- **Don&#39;t assume knowledge** - Write for 3 AM brain
+- **Don&#39;t skip verification** - Confirm each step worked
+- **Don&#39;t forget communication** - Keep stakeholders informed
+- **Don&#39;t work alone** - Escalate early
+- **Don&#39;t skip postmortems** - Learn from every incident
+
+## Resources
+
+- [Google SRE Book - Incident Management](https://sre.google/sre-book/managing-incidents/)
+- [PagerDuty Incident Response](https://response.pagerduty.com/)
+- [Atlassian Incident Management](https://www.atlassian.com/incident-management)
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

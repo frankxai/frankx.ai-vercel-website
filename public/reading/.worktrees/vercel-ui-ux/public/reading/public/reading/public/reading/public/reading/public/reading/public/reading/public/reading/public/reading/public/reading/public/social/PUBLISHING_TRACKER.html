@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Social Media Publishing Tracker</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="public/social/PUBLISHING_TRACKER.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Social Media Publishing Tracker</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#public">public</a> / <a href="index.html#public%2Fsocial">social</a> / <span>PUBLISHING_TRACKER.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Social Media Publishing Tracker</h1>
+<p><strong>Last Updated:</strong> 2026-01-27
+<strong>Part of ACOS (Agentic Creator OS)</strong></p>
+<hr>
+<h2>Publishing Strategy</h2>
+<h3>Primary Platforms (Focus Here)</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Format</th>
+<th>Frequency</th>
+<th>Best Time</th>
+<th>Audience</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LinkedIn</strong></td>
+<td>1:1 image + long post</td>
+<td>1x/day</td>
+<td>8-10am EST</td>
+<td>Enterprise AI, Oracle</td>
+</tr>
+<tr>
+<td><strong>Twitter/X</strong></td>
+<td>1:1 image + thread</td>
+<td>2-3x/day</td>
+<td>9am, 1pm, 5pm EST</td>
+<td>Tech, AI, Creators</td>
+</tr>
+<tr>
+<td><strong>YouTube</strong></td>
+<td>16:9 thumbnail</td>
+<td>1-2x/week</td>
+<td>Weekends</td>
+<td>Deep technical</td>
+</tr>
+</tbody></table>
+<h3>Secondary Platforms (Repurpose)</h3>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Format</th>
+<th>Frequency</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Instagram Feed</td>
+<td>1:1 carousel</td>
+<td>3x/week</td>
+<td>Visual summaries</td>
+</tr>
+<tr>
+<td>Instagram Stories</td>
+<td>9:16</td>
+<td>Daily</td>
+<td>Behind scenes</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>9:16 vertical</td>
+<td>2x/week</td>
+<td>Quick tips</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Content Pipeline Status</h2>
+<h3>Staging (_staging/)</h3>
+<table>
+<thead>
+<tr>
+<th>Date Added</th>
+<th>Blog Source</th>
+<th>Platform</th>
+<th>Image</th>
+<th>Caption</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2026-01-27</td>
+<td>reader-first-golden-age</td>
+<td>LinkedIn</td>
+<td>pending</td>
+<td>pending</td>
+<td>🟡 In Progress</td>
+</tr>
+<tr>
+<td>2026-01-27</td>
+<td>conscious-ai-integration-os</td>
+<td>LinkedIn</td>
+<td>pending</td>
+<td>pending</td>
+<td>🟡 In Progress</td>
+</tr>
+<tr>
+<td>2026-01-27</td>
+<td>golden-age-of-intelligence</td>
+<td>LinkedIn</td>
+<td>pending</td>
+<td>pending</td>
+<td>🟡 In Progress</td>
+</tr>
+<tr>
+<td>2026-01-27</td>
+<td>production-llm-agents-oci-3</td>
+<td>LinkedIn</td>
+<td>pending</td>
+<td>pending</td>
+<td>🟡 In Progress</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Published Content Log</h2>
+<h3>January 2026</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Platform</th>
+<th>Post Title</th>
+<th>Image</th>
+<th>Link</th>
+<th>Impressions</th>
+<th>Engagement</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Start tracking here</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Performance Summary</h2>
+<h3>Weekly Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>LinkedIn Impr.</th>
+<th>Twitter Impr.</th>
+<th>Top Post</th>
+<th>Learnings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>W4 Jan</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>Baseline week</td>
+</tr>
+</tbody></table>
+<h3>Best Performing Content Types</h3>
+<ol>
+<li>TBD - Need 2 weeks data</li>
+<li>TBD</li>
+<li>TBD</li>
+</ol>
+<hr>
+<h2>Workflow: Blog → Social</h2>
+<pre><code>1. Blog published on frankx.ai
+       ↓
+2. /factory generates social remix pack:
+   - LinkedIn post (1:1 image + caption)
+   - Twitter thread (1:1 image + thread)
+   - Instagram (1:1 + 9:16 story)
+   - YouTube thumbnail (16:9)
+       ↓
+3. Assets saved to _staging/[blog-slug]/
+       ↓
+4. Review &amp; approve
+       ↓
+5. Schedule/post manually (for now)
+       ↓
+6. Move to _published/[date]/
+       ↓
+7. Track metrics after 24-48 hrs
+       ↓
+8. Weekly analysis → refine strategy
+</code></pre>
+<hr>
+<h2>Quick Commands</h2>
+<pre><code class="language-bash"># Generate social pack for a blog
+/factory social-remix [blog-slug]
+
+# Generate image for specific platform
+/frankx-infogenius &quot;[topic]&quot; aspect=1:1
+/frankx-infogenius &quot;[topic]&quot; aspect=9:16
+
+# Check staging queue
+ls public/social/_staging/
+
+# Move to published
+mv public/social/_staging/[slug] public/social/_published/$(date +%Y-%m-%d)/
+</code></pre>
+<hr>
+<h2>Platform API Status</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>API Available</th>
+<th>MCP Server</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LinkedIn</td>
+<td>Yes</td>
+<td>Community</td>
+<td>🟡 Setup needed</td>
+</tr>
+<tr>
+<td>Twitter/X</td>
+<td>Yes</td>
+<td>Community</td>
+<td>🟡 Setup needed</td>
+</tr>
+<tr>
+<td>YouTube</td>
+<td>Yes</td>
+<td>Google</td>
+<td>🟡 Setup needed</td>
+</tr>
+<tr>
+<td>Instagram</td>
+<td>Business API</td>
+<td>Meta</td>
+<td>🟡 Setup needed</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>Limited</td>
+<td>None</td>
+<td>❌ Manual only</td>
+</tr>
+</tbody></table>
+<h3>Future Automation Options</h3>
+<ol>
+<li><strong>Claude Code MCPs</strong> - Direct API integration (preferred)</li>
+<li><strong>n8n</strong> - For complex multi-step workflows</li>
+<li><strong>Buffer/Hootsuite</strong> - If manual scheduling preferred</li>
+</ol>
+<hr>
+<h2>Content Templates</h2>
+<h3>LinkedIn Post Template</h3>
+<pre><code>[HOOK - 1 line that stops scroll]
+
+[3-5 line story or insight from the blog]
+
+Key takeaways:
+→ Point 1
+→ Point 2
+→ Point 3
+
+[CTA - Read full guide or ask question]
+
+#AI #AIAgents #EnterpriseAI #CreatorEconomy
+</code></pre>
+<h3>Twitter Thread Template</h3>
+<pre><code>🧵 [HOOK]
+
+1/ [Main insight]
+
+2/ [Supporting point]
+
+3/ [Example or data]
+
+4/ [Actionable takeaway]
+
+5/ Full breakdown here: [LINK]
+
+RT if this helps!
+</code></pre>
+<hr>
+<p><em>Tracker maintained by ACOS. Update daily for best results.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Multi-Agent Code Review Orchestration Tool</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/performance-testing-review/commands/multi-agent-review.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Multi-Agent Code Review Orchestration Tool</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fperformance-testing-review">performance-testing-review</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fperformance-testing-review%2Fcommands">commands</a> / <span>multi-agent-review.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Multi-Agent Code Review Orchestration Tool</h1>
+<h2>Role: Expert Multi-Agent Review Orchestration Specialist</h2>
+<p>A sophisticated AI-powered code review system designed to provide comprehensive, multi-perspective analysis of software artifacts through intelligent agent coordination and specialized domain expertise.</p>
+<h2>Context and Purpose</h2>
+<p>The Multi-Agent Review Tool leverages a distributed, specialized agent network to perform holistic code assessments that transcend traditional single-perspective review approaches. By coordinating agents with distinct expertise, we generate a comprehensive evaluation that captures nuanced insights across multiple critical dimensions:</p>
+<ul>
+<li><strong>Depth</strong>: Specialized agents dive deep into specific domains</li>
+<li><strong>Breadth</strong>: Parallel processing enables comprehensive coverage</li>
+<li><strong>Intelligence</strong>: Context-aware routing and intelligent synthesis</li>
+<li><strong>Adaptability</strong>: Dynamic agent selection based on code characteristics</li>
+</ul>
+<h2>Tool Arguments and Configuration</h2>
+<h3>Input Parameters</h3>
+<ul>
+<li><code>$ARGUMENTS</code>: Target code/project for review<ul>
+<li>Supports: File paths, Git repositories, code snippets</li>
+<li>Handles multiple input formats</li>
+<li>Enables context extraction and agent routing</li>
+</ul>
+</li>
+</ul>
+<h3>Agent Types</h3>
+<ol>
+<li>Code Quality Reviewers</li>
+<li>Security Auditors</li>
+<li>Architecture Specialists</li>
+<li>Performance Analysts</li>
+<li>Compliance Validators</li>
+<li>Best Practices Experts</li>
+</ol>
+<h2>Multi-Agent Coordination Strategy</h2>
+<h3>1. Agent Selection and Routing Logic</h3>
+<ul>
+<li><strong>Dynamic Agent Matching</strong>:<ul>
+<li>Analyze input characteristics</li>
+<li>Select most appropriate agent types</li>
+<li>Configure specialized sub-agents dynamically</li>
+</ul>
+</li>
+<li><strong>Expertise Routing</strong>:<pre><code class="language-python">def route_agents(code_context):
+    agents = []
+    if is_web_application(code_context):
+        agents.extend([
+            &quot;security-auditor&quot;,
+            &quot;web-architecture-reviewer&quot;
+        ])
+    if is_performance_critical(code_context):
+        agents.append(&quot;performance-analyst&quot;)
+    return agents
+</code></pre>
+</li>
+</ul>
+<h3>2. Context Management and State Passing</h3>
+<ul>
+<li><p><strong>Contextual Intelligence</strong>:</p>
+<ul>
+<li>Maintain shared context across agent interactions</li>
+<li>Pass refined insights between agents</li>
+<li>Support incremental review refinement</li>
+</ul>
+</li>
+<li><p><strong>Context Propagation Model</strong>:</p>
+<pre><code class="language-python">class ReviewContext:
+    def __init__(self, target, metadata):
+        self.target = target
+        self.metadata = metadata
+        self.agent_insights = {}
+
+    def update_insights(self, agent_type, insights):
+        self.agent_insights[agent_type] = insights
+</code></pre>
+</li>
+</ul>
+<h3>3. Parallel vs Sequential Execution</h3>
+<ul>
+<li><p><strong>Hybrid Execution Strategy</strong>:</p>
+<ul>
+<li>Parallel execution for independent reviews</li>
+<li>Sequential processing for dependent insights</li>
+<li>Intelligent timeout and fallback mechanisms</li>
+</ul>
+</li>
+<li><p><strong>Execution Flow</strong>:</p>
+<pre><code class="language-python">def execute_review(review_context):
+    # Parallel independent agents
+    parallel_agents = [
+        &quot;code-quality-reviewer&quot;,
+        &quot;security-auditor&quot;
+    ]
+
+    # Sequential dependent agents
+    sequential_agents = [
+        &quot;architecture-reviewer&quot;,
+        &quot;performance-optimizer&quot;
+    ]
+</code></pre>
+</li>
+</ul>
+<h3>4. Result Aggregation and Synthesis</h3>
+<ul>
+<li><strong>Intelligent Consolidation</strong>:<ul>
+<li>Merge insights from multiple agents</li>
+<li>Resolve conflicting recommendations</li>
+<li>Generate unified, prioritized report</li>
+</ul>
+</li>
+<li><strong>Synthesis Algorithm</strong>:<pre><code class="language-python">def synthesize_review_insights(agent_results):
+    consolidated_report = {
+        &quot;critical_issues&quot;: [],
+        &quot;important_issues&quot;: [],
+        &quot;improvement_suggestions&quot;: []
+    }
+    # Intelligent merging logic
+    return consolidated_report
+</code></pre>
+</li>
+</ul>
+<h3>5. Conflict Resolution Mechanism</h3>
+<ul>
+<li><strong>Smart Conflict Handling</strong>:<ul>
+<li>Detect contradictory agent recommendations</li>
+<li>Apply weighted scoring</li>
+<li>Escalate complex conflicts</li>
+</ul>
+</li>
+<li><strong>Resolution Strategy</strong>:<pre><code class="language-python">def resolve_conflicts(agent_insights):
+    conflict_resolver = ConflictResolutionEngine()
+    return conflict_resolver.process(agent_insights)
+</code></pre>
+</li>
+</ul>
+<h3>6. Performance Optimization</h3>
+<ul>
+<li><strong>Efficiency Techniques</strong>:<ul>
+<li>Minimal redundant processing</li>
+<li>Cached intermediate results</li>
+<li>Adaptive agent resource allocation</li>
+</ul>
+</li>
+<li><strong>Optimization Approach</strong>:<pre><code class="language-python">def optimize_review_process(review_context):
+    return ReviewOptimizer.allocate_resources(review_context)
+</code></pre>
+</li>
+</ul>
+<h3>7. Quality Validation Framework</h3>
+<ul>
+<li><strong>Comprehensive Validation</strong>:<ul>
+<li>Cross-agent result verification</li>
+<li>Statistical confidence scoring</li>
+<li>Continuous learning and improvement</li>
+</ul>
+</li>
+<li><strong>Validation Process</strong>:<pre><code class="language-python">def validate_review_quality(review_results):
+    quality_score = QualityScoreCalculator.compute(review_results)
+    return quality_score &gt; QUALITY_THRESHOLD
+</code></pre>
+</li>
+</ul>
+<h2>Example Implementations</h2>
+<h3>1. Parallel Code Review Scenario</h3>
+<pre><code class="language-python">multi_agent_review(
+    target=&quot;/path/to/project&quot;,
+    agents=[
+        {&quot;type&quot;: &quot;security-auditor&quot;, &quot;weight&quot;: 0.3},
+        {&quot;type&quot;: &quot;architecture-reviewer&quot;, &quot;weight&quot;: 0.3},
+        {&quot;type&quot;: &quot;performance-analyst&quot;, &quot;weight&quot;: 0.2}
+    ]
+)
+</code></pre>
+<h3>2. Sequential Workflow</h3>
+<pre><code class="language-python">sequential_review_workflow = [
+    {&quot;phase&quot;: &quot;design-review&quot;, &quot;agent&quot;: &quot;architect-reviewer&quot;},
+    {&quot;phase&quot;: &quot;implementation-review&quot;, &quot;agent&quot;: &quot;code-quality-reviewer&quot;},
+    {&quot;phase&quot;: &quot;testing-review&quot;, &quot;agent&quot;: &quot;test-coverage-analyst&quot;},
+    {&quot;phase&quot;: &quot;deployment-readiness&quot;, &quot;agent&quot;: &quot;devops-validator&quot;}
+]
+</code></pre>
+<h3>3. Hybrid Orchestration</h3>
+<pre><code class="language-python">hybrid_review_strategy = {
+    &quot;parallel_agents&quot;: [&quot;security&quot;, &quot;performance&quot;],
+    &quot;sequential_agents&quot;: [&quot;architecture&quot;, &quot;compliance&quot;]
+}
+</code></pre>
+<h2>Reference Implementations</h2>
+<ol>
+<li><strong>Web Application Security Review</strong></li>
+<li><strong>Microservices Architecture Validation</strong></li>
+</ol>
+<h2>Best Practices and Considerations</h2>
+<ul>
+<li>Maintain agent independence</li>
+<li>Implement robust error handling</li>
+<li>Use probabilistic routing</li>
+<li>Support incremental reviews</li>
+<li>Ensure privacy and security</li>
+</ul>
+<h2>Extensibility</h2>
+<p>The tool is designed with a plugin-based architecture, allowing easy addition of new agent types and review strategies.</p>
+<h2>Invocation</h2>
+<p>Target for review: $ARGUMENTS</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

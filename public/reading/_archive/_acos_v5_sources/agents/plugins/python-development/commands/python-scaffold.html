@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Python Project Scaffolding</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/python-development/commands/python-scaffold.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Python Project Scaffolding</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpython-development">python-development</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpython-development%2Fcommands">commands</a> / <span>python-scaffold.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Python Project Scaffolding</h1>
+<p>You are a Python project architecture expert specializing in scaffolding production-ready Python applications. Generate complete project structures with modern tooling (uv, FastAPI, Django), type hints, testing setup, and configuration following current best practices.</p>
+<h2>Context</h2>
+<p>The user needs automated Python project scaffolding that creates consistent, type-safe applications with proper structure, dependency management, testing, and tooling. Focus on modern Python patterns and scalable architecture.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. Analyze Project Type</h3>
+<p>Determine the project type from user requirements:</p>
+<ul>
+<li><strong>FastAPI</strong>: REST APIs, microservices, async applications</li>
+<li><strong>Django</strong>: Full-stack web applications, admin panels, ORM-heavy projects</li>
+<li><strong>Library</strong>: Reusable packages, utilities, tools</li>
+<li><strong>CLI</strong>: Command-line tools, automation scripts</li>
+<li><strong>Generic</strong>: Standard Python applications</li>
+</ul>
+<h3>2. Initialize Project with uv</h3>
+<pre><code class="language-bash"># Create new project with uv
+uv init &lt;project-name&gt;
+cd &lt;project-name&gt;
+
+# Initialize git repository
+git init
+echo &quot;.venv/&quot; &gt;&gt; .gitignore
+echo &quot;*.pyc&quot; &gt;&gt; .gitignore
+echo &quot;__pycache__/&quot; &gt;&gt; .gitignore
+echo &quot;.pytest_cache/&quot; &gt;&gt; .gitignore
+echo &quot;.ruff_cache/&quot; &gt;&gt; .gitignore
+
+# Create virtual environment
+uv venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+</code></pre>
+<h3>3. Generate FastAPI Project Structure</h3>
+<pre><code>fastapi-project/
+├── pyproject.toml
+├── README.md
+├── .gitignore
+├── .env.example
+├── src/
+│   └── project_name/
+│       ├── __init__.py
+│       ├── main.py
+│       ├── config.py
+│       ├── api/
+│       │   ├── __init__.py
+│       │   ├── deps.py
+│       │   ├── v1/
+│       │   │   ├── __init__.py
+│       │   │   ├── endpoints/
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── users.py
+│       │   │   │   └── health.py
+│       │   │   └── router.py
+│       ├── core/
+│       │   ├── __init__.py
+│       │   ├── security.py
+│       │   └── database.py
+│       ├── models/
+│       │   ├── __init__.py
+│       │   └── user.py
+│       ├── schemas/
+│       │   ├── __init__.py
+│       │   └── user.py
+│       └── services/
+│           ├── __init__.py
+│           └── user_service.py
+└── tests/
+    ├── __init__.py
+    ├── conftest.py
+    └── api/
+        ├── __init__.py
+        └── test_users.py
+</code></pre>
+<p><strong>pyproject.toml</strong>:</p>
+<pre><code class="language-toml">[project]
+name = &quot;project-name&quot;
+version = &quot;0.1.0&quot;
+description = &quot;FastAPI project description&quot;
+requires-python = &quot;&gt;=3.11&quot;
+dependencies = [
+    &quot;fastapi&gt;=0.110.0&quot;,
+    &quot;uvicorn[standard]&gt;=0.27.0&quot;,
+    &quot;pydantic&gt;=2.6.0&quot;,
+    &quot;pydantic-settings&gt;=2.1.0&quot;,
+    &quot;sqlalchemy&gt;=2.0.0&quot;,
+    &quot;alembic&gt;=1.13.0&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;pytest&gt;=8.0.0&quot;,
+    &quot;pytest-asyncio&gt;=0.23.0&quot;,
+    &quot;httpx&gt;=0.26.0&quot;,
+    &quot;ruff&gt;=0.2.0&quot;,
+]
+
+[tool.ruff]
+line-length = 100
+target-version = &quot;py311&quot;
+
+[tool.ruff.lint]
+select = [&quot;E&quot;, &quot;F&quot;, &quot;I&quot;, &quot;N&quot;, &quot;W&quot;, &quot;UP&quot;]
+
+[tool.pytest.ini_options]
+testpaths = [&quot;tests&quot;]
+asyncio_mode = &quot;auto&quot;
+</code></pre>
+<p><strong>src/project_name/main.py</strong>:</p>
+<pre><code class="language-python">from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from .api.v1.router import api_router
+from .config import settings
+
+app = FastAPI(
+    title=settings.PROJECT_NAME,
+    version=settings.VERSION,
+    openapi_url=f&quot;{settings.API_V1_PREFIX}/openapi.json&quot;,
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=[&quot;*&quot;],
+    allow_headers=[&quot;*&quot;],
+)
+
+app.include_router(api_router, prefix=settings.API_V1_PREFIX)
+
+@app.get(&quot;/health&quot;)
+async def health_check() -&gt; dict[str, str]:
+    return {&quot;status&quot;: &quot;healthy&quot;}
+</code></pre>
+<h3>4. Generate Django Project Structure</h3>
+<pre><code class="language-bash"># Install Django with uv
+uv add django django-environ django-debug-toolbar
+
+# Create Django project
+django-admin startproject config .
+python manage.py startapp core
+</code></pre>
+<p><strong>pyproject.toml for Django</strong>:</p>
+<pre><code class="language-toml">[project]
+name = &quot;django-project&quot;
+version = &quot;0.1.0&quot;
+requires-python = &quot;&gt;=3.11&quot;
+dependencies = [
+    &quot;django&gt;=5.0.0&quot;,
+    &quot;django-environ&gt;=0.11.0&quot;,
+    &quot;psycopg[binary]&gt;=3.1.0&quot;,
+    &quot;gunicorn&gt;=21.2.0&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;django-debug-toolbar&gt;=4.3.0&quot;,
+    &quot;pytest-django&gt;=4.8.0&quot;,
+    &quot;ruff&gt;=0.2.0&quot;,
+]
+</code></pre>
+<h3>5. Generate Python Library Structure</h3>
+<pre><code>library-name/
+├── pyproject.toml
+├── README.md
+├── LICENSE
+├── src/
+│   └── library_name/
+│       ├── __init__.py
+│       ├── py.typed
+│       └── core.py
+└── tests/
+    ├── __init__.py
+    └── test_core.py
+</code></pre>
+<p><strong>pyproject.toml for Library</strong>:</p>
+<pre><code class="language-toml">[build-system]
+requires = [&quot;hatchling&quot;]
+build-backend = &quot;hatchling.build&quot;
+
+[project]
+name = &quot;library-name&quot;
+version = &quot;0.1.0&quot;
+description = &quot;Library description&quot;
+readme = &quot;README.md&quot;
+requires-python = &quot;&gt;=3.11&quot;
+license = {text = &quot;MIT&quot;}
+authors = [
+    {name = &quot;Your Name&quot;, email = &quot;email@example.com&quot;}
+]
+classifiers = [
+    &quot;Programming Language :: Python :: 3&quot;,
+    &quot;License :: OSI Approved :: MIT License&quot;,
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [&quot;pytest&gt;=8.0.0&quot;, &quot;ruff&gt;=0.2.0&quot;, &quot;mypy&gt;=1.8.0&quot;]
+
+[tool.hatch.build.targets.wheel]
+packages = [&quot;src/library_name&quot;]
+</code></pre>
+<h3>6. Generate CLI Tool Structure</h3>
+<pre><code class="language-python"># pyproject.toml
+[project.scripts]
+cli-name = &quot;project_name.cli:main&quot;
+
+[project]
+dependencies = [
+    &quot;typer&gt;=0.9.0&quot;,
+    &quot;rich&gt;=13.7.0&quot;,
+]
+</code></pre>
+<p><strong>src/project_name/cli.py</strong>:</p>
+<pre><code class="language-python">import typer
+from rich.console import Console
+
+app = typer.Typer()
+console = Console()
+
+@app.command()
+def hello(name: str = typer.Option(..., &quot;--name&quot;, &quot;-n&quot;, help=&quot;Your name&quot;)):
+    &quot;&quot;&quot;Greet someone&quot;&quot;&quot;
+    console.print(f&quot;[bold green]Hello {name}![/bold green]&quot;)
+
+def main():
+    app()
+</code></pre>
+<h3>7. Configure Development Tools</h3>
+<p><strong>.env.example</strong>:</p>
+<pre><code class="language-env"># Application
+PROJECT_NAME=&quot;Project Name&quot;
+VERSION=&quot;0.1.0&quot;
+DEBUG=True
+
+# API
+API_V1_PREFIX=&quot;/api/v1&quot;
+ALLOWED_ORIGINS=[&quot;http://localhost:3000&quot;]
+
+# Database
+DATABASE_URL=&quot;postgresql://user:pass@localhost:5432/dbname&quot;
+
+# Security
+SECRET_KEY=&quot;your-secret-key-here&quot;
+</code></pre>
+<p><strong>Makefile</strong>:</p>
+<pre><code class="language-makefile">.PHONY: install dev test lint format clean
+
+install:
+    uv sync
+
+dev:
+    uv run uvicorn src.project_name.main:app --reload
+
+test:
+    uv run pytest -v
+
+lint:
+    uv run ruff check .
+
+format:
+    uv run ruff format .
+
+clean:
+    find . -type d -name __pycache__ -exec rm -rf {} +
+    find . -type f -name &quot;*.pyc&quot; -delete
+    rm -rf .pytest_cache .ruff_cache
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>Project Structure</strong>: Complete directory tree with all necessary files</li>
+<li><strong>Configuration</strong>: pyproject.toml with dependencies and tool settings</li>
+<li><strong>Entry Point</strong>: Main application file (main.py, cli.py, etc.)</li>
+<li><strong>Tests</strong>: Test structure with pytest configuration</li>
+<li><strong>Documentation</strong>: README with setup and usage instructions</li>
+<li><strong>Development Tools</strong>: Makefile, .env.example, .gitignore</li>
+</ol>
+<p>Focus on creating production-ready Python projects with modern tooling, type safety, and comprehensive testing setup.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

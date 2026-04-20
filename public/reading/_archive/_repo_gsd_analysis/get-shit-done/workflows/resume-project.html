@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Check for continue-here files (mid-plan resumption)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/workflows/resume-project.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Check for continue-here files (mid-plan resumption)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Fworkflows">workflows</a> / <span>resume-project.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <trigger>
+Use this workflow when:
+- Starting a new session on an existing project
+- User says "continue", "what's next", "where were we", "resume"
+- Any planning operation when .planning/ already exists
+- User returns after time away from project
+</trigger>
+
+<purpose>
+Instantly restore full project context and present clear status.
+Enables seamless session continuity for fully autonomous workflows.
+
+<p>&quot;Where were we?&quot; should have an immediate, complete answer.
+</purpose></p>
+<required_reading>
+@~/.claude/get-shit-done/references/continuation-format.md
+</required_reading>
+
+<process>
+
+<step name="detect_existing_project">
+Check if this is an existing project:
+
+<pre><code class="language-bash">ls .planning/STATE.md 2&gt;/dev/null &amp;&amp; echo &quot;Project exists&quot;
+ls .planning/ROADMAP.md 2&gt;/dev/null &amp;&amp; echo &quot;Roadmap exists&quot;
+ls .planning/PROJECT.md 2&gt;/dev/null &amp;&amp; echo &quot;Project file exists&quot;
+</code></pre>
+<p><strong>If STATE.md exists:</strong> Proceed to load_state
+<strong>If only ROADMAP.md/PROJECT.md exist:</strong> Offer to reconstruct STATE.md
+<strong>If .planning/ doesn&#39;t exist:</strong> This is a new project - route to /gsd:new-project
+</step></p>
+<step name="load_state">
+
+<p>Read and parse STATE.md, then PROJECT.md:</p>
+<pre><code class="language-bash">cat .planning/STATE.md
+cat .planning/PROJECT.md
+</code></pre>
+<p><strong>From STATE.md extract:</strong></p>
+<ul>
+<li><strong>Project Reference</strong>: Core value and current focus</li>
+<li><strong>Current Position</strong>: Phase X of Y, Plan A of B, Status</li>
+<li><strong>Progress</strong>: Visual progress bar</li>
+<li><strong>Recent Decisions</strong>: Key decisions affecting current work</li>
+<li><strong>Pending Todos</strong>: Ideas captured during sessions</li>
+<li><strong>Blockers/Concerns</strong>: Issues carried forward</li>
+<li><strong>Session Continuity</strong>: Where we left off, any resume files</li>
+</ul>
+<p><strong>From PROJECT.md extract:</strong></p>
+<ul>
+<li><strong>What This Is</strong>: Current accurate description</li>
+<li><strong>Requirements</strong>: Validated, Active, Out of Scope</li>
+<li><strong>Key Decisions</strong>: Full decision log with outcomes</li>
+<li><strong>Constraints</strong>: Hard limits on implementation</li>
+</ul>
+</step>
+
+<step name="check_incomplete_work">
+Look for incomplete work that needs attention:
+
+<pre><code class="language-bash"># Check for continue-here files (mid-plan resumption)
+ls .planning/phases/*/.continue-here*.md 2&gt;/dev/null
+
+# Check for plans without summaries (incomplete execution)
+for plan in .planning/phases/*/*-PLAN.md; do
+  summary=&quot;${plan/PLAN/SUMMARY}&quot;
+  [ ! -f &quot;$summary&quot; ] &amp;&amp; echo &quot;Incomplete: $plan&quot;
+done 2&gt;/dev/null
+
+# Check for interrupted agents
+if [ -f .planning/current-agent-id.txt ] &amp;&amp; [ -s .planning/current-agent-id.txt ]; then
+  AGENT_ID=$(cat .planning/current-agent-id.txt | tr -d &#39;\n&#39;)
+  echo &quot;Interrupted agent: $AGENT_ID&quot;
+fi
+</code></pre>
+<p><strong>If .continue-here file exists:</strong></p>
+<ul>
+<li>This is a mid-plan resumption point</li>
+<li>Read the file for specific resumption context</li>
+<li>Flag: &quot;Found mid-plan checkpoint&quot;</li>
+</ul>
+<p><strong>If PLAN without SUMMARY exists:</strong></p>
+<ul>
+<li>Execution was started but not completed</li>
+<li>Flag: &quot;Found incomplete plan execution&quot;</li>
+</ul>
+<p><strong>If interrupted agent found:</strong></p>
+<ul>
+<li>Subagent was spawned but session ended before completion</li>
+<li>Read agent-history.json for task details</li>
+<li>Flag: &quot;Found interrupted agent&quot;</step></li>
+</ul>
+<step name="present_status">
+Present complete project status to user:
+
+<pre><code>╔══════════════════════════════════════════════════════════════╗
+║  PROJECT STATUS                                               ║
+╠══════════════════════════════════════════════════════════════╣
+║  Building: [one-liner from PROJECT.md &quot;What This Is&quot;]         ║
+║                                                               ║
+║  Phase: [X] of [Y] - [Phase name]                            ║
+║  Plan:  [A] of [B] - [Status]                                ║
+║  Progress: [██████░░░░] XX%                                  ║
+║                                                               ║
+║  Last activity: [date] - [what happened]                     ║
+╚══════════════════════════════════════════════════════════════╝
+
+[If incomplete work found:]
+⚠️  Incomplete work detected:
+    - [.continue-here file or incomplete plan]
+
+[If interrupted agent found:]
+⚠️  Interrupted agent detected:
+    Agent ID: [id]
+    Task: [task description from agent-history.json]
+    Interrupted: [timestamp]
+
+    Resume with: Task tool (resume parameter with agent ID)
+
+[If pending todos exist:]
+📋 [N] pending todos — /gsd:check-todos to review
+
+[If blockers exist:]
+⚠️  Carried concerns:
+    - [blocker 1]
+    - [blocker 2]
+
+[If alignment is not ✓:]
+⚠️  Brief alignment: [status] - [assessment]
+</code></pre>
+</step>
+
+<step name="determine_next_action">
+Based on project state, determine the most logical next action:
+
+<p><strong>If interrupted agent exists:</strong>
+→ Primary: Resume interrupted agent (Task tool with resume parameter)
+→ Option: Start fresh (abandon agent work)</p>
+<p><strong>If .continue-here file exists:</strong>
+→ Primary: Resume from checkpoint
+→ Option: Start fresh on current plan</p>
+<p><strong>If incomplete plan (PLAN without SUMMARY):</strong>
+→ Primary: Complete the incomplete plan
+→ Option: Abandon and move on</p>
+<p><strong>If phase in progress, all plans complete:</strong>
+→ Primary: Transition to next phase
+→ Option: Review completed work</p>
+<p><strong>If phase ready to plan:</strong>
+→ Check if CONTEXT.md exists for this phase:</p>
+<ul>
+<li>If CONTEXT.md missing:
+→ Primary: Discuss phase vision (how user imagines it working)
+→ Secondary: Plan directly (skip context gathering)</li>
+<li>If CONTEXT.md exists:
+→ Primary: Plan the phase
+→ Option: Review roadmap</li>
+</ul>
+<p><strong>If phase ready to execute:</strong>
+→ Primary: Execute next plan
+→ Option: Review the plan first
+</step></p>
+<step name="offer_options">
+Present contextual options based on project state:
+
+<pre><code>What would you like to do?
+
+[Primary action based on state - e.g.:]
+1. Resume interrupted agent [if interrupted agent found]
+   OR
+1. Execute phase (/gsd:execute-phase {phase})
+   OR
+1. Discuss Phase 3 context (/gsd:discuss-phase 3) [if CONTEXT.md missing]
+   OR
+1. Plan Phase 3 (/gsd:plan-phase 3) [if CONTEXT.md exists or discuss option declined]
+
+[Secondary options:]
+2. Review current phase status
+3. Check pending todos ([N] pending)
+4. Review brief alignment
+5. Something else
+</code></pre>
+<p><strong>Note:</strong> When offering phase planning, check for CONTEXT.md existence first:</p>
+<pre><code class="language-bash">ls .planning/phases/XX-name/CONTEXT.md 2&gt;/dev/null
+</code></pre>
+<p>If missing, suggest discuss-phase before plan. If exists, offer plan directly.</p>
+<p>Wait for user selection.
+</step></p>
+<step name="route_to_workflow">
+Based on user selection, route to appropriate workflow:
+
+<ul>
+<li><strong>Execute plan</strong> → Show command for user to run after clearing:<pre><code>---
+
+## ▶ Next Up
+
+**{phase}-{plan}: [Plan Name]** — [objective from PLAN.md]
+
+`/gsd:execute-phase {phase}`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+---
+</code></pre>
+</li>
+<li><strong>Plan phase</strong> → Show command for user to run after clearing:<pre><code>---
+
+## ▶ Next Up
+
+**Phase [N]: [Name]** — [Goal from ROADMAP.md]
+
+`/gsd:plan-phase [phase-number]`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+---
+
+**Also available:**
+- `/gsd:discuss-phase [N]` — gather context first
+- `/gsd:research-phase [N]` — investigate unknowns
+
+---
+</code></pre>
+</li>
+<li><strong>Transition</strong> → ./transition.md</li>
+<li><strong>Check todos</strong> → Read .planning/todos/pending/, present summary</li>
+<li><strong>Review alignment</strong> → Read PROJECT.md, compare to current state</li>
+<li><strong>Something else</strong> → Ask what they need</step></li>
+</ul>
+<step name="update_session">
+Before proceeding to routed workflow, update session continuity:
+
+<p>Update STATE.md:</p>
+<pre><code class="language-markdown">## Session Continuity
+
+Last session: [now]
+Stopped at: Session resumed, proceeding to [action]
+Resume file: [updated if applicable]
+</code></pre>
+<p>This ensures if session ends unexpectedly, next resume knows the state.
+</step></p>
+</process>
+
+<reconstruction>
+If STATE.md is missing but other artifacts exist:
+
+<p>&quot;STATE.md missing. Reconstructing from artifacts...&quot;</p>
+<ol>
+<li>Read PROJECT.md → Extract &quot;What This Is&quot; and Core Value</li>
+<li>Read ROADMAP.md → Determine phases, find current position</li>
+<li>Scan *-SUMMARY.md files → Extract decisions, concerns</li>
+<li>Count pending todos in .planning/todos/pending/</li>
+<li>Check for .continue-here files → Session continuity</li>
+</ol>
+<p>Reconstruct and write STATE.md, then proceed normally.</p>
+<p>This handles cases where:</p>
+<ul>
+<li>Project predates STATE.md introduction</li>
+<li>File was accidentally deleted</li>
+<li>Cloning repo without full .planning/ state</reconstruction></li>
+</ul>
+<quick_resume>
+For users who want minimal friction:
+
+<p>If user says just &quot;continue&quot; or &quot;go&quot;:</p>
+<ul>
+<li>Load state silently</li>
+<li>Determine primary action</li>
+<li>Execute immediately without presenting options</li>
+</ul>
+<p>&quot;Continuing from [state]... [action]&quot;</p>
+<p>This enables fully autonomous &quot;just keep going&quot; workflow.
+</quick_resume></p>
+<success_criteria>
+Resume is complete when:
+
+<ul>
+<li><input disabled="" type="checkbox"> STATE.md loaded (or reconstructed)</li>
+<li><input disabled="" type="checkbox"> Incomplete work detected and flagged</li>
+<li><input disabled="" type="checkbox"> Clear status presented to user</li>
+<li><input disabled="" type="checkbox"> Contextual next actions offered</li>
+<li><input disabled="" type="checkbox"> User knows exactly where project stands</li>
+<li><input disabled="" type="checkbox"> Session continuity updated
+</success_criteria></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

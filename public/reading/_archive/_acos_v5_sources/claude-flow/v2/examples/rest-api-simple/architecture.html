@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Simple REST API Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/rest-api-simple/architecture.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Simple REST API Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2Frest-api-simple">rest-api-simple</a> / <span>architecture.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Simple REST API Architecture</h1>
+<h2>System Overview</h2>
+<p>This is a minimalist REST API designed to demonstrate basic CRUD operations with a clean, simple architecture that can be understood and extended easily.</p>
+<h3>Architecture Diagram</h3>
+<pre><code class="language-mermaid">graph TB
+    Client[HTTP Client] --&gt; API[Express Server]
+    
+    subgraph &quot;Express Application&quot;
+        API --&gt; MW[Middleware Stack]
+        MW --&gt; Routes[Route Handlers]
+        Routes --&gt; Data[In-Memory Data Store]
+    end
+    
+    Routes --&gt; Response[JSON Response]
+    Response --&gt; Client
+    
+    subgraph &quot;Middleware Components&quot;
+        MW --&gt; JSON[JSON Parser]
+        MW --&gt; URL[URL Encoder]
+        MW --&gt; Error[Error Handler]
+    end
+    
+    subgraph &quot;API Endpoints&quot;
+        Routes --&gt; Health[GET /health]
+        Routes --&gt; List[GET /api/v1/tasks]
+        Routes --&gt; Get[GET /api/v1/tasks/:id]
+        Routes --&gt; Create[POST /api/v1/tasks]
+        Routes --&gt; Update[PUT /api/v1/tasks/:id]
+        Routes --&gt; Delete[DELETE /api/v1/tasks/:id]
+    end
+</code></pre>
+<h2>Component Architecture</h2>
+<h3>1. Express Server (server.js)</h3>
+<ul>
+<li><strong>Responsibility</strong>: HTTP server initialization and middleware configuration</li>
+<li><strong>Port</strong>: Configurable via PORT environment variable (default: 3000)</li>
+<li><strong>Middleware</strong>: Minimal stack with JSON parsing and error handling</li>
+</ul>
+<h3>2. Route Handlers</h3>
+<ul>
+<li><strong>Responsibility</strong>: Process HTTP requests and return appropriate responses</li>
+<li><strong>Pattern</strong>: RESTful resource-based routing</li>
+<li><strong>Error Handling</strong>: Centralized error middleware</li>
+</ul>
+<h3>3. In-Memory Data Store</h3>
+<ul>
+<li><strong>Responsibility</strong>: Simple data persistence during server runtime</li>
+<li><strong>Structure</strong>: Array of objects with auto-incrementing IDs</li>
+<li><strong>Limitations</strong>: Data is lost on server restart (by design for simplicity)</li>
+</ul>
+<h2>API Design Principles</h2>
+<h3>RESTful Conventions</h3>
+<ul>
+<li>Resource-based URLs (<code>/api/v1/tasks</code>)</li>
+<li>HTTP methods for operations (GET, POST, PUT, DELETE)</li>
+<li>JSON request/response format</li>
+<li>Proper HTTP status codes</li>
+</ul>
+<h3>Simplicity First</h3>
+<ul>
+<li>Single file implementation</li>
+<li>No external dependencies beyond Express</li>
+<li>No authentication or authorization</li>
+<li>No database complexity</li>
+<li>Clear, readable code structure</li>
+</ul>
+<h3>Extensibility Points</h3>
+<ul>
+<li>Easy to add new resources</li>
+<li>Simple to integrate authentication later</li>
+<li>Database can replace in-memory store</li>
+<li>Middleware stack is expandable</li>
+</ul>
+<h2>Data Flow</h2>
+<pre><code class="language-mermaid">sequenceDiagram
+    participant C as Client
+    participant S as Server
+    participant M as Middleware
+    participant R as Route Handler
+    participant D as Data Store
+    
+    C-&gt;&gt;S: HTTP Request
+    S-&gt;&gt;M: Process Request
+    M-&gt;&gt;R: Route to Handler
+    R-&gt;&gt;D: Data Operation
+    D-&gt;&gt;R: Result
+    R-&gt;&gt;S: Format Response
+    S-&gt;&gt;C: JSON Response
+</code></pre>
+<h2>Security Considerations</h2>
+<h3>Current State (Simple API)</h3>
+<ul>
+<li>No authentication implemented</li>
+<li>No input validation beyond basic type checking</li>
+<li>No rate limiting</li>
+<li>Suitable for development/learning only</li>
+</ul>
+<h3>Future Security Enhancements</h3>
+<ul>
+<li>Add JWT authentication</li>
+<li>Implement input validation (Joi/express-validator)</li>
+<li>Add rate limiting middleware</li>
+<li>Use HTTPS in production</li>
+<li>Implement CORS properly</li>
+</ul>
+<h2>Performance Characteristics</h2>
+<h3>Current Design</h3>
+<ul>
+<li><strong>Latency</strong>: Minimal (in-memory operations)</li>
+<li><strong>Throughput</strong>: Limited by single process</li>
+<li><strong>Scalability</strong>: Vertical only (single instance)</li>
+<li><strong>Memory</strong>: Grows with data (no persistence)</li>
+</ul>
+<h3>Optimization Opportunities</h3>
+<ul>
+<li>Add caching layer (Redis)</li>
+<li>Implement database for persistence</li>
+<li>Use clustering for multi-core utilization</li>
+<li>Add compression middleware</li>
+<li>Implement pagination for large datasets</li>
+</ul>
+<h2>Error Handling Strategy</h2>
+<pre><code class="language-javascript">// Centralized error handling pattern
+app.use((err, req, res, next) =&gt; {
+  const status = err.status || 500;
+  const message = err.message || &#39;Internal server error&#39;;
+  
+  res.status(status).json({
+    error: {
+      message,
+      status,
+      timestamp: new Date().toISOString()
+    }
+  });
+});
+</code></pre>
+<h2>Testing Architecture</h2>
+<h3>Unit Tests</h3>
+<ul>
+<li>Test individual route handlers</li>
+<li>Mock Express request/response objects</li>
+<li>Verify data transformations</li>
+</ul>
+<h3>Integration Tests</h3>
+<ul>
+<li>Test full request/response cycle</li>
+<li>Verify HTTP status codes</li>
+<li>Check response formats</li>
+<li>Test error scenarios</li>
+</ul>
+<h3>Test Stack</h3>
+<ul>
+<li>Jest for test runner</li>
+<li>Supertest for HTTP testing</li>
+<li>No mocking required (simple architecture)</li>
+</ul>
+<h2>Deployment Considerations</h2>
+<h3>Development</h3>
+<pre><code class="language-bash">npm install
+npm run dev  # Uses nodemon for auto-reload
+</code></pre>
+<h3>Production</h3>
+<pre><code class="language-bash">npm install --production
+npm start
+</code></pre>
+<h3>Environment Variables</h3>
+<ul>
+<li><code>PORT</code>: Server port (default: 3000)</li>
+<li><code>NODE_ENV</code>: Environment (development/production)</li>
+</ul>
+<h2>Module Boundaries</h2>
+<h3>Current Structure (Simple)</h3>
+<pre><code>rest-api-simple/
+├── server.js         # All application logic
+├── package.json      # Dependencies and scripts
+├── server.test.js    # Test suite
+└── README.md         # User documentation
+</code></pre>
+<h3>Future Modular Structure</h3>
+<pre><code>rest-api-simple/
+├── src/
+│   ├── routes/       # Route definitions
+│   ├── middleware/   # Custom middleware
+│   ├── models/       # Data models
+│   └── utils/        # Helper functions
+├── tests/            # Test files
+└── config/           # Configuration
+</code></pre>
+<h2>Technology Decisions</h2>
+<h3>Why Express.js?</h3>
+<ul>
+<li>Minimal and flexible</li>
+<li>Large ecosystem</li>
+<li>Well-documented</li>
+<li>Easy to learn</li>
+<li>Production-proven</li>
+</ul>
+<h3>Why In-Memory Storage?</h3>
+<ul>
+<li>Zero configuration</li>
+<li>Perfect for demos/learning</li>
+<li>Fast development cycle</li>
+<li>No external dependencies</li>
+<li>Easy to understand</li>
+</ul>
+<h3>Why No Authentication?</h3>
+<ul>
+<li>Reduces complexity</li>
+<li>Focuses on core REST concepts</li>
+<li>Easier to test and debug</li>
+<li>Can be added incrementally</li>
+</ul>
+<h2>Next Steps</h2>
+<ol>
+<li>Implement basic server structure</li>
+<li>Add CRUD endpoints for tasks</li>
+<li>Create comprehensive tests</li>
+<li>Write user documentation</li>
+<li>Add example requests/responses</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

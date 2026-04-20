@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Flow Nexus Swarm &amp; Workflow Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/.claude/skills/flow-nexus-swarm/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Flow Nexus Swarm &amp; Workflow Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2F.claude%2Fskills%2Fflow-nexus-swarm">flow-nexus-swarm</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: flow-nexus-swarm
+description: Cloud-based AI swarm deployment and event-driven workflow automation with Flow Nexus platform
+category: orchestration
+tags: [swarm, workflow, cloud, agents, automation, message-queue]
+version: 1.0.0
+requires:
+  - flow-nexus MCP server
+  - Active Flow Nexus account (register at flow-nexus.ruv.io)</h2>
+<h1>Flow Nexus Swarm &amp; Workflow Orchestration</h1>
+<p>Deploy and manage cloud-based AI agent swarms with event-driven workflow automation, message queue processing, and intelligent agent coordination.</p>
+<h2>📋 Table of Contents</h2>
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#swarm-management">Swarm Management</a></li>
+<li><a href="#workflow-automation">Workflow Automation</a></li>
+<li><a href="#agent-orchestration">Agent Orchestration</a></li>
+<li><a href="#templates--patterns">Templates &amp; Patterns</a></li>
+<li><a href="#advanced-features">Advanced Features</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+</ol>
+<h2>Overview</h2>
+<p>Flow Nexus provides cloud-based orchestration for AI agent swarms with:</p>
+<ul>
+<li><strong>Multi-topology Support</strong>: Hierarchical, mesh, ring, and star architectures</li>
+<li><strong>Event-driven Workflows</strong>: Message queue processing with async execution</li>
+<li><strong>Template Library</strong>: Pre-built swarm configurations for common use cases</li>
+<li><strong>Intelligent Agent Assignment</strong>: Vector similarity matching for optimal agent selection</li>
+<li><strong>Real-time Monitoring</strong>: Comprehensive metrics and audit trails</li>
+<li><strong>Scalable Infrastructure</strong>: Cloud-based execution with auto-scaling</li>
+</ul>
+<h2>Swarm Management</h2>
+<h3>Initialize Swarm</h3>
+<p>Create a new swarm with specified topology and configuration:</p>
+<pre><code class="language-javascript">mcp__flow-nexus__swarm_init({
+  topology: &quot;hierarchical&quot;, // Options: mesh, ring, star, hierarchical
+  maxAgents: 8,
+  strategy: &quot;balanced&quot; // Options: balanced, specialized, adaptive
+})
+</code></pre>
+<p><strong>Topology Guide:</strong></p>
+<ul>
+<li><strong>Hierarchical</strong>: Tree structure with coordinator nodes (best for complex projects)</li>
+<li><strong>Mesh</strong>: Peer-to-peer collaboration (best for research and analysis)</li>
+<li><strong>Ring</strong>: Circular coordination (best for sequential workflows)</li>
+<li><strong>Star</strong>: Centralized hub (best for simple delegation)</li>
+</ul>
+<p><strong>Strategy Guide:</strong></p>
+<ul>
+<li><strong>Balanced</strong>: Equal distribution of workload across agents</li>
+<li><strong>Specialized</strong>: Agents focus on specific expertise areas</li>
+<li><strong>Adaptive</strong>: Dynamic adjustment based on task complexity</li>
+</ul>
+<h3>Spawn Agents</h3>
+<p>Add specialized agents to the swarm:</p>
+<pre><code class="language-javascript">mcp__flow-nexus__agent_spawn({
+  type: &quot;researcher&quot;, // Options: researcher, coder, analyst, optimizer, coordinator
+  name: &quot;Lead Researcher&quot;,
+  capabilities: [&quot;web_search&quot;, &quot;analysis&quot;, &quot;summarization&quot;]
+})
+</code></pre>
+<p><strong>Agent Types:</strong></p>
+<ul>
+<li><strong>Researcher</strong>: Information gathering, web search, analysis</li>
+<li><strong>Coder</strong>: Code generation, refactoring, implementation</li>
+<li><strong>Analyst</strong>: Data analysis, pattern recognition, insights</li>
+<li><strong>Optimizer</strong>: Performance tuning, resource optimization</li>
+<li><strong>Coordinator</strong>: Task delegation, progress tracking, integration</li>
+</ul>
+<h3>Orchestrate Tasks</h3>
+<p>Distribute tasks across the swarm:</p>
+<pre><code class="language-javascript">mcp__flow-nexus__task_orchestrate({
+  task: &quot;Build a REST API with authentication and database integration&quot;,
+  strategy: &quot;parallel&quot;, // Options: parallel, sequential, adaptive
+  maxAgents: 5,
+  priority: &quot;high&quot; // Options: low, medium, high, critical
+})
+</code></pre>
+<p><strong>Execution Strategies:</strong></p>
+<ul>
+<li><strong>Parallel</strong>: Maximum concurrency for independent subtasks</li>
+<li><strong>Sequential</strong>: Step-by-step execution with dependencies</li>
+<li><strong>Adaptive</strong>: AI-powered strategy selection based on task analysis</li>
+</ul>
+<h3>Monitor &amp; Scale Swarms</h3>
+<pre><code class="language-javascript">// Get detailed swarm status
+mcp__flow-nexus__swarm_status({
+  swarm_id: &quot;optional-id&quot; // Uses active swarm if not provided
+})
+
+// List all active swarms
+mcp__flow-nexus__swarm_list({
+  status: &quot;active&quot; // Options: active, destroyed, all
+})
+
+// Scale swarm up or down
+mcp__flow-nexus__swarm_scale({
+  target_agents: 10,
+  swarm_id: &quot;optional-id&quot;
+})
+
+// Gracefully destroy swarm
+mcp__flow-nexus__swarm_destroy({
+  swarm_id: &quot;optional-id&quot;
+})
+</code></pre>
+<h2>Workflow Automation</h2>
+<h3>Create Workflow</h3>
+<p>Define event-driven workflows with message queue processing:</p>
+<pre><code class="language-javascript">mcp__flow-nexus__workflow_create({
+  name: &quot;CI/CD Pipeline&quot;,
+  description: &quot;Automated testing, building, and deployment&quot;,
+  steps: [
+    {
+      id: &quot;test&quot;,
+      action: &quot;run_tests&quot;,
+      agent: &quot;tester&quot;,
+      parallel: true
+    },
+    {
+      id: &quot;build&quot;,
+      action: &quot;build_app&quot;,
+      agent: &quot;builder&quot;,
+      depends_on: [&quot;test&quot;]
+    },
+    {
+      id: &quot;deploy&quot;,
+      action: &quot;deploy_prod&quot;,
+      agent: &quot;deployer&quot;,
+      depends_on: [&quot;build&quot;]
+    }
+  ],
+  triggers: [&quot;push_to_main&quot;, &quot;manual_trigger&quot;],
+  metadata: {
+    priority: 10,
+    retry_policy: &quot;exponential_backoff&quot;
+  }
+})
+</code></pre>
+<p><strong>Workflow Features:</strong></p>
+<ul>
+<li><strong>Dependency Management</strong>: Define step dependencies with <code>depends_on</code></li>
+<li><strong>Parallel Execution</strong>: Set <code>parallel: true</code> for concurrent steps</li>
+<li><strong>Event Triggers</strong>: GitHub events, schedules, manual triggers</li>
+<li><strong>Retry Policies</strong>: Automatic retry on transient failures</li>
+<li><strong>Priority Queuing</strong>: High-priority workflows execute first</li>
+</ul>
+<h3>Execute Workflow</h3>
+<p>Run workflows synchronously or asynchronously:</p>
+<pre><code class="language-javascript">mcp__flow-nexus__workflow_execute({
+  workflow_id: &quot;workflow_id&quot;,
+  input_data: {
+    branch: &quot;main&quot;,
+    commit: &quot;abc123&quot;,
+    environment: &quot;production&quot;
+  },
+  async: true // Queue-based execution for long-running workflows
+})
+</code></pre>
+<p><strong>Execution Modes:</strong></p>
+<ul>
+<li><strong>Sync (async: false)</strong>: Immediate execution, wait for completion</li>
+<li><strong>Async (async: true)</strong>: Message queue processing, non-blocking</li>
+</ul>
+<h3>Monitor Workflows</h3>
+<pre><code class="language-javascript">// Get workflow status and metrics
+mcp__flow-nexus__workflow_status({
+  workflow_id: &quot;id&quot;,
+  execution_id: &quot;specific-run-id&quot;, // Optional
+  include_metrics: true
+})
+
+// List workflows with filters
+mcp__flow-nexus__workflow_list({
+  status: &quot;running&quot;, // Options: running, completed, failed, pending
+  limit: 10,
+  offset: 0
+})
+
+// Get complete audit trail
+mcp__flow-nexus__workflow_audit_trail({
+  workflow_id: &quot;id&quot;,
+  limit: 50,
+  start_time: &quot;2025-01-01T00:00:00Z&quot;
+})
+</code></pre>
+<h3>Agent Assignment</h3>
+<p>Intelligently assign agents to workflow tasks:</p>
+<pre><code class="language-javascript">mcp__flow-nexus__workflow_agent_assign({
+  task_id: &quot;task_id&quot;,
+  agent_type: &quot;coder&quot;, // Preferred agent type
+  use_vector_similarity: true // AI-powered capability matching
+})
+</code></pre>
+<p><strong>Vector Similarity Matching:</strong></p>
+<ul>
+<li>Analyzes task requirements and agent capabilities</li>
+<li>Finds optimal agent based on past performance</li>
+<li>Considers workload and availability</li>
+</ul>
+<h3>Queue Management</h3>
+<p>Monitor and manage message queues:</p>
+<pre><code class="language-javascript">mcp__flow-nexus__workflow_queue_status({
+  queue_name: &quot;optional-specific-queue&quot;,
+  include_messages: true // Show pending messages
+})
+</code></pre>
+<h2>Agent Orchestration</h2>
+<h3>Full-Stack Development Pattern</h3>
+<pre><code class="language-javascript">// 1. Initialize swarm with hierarchical topology
+mcp__flow-nexus__swarm_init({
+  topology: &quot;hierarchical&quot;,
+  maxAgents: 8,
+  strategy: &quot;specialized&quot;
+})
+
+// 2. Spawn specialized agents
+mcp__flow-nexus__agent_spawn({ type: &quot;coordinator&quot;, name: &quot;Project Manager&quot; })
+mcp__flow-nexus__agent_spawn({ type: &quot;coder&quot;, name: &quot;Backend Developer&quot; })
+mcp__flow-nexus__agent_spawn({ type: &quot;coder&quot;, name: &quot;Frontend Developer&quot; })
+mcp__flow-nexus__agent_spawn({ type: &quot;coder&quot;, name: &quot;Database Architect&quot; })
+mcp__flow-nexus__agent_spawn({ type: &quot;analyst&quot;, name: &quot;QA Engineer&quot; })
+
+// 3. Create development workflow
+mcp__flow-nexus__workflow_create({
+  name: &quot;Full-Stack Development&quot;,
+  steps: [
+    { id: &quot;requirements&quot;, action: &quot;analyze_requirements&quot;, agent: &quot;coordinator&quot; },
+    { id: &quot;db_design&quot;, action: &quot;design_schema&quot;, agent: &quot;Database Architect&quot; },
+    { id: &quot;backend&quot;, action: &quot;build_api&quot;, agent: &quot;Backend Developer&quot;, depends_on: [&quot;db_design&quot;] },
+    { id: &quot;frontend&quot;, action: &quot;build_ui&quot;, agent: &quot;Frontend Developer&quot;, depends_on: [&quot;requirements&quot;] },
+    { id: &quot;integration&quot;, action: &quot;integrate&quot;, agent: &quot;Backend Developer&quot;, depends_on: [&quot;backend&quot;, &quot;frontend&quot;] },
+    { id: &quot;testing&quot;, action: &quot;qa_testing&quot;, agent: &quot;QA Engineer&quot;, depends_on: [&quot;integration&quot;] }
+  ]
+})
+
+// 4. Execute workflow
+mcp__flow-nexus__workflow_execute({
+  workflow_id: &quot;workflow_id&quot;,
+  input_data: {
+    project: &quot;E-commerce Platform&quot;,
+    tech_stack: [&quot;Node.js&quot;, &quot;React&quot;, &quot;PostgreSQL&quot;]
+  }
+})
+</code></pre>
+<h3>Research &amp; Analysis Pattern</h3>
+<pre><code class="language-javascript">// 1. Initialize mesh topology for collaborative research
+mcp__flow-nexus__swarm_init({
+  topology: &quot;mesh&quot;,
+  maxAgents: 5,
+  strategy: &quot;balanced&quot;
+})
+
+// 2. Spawn research agents
+mcp__flow-nexus__agent_spawn({ type: &quot;researcher&quot;, name: &quot;Primary Researcher&quot; })
+mcp__flow-nexus__agent_spawn({ type: &quot;researcher&quot;, name: &quot;Secondary Researcher&quot; })
+mcp__flow-nexus__agent_spawn({ type: &quot;analyst&quot;, name: &quot;Data Analyst&quot; })
+mcp__flow-nexus__agent_spawn({ type: &quot;analyst&quot;, name: &quot;Insights Analyst&quot; })
+
+// 3. Orchestrate research task
+mcp__flow-nexus__task_orchestrate({
+  task: &quot;Research machine learning trends for 2025 and analyze market opportunities&quot;,
+  strategy: &quot;parallel&quot;,
+  maxAgents: 4,
+  priority: &quot;high&quot;
+})
+</code></pre>
+<h3>CI/CD Pipeline Pattern</h3>
+<pre><code class="language-javascript">mcp__flow-nexus__workflow_create({
+  name: &quot;Deployment Pipeline&quot;,
+  description: &quot;Automated testing, building, and multi-environment deployment&quot;,
+  steps: [
+    { id: &quot;lint&quot;, action: &quot;lint_code&quot;, agent: &quot;code_quality&quot;, parallel: true },
+    { id: &quot;unit_test&quot;, action: &quot;unit_tests&quot;, agent: &quot;test_runner&quot;, parallel: true },
+    { id: &quot;integration_test&quot;, action: &quot;integration_tests&quot;, agent: &quot;test_runner&quot;, parallel: true },
+    { id: &quot;build&quot;, action: &quot;build_artifacts&quot;, agent: &quot;builder&quot;, depends_on: [&quot;lint&quot;, &quot;unit_test&quot;, &quot;integration_test&quot;] },
+    { id: &quot;security_scan&quot;, action: &quot;security_scan&quot;, agent: &quot;security&quot;, depends_on: [&quot;build&quot;] },
+    { id: &quot;deploy_staging&quot;, action: &quot;deploy&quot;, agent: &quot;deployer&quot;, depends_on: [&quot;security_scan&quot;] },
+    { id: &quot;smoke_test&quot;, action: &quot;smoke_tests&quot;, agent: &quot;test_runner&quot;, depends_on: [&quot;deploy_staging&quot;] },
+    { id: &quot;deploy_prod&quot;, action: &quot;deploy&quot;, agent: &quot;deployer&quot;, depends_on: [&quot;smoke_test&quot;] }
+  ],
+  triggers: [&quot;github_push&quot;, &quot;github_pr_merged&quot;],
+  metadata: {
+    priority: 10,
+    auto_rollback: true
+  }
+})
+</code></pre>
+<h3>Data Processing Pipeline Pattern</h3>
+<pre><code class="language-javascript">mcp__flow-nexus__workflow_create({
+  name: &quot;ETL Pipeline&quot;,
+  description: &quot;Extract, Transform, Load data processing&quot;,
+  steps: [
+    { id: &quot;extract&quot;, action: &quot;extract_data&quot;, agent: &quot;data_extractor&quot; },
+    { id: &quot;validate_raw&quot;, action: &quot;validate_data&quot;, agent: &quot;validator&quot;, depends_on: [&quot;extract&quot;] },
+    { id: &quot;transform&quot;, action: &quot;transform_data&quot;, agent: &quot;transformer&quot;, depends_on: [&quot;validate_raw&quot;] },
+    { id: &quot;enrich&quot;, action: &quot;enrich_data&quot;, agent: &quot;enricher&quot;, depends_on: [&quot;transform&quot;] },
+    { id: &quot;load&quot;, action: &quot;load_data&quot;, agent: &quot;loader&quot;, depends_on: [&quot;enrich&quot;] },
+    { id: &quot;validate_final&quot;, action: &quot;validate_data&quot;, agent: &quot;validator&quot;, depends_on: [&quot;load&quot;] }
+  ],
+  triggers: [&quot;schedule:0 2 * * *&quot;], // Daily at 2 AM
+  metadata: {
+    retry_policy: &quot;exponential_backoff&quot;,
+    max_retries: 3
+  }
+})
+</code></pre>
+<h2>Templates &amp; Patterns</h2>
+<h3>Use Pre-built Templates</h3>
+<pre><code class="language-javascript">// Create swarm from template
+mcp__flow-nexus__swarm_create_from_template({
+  template_name: &quot;full-stack-dev&quot;,
+  overrides: {
+    maxAgents: 6,
+    strategy: &quot;specialized&quot;
+  }
+})
+
+// List available templates
+mcp__flow-nexus__swarm_templates_list({
+  category: &quot;quickstart&quot;, // Options: quickstart, specialized, enterprise, custom, all
+  includeStore: true
+})
+</code></pre>
+<p><strong>Available Template Categories:</strong></p>
+<p><strong>Quickstart Templates:</strong></p>
+<ul>
+<li><code>full-stack-dev</code>: Complete web development swarm</li>
+<li><code>research-team</code>: Research and analysis swarm</li>
+<li><code>code-review</code>: Automated code review swarm</li>
+<li><code>data-pipeline</code>: ETL and data processing</li>
+</ul>
+<p><strong>Specialized Templates:</strong></p>
+<ul>
+<li><code>ml-development</code>: Machine learning project swarm</li>
+<li><code>mobile-dev</code>: Mobile app development</li>
+<li><code>devops-automation</code>: Infrastructure and deployment</li>
+<li><code>security-audit</code>: Security analysis and testing</li>
+</ul>
+<p><strong>Enterprise Templates:</strong></p>
+<ul>
+<li><code>enterprise-migration</code>: Large-scale system migration</li>
+<li><code>multi-repo-sync</code>: Multi-repository coordination</li>
+<li><code>compliance-review</code>: Regulatory compliance workflows</li>
+<li><code>incident-response</code>: Automated incident management</li>
+</ul>
+<h3>Custom Template Creation</h3>
+<p>Save successful swarm configurations as reusable templates for future projects.</p>
+<h2>Advanced Features</h2>
+<h3>Real-time Monitoring</h3>
+<pre><code class="language-javascript">// Subscribe to execution streams
+mcp__flow-nexus__execution_stream_subscribe({
+  stream_type: &quot;claude-flow-swarm&quot;,
+  deployment_id: &quot;deployment_id&quot;
+})
+
+// Get execution status
+mcp__flow-nexus__execution_stream_status({
+  stream_id: &quot;stream_id&quot;
+})
+
+// List files created during execution
+mcp__flow-nexus__execution_files_list({
+  stream_id: &quot;stream_id&quot;,
+  created_by: &quot;claude-flow&quot;
+})
+</code></pre>
+<h3>Swarm Metrics &amp; Analytics</h3>
+<pre><code class="language-javascript">// Get swarm performance metrics
+mcp__flow-nexus__swarm_status({
+  swarm_id: &quot;id&quot;
+})
+
+// Analyze workflow efficiency
+mcp__flow-nexus__workflow_status({
+  workflow_id: &quot;id&quot;,
+  include_metrics: true
+})
+</code></pre>
+<h3>Multi-Swarm Coordination</h3>
+<p>Coordinate multiple swarms for complex, multi-phase projects:</p>
+<pre><code class="language-javascript">// Phase 1: Research swarm
+const researchSwarm = await mcp__flow-nexus__swarm_init({
+  topology: &quot;mesh&quot;,
+  maxAgents: 4
+})
+
+// Phase 2: Development swarm
+const devSwarm = await mcp__flow-nexus__swarm_init({
+  topology: &quot;hierarchical&quot;,
+  maxAgents: 8
+})
+
+// Phase 3: Testing swarm
+const testSwarm = await mcp__flow-nexus__swarm_init({
+  topology: &quot;star&quot;,
+  maxAgents: 5
+})
+</code></pre>
+<h2>Best Practices</h2>
+<h3>1. Choose the Right Topology</h3>
+<pre><code class="language-javascript">// Simple projects: Star
+mcp__flow-nexus__swarm_init({ topology: &quot;star&quot;, maxAgents: 3 })
+
+// Collaborative work: Mesh
+mcp__flow-nexus__swarm_init({ topology: &quot;mesh&quot;, maxAgents: 5 })
+
+// Complex projects: Hierarchical
+mcp__flow-nexus__swarm_init({ topology: &quot;hierarchical&quot;, maxAgents: 10 })
+
+// Sequential workflows: Ring
+mcp__flow-nexus__swarm_init({ topology: &quot;ring&quot;, maxAgents: 4 })
+</code></pre>
+<h3>2. Optimize Agent Assignment</h3>
+<pre><code class="language-javascript">// Use vector similarity for optimal matching
+mcp__flow-nexus__workflow_agent_assign({
+  task_id: &quot;complex-task&quot;,
+  use_vector_similarity: true
+})
+</code></pre>
+<h3>3. Implement Proper Error Handling</h3>
+<pre><code class="language-javascript">mcp__flow-nexus__workflow_create({
+  name: &quot;Resilient Workflow&quot;,
+  steps: [...],
+  metadata: {
+    retry_policy: &quot;exponential_backoff&quot;,
+    max_retries: 3,
+    timeout: 300000, // 5 minutes
+    on_failure: &quot;notify_and_rollback&quot;
+  }
+})
+</code></pre>
+<h3>4. Monitor and Scale</h3>
+<pre><code class="language-javascript">// Regular monitoring
+const status = await mcp__flow-nexus__swarm_status()
+
+// Scale based on workload
+if (status.workload &gt; 0.8) {
+  await mcp__flow-nexus__swarm_scale({ target_agents: status.agents + 2 })
+}
+</code></pre>
+<h3>5. Use Async Execution for Long-Running Workflows</h3>
+<pre><code class="language-javascript">// Long-running workflows should use message queues
+mcp__flow-nexus__workflow_execute({
+  workflow_id: &quot;data-pipeline&quot;,
+  async: true // Non-blocking execution
+})
+
+// Monitor progress
+mcp__flow-nexus__workflow_queue_status({ include_messages: true })
+</code></pre>
+<h3>6. Clean Up Resources</h3>
+<pre><code class="language-javascript">// Destroy swarm when complete
+mcp__flow-nexus__swarm_destroy({ swarm_id: &quot;id&quot; })
+</code></pre>
+<h3>7. Leverage Templates</h3>
+<pre><code class="language-javascript">// Use proven templates instead of building from scratch
+mcp__flow-nexus__swarm_create_from_template({
+  template_name: &quot;code-review&quot;,
+  overrides: { maxAgents: 4 }
+})
+</code></pre>
+<h2>Integration with Claude Flow</h2>
+<p>Flow Nexus swarms integrate seamlessly with Claude Flow hooks:</p>
+<pre><code class="language-bash"># Pre-task coordination setup
+npx claude-flow@alpha hooks pre-task --description &quot;Initialize swarm&quot;
+
+# Post-task metrics export
+npx claude-flow@alpha hooks post-task --task-id &quot;swarm-execution&quot;
+</code></pre>
+<h2>Common Use Cases</h2>
+<h3>1. Multi-Repo Development</h3>
+<ul>
+<li>Coordinate development across multiple repositories</li>
+<li>Synchronized testing and deployment</li>
+<li>Cross-repo dependency management</li>
+</ul>
+<h3>2. Research Projects</h3>
+<ul>
+<li>Distributed information gathering</li>
+<li>Parallel analysis of different data sources</li>
+<li>Collaborative synthesis and reporting</li>
+</ul>
+<h3>3. DevOps Automation</h3>
+<ul>
+<li>Infrastructure as Code deployment</li>
+<li>Multi-environment testing</li>
+<li>Automated rollback and recovery</li>
+</ul>
+<h3>4. Code Quality Workflows</h3>
+<ul>
+<li>Automated code review</li>
+<li>Security scanning</li>
+<li>Performance benchmarking</li>
+</ul>
+<h3>5. Data Processing</h3>
+<ul>
+<li>Large-scale ETL pipelines</li>
+<li>Real-time data transformation</li>
+<li>Data validation and quality checks</li>
+</ul>
+<h2>Authentication &amp; Setup</h2>
+<pre><code class="language-bash"># Install Flow Nexus
+npm install -g flow-nexus@latest
+
+# Register account
+npx flow-nexus@latest register
+
+# Login
+npx flow-nexus@latest login
+
+# Add MCP server to Claude Code
+claude mcp add flow-nexus npx flow-nexus@latest mcp start
+</code></pre>
+<h2>Support &amp; Resources</h2>
+<ul>
+<li><strong>Platform</strong>: <a href="https://flow-nexus.ruv.io">https://flow-nexus.ruv.io</a></li>
+<li><strong>Documentation</strong>: <a href="https://github.com/ruvnet/flow-nexus">https://github.com/ruvnet/flow-nexus</a></li>
+<li><strong>Issues</strong>: <a href="https://github.com/ruvnet/flow-nexus/issues">https://github.com/ruvnet/flow-nexus/issues</a></li>
+</ul>
+<hr>
+<p><strong>Remember</strong>: Flow Nexus provides cloud-based orchestration infrastructure. For local execution and coordination, use the core <code>claude-flow</code> MCP server alongside Flow Nexus for maximum flexibility.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

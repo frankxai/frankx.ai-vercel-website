@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/log - AI Session Logger</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/log.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/log - AI Session Logger</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>log.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: log
+description: Capture AI development session with cross-repo commit aggregation and AI-generated summary
+arguments:</p>
+<ul>
+<li>name: mode
+description: &quot;Logging mode: full (default), quick (no AI), daily (24h), weekly (7d)&quot;
+required: false</li>
+<li>name: project
+description: &quot;Focus on specific project (e.g., FrankX, Arcanea)&quot;
+required: false</li>
+<li>name: since
+description: &quot;Time range (e.g., 24h, 7d, 2026-01-20)&quot;
+required: false</li>
+</ul>
+<hr>
+<h1>/log - AI Session Logger</h1>
+<p>Cross-repository development session logging with intelligent summarization.</p>
+<h2>Overview</h2>
+<p>This command aggregates commits from all repositories under <code>/mnt/c/Users/Frank/</code>, generates AI summaries, and outputs to multiple destinations:</p>
+<ul>
+<li><code>/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md</code> (master log)</li>
+<li>Per-project <code>CHANGELOG.md</code> files</li>
+<li>JSON archive in <code>.ai-logs/sessions/</code></li>
+</ul>
+<h2>Execution Steps</h2>
+<h3>Step 1: Repository Discovery</h3>
+<p>Scan for active repositories with commits in the specified time range.</p>
+<pre><code class="language-bash"># Find all git repos (28+ known)
+REPOS=$(find /mnt/c/Users/Frank -maxdepth 3 -type d -name &quot;.git&quot; 2&gt;/dev/null | grep -v node_modules | grep -v .worktrees | grep -v Backup)
+echo &quot;Found $(echo &quot;$REPOS&quot; | wc -l) repositories&quot;
+</code></pre>
+<p>Primary repositories to always check:</p>
+<ul>
+<li><code>/mnt/c/Users/Frank/FrankX</code> (website, content)</li>
+<li><code>/mnt/c/Users/Frank/Arcanea</code> (game project)</li>
+<li><code>/mnt/c/Users/Frank/oracle-work</code> (professional)</li>
+<li><code>/mnt/c/Users/Frank/claude-mem</code> (tools)</li>
+<li><code>/mnt/c/Users/Frank/vibe-os</code> (product)</li>
+</ul>
+<h3>Step 2: Commit Aggregation</h3>
+<p>For each repository, extract commits from the time range:</p>
+<pre><code class="language-bash"># Default: last 24 hours
+# Adjust based on --since argument
+SINCE=&quot;${since:-24 hours ago}&quot;
+
+# For each repo, get commits
+git -C &quot;$REPO_PATH&quot; log --since=&quot;$SINCE&quot; --pretty=format:&quot;%h|%s|%an|%ai&quot; --no-merges
+</code></pre>
+<p>Categorize commits by conventional commit type:</p>
+<ul>
+<li><code>feat:</code> - New features</li>
+<li><code>fix:</code> - Bug fixes</li>
+<li><code>docs:</code> - Documentation</li>
+<li><code>refactor:</code> - Code refactoring</li>
+<li><code>test:</code> - Testing</li>
+<li><code>chore:</code> - Maintenance</li>
+</ul>
+<h3>Step 3: File Change Analysis</h3>
+<p>For significant commits, analyze file changes:</p>
+<pre><code class="language-bash">git -C &quot;$REPO_PATH&quot; diff --stat HEAD~1 HEAD
+git -C &quot;$REPO_PATH&quot; diff --numstat HEAD~1 HEAD
+</code></pre>
+<p>Track:</p>
+<ul>
+<li>Files added/modified/deleted</li>
+<li>Lines inserted/removed</li>
+<li>File types affected (.ts, .tsx, .md, .mdx)</li>
+</ul>
+<h3>Step 4: AI Summary Generation</h3>
+<p>Generate a concise summary using the collected data. The summary should include:</p>
+<ol>
+<li><p><strong>Session Overview</strong> (2-3 sentences)</p>
+<ul>
+<li>What was the main focus?</li>
+<li>How many repos were active?</li>
+<li>Total commits and file changes</li>
+</ul>
+</li>
+<li><p><strong>Key Accomplishments</strong> (3-5 bullets)</p>
+<ul>
+<li>Most significant changes</li>
+<li>Features completed</li>
+<li>Issues resolved</li>
+</ul>
+</li>
+<li><p><strong>Decisions Made</strong> (if any)</p>
+<ul>
+<li>Technical choices</li>
+<li>Architecture decisions</li>
+<li>Trade-offs considered</li>
+</ul>
+</li>
+<li><p><strong>Next Steps</strong> (2-3 items)</p>
+<ul>
+<li>Immediate follow-ups</li>
+<li>Blocked items</li>
+<li>Future work</li>
+</ul>
+</li>
+</ol>
+<h3>Step 5: Output Generation</h3>
+<h4>Format for AI_GLOBAL_SESSIONS.md</h4>
+<pre><code class="language-markdown">---
+
+## SESSION: [Primary Project] - [Date] [Time]
+**Date**: YYYY-MM-DD HH:MM
+**Duration**: Estimated from commit timestamps
+**Repos Active**: N
+
+### Summary
+[AI-generated 2-3 sentence summary]
+
+### Key Accomplishments
+- [Accomplishment 1]
+- [Accomplishment 2]
+- [Accomplishment 3]
+
+### Commits by Repository
+
+#### [Repo 1] (N commits)
+| Hash | Message | Files |
+|------|---------|-------|
+| abc1234 | feat: Add feature | 3 |
+
+#### [Repo 2] (N commits)
+| Hash | Message | Files |
+|------|---------|-------|
+| def5678 | fix: Bug fix | 1 |
+
+### Metrics
+- Total Commits: N
+- Files Changed: N (+insertions / -deletions)
+- Repos Active: N
+
+### Next Steps
+- [ ] Next item 1
+- [ ] Next item 2
+
+---
+</code></pre>
+<h3>Step 6: Terminal Output</h3>
+<p>Display a formatted summary in the terminal:</p>
+<pre><code>============================================================
+  AI SESSION LOG - 2026-01-27 18:30
+============================================================
+
+  SUMMARY
+  --------
+  [AI-generated summary paragraph]
+
+  REPOSITORY ACTIVITY
+  -------------------
+  FrankX        ████████████████░░░░  8 commits  (67%)
+  Arcanea       ██████░░░░░░░░░░░░░░  3 commits  (25%)
+  oracle-work   ██░░░░░░░░░░░░░░░░░░  1 commit   (8%)
+
+  RECENT COMMITS
+  --------------
+  14:30  FrankX    feat: Add logging system architecture
+  15:12  Arcanea   fix: Resolve memory leak
+  16:00  FrankX    docs: Add architecture diagrams
+
+  OUTPUT
+  ------
+  [x] /mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md
+  [x] /mnt/c/Users/Frank/FrankX/CHANGELOG.md
+  [ ] GitHub push (use --push)
+
+============================================================
+</code></pre>
+<h2>Quick Mode (--quick or mode=quick)</h2>
+<p>Skip AI summarization for fast logging:</p>
+<ul>
+<li>Collect commits only</li>
+<li>Basic categorization</li>
+<li>Minimal output</li>
+<li>Execution time &lt; 1 second</li>
+</ul>
+<h2>Daily Mode (--daily or mode=daily)</h2>
+<p>Generate comprehensive 24-hour report:</p>
+<ul>
+<li>All commits from midnight to now</li>
+<li>Full AI summary</li>
+<li>Productivity metrics</li>
+<li>Cross-repo pattern analysis</li>
+</ul>
+<h2>Weekly Mode (--weekly or mode=weekly)</h2>
+<p>Generate weekly intelligence report:</p>
+<ul>
+<li>All commits from past 7 days</li>
+<li>Trend analysis</li>
+<li>Project progress overview</li>
+<li>Goal tracking integration</li>
+</ul>
+<h2>Project Filter (--project)</h2>
+<p>Focus on specific project(s):</p>
+<ul>
+<li><code>--project FrankX</code> - Single project</li>
+<li><code>--project FrankX,Arcanea</code> - Multiple projects</li>
+<li>Filters output to selected repos only</li>
+</ul>
+<h2>Configuration</h2>
+<p>The system reads configuration from <code>/mnt/c/Users/Frank/.ai-logs/config.yaml</code> if it exists. Default behavior if no config:</p>
+<ul>
+<li>Scan all repos under <code>/mnt/c/Users/Frank</code></li>
+<li>Use last 24 hours as default range</li>
+<li>Output to AI_GLOBAL_SESSIONS.md</li>
+<li>Enable AI summarization</li>
+</ul>
+<h2>Tips</h2>
+<ol>
+<li><strong>Run at session end</strong>: Use <code>/log</code> before ending your work session</li>
+<li><strong>Use quick for WIP</strong>: <code>/log --quick</code> for fast logging during active work</li>
+<li><strong>Weekly reviews</strong>: Run <code>/log --weekly</code> on Sundays for planning</li>
+<li><strong>Project focus</strong>: Use <code>--project</code> when working on single project intensively</li>
+</ol>
+<h2>Related Commands</h2>
+<ul>
+<li><code>/factory</code> - Content publishing pipeline</li>
+<li><code>/inventory-status</code> - Content inventory check</li>
+<li><code>/plan-week</code> - Weekly planning</li>
+</ul>
+<h2>Architecture</h2>
+<p>Full architecture documentation: <code>/mnt/c/Users/Frank/FrankX/docs/specs/AI_SESSION_LOGGING_SYSTEM_ARCHITECTURE.md</code></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

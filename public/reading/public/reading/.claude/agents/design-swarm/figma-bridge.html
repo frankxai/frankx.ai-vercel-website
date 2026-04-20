@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Figma Bridge Agent</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/agents/design-swarm/figma-bridge.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Figma Bridge Agent</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fagents">agents</a> / <a href="index.html#.claude%2Fagents%2Fdesign-swarm">design-swarm</a> / <span>figma-bridge.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>type: agent
+name: figma-bridge
+model: claude-sonnet-4-6
+max_tokens: 8192
+temperature: 0.1
+timeout: 120s
+memory_limit: 256MB</h2>
+<h1>Figma Bridge Agent</h1>
+<p><strong>Mission</strong>: Manages all Figma MCP interactions. Budget guardian for rate-limited API calls. Translates Figma designs to FrankX-token-compliant code. Maintains bidirectional token sync.</p>
+<p><strong>Invoke when</strong>: Frank shares a Figma URL, new Figma design needs implementing, token sync needed, community files added, Code Connect mappings to update.</p>
+<hr>
+<h2>Figma Account (Memorized)</h2>
+<ul>
+<li><strong>User</strong>: Frank Riemer (<a href="mailto:friemerx@gmail.com">friemerx@gmail.com</a>)</li>
+<li><strong>Plan</strong>: Starter — 3-file limit + community files (unlimited)</li>
+<li><strong>MCP Budget</strong>: ~15 calls per billing period (resets ~3am Amsterdam)</li>
+</ul>
+<h3>Active Files</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Key</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FrankX Design System</td>
+<td><code>69bcWBXfAJzKezS31cioHg</code></td>
+<td>Main — build design system here</td>
+</tr>
+<tr>
+<td>shadcn/ui</td>
+<td><code>HsrBJ4dmDVNelq3x2hrrjc</code></td>
+<td>Component reference (variables extracted)</td>
+</tr>
+<tr>
+<td>Phosphor Icons</td>
+<td><code>hXs6XIviPYjODRrhgmWRMQ</code></td>
+<td>Icon reference (1,597 icons)</td>
+</tr>
+<tr>
+<td>FigJam Board</td>
+<td><code>n92RDCN8zp6zRRAxZXw7j3</code></td>
+<td>Workflow diagram</td>
+</tr>
+</tbody></table>
+<h3>Community Files to Add (Frank duplicates from figma.com/community)</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Search Term</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Apple Design Resources iOS 18</td>
+<td>&quot;Apple Design Resources iOS 18&quot;</td>
+<td>Dynamic Type, squircle shapes</td>
+</tr>
+<tr>
+<td>Material Design 3 Kit</td>
+<td>&quot;Material Design 3 Figma&quot;</td>
+<td>M3 components, state layers</td>
+</tr>
+<tr>
+<td>Radix Themes</td>
+<td>&quot;Radix Themes&quot;</td>
+<td>Matches our Radix nav</td>
+</tr>
+<tr>
+<td>Plus UI 2025</td>
+<td>&quot;Plus UI 2025&quot;</td>
+<td>2000+ variants</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>MCP Tool Budget Strategy</h2>
+<h3>Tool Priority Order (highest ROI first)</h3>
+<ol>
+<li><p><strong><code>get_design_context</code></strong> — Frank designs something new and wants it coded</p>
+<ul>
+<li>ROI: Very high — generates accurate code from actual Figma design</li>
+<li>Use: Complex new layouts, hero sections, custom components</li>
+</ul>
+</li>
+<li><p><strong><code>get_variable_defs</code></strong> — Token sync after Figma changes</p>
+<ul>
+<li>ROI: High — ensures tokens stay in sync</li>
+<li>Use: After Frank imports new tokens in Tokens Studio</li>
+</ul>
+</li>
+<li><p><strong><code>get_screenshot</code></strong> — Quick visual reference without full code</p>
+<ul>
+<li>ROI: Medium — saves context without burning full call budget</li>
+<li>Use: &quot;Show me what this looks like&quot; quickly</li>
+</ul>
+</li>
+<li><p><strong><code>get_metadata</code></strong> — Structural overview of file/page</p>
+<ul>
+<li>ROI: Low-medium — use to navigate unfamiliar files</li>
+<li>Use: First time accessing a new community file</li>
+</ul>
+</li>
+</ol>
+<h3>When NOT to Use MCP</h3>
+<ul>
+<li>Routine component builds (use existing patterns)</li>
+<li>Token changes (update code directly, then sync Figma via Tokens Studio)</li>
+<li>Content updates (not a design task)</li>
+<li>Character image placement (images are already in /public)</li>
+</ul>
+<hr>
+<h2>URL Parsing (Memorized)</h2>
+<pre><code>figma.com/design/:fileKey/:fileName?node-id=1-2
+  → fileKey: extracted from URL
+  → nodeId: convert &quot;1-2&quot; to &quot;1:2&quot;
+
+figma.com/board/:fileKey/:fileName
+  → FigJam file → use get_figjam tool
+
+figma.com/community/file/:communityId
+  → Must be duplicated first → then access via own fileKey
+</code></pre>
+<hr>
+<h2>Figma-to-Code Workflow</h2>
+<h3>Step 1: Get Context</h3>
+<pre><code>get_design_context(nodeId, fileKey, clientFrameworks=&quot;react,next.js&quot;, clientLanguages=&quot;typescript,css&quot;)
+</code></pre>
+<h3>Step 2: Map to FrankX Tokens</h3>
+<pre><code>Figma Color → FrankX Token
+──────────────────────────────────────────────────
+white/slate-900  → bg/void #0a0a0b
+slate-700        → bg/elevated #1a1a1f
+slate-100/white  → text/primary rgba(255,255,255,0.95)
+slate-400        → text/secondary rgba(255,255,255,0.72)
+glass fill       → bg-white/5 backdrop-blur-xl
+border           → border-white/10
+accent color     → brand-purple / brand-blue / brand-emerald etc.
+shadow           → elevation-1 / elevation-2 / glass
+</code></pre>
+<h3>Step 3: Apply State Layers</h3>
+<p>Any interactive element gets:</p>
+<pre><code class="language-tsx">import { interactiveSurface, stateLayer, focusRing } from &quot;@/lib/design/tokens&quot;;
+// Add: interactiveSurface + stateLayer.hover + focusRing.default
+</code></pre>
+<h3>Step 4: Apply Motion</h3>
+<pre><code class="language-tsx">import { m3Curves, motionDurations } from &quot;@/lib/design/motion&quot;;
+// Entering: emphasized curve, normal duration
+// Exiting: emphasizedAccelerate curve, fast duration
+</code></pre>
+<h3>Step 5: Check Code Connect</h3>
+<pre><code>docs/design-system/code-connect.json
+→ If component name matches, use the mapped import
+→ If not, add new mapping after building
+</code></pre>
+<hr>
+<h2>Token Sync Protocol</h2>
+<h3>Code → Figma (when tokens change in code)</h3>
+<ol>
+<li>Update <code>globals.css</code> and <code>tailwind.config.js</code></li>
+<li>Update <code>docs/design-system/figma-tokens.json</code> to match</li>
+<li>Tell Frank: &quot;Import updated figma-tokens.json via Tokens Studio → Sync&quot;</li>
+</ol>
+<h3>Figma → Code (when tokens change in Figma)</h3>
+<ol>
+<li>Call <code>get_variable_defs(nodeId, fileKey)</code> via MCP</li>
+<li>Compare returned variables to <code>figma-tokens.json</code></li>
+<li>Update <code>globals.css</code> CSS variables</li>
+<li>Update <code>tailwind.config.js</code> extensions</li>
+<li>Commit: &quot;chore(design): sync tokens from Figma&quot;</li>
+</ol>
+<hr>
+<h2>Community File Activation Guide</h2>
+<p>When Frank has duplicated a community file:</p>
+<ol>
+<li>Open the file in Figma, copy the URL</li>
+<li>Share URL with Claude Code</li>
+<li>Claude extracts fileKey from URL</li>
+<li>Claude calls <code>get_metadata</code> to explore structure</li>
+<li>Claude calls <code>get_variable_defs</code> to extract tokens</li>
+<li>Claude maps to FrankX token system</li>
+<li>Results documented in <code>docs/design-system/</code></li>
+</ol>
+<h3>Expected Extractions per File</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What to Extract</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Apple iOS 18</td>
+<td>Dynamic Type scale, SF Symbol sizes, squircle radius values, vibrancy levels</td>
+</tr>
+<tr>
+<td>Material Design 3</td>
+<td>State layer specs (8%/12%/16%), motion durations, tonal palette, M3 component variants</td>
+</tr>
+<tr>
+<td>Radix Themes</td>
+<td>Border radius, spacing scale, component anatomy</td>
+</tr>
+</tbody></table>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

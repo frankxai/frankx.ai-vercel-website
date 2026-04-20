@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>CLAUDE.md - Project Context for AI Assistants</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/templates/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">CLAUDE.md - Project Context for AI Assistants</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#_archive">_archive</a> / <a href="../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="index.html#_archive%2Fworkshops-repo%2Ftemplates">templates</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>CLAUDE.md - Project Context for AI Assistants</h1>
+<p><em>Template from GenCreator Labs by Frank</em></p>
+<hr>
+<h2>Project Overview</h2>
+<p><strong>Project Name</strong>: [Your Project Name]
+<strong>Purpose</strong>: [Brief description of what this project does]
+<strong>Tech Stack</strong>: [Languages, frameworks, tools]</p>
+<hr>
+<h2>Code Style &amp; Standards</h2>
+<h3>Language-Specific Conventions</h3>
+<p><strong>[Language 1]</strong>:</p>
+<ul>
+<li>Style guide: [e.g., Airbnb, Google, or custom]</li>
+<li>Indentation: [spaces/tabs]</li>
+<li>Line length: [max characters]</li>
+<li>Other: [specific preferences]</li>
+</ul>
+<p><strong>[Language 2]</strong>:</p>
+<ul>
+<li>[Same format]</li>
+</ul>
+<h3>File Organization</h3>
+<pre><code>src/
+├── components/     # UI components
+├── lib/           # Utilities and helpers
+├── hooks/         # Custom React hooks
+├── types/         # TypeScript definitions
+└── pages/         # Page components
+</code></pre>
+<h3>Naming Conventions</h3>
+<ul>
+<li><strong>Files</strong>: [camelCase, kebab-case, PascalCase?]</li>
+<li><strong>Variables</strong>: [camelCase?]</li>
+<li><strong>Constants</strong>: [UPPER_SNAKE_CASE?]</li>
+<li><strong>Classes/Components</strong>: [PascalCase?]</li>
+<li><strong>Database tables</strong>: [snake_case?]</li>
+</ul>
+<hr>
+<h2>Development Workflow</h2>
+<h3>Branch Strategy</h3>
+<ul>
+<li><code>main</code> - Production-ready code</li>
+<li><code>develop</code> - Integration branch</li>
+<li><code>feature/*</code> - New features</li>
+<li><code>bugfix/*</code> - Bug fixes</li>
+<li><code>hotfix/*</code> - Urgent production fixes</li>
+</ul>
+<h3>Commit Messages</h3>
+<pre><code>type(scope): subject
+
+Types:
+- feat: New feature
+- fix: Bug fix
+- docs: Documentation
+- style: Formatting
+- refactor: Restructuring
+- test: Adding tests
+- chore: Maintenance
+
+Example: feat(auth): Add OAuth2 login
+</code></pre>
+<h3>Code Review Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Tests pass</li>
+<li><input disabled="" type="checkbox"> Linting passes</li>
+<li><input disabled="" type="checkbox"> TypeScript types correct</li>
+<li><input disabled="" type="checkbox"> No console.log statements</li>
+<li><input disabled="" type="checkbox"> Comments for complex logic</li>
+<li><input disabled="" type="checkbox"> Follows naming conventions</li>
+<li><input disabled="" type="checkbox"> Security considerations addressed</li>
+</ul>
+<hr>
+<h2>AI-Specific Instructions</h2>
+<h3>Working with AI Assistants</h3>
+<p>When I ask you to help with code:</p>
+<ol>
+<li><strong>Read CLAUDE.md first</strong> - Understand project context</li>
+<li><strong>Read relevant files</strong> - Don&#39;t assume structure</li>
+<li><strong>Suggest, don&#39;t just do</strong> - Explain your reasoning</li>
+<li><strong>Test your suggestions</strong> - Verify before committing</li>
+</ol>
+<h3>Prompting Guidelines</h3>
+<p><strong>Good prompts</strong>:</p>
+<ul>
+<li>&quot;Add error handling to the API client&quot;</li>
+<li>&quot;Refactor the auth module to use JWT tokens&quot;</li>
+<li>&quot;Write tests for the user service&quot;</li>
+</ul>
+<p><strong>Avoid</strong>:</p>
+<ul>
+<li>&quot;Make it work&quot; (too vague)</li>
+<li>&quot;Fix the bug&quot; (no context)</li>
+<li>&quot;Rewrite everything&quot; (too broad)</li>
+</ul>
+<h3>Testing Requirements</h3>
+<p>All new code must include:</p>
+<ol>
+<li><strong>Unit tests</strong> for business logic</li>
+<li><strong>Integration tests</strong> for API endpoints</li>
+<li><strong>E2E tests</strong> for critical user flows</li>
+</ol>
+<p>Run tests with: <code>npm test</code></p>
+<h3>Documentation</h3>
+<ul>
+<li>Add JSDoc comments for functions</li>
+<li>Update README for new features</li>
+<li>Add inline comments for complex logic</li>
+<li>Update API documentation for endpoints</li>
+</ul>
+<hr>
+<h2>Environment Variables</h2>
+<pre><code class="language-bash"># Copy this to .env and fill in values
+DATABASE_URL=
+API_KEY=
+AUTH_SECRET=
+# ... other variables
+</code></pre>
+<p>Never commit <code>.env</code> to version control.</p>
+<hr>
+<h2>Common Tasks</h2>
+<h3>Running the Project</h3>
+<pre><code class="language-bash"># Development
+npm run dev
+
+# Build for production
+npm run build
+
+# Run tests
+npm test
+
+# Linting
+npm run lint
+</code></pre>
+<h3>Adding a New Feature</h3>
+<ol>
+<li>Create branch: <code>git checkout -b feature/my-feature</code></li>
+<li>Make changes following code style</li>
+<li>Add tests</li>
+<li>Run linting: <code>npm run lint</code></li>
+<li>Run tests: <code>npm test</code></li>
+<li>Commit: <code>git commit -m &quot;feat: Add my feature&quot;</code></li>
+<li>Push: <code>git push origin feature/my-feature</code></li>
+<li>Create PR for review</li>
+</ol>
+<h3>Debugging Common Issues</h3>
+<p><strong>[Issue 1]</strong>:</p>
+<ul>
+<li>Symptom: [What happens]</li>
+<li>Solution: [How to fix]</li>
+</ul>
+<p><strong>[Issue 2]</strong>:</p>
+<ul>
+<li>Symptom: [What happens]</li>
+<li>Solution: [How to fix]</li>
+</ul>
+<hr>
+<h2>Security Considerations</h2>
+<ul>
+<li><strong>Authentication</strong>: [How auth works]</li>
+<li><strong>Authorization</strong>: [Role-based access?]</li>
+<li><strong>Data Validation</strong>: [Library used]</li>
+<li><strong>API Security</strong>: [Rate limiting, CORS, etc.]</li>
+<li><strong>Secrets Management</strong>: [How to handle sensitive data]</li>
+</ul>
+<hr>
+<h2>Dependencies</h2>
+<h3>Key Dependencies</h3>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[pkg]</td>
+<td>x.x.x</td>
+<td>[reason]</td>
+</tr>
+<tr>
+<td>[pkg]</td>
+<td>x.x.x</td>
+<td>[reason]</td>
+</tr>
+</tbody></table>
+<h3>Dev Dependencies</h3>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Version</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[pkg]</td>
+<td>x.x.x</td>
+<td>[reason]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Contact</h2>
+<ul>
+<li><strong>Owner</strong>: [Frank - frankx.ai]</li>
+<li><strong>Documentation</strong>: [Link to docs]</li>
+<li><strong>Issues</strong>: [Link to issue tracker]</li>
+</ul>
+<hr>
+<p><em>This CLAUDE.md was created using GenCreator Labs templates by Frank</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

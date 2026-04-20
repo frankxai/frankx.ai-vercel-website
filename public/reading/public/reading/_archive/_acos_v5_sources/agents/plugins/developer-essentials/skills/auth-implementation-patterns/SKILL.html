@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Authentication &amp; Authorization Implementation Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/developer-essentials/skills/auth-implementation-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Authentication &amp; Authorization Implementation Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials">developer-essentials</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fdeveloper-essentials%2Fskills%2Fauth-implementation-patterns">auth-implementation-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: auth-implementation-patterns
+description: Master authentication and authorization patterns including JWT, OAuth2, session management, and RBAC to build secure, scalable access control systems. Use when implementing auth systems, securing APIs, or debugging security issues.</h2>
+<h1>Authentication &amp; Authorization Implementation Patterns</h1>
+<p>Build secure, scalable authentication and authorization systems using industry-standard patterns and modern best practices.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Implementing user authentication systems</li>
+<li>Securing REST or GraphQL APIs</li>
+<li>Adding OAuth2/social login</li>
+<li>Implementing role-based access control (RBAC)</li>
+<li>Designing session management</li>
+<li>Migrating authentication systems</li>
+<li>Debugging auth issues</li>
+<li>Implementing SSO or multi-tenancy</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Authentication vs Authorization</h3>
+<p><strong>Authentication (AuthN)</strong>: Who are you?</p>
+<ul>
+<li>Verifying identity (username/password, OAuth, biometrics)</li>
+<li>Issuing credentials (sessions, tokens)</li>
+<li>Managing login/logout</li>
+</ul>
+<p><strong>Authorization (AuthZ)</strong>: What can you do?</p>
+<ul>
+<li>Permission checking</li>
+<li>Role-based access control (RBAC)</li>
+<li>Resource ownership validation</li>
+<li>Policy enforcement</li>
+</ul>
+<h3>2. Authentication Strategies</h3>
+<p><strong>Session-Based:</strong></p>
+<ul>
+<li>Server stores session state</li>
+<li>Session ID in cookie</li>
+<li>Traditional, simple, stateful</li>
+</ul>
+<p><strong>Token-Based (JWT):</strong></p>
+<ul>
+<li>Stateless, self-contained</li>
+<li>Scales horizontally</li>
+<li>Can store claims</li>
+</ul>
+<p><strong>OAuth2/OpenID Connect:</strong></p>
+<ul>
+<li>Delegate authentication</li>
+<li>Social login (Google, GitHub)</li>
+<li>Enterprise SSO</li>
+</ul>
+<h2>JWT Authentication</h2>
+<h3>Pattern 1: JWT Implementation</h3>
+<pre><code class="language-typescript">// JWT structure: header.payload.signature
+import jwt from &quot;jsonwebtoken&quot;;
+import { Request, Response, NextFunction } from &quot;express&quot;;
+
+interface JWTPayload {
+  userId: string;
+  email: string;
+  role: string;
+  iat: number;
+  exp: number;
+}
+
+// Generate JWT
+function generateTokens(userId: string, email: string, role: string) {
+  const accessToken = jwt.sign(
+    { userId, email, role },
+    process.env.JWT_SECRET!,
+    { expiresIn: &quot;15m&quot; }, // Short-lived
+  );
+
+  const refreshToken = jwt.sign(
+    { userId },
+    process.env.JWT_REFRESH_SECRET!,
+    { expiresIn: &quot;7d&quot; }, // Long-lived
+  );
+
+  return { accessToken, refreshToken };
+}
+
+// Verify JWT
+function verifyToken(token: string): JWTPayload {
+  try {
+    return jwt.verify(token, process.env.JWT_SECRET!) as JWTPayload;
+  } catch (error) {
+    if (error instanceof jwt.TokenExpiredError) {
+      throw new Error(&quot;Token expired&quot;);
+    }
+    if (error instanceof jwt.JsonWebTokenError) {
+      throw new Error(&quot;Invalid token&quot;);
+    }
+    throw error;
+  }
+}
+
+// Middleware
+function authenticate(req: Request, res: Response, next: NextFunction) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader?.startsWith(&quot;Bearer &quot;)) {
+    return res.status(401).json({ error: &quot;No token provided&quot; });
+  }
+
+  const token = authHeader.substring(7);
+  try {
+    const payload = verifyToken(token);
+    req.user = payload; // Attach user to request
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: &quot;Invalid token&quot; });
+  }
+}
+
+// Usage
+app.get(&quot;/api/profile&quot;, authenticate, (req, res) =&gt; {
+  res.json({ user: req.user });
+});
+</code></pre>
+<h3>Pattern 2: Refresh Token Flow</h3>
+<pre><code class="language-typescript">interface StoredRefreshToken {
+  token: string;
+  userId: string;
+  expiresAt: Date;
+  createdAt: Date;
+}
+
+class RefreshTokenService {
+  // Store refresh token in database
+  async storeRefreshToken(userId: string, refreshToken: string) {
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    await db.refreshTokens.create({
+      token: await hash(refreshToken), // Hash before storing
+      userId,
+      expiresAt,
+    });
+  }
+
+  // Refresh access token
+  async refreshAccessToken(refreshToken: string) {
+    // Verify refresh token
+    let payload;
+    try {
+      payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET!) as {
+        userId: string;
+      };
+    } catch {
+      throw new Error(&quot;Invalid refresh token&quot;);
+    }
+
+    // Check if token exists in database
+    const storedToken = await db.refreshTokens.findOne({
+      where: {
+        token: await hash(refreshToken),
+        userId: payload.userId,
+        expiresAt: { $gt: new Date() },
+      },
+    });
+
+    if (!storedToken) {
+      throw new Error(&quot;Refresh token not found or expired&quot;);
+    }
+
+    // Get user
+    const user = await db.users.findById(payload.userId);
+    if (!user) {
+      throw new Error(&quot;User not found&quot;);
+    }
+
+    // Generate new access token
+    const accessToken = jwt.sign(
+      { userId: user.id, email: user.email, role: user.role },
+      process.env.JWT_SECRET!,
+      { expiresIn: &quot;15m&quot; },
+    );
+
+    return { accessToken };
+  }
+
+  // Revoke refresh token (logout)
+  async revokeRefreshToken(refreshToken: string) {
+    await db.refreshTokens.deleteOne({
+      token: await hash(refreshToken),
+    });
+  }
+
+  // Revoke all user tokens (logout all devices)
+  async revokeAllUserTokens(userId: string) {
+    await db.refreshTokens.deleteMany({ userId });
+  }
+}
+
+// API endpoints
+app.post(&quot;/api/auth/refresh&quot;, async (req, res) =&gt; {
+  const { refreshToken } = req.body;
+  try {
+    const { accessToken } =
+      await refreshTokenService.refreshAccessToken(refreshToken);
+    res.json({ accessToken });
+  } catch (error) {
+    res.status(401).json({ error: &quot;Invalid refresh token&quot; });
+  }
+});
+
+app.post(&quot;/api/auth/logout&quot;, authenticate, async (req, res) =&gt; {
+  const { refreshToken } = req.body;
+  await refreshTokenService.revokeRefreshToken(refreshToken);
+  res.json({ message: &quot;Logged out successfully&quot; });
+});
+</code></pre>
+<h2>Session-Based Authentication</h2>
+<h3>Pattern 1: Express Session</h3>
+<pre><code class="language-typescript">import session from &quot;express-session&quot;;
+import RedisStore from &quot;connect-redis&quot;;
+import { createClient } from &quot;redis&quot;;
+
+// Setup Redis for session storage
+const redisClient = createClient({
+  url: process.env.REDIS_URL,
+});
+await redisClient.connect();
+
+app.use(
+  session({
+    store: new RedisStore({ client: redisClient }),
+    secret: process.env.SESSION_SECRET!,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === &quot;production&quot;, // HTTPS only
+      httpOnly: true, // No JavaScript access
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      sameSite: &quot;strict&quot;, // CSRF protection
+    },
+  }),
+);
+
+// Login
+app.post(&quot;/api/auth/login&quot;, async (req, res) =&gt; {
+  const { email, password } = req.body;
+
+  const user = await db.users.findOne({ email });
+  if (!user || !(await verifyPassword(password, user.passwordHash))) {
+    return res.status(401).json({ error: &quot;Invalid credentials&quot; });
+  }
+
+  // Store user in session
+  req.session.userId = user.id;
+  req.session.role = user.role;
+
+  res.json({ user: { id: user.id, email: user.email, role: user.role } });
+});
+
+// Session middleware
+function requireAuth(req: Request, res: Response, next: NextFunction) {
+  if (!req.session.userId) {
+    return res.status(401).json({ error: &quot;Not authenticated&quot; });
+  }
+  next();
+}
+
+// Protected route
+app.get(&quot;/api/profile&quot;, requireAuth, async (req, res) =&gt; {
+  const user = await db.users.findById(req.session.userId);
+  res.json({ user });
+});
+
+// Logout
+app.post(&quot;/api/auth/logout&quot;, (req, res) =&gt; {
+  req.session.destroy((err) =&gt; {
+    if (err) {
+      return res.status(500).json({ error: &quot;Logout failed&quot; });
+    }
+    res.clearCookie(&quot;connect.sid&quot;);
+    res.json({ message: &quot;Logged out successfully&quot; });
+  });
+});
+</code></pre>
+<h2>OAuth2 / Social Login</h2>
+<h3>Pattern 1: OAuth2 with Passport.js</h3>
+<pre><code class="language-typescript">import passport from &quot;passport&quot;;
+import { Strategy as GoogleStrategy } from &quot;passport-google-oauth20&quot;;
+import { Strategy as GitHubStrategy } from &quot;passport-github2&quot;;
+
+// Google OAuth
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      callbackURL: &quot;/api/auth/google/callback&quot;,
+    },
+    async (accessToken, refreshToken, profile, done) =&gt; {
+      try {
+        // Find or create user
+        let user = await db.users.findOne({
+          googleId: profile.id,
+        });
+
+        if (!user) {
+          user = await db.users.create({
+            googleId: profile.id,
+            email: profile.emails?.[0]?.value,
+            name: profile.displayName,
+            avatar: profile.photos?.[0]?.value,
+          });
+        }
+
+        return done(null, user);
+      } catch (error) {
+        return done(error, undefined);
+      }
+    },
+  ),
+);
+
+// Routes
+app.get(
+  &quot;/api/auth/google&quot;,
+  passport.authenticate(&quot;google&quot;, {
+    scope: [&quot;profile&quot;, &quot;email&quot;],
+  }),
+);
+
+app.get(
+  &quot;/api/auth/google/callback&quot;,
+  passport.authenticate(&quot;google&quot;, { session: false }),
+  (req, res) =&gt; {
+    // Generate JWT
+    const tokens = generateTokens(req.user.id, req.user.email, req.user.role);
+    // Redirect to frontend with token
+    res.redirect(
+      `${process.env.FRONTEND_URL}/auth/callback?token=${tokens.accessToken}`,
+    );
+  },
+);
+</code></pre>
+<h2>Authorization Patterns</h2>
+<h3>Pattern 1: Role-Based Access Control (RBAC)</h3>
+<pre><code class="language-typescript">enum Role {
+  USER = &quot;user&quot;,
+  MODERATOR = &quot;moderator&quot;,
+  ADMIN = &quot;admin&quot;,
+}
+
+const roleHierarchy: Record&lt;Role, Role[]&gt; = {
+  [Role.ADMIN]: [Role.ADMIN, Role.MODERATOR, Role.USER],
+  [Role.MODERATOR]: [Role.MODERATOR, Role.USER],
+  [Role.USER]: [Role.USER],
+};
+
+function hasRole(userRole: Role, requiredRole: Role): boolean {
+  return roleHierarchy[userRole].includes(requiredRole);
+}
+
+// Middleware
+function requireRole(...roles: Role[]) {
+  return (req: Request, res: Response, next: NextFunction) =&gt; {
+    if (!req.user) {
+      return res.status(401).json({ error: &quot;Not authenticated&quot; });
+    }
+
+    if (!roles.some((role) =&gt; hasRole(req.user.role, role))) {
+      return res.status(403).json({ error: &quot;Insufficient permissions&quot; });
+    }
+
+    next();
+  };
+}
+
+// Usage
+app.delete(
+  &quot;/api/users/:id&quot;,
+  authenticate,
+  requireRole(Role.ADMIN),
+  async (req, res) =&gt; {
+    // Only admins can delete users
+    await db.users.delete(req.params.id);
+    res.json({ message: &quot;User deleted&quot; });
+  },
+);
+</code></pre>
+<h3>Pattern 2: Permission-Based Access Control</h3>
+<pre><code class="language-typescript">enum Permission {
+  READ_USERS = &quot;read:users&quot;,
+  WRITE_USERS = &quot;write:users&quot;,
+  DELETE_USERS = &quot;delete:users&quot;,
+  READ_POSTS = &quot;read:posts&quot;,
+  WRITE_POSTS = &quot;write:posts&quot;,
+}
+
+const rolePermissions: Record&lt;Role, Permission[]&gt; = {
+  [Role.USER]: [Permission.READ_POSTS, Permission.WRITE_POSTS],
+  [Role.MODERATOR]: [
+    Permission.READ_POSTS,
+    Permission.WRITE_POSTS,
+    Permission.READ_USERS,
+  ],
+  [Role.ADMIN]: Object.values(Permission),
+};
+
+function hasPermission(userRole: Role, permission: Permission): boolean {
+  return rolePermissions[userRole]?.includes(permission) ?? false;
+}
+
+function requirePermission(...permissions: Permission[]) {
+  return (req: Request, res: Response, next: NextFunction) =&gt; {
+    if (!req.user) {
+      return res.status(401).json({ error: &quot;Not authenticated&quot; });
+    }
+
+    const hasAllPermissions = permissions.every((permission) =&gt;
+      hasPermission(req.user.role, permission),
+    );
+
+    if (!hasAllPermissions) {
+      return res.status(403).json({ error: &quot;Insufficient permissions&quot; });
+    }
+
+    next();
+  };
+}
+
+// Usage
+app.get(
+  &quot;/api/users&quot;,
+  authenticate,
+  requirePermission(Permission.READ_USERS),
+  async (req, res) =&gt; {
+    const users = await db.users.findAll();
+    res.json({ users });
+  },
+);
+</code></pre>
+<h3>Pattern 3: Resource Ownership</h3>
+<pre><code class="language-typescript">// Check if user owns resource
+async function requireOwnership(
+  resourceType: &quot;post&quot; | &quot;comment&quot;,
+  resourceIdParam: string = &quot;id&quot;,
+) {
+  return async (req: Request, res: Response, next: NextFunction) =&gt; {
+    if (!req.user) {
+      return res.status(401).json({ error: &quot;Not authenticated&quot; });
+    }
+
+    const resourceId = req.params[resourceIdParam];
+
+    // Admins can access anything
+    if (req.user.role === Role.ADMIN) {
+      return next();
+    }
+
+    // Check ownership
+    let resource;
+    if (resourceType === &quot;post&quot;) {
+      resource = await db.posts.findById(resourceId);
+    } else if (resourceType === &quot;comment&quot;) {
+      resource = await db.comments.findById(resourceId);
+    }
+
+    if (!resource) {
+      return res.status(404).json({ error: &quot;Resource not found&quot; });
+    }
+
+    if (resource.userId !== req.user.userId) {
+      return res.status(403).json({ error: &quot;Not authorized&quot; });
+    }
+
+    next();
+  };
+}
+
+// Usage
+app.put(
+  &quot;/api/posts/:id&quot;,
+  authenticate,
+  requireOwnership(&quot;post&quot;),
+  async (req, res) =&gt; {
+    // User can only update their own posts
+    const post = await db.posts.update(req.params.id, req.body);
+    res.json({ post });
+  },
+);
+</code></pre>
+<h2>Security Best Practices</h2>
+<h3>Pattern 1: Password Security</h3>
+<pre><code class="language-typescript">import bcrypt from &quot;bcrypt&quot;;
+import { z } from &quot;zod&quot;;
+
+// Password validation schema
+const passwordSchema = z
+  .string()
+  .min(12, &quot;Password must be at least 12 characters&quot;)
+  .regex(/[A-Z]/, &quot;Password must contain uppercase letter&quot;)
+  .regex(/[a-z]/, &quot;Password must contain lowercase letter&quot;)
+  .regex(/[0-9]/, &quot;Password must contain number&quot;)
+  .regex(/[^A-Za-z0-9]/, &quot;Password must contain special character&quot;);
+
+// Hash password
+async function hashPassword(password: string): Promise&lt;string&gt; {
+  const saltRounds = 12; // 2^12 iterations
+  return bcrypt.hash(password, saltRounds);
+}
+
+// Verify password
+async function verifyPassword(
+  password: string,
+  hash: string,
+): Promise&lt;boolean&gt; {
+  return bcrypt.compare(password, hash);
+}
+
+// Registration with password validation
+app.post(&quot;/api/auth/register&quot;, async (req, res) =&gt; {
+  try {
+    const { email, password } = req.body;
+
+    // Validate password
+    passwordSchema.parse(password);
+
+    // Check if user exists
+    const existingUser = await db.users.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: &quot;Email already registered&quot; });
+    }
+
+    // Hash password
+    const passwordHash = await hashPassword(password);
+
+    // Create user
+    const user = await db.users.create({
+      email,
+      passwordHash,
+    });
+
+    // Generate tokens
+    const tokens = generateTokens(user.id, user.email, user.role);
+
+    res.status(201).json({
+      user: { id: user.id, email: user.email },
+      ...tokens,
+    });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return res.status(400).json({ error: error.errors[0].message });
+    }
+    res.status(500).json({ error: &quot;Registration failed&quot; });
+  }
+});
+</code></pre>
+<h3>Pattern 2: Rate Limiting</h3>
+<pre><code class="language-typescript">import rateLimit from &quot;express-rate-limit&quot;;
+import RedisStore from &quot;rate-limit-redis&quot;;
+
+// Login rate limiter
+const loginLimiter = rateLimit({
+  store: new RedisStore({ client: redisClient }),
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // 5 attempts
+  message: &quot;Too many login attempts, please try again later&quot;,
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// API rate limiter
+const apiLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // 100 requests per minute
+  standardHeaders: true,
+});
+
+// Apply to routes
+app.post(&quot;/api/auth/login&quot;, loginLimiter, async (req, res) =&gt; {
+  // Login logic
+});
+
+app.use(&quot;/api/&quot;, apiLimiter);
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Never Store Plain Passwords</strong>: Always hash with bcrypt/argon2</li>
+<li><strong>Use HTTPS</strong>: Encrypt data in transit</li>
+<li><strong>Short-Lived Access Tokens</strong>: 15-30 minutes max</li>
+<li><strong>Secure Cookies</strong>: httpOnly, secure, sameSite flags</li>
+<li><strong>Validate All Input</strong>: Email format, password strength</li>
+<li><strong>Rate Limit Auth Endpoints</strong>: Prevent brute force attacks</li>
+<li><strong>Implement CSRF Protection</strong>: For session-based auth</li>
+<li><strong>Rotate Secrets Regularly</strong>: JWT secrets, session secrets</li>
+<li><strong>Log Security Events</strong>: Login attempts, failed auth</li>
+<li><strong>Use MFA When Possible</strong>: Extra security layer</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li><strong>Weak Passwords</strong>: Enforce strong password policies</li>
+<li><strong>JWT in localStorage</strong>: Vulnerable to XSS, use httpOnly cookies</li>
+<li><strong>No Token Expiration</strong>: Tokens should expire</li>
+<li><strong>Client-Side Auth Checks Only</strong>: Always validate server-side</li>
+<li><strong>Insecure Password Reset</strong>: Use secure tokens with expiration</li>
+<li><strong>No Rate Limiting</strong>: Vulnerable to brute force</li>
+<li><strong>Trusting Client Data</strong>: Always validate on server</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/jwt-best-practices.md</strong>: JWT implementation guide</li>
+<li><strong>references/oauth2-flows.md</strong>: OAuth2 flow diagrams and examples</li>
+<li><strong>references/session-security.md</strong>: Secure session management</li>
+<li><strong>assets/auth-security-checklist.md</strong>: Security review checklist</li>
+<li><strong>assets/password-policy-template.md</strong>: Password requirements template</li>
+<li><strong>scripts/token-validator.ts</strong>: JWT validation utility</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

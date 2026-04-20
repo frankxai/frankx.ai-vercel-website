@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>LangGraph Patterns Expert Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/langgraph-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">LangGraph Patterns Expert Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Flanggraph-patterns">langgraph-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: LangGraph Patterns Expert
+description: Build production-grade agentic workflows with LangGraph using graph-based orchestration, state machines, human-in-the-loop, and advanced control flow
+version: 1.0.0</h2>
+<h1>LangGraph Patterns Expert Skill</h1>
+<h2>Purpose</h2>
+<p>Master LangGraph for building production-ready AI agents with fine-grained control, checkpointing, streaming, and complex state management.</p>
+<h2>Core Philosophy</h2>
+<p><strong>LangGraph is:</strong> An orchestration framework with both declarative and imperative APIs focused on control and durability for production agents.</p>
+<p><strong>Not:</strong> High-level abstractions that hide complexity - instead provides building blocks for full control.</p>
+<p><strong>Migration:</strong> LangGraph replaces legacy AgentExecutor - migrate all old code.</p>
+<h2>The Six Production Features</h2>
+<ol>
+<li><strong>Parallelization</strong> - Run multiple nodes concurrently</li>
+<li><strong>Streaming</strong> - Real-time partial outputs</li>
+<li><strong>Checkpointing</strong> - Pause/resume execution</li>
+<li><strong>Human-in-the-Loop</strong> - Approval/correction workflows</li>
+<li><strong>Tracing</strong> - Observability and debugging</li>
+<li><strong>Task Queue</strong> - Asynchronous job processing</li>
+</ol>
+<h2>Graph-Based Architecture</h2>
+<pre><code class="language-python">from langgraph.graph import StateGraph, END
+
+# Define state
+class AgentState(TypedDict):
+    messages: Annotated[list, add_messages]
+    next_action: str
+
+# Create graph
+graph = StateGraph(AgentState)
+
+# Add nodes
+graph.add_node(&quot;analyze&quot;, analyze_node)
+graph.add_node(&quot;execute&quot;, execute_node)
+graph.add_node(&quot;verify&quot;, verify_node)
+
+# Define edges
+graph.add_edge(&quot;analyze&quot;, &quot;execute&quot;)
+graph.add_conditional_edges(
+    &quot;execute&quot;,
+    should_verify,
+    {&quot;yes&quot;: &quot;verify&quot;, &quot;no&quot;: END}
+)
+
+# Compile
+app = graph.compile()
+</code></pre>
+<h2>Core Patterns</h2>
+<h3>Pattern 1: Agent with Tools</h3>
+<pre><code class="language-python">from langgraph.prebuilt import create_react_agent
+
+tools = [search_tool, calculator_tool, db_query_tool]
+
+agent = create_react_agent(
+    model=llm,
+    tools=tools,
+    checkpointer=MemorySaver()
+)
+
+# Run with streaming
+for chunk in agent.stream({&quot;messages&quot;: [(&quot;user&quot;, &quot;Analyze sales data&quot;)]}):
+    print(chunk)
+</code></pre>
+<h3>Pattern 2: Multi-Agent Collaboration</h3>
+<pre><code class="language-python"># Supervisor coordinates specialist agents
+supervisor_graph = StateGraph(SupervisorState)
+
+supervisor_graph.add_node(&quot;supervisor&quot;, supervisor_node)
+supervisor_graph.add_node(&quot;researcher&quot;, researcher_agent)
+supervisor_graph.add_node(&quot;analyst&quot;, analyst_agent)
+supervisor_graph.add_node(&quot;writer&quot;, writer_agent)
+
+# Supervisor routes to specialists
+supervisor_graph.add_conditional_edges(
+    &quot;supervisor&quot;,
+    route_to_agent,
+    {
+        &quot;research&quot;: &quot;researcher&quot;,
+        &quot;analyze&quot;: &quot;analyst&quot;,
+        &quot;write&quot;: &quot;writer&quot;,
+        &quot;finish&quot;: END
+    }
+)
+</code></pre>
+<h3>Pattern 3: Human-in-the-Loop</h3>
+<pre><code class="language-python">from langgraph.checkpoint.sqlite import SqliteSaver
+
+checkpointer = SqliteSaver.from_conn_string(&quot;checkpoints.db&quot;)
+
+graph = StateGraph(State)
+graph.add_node(&quot;propose_action&quot;, propose)
+graph.add_node(&quot;human_approval&quot;, interrupt())  # Pauses here
+graph.add_node(&quot;execute_action&quot;, execute)
+
+app = graph.compile(checkpointer=checkpointer)
+
+# Run until human input needed
+result = app.invoke(input, config={&quot;configurable&quot;: {&quot;thread_id&quot;: &quot;123&quot;}})
+
+# Human reviews, then resume
+app.invoke(None, config={&quot;configurable&quot;: {&quot;thread_id&quot;: &quot;123&quot;}})
+</code></pre>
+<h2>State Management</h2>
+<h3>Short-Term Memory (Session)</h3>
+<pre><code class="language-python">class ConversationState(TypedDict):
+    messages: Annotated[list, add_messages]
+    context: dict
+
+checkpointer = MemorySaver()
+app = graph.compile(checkpointer=checkpointer)
+
+# Maintains context across turns
+config = {&quot;configurable&quot;: {&quot;thread_id&quot;: &quot;user_123&quot;}}
+app.invoke({&quot;messages&quot;: [(&quot;user&quot;, &quot;Hello&quot;)]}, config)
+app.invoke({&quot;messages&quot;: [(&quot;user&quot;, &quot;What did I just say?&quot;)]}, config)
+</code></pre>
+<h3>Long-Term Memory (Persistent)</h3>
+<pre><code class="language-python">from langgraph.checkpoint.postgres import PostgresSaver
+
+checkpointer = PostgresSaver.from_conn_string(db_url)
+
+# Persists across sessions
+app = graph.compile(checkpointer=checkpointer)
+</code></pre>
+<h2>Advanced Control Flow</h2>
+<h3>Conditional Routing</h3>
+<pre><code class="language-python">def route_next(state):
+    if state[&quot;confidence&quot;] &gt; 0.9:
+        return &quot;approve&quot;
+    elif state[&quot;confidence&quot;] &gt; 0.5:
+        return &quot;review&quot;
+    else:
+        return &quot;reject&quot;
+
+graph.add_conditional_edges(
+    &quot;classifier&quot;,
+    route_next,
+    {
+        &quot;approve&quot;: &quot;auto_approve&quot;,
+        &quot;review&quot;: &quot;human_review&quot;,
+        &quot;reject&quot;: &quot;reject_node&quot;
+    }
+)
+</code></pre>
+<h3>Cycles and Loops</h3>
+<pre><code class="language-python">def should_continue(state):
+    if state[&quot;iterations&quot;] &lt; 3 and not state[&quot;success&quot;]:
+        return &quot;retry&quot;
+    return &quot;finish&quot;
+
+graph.add_conditional_edges(
+    &quot;process&quot;,
+    should_continue,
+    {&quot;retry&quot;: &quot;process&quot;, &quot;finish&quot;: END}
+)
+</code></pre>
+<h3>Parallel Execution</h3>
+<pre><code class="language-python">from langgraph.graph import START
+
+# Fan out to parallel nodes
+graph.add_edge(START, [&quot;agent_a&quot;, &quot;agent_b&quot;, &quot;agent_c&quot;])
+
+# Fan in to aggregator
+graph.add_edge([&quot;agent_a&quot;, &quot;agent_b&quot;, &quot;agent_c&quot;], &quot;synthesize&quot;)
+</code></pre>
+<h2>Production Deployment</h2>
+<h3>Streaming for UX</h3>
+<pre><code class="language-python">async for event in app.astream_events(input, version=&quot;v2&quot;):
+    if event[&quot;event&quot;] == &quot;on_chat_model_stream&quot;:
+        print(event[&quot;data&quot;][&quot;chunk&quot;].content, end=&quot;&quot;)
+</code></pre>
+<h3>Error Handling</h3>
+<pre><code class="language-python">def error_handler(state):
+    try:
+        return execute_risky_operation(state)
+    except Exception as e:
+        return {&quot;error&quot;: str(e), &quot;next&quot;: &quot;fallback&quot;}
+
+graph.add_node(&quot;risky_op&quot;, error_handler)
+graph.add_conditional_edges(
+    &quot;risky_op&quot;,
+    lambda s: &quot;fallback&quot; if &quot;error&quot; in s else &quot;success&quot;
+)
+</code></pre>
+<h3>Monitoring with LangSmith</h3>
+<pre><code class="language-python">import os
+os.environ[&quot;LANGCHAIN_TRACING_V2&quot;] = &quot;true&quot;
+os.environ[&quot;LANGCHAIN_API_KEY&quot;] = &quot;...&quot;
+
+# All agent actions automatically logged to LangSmith
+app.invoke(input)
+</code></pre>
+<h2>Best Practices</h2>
+<p><strong>DO:</strong>
+✅ Use checkpointing for long-running tasks
+✅ Stream outputs for better UX
+✅ Implement human approval for critical actions
+✅ Use conditional edges for complex routing
+✅ Leverage parallel execution when possible
+✅ Monitor with LangSmith in production</p>
+<p><strong>DON&#39;T:</strong>
+❌ Use AgentExecutor (deprecated)
+❌ Skip error handling on nodes
+❌ Forget to set thread_id for stateful conversations
+❌ Over-complicate graphs unnecessarily
+❌ Ignore memory management for long conversations</p>
+<h2>Integration Examples</h2>
+<h3>With Claude</h3>
+<pre><code class="language-python">from langchain_anthropic import ChatAnthropic
+
+llm = ChatAnthropic(model=&quot;claude-sonnet-4-5&quot;)
+agent = create_react_agent(llm, tools)
+</code></pre>
+<h3>With OpenAI</h3>
+<pre><code class="language-python">from langchain_openai import ChatOpenAI
+
+llm = ChatOpenAI(model=&quot;gpt-4o&quot;)
+agent = create_react_agent(llm, tools)
+</code></pre>
+<h3>With MCP Servers</h3>
+<pre><code class="language-python">from langchain_mcp import MCPTool
+
+github_tool = MCPTool.from_server(&quot;github-mcp&quot;)
+tools = [github_tool, ...]
+agent = create_react_agent(llm, tools)
+</code></pre>
+<h2>Decision Framework</h2>
+<p><strong>Use LangGraph when:</strong></p>
+<ul>
+<li>Need fine-grained control over agent execution</li>
+<li>Building complex state machines</li>
+<li>Require human-in-the-loop workflows</li>
+<li>Want production-grade durability (checkpointing)</li>
+<li>Need to support multiple LLM providers</li>
+</ul>
+<p><strong>Use alternatives when:</strong></p>
+<ul>
+<li>Want managed platform (use OpenAI AgentKit)</li>
+<li>Need visual builder (use AgentKit)</li>
+<li>Want simpler API (use Claude SDK directly)</li>
+<li>Building on Oracle Cloud only (use Oracle ADK)</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li>Docs: <a href="https://langchain-ai.github.io/langgraph/">https://langchain-ai.github.io/langgraph/</a></li>
+<li>GitHub: <a href="https://github.com/langchain-ai/langgraph">https://github.com/langchain-ai/langgraph</a></li>
+<li>Tutorials: <a href="https://langchain-ai.github.io/langgraph/tutorials/">https://langchain-ai.github.io/langgraph/tutorials/</a></li>
+</ul>
+<hr>
+<p><em>LangGraph is the production-grade choice for complex agentic workflows requiring maximum control.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

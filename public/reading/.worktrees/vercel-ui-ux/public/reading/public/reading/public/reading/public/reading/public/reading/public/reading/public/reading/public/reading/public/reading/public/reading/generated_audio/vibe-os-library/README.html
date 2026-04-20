@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Vibe OS Audio Library</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="generated_audio/vibe-os-library/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Vibe OS Audio Library</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#generated_audio">generated_audio</a> / <a href="index.html#generated_audio%2Fvibe-os-library">vibe-os-library</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Vibe OS Audio Library</h1>
+<p><em>Evidence-Based Frequency Healing Audio Collection</em></p>
+<hr>
+<h2>Quick Start</h2>
+<ol>
+<li><strong>Use headphones for binaural beats</strong> (stereo files) - the effect requires different frequencies in each ear</li>
+<li><strong>Speakers work for pure tones</strong> (mono files) and isochronic tones</li>
+<li><strong>Listen for 5+ minutes</strong> - research shows effects require minimum exposure time</li>
+</ol>
+<hr>
+<h2>Audio Files Inventory</h2>
+<h3>Verified Analysis (January 2025)</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Type</th>
+<th>Channels</th>
+<th>Frequencies</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>432hz_universal_3min.wav</code></td>
+<td>Pure Tone</td>
+<td>Mono</td>
+<td>432 Hz + harmonics</td>
+<td>Relaxation, meditation</td>
+</tr>
+<tr>
+<td><code>432hz_theta_binaural_3min.wav</code></td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td>L:432Hz R:438Hz (6Hz beat)</td>
+<td>Deep meditation, creativity</td>
+</tr>
+<tr>
+<td><code>432hz_alpha_binaural_3min.wav</code></td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td>L:432Hz R:442Hz (10Hz beat)</td>
+<td>Calm focus, stress relief</td>
+</tr>
+<tr>
+<td><code>528hz_love_frequency_3min.wav</code></td>
+<td>Pure Tone</td>
+<td>Mono</td>
+<td>528 Hz + harmonics</td>
+<td>Anxiety reduction, healing</td>
+</tr>
+<tr>
+<td><code>528hz_isochronic_alpha_3min.wav</code></td>
+<td>Isochronic</td>
+<td>Mono</td>
+<td>528Hz pulsing at 10Hz</td>
+<td>Focus (no headphones needed)</td>
+</tr>
+<tr>
+<td><code>theta_meditation_3min.wav</code></td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td>L:300Hz R:306Hz (6Hz beat)</td>
+<td>Meditation, creativity</td>
+</tr>
+<tr>
+<td><code>alpha_focus_3min.wav</code></td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td>L:400Hz R:410Hz (10Hz beat)</td>
+<td>Work focus, studying</td>
+</tr>
+<tr>
+<td><code>delta_sleep_3min.wav</code></td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td>L:200Hz R:202Hz (2Hz beat)</td>
+<td>Deep sleep, healing</td>
+</tr>
+<tr>
+<td><code>gamma_cognition_3min.wav</code></td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td>L:300Hz R:340Hz (40Hz beat)</td>
+<td>Peak cognition, memory</td>
+</tr>
+<tr>
+<td><code>schumann_resonance_7.83hz_3min.wav</code></td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td>L:432Hz R:440Hz (7.83Hz beat)</td>
+<td>Grounding, theta state</td>
+</tr>
+<tr>
+<td><code>theta_with_pink_noise_3min.wav</code></td>
+<td>Binaural+Noise</td>
+<td>Stereo</td>
+<td>L:432Hz R:438Hz + pink noise</td>
+<td>Meditation with masking</td>
+</tr>
+<tr>
+<td><code>solfeggio_396hz_liberation_2min.wav</code></td>
+<td>Pure Tone</td>
+<td>Mono</td>
+<td>396 Hz + harmonics</td>
+<td>Root chakra, liberation</td>
+</tr>
+<tr>
+<td><code>solfeggio_639hz_heart_2min.wav</code></td>
+<td>Pure Tone</td>
+<td>Mono</td>
+<td>639 Hz + harmonics</td>
+<td>Heart chakra, relationships</td>
+</tr>
+<tr>
+<td><code>solfeggio_963hz_crown_2min.wav</code></td>
+<td>Pure Tone</td>
+<td>Mono</td>
+<td>963 Hz + harmonics</td>
+<td>Crown chakra, awareness</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>How It Works</h2>
+<h3>1. Pure Tones (Mono Files)</h3>
+<pre><code>Sound Wave:  ∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿
+             Continuous sine wave at specific frequency
+</code></pre>
+<p><strong>How they work</strong>: A single frequency plays continuously. The specific Hz value may have physiological effects:</p>
+<ul>
+<li><strong>432 Hz</strong>: Studies show reduced heart rate (-4.79 bpm) and blood pressure</li>
+<li><strong>528 Hz</strong>: Research indicates reduced cortisol, increased oxytocin</li>
+</ul>
+<p><strong>Works with</strong>: Speakers or headphones</p>
+<h3>2. Binaural Beats (Stereo Files)</h3>
+<pre><code>Left Ear:   ∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿  (e.g., 432 Hz)
+Right Ear:  ∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿   (e.g., 438 Hz)
+                              ↓
+Brain:      ████████████████   Perceives 6 Hz &quot;beat&quot;
+</code></pre>
+<p><strong>How they work</strong>: Different frequencies play in each ear. Your brain perceives the <em>difference</em> as a pulsing beat. This can entrain brainwaves to match.</p>
+<p><strong>Brainwave States</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Beat Frequency</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Delta</td>
+<td>0.5-4 Hz</td>
+<td>Deep sleep, healing</td>
+</tr>
+<tr>
+<td>Theta</td>
+<td>4-8 Hz</td>
+<td>Meditation, creativity</td>
+</tr>
+<tr>
+<td>Alpha</td>
+<td>8-13 Hz</td>
+<td>Relaxation, focus</td>
+</tr>
+<tr>
+<td>Beta</td>
+<td>13-30 Hz</td>
+<td>Alertness, concentration</td>
+</tr>
+<tr>
+<td>Gamma</td>
+<td>30-100 Hz</td>
+<td>Peak cognition, insight</td>
+</tr>
+</tbody></table>
+<p><strong>CRITICAL</strong>: Binaural beats <strong>require headphones</strong>. Without them, both ears hear both frequencies and no &quot;beat&quot; is perceived.</p>
+<h3>3. Isochronic Tones</h3>
+<pre><code>Sound:  ████░░░░████░░░░████░░░░████
+        ON  OFF  ON  OFF  ON  OFF
+        (Pulsing at target brainwave frequency)
+</code></pre>
+<p><strong>How they work</strong>: A single tone rapidly turns on/off at the target brainwave frequency. Unlike binaural beats, these work with speakers.</p>
+<p><strong>Works with</strong>: Speakers or headphones</p>
+<hr>
+<h2>Why Schumann and 528 Hz May Sound Similar</h2>
+<p>If you&#39;re not using headphones, here&#39;s what happens:</p>
+<p><strong>With Headphones</strong> (CORRECT):</p>
+<pre><code>Schumann:  L: 432 Hz → Left ear only
+           R: 440 Hz → Right ear only
+           Brain perceives 7.83 Hz beat (theta/Schumann)
+
+528 Hz:    Both ears: 528 Hz pure tone
+           No beat, just continuous frequency
+</code></pre>
+<p><strong>Without Headphones</strong> (INCORRECT for binaural):</p>
+<pre><code>Schumann:  Both ears hear 432 Hz AND 440 Hz mixed
+           No binaural effect - sounds like buzzing chord
+
+528 Hz:    Both ears hear 528 Hz
+           Sounds like continuous tone
+</code></pre>
+<p><strong>The fix</strong>: Use headphones for any stereo/binaural files.</p>
+<hr>
+<h2>Audio Quality Specifications</h2>
+<p>All files generated with research-optimized settings:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sample Rate</td>
+<td>48,000 Hz</td>
+<td>Studio quality, captures full spectrum</td>
+</tr>
+<tr>
+<td>Bit Depth</td>
+<td>24-bit</td>
+<td>Professional dynamic range</td>
+</tr>
+<tr>
+<td>Peak Level</td>
+<td>-0.1 dBFS</td>
+<td>Maximum loudness without clipping</td>
+</tr>
+<tr>
+<td>Fade In/Out</td>
+<td>3 seconds</td>
+<td>Prevents audio clicks</td>
+</tr>
+<tr>
+<td>Harmonics</td>
+<td>Warm profile</td>
+<td>Even harmonics for pleasant listening</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Research Citations</h2>
+<h3>Strong Evidence</h3>
+<p><strong>Binaural Beats Work</strong></p>
+<ul>
+<li>PMC10198548 (2023): Systematic review of 14 studies confirmed brain entrainment</li>
+<li>Scientific Reports (Feb 2025): 80-participant study with EEG confirmation</li>
+<li>PubMed 39699823 (Dec 2024): 84-study review showing improvements in pain, sleep, mood</li>
+</ul>
+<h3>Moderate-Strong Evidence</h3>
+<p><strong>432 Hz Reduces Stress</strong></p>
+<ul>
+<li>PubMed 31031095 (2019): Heart rate -4.79 bpm (p=0.05), double-blind crossover</li>
+<li>PubMed 35545982 (2022): COVID nurses showed reduced BP, heart rate, respiratory rate</li>
+<li>Mattioli1885 (2020): Sleep improvement +3.6 points in spinal cord injury patients</li>
+</ul>
+<p><strong>528 Hz Reduces Anxiety</strong></p>
+<ul>
+<li>SCIRP 87146 (2018): Decreased cortisol, increased oxytocin after 5 min exposure</li>
+<li>2023 Study: Anxiety reduction of 4.625 points (p=0.006)</li>
+</ul>
+<h3>Weak/Theoretical Evidence</h3>
+<p>Most solfeggio frequencies (except 528 Hz) lack controlled studies. Include for traditional/experimental use.</p>
+<hr>
+<h2>Usage Recommendations</h2>
+<h3>For Meditation (Theta)</h3>
+<pre><code>File: theta_meditation_3min.wav or 432hz_theta_binaural_3min.wav
+Requirements: Headphones
+Duration: 10-20 minutes recommended
+</code></pre>
+<h3>For Work Focus (Alpha/Beta)</h3>
+<pre><code>File: alpha_focus_3min.wav
+Requirements: Headphones
+Duration: Loop during work session
+</code></pre>
+<h3>For Sleep (Delta)</h3>
+<pre><code>File: delta_sleep_3min.wav
+Requirements: Comfortable headphones or sleep earbuds
+Duration: Loop through night or first hour
+</code></pre>
+<h3>For Anxiety Relief</h3>
+<pre><code>File: 528hz_love_frequency_3min.wav
+Requirements: Speakers or headphones
+Duration: Minimum 5 minutes (per research)
+</code></pre>
+<h3>For Grounding</h3>
+<pre><code>File: schumann_resonance_7.83hz_3min.wav
+Requirements: Headphones (binaural)
+Duration: 10+ minutes
+</code></pre>
+<hr>
+<h2>Generation System</h2>
+<p>Files generated using <code>/home/user/.claude/tools/frequency-generator-pro.py</code></p>
+<p>Research knowledge base: <code>/home/user/.claude/knowledge/frequency-healing-research.md</code></p>
+<h3>Commands Used</h3>
+<pre><code class="language-bash"># Pure 432 Hz with warm harmonics
+python frequency-generator-pro.py --freq 432 --duration 180 --quality high --harmonics warm
+
+# Theta binaural (6 Hz beat on 432 Hz carrier)
+python frequency-generator-pro.py --binaural 432 6 --duration 180 --quality high --harmonics
+
+# Schumann resonance (7.83 Hz beat)
+python frequency-generator-pro.py --binaural 432 7.83 --duration 180 --quality high
+
+# 528 Hz love frequency
+python frequency-generator-pro.py --freq 528 --duration 180 --quality high --harmonics warm
+</code></pre>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>&quot;All files sound the same&quot;</h3>
+<p>→ <strong>Use headphones</strong> for binaural beats (stereo files)</p>
+<h3>&quot;I don&#39;t feel anything&quot;</h3>
+<p>→ Listen for minimum 5-10 minutes
+→ Reduce external distractions
+→ Effects are subtle, not dramatic</p>
+<h3>&quot;The tone is annoying&quot;</h3>
+<p>→ Lower volume
+→ Try files with pink noise added
+→ Some people prefer isochronic over binaural</p>
+<h3>&quot;Which file should I use?&quot;</h3>
+<p>→ See Usage Recommendations above
+→ Match brainwave state to your goal</p>
+<hr>
+<h2>Disclaimer</h2>
+<p>These audio files are for wellness and personal experimentation. While research shows promising effects, frequency therapy should not replace medical treatment. Consult healthcare providers for medical conditions.</p>
+<hr>
+<p><em>Part of the Vibe OS System - FrankX Superintelligent Agent System</em>
+<em>Generated: January 2025</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

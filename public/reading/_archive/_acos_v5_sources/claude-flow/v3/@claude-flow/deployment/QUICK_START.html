@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Quick Start Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/deployment/QUICK_START.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Quick Start Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fdeployment">deployment</a> / <span>QUICK_START.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Quick Start Guide</h1>
+<h2>Installation</h2>
+<pre><code class="language-bash">npm install @claude-flow/deployment
+</code></pre>
+<h2>Common Commands</h2>
+<h3>1. Patch Release (1.0.0 → 1.0.1)</h3>
+<pre><code class="language-typescript">import { prepareRelease, publishToNpm } from &#39;@claude-flow/deployment&#39;;
+
+await prepareRelease({ bumpType: &#39;patch&#39; });
+await publishToNpm({ tag: &#39;latest&#39; });
+</code></pre>
+<h3>2. Minor Release (1.0.0 → 1.1.0)</h3>
+<pre><code class="language-typescript">await prepareRelease({ bumpType: &#39;minor&#39; });
+await publishToNpm({ tag: &#39;latest&#39; });
+</code></pre>
+<h3>3. Major Release (1.0.0 → 2.0.0)</h3>
+<pre><code class="language-typescript">await prepareRelease({ bumpType: &#39;major&#39; });
+await publishToNpm({ tag: &#39;latest&#39; });
+</code></pre>
+<h3>4. Alpha Release (1.0.0 → 1.0.0-alpha.1)</h3>
+<pre><code class="language-typescript">await prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;alpha&#39; });
+await publishToNpm({ tag: &#39;alpha&#39; });
+</code></pre>
+<h3>5. Dry Run (Test without changes)</h3>
+<pre><code class="language-typescript">await prepareRelease({ bumpType: &#39;minor&#39;, dryRun: true });
+await publishToNpm({ tag: &#39;latest&#39;, dryRun: true });
+</code></pre>
+<h3>6. Validate Package</h3>
+<pre><code class="language-typescript">import { validate } from &#39;@claude-flow/deployment&#39;;
+
+const result = await validate();
+if (!result.valid) {
+  console.error(result.errors);
+}
+</code></pre>
+<h2>Complete Workflow</h2>
+<pre><code class="language-typescript">import { validate, prepareRelease, publishToNpm } from &#39;@claude-flow/deployment&#39;;
+
+// 1. Validate
+const validation = await validate();
+if (!validation.valid) process.exit(1);
+
+// 2. Prepare release
+const release = await prepareRelease({
+  bumpType: &#39;minor&#39;,
+  generateChangelog: true,
+  createTag: true,
+  commit: true
+});
+
+// 3. Publish
+const publish = await publishToNpm({
+  tag: &#39;latest&#39;,
+  access: &#39;public&#39;
+});
+
+console.log(`Released ${publish.packageName}@${publish.version}`);
+</code></pre>
+<h2>Class-Based API</h2>
+<pre><code class="language-typescript">import { Validator, ReleaseManager, Publisher } from &#39;@claude-flow/deployment&#39;;
+
+const validator = new Validator();
+const manager = new ReleaseManager();
+const publisher = new Publisher();
+
+await validator.validate();
+await manager.prepareRelease({ bumpType: &#39;patch&#39; });
+await publisher.publishToNpm({ tag: &#39;latest&#39; });
+</code></pre>
+<h2>Options Reference</h2>
+<h3>ReleaseOptions</h3>
+<pre><code class="language-typescript">{
+  bumpType?: &#39;major&#39; | &#39;minor&#39; | &#39;patch&#39; | &#39;prerelease&#39;,
+  version?: string,              // Override version
+  channel?: &#39;alpha&#39; | &#39;beta&#39; | &#39;rc&#39; | &#39;latest&#39;,
+  generateChangelog?: boolean,   // Default: true
+  createTag?: boolean,           // Default: true
+  commit?: boolean,              // Default: true
+  dryRun?: boolean,              // Default: false
+  skipValidation?: boolean,      // Default: false
+  tagPrefix?: string,            // Default: &#39;v&#39;
+  changelogPath?: string         // Default: &#39;CHANGELOG.md&#39;
+}
+</code></pre>
+<h3>PublishOptions</h3>
+<pre><code class="language-typescript">{
+  tag?: string,                  // Default: &#39;latest&#39;
+  access?: &#39;public&#39; | &#39;restricted&#39;,
+  dryRun?: boolean,              // Default: false
+  registry?: string,             // Custom registry URL
+  otp?: string,                  // 2FA code
+  skipBuild?: boolean,           // Default: false
+  buildCommand?: string          // Default: &#39;npm run build&#39;
+}
+</code></pre>
+<h3>ValidationOptions</h3>
+<pre><code class="language-typescript">{
+  lint?: boolean,                // Default: true
+  test?: boolean,                // Default: true
+  build?: boolean,               // Default: true
+  checkDependencies?: boolean,   // Default: true
+  checkGitStatus?: boolean,      // Default: true
+  lintCommand?: string,          // Default: &#39;npm run lint&#39;
+  testCommand?: string,          // Default: &#39;npm test&#39;
+  buildCommand?: string          // Default: &#39;npm run build&#39;
+}
+</code></pre>
+<h2>Conventional Commits</h2>
+<p>Use conventional commit format for automatic changelog generation:</p>
+<pre><code class="language-bash">git commit -m &quot;feat(api): add new endpoint&quot;
+git commit -m &quot;fix(auth): resolve login issue&quot;
+git commit -m &quot;docs(readme): update examples&quot;
+git commit -m &quot;chore(deps): update dependencies&quot;
+</code></pre>
+<p>Breaking changes:</p>
+<pre><code class="language-bash">git commit -m &quot;feat(ui): redesign layout
+
+BREAKING CHANGE: new layout requires migration&quot;
+</code></pre>
+<h2>Common Patterns</h2>
+<h3>Prerelease to Release</h3>
+<pre><code class="language-typescript">// 1. Alpha releases
+await prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;alpha&#39; });
+await publishToNpm({ tag: &#39;alpha&#39; });
+
+// 2. Beta releases
+await prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;beta&#39; });
+await publishToNpm({ tag: &#39;beta&#39; });
+
+// 3. Release candidate
+await prepareRelease({ bumpType: &#39;prerelease&#39;, channel: &#39;rc&#39; });
+await publishToNpm({ tag: &#39;rc&#39; });
+
+// 4. Final release
+await prepareRelease({ bumpType: &#39;patch&#39; });
+await publishToNpm({ tag: &#39;latest&#39; });
+</code></pre>
+<h3>Check Before Release</h3>
+<pre><code class="language-typescript">import { Publisher } from &#39;@claude-flow/deployment&#39;;
+
+const publisher = new Publisher();
+
+// Check authentication
+const authenticated = await publisher.verifyAuth();
+if (!authenticated) {
+  console.error(&#39;Not logged in to npm&#39;);
+  process.exit(1);
+}
+
+// Check if version exists
+const exists = await publisher.checkVersionExists(&#39;my-package&#39;, &#39;1.0.0&#39;);
+if (exists) {
+  console.error(&#39;Version already published&#39;);
+  process.exit(1);
+}
+
+// Get latest version
+const latest = await publisher.getLatestVersion(&#39;my-package&#39;);
+console.log(&#39;Latest version:&#39;, latest);
+</code></pre>
+<h2>Error Handling</h2>
+<pre><code class="language-typescript">const result = await prepareRelease({ bumpType: &#39;minor&#39; });
+
+if (result.success) {
+  console.log(&#39;Success!&#39;, result.newVersion);
+} else {
+  console.error(&#39;Failed:&#39;, result.error);
+  if (result.warnings) {
+    console.warn(&#39;Warnings:&#39;, result.warnings);
+  }
+}
+</code></pre>
+<h2>Examples</h2>
+<p>See the <code>/examples</code> directory for complete working examples:</p>
+<ul>
+<li><code>basic-release.ts</code> - Complete release workflow</li>
+<li><code>prerelease-workflow.ts</code> - Alpha/Beta/RC workflow</li>
+<li><code>dry-run.ts</code> - Test releases safely</li>
+</ul>
+<p>Run examples:</p>
+<pre><code class="language-bash">npx tsx examples/basic-release.ts
+npx tsx examples/prerelease-workflow.ts
+npx tsx examples/dry-run.ts
+</code></pre>
+<h2>Tips</h2>
+<ol>
+<li>Always test with <code>dryRun: true</code> first</li>
+<li>Use conventional commits for better changelogs</li>
+<li>Run validation before releasing</li>
+<li>Keep your git repo clean (no uncommitted changes)</li>
+<li>Use prerelease tags for beta testing</li>
+<li>Verify npm authentication before publishing</li>
+</ol>
+<h2>Troubleshooting</h2>
+<p><strong>Problem</strong>: &quot;Not authenticated with npm&quot;</p>
+<pre><code class="language-bash">npm login
+</code></pre>
+<p><strong>Problem</strong>: &quot;Uncommitted changes detected&quot;</p>
+<pre><code class="language-bash">git status
+git commit -am &quot;your message&quot;
+</code></pre>
+<p><strong>Problem</strong>: &quot;Package is private&quot;</p>
+<pre><code class="language-json">// Remove from package.json
+&quot;private&quot;: true
+</code></pre>
+<p><strong>Problem</strong>: &quot;Version already exists&quot;</p>
+<pre><code class="language-typescript">// Bump version first
+await prepareRelease({ bumpType: &#39;patch&#39; });
+</code></pre>
+<h2>Support</h2>
+<ul>
+<li><a href="./README.md">Full Documentation</a></li>
+<li><a href="./IMPLEMENTATION.md">Implementation Details</a></li>
+<li><a href="./examples/">Examples</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

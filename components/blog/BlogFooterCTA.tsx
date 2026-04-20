@@ -76,7 +76,14 @@ const ctaItems = [
 
 export default function BlogFooterCTA() {
   return (
-    <div className="grid gap-5 md:grid-cols-3">
+    <div className="relative">
+      {/* Aurora ambient layer */}
+      <div className="absolute -inset-8 pointer-events-none" aria-hidden>
+        <div className="absolute top-0 left-1/4 h-48 w-64 rounded-full bg-emerald-500/[0.08] blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 h-40 w-56 rounded-full bg-cyan-500/[0.06] blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 h-36 w-48 rounded-full bg-purple-500/[0.05] blur-[80px]" />
+      </div>
+    <div className="relative grid gap-5 md:grid-cols-3">
       {ctaItems.map((item) => (
         <GlowCard key={item.href} color={item.color as GlowColor} href={item.href}>
           <div className="p-6">
@@ -103,6 +110,7 @@ export default function BlogFooterCTA() {
           </div>
         </GlowCard>
       ))}
+    </div>
     </div>
   )
 }

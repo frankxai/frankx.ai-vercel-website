@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>TypeScript Style Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/templates/code_styleguides/typescript.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">TypeScript Style Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates%2Fcode_styleguides">code_styleguides</a> / <span>typescript.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>TypeScript Style Guide</h1>
+<p>TypeScript-specific conventions and best practices for type-safe development.</p>
+<h2>Strict Mode</h2>
+<h3>Enable Strict Configuration</h3>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;strict&quot;: true,
+    &quot;noImplicitAny&quot;: true,
+    &quot;strictNullChecks&quot;: true,
+    &quot;strictFunctionTypes&quot;: true,
+    &quot;strictBindCallApply&quot;: true,
+    &quot;strictPropertyInitialization&quot;: true,
+    &quot;noImplicitThis&quot;: true,
+    &quot;alwaysStrict&quot;: true,
+    &quot;noUncheckedIndexedAccess&quot;: true,
+    &quot;noImplicitReturns&quot;: true,
+    &quot;noFallthroughCasesInSwitch&quot;: true
+  }
+}
+</code></pre>
+<h3>Benefits</h3>
+<ul>
+<li>Catches errors at compile time</li>
+<li>Better IDE support and autocomplete</li>
+<li>Self-documenting code</li>
+<li>Easier refactoring</li>
+</ul>
+<h2>Type Safety</h2>
+<h3>Avoid <code>any</code></h3>
+<pre><code class="language-typescript">// Bad
+function processData(data: any): any {
+  return data.value;
+}
+
+// Good
+interface DataItem {
+  value: string;
+  count: number;
+}
+
+function processData(data: DataItem): string {
+  return data.value;
+}
+</code></pre>
+<h3>Use <code>unknown</code> for Unknown Types</h3>
+<pre><code class="language-typescript">// When type is truly unknown
+function parseJSON(json: string): unknown {
+  return JSON.parse(json);
+}
+
+// Then narrow with type guards
+function isUser(obj: unknown): obj is User {
+  return (
+    typeof obj === &quot;object&quot; &amp;&amp; obj !== null &amp;&amp; &quot;id&quot; in obj &amp;&amp; &quot;name&quot; in obj
+  );
+}
+</code></pre>
+<h3>Prefer Explicit Types</h3>
+<pre><code class="language-typescript">// Bad: Implicit any
+const items = [];
+
+// Good: Explicit type
+const items: Item[] = [];
+
+// Also good: Type inference when obvious
+const count = 0; // number inferred
+const name = &quot;John&quot;; // string inferred
+</code></pre>
+<h2>Interfaces vs Types</h2>
+<h3>Use Interfaces for Object Shapes</h3>
+<pre><code class="language-typescript">// Preferred for objects
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+// Interfaces can be extended
+interface AdminUser extends User {
+  permissions: string[];
+}
+
+// Interfaces can be augmented (declaration merging)
+interface User {
+  avatar?: string;
+}
+</code></pre>
+<h3>Use Types for Unions, Primitives, and Computed Types</h3>
+<pre><code class="language-typescript">// Union types
+type Status = &quot;pending&quot; | &quot;active&quot; | &quot;completed&quot;;
+
+// Primitive aliases
+type UserId = string;
+
+// Computed/mapped types
+type Readonly&lt;T&gt; = {
+  readonly [P in keyof T]: T[P];
+};
+
+// Tuple types
+type Coordinate = [number, number];
+</code></pre>
+<h3>Decision Guide</h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Object shape</td>
+<td><code>interface</code></td>
+</tr>
+<tr>
+<td>Union type</td>
+<td><code>type</code></td>
+</tr>
+<tr>
+<td>Function signature</td>
+<td><code>type</code></td>
+</tr>
+<tr>
+<td>Class implementation</td>
+<td><code>interface</code></td>
+</tr>
+<tr>
+<td>Mapped/conditional type</td>
+<td><code>type</code></td>
+</tr>
+<tr>
+<td>Library public API</td>
+<td><code>interface</code></td>
+</tr>
+</tbody></table>
+<h2>Async Patterns</h2>
+<h3>Prefer async/await</h3>
+<pre><code class="language-typescript">// Bad: Callback hell
+function fetchUserData(id: string, callback: (user: User) =&gt; void) {
+  fetch(`/users/${id}`)
+    .then((res) =&gt; res.json())
+    .then((user) =&gt; callback(user));
+}
+
+// Good: async/await
+async function fetchUserData(id: string): Promise&lt;User&gt; {
+  const response = await fetch(`/users/${id}`);
+  return response.json();
+}
+</code></pre>
+<h3>Error Handling in Async Code</h3>
+<pre><code class="language-typescript">// Explicit error handling
+async function fetchUser(id: string): Promise&lt;User&gt; {
+  try {
+    const response = await fetch(`/users/${id}`);
+
+    if (!response.ok) {
+      throw new ApiError(`Failed to fetch user: ${response.status}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    if (error instanceof ApiError) {
+      throw error;
+    }
+    throw new NetworkError(&quot;Network request failed&quot;, { cause: error });
+  }
+}
+</code></pre>
+<h3>Promise Types</h3>
+<pre><code class="language-typescript">// Return type annotation for clarity
+async function loadData(): Promise&lt;Data[]&gt; {
+  // ...
+}
+
+// Use Promise.all for parallel operations
+async function loadAllData(): Promise&lt;[Users, Posts]&gt; {
+  return Promise.all([fetchUsers(), fetchPosts()]);
+}
+</code></pre>
+<h2>Module Structure</h2>
+<h3>File Organization</h3>
+<pre><code>src/
+├── types/           # Shared type definitions
+│   ├── user.ts
+│   └── api.ts
+├── utils/           # Pure utility functions
+│   ├── validation.ts
+│   └── formatting.ts
+├── services/        # Business logic
+│   ├── userService.ts
+│   └── authService.ts
+├── components/      # UI components (if applicable)
+└── index.ts         # Public API exports
+</code></pre>
+<h3>Export Patterns</h3>
+<pre><code class="language-typescript">// Named exports (preferred)
+export interface User { ... }
+export function createUser(data: UserInput): User { ... }
+export const DEFAULT_USER: User = { ... };
+
+// Re-exports for public API
+// index.ts
+export { User, createUser } from &#39;./user&#39;;
+export { type Config } from &#39;./config&#39;;
+
+// Avoid default exports (harder to refactor)
+// Bad
+export default class UserService { ... }
+
+// Good
+export class UserService { ... }
+</code></pre>
+<h3>Import Organization</h3>
+<pre><code class="language-typescript">// 1. External dependencies
+import { useState, useEffect } from &quot;react&quot;;
+import { z } from &quot;zod&quot;;
+
+// 2. Internal absolute imports
+import { ApiClient } from &quot;@/services/api&quot;;
+import { User } from &quot;@/types&quot;;
+
+// 3. Relative imports
+import { formatDate } from &quot;./utils&quot;;
+import { UserCard } from &quot;./UserCard&quot;;
+</code></pre>
+<h2>Utility Types</h2>
+<h3>Built-in Utility Types</h3>
+<pre><code class="language-typescript">// Partial - all properties optional
+type UpdateUser = Partial&lt;User&gt;;
+
+// Required - all properties required
+type CompleteUser = Required&lt;User&gt;;
+
+// Pick - select properties
+type UserPreview = Pick&lt;User, &quot;id&quot; | &quot;name&quot;&gt;;
+
+// Omit - exclude properties
+type UserWithoutPassword = Omit&lt;User, &quot;password&quot;&gt;;
+
+// Record - dictionary type
+type UserRoles = Record&lt;string, Role&gt;;
+
+// ReturnType - extract return type
+type ApiResponse = ReturnType&lt;typeof fetchData&gt;;
+
+// Parameters - extract parameter types
+type FetchParams = Parameters&lt;typeof fetch&gt;;
+</code></pre>
+<h3>Custom Utility Types</h3>
+<pre><code class="language-typescript">// Make specific properties optional
+type PartialBy&lt;T, K extends keyof T&gt; = Omit&lt;T, K&gt; &amp; Partial&lt;Pick&lt;T, K&gt;&gt;;
+
+// Make specific properties required
+type RequiredBy&lt;T, K extends keyof T&gt; = Omit&lt;T, K&gt; &amp; Required&lt;Pick&lt;T, K&gt;&gt;;
+
+// Deep readonly
+type DeepReadonly&lt;T&gt; = {
+  readonly [P in keyof T]: T[P] extends object ? DeepReadonly&lt;T[P]&gt; : T[P];
+};
+</code></pre>
+<h2>Enums and Constants</h2>
+<h3>Prefer const Objects Over Enums</h3>
+<pre><code class="language-typescript">// Enums have runtime overhead
+enum Status {
+  Pending = &quot;pending&quot;,
+  Active = &quot;active&quot;,
+}
+
+// Prefer const objects
+const Status = {
+  Pending: &quot;pending&quot;,
+  Active: &quot;active&quot;,
+} as const;
+
+type Status = (typeof Status)[keyof typeof Status];
+</code></pre>
+<h3>When to Use Enums</h3>
+<pre><code class="language-typescript">// Numeric enums for bit flags
+enum Permissions {
+  None = 0,
+  Read = 1 &lt;&lt; 0,
+  Write = 1 &lt;&lt; 1,
+  Execute = 1 &lt;&lt; 2,
+  All = Read | Write | Execute,
+}
+</code></pre>
+<h2>Generics</h2>
+<h3>Basic Generic Usage</h3>
+<pre><code class="language-typescript">// Generic function
+function first&lt;T&gt;(items: T[]): T | undefined {
+  return items[0];
+}
+
+// Generic interface
+interface Repository&lt;T&gt; {
+  find(id: string): Promise&lt;T | null&gt;;
+  save(item: T): Promise&lt;T&gt;;
+  delete(id: string): Promise&lt;void&gt;;
+}
+</code></pre>
+<h3>Constraining Generics</h3>
+<pre><code class="language-typescript">// Constrain to objects with id
+function findById&lt;T extends { id: string }&gt;(
+  items: T[],
+  id: string,
+): T | undefined {
+  return items.find((item) =&gt; item.id === id);
+}
+
+// Multiple constraints
+function merge&lt;T extends object, U extends object&gt;(a: T, b: U): T &amp; U {
+  return { ...a, ...b };
+}
+</code></pre>
+<h2>Error Types</h2>
+<h3>Custom Error Classes</h3>
+<pre><code class="language-typescript">class AppError extends Error {
+  constructor(
+    message: string,
+    public readonly code: string,
+    public readonly statusCode: number = 500,
+  ) {
+    super(message);
+    this.name = &quot;AppError&quot;;
+  }
+}
+
+class ValidationError extends AppError {
+  constructor(
+    message: string,
+    public readonly field: string,
+  ) {
+    super(message, &quot;VALIDATION_ERROR&quot;, 400);
+    this.name = &quot;ValidationError&quot;;
+  }
+}
+</code></pre>
+<h3>Type Guards for Errors</h3>
+<pre><code class="language-typescript">function isAppError(error: unknown): error is AppError {
+  return error instanceof AppError;
+}
+
+function handleError(error: unknown): void {
+  if (isAppError(error)) {
+    console.error(`[${error.code}] ${error.message}`);
+  } else if (error instanceof Error) {
+    console.error(`Unexpected error: ${error.message}`);
+  } else {
+    console.error(&quot;Unknown error occurred&quot;);
+  }
+}
+</code></pre>
+<h2>Testing Types</h2>
+<h3>Type Testing</h3>
+<pre><code class="language-typescript">// Use type assertions for compile-time checks
+type Assert&lt;T, U extends T&gt; = U;
+
+// Test that types work as expected
+type _TestUserHasId = Assert&lt;{ id: string }, User&gt;;
+
+// Expect error (compile-time check)
+// @ts-expect-error - User should require id
+const invalidUser: User = { name: &quot;John&quot; };
+</code></pre>
+<h2>Common Patterns</h2>
+<h3>Builder Pattern</h3>
+<pre><code class="language-typescript">class QueryBuilder&lt;T&gt; {
+  private filters: Array&lt;(item: T) =&gt; boolean&gt; = [];
+
+  where(predicate: (item: T) =&gt; boolean): this {
+    this.filters.push(predicate);
+    return this;
+  }
+
+  execute(items: T[]): T[] {
+    return items.filter((item) =&gt; this.filters.every((filter) =&gt; filter(item)));
+  }
+}
+</code></pre>
+<h3>Result Type</h3>
+<pre><code class="language-typescript">type Result&lt;T, E = Error&gt; =
+  | { success: true; data: T }
+  | { success: false; error: E };
+
+function divide(a: number, b: number): Result&lt;number&gt; {
+  if (b === 0) {
+    return { success: false, error: new Error(&quot;Division by zero&quot;) };
+  }
+  return { success: true, data: a / b };
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

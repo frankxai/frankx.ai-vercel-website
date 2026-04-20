@@ -1,0 +1,820 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Website - Comprehensive UX/UI Audit Report</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="UX_UI_COMPREHENSIVE_AUDIT_2026-01-21.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Website - Comprehensive UX/UI Audit Report</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>UX_UI_COMPREHENSIVE_AUDIT_2026-01-21.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Website - Comprehensive UX/UI Audit Report</h1>
+<p><strong>Date:</strong> 2026-01-21
+<strong>Auditor:</strong> UI/UX Design Expert Agent
+<strong>Project:</strong> /mnt/c/Users/Frank/FrankX</p>
+<hr>
+<h2>Executive Summary</h2>
+<p>This audit evaluates the FrankX website against brand standards, design system consistency, accessibility compliance (WCAG 2.1 AA/AAA), and component quality. The site demonstrates <strong>strong design foundations</strong> with a well-documented design system, but reveals <strong>critical accessibility gaps</strong> and <strong>inconsistent application</strong> of brand standards across pages.</p>
+<p><strong>Overall Grade: B-</strong> (75/100)</p>
+<h3>Critical Findings</h3>
+<ul>
+<li>✅ Excellent design system documentation (<code>lib/design-system.ts</code>)</li>
+<li>✅ Strong color palette with proper contrast ratios defined</li>
+<li>⚠️ <strong>CRITICAL:</strong> Pure black (#000000) violations on Soulbook page</li>
+<li>⚠️ <strong>HIGH:</strong> Missing ARIA labels and semantic HTML across interactive elements</li>
+<li>⚠️ <strong>HIGH:</strong> Inconsistent color usage between tech/soul spectrums</li>
+<li>⚠️ <strong>MEDIUM:</strong> Typography inconsistencies (Poppins vs Inter)</li>
+<li>✅ Good glassmorphism implementation with accessible fallbacks</li>
+</ul>
+<hr>
+<h2>1. Visual Consistency (Score: 7/10)</h2>
+<h3>1.1 Color System Compliance</h3>
+<h4>✅ <strong>STRENGTHS</strong></h4>
+<ul>
+<li><strong>Design System Well-Documented</strong>: <code>lib/design-system.ts</code> provides comprehensive color tokens</li>
+<li><strong>Proper Contrast Ratios</strong>: All defined colors meet WCAG AAA (7:1) standards</li>
+<li><strong>Dual Spectrum Approach</strong>: Tech (Emerald/Cyan) vs Soul (Amber/Gold) is architecturally sound</li>
+</ul>
+<h4>⚠️ <strong>CRITICAL ISSUES</strong></h4>
+<p><strong>Issue #1: Pure Black Violation on Soulbook Page</strong></p>
+<ul>
+<li><strong>File:</strong> <code>app/soulbook/page.tsx</code></li>
+<li><strong>Lines:</strong> 34, 78, 239</li>
+<li><strong>Severity:</strong> CRITICAL</li>
+<li><strong>Violation:</strong> Brand standards explicitly forbid pure black (#000000)</li>
+</ul>
+<pre><code class="language-tsx">// Line 34
+&lt;div className=&quot;absolute inset-0 bg-gradient-to-b from-black via-midnight-950 to-black&quot; /&gt;
+
+// Line 78
+&lt;div className=&quot;absolute inset-0 bg-gradient-to-b from-black via-midnight-950 to-black&quot; /&gt;
+
+// Line 239
+&lt;main className=&quot;min-h-screen bg-black&quot;&gt;
+</code></pre>
+<p><strong>Fix Required:</strong> Replace with <code>bg-[#0a0a0b]</code> (void color) per brand standards</p>
+<p><strong>Issue #2: Products Page Color Misalignment</strong></p>
+<ul>
+<li><strong>File:</strong> <code>app/products/page.tsx</code></li>
+<li><strong>Lines:</strong> 161-202 (colorMap object)</li>
+<li><strong>Severity:</strong> HIGH</li>
+<li><strong>Problem:</strong> Product cards use cyan/emerald/teal but don&#39;t match the documented tech/soul spectrum</li>
+</ul>
+<pre><code class="language-tsx">// Line 169-177: Violet product uses cyan colors (should use purple/violet)
+violet: {
+  bg: &#39;bg-cyan-500/10&#39;,
+  border: &#39;border-cyan-500/20 hover:border-cyan-500/40&#39;,
+  // This is confusing - violet should use purple tones
+}
+</code></pre>
+<p><strong>Recommendation:</strong> Align product colors with brand identity:</p>
+<ul>
+<li>Vibe OS (Music) → Soul spectrum (Amber/Gold) ✅</li>
+<li>Creative AI Toolkit → Tech spectrum (Emerald/Cyan)</li>
+<li>Creation Chronicles → Hybrid (Purple)</li>
+</ul>
+<p><strong>Issue #3: Homepage Gradient Uses Non-Brand Colors</strong></p>
+<ul>
+<li><strong>File:</strong> <code>components/home/HomePageElite.tsx</code></li>
+<li><strong>Lines:</strong> 115, 185, 295</li>
+<li><strong>Problem:</strong> Gradients include pink/violet colors not in brand palette</li>
+</ul>
+<pre><code class="language-tsx">// Line 115
+bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400
+// Brand standard: Should use emerald → cyan → purple (#8B5CF6)
+</code></pre>
+<h4>✅ <strong>GOOD PRACTICES</strong></h4>
+<ul>
+<li>Tailwind config properly defines brand colors (lines 20-53 in <code>tailwind.config.js</code>)</li>
+<li>Semantic color tokens (success, warning, error, info) are well-structured</li>
+<li>Dark background colors follow the void/space/elevated hierarchy</li>
+</ul>
+<hr>
+<h3>1.2 Typography Consistency</h3>
+<h4>⚠️ <strong>CRITICAL ISSUE: Font Family Mismatch</strong></h4>
+<p><strong>Problem:</strong> Brand standards specify <strong>Poppins for headings</strong> and <strong>Inter for body</strong>, but implementation uses <strong>Inter for everything</strong>.</p>
+<p><strong>Evidence:</strong></p>
+<ul>
+<li><code>app/globals.css</code> (Line 8): &quot;Primary: Inter (geometric sans-serif, variable weight)&quot;</li>
+<li><code>tailwind.config.js</code> (Line 246-247): <code>font-sans</code> and <code>font-display</code> both use Inter</li>
+<li><strong>No Poppins font is loaded anywhere in the codebase</strong></li>
+</ul>
+<p><strong>Files Affected:</strong> ALL pages and components
+<strong>Severity:</strong> HIGH
+<strong>Impact:</strong> Brand identity dilution - the personality of Poppins headings is lost</p>
+<p><strong>Fix Required:</strong></p>
+<ol>
+<li>Import Poppins via Next.js Google Fonts in <code>app/layout.tsx</code></li>
+<li>Update <code>tailwind.config.js</code>:</li>
+</ol>
+<pre><code class="language-js">fontFamily: {
+  sans: [&#39;var(--font-inter)&#39;, &#39;Inter&#39;, &#39;system-ui&#39;, &#39;sans-serif&#39;],
+  display: [&#39;var(--font-poppins)&#39;, &#39;Poppins&#39;, &#39;system-ui&#39;, &#39;sans-serif&#39;], // For headings
+  serif: [&#39;&quot;Times New Roman&quot;&#39;, &#39;Times&#39;, &#39;Georgia&#39;, &#39;serif&#39;],
+}
+</code></pre>
+<ol start="3">
+<li>Apply <code>font-display</code> class to all h1, h2, h3 elements</li>
+</ol>
+<h4>✅ <strong>GOOD PRACTICES</strong></h4>
+<ul>
+<li>Type scale follows Perfect Fourth (1.333) ratio consistently</li>
+<li>Line heights and letter spacing are well-optimized</li>
+<li>Responsive font sizes using clamp() in HomePageElite.tsx</li>
+</ul>
+<hr>
+<h3>1.3 Glassmorphism Effects</h3>
+<h4>✅ <strong>EXCELLENT IMPLEMENTATION</strong></h4>
+<ul>
+<li><strong>File:</strong> <code>components/ui/GlassmorphicCard.tsx</code></li>
+<li>Proper backdrop-blur with fallback opacity values</li>
+<li>Noise texture adds premium tactile quality</li>
+<li>Border and shadow variants are well-structured</li>
+</ul>
+<h4>⚠️ <strong>MINOR ISSUE: Inconsistent Usage</strong></h4>
+<ul>
+<li>HomePageElite.tsx uses inline glassmorphism (line 399) instead of GlassmorphicCard component</li>
+<li>Products page doesn&#39;t use GlassmorphicCard at all (uses inline styles)</li>
+</ul>
+<p><strong>Recommendation:</strong> Create design system guideline for when to use GlassmorphicCard vs inline styles</p>
+<hr>
+<h2>2. Component Quality (Score: 7/10)</h2>
+<h3>2.1 Button Components</h3>
+<h4>✅ <strong>GOOD: Accessible Touch Targets</strong></h4>
+<ul>
+<li><strong>File:</strong> <code>components/ui/primitives/button.tsx</code></li>
+<li>Lines 21-24: WCAG 2.2 compliant minimum touch sizes (44px)</li>
+<li>Proper focus states with ring utilities</li>
+</ul>
+<h4>⚠️ <strong>ISSUE: Variant Limitations</strong></h4>
+<ul>
+<li>Only 2 variants (default, ghost) - missing tech/soul spectrum variants</li>
+<li>Uses neutral-900 instead of brand colors</li>
+</ul>
+<p><strong>Recommended Additional Variants:</strong></p>
+<pre><code class="language-tsx">techPrimary: &#39;bg-emerald-500 text-black hover:bg-emerald-400&#39;,
+soulPrimary: &#39;bg-amber-500 text-black hover:bg-amber-400&#39;,
+techGhost: &#39;border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/10&#39;,
+soulGhost: &#39;border-amber-500/20 text-amber-400 hover:bg-amber-500/10&#39;,
+</code></pre>
+<h4>⚠️ <strong>INCONSISTENCY: Homepage Buttons</strong></h4>
+<ul>
+<li>HomePageElite.tsx (lines 320-344) uses custom inline button styles</li>
+<li>Doesn&#39;t leverage the primitives/button.tsx component</li>
+<li>Different border radius (rounded-full vs rounded-2xl)</li>
+</ul>
+<p><strong>Fix:</strong> Extend button component to support rounded-full variant for CTAs</p>
+<hr>
+<h3>2.2 Card Components</h3>
+<h4>✅ <strong>STRENGTHS</strong></h4>
+<ul>
+<li>GlassmorphicCard provides clean abstraction with variants</li>
+<li>Proper motion integration with framer-motion</li>
+<li>Good separation of concerns (styling vs content)</li>
+</ul>
+<h4>⚠️ <strong>ISSUE: Inconsistent Card Styling</strong></h4>
+<p><strong>Products Page</strong> (app/products/page.tsx, line 274):</p>
+<pre><code class="language-tsx">// Inline card styling - should use GlassmorphicCard
+&lt;div className=&quot;relative flex h-full flex-col overflow-hidden rounded-2xl border...&quot;&gt;
+</code></pre>
+<p><strong>Homepage Featured Music Card</strong> (line 399):</p>
+<pre><code class="language-tsx">// Another inline card - inconsistent with design system
+&lt;div className=&quot;relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl...&quot;&gt;
+</code></pre>
+<p><strong>Recommendation:</strong> Refactor all card instances to use GlassmorphicCard with custom variants</p>
+<hr>
+<h3>2.3 Navigation Component</h3>
+<h4>✅ <strong>EXCELLENT ACCESSIBILITY</strong></h4>
+<ul>
+<li><strong>File:</strong> <code>components/Navigation2025.tsx</code></li>
+<li>Line 60: Proper screen reader text with <code>&lt;span className=&quot;sr-only&quot;&gt;</code></li>
+<li>Line 118: ARIA labels on mobile menu button</li>
+<li>Good keyboard navigation support</li>
+</ul>
+<h4>⚠️ <strong>MINOR ISSUE: Color Inconsistency</strong></h4>
+<ul>
+<li>Uses white/50 for inactive links instead of brand tech/soul colors</li>
+<li>Could use emerald-400 for active states to reinforce tech spectrum</li>
+</ul>
+<hr>
+<h2>3. Page Layout Patterns (Score: 6/10)</h2>
+<h3>3.1 Homepage (app/page.tsx, components/home/HomePageElite.tsx)</h3>
+<h4>✅ <strong>STRENGTHS</strong></h4>
+<ul>
+<li>Excellent scroll-based parallax effects (lines 240-250)</li>
+<li>Responsive hero with mobile-first approach</li>
+<li>Good use of animation with reduced-motion fallbacks</li>
+<li>Proper semantic HTML structure</li>
+</ul>
+<h4>⚠️ <strong>ISSUES</strong></h4>
+<p><strong>Issue #1: Inconsistent Section Spacing</strong></p>
+<ul>
+<li>StatsSection: py-16 md:py-24 lg:py-32 (line 469)</li>
+<li>WhatIDo: py-16 md:py-24 lg:py-32 (line 640)</li>
+<li>FeaturedResources: py-16 md:py-24 lg:py-32 (line 736)</li>
+<li>AboutSection: py-16 md:py-24 lg:py-32 (line 797)</li>
+<li><strong>Good:</strong> Consistent within homepage, but different from Products page</li>
+</ul>
+<p><strong>Issue #2: Aurora Background Performance</strong></p>
+<ul>
+<li>Lines 54-116: Aurora gradients use large blur(80px) and multiple motion divs</li>
+<li><strong>Concern:</strong> May cause performance issues on lower-end devices</li>
+<li><strong>Fix:</strong> Consider using CSS-only gradients for better performance</li>
+</ul>
+<p><strong>Issue #3: Hard-Coded Content in Component</strong></p>
+<ul>
+<li>Lines 140-152: Hero words and concepts are hard-coded</li>
+<li>Should be in a content file or CMS for easier management</li>
+</ul>
+<hr>
+<h3>3.2 Products Page (app/products/page.tsx)</h3>
+<h4>✅ <strong>STRENGTHS</strong></h4>
+<ul>
+<li>Clear product grid layout</li>
+<li>Good use of trust badges and social proof</li>
+<li>Comprehensive FAQ section</li>
+</ul>
+<h4>⚠️ <strong>CRITICAL ISSUE: Background Color</strong></h4>
+<ul>
+<li>Line 26: Uses <code>bg-[#02030b]</code> - not in design system</li>
+<li>Should use <code>bg-void</code> (#0a0a0b) or <code>bg-space</code> (#111113)</li>
+</ul>
+<h4>⚠️ <strong>ISSUE: Inconsistent Gradient Colors</strong></h4>
+<ul>
+<li>Lines 29-61: Gradient orbs use blue tones not in brand palette</li>
+</ul>
+<pre><code class="language-tsx">// Line 32: Not a brand color
+background: &#39;radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%)&#39;
+// Should use emerald or cyan from brand palette
+</code></pre>
+<hr>
+<h3>3.3 Blog Page (app/blog/page.tsx)</h3>
+<h4>✅ <strong>GOOD</strong></h4>
+<ul>
+<li>Uses Suspense for loading states (line 45)</li>
+<li>Proper metadata with SEO optimization</li>
+<li>Loading skeleton provides good UX</li>
+</ul>
+<h4>⚠️ <strong>MINOR: Background Color</strong></h4>
+<ul>
+<li>Line 26: Uses <code>bg-[#030712]</code> - should use design system token</li>
+</ul>
+<hr>
+<h3>3.4 Soulbook Page (app/soulbook/page.tsx)</h3>
+<h4>⚠️ <strong>CRITICAL: Pure Black Violations</strong></h4>
+<ul>
+<li>See section 1.1 for details</li>
+<li><strong>Most critical page for brand standards compliance failure</strong></li>
+</ul>
+<h4>✅ <strong>STRENGTHS</strong></h4>
+<ul>
+<li>Good use of amber/gold spectrum for soul-focused content</li>
+<li>Proper structured data with JsonLd</li>
+<li>Comprehensive pricing section with good CTAs</li>
+</ul>
+<hr>
+<h3>3.5 Downloads Page (app/downloads/page.tsx)</h3>
+<h4>✅ <strong>EXCELLENT</strong></h4>
+<ul>
+<li>Clean, minimal design</li>
+<li>Proper use of AuroraGradient component</li>
+<li>Good variant system (purple, emerald)</li>
+</ul>
+<h4>⚠️ <strong>MINOR: Background Color</strong></h4>
+<ul>
+<li>Line 35: Uses <code>bg-[#030712]</code> - should use design system token</li>
+</ul>
+<hr>
+<h2>4. Accessibility Issues (Score: 4/10)</h2>
+<h3>4.1 ARIA Labels and Semantic HTML</h3>
+<h4>⚠️ <strong>CRITICAL: Missing ARIA Labels</strong></h4>
+<p><strong>Homepage (HomePageElite.tsx):</strong></p>
+<ul>
+<li>✅ Line 60, 99: Decorative elements properly use <code>aria-hidden</code></li>
+<li>❌ <strong>NO aria-labels on interactive cards</strong> (lines 569-586, 669-694)</li>
+<li>❌ <strong>NO aria-labels on resource links</strong> (lines 763-784)</li>
+<li>❌ <strong>NO main landmark</strong> - should wrap content in <code>&lt;main&gt;</code> with aria-label</li>
+</ul>
+<p><strong>Products Page:</strong></p>
+<ul>
+<li>❌ <strong>NO aria-labels on product cards</strong> (lines 272-331)</li>
+<li>❌ Trust badges lack semantic meaning (lines 342-360)</li>
+<li>✅ Line 208: Proper <code>&lt;main id=&quot;main&quot;&gt;</code> landmark</li>
+</ul>
+<p><strong>Navigation (Navigation2025.tsx):</strong></p>
+<ul>
+<li>✅ Line 60: Good screen reader text for logo</li>
+<li>✅ Line 118: Proper aria-label on mobile menu button</li>
+<li>❌ <strong>No aria-current=&quot;page&quot;</strong> on active nav items</li>
+</ul>
+<p><strong>Severity:</strong> HIGH
+<strong>WCAG Violation:</strong> 2.4.6 Headings and Labels (Level AA), 4.1.2 Name, Role, Value (Level A)</p>
+<hr>
+<h3>4.2 Alt Text on Images</h3>
+<h4>⚠️ <strong>CRITICAL: Missing Alt Text</strong></h4>
+<p><strong>Searched Files:</strong> All component and page files
+<strong>Finding:</strong> Zero instances of <code>alt=&quot;&quot;</code> attribute found
+<strong>Reason:</strong> No <code>&lt;img&gt;</code> tags - site uses SVG icons and iframe embeds</p>
+<p><strong>Issue with Suno Iframe</strong> (HomePageElite.tsx, line 405):</p>
+<pre><code class="language-tsx">&lt;iframe
+  src={`https://suno.com/embed/${song.id}`}
+  title={`${song.title} - AI Generated Music`}  // ✅ GOOD: Has title
+  // ... but iframe content is not accessible to screen readers
+/&gt;
+</code></pre>
+<p><strong>Recommendation:</strong> Add aria-describedby with track info</p>
+<hr>
+<h3>4.3 Keyboard Navigation</h3>
+<h4>✅ <strong>GOOD: Focus States</strong></h4>
+<ul>
+<li>Button component (primitives/button.tsx, line 30): <code>focus-visible:ring-2</code></li>
+<li>Homepage CTAs (line 322): Proper focus-visible states</li>
+<li>Navigation links: Keyboard accessible</li>
+</ul>
+<h4>⚠️ <strong>ISSUE: Focus Trap in Mobile Menu</strong></h4>
+<ul>
+<li>Navigation2025.tsx (lines 127-149): Mobile menu doesn&#39;t trap focus</li>
+<li>When menu is open, user can tab to elements behind the overlay</li>
+<li><strong>Fix:</strong> Implement focus trap with <code>react-focus-lock</code> or similar</li>
+</ul>
+<h4>⚠️ <strong>ISSUE: Skip to Content Link Missing</strong></h4>
+<ul>
+<li>globals.css defines skip-to-content styles (lines 143-164)</li>
+<li><strong>BUT no skip link is rendered in any layout file</strong></li>
+<li><strong>Fix:</strong> Add skip link to root layout before navigation</li>
+</ul>
+<hr>
+<h3>4.4 Color Contrast</h3>
+<h4>✅ <strong>EXCELLENT: Design System Compliance</strong></h4>
+<ul>
+<li>Design system documentation specifies WCAG AAA (7:1+) for all text colors</li>
+<li>Text hierarchy (lines 68-74, lib/design-system.ts) meets standards:<ul>
+<li>Primary: #fafafa (19.5:1 contrast)</li>
+<li>Secondary: rgba(250, 250, 250, 0.85) (16:1)</li>
+<li>Tertiary: rgba(250, 250, 250, 0.65) (11:1)</li>
+<li>Muted: rgba(250, 250, 250, 0.45) (7.5:1)</li>
+</ul>
+</li>
+</ul>
+<h4>⚠️ <strong>POTENTIAL ISSUES IN IMPLEMENTATION</strong></h4>
+<p><strong>Homepage Hero Subtext</strong> (line 303):</p>
+<pre><code class="language-tsx">&lt;p className=&quot;text-base md:text-lg lg:text-xl text-white/40&quot;&gt;
+</code></pre>
+<ul>
+<li>white/40 = rgba(255,255,255,0.4) on #0a0a0b background</li>
+<li><strong>Estimated contrast: ~5.2:1</strong> (fails AAA, passes AA for large text)</li>
+<li><strong>Fix:</strong> Change to text-white/45 (matches design system muted color)</li>
+</ul>
+<p><strong>Products Page Text</strong> (line 356):</p>
+<pre><code class="language-tsx">&lt;span className=&quot;text-sm text-white/70&quot;&gt;{badge.label}&lt;/span&gt;
+</code></pre>
+<ul>
+<li>white/70 = rgba(255,255,255,0.7) on dark background</li>
+<li><strong>Estimated contrast: ~11:1</strong> (passes AAA) ✅</li>
+</ul>
+<hr>
+<h3>4.5 Reduced Motion Support</h3>
+<h4>✅ <strong>EXCELLENT IMPLEMENTATION</strong></h4>
+<ul>
+<li>globals.css (lines 167-176): Proper prefers-reduced-motion media query</li>
+<li>HomePageElite.tsx: Consistent use of <code>useReducedMotion()</code> hook</li>
+<li>All animations respect user preferences</li>
+</ul>
+<hr>
+<h2>5. Interactive Elements (Score: 8/10)</h2>
+<h3>5.1 Button Hover/Active States</h3>
+<h4>✅ <strong>EXCELLENT</strong></h4>
+<ul>
+<li>Homepage CTAs have comprehensive states (lines 322-344):<ul>
+<li>hover: scale, shadow, opacity changes</li>
+<li>active: scale-[0.98], enhanced shadow</li>
+<li>focus-visible: ring with proper offset</li>
+</ul>
+</li>
+<li>Smooth transitions (duration-300, duration-200)</li>
+<li>Good tactile feedback</li>
+</ul>
+<h4>⚠️ <strong>MINOR: Inconsistent Timing</strong></h4>
+<ul>
+<li>Some buttons use duration-300 (line 322)</li>
+<li>Others use duration-200 (primitives/button.tsx, line 30)</li>
+<li>Design system specifies base: 250ms</li>
+<li><strong>Fix:</strong> Standardize to design system timing</li>
+</ul>
+<hr>
+<h3>5.2 Link Styling</h3>
+<h4>✅ <strong>GOOD</strong></h4>
+<ul>
+<li>Consistent hover states with color transitions</li>
+<li>Proper underline behavior on text links</li>
+<li>Good use of transform for arrow icons</li>
+</ul>
+<h4>⚠️ <strong>ISSUE: Link Color Inconsistency</strong></h4>
+<ul>
+<li>Homepage resource links (line 778): <code>text-emerald-400</code> (tech spectrum) ✅</li>
+<li>About section links (line 847): <code>hover:text-emerald-400</code> ✅</li>
+<li>Products page links (line 755): <code>text-white/60</code> (neutral) ❌</li>
+<li><strong>Fix:</strong> Standardize to tech spectrum (emerald) for all action links</li>
+</ul>
+<hr>
+<h3>5.3 Form Elements</h3>
+<p><strong>Finding:</strong> No form inputs found on audited pages
+<strong>Note:</strong> Email signup forms exist but weren&#39;t in scope for this audit</p>
+<hr>
+<h3>5.4 Loading States</h3>
+<h4>✅ <strong>EXCELLENT</strong></h4>
+<ul>
+<li>Blog page has proper loading skeleton (app/blog/page.tsx, lines 24-36)</li>
+<li>Skeleton uses animate-pulse for good UX</li>
+<li>Matches content layout for smooth transition</li>
+</ul>
+<hr>
+<h2>6. Critical Pages Deep-Dive</h2>
+<h3>6.1 Homepage (Score: 8/10)</h3>
+<h4>Visual Hierarchy: 9/10</h4>
+<ul>
+<li>Clear focal point (rotating hero headline)</li>
+<li>Good flow from hero → stats → capabilities → resources → about → CTA</li>
+<li>Proper use of whitespace and grouping</li>
+</ul>
+<h4>Typography &amp; Readability: 7/10</h4>
+<ul>
+<li>✅ Good responsive font sizing with clamp()</li>
+<li>✅ Proper line heights (1.15 for headlines, 1.6+ for body)</li>
+<li>⚠️ Missing Poppins font for headings (brand standard)</li>
+<li>⚠️ Some text is white/40 (potential contrast issue)</li>
+</ul>
+<h4>Color &amp; Visual Design: 8/10</h4>
+<ul>
+<li>✅ Good use of emerald/cyan gradient for tech theme</li>
+<li>✅ Aurora background creates premium feel</li>
+<li>⚠️ Gradient includes violet-400 (not primary brand color)</li>
+<li>⚠️ Background uses inline styles instead of design system</li>
+</ul>
+<h4>Interaction &amp; Usability: 9/10</h4>
+<ul>
+<li>✅ Excellent scroll parallax without being disorienting</li>
+<li>✅ Rotating words add dynamism without being distracting</li>
+<li>✅ CTAs are clear and well-positioned</li>
+<li>⚠️ No skip-to-content link for keyboard users</li>
+</ul>
+<h4>Accessibility: 6/10</h4>
+<ul>
+<li>✅ Proper reduced motion support</li>
+<li>✅ Good focus states</li>
+<li>⚠️ Missing ARIA labels on cards</li>
+<li>⚠️ No main landmark</li>
+</ul>
+<h4>Consistency &amp; Standards: 7/10</h4>
+<ul>
+<li>✅ Uses design system colors mostly correctly</li>
+<li>⚠️ Inline glassmorphism instead of component</li>
+<li>⚠️ Font family doesn&#39;t match brand standards</li>
+</ul>
+<hr>
+<h3>6.2 Products Page (Score: 6/10)</h3>
+<h4>Visual Hierarchy: 8/10</h4>
+<ul>
+<li>Clear hero section with value proposition</li>
+<li>Product cards have good information hierarchy</li>
+<li>Trust badges and FAQ sections are well-positioned</li>
+</ul>
+<h4>Typography &amp; Readability: 7/10</h4>
+<ul>
+<li>✅ Good responsive font sizing</li>
+<li>✅ Proper line heights</li>
+<li>⚠️ Missing Poppins for headings</li>
+</ul>
+<h4>Color &amp; Visual Design: 5/10</h4>
+<ul>
+<li>⚠️ Background color not in design system (#02030b)</li>
+<li>⚠️ Gradient orbs use non-brand blue tones</li>
+<li>⚠️ Product color mapping is confusing (violet mapped to cyan)</li>
+<li>✅ Good use of status badges</li>
+</ul>
+<h4>Interaction &amp; Usability: 7/10</h4>
+<ul>
+<li>✅ Clear CTAs throughout</li>
+<li>✅ Good hover states on cards</li>
+<li>⚠️ Product cards are links but don&#39;t communicate link affordance well</li>
+<li>✅ FAQ accordion is intuitive</li>
+</ul>
+<h4>Accessibility: 5/10</h4>
+<ul>
+<li>✅ Has main landmark</li>
+<li>⚠️ No ARIA labels on product cards</li>
+<li>⚠️ Trust badges lack semantic meaning</li>
+<li>✅ Good focus states</li>
+</ul>
+<h4>Consistency &amp; Standards: 4/10</h4>
+<ul>
+<li>⚠️ Doesn&#39;t use GlassmorphicCard component</li>
+<li>⚠️ Inline card styles duplicate code</li>
+<li>⚠️ Color choices don&#39;t align with brand standards</li>
+<li>⚠️ Background colors inconsistent with design system</li>
+</ul>
+<hr>
+<h3>6.3 Soulbook Page (Score: 4/10)</h3>
+<h4>Visual Hierarchy: 7/10</h4>
+<ul>
+<li>Clear sections with good flow</li>
+<li>Pricing cards have good comparison layout</li>
+<li>Philosophy section is visually appealing</li>
+</ul>
+<h4>Typography &amp; Readability: 7/10</h4>
+<ul>
+<li>✅ Good font sizing</li>
+<li>⚠️ Missing Poppins for headings</li>
+<li>✅ Good use of serif italic for branding</li>
+</ul>
+<h4>Color &amp; Visual Design: 3/10</h4>
+<ul>
+<li>⚠️ <strong>CRITICAL: Pure black backgrounds (violations of brand standards)</strong></li>
+<li>⚠️ Uses midnight-950 (not in design system)</li>
+<li>✅ Good use of amber/gold for soul spectrum</li>
+<li>⚠️ Background gradients not consistent with design system</li>
+</ul>
+<h4>Interaction &amp; Usability: 6/10</h4>
+<ul>
+<li>✅ Pricing cards have clear CTAs</li>
+<li>✅ Good hover states</li>
+<li>⚠️ PremiumButton component not audited (dependency)</li>
+</ul>
+<h4>Accessibility: 5/10</h4>
+<ul>
+<li>✅ GlassmorphicCard uses aria-hidden for decorations</li>
+<li>⚠️ No main landmark</li>
+<li>⚠️ Missing ARIA labels on interactive elements</li>
+<li>✅ SVG icons have proper attributes</li>
+</ul>
+<h4>Consistency &amp; Standards: 2/10</h4>
+<ul>
+<li>⚠️ <strong>CRITICAL: Multiple pure black violations</strong></li>
+<li>⚠️ Uses colors not in design system</li>
+<li>✅ Uses GlassmorphicCard component consistently</li>
+<li>⚠️ Background approach completely different from other pages</li>
+</ul>
+<hr>
+<h3>6.4 Blog Page (Score: 8/10)</h3>
+<h4>Visual Hierarchy: 9/10</h4>
+<ul>
+<li>Clean, editorial layout</li>
+<li>Good whitespace</li>
+<li>Clear separation of header and content area</li>
+</ul>
+<h4>Typography &amp; Readability: 8/10</h4>
+<ul>
+<li>✅ Excellent loading skeleton</li>
+<li>⚠️ Missing Poppins for headings</li>
+<li>✅ Good responsive font sizing</li>
+</ul>
+<h4>Color &amp; Visual Design: 7/10</h4>
+<ul>
+<li>⚠️ Background color not in design system</li>
+<li>✅ Clean, minimal aesthetic</li>
+<li>✅ Good use of whitespace</li>
+</ul>
+<h4>Interaction &amp; Usability: 8/10</h4>
+<ul>
+<li>✅ Suspense fallback provides good UX</li>
+<li>✅ Clear navigation to articles</li>
+</ul>
+<h4>Accessibility: 7/10</h4>
+<ul>
+<li>✅ Semantic HTML</li>
+<li>⚠️ Background color not in system</li>
+<li>✅ Loading state is accessible</li>
+</ul>
+<h4>Consistency &amp; Standards: 7/10</h4>
+<ul>
+<li>✅ Uses design system approach</li>
+<li>⚠️ Background color inconsistency</li>
+<li>✅ Good component separation</li>
+</ul>
+<hr>
+<h3>6.5 Downloads Page (Score: 8/10)</h3>
+<h4>Visual Hierarchy: 9/10</h4>
+<ul>
+<li>Clean, focused layout</li>
+<li>Clear download cards with good information hierarchy</li>
+<li>Excellent whitespace usage</li>
+</ul>
+<h4>Typography &amp; Readability: 8/10</h4>
+<ul>
+<li>✅ Good font sizing</li>
+<li>⚠️ Missing Poppins for headings</li>
+<li>✅ Clear descriptions</li>
+</ul>
+<h4>Color &amp; Visual Design: 8/10</h4>
+<ul>
+<li>✅ Good use of AuroraGradient component</li>
+<li>⚠️ Background color not in design system</li>
+<li>✅ Variant system (purple, emerald) aligns with brand</li>
+</ul>
+<h4>Interaction &amp; Usability: 9/10</h4>
+<ul>
+<li>✅ Clear CTAs</li>
+<li>✅ Good hover states</li>
+<li>✅ Feature badges communicate value</li>
+</ul>
+<h4>Accessibility: 7/10</h4>
+<ul>
+<li>✅ Good semantic HTML</li>
+<li>⚠️ Missing ARIA labels</li>
+<li>✅ SVG icons handled correctly</li>
+</ul>
+<h4>Consistency &amp; Standards: 7/10</h4>
+<ul>
+<li>✅ Uses design system components (AuroraGradient)</li>
+<li>⚠️ Background color inconsistency</li>
+<li>✅ Good variant usage</li>
+</ul>
+<hr>
+<h2>Summary of Issues by Severity</h2>
+<h3>CRITICAL (Must Fix Immediately)</h3>
+<ol>
+<li><strong>Pure black violations on Soulbook page</strong> - Lines 34, 78, 239 in <code>app/soulbook/page.tsx</code></li>
+<li><strong>Missing Poppins font</strong> - ALL pages, should be used for headings per brand standards</li>
+<li><strong>Missing ARIA labels on interactive elements</strong> - Homepage cards, product cards, resource links</li>
+<li><strong>No skip-to-content link</strong> - Required for keyboard accessibility</li>
+</ol>
+<h3>HIGH (Fix Before Public Launch)</h3>
+<ol>
+<li><strong>Background color inconsistencies</strong> - Products, Blog, Downloads pages use colors not in design system</li>
+<li><strong>Product page color mapping confusion</strong> - Violet product using cyan colors</li>
+<li><strong>Focus trap missing in mobile menu</strong> - Navigation component</li>
+<li><strong>Inconsistent glassmorphism implementation</strong> - Some pages use component, others use inline styles</li>
+<li><strong>Homepage gradient colors</strong> - Uses violet-400 instead of brand purple</li>
+</ol>
+<h3>MEDIUM (Fix in Next Sprint)</h3>
+<ol>
+<li><strong>Text color contrast on homepage</strong> - white/40 should be white/45</li>
+<li><strong>Button timing inconsistencies</strong> - Standardize to 250ms per design system</li>
+<li><strong>Link color inconsistencies</strong> - Standardize to emerald-400 for action links</li>
+<li><strong>Aurora background performance</strong> - Consider CSS-only gradients</li>
+<li><strong>Hard-coded content in components</strong> - Move to content files</li>
+</ol>
+<h3>LOW (Technical Debt / Refinement)</h3>
+<ol>
+<li><strong>Inline card styles</strong> - Refactor to use GlassmorphicCard</li>
+<li><strong>Button variant limitations</strong> - Add tech/soul spectrum variants</li>
+<li><strong>Products page gradient orbs</strong> - Use brand colors instead of generic blues</li>
+<li><strong>Navigation active state colors</strong> - Consider using emerald for tech reinforcement</li>
+</ol>
+<hr>
+<h2>Recommendations</h2>
+<h3>Immediate Actions (This Week)</h3>
+<ol>
+<li><strong>Fix Soulbook pure black violations</strong> - Replace with <code>bg-[#0a0a0b]</code></li>
+<li><strong>Import Poppins font</strong> - Add to layout and apply to all headings</li>
+<li><strong>Add ARIA labels</strong> - Start with homepage, products, navigation</li>
+<li><strong>Add skip-to-content link</strong> - In root layout before navigation</li>
+</ol>
+<h3>Short-Term (Next 2 Weeks)</h3>
+<ol>
+<li><strong>Create design system color audit script</strong> - Scan for non-compliant colors</li>
+<li><strong>Standardize background colors</strong> - Update all pages to use void/space/elevated</li>
+<li><strong>Refactor product color mapping</strong> - Align with tech/soul spectrum</li>
+<li><strong>Implement focus trap</strong> - In mobile navigation menu</li>
+<li><strong>Add component library guidelines</strong> - Document when to use GlassmorphicCard vs inline styles</li>
+</ol>
+<h3>Long-Term (Next Month)</h3>
+<ol>
+<li><strong>Accessibility audit phase 2</strong> - Screen reader testing, keyboard nav testing</li>
+<li><strong>Performance optimization</strong> - Aurora backgrounds, animation performance</li>
+<li><strong>Design system expansion</strong> - Add tech/soul button variants, more card variants</li>
+<li><strong>Component consolidation</strong> - Refactor all inline card styles to use GlassmorphicCard</li>
+<li><strong>Content management system</strong> - Move hard-coded content to external files</li>
+</ol>
+<hr>
+<h2>Design System Checklist</h2>
+<h3>Colors ✅ Mostly Good</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Design system documented</li>
+<li><input checked="" disabled="" type="checkbox"> Contrast ratios defined</li>
+<li><input checked="" disabled="" type="checkbox"> Semantic colors (success, warning, error)</li>
+<li><input disabled="" type="checkbox"> <strong>Applied consistently across all pages</strong> (FAIL: Soulbook, Products, Blog, Downloads)</li>
+<li><input checked="" disabled="" type="checkbox"> No pure black (#000000) - <strong>FAIL on Soulbook page</strong></li>
+</ul>
+<h3>Typography ⚠️ Needs Work</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Type scale defined (Perfect Fourth)</li>
+<li><input checked="" disabled="" type="checkbox"> Line heights optimized</li>
+<li><input checked="" disabled="" type="checkbox"> Responsive sizing</li>
+<li><input disabled="" type="checkbox"> <strong>Poppins for headings</strong> (MISSING)</li>
+<li><input checked="" disabled="" type="checkbox"> Inter for body ✅</li>
+<li><input checked="" disabled="" type="checkbox"> Serif for accents (Times New Roman italic)</li>
+</ul>
+<h3>Components ⚠️ Mixed</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Button component with accessibility features</li>
+<li><input disabled="" type="checkbox"> <strong>Consistent usage</strong> (FAIL: many inline styles)</li>
+<li><input checked="" disabled="" type="checkbox"> GlassmorphicCard component</li>
+<li><input disabled="" type="checkbox"> <strong>Applied everywhere</strong> (FAIL: Products, Homepage use inline)</li>
+<li><input checked="" disabled="" type="checkbox"> Navigation with ARIA labels</li>
+<li><input disabled="" type="checkbox"> <strong>Focus trap in mobile menu</strong> (MISSING)</li>
+</ul>
+<h3>Accessibility ⚠️ Needs Improvement</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Focus states on interactive elements</li>
+<li><input disabled="" type="checkbox"> <strong>ARIA labels on cards/links</strong> (MISSING)</li>
+<li><input disabled="" type="checkbox"> <strong>Skip-to-content link</strong> (MISSING)</li>
+<li><input checked="" disabled="" type="checkbox"> Reduced motion support</li>
+<li><input checked="" disabled="" type="checkbox"> Color contrast (design system)</li>
+<li><input disabled="" type="checkbox"> <strong>Applied consistently</strong> (FAIL: some white/40 text)</li>
+<li><input checked="" disabled="" type="checkbox"> Semantic HTML (mostly)</li>
+<li><input disabled="" type="checkbox"> <strong>Main landmarks on all pages</strong> (MISSING on some)</li>
+</ul>
+<h3>Layout Patterns ⚠️ Needs Standardization</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Responsive grid system</li>
+<li><input checked="" disabled="" type="checkbox"> Consistent spacing within pages</li>
+<li><input disabled="" type="checkbox"> <strong>Consistent spacing between pages</strong> (MIXED)</li>
+<li><input checked="" disabled="" type="checkbox"> Mobile-first approach</li>
+<li><input checked="" disabled="" type="checkbox"> Clear visual hierarchy</li>
+<li><input checked="" disabled="" type="checkbox"> Good whitespace usage</li>
+</ul>
+<hr>
+<h2>Conclusion</h2>
+<p>The FrankX website demonstrates a <strong>strong foundation</strong> with excellent design system documentation and thoughtful architecture. However, <strong>execution falls short of the documented standards</strong> in several critical areas:</p>
+<ol>
+<li><strong>Brand Standards Compliance:</strong> Pure black violations on Soulbook page directly contradict documented guidelines</li>
+<li><strong>Typography:</strong> Missing Poppins font undermines brand identity</li>
+<li><strong>Accessibility:</strong> Lack of ARIA labels and skip links fails WCAG 2.1 Level A/AA requirements</li>
+<li><strong>Consistency:</strong> Inconsistent application of design system (colors, components, spacing)</li>
+</ol>
+<h3>Priority Matrix</h3>
+<pre><code>HIGH IMPACT, HIGH EFFORT:
+- Font system overhaul (import Poppins, apply to headings)
+- Component consolidation (refactor inline styles)
+
+HIGH IMPACT, LOW EFFORT:
+- Fix Soulbook pure black violations
+- Add ARIA labels to interactive elements
+- Standardize background colors
+
+LOW IMPACT, LOW EFFORT:
+- Button timing standardization
+- Link color consistency
+- Text color contrast fixes
+</code></pre>
+<h3>Timeline Recommendation</h3>
+<ul>
+<li><strong>Week 1:</strong> Critical fixes (pure black, ARIA labels, skip link)</li>
+<li><strong>Week 2:</strong> Font system and color standardization</li>
+<li><strong>Week 3-4:</strong> Component refactoring and accessibility testing</li>
+<li><strong>Month 2:</strong> Performance optimization and documentation</li>
+</ul>
+<p>With these improvements, the site can achieve an <strong>A grade (90+)</strong> and serve as a best-in-class example of conscious design system implementation.</p>
+<hr>
+<p><strong>End of Audit Report</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

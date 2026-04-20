@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>CLI Commands Migration Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/v3-migration/CLI-MIGRATION.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">CLI Commands Migration Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fv3-migration">v3-migration</a> / <span>CLI-MIGRATION.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>CLI Commands Migration Guide</h1>
+<blockquote>
+<p>Migrating from V2 CLI (25 commands) to V3 CLI (7 commands)</p>
+</blockquote>
+<h2>Overview</h2>
+<p>V3 CLI is streamlined with 7 core commands. Many V2 commands need migration or have been consolidated.</p>
+<h2>Command Coverage</h2>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>V2 Commands</th>
+<th>V3 Commands</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ Implemented</td>
+<td>7</td>
+<td>7</td>
+</tr>
+<tr>
+<td>❌ Missing</td>
+<td>18</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>25</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<h2>Implemented Commands ✅</h2>
+<h3>agent</h3>
+<pre><code class="language-bash"># V2
+npx claude-flow agent spawn --type coder --name my-coder
+npx claude-flow agent list --detailed
+npx claude-flow agent info &lt;agentId&gt;
+npx claude-flow agent terminate &lt;agentId&gt;
+
+# V3 (same)
+npx claude-flow agent spawn --type coder --id my-coder
+npx claude-flow agent list --detailed
+npx claude-flow agent status &lt;agentId&gt;
+npx claude-flow agent terminate &lt;agentId&gt;
+</code></pre>
+<h3>memory</h3>
+<pre><code class="language-bash"># V2
+npx claude-flow memory store --namespace default --content &quot;data&quot;
+npx claude-flow memory query --search &quot;keyword&quot; --limit 10
+npx claude-flow memory list --namespace default
+
+# V3 (enhanced)
+npx claude-flow memory store --type episodic --content &quot;data&quot;
+npx claude-flow memory search --query &quot;keyword&quot; --search-type hybrid
+npx claude-flow memory list --type all --sort-by relevance
+</code></pre>
+<h3>swarm</h3>
+<pre><code class="language-bash"># V2
+npx claude-flow swarm --strategy auto --max-agents 5
+
+# V3 (enhanced)
+npx claude-flow swarm init --topology hierarchical-mesh --max-agents 15
+npx claude-flow swarm status --include-metrics
+npx claude-flow swarm scale --target 10 --strategy gradual
+</code></pre>
+<h3>hooks</h3>
+<pre><code class="language-bash"># V2
+npx claude-flow hooks pre-edit --file src/app.ts
+npx claude-flow hooks post-edit --file src/app.ts --success true
+
+# V3 (enhanced with learning)
+npx claude-flow hooks pre-edit src/app.ts
+npx claude-flow hooks post-edit src/app.ts --success true
+npx claude-flow hooks route &quot;implement feature X&quot;
+npx claude-flow hooks explain &quot;implement feature X&quot;
+npx claude-flow hooks pretrain
+npx claude-flow hooks metrics
+</code></pre>
+<h3>mcp</h3>
+<pre><code class="language-bash"># V2
+npx claude-flow mcp start --port 3000 --transport stdio
+npx claude-flow mcp stop
+npx claude-flow mcp status
+
+# V3 (same)
+npx claude-flow mcp start --port 3000 --transport stdio
+npx claude-flow mcp stop
+npx claude-flow mcp status
+</code></pre>
+<h3>config</h3>
+<pre><code class="language-bash"># V2
+npx claude-flow config get orchestrator
+npx claude-flow config set orchestrator.maxAgents 10
+
+# V3
+npx claude-flow config load --scope project
+npx claude-flow config save --create-backup
+npx claude-flow config validate --strict
+</code></pre>
+<h3>migrate</h3>
+<pre><code class="language-bash"># V3 only
+npx claude-flow migrate status
+npx claude-flow migrate run --target all --backup
+npx claude-flow migrate verify
+npx claude-flow migrate rollback --backup-id &lt;id&gt;
+</code></pre>
+<h2>Missing Commands ❌</h2>
+<h3>Priority 1 - HIGH</h3>
+<h4>init</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow init
+npx claude-flow init --minimal
+npx claude-flow init --flow-nexus
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/init.ts
+export const initCommand = {
+  command: &#39;init&#39;,
+  description: &#39;Initialize Claude Code integration files&#39;,
+  options: [
+    { flags: &#39;-f, --force&#39;, description: &#39;Overwrite existing files&#39; },
+    { flags: &#39;-m, --minimal&#39;, description: &#39;Create minimal configuration&#39; },
+    { flags: &#39;--flow-nexus&#39;, description: &#39;Initialize with Flow Nexus&#39; }
+  ],
+  action: async (options) =&gt; {
+    await createClaudeFlowConfig(options);
+    await createDefaultAgents(options);
+    if (!options.minimal) {
+      await createHooksConfig(options);
+      await createWorkflowTemplates(options);
+    }
+  }
+};
+</code></pre>
+<h4>start</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow start
+npx claude-flow start --daemon
+npx claude-flow start --port 3000
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/start.ts
+export const startCommand = {
+  command: &#39;start&#39;,
+  description: &#39;Start the orchestration system&#39;,
+  options: [
+    { flags: &#39;-d, --daemon&#39;, description: &#39;Run as daemon&#39; },
+    { flags: &#39;-p, --port &lt;port&gt;&#39;, description: &#39;MCP server port&#39; }
+  ],
+  action: async (options) =&gt; {
+    const swarm = await initializeV3Swarm();
+    await swarm.spawnAllAgents();
+    if (options.port) {
+      await startMCPServer({ port: options.port });
+    }
+  }
+};
+</code></pre>
+<h4>status</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow status
+npx claude-flow status --watch
+npx claude-flow status --json
+npx claude-flow status --health-check
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/status.ts
+export const statusCommand = {
+  command: &#39;status&#39;,
+  description: &#39;Show enhanced system status&#39;,
+  options: [
+    { flags: &#39;-w, --watch&#39;, description: &#39;Watch mode&#39; },
+    { flags: &#39;-i, --interval &lt;seconds&gt;&#39;, description: &#39;Update interval&#39; },
+    { flags: &#39;--json&#39;, description: &#39;Output in JSON format&#39; },
+    { flags: &#39;--health-check&#39;, description: &#39;Perform health checks&#39; }
+  ],
+  action: async (options) =&gt; {
+    const status = await getSystemStatus();
+    if (options.healthCheck) {
+      status.health = await performHealthChecks();
+    }
+    if (options.watch) {
+      await watchStatus(status, options.interval);
+    } else {
+      displayStatus(status, options.json);
+    }
+  }
+};
+</code></pre>
+<h4>task</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow task create --type implementation --description &quot;Build feature&quot;
+npx claude-flow task list --status running
+npx claude-flow task status &lt;taskId&gt;
+npx claude-flow task cancel &lt;taskId&gt;
+npx claude-flow task assign &lt;taskId&gt; --agent &lt;agentId&gt;
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/task.ts
+export const taskCommand = {
+  command: &#39;task&#39;,
+  description: &#39;Manage tasks&#39;,
+  subcommands: [
+    {
+      command: &#39;create&#39;,
+      options: [
+        { flags: &#39;-t, --type &lt;type&gt;&#39;, description: &#39;Task type&#39; },
+        { flags: &#39;-d, --description &lt;desc&gt;&#39;, description: &#39;Task description&#39; },
+        { flags: &#39;-p, --priority &lt;priority&gt;&#39;, description: &#39;Task priority&#39; },
+        { flags: &#39;-a, --assign &lt;agentId&gt;&#39;, description: &#39;Assign to agent&#39; }
+      ]
+    },
+    { command: &#39;list&#39;, options: [{ flags: &#39;-s, --status &lt;status&gt;&#39; }] },
+    { command: &#39;status&#39;, args: &#39;&lt;taskId&gt;&#39; },
+    { command: &#39;cancel&#39;, args: &#39;&lt;taskId&gt;&#39; },
+    { command: &#39;assign&#39;, args: &#39;&lt;taskId&gt;&#39;, options: [{ flags: &#39;--agent &lt;agentId&gt;&#39; }] }
+  ]
+};
+</code></pre>
+<h4>session</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow session list
+npx claude-flow session save --description &quot;Checkpoint&quot;
+npx claude-flow session restore &lt;sessionId&gt;
+npx claude-flow session delete &lt;sessionId&gt;
+npx claude-flow session export --include-memory
+npx claude-flow session import &lt;file&gt;
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/session.ts
+export const sessionCommand = {
+  command: &#39;session&#39;,
+  description: &#39;Manage Claude-Flow sessions&#39;,
+  subcommands: [
+    { command: &#39;list&#39;, options: [{ flags: &#39;-a, --active&#39; }] },
+    { command: &#39;save&#39;, options: [{ flags: &#39;-d, --description &lt;desc&gt;&#39; }] },
+    { command: &#39;restore&#39;, args: &#39;&lt;sessionId&gt;&#39; },
+    { command: &#39;delete&#39;, args: &#39;&lt;sessionId&gt;&#39; },
+    { command: &#39;export&#39;, options: [{ flags: &#39;--include-memory&#39; }] },
+    { command: &#39;import&#39;, args: &#39;&lt;file&gt;&#39; }
+  ]
+};
+</code></pre>
+<h3>Priority 2 - MEDIUM</h3>
+<h4>hive</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow hive --topology mesh --consensus quorum --max-agents 8
+npx claude-flow hive-mind init
+npx claude-flow hive-mind status
+npx claude-flow hive-mind spawn --type queen
+npx claude-flow hive-mind task --description &quot;Task&quot;
+npx claude-flow hive-mind wizard
+npx claude-flow hive-mind pause
+npx claude-flow hive-mind resume
+npx claude-flow hive-mind stop
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/hive.ts
+export const hiveCommand = {
+  command: &#39;hive&#39;,
+  description: &#39;Hive Mind multi-agent coordination&#39;,
+  options: [
+    { flags: &#39;--topology &lt;type&gt;&#39;, description: &#39;Topology: mesh, hierarchical, ring, star&#39; },
+    { flags: &#39;--consensus &lt;type&gt;&#39;, description: &#39;Consensus: quorum, unanimous, weighted&#39; },
+    { flags: &#39;--max-agents &lt;n&gt;&#39;, description: &#39;Maximum agents&#39; }
+  ],
+  subcommands: [
+    { command: &#39;init&#39; },
+    { command: &#39;status&#39; },
+    { command: &#39;spawn&#39;, options: [{ flags: &#39;-t, --type &lt;type&gt;&#39; }] },
+    { command: &#39;task&#39;, options: [{ flags: &#39;-d, --description &lt;desc&gt;&#39; }] },
+    { command: &#39;wizard&#39; },
+    { command: &#39;pause&#39; },
+    { command: &#39;resume&#39; },
+    { command: &#39;stop&#39; }
+  ]
+};
+</code></pre>
+<h4>sparc</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow sparc modes
+npx claude-flow sparc info &lt;mode&gt;
+npx claude-flow sparc run --mode specification
+npx claude-flow sparc tdd --sequential
+npx claude-flow sparc workflow --dry-run
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/sparc.ts
+export const sparcCommand = {
+  command: &#39;sparc&#39;,
+  description: &#39;SPARC methodology commands&#39;,
+  subcommands: [
+    { command: &#39;modes&#39;, description: &#39;List SPARC modes&#39; },
+    { command: &#39;info&#39;, args: &#39;&lt;mode&gt;&#39; },
+    { command: &#39;run&#39;, options: [{ flags: &#39;-m, --mode &lt;mode&gt;&#39; }] },
+    { command: &#39;tdd&#39;, options: [{ flags: &#39;--sequential&#39; }] },
+    { command: &#39;workflow&#39;, options: [{ flags: &#39;--dry-run&#39; }] }
+  ]
+};
+</code></pre>
+<h4>monitor</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow monitor
+npx claude-flow monitor --interval 2
+npx claude-flow monitor --compact
+npx claude-flow monitor --focus agents
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/monitor.ts
+export const monitorCommand = {
+  command: &#39;monitor&#39;,
+  description: &#39;Start live monitoring dashboard&#39;,
+  options: [
+    { flags: &#39;-i, --interval &lt;seconds&gt;&#39;, description: &#39;Update interval&#39; },
+    { flags: &#39;-c, --compact&#39;, description: &#39;Compact view&#39; },
+    { flags: &#39;--focus &lt;component&gt;&#39;, description: &#39;Focus on component&#39; }
+  ],
+  action: async (options) =&gt; {
+    const dashboard = createDashboard(options);
+    await dashboard.start();
+  }
+};
+</code></pre>
+<h4>github</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow github init
+npx claude-flow github gh-coordinator
+npx claude-flow github pr-manager
+npx claude-flow github issue-tracker
+npx claude-flow github release-manager
+npx claude-flow github repo-architect
+npx claude-flow github sync-coordinator
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/github.ts
+export const githubCommand = {
+  command: &#39;github&#39;,
+  description: &#39;GitHub workflow automation&#39;,
+  subcommands: [
+    { command: &#39;init&#39; },
+    { command: &#39;gh-coordinator&#39; },
+    { command: &#39;pr-manager&#39; },
+    { command: &#39;issue-tracker&#39; },
+    { command: &#39;release-manager&#39; },
+    { command: &#39;repo-architect&#39; },
+    { command: &#39;sync-coordinator&#39; }
+  ],
+  options: [
+    { flags: &#39;--auto-approve&#39;, description: &#39;Auto-approve permissions&#39; },
+    { flags: &#39;--dry-run&#39;, description: &#39;Preview only&#39; }
+  ]
+};
+</code></pre>
+<h3>Priority 3 - LOW</h3>
+<h4>neural</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow neural init
+npx claude-flow neural init --force --target .claude/agents/neural
+
+# V3: Replaced by hooks pretrain
+npx claude-flow hooks pretrain
+</code></pre>
+<h4>goal</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow goal init
+
+# V3: Replaced by hooks system
+npx claude-flow hooks pretrain --include-goap
+</code></pre>
+<h4>claude</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow claude spawn --tools View,Edit,Bash --mode full
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/claude.ts
+export const claudeCommand = {
+  command: &#39;claude&#39;,
+  description: &#39;Spawn Claude instances&#39;,
+  subcommands: [
+    {
+      command: &#39;spawn&#39;,
+      options: [
+        { flags: &#39;-t, --tools &lt;tools&gt;&#39;, description: &#39;Allowed tools&#39; },
+        { flags: &#39;-m, --mode &lt;mode&gt;&#39;, description: &#39;Dev mode&#39; },
+        { flags: &#39;--parallel&#39;, description: &#39;Enable parallel execution&#39; }
+      ]
+    }
+  ]
+};
+</code></pre>
+<h4>workflow</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow workflow create --name &quot;my-workflow&quot;
+npx claude-flow workflow execute &lt;workflow&gt;
+npx claude-flow workflow list
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/workflow.ts
+</code></pre>
+<h4>repl</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow repl
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/repl.ts
+export const replCommand = {
+  command: &#39;repl&#39;,
+  description: &#39;Start interactive REPL mode&#39;,
+  action: async () =&gt; {
+    const rl = createInterface({ input: stdin, output: stdout });
+    // REPL loop
+  }
+};
+</code></pre>
+<h4>version</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow version
+npx claude-flow version --short
+
+# V3 Migration needed:
+# Add version flag to CLI root
+</code></pre>
+<h4>completion</h4>
+<pre><code class="language-bash"># V2
+npx claude-flow completion bash
+npx claude-flow completion --install
+
+# V3 Migration needed:
+# Add to v3/@claude-flow/cli/src/commands/completion.ts
+</code></pre>
+<h2>Implementation Plan</h2>
+<h3>Phase 1 (Week 1-2): Core Commands</h3>
+<ol>
+<li><code>init</code> - Project initialization</li>
+<li><code>start</code> - System startup</li>
+<li><code>status</code> - System status</li>
+<li><code>task</code> - Task management</li>
+<li><code>session</code> - Session management</li>
+</ol>
+<h3>Phase 2 (Week 3-4): Feature Commands</h3>
+<ol>
+<li><code>hive</code> - Hive-mind mode</li>
+<li><code>sparc</code> - SPARC methodology</li>
+<li><code>monitor</code> - Live dashboard</li>
+<li><code>github</code> - GitHub integration</li>
+</ol>
+<h3>Phase 3 (Week 5-6): Utilities</h3>
+<ol>
+<li><code>workflow</code> - Workflow management</li>
+<li><code>claude</code> - Claude spawning</li>
+<li><code>repl</code> - Interactive mode</li>
+<li><code>version</code> - Version info</li>
+<li><code>completion</code> - Shell completion</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

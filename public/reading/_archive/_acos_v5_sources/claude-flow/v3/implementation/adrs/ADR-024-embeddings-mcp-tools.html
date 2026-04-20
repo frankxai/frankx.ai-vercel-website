@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ADR-024: Embeddings MCP Tools</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/adrs/ADR-024-embeddings-mcp-tools.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ADR-024: Embeddings MCP Tools</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fadrs">adrs</a> / <span>ADR-024-embeddings-mcp-tools.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ADR-024: Embeddings MCP Tools</h1>
+<h2>Status</h2>
+<p><strong>Implemented</strong> | 2026-01-12</p>
+<h2>Context</h2>
+<p>Following ADR-023 (ONNX Hyperbolic Embeddings Initialization), the CLI now has a comprehensive <code>embeddings</code> command with init, status, and neural subcommands. However, Claude Code and other MCP clients need programmatic access to embedding operations without invoking CLI commands.</p>
+<h3>Problem Statement</h3>
+<p>How do we expose embedding operations through the MCP protocol for:</p>
+<ol>
+<li>Initializing the embedding subsystem from MCP clients</li>
+<li>Generating embeddings on-demand</li>
+<li>Comparing text similarity</li>
+<li>Semantic search across stored embeddings</li>
+<li>Neural substrate operations (RuVector)</li>
+<li>Hyperbolic embedding operations (Poincaré ball)</li>
+</ol>
+<h3>Design Principles</h3>
+<p>Following ADR-005 (MCP-First API Design):</p>
+<ul>
+<li>CLI commands should be thin wrappers around MCP tools</li>
+<li>All business logic lives in MCP tool handlers</li>
+<li>Tools should be stateless and composable</li>
+</ul>
+<h2>Decision</h2>
+<p>Implement 7 MCP tools in <code>@claude-flow/cli/src/mcp-tools/embeddings-tools.ts</code>:</p>
+<h3>1. <code>embeddings/init</code></h3>
+<p>Initialize the ONNX embedding subsystem with hyperbolic support.</p>
+<pre><code class="language-typescript">{
+  name: &#39;embeddings/init&#39;,
+  inputSchema: {
+    type: &#39;object&#39;,
+    properties: {
+      model: { type: &#39;string&#39;, enum: [&#39;all-MiniLM-L6-v2&#39;, &#39;all-mpnet-base-v2&#39;] },
+      hyperbolic: { type: &#39;boolean&#39;, default: true },
+      curvature: { type: &#39;number&#39;, default: -1 },
+      cacheSize: { type: &#39;number&#39;, default: 256 },
+      force: { type: &#39;boolean&#39;, default: false },
+    },
+  },
+}
+</code></pre>
+<h3>2. <code>embeddings/generate</code></h3>
+<p>Generate embeddings for text (Euclidean or hyperbolic).</p>
+<pre><code class="language-typescript">{
+  name: &#39;embeddings/generate&#39;,
+  inputSchema: {
+    type: &#39;object&#39;,
+    properties: {
+      text: { type: &#39;string&#39;, required: true },
+      hyperbolic: { type: &#39;boolean&#39;, default: false },
+      normalize: { type: &#39;boolean&#39;, default: true },
+    },
+  },
+}
+</code></pre>
+<h3>3. <code>embeddings/compare</code></h3>
+<p>Compare similarity between two texts.</p>
+<pre><code class="language-typescript">{
+  name: &#39;embeddings/compare&#39;,
+  inputSchema: {
+    type: &#39;object&#39;,
+    properties: {
+      text1: { type: &#39;string&#39;, required: true },
+      text2: { type: &#39;string&#39;, required: true },
+      metric: { type: &#39;string&#39;, enum: [&#39;cosine&#39;, &#39;euclidean&#39;, &#39;poincare&#39;] },
+    },
+  },
+}
+</code></pre>
+<h3>4. <code>embeddings/search</code></h3>
+<p>Semantic search across stored embeddings.</p>
+<pre><code class="language-typescript">{
+  name: &#39;embeddings/search&#39;,
+  inputSchema: {
+    type: &#39;object&#39;,
+    properties: {
+      query: { type: &#39;string&#39;, required: true },
+      topK: { type: &#39;number&#39;, default: 5 },
+      threshold: { type: &#39;number&#39;, default: 0.5 },
+      namespace: { type: &#39;string&#39; },
+    },
+  },
+}
+</code></pre>
+<h3>5. <code>embeddings/neural</code></h3>
+<p>Neural substrate operations (RuVector integration).</p>
+<pre><code class="language-typescript">{
+  name: &#39;embeddings/neural&#39;,
+  inputSchema: {
+    type: &#39;object&#39;,
+    properties: {
+      action: { type: &#39;string&#39;, enum: [&#39;status&#39;, &#39;init&#39;, &#39;drift&#39;, &#39;consolidate&#39;, &#39;adapt&#39;] },
+      driftThreshold: { type: &#39;number&#39;, default: 0.3 },
+      decayRate: { type: &#39;number&#39;, default: 0.01 },
+    },
+  },
+}
+</code></pre>
+<p>Actions:</p>
+<ul>
+<li><code>status</code> - Get neural substrate status</li>
+<li><code>init</code> - Initialize RuVector with SONA, Flash Attention, EWC++</li>
+<li><code>drift</code> - Check semantic drift status</li>
+<li><code>consolidate</code> - Run memory consolidation (hippocampal dynamics)</li>
+<li><code>adapt</code> - Trigger SONA adaptation cycle</li>
+</ul>
+<h3>6. <code>embeddings/hyperbolic</code></h3>
+<p>Hyperbolic embedding operations (Poincaré ball).</p>
+<pre><code class="language-typescript">{
+  name: &#39;embeddings/hyperbolic&#39;,
+  inputSchema: {
+    type: &#39;object&#39;,
+    properties: {
+      action: { type: &#39;string&#39;, enum: [&#39;status&#39;, &#39;convert&#39;, &#39;distance&#39;, &#39;midpoint&#39;] },
+      embedding: { type: &#39;array&#39;, items: { type: &#39;number&#39; } },
+      embedding1: { type: &#39;array&#39;, items: { type: &#39;number&#39; } },
+      embedding2: { type: &#39;array&#39;, items: { type: &#39;number&#39; } },
+    },
+  },
+}
+</code></pre>
+<p>Actions:</p>
+<ul>
+<li><code>status</code> - Get hyperbolic configuration</li>
+<li><code>convert</code> - Convert Euclidean embedding to Poincaré ball</li>
+<li><code>distance</code> - Calculate hyperbolic distance between two points</li>
+<li><code>midpoint</code> - Calculate hyperbolic midpoint</li>
+</ul>
+<h3>7. <code>embeddings/status</code></h3>
+<p>Get embeddings system status and configuration.</p>
+<pre><code class="language-typescript">{
+  name: &#39;embeddings/status&#39;,
+  inputSchema: { type: &#39;object&#39;, properties: {} },
+}
+</code></pre>
+<h2>Implementation Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                   Embeddings MCP Tools                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│  ┌────────────────┐    ┌────────────────┐    ┌───────────┐ │
+│  │ embeddings/    │    │ embeddings/    │    │embeddings/│ │
+│  │ init           │    │ generate       │    │ compare   │ │
+│  └───────┬────────┘    └───────┬────────┘    └─────┬─────┘ │
+│          │                     │                    │       │
+│          ▼                     ▼                    ▼       │
+│  ┌─────────────────────────────────────────────────────────┐│
+│  │               Configuration Layer                        ││
+│  │    .claude-flow/embeddings.json (persistent config)      ││
+│  └─────────────────────────────────────────────────────────┘│
+│                          │                                   │
+│          ┌───────────────┼───────────────┐                  │
+│          ▼               ▼               ▼                  │
+│  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐        │
+│  │ Embedding    │ │ Hyperbolic   │ │ Neural       │        │
+│  │ Generation   │ │ Projection   │ │ Substrate    │        │
+│  │ (mock/ONNX)  │ │ (Poincaré)   │ │ (RuVector)   │        │
+│  └──────────────┘ └──────────────┘ └──────────────┘        │
+│                                                              │
+│  ┌────────────────┐    ┌────────────────┐    ┌───────────┐ │
+│  │ embeddings/    │    │ embeddings/    │    │embeddings/│ │
+│  │ search         │    │ neural         │    │hyperbolic │ │
+│  └────────────────┘    └────────────────┘    └───────────┘ │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Mathematical Functions</h2>
+<h3>Poincaré Ball Operations</h3>
+<p><strong>Exponential Map (Euclidean → Poincaré):</strong></p>
+<pre><code>exp_0(v) = tanh(√c · ||v|| / 2) · v / (√c · ||v||)
+</code></pre>
+<p><strong>Poincaré Distance:</strong></p>
+<pre><code>d(x, y) = (1/√c) · arcosh(1 + 2c · ||x-y||² / ((1-c||x||²)(1-c||y||²)))
+</code></pre>
+<p><strong>Hyperbolic Midpoint (simplified):</strong></p>
+<pre><code>m(x, y) = scale · (x + y) / 2
+where scale ensures ||m|| &lt; maxNorm
+</code></pre>
+<h2>Configuration</h2>
+<p>Tools store configuration in <code>.claude-flow/embeddings.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;model&quot;: &quot;all-MiniLM-L6-v2&quot;,
+  &quot;modelPath&quot;: &quot;.claude-flow/models&quot;,
+  &quot;dimension&quot;: 384,
+  &quot;cacheSize&quot;: 256,
+  &quot;hyperbolic&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;curvature&quot;: -1,
+    &quot;epsilon&quot;: 1e-15,
+    &quot;maxNorm&quot;: 0.99999
+  },
+  &quot;neural&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;driftThreshold&quot;: 0.3,
+    &quot;decayRate&quot;: 0.01,
+    &quot;ruvector&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;sona&quot;: true,
+      &quot;flashAttention&quot;: true,
+      &quot;ewcPlusPlus&quot;: true
+    },
+    &quot;features&quot;: {
+      &quot;semanticDrift&quot;: true,
+      &quot;memoryPhysics&quot;: true,
+      &quot;stateMachine&quot;: true,
+      &quot;swarmCoordination&quot;: true,
+      &quot;coherenceMonitor&quot;: true
+    }
+  },
+  &quot;initialized&quot;: &quot;2026-01-12T18:30:00.000Z&quot;
+}
+</code></pre>
+<h2>Tool Registration</h2>
+<p>Tools are registered in <code>mcp-client.ts</code>:</p>
+<pre><code class="language-typescript">import { embeddingsTools } from &#39;./mcp-tools/embeddings-tools.js&#39;;
+
+registerTools([
+  // ... existing tools
+  ...embeddingsTools,
+]);
+</code></pre>
+<p>And exported from <code>mcp-tools/index.ts</code>:</p>
+<pre><code class="language-typescript">export { embeddingsTools } from &#39;./embeddings-tools.js&#39;;
+</code></pre>
+<h2>Usage Examples</h2>
+<h3>Initialize Embeddings via MCP</h3>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 1,
+  &quot;method&quot;: &quot;tools/call&quot;,
+  &quot;params&quot;: {
+    &quot;name&quot;: &quot;embeddings/init&quot;,
+    &quot;arguments&quot;: {
+      &quot;model&quot;: &quot;all-MiniLM-L6-v2&quot;,
+      &quot;hyperbolic&quot;: true,
+      &quot;curvature&quot;: -1
+    }
+  }
+}
+</code></pre>
+<h3>Generate Embedding</h3>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 2,
+  &quot;method&quot;: &quot;tools/call&quot;,
+  &quot;params&quot;: {
+    &quot;name&quot;: &quot;embeddings/generate&quot;,
+    &quot;arguments&quot;: {
+      &quot;text&quot;: &quot;async function processData()&quot;,
+      &quot;hyperbolic&quot;: true
+    }
+  }
+}
+</code></pre>
+<h3>Compare Texts</h3>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 3,
+  &quot;method&quot;: &quot;tools/call&quot;,
+  &quot;params&quot;: {
+    &quot;name&quot;: &quot;embeddings/compare&quot;,
+    &quot;arguments&quot;: {
+      &quot;text1&quot;: &quot;authentication middleware&quot;,
+      &quot;text2&quot;: &quot;auth guard handler&quot;,
+      &quot;metric&quot;: &quot;cosine&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Check Neural Status</h3>
+<pre><code class="language-json">{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 4,
+  &quot;method&quot;: &quot;tools/call&quot;,
+  &quot;params&quot;: {
+    &quot;name&quot;: &quot;embeddings/neural&quot;,
+    &quot;arguments&quot;: { &quot;action&quot;: &quot;status&quot; }
+  }
+}
+</code></pre>
+<h2>Consequences</h2>
+<h3>Positive</h3>
+<ul>
+<li><strong>MCP-first design</strong>: Embeddings accessible to all MCP clients</li>
+<li><strong>Consistent API</strong>: Same tools for CLI and programmatic access</li>
+<li><strong>Full feature coverage</strong>: Init, generate, compare, search, neural, hyperbolic</li>
+<li><strong>RuVector integration</strong>: SONA, Flash Attention, EWC++ available via MCP</li>
+<li><strong>Stateless tools</strong>: Configuration persisted to disk</li>
+</ul>
+<h3>Negative</h3>
+<ul>
+<li><strong>Additional complexity</strong>: 7 new tools to maintain</li>
+<li><strong>Mock implementation</strong>: Full ONNX runtime not yet integrated</li>
+</ul>
+<h3>Neutral</h3>
+<ul>
+<li>Follows existing MCP tool patterns</li>
+<li>Uses standard JSON configuration</li>
+<li>Adds <code>embeddings</code> category to tool list</li>
+</ul>
+<h2>Related ADRs</h2>
+<ul>
+<li>ADR-005: MCP-First API Design</li>
+<li>ADR-006: Unified Memory Service</li>
+<li>ADR-017: RuVector Integration</li>
+<li>ADR-023: ONNX Hyperbolic Embeddings Initialization</li>
+</ul>
+<h2>References</h2>
+<ul>
+<li>MCP Protocol Specification</li>
+<li>Poincaré Embeddings (Nickel &amp; Kiela, 2017)</li>
+<li>ONNX Runtime documentation</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

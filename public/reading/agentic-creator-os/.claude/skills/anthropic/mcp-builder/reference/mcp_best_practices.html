@@ -1,0 +1,981 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>MCP Server Development Best Practices and Guidelines</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/anthropic/mcp-builder/reference/mcp_best_practices.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">MCP Server Development Best Practices and Guidelines</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../../../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="../../index.html#agentic-creator-os%2F.claude%2Fskills%2Fanthropic">anthropic</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills%2Fanthropic%2Fmcp-builder">mcp-builder</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fanthropic%2Fmcp-builder%2Freference">reference</a> / <span>mcp_best_practices.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>MCP Server Development Best Practices and Guidelines</h1>
+<h2>Overview</h2>
+<p>This document compiles essential best practices and guidelines for building Model Context Protocol (MCP) servers. It covers naming conventions, tool design, response formats, pagination, error handling, security, and compliance requirements.</p>
+<hr>
+<h2>Quick Reference</h2>
+<h3>Server Naming</h3>
+<ul>
+<li><strong>Python</strong>: <code>{service}_mcp</code> (e.g., <code>slack_mcp</code>)</li>
+<li><strong>Node/TypeScript</strong>: <code>{service}-mcp-server</code> (e.g., <code>slack-mcp-server</code>)</li>
+</ul>
+<h3>Tool Naming</h3>
+<ul>
+<li>Use snake_case with service prefix</li>
+<li>Format: <code>{service}_{action}_{resource}</code></li>
+<li>Example: <code>slack_send_message</code>, <code>github_create_issue</code></li>
+</ul>
+<h3>Response Formats</h3>
+<ul>
+<li>Support both JSON and Markdown formats</li>
+<li>JSON for programmatic processing</li>
+<li>Markdown for human readability</li>
+</ul>
+<h3>Pagination</h3>
+<ul>
+<li>Always respect <code>limit</code> parameter</li>
+<li>Return <code>has_more</code>, <code>next_offset</code>, <code>total_count</code></li>
+<li>Default to 20-50 items</li>
+</ul>
+<h3>Character Limits</h3>
+<ul>
+<li>Set CHARACTER_LIMIT constant (typically 25,000)</li>
+<li>Truncate gracefully with clear messages</li>
+<li>Provide guidance on filtering</li>
+</ul>
+<hr>
+<h2>Table of Contents</h2>
+<ol>
+<li>Server Naming Conventions</li>
+<li>Tool Naming and Design</li>
+<li>Response Format Guidelines</li>
+<li>Pagination Best Practices</li>
+<li>Character Limits and Truncation</li>
+<li>Tool Development Best Practices</li>
+<li>Transport Best Practices</li>
+<li>Testing Requirements</li>
+<li>OAuth and Security Best Practices</li>
+<li>Resource Management Best Practices</li>
+<li>Prompt Management Best Practices</li>
+<li>Error Handling Standards</li>
+<li>Documentation Requirements</li>
+<li>Compliance and Monitoring</li>
+</ol>
+<hr>
+<h2>1. Server Naming Conventions</h2>
+<p>Follow these standardized naming patterns for MCP servers:</p>
+<p><strong>Python</strong>: Use format <code>{service}_mcp</code> (lowercase with underscores)</p>
+<ul>
+<li>Examples: <code>slack_mcp</code>, <code>github_mcp</code>, <code>jira_mcp</code>, <code>stripe_mcp</code></li>
+</ul>
+<p><strong>Node/TypeScript</strong>: Use format <code>{service}-mcp-server</code> (lowercase with hyphens)</p>
+<ul>
+<li>Examples: <code>slack-mcp-server</code>, <code>github-mcp-server</code>, <code>jira-mcp-server</code></li>
+</ul>
+<p>The name should be:</p>
+<ul>
+<li>General (not tied to specific features)</li>
+<li>Descriptive of the service/API being integrated</li>
+<li>Easy to infer from the task description</li>
+<li>Without version numbers or dates</li>
+</ul>
+<hr>
+<h2>2. Tool Naming and Design</h2>
+<h3>Tool Naming Best Practices</h3>
+<ol>
+<li><strong>Use snake_case</strong>: <code>search_users</code>, <code>create_project</code>, <code>get_channel_info</code></li>
+<li><strong>Include service prefix</strong>: Anticipate that your MCP server may be used alongside other MCP servers<ul>
+<li>Use <code>slack_send_message</code> instead of just <code>send_message</code></li>
+<li>Use <code>github_create_issue</code> instead of just <code>create_issue</code></li>
+<li>Use <code>asana_list_tasks</code> instead of just <code>list_tasks</code></li>
+</ul>
+</li>
+<li><strong>Be action-oriented</strong>: Start with verbs (get, list, search, create, etc.)</li>
+<li><strong>Be specific</strong>: Avoid generic names that could conflict with other servers</li>
+<li><strong>Maintain consistency</strong>: Use consistent naming patterns within your server</li>
+</ol>
+<h3>Tool Design Guidelines</h3>
+<ul>
+<li>Tool descriptions must narrowly and unambiguously describe functionality</li>
+<li>Descriptions must precisely match actual functionality</li>
+<li>Should not create confusion with other MCP servers</li>
+<li>Should provide tool annotations (readOnlyHint, destructiveHint, idempotentHint, openWorldHint)</li>
+<li>Keep tool operations focused and atomic</li>
+</ul>
+<hr>
+<h2>3. Response Format Guidelines</h2>
+<p>All tools that return data should support multiple formats for flexibility:</p>
+<h3>JSON Format (<code>response_format=&quot;json&quot;</code>)</h3>
+<ul>
+<li>Machine-readable structured data</li>
+<li>Include all available fields and metadata</li>
+<li>Consistent field names and types</li>
+<li>Suitable for programmatic processing</li>
+<li>Use for when LLMs need to process data further</li>
+</ul>
+<h3>Markdown Format (<code>response_format=&quot;markdown&quot;</code>, typically default)</h3>
+<ul>
+<li>Human-readable formatted text</li>
+<li>Use headers, lists, and formatting for clarity</li>
+<li>Convert timestamps to human-readable format (e.g., &quot;2024-01-15 10:30:00 UTC&quot; instead of epoch)</li>
+<li>Show display names with IDs in parentheses (e.g., &quot;@john.doe (U123456)&quot;)</li>
+<li>Omit verbose metadata (e.g., show only one profile image URL, not all sizes)</li>
+<li>Group related information logically</li>
+<li>Use for when presenting information to users</li>
+</ul>
+<hr>
+<h2>4. Pagination Best Practices</h2>
+<p>For tools that list resources:</p>
+<ul>
+<li><strong>Always respect the <code>limit</code> parameter</strong>: Never load all results when a limit is specified</li>
+<li><strong>Implement pagination</strong>: Use <code>offset</code> or cursor-based pagination</li>
+<li><strong>Return pagination metadata</strong>: Include <code>has_more</code>, <code>next_offset</code>/<code>next_cursor</code>, <code>total_count</code></li>
+<li><strong>Never load all results into memory</strong>: Especially important for large datasets</li>
+<li><strong>Default to reasonable limits</strong>: 20-50 items is typical</li>
+<li><strong>Include clear pagination info in responses</strong>: Make it easy for LLMs to request more data</li>
+</ul>
+<p>Example pagination response structure:</p>
+<pre><code class="language-json">{
+  &quot;total&quot;: 150,
+  &quot;count&quot;: 20,
+  &quot;offset&quot;: 0,
+  &quot;items&quot;: [...],
+  &quot;has_more&quot;: true,
+  &quot;next_offset&quot;: 20
+}
+</code></pre>
+<hr>
+<h2>5. Character Limits and Truncation</h2>
+<p>To prevent overwhelming responses with too much data:</p>
+<ul>
+<li><strong>Define CHARACTER_LIMIT constant</strong>: Typically 25,000 characters at module level</li>
+<li><strong>Check response size before returning</strong>: Measure the final response length</li>
+<li><strong>Truncate gracefully with clear indicators</strong>: Let the LLM know data was truncated</li>
+<li><strong>Provide guidance on filtering</strong>: Suggest how to use parameters to reduce results</li>
+<li><strong>Include truncation metadata</strong>: Show what was truncated and how to get more</li>
+</ul>
+<p>Example truncation handling:</p>
+<pre><code class="language-python">CHARACTER_LIMIT = 25000
+
+if len(result) &gt; CHARACTER_LIMIT:
+    truncated_data = data[:max(1, len(data) // 2)]
+    response[&quot;truncated&quot;] = True
+    response[&quot;truncation_message&quot;] = (
+        f&quot;Response truncated from {len(data)} to {len(truncated_data)} items. &quot;
+        f&quot;Use &#39;offset&#39; parameter or add filters to see more results.&quot;
+    )
+</code></pre>
+<hr>
+<h2>6. Transport Options</h2>
+<p>MCP servers support multiple transport mechanisms for different deployment scenarios:</p>
+<h3>Stdio Transport</h3>
+<p><strong>Best for</strong>: Command-line tools, local integrations, subprocess execution</p>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Standard input/output stream communication</li>
+<li>Simple setup, no network configuration needed</li>
+<li>Runs as a subprocess of the client</li>
+<li>Ideal for desktop applications and CLI tools</li>
+</ul>
+<p><strong>Use when</strong>:</p>
+<ul>
+<li>Building tools for local development environments</li>
+<li>Integrating with desktop applications (e.g., Claude Desktop)</li>
+<li>Creating command-line utilities</li>
+<li>Single-user, single-session scenarios</li>
+</ul>
+<h3>HTTP Transport</h3>
+<p><strong>Best for</strong>: Web services, remote access, multi-client scenarios</p>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>Request-response pattern over HTTP</li>
+<li>Supports multiple simultaneous clients</li>
+<li>Can be deployed as a web service</li>
+<li>Requires network configuration and security considerations</li>
+</ul>
+<p><strong>Use when</strong>:</p>
+<ul>
+<li>Serving multiple clients simultaneously</li>
+<li>Deploying as a cloud service</li>
+<li>Integration with web applications</li>
+<li>Need for load balancing or scaling</li>
+</ul>
+<h3>Server-Sent Events (SSE) Transport</h3>
+<p><strong>Best for</strong>: Real-time updates, push notifications, streaming data</p>
+<p><strong>Characteristics</strong>:</p>
+<ul>
+<li>One-way server-to-client streaming over HTTP</li>
+<li>Enables real-time updates without polling</li>
+<li>Long-lived connections for continuous data flow</li>
+<li>Built on standard HTTP infrastructure</li>
+</ul>
+<p><strong>Use when</strong>:</p>
+<ul>
+<li>Clients need real-time data updates</li>
+<li>Implementing push notifications</li>
+<li>Streaming logs or monitoring data</li>
+<li>Progressive result delivery for long operations</li>
+</ul>
+<h3>Transport Selection Criteria</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Stdio</th>
+<th>HTTP</th>
+<th>SSE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Deployment</strong></td>
+<td>Local</td>
+<td>Remote</td>
+<td>Remote</td>
+</tr>
+<tr>
+<td><strong>Clients</strong></td>
+<td>Single</td>
+<td>Multiple</td>
+<td>Multiple</td>
+</tr>
+<tr>
+<td><strong>Communication</strong></td>
+<td>Bidirectional</td>
+<td>Request-Response</td>
+<td>Server-Push</td>
+</tr>
+<tr>
+<td><strong>Complexity</strong></td>
+<td>Low</td>
+<td>Medium</td>
+<td>Medium-High</td>
+</tr>
+<tr>
+<td><strong>Real-time</strong></td>
+<td>No</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>7. Tool Development Best Practices</h2>
+<h3>General Guidelines</h3>
+<ol>
+<li>Tool names should be descriptive and action-oriented</li>
+<li>Use parameter validation with detailed JSON schemas</li>
+<li>Include examples in tool descriptions</li>
+<li>Implement proper error handling and validation</li>
+<li>Use progress reporting for long operations</li>
+<li>Keep tool operations focused and atomic</li>
+<li>Document expected return value structures</li>
+<li>Implement proper timeouts</li>
+<li>Consider rate limiting for resource-intensive operations</li>
+<li>Log tool usage for debugging and monitoring</li>
+</ol>
+<h3>Security Considerations for Tools</h3>
+<h4>Input Validation</h4>
+<ul>
+<li>Validate all parameters against schema</li>
+<li>Sanitize file paths and system commands</li>
+<li>Validate URLs and external identifiers</li>
+<li>Check parameter sizes and ranges</li>
+<li>Prevent command injection</li>
+</ul>
+<h4>Access Control</h4>
+<ul>
+<li>Implement authentication where needed</li>
+<li>Use appropriate authorization checks</li>
+<li>Audit tool usage</li>
+<li>Rate limit requests</li>
+<li>Monitor for abuse</li>
+</ul>
+<h4>Error Handling</h4>
+<ul>
+<li>Don&#39;t expose internal errors to clients</li>
+<li>Log security-relevant errors</li>
+<li>Handle timeouts appropriately</li>
+<li>Clean up resources after errors</li>
+<li>Validate return values</li>
+</ul>
+<h3>Tool Annotations</h3>
+<ul>
+<li>Provide readOnlyHint and destructiveHint annotations</li>
+<li>Remember annotations are hints, not security guarantees</li>
+<li>Clients should not make security-critical decisions based solely on annotations</li>
+</ul>
+<hr>
+<h2>8. Transport Best Practices</h2>
+<h3>General Transport Guidelines</h3>
+<ol>
+<li>Handle connection lifecycle properly</li>
+<li>Implement proper error handling</li>
+<li>Use appropriate timeout values</li>
+<li>Implement connection state management</li>
+<li>Clean up resources on disconnection</li>
+</ol>
+<h3>Security Best Practices for Transport</h3>
+<ul>
+<li>Follow security considerations for DNS rebinding attacks</li>
+<li>Implement proper authentication mechanisms</li>
+<li>Validate message formats</li>
+<li>Handle malformed messages gracefully</li>
+</ul>
+<h3>Stdio Transport Specific</h3>
+<ul>
+<li>Local MCP servers should NOT log to stdout (interferes with protocol)</li>
+<li>Use stderr for logging messages</li>
+<li>Handle standard I/O streams properly</li>
+</ul>
+<hr>
+<h2>9. Testing Requirements</h2>
+<p>A comprehensive testing strategy should cover:</p>
+<h3>Functional Testing</h3>
+<ul>
+<li>Verify correct execution with valid/invalid inputs</li>
+</ul>
+<h3>Integration Testing</h3>
+<ul>
+<li>Test interaction with external systems</li>
+</ul>
+<h3>Security Testing</h3>
+<ul>
+<li>Validate auth, input sanitization, rate limiting</li>
+</ul>
+<h3>Performance Testing</h3>
+<ul>
+<li>Check behavior under load, timeouts</li>
+</ul>
+<h3>Error Handling</h3>
+<ul>
+<li>Ensure proper error reporting and cleanup</li>
+</ul>
+<hr>
+<h2>10. OAuth and Security Best Practices</h2>
+<h3>Authentication and Authorization</h3>
+<p>MCP servers that connect to external services should implement proper authentication:</p>
+<p><strong>OAuth 2.1 Implementation:</strong></p>
+<ul>
+<li>Use secure OAuth 2.1 with certificates from recognized authorities</li>
+<li>Validate access tokens before processing requests</li>
+<li>Only accept tokens specifically intended for your server</li>
+<li>Reject tokens without proper audience claims</li>
+<li>Never pass through tokens received from MCP clients</li>
+</ul>
+<p><strong>API Key Management:</strong></p>
+<ul>
+<li>Store API keys in environment variables, never in code</li>
+<li>Validate keys on server startup</li>
+<li>Provide clear error messages when authentication fails</li>
+<li>Use secure transmission for sensitive credentials</li>
+</ul>
+<h3>Input Validation and Security</h3>
+<p><strong>Always validate inputs:</strong></p>
+<ul>
+<li>Sanitize file paths to prevent directory traversal</li>
+<li>Validate URLs and external identifiers</li>
+<li>Check parameter sizes and ranges</li>
+<li>Prevent command injection in system calls</li>
+<li>Use schema validation (Pydantic/Zod) for all inputs</li>
+</ul>
+<p><strong>Error handling security:</strong></p>
+<ul>
+<li>Don&#39;t expose internal errors to clients</li>
+<li>Log security-relevant errors server-side</li>
+<li>Provide helpful but not revealing error messages</li>
+<li>Clean up resources after errors</li>
+</ul>
+<h3>Privacy and Data Protection</h3>
+<p><strong>Data collection principles:</strong></p>
+<ul>
+<li>Only collect data strictly necessary for functionality</li>
+<li>Don&#39;t collect extraneous conversation data</li>
+<li>Don&#39;t collect PII unless explicitly required for the tool&#39;s purpose</li>
+<li>Provide clear information about what data is accessed</li>
+</ul>
+<p><strong>Data transmission:</strong></p>
+<ul>
+<li>Don&#39;t send data to servers outside your organization without disclosure</li>
+<li>Use secure transmission (HTTPS) for all network communication</li>
+<li>Validate certificates for external services</li>
+</ul>
+<hr>
+<h2>11. Resource Management Best Practices</h2>
+<ol>
+<li>Only suggest necessary resources</li>
+<li>Use clear, descriptive names for roots</li>
+<li>Handle resource boundaries properly</li>
+<li>Respect client control over resources</li>
+<li>Use model-controlled primitives (tools) for automatic data exposure</li>
+</ol>
+<hr>
+<h2>12. Prompt Management Best Practices</h2>
+<ul>
+<li>Clients should show users proposed prompts</li>
+<li>Users should be able to modify or reject prompts</li>
+<li>Clients should show users completions</li>
+<li>Users should be able to modify or reject completions</li>
+<li>Consider costs when using sampling</li>
+</ul>
+<hr>
+<h2>13. Error Handling Standards</h2>
+<ul>
+<li>Use standard JSON-RPC error codes</li>
+<li>Report tool errors within result objects (not protocol-level)</li>
+<li>Provide helpful, specific error messages</li>
+<li>Don&#39;t expose internal implementation details</li>
+<li>Clean up resources properly on errors</li>
+</ul>
+<hr>
+<h2>14. Documentation Requirements</h2>
+<ul>
+<li>Provide clear documentation of all tools and capabilities</li>
+<li>Include working examples (at least 3 per major feature)</li>
+<li>Document security considerations</li>
+<li>Specify required permissions and access levels</li>
+<li>Document rate limits and performance characteristics</li>
+</ul>
+<hr>
+<h2>15. Compliance and Monitoring</h2>
+<ul>
+<li>Implement logging for debugging and monitoring</li>
+<li>Track tool usage patterns</li>
+<li>Monitor for potential abuse</li>
+<li>Maintain audit trails for security-relevant operations</li>
+<li>Be prepared for ongoing compliance reviews</li>
+</ul>
+<hr>
+<h2>Summary</h2>
+<p>These best practices represent the comprehensive guidelines for building secure, efficient, and compliant MCP servers that work well within the ecosystem. Developers should follow these guidelines to ensure their MCP servers meet the standards for inclusion in the MCP directory and provide a safe, reliable experience for users.</p>
+<hr>
+<h1>Tools</h1>
+<blockquote>
+<p>Enable LLMs to perform actions through your server</p>
+</blockquote>
+<p>Tools are a powerful primitive in the Model Context Protocol (MCP) that enable servers to expose executable functionality to clients. Through tools, LLMs can interact with external systems, perform computations, and take actions in the real world.</p>
+<Note>
+  Tools are designed to be **model-controlled**, meaning that tools are exposed from servers to clients with the intention of the AI model being able to automatically invoke them (with a human in the loop to grant approval).
+</Note>
+
+<h2>Overview</h2>
+<p>Tools in MCP allow servers to expose executable functions that can be invoked by clients and used by LLMs to perform actions. Key aspects of tools include:</p>
+<ul>
+<li><strong>Discovery</strong>: Clients can obtain a list of available tools by sending a <code>tools/list</code> request</li>
+<li><strong>Invocation</strong>: Tools are called using the <code>tools/call</code> request, where servers perform the requested operation and return results</li>
+<li><strong>Flexibility</strong>: Tools can range from simple calculations to complex API interactions</li>
+</ul>
+<p>Like <a href="/docs/concepts/resources">resources</a>, tools are identified by unique names and can include descriptions to guide their usage. However, unlike resources, tools represent dynamic operations that can modify state or interact with external systems.</p>
+<h2>Tool definition structure</h2>
+<p>Each tool is defined with the following structure:</p>
+<pre><code class="language-typescript">{
+  name: string;          // Unique identifier for the tool
+  description?: string;  // Human-readable description
+  inputSchema: {         // JSON Schema for the tool&#39;s parameters
+    type: &quot;object&quot;,
+    properties: { ... }  // Tool-specific parameters
+  },
+  annotations?: {        // Optional hints about tool behavior
+    title?: string;      // Human-readable title for the tool
+    readOnlyHint?: boolean;    // If true, the tool does not modify its environment
+    destructiveHint?: boolean; // If true, the tool may perform destructive updates
+    idempotentHint?: boolean;  // If true, repeated calls with same args have no additional effect
+    openWorldHint?: boolean;   // If true, tool interacts with external entities
+  }
+}
+</code></pre>
+<h2>Implementing tools</h2>
+<p>Here&#39;s an example of implementing a basic tool in an MCP server:</p>
+<Tabs>
+  <Tab title="TypeScript">
+    ```typescript
+    const server = new Server({
+      name: "example-server",
+      version: "1.0.0"
+    }, {
+      capabilities: {
+        tools: {}
+      }
+    });
+
+<pre><code>// Define available tools
+server.setRequestHandler(ListToolsRequestSchema, async () =&gt; {
+  return {
+    tools: [{
+      name: &quot;calculate_sum&quot;,
+      description: &quot;Add two numbers together&quot;,
+      inputSchema: {
+        type: &quot;object&quot;,
+        properties: {
+          a: { type: &quot;number&quot; },
+          b: { type: &quot;number&quot; }
+        },
+        required: [&quot;a&quot;, &quot;b&quot;]
+      }
+    }]
+  };
+});
+
+// Handle tool execution
+server.setRequestHandler(CallToolRequestSchema, async (request) =&gt; {
+  if (request.params.name === &quot;calculate_sum&quot;) {
+    const { a, b } = request.params.arguments;
+    return {
+      content: [
+        {
+          type: &quot;text&quot;,
+          text: String(a + b)
+        }
+      ]
+    };
+  }
+  throw new Error(&quot;Tool not found&quot;);
+});
+```
+</code></pre>
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    app = Server("example-server")
+
+<pre><code>@app.list_tools()
+async def list_tools() -&gt; list[types.Tool]:
+    return [
+        types.Tool(
+            name=&quot;calculate_sum&quot;,
+            description=&quot;Add two numbers together&quot;,
+            inputSchema={
+                &quot;type&quot;: &quot;object&quot;,
+                &quot;properties&quot;: {
+                    &quot;a&quot;: {&quot;type&quot;: &quot;number&quot;},
+                    &quot;b&quot;: {&quot;type&quot;: &quot;number&quot;}
+                },
+                &quot;required&quot;: [&quot;a&quot;, &quot;b&quot;]
+            }
+        )
+    ]
+
+@app.call_tool()
+async def call_tool(
+    name: str,
+    arguments: dict
+) -&gt; list[types.TextContent | types.ImageContent | types.EmbeddedResource]:
+    if name == &quot;calculate_sum&quot;:
+        a = arguments[&quot;a&quot;]
+        b = arguments[&quot;b&quot;]
+        result = a + b
+        return [types.TextContent(type=&quot;text&quot;, text=str(result))]
+    raise ValueError(f&quot;Tool not found: {name}&quot;)
+```
+</code></pre>
+  </Tab>
+</Tabs>
+
+<h2>Example tool patterns</h2>
+<p>Here are some examples of types of tools that a server could provide:</p>
+<h3>System operations</h3>
+<p>Tools that interact with the local system:</p>
+<pre><code class="language-typescript">{
+  name: &quot;execute_command&quot;,
+  description: &quot;Run a shell command&quot;,
+  inputSchema: {
+    type: &quot;object&quot;,
+    properties: {
+      command: { type: &quot;string&quot; },
+      args: { type: &quot;array&quot;, items: { type: &quot;string&quot; } }
+    }
+  }
+}
+</code></pre>
+<h3>API integrations</h3>
+<p>Tools that wrap external APIs:</p>
+<pre><code class="language-typescript">{
+  name: &quot;github_create_issue&quot;,
+  description: &quot;Create a GitHub issue&quot;,
+  inputSchema: {
+    type: &quot;object&quot;,
+    properties: {
+      title: { type: &quot;string&quot; },
+      body: { type: &quot;string&quot; },
+      labels: { type: &quot;array&quot;, items: { type: &quot;string&quot; } }
+    }
+  }
+}
+</code></pre>
+<h3>Data processing</h3>
+<p>Tools that transform or analyze data:</p>
+<pre><code class="language-typescript">{
+  name: &quot;analyze_csv&quot;,
+  description: &quot;Analyze a CSV file&quot;,
+  inputSchema: {
+    type: &quot;object&quot;,
+    properties: {
+      filepath: { type: &quot;string&quot; },
+      operations: {
+        type: &quot;array&quot;,
+        items: {
+          enum: [&quot;sum&quot;, &quot;average&quot;, &quot;count&quot;]
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<h2>Best practices</h2>
+<p>When implementing tools:</p>
+<ol>
+<li>Provide clear, descriptive names and descriptions</li>
+<li>Use detailed JSON Schema definitions for parameters</li>
+<li>Include examples in tool descriptions to demonstrate how the model should use them</li>
+<li>Implement proper error handling and validation</li>
+<li>Use progress reporting for long operations</li>
+<li>Keep tool operations focused and atomic</li>
+<li>Document expected return value structures</li>
+<li>Implement proper timeouts</li>
+<li>Consider rate limiting for resource-intensive operations</li>
+<li>Log tool usage for debugging and monitoring</li>
+</ol>
+<h3>Tool name conflicts</h3>
+<p>MCP client applications and MCP server proxies may encounter tool name conflicts when building their own tool lists. For example, two connected MCP servers <code>web1</code> and <code>web2</code> may both expose a tool named <code>search_web</code>.</p>
+<p>Applications may disambiguiate tools with one of the following strategies (among others; not an exhaustive list):</p>
+<ul>
+<li>Concatenating a unique, user-defined server name with the tool name, e.g. <code>web1___search_web</code> and <code>web2___search_web</code>. This strategy may be preferable when unique server names are already provided by the user in a configuration file.</li>
+<li>Generating a random prefix for the tool name, e.g. <code>jrwxs___search_web</code> and <code>6cq52___search_web</code>. This strategy may be preferable in server proxies where user-defined unique names are not available.</li>
+<li>Using the server URI as a prefix for the tool name, e.g. <code>web1.example.com:search_web</code> and <code>web2.example.com:search_web</code>. This strategy may be suitable when working with remote MCP servers.</li>
+</ul>
+<p>Note that the server-provided name from the initialization flow is not guaranteed to be unique and is not generally suitable for disambiguation purposes.</p>
+<h2>Security considerations</h2>
+<p>When exposing tools:</p>
+<h3>Input validation</h3>
+<ul>
+<li>Validate all parameters against the schema</li>
+<li>Sanitize file paths and system commands</li>
+<li>Validate URLs and external identifiers</li>
+<li>Check parameter sizes and ranges</li>
+<li>Prevent command injection</li>
+</ul>
+<h3>Access control</h3>
+<ul>
+<li>Implement authentication where needed</li>
+<li>Use appropriate authorization checks</li>
+<li>Audit tool usage</li>
+<li>Rate limit requests</li>
+<li>Monitor for abuse</li>
+</ul>
+<h3>Error handling</h3>
+<ul>
+<li>Don&#39;t expose internal errors to clients</li>
+<li>Log security-relevant errors</li>
+<li>Handle timeouts appropriately</li>
+<li>Clean up resources after errors</li>
+<li>Validate return values</li>
+</ul>
+<h2>Tool discovery and updates</h2>
+<p>MCP supports dynamic tool discovery:</p>
+<ol>
+<li>Clients can list available tools at any time</li>
+<li>Servers can notify clients when tools change using <code>notifications/tools/list_changed</code></li>
+<li>Tools can be added or removed during runtime</li>
+<li>Tool definitions can be updated (though this should be done carefully)</li>
+</ol>
+<h2>Error handling</h2>
+<p>Tool errors should be reported within the result object, not as MCP protocol-level errors. This allows the LLM to see and potentially handle the error. When a tool encounters an error:</p>
+<ol>
+<li>Set <code>isError</code> to <code>true</code> in the result</li>
+<li>Include error details in the <code>content</code> array</li>
+</ol>
+<p>Here&#39;s an example of proper error handling for tools:</p>
+<Tabs>
+  <Tab title="TypeScript">
+    ```typescript
+    try {
+      // Tool operation
+      const result = performOperation();
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Operation successful: ${result}`
+          }
+        ]
+      };
+    } catch (error) {
+      return {
+        isError: true,
+        content: [
+          {
+            type: "text",
+            text: `Error: ${error.message}`
+          }
+        ]
+      };
+    }
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    try:
+        # Tool operation
+        result = perform_operation()
+        return types.CallToolResult(
+            content=[
+                types.TextContent(
+                    type="text",
+                    text=f"Operation successful: {result}"
+                )
+            ]
+        )
+    except Exception as error:
+        return types.CallToolResult(
+            isError=True,
+            content=[
+                types.TextContent(
+                    type="text",
+                    text=f"Error: {str(error)}"
+                )
+            ]
+        )
+    ```
+  </Tab>
+</Tabs>
+
+<p>This approach allows the LLM to see that an error occurred and potentially take corrective action or request human intervention.</p>
+<h2>Tool annotations</h2>
+<p>Tool annotations provide additional metadata about a tool&#39;s behavior, helping clients understand how to present and manage tools. These annotations are hints that describe the nature and impact of a tool, but should not be relied upon for security decisions.</p>
+<h3>Purpose of tool annotations</h3>
+<p>Tool annotations serve several key purposes:</p>
+<ol>
+<li>Provide UX-specific information without affecting model context</li>
+<li>Help clients categorize and present tools appropriately</li>
+<li>Convey information about a tool&#39;s potential side effects</li>
+<li>Assist in developing intuitive interfaces for tool approval</li>
+</ol>
+<h3>Available tool annotations</h3>
+<p>The MCP specification defines the following annotations for tools:</p>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>title</code></td>
+<td>string</td>
+<td>-</td>
+<td>A human-readable title for the tool, useful for UI display</td>
+</tr>
+<tr>
+<td><code>readOnlyHint</code></td>
+<td>boolean</td>
+<td>false</td>
+<td>If true, indicates the tool does not modify its environment</td>
+</tr>
+<tr>
+<td><code>destructiveHint</code></td>
+<td>boolean</td>
+<td>true</td>
+<td>If true, the tool may perform destructive updates (only meaningful when <code>readOnlyHint</code> is false)</td>
+</tr>
+<tr>
+<td><code>idempotentHint</code></td>
+<td>boolean</td>
+<td>false</td>
+<td>If true, calling the tool repeatedly with the same arguments has no additional effect (only meaningful when <code>readOnlyHint</code> is false)</td>
+</tr>
+<tr>
+<td><code>openWorldHint</code></td>
+<td>boolean</td>
+<td>true</td>
+<td>If true, the tool may interact with an &quot;open world&quot; of external entities</td>
+</tr>
+</tbody></table>
+<h3>Example usage</h3>
+<p>Here&#39;s how to define tools with annotations for different scenarios:</p>
+<pre><code class="language-typescript">// A read-only search tool
+{
+  name: &quot;web_search&quot;,
+  description: &quot;Search the web for information&quot;,
+  inputSchema: {
+    type: &quot;object&quot;,
+    properties: {
+      query: { type: &quot;string&quot; }
+    },
+    required: [&quot;query&quot;]
+  },
+  annotations: {
+    title: &quot;Web Search&quot;,
+    readOnlyHint: true,
+    openWorldHint: true
+  }
+}
+
+// A destructive file deletion tool
+{
+  name: &quot;delete_file&quot;,
+  description: &quot;Delete a file from the filesystem&quot;,
+  inputSchema: {
+    type: &quot;object&quot;,
+    properties: {
+      path: { type: &quot;string&quot; }
+    },
+    required: [&quot;path&quot;]
+  },
+  annotations: {
+    title: &quot;Delete File&quot;,
+    readOnlyHint: false,
+    destructiveHint: true,
+    idempotentHint: true,
+    openWorldHint: false
+  }
+}
+
+// A non-destructive database record creation tool
+{
+  name: &quot;create_record&quot;,
+  description: &quot;Create a new record in the database&quot;,
+  inputSchema: {
+    type: &quot;object&quot;,
+    properties: {
+      table: { type: &quot;string&quot; },
+      data: { type: &quot;object&quot; }
+    },
+    required: [&quot;table&quot;, &quot;data&quot;]
+  },
+  annotations: {
+    title: &quot;Create Database Record&quot;,
+    readOnlyHint: false,
+    destructiveHint: false,
+    idempotentHint: false,
+    openWorldHint: false
+  }
+}
+</code></pre>
+<h3>Integrating annotations in server implementation</h3>
+<Tabs>
+  <Tab title="TypeScript">
+    ```typescript
+    server.setRequestHandler(ListToolsRequestSchema, async () => {
+      return {
+        tools: [{
+          name: "calculate_sum",
+          description: "Add two numbers together",
+          inputSchema: {
+            type: "object",
+            properties: {
+              a: { type: "number" },
+              b: { type: "number" }
+            },
+            required: ["a", "b"]
+          },
+          annotations: {
+            title: "Calculate Sum",
+            readOnlyHint: true,
+            openWorldHint: false
+          }
+        }]
+      };
+    });
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    from mcp.server.fastmcp import FastMCP
+
+<pre><code>mcp = FastMCP(&quot;example-server&quot;)
+
+@mcp.tool(
+    annotations={
+        &quot;title&quot;: &quot;Calculate Sum&quot;,
+        &quot;readOnlyHint&quot;: True,
+        &quot;openWorldHint&quot;: False
+    }
+)
+async def calculate_sum(a: float, b: float) -&gt; str:
+    &quot;&quot;&quot;Add two numbers together.
+
+    Args:
+        a: First number to add
+        b: Second number to add
+    &quot;&quot;&quot;
+    result = a + b
+    return str(result)
+```
+</code></pre>
+  </Tab>
+</Tabs>
+
+<h3>Best practices for tool annotations</h3>
+<ol>
+<li><p><strong>Be accurate about side effects</strong>: Clearly indicate whether a tool modifies its environment and whether those modifications are destructive.</p>
+</li>
+<li><p><strong>Use descriptive titles</strong>: Provide human-friendly titles that clearly describe the tool&#39;s purpose.</p>
+</li>
+<li><p><strong>Indicate idempotency properly</strong>: Mark tools as idempotent only if repeated calls with the same arguments truly have no additional effect.</p>
+</li>
+<li><p><strong>Set appropriate open/closed world hints</strong>: Indicate whether a tool interacts with a closed system (like a database) or an open system (like the web).</p>
+</li>
+<li><p><strong>Remember annotations are hints</strong>: All properties in ToolAnnotations are hints and not guaranteed to provide a faithful description of tool behavior. Clients should never make security-critical decisions based solely on annotations.</p>
+</li>
+</ol>
+<h2>Testing tools</h2>
+<p>A comprehensive testing strategy for MCP tools should cover:</p>
+<ul>
+<li><strong>Functional testing</strong>: Verify tools execute correctly with valid inputs and handle invalid inputs appropriately</li>
+<li><strong>Integration testing</strong>: Test tool interaction with external systems using both real and mocked dependencies</li>
+<li><strong>Security testing</strong>: Validate authentication, authorization, input sanitization, and rate limiting</li>
+<li><strong>Performance testing</strong>: Check behavior under load, timeout handling, and resource cleanup</li>
+<li><strong>Error handling</strong>: Ensure tools properly report errors through the MCP protocol and clean up resources</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

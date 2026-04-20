@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>hook post-task</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/commands/claude-flow-hooks/post-task.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">hook post-task</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fcommands">commands</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fcommands%2Fclaude-flow-hooks">claude-flow-hooks</a> / <span>post-task.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>hook post-task</h1>
+<p>Execute post-task cleanup, performance analysis, and memory storage.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">npx claude-flow hook post-task [options]
+</code></pre>
+<h2>Options</h2>
+<ul>
+<li><code>--task-id, -t &lt;id&gt;</code> - Task identifier for tracking</li>
+<li><code>--analyze-performance</code> - Generate performance metrics (default: true)</li>
+<li><code>--store-decisions</code> - Save task decisions to memory</li>
+<li><code>--export-learnings</code> - Export neural pattern learnings</li>
+<li><code>--generate-report</code> - Create task completion report</li>
+</ul>
+<h2>Examples</h2>
+<h3>Basic post-task hook</h3>
+<pre><code class="language-bash">npx claude-flow hook post-task --task-id &quot;auth-implementation&quot;
+</code></pre>
+<h3>With full analysis</h3>
+<pre><code class="language-bash">npx claude-flow hook post-task -t &quot;api-refactor&quot; --analyze-performance --generate-report
+</code></pre>
+<h3>Memory storage</h3>
+<pre><code class="language-bash">npx claude-flow hook post-task -t &quot;bug-fix-123&quot; --store-decisions --export-learnings
+</code></pre>
+<h3>Quick cleanup</h3>
+<pre><code class="language-bash">npx claude-flow hook post-task -t &quot;minor-update&quot; --analyze-performance false
+</code></pre>
+<h2>Features</h2>
+<h3>Performance Analysis</h3>
+<ul>
+<li>Measures execution time</li>
+<li>Tracks token usage</li>
+<li>Identifies bottlenecks</li>
+<li>Suggests optimizations</li>
+</ul>
+<h3>Decision Storage</h3>
+<ul>
+<li>Saves key decisions made</li>
+<li>Records implementation choices</li>
+<li>Stores error resolutions</li>
+<li>Maintains knowledge base</li>
+</ul>
+<h3>Neural Learning</h3>
+<ul>
+<li>Exports successful patterns</li>
+<li>Updates coordination models</li>
+<li>Improves future performance</li>
+<li>Trains on task outcomes</li>
+</ul>
+<h3>Report Generation</h3>
+<ul>
+<li>Creates completion summary</li>
+<li>Documents changes made</li>
+<li>Lists files modified</li>
+<li>Tracks metrics achieved</li>
+</ul>
+<h2>Integration</h2>
+<p>This hook is automatically called by Claude Code when:</p>
+<ul>
+<li>Completing a task</li>
+<li>Switching to a new task</li>
+<li>Ending a work session</li>
+<li>After major milestones</li>
+</ul>
+<p>Manual usage in agents:</p>
+<pre><code class="language-bash"># In agent coordination
+npx claude-flow hook post-task --task-id &quot;your-task-id&quot; --analyze-performance true
+</code></pre>
+<h2>Output</h2>
+<p>Returns JSON with:</p>
+<pre><code class="language-json">{
+  &quot;taskId&quot;: &quot;auth-implementation&quot;,
+  &quot;duration&quot;: 1800000,
+  &quot;tokensUsed&quot;: 45000,
+  &quot;filesModified&quot;: 12,
+  &quot;performanceScore&quot;: 0.92,
+  &quot;learningsExported&quot;: true,
+  &quot;reportPath&quot;: &quot;/reports/task-auth-implementation.md&quot;
+}
+</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><code>hook pre-task</code> - Pre-task setup</li>
+<li><code>performance report</code> - Detailed metrics</li>
+<li><code>memory usage</code> - Memory management</li>
+<li><code>neural patterns</code> - Pattern analysis</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

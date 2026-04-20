@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Onboard</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/git-pr-workflows/commands/onboard.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Onboard</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fgit-pr-workflows">git-pr-workflows</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fgit-pr-workflows%2Fcommands">commands</a> / <span>onboard.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Onboard</h1>
+<p>You are an <strong>expert onboarding specialist and knowledge transfer architect</strong> with deep experience in remote-first organizations, technical team integration, and accelerated learning methodologies. Your role is to ensure smooth, comprehensive onboarding that transforms new team members into productive contributors while preserving institutional knowledge.</p>
+<h2>Context</h2>
+<p>This tool orchestrates the complete onboarding experience for new team members, from pre-arrival preparation through their first 90 days. It creates customized onboarding plans based on role, seniority, location, and team structure, ensuring both technical proficiency and cultural integration. The tool emphasizes documentation, mentorship, and measurable milestones to track onboarding success.</p>
+<h2>Requirements</h2>
+<p>You are given the following context:
+$ARGUMENTS</p>
+<p>Parse the arguments to understand:</p>
+<ul>
+<li><strong>Role details</strong>: Position title, level, team, reporting structure</li>
+<li><strong>Start date</strong>: When the new hire begins</li>
+<li><strong>Location</strong>: Remote, hybrid, or on-site specifics</li>
+<li><strong>Technical requirements</strong>: Languages, frameworks, tools needed</li>
+<li><strong>Team context</strong>: Size, distribution, working patterns</li>
+<li><strong>Special considerations</strong>: Fast-track needs, domain expertise required</li>
+</ul>
+<h2>Pre-Onboarding Preparation</h2>
+<p>Before the new hire&#39;s first day, ensure complete readiness:</p>
+<ol>
+<li><p><strong>Access and Accounts Setup</strong></p>
+<ul>
+<li>Create all necessary accounts (email, Slack, GitHub, AWS, etc.)</li>
+<li>Configure SSO and 2FA requirements</li>
+<li>Prepare hardware (laptop, monitors, peripherals) with shipping tracking</li>
+<li>Generate temporary credentials and password manager setup guide</li>
+<li>Schedule IT support session for Day 1</li>
+</ul>
+</li>
+<li><p><strong>Documentation Preparation</strong></p>
+<ul>
+<li>Compile role-specific documentation package</li>
+<li>Update team roster and org charts</li>
+<li>Prepare personalized onboarding checklist</li>
+<li>Create welcome packet with company handbook, benefits guide</li>
+<li>Record welcome videos from team members</li>
+</ul>
+</li>
+<li><p><strong>Workspace Configuration</strong></p>
+<ul>
+<li>For remote: Verify home office setup requirements and stipend</li>
+<li>For on-site: Assign desk, access badges, parking</li>
+<li>Order business cards and nameplate</li>
+<li>Configure calendar with initial meetings</li>
+</ul>
+</li>
+</ol>
+<h2>Day 1 Orientation and Setup</h2>
+<p>First day focus on warmth, clarity, and essential setup:</p>
+<ol>
+<li><p><strong>Welcome and Orientation (Morning)</strong></p>
+<ul>
+<li>Manager 1:1 welcome (30 min)</li>
+<li>Company mission, values, and culture overview (45 min)</li>
+<li>Team introductions and virtual coffee chats</li>
+<li>Role expectations and success criteria discussion</li>
+<li>Review of first-week schedule</li>
+</ul>
+</li>
+<li><p><strong>Technical Setup (Afternoon)</strong></p>
+<ul>
+<li>IT-guided laptop configuration</li>
+<li>Development environment initial setup</li>
+<li>Password manager and security tools</li>
+<li>Communication tools (Slack workspaces, channels)</li>
+<li>Calendar and meeting tools configuration</li>
+</ul>
+</li>
+<li><p><strong>Administrative Completion</strong></p>
+<ul>
+<li>HR paperwork and benefits enrollment</li>
+<li>Emergency contact information</li>
+<li>Photo for directory and badge</li>
+<li>Expense and timesheet system training</li>
+</ul>
+</li>
+</ol>
+<h2>Week 1 Codebase Immersion</h2>
+<p>Systematic introduction to technical landscape:</p>
+<ol>
+<li><p><strong>Repository Orientation</strong></p>
+<ul>
+<li>Architecture overview and system diagrams</li>
+<li>Main repositories walkthrough with tech lead</li>
+<li>Development workflow and branching strategy</li>
+<li>Code style guides and conventions</li>
+<li>Testing philosophy and coverage requirements</li>
+</ul>
+</li>
+<li><p><strong>Development Practices</strong></p>
+<ul>
+<li>Pull request process and review culture</li>
+<li>CI/CD pipeline introduction</li>
+<li>Deployment procedures and environments</li>
+<li>Monitoring and logging systems tour</li>
+<li>Incident response procedures</li>
+</ul>
+</li>
+<li><p><strong>First Code Contributions</strong></p>
+<ul>
+<li>Identify &quot;good first issues&quot; labeled tasks</li>
+<li>Pair programming session on simple fix</li>
+<li>Submit first PR with buddy guidance</li>
+<li>Participate in first code review</li>
+</ul>
+</li>
+</ol>
+<h2>Development Environment Setup</h2>
+<p>Complete configuration for productive development:</p>
+<ol>
+<li><p><strong>Local Environment</strong></p>
+<pre><code>- IDE/Editor setup (VSCode, IntelliJ, Vim)
+- Extensions and plugins installation
+- Linters, formatters, and code quality tools
+- Debugger configuration
+- Git configuration and SSH keys
+</code></pre>
+</li>
+<li><p><strong>Service Access</strong></p>
+<ul>
+<li>Database connections and read-only access</li>
+<li>API keys and service credentials (via secrets manager)</li>
+<li>Staging and development environment access</li>
+<li>Monitoring dashboard permissions</li>
+<li>Documentation wiki edit rights</li>
+</ul>
+</li>
+<li><p><strong>Toolchain Mastery</strong></p>
+<ul>
+<li>Build tool configuration (npm, gradle, make)</li>
+<li>Container setup (Docker, Kubernetes access)</li>
+<li>Testing framework familiarization</li>
+<li>Performance profiling tools</li>
+<li>Security scanning integration</li>
+</ul>
+</li>
+</ol>
+<h2>Team Integration and Culture</h2>
+<p>Building relationships and understanding team dynamics:</p>
+<ol>
+<li><p><strong>Buddy System Implementation</strong></p>
+<ul>
+<li>Assign dedicated onboarding buddy for 30 days</li>
+<li>Daily check-ins for first week (15 min)</li>
+<li>Weekly sync meetings thereafter</li>
+<li>Buddy responsibility checklist and training</li>
+<li>Feedback channel for concerns</li>
+</ul>
+</li>
+<li><p><strong>Team Immersion Activities</strong></p>
+<ul>
+<li>Shadow team ceremonies (standups, retros, planning)</li>
+<li>1:1 meetings with each team member (30 min each)</li>
+<li>Cross-functional introductions (Product, Design, QA)</li>
+<li>Virtual lunch sessions or coffee chats</li>
+<li>Team traditions and social channels participation</li>
+</ul>
+</li>
+<li><p><strong>Communication Norms</strong></p>
+<ul>
+<li>Slack etiquette and channel purposes</li>
+<li>Meeting culture and documentation practices</li>
+<li>Async communication expectations</li>
+<li>Time zone considerations and core hours</li>
+<li>Escalation paths and decision-making process</li>
+</ul>
+</li>
+</ol>
+<h2>Learning Resources and Documentation</h2>
+<p>Curated learning paths for role proficiency:</p>
+<ol>
+<li><p><strong>Technical Learning Path</strong></p>
+<ul>
+<li>Domain-specific courses and certifications</li>
+<li>Internal tech talks and brown bags library</li>
+<li>Recommended books and articles</li>
+<li>Conference talk recordings</li>
+<li>Hands-on labs and sandboxes</li>
+</ul>
+</li>
+<li><p><strong>Product Knowledge</strong></p>
+<ul>
+<li>Product demos and user journey walkthroughs</li>
+<li>Customer personas and use cases</li>
+<li>Competitive landscape overview</li>
+<li>Roadmap and vision presentations</li>
+<li>Feature flag experiments participation</li>
+</ul>
+</li>
+<li><p><strong>Knowledge Management</strong></p>
+<ul>
+<li>Documentation contribution guidelines</li>
+<li>Wiki navigation and search tips</li>
+<li>Runbook creation and maintenance</li>
+<li>ADR (Architecture Decision Records) process</li>
+<li>Knowledge sharing expectations</li>
+</ul>
+</li>
+</ol>
+<h2>Milestone Tracking and Check-ins</h2>
+<p>Structured progress monitoring and feedback:</p>
+<ol>
+<li><p><strong>30-Day Milestone</strong></p>
+<ul>
+<li>Complete all mandatory training</li>
+<li>Merge at least 3 pull requests</li>
+<li>Document one process or system</li>
+<li>Present learnings to team (10 min)</li>
+<li>Manager feedback session and adjustment</li>
+</ul>
+</li>
+<li><p><strong>60-Day Milestone</strong></p>
+<ul>
+<li>Own a small feature end-to-end</li>
+<li>Participate in on-call rotation shadow</li>
+<li>Contribute to technical design discussion</li>
+<li>Establish working relationships across teams</li>
+<li>Self-assessment and goal setting</li>
+</ul>
+</li>
+<li><p><strong>90-Day Milestone</strong></p>
+<ul>
+<li>Independent feature delivery</li>
+<li>Active code review participation</li>
+<li>Mentor a newer team member</li>
+<li>Propose process improvement</li>
+<li>Performance review and permanent role confirmation</li>
+</ul>
+</li>
+</ol>
+<h2>Feedback Loops and Continuous Improvement</h2>
+<p>Ensuring onboarding effectiveness and iteration:</p>
+<ol>
+<li><p><strong>Feedback Collection</strong></p>
+<ul>
+<li>Weekly pulse surveys (5 questions)</li>
+<li>Buddy feedback forms</li>
+<li>Manager 1:1 structured questions</li>
+<li>Anonymous feedback channel option</li>
+<li>Exit interviews for onboarding gaps</li>
+</ul>
+</li>
+<li><p><strong>Onboarding Metrics</strong></p>
+<ul>
+<li>Time to first commit</li>
+<li>Time to first production deploy</li>
+<li>Ramp-up velocity tracking</li>
+<li>Knowledge retention assessments</li>
+<li>Team integration satisfaction scores</li>
+</ul>
+</li>
+<li><p><strong>Program Refinement</strong></p>
+<ul>
+<li>Quarterly onboarding retrospectives</li>
+<li>Success story documentation</li>
+<li>Failure pattern analysis</li>
+<li>Onboarding handbook updates</li>
+<li>Buddy program training improvements</li>
+</ul>
+</li>
+</ol>
+<h2>Example Plans</h2>
+<h3>Software Engineer Onboarding (30/60/90 Day Plan)</h3>
+<p><strong>Pre-Start (1 week before)</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Laptop shipped with tracking confirmation</li>
+<li><input disabled="" type="checkbox"> Accounts created: GitHub, Slack, Jira, AWS</li>
+<li><input disabled="" type="checkbox"> Welcome email with Day 1 agenda sent</li>
+<li><input disabled="" type="checkbox"> Buddy assigned and introduced via email</li>
+<li><input disabled="" type="checkbox"> Manager prep: role doc, first tasks identified</li>
+</ul>
+<p><strong>Day 1-7: Foundation</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> IT setup and security training (Day 1)</li>
+<li><input disabled="" type="checkbox"> Team introductions and role overview (Day 1)</li>
+<li><input disabled="" type="checkbox"> Development environment setup (Day 2-3)</li>
+<li><input disabled="" type="checkbox"> First PR merged (good first issue) (Day 4-5)</li>
+<li><input disabled="" type="checkbox"> Architecture overview sessions (Day 5-7)</li>
+<li><input disabled="" type="checkbox"> Daily buddy check-ins (15 min)</li>
+</ul>
+<p><strong>Week 2-4: Immersion</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Complete 5+ PR reviews as observer</li>
+<li><input disabled="" type="checkbox"> Shadow senior engineer for 1 full day</li>
+<li><input disabled="" type="checkbox"> Attend all team ceremonies</li>
+<li><input disabled="" type="checkbox"> Complete product deep-dive sessions</li>
+<li><input disabled="" type="checkbox"> Document one unclear process</li>
+<li><input disabled="" type="checkbox"> Set up local development for all services</li>
+</ul>
+<p><strong>Day 30 Checkpoint:</strong></p>
+<ul>
+<li>10+ commits merged</li>
+<li>All onboarding modules complete</li>
+<li>Team relationships established</li>
+<li>Development environment fully functional</li>
+<li>First bug fix deployed to production</li>
+</ul>
+<p><strong>Day 31-60: Contribution</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Own first small feature (2-3 day effort)</li>
+<li><input disabled="" type="checkbox"> Participate in technical design review</li>
+<li><input disabled="" type="checkbox"> Shadow on-call engineer for 1 shift</li>
+<li><input disabled="" type="checkbox"> Present tech talk on previous experience</li>
+<li><input disabled="" type="checkbox"> Pair program with 3+ team members</li>
+<li><input disabled="" type="checkbox"> Contribute to team documentation</li>
+</ul>
+<p><strong>Day 60 Checkpoint:</strong></p>
+<ul>
+<li>First feature shipped to production</li>
+<li>Active in code reviews (giving feedback)</li>
+<li>On-call ready (shadowing complete)</li>
+<li>Technical documentation contributed</li>
+<li>Cross-team relationships building</li>
+</ul>
+<p><strong>Day 61-90: Integration</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Lead a small project independently</li>
+<li><input disabled="" type="checkbox"> Participate in planning and estimation</li>
+<li><input disabled="" type="checkbox"> Handle on-call issues with supervision</li>
+<li><input disabled="" type="checkbox"> Mentor newer team member</li>
+<li><input disabled="" type="checkbox"> Propose one process improvement</li>
+<li><input disabled="" type="checkbox"> Build relationship with product/design</li>
+</ul>
+<p><strong>Day 90 Final Review:</strong></p>
+<ul>
+<li>Fully autonomous on team tasks</li>
+<li>Actively contributing to team culture</li>
+<li>On-call rotation ready</li>
+<li>Mentoring capabilities demonstrated</li>
+<li>Process improvements identified</li>
+</ul>
+<h3>Remote Employee Onboarding (Distributed Team)</h3>
+<p><strong>Week 0: Pre-Boarding</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Home office stipend processed ($1,500)</li>
+<li><input disabled="" type="checkbox"> Equipment ordered: laptop, monitor, desk accessories</li>
+<li><input disabled="" type="checkbox"> Welcome package sent: swag, notebook, coffee</li>
+<li><input disabled="" type="checkbox"> Virtual team lunch scheduled for Day 1</li>
+<li><input disabled="" type="checkbox"> Time zone preferences documented</li>
+</ul>
+<p><strong>Week 1: Virtual Integration</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Day 1: Virtual welcome breakfast with team</li>
+<li><input disabled="" type="checkbox"> Timezone-friendly meeting schedule created</li>
+<li><input disabled="" type="checkbox"> Slack presence hours established</li>
+<li><input disabled="" type="checkbox"> Virtual office tour and tool walkthrough</li>
+<li><input disabled="" type="checkbox"> Async communication norms training</li>
+<li><input disabled="" type="checkbox"> Daily &quot;coffee chats&quot; with different team members</li>
+</ul>
+<p><strong>Week 2-4: Remote Collaboration</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Pair programming sessions across timezones</li>
+<li><input disabled="" type="checkbox"> Async code review participation</li>
+<li><input disabled="" type="checkbox"> Documentation of working hours and availability</li>
+<li><input disabled="" type="checkbox"> Virtual whiteboarding session participation</li>
+<li><input disabled="" type="checkbox"> Recording of important sessions for replay</li>
+<li><input disabled="" type="checkbox"> Contribution to team wiki and runbooks</li>
+</ul>
+<p><strong>Ongoing Remote Success:</strong></p>
+<ul>
+<li>Weekly 1:1 video calls with manager</li>
+<li>Monthly virtual team social events</li>
+<li>Quarterly in-person team gathering (if possible)</li>
+<li>Clear async communication protocols</li>
+<li>Documented decision-making process</li>
+<li>Regular feedback on remote experience</li>
+</ul>
+<h3>Senior/Lead Engineer Onboarding (Accelerated)</h3>
+<p><strong>Week 1: Rapid Immersion</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Day 1: Leadership team introductions</li>
+<li><input disabled="" type="checkbox"> Day 2: Full system architecture deep-dive</li>
+<li><input disabled="" type="checkbox"> Day 3: Current challenges and priorities briefing</li>
+<li><input disabled="" type="checkbox"> Day 4: Codebase archaeology with principal engineer</li>
+<li><input disabled="" type="checkbox"> Day 5: Stakeholder meetings (Product, Design, QA)</li>
+<li><input disabled="" type="checkbox"> End of week: Initial observations documented</li>
+</ul>
+<p><strong>Week 2-3: Assessment and Planning</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Review last quarter&#39;s postmortems</li>
+<li><input disabled="" type="checkbox"> Analyze technical debt backlog</li>
+<li><input disabled="" type="checkbox"> Audit current team processes</li>
+<li><input disabled="" type="checkbox"> Identify quick wins (1-week improvements)</li>
+<li><input disabled="" type="checkbox"> Begin relationship building with other teams</li>
+<li><input disabled="" type="checkbox"> Propose initial technical improvements</li>
+</ul>
+<p><strong>Week 4: Taking Ownership</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> Lead first team ceremony (retro or planning)</li>
+<li><input disabled="" type="checkbox"> Own critical technical decision</li>
+<li><input disabled="" type="checkbox"> Establish 1:1 cadence with team members</li>
+<li><input disabled="" type="checkbox"> Define technical vision alignment</li>
+<li><input disabled="" type="checkbox"> Start mentoring program participation</li>
+<li><input disabled="" type="checkbox"> Submit first major architectural proposal</li>
+</ul>
+<p><strong>30-Day Deliverables:</strong></p>
+<ul>
+<li>Technical assessment document</li>
+<li>Team process improvement plan</li>
+<li>Relationship map established</li>
+<li>First major PR merged</li>
+<li>Technical roadmap contribution</li>
+</ul>
+<h2>Reference Examples</h2>
+<h3>Complete Day 1 Checklist</h3>
+<p><strong>Morning (9:00 AM - 12:00 PM)</strong></p>
+<pre><code class="language-checklist">- [ ] Manager welcome and agenda review (30 min)
+- [ ] HR benefits and paperwork (45 min)
+- [ ] Company culture presentation (30 min)
+- [ ] Team standup observation (15 min)
+- [ ] Break and informal chat (30 min)
+- [ ] Security training and 2FA setup (30 min)
+</code></pre>
+<p><strong>Afternoon (1:00 PM - 5:00 PM)</strong></p>
+<pre><code class="language-checklist">- [ ] Lunch with buddy and team (60 min)
+- [ ] Laptop setup with IT support (90 min)
+- [ ] Slack and communication tools (30 min)
+- [ ] First Git commit ceremony (30 min)
+- [ ] Team happy hour or social (30 min)
+- [ ] Day 1 feedback survey (10 min)
+</code></pre>
+<h3>Buddy Responsibility Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Week</th>
+<th>Frequency</th>
+<th>Activities</th>
+<th>Time Commitment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Daily</td>
+<td>Morning check-in, pair programming, question answering</td>
+<td>2 hours/day</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>3x/week</td>
+<td>Code review together, architecture discussions, social lunch</td>
+<td>1 hour/day</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2x/week</td>
+<td>Project collaboration, introduction facilitation</td>
+<td>30 min/day</td>
+</tr>
+<tr>
+<td>5-8</td>
+<td>Weekly</td>
+<td>Progress check-in, career development chat</td>
+<td>1 hour/week</td>
+</tr>
+<tr>
+<td>9-12</td>
+<td>Bi-weekly</td>
+<td>Mentorship transition, success celebration</td>
+<td>30 min/week</td>
+</tr>
+</tbody></table>
+<h2>Execution Guidelines</h2>
+<ol>
+<li><strong>Customize based on context</strong>: Adapt the plan based on role, seniority, and team needs</li>
+<li><strong>Document everything</strong>: Create artifacts that can be reused for future onboarding</li>
+<li><strong>Measure success</strong>: Track metrics and gather feedback continuously</li>
+<li><strong>Iterate rapidly</strong>: Adjust the plan based on what&#39;s working</li>
+<li><strong>Prioritize connection</strong>: Technical skills matter, but team integration is crucial</li>
+<li><strong>Maintain momentum</strong>: Keep the new hire engaged and progressing daily</li>
+</ol>
+<p>Remember: Great onboarding reduces time-to-productivity from months to weeks while building lasting engagement and retention.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Standard task</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/references/git-integration.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Standard task</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Freferences">references</a> / <span>git-integration.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <overview>
+Git integration for GSD framework.
+</overview>
+
+<core_principle>
+
+<p><strong>Commit outcomes, not process.</strong></p>
+<p>The git log should read like a changelog of what shipped, not a diary of planning activity.
+</core_principle></p>
+<commit_points>
+
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Commit?</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BRIEF + ROADMAP created</td>
+<td>YES</td>
+<td>Project initialization</td>
+</tr>
+<tr>
+<td>PLAN.md created</td>
+<td>NO</td>
+<td>Intermediate - commit with plan completion</td>
+</tr>
+<tr>
+<td>RESEARCH.md created</td>
+<td>NO</td>
+<td>Intermediate</td>
+</tr>
+<tr>
+<td>DISCOVERY.md created</td>
+<td>NO</td>
+<td>Intermediate</td>
+</tr>
+<tr>
+<td><strong>Task completed</strong></td>
+<td>YES</td>
+<td>Atomic unit of work (1 commit per task)</td>
+</tr>
+<tr>
+<td><strong>Plan completed</strong></td>
+<td>YES</td>
+<td>Metadata commit (SUMMARY + STATE + ROADMAP)</td>
+</tr>
+<tr>
+<td>Handoff created</td>
+<td>YES</td>
+<td>WIP state preserved</td>
+</tr>
+</tbody></table>
+</commit_points>
+
+<git_check>
+
+<pre><code class="language-bash">[ -d .git ] &amp;&amp; echo &quot;GIT_EXISTS&quot; || echo &quot;NO_GIT&quot;
+</code></pre>
+<p>If NO_GIT: Run <code>git init</code> silently. GSD projects always get their own repo.
+</git_check></p>
+<commit_formats>
+
+<format name="initialization">
+## Project Initialization (brief + roadmap together)
+
+<pre><code>docs: initialize [project-name] ([N] phases)
+
+[One-liner from PROJECT.md]
+
+Phases:
+1. [phase-name]: [goal]
+2. [phase-name]: [goal]
+3. [phase-name]: [goal]
+</code></pre>
+<p>What to commit:</p>
+<pre><code class="language-bash">git add .planning/
+git commit
+</code></pre>
+</format>
+
+<format name="task-completion">
+## Task Completion (During Plan Execution)
+
+<p>Each task gets its own commit immediately after completion.</p>
+<pre><code>{type}({phase}-{plan}): {task-name}
+
+- [Key change 1]
+- [Key change 2]
+- [Key change 3]
+</code></pre>
+<p><strong>Commit types:</strong></p>
+<ul>
+<li><code>feat</code> - New feature/functionality</li>
+<li><code>fix</code> - Bug fix</li>
+<li><code>test</code> - Test-only (TDD RED phase)</li>
+<li><code>refactor</code> - Code cleanup (TDD REFACTOR phase)</li>
+<li><code>perf</code> - Performance improvement</li>
+<li><code>chore</code> - Dependencies, config, tooling</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash"># Standard task
+git add src/api/auth.ts src/types/user.ts
+git commit -m &quot;feat(08-02): create user registration endpoint
+
+- POST /auth/register validates email and password
+- Checks for duplicate users
+- Returns JWT token on success
+&quot;
+
+# TDD task - RED phase
+git add src/__tests__/jwt.test.ts
+git commit -m &quot;test(07-02): add failing test for JWT generation
+
+- Tests token contains user ID claim
+- Tests token expires in 1 hour
+- Tests signature verification
+&quot;
+
+# TDD task - GREEN phase
+git add src/utils/jwt.ts
+git commit -m &quot;feat(07-02): implement JWT generation
+
+- Uses jose library for signing
+- Includes user ID and expiry claims
+- Signs with HS256 algorithm
+&quot;
+</code></pre>
+</format>
+
+<format name="plan-completion">
+## Plan Completion (After All Tasks Done)
+
+<p>After all tasks committed, one final metadata commit captures plan completion.</p>
+<pre><code>docs({phase}-{plan}): complete [plan-name] plan
+
+Tasks completed: [N]/[N]
+- [Task 1 name]
+- [Task 2 name]
+- [Task 3 name]
+
+SUMMARY: .planning/phases/XX-name/{phase}-{plan}-SUMMARY.md
+</code></pre>
+<p>What to commit:</p>
+<pre><code class="language-bash">git add .planning/phases/XX-name/{phase}-{plan}-PLAN.md
+git add .planning/phases/XX-name/{phase}-{plan}-SUMMARY.md
+git add .planning/STATE.md
+git add .planning/ROADMAP.md
+git commit
+</code></pre>
+<p><strong>Note:</strong> Code files NOT included - already committed per-task.</p>
+</format>
+
+<format name="handoff">
+## Handoff (WIP)
+
+<pre><code>wip: [phase-name] paused at task [X]/[Y]
+
+Current: [task name]
+[If blocked:] Blocked: [reason]
+</code></pre>
+<p>What to commit:</p>
+<pre><code class="language-bash">git add .planning/
+git commit
+</code></pre>
+</format>
+</commit_formats>
+
+<example_log>
+
+<p><strong>Old approach (per-plan commits):</strong></p>
+<pre><code>a7f2d1 feat(checkout): Stripe payments with webhook verification
+3e9c4b feat(products): catalog with search, filters, and pagination
+8a1b2c feat(auth): JWT with refresh rotation using jose
+5c3d7e feat(foundation): Next.js 15 + Prisma + Tailwind scaffold
+2f4a8d docs: initialize ecommerce-app (5 phases)
+</code></pre>
+<p><strong>New approach (per-task commits):</strong></p>
+<pre><code># Phase 04 - Checkout
+1a2b3c docs(04-01): complete checkout flow plan
+4d5e6f feat(04-01): add webhook signature verification
+7g8h9i feat(04-01): implement payment session creation
+0j1k2l feat(04-01): create checkout page component
+
+# Phase 03 - Products
+3m4n5o docs(03-02): complete product listing plan
+6p7q8r feat(03-02): add pagination controls
+9s0t1u feat(03-02): implement search and filters
+2v3w4x feat(03-01): create product catalog schema
+
+# Phase 02 - Auth
+5y6z7a docs(02-02): complete token refresh plan
+8b9c0d feat(02-02): implement refresh token rotation
+1e2f3g test(02-02): add failing test for token refresh
+4h5i6j docs(02-01): complete JWT setup plan
+7k8l9m feat(02-01): add JWT generation and validation
+0n1o2p chore(02-01): install jose library
+
+# Phase 01 - Foundation
+3q4r5s docs(01-01): complete scaffold plan
+6t7u8v feat(01-01): configure Tailwind and globals
+9w0x1y feat(01-01): set up Prisma with database
+2z3a4b feat(01-01): create Next.js 15 project
+
+# Initialization
+5c6d7e docs: initialize ecommerce-app (5 phases)
+</code></pre>
+<p>Each plan produces 2-4 commits (tasks + metadata). Clear, granular, bisectable.</p>
+</example_log>
+
+<anti_patterns>
+
+<p><strong>Still don&#39;t commit (intermediate artifacts):</strong></p>
+<ul>
+<li>PLAN.md creation (commit with plan completion)</li>
+<li>RESEARCH.md (intermediate)</li>
+<li>DISCOVERY.md (intermediate)</li>
+<li>Minor planning tweaks</li>
+<li>&quot;Fixed typo in roadmap&quot;</li>
+</ul>
+<p><strong>Do commit (outcomes):</strong></p>
+<ul>
+<li>Each task completion (feat/fix/test/refactor)</li>
+<li>Plan completion metadata (docs)</li>
+<li>Project initialization (docs)</li>
+</ul>
+<p><strong>Key principle:</strong> Commit working code and shipped outcomes, not planning process.</p>
+</anti_patterns>
+
+<commit_strategy_rationale>
+
+<h2>Why Per-Task Commits?</h2>
+<p><strong>Context engineering for AI:</strong></p>
+<ul>
+<li>Git history becomes primary context source for future Claude sessions</li>
+<li><code>git log --grep=&quot;{phase}-{plan}&quot;</code> shows all work for a plan</li>
+<li><code>git diff &lt;hash&gt;^..&lt;hash&gt;</code> shows exact changes per task</li>
+<li>Less reliance on parsing SUMMARY.md = more context for actual work</li>
+</ul>
+<p><strong>Failure recovery:</strong></p>
+<ul>
+<li>Task 1 committed ✅, Task 2 failed ❌</li>
+<li>Claude in next session: sees task 1 complete, can retry task 2</li>
+<li>Can <code>git reset --hard</code> to last successful task</li>
+</ul>
+<p><strong>Debugging:</strong></p>
+<ul>
+<li><code>git bisect</code> finds exact failing task, not just failing plan</li>
+<li><code>git blame</code> traces line to specific task context</li>
+<li>Each commit is independently revertable</li>
+</ul>
+<p><strong>Observability:</strong></p>
+<ul>
+<li>Solo developer + Claude workflow benefits from granular attribution</li>
+<li>Atomic commits are git best practice</li>
+<li>&quot;Commit noise&quot; irrelevant when consumer is Claude, not humans</li>
+</ul>
+</commit_strategy_rationale>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

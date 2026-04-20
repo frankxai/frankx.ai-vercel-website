@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agent Specialization Training</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/claude-flow-training/specialization.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Agent Specialization Training</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fcommands">commands</a> / <a href="index.html#.claude%2Fcommands%2Fclaude-flow-training">claude-flow-training</a> / <span>specialization.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Agent Specialization Training</h1>
+<h2>Purpose</h2>
+<p>Train agents to become experts in specific domains for better performance.</p>
+<h2>Specialization Areas</h2>
+<h3>1. By File Type</h3>
+<p>Agents automatically specialize based on file extensions:</p>
+<ul>
+<li><strong>.js/.ts</strong>: Modern JavaScript patterns</li>
+<li><strong>.py</strong>: Pythonic idioms</li>
+<li><strong>.go</strong>: Go best practices</li>
+<li><strong>.rs</strong>: Rust safety patterns</li>
+</ul>
+<h3>2. By Task Type</h3>
+<pre><code>Tool: mcp__claude-flow__agent_spawn
+Parameters: {
+  &quot;type&quot;: &quot;coder&quot;,
+  &quot;capabilities&quot;: [&quot;react&quot;, &quot;typescript&quot;, &quot;testing&quot;],
+  &quot;name&quot;: &quot;React Specialist&quot;
+}
+</code></pre>
+<h3>3. Training Process</h3>
+<p>The system trains through:</p>
+<ul>
+<li>Successful edit operations</li>
+<li>Code review patterns</li>
+<li>Error fix approaches</li>
+<li>Performance optimizations</li>
+</ul>
+<h3>4. Specialization Benefits</h3>
+<pre><code># Check agent specializations
+Tool: mcp__claude-flow__agent_list
+Parameters: {&quot;swarmId&quot;: &quot;current&quot;}
+
+Result shows expertise levels:
+{
+  &quot;agents&quot;: [
+    {
+      &quot;id&quot;: &quot;coder-123&quot;,
+      &quot;specializations&quot;: {
+        &quot;javascript&quot;: 0.95,
+        &quot;react&quot;: 0.88,
+        &quot;testing&quot;: 0.82
+      }
+    }
+  ]
+}
+</code></pre>
+<h2>Continuous Improvement</h2>
+<p>Agents share learnings across sessions for cumulative expertise!</p>
+<h2>CLI Usage</h2>
+<pre><code class="language-bash"># Train agent specialization via CLI
+npx claude-flow train agent --type coder --capabilities &quot;react,typescript&quot;
+
+# Check specializations
+npx claude-flow agent list --specializations
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Anthropic Quickstarts Development Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/official-documentation/Anthropic-Quickstarts/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Anthropic Quickstarts Development Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fofficial-documentation">official-documentation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fofficial-documentation%2FAnthropic-Quickstarts">Anthropic-Quickstarts</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Anthropic Quickstarts Development Guide</h1>
+<h2>Computer-Use Demo</h2>
+<h3>Setup &amp; Development</h3>
+<ul>
+<li><strong>Setup environment</strong>: <code>./setup.sh</code></li>
+<li><strong>Build Docker</strong>: <code>docker build . -t computer-use-demo:local</code></li>
+<li><strong>Run container</strong>: <code>docker run -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY -v $(pwd)/computer_use_demo:/home/computeruse/computer_use_demo/ -v $HOME/.anthropic:/home/computeruse/.anthropic -p 5900:5900 -p 8501:8501 -p 6080:6080 -p 8080:8080 -it computer-use-demo:local</code></li>
+</ul>
+<h3>Testing &amp; Code Quality</h3>
+<ul>
+<li><strong>Lint</strong>: <code>ruff check .</code></li>
+<li><strong>Format</strong>: <code>ruff format .</code></li>
+<li><strong>Typecheck</strong>: <code>pyright</code></li>
+<li><strong>Run tests</strong>: <code>pytest</code></li>
+<li><strong>Run single test</strong>: <code>pytest tests/path_to_test.py::test_name -v</code></li>
+</ul>
+<h3>Code Style</h3>
+<ul>
+<li><strong>Python</strong>: snake_case for functions/variables, PascalCase for classes</li>
+<li><strong>Imports</strong>: Use isort with combine-as-imports</li>
+<li><strong>Error handling</strong>: Use custom ToolError for tool errors</li>
+<li><strong>Types</strong>: Add type annotations for all parameters and returns</li>
+<li><strong>Classes</strong>: Use dataclasses and abstract base classes</li>
+</ul>
+<h2>Customer Support Agent</h2>
+<h3>Setup &amp; Development</h3>
+<ul>
+<li><strong>Install dependencies</strong>: <code>npm install</code></li>
+<li><strong>Run dev server</strong>: <code>npm run dev</code> (full UI)</li>
+<li><strong>UI variants</strong>: <code>npm run dev:left</code> (left sidebar), <code>npm run dev:right</code> (right sidebar), <code>npm run dev:chat</code> (chat only)</li>
+<li><strong>Lint</strong>: <code>npm run lint</code></li>
+<li><strong>Build</strong>: <code>npm run build</code> (full UI), see package.json for variants</li>
+</ul>
+<h3>Code Style</h3>
+<ul>
+<li><strong>TypeScript</strong>: Strict mode with proper interfaces</li>
+<li><strong>Components</strong>: Function components with React hooks</li>
+<li><strong>Formatting</strong>: Follow ESLint Next.js configuration</li>
+<li><strong>UI components</strong>: Use shadcn/ui components library</li>
+</ul>
+<h2>Financial Data Analyst</h2>
+<h3>Setup &amp; Development</h3>
+<ul>
+<li><strong>Install dependencies</strong>: <code>npm install</code></li>
+<li><strong>Run dev server</strong>: <code>npm run dev</code></li>
+<li><strong>Lint</strong>: <code>npm run lint</code></li>
+<li><strong>Build</strong>: <code>npm run build</code></li>
+</ul>
+<h3>Code Style</h3>
+<ul>
+<li><strong>TypeScript</strong>: Strict mode with proper type definitions</li>
+<li><strong>Components</strong>: Function components with type annotations</li>
+<li><strong>Visualization</strong>: Use Recharts library for data visualization</li>
+<li><strong>State management</strong>: React hooks for state</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

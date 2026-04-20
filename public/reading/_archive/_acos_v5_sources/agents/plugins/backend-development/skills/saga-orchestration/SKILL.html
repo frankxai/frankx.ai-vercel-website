@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Saga Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/backend-development/skills/saga-orchestration/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Saga Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development">backend-development</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Fsaga-orchestration">saga-orchestration</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: saga-orchestration
+description: Implement saga patterns for distributed transactions and cross-aggregate workflows. Use when coordinating multi-step business processes, handling compensating transactions, or managing long-running workflows.</h2>
+<h1>Saga Orchestration</h1>
+<p>Patterns for managing distributed transactions and long-running business processes.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Coordinating multi-service transactions</li>
+<li>Implementing compensating transactions</li>
+<li>Managing long-running business workflows</li>
+<li>Handling failures in distributed systems</li>
+<li>Building order fulfillment processes</li>
+<li>Implementing approval workflows</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Saga Types</h3>
+<pre><code>Choreography                    Orchestration
+┌─────┐  ┌─────┐  ┌─────┐     ┌─────────────┐
+│Svc A│─►│Svc B│─►│Svc C│     │ Orchestrator│
+└─────┘  └─────┘  └─────┘     └──────┬──────┘
+   │        │        │               │
+   ▼        ▼        ▼         ┌─────┼─────┐
+ Event    Event    Event       ▼     ▼     ▼
+                            ┌────┐┌────┐┌────┐
+                            │Svc1││Svc2││Svc3│
+                            └────┘└────┘└────┘
+</code></pre>
+<h3>2. Saga Execution States</h3>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Started</strong></td>
+<td>Saga initiated</td>
+</tr>
+<tr>
+<td><strong>Pending</strong></td>
+<td>Waiting for step completion</td>
+</tr>
+<tr>
+<td><strong>Compensating</strong></td>
+<td>Rolling back due to failure</td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td>All steps succeeded</td>
+</tr>
+<tr>
+<td><strong>Failed</strong></td>
+<td>Saga failed after compensation</td>
+</tr>
+</tbody></table>
+<h2>Templates</h2>
+<h3>Template 1: Saga Orchestrator Base</h3>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import List, Dict, Any, Optional
+from datetime import datetime
+import uuid
+
+class SagaState(Enum):
+    STARTED = &quot;started&quot;
+    PENDING = &quot;pending&quot;
+    COMPENSATING = &quot;compensating&quot;
+    COMPLETED = &quot;completed&quot;
+    FAILED = &quot;failed&quot;
+
+
+@dataclass
+class SagaStep:
+    name: str
+    action: str
+    compensation: str
+    status: str = &quot;pending&quot;
+    result: Optional[Dict] = None
+    error: Optional[str] = None
+    executed_at: Optional[datetime] = None
+    compensated_at: Optional[datetime] = None
+
+
+@dataclass
+class Saga:
+    saga_id: str
+    saga_type: str
+    state: SagaState
+    data: Dict[str, Any]
+    steps: List[SagaStep]
+    current_step: int = 0
+    created_at: datetime = field(default_factory=datetime.utcnow)
+    updated_at: datetime = field(default_factory=datetime.utcnow)
+
+
+class SagaOrchestrator(ABC):
+    &quot;&quot;&quot;Base class for saga orchestrators.&quot;&quot;&quot;
+
+    def __init__(self, saga_store, event_publisher):
+        self.saga_store = saga_store
+        self.event_publisher = event_publisher
+
+    @abstractmethod
+    def define_steps(self, data: Dict) -&gt; List[SagaStep]:
+        &quot;&quot;&quot;Define the saga steps.&quot;&quot;&quot;
+        pass
+
+    @property
+    @abstractmethod
+    def saga_type(self) -&gt; str:
+        &quot;&quot;&quot;Unique saga type identifier.&quot;&quot;&quot;
+        pass
+
+    async def start(self, data: Dict) -&gt; Saga:
+        &quot;&quot;&quot;Start a new saga.&quot;&quot;&quot;
+        saga = Saga(
+            saga_id=str(uuid.uuid4()),
+            saga_type=self.saga_type,
+            state=SagaState.STARTED,
+            data=data,
+            steps=self.define_steps(data)
+        )
+        await self.saga_store.save(saga)
+        await self._execute_next_step(saga)
+        return saga
+
+    async def handle_step_completed(self, saga_id: str, step_name: str, result: Dict):
+        &quot;&quot;&quot;Handle successful step completion.&quot;&quot;&quot;
+        saga = await self.saga_store.get(saga_id)
+
+        # Update step
+        for step in saga.steps:
+            if step.name == step_name:
+                step.status = &quot;completed&quot;
+                step.result = result
+                step.executed_at = datetime.utcnow()
+                break
+
+        saga.current_step += 1
+        saga.updated_at = datetime.utcnow()
+
+        # Check if saga is complete
+        if saga.current_step &gt;= len(saga.steps):
+            saga.state = SagaState.COMPLETED
+            await self.saga_store.save(saga)
+            await self._on_saga_completed(saga)
+        else:
+            saga.state = SagaState.PENDING
+            await self.saga_store.save(saga)
+            await self._execute_next_step(saga)
+
+    async def handle_step_failed(self, saga_id: str, step_name: str, error: str):
+        &quot;&quot;&quot;Handle step failure - start compensation.&quot;&quot;&quot;
+        saga = await self.saga_store.get(saga_id)
+
+        # Mark step as failed
+        for step in saga.steps:
+            if step.name == step_name:
+                step.status = &quot;failed&quot;
+                step.error = error
+                break
+
+        saga.state = SagaState.COMPENSATING
+        saga.updated_at = datetime.utcnow()
+        await self.saga_store.save(saga)
+
+        # Start compensation from current step backwards
+        await self._compensate(saga)
+
+    async def _execute_next_step(self, saga: Saga):
+        &quot;&quot;&quot;Execute the next step in the saga.&quot;&quot;&quot;
+        if saga.current_step &gt;= len(saga.steps):
+            return
+
+        step = saga.steps[saga.current_step]
+        step.status = &quot;executing&quot;
+        await self.saga_store.save(saga)
+
+        # Publish command to execute step
+        await self.event_publisher.publish(
+            step.action,
+            {
+                &quot;saga_id&quot;: saga.saga_id,
+                &quot;step_name&quot;: step.name,
+                **saga.data
+            }
+        )
+
+    async def _compensate(self, saga: Saga):
+        &quot;&quot;&quot;Execute compensation for completed steps.&quot;&quot;&quot;
+        # Compensate in reverse order
+        for i in range(saga.current_step - 1, -1, -1):
+            step = saga.steps[i]
+            if step.status == &quot;completed&quot;:
+                step.status = &quot;compensating&quot;
+                await self.saga_store.save(saga)
+
+                await self.event_publisher.publish(
+                    step.compensation,
+                    {
+                        &quot;saga_id&quot;: saga.saga_id,
+                        &quot;step_name&quot;: step.name,
+                        &quot;original_result&quot;: step.result,
+                        **saga.data
+                    }
+                )
+
+    async def handle_compensation_completed(self, saga_id: str, step_name: str):
+        &quot;&quot;&quot;Handle compensation completion.&quot;&quot;&quot;
+        saga = await self.saga_store.get(saga_id)
+
+        for step in saga.steps:
+            if step.name == step_name:
+                step.status = &quot;compensated&quot;
+                step.compensated_at = datetime.utcnow()
+                break
+
+        # Check if all compensations complete
+        all_compensated = all(
+            s.status in (&quot;compensated&quot;, &quot;pending&quot;, &quot;failed&quot;)
+            for s in saga.steps
+        )
+
+        if all_compensated:
+            saga.state = SagaState.FAILED
+            await self._on_saga_failed(saga)
+
+        await self.saga_store.save(saga)
+
+    async def _on_saga_completed(self, saga: Saga):
+        &quot;&quot;&quot;Called when saga completes successfully.&quot;&quot;&quot;
+        await self.event_publisher.publish(
+            f&quot;{self.saga_type}Completed&quot;,
+            {&quot;saga_id&quot;: saga.saga_id, **saga.data}
+        )
+
+    async def _on_saga_failed(self, saga: Saga):
+        &quot;&quot;&quot;Called when saga fails after compensation.&quot;&quot;&quot;
+        await self.event_publisher.publish(
+            f&quot;{self.saga_type}Failed&quot;,
+            {&quot;saga_id&quot;: saga.saga_id, &quot;error&quot;: &quot;Saga failed&quot;, **saga.data}
+        )
+</code></pre>
+<h3>Template 2: Order Fulfillment Saga</h3>
+<pre><code class="language-python">class OrderFulfillmentSaga(SagaOrchestrator):
+    &quot;&quot;&quot;Orchestrates order fulfillment across services.&quot;&quot;&quot;
+
+    @property
+    def saga_type(self) -&gt; str:
+        return &quot;OrderFulfillment&quot;
+
+    def define_steps(self, data: Dict) -&gt; List[SagaStep]:
+        return [
+            SagaStep(
+                name=&quot;reserve_inventory&quot;,
+                action=&quot;InventoryService.ReserveItems&quot;,
+                compensation=&quot;InventoryService.ReleaseReservation&quot;
+            ),
+            SagaStep(
+                name=&quot;process_payment&quot;,
+                action=&quot;PaymentService.ProcessPayment&quot;,
+                compensation=&quot;PaymentService.RefundPayment&quot;
+            ),
+            SagaStep(
+                name=&quot;create_shipment&quot;,
+                action=&quot;ShippingService.CreateShipment&quot;,
+                compensation=&quot;ShippingService.CancelShipment&quot;
+            ),
+            SagaStep(
+                name=&quot;send_confirmation&quot;,
+                action=&quot;NotificationService.SendOrderConfirmation&quot;,
+                compensation=&quot;NotificationService.SendCancellationNotice&quot;
+            )
+        ]
+
+
+# Usage
+async def create_order(order_data: Dict):
+    saga = OrderFulfillmentSaga(saga_store, event_publisher)
+    return await saga.start({
+        &quot;order_id&quot;: order_data[&quot;order_id&quot;],
+        &quot;customer_id&quot;: order_data[&quot;customer_id&quot;],
+        &quot;items&quot;: order_data[&quot;items&quot;],
+        &quot;payment_method&quot;: order_data[&quot;payment_method&quot;],
+        &quot;shipping_address&quot;: order_data[&quot;shipping_address&quot;]
+    })
+
+
+# Event handlers in each service
+class InventoryService:
+    async def handle_reserve_items(self, command: Dict):
+        try:
+            # Reserve inventory
+            reservation = await self.reserve(
+                command[&quot;items&quot;],
+                command[&quot;order_id&quot;]
+            )
+            # Report success
+            await self.event_publisher.publish(
+                &quot;SagaStepCompleted&quot;,
+                {
+                    &quot;saga_id&quot;: command[&quot;saga_id&quot;],
+                    &quot;step_name&quot;: &quot;reserve_inventory&quot;,
+                    &quot;result&quot;: {&quot;reservation_id&quot;: reservation.id}
+                }
+            )
+        except InsufficientInventoryError as e:
+            await self.event_publisher.publish(
+                &quot;SagaStepFailed&quot;,
+                {
+                    &quot;saga_id&quot;: command[&quot;saga_id&quot;],
+                    &quot;step_name&quot;: &quot;reserve_inventory&quot;,
+                    &quot;error&quot;: str(e)
+                }
+            )
+
+    async def handle_release_reservation(self, command: Dict):
+        # Compensating action
+        await self.release_reservation(
+            command[&quot;original_result&quot;][&quot;reservation_id&quot;]
+        )
+        await self.event_publisher.publish(
+            &quot;SagaCompensationCompleted&quot;,
+            {
+                &quot;saga_id&quot;: command[&quot;saga_id&quot;],
+                &quot;step_name&quot;: &quot;reserve_inventory&quot;
+            }
+        )
+</code></pre>
+<h3>Template 3: Choreography-Based Saga</h3>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import Dict, Any
+import asyncio
+
+@dataclass
+class SagaContext:
+    &quot;&quot;&quot;Passed through choreographed saga events.&quot;&quot;&quot;
+    saga_id: str
+    step: int
+    data: Dict[str, Any]
+    completed_steps: list
+
+
+class OrderChoreographySaga:
+    &quot;&quot;&quot;Choreography-based saga using events.&quot;&quot;&quot;
+
+    def __init__(self, event_bus):
+        self.event_bus = event_bus
+        self._register_handlers()
+
+    def _register_handlers(self):
+        self.event_bus.subscribe(&quot;OrderCreated&quot;, self._on_order_created)
+        self.event_bus.subscribe(&quot;InventoryReserved&quot;, self._on_inventory_reserved)
+        self.event_bus.subscribe(&quot;PaymentProcessed&quot;, self._on_payment_processed)
+        self.event_bus.subscribe(&quot;ShipmentCreated&quot;, self._on_shipment_created)
+
+        # Compensation handlers
+        self.event_bus.subscribe(&quot;PaymentFailed&quot;, self._on_payment_failed)
+        self.event_bus.subscribe(&quot;ShipmentFailed&quot;, self._on_shipment_failed)
+
+    async def _on_order_created(self, event: Dict):
+        &quot;&quot;&quot;Step 1: Order created, reserve inventory.&quot;&quot;&quot;
+        await self.event_bus.publish(&quot;ReserveInventory&quot;, {
+            &quot;saga_id&quot;: event[&quot;order_id&quot;],
+            &quot;order_id&quot;: event[&quot;order_id&quot;],
+            &quot;items&quot;: event[&quot;items&quot;]
+        })
+
+    async def _on_inventory_reserved(self, event: Dict):
+        &quot;&quot;&quot;Step 2: Inventory reserved, process payment.&quot;&quot;&quot;
+        await self.event_bus.publish(&quot;ProcessPayment&quot;, {
+            &quot;saga_id&quot;: event[&quot;saga_id&quot;],
+            &quot;order_id&quot;: event[&quot;order_id&quot;],
+            &quot;amount&quot;: event[&quot;total_amount&quot;],
+            &quot;reservation_id&quot;: event[&quot;reservation_id&quot;]
+        })
+
+    async def _on_payment_processed(self, event: Dict):
+        &quot;&quot;&quot;Step 3: Payment done, create shipment.&quot;&quot;&quot;
+        await self.event_bus.publish(&quot;CreateShipment&quot;, {
+            &quot;saga_id&quot;: event[&quot;saga_id&quot;],
+            &quot;order_id&quot;: event[&quot;order_id&quot;],
+            &quot;payment_id&quot;: event[&quot;payment_id&quot;]
+        })
+
+    async def _on_shipment_created(self, event: Dict):
+        &quot;&quot;&quot;Step 4: Complete - send confirmation.&quot;&quot;&quot;
+        await self.event_bus.publish(&quot;OrderFulfilled&quot;, {
+            &quot;saga_id&quot;: event[&quot;saga_id&quot;],
+            &quot;order_id&quot;: event[&quot;order_id&quot;],
+            &quot;tracking_number&quot;: event[&quot;tracking_number&quot;]
+        })
+
+    # Compensation handlers
+    async def _on_payment_failed(self, event: Dict):
+        &quot;&quot;&quot;Payment failed - release inventory.&quot;&quot;&quot;
+        await self.event_bus.publish(&quot;ReleaseInventory&quot;, {
+            &quot;saga_id&quot;: event[&quot;saga_id&quot;],
+            &quot;reservation_id&quot;: event[&quot;reservation_id&quot;]
+        })
+        await self.event_bus.publish(&quot;OrderFailed&quot;, {
+            &quot;order_id&quot;: event[&quot;order_id&quot;],
+            &quot;reason&quot;: &quot;Payment failed&quot;
+        })
+
+    async def _on_shipment_failed(self, event: Dict):
+        &quot;&quot;&quot;Shipment failed - refund payment and release inventory.&quot;&quot;&quot;
+        await self.event_bus.publish(&quot;RefundPayment&quot;, {
+            &quot;saga_id&quot;: event[&quot;saga_id&quot;],
+            &quot;payment_id&quot;: event[&quot;payment_id&quot;]
+        })
+        await self.event_bus.publish(&quot;ReleaseInventory&quot;, {
+            &quot;saga_id&quot;: event[&quot;saga_id&quot;],
+            &quot;reservation_id&quot;: event[&quot;reservation_id&quot;]
+        })
+</code></pre>
+<h3>Template 4: Saga with Timeouts</h3>
+<pre><code class="language-python">class TimeoutSagaOrchestrator(SagaOrchestrator):
+    &quot;&quot;&quot;Saga orchestrator with step timeouts.&quot;&quot;&quot;
+
+    def __init__(self, saga_store, event_publisher, scheduler):
+        super().__init__(saga_store, event_publisher)
+        self.scheduler = scheduler
+
+    async def _execute_next_step(self, saga: Saga):
+        if saga.current_step &gt;= len(saga.steps):
+            return
+
+        step = saga.steps[saga.current_step]
+        step.status = &quot;executing&quot;
+        step.timeout_at = datetime.utcnow() + timedelta(minutes=5)
+        await self.saga_store.save(saga)
+
+        # Schedule timeout check
+        await self.scheduler.schedule(
+            f&quot;saga_timeout_{saga.saga_id}_{step.name}&quot;,
+            self._check_timeout,
+            {&quot;saga_id&quot;: saga.saga_id, &quot;step_name&quot;: step.name},
+            run_at=step.timeout_at
+        )
+
+        await self.event_publisher.publish(
+            step.action,
+            {&quot;saga_id&quot;: saga.saga_id, &quot;step_name&quot;: step.name, **saga.data}
+        )
+
+    async def _check_timeout(self, data: Dict):
+        &quot;&quot;&quot;Check if step has timed out.&quot;&quot;&quot;
+        saga = await self.saga_store.get(data[&quot;saga_id&quot;])
+        step = next(s for s in saga.steps if s.name == data[&quot;step_name&quot;])
+
+        if step.status == &quot;executing&quot;:
+            # Step timed out - fail it
+            await self.handle_step_failed(
+                data[&quot;saga_id&quot;],
+                data[&quot;step_name&quot;],
+                &quot;Step timed out&quot;
+            )
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Make steps idempotent</strong> - Safe to retry</li>
+<li><strong>Design compensations carefully</strong> - They must work</li>
+<li><strong>Use correlation IDs</strong> - For tracing across services</li>
+<li><strong>Implement timeouts</strong> - Don&#39;t wait forever</li>
+<li><strong>Log everything</strong> - For debugging failures</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t assume instant completion</strong> - Sagas take time</li>
+<li><strong>Don&#39;t skip compensation testing</strong> - Most critical part</li>
+<li><strong>Don&#39;t couple services</strong> - Use async messaging</li>
+<li><strong>Don&#39;t ignore partial failures</strong> - Handle gracefully</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://microservices.io/patterns/data/saga.html">Saga Pattern</a></li>
+<li><a href="https://dataintensive.net/">Designing Data-Intensive Applications</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

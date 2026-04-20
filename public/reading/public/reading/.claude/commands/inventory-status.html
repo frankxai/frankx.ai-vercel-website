@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/inventory-status - Content Inventory Dashboard</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/inventory-status.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/inventory-status - Content Inventory Dashboard</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>inventory-status.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/inventory-status - Content Inventory Dashboard</h1>
+<p><strong>ACOS Inventory Intelligence - See everything you&#39;ve created</strong></p>
+<h2>Overview</h2>
+<pre><code>╔═══════════════════════════════════════════════════════════════════╗
+║                  CONTENT INVENTORY STATUS                          ║
+║            &quot;Know What You Have, Plan What You Need&quot;                ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  FrankX │ AI Architect Academy │ Arcanea                          ║
+╚═══════════════════════════════════════════════════════════════════╝
+</code></pre>
+<h2>Execute Status Check</h2>
+<p>Run the following to get current counts:</p>
+<pre><code class="language-bash"># FrankX Music
+echo &quot;🎵 FrankX Music:&quot; &amp;&amp; cat data/inventories/frankx/music.json | jq &#39;._count // (.tracks | length)&#39;
+
+# FrankX Blog
+echo &quot;📝 FrankX Blog:&quot; &amp;&amp; cat data/inventories/frankx/blog-articles.json | jq &#39;._count&#39;
+
+# Arcanea Music
+echo &quot;🏰 Arcanea Music:&quot; &amp;&amp; cat data/inventories/arcanea/music.json | jq &#39;._count&#39;
+
+# Social Profiles
+echo &quot;👤 Social Profiles:&quot; &amp;&amp; cat data/inventories/profiles.json | jq &#39;.profiles | length&#39;
+</code></pre>
+<h2>Inventory Locations</h2>
+<table>
+<thead>
+<tr>
+<th>Brand</th>
+<th>Type</th>
+<th>File</th>
+<th>Sync to Production?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>FrankX</strong></td>
+<td>Music</td>
+<td><code>data/inventories/frankx/music.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Blog</td>
+<td><code>data/inventories/frankx/blog-articles.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Art</td>
+<td><code>data/inventories/frankx/art.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Videos</td>
+<td><code>data/inventories/frankx/videos.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>LinkedIn</td>
+<td><code>data/inventories/frankx/social/linkedin.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Instagram</td>
+<td><code>data/inventories/frankx/social/instagram.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>X/Twitter</td>
+<td><code>data/inventories/frankx/social/x-twitter.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Threads</td>
+<td><code>data/inventories/frankx/social/threads.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><strong>AI Academy</strong></td>
+<td>Courses</td>
+<td><code>data/inventories/ai-architect-academy/courses.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Tutorials</td>
+<td><code>data/inventories/ai-architect-academy/tutorials.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td></td>
+<td>Resources</td>
+<td><code>data/inventories/ai-architect-academy/resources.json</code></td>
+<td>✅ Yes</td>
+</tr>
+<tr>
+<td><strong>Arcanea</strong></td>
+<td>Lore</td>
+<td><code>data/inventories/arcanea/lore.json</code></td>
+<td>❌ Private</td>
+</tr>
+<tr>
+<td></td>
+<td>Music</td>
+<td><code>data/inventories/arcanea/music.json</code></td>
+<td>❌ Private</td>
+</tr>
+<tr>
+<td></td>
+<td>Art</td>
+<td><code>data/inventories/arcanea/art.json</code></td>
+<td>❌ Private</td>
+</tr>
+<tr>
+<td></td>
+<td>Implementations</td>
+<td><code>data/inventories/arcanea/implementations.json</code></td>
+<td>❌ Private</td>
+</tr>
+</tbody></table>
+<h2>Current Stats Dashboard</h2>
+<p>When you run this command, I will display:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                     FRANKX CONTENT EMPIRE                        │
+├─────────────────────────────────────────────────────────────────┤
+│ 🎵 Music Tracks        │ XX tracked  │ ~500 estimated           │
+│ 📝 Blog Articles       │ 51 articles │ 100,434 words            │
+│ 🎨 Art/Visuals         │ XX pieces   │                          │
+│ 🎬 Videos              │ XX videos   │                          │
+│ 📦 Products            │ 6 products  │                          │
+├─────────────────────────────────────────────────────────────────┤
+│                     SOCIAL PRESENCE                              │
+├─────────────────────────────────────────────────────────────────┤
+│ 👤 Suno Followers      │ 456         │ 13K hooks                │
+│ 💼 LinkedIn Posts      │ XX tracked  │ ~100 estimated           │
+│ 📸 Instagram Posts     │ XX tracked  │ ~50 estimated            │
+│ 🐦 X/Twitter Posts     │ XX tracked  │                          │
+├─────────────────────────────────────────────────────────────────┤
+│                     AI ARCHITECT ACADEMY                         │
+├─────────────────────────────────────────────────────────────────┤
+│ 📚 Courses             │ XX courses  │                          │
+│ 📖 Tutorials           │ XX items    │                          │
+│ 🔧 Resources           │ XX items    │                          │
+├─────────────────────────────────────────────────────────────────┤
+│                     ARCANEA UNIVERSE                             │
+├─────────────────────────────────────────────────────────────────┤
+│ 📜 Lore Entries        │ XX entries  │                          │
+│ 🎵 Soundtrack Tracks   │ 4 tracks    │                          │
+│ 🎨 Concept Art         │ XX pieces   │                          │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Gaps &amp; Opportunities</h2>
+<p>After showing stats, identify:</p>
+<h3>🔴 Critical Gaps</h3>
+<ul>
+<li>Suno tracks: Only ~34 of 500 tracked (need bulk import)</li>
+<li>Social posts: Not yet tracked</li>
+</ul>
+<h3>🟡 Opportunities</h3>
+<ul>
+<li>Highest performing blog categories</li>
+<li>Music genres with most engagement</li>
+<li>Content types to prioritize</li>
+</ul>
+<h3>🟢 Strengths</h3>
+<ul>
+<li>Blog inventory complete and auto-generated</li>
+<li>TypeScript schemas for all content types</li>
+<li>Three-brand separation clear</li>
+</ul>
+<h2>Maintenance Commands</h2>
+<pre><code class="language-bash"># Regenerate blog inventory (auto-indexes from content/blog/)
+node scripts/generate-blog-inventory.mjs
+
+# Import Suno tracks from URL list
+node scripts/import-suno-tracks.mjs --file my-suno-urls.txt
+
+# Check index integrity
+cat data/inventories/index.json | jq &#39;.lastUpdated&#39;
+</code></pre>
+<h2>Quick Actions After Status Check</h2>
+<p>Based on gaps found:</p>
+<ul>
+<li><code>/create-music</code> - Add new music to inventory</li>
+<li><code>/create-article</code> - Write new blog content</li>
+<li><code>/plan-week</code> - Prioritize what to create next</li>
+</ul>
+<h2>Schema Reference</h2>
+<p>All inventories use TypeScript types from:</p>
+<pre><code>data/inventories/_schema/inventory-types.ts
+</code></pre>
+<p>Key types: <code>MusicTrack</code>, <code>BlogArticle</code>, <code>SocialPost</code>, <code>Product</code>, <code>ArcaneaLore</code></p>
+<hr>
+<p><em>Powered by ACOS Content Intelligence System</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>🐝 Claude-Flow Swarm Coordination</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/.claude/commands/claude-flow-swarm.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">🐝 Claude-Flow Swarm Coordination</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2F.claude%2Fcommands">commands</a> / <span>claude-flow-swarm.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: claude-flow-swarm
+description: Coordinate multi-agent swarms for complex tasks</h2>
+<h1>🐝 Claude-Flow Swarm Coordination</h1>
+<p>Advanced multi-agent coordination system with timeout-free execution, distributed memory sharing, and intelligent load balancing.</p>
+<h2>Basic Usage</h2>
+<pre><code class="language-bash">./claude-flow swarm &quot;your complex task&quot; --strategy &lt;type&gt; [options]
+</code></pre>
+<h2>🎯 Swarm Strategies</h2>
+<ul>
+<li><strong>auto</strong> - Automatic strategy selection based on task analysis</li>
+<li><strong>development</strong> - Code implementation with review and testing</li>
+<li><strong>research</strong> - Information gathering and synthesis</li>
+<li><strong>analysis</strong> - Data processing and pattern identification</li>
+<li><strong>testing</strong> - Comprehensive quality assurance</li>
+<li><strong>optimization</strong> - Performance tuning and refactoring</li>
+<li><strong>maintenance</strong> - System updates and bug fixes</li>
+</ul>
+<h2>🤖 Agent Types</h2>
+<ul>
+<li><strong>coordinator</strong> - Plans and delegates tasks to other agents</li>
+<li><strong>developer</strong> - Writes code and implements solutions</li>
+<li><strong>researcher</strong> - Gathers and analyzes information</li>
+<li><strong>analyzer</strong> - Identifies patterns and generates insights</li>
+<li><strong>tester</strong> - Creates and runs tests for quality assurance</li>
+<li><strong>reviewer</strong> - Performs code and design reviews</li>
+<li><strong>documenter</strong> - Creates documentation and guides</li>
+<li><strong>monitor</strong> - Tracks performance and system health</li>
+<li><strong>specialist</strong> - Domain-specific expert agents</li>
+</ul>
+<h2>🔄 Coordination Modes</h2>
+<ul>
+<li><strong>centralized</strong> - Single coordinator manages all agents (default)</li>
+<li><strong>distributed</strong> - Multiple coordinators share management</li>
+<li><strong>hierarchical</strong> - Tree structure with nested coordination</li>
+<li><strong>mesh</strong> - Peer-to-peer agent collaboration</li>
+<li><strong>hybrid</strong> - Mixed coordination strategies</li>
+</ul>
+<h2>⚙️ Common Options</h2>
+<ul>
+<li><code>--strategy &lt;type&gt;</code> - Execution strategy</li>
+<li><code>--mode &lt;type&gt;</code> - Coordination mode</li>
+<li><code>--max-agents &lt;n&gt;</code> - Maximum concurrent agents (default: 5)</li>
+<li><code>--timeout &lt;minutes&gt;</code> - Timeout in minutes (default: 60)</li>
+<li><code>--background</code> - Run in background for tasks &gt; 30 minutes</li>
+<li><code>--monitor</code> - Enable real-time monitoring</li>
+<li><code>--ui</code> - Launch terminal UI interface</li>
+<li><code>--parallel</code> - Enable parallel execution</li>
+<li><code>--distributed</code> - Enable distributed coordination</li>
+<li><code>--review</code> - Enable peer review process</li>
+<li><code>--testing</code> - Include automated testing</li>
+<li><code>--encryption</code> - Enable data encryption</li>
+<li><code>--verbose</code> - Detailed logging output</li>
+<li><code>--dry-run</code> - Show configuration without executing</li>
+</ul>
+<h2>🌟 Examples</h2>
+<h3>Development Swarm with Review</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;Build e-commerce REST API&quot; \
+  --strategy development \
+  --monitor \
+  --review \
+  --testing
+</code></pre>
+<h3>Long-Running Research Swarm</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;Analyze AI market trends 2024-2025&quot; \
+  --strategy research \
+  --background \
+  --distributed \
+  --max-agents 8
+</code></pre>
+<h3>Performance Optimization Swarm</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;Optimize database queries and API performance&quot; \
+  --strategy optimization \
+  --testing \
+  --parallel \
+  --monitor
+</code></pre>
+<h3>Enterprise Development Swarm</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;Implement secure payment processing system&quot; \
+  --strategy development \
+  --mode distributed \
+  --max-agents 10 \
+  --parallel \
+  --monitor \
+  --review \
+  --testing \
+  --encryption \
+  --verbose
+</code></pre>
+<h3>Testing and QA Swarm</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;Comprehensive security audit and testing&quot; \
+  --strategy testing \
+  --review \
+  --verbose \
+  --max-agents 6
+</code></pre>
+<h2>📊 Monitoring and Control</h2>
+<h3>Real-time monitoring:</h3>
+<pre><code class="language-bash"># Monitor swarm activity
+./claude-flow monitor
+
+# Monitor specific component
+./claude-flow monitor --focus swarm
+</code></pre>
+<h3>Check swarm status:</h3>
+<pre><code class="language-bash"># Overall system status
+./claude-flow status
+
+# Detailed swarm status
+./claude-flow status --verbose
+</code></pre>
+<h3>View agent activity:</h3>
+<pre><code class="language-bash"># List all agents
+./claude-flow agent list
+
+# Agent details
+./claude-flow agent info &lt;agent-id&gt;
+</code></pre>
+<h2>💾 Memory Integration</h2>
+<p>Swarms automatically use distributed memory for collaboration:</p>
+<pre><code class="language-bash"># Store swarm objectives
+./claude-flow memory store &quot;swarm_objective&quot; &quot;Build scalable API&quot; --namespace swarm
+
+# Query swarm progress
+./claude-flow memory query &quot;swarm_progress&quot; --namespace swarm
+
+# Export swarm memory
+./claude-flow memory export swarm-results.json --namespace swarm
+</code></pre>
+<h2>🎯 Key Features</h2>
+<h3>Timeout-Free Execution</h3>
+<ul>
+<li>Background mode for long-running tasks</li>
+<li>State persistence across sessions</li>
+<li>Automatic checkpoint recovery</li>
+</ul>
+<h3>Work Stealing &amp; Load Balancing</h3>
+<ul>
+<li>Dynamic task redistribution</li>
+<li>Automatic agent scaling</li>
+<li>Resource-aware scheduling</li>
+</ul>
+<h3>Circuit Breakers &amp; Fault Tolerance</h3>
+<ul>
+<li>Automatic retry with exponential backoff</li>
+<li>Graceful degradation</li>
+<li>Health monitoring and recovery</li>
+</ul>
+<h3>Real-Time Collaboration</h3>
+<ul>
+<li>Cross-agent communication</li>
+<li>Shared memory access</li>
+<li>Event-driven coordination</li>
+</ul>
+<h3>Enterprise Security</h3>
+<ul>
+<li>Role-based access control</li>
+<li>Audit logging</li>
+<li>Data encryption</li>
+<li>Input validation</li>
+</ul>
+<h2>🔧 Advanced Configuration</h2>
+<h3>Dry run to preview:</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;Test task&quot; --dry-run --strategy development
+</code></pre>
+<h3>Custom quality thresholds:</h3>
+<pre><code class="language-bash">./claude-flow swarm &quot;High quality API&quot; \
+  --strategy development \
+  --quality-threshold 0.95
+</code></pre>
+<h3>Scheduling algorithms:</h3>
+<ul>
+<li>FIFO (First In, First Out)</li>
+<li>Priority-based</li>
+<li>Deadline-driven</li>
+<li>Shortest Job First</li>
+<li>Critical Path</li>
+<li>Resource-aware</li>
+<li>Adaptive</li>
+</ul>
+<p>For detailed documentation, see: <a href="https://github.com/ruvnet/claude-code-flow/docs/swarm-system.md">https://github.com/ruvnet/claude-code-flow/docs/swarm-system.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

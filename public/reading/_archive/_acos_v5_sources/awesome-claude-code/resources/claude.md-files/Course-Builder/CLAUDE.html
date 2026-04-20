@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Course Builder Development Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/claude.md-files/Course-Builder/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Course Builder Development Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fclaude.md-files">claude.md-files</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fclaude.md-files%2FCourse-Builder">Course-Builder</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Course Builder Development Guide</h1>
+<h2>Project Overview</h2>
+<p>Course Builder is a real-time multiplayer CMS (Content Management System) designed specifically for building and deploying developer education products. This monorepo contains multiple applications and shared packages that work together to provide a comprehensive platform for creating, managing, and delivering educational content.</p>
+<h3>Main Features</h3>
+<ul>
+<li>Content management for courses, modules, and lessons</li>
+<li>Video processing pipeline with transcription</li>
+<li>AI-assisted content creation and enhancement</li>
+<li>Real-time collaboration for content creators</li>
+<li>Authentication and authorization</li>
+<li>Payment processing and subscription management</li>
+<li>Progress tracking for students</li>
+</ul>
+<h3>Key Technologies</h3>
+<ul>
+<li><strong>Framework</strong>: Next.js (App Router)</li>
+<li><strong>Language</strong>: TypeScript</li>
+<li><strong>Monorepo</strong>: Turborepo with PNPM workspaces</li>
+<li><strong>Database</strong>: Drizzle ORM with MySQL/PlanetScale</li>
+<li><strong>Authentication</strong>: NextAuth.js</li>
+<li><strong>Styling</strong>: Tailwind CSS</li>
+<li><strong>API</strong>: tRPC for type-safe API calls</li>
+<li><strong>Real-time</strong>: PartyKit/websockets for collaboration</li>
+<li><strong>Event Processing</strong>: Inngest for workflows and background jobs</li>
+<li><strong>Media</strong>: Mux for video processing, Deepgram for transcription</li>
+<li><strong>AI</strong>: OpenAI/GPT for content assistance</li>
+<li><strong>Payments</strong>: Stripe integration</li>
+</ul>
+<h2>Repository Structure</h2>
+<h3>Apps (<code>/apps</code>)</h3>
+<ul>
+<li><code>ai-hero</code>: Main application focused on AI-assisted learning</li>
+<li><code>astro-party</code>: An Astro-based implementation</li>
+<li><code>course-builder-web</code>: The main Course Builder web application</li>
+<li><code>egghead</code>: Integration with egghead.io platform</li>
+<li><code>epic-react</code>: Specific implementation for React courses</li>
+<li><code>go-local-first</code>: Implementation with local-first capabilities</li>
+</ul>
+<h3>Packages (<code>/packages</code>)</h3>
+<ul>
+<li><p><strong>Core Functionality</strong>:</p>
+<ul>
+<li><code>core</code>: Framework-agnostic core library</li>
+<li><code>ui</code>: Shared UI components based on Radix/shadcn</li>
+<li><code>adapter-drizzle</code>: Database adapter for Drizzle ORM</li>
+<li><code>next</code>: Next.js specific bindings</li>
+<li><code>commerce-next</code>: Commerce components and functionality</li>
+</ul>
+</li>
+<li><p><strong>Utility Packages</strong>:</p>
+<ul>
+<li><code>utils-ai</code>: AI-related utilities</li>
+<li><code>utils-auth</code>: Authentication and authorization utilities</li>
+<li><code>utils-aws</code>: AWS service utilities</li>
+<li><code>utils-browser</code>: Browser-specific utilities (cookies, etc.)</li>
+<li><code>utils-core</code>: Core utilities like <code>guid</code></li>
+<li><code>utils-email</code>: Email-related utilities</li>
+<li><code>utils-file</code>: File handling utilities</li>
+<li><code>utils-media</code>: Media processing utilities</li>
+<li><code>utils-resource</code>: Resource filtering and processing utilities</li>
+<li><code>utils-search</code>: Search functionality utilities</li>
+<li><code>utils-seo</code>: SEO utilities</li>
+<li><code>utils-string</code>: String manipulation utilities</li>
+<li><code>utils-ui</code>: UI utilities like <code>cn</code></li>
+</ul>
+</li>
+</ul>
+<h3>Other Directories</h3>
+<ul>
+<li><code>cli</code>: Command-line tools for project bootstrapping</li>
+<li><code>docs</code>: Documentation including shared utilities guide</li>
+<li><code>instructions</code>: Detailed instructions for development tasks</li>
+<li><code>plop-templates</code>: Templates for code generation</li>
+</ul>
+<h2>Command Reference</h2>
+<h3>Build Commands</h3>
+<ul>
+<li><code>pnpm build:all</code> - Build all packages and apps</li>
+<li><code>pnpm build</code> - Build all packages (not apps)</li>
+<li><code>pnpm build --filter=&quot;ai-hero&quot;</code> - Build specific app</li>
+<li><code>pnpm dev:all</code> - Run dev environment for all packages/apps</li>
+<li><code>pnpm dev</code> - Run dev environment for packages only</li>
+</ul>
+<h3>Testing</h3>
+<ul>
+<li><code>pnpm test</code> - Run all tests</li>
+<li><code>pnpm test --filter=&quot;@coursebuilder/utils-file&quot;</code> - Test specific package</li>
+<li><code>pnpm test:watch</code> - Run tests in watch mode</li>
+<li><code>cd packages/package-name &amp;&amp; pnpm test</code> - Run tests for specific package</li>
+<li><code>cd packages/package-name &amp;&amp; pnpm test src/path/to/test.test.ts</code> - Run a single test file</li>
+<li><code>cd packages/package-name &amp;&amp; pnpm test:watch src/path/to/test.test.ts</code> - Watch single test file</li>
+</ul>
+<h3>Linting and Formatting</h3>
+<ul>
+<li><code>pnpm lint</code> - Run linting on all packages/apps</li>
+<li><code>pnpm format:check</code> - Check formatting without changing files</li>
+<li><code>pnpm format</code> - Format all files using Prettier</li>
+<li><code>pnpm typecheck</code> - Run TypeScript type checking</li>
+<li><code>pnpm manypkg fix</code> - Fix dependency version mismatches and sort package.json files</li>
+</ul>
+<p>Use <code>--filter=&quot;APP_NAME&quot;</code> to run commands for a specific app</p>
+<h2>Code Generation and Scaffolding</h2>
+<h3>Creating New Utility Packages</h3>
+<p>Use the custom Plop template to create new utility packages:</p>
+<pre><code class="language-bash"># Create a new utility package using the template
+pnpm plop package-utils &lt;domain&gt; &lt;utilityName&gt; &lt;functionName&gt; &quot;&lt;utilityDescription&gt;&quot;
+
+# Example:
+pnpm plop package-utils browser cookies getCookies &quot;Browser cookie utility&quot;
+
+# With named parameters:
+pnpm plop package-utils -- --domain browser --utilityName cookies --functionName getCookies --utilityDescription &quot;Browser cookie utility&quot;
+</code></pre>
+<p>This will create a properly structured package with:</p>
+<ul>
+<li>Correct package.json with exports configuration</li>
+<li>TypeScript configuration</li>
+<li>Basic implementation with proper TSDoc comments</li>
+<li>Test scaffolding</li>
+</ul>
+<h3>Working with Utility Packages</h3>
+<h4>Adding Dependencies</h4>
+<p>When updating package.json files to add dependencies:</p>
+<ol>
+<li>Use string replacement with Edit tool to add dependencies</li>
+<li>Maintain alphabetical order of dependencies</li>
+<li>Don&#39;t replace entire sections, just add the new line</li>
+</ol>
+<p>Example of proper package.json edit:</p>
+<pre><code>&quot;@coursebuilder/utils-media&quot;: &quot;1.0.0&quot;,
+&quot;@coursebuilder/utils-seo&quot;: &quot;1.0.0&quot;,
+
+// Replace with:
+&quot;@coursebuilder/utils-media&quot;: &quot;1.0.0&quot;,
+&quot;@coursebuilder/utils-resource&quot;: &quot;1.0.0&quot;, // New line added here
+&quot;@coursebuilder/utils-seo&quot;: &quot;1.0.0&quot;,
+</code></pre>
+<h4>Framework Compatibility</h4>
+<p>When creating utility packages that interact with framework-specific libraries:</p>
+<ol>
+<li>Keep framework-specific dependencies (React, Next.js, etc.) as peer dependencies</li>
+<li>For utilities that use third-party libraries (like Typesense, OpenAI), provide adapters rather than direct implementations</li>
+<li>Be careful with libraries that might conflict with framework internals</li>
+<li>Test builds across multiple apps to ensure compatibility</li>
+</ol>
+<h2>Code Style</h2>
+<ul>
+<li><strong>Formatting</strong>: Single quotes, no semicolons, tabs (width: 2), 80 char line limit</li>
+<li><strong>Imports</strong>: Organized by specific order (React → Next → 3rd party → internal)</li>
+<li><strong>File structure</strong>: Monorepo with apps in /apps and packages in /packages</li>
+<li><strong>Package Manager</strong>: PNPM (v8.15.5+)</li>
+<li><strong>Testing Framework</strong>: Vitest</li>
+</ul>
+<h3>Conventional Commits</h3>
+<p>We use conventional commits with package/app-specific scopes:</p>
+<ul>
+<li>Format: <code>&lt;type&gt;(&lt;scope&gt;): &lt;description&gt;</code></li>
+<li>Types: <code>feat</code>, <code>fix</code>, <code>refactor</code>, <code>style</code>, <code>docs</code>, <code>test</code>, <code>chore</code></li>
+<li>Scopes:<ul>
+<li>App codes: <code>aih</code> (ai-hero), <code>egh</code> (egghead), <code>eweb</code> (epic-web)</li>
+<li>Packages: <code>utils-email</code>, <code>core</code>, <code>ui</code>, <code>mdx-mermaid</code>, etc.</li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li><code>fix(egh): convert SanityReference to SanityArrayElementReference</code></li>
+<li><code>style(mdx-mermaid): make flowcharts nicer</code></li>
+<li><code>refactor(utils): implement SEO utility package with re-export pattern</code></li>
+<li><code>feat(utils-email): create email utilities package with sendAnEmail</code></li>
+</ul>
+<h2>Common Patterns</h2>
+<h3>Dependency Management</h3>
+<p>When adding dependencies to packages in the monorepo, ensure that:</p>
+<ol>
+<li>All packages use consistent dependency versions</li>
+<li>Dependencies in package.json files are sorted alphabetically</li>
+</ol>
+<p>If you encounter linting errors related to dependency versions or sorting:</p>
+<pre><code class="language-bash"># Fix dependency version mismatches and sort package.json files
+pnpm manypkg fix
+</code></pre>
+<h3>Re-export Pattern for Backward Compatibility</h3>
+<p>When creating shared utility packages, use the re-export pattern to maintain backward compatibility:</p>
+<pre><code class="language-typescript">// In /apps/app-name/src/utils/some-utility.ts
+// Re-export from the shared package
+export { someUtility } from &#39;@coursebuilder/utils-domain/some-utility&#39;
+</code></pre>
+<p>This preserves existing import paths throughout the codebase while moving the implementation to a shared package.</p>
+<h4>Important: Avoid Object.defineProperty for Re-exports</h4>
+<p>Do NOT use <code>Object.defineProperty(exports, ...)</code> for re-exports as this can cause conflicts with framework internals, especially with Next.js and tRPC:</p>
+<pre><code class="language-typescript">// DON&#39;T DO THIS - can cause &quot;Cannot redefine property&quot; errors in build
+Object.defineProperty(exports, &#39;someFunction&#39;, {
+  value: function() { /* implementation */ }
+})
+
+// INSTEAD DO THIS - standard export pattern
+export function someFunction() { /* implementation */ }
+</code></pre>
+<p>These conflicts typically manifest as &quot;Cannot redefine property&quot; errors during build and are difficult to debug. They occur because the build process may try to define the same property multiple times through different bundling mechanisms.</p>
+<h3>TSDoc Comments for Utilities</h3>
+<p>Always include comprehensive TSDoc comments for utility functions:</p>
+<pre><code class="language-typescript">/**
+ * Brief description of what the function does
+ * 
+ * Additional details if needed
+ * 
+ * @param paramName - Description of the parameter
+ * @returns Description of the return value
+ * 
+ * @example
+ * ```ts
+ * // Example usage code
+ * const result = myFunction(&#39;input&#39;)
+ * ```
+ */
+</code></pre>
+<h3>App Directory Structure Pattern</h3>
+<p>Most apps follow this general directory structure:</p>
+<ul>
+<li><code>src/app</code> - Next.js App Router pages and layouts</li>
+<li><code>src/components</code> - React components</li>
+<li><code>src/lib</code> - Domain-specific business logic</li>
+<li><code>src/utils</code> - Utility functions</li>
+<li><code>src/db</code> - Database schema and queries</li>
+<li><code>src/server</code> - Server-side functions and API routes</li>
+<li><code>src/hooks</code> - React hooks</li>
+<li><code>src/trpc</code> - tRPC router and procedures</li>
+</ul>
+<h3>Database Schema</h3>
+<p>Most applications use Drizzle ORM with a schema in <code>src/db/schema.ts</code> that typically includes:</p>
+<ul>
+<li>Users and authentication</li>
+<li>Content resources (courses, modules, lessons)</li>
+<li>Progress tracking</li>
+<li>Purchases and subscriptions</li>
+</ul>
+<h3>Auth Pattern</h3>
+<p>Authentication usually follows this pattern:</p>
+<ul>
+<li>NextAuth.js for authentication providers</li>
+<li>CASL ability definitions for authorization</li>
+<li>Custom middleware for route protection</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

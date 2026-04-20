@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/storage-intelligence — Automated Storage Audit &amp; Cleanup</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/storage-intelligence.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/storage-intelligence — Automated Storage Audit &amp; Cleanup</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>storage-intelligence.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/storage-intelligence — Automated Storage Audit &amp; Cleanup</h1>
+<p><strong>Purpose</strong>: Scan Windows (C:) and WSL storage, classify every reclaimable item through a 3-lens safety council, auto-delete confirmed-safe items, and present recommendations for the rest.</p>
+<p><strong>Power</strong>: 8-zone scanner + 3-lens council (Safety Guardian, Efficiency Analyst, Developer Advocate) + safe auto-execution. The equivalent of a full disk audit that takes 2 minutes instead of an hour.</p>
+<hr>
+<h2>Input</h2>
+<ul>
+<li><strong>Mode</strong>: $ARGUMENTS (default: full | <code>scan</code> | <code>purge</code> | <code>deep</code>)<ul>
+<li><code>scan</code> — dry run, report only, no deletions</li>
+<li><code>purge</code> — auto-clean safe items only, skip recommendations</li>
+<li><code>deep</code> — include inactive projects + Windows system analysis</li>
+<li>(no args) — full: auto-clean + recommendations</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>PHASE 1: SCAN (read-only)</h2>
+<p>Run ALL of these scans. Collect results into an internal inventory table: <code>[path, size, category, description]</code>.</p>
+<h3>Zone 1: Windows Temp</h3>
+<pre><code class="language-bash">du -sh /mnt/c/Users/Frank/AppData/Local/Temp 2&gt;/dev/null
+# Break down top items
+du -sh /mnt/c/Users/Frank/AppData/Local/Temp/* 2&gt;/dev/null | sort -rh | head -15
+</code></pre>
+<p>Flag swap.vhdx files: check modification date. If today → PRESERVE (active). If older → AUTO-DELETE (stale WSL swap).</p>
+<h3>Zone 2: Package Manager Caches</h3>
+<pre><code class="language-bash"># WSL side
+du -sh ~/.npm/_cacache ~/.cache/pnpm ~/.pnpm-store 2&gt;/dev/null
+du -sh ~/.cache/uv ~/.cache/pip 2&gt;/dev/null
+du -sh ~/.bun 2&gt;/dev/null
+
+# Windows side
+du -sh /mnt/c/Users/Frank/AppData/Local/pnpm 2&gt;/dev/null
+du -sh /mnt/c/Users/Frank/AppData/Local/uv 2&gt;/dev/null
+du -sh /mnt/c/Users/Frank/AppData/Local/pip 2&gt;/dev/null
+du -sh /mnt/c/Users/Frank/.pnpm-store /mnt/c/Users/Frank/.cache 2&gt;/dev/null
+</code></pre>
+<h3>Zone 3: Node Global Packages</h3>
+<pre><code class="language-bash"># List globals with sizes
+npm ls -g --depth=0 2&gt;/dev/null
+# Check each one &gt;100MB
+du -sh ~/.nvm/versions/node/$(node -v)/lib/node_modules/* 2&gt;/dev/null | sort -rh | head -15
+</code></pre>
+<p>For each global &gt;100MB: grep the FrankX project for imports/requires of that package name. If zero references → RECOMMEND-DELETE.</p>
+<h3>Zone 4: WSL App Data</h3>
+<pre><code class="language-bash">du -sh ~/.local/share/opencode/log ~/.local/share/opencode/snapshot 2&gt;/dev/null
+du -sh ~/.local/share/claude/versions/* 2&gt;/dev/null
+du -sh ~/.cache/ms-playwright ~/.cache/puppeteer 2&gt;/dev/null
+du -sh ~/.cache/node-gyp ~/.cache/prisma ~/.cache/chroma 2&gt;/dev/null
+
+# Node versions
+ls -d ~/.nvm/versions/node/* 2&gt;/dev/null | while read d; do du -sh &quot;$d&quot; 2&gt;/dev/null; done | sort -rh
+</code></pre>
+<h3>Zone 5: Build Caches (.next, node_modules in inactive projects)</h3>
+<pre><code class="language-bash"># Find all .next directories
+find /mnt/c/Users/Frank -maxdepth 3 -name &quot;.next&quot; -type d 2&gt;/dev/null | while read d; do du -sh &quot;$d&quot; 2&gt;/dev/null; done | sort -rh
+
+# Find all node_modules (top-level projects only)
+find /mnt/c/Users/Frank -maxdepth 2 -name &quot;node_modules&quot; -type d 2&gt;/dev/null | while read d; do du -sh &quot;$d&quot; 2&gt;/dev/null; done | sort -rh
+</code></pre>
+<h3>Zone 6: Windows AppData Caches</h3>
+<pre><code class="language-bash">du -sh /mnt/c/Users/Frank/AppData/Local/* 2&gt;/dev/null | sort -rh | head -25
+</code></pre>
+<p>Known safe-to-purge patterns: <code>*-updater</code>, <code>GensparkSoftware</code>, <code>replit</code>, <code>Ollama</code> (if not using).</p>
+<h3>Zone 7: Active Project Caches</h3>
+<pre><code class="language-bash">du -sh /mnt/c/Users/Frank/FrankX/.next 2&gt;/dev/null
+du -sh /mnt/c/Users/Frank/FrankX/.git 2&gt;/dev/null
+du -sh /mnt/c/Users/Frank/FrankX/.worktrees 2&gt;/dev/null
+git -C /mnt/c/Users/Frank/FrankX count-objects -vH 2&gt;/dev/null
+</code></pre>
+<h3>Zone 8: Loose Files &amp; Old Projects (deep mode only)</h3>
+<pre><code class="language-bash"># Loose media in FrankX root
+ls -lh /mnt/c/Users/Frank/FrankX/*.jpeg /mnt/c/Users/Frank/FrankX/*.png 2&gt;/dev/null
+
+# Top-level dirs by size
+du -sh /mnt/c/Users/Frank/*/ 2&gt;/dev/null | sort -rh | head -30
+
+# Downloads
+du -sh /mnt/c/Users/Frank/Downloads 2&gt;/dev/null
+</code></pre>
+<h3>Baseline Reading</h3>
+<pre><code class="language-bash">df -h /mnt/c /
+</code></pre>
+<p>Record C: drive free space as <code>baseline_free</code>.</p>
+<hr>
+<h2>PHASE 2: COUNCIL (3-Lens Classification)</h2>
+<p>For each scanned item, apply three lenses:</p>
+<h3>Lens 1: Safety Guardian</h3>
+<p>Asks: &quot;Could deleting this break anything running right now or lose irreplaceable data?&quot;</p>
+<p><strong>Auto-veto triggers</strong>:</p>
+<ul>
+<li>File is open by a process (<code>lsof</code> check on WSL items)</li>
+<li>Path contains: <code>Documents</code>, <code>Pictures</code>, <code>Videos</code>, <code>Desktop</code> (user data)</li>
+<li>Path contains: <code>Microsoft/Office</code>, <code>Microsoft/OneNote</code>, <code>Microsoft/Outlook</code>, <code>Microsoft/OneDrive</code> (active app data)</li>
+<li>Path contains: <code>Google/Chrome/User Data</code> (may have passwords/sessions)</li>
+<li>Item is a project&#39;s <code>node_modules</code> where the project was active in last 7 days</li>
+<li>Today&#39;s <code>swap.vhdx</code> in Temp</li>
+<li>Any <code>.env</code>, <code>credentials</code>, <code>secrets</code> file</li>
+<li>FrankX <code>.worktrees</code> (production repo)</li>
+</ul>
+<h3>Lens 2: Efficiency Analyst</h3>
+<p>Asks: &quot;What&#39;s the size-to-risk ratio? Is this re-downloadable?&quot;</p>
+<p><strong>High efficiency (favor deletion)</strong>:</p>
+<ul>
+<li>Cache files (npm, pnpm, pip, uv) — always re-downloadable</li>
+<li>Build artifacts (.next) — rebuild in seconds</li>
+<li>Log files — no functional value</li>
+<li>Old CLI versions — only latest needed</li>
+<li>App updater caches — apps re-download on update</li>
+</ul>
+<p><strong>Low efficiency (favor keeping)</strong>:</p>
+<ul>
+<li>Items &lt; 50MB (not worth the risk)</li>
+<li>Unique project data not on GitHub</li>
+</ul>
+<h3>Lens 3: Developer Advocate</h3>
+<p>Asks: &quot;Does the dev workflow need this right now?&quot;</p>
+<p><strong>Active workflow indicators</strong>:</p>
+<ul>
+<li>Project has git changes in last 7 days</li>
+<li>node_modules for the currently active FrankX project</li>
+<li>Active nvm version</li>
+<li>Playwright/Puppeteer if tests run recently</li>
+</ul>
+<p><strong>Stale workflow indicators</strong>:</p>
+<ul>
+<li>Project last commit &gt; 30 days ago</li>
+<li>Node version not the current default</li>
+<li>No recent test runs referencing Playwright</li>
+</ul>
+<h3>Verdict Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Safety</th>
+<th>Efficiency</th>
+<th>DevAdvocate</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SAFE</td>
+<td>HIGH</td>
+<td>STALE</td>
+<td><strong>AUTO-DELETE</strong></td>
+</tr>
+<tr>
+<td>SAFE</td>
+<td>HIGH</td>
+<td>ACTIVE</td>
+<td>RECOMMEND-DELETE (explain)</td>
+</tr>
+<tr>
+<td>SAFE</td>
+<td>LOW</td>
+<td>any</td>
+<td>PRESERVE (too small)</td>
+</tr>
+<tr>
+<td>VETO</td>
+<td>any</td>
+<td>any</td>
+<td><strong>PRESERVE</strong> (explain veto reason)</td>
+</tr>
+<tr>
+<td>SAFE</td>
+<td>HIGH</td>
+<td>ACTIVE</td>
+<td>RECOMMEND-DELETE</td>
+</tr>
+</tbody></table>
+<h3>Hardcoded AUTO-DELETE List (skip council — always safe)</h3>
+<p>These items are universally safe. Delete without deliberation:</p>
+<ul>
+<li><code>~/.local/share/opencode/log/*</code> — debug logs</li>
+<li><code>~/.local/share/opencode/snapshot/*</code> — git checkpoint copies</li>
+<li>Claude CLI versions except the latest in <code>~/.local/share/claude/versions/</code></li>
+<li>All <code>.next/</code> directories (anywhere) — rebuild on <code>npm run dev</code></li>
+<li>Windows Temp items older than 7 days (except today&#39;s swap.vhdx)</li>
+<li><code>*-updater</code> directories in AppData/Local</li>
+<li>WSL crash dumps (<code>/mnt/c/Users/Frank/AppData/Local/Temp/wsl-crashes</code>)</li>
+<li><code>DiagOutputDir</code>, <code>Diagnostics</code> in Temp</li>
+<li>Stale pip-unpack-* directories in Temp</li>
+</ul>
+<h3>Council-Required Items (need deliberation)</h3>
+<ul>
+<li>Global npm packages &gt; 100MB</li>
+<li>Entire project folders</li>
+<li>Browser data</li>
+<li>Any single item &gt; 2GB</li>
+<li><code>node_modules</code> in projects (check git recency)</li>
+<li>Node versions (check if any .nvmrc references them)</li>
+</ul>
+<hr>
+<h2>PHASE 3: EXECUTE + REPORT</h2>
+<h3>If mode = <code>scan</code>:</h3>
+<p>Skip execution. Output the full inventory table with council verdicts. Stop here.</p>
+<h3>If mode = <code>purge</code>:</h3>
+<p>Execute AUTO-DELETE items only. Skip RECOMMEND-DELETE. Output report.</p>
+<h3>If mode = <code>full</code> or <code>deep</code>:</h3>
+<p><strong>Step 1</strong>: Execute all AUTO-DELETE items.</p>
+<p>For package manager caches, use the proper purge commands (not raw rm):</p>
+<pre><code class="language-bash">npm cache clean --force 2&gt;/dev/null
+pnpm store prune 2&gt;/dev/null
+uv cache clean 2&gt;/dev/null
+pip cache purge 2&gt;/dev/null
+</code></pre>
+<p>For file deletions:</p>
+<pre><code class="language-bash">rm -rf [path] 2&gt;/dev/null &amp;&amp; echo &quot;DELETED: [path] ([size])&quot; || echo &quot;SKIPPED: [path] (locked/permission)&quot;
+</code></pre>
+<p>Track: <code>total_freed += size</code> for each successful deletion.</p>
+<p><strong>Step 2</strong>: Present RECOMMEND-DELETE items to user.</p>
+<p>Use AskUserQuestion with multiSelect for items. Group by category. Show size and reason for each.</p>
+<p><strong>Step 3</strong>: Execute approved recommendations.</p>
+<p><strong>Step 4</strong>: Final reading.</p>
+<pre><code class="language-bash">df -h /mnt/c /
+</code></pre>
+<p>Calculate: <code>freed = current_free - baseline_free</code>.</p>
+<h3>Output Format</h3>
+<pre><code>═══════════════════════════════════════════════════════════
+  STORAGE INTELLIGENCE REPORT
+═══════════════════════════════════════════════════════════
+
+  Scanned: [N] zones | Found: [N] items | Total reclaimable: [X] GB
+
+  ─── AUTO-CLEANED ─────────────────────────────────────
+  [x] [description] ([size])     — [reason]
+  [x] [description] ([size])     — [reason]
+  ...
+  Subtotal freed: [X] GB
+
+  ─── RECOMMENDED (needs your OK) ──────────────────────
+  [ ] [description] ([size]) — [council reasoning]
+  [ ] [description] ([size]) — [council reasoning]
+  ...
+  Action: approve all / pick individually / skip
+
+  ─── PRESERVED ────────────────────────────────────────
+  [~] [description] ([size]) — [veto lens]: [reason]
+  ...
+
+  ─── DISK STATUS ──────────────────────────────────────
+  C: drive: [total] total | [free] free (was [baseline])
+  WSL: [used] of [total] used ([%])
+
+  ─── POST-CLEANUP ACTIONS ─────────────────────────────
+  (Show if WSL items were cleaned):
+  ⚠️  Run from Windows PowerShell (Admin):
+     wsl --shutdown
+     wsl --manage Ubuntu-24.04 --optimize
+     This compacts the WSL virtual disk and reclaims dead space on C:
+
+  (Show if Windows Temp had locked files):
+  ⚠️  Some Temp files were locked. Close all apps and run:
+     Remove-Item &quot;$env:TEMP\*&quot; -Recurse -Force -ErrorAction SilentlyContinue
+═══════════════════════════════════════════════════════════
+</code></pre>
+<hr>
+<h2>Safety Rules (Non-Negotiable)</h2>
+<ol>
+<li><strong>Never delete unique user data</strong> — only caches, logs, build artifacts, temp files</li>
+<li><strong>Use cache purge commands</strong> over raw <code>rm</code> for package managers</li>
+<li><strong>Skip locked files</strong> — if rm fails, report and move on (don&#39;t force)</li>
+<li><strong>Today&#39;s swap.vhdx is sacred</strong> — WSL temp swap from today = always skip</li>
+<li><strong>Never touch .worktrees</strong> — production repo copy</li>
+<li><strong>Never touch .git</strong> — use <code>git gc</code> recommendation instead</li>
+<li><strong>Run df before AND after</strong> — prove the savings</li>
+<li><strong>Log every action</strong> — output one line per item with status</li>
+<li><strong>Items &lt; 50MB</strong> — skip (not worth the risk for the savings)</li>
+<li><strong>When in doubt, PRESERVE</strong> — false negatives are better than data loss</li>
+</ol>
+<hr>
+<h2>Examples</h2>
+<h3>Dry run scan</h3>
+<pre><code>/storage-intelligence scan
+→ Full report, zero deletions, see what would happen
+</code></pre>
+<h3>Standard cleanup</h3>
+<pre><code>/storage-intelligence
+→ Auto-cleans safe items (caches, logs, old versions)
+→ Asks about recommendations (inactive projects, big globals)
+→ Shows preserved items with reasons
+</code></pre>
+<h3>Quick purge</h3>
+<pre><code>/storage-intelligence purge
+→ Auto-cleans only, no questions asked, fast
+</code></pre>
+<h3>Deep analysis</h3>
+<pre><code>/storage-intelligence deep
+→ Also scans inactive projects, Downloads, loose files
+→ Recommends archivable projects
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

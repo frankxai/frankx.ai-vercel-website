@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Private AI Studio Lab</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/private-ai-studio/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Private AI Studio Lab</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#_archive">_archive</a> / <a href="../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fprivate-ai-studio">private-ai-studio</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Private AI Studio Lab</h1>
+<p><strong>Build Your Self-Hosted Research &amp; Creation Ecosystem</strong></p>
+<p><em>Part of GenCreator Labs by Frank</em></p>
+<hr>
+<h2>🎯 What You&#39;ll Learn</h2>
+<ul>
+<li>Design and deploy a private AI studio with two specialized environments</li>
+<li><strong>Research Studio</strong>: RAG-powered knowledge synthesis with citations</li>
+<li><strong>Creation Studio</strong>: Visual AI workflows for images, video, and audio</li>
+<li>Implement MCP (Model Context Protocol) for unified agent communication</li>
+<li>Deploy with Docker for full offline capability and privacy</li>
+<li>Connect open-source interfaces: OpenWebUI, LobeChat, LibreChat, ComfyUI, n8n</li>
+</ul>
+<hr>
+<h2>⏱️ Duration</h2>
+<p>3 days | Intermediate to Advanced | <strong>For Builders Who Want Full Control</strong></p>
+<hr>
+<h2>📋 Prerequisites</h2>
+<ul>
+<li>Basic Docker and containerization knowledge</li>
+<li>Familiarity with AI/LLM concepts (completion of Personal AI Assistant Setup recommended)</li>
+<li>A machine with 16GB+ RAM and preferably GPU for local models</li>
+<li>Comfort with command line and configuration files</li>
+</ul>
+<hr>
+<h2>🏗️ The Private AI Studio Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────────────┐
+│                     PRIVATE AI STUDIO                                    │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  ┌─────────────────────────────────────────────────────────────────┐   │
+│  │                    ORCHESTRATION LAYER                           │   │
+│  │   ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐    │   │
+│  │   │   Traefik   │  │   Cloudflare│  │   Unified Auth      │    │   │
+│  │   │   Reverse   │  │   Tunnel    │  │   (OAuth/LDAP)      │    │   │
+│  │   │   Proxy     │  │             │  │                     │    │   │
+│  │   └─────────────┘  └─────────────┘  └─────────────────────┘    │   │
+│  └─────────────────────────────────────────────────────────────────┘   │
+│                                  │                                        │
+│           ┌──────────────────────┼──────────────────────┐                │
+│           │                      │                      │                 │
+│           ▼                      ▼                      ▼                 │
+│  ┌─────────────────┐   ┌─────────────────┐   ┌─────────────────┐        │
+│  │ RESEARCH STUDIO │   │  CREATION STUDIO│   │  AUTOMATION     │        │
+│  │                 │   │                 │   │                 │        │
+│  │ • OpenWebUI     │   │ • ComfyUI       │   │ • n8n           │        │
+│  │ • RAGFlow/R2R   │   │ • LobeChat      │   │ • Langflow      │        │
+│  │ • Qdrant        │   │ • Automatic1111 │   │ • Flowise       │        │
+│  │ • Knowledge Base│   │ • FLUX API      │   │                 │        │
+│  └─────────────────┘   └─────────────────┘   └─────────────────┘        │
+│           │                      │                      │                 │
+│           └──────────────────────┼──────────────────────┘                 │
+│                                  │                                        │
+│  ┌─────────────────────────────────────────────────────────────────┐   │
+│  │                    MODEL LAYER                                   │   │
+│  │   ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐    │   │
+│  │   │   Ollama    │  │   vLLM      │  │   API Gateways      │    │   │
+│  │   │   (LLMs)    │  │   (High perf│  │   (OpenAI compat)   │    │   │
+│  │   └─────────────┘  └─────────────┘  └─────────────────────┘    │   │
+│  └─────────────────────────────────────────────────────────────────┘   │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>🧩 Frank&#39;s Unique Methods</h2>
+<h3>The Studio Separation Principle</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    STUDIO SEPARATION                             │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│   RESEARCH STUDIO              CREATION STUDIO                   │
+│   ─────────────────            ─────────────────                 │
+│   • Deep thinking             • Rapid iteration                  │
+│   • Citation-critical         • Inspiration-first                │
+│   • Document-heavy            • Visual-first                     │
+│   • Linear workflows          • Branching workflows              │
+│   • Accuracy paramount        • Exploration encouraged           │
+│   • RAG &amp; synthesis           • Creative experimentation        │
+│                                                                  │
+│   SEPARATE BUT CONNECTED:                                      │
+│   ┌─────────────────────────────────────────────────────────┐  │
+│   │   Research informs creation, creation inspires research │  │
+│   │   → Share knowledge bases                                │  │
+│   │   → Cross-reference outputs                              │  │
+│   │   → Unified MCP ecosystem                                │  │
+│   └─────────────────────────────────────────────────────────┘  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>The MCP Hub Pattern</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    MCP HUB ARCHITECTURE                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│                      ┌──────────────┐                           │
+│                      │  OpenWebUI   │                           │
+│                      │  (MCP Hub)   │                           │
+│                      └──────┬───────┘                           │
+│                             │                                    │
+│         ┌───────────────────┼───────────────────┐               │
+│         │                   │                   │                │
+│         ▼                   ▼                   ▼                │
+│   ┌──────────┐       ┌──────────┐       ┌──────────┐           │
+│   │ Research │       │ Creation │       │Auto-     │           │
+│   │  MCPs    │       │  MCPs    │       │mation    │           │
+│   │          │       │          │       │          │           │
+│   │• arXiv   │       │• FLUX    │       │• GitHub  │           │
+│   │• Search  │       │• ComfyUI │       │• Notion  │           │
+│   │• VectorDB│       │• Audio   │       │• Slack   │           │
+│   └──────────┘       └──────────┘       └──────────┘           │
+│                                                                  │
+│   BENEFITS:                                                      │
+│   • Single source of truth                                      │
+│   • Consistent authentication                                   │
+│   • Cross-studio workflows                                      │
+│   • Easy to add new tools                                       │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<h2>📁 Lab Structure</h2>
+<pre><code>private-ai-studio/
+├── README.md                      # This file
+├── 01-research-studio/            # RAG-powered research environment
+│   ├── README.md
+│   ├── 01-openwebui-deployment/
+│   ├── 02-rag-configuration/
+│   ├── 03-knowledge-base-setup/
+│   └── 04-mcp-integration/
+├── 02-creation-studio/            # Visual AI creation environment
+│   ├── README.md
+│   ├── 01-comfyui-deployment/
+│   ├── 02-lobechat-integration/
+│   ├── 03-image-workflows/
+│   └── 04-video-audio-pipelines/
+├── 03-infrastructure/             # Shared infrastructure
+│   ├── README.md
+│   ├── 01-docker-stack/
+│   ├── 02-model-serving/
+│   ├── 03-monitoring/
+│   └── 04-backup-recovery/
+├── docker/                        # Docker configurations
+│   ├── docker-compose.yml
+│   ├── traefik/
+│   └── monitoring/
+└── solutions/                     # Frank&#39;s implementations
+    ├── docker-compose.override.yml
+    └── mcp-servers/
+</code></pre>
+<hr>
+<h2>🚀 Quick Start</h2>
+<pre><code class="language-bash"># Clone this lab
+git clone https://github.com/frankxai/ai-workshop-for-students.git
+cd ai-workshop-for-students/private-ai-studio
+
+# Minimal setup (just OpenWebUI)
+cd docker
+cp .env.example .env
+# Edit .env with your API keys and settings
+docker compose up -d openwebui
+
+# Access at http://localhost:3000
+</code></pre>
+<hr>
+<h2>📚 Learning Path</h2>
+<p>This lab is part of the GenCreator Labs ecosystem:</p>
+<pre><code>🏗️ Infrastructure (You are here)
+   ↓
+[This Lab] ← Private AI Studio
+   ↓
+🎯 Recommended After
+   → Personal AI Assistant Setup (understand AI agents)
+   → MCP Server Mastery (build custom MCP servers)
+
+🔄 Continuous Learning
+   → [Discord Community](https://discord.gg/frankx)
+   → [Progress Tracking](/progress)
+</code></pre>
+<hr>
+<h2>🛠️ Tools &amp; Resources</h2>
+<h3>Primary Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://openwebui.com">OpenWebUI</a></td>
+<td>Research chat interface</td>
+<td>Official docs</td>
+</tr>
+<tr>
+<td><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI</a></td>
+<td>Visual workflow editor</td>
+<td>Official docs</td>
+</tr>
+<tr>
+<td><a href="https://chat.lobehub.com">LobeChat</a></td>
+<td>Multimodal creation chat</td>
+<td>Official docs</td>
+</tr>
+<tr>
+<td><a href="https://n8n.io">n8n</a></td>
+<td>Workflow automation</td>
+<td>Official docs</td>
+</tr>
+<tr>
+<td><a href="https://ollama.com">Ollama</a></td>
+<td>Local model runner</td>
+<td>Official docs</td>
+</tr>
+</tbody></table>
+<h3>Infrastructure Tools</h3>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://traefik.io">Traefik</a></td>
+<td>Reverse proxy</td>
+<td>Official docs</td>
+</tr>
+<tr>
+<td><a href="https://qdrant.tech">Qdrant</a></td>
+<td>Vector database</td>
+<td>Official docs</td>
+</tr>
+<tr>
+<td><a href="https://docker.com">Docker</a></td>
+<td>Containerization</td>
+<td>Official docs</td>
+</tr>
+</tbody></table>
+<h3>External Resources</h3>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Resource</th>
+<th>Why It&#39;s Great</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MCP Protocol</td>
+<td><a href="https://modelcontextprotocol.io/specification/latest">MCP Spec</a></td>
+<td>Standard protocol</td>
+</tr>
+<tr>
+<td>Docker Setup</td>
+<td><a href="https://docs.docker.com">Docker Docs</a></td>
+<td>Container best practices</td>
+</tr>
+<tr>
+<td>Self-hosted AI</td>
+<td><a href="https://github.com/marshmallow-code/awesome-selfhosted-ai">Self-Hosted AI Guide</a></td>
+<td>Community curated list</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>👨‍🏫 For Professors</h2>
+<h3>Assign This Lab</h3>
+<ol>
+<li>Share: <code>https://github.com/frankxai/ai-workshop-for-students/tree/main/private-ai-studio</code></li>
+<li>Students complete modules at their pace</li>
+<li>Provide compute resources (GPU access if possible)</li>
+<li>Assess using deployed studio and working integrations</li>
+</ol>
+<h3>Customization</h3>
+<p>Fork and adapt for your curriculum:</p>
+<pre><code class="language-bash">git clone https://github.com/frankxai/ai-workshop-for-students.git
+# Customize, add your institution&#39;s standards
+</code></pre>
+<hr>
+<h2>🤝 Contributing</h2>
+<p>See <a href="https://github.com/frankxai/ai-workshop-for-students/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a></p>
+<hr>
+<h2>📜 License</h2>
+<ul>
+<li><strong>Documentation</strong>: CC BY 4.0</li>
+<li><strong>Code</strong>: MIT</li>
+<li><strong>Frank&#39;s Unique Methods</strong>: See individual files</li>
+</ul>
+<hr>
+<h2>🏁 Ready?</h2>
+<p><strong><a href="01-research-studio/">Start with Module 1 →</a></strong></p>
+<p>Questions? <a href="https://discord.gg/frankx">Discord</a> | <a href="https://github.com/frankxai/ai-workshop-for-students/issues">Issues</a></p>
+<hr>
+<p><em>Part of <a href="https://frankx.ai/gencreator">GenCreator Labs</a> by Frank - Transforming creators from tech-overwhelmed to AI-empowered.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

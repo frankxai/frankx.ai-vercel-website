@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>API Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/init/API.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">API Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Finit">init</a> / <span>API.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>API Reference</h1>
+<p>Programmatic API for the V3 init system.</p>
+<h2>Installation</h2>
+<pre><code class="language-typescript">import {
+  executeInit,
+  detectPlatform,
+  DEFAULT_INIT_OPTIONS,
+  MINIMAL_INIT_OPTIONS,
+  FULL_INIT_OPTIONS,
+  type InitOptions,
+  type InitResult,
+  type PlatformInfo,
+} from &#39;@claude-flow/cli/init&#39;;
+</code></pre>
+<h2>Core Functions</h2>
+<h3>executeInit</h3>
+<p>Main initialization function.</p>
+<pre><code class="language-typescript">async function executeInit(options: InitOptions): Promise&lt;InitResult&gt;
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><code>options: InitOptions</code> - Configuration options</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>Promise&lt;InitResult&gt;</code> - Result with created files and errors</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">import { executeInit, DEFAULT_INIT_OPTIONS } from &#39;@claude-flow/cli/init&#39;;
+
+const result = await executeInit({
+  ...DEFAULT_INIT_OPTIONS,
+  targetDir: &#39;/path/to/project&#39;,
+  sourceBaseDir: &#39;/path/to/claude-flow&#39;,
+  force: true,
+});
+
+if (result.success) {
+  console.log(`Created ${result.created.files.length} files`);
+  console.log(`Platform: ${result.platform.os}`);
+}
+</code></pre>
+<h3>detectPlatform</h3>
+<p>Detect current operating system and environment.</p>
+<pre><code class="language-typescript">function detectPlatform(): PlatformInfo
+</code></pre>
+<p><strong>Returns:</strong></p>
+<ul>
+<li><code>PlatformInfo</code> - Platform detection results</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-typescript">import { detectPlatform } from &#39;@claude-flow/cli/init&#39;;
+
+const platform = detectPlatform();
+console.log(`OS: ${platform.os}`);
+console.log(`Shell: ${platform.shell}`);
+console.log(`Config dir: ${platform.configDir}`);
+</code></pre>
+<h2>Types</h2>
+<h3>InitOptions</h3>
+<pre><code class="language-typescript">interface InitOptions {
+  targetDir: string;
+  sourceBaseDir?: string;
+  force: boolean;
+  interactive: boolean;
+  components: InitComponents;
+  hooks: HooksConfig;
+  skills: SkillsConfig;
+  commands: CommandsConfig;
+  agents: AgentsConfig;
+  statusline: StatuslineConfig;
+  mcp: MCPConfig;
+  runtime: RuntimeConfig;
+}
+</code></pre>
+<h3>InitResult</h3>
+<pre><code class="language-typescript">interface InitResult {
+  success: boolean;
+  platform: PlatformInfo;
+  created: {
+    directories: string[];
+    files: string[];
+  };
+  skipped: string[];
+  errors: string[];
+  summary: {
+    skillsCount: number;
+    commandsCount: number;
+    agentsCount: number;
+    hooksEnabled: number;
+  };
+}
+</code></pre>
+<h3>PlatformInfo</h3>
+<pre><code class="language-typescript">interface PlatformInfo {
+  os: &#39;windows&#39; | &#39;darwin&#39; | &#39;linux&#39;;
+  arch: &#39;x64&#39; | &#39;arm64&#39; | &#39;arm&#39; | &#39;ia32&#39;;
+  nodeVersion: string;
+  shell: &#39;powershell&#39; | &#39;cmd&#39; | &#39;bash&#39; | &#39;zsh&#39; | &#39;sh&#39;;
+  homeDir: string;
+  configDir: string;
+}
+</code></pre>
+<h3>InitComponents</h3>
+<pre><code class="language-typescript">interface InitComponents {
+  settings: boolean;
+  skills: boolean;
+  commands: boolean;
+  agents: boolean;
+  helpers: boolean;
+  statusline: boolean;
+  mcp: boolean;
+  runtime: boolean;
+}
+</code></pre>
+<h2>Generator Functions</h2>
+<h3>Settings Generator</h3>
+<pre><code class="language-typescript">import { generateSettings, generateSettingsJson } from &#39;@claude-flow/cli/init&#39;;
+
+// Generate settings object
+const settings = generateSettings(options);
+
+// Generate JSON string
+const json = generateSettingsJson(options);
+</code></pre>
+<h3>MCP Generator</h3>
+<pre><code class="language-typescript">import { generateMCPConfig, generateMCPJson, generateMCPCommands } from &#39;@claude-flow/cli/init&#39;;
+
+// Generate MCP config object
+const config = generateMCPConfig(options);
+
+// Generate .mcp.json content
+const json = generateMCPJson(options);
+
+// Generate manual add commands
+const commands = generateMCPCommands(options);
+// [&#39;claude mcp add claude-flow -- npx @claude-flow/cli mcp start&#39;, ...]
+</code></pre>
+<h3>Helpers Generator</h3>
+<pre><code class="language-typescript">import {
+  generatePreCommitHook,
+  generatePostCommitHook,
+  generateSessionManager,
+  generateAgentRouter,
+  generateMemoryHelper,
+  generateWindowsDaemonManager,
+  generateWindowsBatchWrapper,
+  generateCrossPlatformSessionManager,
+  generateHelpers,
+} from &#39;@claude-flow/cli/init&#39;;
+
+// Generate individual scripts
+const preCommit = generatePreCommitHook();
+const sessionMgr = generateCrossPlatformSessionManager();
+const windowsDaemon = generateWindowsDaemonManager();
+
+// Generate all helpers based on options
+const helpers = generateHelpers(options);
+// { &#39;pre-commit&#39;: &#39;...&#39;, &#39;session.js&#39;: &#39;...&#39;, ... }
+</code></pre>
+<h3>Statusline Generator</h3>
+<pre><code class="language-typescript">import { generateStatuslineScript, generateStatuslineHook } from &#39;@claude-flow/cli/init&#39;;
+
+// Generate statusline.js content
+const script = generateStatuslineScript(options);
+
+// Generate shell hook content
+const hook = generateStatuslineHook(options);
+</code></pre>
+<h2>Preset Configurations</h2>
+<h3>DEFAULT_INIT_OPTIONS</h3>
+<p>Recommended settings for most projects:</p>
+<ul>
+<li>All components enabled (except statusline as optional)</li>
+<li>Core, AgentDB, GitHub, V3 skills</li>
+<li>All command groups</li>
+<li>Core, GitHub, SPARC, Swarm agents</li>
+<li>All 7 hook types</li>
+<li>Hierarchical-mesh topology</li>
+<li>15 max agents</li>
+<li>Hybrid memory backend</li>
+</ul>
+<h3>MINIMAL_INIT_OPTIONS</h3>
+<p>Lightweight configuration:</p>
+<ul>
+<li>Settings, skills, MCP, runtime only</li>
+<li>Core skills only</li>
+<li>Core agents only</li>
+<li>Essential hooks (PreToolUse, PostToolUse, PermissionRequest)</li>
+<li>Mesh topology</li>
+<li>5 max agents</li>
+<li>In-memory backend</li>
+</ul>
+<h3>FULL_INIT_OPTIONS</h3>
+<p>Everything enabled:</p>
+<ul>
+<li>All components</li>
+<li>All skill sets including Flow Nexus</li>
+<li>All command groups</li>
+<li>All agent categories</li>
+<li>All hook types</li>
+<li>All MCP servers</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Basic Initialization</h3>
+<pre><code class="language-typescript">import { executeInit, DEFAULT_INIT_OPTIONS } from &#39;@claude-flow/cli/init&#39;;
+
+const result = await executeInit({
+  ...DEFAULT_INIT_OPTIONS,
+  targetDir: process.cwd(),
+});
+</code></pre>
+<h3>Custom Configuration</h3>
+<pre><code class="language-typescript">import { executeInit, DEFAULT_INIT_OPTIONS } from &#39;@claude-flow/cli/init&#39;;
+
+const result = await executeInit({
+  ...DEFAULT_INIT_OPTIONS,
+  targetDir: &#39;/my/project&#39;,
+  sourceBaseDir: &#39;/path/to/claude-flow&#39;, // Source for skills/commands/agents
+  force: true,
+  components: {
+    ...DEFAULT_INIT_OPTIONS.components,
+    statusline: true,
+  },
+  skills: {
+    core: true,
+    agentdb: true,
+    github: false, // Skip GitHub skills
+    flowNexus: false,
+    v3: true,
+    all: false,
+  },
+  runtime: {
+    topology: &#39;adaptive&#39;,
+    maxAgents: 20,
+    memoryBackend: &#39;agentdb&#39;,
+    enableHNSW: true,
+    enableNeural: true,
+  },
+});
+</code></pre>
+<h3>Platform-Aware Initialization</h3>
+<pre><code class="language-typescript">import { executeInit, detectPlatform, DEFAULT_INIT_OPTIONS } from &#39;@claude-flow/cli/init&#39;;
+
+const platform = detectPlatform();
+
+const result = await executeInit({
+  ...DEFAULT_INIT_OPTIONS,
+  targetDir: process.cwd(),
+  // Platform-specific adjustments
+  components: {
+    ...DEFAULT_INIT_OPTIONS.components,
+    // Enable statusline on Unix-like systems
+    statusline: platform.os !== &#39;windows&#39;,
+  },
+});
+
+console.log(`Initialized for ${platform.os} (${platform.shell})`);
+</code></pre>
+<h3>Selective Component Installation</h3>
+<pre><code class="language-typescript">import { executeInit, MINIMAL_INIT_OPTIONS } from &#39;@claude-flow/cli/init&#39;;
+
+// Install only skills
+const skillsOnly = await executeInit({
+  ...MINIMAL_INIT_OPTIONS,
+  targetDir: process.cwd(),
+  components: {
+    settings: false,
+    skills: true,
+    commands: false,
+    agents: false,
+    helpers: false,
+    statusline: false,
+    mcp: false,
+    runtime: false,
+  },
+  skills: {
+    core: true,
+    agentdb: true,
+    github: true,
+    flowNexus: false,
+    v3: true,
+    all: false,
+  },
+});
+</code></pre>
+<h2>Error Handling</h2>
+<pre><code class="language-typescript">import { executeInit, DEFAULT_INIT_OPTIONS } from &#39;@claude-flow/cli/init&#39;;
+
+try {
+  const result = await executeInit({
+    ...DEFAULT_INIT_OPTIONS,
+    targetDir: &#39;/path/to/project&#39;,
+  });
+
+  if (!result.success) {
+    console.error(&#39;Initialization failed:&#39;);
+    for (const error of result.errors) {
+      console.error(`  - ${error}`);
+    }
+    process.exit(1);
+  }
+
+  // Log skipped files
+  if (result.skipped.length &gt; 0) {
+    console.log(&#39;Skipped (already exist):&#39;);
+    for (const file of result.skipped) {
+      console.log(`  - ${file}`);
+    }
+  }
+
+  console.log(`Success! Created ${result.created.files.length} files`);
+} catch (error) {
+  console.error(&#39;Unexpected error:&#39;, error);
+  process.exit(1);
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

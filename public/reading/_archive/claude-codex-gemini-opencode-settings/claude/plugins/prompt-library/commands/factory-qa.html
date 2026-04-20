@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Factory QA Gatekeeper</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/claude-codex-gemini-opencode-settings/claude/plugins/prompt-library/commands/factory-qa.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Factory QA Gatekeeper</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings">claude-codex-gemini-opencode-settings</a> / <a href="../../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude">claude</a> / <a href="../../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins">plugins</a> / <a href="../index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fprompt-library">prompt-library</a> / <a href="index.html#_archive%2Fclaude-codex-gemini-opencode-settings%2Fclaude%2Fplugins%2Fprompt-library%2Fcommands">commands</a> / <span>factory-qa.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: QA Gatekeeper - Voice, claims, SEO, AEO, schema, readability checks
+thinking: false</h2>
+<h1>Factory QA Gatekeeper</h1>
+<p><strong>Part of</strong>: <code>/factory</code> (Agentic Creator OS)
+<strong>Script</strong>: <code>scripts/qa-gatekeeper.mjs</code></p>
+<h2>Run QA Check</h2>
+<pre><code class="language-bash">npm run qa:check artifacts/[slug]/[date]
+</code></pre>
+<h2>Quality Gates</h2>
+<h3>1. Voice Check</h3>
+<ul>
+<li><input disabled="" type="checkbox"> No forbidden phrases from <code>brand/VOICE.md</code></li>
+<li><input disabled="" type="checkbox"> Tone matches brand voice</li>
+<li><input disabled="" type="checkbox"> CTAs follow guidelines</li>
+</ul>
+<p><strong>Forbidden Phrases:</strong></p>
+<ul>
+<li>&quot;game-changer&quot;, &quot;revolutionary&quot;, &quot;synergy&quot;</li>
+<li>&quot;leverage&quot; (as verb), &quot;best-in-class&quot;</li>
+<li>&quot;thought leader&quot;, &quot;guru&quot;, &quot;hustle&quot;</li>
+<li>&quot;passive income&quot;, &quot;get rich quick&quot;, &quot;secret&quot;, &quot;hack&quot;</li>
+</ul>
+<h3>2. Claims Check</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Every statistic has a source</li>
+<li><input disabled="" type="checkbox"> All claims verified in <code>sources.md</code></li>
+<li><input disabled="" type="checkbox"> LEGAL_SAFETY.md compliance</li>
+<li><input disabled="" type="checkbox"> No unverified guarantees</li>
+</ul>
+<h3>3. SEO Check</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Title under 60 characters</li>
+<li><input disabled="" type="checkbox"> Description under 155 characters</li>
+<li><input disabled="" type="checkbox"> 3+ internal links</li>
+<li><input disabled="" type="checkbox"> H1/H2 structure correct</li>
+<li><input disabled="" type="checkbox"> Keywords specified</li>
+</ul>
+<h3>4. AEO Check</h3>
+<ul>
+<li><input disabled="" type="checkbox"> TL;DR present (40-60 words)</li>
+<li><input disabled="" type="checkbox"> 5-10 FAQ entries</li>
+<li><input disabled="" type="checkbox"> FAQ answers under 60 words</li>
+<li><input disabled="" type="checkbox"> Questions match search intent</li>
+</ul>
+<h3>5. Schema Check</h3>
+<ul>
+<li><input disabled="" type="checkbox"> schema.jsonld exists</li>
+<li><input disabled="" type="checkbox"> Valid JSON-LD syntax</li>
+<li><input disabled="" type="checkbox"> Article schema present</li>
+<li><input disabled="" type="checkbox"> FAQPage schema (if FAQs exist)</li>
+</ul>
+<h3>6. Readability Check</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Word count 1000+</li>
+<li><input disabled="" type="checkbox"> Paragraphs not too long</li>
+<li><input disabled="" type="checkbox"> Active voice preferred</li>
+<li><input disabled="" type="checkbox"> Scannable structure</li>
+</ul>
+<h2>QA Report Output</h2>
+<pre><code>STATUS: PASS/FAIL
+[+] Voice      - No forbidden phrases
+[+] Claims     - Sources verified
+[+] SEO        - Title optimized
+[+] AEO        - TL;DR present, 6 FAQs
+[+] Schema     - Valid JSON-LD
+[+] Readability - Good structure
+
+DISTRIBUTION ANGLES (on PASS):
+LinkedIn: ...
+Twitter: ...
+Newsletter: ...
+TikTok: ...
+YouTube Short: ...
+</code></pre>
+<h2>Quick Fixes by Gate</h2>
+<table>
+<thead>
+<tr>
+<th>Gate</th>
+<th>Common Issue</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Voice</td>
+<td>Forbidden phrase</td>
+<td>Replace with approved vocabulary</td>
+</tr>
+<tr>
+<td>Claims</td>
+<td>Missing source</td>
+<td>Add to sources.md</td>
+</tr>
+<tr>
+<td>SEO</td>
+<td>Title too long</td>
+<td>Cut to 60 chars</td>
+</tr>
+<tr>
+<td>AEO</td>
+<td>No TL;DR</td>
+<td>Add 40-60 word summary</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>Missing file</td>
+<td>Run <code>npm run schema:generate</code></td>
+</tr>
+<tr>
+<td>Readability</td>
+<td>Long paragraphs</td>
+<td>Split into 3-4 sentences</td>
+</tr>
+</tbody></table>
+<h2>Related Commands</h2>
+<ul>
+<li><code>/factory</code> - Full publishing workflow</li>
+<li><code>/factory-seo</code> - SEO optimization</li>
+<li><code>/factory-aeo</code> - AEO optimization</li>
+</ul>
+<p><strong>Run QA on which artifact?</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

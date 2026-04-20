@@ -1,0 +1,187 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-03-21",
+  "brand": "FrankX",
+  "description": "Canonical visual DNA for the FrankX brand. All generated images, page designs, and visual assets must align with these specifications.",
+
+  "palette": {
+    "primary": {
+      "background": "#0a0a0b",
+      "backgroundAlt": "#0B1120",
+      "surface": "rgba(255,255,255,0.03)",
+      "surfaceBorder": "rgba(255,255,255,0.05)"
+    },
+    "accents": {
+      "emerald": {
+        "hex": "#10B981",
+        "usage": "ACOS, GenCreator, primary CTA, success"
+      },
+      "violet": {
+        "hex": "#7C3AED",
+        "usage": "SIS, Starlight Intelligence, premium"
+      },
+      "cyan": {
+        "hex": "#06B6D4",
+        "usage": "Technology, AI Architecture, links"
+      },
+      "amber": {
+        "hex": "#F59E0B",
+        "usage": "Arcanea, creative worlds, gold tier"
+      },
+      "orange": { "hex": "#F97316", "usage": "Music Lab, energy, warmth" },
+      "blue": {
+        "hex": "#3B82F6",
+        "usage": "Enterprise AI, Oracle-adjacent, trust"
+      },
+      "fuchsia": { "hex": "#D946EF", "usage": "Design Lab, visual experiments" }
+    },
+    "text": {
+      "primary": "rgba(255,255,255,1)",
+      "secondary": "rgba(255,255,255,0.50)",
+      "tertiary": "rgba(255,255,255,0.30)",
+      "eyebrow": "rgba(16,185,129,0.50)"
+    }
+  },
+
+  "imageStandards": {
+    "heroImages": {
+      "aspectRatio": "16:9",
+      "minWidth": 1600,
+      "idealWidth": 2400,
+      "maxFileSizeKB": 2000,
+      "theme": "dark",
+      "backgroundRequirement": "Must blend with #0a0a0b — no white/light backgrounds",
+      "overlayCompatibility": "Must survive gradient overlay (from-[#0a0a0b]/60) on bottom 40%",
+      "contentDistribution": "Visual interest distributed across frame, not concentrated in one corner"
+    },
+    "ogImages": {
+      "dimensions": "1200x630",
+      "format": "png",
+      "requirements": "Clear at thumbnail size, brand-identifiable, text must be readable at 300px wide"
+    },
+    "cardThumbnails": {
+      "aspectRatio": "16:10",
+      "minWidth": 600,
+      "requirements": "Must read clearly at 300px wide, single focal point"
+    },
+    "avatars": {
+      "format": "Use _thumb.jpeg variants for all avatar/small format usage",
+      "sizes": [32, 48, 64, 72, 144, 224, 256]
+    }
+  },
+
+  "moodProfiles": {
+    "atmospheric": {
+      "description": "Moody, cinematic, depth-of-field. For homepage showcases and hero sections.",
+      "keywords": ["cinematic", "volumetric light", "depth", "dark ambient"],
+      "examples": [
+        "/images/blog/music-as-consciousness-technology-hero-v3-pro.png"
+      ]
+    },
+    "branded": {
+      "description": "Contains FrankX logo/branding, product-specific visual identity.",
+      "keywords": [
+        "FrankX.ai logo",
+        "branded workflow",
+        "product visualization"
+      ],
+      "examples": ["/images/music/infogenius/music-revenue-flywheel-v1.png"]
+    },
+    "technical": {
+      "description": "Architecture diagrams, system visualizations, data flows. For documentation.",
+      "keywords": [
+        "diagram",
+        "architecture",
+        "nodes",
+        "connections",
+        "blueprint"
+      ],
+      "examples": ["/images/blog/agentic-creator-os-complete-guide-hero.png"]
+    },
+    "artistic": {
+      "description": "Generative art, nature-tech fusion, experimental. For Design Lab.",
+      "keywords": ["organic", "bioluminescent", "crystal", "nature-tech"],
+      "examples": ["/images/design-lab/nature-01-digital-garden-hero.png"]
+    },
+    "cinematic": {
+      "description": "Character-focused, epic scale, narrative. For Arcanea and storytelling.",
+      "keywords": ["silhouette", "epic scale", "fantasy", "cosmic"],
+      "examples": ["/images/arcanea/eldrian-conclave-20260301.webp"]
+    }
+  },
+
+  "sectionImageMapping": {
+    "homepage-showcase": {
+      "mood": "atmospheric",
+      "aspect": "16:10",
+      "gradientOverlay": true
+    },
+    "blog-hero": {
+      "mood": ["atmospheric", "branded", "technical"],
+      "aspect": "16:9",
+      "gradientOverlay": true
+    },
+    "product-card": {
+      "mood": "branded",
+      "aspect": "16:10",
+      "gradientOverlay": false
+    },
+    "og-image": {
+      "mood": "branded",
+      "aspect": "1200:630",
+      "gradientOverlay": false
+    },
+    "design-lab-gallery": {
+      "mood": "artistic",
+      "aspect": "mixed",
+      "gradientOverlay": false
+    },
+    "arcanea-banner": {
+      "mood": "cinematic",
+      "aspect": "21:9",
+      "gradientOverlay": true
+    }
+  },
+
+  "generationDefaults": {
+    "modelTier": "pro",
+    "resolution": "4k",
+    "negativePrompt": "text, watermark, logo, bright background, white background, cartoon, flat design",
+    "thinkingLevel": "high",
+    "styleAnchors": [
+      "dark background #0a0a0b",
+      "glassmorphic frosted elements",
+      "volumetric lighting",
+      "cinematic depth of field",
+      "premium futuristic aesthetic"
+    ]
+  },
+
+  "qualityCouncil": {
+    "description": "Three-perspective review for every visual decision",
+    "perspectives": [
+      {
+        "role": "Brand Guardian",
+        "question": "Does this match FrankX visual DNA? Dark theme, accent harmony, premium feel?",
+        "rejectIf": "Light backgrounds, clashing colors, cheap/generic stock feel, spiritual imagery"
+      },
+      {
+        "role": "Conversion Optimizer",
+        "question": "Does this image drive the user toward the section's goal? Is it mood-setting or distracting?",
+        "rejectIf": "Information-dense at showcase size, unreadable text, competing visual hierarchy"
+      },
+      {
+        "role": "Accessibility Auditor",
+        "question": "Does this work for all users? Sufficient contrast, meaningful alt text, not seizure-inducing?",
+        "rejectIf": "Low contrast text over image, empty alt text, rapid animation, color-only information"
+      }
+    ]
+  },
+
+  "backupStrategy": {
+    "primary": "Git (production repo frankx.ai-vercel-website)",
+    "secondary": "Vercel Blob for large assets (>5MB)",
+    "versionControl": "Git LFS for originals, optimized copies in /public",
+    "retentionPolicy": "Never delete originals — archive unused images to /public/images/_archive/"
+  }
+}

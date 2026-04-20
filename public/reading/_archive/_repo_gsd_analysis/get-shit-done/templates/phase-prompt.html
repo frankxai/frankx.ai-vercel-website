@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Phase Prompt Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/phase-prompt.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Phase Prompt Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <span>phase-prompt.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Phase Prompt Template</h1>
+<blockquote>
+<p><strong>Note:</strong> Planning methodology is in <code>agents/gsd-planner.md</code>.
+This template defines the PLAN.md output format that the agent produces.</p>
+</blockquote>
+<p>Template for <code>.planning/phases/XX-name/{phase}-{plan}-PLAN.md</code> - executable phase plans optimized for parallel execution.</p>
+<p><strong>Naming:</strong> Use <code>{phase}-{plan}-PLAN.md</code> format (e.g., <code>01-02-PLAN.md</code> for Phase 1, Plan 2)</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown">---
+phase: XX-name
+plan: NN
+type: execute
+wave: N                     # Execution wave (1, 2, 3...). Pre-computed at plan time.
+depends_on: []              # Plan IDs this plan requires (e.g., [&quot;01-01&quot;]).
+files_modified: []          # Files this plan modifies.
+autonomous: true            # false if plan has checkpoints requiring user interaction
+user_setup: []              # Human-required setup Claude cannot automate (see below)
+
+# Goal-backward verification (derived during planning, verified after execution)
+must_haves:
+  truths: []                # Observable behaviors that must be true for goal achievement
+  artifacts: []             # Files that must exist with real implementation
+  key_links: []             # Critical connections between artifacts
+---
+
+&lt;objective&gt;
+[What this plan accomplishes]
+
+Purpose: [Why this matters for the project]
+Output: [What artifacts will be created]
+&lt;/objective&gt;
+
+&lt;execution_context&gt;
+@~/.claude/get-shit-done/workflows/execute-plan.md
+@~/.claude/get-shit-done/templates/summary.md
+[If plan contains checkpoint tasks (type=&quot;checkpoint:*&quot;), add:]
+@~/.claude/get-shit-done/references/checkpoints.md
+&lt;/execution_context&gt;
+
+&lt;context&gt;
+@.planning/PROJECT.md
+@.planning/ROADMAP.md
+@.planning/STATE.md
+
+# Only reference prior plan SUMMARYs if genuinely needed:
+# - This plan uses types/exports from prior plan
+# - Prior plan made decision that affects this plan
+# Do NOT reflexively chain: Plan 02 refs 01, Plan 03 refs 02...
+
+[Relevant source files:]
+@src/path/to/relevant.ts
+&lt;/context&gt;
+
+&lt;tasks&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task 1: [Action-oriented name]&lt;/name&gt;
+  &lt;files&gt;path/to/file.ext, another/file.ext&lt;/files&gt;
+  &lt;action&gt;[Specific implementation - what to do, how to do it, what to avoid and WHY]&lt;/action&gt;
+  &lt;verify&gt;[Command or check to prove it worked]&lt;/verify&gt;
+  &lt;done&gt;[Measurable acceptance criteria]&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task 2: [Action-oriented name]&lt;/name&gt;
+  &lt;files&gt;path/to/file.ext&lt;/files&gt;
+  &lt;action&gt;[Specific implementation]&lt;/action&gt;
+  &lt;verify&gt;[Command or check]&lt;/verify&gt;
+  &lt;done&gt;[Acceptance criteria]&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;!-- For checkpoint task examples and patterns, see @~/.claude/get-shit-done/references/checkpoints.md --&gt;
+&lt;!-- Key rule: Claude starts dev server BEFORE human-verify checkpoints. User only visits URLs. --&gt;
+
+&lt;task type=&quot;checkpoint:decision&quot; gate=&quot;blocking&quot;&gt;
+  &lt;decision&gt;[What needs deciding]&lt;/decision&gt;
+  &lt;context&gt;[Why this decision matters]&lt;/context&gt;
+  &lt;options&gt;
+    &lt;option id=&quot;option-a&quot;&gt;&lt;name&gt;[Name]&lt;/name&gt;&lt;pros&gt;[Benefits]&lt;/pros&gt;&lt;cons&gt;[Tradeoffs]&lt;/cons&gt;&lt;/option&gt;
+    &lt;option id=&quot;option-b&quot;&gt;&lt;name&gt;[Name]&lt;/name&gt;&lt;pros&gt;[Benefits]&lt;/pros&gt;&lt;cons&gt;[Tradeoffs]&lt;/cons&gt;&lt;/option&gt;
+  &lt;/options&gt;
+  &lt;resume-signal&gt;Select: option-a or option-b&lt;/resume-signal&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;[What Claude built] - server running at [URL]&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Visit [URL] and verify: [visual checks only, NO CLI commands]&lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; or describe issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+
+&lt;/tasks&gt;
+
+&lt;verification&gt;
+Before declaring plan complete:
+- [ ] [Specific test command]
+- [ ] [Build/type check passes]
+- [ ] [Behavior verification]
+&lt;/verification&gt;
+
+&lt;success_criteria&gt;
+
+- All tasks completed
+- All verification checks pass
+- No errors or warnings introduced
+- [Plan-specific criteria]
+  &lt;/success_criteria&gt;
+
+&lt;output&gt;
+After completion, create `.planning/phases/XX-name/{phase}-{plan}-SUMMARY.md`
+&lt;/output&gt;
+</code></pre>
+<hr>
+<h2>Frontmatter Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>phase</code></td>
+<td>Yes</td>
+<td>Phase identifier (e.g., <code>01-foundation</code>)</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td>Yes</td>
+<td>Plan number within phase (e.g., <code>01</code>, <code>02</code>)</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Yes</td>
+<td>Always <code>execute</code> for standard plans, <code>tdd</code> for TDD plans</td>
+</tr>
+<tr>
+<td><code>wave</code></td>
+<td>Yes</td>
+<td>Execution wave number (1, 2, 3...). Pre-computed at plan time.</td>
+</tr>
+<tr>
+<td><code>depends_on</code></td>
+<td>Yes</td>
+<td>Array of plan IDs this plan requires.</td>
+</tr>
+<tr>
+<td><code>files_modified</code></td>
+<td>Yes</td>
+<td>Files this plan touches.</td>
+</tr>
+<tr>
+<td><code>autonomous</code></td>
+<td>Yes</td>
+<td><code>true</code> if no checkpoints, <code>false</code> if has checkpoints</td>
+</tr>
+<tr>
+<td><code>user_setup</code></td>
+<td>No</td>
+<td>Array of human-required setup items (external services)</td>
+</tr>
+<tr>
+<td><code>must_haves</code></td>
+<td>Yes</td>
+<td>Goal-backward verification criteria (see below)</td>
+</tr>
+</tbody></table>
+<p><strong>Wave is pre-computed:</strong> Wave numbers are assigned during <code>/gsd:plan-phase</code>. Execute-phase reads <code>wave</code> directly from frontmatter and groups plans by wave number. No runtime dependency analysis needed.</p>
+<p><strong>Must-haves enable verification:</strong> The <code>must_haves</code> field carries goal-backward requirements from planning to execution. After all plans complete, execute-phase spawns a verification subagent that checks these criteria against the actual codebase.</p>
+<hr>
+<h2>Parallel vs Sequential</h2>
+<parallel_examples>
+
+<p><strong>Wave 1 candidates (parallel):</strong></p>
+<pre><code class="language-yaml"># Plan 01 - User feature
+wave: 1
+depends_on: []
+files_modified: [src/models/user.ts, src/api/users.ts]
+autonomous: true
+
+# Plan 02 - Product feature (no overlap with Plan 01)
+wave: 1
+depends_on: []
+files_modified: [src/models/product.ts, src/api/products.ts]
+autonomous: true
+
+# Plan 03 - Order feature (no overlap)
+wave: 1
+depends_on: []
+files_modified: [src/models/order.ts, src/api/orders.ts]
+autonomous: true
+</code></pre>
+<p>All three run in parallel (Wave 1) - no dependencies, no file conflicts.</p>
+<p><strong>Sequential (genuine dependency):</strong></p>
+<pre><code class="language-yaml"># Plan 01 - Auth foundation
+wave: 1
+depends_on: []
+files_modified: [src/lib/auth.ts, src/middleware/auth.ts]
+autonomous: true
+
+# Plan 02 - Protected features (needs auth)
+wave: 2
+depends_on: [&quot;01&quot;]
+files_modified: [src/features/dashboard.ts]
+autonomous: true
+</code></pre>
+<p>Plan 02 in Wave 2 waits for Plan 01 in Wave 1 - genuine dependency on auth types/middleware.</p>
+<p><strong>Checkpoint plan:</strong></p>
+<pre><code class="language-yaml"># Plan 03 - UI with verification
+wave: 3
+depends_on: [&quot;01&quot;, &quot;02&quot;]
+files_modified: [src/components/Dashboard.tsx]
+autonomous: false  # Has checkpoint:human-verify
+</code></pre>
+<p>Wave 3 runs after Waves 1 and 2. Pauses at checkpoint, orchestrator presents to user, resumes on approval.</p>
+</parallel_examples>
+
+<hr>
+<h2>Context Section</h2>
+<p><strong>Parallel-aware context:</strong></p>
+<pre><code class="language-markdown">&lt;context&gt;
+@.planning/PROJECT.md
+@.planning/ROADMAP.md
+@.planning/STATE.md
+
+# Only include SUMMARY refs if genuinely needed:
+# - This plan imports types from prior plan
+# - Prior plan made decision affecting this plan
+# - Prior plan&#39;s output is input to this plan
+#
+# Independent plans need NO prior SUMMARY references.
+# Do NOT reflexively chain: 02 refs 01, 03 refs 02...
+
+@src/relevant/source.ts
+&lt;/context&gt;
+</code></pre>
+<p><strong>Bad pattern (creates false dependencies):</strong></p>
+<pre><code class="language-markdown">&lt;context&gt;
+@.planning/phases/03-features/03-01-SUMMARY.md  # Just because it&#39;s earlier
+@.planning/phases/03-features/03-02-SUMMARY.md  # Reflexive chaining
+&lt;/context&gt;
+</code></pre>
+<hr>
+<h2>Scope Guidance</h2>
+<p><strong>Plan sizing:</strong></p>
+<ul>
+<li>2-3 tasks per plan</li>
+<li>~50% context usage maximum</li>
+<li>Complex phases: Multiple focused plans, not one large plan</li>
+</ul>
+<p><strong>When to split:</strong></p>
+<ul>
+<li>Different subsystems (auth vs API vs UI)</li>
+<li><blockquote>
+<p>3 tasks</p>
+</blockquote>
+</li>
+<li>Risk of context overflow</li>
+<li>TDD candidates - separate plans</li>
+</ul>
+<p><strong>Vertical slices preferred:</strong></p>
+<pre><code>PREFER: Plan 01 = User (model + API + UI)
+        Plan 02 = Product (model + API + UI)
+
+AVOID:  Plan 01 = All models
+        Plan 02 = All APIs
+        Plan 03 = All UIs
+</code></pre>
+<hr>
+<h2>TDD Plans</h2>
+<p>TDD features get dedicated plans with <code>type: tdd</code>.</p>
+<p><strong>Heuristic:</strong> Can you write <code>expect(fn(input)).toBe(output)</code> before writing <code>fn</code>?
+→ Yes: Create a TDD plan
+→ No: Standard task in standard plan</p>
+<p>See <code>~/.claude/get-shit-done/references/tdd.md</code> for TDD plan structure.</p>
+<hr>
+<h2>Task Types</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Use For</th>
+<th>Autonomy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>auto</code></td>
+<td>Everything Claude can do independently</td>
+<td>Fully autonomous</td>
+</tr>
+<tr>
+<td><code>checkpoint:human-verify</code></td>
+<td>Visual/functional verification</td>
+<td>Pauses, returns to orchestrator</td>
+</tr>
+<tr>
+<td><code>checkpoint:decision</code></td>
+<td>Implementation choices</td>
+<td>Pauses, returns to orchestrator</td>
+</tr>
+<tr>
+<td><code>checkpoint:human-action</code></td>
+<td>Truly unavoidable manual steps (rare)</td>
+<td>Pauses, returns to orchestrator</td>
+</tr>
+</tbody></table>
+<p><strong>Checkpoint behavior in parallel execution:</strong></p>
+<ul>
+<li>Plan runs until checkpoint</li>
+<li>Agent returns with checkpoint details + agent_id</li>
+<li>Orchestrator presents to user</li>
+<li>User responds</li>
+<li>Orchestrator resumes agent with <code>resume: agent_id</code></li>
+</ul>
+<hr>
+<h2>Examples</h2>
+<p><strong>Autonomous parallel plan:</strong></p>
+<pre><code class="language-markdown">---
+phase: 03-features
+plan: 01
+type: execute
+wave: 1
+depends_on: []
+files_modified: [src/features/user/model.ts, src/features/user/api.ts, src/features/user/UserList.tsx]
+autonomous: true
+---
+
+&lt;objective&gt;
+Implement complete User feature as vertical slice.
+
+Purpose: Self-contained user management that can run parallel to other features.
+Output: User model, API endpoints, and UI components.
+&lt;/objective&gt;
+
+&lt;context&gt;
+@.planning/PROJECT.md
+@.planning/ROADMAP.md
+@.planning/STATE.md
+&lt;/context&gt;
+
+&lt;tasks&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task 1: Create User model&lt;/name&gt;
+  &lt;files&gt;src/features/user/model.ts&lt;/files&gt;
+  &lt;action&gt;Define User type with id, email, name, createdAt. Export TypeScript interface.&lt;/action&gt;
+  &lt;verify&gt;tsc --noEmit passes&lt;/verify&gt;
+  &lt;done&gt;User type exported and usable&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task 2: Create User API endpoints&lt;/name&gt;
+  &lt;files&gt;src/features/user/api.ts&lt;/files&gt;
+  &lt;action&gt;GET /users (list), GET /users/:id (single), POST /users (create). Use User type from model.&lt;/action&gt;
+  &lt;verify&gt;curl tests pass for all endpoints&lt;/verify&gt;
+  &lt;done&gt;All CRUD operations work&lt;/done&gt;
+&lt;/task&gt;
+&lt;/tasks&gt;
+
+&lt;verification&gt;
+- [ ] npm run build succeeds
+- [ ] API endpoints respond correctly
+&lt;/verification&gt;
+
+&lt;success_criteria&gt;
+- All tasks completed
+- User feature works end-to-end
+&lt;/success_criteria&gt;
+
+&lt;output&gt;
+After completion, create `.planning/phases/03-features/03-01-SUMMARY.md`
+&lt;/output&gt;
+</code></pre>
+<p><strong>Plan with checkpoint (non-autonomous):</strong></p>
+<pre><code class="language-markdown">---
+phase: 03-features
+plan: 03
+type: execute
+wave: 2
+depends_on: [&quot;03-01&quot;, &quot;03-02&quot;]
+files_modified: [src/components/Dashboard.tsx]
+autonomous: false
+---
+
+&lt;objective&gt;
+Build dashboard with visual verification.
+
+Purpose: Integrate user and product features into unified view.
+Output: Working dashboard component.
+&lt;/objective&gt;
+
+&lt;execution_context&gt;
+@~/.claude/get-shit-done/workflows/execute-plan.md
+@~/.claude/get-shit-done/templates/summary.md
+@~/.claude/get-shit-done/references/checkpoints.md
+&lt;/execution_context&gt;
+
+&lt;context&gt;
+@.planning/PROJECT.md
+@.planning/ROADMAP.md
+@.planning/phases/03-features/03-01-SUMMARY.md
+@.planning/phases/03-features/03-02-SUMMARY.md
+&lt;/context&gt;
+
+&lt;tasks&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task 1: Build Dashboard layout&lt;/name&gt;
+  &lt;files&gt;src/components/Dashboard.tsx&lt;/files&gt;
+  &lt;action&gt;Create responsive grid with UserList and ProductList components. Use Tailwind for styling.&lt;/action&gt;
+  &lt;verify&gt;npm run build succeeds&lt;/verify&gt;
+  &lt;done&gt;Dashboard renders without errors&lt;/done&gt;
+&lt;/task&gt;
+
+&lt;!-- Checkpoint pattern: Claude starts server, user visits URL. See checkpoints.md for full patterns. --&gt;
+&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Start dev server&lt;/name&gt;
+  &lt;action&gt;Run `npm run dev` in background, wait for ready&lt;/action&gt;
+  &lt;verify&gt;curl localhost:3000 returns 200&lt;/verify&gt;
+&lt;/task&gt;
+
+&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Dashboard - server at http://localhost:3000&lt;/what-built&gt;
+  &lt;how-to-verify&gt;Visit localhost:3000/dashboard. Check: desktop grid, mobile stack, no scroll issues.&lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Type &quot;approved&quot; or describe issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+&lt;/tasks&gt;
+
+&lt;verification&gt;
+- [ ] npm run build succeeds
+- [ ] Visual verification passed
+&lt;/verification&gt;
+
+&lt;success_criteria&gt;
+- All tasks completed
+- User approved visual layout
+&lt;/success_criteria&gt;
+
+&lt;output&gt;
+After completion, create `.planning/phases/03-features/03-03-SUMMARY.md`
+&lt;/output&gt;
+</code></pre>
+<hr>
+<h2>Anti-Patterns</h2>
+<p><strong>Bad: Reflexive dependency chaining</strong></p>
+<pre><code class="language-yaml">depends_on: [&quot;03-01&quot;]  # Just because 01 comes before 02
+</code></pre>
+<p><strong>Bad: Horizontal layer grouping</strong></p>
+<pre><code>Plan 01: All models
+Plan 02: All APIs (depends on 01)
+Plan 03: All UIs (depends on 02)
+</code></pre>
+<p><strong>Bad: Missing autonomy flag</strong></p>
+<pre><code class="language-yaml"># Has checkpoint but no autonomous: false
+depends_on: []
+files_modified: [...]
+# autonomous: ???  &lt;- Missing!
+</code></pre>
+<p><strong>Bad: Vague tasks</strong></p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Set up authentication&lt;/name&gt;
+  &lt;action&gt;Add auth to the app&lt;/action&gt;
+&lt;/task&gt;
+</code></pre>
+<hr>
+<h2>Guidelines</h2>
+<ul>
+<li>Always use XML structure for Claude parsing</li>
+<li>Include <code>wave</code>, <code>depends_on</code>, <code>files_modified</code>, <code>autonomous</code> in every plan</li>
+<li>Prefer vertical slices over horizontal layers</li>
+<li>Only reference prior SUMMARYs when genuinely needed</li>
+<li>Group checkpoints with related auto tasks in same plan</li>
+<li>2-3 tasks per plan, ~50% context max</li>
+</ul>
+<hr>
+<h2>User Setup (External Services)</h2>
+<p>When a plan introduces external services requiring human configuration, declare in frontmatter:</p>
+<pre><code class="language-yaml">user_setup:
+  - service: stripe
+    why: &quot;Payment processing requires API keys&quot;
+    env_vars:
+      - name: STRIPE_SECRET_KEY
+        source: &quot;Stripe Dashboard → Developers → API keys → Secret key&quot;
+      - name: STRIPE_WEBHOOK_SECRET
+        source: &quot;Stripe Dashboard → Developers → Webhooks → Signing secret&quot;
+    dashboard_config:
+      - task: &quot;Create webhook endpoint&quot;
+        location: &quot;Stripe Dashboard → Developers → Webhooks → Add endpoint&quot;
+        details: &quot;URL: https://[your-domain]/api/webhooks/stripe&quot;
+    local_dev:
+      - &quot;stripe listen --forward-to localhost:3000/api/webhooks/stripe&quot;
+</code></pre>
+<p><strong>The automation-first rule:</strong> <code>user_setup</code> contains ONLY what Claude literally cannot do:</p>
+<ul>
+<li>Account creation (requires human signup)</li>
+<li>Secret retrieval (requires dashboard access)</li>
+<li>Dashboard configuration (requires human in browser)</li>
+</ul>
+<p><strong>NOT included:</strong> Package installs, code changes, file creation, CLI commands Claude can run.</p>
+<p><strong>Result:</strong> Execute-plan generates <code>{phase}-USER-SETUP.md</code> with checklist for the user.</p>
+<p>See <code>~/.claude/get-shit-done/templates/user-setup.md</code> for full schema and examples</p>
+<hr>
+<h2>Must-Haves (Goal-Backward Verification)</h2>
+<p>The <code>must_haves</code> field defines what must be TRUE for the phase goal to be achieved. Derived during planning, verified after execution.</p>
+<p><strong>Structure:</strong></p>
+<pre><code class="language-yaml">must_haves:
+  truths:
+    - &quot;User can see existing messages&quot;
+    - &quot;User can send a message&quot;
+    - &quot;Messages persist across refresh&quot;
+  artifacts:
+    - path: &quot;src/components/Chat.tsx&quot;
+      provides: &quot;Message list rendering&quot;
+      min_lines: 30
+    - path: &quot;src/app/api/chat/route.ts&quot;
+      provides: &quot;Message CRUD operations&quot;
+      exports: [&quot;GET&quot;, &quot;POST&quot;]
+    - path: &quot;prisma/schema.prisma&quot;
+      provides: &quot;Message model&quot;
+      contains: &quot;model Message&quot;
+  key_links:
+    - from: &quot;src/components/Chat.tsx&quot;
+      to: &quot;/api/chat&quot;
+      via: &quot;fetch in useEffect&quot;
+      pattern: &quot;fetch.*api/chat&quot;
+    - from: &quot;src/app/api/chat/route.ts&quot;
+      to: &quot;prisma.message&quot;
+      via: &quot;database query&quot;
+      pattern: &quot;prisma\\.message\\.(find|create)&quot;
+</code></pre>
+<p><strong>Field descriptions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>truths</code></td>
+<td>Observable behaviors from user perspective. Each must be testable.</td>
+</tr>
+<tr>
+<td><code>artifacts</code></td>
+<td>Files that must exist with real implementation.</td>
+</tr>
+<tr>
+<td><code>artifacts[].path</code></td>
+<td>File path relative to project root.</td>
+</tr>
+<tr>
+<td><code>artifacts[].provides</code></td>
+<td>What this artifact delivers.</td>
+</tr>
+<tr>
+<td><code>artifacts[].min_lines</code></td>
+<td>Optional. Minimum lines to be considered substantive.</td>
+</tr>
+<tr>
+<td><code>artifacts[].exports</code></td>
+<td>Optional. Expected exports to verify.</td>
+</tr>
+<tr>
+<td><code>artifacts[].contains</code></td>
+<td>Optional. Pattern that must exist in file.</td>
+</tr>
+<tr>
+<td><code>key_links</code></td>
+<td>Critical connections between artifacts.</td>
+</tr>
+<tr>
+<td><code>key_links[].from</code></td>
+<td>Source artifact.</td>
+</tr>
+<tr>
+<td><code>key_links[].to</code></td>
+<td>Target artifact or endpoint.</td>
+</tr>
+<tr>
+<td><code>key_links[].via</code></td>
+<td>How they connect (description).</td>
+</tr>
+<tr>
+<td><code>key_links[].pattern</code></td>
+<td>Optional. Regex to verify connection exists.</td>
+</tr>
+</tbody></table>
+<p><strong>Why this matters:</strong></p>
+<p>Task completion ≠ Goal achievement. A task &quot;create chat component&quot; can complete by creating a placeholder. The <code>must_haves</code> field captures what must actually work, enabling verification to catch gaps before they compound.</p>
+<p><strong>Verification flow:</strong></p>
+<ol>
+<li>Plan-phase derives must_haves from phase goal (goal-backward)</li>
+<li>Must_haves written to PLAN.md frontmatter</li>
+<li>Execute-phase runs all plans</li>
+<li>Verification subagent checks must_haves against codebase</li>
+<li>Gaps found → fix plans created → execute → re-verify</li>
+<li>All must_haves pass → phase complete</li>
+</ol>
+<p>See <code>~/.claude/get-shit-done/workflows/verify-phase.md</code> for verification logic.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

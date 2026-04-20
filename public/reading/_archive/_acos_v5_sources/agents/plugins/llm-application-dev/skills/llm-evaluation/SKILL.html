@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>LLM Evaluation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/llm-application-dev/skills/llm-evaluation/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">LLM Evaluation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev">llm-application-dev</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fllm-application-dev%2Fskills%2Fllm-evaluation">llm-evaluation</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: llm-evaluation
+description: Implement comprehensive evaluation strategies for LLM applications using automated metrics, human feedback, and benchmarking. Use when testing LLM performance, measuring AI application quality, or establishing evaluation frameworks.</h2>
+<h1>LLM Evaluation</h1>
+<p>Master comprehensive evaluation strategies for LLM applications, from automated metrics to human evaluation and A/B testing.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Measuring LLM application performance systematically</li>
+<li>Comparing different models or prompts</li>
+<li>Detecting performance regressions before deployment</li>
+<li>Validating improvements from prompt changes</li>
+<li>Building confidence in production systems</li>
+<li>Establishing baselines and tracking progress over time</li>
+<li>Debugging unexpected model behavior</li>
+</ul>
+<h2>Core Evaluation Types</h2>
+<h3>1. Automated Metrics</h3>
+<p>Fast, repeatable, scalable evaluation using computed scores.</p>
+<p><strong>Text Generation:</strong></p>
+<ul>
+<li><strong>BLEU</strong>: N-gram overlap (translation)</li>
+<li><strong>ROUGE</strong>: Recall-oriented (summarization)</li>
+<li><strong>METEOR</strong>: Semantic similarity</li>
+<li><strong>BERTScore</strong>: Embedding-based similarity</li>
+<li><strong>Perplexity</strong>: Language model confidence</li>
+</ul>
+<p><strong>Classification:</strong></p>
+<ul>
+<li><strong>Accuracy</strong>: Percentage correct</li>
+<li><strong>Precision/Recall/F1</strong>: Class-specific performance</li>
+<li><strong>Confusion Matrix</strong>: Error patterns</li>
+<li><strong>AUC-ROC</strong>: Ranking quality</li>
+</ul>
+<p><strong>Retrieval (RAG):</strong></p>
+<ul>
+<li><strong>MRR</strong>: Mean Reciprocal Rank</li>
+<li><strong>NDCG</strong>: Normalized Discounted Cumulative Gain</li>
+<li><strong>Precision@K</strong>: Relevant in top K</li>
+<li><strong>Recall@K</strong>: Coverage in top K</li>
+</ul>
+<h3>2. Human Evaluation</h3>
+<p>Manual assessment for quality aspects difficult to automate.</p>
+<p><strong>Dimensions:</strong></p>
+<ul>
+<li><strong>Accuracy</strong>: Factual correctness</li>
+<li><strong>Coherence</strong>: Logical flow</li>
+<li><strong>Relevance</strong>: Answers the question</li>
+<li><strong>Fluency</strong>: Natural language quality</li>
+<li><strong>Safety</strong>: No harmful content</li>
+<li><strong>Helpfulness</strong>: Useful to the user</li>
+</ul>
+<h3>3. LLM-as-Judge</h3>
+<p>Use stronger LLMs to evaluate weaker model outputs.</p>
+<p><strong>Approaches:</strong></p>
+<ul>
+<li><strong>Pointwise</strong>: Score individual responses</li>
+<li><strong>Pairwise</strong>: Compare two responses</li>
+<li><strong>Reference-based</strong>: Compare to gold standard</li>
+<li><strong>Reference-free</strong>: Judge without ground truth</li>
+</ul>
+<h2>Quick Start</h2>
+<pre><code class="language-python">from dataclasses import dataclass
+from typing import Callable
+import numpy as np
+
+@dataclass
+class Metric:
+    name: str
+    fn: Callable
+
+    @staticmethod
+    def accuracy():
+        return Metric(&quot;accuracy&quot;, calculate_accuracy)
+
+    @staticmethod
+    def bleu():
+        return Metric(&quot;bleu&quot;, calculate_bleu)
+
+    @staticmethod
+    def bertscore():
+        return Metric(&quot;bertscore&quot;, calculate_bertscore)
+
+    @staticmethod
+    def custom(name: str, fn: Callable):
+        return Metric(name, fn)
+
+class EvaluationSuite:
+    def __init__(self, metrics: list[Metric]):
+        self.metrics = metrics
+
+    async def evaluate(self, model, test_cases: list[dict]) -&gt; dict:
+        results = {m.name: [] for m in self.metrics}
+
+        for test in test_cases:
+            prediction = await model.predict(test[&quot;input&quot;])
+
+            for metric in self.metrics:
+                score = metric.fn(
+                    prediction=prediction,
+                    reference=test.get(&quot;expected&quot;),
+                    context=test.get(&quot;context&quot;)
+                )
+                results[metric.name].append(score)
+
+        return {
+            &quot;metrics&quot;: {k: np.mean(v) for k, v in results.items()},
+            &quot;raw_scores&quot;: results
+        }
+
+# Usage
+suite = EvaluationSuite([
+    Metric.accuracy(),
+    Metric.bleu(),
+    Metric.bertscore(),
+    Metric.custom(&quot;groundedness&quot;, check_groundedness)
+])
+
+test_cases = [
+    {
+        &quot;input&quot;: &quot;What is the capital of France?&quot;,
+        &quot;expected&quot;: &quot;Paris&quot;,
+        &quot;context&quot;: &quot;France is a country in Europe. Paris is its capital.&quot;
+    },
+]
+
+results = await suite.evaluate(model=your_model, test_cases=test_cases)
+</code></pre>
+<h2>Automated Metrics Implementation</h2>
+<h3>BLEU Score</h3>
+<pre><code class="language-python">from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+
+def calculate_bleu(reference: str, hypothesis: str, **kwargs) -&gt; float:
+    &quot;&quot;&quot;Calculate BLEU score between reference and hypothesis.&quot;&quot;&quot;
+    smoothie = SmoothingFunction().method4
+
+    return sentence_bleu(
+        [reference.split()],
+        hypothesis.split(),
+        smoothing_function=smoothie
+    )
+</code></pre>
+<h3>ROUGE Score</h3>
+<pre><code class="language-python">from rouge_score import rouge_scorer
+
+def calculate_rouge(reference: str, hypothesis: str, **kwargs) -&gt; dict:
+    &quot;&quot;&quot;Calculate ROUGE scores.&quot;&quot;&quot;
+    scorer = rouge_scorer.RougeScorer(
+        [&#39;rouge1&#39;, &#39;rouge2&#39;, &#39;rougeL&#39;],
+        use_stemmer=True
+    )
+    scores = scorer.score(reference, hypothesis)
+
+    return {
+        &#39;rouge1&#39;: scores[&#39;rouge1&#39;].fmeasure,
+        &#39;rouge2&#39;: scores[&#39;rouge2&#39;].fmeasure,
+        &#39;rougeL&#39;: scores[&#39;rougeL&#39;].fmeasure
+    }
+</code></pre>
+<h3>BERTScore</h3>
+<pre><code class="language-python">from bert_score import score
+
+def calculate_bertscore(
+    references: list[str],
+    hypotheses: list[str],
+    **kwargs
+) -&gt; dict:
+    &quot;&quot;&quot;Calculate BERTScore using pre-trained model.&quot;&quot;&quot;
+    P, R, F1 = score(
+        hypotheses,
+        references,
+        lang=&#39;en&#39;,
+        model_type=&#39;microsoft/deberta-xlarge-mnli&#39;
+    )
+
+    return {
+        &#39;precision&#39;: P.mean().item(),
+        &#39;recall&#39;: R.mean().item(),
+        &#39;f1&#39;: F1.mean().item()
+    }
+</code></pre>
+<h3>Custom Metrics</h3>
+<pre><code class="language-python">def calculate_groundedness(response: str, context: str, **kwargs) -&gt; float:
+    &quot;&quot;&quot;Check if response is grounded in provided context.&quot;&quot;&quot;
+    from transformers import pipeline
+
+    nli = pipeline(
+        &quot;text-classification&quot;,
+        model=&quot;microsoft/deberta-large-mnli&quot;
+    )
+
+    result = nli(f&quot;{context} [SEP] {response}&quot;)[0]
+
+    # Return confidence that response is entailed by context
+    return result[&#39;score&#39;] if result[&#39;label&#39;] == &#39;ENTAILMENT&#39; else 0.0
+
+def calculate_toxicity(text: str, **kwargs) -&gt; float:
+    &quot;&quot;&quot;Measure toxicity in generated text.&quot;&quot;&quot;
+    from detoxify import Detoxify
+
+    results = Detoxify(&#39;original&#39;).predict(text)
+    return max(results.values())  # Return highest toxicity score
+
+def calculate_factuality(claim: str, sources: list[str], **kwargs) -&gt; float:
+    &quot;&quot;&quot;Verify factual claims against sources.&quot;&quot;&quot;
+    from transformers import pipeline
+
+    nli = pipeline(&quot;text-classification&quot;, model=&quot;facebook/bart-large-mnli&quot;)
+
+    scores = []
+    for source in sources:
+        result = nli(f&quot;{source}&lt;/s&gt;&lt;/s&gt;{claim}&quot;)[0]
+        if result[&#39;label&#39;] == &#39;entailment&#39;:
+            scores.append(result[&#39;score&#39;])
+
+    return max(scores) if scores else 0.0
+</code></pre>
+<h2>LLM-as-Judge Patterns</h2>
+<h3>Single Output Evaluation</h3>
+<pre><code class="language-python">from anthropic import Anthropic
+from pydantic import BaseModel, Field
+import json
+
+class QualityRating(BaseModel):
+    accuracy: int = Field(ge=1, le=10, description=&quot;Factual correctness&quot;)
+    helpfulness: int = Field(ge=1, le=10, description=&quot;Answers the question&quot;)
+    clarity: int = Field(ge=1, le=10, description=&quot;Well-written and understandable&quot;)
+    reasoning: str = Field(description=&quot;Brief explanation&quot;)
+
+async def llm_judge_quality(
+    response: str,
+    question: str,
+    context: str = None
+) -&gt; QualityRating:
+    &quot;&quot;&quot;Use Claude to judge response quality.&quot;&quot;&quot;
+    client = Anthropic()
+
+    system = &quot;&quot;&quot;You are an expert evaluator of AI responses.
+    Rate responses on accuracy, helpfulness, and clarity (1-10 scale).
+    Provide brief reasoning for your ratings.&quot;&quot;&quot;
+
+    prompt = f&quot;&quot;&quot;Rate the following response:
+
+Question: {question}
+{f&#39;Context: {context}&#39; if context else &#39;&#39;}
+Response: {response}
+
+Provide ratings in JSON format:
+{{
+  &quot;accuracy&quot;: &lt;1-10&gt;,
+  &quot;helpfulness&quot;: &lt;1-10&gt;,
+  &quot;clarity&quot;: &lt;1-10&gt;,
+  &quot;reasoning&quot;: &quot;&lt;brief explanation&gt;&quot;
+}}&quot;&quot;&quot;
+
+    message = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        max_tokens=500,
+        system=system,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}]
+    )
+
+    return QualityRating(**json.loads(message.content[0].text))
+</code></pre>
+<h3>Pairwise Comparison</h3>
+<pre><code class="language-python">from pydantic import BaseModel, Field
+from typing import Literal
+
+class ComparisonResult(BaseModel):
+    winner: Literal[&quot;A&quot;, &quot;B&quot;, &quot;tie&quot;]
+    reasoning: str
+    confidence: int = Field(ge=1, le=10)
+
+async def compare_responses(
+    question: str,
+    response_a: str,
+    response_b: str
+) -&gt; ComparisonResult:
+    &quot;&quot;&quot;Compare two responses using LLM judge.&quot;&quot;&quot;
+    client = Anthropic()
+
+    prompt = f&quot;&quot;&quot;Compare these two responses and determine which is better.
+
+Question: {question}
+
+Response A: {response_a}
+
+Response B: {response_b}
+
+Consider accuracy, helpfulness, and clarity.
+
+Answer with JSON:
+{{
+  &quot;winner&quot;: &quot;A&quot; or &quot;B&quot; or &quot;tie&quot;,
+  &quot;reasoning&quot;: &quot;&lt;explanation&gt;&quot;,
+  &quot;confidence&quot;: &lt;1-10&gt;
+}}&quot;&quot;&quot;
+
+    message = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        max_tokens=500,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}]
+    )
+
+    return ComparisonResult(**json.loads(message.content[0].text))
+</code></pre>
+<h3>Reference-Based Evaluation</h3>
+<pre><code class="language-python">class ReferenceEvaluation(BaseModel):
+    semantic_similarity: float = Field(ge=0, le=1)
+    factual_accuracy: float = Field(ge=0, le=1)
+    completeness: float = Field(ge=0, le=1)
+    issues: list[str]
+
+async def evaluate_against_reference(
+    response: str,
+    reference: str,
+    question: str
+) -&gt; ReferenceEvaluation:
+    &quot;&quot;&quot;Evaluate response against gold standard reference.&quot;&quot;&quot;
+    client = Anthropic()
+
+    prompt = f&quot;&quot;&quot;Compare the response to the reference answer.
+
+Question: {question}
+Reference Answer: {reference}
+Response to Evaluate: {response}
+
+Evaluate:
+1. Semantic similarity (0-1): How similar is the meaning?
+2. Factual accuracy (0-1): Are all facts correct?
+3. Completeness (0-1): Does it cover all key points?
+4. List any specific issues or errors.
+
+Respond in JSON:
+{{
+  &quot;semantic_similarity&quot;: &lt;0-1&gt;,
+  &quot;factual_accuracy&quot;: &lt;0-1&gt;,
+  &quot;completeness&quot;: &lt;0-1&gt;,
+  &quot;issues&quot;: [&quot;issue1&quot;, &quot;issue2&quot;]
+}}&quot;&quot;&quot;
+
+    message = client.messages.create(
+        model=&quot;claude-sonnet-4-5&quot;,
+        max_tokens=500,
+        messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: prompt}]
+    )
+
+    return ReferenceEvaluation(**json.loads(message.content[0].text))
+</code></pre>
+<h2>Human Evaluation Frameworks</h2>
+<h3>Annotation Guidelines</h3>
+<pre><code class="language-python">from dataclasses import dataclass, field
+from typing import Optional
+
+@dataclass
+class AnnotationTask:
+    &quot;&quot;&quot;Structure for human annotation task.&quot;&quot;&quot;
+    response: str
+    question: str
+    context: Optional[str] = None
+
+    def get_annotation_form(self) -&gt; dict:
+        return {
+            &quot;question&quot;: self.question,
+            &quot;context&quot;: self.context,
+            &quot;response&quot;: self.response,
+            &quot;ratings&quot;: {
+                &quot;accuracy&quot;: {
+                    &quot;scale&quot;: &quot;1-5&quot;,
+                    &quot;description&quot;: &quot;Is the response factually correct?&quot;
+                },
+                &quot;relevance&quot;: {
+                    &quot;scale&quot;: &quot;1-5&quot;,
+                    &quot;description&quot;: &quot;Does it answer the question?&quot;
+                },
+                &quot;coherence&quot;: {
+                    &quot;scale&quot;: &quot;1-5&quot;,
+                    &quot;description&quot;: &quot;Is it logically consistent?&quot;
+                }
+            },
+            &quot;issues&quot;: {
+                &quot;factual_error&quot;: False,
+                &quot;hallucination&quot;: False,
+                &quot;off_topic&quot;: False,
+                &quot;unsafe_content&quot;: False
+            },
+            &quot;feedback&quot;: &quot;&quot;
+        }
+</code></pre>
+<h3>Inter-Rater Agreement</h3>
+<pre><code class="language-python">from sklearn.metrics import cohen_kappa_score
+
+def calculate_agreement(
+    rater1_scores: list[int],
+    rater2_scores: list[int]
+) -&gt; dict:
+    &quot;&quot;&quot;Calculate inter-rater agreement.&quot;&quot;&quot;
+    kappa = cohen_kappa_score(rater1_scores, rater2_scores)
+
+    if kappa &lt; 0:
+        interpretation = &quot;Poor&quot;
+    elif kappa &lt; 0.2:
+        interpretation = &quot;Slight&quot;
+    elif kappa &lt; 0.4:
+        interpretation = &quot;Fair&quot;
+    elif kappa &lt; 0.6:
+        interpretation = &quot;Moderate&quot;
+    elif kappa &lt; 0.8:
+        interpretation = &quot;Substantial&quot;
+    else:
+        interpretation = &quot;Almost Perfect&quot;
+
+    return {
+        &quot;kappa&quot;: kappa,
+        &quot;interpretation&quot;: interpretation
+    }
+</code></pre>
+<h2>A/B Testing</h2>
+<h3>Statistical Testing Framework</h3>
+<pre><code class="language-python">from scipy import stats
+import numpy as np
+from dataclasses import dataclass, field
+
+@dataclass
+class ABTest:
+    variant_a_name: str = &quot;A&quot;
+    variant_b_name: str = &quot;B&quot;
+    variant_a_scores: list[float] = field(default_factory=list)
+    variant_b_scores: list[float] = field(default_factory=list)
+
+    def add_result(self, variant: str, score: float):
+        &quot;&quot;&quot;Add evaluation result for a variant.&quot;&quot;&quot;
+        if variant == &quot;A&quot;:
+            self.variant_a_scores.append(score)
+        else:
+            self.variant_b_scores.append(score)
+
+    def analyze(self, alpha: float = 0.05) -&gt; dict:
+        &quot;&quot;&quot;Perform statistical analysis.&quot;&quot;&quot;
+        a_scores = np.array(self.variant_a_scores)
+        b_scores = np.array(self.variant_b_scores)
+
+        # T-test
+        t_stat, p_value = stats.ttest_ind(a_scores, b_scores)
+
+        # Effect size (Cohen&#39;s d)
+        pooled_std = np.sqrt((np.std(a_scores)**2 + np.std(b_scores)**2) / 2)
+        cohens_d = (np.mean(b_scores) - np.mean(a_scores)) / pooled_std
+
+        return {
+            &quot;variant_a_mean&quot;: np.mean(a_scores),
+            &quot;variant_b_mean&quot;: np.mean(b_scores),
+            &quot;difference&quot;: np.mean(b_scores) - np.mean(a_scores),
+            &quot;relative_improvement&quot;: (np.mean(b_scores) - np.mean(a_scores)) / np.mean(a_scores),
+            &quot;p_value&quot;: p_value,
+            &quot;statistically_significant&quot;: p_value &lt; alpha,
+            &quot;cohens_d&quot;: cohens_d,
+            &quot;effect_size&quot;: self._interpret_cohens_d(cohens_d),
+            &quot;winner&quot;: self.variant_b_name if np.mean(b_scores) &gt; np.mean(a_scores) else self.variant_a_name
+        }
+
+    @staticmethod
+    def _interpret_cohens_d(d: float) -&gt; str:
+        &quot;&quot;&quot;Interpret Cohen&#39;s d effect size.&quot;&quot;&quot;
+        abs_d = abs(d)
+        if abs_d &lt; 0.2:
+            return &quot;negligible&quot;
+        elif abs_d &lt; 0.5:
+            return &quot;small&quot;
+        elif abs_d &lt; 0.8:
+            return &quot;medium&quot;
+        else:
+            return &quot;large&quot;
+</code></pre>
+<h2>Regression Testing</h2>
+<h3>Regression Detection</h3>
+<pre><code class="language-python">from dataclasses import dataclass
+
+@dataclass
+class RegressionResult:
+    metric: str
+    baseline: float
+    current: float
+    change: float
+    is_regression: bool
+
+class RegressionDetector:
+    def __init__(self, baseline_results: dict, threshold: float = 0.05):
+        self.baseline = baseline_results
+        self.threshold = threshold
+
+    def check_for_regression(self, new_results: dict) -&gt; dict:
+        &quot;&quot;&quot;Detect if new results show regression.&quot;&quot;&quot;
+        regressions = []
+
+        for metric in self.baseline.keys():
+            baseline_score = self.baseline[metric]
+            new_score = new_results.get(metric)
+
+            if new_score is None:
+                continue
+
+            # Calculate relative change
+            relative_change = (new_score - baseline_score) / baseline_score
+
+            # Flag if significant decrease
+            is_regression = relative_change &lt; -self.threshold
+            if is_regression:
+                regressions.append(RegressionResult(
+                    metric=metric,
+                    baseline=baseline_score,
+                    current=new_score,
+                    change=relative_change,
+                    is_regression=True
+                ))
+
+        return {
+            &quot;has_regression&quot;: len(regressions) &gt; 0,
+            &quot;regressions&quot;: regressions,
+            &quot;summary&quot;: f&quot;{len(regressions)} metric(s) regressed&quot;
+        }
+</code></pre>
+<h2>LangSmith Evaluation Integration</h2>
+<pre><code class="language-python">from langsmith import Client
+from langsmith.evaluation import evaluate, LangChainStringEvaluator
+
+# Initialize LangSmith client
+client = Client()
+
+# Create dataset
+dataset = client.create_dataset(&quot;qa_test_cases&quot;)
+client.create_examples(
+    inputs=[{&quot;question&quot;: q} for q in questions],
+    outputs=[{&quot;answer&quot;: a} for a in expected_answers],
+    dataset_id=dataset.id
+)
+
+# Define evaluators
+evaluators = [
+    LangChainStringEvaluator(&quot;qa&quot;),           # QA correctness
+    LangChainStringEvaluator(&quot;context_qa&quot;),   # Context-grounded QA
+    LangChainStringEvaluator(&quot;cot_qa&quot;),       # Chain-of-thought QA
+]
+
+# Run evaluation
+async def target_function(inputs: dict) -&gt; dict:
+    result = await your_chain.ainvoke(inputs)
+    return {&quot;answer&quot;: result}
+
+experiment_results = await evaluate(
+    target_function,
+    data=dataset.name,
+    evaluators=evaluators,
+    experiment_prefix=&quot;v1.0.0&quot;,
+    metadata={&quot;model&quot;: &quot;claude-sonnet-4-5&quot;, &quot;version&quot;: &quot;1.0.0&quot;}
+)
+
+print(f&quot;Mean score: {experiment_results.aggregate_metrics[&#39;qa&#39;][&#39;mean&#39;]}&quot;)
+</code></pre>
+<h2>Benchmarking</h2>
+<h3>Running Benchmarks</h3>
+<pre><code class="language-python">from dataclasses import dataclass
+import numpy as np
+
+@dataclass
+class BenchmarkResult:
+    metric: str
+    mean: float
+    std: float
+    min: float
+    max: float
+
+class BenchmarkRunner:
+    def __init__(self, benchmark_dataset: list[dict]):
+        self.dataset = benchmark_dataset
+
+    async def run_benchmark(
+        self,
+        model,
+        metrics: list[Metric]
+    ) -&gt; dict[str, BenchmarkResult]:
+        &quot;&quot;&quot;Run model on benchmark and calculate metrics.&quot;&quot;&quot;
+        results = {metric.name: [] for metric in metrics}
+
+        for example in self.dataset:
+            # Generate prediction
+            prediction = await model.predict(example[&quot;input&quot;])
+
+            # Calculate each metric
+            for metric in metrics:
+                score = metric.fn(
+                    prediction=prediction,
+                    reference=example[&quot;reference&quot;],
+                    context=example.get(&quot;context&quot;)
+                )
+                results[metric.name].append(score)
+
+        # Aggregate results
+        return {
+            metric: BenchmarkResult(
+                metric=metric,
+                mean=np.mean(scores),
+                std=np.std(scores),
+                min=min(scores),
+                max=max(scores)
+            )
+            for metric, scores in results.items()
+        }
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://docs.smith.langchain.com/evaluation">LangSmith Evaluation Guide</a></li>
+<li><a href="https://docs.ragas.io/">RAGAS Framework</a></li>
+<li><a href="https://docs.deepeval.com/">DeepEval Library</a></li>
+<li><a href="https://docs.arize.com/phoenix/">Arize Phoenix</a></li>
+<li><a href="https://crfm.stanford.edu/helm/">HELM Benchmark</a></li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Multiple Metrics</strong>: Use diverse metrics for comprehensive view</li>
+<li><strong>Representative Data</strong>: Test on real-world, diverse examples</li>
+<li><strong>Baselines</strong>: Always compare against baseline performance</li>
+<li><strong>Statistical Rigor</strong>: Use proper statistical tests for comparisons</li>
+<li><strong>Continuous Evaluation</strong>: Integrate into CI/CD pipeline</li>
+<li><strong>Human Validation</strong>: Combine automated metrics with human judgment</li>
+<li><strong>Error Analysis</strong>: Investigate failures to understand weaknesses</li>
+<li><strong>Version Control</strong>: Track evaluation results over time</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li><strong>Single Metric Obsession</strong>: Optimizing for one metric at the expense of others</li>
+<li><strong>Small Sample Size</strong>: Drawing conclusions from too few examples</li>
+<li><strong>Data Contamination</strong>: Testing on training data</li>
+<li><strong>Ignoring Variance</strong>: Not accounting for statistical uncertainty</li>
+<li><strong>Metric Mismatch</strong>: Using metrics not aligned with business goals</li>
+<li><strong>Position Bias</strong>: In pairwise evals, randomize order</li>
+<li><strong>Overfitting Prompts</strong>: Optimizing for test set instead of real use</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

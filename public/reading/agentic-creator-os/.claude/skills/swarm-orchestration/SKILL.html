@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Swarm Orchestration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/swarm-orchestration/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Swarm Orchestration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fswarm-orchestration">swarm-orchestration</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: &quot;Swarm Orchestration&quot;
+description: &quot;Orchestrate multi-agent swarms with agentic-flow for parallel task execution, dynamic topology, and intelligent coordination. Use when scaling beyond single agents, implementing complex workflows, or building distributed AI systems.&quot;</h2>
+<h1>Swarm Orchestration</h1>
+<h2>What This Skill Does</h2>
+<p>Orchestrates multi-agent swarms using agentic-flow&#39;s advanced coordination system. Supports mesh, hierarchical, and adaptive topologies with automatic task distribution, load balancing, and fault tolerance.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>agentic-flow v1.5.11+</li>
+<li>Node.js 18+</li>
+<li>Understanding of distributed systems (helpful)</li>
+</ul>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># Initialize swarm
+npx agentic-flow hooks swarm-init --topology mesh --max-agents 5
+
+# Spawn agents
+npx agentic-flow hooks agent-spawn --type coder
+npx agentic-flow hooks agent-spawn --type tester
+npx agentic-flow hooks agent-spawn --type reviewer
+
+# Orchestrate task
+npx agentic-flow hooks task-orchestrate \
+  --task &quot;Build REST API with tests&quot; \
+  --mode parallel
+</code></pre>
+<h2>Topology Patterns</h2>
+<h3>1. Mesh (Peer-to-Peer)</h3>
+<pre><code class="language-typescript">// Equal peers, distributed decision-making
+await swarm.init({
+  topology: &#39;mesh&#39;,
+  agents: [&#39;coder&#39;, &#39;tester&#39;, &#39;reviewer&#39;],
+  communication: &#39;broadcast&#39;
+});
+</code></pre>
+<h3>2. Hierarchical (Queen-Worker)</h3>
+<pre><code class="language-typescript">// Centralized coordination, specialized workers
+await swarm.init({
+  topology: &#39;hierarchical&#39;,
+  queen: &#39;architect&#39;,
+  workers: [&#39;backend-dev&#39;, &#39;frontend-dev&#39;, &#39;db-designer&#39;]
+});
+</code></pre>
+<h3>3. Adaptive (Dynamic)</h3>
+<pre><code class="language-typescript">// Automatically switches topology based on task
+await swarm.init({
+  topology: &#39;adaptive&#39;,
+  optimization: &#39;task-complexity&#39;
+});
+</code></pre>
+<h2>Task Orchestration</h2>
+<h3>Parallel Execution</h3>
+<pre><code class="language-typescript">// Execute tasks concurrently
+const results = await swarm.execute({
+  tasks: [
+    { agent: &#39;coder&#39;, task: &#39;Implement API endpoints&#39; },
+    { agent: &#39;frontend&#39;, task: &#39;Build UI components&#39; },
+    { agent: &#39;tester&#39;, task: &#39;Write test suite&#39; }
+  ],
+  mode: &#39;parallel&#39;,
+  timeout: 300000 // 5 minutes
+});
+</code></pre>
+<h3>Pipeline Execution</h3>
+<pre><code class="language-typescript">// Sequential pipeline with dependencies
+await swarm.pipeline([
+  { stage: &#39;design&#39;, agent: &#39;architect&#39; },
+  { stage: &#39;implement&#39;, agent: &#39;coder&#39;, after: &#39;design&#39; },
+  { stage: &#39;test&#39;, agent: &#39;tester&#39;, after: &#39;implement&#39; },
+  { stage: &#39;review&#39;, agent: &#39;reviewer&#39;, after: &#39;test&#39; }
+]);
+</code></pre>
+<h3>Adaptive Execution</h3>
+<pre><code class="language-typescript">// Let swarm decide execution strategy
+await swarm.autoOrchestrate({
+  goal: &#39;Build production-ready API&#39;,
+  constraints: {
+    maxTime: 3600,
+    maxAgents: 8,
+    quality: &#39;high&#39;
+  }
+});
+</code></pre>
+<h2>Memory Coordination</h2>
+<pre><code class="language-typescript">// Share state across swarm
+await swarm.memory.store(&#39;api-schema&#39;, {
+  endpoints: [...],
+  models: [...]
+});
+
+// Agents read shared memory
+const schema = await swarm.memory.retrieve(&#39;api-schema&#39;);
+</code></pre>
+<h2>Advanced Features</h2>
+<h3>Load Balancing</h3>
+<pre><code class="language-typescript">// Automatic work distribution
+await swarm.enableLoadBalancing({
+  strategy: &#39;dynamic&#39;,
+  metrics: [&#39;cpu&#39;, &#39;memory&#39;, &#39;task-queue&#39;]
+});
+</code></pre>
+<h3>Fault Tolerance</h3>
+<pre><code class="language-typescript">// Handle agent failures
+await swarm.setResiliency({
+  retry: { maxAttempts: 3, backoff: &#39;exponential&#39; },
+  fallback: &#39;reassign-task&#39;
+});
+</code></pre>
+<h3>Performance Monitoring</h3>
+<pre><code class="language-typescript">// Track swarm metrics
+const metrics = await swarm.getMetrics();
+// { throughput, latency, success_rate, agent_utilization }
+</code></pre>
+<h2>Integration with Hooks</h2>
+<pre><code class="language-bash"># Pre-task coordination
+npx agentic-flow hooks pre-task --description &quot;Build API&quot;
+
+# Post-task synchronization
+npx agentic-flow hooks post-task --task-id &quot;task-123&quot;
+
+# Session restore
+npx agentic-flow hooks session-restore --session-id &quot;swarm-001&quot;
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Start small</strong>: Begin with 2-3 agents, scale up</li>
+<li><strong>Use memory</strong>: Share context through swarm memory</li>
+<li><strong>Monitor metrics</strong>: Track performance and bottlenecks</li>
+<li><strong>Enable hooks</strong>: Automatic coordination and sync</li>
+<li><strong>Set timeouts</strong>: Prevent hung tasks</li>
+</ol>
+<h2>Troubleshooting</h2>
+<h3>Issue: Agents not coordinating</h3>
+<p><strong>Solution</strong>: Verify memory access and enable hooks</p>
+<h3>Issue: Poor performance</h3>
+<p><strong>Solution</strong>: Check topology (use adaptive) and enable load balancing</p>
+<h2>Learn More</h2>
+<ul>
+<li>Swarm Guide: docs/swarm/orchestration.md</li>
+<li>Topology Patterns: docs/swarm/topologies.md</li>
+<li>Hooks Integration: docs/hooks/coordination.md</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

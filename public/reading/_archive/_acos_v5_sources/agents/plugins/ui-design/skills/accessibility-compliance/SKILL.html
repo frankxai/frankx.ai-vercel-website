@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Accessibility Compliance</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/accessibility-compliance/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Accessibility Compliance</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Faccessibility-compliance">accessibility-compliance</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: accessibility-compliance
+description: Implement WCAG 2.2 compliant interfaces with mobile accessibility, inclusive design patterns, and assistive technology support. Use when auditing accessibility, implementing ARIA patterns, building for screen readers, or ensuring inclusive user experiences.</h2>
+<h1>Accessibility Compliance</h1>
+<p>Master accessibility implementation to create inclusive experiences that work for everyone, including users with disabilities.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Implementing WCAG 2.2 Level AA or AAA compliance</li>
+<li>Building screen reader accessible interfaces</li>
+<li>Adding keyboard navigation to interactive components</li>
+<li>Implementing focus management and focus trapping</li>
+<li>Creating accessible forms with proper labeling</li>
+<li>Supporting reduced motion and high contrast preferences</li>
+<li>Building mobile accessibility features (iOS VoiceOver, Android TalkBack)</li>
+<li>Conducting accessibility audits and fixing violations</li>
+</ul>
+<h2>Core Capabilities</h2>
+<h3>1. WCAG 2.2 Guidelines</h3>
+<ul>
+<li>Perceivable: Content must be presentable in different ways</li>
+<li>Operable: Interface must be navigable with keyboard and assistive tech</li>
+<li>Understandable: Content and operation must be clear</li>
+<li>Robust: Content must work with current and future assistive technologies</li>
+</ul>
+<h3>2. ARIA Patterns</h3>
+<ul>
+<li>Roles: Define element purpose (button, dialog, navigation)</li>
+<li>States: Indicate current condition (expanded, selected, disabled)</li>
+<li>Properties: Describe relationships and additional info (labelledby, describedby)</li>
+<li>Live regions: Announce dynamic content changes</li>
+</ul>
+<h3>3. Keyboard Navigation</h3>
+<ul>
+<li>Focus order and tab sequence</li>
+<li>Focus indicators and visible focus states</li>
+<li>Keyboard shortcuts and hotkeys</li>
+<li>Focus trapping for modals and dialogs</li>
+</ul>
+<h3>4. Screen Reader Support</h3>
+<ul>
+<li>Semantic HTML structure</li>
+<li>Alternative text for images</li>
+<li>Proper heading hierarchy</li>
+<li>Skip links and landmarks</li>
+</ul>
+<h3>5. Mobile Accessibility</h3>
+<ul>
+<li>Touch target sizing (44x44dp minimum)</li>
+<li>VoiceOver and TalkBack compatibility</li>
+<li>Gesture alternatives</li>
+<li>Dynamic Type support</li>
+</ul>
+<h2>Quick Reference</h2>
+<h3>WCAG 2.2 Success Criteria Checklist</h3>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Criterion</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>1.1.1</td>
+<td>Non-text content has text alternatives</td>
+</tr>
+<tr>
+<td>A</td>
+<td>1.3.1</td>
+<td>Info and relationships programmatically determinable</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2.1.1</td>
+<td>All functionality keyboard accessible</td>
+</tr>
+<tr>
+<td>A</td>
+<td>2.4.1</td>
+<td>Skip to main content mechanism</td>
+</tr>
+<tr>
+<td>AA</td>
+<td>1.4.3</td>
+<td>Contrast ratio 4.5:1 (text), 3:1 (large text)</td>
+</tr>
+<tr>
+<td>AA</td>
+<td>1.4.11</td>
+<td>Non-text contrast 3:1</td>
+</tr>
+<tr>
+<td>AA</td>
+<td>2.4.7</td>
+<td>Focus visible</td>
+</tr>
+<tr>
+<td>AA</td>
+<td>2.5.8</td>
+<td>Target size minimum 24x24px (NEW in 2.2)</td>
+</tr>
+<tr>
+<td>AAA</td>
+<td>1.4.6</td>
+<td>Enhanced contrast 7:1</td>
+</tr>
+<tr>
+<td>AAA</td>
+<td>2.5.5</td>
+<td>Target size minimum 44x44px</td>
+</tr>
+</tbody></table>
+<h2>Key Patterns</h2>
+<h3>Pattern 1: Accessible Button</h3>
+<pre><code class="language-tsx">interface ButtonProps extends React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt; {
+  variant?: &quot;primary&quot; | &quot;secondary&quot;;
+  isLoading?: boolean;
+}
+
+function AccessibleButton({
+  children,
+  variant = &quot;primary&quot;,
+  isLoading = false,
+  disabled,
+  ...props
+}: ButtonProps) {
+  return (
+    &lt;button
+      // Disable when loading
+      disabled={disabled || isLoading}
+      // Announce loading state to screen readers
+      aria-busy={isLoading}
+      // Describe the button&#39;s current state
+      aria-disabled={disabled || isLoading}
+      className={cn(
+        // Visible focus ring
+        &quot;focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2&quot;,
+        // Minimum touch target size (44x44px)
+        &quot;min-h-[44px] min-w-[44px]&quot;,
+        variant === &quot;primary&quot; &amp;&amp; &quot;bg-primary text-primary-foreground&quot;,
+        (disabled || isLoading) &amp;&amp; &quot;opacity-50 cursor-not-allowed&quot;,
+      )}
+      {...props}
+    &gt;
+      {isLoading ? (
+        &lt;&gt;
+          &lt;span className=&quot;sr-only&quot;&gt;Loading&lt;/span&gt;
+          &lt;Spinner aria-hidden=&quot;true&quot; /&gt;
+        &lt;/&gt;
+      ) : (
+        children
+      )}
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<h3>Pattern 2: Accessible Modal Dialog</h3>
+<pre><code class="language-tsx">import * as React from &quot;react&quot;;
+import { FocusTrap } from &quot;@headlessui/react&quot;;
+
+interface DialogProps {
+  isOpen: boolean;
+  onClose: () =&gt; void;
+  title: string;
+  children: React.ReactNode;
+}
+
+function AccessibleDialog({ isOpen, onClose, title, children }: DialogProps) {
+  const titleId = React.useId();
+  const descriptionId = React.useId();
+
+  // Close on Escape key
+  React.useEffect(() =&gt; {
+    const handleKeyDown = (e: KeyboardEvent) =&gt; {
+      if (e.key === &quot;Escape&quot; &amp;&amp; isOpen) {
+        onClose();
+      }
+    };
+    document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+    return () =&gt; document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+  }, [isOpen, onClose]);
+
+  // Prevent body scroll when open
+  React.useEffect(() =&gt; {
+    if (isOpen) {
+      document.body.style.overflow = &quot;hidden&quot;;
+    }
+    return () =&gt; {
+      document.body.style.overflow = &quot;&quot;;
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    &lt;div
+      role=&quot;dialog&quot;
+      aria-modal=&quot;true&quot;
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+    &gt;
+      {/* Backdrop */}
+      &lt;div
+        className=&quot;fixed inset-0 bg-black/50&quot;
+        aria-hidden=&quot;true&quot;
+        onClick={onClose}
+      /&gt;
+
+      {/* Focus trap container */}
+      &lt;FocusTrap&gt;
+        &lt;div className=&quot;fixed inset-0 flex items-center justify-center p-4&quot;&gt;
+          &lt;div className=&quot;bg-background rounded-lg shadow-lg max-w-md w-full p-6&quot;&gt;
+            &lt;h2 id={titleId} className=&quot;text-lg font-semibold&quot;&gt;
+              {title}
+            &lt;/h2&gt;
+            &lt;div id={descriptionId}&gt;{children}&lt;/div&gt;
+            &lt;button
+              onClick={onClose}
+              className=&quot;absolute top-4 right-4&quot;
+              aria-label=&quot;Close dialog&quot;
+            &gt;
+              &lt;X className=&quot;h-4 w-4&quot; /&gt;
+            &lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/FocusTrap&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h3>Pattern 3: Accessible Form</h3>
+<pre><code class="language-tsx">function AccessibleForm() {
+  const [errors, setErrors] = React.useState&lt;Record&lt;string, string&gt;&gt;({});
+
+  return (
+    &lt;form aria-describedby=&quot;form-errors&quot; noValidate&gt;
+      {/* Error summary for screen readers */}
+      {Object.keys(errors).length &gt; 0 &amp;&amp; (
+        &lt;div
+          id=&quot;form-errors&quot;
+          role=&quot;alert&quot;
+          aria-live=&quot;assertive&quot;
+          className=&quot;bg-destructive/10 border border-destructive p-4 rounded-md mb-4&quot;
+        &gt;
+          &lt;h2 className=&quot;font-semibold text-destructive&quot;&gt;
+            Please fix the following errors:
+          &lt;/h2&gt;
+          &lt;ul className=&quot;list-disc list-inside mt-2&quot;&gt;
+            {Object.entries(errors).map(([field, message]) =&gt; (
+              &lt;li key={field}&gt;
+                &lt;a href={`#${field}`} className=&quot;underline&quot;&gt;
+                  {message}
+                &lt;/a&gt;
+              &lt;/li&gt;
+            ))}
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      )}
+
+      {/* Required field with error */}
+      &lt;div className=&quot;space-y-2&quot;&gt;
+        &lt;label htmlFor=&quot;email&quot; className=&quot;block font-medium&quot;&gt;
+          Email address
+          &lt;span aria-hidden=&quot;true&quot; className=&quot;text-destructive ml-1&quot;&gt;
+            *
+          &lt;/span&gt;
+          &lt;span className=&quot;sr-only&quot;&gt;(required)&lt;/span&gt;
+        &lt;/label&gt;
+        &lt;input
+          id=&quot;email&quot;
+          name=&quot;email&quot;
+          type=&quot;email&quot;
+          required
+          aria-required=&quot;true&quot;
+          aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? &quot;email-error&quot; : &quot;email-hint&quot;}
+          className={cn(
+            &quot;w-full px-3 py-2 border rounded-md&quot;,
+            errors.email &amp;&amp; &quot;border-destructive&quot;,
+          )}
+        /&gt;
+        {errors.email ? (
+          &lt;p id=&quot;email-error&quot; className=&quot;text-sm text-destructive&quot; role=&quot;alert&quot;&gt;
+            {errors.email}
+          &lt;/p&gt;
+        ) : (
+          &lt;p id=&quot;email-hint&quot; className=&quot;text-sm text-muted-foreground&quot;&gt;
+            We&#39;ll never share your email.
+          &lt;/p&gt;
+        )}
+      &lt;/div&gt;
+
+      &lt;button type=&quot;submit&quot; className=&quot;mt-4&quot;&gt;
+        Submit
+      &lt;/button&gt;
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<h3>Pattern 4: Skip Navigation Link</h3>
+<pre><code class="language-tsx">function SkipLink() {
+  return (
+    &lt;a
+      href=&quot;#main-content&quot;
+      className={cn(
+        // Hidden by default, visible on focus
+        &quot;sr-only focus:not-sr-only&quot;,
+        &quot;focus:absolute focus:top-4 focus:left-4 focus:z-50&quot;,
+        &quot;focus:bg-background focus:px-4 focus:py-2 focus:rounded-md&quot;,
+        &quot;focus:ring-2 focus:ring-primary&quot;,
+      )}
+    &gt;
+      Skip to main content
+    &lt;/a&gt;
+  );
+}
+
+// In layout
+function Layout({ children }) {
+  return (
+    &lt;&gt;
+      &lt;SkipLink /&gt;
+      &lt;header&gt;...&lt;/header&gt;
+      &lt;nav aria-label=&quot;Main navigation&quot;&gt;...&lt;/nav&gt;
+      &lt;main id=&quot;main-content&quot; tabIndex={-1}&gt;
+        {children}
+      &lt;/main&gt;
+      &lt;footer&gt;...&lt;/footer&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h3>Pattern 5: Live Region for Announcements</h3>
+<pre><code class="language-tsx">function useAnnounce() {
+  const [message, setMessage] = React.useState(&quot;&quot;);
+
+  const announce = React.useCallback(
+    (text: string, priority: &quot;polite&quot; | &quot;assertive&quot; = &quot;polite&quot;) =&gt; {
+      setMessage(&quot;&quot;); // Clear first to ensure re-announcement
+      setTimeout(() =&gt; setMessage(text), 100);
+    },
+    [],
+  );
+
+  const Announcer = () =&gt; (
+    &lt;div
+      role=&quot;status&quot;
+      aria-live=&quot;polite&quot;
+      aria-atomic=&quot;true&quot;
+      className=&quot;sr-only&quot;
+    &gt;
+      {message}
+    &lt;/div&gt;
+  );
+
+  return { announce, Announcer };
+}
+
+// Usage
+function SearchResults({ results, isLoading }) {
+  const { announce, Announcer } = useAnnounce();
+
+  React.useEffect(() =&gt; {
+    if (!isLoading &amp;&amp; results) {
+      announce(`${results.length} results found`);
+    }
+  }, [results, isLoading, announce]);
+
+  return (
+    &lt;&gt;
+      &lt;Announcer /&gt;
+      &lt;ul&gt;{/* results */}&lt;/ul&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h2>Color Contrast Requirements</h2>
+<pre><code class="language-typescript">// Contrast ratio utilities
+function getContrastRatio(foreground: string, background: string): number {
+  const fgLuminance = getLuminance(foreground);
+  const bgLuminance = getLuminance(background);
+  const lighter = Math.max(fgLuminance, bgLuminance);
+  const darker = Math.min(fgLuminance, bgLuminance);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+// WCAG requirements
+const CONTRAST_REQUIREMENTS = {
+  // Normal text (&lt;18pt or &lt;14pt bold)
+  normalText: {
+    AA: 4.5,
+    AAA: 7,
+  },
+  // Large text (&gt;=18pt or &gt;=14pt bold)
+  largeText: {
+    AA: 3,
+    AAA: 4.5,
+  },
+  // UI components and graphics
+  uiComponents: {
+    AA: 3,
+  },
+};
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Use Semantic HTML</strong>: Prefer native elements over ARIA when possible</li>
+<li><strong>Test with Real Users</strong>: Include people with disabilities in user testing</li>
+<li><strong>Keyboard First</strong>: Design interactions to work without a mouse</li>
+<li><strong>Don&#39;t Disable Focus Styles</strong>: Style them, don&#39;t remove them</li>
+<li><strong>Provide Text Alternatives</strong>: All non-text content needs descriptions</li>
+<li><strong>Support Zoom</strong>: Content should work at 200% zoom</li>
+<li><strong>Announce Changes</strong>: Use live regions for dynamic content</li>
+<li><strong>Respect Preferences</strong>: Honor prefers-reduced-motion and prefers-contrast</li>
+</ol>
+<h2>Common Issues</h2>
+<ul>
+<li><strong>Missing alt text</strong>: Images without descriptions</li>
+<li><strong>Poor color contrast</strong>: Text hard to read against background</li>
+<li><strong>Keyboard traps</strong>: Focus stuck in component</li>
+<li><strong>Missing labels</strong>: Form inputs without associated labels</li>
+<li><strong>Auto-playing media</strong>: Content that plays without user initiation</li>
+<li><strong>Inaccessible custom controls</strong>: Recreating native functionality poorly</li>
+<li><strong>Missing skip links</strong>: No way to bypass repetitive content</li>
+<li><strong>Focus order issues</strong>: Tab order doesn&#39;t match visual order</li>
+</ul>
+<h2>Testing Tools</h2>
+<ul>
+<li><strong>Automated</strong>: axe DevTools, WAVE, Lighthouse</li>
+<li><strong>Manual</strong>: VoiceOver (macOS/iOS), NVDA/JAWS (Windows), TalkBack (Android)</li>
+<li><strong>Simulators</strong>: NoCoffee (vision), Silktide (various disabilities)</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG 2.2 Guidelines</a></li>
+<li><a href="https://www.w3.org/WAI/ARIA/apg/">WAI-ARIA Authoring Practices</a></li>
+<li><a href="https://www.a11yproject.com/checklist/">A11y Project Checklist</a></li>
+<li><a href="https://inclusive-components.design/">Inclusive Components</a></li>
+<li><a href="https://dequeuniversity.com/">Deque University</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

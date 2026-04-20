@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>iOS Mobile Design</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/mobile-ios-design/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">iOS Mobile Design</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fmobile-ios-design">mobile-ios-design</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: mobile-ios-design
+description: Master iOS Human Interface Guidelines and SwiftUI patterns for building native iOS apps. Use when designing iOS interfaces, implementing SwiftUI views, or ensuring apps follow Apple&#39;s design principles.</h2>
+<h1>iOS Mobile Design</h1>
+<p>Master iOS Human Interface Guidelines (HIG) and SwiftUI patterns to build polished, native iOS applications that feel at home on Apple platforms.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Designing iOS app interfaces following Apple HIG</li>
+<li>Building SwiftUI views and layouts</li>
+<li>Implementing iOS navigation patterns (NavigationStack, TabView, sheets)</li>
+<li>Creating adaptive layouts for iPhone and iPad</li>
+<li>Using SF Symbols and system typography</li>
+<li>Building accessible iOS interfaces</li>
+<li>Implementing iOS-specific gestures and interactions</li>
+<li>Designing for Dynamic Type and Dark Mode</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Human Interface Guidelines Principles</h3>
+<p><strong>Clarity</strong>: Content is legible, icons are precise, adornments are subtle
+<strong>Deference</strong>: UI helps users understand content without competing with it
+<strong>Depth</strong>: Visual layers and motion convey hierarchy and enable navigation</p>
+<p><strong>Platform Considerations:</strong></p>
+<ul>
+<li><strong>iOS</strong>: Touch-first, compact displays, portrait orientation</li>
+<li><strong>iPadOS</strong>: Larger canvas, multitasking, pointer support</li>
+<li><strong>visionOS</strong>: Spatial computing, eye/hand input</li>
+</ul>
+<h3>2. SwiftUI Layout System</h3>
+<p><strong>Stack-Based Layouts:</strong></p>
+<pre><code class="language-swift">// Vertical stack with alignment
+VStack(alignment: .leading, spacing: 12) {
+    Text(&quot;Title&quot;)
+        .font(.headline)
+    Text(&quot;Subtitle&quot;)
+        .font(.subheadline)
+        .foregroundStyle(.secondary)
+}
+
+// Horizontal stack with flexible spacing
+HStack {
+    Image(systemName: &quot;star.fill&quot;)
+    Text(&quot;Featured&quot;)
+    Spacer()
+    Text(&quot;View All&quot;)
+        .foregroundStyle(.blue)
+}
+</code></pre>
+<p><strong>Grid Layouts:</strong></p>
+<pre><code class="language-swift">// Adaptive grid that fills available width
+LazyVGrid(columns: [
+    GridItem(.adaptive(minimum: 150, maximum: 200))
+], spacing: 16) {
+    ForEach(items) { item in
+        ItemCard(item: item)
+    }
+}
+
+// Fixed column grid
+LazyVGrid(columns: [
+    GridItem(.flexible()),
+    GridItem(.flexible()),
+    GridItem(.flexible())
+], spacing: 12) {
+    ForEach(items) { item in
+        ItemThumbnail(item: item)
+    }
+}
+</code></pre>
+<h3>3. Navigation Patterns</h3>
+<p><strong>NavigationStack (iOS 16+):</strong></p>
+<pre><code class="language-swift">struct ContentView: View {
+    @State private var path = NavigationPath()
+
+    var body: some View {
+        NavigationStack(path: $path) {
+            List(items) { item in
+                NavigationLink(value: item) {
+                    ItemRow(item: item)
+                }
+            }
+            .navigationTitle(&quot;Items&quot;)
+            .navigationDestination(for: Item.self) { item in
+                ItemDetailView(item: item)
+            }
+        }
+    }
+}
+</code></pre>
+<p><strong>TabView:</strong></p>
+<pre><code class="language-swift">struct MainTabView: View {
+    @State private var selectedTab = 0
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            HomeView()
+                .tabItem {
+                    Label(&quot;Home&quot;, systemImage: &quot;house&quot;)
+                }
+                .tag(0)
+
+            SearchView()
+                .tabItem {
+                    Label(&quot;Search&quot;, systemImage: &quot;magnifyingglass&quot;)
+                }
+                .tag(1)
+
+            ProfileView()
+                .tabItem {
+                    Label(&quot;Profile&quot;, systemImage: &quot;person&quot;)
+                }
+                .tag(2)
+        }
+    }
+}
+</code></pre>
+<h3>4. System Integration</h3>
+<p><strong>SF Symbols:</strong></p>
+<pre><code class="language-swift">// Basic symbol
+Image(systemName: &quot;heart.fill&quot;)
+    .foregroundStyle(.red)
+
+// Symbol with rendering mode
+Image(systemName: &quot;cloud.sun.fill&quot;)
+    .symbolRenderingMode(.multicolor)
+
+// Variable symbol (iOS 16+)
+Image(systemName: &quot;speaker.wave.3.fill&quot;, variableValue: volume)
+
+// Symbol effect (iOS 17+)
+Image(systemName: &quot;bell.fill&quot;)
+    .symbolEffect(.bounce, value: notificationCount)
+</code></pre>
+<p><strong>Dynamic Type:</strong></p>
+<pre><code class="language-swift">// Use semantic fonts
+Text(&quot;Headline&quot;)
+    .font(.headline)
+
+Text(&quot;Body text that scales with user preferences&quot;)
+    .font(.body)
+
+// Custom font that respects Dynamic Type
+Text(&quot;Custom&quot;)
+    .font(.custom(&quot;Avenir&quot;, size: 17, relativeTo: .body))
+</code></pre>
+<h3>5. Visual Design</h3>
+<p><strong>Colors and Materials:</strong></p>
+<pre><code class="language-swift">// Semantic colors that adapt to light/dark mode
+Text(&quot;Primary&quot;)
+    .foregroundStyle(.primary)
+Text(&quot;Secondary&quot;)
+    .foregroundStyle(.secondary)
+
+// System materials for blur effects
+Rectangle()
+    .fill(.ultraThinMaterial)
+    .frame(height: 100)
+
+// Vibrant materials for overlays
+Text(&quot;Overlay&quot;)
+    .padding()
+    .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
+</code></pre>
+<p><strong>Shadows and Depth:</strong></p>
+<pre><code class="language-swift">// Standard card shadow
+RoundedRectangle(cornerRadius: 16)
+    .fill(.background)
+    .shadow(color: .black.opacity(0.1), radius: 8, y: 4)
+
+// Elevated appearance
+.shadow(radius: 2, y: 1)
+.shadow(radius: 8, y: 4)
+</code></pre>
+<h2>Quick Start Component</h2>
+<pre><code class="language-swift">import SwiftUI
+
+struct FeatureCard: View {
+    let title: String
+    let description: String
+    let systemImage: String
+
+    var body: some View {
+        HStack(spacing: 16) {
+            Image(systemName: systemImage)
+                .font(.title)
+                .foregroundStyle(.blue)
+                .frame(width: 44, height: 44)
+                .background(.blue.opacity(0.1), in: Circle())
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
+                Text(description)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+            }
+
+            Spacer()
+
+            Image(systemName: &quot;chevron.right&quot;)
+                .foregroundStyle(.tertiary)
+        }
+        .padding()
+        .background(.background, in: RoundedRectangle(cornerRadius: 12))
+        .shadow(color: .black.opacity(0.05), radius: 4, y: 2)
+    }
+}
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Use Semantic Colors</strong>: Always use <code>.primary</code>, <code>.secondary</code>, <code>.background</code> for automatic light/dark mode support</li>
+<li><strong>Embrace SF Symbols</strong>: Use system symbols for consistency and automatic accessibility</li>
+<li><strong>Support Dynamic Type</strong>: Use semantic fonts (<code>.body</code>, <code>.headline</code>) instead of fixed sizes</li>
+<li><strong>Add Accessibility</strong>: Include <code>.accessibilityLabel()</code> and <code>.accessibilityHint()</code> modifiers</li>
+<li><strong>Use Safe Areas</strong>: Respect <code>safeAreaInset</code> and avoid hardcoded padding at screen edges</li>
+<li><strong>Implement State Restoration</strong>: Use <code>@SceneStorage</code> for preserving user state</li>
+<li><strong>Support iPad Multitasking</strong>: Design for split view and slide over</li>
+<li><strong>Test on Device</strong>: Simulator doesn&#39;t capture full haptic and performance experience</li>
+</ol>
+<h2>Common Issues</h2>
+<ul>
+<li><strong>Layout Breaking</strong>: Use <code>.fixedSize()</code> sparingly; prefer flexible layouts</li>
+<li><strong>Performance Issues</strong>: Use <code>LazyVStack</code>/<code>LazyHStack</code> for long scrolling lists</li>
+<li><strong>Navigation Bugs</strong>: Ensure <code>NavigationLink</code> values are <code>Hashable</code></li>
+<li><strong>Dark Mode Problems</strong>: Avoid hardcoded colors; use semantic or asset catalog colors</li>
+<li><strong>Accessibility Failures</strong>: Test with VoiceOver enabled</li>
+<li><strong>Memory Leaks</strong>: Watch for strong reference cycles in closures</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://developer.apple.com/design/human-interface-guidelines/">Human Interface Guidelines</a></li>
+<li><a href="https://developer.apple.com/documentation/swiftui">SwiftUI Documentation</a></li>
+<li><a href="https://developer.apple.com/sf-symbols/">SF Symbols App</a></li>
+<li><a href="https://developer.apple.com/videos/swiftui/">WWDC SwiftUI Sessions</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

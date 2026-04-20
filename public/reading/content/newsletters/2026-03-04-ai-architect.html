@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>2026 03 04 ai architect</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="content/newsletters/2026-03-04-ai-architect.txt" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">2026 03 04 ai architect</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#content">content</a> / <a href="index.html#content%2Fnewsletters">newsletters</a> / <span>2026-03-04-ai-architect.txt</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <pre>AI ARCHITECT DISPATCH #1
+March 4, 2026 | 8 min read
+Systems that think. Code that ships.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+FROM THE ARCHITECT'S DESK
+
+This week marks a shift I've been tracking for months: the best AI systems
+aren't single models anymore -- they're engineered systems of specialist models
+collaborating inside structured architectures. DeepSeek V4 activates only 32B
+of its 1T parameters per token. Apple ships agentic coding directly into Xcode.
+Claude Code now writes 4% of all GitHub commits. The era of "pick the best
+model" is giving way to "design the best system." That's what this newsletter
+is about.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. DEEPSEEK V4: 1 TRILLION PARAMETERS, 32 BILLION ACTIVE
+   Model Release | DeepSeek
+
+DeepSeek V4 launched around March 3. The numbers: 1 trillion total parameters
+with only 32 billion active per token -- fewer active parameters than V3 despite
+being vastly larger. The model is fully multimodal (text, image, video).
+
+Why This Matters: This is Mixture-of-Experts at serious scale. The key insight
+isn't the parameter count -- it's that routing efficiency has improved to the
+point where 97% of the model stays dormant on any given token. If you're
+designing agentic systems, sparse activation means you can run frontier-quality
+reasoning at mid-tier compute costs.
+
+What You Can Do:
+- Benchmark V4 against your current routing layer
+- Test multimodal capabilities for document understanding pipelines
+- Watch for the fine-grained sparse attention paper (50% efficiency gains)
+
+Read more: https://www.pymnts.com/artificial-intelligence-2/2026/deepseek-poised-to-unveil-latest-ai-model/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. CLAUDE CODE NOW WRITES 4% OF ALL GITHUB COMMITS
+   Industry Trend | Anthropic / SemiAnalysis
+
+Per SemiAnalysis, 4% of all public GitHub commits are now authored by Claude
+Code. At current trajectory, that number hits 20%+ by end of 2026. Anthropic's
+terminal-native agent has reached $2.5B ARR.
+
+Opus 4.6 scores 80.9% on SWE-bench Verified, the highest of any model.
+Rakuten tested it on vLLM -- a 12.5 million line codebase -- and Claude Code
+finished an activation vector extraction implementation in 7 hours of
+autonomous work with 99.9% numerical accuracy.
+
+Why This Matters: This isn't autocomplete anymore. Claude Code operates
+directly on file systems, reads entire repos, executes commands, and modifies
+code autonomously. Your CI/CD pipelines, code review processes, and testing
+infrastructure need to account for AI-authored commits as a first-class
+contributor.
+
+What You Can Do:
+- Set up Claude Code with your private repos
+- Add AI-commit attribution (Co-Authored-By headers)
+- Review your code review process for AI-authored PRs
+
+Read more: https://newsletter.semianalysis.com/p/claude-code-is-the-inflection-point
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. APPLE SHIPS AGENTIC CODING IN XCODE 26.3
+   Platform Update | Apple
+
+Xcode 26.3 introduced native support for agentic coding. Developers can plug
+in Claude Agent and OpenAI Codex directly. Agents can search documentation,
+explore file structures, update project settings, capture Xcode Previews, and
+iterate through builds autonomously.
+
+Why This Matters: Apple validating agentic coding at the IDE level is a
+mainstream adoption signal. When the most conservative major platform ships
+agent support, the pattern has crossed from early-adopter to default.
+
+What You Can Do:
+- Update to Xcode 26.3 and test agent-assisted SwiftUI development
+- Compare Claude Agent vs Codex on your codebase
+- Build agent-aware project structures (clear module boundaries, explicit docs)
+
+Read more: https://www.apple.com/newsroom/2026/02/xcode-26-point-3-unlocks-the-power-of-agentic-coding/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. GOOGLE SHIPS MANAGED MCP SERVERS -- MCP GOES ENTERPRISE
+   Infrastructure | Google Cloud / Linux Foundation
+
+Google launched fully managed, remote MCP servers for Maps, BigQuery, Compute
+Engine, and Kubernetes Engine. MCP governance moved to the Linux Foundation's
+Agentic AI Foundation. All three major cloud providers now have official
+remote MCP servers.
+
+Why This Matters: MCP went from "interesting open-source protocol" to
+"enterprise infrastructure standard." Design your agentic systems with MCP
+as the tool interface layer, not custom API wrappers.
+
+What You Can Do:
+- Audit your agent tool integrations -- anything custom should get an MCP wrapper
+- Test Google's managed MCP servers if you're on GCP
+- Adopt the mcp-agent framework for new agentic workflows
+
+Read more: https://techcrunch.com/2025/12/10/google-is-going-all-in-on-mcp-servers-agent-ready-by-design/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. GPT-5.3-CODEX: THE MODEL THAT HELPED BUILD ITSELF
+   Model Release | OpenAI
+
+GPT-5.3-Codex is OpenAI's first model instrumental in its own creation. The
+Codex team used early versions to debug training, manage deployment, and
+diagnose evaluations. Recursive self-improvement in production.
+
+Why This Matters: Self-improving development loops are no longer theoretical.
+Your model evaluation pipelines, training infrastructure, and deployment
+tooling should be designed to accept AI contributions.
+
+Read more: https://llm-stats.com/llm-updates
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DEEP DIVE: AGENTIC ENGINEERING -- WHY INTELLIGENCE BECAME A SYSTEM
+
+The biggest architectural shift of 2026 isn't a single model release. It's the
+recognition that production AI is an engineered system of specialists, not a
+monolithic model.
+
+The pattern:
+
+  Planning Model      -&gt; reasoning, strategy
+  Extraction Model    -&gt; parsing, structure
+  Compliance Model    -&gt; safety, policy
+  Perception Model    -&gt; vision, audio
+  Generalist LLM      -&gt; fallback, escalation
+  Connected via MCP   -&gt; universal tool interface
+
+Small, specialist models collaborate inside structured agentic architectures.
+Each model is chosen for its strengths, not forced to be good at everything.
+
+Three converging forces made this pattern viable:
+
+1. Sparse MoE at scale. DeepSeek V4 proves you can get frontier quality at
+   mid-tier compute. Running multiple specialist models is now economical.
+
+2. MCP as the universal tool interface. With all three major clouds shipping
+   managed MCP servers, agents connect to any tool through a standard protocol.
+
+3. Inference-time scaling beats training-time scaling. Most benchmark progress
+   in 2026 comes from improved tooling and inference-time compute.
+
+What to build toward: Stop optimizing for "which single model is best." Start
+designing the orchestration layer -- the routing logic that sends each subtask
+to the right specialist. That's where the competitive advantage lives in 2026.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TOOLS WORTH WATCHING
+
+1. mcp-agent (github.com/lastmile-ai/mcp-agent)
+   Pairs Anthropic's Building Effective Agents patterns with a batteries-included
+   MCP runtime. Best for new agentic projects.
+
+2. Lovable (lovable.dev)
+   Full-stack app builder: React + Tailwind + Vite with real-time collaboration.
+   Worth testing for rapid prototyping.
+
+3. Replit Agent (replit.com)
+   Full-stack AI dev environment. Describe what you want; it assembles frontend,
+   backend, database, auth, hosting, and deploy previews.
+
+4. Google Developer Knowledge API
+   Documentation-as-MCP-server. Keeps AI coding assistants in sync with live
+   Google Cloud docs.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AI Architect Dispatch by Frank Riemer
+AI Architect | Creator | Builder
+
+frankx.ai | x.com/frankxeth | linkedin.com/in/frank-x-riemer
+
+You received this because you subscribed at frankx.ai
+Unsubscribe: https://frankx.ai/unsubscribe
+</pre>
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

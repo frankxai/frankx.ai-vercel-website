@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitHub Issue Tracking Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/swarm-plans/GITHUB-ISSUE-TRACKING.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitHub Issue Tracking Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fswarm-plans">swarm-plans</a> / <span>GITHUB-ISSUE-TRACKING.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>GitHub Issue Tracking Plan</h1>
+<h2>Overview</h2>
+<p>This document defines the <strong>GitHub issue tracking strategy</strong> for the 15-agent swarm implementation of Claude-Flow v3. Agent #1 (Queen Coordinator) manages all issue lifecycle with frequent reply updates from all agents.</p>
+<hr>
+<h2>Issue Hierarchy</h2>
+<pre><code>GitHub Project: Claude-Flow v3 Implementation
+├── Milestone: v3.0.0-alpha.1 (Week 1-2)
+│   ├── Epic: Security Foundation
+│   │   ├── Issue: CVE-1 Fix - Vulnerable dependencies
+│   │   ├── Issue: CVE-2 Fix - Weak password hashing
+│   │   └── Issue: CVE-3 Fix - Hardcoded credentials
+│   └── Epic: Core Foundation
+│       ├── Issue: Orchestrator decomposition
+│       └── Issue: Type system modernization
+│
+├── Milestone: v3.0.0-alpha.5 (Week 3-6)
+│   ├── Epic: Memory Unification
+│   ├── Epic: Swarm Unification
+│   └── Epic: MCP Optimization
+│
+├── Milestone: v3.0.0-beta.1 (Week 7-10)
+│   ├── Epic: agentic-flow Integration
+│   ├── Epic: CLI Modernization
+│   └── Epic: Neural/Learning Integration
+│
+└── Milestone: v3.0.0 (Week 11-14)
+    ├── Epic: Performance Optimization
+    ├── Epic: Test Coverage
+    └── Epic: Release Preparation
+</code></pre>
+<hr>
+<h2>Label System</h2>
+<h3>Agent Labels</h3>
+<pre><code class="language-yaml">labels:
+  - name: swarm:queen
+    color: &quot;6f42c1&quot;
+    description: Queen Coordinator (Agent #1)
+
+  - name: swarm:security
+    color: &quot;d73a4a&quot;
+    description: Security Domain (Agents #2-4)
+
+  - name: swarm:core
+    color: &quot;0075ca&quot;
+    description: Core Domain (Agents #5-6)
+
+  - name: swarm:memory
+    color: &quot;1d76db&quot;
+    description: Memory Specialist (Agent #7)
+
+  - name: swarm:swarm
+    color: &quot;0e8a16&quot;
+    description: Swarm Specialist (Agent #8)
+
+  - name: swarm:mcp
+    color: &quot;5319e7&quot;
+    description: MCP Specialist (Agent #9)
+
+  - name: swarm:integration
+    color: &quot;fbca04&quot;
+    description: Integration (Agents #10-12)
+
+  - name: swarm:tdd
+    color: &quot;b60205&quot;
+    description: TDD Engineer (Agent #13)
+
+  - name: swarm:performance
+    color: &quot;e99695&quot;
+    description: Performance Engineer (Agent #14)
+
+  - name: swarm:release
+    color: &quot;c5def5&quot;
+    description: Release Engineer (Agent #15)
+</code></pre>
+<h3>Priority Labels</h3>
+<pre><code class="language-yaml">labels:
+  - name: priority:critical
+    color: &quot;b60205&quot;
+    description: Blocking release
+
+  - name: priority:high
+    color: &quot;d93f0b&quot;
+    description: Must fix before milestone
+
+  - name: priority:medium
+    color: &quot;fbca04&quot;
+    description: Should fix before release
+
+  - name: priority:low
+    color: &quot;0e8a16&quot;
+    description: Nice to have
+</code></pre>
+<h3>Type Labels</h3>
+<pre><code class="language-yaml">labels:
+  - name: type:security
+    color: &quot;d73a4a&quot;
+    description: Security fix
+
+  - name: type:feature
+    color: &quot;a2eeef&quot;
+    description: New feature
+
+  - name: type:bug
+    color: &quot;d73a4a&quot;
+    description: Bug fix
+
+  - name: type:refactor
+    color: &quot;1d76db&quot;
+    description: Code refactoring
+
+  - name: type:test
+    color: &quot;0e8a16&quot;
+    description: Test-related
+
+  - name: type:docs
+    color: &quot;0075ca&quot;
+    description: Documentation
+
+  - name: type:perf
+    color: &quot;e99695&quot;
+    description: Performance improvement
+</code></pre>
+<h3>Status Labels</h3>
+<pre><code class="language-yaml">labels:
+  - name: status:blocked
+    color: &quot;b60205&quot;
+    description: Blocked by dependency
+
+  - name: status:in-progress
+    color: &quot;fbca04&quot;
+    description: Currently being worked on
+
+  - name: status:review
+    color: &quot;0e8a16&quot;
+    description: Ready for review
+
+  - name: status:testing
+    color: &quot;1d76db&quot;
+    description: In testing phase
+</code></pre>
+<hr>
+<h2>Issue Templates</h2>
+<h3>Epic Issue Template</h3>
+<pre><code class="language-markdown">---
+name: Epic
+about: Large feature or initiative tracking
+title: &quot;[EPIC] &quot;
+labels: [&quot;epic&quot;]
+assignees: &#39;&#39;
+---
+
+## Epic: [Title]
+
+### Overview
+&lt;!-- Brief description of this epic --&gt;
+
+### Scope
+&lt;!-- What&#39;s included and excluded --&gt;
+
+### Success Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
+
+### Child Issues
+&lt;!-- Will be auto-populated --&gt;
+- [ ] #issue1
+- [ ] #issue2
+
+### Agents Assigned
+- Primary: Agent #X
+- Supporting: Agents #Y, #Z
+
+### Timeline
+- Start: Week X
+- Target: Week Y
+
+### Dependencies
+&lt;!-- Other epics/issues this depends on --&gt;
+- Depends on: #epic1
+- Blocks: #epic2
+
+---
+## Progress Updates
+&lt;!-- Agents will add replies below --&gt;
+</code></pre>
+<h3>Task Issue Template</h3>
+<pre><code class="language-markdown">---
+name: Task
+about: Individual implementation task
+title: &quot;[TASK] &quot;
+labels: [&quot;task&quot;]
+assignees: &#39;&#39;
+---
+
+## Task: [Title]
+
+### Description
+&lt;!-- What needs to be done --&gt;
+
+### Acceptance Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
+
+### Technical Details
+&lt;!-- Implementation notes, file paths, etc. --&gt;
+
+**Files to modify:**
+- `path/to/file1.ts`
+- `path/to/file2.ts`
+
+**Related modules:**
+- module1
+- module2
+
+### Agent Assignment
+- Assigned to: Agent #X
+- Reviewer: Agent #Y
+
+### TDD Checklist
+- [ ] Acceptance test written (failing)
+- [ ] Unit tests written (failing)
+- [ ] Implementation complete
+- [ ] Tests passing
+- [ ] Code reviewed
+- [ ] Merged
+
+### Definition of Done
+- [ ] Code implemented
+- [ ] Tests passing (90%+ coverage)
+- [ ] Documentation updated
+- [ ] PR approved
+- [ ] Merged to main
+
+---
+## Work Log
+&lt;!-- Agent will add progress replies --&gt;
+</code></pre>
+<hr>
+<h2>Reply Templates</h2>
+<h3>Hourly Status Update</h3>
+<pre><code class="language-markdown">## 🤖 Agent #X Status Update
+
+**Time:** YYYY-MM-DD HH:MM UTC
+**Status:** 🟢 Active / 🟡 Blocked / 🔴 Error
+
+### Current Task
+Working on: [Brief description]
+
+### Progress
+- [x] Completed step 1
+- [x] Completed step 2
+- [ ] In progress: step 3
+- [ ] Pending: step 4
+
+### Metrics
+- Files modified: X
+- Tests written: X
+- Test coverage: X%
+
+### Blockers
+&lt;!-- If any --&gt;
+- None / Blocked by #issue
+
+### Next Steps
+1. Next action 1
+2. Next action 2
+
+---
+_Reply generated by Agent #X (claude-flow v3 swarm)_
+</code></pre>
+<h3>Task Completion Update</h3>
+<pre><code class="language-markdown">## ✅ Task Completed: [Task Name]
+
+**Agent:** #X ([Agent Name])
+**Duration:** Xh Ym
+**Completed:** YYYY-MM-DD HH:MM UTC
+
+### Summary
+Brief description of what was accomplished.
+
+### Changes Made
+- `path/to/file1.ts`: Description of change
+- `path/to/file2.ts`: Description of change
+
+### Test Results
+</code></pre>
+<p>Tests: XX passed, X failed
+Coverage: XX.X%</p>
+<pre><code>
+### Metrics
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Lines of code | XXX | XXX | ±XX |
+| Cyclomatic complexity | X.X | X.X | ±X.X |
+| Test coverage | XX% | XX% | ±X% |
+
+### PR Link
+#PR-XXX
+
+### Follow-up Items
+- [ ] Related task 1 (#XXX)
+- [ ] Related task 2 (#XXX)
+
+---
+_Task completed by Agent #X_
+</code></pre>
+<h3>Blocker Report</h3>
+<pre><code class="language-markdown">## 🚫 Blocked: [Brief Description]
+
+**Agent:** #X ([Agent Name])
+**Blocked Since:** YYYY-MM-DD HH:MM UTC
+**Severity:** 🔴 Critical / 🟠 High / 🟡 Medium
+
+### Blocking Issue
+Description of what&#39;s blocking progress.
+
+### Dependencies
+- Waiting on: #issue-XXX (Agent #Y)
+- Required: [Resource/approval/information]
+
+### Impact
+- Delays: [What will be delayed]
+- Affected agents: #A, #B, #C
+
+### Workarounds Attempted
+1. Attempted workaround 1 - Result
+2. Attempted workaround 2 - Result
+
+### Requested Action
+- [ ] @agent-Y: Please complete #issue-XXX
+- [ ] @queen: Escalate if not resolved by [time]
+
+---
+_Blocker reported by Agent #X_
+</code></pre>
+<h3>Daily Summary (Queen Coordinator)</h3>
+<pre><code class="language-markdown">## 📊 Daily Swarm Summary
+
+**Date:** YYYY-MM-DD
+**Swarm Status:** 🟢 Healthy / 🟡 Degraded / 🔴 Critical
+
+### Agent Activity
+
+| Agent | Status | Tasks Completed | Current Task |
+|-------|--------|-----------------|--------------|
+| #1 Queen | 🟢 Active | 3 | Coordination |
+| #2 Security Arch | 🟢 Active | 2 | CVE-2 Review |
+| #3 Security Impl | 🟡 Blocked | 1 | Waiting on #2 |
+| ... | ... | ... | ... |
+| #15 Release | 🟢 Active | 1 | CI/CD Setup |
+
+### Milestone Progress
+
+**v3.0.0-alpha.1** (Week 1-2)
+</code></pre>
+<p>[████████░░░░░░░░░░░░] 40% Complete</p>
+<pre><code>
+- Security Foundation: 3/5 tasks ✅
+- Core Foundation: 1/4 tasks ✅
+
+### Today&#39;s Achievements
+1. ✅ CVE-1 fix completed (#XXX)
+2. ✅ Orchestrator decomposition plan approved (#XXX)
+3. ✅ TDD test harness initialized (#XXX)
+
+### Active Blockers
+- 🚫 #XXX: Agent #3 waiting on security review
+- 🚫 #XXX: Agent #7 needs clarification on AgentDB API
+
+### Tomorrow&#39;s Priorities
+1. Complete CVE-2 fix
+2. Begin orchestrator implementation
+3. Resolve Agent #7 blocker
+
+### Metrics
+- Total commits today: XX
+- Tests added: XX
+- Coverage change: +X.X%
+- Issues closed: X
+- Issues opened: X
+
+---
+_Daily summary by Queen Coordinator (Agent #1)_
+</code></pre>
+<hr>
+<h2>Automation Scripts</h2>
+<h3>Issue Creation Script</h3>
+<pre><code class="language-typescript">// scripts/create-swarm-issues.ts
+import { Octokit } from &#39;@octokit/rest&#39;;
+
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+interface IssueConfig {
+  title: string;
+  body: string;
+  labels: string[];
+  milestone: number;
+  assignees: string[];
+}
+
+async function createEpic(config: IssueConfig): Promise&lt;number&gt; {
+  const { data } = await octokit.issues.create({
+    owner: &#39;anthropic&#39;,
+    repo: &#39;claude-flow&#39;,
+    ...config,
+    labels: [...config.labels, &#39;epic&#39;]
+  });
+  return data.number;
+}
+
+async function createTask(
+  epicNumber: number,
+  config: IssueConfig
+): Promise&lt;number&gt; {
+  const body = `${config.body}\n\n**Parent Epic:** #${epicNumber}`;
+
+  const { data } = await octokit.issues.create({
+    owner: &#39;anthropic&#39;,
+    repo: &#39;claude-flow&#39;,
+    ...config,
+    body,
+    labels: [...config.labels, &#39;task&#39;]
+  });
+
+  // Update epic with child reference
+  await addChildToEpic(epicNumber, data.number);
+
+  return data.number;
+}
+
+// Create all v3 issues
+async function initializeV3Issues() {
+  // Create milestones
+  const alpha1 = await createMilestone(&#39;v3.0.0-alpha.1&#39;, &#39;Week 1-2&#39;);
+  const alpha5 = await createMilestone(&#39;v3.0.0-alpha.5&#39;, &#39;Week 3-6&#39;);
+  const beta1 = await createMilestone(&#39;v3.0.0-beta.1&#39;, &#39;Week 7-10&#39;);
+  const release = await createMilestone(&#39;v3.0.0&#39;, &#39;Week 11-14&#39;);
+
+  // Create Security Epic
+  const securityEpic = await createEpic({
+    title: &#39;[EPIC] Security Foundation&#39;,
+    body: SECURITY_EPIC_TEMPLATE,
+    labels: [&#39;swarm:security&#39;, &#39;priority:critical&#39;],
+    milestone: alpha1,
+    assignees: [&#39;agent-2&#39;, &#39;agent-3&#39;, &#39;agent-4&#39;]
+  });
+
+  // Create security tasks
+  await createTask(securityEpic, {
+    title: &#39;[TASK] CVE-1 Fix: Update vulnerable dependencies&#39;,
+    body: CVE1_TASK_TEMPLATE,
+    labels: [&#39;swarm:security&#39;, &#39;type:security&#39;, &#39;priority:critical&#39;],
+    milestone: alpha1,
+    assignees: [&#39;agent-3&#39;]
+  });
+
+  // ... more tasks
+}
+</code></pre>
+<h3>Reply Automation</h3>
+<pre><code class="language-typescript">// scripts/agent-reply.ts
+import { Octokit } from &#39;@octokit/rest&#39;;
+
+interface ReplyContext {
+  issueNumber: number;
+  agentId: number;
+  agentName: string;
+  type: &#39;status&#39; | &#39;completion&#39; | &#39;blocker&#39; | &#39;daily&#39;;
+  data: any;
+}
+
+async function postAgentReply(context: ReplyContext): Promise&lt;void&gt; {
+  const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+  const body = generateReplyBody(context);
+
+  await octokit.issues.createComment({
+    owner: &#39;anthropic&#39;,
+    repo: &#39;claude-flow&#39;,
+    issue_number: context.issueNumber,
+    body
+  });
+
+  // Update issue labels if needed
+  if (context.type === &#39;completion&#39;) {
+    await octokit.issues.update({
+      owner: &#39;anthropic&#39;,
+      repo: &#39;claude-flow&#39;,
+      issue_number: context.issueNumber,
+      state: &#39;closed&#39;
+    });
+  } else if (context.type === &#39;blocker&#39;) {
+    await octokit.issues.addLabels({
+      owner: &#39;anthropic&#39;,
+      repo: &#39;claude-flow&#39;,
+      issue_number: context.issueNumber,
+      labels: [&#39;status:blocked&#39;]
+    });
+  }
+}
+
+function generateReplyBody(context: ReplyContext): string {
+  switch (context.type) {
+    case &#39;status&#39;:
+      return STATUS_TEMPLATE
+        .replace(&#39;{{agent}}&#39;, `#${context.agentId}`)
+        .replace(&#39;{{time}}&#39;, new Date().toISOString())
+        .replace(&#39;{{status}}&#39;, context.data.status)
+        .replace(&#39;{{progress}}&#39;, formatProgress(context.data.progress));
+
+    case &#39;completion&#39;:
+      return COMPLETION_TEMPLATE
+        .replace(&#39;{{agent}}&#39;, `#${context.agentId}`)
+        .replace(&#39;{{summary}}&#39;, context.data.summary)
+        .replace(&#39;{{metrics}}&#39;, formatMetrics(context.data.metrics));
+
+    case &#39;blocker&#39;:
+      return BLOCKER_TEMPLATE
+        .replace(&#39;{{agent}}&#39;, `#${context.agentId}`)
+        .replace(&#39;{{description}}&#39;, context.data.description)
+        .replace(&#39;{{dependencies}}&#39;, formatDependencies(context.data.deps));
+
+    case &#39;daily&#39;:
+      return DAILY_TEMPLATE
+        .replace(&#39;{{date}}&#39;, new Date().toISOString().split(&#39;T&#39;)[0])
+        .replace(&#39;{{agentTable}}&#39;, formatAgentTable(context.data.agents))
+        .replace(&#39;{{progress}}&#39;, formatMilestoneProgress(context.data.milestone));
+  }
+}
+</code></pre>
+<h3>GitHub Action for Automated Replies</h3>
+<pre><code class="language-yaml"># .github/workflows/swarm-updates.yml
+name: Swarm Status Updates
+
+on:
+  schedule:
+    - cron: &#39;0 * * * *&#39;  # Hourly
+  workflow_dispatch:
+
+jobs:
+  status-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Collect agent status
+        id: status
+        run: |
+          # Query swarm status
+          STATUS=$(npx claude-flow swarm status --json)
+          echo &quot;status=$STATUS&quot; &gt;&gt; $GITHUB_OUTPUT
+
+      - name: Post hourly updates
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = JSON.parse(&#39;${{ steps.status.outputs.status }}&#39;);
+
+            for (const agent of status.agents) {
+              if (agent.currentIssue) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: agent.currentIssue,
+                  body: generateStatusUpdate(agent)
+                });
+              }
+            }
+
+  daily-summary:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == &#39;0 0 * * *&#39;  # Daily at midnight
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate daily summary
+        run: npx claude-flow swarm summary --daily &gt; summary.md
+
+      - name: Post to tracking issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require(&#39;fs&#39;);
+            const summary = fs.readFileSync(&#39;summary.md&#39;, &#39;utf8&#39;);
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: ${{ env.TRACKING_ISSUE }},
+              body: summary
+            });
+</code></pre>
+<hr>
+<h2>Issue Workflow</h2>
+<pre><code>                        Issue Lifecycle
+    ┌─────────────────────────────────────────────────────────┐
+    │                                                         │
+    │   ┌──────────┐     ┌───────────┐     ┌──────────┐      │
+    │   │  Open    │────►│ Assigned  │────►│ Active   │      │
+    │   │          │     │           │     │          │      │
+    │   └──────────┘     └───────────┘     └────┬─────┘      │
+    │        │                                   │            │
+    │        │                    ┌──────────────┼────────┐   │
+    │        │                    │              │        │   │
+    │        ▼                    ▼              ▼        ▼   │
+    │   ┌──────────┐     ┌───────────┐     ┌──────────┐      │
+    │   │ Blocked  │◄───►│  Review   │────►│  Closed  │      │
+    │   │          │     │           │     │          │      │
+    │   └──────────┘     └───────────┘     └──────────┘      │
+    │                                                         │
+    └─────────────────────────────────────────────────────────┘
+
+    Status Labels:
+    - Open: No label
+    - Assigned: status:assigned
+    - Active: status:in-progress
+    - Blocked: status:blocked
+    - Review: status:review
+    - Closed: (closed state)
+</code></pre>
+<hr>
+<h2>Metrics &amp; Reporting</h2>
+<h3>Weekly Metrics Dashboard</h3>
+<pre><code class="language-markdown">## 📈 Weekly Swarm Metrics
+
+**Week:** X of 14
+**Sprint:** v3.0.0-alpha.X
+
+### Velocity
+| Metric | This Week | Last Week | Trend |
+|--------|-----------|-----------|-------|
+| Issues Closed | XX | XX | ↑ XX% |
+| PRs Merged | XX | XX | ↓ XX% |
+| Commits | XXX | XXX | → 0% |
+
+### Coverage Progress
+</code></pre>
+<p>Week 1: [████░░░░░░] 40%
+Week 2: [██████░░░░] 60%
+Week 3: [████████░░] 80% ← Current</p>
+<pre><code>
+### Agent Performance
+| Agent | Tasks Completed | Avg Completion Time | Blockers |
+|-------|-----------------|---------------------|----------|
+| #1 Queen | 15 | N/A (coordination) | 0 |
+| #2 Security Arch | 8 | 4.2h | 1 |
+| #3 Security Impl | 12 | 2.8h | 2 |
+| ... | ... | ... | ... |
+
+### Burndown
+</code></pre>
+<p>Remaining: ████████████████████░░░░ 80 tasks
+Completed: ░░░░░░░░░░░░░░░░░░░░████ 20 tasks</p>
+<pre><code>
+### Risk Items
+- 🔴 Security fixes behind schedule
+- 🟡 Memory unification complexity higher than estimated
+- 🟢 Core refactoring on track
+</code></pre>
+<hr>
+<h2>Related Documents</h2>
+<ul>
+<li><a href="./SWARM-OVERVIEW.md">SWARM-OVERVIEW.md</a> - 15-agent swarm plan</li>
+<li><a href="./AGENT-SPECIFICATIONS.md">AGENT-SPECIFICATIONS.md</a> - Agent details</li>
+<li><a href="./TDD-LONDON-SCHOOL-PLAN.md">TDD-LONDON-SCHOOL-PLAN.md</a> - TDD methodology</li>
+<li><a href="./DEPLOYMENT-PLAN.md">DEPLOYMENT-PLAN.md</a> - Release strategy</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

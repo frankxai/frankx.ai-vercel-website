@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Video Clip</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/video-clip.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Video Clip</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>video-clip.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Annotate timestamps and extract high-value clips from video vault entries
+thinking: true</h2>
+<h1>Video Clip</h1>
+<p><strong>Purpose</strong>: Analyze a video from the vault, annotate timestamps with labels and types, score clip potential, and queue high-scoring clips for short-form extraction.</p>
+<h2>Input</h2>
+<p>The user provides ONE of:</p>
+<ol>
+<li><strong>Video ID</strong> — a YouTube video ID from video-vault-100.json (e.g., <code>VMj-3S1tku0</code>)</li>
+<li><strong>Video title</strong> — partial match against vault entries</li>
+<li><strong>&quot;batch&quot;</strong> — process all unannotated vault entries</li>
+</ol>
+<p>Optionally:</p>
+<ul>
+<li><strong>Transcript</strong> — if the user pastes a transcript, use it directly</li>
+<li><strong>Clip focus</strong> — e.g., &quot;find the best quotes&quot; or &quot;extract tutorial segments&quot;</li>
+</ul>
+<h2>Process</h2>
+<h3>Step 1: Load Video Context</h3>
+<p>Read <code>data/video-vault-100.json</code> and find the matching entry. Extract:</p>
+<ul>
+<li>Title, channel, duration, topic, tags</li>
+<li>Any existing annotations from <code>data/video-annotations.json</code></li>
+</ul>
+<p>If the video has already been annotated, show existing annotations and ask whether to overwrite or append.</p>
+<h3>Step 2: Analyze Content</h3>
+<p>If a transcript is provided, analyze it directly. If not, use the video&#39;s metadata (title, tags, topic, channel) to generate intelligent timestamp suggestions based on:</p>
+<p><strong>Standard chapter structure by format:</strong></p>
+<p>For <strong>talks/lectures</strong> (30+ min):</p>
+<ul>
+<li>Introduction / speaker context</li>
+<li>Core thesis statement</li>
+<li>Key examples or demonstrations</li>
+<li>Q&amp;A highlights</li>
+<li>Closing takeaway</li>
+</ul>
+<p>For <strong>tutorials</strong> (10-30 min):</p>
+<ul>
+<li>Problem statement</li>
+<li>Setup / prerequisites</li>
+<li>Step-by-step implementation</li>
+<li>Results / demo</li>
+<li>Next steps</li>
+</ul>
+<p>For <strong>interviews</strong> (45+ min):</p>
+<ul>
+<li>Background / intro</li>
+<li>Key question moments (3-5)</li>
+<li>Controversial or surprising statements</li>
+<li>Actionable advice</li>
+<li>Closing thought</li>
+</ul>
+<p>For <strong>short content</strong> (under 10 min):</p>
+<ul>
+<li>Hook moment</li>
+<li>Core insight</li>
+<li>Best quote</li>
+</ul>
+<h3>Step 3: Generate Timestamp Annotations</h3>
+<p>For each identified moment, produce:</p>
+<pre><code class="language-json">{
+  &quot;time&quot;: &quot;MM:SS&quot;,
+  &quot;endTime&quot;: &quot;MM:SS&quot;,
+  &quot;label&quot;: &quot;Descriptive label for this moment&quot;,
+  &quot;type&quot;: &quot;highlight | chapter | quote | clip-start | clip-end | key-insight&quot;,
+  &quot;viralScore&quot;: 7,
+  &quot;viralReason&quot;: &quot;Why this segment has sharing potential&quot;,
+  &quot;platforms&quot;: [&quot;youtube-shorts&quot;, &quot;tiktok&quot;, &quot;instagram-reels&quot;, &quot;x-clip&quot;]
+}
+</code></pre>
+<p><strong>Type definitions:</strong></p>
+<ul>
+<li><code>highlight</code> — a standout moment worth bookmarking</li>
+<li><code>chapter</code> — a major section boundary (for YouTube chapters)</li>
+<li><code>quote</code> — a quotable statement, sharp and self-contained</li>
+<li><code>clip-start</code> / <code>clip-end</code> — boundaries of an extractable short-form clip</li>
+<li><code>key-insight</code> — a technical or strategic insight worth noting</li>
+</ul>
+<p><strong>Viral Score (1-10) criteria:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Score</th>
+<th>Criteria</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9-10</td>
+<td>Controversial take, surprising data, or &quot;I need to share this&quot; moment</td>
+</tr>
+<tr>
+<td>7-8</td>
+<td>Strong standalone insight, quotable, works without context</td>
+</tr>
+<tr>
+<td>5-6</td>
+<td>Good content but needs surrounding context to land</td>
+</tr>
+<tr>
+<td>3-4</td>
+<td>Useful reference but not shareable on its own</td>
+</tr>
+<tr>
+<td>1-2</td>
+<td>Transitional content, filler, or setup-only</td>
+</tr>
+</tbody></table>
+<h3>Step 4: Identify Clip Candidates</h3>
+<p>From the annotations, identify extractable clips:</p>
+<ul>
+<li>Duration: 15-60 seconds (shorts), 60-180 seconds (reels/extended)</li>
+<li>Each clip must have a clear <code>clip-start</code> and <code>clip-end</code> pair</li>
+<li>Each clip gets a suggested title for the short-form version</li>
+<li>Each clip gets platform recommendations based on content type</li>
+</ul>
+<pre><code>=== CLIP CANDIDATES ===
+
+Clip 1: &quot;{Suggested short title}&quot;
+  Start: {MM:SS} | End: {MM:SS} | Duration: {seconds}s
+  Viral Score: {N}/10
+  Reason: {Why this works as a standalone clip}
+  Platforms: YouTube Shorts, TikTok, Instagram Reels
+  Hook rewrite: &quot;{First line if posted as a standalone short}&quot;
+
+Clip 2: ...
+</code></pre>
+<h3>Step 5: Save Annotations</h3>
+<p>Save or update <code>data/video-annotations.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;videoId&quot;: &quot;VMj-3S1tku0&quot;,
+  &quot;title&quot;: &quot;Neural Networks: Zero to Hero&quot;,
+  &quot;channel&quot;: &quot;Andrej Karpathy&quot;,
+  &quot;annotatedAt&quot;: &quot;ISO date&quot;,
+  &quot;annotatedFrom&quot;: &quot;metadata | transcript | manual&quot;,
+  &quot;chapters&quot;: [
+    { &quot;time&quot;: &quot;0:00&quot;, &quot;label&quot;: &quot;Introduction&quot; },
+    { &quot;time&quot;: &quot;5:30&quot;, &quot;label&quot;: &quot;Building micrograd&quot; }
+  ],
+  &quot;annotations&quot;: [
+    {
+      &quot;time&quot;: &quot;12:45&quot;,
+      &quot;endTime&quot;: &quot;13:30&quot;,
+      &quot;label&quot;: &quot;Why backprop is all you need&quot;,
+      &quot;type&quot;: &quot;quote&quot;,
+      &quot;viralScore&quot;: 8,
+      &quot;viralReason&quot;: &quot;Contrarian take, self-contained, quotable&quot;,
+      &quot;platforms&quot;: [&quot;youtube-shorts&quot;, &quot;x-clip&quot;]
+    }
+  ],
+  &quot;clips&quot;: [
+    {
+      &quot;id&quot;: &quot;clip-VMj-3S1tku0-1245&quot;,
+      &quot;startTime&quot;: &quot;12:45&quot;,
+      &quot;endTime&quot;: &quot;13:30&quot;,
+      &quot;duration&quot;: 45,
+      &quot;title&quot;: &quot;Backprop is all you need&quot;,
+      &quot;viralScore&quot;: 8,
+      &quot;platforms&quot;: [&quot;youtube-shorts&quot;, &quot;tiktok&quot;],
+      &quot;hookRewrite&quot;: &quot;Every complex neural network training trick reduces to one thing.&quot;,
+      &quot;status&quot;: &quot;queued&quot;
+    }
+  ]
+}
+</code></pre>
+<p>If <code>data/video-annotations.json</code> already exists, merge the new entry (keyed by <code>videoId</code>). Do not overwrite other video entries.</p>
+<h3>Step 6: Queue High-Scoring Clips</h3>
+<p>Any clip with <code>viralScore &gt;= 7</code> gets added to <code>data/clip-queue.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;clip-{videoId}-{startTimeCompact}&quot;,
+  &quot;videoId&quot;: &quot;VMj-3S1tku0&quot;,
+  &quot;videoTitle&quot;: &quot;Neural Networks: Zero to Hero&quot;,
+  &quot;channel&quot;: &quot;Andrej Karpathy&quot;,
+  &quot;clipTitle&quot;: &quot;Backprop is all you need&quot;,
+  &quot;startTime&quot;: &quot;12:45&quot;,
+  &quot;endTime&quot;: &quot;13:30&quot;,
+  &quot;duration&quot;: 45,
+  &quot;viralScore&quot;: 8,
+  &quot;platforms&quot;: [&quot;youtube-shorts&quot;, &quot;tiktok&quot;],
+  &quot;hookRewrite&quot;: &quot;Every complex neural network training trick reduces to one thing.&quot;,
+  &quot;status&quot;: &quot;queued&quot;,
+  &quot;queuedAt&quot;: &quot;ISO date&quot;,
+  &quot;extractedAt&quot;: null,
+  &quot;publishedAt&quot;: null
+}
+</code></pre>
+<p><strong>Status lifecycle:</strong> <code>queued</code> -&gt; <code>extracted</code> -&gt; <code>reviewed</code> -&gt; <code>published</code></p>
+<h3>Step 7: Terminal Output</h3>
+<p>Display a summary:</p>
+<pre><code>=== VIDEO ANNOTATION COMPLETE ===
+
+Video: {title} ({channel})
+Duration: {duration}
+Chapters: {N} identified
+Annotations: {N} total
+Clips: {N} candidates ({M} queued with viral score &gt;= 7)
+
+Top clips:
+  1. &quot;{title}&quot; — {duration}s — Score: {N}/10
+  2. &quot;{title}&quot; — {duration}s — Score: {N}/10
+
+Files updated:
+  - data/video-annotations.json ({videoId} entry)
+  - data/clip-queue.json (+{M} clips)
+</code></pre>
+<h2>Batch Mode</h2>
+<p>When invoked with <code>batch</code>:</p>
+<ol>
+<li>Read all entries from <code>data/video-vault-100.json</code></li>
+<li>Read existing annotations from <code>data/video-annotations.json</code></li>
+<li>Process only videos without existing annotations</li>
+<li>Generate metadata-based annotations for each</li>
+<li>Report totals at the end</li>
+</ol>
+<h2>Examples</h2>
+<p><strong>Annotate a specific video:</strong></p>
+<pre><code>/video-clip VMj-3S1tku0
+</code></pre>
+<p><strong>Annotate with a pasted transcript:</strong></p>
+<pre><code>/video-clip dWr1eTeK6p4
+[paste transcript below]
+</code></pre>
+<p><strong>Annotate with clip focus:</strong></p>
+<pre><code>/video-clip 5MUvJv_sB64 &quot;find the best quotes about AGI timeline&quot;
+</code></pre>
+<p><strong>Batch annotate all unprocessed vault entries:</strong></p>
+<pre><code>/video-clip batch
+</code></pre>
+<p><strong>Process the annotation now.</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

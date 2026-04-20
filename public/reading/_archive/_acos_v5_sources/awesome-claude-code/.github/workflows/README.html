@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitHub Workflows</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/.github/workflows/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GitHub Workflows</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2F.github">.github</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2F.github%2Fworkflows">workflows</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>GitHub Workflows</h1>
+<p>This directory contains GitHub Action workflows for repository maintenance, resource submission handling, and health monitoring.</p>
+<hr>
+<h2>Workflow: Validate New Issue</h2>
+<p><strong>File:</strong> <code>.github/workflows/validate-new-issue.yml</code></p>
+<h3>Purpose</h3>
+<p>Handles all new issues opened in the repository with two mutually exclusive jobs:</p>
+<ol>
+<li><strong>validate-resource</strong>: Validates properly-submitted resource recommendations (issues with <code>resource-submission</code> label)</li>
+<li><strong>detect-informal</strong>: Detects informal submissions that bypassed the issue template (issues without the label)</li>
+</ol>
+<h3>Trigger</h3>
+<ul>
+<li><code>issues.opened</code> - New issue created</li>
+<li><code>issues.reopened</code> - Issue reopened</li>
+<li><code>issues.edited</code> - Issue body edited</li>
+</ul>
+<h3>Job 1: Validate Resource Submission</h3>
+<p>Runs when an issue has the <code>resource-submission</code> label (applied automatically by the issue template).</p>
+<p><strong>Behavior:</strong></p>
+<ul>
+<li>Parses the issue body using <code>scripts/resources/parse_issue_form.py</code></li>
+<li>Validates all required fields (display name, category, URLs, etc.)</li>
+<li>Checks for duplicate resources in <code>THE_RESOURCES_TABLE.csv</code></li>
+<li>Validates URL accessibility</li>
+<li>Posts validation results as a comment</li>
+<li>Updates labels: <code>validation-passed</code> or <code>validation-failed</code></li>
+<li>Notifies maintainer when changes are made after <code>/request-changes</code></li>
+</ul>
+<h3>Job 2: Detect Informal Submission</h3>
+<p>Runs when a <strong>new</strong> issue does NOT have the <code>resource-submission</code> label.</p>
+<p><strong>Purpose:</strong> Catches users who try to recommend resources without using the official template.</p>
+<p><strong>Detection Signals:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Signal Type</th>
+<th>Examples</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Template field labels</td>
+<td><code>Display Name:</code>, <code>Category:</code>, <code>Primary Link:</code></td>
+<td>Very strong (+0.7 for 3+)</td>
+</tr>
+<tr>
+<td>Submission language</td>
+<td>&quot;recommend&quot;, &quot;submit&quot;, &quot;please add&quot;</td>
+<td>Strong (+0.3 each)</td>
+</tr>
+<tr>
+<td>Resource mentions</td>
+<td>&quot;plugin&quot;, &quot;skill&quot;, &quot;hook&quot;, &quot;slash command&quot;</td>
+<td>Medium (+0.15 each)</td>
+</tr>
+<tr>
+<td>GitHub URLs</td>
+<td><code>github.com/user/repo</code></td>
+<td>Medium (+0.15)</td>
+</tr>
+<tr>
+<td>License mentions</td>
+<td>MIT, Apache, GPL</td>
+<td>Medium (+0.15)</td>
+</tr>
+<tr>
+<td>Bug/question language</td>
+<td>&quot;bug&quot;, &quot;error&quot;, &quot;how do I&quot;</td>
+<td>Negative (-0.2 each)</td>
+</tr>
+</tbody></table>
+<p><strong>Two-Tier Response:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Confidence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>≥ 0.6 (High)</td>
+<td>Add <code>needs-template</code> label, post warning, <strong>auto-close</strong></td>
+</tr>
+<tr>
+<td>0.4 - 0.6 (Medium)</td>
+<td>Add <code>needs-template</code> label, post gentle warning, <strong>leave open</strong></td>
+</tr>
+<tr>
+<td>&lt; 0.4 (Low)</td>
+<td>No action</td>
+</tr>
+</tbody></table>
+<h3>Local Usage</h3>
+<pre><code class="language-bash"># Test informal submission detection
+ISSUE_TITLE=&quot;Check out my plugin&quot; ISSUE_BODY=&quot;I made this tool at github.com/user/repo&quot; \
+  python -m scripts.resources.detect_informal_submission
+</code></pre>
+<h3>Related Scripts</h3>
+<ul>
+<li><code>scripts/resources/parse_issue_form.py</code> - Parses and validates issue form data</li>
+<li><code>scripts/resources/detect_informal_submission.py</code> - Detects informal submissions</li>
+</ul>
+<hr>
+<h2>Workflow: Handle Resource Submission Commands</h2>
+<p><strong>File:</strong> <code>.github/workflows/handle-resource-submission-commands.yml</code></p>
+<h3>Purpose</h3>
+<p>Processes maintainer commands on resource submission issues.</p>
+<h3>Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+<th>Requirements</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/approve</code></td>
+<td>Creates PR to add resource to CSV</td>
+<td>Issue must have <code>validation-passed</code> label</td>
+</tr>
+<tr>
+<td><code>/reject [reason]</code></td>
+<td>Closes issue as rejected</td>
+<td>Maintainer permission</td>
+</tr>
+<tr>
+<td><code>/request-changes [message]</code></td>
+<td>Requests changes from submitter</td>
+<td>Maintainer permission</td>
+</tr>
+</tbody></table>
+<h3>Trigger</h3>
+<ul>
+<li><code>issue_comment.created</code> on issues with <code>resource-submission</code> label</li>
+<li>Only processes comments from OWNER, MEMBER, or COLLABORATOR</li>
+</ul>
+<hr>
+<h2>Workflow: Update GitHub Release Data</h2>
+<p><strong>File:</strong> <code>.github/workflows/update-github-release-data.yml</code></p>
+<h3>Purpose</h3>
+<p>Updates <code>THE_RESOURCES_TABLE.csv</code> with:</p>
+<ul>
+<li>Latest commit date on the default branch (Last Modified)</li>
+<li>Latest GitHub Release date (Latest Release)</li>
+<li>Latest GitHub Release version (Release Version)</li>
+</ul>
+<h3>Schedule</h3>
+<ul>
+<li>Runs automatically every day at <strong>3:00 AM UTC</strong></li>
+<li>Can be triggered manually via the GitHub Actions UI</li>
+</ul>
+<h3>Local Usage</h3>
+<pre><code class="language-bash">python -m scripts.maintenance.update_github_release_data
+</code></pre>
+<h4>Options</h4>
+<pre><code class="language-bash">python -m scripts.maintenance.update_github_release_data --help
+</code></pre>
+<ul>
+<li><code>--csv-file</code>: Path to CSV file (default: THE_RESOURCES_TABLE.csv)</li>
+<li><code>--max</code>: Process at most N resources</li>
+<li><code>--dry-run</code>: Print updates without writing changes</li>
+</ul>
+<h2>Workflow: Check Repository Health</h2>
+<p><strong>File:</strong> <code>.github/workflows/check-repo-health.yml</code></p>
+<h3>Purpose</h3>
+<p>Ensures that active GitHub repositories in the resource list are still maintained and responsive by checking:</p>
+<ul>
+<li>Number of open issues</li>
+<li>Date of last push or PR merge (last updated)</li>
+</ul>
+<h3>Behavior</h3>
+<p>The workflow will <strong>fail</strong> if any repository:</p>
+<ul>
+<li>Has not been updated in over <strong>6 months</strong> AND</li>
+<li>Has more than <strong>2 open issues</strong></li>
+</ul>
+<p>Deleted or private repositories are logged as warnings but do not cause the workflow to fail.</p>
+<h3>Schedule</h3>
+<ul>
+<li>Runs automatically every <strong>Monday at 9:00 AM UTC</strong></li>
+<li>Can be triggered manually via the GitHub Actions UI</li>
+</ul>
+<h3>Local Usage</h3>
+<p>You can run the health check locally using:</p>
+<pre><code class="language-bash">make check-repo-health
+</code></pre>
+<p>Or directly with Python:</p>
+<pre><code class="language-bash">python3 -m scripts.maintenance.check_repo_health
+</code></pre>
+<h4>Options</h4>
+<pre><code class="language-bash">python3 -m scripts.maintenance.check_repo_health --help
+</code></pre>
+<ul>
+<li><code>--csv-file</code>: Path to CSV file (default: THE_RESOURCES_TABLE.csv)</li>
+<li><code>--months</code>: Months threshold for outdated repos (default: 6)</li>
+<li><code>--issues</code>: Open issues threshold (default: 2)</li>
+</ul>
+<h3>Example Output</h3>
+<pre><code>INFO: Reading repository list from THE_RESOURCES_TABLE.csv
+INFO: Checking owner/repo (Resource Name)
+INFO: 
+============================================================
+INFO: Summary:
+INFO:   Total active GitHub repositories checked: 50
+INFO:   Deleted/unavailable repositories: 2
+INFO:   Problematic repositories: 0
+INFO: 
+============================================================
+INFO: ✅ HEALTH CHECK PASSED
+INFO: All active repositories are healthy!
+</code></pre>
+<h3>Environment Variables</h3>
+<ul>
+<li><code>GITHUB_TOKEN</code>: GitHub personal access token or Actions token (recommended to avoid rate limiting)</li>
+</ul>
+<p>The GitHub Actions workflow automatically uses the <code>GITHUB_TOKEN</code> secret provided by GitHub Actions.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

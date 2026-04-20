@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX.AI Component Development</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_vercel_website_temp/.claude/commands/frankx-ai-components.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">FrankX.AI Component Development</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_vercel_website_temp">_vercel_website_temp</a> / <a href="../index.html#_archive%2F_vercel_website_temp%2F.claude">.claude</a> / <a href="index.html#_archive%2F_vercel_website_temp%2F.claude%2Fcommands">commands</a> / <span>frankx-ai-components.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Create and update UI components for FrankX.AI with glassmorphic design system
+thinking: false</h2>
+<h1>FrankX.AI Component Development</h1>
+<p><strong>Components</strong>: <code>/components/</code>
+<strong>UI Primitives</strong>: <code>/components/ui/</code>
+<strong>Design System</strong>: Glassmorphic Aurora (Tailwind-based)</p>
+<h2>Design System Overview</h2>
+<p><strong>Philosophy</strong>: Best components from the best libraries. Curate world-class UI.</p>
+<h3>UI Component Sources</h3>
+<table>
+<thead>
+<tr>
+<th>Library</th>
+<th>Best For</th>
+<th>Install</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Magic UI</strong></td>
+<td>Animated components</td>
+<td>Copy from <a href="https://magicui.design">magicui.design</a></td>
+</tr>
+<tr>
+<td><strong>shadcn/ui</strong></td>
+<td>Accessible primitives</td>
+<td><code>npx shadcn@latest add [component]</code></td>
+</tr>
+<tr>
+<td><strong>Cult UI</strong></td>
+<td>Premium effects</td>
+<td>Copy from <a href="https://cult-ui.com">cult-ui.com</a></td>
+</tr>
+<tr>
+<td><strong>Aceternity UI</strong></td>
+<td>Cinematic animations</td>
+<td>Copy from <a href="https://ui.aceternity.com">ui.aceternity.com</a></td>
+</tr>
+<tr>
+<td><strong>Framer Motion</strong></td>
+<td>Custom animations</td>
+<td>Already installed</td>
+</tr>
+</tbody></table>
+<h3>When to Use Each</h3>
+<ul>
+<li><strong>Forms, Dialogs, Dropdowns</strong> → shadcn/ui (accessibility-first)</li>
+<li><strong>Hero Backgrounds, Spotlights</strong> → Magic UI or Aceternity</li>
+<li><strong>3D Cards, Particle Effects</strong> → Cult UI</li>
+<li><strong>Text Reveals, Stagger Effects</strong> → Magic UI + Framer Motion</li>
+<li><strong>Custom Interactions</strong> → Build with Framer Motion</li>
+</ul>
+<h3>Color Palette</h3>
+<pre><code class="language-css">/* Core Colors */
+--midnight: slate-950        /* Main background */
+--aurora-cyan: cyan-500      /* Primary accent */
+--aurora-purple: purple-500  /* Secondary accent */
+--aurora-blue: blue-500      /* Tertiary accent */
+
+/* Functional */
+--primary: #6943ff → #422ea9
+--secondary: #0ea5e9 → #075985
+--accent: #de8a4a → #703c2b
+</code></pre>
+<h3>Key UI Patterns</h3>
+<ol>
+<li><p><strong>Glassmorphic Cards</strong></p>
+<ul>
+<li>Frosted glass effect with <code>backdrop-blur</code></li>
+<li>Subtle border glow on hover</li>
+<li>Gradient overlays</li>
+</ul>
+</li>
+<li><p><strong>Aurora Backgrounds</strong></p>
+<ul>
+<li>Animated radial gradients</li>
+<li>Pulse and flow animations</li>
+<li>Layered depth</li>
+</ul>
+</li>
+<li><p><strong>Interactions</strong></p>
+<ul>
+<li>Magnetic hover effects</li>
+<li>Stagger animations for reveals</li>
+<li>Smooth page transitions</li>
+</ul>
+</li>
+</ol>
+<h2>Existing Components</h2>
+<h3>UI Primitives (<code>/components/ui/</code>)</h3>
+<ul>
+<li><code>GlassmorphicCard.tsx</code> - Base card with glass effect</li>
+<li><code>PremiumButton.tsx</code> - Styled button variants</li>
+<li><code>InteractiveCard.tsx</code> - Cards with hover states</li>
+<li><code>AnimatedBackground.tsx</code> - Aurora gradients</li>
+<li><code>AdvancedAnimations.tsx</code> - Framer Motion helpers</li>
+<li><code>LoadingStates.tsx</code> - Skeletons and spinners</li>
+<li><code>badge.tsx</code> - Labels and badges</li>
+<li><code>primitives.tsx</code> - Base atoms</li>
+</ul>
+<h3>Home Page (<code>/components/home/</code>)</h3>
+<ul>
+<li><code>OptimizedHomePage.tsx</code> - Main landing</li>
+<li><code>sections/</code> - Hero, Testimonials, Projects, etc.</li>
+</ul>
+<h3>Blog (<code>/components/blog/</code>)</h3>
+<ul>
+<li><code>BlogCard.tsx</code> - Article cards</li>
+<li><code>MDXComponents.tsx</code> - MDX rendering</li>
+</ul>
+<h3>Products (<code>/components/products/</code>)</h3>
+<ul>
+<li><code>ProductLanding.tsx</code> - Full product page</li>
+<li><code>ProductHero.tsx</code> - Hero section</li>
+<li><code>OfferStack.tsx</code> - Pricing display</li>
+<li><code>CaseStudyGrid.tsx</code> - Social proof</li>
+<li><code>FinalCTA.tsx</code> - Conversion block</li>
+</ul>
+<h3>Funnels (<code>/components/funnels/</code>)</h3>
+<ul>
+<li><code>CallToAction.tsx</code> - CTA sections</li>
+<li><code>EmailCaptureForm.tsx</code> - Newsletter signup</li>
+</ul>
+<h2>Creating New Components</h2>
+<h3>Step 1: Determine Component Type</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Location</th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UI Primitive</td>
+<td><code>/components/ui/</code></td>
+<td>Reusable atom</td>
+</tr>
+<tr>
+<td>Feature</td>
+<td><code>/components/[feature]/</code></td>
+<td>Feature-specific</td>
+</tr>
+<tr>
+<td>Page Section</td>
+<td><code>/components/home/sections/</code></td>
+<td>Homepage block</td>
+</tr>
+<tr>
+<td>Layout</td>
+<td><code>/components/</code></td>
+<td>Structural</td>
+</tr>
+</tbody></table>
+<h3>Step 2: Component Template</h3>
+<pre><code class="language-tsx">&#39;use client&#39;;
+
+import { motion } from &#39;framer-motion&#39;;
+import { cn } from &#39;@/lib/utils&#39;;
+
+interface ComponentNameProps {
+  title: string;
+  children?: React.ReactNode;
+  className?: string;
+}
+
+export function ComponentName({
+  title,
+  children,
+  className,
+}: ComponentNameProps) {
+  return (
+    &lt;motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={cn(
+        // Base styles
+        &#39;relative rounded-2xl p-6&#39;,
+        // Glassmorphic effect
+        &#39;bg-slate-900/50 backdrop-blur-xl&#39;,
+        &#39;border border-white/10&#39;,
+        // Hover state
+        &#39;hover:border-cyan-500/30 transition-all duration-300&#39;,
+        className
+      )}
+    &gt;
+      &lt;h3 className=&quot;text-xl font-semibold text-white mb-4&quot;&gt;
+        {title}
+      &lt;/h3&gt;
+      {children}
+    &lt;/motion.div&gt;
+  );
+}
+</code></pre>
+<h3>Step 3: Animation Patterns</h3>
+<p><strong>Fade In Up</strong> (most common):</p>
+<pre><code class="language-tsx">initial={{ opacity: 0, y: 20 }}
+animate={{ opacity: 1, y: 0 }}
+transition={{ duration: 0.5 }}
+</code></pre>
+<p><strong>Stagger Children</strong>:</p>
+<pre><code class="language-tsx">const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0 }
+};
+
+&lt;motion.div variants={container} initial=&quot;hidden&quot; animate=&quot;show&quot;&gt;
+  {items.map(i =&gt; &lt;motion.div key={i} variants={item} /&gt;)}
+&lt;/motion.div&gt;
+</code></pre>
+<p><strong>Hover Glow</strong>:</p>
+<pre><code class="language-tsx">className=&quot;hover:shadow-[0_0_30px_rgba(34,211,238,0.3)]&quot;
+</code></pre>
+<h3>Step 4: Accessibility</h3>
+<p>Required for all components:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Semantic HTML elements</li>
+<li><input disabled="" type="checkbox"> Proper heading hierarchy</li>
+<li><input disabled="" type="checkbox"> Keyboard navigation</li>
+<li><input disabled="" type="checkbox"> Focus states visible</li>
+<li><input disabled="" type="checkbox"> Color contrast 4.5:1+</li>
+<li><input disabled="" type="checkbox"> Alt text for images</li>
+<li><input disabled="" type="checkbox"> ARIA labels where needed</li>
+</ul>
+<h3>Step 5: Testing</h3>
+<pre><code class="language-bash"># Visual check
+npm run dev
+# Visit component page
+
+# Build verification
+npm run build
+
+# Lint check
+npm run lint
+</code></pre>
+<h2>Common Patterns</h2>
+<h3>Card with Gradient Border</h3>
+<pre><code class="language-tsx">&lt;div className=&quot;p-[1px] rounded-2xl bg-gradient-to-r from-cyan-500 via-purple-500 to-blue-500&quot;&gt;
+  &lt;div className=&quot;bg-slate-950 rounded-2xl p-6&quot;&gt;
+    Content
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>Section Container</h3>
+<pre><code class="language-tsx">&lt;section className=&quot;py-24 px-6 relative overflow-hidden&quot;&gt;
+  &lt;div className=&quot;max-w-7xl mx-auto&quot;&gt;
+    Content
+  &lt;/div&gt;
+&lt;/section&gt;
+</code></pre>
+<h3>Responsive Grid</h3>
+<pre><code class="language-tsx">&lt;div className=&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6&quot;&gt;
+  {items.map(item =&gt; &lt;Card key={item.id} {...item} /&gt;)}
+&lt;/div&gt;
+</code></pre>
+<h2>Skill Integration</h2>
+<p>For complex UI work:</p>
+<pre><code>/skill ui-ux-design-expert
+/skill frontend-design:frontend-design
+</code></pre>
+<p><strong>Ready to create or update components. What are we building?</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

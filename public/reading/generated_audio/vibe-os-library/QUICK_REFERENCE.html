@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Vibe OS Audio - Quick Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="generated_audio/vibe-os-library/QUICK_REFERENCE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Vibe OS Audio - Quick Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#generated_audio">generated_audio</a> / <a href="index.html#generated_audio%2Fvibe-os-library">vibe-os-library</a> / <span>QUICK_REFERENCE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Vibe OS Audio - Quick Reference</h1>
+<h2>Which File For What?</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│  NEED THIS?          USE THIS FILE              HEADPHONES?    │
+├─────────────────────────────────────────────────────────────────┤
+│  Deep meditation     theta_meditation_3min.wav      YES        │
+│  Work focus          alpha_focus_3min.wav           YES        │
+│  Sleep aid           delta_sleep_3min.wav           YES        │
+│  Peak performance    gamma_cognition_3min.wav       YES        │
+│  Anxiety relief      528hz_love_frequency_3min.wav  Optional   │
+│  General calm        432hz_universal_3min.wav       Optional   │
+│  Grounding           schumann_resonance_7.83hz.wav  YES        │
+│  Chakra work         solfeggio_*.wav files          Optional   │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>File Types at a Glance</h2>
+<table>
+<thead>
+<tr>
+<th>Icon</th>
+<th>Type</th>
+<th>Channels</th>
+<th>Headphones</th>
+<th>How It Works</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>🎵</td>
+<td>Pure Tone</td>
+<td>Mono</td>
+<td>Optional</td>
+<td>Continuous single frequency</td>
+</tr>
+<tr>
+<td>🎧</td>
+<td>Binaural</td>
+<td>Stereo</td>
+<td><strong>REQUIRED</strong></td>
+<td>Different Hz per ear → brain perceives beat</td>
+</tr>
+<tr>
+<td>⚡</td>
+<td>Isochronic</td>
+<td>Mono</td>
+<td>Optional</td>
+<td>Pulsing on/off at target frequency</td>
+</tr>
+</tbody></table>
+<h2>Brainwave States</h2>
+<pre><code>DELTA (0.5-4 Hz)  ████░░░░░░░░░░░░  Deep sleep, healing
+THETA (4-8 Hz)    ████████░░░░░░░░  Meditation, creativity
+ALPHA (8-13 Hz)   ████████████░░░░  Relaxation, calm focus
+BETA (13-30 Hz)   ████████████████  Alertness, concentration
+GAMMA (30-100 Hz) ████████████████  Peak cognition, insight
+</code></pre>
+<h2>Evidence Strength</h2>
+<pre><code>STRONG ★★★  Binaural beats, 432 Hz calming effects
+MODERATE ★★  528 Hz anxiety reduction, Schumann resonance
+WEAK ★      Most solfeggio frequencies (except 528 Hz)
+</code></pre>
+<h2>Minimum Listening Time</h2>
+<ul>
+<li><strong>5 minutes</strong>: Minimum for any measurable effect (per research)</li>
+<li><strong>10-20 minutes</strong>: Recommended for meditation/focus</li>
+<li><strong>30+ minutes</strong>: Optimal for sleep/deep work</li>
+</ul>
+<h2>Troubleshooting</h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;Binaural doesn&#39;t work&quot;</td>
+<td>Use headphones, not speakers</td>
+</tr>
+<tr>
+<td>&quot;All files sound same&quot;</td>
+<td>Ensure stereo files use headphones</td>
+</tr>
+<tr>
+<td>&quot;No effect felt&quot;</td>
+<td>Listen 10+ min, reduce distractions</td>
+</tr>
+<tr>
+<td>&quot;Tone is harsh&quot;</td>
+<td>Lower volume, try with pink noise</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>Loop files as needed. Effects are cumulative with regular use.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

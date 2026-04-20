@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Backtesting Frameworks</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/quantitative-trading/skills/backtesting-frameworks/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Backtesting Frameworks</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fquantitative-trading">quantitative-trading</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fquantitative-trading%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fquantitative-trading%2Fskills%2Fbacktesting-frameworks">backtesting-frameworks</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: backtesting-frameworks
+description: Build robust backtesting systems for trading strategies with proper handling of look-ahead bias, survivorship bias, and transaction costs. Use when developing trading algorithms, validating strategies, or building backtesting infrastructure.</h2>
+<h1>Backtesting Frameworks</h1>
+<p>Build robust, production-grade backtesting systems that avoid common pitfalls and produce reliable strategy performance estimates.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Developing trading strategy backtests</li>
+<li>Building backtesting infrastructure</li>
+<li>Validating strategy performance</li>
+<li>Avoiding common backtesting biases</li>
+<li>Implementing walk-forward analysis</li>
+<li>Comparing strategy alternatives</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Backtesting Biases</h3>
+<table>
+<thead>
+<tr>
+<th>Bias</th>
+<th>Description</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Look-ahead</strong></td>
+<td>Using future information</td>
+<td>Point-in-time data</td>
+</tr>
+<tr>
+<td><strong>Survivorship</strong></td>
+<td>Only testing on survivors</td>
+<td>Use delisted securities</td>
+</tr>
+<tr>
+<td><strong>Overfitting</strong></td>
+<td>Curve-fitting to history</td>
+<td>Out-of-sample testing</td>
+</tr>
+<tr>
+<td><strong>Selection</strong></td>
+<td>Cherry-picking strategies</td>
+<td>Pre-registration</td>
+</tr>
+<tr>
+<td><strong>Transaction</strong></td>
+<td>Ignoring trading costs</td>
+<td>Realistic cost models</td>
+</tr>
+</tbody></table>
+<h3>2. Proper Backtest Structure</h3>
+<pre><code>Historical Data
+      │
+      ▼
+┌─────────────────────────────────────────┐
+│              Training Set               │
+│  (Strategy Development &amp; Optimization)  │
+└─────────────────────────────────────────┘
+      │
+      ▼
+┌─────────────────────────────────────────┐
+│             Validation Set              │
+│  (Parameter Selection, No Peeking)      │
+└─────────────────────────────────────────┘
+      │
+      ▼
+┌─────────────────────────────────────────┐
+│               Test Set                  │
+│  (Final Performance Evaluation)         │
+└─────────────────────────────────────────┘
+</code></pre>
+<h3>3. Walk-Forward Analysis</h3>
+<pre><code>Window 1: [Train──────][Test]
+Window 2:     [Train──────][Test]
+Window 3:         [Train──────][Test]
+Window 4:             [Train──────][Test]
+                                     ─────▶ Time
+</code></pre>
+<h2>Implementation Patterns</h2>
+<h3>Pattern 1: Event-Driven Backtester</h3>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+from dataclasses import dataclass, field
+from datetime import datetime
+from decimal import Decimal
+from enum import Enum
+from typing import Dict, List, Optional
+import pandas as pd
+import numpy as np
+
+class OrderSide(Enum):
+    BUY = &quot;buy&quot;
+    SELL = &quot;sell&quot;
+
+class OrderType(Enum):
+    MARKET = &quot;market&quot;
+    LIMIT = &quot;limit&quot;
+    STOP = &quot;stop&quot;
+
+@dataclass
+class Order:
+    symbol: str
+    side: OrderSide
+    quantity: Decimal
+    order_type: OrderType
+    limit_price: Optional[Decimal] = None
+    stop_price: Optional[Decimal] = None
+    timestamp: Optional[datetime] = None
+
+@dataclass
+class Fill:
+    order: Order
+    fill_price: Decimal
+    fill_quantity: Decimal
+    commission: Decimal
+    slippage: Decimal
+    timestamp: datetime
+
+@dataclass
+class Position:
+    symbol: str
+    quantity: Decimal = Decimal(&quot;0&quot;)
+    avg_cost: Decimal = Decimal(&quot;0&quot;)
+    realized_pnl: Decimal = Decimal(&quot;0&quot;)
+
+    def update(self, fill: Fill) -&gt; None:
+        if fill.order.side == OrderSide.BUY:
+            new_quantity = self.quantity + fill.fill_quantity
+            if new_quantity != 0:
+                self.avg_cost = (
+                    (self.quantity * self.avg_cost + fill.fill_quantity * fill.fill_price)
+                    / new_quantity
+                )
+            self.quantity = new_quantity
+        else:
+            self.realized_pnl += fill.fill_quantity * (fill.fill_price - self.avg_cost)
+            self.quantity -= fill.fill_quantity
+
+@dataclass
+class Portfolio:
+    cash: Decimal
+    positions: Dict[str, Position] = field(default_factory=dict)
+
+    def get_position(self, symbol: str) -&gt; Position:
+        if symbol not in self.positions:
+            self.positions[symbol] = Position(symbol=symbol)
+        return self.positions[symbol]
+
+    def process_fill(self, fill: Fill) -&gt; None:
+        position = self.get_position(fill.order.symbol)
+        position.update(fill)
+
+        if fill.order.side == OrderSide.BUY:
+            self.cash -= fill.fill_price * fill.fill_quantity + fill.commission
+        else:
+            self.cash += fill.fill_price * fill.fill_quantity - fill.commission
+
+    def get_equity(self, prices: Dict[str, Decimal]) -&gt; Decimal:
+        equity = self.cash
+        for symbol, position in self.positions.items():
+            if position.quantity != 0 and symbol in prices:
+                equity += position.quantity * prices[symbol]
+        return equity
+
+class Strategy(ABC):
+    @abstractmethod
+    def on_bar(self, timestamp: datetime, data: pd.DataFrame) -&gt; List[Order]:
+        pass
+
+    @abstractmethod
+    def on_fill(self, fill: Fill) -&gt; None:
+        pass
+
+class ExecutionModel(ABC):
+    @abstractmethod
+    def execute(self, order: Order, bar: pd.Series) -&gt; Optional[Fill]:
+        pass
+
+class SimpleExecutionModel(ExecutionModel):
+    def __init__(self, slippage_bps: float = 10, commission_per_share: float = 0.01):
+        self.slippage_bps = slippage_bps
+        self.commission_per_share = commission_per_share
+
+    def execute(self, order: Order, bar: pd.Series) -&gt; Optional[Fill]:
+        if order.order_type == OrderType.MARKET:
+            base_price = Decimal(str(bar[&quot;open&quot;]))
+
+            # Apply slippage
+            slippage_mult = 1 + (self.slippage_bps / 10000)
+            if order.side == OrderSide.BUY:
+                fill_price = base_price * Decimal(str(slippage_mult))
+            else:
+                fill_price = base_price / Decimal(str(slippage_mult))
+
+            commission = order.quantity * Decimal(str(self.commission_per_share))
+            slippage = abs(fill_price - base_price) * order.quantity
+
+            return Fill(
+                order=order,
+                fill_price=fill_price,
+                fill_quantity=order.quantity,
+                commission=commission,
+                slippage=slippage,
+                timestamp=bar.name
+            )
+        return None
+
+class Backtester:
+    def __init__(
+        self,
+        strategy: Strategy,
+        execution_model: ExecutionModel,
+        initial_capital: Decimal = Decimal(&quot;100000&quot;)
+    ):
+        self.strategy = strategy
+        self.execution_model = execution_model
+        self.portfolio = Portfolio(cash=initial_capital)
+        self.equity_curve: List[tuple] = []
+        self.trades: List[Fill] = []
+
+    def run(self, data: pd.DataFrame) -&gt; pd.DataFrame:
+        &quot;&quot;&quot;Run backtest on OHLCV data with DatetimeIndex.&quot;&quot;&quot;
+        pending_orders: List[Order] = []
+
+        for timestamp, bar in data.iterrows():
+            # Execute pending orders at today&#39;s prices
+            for order in pending_orders:
+                fill = self.execution_model.execute(order, bar)
+                if fill:
+                    self.portfolio.process_fill(fill)
+                    self.strategy.on_fill(fill)
+                    self.trades.append(fill)
+
+            pending_orders.clear()
+
+            # Get current prices for equity calculation
+            prices = {data.index.name or &quot;default&quot;: Decimal(str(bar[&quot;close&quot;]))}
+            equity = self.portfolio.get_equity(prices)
+            self.equity_curve.append((timestamp, float(equity)))
+
+            # Generate new orders for next bar
+            new_orders = self.strategy.on_bar(timestamp, data.loc[:timestamp])
+            pending_orders.extend(new_orders)
+
+        return self._create_results()
+
+    def _create_results(self) -&gt; pd.DataFrame:
+        equity_df = pd.DataFrame(self.equity_curve, columns=[&quot;timestamp&quot;, &quot;equity&quot;])
+        equity_df.set_index(&quot;timestamp&quot;, inplace=True)
+        equity_df[&quot;returns&quot;] = equity_df[&quot;equity&quot;].pct_change()
+        return equity_df
+</code></pre>
+<h3>Pattern 2: Vectorized Backtester (Fast)</h3>
+<pre><code class="language-python">import pandas as pd
+import numpy as np
+from typing import Callable, Dict, Any
+
+class VectorizedBacktester:
+    &quot;&quot;&quot;Fast vectorized backtester for simple strategies.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        initial_capital: float = 100000,
+        commission: float = 0.001,  # 0.1%
+        slippage: float = 0.0005   # 0.05%
+    ):
+        self.initial_capital = initial_capital
+        self.commission = commission
+        self.slippage = slippage
+
+    def run(
+        self,
+        prices: pd.DataFrame,
+        signal_func: Callable[[pd.DataFrame], pd.Series]
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Run backtest with signal function.
+
+        Args:
+            prices: DataFrame with &#39;close&#39; column
+            signal_func: Function that returns position signals (-1, 0, 1)
+
+        Returns:
+            Dictionary with results
+        &quot;&quot;&quot;
+        # Generate signals (shifted to avoid look-ahead)
+        signals = signal_func(prices).shift(1).fillna(0)
+
+        # Calculate returns
+        returns = prices[&quot;close&quot;].pct_change()
+
+        # Calculate strategy returns with costs
+        position_changes = signals.diff().abs()
+        trading_costs = position_changes * (self.commission + self.slippage)
+
+        strategy_returns = signals * returns - trading_costs
+
+        # Build equity curve
+        equity = (1 + strategy_returns).cumprod() * self.initial_capital
+
+        # Calculate metrics
+        results = {
+            &quot;equity&quot;: equity,
+            &quot;returns&quot;: strategy_returns,
+            &quot;signals&quot;: signals,
+            &quot;metrics&quot;: self._calculate_metrics(strategy_returns, equity)
+        }
+
+        return results
+
+    def _calculate_metrics(
+        self,
+        returns: pd.Series,
+        equity: pd.Series
+    ) -&gt; Dict[str, float]:
+        &quot;&quot;&quot;Calculate performance metrics.&quot;&quot;&quot;
+        total_return = (equity.iloc[-1] / self.initial_capital) - 1
+        annual_return = (1 + total_return) ** (252 / len(returns)) - 1
+        annual_vol = returns.std() * np.sqrt(252)
+        sharpe = annual_return / annual_vol if annual_vol &gt; 0 else 0
+
+        # Drawdown
+        rolling_max = equity.cummax()
+        drawdown = (equity - rolling_max) / rolling_max
+        max_drawdown = drawdown.min()
+
+        # Win rate
+        winning_days = (returns &gt; 0).sum()
+        total_days = (returns != 0).sum()
+        win_rate = winning_days / total_days if total_days &gt; 0 else 0
+
+        return {
+            &quot;total_return&quot;: total_return,
+            &quot;annual_return&quot;: annual_return,
+            &quot;annual_volatility&quot;: annual_vol,
+            &quot;sharpe_ratio&quot;: sharpe,
+            &quot;max_drawdown&quot;: max_drawdown,
+            &quot;win_rate&quot;: win_rate,
+            &quot;num_trades&quot;: int((returns != 0).sum())
+        }
+
+# Example usage
+def momentum_signal(prices: pd.DataFrame, lookback: int = 20) -&gt; pd.Series:
+    &quot;&quot;&quot;Simple momentum strategy: long when price &gt; SMA, else flat.&quot;&quot;&quot;
+    sma = prices[&quot;close&quot;].rolling(lookback).mean()
+    return (prices[&quot;close&quot;] &gt; sma).astype(int)
+
+# Run backtest
+# backtester = VectorizedBacktester()
+# results = backtester.run(price_data, lambda p: momentum_signal(p, 50))
+</code></pre>
+<h3>Pattern 3: Walk-Forward Optimization</h3>
+<pre><code class="language-python">from typing import Callable, Dict, List, Tuple, Any
+import pandas as pd
+import numpy as np
+from itertools import product
+
+class WalkForwardOptimizer:
+    &quot;&quot;&quot;Walk-forward analysis with anchored or rolling windows.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        train_period: int,
+        test_period: int,
+        anchored: bool = False,
+        n_splits: int = None
+    ):
+        &quot;&quot;&quot;
+        Args:
+            train_period: Number of bars in training window
+            test_period: Number of bars in test window
+            anchored: If True, training always starts from beginning
+            n_splits: Number of train/test splits (auto-calculated if None)
+        &quot;&quot;&quot;
+        self.train_period = train_period
+        self.test_period = test_period
+        self.anchored = anchored
+        self.n_splits = n_splits
+
+    def generate_splits(
+        self,
+        data: pd.DataFrame
+    ) -&gt; List[Tuple[pd.DataFrame, pd.DataFrame]]:
+        &quot;&quot;&quot;Generate train/test splits.&quot;&quot;&quot;
+        splits = []
+        n = len(data)
+
+        if self.n_splits:
+            step = (n - self.train_period) // self.n_splits
+        else:
+            step = self.test_period
+
+        start = 0
+        while start + self.train_period + self.test_period &lt;= n:
+            if self.anchored:
+                train_start = 0
+            else:
+                train_start = start
+
+            train_end = start + self.train_period
+            test_end = min(train_end + self.test_period, n)
+
+            train_data = data.iloc[train_start:train_end]
+            test_data = data.iloc[train_end:test_end]
+
+            splits.append((train_data, test_data))
+            start += step
+
+        return splits
+
+    def optimize(
+        self,
+        data: pd.DataFrame,
+        strategy_func: Callable,
+        param_grid: Dict[str, List],
+        metric: str = &quot;sharpe_ratio&quot;
+    ) -&gt; Dict[str, Any]:
+        &quot;&quot;&quot;
+        Run walk-forward optimization.
+
+        Args:
+            data: Full dataset
+            strategy_func: Function(data, **params) -&gt; results dict
+            param_grid: Parameter combinations to test
+            metric: Metric to optimize
+
+        Returns:
+            Combined results from all test periods
+        &quot;&quot;&quot;
+        splits = self.generate_splits(data)
+        all_results = []
+        optimal_params_history = []
+
+        for i, (train_data, test_data) in enumerate(splits):
+            # Optimize on training data
+            best_params, best_metric = self._grid_search(
+                train_data, strategy_func, param_grid, metric
+            )
+            optimal_params_history.append(best_params)
+
+            # Test with optimal params
+            test_results = strategy_func(test_data, **best_params)
+            test_results[&quot;split&quot;] = i
+            test_results[&quot;params&quot;] = best_params
+            all_results.append(test_results)
+
+            print(f&quot;Split {i+1}/{len(splits)}: &quot;
+                  f&quot;Best {metric}={best_metric:.4f}, params={best_params}&quot;)
+
+        return {
+            &quot;split_results&quot;: all_results,
+            &quot;param_history&quot;: optimal_params_history,
+            &quot;combined_equity&quot;: self._combine_equity_curves(all_results)
+        }
+
+    def _grid_search(
+        self,
+        data: pd.DataFrame,
+        strategy_func: Callable,
+        param_grid: Dict[str, List],
+        metric: str
+    ) -&gt; Tuple[Dict, float]:
+        &quot;&quot;&quot;Grid search for best parameters.&quot;&quot;&quot;
+        best_params = None
+        best_metric = -np.inf
+
+        # Generate all parameter combinations
+        param_names = list(param_grid.keys())
+        param_values = list(param_grid.values())
+
+        for values in product(*param_values):
+            params = dict(zip(param_names, values))
+            results = strategy_func(data, **params)
+
+            if results[&quot;metrics&quot;][metric] &gt; best_metric:
+                best_metric = results[&quot;metrics&quot;][metric]
+                best_params = params
+
+        return best_params, best_metric
+
+    def _combine_equity_curves(
+        self,
+        results: List[Dict]
+    ) -&gt; pd.Series:
+        &quot;&quot;&quot;Combine equity curves from all test periods.&quot;&quot;&quot;
+        combined = pd.concat([r[&quot;equity&quot;] for r in results])
+        return combined
+</code></pre>
+<h3>Pattern 4: Monte Carlo Analysis</h3>
+<pre><code class="language-python">import numpy as np
+import pandas as pd
+from typing import Dict, List
+
+class MonteCarloAnalyzer:
+    &quot;&quot;&quot;Monte Carlo simulation for strategy robustness.&quot;&quot;&quot;
+
+    def __init__(self, n_simulations: int = 1000, confidence: float = 0.95):
+        self.n_simulations = n_simulations
+        self.confidence = confidence
+
+    def bootstrap_returns(
+        self,
+        returns: pd.Series,
+        n_periods: int = None
+    ) -&gt; np.ndarray:
+        &quot;&quot;&quot;
+        Bootstrap simulation by resampling returns.
+
+        Args:
+            returns: Historical returns series
+            n_periods: Length of each simulation (default: same as input)
+
+        Returns:
+            Array of shape (n_simulations, n_periods)
+        &quot;&quot;&quot;
+        if n_periods is None:
+            n_periods = len(returns)
+
+        simulations = np.zeros((self.n_simulations, n_periods))
+
+        for i in range(self.n_simulations):
+            # Resample with replacement
+            simulated_returns = np.random.choice(
+                returns.values,
+                size=n_periods,
+                replace=True
+            )
+            simulations[i] = simulated_returns
+
+        return simulations
+
+    def analyze_drawdowns(
+        self,
+        returns: pd.Series
+    ) -&gt; Dict[str, float]:
+        &quot;&quot;&quot;Analyze drawdown distribution via simulation.&quot;&quot;&quot;
+        simulations = self.bootstrap_returns(returns)
+
+        max_drawdowns = []
+        for sim_returns in simulations:
+            equity = (1 + sim_returns).cumprod()
+            rolling_max = np.maximum.accumulate(equity)
+            drawdowns = (equity - rolling_max) / rolling_max
+            max_drawdowns.append(drawdowns.min())
+
+        max_drawdowns = np.array(max_drawdowns)
+
+        return {
+            &quot;expected_max_dd&quot;: np.mean(max_drawdowns),
+            &quot;median_max_dd&quot;: np.median(max_drawdowns),
+            f&quot;worst_{int(self.confidence*100)}pct&quot;: np.percentile(
+                max_drawdowns, (1 - self.confidence) * 100
+            ),
+            &quot;worst_case&quot;: max_drawdowns.min()
+        }
+
+    def probability_of_loss(
+        self,
+        returns: pd.Series,
+        holding_periods: List[int] = [21, 63, 126, 252]
+    ) -&gt; Dict[int, float]:
+        &quot;&quot;&quot;Calculate probability of loss over various holding periods.&quot;&quot;&quot;
+        results = {}
+
+        for period in holding_periods:
+            if period &gt; len(returns):
+                continue
+
+            simulations = self.bootstrap_returns(returns, period)
+            total_returns = (1 + simulations).prod(axis=1) - 1
+            prob_loss = (total_returns &lt; 0).mean()
+            results[period] = prob_loss
+
+        return results
+
+    def confidence_interval(
+        self,
+        returns: pd.Series,
+        periods: int = 252
+    ) -&gt; Dict[str, float]:
+        &quot;&quot;&quot;Calculate confidence interval for future returns.&quot;&quot;&quot;
+        simulations = self.bootstrap_returns(returns, periods)
+        total_returns = (1 + simulations).prod(axis=1) - 1
+
+        lower = (1 - self.confidence) / 2
+        upper = 1 - lower
+
+        return {
+            &quot;expected&quot;: total_returns.mean(),
+            &quot;lower_bound&quot;: np.percentile(total_returns, lower * 100),
+            &quot;upper_bound&quot;: np.percentile(total_returns, upper * 100),
+            &quot;std&quot;: total_returns.std()
+        }
+</code></pre>
+<h2>Performance Metrics</h2>
+<pre><code class="language-python">def calculate_metrics(returns: pd.Series, rf_rate: float = 0.02) -&gt; Dict[str, float]:
+    &quot;&quot;&quot;Calculate comprehensive performance metrics.&quot;&quot;&quot;
+    # Annualization factor (assuming daily returns)
+    ann_factor = 252
+
+    # Basic metrics
+    total_return = (1 + returns).prod() - 1
+    annual_return = (1 + total_return) ** (ann_factor / len(returns)) - 1
+    annual_vol = returns.std() * np.sqrt(ann_factor)
+
+    # Risk-adjusted returns
+    sharpe = (annual_return - rf_rate) / annual_vol if annual_vol &gt; 0 else 0
+
+    # Sortino (downside deviation)
+    downside_returns = returns[returns &lt; 0]
+    downside_vol = downside_returns.std() * np.sqrt(ann_factor)
+    sortino = (annual_return - rf_rate) / downside_vol if downside_vol &gt; 0 else 0
+
+    # Calmar ratio
+    equity = (1 + returns).cumprod()
+    rolling_max = equity.cummax()
+    drawdowns = (equity - rolling_max) / rolling_max
+    max_drawdown = drawdowns.min()
+    calmar = annual_return / abs(max_drawdown) if max_drawdown != 0 else 0
+
+    # Win rate and profit factor
+    wins = returns[returns &gt; 0]
+    losses = returns[returns &lt; 0]
+    win_rate = len(wins) / len(returns[returns != 0]) if len(returns[returns != 0]) &gt; 0 else 0
+    profit_factor = wins.sum() / abs(losses.sum()) if losses.sum() != 0 else np.inf
+
+    return {
+        &quot;total_return&quot;: total_return,
+        &quot;annual_return&quot;: annual_return,
+        &quot;annual_volatility&quot;: annual_vol,
+        &quot;sharpe_ratio&quot;: sharpe,
+        &quot;sortino_ratio&quot;: sortino,
+        &quot;calmar_ratio&quot;: calmar,
+        &quot;max_drawdown&quot;: max_drawdown,
+        &quot;win_rate&quot;: win_rate,
+        &quot;profit_factor&quot;: profit_factor,
+        &quot;num_trades&quot;: int((returns != 0).sum())
+    }
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Use point-in-time data</strong> - Avoid look-ahead bias</li>
+<li><strong>Include transaction costs</strong> - Realistic estimates</li>
+<li><strong>Test out-of-sample</strong> - Always reserve data</li>
+<li><strong>Use walk-forward</strong> - Not just train/test</li>
+<li><strong>Monte Carlo analysis</strong> - Understand uncertainty</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t overfit</strong> - Limit parameters</li>
+<li><strong>Don&#39;t ignore survivorship</strong> - Include delisted</li>
+<li><strong>Don&#39;t use adjusted data carelessly</strong> - Understand adjustments</li>
+<li><strong>Don&#39;t optimize on full history</strong> - Reserve test set</li>
+<li><strong>Don&#39;t ignore capacity</strong> - Market impact matters</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.amazon.com/Advances-Financial-Machine-Learning-Marcos/dp/1119482089">Advances in Financial Machine Learning (Marcos López de Prado)</a></li>
+<li><a href="https://www.amazon.com/Quantitative-Trading-Build-Algorithmic-Business/dp/1119800064">Quantitative Trading (Ernest Chan)</a></li>
+<li><a href="https://www.backtrader.com/docu/">Backtrader Documentation</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

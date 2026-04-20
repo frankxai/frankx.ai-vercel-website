@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Verification &amp; Quality Assurance Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/skills/verification-quality/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Verification &amp; Quality Assurance Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fskills%2Fverification-quality">verification-quality</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: &quot;Verification &amp; Quality Assurance&quot;
+description: &quot;Comprehensive truth scoring, code quality verification, and automatic rollback system with 0.95 accuracy threshold for ensuring high-quality agent outputs and codebase reliability.&quot;
+version: &quot;2.0.0&quot;
+category: &quot;quality-assurance&quot;
+tags: [&quot;verification&quot;, &quot;truth-scoring&quot;, &quot;quality&quot;, &quot;rollback&quot;, &quot;metrics&quot;, &quot;ci-cd&quot;]</h2>
+<h1>Verification &amp; Quality Assurance Skill</h1>
+<h2>What This Skill Does</h2>
+<p>This skill provides a comprehensive verification and quality assurance system that ensures code quality and correctness through:</p>
+<ul>
+<li><strong>Truth Scoring</strong>: Real-time reliability metrics (0.0-1.0 scale) for code, agents, and tasks</li>
+<li><strong>Verification Checks</strong>: Automated code correctness, security, and best practices validation</li>
+<li><strong>Automatic Rollback</strong>: Instant reversion of changes that fail verification (default threshold: 0.95)</li>
+<li><strong>Quality Metrics</strong>: Statistical analysis with trends, confidence intervals, and improvement tracking</li>
+<li><strong>CI/CD Integration</strong>: Export capabilities for continuous integration pipelines</li>
+<li><strong>Real-time Monitoring</strong>: Live dashboards and watch modes for ongoing verification</li>
+</ul>
+<h2>Prerequisites</h2>
+<ul>
+<li>Claude Flow installed (<code>npx claude-flow@alpha</code>)</li>
+<li>Git repository (for rollback features)</li>
+<li>Node.js 18+ (for dashboard features)</li>
+</ul>
+<h2>Quick Start</h2>
+<pre><code class="language-bash"># View current truth scores
+npx claude-flow@alpha truth
+
+# Run verification check
+npx claude-flow@alpha verify check
+
+# Verify specific file with custom threshold
+npx claude-flow@alpha verify check --file src/app.js --threshold 0.98
+
+# Rollback last failed verification
+npx claude-flow@alpha verify rollback --last-good
+</code></pre>
+<hr>
+<h2>Complete Guide</h2>
+<h3>Truth Scoring System</h3>
+<h4>View Truth Metrics</h4>
+<p>Display comprehensive quality and reliability metrics for your codebase and agent tasks.</p>
+<p><strong>Basic Usage:</strong></p>
+<pre><code class="language-bash"># View current truth scores (default: table format)
+npx claude-flow@alpha truth
+
+# View scores for specific time period
+npx claude-flow@alpha truth --period 7d
+
+# View scores for specific agent
+npx claude-flow@alpha truth --agent coder --period 24h
+
+# Find files/tasks below threshold
+npx claude-flow@alpha truth --threshold 0.8
+</code></pre>
+<p><strong>Output Formats:</strong></p>
+<pre><code class="language-bash"># Table format (default)
+npx claude-flow@alpha truth --format table
+
+# JSON for programmatic access
+npx claude-flow@alpha truth --format json
+
+# CSV for spreadsheet analysis
+npx claude-flow@alpha truth --format csv
+
+# HTML report with visualizations
+npx claude-flow@alpha truth --format html --export report.html
+</code></pre>
+<p><strong>Real-time Monitoring:</strong></p>
+<pre><code class="language-bash"># Watch mode with live updates
+npx claude-flow@alpha truth --watch
+
+# Export metrics automatically
+npx claude-flow@alpha truth --export .claude-flow/metrics/truth-$(date +%Y%m%d).json
+</code></pre>
+<h4>Truth Score Dashboard</h4>
+<p>Example dashboard output:</p>
+<pre><code>📊 Truth Metrics Dashboard
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Overall Truth Score: 0.947 ✅
+Trend: ↗️ +2.3% (7d)
+
+Top Performers:
+  verification-agent   0.982 ⭐
+  code-analyzer       0.971 ⭐
+  test-generator      0.958 ✅
+
+Needs Attention:
+  refactor-agent      0.821 ⚠️
+  docs-generator      0.794 ⚠️
+
+Recent Tasks:
+  task-456  0.991 ✅  &quot;Implement auth&quot;
+  task-455  0.967 ✅  &quot;Add tests&quot;
+  task-454  0.743 ❌  &quot;Refactor API&quot;
+</code></pre>
+<h4>Metrics Explained</h4>
+<p><strong>Truth Scores (0.0-1.0):</strong></p>
+<ul>
+<li><code>1.0-0.95</code>: Excellent ⭐ (production-ready)</li>
+<li><code>0.94-0.85</code>: Good ✅ (acceptable quality)</li>
+<li><code>0.84-0.75</code>: Warning ⚠️ (needs attention)</li>
+<li><code>&lt;0.75</code>: Critical ❌ (requires immediate action)</li>
+</ul>
+<p><strong>Trend Indicators:</strong></p>
+<ul>
+<li>↗️ Improving (positive trend)</li>
+<li>→ Stable (consistent performance)</li>
+<li>↘️ Declining (quality regression detected)</li>
+</ul>
+<p><strong>Statistics:</strong></p>
+<ul>
+<li><strong>Mean Score</strong>: Average truth score across all measurements</li>
+<li><strong>Median Score</strong>: Middle value (less affected by outliers)</li>
+<li><strong>Standard Deviation</strong>: Consistency of scores (lower = more consistent)</li>
+<li><strong>Confidence Interval</strong>: Statistical reliability of measurements</li>
+</ul>
+<h3>Verification Checks</h3>
+<h4>Run Verification</h4>
+<p>Execute comprehensive verification checks on code, tasks, or agent outputs.</p>
+<p><strong>File Verification:</strong></p>
+<pre><code class="language-bash"># Verify single file
+npx claude-flow@alpha verify check --file src/app.js
+
+# Verify directory recursively
+npx claude-flow@alpha verify check --directory src/
+
+# Verify with auto-fix enabled
+npx claude-flow@alpha verify check --file src/utils.js --auto-fix
+
+# Verify current working directory
+npx claude-flow@alpha verify check
+</code></pre>
+<p><strong>Task Verification:</strong></p>
+<pre><code class="language-bash"># Verify specific task output
+npx claude-flow@alpha verify check --task task-123
+
+# Verify with custom threshold
+npx claude-flow@alpha verify check --task task-456 --threshold 0.99
+
+# Verbose output for debugging
+npx claude-flow@alpha verify check --task task-789 --verbose
+</code></pre>
+<p><strong>Batch Verification:</strong></p>
+<pre><code class="language-bash"># Verify multiple files in parallel
+npx claude-flow@alpha verify batch --files &quot;*.js&quot; --parallel
+
+# Verify with pattern matching
+npx claude-flow@alpha verify batch --pattern &quot;src/**/*.ts&quot;
+
+# Integration test suite
+npx claude-flow@alpha verify integration --test-suite full
+</code></pre>
+<h4>Verification Criteria</h4>
+<p>The verification system evaluates:</p>
+<ol>
+<li><p><strong>Code Correctness</strong></p>
+<ul>
+<li>Syntax validation</li>
+<li>Type checking (TypeScript)</li>
+<li>Logic flow analysis</li>
+<li>Error handling completeness</li>
+</ul>
+</li>
+<li><p><strong>Best Practices</strong></p>
+<ul>
+<li>Code style adherence</li>
+<li>SOLID principles</li>
+<li>Design patterns usage</li>
+<li>Modularity and reusability</li>
+</ul>
+</li>
+<li><p><strong>Security</strong></p>
+<ul>
+<li>Vulnerability scanning</li>
+<li>Secret detection</li>
+<li>Input validation</li>
+<li>Authentication/authorization checks</li>
+</ul>
+</li>
+<li><p><strong>Performance</strong></p>
+<ul>
+<li>Algorithmic complexity</li>
+<li>Memory usage patterns</li>
+<li>Database query optimization</li>
+<li>Bundle size impact</li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong></p>
+<ul>
+<li>JSDoc/TypeDoc completeness</li>
+<li>README accuracy</li>
+<li>API documentation</li>
+<li>Code comments quality</li>
+</ul>
+</li>
+</ol>
+<h4>JSON Output for CI/CD</h4>
+<pre><code class="language-bash"># Get structured JSON output
+npx claude-flow@alpha verify check --json &gt; verification.json
+
+# Example JSON structure:
+{
+  &quot;overallScore&quot;: 0.947,
+  &quot;passed&quot;: true,
+  &quot;threshold&quot;: 0.95,
+  &quot;checks&quot;: [
+    {
+      &quot;name&quot;: &quot;code-correctness&quot;,
+      &quot;score&quot;: 0.98,
+      &quot;passed&quot;: true
+    },
+    {
+      &quot;name&quot;: &quot;security&quot;,
+      &quot;score&quot;: 0.91,
+      &quot;passed&quot;: false,
+      &quot;issues&quot;: [...]
+    }
+  ]
+}
+</code></pre>
+<h3>Automatic Rollback</h3>
+<h4>Rollback Failed Changes</h4>
+<p>Automatically revert changes that fail verification checks.</p>
+<p><strong>Basic Rollback:</strong></p>
+<pre><code class="language-bash"># Rollback to last known good state
+npx claude-flow@alpha verify rollback --last-good
+
+# Rollback to specific commit
+npx claude-flow@alpha verify rollback --to-commit abc123
+
+# Interactive rollback with preview
+npx claude-flow@alpha verify rollback --interactive
+</code></pre>
+<p><strong>Smart Rollback:</strong></p>
+<pre><code class="language-bash"># Rollback only failed files (preserve good changes)
+npx claude-flow@alpha verify rollback --selective
+
+# Rollback with automatic backup
+npx claude-flow@alpha verify rollback --backup-first
+
+# Dry-run mode (preview without executing)
+npx claude-flow@alpha verify rollback --dry-run
+</code></pre>
+<p><strong>Rollback Performance:</strong></p>
+<ul>
+<li>Git-based rollback: &lt;1 second</li>
+<li>Selective file rollback: &lt;500ms</li>
+<li>Backup creation: Automatic before rollback</li>
+</ul>
+<h3>Verification Reports</h3>
+<h4>Generate Reports</h4>
+<p>Create detailed verification reports with metrics and visualizations.</p>
+<p><strong>Report Formats:</strong></p>
+<pre><code class="language-bash"># JSON report
+npx claude-flow@alpha verify report --format json
+
+# HTML report with charts
+npx claude-flow@alpha verify report --export metrics.html --format html
+
+# CSV for data analysis
+npx claude-flow@alpha verify report --format csv --export metrics.csv
+
+# Markdown summary
+npx claude-flow@alpha verify report --format markdown
+</code></pre>
+<p><strong>Time-based Reports:</strong></p>
+<pre><code class="language-bash"># Last 24 hours
+npx claude-flow@alpha verify report --period 24h
+
+# Last 7 days
+npx claude-flow@alpha verify report --period 7d
+
+# Last 30 days with trends
+npx claude-flow@alpha verify report --period 30d --include-trends
+
+# Custom date range
+npx claude-flow@alpha verify report --from 2025-01-01 --to 2025-01-31
+</code></pre>
+<p><strong>Report Content:</strong></p>
+<ul>
+<li>Overall truth scores</li>
+<li>Per-agent performance metrics</li>
+<li>Task completion quality</li>
+<li>Verification pass/fail rates</li>
+<li>Rollback frequency</li>
+<li>Quality improvement trends</li>
+<li>Statistical confidence intervals</li>
+</ul>
+<h3>Interactive Dashboard</h3>
+<h4>Launch Dashboard</h4>
+<p>Run interactive web-based verification dashboard with real-time updates.</p>
+<pre><code class="language-bash"># Launch dashboard on default port (3000)
+npx claude-flow@alpha verify dashboard
+
+# Custom port
+npx claude-flow@alpha verify dashboard --port 8080
+
+# Export dashboard data
+npx claude-flow@alpha verify dashboard --export
+
+# Dashboard with auto-refresh
+npx claude-flow@alpha verify dashboard --refresh 5s
+</code></pre>
+<p><strong>Dashboard Features:</strong></p>
+<ul>
+<li>Real-time truth score updates (WebSocket)</li>
+<li>Interactive charts and graphs</li>
+<li>Agent performance comparison</li>
+<li>Task history timeline</li>
+<li>Rollback history viewer</li>
+<li>Export to PDF/HTML</li>
+<li>Filter by time period/agent/score</li>
+</ul>
+<h3>Configuration</h3>
+<h4>Default Configuration</h4>
+<p>Set verification preferences in <code>.claude-flow/config.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;verification&quot;: {
+    &quot;threshold&quot;: 0.95,
+    &quot;autoRollback&quot;: true,
+    &quot;gitIntegration&quot;: true,
+    &quot;hooks&quot;: {
+      &quot;preCommit&quot;: true,
+      &quot;preTask&quot;: true,
+      &quot;postEdit&quot;: true
+    },
+    &quot;checks&quot;: {
+      &quot;codeCorrectness&quot;: true,
+      &quot;security&quot;: true,
+      &quot;performance&quot;: true,
+      &quot;documentation&quot;: true,
+      &quot;bestPractices&quot;: true
+    }
+  },
+  &quot;truth&quot;: {
+    &quot;defaultFormat&quot;: &quot;table&quot;,
+    &quot;defaultPeriod&quot;: &quot;24h&quot;,
+    &quot;warningThreshold&quot;: 0.85,
+    &quot;criticalThreshold&quot;: 0.75,
+    &quot;autoExport&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;path&quot;: &quot;.claude-flow/metrics/truth-daily.json&quot;
+    }
+  }
+}
+</code></pre>
+<h4>Threshold Configuration</h4>
+<p><strong>Adjust verification strictness:</strong></p>
+<pre><code class="language-bash"># Strict mode (99% accuracy required)
+npx claude-flow@alpha verify check --threshold 0.99
+
+# Lenient mode (90% acceptable)
+npx claude-flow@alpha verify check --threshold 0.90
+
+# Set default threshold
+npx claude-flow@alpha config set verification.threshold 0.98
+</code></pre>
+<p><strong>Per-environment thresholds:</strong></p>
+<pre><code class="language-json">{
+  &quot;verification&quot;: {
+    &quot;thresholds&quot;: {
+      &quot;production&quot;: 0.99,
+      &quot;staging&quot;: 0.95,
+      &quot;development&quot;: 0.90
+    }
+  }
+}
+</code></pre>
+<h3>Integration Examples</h3>
+<h4>CI/CD Integration</h4>
+<p><strong>GitHub Actions:</strong></p>
+<pre><code class="language-yaml">name: Quality Verification
+
+on: [push, pull_request]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Verification
+        run: |
+          npx claude-flow@alpha verify check --json &gt; verification.json
+
+      - name: Check Truth Score
+        run: |
+          score=$(jq &#39;.overallScore&#39; verification.json)
+          if (( $(echo &quot;$score &lt; 0.95&quot; | bc -l) )); then
+            echo &quot;Truth score too low: $score&quot;
+            exit 1
+          fi
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: verification-report
+          path: verification.json
+</code></pre>
+<p><strong>GitLab CI:</strong></p>
+<pre><code class="language-yaml">verify:
+  stage: test
+  script:
+    - npx claude-flow@alpha verify check --threshold 0.95 --json &gt; verification.json
+    - |
+      score=$(jq &#39;.overallScore&#39; verification.json)
+      if [ $(echo &quot;$score &lt; 0.95&quot; | bc) -eq 1 ]; then
+        echo &quot;Verification failed with score: $score&quot;
+        exit 1
+      fi
+  artifacts:
+    paths:
+      - verification.json
+    reports:
+      junit: verification.json
+</code></pre>
+<h4>Swarm Integration</h4>
+<p>Run verification automatically during swarm operations:</p>
+<pre><code class="language-bash"># Swarm with verification enabled
+npx claude-flow@alpha swarm --verify --threshold 0.98
+
+# Hive Mind with auto-rollback
+npx claude-flow@alpha hive-mind --verify --rollback-on-fail
+
+# Training pipeline with verification
+npx claude-flow@alpha train --verify --threshold 0.99
+</code></pre>
+<h4>Pair Programming Integration</h4>
+<p>Enable real-time verification during collaborative development:</p>
+<pre><code class="language-bash"># Pair with verification
+npx claude-flow@alpha pair --verify --real-time
+
+# Pair with custom threshold
+npx claude-flow@alpha pair --verify --threshold 0.97 --auto-fix
+</code></pre>
+<h3>Advanced Workflows</h3>
+<h4>Continuous Verification</h4>
+<p>Monitor codebase continuously during development:</p>
+<pre><code class="language-bash"># Watch directory for changes
+npx claude-flow@alpha verify watch --directory src/
+
+# Watch with auto-fix
+npx claude-flow@alpha verify watch --directory src/ --auto-fix
+
+# Watch with notifications
+npx claude-flow@alpha verify watch --notify --threshold 0.95
+</code></pre>
+<h4>Monitoring Integration</h4>
+<p>Send metrics to external monitoring systems:</p>
+<pre><code class="language-bash"># Export to Prometheus
+npx claude-flow@alpha truth --format json | \
+  curl -X POST https://pushgateway.example.com/metrics/job/claude-flow \
+  -d @-
+
+# Send to DataDog
+npx claude-flow@alpha verify report --format json | \
+  curl -X POST &quot;https://api.datadoghq.com/api/v1/series?api_key=${DD_API_KEY}&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d @-
+
+# Custom webhook
+npx claude-flow@alpha truth --format json | \
+  curl -X POST https://metrics.example.com/api/truth \
+  -H &quot;Content-Type: application/json&quot; \
+  -d @-
+</code></pre>
+<h4>Pre-commit Hooks</h4>
+<p>Automatically verify before commits:</p>
+<pre><code class="language-bash"># Install pre-commit hook
+npx claude-flow@alpha verify install-hook --pre-commit
+
+# .git/hooks/pre-commit example:
+#!/bin/bash
+npx claude-flow@alpha verify check --threshold 0.95 --json &gt; /tmp/verify.json
+
+score=$(jq &#39;.overallScore&#39; /tmp/verify.json)
+if (( $(echo &quot;$score &lt; 0.95&quot; | bc -l) )); then
+  echo &quot;❌ Verification failed with score: $score&quot;
+  echo &quot;Run &#39;npx claude-flow@alpha verify check --verbose&#39; for details&quot;
+  exit 1
+fi
+
+echo &quot;✅ Verification passed with score: $score&quot;
+</code></pre>
+<h3>Performance Metrics</h3>
+<p><strong>Verification Speed:</strong></p>
+<ul>
+<li>Single file check: &lt;100ms</li>
+<li>Directory scan: &lt;500ms (per 100 files)</li>
+<li>Full codebase analysis: &lt;5s (typical project)</li>
+<li>Truth score calculation: &lt;50ms</li>
+</ul>
+<p><strong>Rollback Speed:</strong></p>
+<ul>
+<li>Git-based rollback: &lt;1s</li>
+<li>Selective file rollback: &lt;500ms</li>
+<li>Backup creation: &lt;2s</li>
+</ul>
+<p><strong>Dashboard Performance:</strong></p>
+<ul>
+<li>Initial load: &lt;1s</li>
+<li>Real-time updates: &lt;100ms latency (WebSocket)</li>
+<li>Chart rendering: 60 FPS</li>
+</ul>
+<h3>Troubleshooting</h3>
+<h4>Common Issues</h4>
+<p><strong>Low Truth Scores:</strong></p>
+<pre><code class="language-bash"># Get detailed breakdown
+npx claude-flow@alpha truth --verbose --threshold 0.0
+
+# Check specific criteria
+npx claude-flow@alpha verify check --verbose
+
+# View agent-specific issues
+npx claude-flow@alpha truth --agent &lt;agent-name&gt; --format json
+</code></pre>
+<p><strong>Rollback Failures:</strong></p>
+<pre><code class="language-bash"># Check git status
+git status
+
+# View rollback history
+npx claude-flow@alpha verify rollback --history
+
+# Manual rollback
+git reset --hard HEAD~1
+</code></pre>
+<p><strong>Verification Timeouts:</strong></p>
+<pre><code class="language-bash"># Increase timeout
+npx claude-flow@alpha verify check --timeout 60s
+
+# Verify in batches
+npx claude-flow@alpha verify batch --batch-size 10
+</code></pre>
+<h3>Exit Codes</h3>
+<p>Verification commands return standard exit codes:</p>
+<ul>
+<li><code>0</code>: Verification passed (score ≥ threshold)</li>
+<li><code>1</code>: Verification failed (score &lt; threshold)</li>
+<li><code>2</code>: Error during verification (invalid input, system error)</li>
+</ul>
+<h3>Related Commands</h3>
+<ul>
+<li><code>npx claude-flow@alpha pair</code> - Collaborative development with verification</li>
+<li><code>npx claude-flow@alpha train</code> - Training with verification feedback</li>
+<li><code>npx claude-flow@alpha swarm</code> - Multi-agent coordination with quality checks</li>
+<li><code>npx claude-flow@alpha report</code> - Generate comprehensive project reports</li>
+</ul>
+<h3>Best Practices</h3>
+<ol>
+<li><strong>Set Appropriate Thresholds</strong>: Use 0.99 for critical code, 0.95 for standard, 0.90 for experimental</li>
+<li><strong>Enable Auto-rollback</strong>: Prevent bad code from persisting</li>
+<li><strong>Monitor Trends</strong>: Track improvement over time, not just current scores</li>
+<li><strong>Integrate with CI/CD</strong>: Make verification part of your pipeline</li>
+<li><strong>Use Watch Mode</strong>: Get immediate feedback during development</li>
+<li><strong>Export Metrics</strong>: Track quality metrics in your monitoring system</li>
+<li><strong>Review Rollbacks</strong>: Understand why changes were rejected</li>
+<li><strong>Train Agents</strong>: Use verification feedback to improve agent performance</li>
+</ol>
+<h3>Additional Resources</h3>
+<ul>
+<li>Truth Scoring Algorithm: See <code>/docs/truth-scoring.md</code></li>
+<li>Verification Criteria: See <code>/docs/verification-criteria.md</code></li>
+<li>Integration Examples: See <code>/examples/verification/</code></li>
+<li>API Reference: See <code>/docs/api/verification.md</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude Flow V3</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Flow V3</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude Flow V3</h1>
+<blockquote>
+<p><strong>Modular AI Agent Coordination System</strong> - A complete reimagining of Claude-Flow with 15-agent hierarchical mesh swarm coordination.</p>
+</blockquote>
+<p><a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/version-3.0.0--alpha.1-blue.svg" alt="Version"></a>
+<a href="https://nodejs.org/"><img src="https://img.shields.io/badge/node-%3E%3D20.0.0-green.svg" alt="Node.js"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.3+-blue.svg" alt="TypeScript"></a>
+<a href="../LICENSE"><img src="https://img.shields.io/badge/license-MIT-purple.svg" alt="License"></a></p>
+<h2>Introduction</h2>
+<p>Claude Flow V3 is a next-generation AI agent coordination system built on 10 Architecture Decision Records (ADRs). It provides a modular, security-first, high-performance platform for orchestrating multi-agent swarms with hierarchical mesh topology.</p>
+<p>V3 represents a complete architectural overhaul:</p>
+<ul>
+<li><strong>10x faster testing</strong> with Vitest</li>
+<li><strong>150x-12,500x faster search</strong> with HNSW indexing</li>
+<li><strong>2.49x-7.47x Flash Attention speedup</strong></li>
+<li><strong>50-75% memory reduction</strong></li>
+</ul>
+<h2>Features</h2>
+<h3>Core Capabilities</h3>
+<ul>
+<li><strong>15-Agent Hierarchical Mesh</strong> - Queen-led coordination with specialized worker agents</li>
+<li><strong>Domain-Driven Design</strong> - Clean bounded contexts with separation of concerns</li>
+<li><strong>Plugin Architecture</strong> - Microkernel pattern for extensibility</li>
+<li><strong>MCP-First API</strong> - Consistent interfaces across all modules</li>
+<li><strong>Event Sourcing</strong> - Full audit trail for state changes</li>
+<li><strong>Hybrid Memory Backend</strong> - SQLite + AgentDB for optimal performance</li>
+</ul>
+<h3>Security</h3>
+<ul>
+<li><strong>CVE Remediation</strong> - All known vulnerabilities addressed</li>
+<li><strong>Input Validation</strong> - Zod-based schema validation</li>
+<li><strong>Secure ID Generation</strong> - Cryptographic random IDs</li>
+<li><strong>Path Security</strong> - Traversal protection</li>
+<li><strong>SQL Injection Prevention</strong> - Parameterized queries</li>
+</ul>
+<h3>Performance</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Achieved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Event Bus (100k events)</td>
+<td>&lt;50ms</td>
+<td>~6ms</td>
+</tr>
+<tr>
+<td>Map Lookup (100k gets)</td>
+<td>&lt;20ms</td>
+<td>~16ms</td>
+</tr>
+<tr>
+<td>Array.find vs Map O(1)</td>
+<td>N/A</td>
+<td>978x speedup</td>
+</tr>
+<tr>
+<td>Flash Attention</td>
+<td>2.49x-7.47x</td>
+<td>Validated</td>
+</tr>
+<tr>
+<td>AgentDB Search</td>
+<td>150x-12,500x</td>
+<td>HNSW indexed</td>
+</tr>
+</tbody></table>
+<h2>Architecture</h2>
+<h3>Architecture Decision Records (ADRs)</h3>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADR-001</td>
+<td>Adopt agentic-flow as core foundation</td>
+</tr>
+<tr>
+<td>ADR-002</td>
+<td>Domain-Driven Design structure</td>
+</tr>
+<tr>
+<td>ADR-003</td>
+<td>Single coordination engine (UnifiedSwarmCoordinator)</td>
+</tr>
+<tr>
+<td>ADR-004</td>
+<td>Plugin-based architecture (microkernel)</td>
+</tr>
+<tr>
+<td>ADR-005</td>
+<td>MCP-first API design</td>
+</tr>
+<tr>
+<td>ADR-006</td>
+<td>Unified memory service (AgentDB)</td>
+</tr>
+<tr>
+<td>ADR-007</td>
+<td>Event sourcing for state changes</td>
+</tr>
+<tr>
+<td>ADR-008</td>
+<td>Vitest over Jest (10x faster)</td>
+</tr>
+<tr>
+<td>ADR-009</td>
+<td>Hybrid memory backend default</td>
+</tr>
+<tr>
+<td>ADR-010</td>
+<td>Remove Deno support (Node.js 20+ only)</td>
+</tr>
+</tbody></table>
+<h3>Module Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                     @claude-flow/v3-monorepo                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │   security   │  │    memory    │  │    swarm     │          │
+│  │  CVE fixes   │  │   AgentDB    │  │ 15-agent     │          │
+│  │  validation  │  │   HNSW       │  │ coordination │          │
+│  └──────────────┘  └──────────────┘  └──────────────┘          │
+│                                                                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │ integration  │  │  performance │  │    neural    │          │
+│  │ agentic-flow │  │ Flash Attn   │  │   SONA       │          │
+│  │  bridge      │  │ benchmarks   │  │  learning    │          │
+│  └──────────────┘  └──────────────┘  └──────────────┘          │
+│                                                                 │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐          │
+│  │     cli      │  │   testing    │  │  deployment  │          │
+│  │  commands    │  │ TDD London   │  │   release    │          │
+│  │  prompts     │  │   School     │  │    CI/CD     │          │
+│  └──────────────┘  └──────────────┘  └──────────────┘          │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                       shared                             │   │
+│  │  types • events • core • hooks • resilience • plugins   │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Directory Structure</h2>
+<pre><code>v3/
+├── @claude-flow/                    # Modular packages
+│   ├── security/                    # Security module
+│   │   └── src/
+│   │       ├── index.ts             # Password hashing, validators
+│   │       └── ...
+│   │
+│   ├── memory/                      # Memory module
+│   │   ├── src/
+│   │   │   ├── agentdb-backend.ts   # AgentDB integration
+│   │   │   ├── hnsw-index.ts        # HNSW vector indexing
+│   │   │   ├── hybrid-backend.ts    # SQLite + AgentDB
+│   │   │   ├── sqlite-backend.ts    # SQLite backend
+│   │   │   ├── cache-manager.ts     # Caching layer
+│   │   │   └── domain/              # DDD entities
+│   │   ├── benchmarks/              # Performance benchmarks
+│   │   └── examples/                # Usage examples
+│   │
+│   ├── swarm/                       # Swarm coordination
+│   │   └── src/
+│   │       ├── unified-coordinator.ts  # Main coordinator
+│   │       ├── topology-manager.ts     # Topology management
+│   │       ├── consensus/              # Consensus protocols
+│   │       └── domain/                 # DDD entities
+│   │
+│   ├── integration/                 # agentic-flow integration
+│   │   └── src/
+│   │       ├── agentic-flow-bridge.ts  # Core bridge
+│   │       ├── agent-adapter.ts        # Agent adaptation
+│   │       └── sona-adapter.ts         # SONA learning
+│   │
+│   ├── performance/                 # Performance module
+│   │   ├── src/
+│   │   │   └── framework/           # Benchmark framework
+│   │   └── benchmarks/
+│   │       ├── startup/             # Startup benchmarks
+│   │       └── attention/           # Flash Attention
+│   │
+│   ├── neural/                      # Neural/SONA module
+│   │   └── src/
+│   │       ├── algorithms/          # Learning algorithms
+│   │       └── modes/               # Neural modes
+│   │
+│   ├── cli/                         # CLI module
+│   │   ├── bin/                     # Executable
+│   │   └── src/
+│   │       └── commands/            # Command handlers
+│   │
+│   ├── testing/                     # Testing framework
+│   │   └── src/
+│   │       ├── fixtures/            # Test fixtures
+│   │       ├── mocks/               # Mock services
+│   │       ├── helpers/             # Test helpers
+│   │       └── regression/          # Regression tests
+│   │
+│   ├── shared/                      # Shared utilities
+│   │   └── src/
+│   │       ├── types/               # Shared types
+│   │       ├── events/              # Event system
+│   │       ├── core/                # Core interfaces
+│   │       ├── hooks/               # Hook system
+│   │       ├── resilience/          # Retry, circuit breaker
+│   │       ├── plugins/             # Plugin system
+│   │       └── security/            # Security utilities
+│   │
+│   └── deployment/                  # Deployment module
+│       └── src/                     # Release management
+│
+├── mcp/                             # MCP Server
+│   ├── server.ts                    # Main server
+│   ├── tools/                       # MCP tools
+│   │   ├── agent-tools.ts
+│   │   ├── swarm-tools.ts
+│   │   ├── memory-tools.ts
+│   │   └── hooks-tools.ts
+│   └── transport/                   # Transport layers
+│       ├── stdio.ts
+│       ├── http.ts
+│       └── websocket.ts
+│
+├── __tests__/                       # Integration tests
+│   └── integration/
+│       ├── memory-integration.test.ts
+│       ├── swarm-integration.test.ts
+│       ├── mcp-integration.test.ts
+│       └── workflow-integration.test.ts
+│
+├── docs/                            # Documentation
+│   ├── README.md                    # Docs overview
+│   ├── guides/                      # User guides
+│   └── implementation/              # Implementation details
+│
+├── helpers/                         # Cross-platform helpers
+│   ├── claude-flow-v3.sh            # Master helper (Linux/macOS)
+│   ├── claude-flow-v3.ps1           # Master helper (Windows)
+│   └── templates/                   # Helper templates
+│
+├── scripts/                         # Utility scripts
+│   └── quick-benchmark.mjs          # Quick perf test
+│
+├── index.ts                         # Main entry point
+├── swarm.config.ts                  # Swarm configuration
+├── vitest.config.ts                 # Test configuration
+└── package.json                     # Monorepo package
+</code></pre>
+<h2>Modules</h2>
+<h3>@claude-flow/security</h3>
+<p>Security-first implementation with CVE fixes, input validation, and credential management.</p>
+<pre><code class="language-typescript">import { PasswordHasher, validateInput, sanitizePath } from &#39;@claude-flow/security&#39;;
+
+const hasher = new PasswordHasher();
+const hash = await hasher.hash(&#39;password&#39;);
+const valid = await hasher.verify(&#39;password&#39;, hash);
+</code></pre>
+<h3>@claude-flow/memory</h3>
+<p>Unified memory service with AgentDB, HNSW indexing, and 150x-12,500x faster search.</p>
+<pre><code class="language-typescript">import { HybridMemoryRepository, HNSWIndex } from &#39;@claude-flow/memory&#39;;
+
+const memory = new HybridMemoryRepository({
+  backend: &#39;agentdb&#39;,
+  vectorSearch: true
+});
+
+await memory.store({ key: &#39;knowledge&#39;, value: &#39;context&#39;, embedding: [...] });
+const results = await memory.search({ query: &#39;knowledge&#39;, limit: 10 });
+</code></pre>
+<h3>@claude-flow/swarm</h3>
+<p>15-agent hierarchical mesh coordination with consensus protocols.</p>
+<pre><code class="language-typescript">import { UnifiedSwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+
+const coordinator = new UnifiedSwarmCoordinator({
+  topology: &#39;hierarchical-mesh&#39;,
+  maxAgents: 15
+});
+
+await coordinator.initialize();
+await coordinator.spawnAgent({ type: &#39;queen-coordinator&#39; });
+</code></pre>
+<h3>@claude-flow/integration</h3>
+<p>Deep integration with agentic-flow@alpha per ADR-001.</p>
+<pre><code class="language-typescript">import { AgenticFlowBridge } from &#39;@claude-flow/integration&#39;;
+
+const bridge = new AgenticFlowBridge();
+await bridge.initialize();
+const agent = await bridge.createAgent({ type: &#39;coder&#39; });
+</code></pre>
+<h3>@claude-flow/performance</h3>
+<p>Benchmarking framework with Flash Attention validation.</p>
+<pre><code class="language-typescript">import { BenchmarkRunner, formatTime } from &#39;@claude-flow/performance&#39;;
+
+const runner = new BenchmarkRunner();
+const result = await runner.run(&#39;map-lookup&#39;, () =&gt; map.get(key), {
+  iterations: 100000,
+  targetTime: 20
+});
+</code></pre>
+<h3>@claude-flow/neural</h3>
+<p>SONA learning integration for self-optimizing agents.</p>
+<pre><code class="language-typescript">import { SONAAdapter } from &#39;@claude-flow/neural&#39;;
+
+const sona = new SONAAdapter();
+await sona.train({ patterns: learningData });
+const prediction = await sona.predict(context);
+</code></pre>
+<h3>@claude-flow/cli</h3>
+<p>Modern CLI with interactive prompts and formatted output.</p>
+<pre><code class="language-bash">npx @claude-flow/cli swarm init --topology hierarchical-mesh
+npx @claude-flow/cli agent spawn --type queen-coordinator
+npx @claude-flow/cli memory search &quot;knowledge&quot;
+</code></pre>
+<h3>@claude-flow/testing</h3>
+<p>TDD London School framework with mocks, fixtures, and regression testing.</p>
+<pre><code class="language-typescript">import { createMockAgent, createTestFixture } from &#39;@claude-flow/testing&#39;;
+
+const mockAgent = createMockAgent({ type: &#39;coder&#39; });
+const fixture = createTestFixture(&#39;swarm-coordination&#39;);
+</code></pre>
+<h3>@claude-flow/shared</h3>
+<p>Common types, events, utilities, and core interfaces.</p>
+<pre><code class="language-typescript">import { EventBus, Result, success, failure } from &#39;@claude-flow/shared&#39;;
+import type { AgentId, TaskStatus } from &#39;@claude-flow/shared/types&#39;;
+</code></pre>
+<h3>@claude-flow/deployment</h3>
+<p>Release management and CI/CD automation.</p>
+<pre><code class="language-typescript">import { ReleaseManager } from &#39;@claude-flow/deployment&#39;;
+
+const release = new ReleaseManager();
+await release.prepare({ version: &#39;3.0.0&#39;, changelog: &#39;...&#39; });
+</code></pre>
+<h2>Usage</h2>
+<h3>Quick Start</h3>
+<pre><code class="language-typescript">import { initializeV3Swarm } from &#39;@claude-flow/v3&#39;;
+
+// Initialize the swarm
+const swarm = await initializeV3Swarm();
+
+// Spawn agents
+await swarm.spawnAllAgents();
+
+// Submit a task
+const task = swarm.submitTask({
+  type: &#39;implementation&#39;,
+  title: &#39;Implement feature X&#39;,
+  description: &#39;Detailed description...&#39;,
+  domain: &#39;core&#39;,
+  phase: &#39;phase-2-core&#39;,
+  priority: &#39;high&#39;
+});
+
+// Wait for completion
+const result = await swarm.waitForTask(task.id);
+</code></pre>
+<h3>Import Specific Modules</h3>
+<pre><code class="language-typescript">// Import everything
+import * as claudeFlow from &#39;@claude-flow/v3&#39;;
+
+// Or import specific modules for tree-shaking
+import { UnifiedSwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+import { PasswordHasher } from &#39;@claude-flow/security&#39;;
+import { HNSWIndex } from &#39;@claude-flow/memory&#39;;
+</code></pre>
+<h3>MCP Server</h3>
+<pre><code class="language-typescript">import { createMCPServer } from &#39;@claude-flow/v3/mcp&#39;;
+
+const server = createMCPServer({
+  transport: &#39;stdio&#39;,
+  tools: [&#39;agent&#39;, &#39;swarm&#39;, &#39;memory&#39;, &#39;hooks&#39;]
+});
+
+await server.start();
+</code></pre>
+<h2>Helper System</h2>
+<p>Cross-platform automation for V3 development:</p>
+<pre><code class="language-bash"># Linux/macOS
+./helpers/claude-flow-v3.sh init
+./helpers/claude-flow-v3.sh status
+./helpers/claude-flow-v3.sh update domain 3
+
+# Windows (PowerShell)
+.\helpers\claude-flow-v3.ps1 init
+.\helpers\claude-flow-v3.ps1 status
+.\helpers\claude-flow-v3.ps1 update domain 3
+</code></pre>
+<p>Features:</p>
+<ul>
+<li><strong>Progress Tracking</strong>: Real-time domain/agent/performance metrics</li>
+<li><strong>Checkpointing</strong>: Auto-commit with development milestones</li>
+<li><strong>Validation</strong>: Environment and configuration verification</li>
+<li><strong>GitHub Integration</strong>: PR management and issue tracking</li>
+</ul>
+<h2>Installation</h2>
+<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/ruvnet/claude-flow.git
+cd claude-flow/v3
+
+# Install dependencies
+pnpm install
+
+# Build all modules
+pnpm build
+</code></pre>
+<h2>Testing</h2>
+<pre><code class="language-bash"># Run all tests
+pnpm test
+
+# Run integration tests
+pnpm test:integration
+
+# Run specific module tests
+pnpm test:memory
+pnpm test:swarm
+pnpm test:security
+
+# Run benchmarks
+pnpm bench
+
+# Quick benchmark (no dependencies)
+node scripts/quick-benchmark.mjs
+
+# Coverage report
+pnpm test:coverage
+</code></pre>
+<h2>Performance Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Metric</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Search</strong></td>
+<td>AgentDB HNSW</td>
+<td>150x-12,500x faster</td>
+</tr>
+<tr>
+<td><strong>Attention</strong></td>
+<td>Flash Attention</td>
+<td>2.49x-7.47x speedup</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>Reduction</td>
+<td>50-75%</td>
+</tr>
+<tr>
+<td><strong>Code</strong></td>
+<td>Total lines</td>
+<td>&lt;5,000</td>
+</tr>
+<tr>
+<td><strong>Startup</strong></td>
+<td>Cold start</td>
+<td>&lt;500ms</td>
+</tr>
+<tr>
+<td><strong>Learning</strong></td>
+<td>SONA adaptation</td>
+<td>&lt;0.05ms</td>
+</tr>
+</tbody></table>
+<h2>Links</h2>
+<h3>Documentation</h3>
+<ul>
+<li><a href="./docs/README.md">Docs Overview</a></li>
+<li><a href="./docs/implementation/">Implementation Details</a></li>
+<li><a href="./docs/guides/">User Guides</a></li>
+<li><a href="./helpers/README.md">Helper System</a></li>
+</ul>
+<h3>Modules</h3>
+<ul>
+<li><a href="./@claude-flow/security/">@claude-flow/security</a></li>
+<li><a href="./@claude-flow/memory/">@claude-flow/memory</a></li>
+<li><a href="./@claude-flow/swarm/">@claude-flow/swarm</a></li>
+<li><a href="./@claude-flow/integration/">@claude-flow/integration</a></li>
+<li><a href="./@claude-flow/performance/">@claude-flow/performance</a></li>
+<li><a href="./@claude-flow/neural/">@claude-flow/neural</a></li>
+<li><a href="./@claude-flow/cli/">@claude-flow/cli</a></li>
+<li><a href="./@claude-flow/testing/">@claude-flow/testing</a></li>
+<li><a href="./@claude-flow/shared/">@claude-flow/shared</a></li>
+<li><a href="./@claude-flow/deployment/">@claude-flow/deployment</a></li>
+</ul>
+<h3>Examples</h3>
+<ul>
+<li><a href="./@claude-flow/memory/examples/agentdb-example.ts">AgentDB Example</a></li>
+<li><a href="./@claude-flow/memory/examples/cross-platform-usage.ts">Cross-Platform Usage</a></li>
+</ul>
+<h3>MCP Tools</h3>
+<ul>
+<li><a href="./mcp/tools/agent-tools.ts">Agent Tools</a></li>
+<li><a href="./mcp/tools/swarm-tools.ts">Swarm Tools</a></li>
+<li><a href="./mcp/tools/memory-tools.ts">Memory Tools</a></li>
+<li><a href="./mcp/tools/hooks-tools.ts">Hooks Tools</a></li>
+</ul>
+<h3>External</h3>
+<ul>
+<li><a href="https://github.com/ruvnet/claude-flow">GitHub Repository</a></li>
+<li><a href="https://github.com/ruvnet/agentic-flow">agentic-flow Integration</a></li>
+<li><a href="https://github.com/ruvnet/agentdb">AgentDB</a></li>
+</ul>
+<h2>Requirements</h2>
+<ul>
+<li><strong>Node.js</strong>: &gt;=20.0.0</li>
+<li><strong>pnpm</strong>: &gt;=8.0.0</li>
+<li><strong>TypeScript</strong>: &gt;=5.3.0</li>
+</ul>
+<h2>License</h2>
+<p>MIT License - See <a href="../LICENSE">LICENSE</a> for details.</p>
+<hr>
+<p><strong>Built with the SPARC methodology and 15-agent hierarchical mesh coordination.</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

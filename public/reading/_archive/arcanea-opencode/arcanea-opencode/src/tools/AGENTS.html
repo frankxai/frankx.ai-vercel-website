@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>TOOLS KNOWLEDGE BASE</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/arcanea-opencode/arcanea-opencode/src/tools/AGENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">TOOLS KNOWLEDGE BASE</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2Farcanea-opencode">arcanea-opencode</a> / <a href="../../index.html#_archive%2Farcanea-opencode%2Farcanea-opencode">arcanea-opencode</a> / <a href="../index.html#_archive%2Farcanea-opencode%2Farcanea-opencode%2Fsrc">src</a> / <a href="index.html#_archive%2Farcanea-opencode%2Farcanea-opencode%2Fsrc%2Ftools">tools</a> / <span>AGENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>TOOLS KNOWLEDGE BASE</h1>
+<h2>OVERVIEW</h2>
+<p>Custom tools extending agent capabilities: LSP integration (11 tools), AST-aware code search/replace, file operations with timeouts, background task management.</p>
+<h2>STRUCTURE</h2>
+<pre><code>tools/
+├── ast-grep/           # AST-aware code search/replace (25 languages)
+│   ├── cli.ts          # @ast-grep/cli subprocess
+│   ├── napi.ts         # @ast-grep/napi native binding (preferred)
+│   ├── constants.ts, types.ts, tools.ts, utils.ts
+├── background-task/    # Async agent task management
+├── call-omo-agent/     # Spawn explore/librarian agents
+├── glob/               # File pattern matching (timeout-safe)
+├── grep/               # Content search (timeout-safe)
+├── interactive-bash/   # Tmux session management
+├── look-at/            # Multimodal analysis (PDF, images)
+├── lsp/                # 11 LSP tools
+│   ├── client.ts       # LSP connection lifecycle
+│   ├── config.ts       # Server configurations
+│   ├── tools.ts        # Tool implementations
+│   └── types.ts
+├── session-manager/    # OpenCode session file management
+│   ├── constants.ts    # Storage paths, descriptions
+│   ├── types.ts        # Session data interfaces
+│   ├── storage.ts      # File I/O operations
+│   ├── utils.ts        # Formatting, filtering
+│   └── tools.ts        # Tool implementations
+├── skill/              # Skill loading and execution
+├── skill-mcp/          # Skill-embedded MCP invocation
+├── slashcommand/       # Slash command execution
+└── index.ts            # builtinTools export
+</code></pre>
+<h2>TOOL CATEGORIES</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Tools</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LSP</td>
+<td>lsp_hover, lsp_goto_definition, lsp_find_references, lsp_document_symbols, lsp_workspace_symbols, lsp_diagnostics, lsp_servers, lsp_prepare_rename, lsp_rename, lsp_code_actions, lsp_code_action_resolve</td>
+<td>IDE-like code intelligence</td>
+</tr>
+<tr>
+<td>AST</td>
+<td>ast_grep_search, ast_grep_replace</td>
+<td>Pattern-based code search/replace</td>
+</tr>
+<tr>
+<td>File Search</td>
+<td>grep, glob</td>
+<td>Content and file pattern matching</td>
+</tr>
+<tr>
+<td>Session</td>
+<td>session_list, session_read, session_search, session_info</td>
+<td>OpenCode session file management</td>
+</tr>
+<tr>
+<td>Background</td>
+<td>sisyphus_task, background_output, background_cancel</td>
+<td>Async agent orchestration</td>
+</tr>
+<tr>
+<td>Multimodal</td>
+<td>look_at</td>
+<td>PDF/image analysis via Gemini</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>interactive_bash</td>
+<td>Tmux session control</td>
+</tr>
+<tr>
+<td>Commands</td>
+<td>slashcommand</td>
+<td>Execute slash commands</td>
+</tr>
+<tr>
+<td>Skills</td>
+<td>skill, skill_mcp</td>
+<td>Load skills, invoke skill-embedded MCPs</td>
+</tr>
+<tr>
+<td>Agents</td>
+<td>call_omo_agent</td>
+<td>Spawn explore/librarian</td>
+</tr>
+</tbody></table>
+<h2>HOW TO ADD A TOOL</h2>
+<ol>
+<li>Create directory: <code>src/tools/my-tool/</code></li>
+<li>Create files:<ul>
+<li><code>constants.ts</code>: <code>TOOL_NAME</code>, <code>TOOL_DESCRIPTION</code></li>
+<li><code>types.ts</code>: Parameter/result interfaces</li>
+<li><code>tools.ts</code>: Tool implementation (returns OpenCode tool object)</li>
+<li><code>index.ts</code>: Barrel export</li>
+<li><code>utils.ts</code>: Helpers (optional)</li>
+</ul>
+</li>
+<li>Add to <code>builtinTools</code> in <code>src/tools/index.ts</code></li>
+</ol>
+<h2>LSP SPECIFICS</h2>
+<ul>
+<li><strong>Client lifecycle</strong>: Lazy init on first use, auto-shutdown on idle</li>
+<li><strong>Config priority</strong>: opencode.json &gt; oh-my-opencode.json &gt; defaults</li>
+<li><strong>Supported servers</strong>: typescript-language-server, pylsp, gopls, rust-analyzer, etc.</li>
+<li><strong>Custom servers</strong>: Add via <code>lsp</code> config in oh-my-opencode.json</li>
+</ul>
+<h2>AST-GREP SPECIFICS</h2>
+<ul>
+<li><strong>Meta-variables</strong>: <code>$VAR</code> (single node), <code>$$$</code> (multiple nodes)</li>
+<li><strong>Languages</strong>: 25 supported (typescript, tsx, python, rust, go, etc.)</li>
+<li><strong>Binding</strong>: Prefers @ast-grep/napi (native), falls back to @ast-grep/cli</li>
+<li><strong>Pattern must be valid AST</strong>: <code>export async function $NAME($$$) { $$$ }</code> not fragments</li>
+</ul>
+<h2>ANTI-PATTERNS (TOOLS)</h2>
+<ul>
+<li><strong>No timeout</strong>: Always use timeout for file operations (default 60s)</li>
+<li><strong>Blocking main thread</strong>: Use async/await, never sync file ops</li>
+<li><strong>Ignoring LSP errors</strong>: Gracefully handle server not found/crashed</li>
+<li><strong>Raw subprocess for ast-grep</strong>: Prefer napi binding for performance</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

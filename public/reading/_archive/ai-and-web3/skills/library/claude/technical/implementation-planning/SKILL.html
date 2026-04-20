@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Implementation Planning</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/ai-and-web3/skills/library/claude/technical/implementation-planning/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Implementation Planning</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2Fai-and-web3">ai-and-web3</a> / <a href="../../../../index.html#_archive%2Fai-and-web3%2Fskills">skills</a> / <a href="../../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary">library</a> / <a href="../../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude">claude</a> / <a href="../index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical">technical</a> / <a href="index.html#_archive%2Fai-and-web3%2Fskills%2Flibrary%2Fclaude%2Ftechnical%2Fimplementation-planning">implementation-planning</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Implementation Planning
+description: Create detailed implementation plans with atomic tasks and verification steps
+version: 1.0.0
+source: Adapted from obra/superpowers</h2>
+<h1>Implementation Planning</h1>
+<h2>Purpose</h2>
+<p>Generate comprehensive implementation plans that:</p>
+<ul>
+<li>Break work into atomic 2-5 minute tasks</li>
+<li>Include exact file paths and code examples</li>
+<li>Follow TDD principles (test first)</li>
+<li>Enable parallel or sequential execution</li>
+<li>Allow engineers with minimal context to execute</li>
+</ul>
+<h2>Plan Header Template</h2>
+<pre><code class="language-markdown"># Implementation Plan: [Feature Name]
+
+**Date**: YYYY-MM-DD
+**Author**: Claude Code
+**Status**: Draft | Ready | In Progress | Complete
+
+## Goal
+[1-2 sentence description of what we&#39;re building and why]
+
+## Architecture Context
+[Brief description of how this fits into the existing system]
+
+## Tech Stack
+- Framework: Next.js 14 (App Router)
+- Styling: Tailwind CSS + shadcn/ui
+- Testing: Vitest + Playwright
+- Database: [if applicable]
+
+## Prerequisites
+- [ ] [Any setup needed before starting]
+- [ ] [Dependencies to install]
+- [ ] [Access/credentials required]
+
+## Estimated Scope
+- Tasks: [N] tasks
+- Time: [X] hours (at 2-5 min/task average)
+- Complexity: Low | Medium | High
+</code></pre>
+<h2>Task Structure</h2>
+<p>Each task follows the TDD cycle:</p>
+<pre><code class="language-markdown">### Task [N]: [Brief Description]
+
+**File**: `src/path/to/file.ts`
+**Type**: Test | Implementation | Refactor | Config
+
+#### 1. Write Test (RED)
+```typescript
+// tests/unit/feature.test.ts
+describe(&#39;featureName&#39;, () =&gt; {
+  it(&#39;should [expected behavior]&#39;, () =&gt; {
+    // Arrange
+    const input = { ... };
+
+    // Act
+    const result = featureName(input);
+
+    // Assert
+    expect(result).toBe(expected);
+  });
+});
+</code></pre>
+<h4>2. Run Test - Expect Failure</h4>
+<pre><code class="language-bash">npm test -- feature.test.ts
+# Expected: FAIL - featureName is not defined
+</code></pre>
+<h4>3. Implement (GREEN)</h4>
+<pre><code class="language-typescript">// src/lib/feature.ts
+export function featureName(input: Input): Output {
+  // Minimal implementation
+  return result;
+}
+</code></pre>
+<h4>4. Run Test - Expect Pass</h4>
+<pre><code class="language-bash">npm test -- feature.test.ts
+# Expected: PASS
+</code></pre>
+<h4>5. Verify No Regressions</h4>
+<pre><code class="language-bash">npm test
+# Expected: All tests pass
+</code></pre>
+<h4>6. Commit</h4>
+<pre><code class="language-bash">git add src/lib/feature.ts tests/unit/feature.test.ts
+git commit -m &quot;feat: add featureName function with tests&quot;
+</code></pre>
+<hr>
+<pre><code>
+## Plan Organization
+
+### For Sequential Execution
+
+```markdown
+## Tasks
+
+### Phase 1: Foundation
+1. Task 1: Create types/interfaces
+2. Task 2: Write unit tests for core logic
+3. Task 3: Implement core logic
+
+### Phase 2: Integration
+4. Task 4: Write API route tests
+5. Task 5: Implement API route
+6. Task 6: Integration test
+
+### Phase 3: UI
+7. Task 7: Write component tests
+8. Task 8: Implement component
+9. Task 9: E2E test
+
+### Phase 4: Polish
+10. Task 10: Error handling
+11. Task 11: Loading states
+12. Task 12: Documentation
+</code></pre>
+<h3>For Parallel Execution</h3>
+<pre><code class="language-markdown">## Tasks (Parallelizable)
+
+### Stream A: Backend (Agent 1)
+- Task A1: API types
+- Task A2: API tests
+- Task A3: API implementation
+
+### Stream B: Frontend (Agent 2)
+- Task B1: Component types
+- Task B2: Component tests
+- Task B3: Component implementation
+
+### Stream C: Infrastructure (Agent 3)
+- Task C1: Database schema
+- Task C2: Migration scripts
+- Task C3: Seed data
+
+### Integration Point
+After A3, B3, C3 complete:
+- Task I1: Integration tests
+- Task I2: E2E tests
+</code></pre>
+<h2>Guidelines</h2>
+<h3>Task Granularity</h3>
+<ul>
+<li><strong>Too big</strong>: &quot;Implement authentication&quot; (hours)</li>
+<li><strong>Just right</strong>: &quot;Write test for login validation&quot; (3 min)</li>
+<li><strong>Too small</strong>: &quot;Add import statement&quot; (30 sec)</li>
+</ul>
+<h3>Code Examples</h3>
+<ul>
+<li><strong>Always provide complete code</strong> in plans</li>
+<li>Never write &quot;add validation&quot; - show THE validation code</li>
+<li>Include imports, types, error handling</li>
+</ul>
+<h3>File Paths</h3>
+<ul>
+<li><strong>Always use exact paths</strong>: <code>src/components/auth/LoginForm.tsx</code></li>
+<li>Never use relative references like &quot;the auth folder&quot;</li>
+</ul>
+<h3>Commands</h3>
+<ul>
+<li><strong>Include exact commands</strong> with expected output</li>
+<li>Show both success and failure expectations</li>
+</ul>
+<h3>Dependencies</h3>
+<ul>
+<li>List any skills to reference: <code>@test-driven-development</code></li>
+<li>Link to related documentation</li>
+</ul>
+<h2>Execution Options</h2>
+<p>After plan completion, offer:</p>
+<h3>Option 1: Subagent-Driven</h3>
+<pre><code>Spawn fresh subagent for each task within current session.
+Best for: Complex tasks needing verification between steps.
+</code></pre>
+<h3>Option 2: Parallel Sessions</h3>
+<pre><code>Execute using @parallel-agents skill.
+Best for: Independent streams that don&#39;t conflict.
+</code></pre>
+<h3>Option 3: Manual Execution</h3>
+<pre><code>Human executes tasks following the plan.
+Best for: Learning, sensitive changes, production deployments.
+</code></pre>
+<h2>FrankX Example Plan</h2>
+<pre><code class="language-markdown"># Implementation Plan: Email Signup Enhancement
+
+**Date**: 2026-01-20
+**Goal**: Add validation, rate limiting, and success animation to email signup
+
+## Tasks
+
+### Task 1: Add Zod Schema
+**File**: `lib/validation.ts`
+
+#### 1. Write Test
+```typescript
+describe(&#39;emailSignupSchema&#39;, () =&gt; {
+  it(&#39;should reject invalid emails&#39;, () =&gt; {
+    const result = emailSignupSchema.safeParse({ email: &#39;invalid&#39; });
+    expect(result.success).toBe(false);
+  });
+
+  it(&#39;should accept valid emails&#39;, () =&gt; {
+    const result = emailSignupSchema.safeParse({ email: &#39;test@example.com&#39; });
+    expect(result.success).toBe(true);
+  });
+});
+</code></pre>
+<h4>2. Implement</h4>
+<pre><code class="language-typescript">import { z } from &#39;zod&#39;;
+
+export const emailSignupSchema = z.object({
+  email: z.string().email(&#39;Please enter a valid email address&#39;),
+});
+</code></pre>
+<hr>
+<h3>Task 2: Add Rate Limiting</h3>
+<p><strong>File</strong>: <code>app/api/subscribe/route.ts</code>
+[... continues with same structure ...]</p>
+<pre><code>
+## Plan Storage
+
+Save plans to: `docs/plans/YYYY-MM-DD-feature-name.md`
+</code></pre>
+<p>docs/
+└── plans/
+    ├── 2026-01-15-email-signup.md
+    ├── 2026-01-18-pdf-download.md
+    └── 2026-01-20-blog-comments.md</p>
+<pre><code>
+## When to Use This Skill
+
+- Before starting any multi-step feature
+- When handing off work to another developer
+- When breaking complex tasks into sprints
+- For documentation of implementation approach
+
+## Related Skills
+
+- `test-driven-development` - Each task follows TDD
+- `parallel-agents` - Execute streams concurrently
+- `systematic-debugging` - When tasks fail
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,527 @@
+{
+  "timestamp": "2026-03-28T00:00:00Z",
+  "totalCTAs": 52,
+  "funnels": [
+    {
+      "name": "Homepage Hero -> Start Here",
+      "steps": [
+        {
+          "page": "/",
+          "cta": "Explore the Work (primary)",
+          "destination": "/start",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Read the Blog (secondary)",
+          "destination": "/blog",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Homepage Products Grid -> Product Pages",
+      "steps": [
+        {
+          "page": "/",
+          "cta": "Agentic Creator OS",
+          "destination": "/acos",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Prompt Library",
+          "destination": "/prompt-library",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Creator Kit",
+          "destination": "/products",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "AI Architecture Hub",
+          "destination": "/ai-architecture",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Music Lab",
+          "destination": "/music-lab",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Design Lab",
+          "destination": "/design-lab",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Homepage Hub Showcases -> Content",
+      "steps": [
+        {
+          "page": "/",
+          "cta": "Explore AI Architecture",
+          "destination": "/ai-architecture",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Enter Music Lab",
+          "destination": "/music-lab",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Enter Arcanea",
+          "destination": "https://arcanea.ai",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Visit Design Lab",
+          "destination": "/design-lab",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Browse Library (Books)",
+          "destination": "/books",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Homepage Learning Hub -> Pages",
+      "steps": [
+        {
+          "page": "/",
+          "cta": "Students & Creators",
+          "destination": "/students",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Guides & Tutorials",
+          "destination": "/guides",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Watch",
+          "destination": "/watch",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Tools & Resources",
+          "destination": "/tools",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Homepage Digital Twin -> Lab & Story",
+      "steps": [
+        {
+          "page": "/",
+          "cta": "Explore the Lab",
+          "destination": "/lab",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "The full story",
+          "destination": "/frankx",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Homepage Email CTA -> Newsletter Signup",
+      "steps": [
+        {
+          "page": "/",
+          "cta": "EmailSignup (newsletter)",
+          "destination": "POST /api/subscribe",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Homepage Final CTA -> Start & Newsletter",
+      "steps": [
+        {
+          "page": "/",
+          "cta": "Start Here (final)",
+          "destination": "/start",
+          "status": "working"
+        },
+        {
+          "page": "/",
+          "cta": "Get the Newsletter (final)",
+          "destination": "/newsletter",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Navigation -> Start Here",
+      "steps": [
+        {
+          "page": "nav",
+          "cta": "Start Here (desktop + mobile)",
+          "destination": "/start",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Navigation -> Search",
+      "steps": [
+        {
+          "page": "nav",
+          "cta": "Search icon",
+          "destination": "/search",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Footer -> Newsletter Signup",
+      "steps": [
+        {
+          "page": "footer",
+          "cta": "Subscribe (EmailSignup)",
+          "destination": "POST /api/subscribe",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Products Page -> Active Products",
+      "steps": [
+        {
+          "page": "/products",
+          "cta": "Explore (Vibe OS)",
+          "destination": "/products/vibe-os",
+          "status": "working"
+        },
+        {
+          "page": "/products",
+          "cta": "Explore (Creator's Soulbook)",
+          "destination": "/soulbook",
+          "status": "working"
+        },
+        {
+          "page": "/products",
+          "cta": "Explore (5 Suno Prompt Bundles)",
+          "destination": "/products/suno-prompt-library",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Products Page -> Early Access Products",
+      "steps": [
+        {
+          "page": "/products",
+          "cta": "Join (Creative AI Toolkit)",
+          "destination": "Modal -> EmailSignup POST /api/subscribe (courses-waitlist)",
+          "status": "working"
+        },
+        {
+          "page": "/products",
+          "cta": "Join (Creation Chronicles)",
+          "destination": "Modal -> EmailSignup POST /api/subscribe (courses-waitlist)",
+          "status": "working"
+        },
+        {
+          "page": "/products",
+          "cta": "Join (Generative Creator OS)",
+          "destination": "Modal -> EmailSignup POST /api/subscribe (courses-waitlist)",
+          "status": "working"
+        },
+        {
+          "page": "/products",
+          "cta": "Join (Agentic Creator OS)",
+          "destination": "Modal -> EmailSignup POST /api/subscribe (courses-waitlist)",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Products Page -> Bottom CTA",
+      "steps": [
+        {
+          "page": "/products",
+          "cta": "Explore Vibe OS",
+          "destination": "/products/vibe-os",
+          "status": "working"
+        },
+        {
+          "page": "/products",
+          "cta": "Newsletter",
+          "destination": "/newsletter",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Vibe OS -> Purchase/Access",
+      "steps": [
+        {
+          "page": "/products/vibe-os",
+          "cta": "Start Using Vibe OS (primary)",
+          "destination": "/products/vibe-os/app",
+          "status": "working"
+        },
+        {
+          "page": "/products/vibe-os",
+          "cta": "View Documentation (secondary)",
+          "destination": "/products/vibe-os/docs",
+          "status": "working"
+        },
+        {
+          "page": "/products/vibe-os",
+          "cta": "Join Newsletter (coming-soon fallback)",
+          "destination": "/newsletter",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "BV Kit -> Gumroad Purchase",
+      "steps": [
+        {
+          "page": "/products/bv-kit",
+          "cta": "Buy BV Kit",
+          "destination": "https://frankxai.gumroad.com/l/bv-kit",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Prompt Vault -> Gumroad Purchase",
+      "steps": [
+        {
+          "page": "/products/prompt-vault",
+          "cta": "Buy Prompt Vault",
+          "destination": "https://frankxai.gumroad.com/l/prompt-vault",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Coaching -> Application",
+      "steps": [
+        {
+          "page": "/coaching",
+          "cta": "Apply for Coaching (3x tier cards)",
+          "destination": "#apply (anchor scroll)",
+          "status": "working"
+        },
+        {
+          "page": "/coaching",
+          "cta": "Submit Application (form)",
+          "destination": "POST /api/coaching-apply",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Cohort -> Application",
+      "steps": [
+        {
+          "page": "/students/cohort",
+          "cta": "Apply button (scrolls to form)",
+          "destination": "scrollToForm()",
+          "status": "working"
+        },
+        {
+          "page": "/students/cohort",
+          "cta": "Submit Application (form)",
+          "destination": "POST /api/cohort/apply",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "Blog Article -> Footer CTAs",
+      "steps": [
+        {
+          "page": "/blog/[slug]",
+          "cta": "Start building (BlogFooterCTA)",
+          "destination": "/start",
+          "status": "working"
+        },
+        {
+          "page": "/blog/[slug]",
+          "cta": "Browse templates (BlogFooterCTA)",
+          "destination": "/ai-architecture/templates",
+          "status": "working"
+        },
+        {
+          "page": "/blog/[slug]",
+          "cta": "Join the circle (BlogFooterCTA)",
+          "destination": "/inner-circle",
+          "status": "working"
+        }
+      ],
+      "status": "partial",
+      "note": "/inner-circle page exists but verify it has content and a clear next action"
+    },
+    {
+      "name": "Blog Article -> Social Sharing",
+      "steps": [
+        {
+          "page": "/blog/[slug]",
+          "cta": "Share on Twitter",
+          "destination": "https://twitter.com/intent/tweet?...",
+          "status": "working"
+        },
+        {
+          "page": "/blog/[slug]",
+          "cta": "Share on LinkedIn",
+          "destination": "https://www.linkedin.com/sharing/share-offsite/?...",
+          "status": "working"
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "name": "AI Architecture Templates -> LemonSqueezy Checkout",
+      "steps": [
+        {
+          "page": "/ai-architecture/templates",
+          "cta": "Buy template",
+          "destination": "https://frankx.lemonsqueezy.com/checkout/buy/{variantId}",
+          "status": "partial"
+        }
+      ],
+      "status": "partial",
+      "note": "All 6 templates have empty lemonSqueezyVariantId strings. Buy buttons will not render until IDs are set."
+    }
+  ],
+  "gumroadLinks": [
+    {
+      "page": "/products/bv-kit",
+      "url": "https://frankxai.gumroad.com/l/bv-kit",
+      "product": "BV Formation Kit"
+    },
+    {
+      "page": "/products/prompt-vault",
+      "url": "https://frankxai.gumroad.com/l/prompt-vault",
+      "product": "Prompt Vault"
+    },
+    {
+      "page": "data/products.json (Creative AI Toolkit)",
+      "url": "https://frankx.gumroad.com/l/creative-ai-toolkit",
+      "product": "Creative AI Toolkit"
+    },
+    {
+      "page": "data/products.json (Suno Prompt Library)",
+      "url": "https://frankx.gumroad.com/l/suno-prompt-library",
+      "product": "Suno Prompt Library"
+    },
+    {
+      "page": "data/products.json (Aurora UI Kit)",
+      "url": "https://frankx.gumroad.com/l/aurora-ui-kit",
+      "product": "Aurora UI Kit"
+    },
+    {
+      "page": "data/products.json (Agentic Content Engine)",
+      "url": "https://frankx.gumroad.com/l/agentic-content-engine",
+      "product": "Agentic Content Engine"
+    },
+    {
+      "page": "data/products.json (Creation Chronicles Creator)",
+      "url": "https://frankx.gumroad.com/l/creation-chronicles-creator",
+      "product": "Creation Chronicles (Creator tier)"
+    },
+    {
+      "page": "data/products.json (Creation Chronicles Business)",
+      "url": "https://frankx.gumroad.com/l/creation-chronicles-business",
+      "product": "Creation Chronicles (Business tier)"
+    }
+  ],
+  "issues": [
+    {
+      "page": "NavigationMega /music",
+      "issue": "Music School link points to /music-school which does NOT exist (no app/music-school/ directory)",
+      "severity": "critical"
+    },
+    {
+      "page": "data/products.json",
+      "issue": "Gumroad domain inconsistency: BV Kit and Prompt Vault use 'frankxai.gumroad.com' but products.json uses 'frankx.gumroad.com'. These may be different Gumroad accounts or one set of links may 404.",
+      "severity": "high"
+    },
+    {
+      "page": "/ai-architecture/templates",
+      "issue": "All 6 architecture templates have empty lemonSqueezyVariantId. Buy buttons are conditionally rendered and will NOT show until IDs are populated. Users see no purchase path.",
+      "severity": "high"
+    },
+    {
+      "page": "/blog/[slug] (BlogFooterCTA)",
+      "issue": "Blog footer CTA 'Join the circle' links to /inner-circle. Page exists but should be verified for active content and clear next action.",
+      "severity": "low"
+    },
+    {
+      "page": "data/products.json",
+      "issue": "8 Gumroad links need migration to LemonSqueezy. Two product pages (bv-kit, prompt-vault) have hardcoded Gumroad hrefs in their TSX files.",
+      "severity": "medium"
+    },
+    {
+      "page": "/products/vibe-os (COMING_SOON_MODE)",
+      "issue": "Vibe OS components have a COMING_SOON_MODE flag that redirects primary CTAs to /newsletter instead of the product app. Verify this flag is set correctly for current product status.",
+      "severity": "medium"
+    },
+    {
+      "page": "Homepage (HomePageElite.tsx)",
+      "issue": "Learning Hub card 'Tools & Resources' links to /tools which exists, but note this is under /tools not /resources. Footer has /investor/tools which also exists.",
+      "severity": "low"
+    },
+    {
+      "page": "app/page.tsx Schema markup",
+      "issue": "Person schema has jobTitle 'AI Systems Architect' instead of 'AI Architect'. CLAUDE.md mandates 'AI Architect' only.",
+      "severity": "medium"
+    }
+  ],
+  "summary": {
+    "working": 46,
+    "broken": 1,
+    "partial": 2,
+    "gumroadToMigrate": 8,
+    "notes": {
+      "brokenDetail": "/music-school navigation link has no destination page",
+      "partialDetail": "AI Architecture templates have no checkout IDs; BlogFooterCTA /inner-circle needs content verification",
+      "emailSignupEndpoint": "All EmailSignup components POST to /api/subscribe with listType parameter. API route exists at app/api/subscribe/route.ts.",
+      "coachingEndpoint": "Coaching form POSTs to /api/coaching-apply. API route exists.",
+      "cohortEndpoint": "Cohort form POSTs to /api/cohort/apply. API route exists.",
+      "allNavDestinations": "All 35+ navigation mega menu destinations have corresponding app/ directories EXCEPT /music-school (missing).",
+      "footerLinks": "All footer links verified: /music-lab, /prompt-library, /acos, /templates, /blog, /courses, /guides, /students, /watch, /ai-architecture, /ai-architecture/blueprints, /products, /about, /investor, /investor/agents, /investor/tools, /newsletter, /contact, /privacy, /terms, /legal all exist."
+    }
+  }
+}

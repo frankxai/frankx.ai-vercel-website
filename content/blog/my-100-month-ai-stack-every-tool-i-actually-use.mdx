@@ -1,0 +1,196 @@
+---
+title: "My $100/Month AI Stack: Every Tool I Actually Use"
+description: "The exact AI tools, subscriptions, and infrastructure I run to ship music, code, content, and products — with monthly costs broken down."
+date: "2026-03-20"
+author: "FrankX"
+category: "Creator Systems"
+tags: ["AI Tools", "AI Stack", "Productivity", "Creator Tools", "Cost"]
+image: "/images/blog/my-100-month-ai-stack-hero.webp"
+featured: true
+keywords:
+  [
+    "personal ai stack 2026",
+    "ai tools for creators",
+    "ai subscription cost",
+    "best ai tools monthly",
+    "creator ai setup",
+  ]
+readingGoal: "You will know every AI tool I pay for, what each one does, and whether you need it — with exact monthly costs."
+tldr: "I run a full AI production stack for under $100/month: Claude Pro ($20), Suno Pro ($10), Vercel Pro ($20), Railway ($5 for n8n), Resend ($0-20), and API costs (~$20-40). Total: $75-115/month. This stack ships a 170+ page website, 12,000+ songs, 9 automation workflows, and a complete content pipeline. No enterprise contracts. No team. One person. Here is every tool, what it costs, and whether you need it."
+schema: ["Article", "FAQPage"]
+---
+
+**TL;DR:** I run a full AI production stack for under $100/month: Claude Pro ($20), Suno Pro ($10), Vercel Pro ($20), Railway ($5 for n8n), Resend ($0-20), and API costs (~$20-40). Total: $75-115/month. This stack ships a 170+ page website, 12,000+ songs, 9 automation workflows, and a complete content pipeline. No enterprise contracts. No team. One person. Here is every tool, what it costs, and whether you need it.
+
+---
+
+People in AI build communities assume everyone is running enterprise contracts. Six-figure annual deals for Copilot, a Snowflake instance for RAG, a dedicated Databricks workspace for fine-tuning.
+
+I architect that at Oracle for Fortune 500 companies. The exact same work — intelligence infrastructure, agentic pipelines, content production, product shipping — runs on my personal stack for under $100/month.
+
+This is what I actually pay for, what each tool does, and the honest answer to whether you need it.
+
+---
+
+## The Core Stack: What I Pay For Every Month
+
+### Claude Pro — $20/month
+
+The foundation. Everything runs through Claude — writing, code, architecture review, content, research analysis.
+
+Claude Pro gives me 5x the usage of the free tier plus priority access during peak hours. The real value is Claude Code: an agentic terminal assistant that reads my codebase, runs commands, edits files, and ships features end-to-end. I use it daily for site maintenance, content production, and system design.
+
+Anthropic also offers Claude Max tiers: $100/month for 5x Pro usage and $200/month for 20x. Worth considering if you hit Pro rate limits regularly during heavy coding weeks.
+
+**Whether you need it:** If you write code or complex content, yes. If you only need occasional help, the free tier handles it.
+
+### Suno Pro — $10/month
+
+Music generation at scale. I have 12,000+ tracks and still produce new ones regularly. Suno Pro gives 2,500 credits/month, commercial licensing rights, and no watermarks. My tracks self-host on Vercel Blob and stream through a custom audio player I built.
+
+**Whether you need it:** Only if music production is part of your output. For most creators, this is optional.
+
+### Vercel Pro — $20/month
+
+Production hosting for frankx.ai. The free tier would cover most traffic, but Pro gives me: 1TB bandwidth, 12-second function execution limits (needed for AI API routes), team previews, Web Analytics, and Speed Insights. My site runs 170+ pages, an email capture API, a PDF download system, and streaming AI endpoints.
+
+**Whether you need it:** Free tier works for early-stage projects. Move to Pro when you need longer function limits or heavier traffic.
+
+### Railway — $5/month (n8n instance)
+
+One Railway project running n8n, the self-hosted automation platform. This single $5/month deployment powers 9 active workflows: morning intelligence briefs, content atomization, newsletter delivery, music catalog sync, and more. Equivalent functionality in Zapier would run $50-200/month and wouldn't support the same AI node complexity.
+
+See the full breakdown in [n8n Automation: 9 Workflows That Run My Creative Empire](/blog/n8n-automation-ai-creators-9-workflows).
+
+**Whether you need it:** If you want self-hosted automation, Railway is the cheapest viable platform. Alternatively, n8n Cloud starts at $24/month.
+
+### Resend — $0-20/month
+
+Transactional email: welcome sequences, PDF delivery, newsletter sends. The free tier handles up to 3,000 emails/month, which covers most early-stage creator operations. I stay on free most months. When I run a big newsletter push, I hit the paid tier briefly.
+
+**Whether you need it:** Free tier is genuinely useful. Only upgrade when list size or send volume demands it.
+
+### GitHub — Free
+
+All code lives in two repositories: private development at `frankxai/FrankX` and production at `frankxai/frankx.ai-vercel-website`. GitHub Actions runs zero CI pipelines currently — Vercel handles builds on push. GitHub Free handles unlimited private repos for individuals. No cost.
+
+**Whether you need it:** Yes, but free works.
+
+### Vercel Blob — Included in Vercel Pro
+
+Ten PDFs totaling 35MB, plus music track hosting. Blob storage is included in the Pro plan's storage quota. My download API reads directly from Blob and streams to users — no S3 bucket, no CloudFront, no additional monthly line item.
+
+**Whether you need it:** If you're on Vercel Pro, use it before paying for a separate object storage service.
+
+---
+
+## API Costs: The Variable Line
+
+Claude Code and raw API calls through the Anthropic console run me $20-40/month depending on session intensity. Heavy coding weeks push toward $40. Light weeks stay at $20.
+
+This is the most variable line in the budget. Some months I barely touch the API directly. Other months I run large document processing jobs or embed a few thousand chunks into ChromaDB.
+
+The key variable is context window usage. Long sessions with large codebases cost more. I manage this by keeping CLAUDE.md files tight and using the [`/compact`](/blog/ai-agent-memory-persistent-systems) command to compress context at natural checkpoints.
+
+**Domains:** frankx.ai costs roughly $15/year via IONOS. I don't count this in monthly because it's an annual payment.
+
+---
+
+## What I Tried and Dropped
+
+### ChatGPT Plus — $20/month (dropped)
+
+I ran both Claude Pro and ChatGPT Plus for two months. The overlap was near-total for my use cases. Claude handles long-context documents better, reasons through architecture decisions more precisely, and integrates with my workflow via Claude Code. ChatGPT Plus was redundant. Dropped.
+
+**The lesson:** Running two frontier model subscriptions is usually wasteful. Pick the one that fits your workflow and go deep on it.
+
+### Midjourney — $10/month (dropped)
+
+Replaced entirely by Gemini image generation via the Nanobanana MCP server in Claude Code. I generate images directly inside my workflow without switching applications. Quality is comparable for my use cases (blog hero images, product visuals, mascot variants). Saved $10/month and removed context switching.
+
+**The lesson:** MCP servers can eliminate entire tool subscriptions by bringing capabilities into your existing workflow.
+
+### Notion — $16/month (dropped)
+
+I used Notion for planning, knowledge management, and content drafts. Replaced it with MDX files in the codebase (blog posts and product specs live with the code), CLAUDE.md files for project memory, and structured JSON for inventories and data. My n8n workflows do still write to a Notion workspace, but that is on the free tier and used only as a staging area for newsletter drafts.
+
+**The lesson:** For technical creators who live in the terminal, files in Git are often more durable and searchable than a separate SaaS knowledge base.
+
+---
+
+## The Build vs. Buy Framework
+
+The question I apply before adding any subscription:
+
+**Can I build equivalent functionality for less than the subscription cost over 12 months?**
+
+| Tool        | Alternative       | Build Cost            | Sub Cost   | Decision |
+| ----------- | ----------------- | --------------------- | ---------- | -------- |
+| Zapier Pro  | n8n on Railway    | $5/mo ongoing         | $50-200/mo | Build    |
+| Notion Team | MDX + Git         | $0                    | $16/mo     | Build    |
+| Midjourney  | Nanobanana MCP    | $0                    | $10/mo     | Build    |
+| Vercel      | Self-host Next.js | $5-20/mo infra + time | $20/mo     | Buy      |
+| Resend      | Self-host Postfix | Hours of config       | $0-20/mo   | Buy      |
+
+The pattern: infrastructure that requires significant ops knowledge (email deliverability, Next.js CDN, SSL certs) is worth paying for. Logic layers (automation, knowledge management, image generation) are worth building when the alternative integrates better with your existing stack.
+
+---
+
+## How This Connects to the Personal AI CoE
+
+The framework I use at Oracle — a six-pillar AI Center of Excellence — has a direct personal equivalent. Technology is one of the six pillars, and your tool stack is the Technology layer.
+
+The $75-115/month total maps to the "$0-100/month tier" in the [Personal AI CoE framework](/research/personal-ai-coe). Most individual creators land in this range. The principle is the same whether you are a Fortune 500 or a solo builder: you need the right tools in the right layers, measured against actual output.
+
+What this stack produces:
+
+- **170+ page website** (Vercel Pro + GitHub + Claude Code)
+- **12,000+ music tracks** (Suno Pro + Vercel Blob)
+- **9 automation workflows** (Railway + n8n)
+- **Content pipeline** (Claude Pro + n8n Content Atomizer)
+- **Email sequences and product delivery** (Resend + Vercel API routes)
+
+The [ACOS framework](/acos) formalizes how these tools connect — not as a list of apps, but as an integrated operating system where each tool plays a defined role in the production chain.
+
+---
+
+## The Full Monthly Budget
+
+| Tool                  | Cost        | Layer          |
+| --------------------- | ----------- | -------------- |
+| Claude Pro            | $20         | Intelligence   |
+| Vercel Pro            | $20         | Infrastructure |
+| Claude API (variable) | $20-40      | Intelligence   |
+| Suno Pro              | $10         | Creation       |
+| Railway (n8n)         | $5          | Automation     |
+| Resend                | $0-20       | Distribution   |
+| GitHub                | $0          | Infrastructure |
+| Vercel Blob           | Included    | Storage        |
+| **Total**             | **$75-115** | —              |
+
+---
+
+## What This Stack Is Not
+
+It does not include: a CRM, a video editing suite, a podcast hosting platform, social scheduling software, or a paid SEO tool. Those are valid additions depending on your output types. I do not produce long-form video (yet), do not run a CRM for client management, and use free tiers of analytics tools.
+
+The stack matches the output. That is the only constraint that matters.
+
+---
+
+## FAQ
+
+**Do I need Claude Pro if I am just starting?**
+The free tier is genuinely capable. Claude Pro makes sense once you are shipping daily and hitting rate limits, or once you want Claude Code for agentic development sessions.
+
+**Is $5/month for Railway really enough to run n8n?**
+Yes. Railway's hobby plan at $5/month covers the compute needed for a standard n8n instance handling dozens of workflow executions per day. For reference: 9 active workflows running on this instance, some with multi-node AI chains, all within the $5 allocation.
+
+**What if I do not use Suno or music production?**
+Drop it. The core stack without Suno runs $65-95/month. Your $10 stays in your pocket unless music is part of your output.
+
+**Why Vercel instead of a cheaper host?**
+Vercel's edge network and zero-config Next.js deployment save hours of infrastructure management per month. The build pipeline, preview deployments, and serverless functions handle what would take significant DevOps effort on a raw VPS. For a solo builder, the time cost is the real currency.
+
+**How do you control API cost spikes?**
+Session discipline. I use `/compact` in Claude Code to compress context before it grows too large. I avoid re-running large embedding jobs unnecessarily. And I review my Anthropic console usage weekly to spot patterns before they become expensive months.

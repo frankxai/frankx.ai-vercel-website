@@ -1,0 +1,1883 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>agentic-flow@alpha Deep Analysis &amp; Integration Optimization</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/architecture/AGENTIC-FLOW-INTEGRATION-ANALYSIS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">agentic-flow@alpha Deep Analysis &amp; Integration Optimization</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Farchitecture">architecture</a> / <span>AGENTIC-FLOW-INTEGRATION-ANALYSIS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>agentic-flow@alpha Deep Analysis &amp; Integration Optimization</h1>
+<h2>Executive Summary</h2>
+<p><strong>Current State</strong>: Claude-Flow v2.7.47 uses <code>agentic-flow@^1.9.4</code>
+<strong>Latest Alpha</strong>: <code>agentic-flow@2.0.1-alpha.50</code> (published yesterday)
+<strong>Upgrade Impact</strong>: Major performance and capability improvements</p>
+<h3>Key Findings</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>v1.9.4 (Current)</th>
+<th>v2.0.1-alpha.50</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Attention Mechanisms</strong></td>
+<td>Basic</td>
+<td>5 types (Flash, MoE, etc.)</td>
+<td>Full suite</td>
+</tr>
+<tr>
+<td><strong>AgentDB Integration</strong></td>
+<td>Partial</td>
+<td>EnhancedAgentDBWrapper</td>
+<td>50-200x faster</td>
+</tr>
+<tr>
+<td><strong>GNN Query Refinement</strong></td>
+<td>None</td>
+<td>Full support</td>
+<td>+12.4% recall</td>
+</tr>
+<tr>
+<td><strong>Hook Tools</strong></td>
+<td>10</td>
+<td>19 (+ intelligence tools)</td>
+<td>+90% coverage</td>
+</tr>
+<tr>
+<td><strong>Learning System</strong></td>
+<td>ReasoningBank</td>
+<td>+ SONA + Trajectory</td>
+<td>Complete loop</td>
+</tr>
+<tr>
+<td><strong>Runtime Detection</strong></td>
+<td>Manual</td>
+<td>Auto (NAPI→WASM→JS)</td>
+<td>Zero-config</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>1. Package Structure Analysis</h2>
+<h3>1.1 Core Exports (dist/index.js)</h3>
+<pre><code class="language-javascript">// Main exports
+export * as reasoningbank from &quot;./reasoningbank/index.js&quot;;
+
+// Parallel agent execution
+import { webResearchAgent, codeReviewAgent, dataAgent, claudeAgent } from &quot;./agents/*&quot;;
+
+// Agent loading
+import { getAgent, listAgents } from &quot;./utils/agentLoader.js&quot;;
+
+// MCP commands
+import { handleMCPCommand } from &quot;./utils/mcpCommands.js&quot;;
+import { handleReasoningBankCommand } from &quot;./utils/reasoningbankCommands.js&quot;;
+</code></pre>
+<h3>1.2 Core Module (dist/core/index.js)</h3>
+<p><strong>Production-Ready Wrappers</strong> (replacing broken @ruvector/* alpha APIs):</p>
+<pre><code class="language-javascript">// GNN wrapper exports (11-22x speedup)
+export { differentiableSearch, hierarchicalForward, RuvectorLayer, TensorCompress };
+
+// AgentDB Fast API (50-200x faster than CLI)
+export { AgentDBFast, createFastAgentDB };
+
+// Native Attention (Rust with TypedArray support)
+export {
+  NativeMultiHeadAttention, NativeFlashAttention,
+  NativeLinearAttention, NativeHyperbolicAttention, NativeMoEAttention
+};
+
+// Fallback Attention (JavaScript implementations)
+export {
+  FallbackMultiHeadAttention, FallbackFlashAttention,
+  FallbackLinearAttention, FallbackHyperbolicAttention, FallbackMoEAttention
+};
+
+// Embedding service (3 providers)
+export {
+  EmbeddingService, OpenAIEmbeddingService,
+  TransformersEmbeddingService, MockEmbeddingService
+};
+</code></pre>
+<h3>1.3 Coordination Module (dist/coordination/index.js)</h3>
+<pre><code class="language-javascript">export { AttentionCoordinator, createAttentionCoordinator };
+</code></pre>
+<p><strong>AttentionCoordinator Capabilities</strong>:</p>
+<ul>
+<li><code>coordinateAgents(outputs, mechanism)</code> - Attention-based consensus</li>
+<li><code>routeToExperts(task, agents, topK)</code> - MoE expert selection</li>
+<li><code>topologyAwareCoordination(outputs, topology, graph)</code> - GraphRoPE coordination</li>
+</ul>
+<h3>1.4 ReasoningBank Module (dist/reasoningbank/index.js)</h3>
+<pre><code class="language-javascript">// Hybrid backend (recommended)
+export { HybridReasoningBank } from &#39;./HybridBackend.js&#39;;
+export { AdvancedMemorySystem } from &#39;./AdvancedMemory.js&#39;;
+
+// AgentDB controllers
+export { ReflexionMemory, SkillLibrary, CausalMemoryGraph,
+         CausalRecall, NightlyLearner, EmbeddingService };
+
+// Original functions (backward compatible)
+export { retrieveMemories, formatMemoriesForPrompt };
+export { judgeTrajectory };
+export { distillMemories };
+export { consolidate, shouldConsolidate };
+export { mattsParallel, mattsSequential };
+export { computeEmbedding, clearEmbeddingCache };
+export { mmrSelection, cosineSimilarity };
+export { scrubPII, containsPII, scrubMemory };
+</code></pre>
+<h3>1.5 Hook Tools (dist/mcp/fastmcp/tools/hooks/index.js)</h3>
+<p><strong>Original Hooks (10)</strong>:</p>
+<pre><code class="language-javascript">export { hookPreEditTool, hookPostEditTool };
+export { hookPreCommandTool, hookPostCommandTool };
+export { hookRouteTool, hookExplainTool };
+export { hookPretrainTool, hookBuildAgentsTool };
+export { hookMetricsTool, hookTransferTool };
+</code></pre>
+<p><strong>NEW Intelligence Bridge (9)</strong>:</p>
+<pre><code class="language-javascript">export {
+  getIntelligence, routeTaskIntelligent,
+  beginTaskTrajectory, recordTrajectoryStep, endTaskTrajectory,
+  storePattern, findSimilarPatterns,
+  getIntelligenceStats, forceLearningCycle,
+  computeAttentionSimilarity
+};
+</code></pre>
+<p><strong>NEW Intelligence MCP Tools (9)</strong>:</p>
+<pre><code class="language-javascript">export {
+  intelligenceRouteTool,
+  intelligenceTrajectoryStartTool, intelligenceTrajectoryStepTool, intelligenceTrajectoryEndTool,
+  intelligencePatternStoreTool, intelligencePatternSearchTool,
+  intelligenceStatsTool, intelligenceLearnTool, intelligenceAttentionTool
+};
+</code></pre>
+<hr>
+<h2>2. Current Claude-Flow Integration Points</h2>
+<h3>2.1 Existing Integrations (29 files)</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Integration Type</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/services/agentic-flow-hooks/</code></td>
+<td>Hook system</td>
+<td>Full pipeline</td>
+</tr>
+<tr>
+<td><code>src/reasoningbank/reasoningbank-adapter.js</code></td>
+<td>Memory backend</td>
+<td>ReasoningBank v1</td>
+</tr>
+<tr>
+<td><code>src/neural/</code></td>
+<td>Neural integration</td>
+<td>Partial</td>
+</tr>
+<tr>
+<td><code>src/hooks/</code></td>
+<td>Hook matchers</td>
+<td>Basic</td>
+</tr>
+<tr>
+<td><code>src/cli/simple-commands/</code></td>
+<td>CLI commands</td>
+<td>Basic</td>
+</tr>
+</tbody></table>
+<h3>2.2 Hook System Analysis</h3>
+<p><strong>Current Implementation</strong> (<code>src/services/agentic-flow-hooks/</code>):</p>
+<ul>
+<li><code>hook-manager.ts</code> - Central manager with pipelines</li>
+<li><code>llm-hooks.ts</code> - Pre/post LLM call hooks</li>
+<li><code>memory-hooks.ts</code> - Memory operation hooks</li>
+<li><code>neural-hooks.ts</code> - Neural training hooks</li>
+<li><code>performance-hooks.ts</code> - Metrics collection</li>
+<li><code>workflow-hooks.ts</code> - Workflow execution hooks</li>
+</ul>
+<p><strong>Pipelines Defined</strong>:</p>
+<ol>
+<li><code>llm-call-pipeline</code> - Pre-call → Execution → Post-call</li>
+<li><code>memory-operation-pipeline</code> - Validation → Storage → Sync</li>
+<li><code>workflow-execution-pipeline</code> - Init → Execution → Completion</li>
+</ol>
+<h3>2.3 ReasoningBank Adapter</h3>
+<p><strong>Current</strong> (<code>src/reasoningbank/reasoningbank-adapter.js</code>):</p>
+<pre><code class="language-javascript">import * as ReasoningBank from &#39;agentic-flow/reasoningbank&#39;;
+
+// Uses v1 API
+await ReasoningBank.initialize();
+</code></pre>
+<p><strong>Missing v2 Features</strong>:</p>
+<ul>
+<li><code>HybridReasoningBank</code> - Best of SQLite + WASM</li>
+<li><code>AdvancedMemorySystem</code> - Full learning loop</li>
+<li>AgentDB controllers integration</li>
+<li>Intelligence bridge functions</li>
+</ul>
+<hr>
+<h2>3. Optimization Opportunities</h2>
+<h3>3.1 HIGH PRIORITY: Upgrade to v2.0.1-alpha.50</h3>
+<p><strong>Current dependency</strong>:</p>
+<pre><code class="language-json">&quot;agentic-flow&quot;: &quot;^1.9.4&quot;
+</code></pre>
+<p><strong>Upgrade to</strong>:</p>
+<pre><code class="language-json">&quot;agentic-flow&quot;: &quot;^2.0.1-alpha.0&quot;
+</code></pre>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>50-200x faster AgentDB operations</li>
+<li>5 attention mechanisms (Flash, MoE, Linear, Hyperbolic, Multi-Head)</li>
+<li>+12.4% recall with GNN query refinement</li>
+<li>Auto runtime detection (NAPI → WASM → JS)</li>
+<li>9 new intelligence tools</li>
+</ul>
+<h3>3.2 HIGH PRIORITY: EnhancedAgentDBWrapper Integration</h3>
+<p><strong>Current</strong>: Using basic AgentDB wrapper
+<strong>Upgrade to</strong>: EnhancedAgentDBWrapper</p>
+<pre><code class="language-typescript">// src/v3/core/enhanced-agentdb.ts
+import { EnhancedAgentDBWrapper } from &#39;agentic-flow/core&#39;;
+
+export const createEnhancedDB = () =&gt; new EnhancedAgentDBWrapper({
+  dimension: 384,
+  enableAttention: true,
+  attentionConfig: {
+    type: &#39;flash&#39;,      // 4x faster, 75% memory reduction
+    numHeads: 8,
+    headDim: 64
+  },
+  enableGNN: true,
+  gnnConfig: {
+    numLayers: 3,       // +12.4% recall
+    hiddenDim: 256,
+    aggregation: &#39;attention&#39;
+  },
+  runtimePreference: &#39;napi&#39;  // Auto-fallback: NAPI → WASM → JS
+});
+</code></pre>
+<h3>3.3 HIGH PRIORITY: AttentionCoordinator for Swarm</h3>
+<p><strong>Current</strong>: Basic swarm coordination
+<strong>Upgrade to</strong>: Attention-based consensus</p>
+<pre><code class="language-typescript">// src/v3/coordination/attention-swarm.ts
+import { AttentionCoordinator, createAttentionCoordinator } from &#39;agentic-flow/coordination&#39;;
+
+export class AttentionSwarmCoordinator {
+  private coordinator: AttentionCoordinator;
+
+  async coordinateAgents(agentOutputs: AgentOutput[]) {
+    // Attention-based consensus (better than voting)
+    return this.coordinator.coordinateAgents(agentOutputs, &#39;flash&#39;);
+  }
+
+  async routeToExperts(task: Task, agents: Agent[], topK = 3) {
+    // MoE-based expert selection
+    return this.coordinator.routeToExperts(task, agents, topK);
+  }
+
+  async topologyAwareCoordination(outputs: AgentOutput[], topology: string) {
+    // GraphRoPE for mesh/hierarchical coordination
+    return this.coordinator.topologyAwareCoordination(outputs, topology);
+  }
+}
+</code></pre>
+<h3>3.4 MEDIUM PRIORITY: Intelligence Bridge Integration</h3>
+<p><strong>New capabilities from v2</strong>:</p>
+<pre><code class="language-typescript">import {
+  getIntelligence,
+  routeTaskIntelligent,
+  beginTaskTrajectory,
+  recordTrajectoryStep,
+  endTaskTrajectory,
+  storePattern,
+  findSimilarPatterns,
+  forceLearningCycle
+} from &#39;agentic-flow/mcp/fastmcp/tools/hooks&#39;;
+
+// Pre-task: Query learned patterns
+async function preTaskHook(task: Task) {
+  const patterns = await findSimilarPatterns(task.description, { k: 5 });
+  return { suggestions: patterns };
+}
+
+// During task: Record trajectory
+async function duringTaskHook(step: TaskStep) {
+  await recordTrajectoryStep({
+    stepId: step.id,
+    action: step.action,
+    result: step.result,
+    embedding: await computeEmbedding(step.description)
+  });
+}
+
+// Post-task: Store learning
+async function postTaskHook(task: Task, result: TaskResult) {
+  await endTaskTrajectory({
+    taskId: task.id,
+    success: result.success,
+    reward: calculateReward(result)
+  });
+
+  if (result.success &amp;&amp; result.quality &gt; 0.8) {
+    await storePattern({
+      pattern: task.description,
+      solution: result.output,
+      confidence: result.quality
+    });
+  }
+}
+</code></pre>
+<h3>3.5 MEDIUM PRIORITY: HybridReasoningBank</h3>
+<p><strong>Current</strong>: SQLite-only ReasoningBank
+<strong>Upgrade to</strong>: Hybrid backend (best of both)</p>
+<pre><code class="language-typescript">import { HybridReasoningBank } from &#39;agentic-flow/reasoningbank&#39;;
+
+const reasoningBank = new HybridReasoningBank({
+  sqlitePath: &#39;.swarm/memory.db&#39;,
+  wasmFallback: true,  // For Windows/browser
+  cacheSize: 1000,
+  consolidationInterval: 3600000  // 1 hour
+});
+
+await reasoningBank.initialize();
+
+// Store with automatic embedding
+await reasoningBank.store({
+  key: &#39;pattern:auth&#39;,
+  value: authImplementation,
+  metadata: { domain: &#39;security&#39;, confidence: 0.95 }
+});
+
+// Semantic search
+const similar = await reasoningBank.searchSemantic(&#39;authentication patterns&#39;, {
+  k: 5,
+  threshold: 0.7
+});
+</code></pre>
+<h3>3.6 MEDIUM PRIORITY: AgentDB Controllers</h3>
+<p><strong>New controllers available</strong>:</p>
+<pre><code class="language-typescript">import {
+  ReflexionMemory,   // Self-improvement through feedback
+  SkillLibrary,      // Store successful patterns
+  CausalMemoryGraph, // Causal relationships
+  CausalRecall,      // Cause-effect retrieval
+  NightlyLearner     // Background learning
+} from &#39;agentic-flow/reasoningbank&#39;;
+
+// Reflexion: Learn from mistakes
+const reflexion = new ReflexionMemory(agentDB);
+await reflexion.recordAttempt(task, result, feedback);
+const improvements = await reflexion.suggestImprovements(task);
+
+// Skill Library: Store successful patterns
+const skills = new SkillLibrary(agentDB);
+await skills.addSkill({
+  name: &#39;api-authentication&#39;,
+  pattern: authCode,
+  context: { framework: &#39;express&#39;, method: &#39;jwt&#39; }
+});
+const relevantSkills = await skills.findRelevantSkills(&#39;implement login&#39;);
+
+// Causal Memory: Track cause-effect
+const causal = new CausalMemoryGraph(agentDB);
+await causal.recordCause(action, effect, confidence);
+const effects = await causal.predictEffects(proposedAction);
+
+// Nightly Learner: Background optimization
+const learner = new NightlyLearner(agentDB);
+await learner.scheduleLearning({ interval: &#39;0 2 * * *&#39; }); // 2 AM daily
+</code></pre>
+<h3>3.7 LOW PRIORITY: Runtime Detection</h3>
+<p><strong>v2 provides auto-detection</strong>:</p>
+<pre><code class="language-typescript">import { shouldUseNativePackage, getWrapperPerformance } from &#39;agentic-flow/core&#39;;
+
+// Check if native package should be used
+const useNative = shouldUseNativePackage(&#39;@ruvector/gnn&#39;);
+// Returns false for alpha packages (use wrappers instead)
+
+// Get performance info
+const gnnPerf = getWrapperPerformance(&#39;gnn&#39;);
+// { speedup: &#39;11-22x&#39;, latency: &#39;1-5ms&#39;, status: &#39;verified&#39; }
+
+const agentdbPerf = getWrapperPerformance(&#39;agentdb-fast&#39;);
+// { speedup: &#39;50-200x&#39;, latency: &#39;10-50ms&#39;, status: &#39;verified&#39; }
+</code></pre>
+<hr>
+<h2>4. Integration Architecture for v3</h2>
+<h3>4.1 Recommended Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    Claude-Flow v3                           │
+├─────────────────────────────────────────────────────────────┤
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │           v2 Compatibility Layer                     │   │
+│  │   - SwarmCoordinator adapter                         │   │
+│  │   - AgentManager adapter                             │   │
+│  │   - MemoryManager bridge                             │   │
+│  └─────────────────────────────────────────────────────┘   │
+│                            │                                │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │        agentic-flow@2.0.1-alpha.50 Core              │   │
+│  │   ┌───────────────┐ ┌───────────────┐               │   │
+│  │   │ Enhanced      │ │  Attention    │               │   │
+│  │   │ AgentDB       │ │  Coordinator  │               │   │
+│  │   │ Wrapper       │ │  (Flash/MoE)  │               │   │
+│  │   └───────────────┘ └───────────────┘               │   │
+│  │   ┌───────────────┐ ┌───────────────┐               │   │
+│  │   │ Hybrid        │ │ Intelligence  │               │   │
+│  │   │ ReasoningBank │ │ Bridge        │               │   │
+│  │   └───────────────┘ └───────────────┘               │   │
+│  │   ┌───────────────┐ ┌───────────────┐               │   │
+│  │   │ AgentDB       │ │ Hook Tools    │               │   │
+│  │   │ Controllers   │ │ (19 tools)    │               │   │
+│  │   └───────────────┘ └───────────────┘               │   │
+│  └─────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>4.2 Integration Points Map</h3>
+<table>
+<thead>
+<tr>
+<th>Claude-Flow Component</th>
+<th>agentic-flow v2 Integration</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SwarmCoordinator</code></td>
+<td><code>AttentionCoordinator</code></td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td><code>AgentManager</code></td>
+<td><code>EnhancedAgentDBWrapper</code></td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td><code>MemoryManager</code></td>
+<td><code>HybridReasoningBank</code></td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td><code>HookManager</code></td>
+<td>Intelligence Bridge</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td><code>NeuralManager</code></td>
+<td><code>NightlyLearner</code></td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td><code>ReasoningBankAdapter</code></td>
+<td>AgentDB Controllers</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td><code>InitController</code></td>
+<td>Auto runtime detection</td>
+<td>LOW</td>
+</tr>
+</tbody></table>
+<h3>4.3 File Changes Required</h3>
+<p><strong>New Files</strong>:</p>
+<pre><code>src/v3/
+├── core/
+│   └── enhanced-agentdb.ts          # EnhancedAgentDBWrapper integration
+├── coordination/
+│   └── attention-coordinator.ts     # AttentionCoordinator wrapper
+├── memory/
+│   └── hybrid-reasoningbank.ts      # HybridReasoningBank integration
+├── learning/
+│   ├── intelligence-bridge.ts       # Intelligence tools integration
+│   └── controllers.ts               # AgentDB controllers
+└── hooks/
+    └── v2-hooks.ts                  # New hook tools integration
+</code></pre>
+<p><strong>Modified Files</strong>:</p>
+<pre><code>package.json                         # Upgrade agentic-flow version
+src/services/agentic-flow-hooks/     # Add intelligence bridge
+src/reasoningbank/reasoningbank-adapter.js  # Use HybridReasoningBank
+</code></pre>
+<hr>
+<h2>5. Performance Comparison</h2>
+<h3>5.1 AgentDB Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>v1 (CLI)</th>
+<th>v2 (Fast API)</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Initialize</td>
+<td>2,350ms</td>
+<td>10-50ms</td>
+<td><strong>50-200x</strong></td>
+</tr>
+<tr>
+<td>Store vector</td>
+<td>150ms</td>
+<td>1-5ms</td>
+<td><strong>30-150x</strong></td>
+</tr>
+<tr>
+<td>Search k=10</td>
+<td>500ms</td>
+<td>5-20ms</td>
+<td><strong>25-100x</strong></td>
+</tr>
+<tr>
+<td>Batch store</td>
+<td>5,000ms</td>
+<td>50-100ms</td>
+<td><strong>50-100x</strong></td>
+</tr>
+</tbody></table>
+<h3>5.2 Attention Mechanisms</h3>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Latency</th>
+<th>Memory</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flash</td>
+<td>0.7-1.5ms</td>
+<td>25% of base</td>
+<td>Default (fastest)</td>
+</tr>
+<tr>
+<td>Multi-Head</td>
+<td>2-5ms</td>
+<td>100%</td>
+<td>Complex reasoning</td>
+</tr>
+<tr>
+<td>Linear</td>
+<td>1-3ms</td>
+<td>50%</td>
+<td>Long sequences</td>
+</tr>
+<tr>
+<td>Hyperbolic</td>
+<td>3-8ms</td>
+<td>100%</td>
+<td>Hierarchical data</td>
+</tr>
+<tr>
+<td>MoE</td>
+<td>1-4ms</td>
+<td>Variable</td>
+<td>Expert routing</td>
+</tr>
+</tbody></table>
+<h3>5.3 GNN Enhancement</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Without GNN</th>
+<th>With GNN</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Recall@5</td>
+<td>72.3%</td>
+<td>81.3%</td>
+<td>+12.4%</td>
+</tr>
+<tr>
+<td>Recall@10</td>
+<td>78.1%</td>
+<td>87.8%</td>
+<td>+12.4%</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>5ms</td>
+<td>8ms</td>
+<td>+60% (acceptable)</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. Implementation Checklist</h2>
+<h3>Phase 1: Core Upgrade (Week 1)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Update package.json: <code>&quot;agentic-flow&quot;: &quot;^2.0.1-alpha.0&quot;</code></li>
+<li><input disabled="" type="checkbox"> Create <code>src/v3/core/enhanced-agentdb.ts</code></li>
+<li><input disabled="" type="checkbox"> Update tests for new APIs</li>
+<li><input disabled="" type="checkbox"> Verify backward compatibility</li>
+</ul>
+<h3>Phase 2: Coordination (Week 2)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Create <code>src/v3/coordination/attention-coordinator.ts</code></li>
+<li><input disabled="" type="checkbox"> Integrate with existing SwarmCoordinator</li>
+<li><input disabled="" type="checkbox"> Add MoE expert routing</li>
+<li><input disabled="" type="checkbox"> Add topology-aware coordination</li>
+</ul>
+<h3>Phase 3: Memory System (Week 3)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Create <code>src/v3/memory/hybrid-reasoningbank.ts</code></li>
+<li><input disabled="" type="checkbox"> Migrate ReasoningBankAdapter</li>
+<li><input disabled="" type="checkbox"> Add AgentDB controllers</li>
+<li><input disabled="" type="checkbox"> Implement caching layer</li>
+</ul>
+<h3>Phase 4: Learning System (Week 4)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Create <code>src/v3/learning/intelligence-bridge.ts</code></li>
+<li><input disabled="" type="checkbox"> Integrate trajectory tracking</li>
+<li><input disabled="" type="checkbox"> Add pattern store/search</li>
+<li><input disabled="" type="checkbox"> Implement nightly learning</li>
+</ul>
+<hr>
+<h2>7. Risk Mitigation</h2>
+<h3>7.1 Alpha Stability</h3>
+<p><strong>Risk</strong>: v2.0.1-alpha.50 may have breaking changes
+<strong>Mitigation</strong>:</p>
+<ul>
+<li>Pin exact version initially</li>
+<li>Wrap all APIs in adapters</li>
+<li>Keep v1 fallback paths</li>
+</ul>
+<h3>7.2 Native Dependencies</h3>
+<p><strong>Risk</strong>: NAPI modules may fail on some systems
+<strong>Mitigation</strong>:</p>
+<ul>
+<li>Use auto-fallback (NAPI → WASM → JS)</li>
+<li>Test on Windows/Linux/macOS</li>
+<li>Document fallback behavior</li>
+</ul>
+<h3>7.3 Performance Regression</h3>
+<p><strong>Risk</strong>: New features may impact startup time
+<strong>Mitigation</strong>:</p>
+<ul>
+<li>Lazy initialization</li>
+<li>Feature flags for expensive features</li>
+<li>Benchmark before/after</li>
+</ul>
+<hr>
+<h2>8. Summary</h2>
+<h3>Immediate Actions (Week 1)</h3>
+<ol>
+<li><strong>Upgrade dependency</strong>: <code>agentic-flow@^2.0.1-alpha.0</code></li>
+<li><strong>Create EnhancedAgentDBWrapper integration</strong></li>
+<li><strong>Test existing functionality</strong></li>
+</ol>
+<h3>Short-term Goals (Weeks 2-4)</h3>
+<ol>
+<li><strong>AttentionCoordinator for swarm consensus</strong></li>
+<li><strong>HybridReasoningBank for memory</strong></li>
+<li><strong>Intelligence bridge for learning</strong></li>
+</ol>
+<h3>Expected Outcomes</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Before</th>
+<th>After</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AgentDB ops</td>
+<td>150ms</td>
+<td>5ms</td>
+<td>30x faster</td>
+</tr>
+<tr>
+<td>Consensus quality</td>
+<td>Basic voting</td>
+<td>Attention-based</td>
+<td>+55% accuracy</td>
+</tr>
+<tr>
+<td>Memory search</td>
+<td>500ms</td>
+<td>20ms</td>
+<td>25x faster</td>
+</tr>
+<tr>
+<td>Learning loop</td>
+<td>Manual</td>
+<td>Automatic</td>
+<td>Continuous</td>
+</tr>
+<tr>
+<td>Recall accuracy</td>
+<td>72%</td>
+<td>84%</td>
+<td>+12.4%</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>9. Deep Review: Transport Layer (QUIC/WASM)</h2>
+<h3>9.1 QUIC Transport Architecture</h3>
+<p>agentic-flow v2 includes a production-ready QUIC transport layer:</p>
+<pre><code class="language-typescript">// dist/transport/quic.js
+export { QuicClient, QuicServer, QuicConnectionPool, QuicTransport };
+
+// Key capabilities:
+class QuicClient {
+  // Connection pooling with 4x memory efficiency
+  maxConnections: 100;
+  maxConcurrentStreams: 100;
+
+  // HTTP/3 over QUIC
+  async sendRequest(connectionId, method, path, headers, body);
+
+  // TLS 1.3 integration
+  certPath, keyPath, verifyPeer;
+
+  // Performance features
+  enableEarlyData: true;  // 0-RTT when available
+  initialCongestionWindow: 10;
+}
+</code></pre>
+<h3>9.2 QUIC Performance Projections</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>TCP/HTTP/2</th>
+<th>QUIC (Projected)</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Connection Setup</td>
+<td>100-150ms</td>
+<td>10-20ms</td>
+<td><strong>5-15x faster</strong></td>
+</tr>
+<tr>
+<td>Agent Spawn (10)</td>
+<td>3,700ms</td>
+<td>220ms</td>
+<td><strong>16.8x faster</strong></td>
+</tr>
+<tr>
+<td>Throughput</td>
+<td>3.4K msg/s</td>
+<td>8.9K msg/s</td>
+<td><strong>2.6x higher</strong></td>
+</tr>
+<tr>
+<td>Memory (2K agents)</td>
+<td>3.2MB</td>
+<td>1.6MB</td>
+<td><strong>50% reduction</strong></td>
+</tr>
+</tbody></table>
+<h3>9.3 WASM Modules</h3>
+<pre><code>wasm/
+├── quic/
+│   ├── agentic_flow_quic_bg.wasm     # QUIC client/server
+│   └── agentic_flow_quic.d.ts        # TypeScript bindings
+├── reasoningbank/
+│   ├── reasoningbank_wasm_bg.wasm    # ReasoningBank engine
+│   └── reasoningbank_wasm.d.ts       # Pattern storage, search
+dist/wasm/
+├── ruvector-edge.js                   # Edge GNN inference
+├── edge-full.js                       # Full edge runtime
+└── onnx-embeddings-wasm.js           # ONNX embedding inference
+</code></pre>
+<p><strong>WASM Capabilities</strong>:</p>
+<pre><code class="language-typescript">// wasm/quic/agentic_flow_quic.d.ts
+export class WasmQuicClient {
+  constructor(config: any);
+  sendMessage(addr: string, message: any): Promise&lt;void&gt;;
+  recvMessage(addr: string): Promise&lt;any&gt;;
+  poolStats(): Promise&lt;any&gt;;
+  close(): Promise&lt;void&gt;;
+}
+
+// wasm/reasoningbank/reasoningbank_wasm.d.ts
+export class ReasoningBankWasm {
+  constructor(db_name?: string | null);
+  storePattern(pattern_json: string): Promise&lt;string&gt;;
+  getPattern(id: string): Promise&lt;string&gt;;
+  searchByCategory(category: string, limit: number): Promise&lt;string&gt;;
+  findSimilar(task: string, category: string, top_k: number): Promise&lt;string&gt;;
+  getStats(): Promise&lt;string&gt;;
+}
+</code></pre>
+<h3>9.4 Integration Opportunity: QUIC Transport</h3>
+<pre><code class="language-typescript">// src/v3/transport/quic-integration.ts
+import { QuicTransport, QuicConnectionPool } from &#39;agentic-flow/transport&#39;;
+
+export class ClaudeFlowQuicTransport {
+  private pool: QuicConnectionPool;
+
+  async initialize() {
+    const client = new QuicClient({
+      serverHost: &#39;localhost&#39;,
+      serverPort: 4433,
+      maxConcurrentStreams: 100,
+      enableEarlyData: true  // 0-RTT
+    });
+
+    await client.initialize();
+    this.pool = new QuicConnectionPool(client, 10);
+  }
+
+  // Agent-to-agent communication
+  async sendToAgent(agentId: string, message: Message): Promise&lt;Response&gt; {
+    const conn = await this.pool.getConnection(agentId);
+    return this.client.sendRequest(
+      conn.id,
+      &#39;POST&#39;,
+      &#39;/agent/message&#39;,
+      { &#39;Content-Type&#39;: &#39;application/json&#39; },
+      JSON.stringify(message)
+    );
+  }
+}
+</code></pre>
+<hr>
+<h2>10. Deep Review: Current Usage Pattern Analysis</h2>
+<h3>10.1 ReasoningBank Adapter Analysis</h3>
+<p><strong>Current Implementation</strong> (<code>src/reasoningbank/reasoningbank-adapter.js</code>):</p>
+<pre><code class="language-javascript">// v1 API usage (current)
+import * as ReasoningBank from &#39;agentic-flow/reasoningbank&#39;;
+
+await ReasoningBank.initialize();
+ReasoningBank.db.upsertMemory(memory);
+ReasoningBank.computeEmbedding(value);
+ReasoningBank.retrieveMemories(query, options);
+ReasoningBank.db.fetchMemoryCandidates(options);
+ReasoningBank.db.getAllActiveMemories();
+</code></pre>
+<p><strong>Migration Path to v2</strong>:</p>
+<pre><code class="language-typescript">// v2 API (recommended)
+import { HybridReasoningBank, computeEmbedding } from &#39;agentic-flow/reasoningbank&#39;;
+import { EnhancedAgentDBWrapper } from &#39;agentic-flow/core&#39;;
+
+const bank = new HybridReasoningBank({
+  sqlitePath: &#39;.swarm/memory.db&#39;,
+  wasmFallback: true,           // Windows/browser support
+  embeddingDimension: 384
+});
+
+await bank.initialize();
+
+// 50-200x faster operations
+await bank.store({ key, value, metadata });
+const results = await bank.searchSemantic(query, { k: 10 });
+</code></pre>
+<h3>10.2 Neural Integration Analysis</h3>
+<p><strong>Current Implementation</strong> (<code>src/neural/integration.ts</code>):</p>
+<ul>
+<li>Uses <code>agenticHookManager</code> for hook registration</li>
+<li>Implements <code>NeuralDomainMapperIntegration</code> class</li>
+<li>Hooks into: <code>neural-pattern-detected</code>, <code>post-neural-train</code></li>
+<li>Supports continuous learning and domain analysis</li>
+</ul>
+<p><strong>Enhancement with v2</strong>:</p>
+<pre><code class="language-typescript">import {
+  beginTaskTrajectory,
+  recordTrajectoryStep,
+  endTaskTrajectory,
+  forceLearningCycle
+} from &#39;agentic-flow/mcp/fastmcp/tools/hooks&#39;;
+
+// Add trajectory tracking to existing neural integration
+class EnhancedNeuralIntegration extends NeuralDomainMapperIntegration {
+  async trackLearning(task: Task) {
+    await beginTaskTrajectory({ taskId: task.id });
+
+    // During execution
+    await recordTrajectoryStep({
+      stepId: step.id,
+      action: step.action,
+      result: step.result
+    });
+
+    // After completion
+    await endTaskTrajectory({
+      taskId: task.id,
+      success: task.success,
+      reward: task.quality
+    });
+
+    // Trigger nightly learning if high quality
+    if (task.quality &gt; 0.9) {
+      await forceLearningCycle();
+    }
+  }
+}
+</code></pre>
+<h3>10.3 Hook System Analysis</h3>
+<p><strong>Current Implementation</strong> (<code>src/services/agentic-flow-hooks/</code>):</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Current Hooks</th>
+<th>v2 Enhancement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>llm-hooks.ts</code></td>
+<td>pre-llm-call, post-llm-call</td>
+<td>+ <code>routeTaskIntelligent</code></td>
+</tr>
+<tr>
+<td><code>memory-hooks.ts</code></td>
+<td>pre-memory-store, post-memory-store</td>
+<td>+ <code>storePattern</code>, <code>findSimilarPatterns</code></td>
+</tr>
+<tr>
+<td><code>neural-hooks.ts</code></td>
+<td>pre-neural-train, post-neural-train</td>
+<td>+ trajectory tracking</td>
+</tr>
+<tr>
+<td><code>performance-hooks.ts</code></td>
+<td>performance-metric</td>
+<td>+ <code>computeAttentionSimilarity</code></td>
+</tr>
+<tr>
+<td><code>workflow-hooks.ts</code></td>
+<td>workflow-start/step/complete</td>
+<td>+ <code>intelligenceRouteTool</code></td>
+</tr>
+</tbody></table>
+<h3>10.4 Skills Analysis</h3>
+<p><strong>Current Skills Using agentic-flow</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Import</th>
+<th>v2 Migration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>reasoningbank-intelligence</code></td>
+<td><code>ReasoningBank</code></td>
+<td><code>HybridReasoningBank</code></td>
+</tr>
+<tr>
+<td><code>reasoningbank-agentdb</code></td>
+<td><code>createAgentDBAdapter</code>, <code>computeEmbedding</code></td>
+<td><code>EnhancedAgentDBWrapper</code></td>
+</tr>
+<tr>
+<td><code>agentdb-optimization</code></td>
+<td><code>createAgentDBAdapter</code></td>
+<td><code>AgentDBFast</code></td>
+</tr>
+<tr>
+<td><code>agentdb-vector-search</code></td>
+<td><code>createAgentDBAdapter</code>, <code>computeEmbedding</code></td>
+<td>GNN-enhanced search</td>
+</tr>
+<tr>
+<td><code>agentdb-memory-patterns</code></td>
+<td><code>createAgentDBAdapter</code>, <code>migrateToAgentDB</code></td>
+<td><code>ReflexionMemory</code>, <code>SkillLibrary</code></td>
+</tr>
+<tr>
+<td><code>agentdb-learning</code></td>
+<td><code>createAgentDBAdapter</code></td>
+<td><code>NightlyLearner</code></td>
+</tr>
+<tr>
+<td><code>agentdb-advanced</code></td>
+<td><code>createAgentDBAdapter</code></td>
+<td><code>CausalMemoryGraph</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>11. Deep Review: SONA Integration</h2>
+<h3>11.1 SONA (Self-Optimizing Neural Architecture)</h3>
+<pre><code class="language-typescript">// dist/mcp/fastmcp/tools/sona-tools.js
+export const sonaTools = [
+  &#39;sona_trajectory_begin&#39;,    // Start trajectory recording
+  &#39;sona_trajectory_step&#39;,     // Record step in trajectory
+  &#39;sona_trajectory_end&#39;,      // Complete trajectory with verdict
+  &#39;sona_pattern_find&#39;,        // Find similar patterns
+  &#39;sona_pattern_store&#39;,       // Store successful pattern
+  &#39;sona_micro_lora_train&#39;,    // Train micro LoRA adapter
+  &#39;sona_apply_micro_lora&#39;,    // Apply trained adapter
+  &#39;sona_learning_status&#39;,     // Get learning statistics
+  &#39;sona_force_consolidation&#39;  // Force memory consolidation
+];
+</code></pre>
+<h3>11.2 SONA Integration for Claude-Flow v3</h3>
+<pre><code class="language-typescript">// src/v3/learning/sona-integration.ts
+import {
+  sona_trajectory_begin,
+  sona_trajectory_step,
+  sona_trajectory_end,
+  sona_pattern_find,
+  sona_pattern_store
+} from &#39;agentic-flow/mcp/fastmcp/tools/sona-tools&#39;;
+
+export class SOANLearningSystem {
+  private activeTrajectories = new Map&lt;string, string&gt;();
+
+  async startTask(task: Task): Promise&lt;void&gt; {
+    const trajectoryId = await sona_trajectory_begin({
+      taskId: task.id,
+      description: task.description,
+      category: task.category
+    });
+    this.activeTrajectories.set(task.id, trajectoryId);
+  }
+
+  async recordStep(taskId: string, step: TaskStep): Promise&lt;void&gt; {
+    const trajectoryId = this.activeTrajectories.get(taskId);
+    await sona_trajectory_step({
+      trajectoryId,
+      action: step.action,
+      observation: step.observation,
+      reward: step.reward,
+      timestamp: Date.now()
+    });
+  }
+
+  async completeTask(taskId: string, result: TaskResult): Promise&lt;void&gt; {
+    const trajectoryId = this.activeTrajectories.get(taskId);
+
+    // End trajectory with verdict
+    await sona_trajectory_end({
+      trajectoryId,
+      success: result.success,
+      verdict: result.success ? &#39;positive&#39; : &#39;negative&#39;,
+      reward: result.quality
+    });
+
+    // Store successful patterns
+    if (result.success &amp;&amp; result.quality &gt; 0.8) {
+      await sona_pattern_store({
+        pattern: result.solution,
+        category: result.category,
+        confidence: result.quality,
+        metadata: { taskId, trajectoryId }
+      });
+    }
+
+    this.activeTrajectories.delete(taskId);
+  }
+
+  async findSimilarPatterns(query: string, k = 5): Promise&lt;Pattern[]&gt; {
+    return sona_pattern_find({
+      query,
+      topK: k,
+      threshold: 0.7
+    });
+  }
+}
+</code></pre>
+<hr>
+<h2>12. Specific Integration Recommendations</h2>
+<h3>12.1 Priority 1: Core Upgrade (Immediate)</h3>
+<p><strong>package.json change</strong>:</p>
+<pre><code class="language-json">{
+  &quot;dependencies&quot;: {
+    &quot;agentic-flow&quot;: &quot;^2.0.1-alpha.0&quot;
+  }
+}
+</code></pre>
+<p><strong>Expected impact</strong>:</p>
+<ul>
+<li>50-200x faster AgentDB operations</li>
+<li>Auto runtime detection (NAPI → WASM → JS)</li>
+<li>Windows compatibility via WASM fallback</li>
+</ul>
+<h3>12.2 Priority 2: ReasoningBank Migration</h3>
+<p><strong>Replace</strong> <code>src/reasoningbank/reasoningbank-adapter.js</code>:</p>
+<pre><code class="language-typescript">// src/v3/memory/hybrid-adapter.ts
+import { HybridReasoningBank } from &#39;agentic-flow/reasoningbank&#39;;
+import { EnhancedAgentDBWrapper } from &#39;agentic-flow/core&#39;;
+
+export class HybridMemoryAdapter {
+  private bank: HybridReasoningBank;
+  private db: EnhancedAgentDBWrapper;
+
+  async initialize() {
+    this.bank = new HybridReasoningBank({
+      sqlitePath: &#39;.swarm/memory.db&#39;,
+      wasmFallback: true,
+      cacheSize: 1000
+    });
+
+    this.db = new EnhancedAgentDBWrapper({
+      dimension: 384,
+      enableAttention: true,
+      attentionConfig: { type: &#39;flash&#39; },
+      enableGNN: true,
+      gnnConfig: { numLayers: 3 }
+    });
+
+    await Promise.all([
+      this.bank.initialize(),
+      this.db.initialize()
+    ]);
+  }
+
+  // Backward compatible API
+  async storeMemory(key: string, value: string, options = {}) {
+    return this.bank.store({ key, value, metadata: options });
+  }
+
+  async queryMemories(query: string, options = {}) {
+    // Use GNN-enhanced search (+12.4% recall)
+    return this.bank.searchSemantic(query, {
+      k: options.limit || 10,
+      useGNN: true,
+      threshold: options.minConfidence || 0.3
+    });
+  }
+}
+</code></pre>
+<h3>12.3 Priority 3: Attention-Based Swarm Coordination</h3>
+<p><strong>Enhance</strong> swarm coordinator with attention mechanisms:</p>
+<pre><code class="language-typescript">// src/v3/swarm/attention-swarm.ts
+import { AttentionCoordinator } from &#39;agentic-flow/coordination&#39;;
+
+export class AttentionSwarmCoordinator {
+  private coordinator: AttentionCoordinator;
+
+  constructor() {
+    this.coordinator = new AttentionCoordinator({
+      mechanisms: [&#39;flash&#39;, &#39;moe&#39;],
+      defaultMechanism: &#39;flash&#39;
+    });
+  }
+
+  async coordinateAgentOutputs(outputs: AgentOutput[]): Promise&lt;ConsenusResult&gt; {
+    // Attention-based consensus (better than voting)
+    return this.coordinator.coordinateAgents(outputs, &#39;flash&#39;);
+  }
+
+  async routeToExperts(task: Task, agents: Agent[]): Promise&lt;Agent[]&gt; {
+    // MoE expert selection
+    return this.coordinator.routeToExperts(task, agents, 3);
+  }
+
+  async meshCoordination(outputs: AgentOutput[]): Promise&lt;MeshResult&gt; {
+    // GraphRoPE for mesh topology
+    return this.coordinator.topologyAwareCoordination(outputs, &#39;mesh&#39;);
+  }
+}
+</code></pre>
+<h3>12.4 Priority 4: Intelligence Bridge Integration</h3>
+<p><strong>Add to</strong> hook system:</p>
+<pre><code class="language-typescript">// src/v3/hooks/intelligence-hooks.ts
+import {
+  getIntelligence,
+  routeTaskIntelligent,
+  storePattern,
+  findSimilarPatterns,
+  getIntelligenceStats
+} from &#39;agentic-flow/mcp/fastmcp/tools/hooks&#39;;
+
+export function registerIntelligenceHooks(hookManager: AgenticHookManager) {
+  // Pre-task: Query learned patterns
+  hookManager.register({
+    id: &#39;intelligence-pre-task&#39;,
+    type: &#39;pre-llm-call&#39;,
+    priority: 90,
+    handler: async (payload, context) =&gt; {
+      const patterns = await findSimilarPatterns(payload.prompt, { k: 5 });
+
+      if (patterns.length &gt; 0) {
+        // Inject learned patterns into context
+        return {
+          continue: true,
+          modifiedPayload: {
+            ...payload,
+            systemContext: payload.systemContext + formatPatterns(patterns)
+          }
+        };
+      }
+
+      return { continue: true };
+    }
+  });
+
+  // Post-task: Store successful patterns
+  hookManager.register({
+    id: &#39;intelligence-post-task&#39;,
+    type: &#39;post-llm-call&#39;,
+    priority: 80,
+    handler: async (payload, context) =&gt; {
+      if (payload.success &amp;&amp; payload.quality &gt; 0.8) {
+        await storePattern({
+          pattern: payload.task,
+          solution: payload.response,
+          confidence: payload.quality
+        });
+      }
+
+      return { continue: true };
+    }
+  });
+}
+</code></pre>
+<h3>12.5 Priority 5: SONA Learning System</h3>
+<p><strong>New file</strong>: <code>src/v3/learning/sona-system.ts</code></p>
+<p>(See Section 11.2 for full implementation)</p>
+<hr>
+<h2>13. Migration Timeline</h2>
+<h3>Week 1: Core Upgrade</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Update <code>package.json</code> to <code>agentic-flow@^2.0.1-alpha.0</code></li>
+<li><input disabled="" type="checkbox"> Run tests to identify breaking changes</li>
+<li><input disabled="" type="checkbox"> Create adapter layer for backward compatibility</li>
+<li><input disabled="" type="checkbox"> Update CI/CD for new dependencies</li>
+</ul>
+<h3>Week 2: Memory System</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Implement <code>HybridMemoryAdapter</code></li>
+<li><input disabled="" type="checkbox"> Migrate <code>reasoningbank-adapter.js</code></li>
+<li><input disabled="" type="checkbox"> Add WASM fallback for Windows</li>
+<li><input disabled="" type="checkbox"> Performance benchmarks</li>
+</ul>
+<h3>Week 3: Coordination</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Implement <code>AttentionSwarmCoordinator</code></li>
+<li><input disabled="" type="checkbox"> Integrate with existing swarm system</li>
+<li><input disabled="" type="checkbox"> Add MoE expert routing</li>
+<li><input disabled="" type="checkbox"> Test with mesh topology</li>
+</ul>
+<h3>Week 4: Learning System</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Implement intelligence hooks</li>
+<li><input disabled="" type="checkbox"> Add SONA trajectory tracking</li>
+<li><input disabled="" type="checkbox"> Integrate with neural system</li>
+<li><input disabled="" type="checkbox"> Enable nightly learning</li>
+</ul>
+<hr>
+<h2>14. Summary: Top 10 Integration Points</h2>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Integration</th>
+<th>Current</th>
+<th>v2 Feature</th>
+<th>Impact</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Dependency</td>
+<td>^1.9.4</td>
+<td>^2.0.1-alpha.0</td>
+<td>Foundation</td>
+</tr>
+<tr>
+<td>2</td>
+<td>AgentDB</td>
+<td>Basic</td>
+<td>EnhancedAgentDBWrapper</td>
+<td>50-200x faster</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Memory</td>
+<td>SQLite</td>
+<td>HybridReasoningBank</td>
+<td>WASM fallback</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Search</td>
+<td>Basic</td>
+<td>GNN-enhanced</td>
+<td>+12.4% recall</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Coordination</td>
+<td>Voting</td>
+<td>AttentionCoordinator</td>
+<td>Better consensus</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Expert routing</td>
+<td>None</td>
+<td>MoE routing</td>
+<td>Smart selection</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Learning</td>
+<td>Manual</td>
+<td>Intelligence bridge</td>
+<td>Automatic</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Trajectory</td>
+<td>None</td>
+<td>SONA tracking</td>
+<td>Experience replay</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Transport</td>
+<td>HTTP</td>
+<td>QUIC</td>
+<td>5-15x faster</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Runtime</td>
+<td>Manual</td>
+<td>Auto-detection</td>
+<td>Zero-config</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>15. AgentDB Alpha Integration</h2>
+<p>See companion document: <strong><a href="./LEARNING-OPTIMIZED-PLAN.md">LEARNING-OPTIMIZED-PLAN.md</a></strong></p>
+<h3>15.1 <a href="mailto:agentdb@2.0.0-alpha.3.1">agentdb@2.0.0-alpha.3.1</a> Key Features</h3>
+<table>
+<thead>
+<tr>
+<th>Controller</th>
+<th>Purpose</th>
+<th>Integration Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>LearningSystem</code></td>
+<td>9 RL algorithms</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td><code>ReflexionMemory</code></td>
+<td>Self-improvement loops</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td><code>SkillLibrary</code></td>
+<td>Pattern storage</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td><code>CausalMemoryGraph</code></td>
+<td>Cause-effect reasoning</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td><code>NightlyLearner</code></td>
+<td>Automated discovery</td>
+<td>MEDIUM</td>
+</tr>
+<tr>
+<td><code>AttentionService</code></td>
+<td>FlashAttention</td>
+<td>HIGH</td>
+</tr>
+<tr>
+<td><code>HNSWIndex</code></td>
+<td>150x faster search</td>
+<td>HIGH</td>
+</tr>
+</tbody></table>
+<h3>15.2 Combined Learning Tools (28 Total)</h3>
+<p><strong>agentic-flow (19 hooks)</strong>: Intelligence bridge, SONA trajectory, pattern storage
+<strong>agentdb (9 learning)</strong>: RL sessions, reflexion, skills, causal discovery</p>
+<h3>15.3 Optimized Learning Pipeline</h3>
+<pre><code>Pre-Task → Pattern Retrieval + Skill Lookup + Causal Query
+During   → SONA Trajectory + Experience Recording
+Post-Task → Pattern Storage + Skill Evolution + Causal Discovery
+Nightly  → FlashAttention Consolidation + A/B Experiments + Transfer Learning
+</code></pre>
+<hr>
+<h2>16. Lightweight Installation Strategy</h2>
+<h3>16.1 Design Principles</h3>
+<ol>
+<li><strong>Minimal Core</strong> - Install only essential runtime (~2MB)</li>
+<li><strong>Lazy Loading</strong> - Load features on first use</li>
+<li><strong>Platform Detection</strong> - Auto-select optimal backend</li>
+<li><strong>Progressive Enhancement</strong> - Add capabilities as needed</li>
+</ol>
+<h3>16.2 Core Package (Required)</h3>
+<pre><code class="language-bash"># Minimal install - works on all platforms
+npm install claude-flow@3 --save
+# ~2MB, no native dependencies, pure JavaScript
+</code></pre>
+<p><strong>Core includes</strong>:</p>
+<ul>
+<li>CLI interface</li>
+<li>Basic swarm coordination</li>
+<li>In-memory storage</li>
+<li>JavaScript-only runtime</li>
+</ul>
+<h3>16.3 Modular Components (Optional)</h3>
+<pre><code class="language-bash"># Install components as needed
+npx claude-flow install &lt;component&gt;
+
+# Available components:
+npx claude-flow install learning      # RL + trajectory tracking
+npx claude-flow install memory        # Persistent memory (SQLite/WASM)
+npx claude-flow install attention     # Flash/MoE attention mechanisms
+npx claude-flow install transport     # QUIC transport layer
+npx claude-flow install neural        # Neural pattern training
+npx claude-flow install gnn           # GNN query enhancement
+</code></pre>
+<h3>16.4 Platform-Specific Installation</h3>
+<h4>Linux (Fastest)</h4>
+<pre><code class="language-bash">npm install claude-flow@3
+npx claude-flow install native   # NAPI bindings (50-200x faster)
+# Total: ~15MB with native bindings
+</code></pre>
+<h4>macOS (Apple Silicon + Intel)</h4>
+<pre><code class="language-bash">npm install claude-flow@3
+npx claude-flow install native   # Universal binary
+# Fallback: WASM if Rosetta issues
+</code></pre>
+<h4>Windows</h4>
+<pre><code class="language-bash">npm install claude-flow@3
+npx claude-flow install wasm     # WASM backend (recommended)
+# Note: NAPI optional but requires build tools
+</code></pre>
+<h3>16.5 Component Dependency Graph</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                      CORE (Required)                         │
+│  CLI, Swarm Basics, In-Memory, JS Runtime (~2MB)            │
+└─────────────────────────────────────────────────────────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+        ▼                     ▼                     ▼
+┌───────────────┐    ┌───────────────┐    ┌───────────────┐
+│    memory     │    │   learning    │    │   attention   │
+│  SQLite/WASM  │    │  RL + SONA    │    │  Flash/MoE    │
+│    (~3MB)     │    │    (~2MB)     │    │    (~1MB)     │
+└───────────────┘    └───────────────┘    └───────────────┘
+        │                     │                     │
+        │                     ▼                     │
+        │            ┌───────────────┐              │
+        └───────────▶│    neural     │◀─────────────┘
+                     │ Pattern Train │
+                     │    (~2MB)     │
+                     └───────────────┘
+                              │
+                              ▼
+                     ┌───────────────┐
+                     │      gnn      │
+                     │ Query Refine  │
+                     │    (~4MB)     │
+                     └───────────────┘
+</code></pre>
+<h3>16.6 Runtime Detection &amp; Fallback</h3>
+<pre><code class="language-typescript">// Automatic runtime selection (zero config)
+const runtimeChain = [
+  &#39;napi&#39;,    // Native bindings (fastest)
+  &#39;wasm&#39;,    // WebAssembly (portable)
+  &#39;js&#39;       // Pure JavaScript (universal)
+];
+
+// Platform detection
+const platform = {
+  linux: { preferred: &#39;napi&#39;, fallback: &#39;wasm&#39; },
+  darwin: { preferred: &#39;napi&#39;, fallback: &#39;wasm&#39; },
+  win32: { preferred: &#39;wasm&#39;, fallback: &#39;js&#39; }  // WASM default on Windows
+};
+</code></pre>
+<h3>16.7 Feature Flags</h3>
+<pre><code class="language-typescript">// .claude-flow/config.json
+{
+  &quot;core&quot;: {
+    &quot;runtime&quot;: &quot;auto&quot;,           // auto | napi | wasm | js
+    &quot;lazyLoad&quot;: true,            // Load components on first use
+    &quot;maxMemoryMB&quot;: 512           // Memory limit for caching
+  },
+  &quot;components&quot;: {
+    &quot;memory&quot;: &quot;enabled&quot;,         // enabled | disabled | lazy
+    &quot;learning&quot;: &quot;lazy&quot;,          // Loads when first RL session starts
+    &quot;attention&quot;: &quot;lazy&quot;,
+    &quot;transport&quot;: &quot;disabled&quot;,     // Explicitly disabled
+    &quot;neural&quot;: &quot;lazy&quot;,
+    &quot;gnn&quot;: &quot;disabled&quot;
+  }
+}
+</code></pre>
+<h3>16.8 Installation Size Comparison</h3>
+<table>
+<thead>
+<tr>
+<th>Configuration</th>
+<th>Size</th>
+<th>Platforms</th>
+<th>Performance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core Only</td>
+<td>~2MB</td>
+<td>All</td>
+<td>Baseline</td>
+</tr>
+<tr>
+<td>+ Memory</td>
+<td>~5MB</td>
+<td>All</td>
+<td>Persistent storage</td>
+</tr>
+<tr>
+<td>+ Learning</td>
+<td>~7MB</td>
+<td>All</td>
+<td>RL capabilities</td>
+</tr>
+<tr>
+<td>+ Attention</td>
+<td>~8MB</td>
+<td>All</td>
+<td>Better consensus</td>
+</tr>
+<tr>
+<td>Full (JS)</td>
+<td>~15MB</td>
+<td>All</td>
+<td>Complete features</td>
+</tr>
+<tr>
+<td>Full (NAPI)</td>
+<td>~25MB</td>
+<td>Linux/Mac</td>
+<td>Maximum speed</td>
+</tr>
+</tbody></table>
+<h3>16.9 Quick Start by Use Case</h3>
+<pre><code class="language-bash"># Minimal CLI usage
+npm install -g claude-flow@3
+
+# Basic swarm coordination
+npm install claude-flow@3
+
+# With persistent memory
+npm install claude-flow@3 &amp;&amp; npx claude-flow install memory
+
+# Full learning system
+npm install claude-flow@3 &amp;&amp; npx claude-flow install learning memory
+
+# Maximum performance (Linux/Mac)
+npm install claude-flow@3 &amp;&amp; npx claude-flow install --all --native
+</code></pre>
+<hr>
+<h2>17. Testing Strategy</h2>
+<h3>17.1 Test Pyramid</h3>
+<pre><code>                    ┌─────────────┐
+                    │   E2E (5%)  │  Cross-platform smoke tests
+                    ├─────────────┤
+                    │Integration  │  Component interactions
+                    │   (15%)     │
+                    ├─────────────┤
+                    │    Unit     │  Individual functions
+                    │   (80%)     │
+                    └─────────────┘
+</code></pre>
+<h3>17.2 Platform Test Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Test Suite</th>
+<th>Linux</th>
+<th>macOS Intel</th>
+<th>macOS ARM</th>
+<th>Windows</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>NAPI bindings</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>WASM fallback</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Memory (SQLite)</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Learning (RL)</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody></table>
+<h3>17.3 Benchmark Suite</h3>
+<pre><code class="language-bash"># Run performance benchmarks
+npx claude-flow benchmark
+
+# Specific component benchmarks
+npx claude-flow benchmark memory --iterations 1000
+npx claude-flow benchmark learning --episodes 100
+npx claude-flow benchmark attention --batch-size 32
+
+# Compare runtimes
+npx claude-flow benchmark --runtime napi
+npx claude-flow benchmark --runtime wasm
+npx claude-flow benchmark --runtime js
+</code></pre>
+<h3>17.4 Regression Detection</h3>
+<pre><code class="language-typescript">// Performance thresholds (fail if exceeded)
+const thresholds = {
+  &#39;memory.store&#39;: { p95: 10, unit: &#39;ms&#39; },
+  &#39;memory.search&#39;: { p95: 50, unit: &#39;ms&#39; },
+  &#39;learning.predict&#39;: { p95: 5, unit: &#39;ms&#39; },
+  &#39;attention.forward&#39;: { p95: 2, unit: &#39;ms&#39; },
+  &#39;startup.cold&#39;: { max: 500, unit: &#39;ms&#39; },
+  &#39;startup.warm&#39;: { max: 100, unit: &#39;ms&#39; }
+};
+</code></pre>
+<hr>
+<h2>18. Error Handling &amp; Recovery</h2>
+<h3>18.1 Graceful Degradation Chain</h3>
+<pre><code>NAPI fails → WASM fallback → JS fallback → Error with guidance
+     │              │              │
+     ▼              ▼              ▼
+ Log warning    Log warning    Log error
+ Continue       Continue       Suggest fix
+</code></pre>
+<h3>18.2 Component Failure Isolation</h3>
+<pre><code class="language-typescript">// Each component fails independently
+class ComponentManager {
+  async loadComponent(name: string): Promise&lt;Component&gt; {
+    try {
+      return await this.loadNative(name);
+    } catch (e) {
+      console.warn(`Native ${name} unavailable, using WASM`);
+      try {
+        return await this.loadWasm(name);
+      } catch (e) {
+        console.warn(`WASM ${name} unavailable, using JS`);
+        return await this.loadJs(name);
+      }
+    }
+  }
+}
+</code></pre>
+<h3>18.3 Learning Recovery</h3>
+<pre><code class="language-typescript">// Automatic checkpoint and recovery
+const learningConfig = {
+  checkpointInterval: 100,      // Save every 100 episodes
+  maxRetries: 3,                // Retry failed operations
+  rollbackOnCorruption: true,   // Auto-rollback if DB corrupted
+  isolateFailures: true         // One session failure doesn&#39;t affect others
+};
+</code></pre>
+<hr>
+<h2>19. Monitoring &amp; Observability</h2>
+<h3>19.1 Built-in Metrics</h3>
+<pre><code class="language-bash"># View real-time metrics
+npx claude-flow metrics
+
+# Export metrics for external systems
+npx claude-flow metrics --format prometheus
+npx claude-flow metrics --format json &gt; metrics.json
+</code></pre>
+<h3>19.2 Key Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+<th>Alert Threshold</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cf_startup_ms</code></td>
+<td>Cold start time</td>
+<td>&gt; 1000ms</td>
+</tr>
+<tr>
+<td><code>cf_memory_mb</code></td>
+<td>Memory usage</td>
+<td>&gt; 80% of limit</td>
+</tr>
+<tr>
+<td><code>cf_component_load_ms</code></td>
+<td>Component load time</td>
+<td>&gt; 500ms</td>
+</tr>
+<tr>
+<td><code>cf_learning_episodes</code></td>
+<td>Total episodes</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>cf_learning_success_rate</code></td>
+<td>Success percentage</td>
+<td>&lt; 50%</td>
+</tr>
+<tr>
+<td><code>cf_storage_bytes</code></td>
+<td>Disk usage</td>
+<td>&gt; 1GB</td>
+</tr>
+</tbody></table>
+<h3>19.3 Logging Levels</h3>
+<pre><code class="language-typescript">// .claude-flow/config.json
+{
+  &quot;logging&quot;: {
+    &quot;level&quot;: &quot;info&quot;,           // error | warn | info | debug | trace
+    &quot;file&quot;: &quot;.claude-flow/logs/claude-flow.log&quot;,
+    &quot;maxSize&quot;: &quot;10MB&quot;,
+    &quot;maxFiles&quot;: 5,
+    &quot;components&quot;: {
+      &quot;memory&quot;: &quot;warn&quot;,        // Per-component overrides
+      &quot;learning&quot;: &quot;debug&quot;
+    }
+  }
+}
+</code></pre>
+<hr>
+<h2>20. Security Considerations</h2>
+<h3>20.1 Dependency Audit</h3>
+<pre><code class="language-bash"># Audit before install
+npm audit claude-flow@3
+
+# Verify checksums
+npx claude-flow verify --checksums
+</code></pre>
+<h3>20.2 Data Privacy</h3>
+<table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Storage</th>
+<th>Encryption</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Patterns</td>
+<td>Local SQLite</td>
+<td>Optional</td>
+<td>Configurable</td>
+</tr>
+<tr>
+<td>Trajectories</td>
+<td>Local SQLite</td>
+<td>Optional</td>
+<td>90 days default</td>
+</tr>
+<tr>
+<td>Episodes</td>
+<td>Local SQLite</td>
+<td>Optional</td>
+<td>90 days default</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>Local JSON</td>
+<td>No</td>
+<td>30 days default</td>
+</tr>
+</tbody></table>
+<h3>20.3 MCP Tool Access Control</h3>
+<pre><code class="language-typescript">// .claude-flow/config.json
+{
+  &quot;security&quot;: {
+    &quot;mcpToolAllowlist&quot;: [
+      &quot;swarm_*&quot;,
+      &quot;memory_*&quot;,
+      &quot;learning_*&quot;
+    ],
+    &quot;mcpToolDenylist&quot;: [
+      &quot;admin_*&quot;
+    ],
+    &quot;requireConfirmation&quot;: [
+      &quot;learning_transfer&quot;,
+      &quot;memory_delete&quot;
+    ]
+  }
+}
+</code></pre>
+<hr>
+<p><em>Deep review completed: 2026-01-03</em>
+<em>agentic-flow version analyzed: 2.0.1-alpha.50</em>
+<em>agentdb version analyzed: 2.0.0-alpha.3.1</em>
+<em>Claude-Flow version: 2.7.47</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

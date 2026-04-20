@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Meta &amp; Orchestration Subagents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code-subagents/categories/09-meta-orchestration/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Meta &amp; Orchestration Subagents</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents">awesome-claude-code-subagents</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents%2Fcategories">categories</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code-subagents%2Fcategories%2F09-meta-orchestration">09-meta-orchestration</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Meta &amp; Orchestration Subagents</h1>
+<p>Meta &amp; Orchestration subagents are your conductors and coordinators, managing complex multi-agent workflows and optimizing AI system performance. These specialists excel at the meta-level - orchestrating other agents, managing context, distributing tasks, and ensuring smooth collaboration between multiple AI systems. They turn chaos into symphony, making complex AI systems work harmoniously together.</p>
+<h2>When to Use Meta &amp; Orchestration Subagents</h2>
+<p>Use these subagents when you need to:</p>
+<ul>
+<li><strong>Coordinate multiple agents</strong> for complex tasks</li>
+<li><strong>Optimize context usage</strong> across conversations</li>
+<li><strong>Distribute tasks</strong> efficiently among specialists</li>
+<li><strong>Handle errors</strong> gracefully in multi-agent systems</li>
+<li><strong>Synthesize knowledge</strong> from various sources</li>
+<li><strong>Monitor performance</strong> of AI workflows</li>
+<li><strong>Design complex workflows</strong> with multiple steps</li>
+<li><strong>Scale AI operations</strong> across teams</li>
+</ul>
+<h2>Available Subagents</h2>
+<h3><a href="agent-organizer.md"><strong>agent-organizer</strong></a> - Multi-agent coordinator</h3>
+<p>Orchestration expert managing complex multi-agent collaborations. Masters task decomposition, agent selection, and result synthesis. Turns complex problems into coordinated solutions.</p>
+<p><strong>Use when:</strong> Coordinating multiple agents, breaking down complex tasks, managing agent dependencies, synthesizing results, or designing agent workflows.</p>
+<h3><a href="context-manager.md"><strong>context-manager</strong></a> - Context optimization expert</h3>
+<p>Context specialist maximizing efficiency in AI conversations. Expert in context windows, information prioritization, and memory management. Ensures optimal use of limited context space.</p>
+<p><strong>Use when:</strong> Optimizing long conversations, managing context windows, prioritizing information, implementing memory systems, or handling context overflow.</p>
+<h3><a href="error-coordinator.md"><strong>error-coordinator</strong></a> - Error handling and recovery specialist</h3>
+<p>Error handling expert ensuring graceful failure recovery. Masters error patterns, fallback strategies, and system resilience. Keeps multi-agent systems running smoothly despite failures.</p>
+<p><strong>Use when:</strong> Implementing error handling, designing recovery strategies, managing cascading failures, monitoring system health, or building resilient workflows.</p>
+<h3><a href="it-ops-orchestrator.md"><strong>it-ops-orchestrator</strong></a> - IT operations meta-orchestrator for PowerShell/.NET ecosystems</h3>
+<p>Meta-orchestrator that routes ambiguous infrastructure and operations tasks to the right specialist agents, with a strong preference for PowerShell and .NET-based workflows. Understands the roles of Windows infra, Azure, M365, and PowerShell language experts, and coordinates them to deliver end-to-end solutions.</p>
+<p><strong>Use when:</strong> A task smells like IT operations or infrastructure automation but spans multiple areas (AD, DNS/DHCP, Azure, M365, PowerShell modules). This orchestrator chooses and coordinates the best subagents (e.g., windows-infra-admin, azure-infra-engineer, m365-admin, powershell-5.1-expert, powershell-7-expert, powershell-module-architect) with PowerShell as the default implementation language.</p>
+<h3><a href="knowledge-synthesizer.md"><strong>knowledge-synthesizer</strong></a> - Knowledge aggregation expert</h3>
+<p>Knowledge synthesis specialist combining information from multiple sources. Expert in information fusion, conflict resolution, and insight generation. Creates coherent knowledge from diverse inputs.</p>
+<p><strong>Use when:</strong> Combining multiple perspectives, resolving conflicting information, generating comprehensive reports, building knowledge bases, or synthesizing research.</p>
+<h3><a href="multi-agent-coordinator.md"><strong>multi-agent-coordinator</strong></a> - Advanced multi-agent orchestration</h3>
+<p>Advanced orchestration expert handling complex agent ecosystems. Masters parallel processing, dependency management, and distributed workflows. Scales AI operations to enterprise level.</p>
+<p><strong>Use when:</strong> Building large-scale agent systems, implementing parallel workflows, managing agent ecosystems, coordinating distributed tasks, or optimizing throughput.</p>
+<h3><a href="performance-monitor.md"><strong>performance-monitor</strong></a> - Agent performance optimization</h3>
+<p>Performance specialist monitoring and optimizing agent systems. Expert in metrics, bottleneck analysis, and optimization strategies. Ensures peak performance across all agents.</p>
+<p><strong>Use when:</strong> Monitoring agent performance, identifying bottlenecks, optimizing workflows, implementing metrics, or improving system efficiency.</p>
+<h3><a href="task-distributor.md"><strong>task-distributor</strong></a> - Task allocation specialist</h3>
+<p>Task distribution expert optimizing work allocation across agents. Masters load balancing, capability matching, and priority scheduling. Ensures efficient use of all available agents.</p>
+<p><strong>Use when:</strong> Distributing tasks among agents, implementing load balancing, optimizing task queues, managing priorities, or scheduling agent work.</p>
+<h3><a href="workflow-orchestrator.md"><strong>workflow-orchestrator</strong></a> - Complex workflow automation</h3>
+<p>Workflow specialist designing and executing sophisticated AI workflows. Expert in workflow patterns, state management, and process automation. Transforms complex processes into smooth operations.</p>
+<p><strong>Use when:</strong> Designing complex workflows, implementing process automation, managing workflow state, handling long-running processes, or building workflow engines.</p>
+<h2>Quick Selection Guide</h2>
+<table>
+<thead>
+<tr>
+<th>If you need to...</th>
+<th>Use this subagent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Coordinate multiple agents</td>
+<td><strong>agent-organizer</strong></td>
+</tr>
+<tr>
+<td>Manage context efficiently</td>
+<td><strong>context-manager</strong></td>
+</tr>
+<tr>
+<td>Handle system errors</td>
+<td><strong>error-coordinator</strong></td>
+</tr>
+<tr>
+<td>Combine knowledge sources</td>
+<td><strong>knowledge-synthesizer</strong></td>
+</tr>
+<tr>
+<td>Scale agent operations</td>
+<td><strong>multi-agent-coordinator</strong></td>
+</tr>
+<tr>
+<td>Monitor performance</td>
+<td><strong>performance-monitor</strong></td>
+</tr>
+<tr>
+<td>Distribute tasks</td>
+<td><strong>task-distributor</strong></td>
+</tr>
+<tr>
+<td>Automate workflows</td>
+<td><strong>workflow-orchestrator</strong></td>
+</tr>
+</tbody></table>
+<h2>Common Orchestration Patterns</h2>
+<p><strong>Complex Problem Solving:</strong></p>
+<ul>
+<li><strong>agent-organizer</strong> for task breakdown</li>
+<li><strong>task-distributor</strong> for work allocation</li>
+<li><strong>knowledge-synthesizer</strong> for result combination</li>
+<li><strong>error-coordinator</strong> for failure handling</li>
+</ul>
+<p><strong>Large-Scale Operations:</strong></p>
+<ul>
+<li><strong>multi-agent-coordinator</strong> for ecosystem management</li>
+<li><strong>performance-monitor</strong> for optimization</li>
+<li><strong>workflow-orchestrator</strong> for process automation</li>
+<li><strong>context-manager</strong> for efficiency</li>
+</ul>
+<p><strong>Workflow Automation:</strong></p>
+<ul>
+<li><strong>workflow-orchestrator</strong> for process design</li>
+<li><strong>task-distributor</strong> for work distribution</li>
+<li><strong>error-coordinator</strong> for resilience</li>
+<li><strong>performance-monitor</strong> for optimization</li>
+</ul>
+<p><strong>Knowledge Management:</strong></p>
+<ul>
+<li><strong>knowledge-synthesizer</strong> for information fusion</li>
+<li><strong>context-manager</strong> for memory optimization</li>
+<li><strong>agent-organizer</strong> for research coordination</li>
+<li><strong>workflow-orchestrator</strong> for knowledge workflows</li>
+</ul>
+<h2>Getting Started</h2>
+<ol>
+<li><strong>Map your workflow</strong> and identify complexity</li>
+<li><strong>Choose orchestration strategy</strong> based on needs</li>
+<li><strong>Design agent interactions</strong> and dependencies</li>
+<li><strong>Implement monitoring</strong> from the start</li>
+<li><strong>Iterate and optimize</strong> based on performance</li>
+</ol>
+<h2>Best Practices</h2>
+<ul>
+<li><strong>Start simple:</strong> Build complexity incrementally</li>
+<li><strong>Monitor everything:</strong> Visibility prevents issues</li>
+<li><strong>Handle failures gracefully:</strong> Expect and plan for errors</li>
+<li><strong>Optimize context usage:</strong> Context is precious</li>
+<li><strong>Document workflows:</strong> Complex systems need clarity</li>
+<li><strong>Test at scale:</strong> Small tests miss orchestration issues</li>
+<li><strong>Version workflows:</strong> Track changes over time</li>
+<li><strong>Measure impact:</strong> Quantify orchestration benefits</li>
+</ul>
+<p>Choose your meta &amp; orchestration specialist and conduct your AI symphony!</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

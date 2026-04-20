@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Analysis Commands Compliance Report</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/commands/analysis/COMMAND_COMPLIANCE_REPORT.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Analysis Commands Compliance Report</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands%2Fanalysis">analysis</a> / <span>COMMAND_COMPLIANCE_REPORT.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Analysis Commands Compliance Report</h1>
+<h2>Overview</h2>
+<p>Reviewed all command files in <code>.claude/commands/analysis/</code> directory to ensure proper usage of:</p>
+<ul>
+<li><code>mcp__claude-flow__*</code> tools (preferred)</li>
+<li><code>npx claude-flow</code> commands (as fallback)</li>
+<li>No direct implementation calls</li>
+</ul>
+<h2>Files Reviewed</h2>
+<h3>1. token-efficiency.md</h3>
+<p><strong>Status</strong>: ✅ Updated
+<strong>Changes Made</strong>:</p>
+<ul>
+<li>Replaced <code>npx ruv-swarm hook session-end --export-metrics</code> with proper MCP tool call</li>
+<li>Updated to: <code>Tool: mcp__claude-flow__token_usage</code> with appropriate parameters</li>
+<li>Maintained result format and context</li>
+</ul>
+<p><strong>Before</strong>:</p>
+<pre><code class="language-bash">npx ruv-swarm hook session-end --export-metrics
+</code></pre>
+<p><strong>After</strong>:</p>
+<pre><code>Tool: mcp__claude-flow__token_usage
+Parameters: {&quot;operation&quot;: &quot;session&quot;, &quot;timeframe&quot;: &quot;24h&quot;}
+</code></pre>
+<h3>2. performance-bottlenecks.md</h3>
+<p><strong>Status</strong>: ✅ Compliant (No changes needed)
+<strong>Reason</strong>: Already uses proper <code>mcp__claude-flow__task_results</code> tool format</p>
+<h2>Summary</h2>
+<ul>
+<li><strong>Total files reviewed</strong>: 2</li>
+<li><strong>Files updated</strong>: 1</li>
+<li><strong>Files already compliant</strong>: 1</li>
+<li><strong>Compliance rate after updates</strong>: 100%</li>
+</ul>
+<h2>Compliance Patterns Enforced</h2>
+<ol>
+<li><strong>MCP Tool Usage</strong>: All direct tool calls now use <code>mcp__claude-flow__*</code> format</li>
+<li><strong>Parameter Format</strong>: JSON parameters properly structured</li>
+<li><strong>Command Context</strong>: Preserved original functionality and expected results</li>
+<li><strong>Documentation</strong>: Maintained clarity and examples</li>
+</ol>
+<h2>Recommendations</h2>
+<ol>
+<li>All analysis commands now follow the proper pattern</li>
+<li>No direct bash commands or implementation calls remain</li>
+<li>Token usage analysis properly integrated with MCP tools</li>
+<li>Performance analysis already using correct tool format</li>
+</ol>
+<p>The analysis directory is now fully compliant with the Claude Flow command standards.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

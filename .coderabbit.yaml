@@ -1,0 +1,49 @@
+# CodeRabbit config — make signal > noise.
+# Policy: CodeRabbit is the SECOND opinion, not the first.
+# Claude runs superpowers:requesting-code-review before PR opens.
+
+language: en-US
+early_access: false
+reviews:
+  profile: assertive           # fewer, stronger comments
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false                  # no poem preamble
+  review_status: true
+  collapse_walkthrough: true
+  auto_review:
+    enabled: true
+    drafts: false              # ignore WIP drafts
+    base_branches: ["main"]
+  path_filters:
+    - "!public/images/**"
+    - "!public/reading/**"
+    - "!docs/**"
+    - "!scripts/generate-*.mjs"
+    - "!.logs/**"
+    - "!v1-enterprise-backup/**"
+    - "!claude-skills/**"
+    - "!ai-architect-academy/**"
+    - "!frankxai/**"
+    - "!products/mcp-doctor/**"
+    - "!products/notion-powered-blog/**"
+    - "!products/storage-intelligence/**"
+    - "!products/suno-mcp-server/**"
+    - "!products/visual-intelligence/**"
+  path_instructions:
+    - path: "app/**"
+      instructions: |
+        Next.js 14+ App Router. Prefer Server Components by default.
+        Client components only when interactivity requires it — flag unnecessary 'use client'.
+        Respect FrankX Prime Directive from CLAUDE.md: never suggest renaming or deleting existing routes without explicit reason. "AI Architect" stays "AI Architect".
+    - path: "components/**"
+      instructions: |
+        Design system: dark glass-morphism (#0a0a0b bg, white/[0.04] overlays, white/[0.08] borders). Colors: violet #8B5CF6, amber #F59E0B, emerald #10B981, cyan #06B6D4, rose for warnings. Reuse GlowCard and EmailSignup over bespoke components.
+    - path: "app/api/**"
+      instructions: |
+        Server routes: validate inputs at the boundary. Never log secrets. Email flows go through Resend (audience 4d2e913e-6903-4dd4-8749-c02cdb844331).
+    - path: "data/**"
+      instructions: |
+        Registries (workshops, outbound-links, visual-registry). Changes here are high-blast-radius — flag any deletions or slug renames.
+chat:
+  auto_reply: false

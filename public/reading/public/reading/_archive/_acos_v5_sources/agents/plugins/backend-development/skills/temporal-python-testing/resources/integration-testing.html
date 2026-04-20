@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Integration Testing with Mocked Activities</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/backend-development/skills/temporal-python-testing/resources/integration-testing.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Integration Testing with Mocked Activities</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development">backend-development</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Ftemporal-python-testing">temporal-python-testing</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Ftemporal-python-testing%2Fresources">resources</a> / <span>integration-testing.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Integration Testing with Mocked Activities</h1>
+<p>Comprehensive patterns for testing workflows with mocked external dependencies, error injection, and complex scenarios.</p>
+<h2>Activity Mocking Strategy</h2>
+<p><strong>Purpose</strong>: Test workflow orchestration logic without calling real external services</p>
+<h3>Basic Mock Pattern</h3>
+<pre><code class="language-python">import pytest
+from temporalio.testing import WorkflowEnvironment
+from temporalio.worker import Worker
+from unittest.mock import Mock
+
+@pytest.mark.asyncio
+async def test_workflow_with_mocked_activity(workflow_env):
+    &quot;&quot;&quot;Mock activity to test workflow logic&quot;&quot;&quot;
+
+    # Create mock activity
+    mock_activity = Mock(return_value=&quot;mocked-result&quot;)
+
+    @workflow.defn
+    class WorkflowWithActivity:
+        @workflow.run
+        async def run(self, input: str) -&gt; str:
+            result = await workflow.execute_activity(
+                process_external_data,
+                input,
+                start_to_close_timeout=timedelta(seconds=10),
+            )
+            return f&quot;processed: {result}&quot;
+
+    async with Worker(
+        workflow_env.client,
+        task_queue=&quot;test&quot;,
+        workflows=[WorkflowWithActivity],
+        activities=[mock_activity],  # Use mock instead of real activity
+    ):
+        result = await workflow_env.client.execute_workflow(
+            WorkflowWithActivity.run,
+            &quot;test-input&quot;,
+            id=&quot;wf-mock&quot;,
+            task_queue=&quot;test&quot;,
+        )
+        assert result == &quot;processed: mocked-result&quot;
+        mock_activity.assert_called_once()
+</code></pre>
+<h3>Dynamic Mock Responses</h3>
+<p><strong>Scenario-Based Mocking</strong>:</p>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_workflow_multiple_mock_scenarios(workflow_env):
+    &quot;&quot;&quot;Test different workflow paths with dynamic mocks&quot;&quot;&quot;
+
+    # Mock returns different values based on input
+    def dynamic_activity(input: str) -&gt; str:
+        if input == &quot;error-case&quot;:
+            raise ApplicationError(&quot;Validation failed&quot;, non_retryable=True)
+        return f&quot;processed-{input}&quot;
+
+    @workflow.defn
+    class DynamicWorkflow:
+        @workflow.run
+        async def run(self, input: str) -&gt; str:
+            try:
+                result = await workflow.execute_activity(
+                    dynamic_activity,
+                    input,
+                    start_to_close_timeout=timedelta(seconds=10),
+                )
+                return f&quot;success: {result}&quot;
+            except ApplicationError as e:
+                return f&quot;error: {e.message}&quot;
+
+    async with Worker(
+        workflow_env.client,
+        task_queue=&quot;test&quot;,
+        workflows=[DynamicWorkflow],
+        activities=[dynamic_activity],
+    ):
+        # Test success path
+        result_success = await workflow_env.client.execute_workflow(
+            DynamicWorkflow.run,
+            &quot;valid-input&quot;,
+            id=&quot;wf-success&quot;,
+            task_queue=&quot;test&quot;,
+        )
+        assert result_success == &quot;success: processed-valid-input&quot;
+
+        # Test error path
+        result_error = await workflow_env.client.execute_workflow(
+            DynamicWorkflow.run,
+            &quot;error-case&quot;,
+            id=&quot;wf-error&quot;,
+            task_queue=&quot;test&quot;,
+        )
+        assert &quot;Validation failed&quot; in result_error
+</code></pre>
+<h2>Error Injection Patterns</h2>
+<h3>Testing Transient Failures</h3>
+<p><strong>Retry Behavior</strong>:</p>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_workflow_transient_errors(workflow_env):
+    &quot;&quot;&quot;Test retry logic with controlled failures&quot;&quot;&quot;
+
+    attempt_count = 0
+
+    @activity.defn
+    async def transient_activity() -&gt; str:
+        nonlocal attempt_count
+        attempt_count += 1
+
+        if attempt_count &lt; 3:
+            raise Exception(f&quot;Transient error {attempt_count}&quot;)
+        return &quot;success-after-retries&quot;
+
+    @workflow.defn
+    class RetryWorkflow:
+        @workflow.run
+        async def run(self) -&gt; str:
+            return await workflow.execute_activity(
+                transient_activity,
+                start_to_close_timeout=timedelta(seconds=10),
+                retry_policy=RetryPolicy(
+                    initial_interval=timedelta(milliseconds=10),
+                    maximum_attempts=5,
+                    backoff_coefficient=1.0,
+                ),
+            )
+
+    async with Worker(
+        workflow_env.client,
+        task_queue=&quot;test&quot;,
+        workflows=[RetryWorkflow],
+        activities=[transient_activity],
+    ):
+        result = await workflow_env.client.execute_workflow(
+            RetryWorkflow.run,
+            id=&quot;retry-wf&quot;,
+            task_queue=&quot;test&quot;,
+        )
+        assert result == &quot;success-after-retries&quot;
+        assert attempt_count == 3
+</code></pre>
+<h3>Testing Non-Retryable Errors</h3>
+<p><strong>Business Validation Failures</strong>:</p>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_workflow_non_retryable_error(workflow_env):
+    &quot;&quot;&quot;Test handling of permanent failures&quot;&quot;&quot;
+
+    @activity.defn
+    async def validation_activity(input: dict) -&gt; str:
+        if not input.get(&quot;valid&quot;):
+            raise ApplicationError(
+                &quot;Invalid input&quot;,
+                non_retryable=True,  # Don&#39;t retry validation errors
+            )
+        return &quot;validated&quot;
+
+    @workflow.defn
+    class ValidationWorkflow:
+        @workflow.run
+        async def run(self, input: dict) -&gt; str:
+            try:
+                return await workflow.execute_activity(
+                    validation_activity,
+                    input,
+                    start_to_close_timeout=timedelta(seconds=10),
+                )
+            except ApplicationError as e:
+                return f&quot;validation-failed: {e.message}&quot;
+
+    async with Worker(
+        workflow_env.client,
+        task_queue=&quot;test&quot;,
+        workflows=[ValidationWorkflow],
+        activities=[validation_activity],
+    ):
+        result = await workflow_env.client.execute_workflow(
+            ValidationWorkflow.run,
+            {&quot;valid&quot;: False},
+            id=&quot;validation-wf&quot;,
+            task_queue=&quot;test&quot;,
+        )
+        assert &quot;validation-failed&quot; in result
+</code></pre>
+<h2>Multi-Activity Workflow Testing</h2>
+<h3>Sequential Activity Pattern</h3>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_workflow_sequential_activities(workflow_env):
+    &quot;&quot;&quot;Test workflow orchestrating multiple activities&quot;&quot;&quot;
+
+    activity_calls = []
+
+    @activity.defn
+    async def step_1(input: str) -&gt; str:
+        activity_calls.append(&quot;step_1&quot;)
+        return f&quot;{input}-step1&quot;
+
+    @activity.defn
+    async def step_2(input: str) -&gt; str:
+        activity_calls.append(&quot;step_2&quot;)
+        return f&quot;{input}-step2&quot;
+
+    @activity.defn
+    async def step_3(input: str) -&gt; str:
+        activity_calls.append(&quot;step_3&quot;)
+        return f&quot;{input}-step3&quot;
+
+    @workflow.defn
+    class SequentialWorkflow:
+        @workflow.run
+        async def run(self, input: str) -&gt; str:
+            result_1 = await workflow.execute_activity(
+                step_1,
+                input,
+                start_to_close_timeout=timedelta(seconds=10),
+            )
+            result_2 = await workflow.execute_activity(
+                step_2,
+                result_1,
+                start_to_close_timeout=timedelta(seconds=10),
+            )
+            result_3 = await workflow.execute_activity(
+                step_3,
+                result_2,
+                start_to_close_timeout=timedelta(seconds=10),
+            )
+            return result_3
+
+    async with Worker(
+        workflow_env.client,
+        task_queue=&quot;test&quot;,
+        workflows=[SequentialWorkflow],
+        activities=[step_1, step_2, step_3],
+    ):
+        result = await workflow_env.client.execute_workflow(
+            SequentialWorkflow.run,
+            &quot;start&quot;,
+            id=&quot;seq-wf&quot;,
+            task_queue=&quot;test&quot;,
+        )
+        assert result == &quot;start-step1-step2-step3&quot;
+        assert activity_calls == [&quot;step_1&quot;, &quot;step_2&quot;, &quot;step_3&quot;]
+</code></pre>
+<h3>Parallel Activity Pattern</h3>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_workflow_parallel_activities(workflow_env):
+    &quot;&quot;&quot;Test concurrent activity execution&quot;&quot;&quot;
+
+    @activity.defn
+    async def parallel_task(task_id: int) -&gt; str:
+        return f&quot;task-{task_id}&quot;
+
+    @workflow.defn
+    class ParallelWorkflow:
+        @workflow.run
+        async def run(self, task_count: int) -&gt; list[str]:
+            # Execute activities in parallel
+            tasks = [
+                workflow.execute_activity(
+                    parallel_task,
+                    i,
+                    start_to_close_timeout=timedelta(seconds=10),
+                )
+                for i in range(task_count)
+            ]
+            return await asyncio.gather(*tasks)
+
+    async with Worker(
+        workflow_env.client,
+        task_queue=&quot;test&quot;,
+        workflows=[ParallelWorkflow],
+        activities=[parallel_task],
+    ):
+        result = await workflow_env.client.execute_workflow(
+            ParallelWorkflow.run,
+            3,
+            id=&quot;parallel-wf&quot;,
+            task_queue=&quot;test&quot;,
+        )
+        assert result == [&quot;task-0&quot;, &quot;task-1&quot;, &quot;task-2&quot;]
+</code></pre>
+<h2>Signal and Query Testing</h2>
+<h3>Signal Handlers</h3>
+<pre><code class="language-python">@pytest.mark.asyncio
+async def test_workflow_signals(workflow_env):
+    &quot;&quot;&quot;Test workflow signal handling&quot;&quot;&quot;
+
+    @workflow.defn
+    class SignalWorkflow:
+        def __init__(self) -&gt; None:
+            self._status = &quot;initialized&quot;
+
+        @workflow.run
+        async def run(self) -&gt; str:
+            # Wait for completion signal
+            await workflow.wait_condition(lambda: self._status == &quot;completed&quot;)
+            return self._status
+
+        @workflow.signal
+        async def update_status(self, new_status: str) -&gt; None:
+            self._status = new_status
+
+        @workflow.query
+        def get_status(self) -&gt; str:
+            return self._status
+
+    async with Worker(
+        workflow_env.client,
+        task_queue=&quot;test&quot;,
+        workflows=[SignalWorkflow],
+    ):
+        # Start workflow
+        handle = await workflow_env.client.start_workflow(
+            SignalWorkflow.run,
+            id=&quot;signal-wf&quot;,
+            task_queue=&quot;test&quot;,
+        )
+
+        # Verify initial state via query
+        initial_status = await handle.query(SignalWorkflow.get_status)
+        assert initial_status == &quot;initialized&quot;
+
+        # Send signal
+        await handle.signal(SignalWorkflow.update_status, &quot;processing&quot;)
+
+        # Verify updated state
+        updated_status = await handle.query(SignalWorkflow.get_status)
+        assert updated_status == &quot;processing&quot;
+
+        # Complete workflow
+        await handle.signal(SignalWorkflow.update_status, &quot;completed&quot;)
+        result = await handle.result()
+        assert result == &quot;completed&quot;
+</code></pre>
+<h2>Coverage Strategies</h2>
+<h3>Workflow Logic Coverage</h3>
+<p><strong>Target</strong>: ≥80% coverage of workflow decision logic</p>
+<pre><code class="language-python"># Test all branches
+@pytest.mark.parametrize(&quot;condition,expected&quot;, [
+    (True, &quot;branch-a&quot;),
+    (False, &quot;branch-b&quot;),
+])
+async def test_workflow_branches(workflow_env, condition, expected):
+    &quot;&quot;&quot;Ensure all code paths are tested&quot;&quot;&quot;
+    # Test implementation
+    pass
+</code></pre>
+<h3>Activity Coverage</h3>
+<p><strong>Target</strong>: ≥80% coverage of activity logic</p>
+<pre><code class="language-python"># Test activity edge cases
+@pytest.mark.parametrize(&quot;input,expected&quot;, [
+    (&quot;valid&quot;, &quot;success&quot;),
+    (&quot;&quot;, &quot;empty-input-error&quot;),
+    (None, &quot;null-input-error&quot;),
+])
+async def test_activity_edge_cases(activity_env, input, expected):
+    &quot;&quot;&quot;Test activity error handling&quot;&quot;&quot;
+    # Test implementation
+    pass
+</code></pre>
+<h2>Integration Test Organization</h2>
+<h3>Test Structure</h3>
+<pre><code>tests/
+├── integration/
+│   ├── conftest.py              # Shared fixtures
+│   ├── test_order_workflow.py   # Order processing tests
+│   ├── test_payment_workflow.py # Payment tests
+│   └── test_fulfillment_workflow.py
+├── unit/
+│   ├── test_order_activities.py
+│   └── test_payment_activities.py
+└── fixtures/
+    └── test_data.py             # Test data builders
+</code></pre>
+<h3>Shared Fixtures</h3>
+<pre><code class="language-python"># conftest.py
+import pytest
+from temporalio.testing import WorkflowEnvironment
+
+@pytest.fixture(scope=&quot;session&quot;)
+async def workflow_env():
+    &quot;&quot;&quot;Session-scoped environment for integration tests&quot;&quot;&quot;
+    env = await WorkflowEnvironment.start_time_skipping()
+    yield env
+    await env.shutdown()
+
+@pytest.fixture
+def mock_payment_service():
+    &quot;&quot;&quot;Mock external payment service&quot;&quot;&quot;
+    return Mock()
+
+@pytest.fixture
+def mock_inventory_service():
+    &quot;&quot;&quot;Mock external inventory service&quot;&quot;&quot;
+    return Mock()
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Mock External Dependencies</strong>: Never call real APIs in tests</li>
+<li><strong>Test Error Scenarios</strong>: Verify compensation and retry logic</li>
+<li><strong>Parallel Testing</strong>: Use pytest-xdist for faster test runs</li>
+<li><strong>Isolated Tests</strong>: Each test should be independent</li>
+<li><strong>Clear Assertions</strong>: Verify both results and side effects</li>
+<li><strong>Coverage Target</strong>: ≥80% for critical workflows</li>
+<li><strong>Fast Execution</strong>: Use time-skipping, avoid real delays</li>
+</ol>
+<h2>Additional Resources</h2>
+<ul>
+<li>Mocking Strategies: docs.temporal.io/develop/python/testing-suite</li>
+<li>pytest Best Practices: docs.pytest.org/en/stable/goodpractices.html</li>
+<li>Python SDK Samples: github.com/temporalio/samples-python</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

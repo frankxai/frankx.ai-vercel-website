@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Pull Request Workflow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude-plugins-fcakyon/plugins/github-dev/skills/pr-workflow/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Pull Request Workflow</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#.claude-plugins-fcakyon">.claude-plugins-fcakyon</a> / <a href="../../../index.html#.claude-plugins-fcakyon%2Fplugins">plugins</a> / <a href="../../index.html#.claude-plugins-fcakyon%2Fplugins%2Fgithub-dev">github-dev</a> / <a href="../index.html#.claude-plugins-fcakyon%2Fplugins%2Fgithub-dev%2Fskills">skills</a> / <a href="index.html#.claude-plugins-fcakyon%2Fplugins%2Fgithub-dev%2Fskills%2Fpr-workflow">pr-workflow</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: pr-workflow
+description: This skill should be used when user asks to &quot;create a PR&quot;, &quot;make a pull request&quot;, &quot;open PR for this branch&quot;, &quot;submit changes as PR&quot;, &quot;push and create PR&quot;, or runs /create-pr or /pr-creator commands.</h2>
+<h1>Pull Request Workflow</h1>
+<p>Complete workflow for creating pull requests following project standards.</p>
+<h2>Process</h2>
+<ol>
+<li><p><strong>Verify staged changes</strong> exist with <code>git diff --cached --name-only</code></p>
+</li>
+<li><p><strong>Branch setup</strong></p>
+<ul>
+<li>If on main/master, create feature branch first: <code>feature/brief-description</code> or <code>fix/brief-description</code></li>
+<li>Use <code>github-dev:commit-creator</code> subagent to handle staged changes if needed</li>
+</ul>
+</li>
+<li><p><strong>Documentation check</strong></p>
+<ul>
+<li>Update README.md or docs based on changes compared to target branch</li>
+<li>For config/API changes, use <code>mcp__tavily__tavily_search</code> to verify info and include sources</li>
+</ul>
+</li>
+<li><p><strong>Analyze all commits</strong></p>
+<ul>
+<li>Use <code>git diff &lt;base-branch&gt;...HEAD</code> to review complete changeset</li>
+<li>PR message must describe all commits, not just latest</li>
+<li>Focus on what changed from reviewer perspective</li>
+</ul>
+</li>
+<li><p><strong>Create PR</strong></p>
+<ul>
+<li>Use <code>/pr-creator</code> agent or <code>gh pr create</code> with parameters:<ul>
+<li><code>-t</code> (title): Start with capital letter, use verb, NO &quot;fix:&quot; or &quot;feat:&quot; prefix</li>
+<li><code>-b</code> (body): Brief summary + bullet points with inline markdown links</li>
+<li><code>-a @me</code> (self-assign)</li>
+<li><code>-r &lt;reviewer&gt;</code>: Find via <code>gh pr list --repo &lt;owner&gt;/&lt;repo&gt; --author @me --limit 5</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>PR Body Guidelines</strong></p>
+<ul>
+<li><strong>Summary</strong>: Few words or 1 sentence describing changes</li>
+<li><strong>Changes</strong>: Bullet points with inline links <code>[src/auth.py:42](src/auth.py#L42)</code></li>
+<li><strong>Examples</strong>: For significant changes, include before/after code examples</li>
+<li><strong>No test plans</strong>: Never mention test procedures in PR</li>
+</ul>
+</li>
+</ol>
+<h2>Examples</h2>
+<h3>With inline source links:</h3>
+<pre><code>Update Claude Haiku to version 4.5
+
+- Model ID: claude-3-haiku-20240307 → claude-haiku-4-5-20251001 ([source](https://docs.anthropic.com/en/docs/about-claude/models/overview))
+- Pricing: $0.80/$4.00 → $1.00/$5.00 per MTok ([source](https://docs.anthropic.com/en/docs/about-claude/pricing))
+- Max output: 4,096 → 64,000 tokens ([source](https://docs.anthropic.com/en/docs/about-claude/models/overview))
+</code></pre>
+<h3>With code changes:</h3>
+<pre><code>Refactor authentication to use async context manager
+
+- Replace synchronous auth flow with async/await pattern in [src/auth.py:15-42](src/auth.py#L15-L42)
+- Add context manager support for automatic cleanup
+
+Before:
+\`\`\`python
+def authenticate(token):
+    session = create_session(token)
+    return session
+\`\`\`
+
+After:
+\`\`\`python
+async def authenticate(token):
+    async with create_session(token) as session:
+        return session
+\`\`\`
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

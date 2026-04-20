@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Architecture Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/codebase/architecture.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Architecture Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates%2Fcodebase">codebase</a> / <span>architecture.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Architecture Template</h1>
+<p>Template for <code>.planning/codebase/ARCHITECTURE.md</code> - captures conceptual code organization.</p>
+<p><strong>Purpose:</strong> Document how the code is organized at a conceptual level. Complements STRUCTURE.md (which shows physical file locations).</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown"># Architecture
+
+**Analysis Date:** [YYYY-MM-DD]
+
+## Pattern Overview
+
+**Overall:** [Pattern name: e.g., &quot;Monolithic CLI&quot;, &quot;Serverless API&quot;, &quot;Full-stack MVC&quot;]
+
+**Key Characteristics:**
+- [Characteristic 1: e.g., &quot;Single executable&quot;]
+- [Characteristic 2: e.g., &quot;Stateless request handling&quot;]
+- [Characteristic 3: e.g., &quot;Event-driven&quot;]
+
+## Layers
+
+[Describe the conceptual layers and their responsibilities]
+
+**[Layer Name]:**
+- Purpose: [What this layer does]
+- Contains: [Types of code: e.g., &quot;route handlers&quot;, &quot;business logic&quot;]
+- Depends on: [What it uses: e.g., &quot;data layer only&quot;]
+- Used by: [What uses it: e.g., &quot;API routes&quot;]
+
+**[Layer Name]:**
+- Purpose: [What this layer does]
+- Contains: [Types of code]
+- Depends on: [What it uses]
+- Used by: [What uses it]
+
+## Data Flow
+
+[Describe the typical request/execution lifecycle]
+
+**[Flow Name] (e.g., &quot;HTTP Request&quot;, &quot;CLI Command&quot;, &quot;Event Processing&quot;):**
+
+1. [Entry point: e.g., &quot;User runs command&quot;]
+2. [Processing step: e.g., &quot;Router matches path&quot;]
+3. [Processing step: e.g., &quot;Controller validates input&quot;]
+4. [Processing step: e.g., &quot;Service executes logic&quot;]
+5. [Output: e.g., &quot;Response returned&quot;]
+
+**State Management:**
+- [How state is handled: e.g., &quot;Stateless - no persistent state&quot;, &quot;Database per request&quot;, &quot;In-memory cache&quot;]
+
+## Key Abstractions
+
+[Core concepts/patterns used throughout the codebase]
+
+**[Abstraction Name]:**
+- Purpose: [What it represents]
+- Examples: [e.g., &quot;UserService, ProjectService&quot;]
+- Pattern: [e.g., &quot;Singleton&quot;, &quot;Factory&quot;, &quot;Repository&quot;]
+
+**[Abstraction Name]:**
+- Purpose: [What it represents]
+- Examples: [Concrete examples]
+- Pattern: [Pattern used]
+
+## Entry Points
+
+[Where execution begins]
+
+**[Entry Point]:**
+- Location: [Brief: e.g., &quot;src/index.ts&quot;, &quot;API Gateway triggers&quot;]
+- Triggers: [What invokes it: e.g., &quot;CLI invocation&quot;, &quot;HTTP request&quot;]
+- Responsibilities: [What it does: e.g., &quot;Parse args, route to command&quot;]
+
+## Error Handling
+
+**Strategy:** [How errors are handled: e.g., &quot;Exception bubbling to top-level handler&quot;, &quot;Per-route error middleware&quot;]
+
+**Patterns:**
+- [Pattern: e.g., &quot;try/catch at controller level&quot;]
+- [Pattern: e.g., &quot;Error codes returned to user&quot;]
+
+## Cross-Cutting Concerns
+
+[Aspects that affect multiple layers]
+
+**Logging:**
+- [Approach: e.g., &quot;Winston logger, injected per-request&quot;]
+
+**Validation:**
+- [Approach: e.g., &quot;Zod schemas at API boundary&quot;]
+
+**Authentication:**
+- [Approach: e.g., &quot;JWT middleware on protected routes&quot;]
+
+---
+
+*Architecture analysis: [date]*
+*Update when major patterns change*
+</code></pre>
+<good_examples>
+```markdown
+# Architecture
+
+<p><strong>Analysis Date:</strong> 2025-01-20</p>
+<h2>Pattern Overview</h2>
+<p><strong>Overall:</strong> CLI Application with Plugin System</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Single executable with subcommands</li>
+<li>Plugin-based extensibility</li>
+<li>File-based state (no database)</li>
+<li>Synchronous execution model</li>
+</ul>
+<h2>Layers</h2>
+<p><strong>Command Layer:</strong></p>
+<ul>
+<li>Purpose: Parse user input and route to appropriate handler</li>
+<li>Contains: Command definitions, argument parsing, help text</li>
+<li>Location: <code>src/commands/*.ts</code></li>
+<li>Depends on: Service layer for business logic</li>
+<li>Used by: CLI entry point (<code>src/index.ts</code>)</li>
+</ul>
+<p><strong>Service Layer:</strong></p>
+<ul>
+<li>Purpose: Core business logic</li>
+<li>Contains: FileService, TemplateService, InstallService</li>
+<li>Location: <code>src/services/*.ts</code></li>
+<li>Depends on: File system utilities, external tools</li>
+<li>Used by: Command handlers</li>
+</ul>
+<p><strong>Utility Layer:</strong></p>
+<ul>
+<li>Purpose: Shared helpers and abstractions</li>
+<li>Contains: File I/O wrappers, path resolution, string formatting</li>
+<li>Location: <code>src/utils/*.ts</code></li>
+<li>Depends on: Node.js built-ins only</li>
+<li>Used by: Service layer</li>
+</ul>
+<h2>Data Flow</h2>
+<p><strong>CLI Command Execution:</strong></p>
+<ol>
+<li>User runs: <code>gsd new-project</code></li>
+<li>Commander parses args and flags</li>
+<li>Command handler invoked (<code>src/commands/new-project.ts</code>)</li>
+<li>Handler calls service methods (<code>src/services/project.ts</code> → <code>create()</code>)</li>
+<li>Service reads templates, processes files, writes output</li>
+<li>Results logged to console</li>
+<li>Process exits with status code</li>
+</ol>
+<p><strong>State Management:</strong></p>
+<ul>
+<li>File-based: All state lives in <code>.planning/</code> directory</li>
+<li>No persistent in-memory state</li>
+<li>Each command execution is independent</li>
+</ul>
+<h2>Key Abstractions</h2>
+<p><strong>Service:</strong></p>
+<ul>
+<li>Purpose: Encapsulate business logic for a domain</li>
+<li>Examples: <code>src/services/file.ts</code>, <code>src/services/template.ts</code>, <code>src/services/project.ts</code></li>
+<li>Pattern: Singleton-like (imported as modules, not instantiated)</li>
+</ul>
+<p><strong>Command:</strong></p>
+<ul>
+<li>Purpose: CLI command definition</li>
+<li>Examples: <code>src/commands/new-project.ts</code>, <code>src/commands/plan-phase.ts</code></li>
+<li>Pattern: Commander.js command registration</li>
+</ul>
+<p><strong>Template:</strong></p>
+<ul>
+<li>Purpose: Reusable document structures</li>
+<li>Examples: PROJECT.md, PLAN.md templates</li>
+<li>Pattern: Markdown files with substitution variables</li>
+</ul>
+<h2>Entry Points</h2>
+<p><strong>CLI Entry:</strong></p>
+<ul>
+<li>Location: <code>src/index.ts</code></li>
+<li>Triggers: User runs <code>gsd &lt;command&gt;</code></li>
+<li>Responsibilities: Register commands, parse args, display help</li>
+</ul>
+<p><strong>Commands:</strong></p>
+<ul>
+<li>Location: <code>src/commands/*.ts</code></li>
+<li>Triggers: Matched command from CLI</li>
+<li>Responsibilities: Validate input, call services, format output</li>
+</ul>
+<h2>Error Handling</h2>
+<p><strong>Strategy:</strong> Throw exceptions, catch at command level, log and exit</p>
+<p><strong>Patterns:</strong></p>
+<ul>
+<li>Services throw Error with descriptive messages</li>
+<li>Command handlers catch, log error to stderr, exit(1)</li>
+<li>Validation errors shown before execution (fail fast)</li>
+</ul>
+<h2>Cross-Cutting Concerns</h2>
+<p><strong>Logging:</strong></p>
+<ul>
+<li>Console.log for normal output</li>
+<li>Console.error for errors</li>
+<li>Chalk for colored output</li>
+</ul>
+<p><strong>Validation:</strong></p>
+<ul>
+<li>Zod schemas for config file parsing</li>
+<li>Manual validation in command handlers</li>
+<li>Fail fast on invalid input</li>
+</ul>
+<p><strong>File Operations:</strong></p>
+<ul>
+<li>FileService abstraction over fs-extra</li>
+<li>All paths validated before operations</li>
+<li>Atomic writes (temp file + rename)</li>
+</ul>
+<hr>
+<p><em>Architecture analysis: 2025-01-20</em>
+<em>Update when major patterns change</em></p>
+<pre><code>&lt;/good_examples&gt;
+
+&lt;guidelines&gt;
+**What belongs in ARCHITECTURE.md:**
+- Overall architectural pattern (monolith, microservices, layered, etc.)
+- Conceptual layers and their relationships
+- Data flow / request lifecycle
+- Key abstractions and patterns
+- Entry points
+- Error handling strategy
+- Cross-cutting concerns (logging, auth, validation)
+
+**What does NOT belong here:**
+- Exhaustive file listings (that&#39;s STRUCTURE.md)
+- Technology choices (that&#39;s STACK.md)
+- Line-by-line code walkthrough (defer to code reading)
+- Implementation details of specific features
+
+**File paths ARE welcome:**
+Include file paths as concrete examples of abstractions. Use backtick formatting: `src/services/user.ts`. This makes the architecture document actionable for Claude when planning.
+
+**When filling this template:**
+- Read main entry points (index, server, main)
+- Identify layers by reading imports/dependencies
+- Trace a typical request/command execution
+- Note recurring patterns (services, controllers, repositories)
+- Keep descriptions conceptual, not mechanical
+
+**Useful for phase planning when:**
+- Adding new features (where does it fit in the layers?)
+- Refactoring (understanding current patterns)
+- Identifying where to add code (which layer handles X?)
+- Understanding dependencies between components
+&lt;/guidelines&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -10,7 +10,7 @@ export default function ShortFormNexusPage() {
     <StrategyPageLayout
       title="Short-Form Nexus"
       description="The multiplier engine for the modern architect. We use AI to atomize high-fidelity content into a thousand points of discovery."
-      heroVideoId="pOLR5jE5Vjw"
+      heroVideoId="eTTMUWP5B0s"
       stats={[
         { label: 'Multiplication', value: '20x' },
         { label: 'Velocity', value: 'Instant' },
@@ -52,6 +52,36 @@ export default function ShortFormNexusPage() {
           url: '/brand'
         }
       ]}
-    />
+    >
+      <div className="space-y-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-300/90">
+          Active Development
+        </p>
+        <h2 className="text-2xl font-bold text-white">
+          We are currently building this module in public.
+        </h2>
+        <p className="text-white/75 max-w-2xl">
+          If this page is useful, send us an upvote signal and we will prioritize full rollout (workflows,
+          templates, and clip automation examples).
+        </p>
+        <div className="flex flex-wrap gap-3 pt-2">
+          <a
+            href="mailto:hello@frankx.ai?subject=Opus%20Pro%20Upvote%20%E2%86%91"
+            className="inline-flex items-center rounded-full bg-amber-400 px-5 py-2.5 text-sm font-semibold text-black hover:bg-amber-300 transition-colors"
+          >
+            Upvote Interest
+          </a>
+          <a
+            href="/contact"
+            className="inline-flex items-center rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+          >
+            Request Early Access
+          </a>
+        </div>
+        <div className="rounded-xl border border-white/15 bg-black/30 px-4 py-3 text-sm text-white/80">
+          Meme: "I only wanted one clip." Opus: "Great, here are 47."
+        </div>
+      </div>
+    </StrategyPageLayout>
   )
 }

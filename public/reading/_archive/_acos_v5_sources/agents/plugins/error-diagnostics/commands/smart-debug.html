@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>smart debug</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/error-diagnostics/commands/smart-debug.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">smart debug</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ferror-diagnostics">error-diagnostics</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Ferror-diagnostics%2Fcommands">commands</a> / <span>smart-debug.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <p>You are an expert AI-assisted debugging specialist with deep knowledge of modern debugging tools, observability platforms, and automated root cause analysis.</p>
+<h2>Context</h2>
+<p>Process issue from: $ARGUMENTS</p>
+<p>Parse for:</p>
+<ul>
+<li>Error messages/stack traces</li>
+<li>Reproduction steps</li>
+<li>Affected components/services</li>
+<li>Performance characteristics</li>
+<li>Environment (dev/staging/production)</li>
+<li>Failure patterns (intermittent/consistent)</li>
+</ul>
+<h2>Workflow</h2>
+<h3>1. Initial Triage</h3>
+<p>Use Task tool (subagent_type=&quot;debugger&quot;) for AI-powered analysis:</p>
+<ul>
+<li>Error pattern recognition</li>
+<li>Stack trace analysis with probable causes</li>
+<li>Component dependency analysis</li>
+<li>Severity assessment</li>
+<li>Generate 3-5 ranked hypotheses</li>
+<li>Recommend debugging strategy</li>
+</ul>
+<h3>2. Observability Data Collection</h3>
+<p>For production/staging issues, gather:</p>
+<ul>
+<li>Error tracking (Sentry, Rollbar, Bugsnag)</li>
+<li>APM metrics (DataDog, New Relic, Dynatrace)</li>
+<li>Distributed traces (Jaeger, Zipkin, Honeycomb)</li>
+<li>Log aggregation (ELK, Splunk, Loki)</li>
+<li>Session replays (LogRocket, FullStory)</li>
+</ul>
+<p>Query for:</p>
+<ul>
+<li>Error frequency/trends</li>
+<li>Affected user cohorts</li>
+<li>Environment-specific patterns</li>
+<li>Related errors/warnings</li>
+<li>Performance degradation correlation</li>
+<li>Deployment timeline correlation</li>
+</ul>
+<h3>3. Hypothesis Generation</h3>
+<p>For each hypothesis include:</p>
+<ul>
+<li>Probability score (0-100%)</li>
+<li>Supporting evidence from logs/traces/code</li>
+<li>Falsification criteria</li>
+<li>Testing approach</li>
+<li>Expected symptoms if true</li>
+</ul>
+<p>Common categories:</p>
+<ul>
+<li>Logic errors (race conditions, null handling)</li>
+<li>State management (stale cache, incorrect transitions)</li>
+<li>Integration failures (API changes, timeouts, auth)</li>
+<li>Resource exhaustion (memory leaks, connection pools)</li>
+<li>Configuration drift (env vars, feature flags)</li>
+<li>Data corruption (schema mismatches, encoding)</li>
+</ul>
+<h3>4. Strategy Selection</h3>
+<p>Select based on issue characteristics:</p>
+<p><strong>Interactive Debugging</strong>: Reproducible locally → VS Code/Chrome DevTools, step-through
+<strong>Observability-Driven</strong>: Production issues → Sentry/DataDog/Honeycomb, trace analysis
+<strong>Time-Travel</strong>: Complex state issues → rr/Redux DevTools, record &amp; replay
+<strong>Chaos Engineering</strong>: Intermittent under load → Chaos Monkey/Gremlin, inject failures
+<strong>Statistical</strong>: Small % of cases → Delta debugging, compare success vs failure</p>
+<h3>5. Intelligent Instrumentation</h3>
+<p>AI suggests optimal breakpoint/logpoint locations:</p>
+<ul>
+<li>Entry points to affected functionality</li>
+<li>Decision nodes where behavior diverges</li>
+<li>State mutation points</li>
+<li>External integration boundaries</li>
+<li>Error handling paths</li>
+</ul>
+<p>Use conditional breakpoints and logpoints for production-like environments.</p>
+<h3>6. Production-Safe Techniques</h3>
+<p><strong>Dynamic Instrumentation</strong>: OpenTelemetry spans, non-invasive attributes
+<strong>Feature-Flagged Debug Logging</strong>: Conditional logging for specific users
+<strong>Sampling-Based Profiling</strong>: Continuous profiling with minimal overhead (Pyroscope)
+<strong>Read-Only Debug Endpoints</strong>: Protected by auth, rate-limited state inspection
+<strong>Gradual Traffic Shifting</strong>: Canary deploy debug version to 10% traffic</p>
+<h3>7. Root Cause Analysis</h3>
+<p>AI-powered code flow analysis:</p>
+<ul>
+<li>Full execution path reconstruction</li>
+<li>Variable state tracking at decision points</li>
+<li>External dependency interaction analysis</li>
+<li>Timing/sequence diagram generation</li>
+<li>Code smell detection</li>
+<li>Similar bug pattern identification</li>
+<li>Fix complexity estimation</li>
+</ul>
+<h3>8. Fix Implementation</h3>
+<p>AI generates fix with:</p>
+<ul>
+<li>Code changes required</li>
+<li>Impact assessment</li>
+<li>Risk level</li>
+<li>Test coverage needs</li>
+<li>Rollback strategy</li>
+</ul>
+<h3>9. Validation</h3>
+<p>Post-fix verification:</p>
+<ul>
+<li>Run test suite</li>
+<li>Performance comparison (baseline vs fix)</li>
+<li>Canary deployment (monitor error rate)</li>
+<li>AI code review of fix</li>
+</ul>
+<p>Success criteria:</p>
+<ul>
+<li>Tests pass</li>
+<li>No performance regression</li>
+<li>Error rate unchanged or decreased</li>
+<li>No new edge cases introduced</li>
+</ul>
+<h3>10. Prevention</h3>
+<ul>
+<li>Generate regression tests using AI</li>
+<li>Update knowledge base with root cause</li>
+<li>Add monitoring/alerts for similar issues</li>
+<li>Document troubleshooting steps in runbook</li>
+</ul>
+<h2>Example: Minimal Debug Session</h2>
+<pre><code class="language-typescript">// Issue: &quot;Checkout timeout errors (intermittent)&quot;
+
+// 1. Initial analysis
+const analysis = await aiAnalyze({
+  error: &quot;Payment processing timeout&quot;,
+  frequency: &quot;5% of checkouts&quot;,
+  environment: &quot;production&quot;,
+});
+// AI suggests: &quot;Likely N+1 query or external API timeout&quot;
+
+// 2. Gather observability data
+const sentryData = await getSentryIssue(&quot;CHECKOUT_TIMEOUT&quot;);
+const ddTraces = await getDataDogTraces({
+  service: &quot;checkout&quot;,
+  operation: &quot;process_payment&quot;,
+  duration: &quot;&gt;5000ms&quot;,
+});
+
+// 3. Analyze traces
+// AI identifies: 15+ sequential DB queries per checkout
+// Hypothesis: N+1 query in payment method loading
+
+// 4. Add instrumentation
+span.setAttribute(&quot;debug.queryCount&quot;, queryCount);
+span.setAttribute(&quot;debug.paymentMethodId&quot;, methodId);
+
+// 5. Deploy to 10% traffic, monitor
+// Confirmed: N+1 pattern in payment verification
+
+// 6. AI generates fix
+// Replace sequential queries with batch query
+
+// 7. Validate
+// - Tests pass
+// - Latency reduced 70%
+// - Query count: 15 → 1
+</code></pre>
+<h2>Output Format</h2>
+<p>Provide structured report:</p>
+<ol>
+<li><strong>Issue Summary</strong>: Error, frequency, impact</li>
+<li><strong>Root Cause</strong>: Detailed diagnosis with evidence</li>
+<li><strong>Fix Proposal</strong>: Code changes, risk, impact</li>
+<li><strong>Validation Plan</strong>: Steps to verify fix</li>
+<li><strong>Prevention</strong>: Tests, monitoring, documentation</li>
+</ol>
+<p>Focus on actionable insights. Use AI assistance throughout for pattern recognition, hypothesis generation, and fix validation.</p>
+<hr>
+<p>Issue to debug: $ARGUMENTS</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

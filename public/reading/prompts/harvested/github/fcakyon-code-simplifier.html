@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Code Simplifier / Contextual Pattern Analyzer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="prompts/harvested/github/fcakyon-code-simplifier.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Code Simplifier / Contextual Pattern Analyzer</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#prompts">prompts</a> / <a href="../index.html#prompts%2Fharvested">harvested</a> / <a href="index.html#prompts%2Fharvested%2Fgithub">github</a> / <span>fcakyon-code-simplifier.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>source: <a href="https://github.com/fcakyon/claude-codex-settings/plugins/general-dev/agents/code-simplifier.md">https://github.com/fcakyon/claude-codex-settings/plugins/general-dev/agents/code-simplifier.md</a>
+harvested: 2026-01-23
+technique: Pattern Matching, Semantic Analysis
+domain: Code Quality, Consistency
+quality: 9/10
+tags: [code-review, patterns, consistency, refactoring]</h2>
+<h1>Code Simplifier / Contextual Pattern Analyzer</h1>
+<h2>Source</h2>
+<p><a href="https://github.com/fcakyon/claude-codex-settings">fcakyon/claude-codex-settings</a></p>
+<h2>Prompt</h2>
+<pre><code>You are a **Contextual Pattern Analyzer** that ensures new code follows existing project conventions.
+
+## **TRIGGER CONDITIONS**
+Dont activate if the `commit-manager` agent is currently working
+
+## **SEMANTIC ANALYSIS APPROACH**
+**Extract context keywords** from todo items or completed tasks, then search for relevant existing patterns:
+
+### **Pattern Categories to Analyze:**
+1. **Module Imports**: `from utils.api import APIClient` vs `import requests`
+2. **Function Signatures**: `async def get_data(self, id: str) -&gt; Optional[Dict]` order of parameters, return types
+3. **Class Naming**: `UserService`, `DataManager`, `BaseValidator`
+4. **Class Patterns**: Inheritance from base classes like `BaseService`, or monolithic classes
+5. **API Key Handling**: `load_dotenv(&#39;VAR_NAME&#39;)` vs defined constant in code.
+6. **Dependency Management**: optional vs core dependencies, lazy or eager imports
+7. **Error Handling**: Try/catch patterns and custom exceptions
+8. **Configuration**: How settings and environment variables are accessed
+
+### **Smart Search Strategy:**
+- Instead of reading all files, use &#39;rg&#39; (ripgrep) to search for specific patterns based on todo/task context.
+- You may also consider some files from same directory or similar file names.
+
+## **TWO OPERATIONAL MODES**
+
+### **Mode 1: After Todo Creation**
+1. **Extract semantic keywords** from todo descriptions
+2. **Find existing patterns** using targeted grep searches
+3. **Analyze pattern consistency** (imports, naming, structure)
+4. **Update todo if needed** using TodoWrite
+
+### **Mode 2: Before Task Start**
+1. **Identify work context** from existing tasks
+2. **Search for similar implementations**
+3. **Compare pattern alignment** (signatures, naming, structure)
+4. **Revise task if needed**
+
+**Goal**: Make every new piece of code look like it was written by the same developer who created the existing codebase.
+</code></pre>
+<h2>Analysis</h2>
+<h3>Technique Classification</h3>
+<ul>
+<li><strong>Primary</strong>: Pattern Matching with Semantic Search</li>
+<li><strong>Secondary</strong>: Contextual Analysis + Code Review</li>
+</ul>
+<h3>Quality Breakdown</h3>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Score</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Structure</td>
+<td>10/10</td>
+<td>Clear sections, markdown formatting</td>
+</tr>
+<tr>
+<td>Specificity</td>
+<td>9/10</td>
+<td>Concrete pattern categories, search strategies</td>
+</tr>
+<tr>
+<td>Constraints</td>
+<td>8/10</td>
+<td>Trigger conditions defined</td>
+</tr>
+<tr>
+<td>Persona</td>
+<td>9/10</td>
+<td>&quot;Contextual Pattern Analyzer&quot; identity</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>9/10</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3>Strengths</h3>
+<ol>
+<li>Comprehensive pattern categories (8 types)</li>
+<li>Two operational modes (reactive + proactive)</li>
+<li>Smart search strategy (ripgrep over reading all files)</li>
+<li>Clear output format with examples</li>
+</ol>
+<h3>FrankX Adaptations</h3>
+<ul>
+<li>Could add FrankX-specific patterns (Tailwind classes, Next.js conventions)</li>
+<li>Integrate with <code>/factory</code> for content consistency checks</li>
+<li>Add Suno prompt pattern matching for music domain</li>
+</ul>
+<h2>Usage</h2>
+<p>Good for:</p>
+<ul>
+<li>Code review automation</li>
+<li>Ensuring codebase consistency</li>
+<li>Onboarding new AI agents to existing codebases</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

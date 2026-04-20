@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>NFT Standards</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/blockchain-web3/skills/nft-standards/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">NFT Standards</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fblockchain-web3">blockchain-web3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fblockchain-web3%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fblockchain-web3%2Fskills%2Fnft-standards">nft-standards</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: nft-standards
+description: Implement NFT standards (ERC-721, ERC-1155) with proper metadata handling, minting strategies, and marketplace integration. Use when creating NFT contracts, building NFT marketplaces, or implementing digital asset systems.</h2>
+<h1>NFT Standards</h1>
+<p>Master ERC-721 and ERC-1155 NFT standards, metadata best practices, and advanced NFT features.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Creating NFT collections (art, gaming, collectibles)</li>
+<li>Implementing marketplace functionality</li>
+<li>Building on-chain or off-chain metadata</li>
+<li>Creating soulbound tokens (non-transferable)</li>
+<li>Implementing royalties and revenue sharing</li>
+<li>Developing dynamic/evolving NFTs</li>
+</ul>
+<h2>ERC-721 (Non-Fungible Token Standard)</h2>
+<pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import &quot;@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol&quot;;
+import &quot;@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol&quot;;
+import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;
+import &quot;@openzeppelin/contracts/utils/Counters.sol&quot;;
+
+contract MyNFT is ERC721URIStorage, ERC721Enumerable, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    uint256 public constant MAX_SUPPLY = 10000;
+    uint256 public constant MINT_PRICE = 0.08 ether;
+    uint256 public constant MAX_PER_MINT = 20;
+
+    constructor() ERC721(&quot;MyNFT&quot;, &quot;MNFT&quot;) {}
+
+    function mint(uint256 quantity) external payable {
+        require(quantity &gt; 0 &amp;&amp; quantity &lt;= MAX_PER_MINT, &quot;Invalid quantity&quot;);
+        require(_tokenIds.current() + quantity &lt;= MAX_SUPPLY, &quot;Exceeds max supply&quot;);
+        require(msg.value &gt;= MINT_PRICE * quantity, &quot;Insufficient payment&quot;);
+
+        for (uint256 i = 0; i &lt; quantity; i++) {
+            _tokenIds.increment();
+            uint256 newTokenId = _tokenIds.current();
+            _safeMint(msg.sender, newTokenId);
+            _setTokenURI(newTokenId, generateTokenURI(newTokenId));
+        }
+    }
+
+    function generateTokenURI(uint256 tokenId) internal pure returns (string memory) {
+        // Return IPFS URI or on-chain metadata
+        return string(abi.encodePacked(&quot;ipfs://QmHash/&quot;, Strings.toString(tokenId), &quot;.json&quot;));
+    }
+
+    // Required overrides
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal override(ERC721, ERC721Enumerable) {
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
+    }
+
+    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+        super._burn(tokenId);
+    }
+
+    function tokenURI(uint256 tokenId) public view override(ERC721, ERC721URIStorage) returns (string memory) {
+        return super.tokenURI(tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+    function withdraw() external onlyOwner {
+        payable(owner()).transfer(address(this).balance);
+    }
+}
+</code></pre>
+<h2>ERC-1155 (Multi-Token Standard)</h2>
+<pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import &quot;@openzeppelin/contracts/token/ERC1155/ERC1155.sol&quot;;
+import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;
+
+contract GameItems is ERC1155, Ownable {
+    uint256 public constant SWORD = 1;
+    uint256 public constant SHIELD = 2;
+    uint256 public constant POTION = 3;
+
+    mapping(uint256 =&gt; uint256) public tokenSupply;
+    mapping(uint256 =&gt; uint256) public maxSupply;
+
+    constructor() ERC1155(&quot;ipfs://QmBaseHash/{id}.json&quot;) {
+        maxSupply[SWORD] = 1000;
+        maxSupply[SHIELD] = 500;
+        maxSupply[POTION] = 10000;
+    }
+
+    function mint(
+        address to,
+        uint256 id,
+        uint256 amount
+    ) external onlyOwner {
+        require(tokenSupply[id] + amount &lt;= maxSupply[id], &quot;Exceeds max supply&quot;);
+
+        _mint(to, id, amount, &quot;&quot;);
+        tokenSupply[id] += amount;
+    }
+
+    function mintBatch(
+        address to,
+        uint256[] memory ids,
+        uint256[] memory amounts
+    ) external onlyOwner {
+        for (uint256 i = 0; i &lt; ids.length; i++) {
+            require(tokenSupply[ids[i]] + amounts[i] &lt;= maxSupply[ids[i]], &quot;Exceeds max supply&quot;);
+            tokenSupply[ids[i]] += amounts[i];
+        }
+
+        _mintBatch(to, ids, amounts, &quot;&quot;);
+    }
+
+    function burn(
+        address from,
+        uint256 id,
+        uint256 amount
+    ) external {
+        require(from == msg.sender || isApprovedForAll(from, msg.sender), &quot;Not authorized&quot;);
+        _burn(from, id, amount);
+        tokenSupply[id] -= amount;
+    }
+}
+</code></pre>
+<h2>Metadata Standards</h2>
+<h3>Off-Chain Metadata (IPFS)</h3>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;NFT #1&quot;,
+  &quot;description&quot;: &quot;Description of the NFT&quot;,
+  &quot;image&quot;: &quot;ipfs://QmImageHash&quot;,
+  &quot;attributes&quot;: [
+    {
+      &quot;trait_type&quot;: &quot;Background&quot;,
+      &quot;value&quot;: &quot;Blue&quot;
+    },
+    {
+      &quot;trait_type&quot;: &quot;Rarity&quot;,
+      &quot;value&quot;: &quot;Legendary&quot;
+    },
+    {
+      &quot;trait_type&quot;: &quot;Power&quot;,
+      &quot;value&quot;: 95,
+      &quot;display_type&quot;: &quot;number&quot;,
+      &quot;max_value&quot;: 100
+    }
+  ]
+}
+</code></pre>
+<h3>On-Chain Metadata</h3>
+<pre><code class="language-solidity">contract OnChainNFT is ERC721 {
+    struct Traits {
+        uint8 background;
+        uint8 body;
+        uint8 head;
+        uint8 rarity;
+    }
+
+    mapping(uint256 =&gt; Traits) public tokenTraits;
+
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        Traits memory traits = tokenTraits[tokenId];
+
+        string memory json = Base64.encode(
+            bytes(
+                string(
+                    abi.encodePacked(
+                        &#39;{&quot;name&quot;: &quot;NFT #&#39;, Strings.toString(tokenId), &#39;&quot;,&#39;,
+                        &#39;&quot;description&quot;: &quot;On-chain NFT&quot;,&#39;,
+                        &#39;&quot;image&quot;: &quot;data:image/svg+xml;base64,&#39;, generateSVG(traits), &#39;&quot;,&#39;,
+                        &#39;&quot;attributes&quot;: [&#39;,
+                        &#39;{&quot;trait_type&quot;: &quot;Background&quot;, &quot;value&quot;: &quot;&#39;, Strings.toString(traits.background), &#39;&quot;},&#39;,
+                        &#39;{&quot;trait_type&quot;: &quot;Rarity&quot;, &quot;value&quot;: &quot;&#39;, getRarityName(traits.rarity), &#39;&quot;}&#39;,
+                        &#39;]}&#39;
+                    )
+                )
+            )
+        );
+
+        return string(abi.encodePacked(&quot;data:application/json;base64,&quot;, json));
+    }
+
+    function generateSVG(Traits memory traits) internal pure returns (string memory) {
+        // Generate SVG based on traits
+        return &quot;...&quot;;
+    }
+}
+</code></pre>
+<h2>Royalties (EIP-2981)</h2>
+<pre><code class="language-solidity">import &quot;@openzeppelin/contracts/interfaces/IERC2981.sol&quot;;
+
+contract NFTWithRoyalties is ERC721, IERC2981 {
+    address public royaltyRecipient;
+    uint96 public royaltyFee = 500; // 5%
+
+    constructor() ERC721(&quot;Royalty NFT&quot;, &quot;RNFT&quot;) {
+        royaltyRecipient = msg.sender;
+    }
+
+    function royaltyInfo(uint256 tokenId, uint256 salePrice)
+        external
+        view
+        override
+        returns (address receiver, uint256 royaltyAmount)
+    {
+        return (royaltyRecipient, (salePrice * royaltyFee) / 10000);
+    }
+
+    function setRoyalty(address recipient, uint96 fee) external onlyOwner {
+        require(fee &lt;= 1000, &quot;Royalty fee too high&quot;); // Max 10%
+        royaltyRecipient = recipient;
+        royaltyFee = fee;
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, IERC165)
+        returns (bool)
+    {
+        return interfaceId == type(IERC2981).interfaceId ||
+               super.supportsInterface(interfaceId);
+    }
+}
+</code></pre>
+<h2>Soulbound Tokens (Non-Transferable)</h2>
+<pre><code class="language-solidity">contract SoulboundToken is ERC721 {
+    constructor() ERC721(&quot;Soulbound&quot;, &quot;SBT&quot;) {}
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal virtual override {
+        require(from == address(0) || to == address(0), &quot;Token is soulbound&quot;);
+        super._beforeTokenTransfer(from, to, tokenId, batchSize);
+    }
+
+    function mint(address to) external {
+        uint256 tokenId = totalSupply() + 1;
+        _safeMint(to, tokenId);
+    }
+
+    // Burn is allowed (user can destroy their SBT)
+    function burn(uint256 tokenId) external {
+        require(ownerOf(tokenId) == msg.sender, &quot;Not token owner&quot;);
+        _burn(tokenId);
+    }
+}
+</code></pre>
+<h2>Dynamic NFTs</h2>
+<pre><code class="language-solidity">contract DynamicNFT is ERC721 {
+    struct TokenState {
+        uint256 level;
+        uint256 experience;
+        uint256 lastUpdated;
+    }
+
+    mapping(uint256 =&gt; TokenState) public tokenStates;
+
+    function gainExperience(uint256 tokenId, uint256 exp) external {
+        require(ownerOf(tokenId) == msg.sender, &quot;Not token owner&quot;);
+
+        TokenState storage state = tokenStates[tokenId];
+        state.experience += exp;
+
+        // Level up logic
+        if (state.experience &gt;= state.level * 100) {
+            state.level++;
+        }
+
+        state.lastUpdated = block.timestamp;
+    }
+
+    function tokenURI(uint256 tokenId) public view override returns (string memory) {
+        TokenState memory state = tokenStates[tokenId];
+
+        // Generate metadata based on current state
+        return generateMetadata(tokenId, state);
+    }
+
+    function generateMetadata(uint256 tokenId, TokenState memory state)
+        internal
+        pure
+        returns (string memory)
+    {
+        // Dynamic metadata generation
+        return &quot;&quot;;
+    }
+}
+</code></pre>
+<h2>Gas-Optimized Minting (ERC721A)</h2>
+<pre><code class="language-solidity">import &quot;erc721a/contracts/ERC721A.sol&quot;;
+
+contract OptimizedNFT is ERC721A {
+    uint256 public constant MAX_SUPPLY = 10000;
+    uint256 public constant MINT_PRICE = 0.05 ether;
+
+    constructor() ERC721A(&quot;Optimized NFT&quot;, &quot;ONFT&quot;) {}
+
+    function mint(uint256 quantity) external payable {
+        require(_totalMinted() + quantity &lt;= MAX_SUPPLY, &quot;Exceeds max supply&quot;);
+        require(msg.value &gt;= MINT_PRICE * quantity, &quot;Insufficient payment&quot;);
+
+        _mint(msg.sender, quantity);
+    }
+
+    function _baseURI() internal pure override returns (string memory) {
+        return &quot;ipfs://QmBaseHash/&quot;;
+    }
+}
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/erc721.md</strong>: ERC-721 specification details</li>
+<li><strong>references/erc1155.md</strong>: ERC-1155 multi-token standard</li>
+<li><strong>references/metadata-standards.md</strong>: Metadata best practices</li>
+<li><strong>references/enumeration.md</strong>: Token enumeration patterns</li>
+<li><strong>assets/erc721-contract.sol</strong>: Production ERC-721 template</li>
+<li><strong>assets/erc1155-contract.sol</strong>: Production ERC-1155 template</li>
+<li><strong>assets/metadata-schema.json</strong>: Standard metadata format</li>
+<li><strong>assets/metadata-uploader.py</strong>: IPFS upload utility</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Use OpenZeppelin</strong>: Battle-tested implementations</li>
+<li><strong>Pin Metadata</strong>: Use IPFS with pinning service</li>
+<li><strong>Implement Royalties</strong>: EIP-2981 for marketplace compatibility</li>
+<li><strong>Gas Optimization</strong>: Use ERC721A for batch minting</li>
+<li><strong>Reveal Mechanism</strong>: Placeholder → reveal pattern</li>
+<li><strong>Enumeration</strong>: Support walletOfOwner for marketplaces</li>
+<li><strong>Whitelist</strong>: Merkle trees for efficient whitelisting</li>
+</ol>
+<h2>Marketplace Integration</h2>
+<ul>
+<li>OpenSea: ERC-721/1155, metadata standards</li>
+<li>LooksRare: Royalty enforcement</li>
+<li>Rarible: Protocol fees, lazy minting</li>
+<li>Blur: Gas-optimized trading</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

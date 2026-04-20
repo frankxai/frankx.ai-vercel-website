@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Suno Prompt Architect</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/suno-prompt-architect/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Suno Prompt Architect</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Fsuno-prompt-architect">suno-prompt-architect</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: suno-prompt-architect
+description: Expert Suno AI prompt engineering for professional music creation. Use this skill when creating Suno prompts for any AI-generated music that needs commercial quality.
+version: 2.0.0
+last_updated: 2026-01-24
+external_version: &quot;Suno v4.5+ (2026)&quot;
+changelog: |
+  - 2.0.0: Rebrand to professional focus, removed spiritual language
+  - 1.1.0: Added versioning, confirmed compatibility with v4.5+ features
+  - 1.0.0: Initial skill</h2>
+<h1>Suno Prompt Architect</h1>
+<h2>Professional Music Generation with Suno AI</h2>
+<p>This skill transforms musical intentions into precisely crafted Suno AI prompts that generate commercial-quality tracks for focus sessions, content creation, and professional use.</p>
+<hr>
+<h2>Core Philosophy</h2>
+<p><strong>Professional Music Production</strong>
+Every Suno-generated track should meet commercial standards - suitable for streaming, licensing, or professional use.</p>
+<p><strong>Prompt Engineering as Composition</strong>
+Writing Suno prompts is like composing a detailed arrangement. Every element matters: genre, mood, instrumentation, production quality, tempo.</p>
+<hr>
+<h2>Suno Prompt Anatomy</h2>
+<h3>The 5-Layer Structure</h3>
+<pre><code>[FOUNDATION] + [MOOD] + [INSTRUMENTATION] + [PRODUCTION] + [USE CASE]
+</code></pre>
+<p><strong>1. FOUNDATION (Genre/Style)</strong></p>
+<ul>
+<li>Primary genre + fusion elements</li>
+<li>Reference aesthetic periods or movements</li>
+<li>Define rhythmic foundation</li>
+</ul>
+<p><strong>2. MOOD (Emotional Character)</strong></p>
+<ul>
+<li>Core emotion (one word)</li>
+<li>Secondary feeling (supporting)</li>
+<li>Energy level (low/mid/high)</li>
+</ul>
+<p><strong>3. INSTRUMENTATION (Sonic Palette)</strong></p>
+<ul>
+<li>Lead instruments (2-3 max)</li>
+<li>Rhythmic elements</li>
+<li>Atmospheric textures</li>
+<li>Avoid over-specifying</li>
+</ul>
+<p><strong>4. PRODUCTION (Sonic Quality)</strong></p>
+<ul>
+<li>Mix characteristics (spacious, intimate, cinematic)</li>
+<li>Effects (reverb, delay, compression feel)</li>
+<li>Frequency balance</li>
+<li>Reference quality level</li>
+</ul>
+<p><strong>5. USE CASE (Purpose)</strong></p>
+<ul>
+<li>What is this track for?</li>
+<li>Listening context</li>
+<li>Desired listener experience</li>
+</ul>
+<hr>
+<h2>Genre Vocabulary &amp; Fusion Patterns</h2>
+<h3>Focus &amp; Productivity Styles</h3>
+<p><strong>Deep Focus</strong></p>
+<pre><code>&quot;Ambient downtempo with steady pulse&quot;
+&quot;Minimal techno for sustained concentration&quot;
+&quot;Lo-fi electronic with subtle textures&quot;
+</code></pre>
+<ul>
+<li>Base: Ambient, Downtempo, Minimal</li>
+<li>Add: Steady, focused, non-distracting</li>
+<li>Instrumentation: Synth pads, soft beats, subtle textures</li>
+<li>Tempo: 60-90 BPM</li>
+</ul>
+<p><strong>High Energy</strong></p>
+<pre><code>&quot;Cinematic orchestral hybrid with driving energy&quot;
+&quot;Epic trailer music meets modern electronic&quot;
+&quot;Motivational orchestral with powerful builds&quot;
+</code></pre>
+<ul>
+<li>Base: Cinematic, Orchestral, Epic</li>
+<li>Add: Electronic elements, modern production</li>
+<li>Instrumentation: Strings, brass, epic drums, synths</li>
+<li>Tempo: 120-140 BPM</li>
+</ul>
+<p><strong>Creative Flow</strong></p>
+<pre><code>&quot;Lo-fi hip hop with smooth progressions&quot;
+&quot;Jazzy electronic with flowing groove&quot;
+&quot;Atmospheric trip-hop for creative work&quot;
+</code></pre>
+<ul>
+<li>Base: Lo-fi, Jazz, Trip-hop</li>
+<li>Add: Flowing, evolving elements</li>
+<li>Instrumentation: Rhodes, soft beats, atmospheric pads</li>
+<li>Tempo: 80-110 BPM</li>
+</ul>
+<p><strong>Relaxation</strong></p>
+<pre><code>&quot;Ambient soundscape with natural textures&quot;
+&quot;Soft electronic with gentle movement&quot;
+&quot;Peaceful acoustic with subtle atmosphere&quot;
+</code></pre>
+<ul>
+<li>Base: Ambient, Acoustic, Drone</li>
+<li>Add: Gentle, peaceful, spacious</li>
+<li>Instrumentation: Soft synths, nature sounds, light instruments</li>
+<li>Tempo: &lt;60 BPM or free</li>
+</ul>
+<p><strong>Tech/Work</strong></p>
+<pre><code>&quot;Minimal techno for focused work&quot;
+&quot;Deep progressive house with hypnotic patterns&quot;
+&quot;Intelligent dance music without vocals&quot;
+</code></pre>
+<ul>
+<li>Base: Techno, Progressive House, IDM</li>
+<li>Add: Minimal, hypnotic, evolving</li>
+<li>Instrumentation: Clean synths, precise drums</li>
+<li>Tempo: 120-128 BPM</li>
+</ul>
+<hr>
+<h2>Mood Mapping System</h2>
+<h3>Primary Moods &amp; Musical Translation</h3>
+<p><strong>Calm / Reflective</strong></p>
+<ul>
+<li>Tempo: 60-80 BPM</li>
+<li>Key: Minor modes, Dorian, Phrygian</li>
+<li>Dynamics: Consistent, gentle swells</li>
+<li>Space: Wide, reverberant</li>
+<li>Example: &quot;contemplative and spacious&quot;</li>
+</ul>
+<p><strong>Energizing / Motivating</strong></p>
+<ul>
+<li>Tempo: 128-145 BPM</li>
+<li>Key: Major, Mixolydian</li>
+<li>Dynamics: Building, crescendos</li>
+<li>Space: Powerful, present</li>
+<li>Example: &quot;uplifting and determined&quot;</li>
+</ul>
+<p><strong>Creative / Flowing</strong></p>
+<ul>
+<li>Tempo: 90-110 BPM</li>
+<li>Key: Major 7ths, jazz harmony</li>
+<li>Dynamics: Evolving, conversational</li>
+<li>Space: Balanced, intimate</li>
+<li>Example: &quot;exploratory and fluid&quot;</li>
+</ul>
+<p><strong>Relaxing / Restorative</strong></p>
+<ul>
+<li>Tempo: &lt;60 BPM or free</li>
+<li>Key: Drones, perfect 5ths</li>
+<li>Dynamics: Minimal variation</li>
+<li>Space: Expansive, oceanic</li>
+<li>Example: &quot;nurturing and gentle&quot;</li>
+</ul>
+<p><strong>Focused / Concentrated</strong></p>
+<ul>
+<li>Tempo: 120-128 BPM (consistent)</li>
+<li>Key: Modal, minimal harmony</li>
+<li>Dynamics: Stable, hypnotic</li>
+<li>Space: Clear, organized</li>
+<li>Example: &quot;precise and steady&quot;</li>
+</ul>
+<h3>Emotional Gradient Words</h3>
+<p><strong>Low Energy → High Energy</strong></p>
+<ul>
+<li>Tranquil → Peaceful → Calm → Contemplative → Serene</li>
+<li>Gentle → Soft → Flowing → Moving → Energetic</li>
+<li>Intimate → Present → Vibrant → Powerful → Intense</li>
+</ul>
+<p><strong>Dark → Light</strong></p>
+<ul>
+<li>Mysterious → Introspective → Reflective → Hopeful → Bright</li>
+<li>Deep → Rich → Warm → Radiant → Luminous</li>
+</ul>
+<p><strong>Simple → Complex</strong></p>
+<ul>
+<li>Minimal → Clean → Balanced → Textured → Layered</li>
+<li>Spacious → Open → Full → Dense → Intricate</li>
+</ul>
+<hr>
+<h2>Instrumentation Vocabulary</h2>
+<h3>By Function</h3>
+<p><strong>Melodic Leaders</strong></p>
+<ul>
+<li>Piano (acoustic, electric, Rhodes)</li>
+<li>Synth leads (analog, digital, modular)</li>
+<li>Strings (solo violin, string ensemble, cellos)</li>
+<li>Guitar (acoustic, electric, ambient)</li>
+<li>Woodwinds (flute, clarinet, saxophone)</li>
+</ul>
+<p><strong>Rhythmic Foundation</strong></p>
+<ul>
+<li>Drums (acoustic, electronic, hybrid, hand percussion)</li>
+<li>Bass (upright, electric, sub bass, synthesized)</li>
+<li>Percussion (shakers, congas, tabla, frame drums)</li>
+</ul>
+<p><strong>Atmospheric Textures</strong></p>
+<ul>
+<li>Synth pads (ambient, evolving, swelling)</li>
+<li>String pads (sustained, lush, cinematic)</li>
+<li>Vocal textures (wordless, ethereal, choir)</li>
+<li>Nature sounds (water, wind, birds, rain)</li>
+<li>Found sounds (field recordings, environmental)</li>
+</ul>
+<h3>Combination Patterns</h3>
+<p><strong>Minimalist (2-3 elements)</strong></p>
+<pre><code>&quot;soft piano, ambient pads, gentle rain&quot;
+&quot;electric bass, minimal beats, atmospheric synth&quot;
+&quot;acoustic guitar, soft strings, subtle reverb&quot;
+</code></pre>
+<p><strong>Balanced (4-5 elements)</strong></p>
+<pre><code>&quot;acoustic piano, soft strings, light percussion, warm bass, subtle synth&quot;
+&quot;electric piano, jazzy bass, brush drums, string pads, vinyl crackle&quot;
+&quot;ambient synths, soft beats, gentle bass, atmospheric textures, subtle voices&quot;
+</code></pre>
+<p><strong>Rich (6+ elements)</strong></p>
+<pre><code>&quot;orchestral strings, epic brass, cinematic drums, soaring choir, deep bass, atmospheric pads, subtle electronics&quot;
+&quot;full band with drums, bass, guitars, keys, strings, and subtle electronic elements&quot;
+</code></pre>
+<hr>
+<h2>Production Quality Descriptors</h2>
+<h3>Mix Characteristics</h3>
+<p><strong>Spatial Qualities</strong></p>
+<ul>
+<li>Spacious, wide, panoramic, expansive</li>
+<li>Intimate, close, personal, focused</li>
+<li>Cavernous, cathedral-like, reverberant</li>
+<li>Dry, direct, present, immediate</li>
+</ul>
+<p><strong>Frequency Balance</strong></p>
+<ul>
+<li>Warm (emphasized low-mids, gentle highs)</li>
+<li>Bright (present highs, clear articulation)</li>
+<li>Deep (strong sub bass, foundational lows)</li>
+<li>Airy (open highs, breathing room)</li>
+<li>Full spectrum (balanced across all frequencies)</li>
+</ul>
+<p><strong>Production Style</strong></p>
+<ul>
+<li>Pristine, crystal clear, hi-fi</li>
+<li>Lo-fi, vintage, analog warmth</li>
+<li>Cinematic, epic, film-quality</li>
+<li>Organic, natural, unprocessed feel</li>
+<li>Modern, polished, radio-ready</li>
+<li>Experimental, textured, layered</li>
+</ul>
+<p><strong>Dynamic Range</strong></p>
+<ul>
+<li>Compressed, consistent, even</li>
+<li>Dynamic, breathing, natural</li>
+<li>Building, evolving, crescendoing</li>
+<li>Minimal variation, steady</li>
+</ul>
+<hr>
+<h2>Tempo &amp; Rhythm Guidance</h2>
+<h3>BPM Ranges by Use Case</h3>
+<p><strong>Sleep &amp; Deep Relaxation (0-60 BPM)</strong></p>
+<ul>
+<li>Free-flowing, arhythmic soundscapes</li>
+<li>Very slow pulse (40-60 BPM)</li>
+<li>Example: &quot;slow and drifting&quot;</li>
+</ul>
+<p><strong>Deep Focus &amp; Study (60-80 BPM)</strong></p>
+<ul>
+<li>Gentle, consistent rhythm</li>
+<li>Non-distracting pulse</li>
+<li>Example: &quot;steady and calm&quot;</li>
+</ul>
+<p><strong>Creative Flow (80-110 BPM)</strong></p>
+<ul>
+<li>Natural walking pace</li>
+<li>Conversational rhythm</li>
+<li>Example: &quot;flowing and organic&quot;</li>
+</ul>
+<p><strong>Productivity &amp; Energy (110-128 BPM)</strong></p>
+<ul>
+<li>Motivated, forward motion</li>
+<li>Consistent drive</li>
+<li>Example: &quot;steady and uplifting&quot;</li>
+</ul>
+<p><strong>High Energy &amp; Motivation (128-150 BPM)</strong></p>
+<ul>
+<li>Powerful, driving force</li>
+<li>Peak performance pace</li>
+<li>Example: &quot;powerful and determined&quot;</li>
+</ul>
+<h3>Rhythmic Patterns</h3>
+<ul>
+<li>Straight (4/4, metronomic, consistent)</li>
+<li>Swung (triplet feel, jazz, groove)</li>
+<li>Syncopated (off-beat, complex, engaging)</li>
+<li>Polyrhythmic (layered, evolving, textural)</li>
+<li>Free (rubato, breathing, organic)</li>
+</ul>
+<hr>
+<h2>Complete Prompt Examples</h2>
+<h3>Example 1: Deep Focus</h3>
+<pre><code>Ambient electronic, calm and spacious, with soft synth pads, subtle beats at 70 BPM, gentle bass, atmospheric textures, wide reverb, pristine production, for sustained concentration and deep work.
+</code></pre>
+<h3>Example 2: High Energy Motivation</h3>
+<pre><code>Cinematic orchestral hybrid, powerful and uplifting, with soaring strings, epic brass, thunderous drums, modern electronic elements, wide stereo field, film-quality production, building from 120 to 140 BPM with dramatic crescendo.
+</code></pre>
+<h3>Example 3: Creative Flow</h3>
+<pre><code>Lo-fi hip hop with smooth jazz elements, exploratory and fluid, featuring warm Rhodes piano, jazzy bass, soft brush drums, vinyl crackle, atmospheric space, intimate mix with analog warmth, steady 95 BPM with evolving textures.
+</code></pre>
+<h3>Example 4: Relaxation</h3>
+<pre><code>Ambient soundscape, gentle and peaceful, with soft synth drones, nature sounds, light chimes, expansive reverb, crystal clear production, for relaxation and unwinding, free-flowing and spacious.
+</code></pre>
+<h3>Example 5: Tech Productivity</h3>
+<pre><code>Minimal techno for deep focus, precise and steady, with clean analog synths, crisp electronic drums at 124 BPM, subtle bass progression, dry and organized mix, modern polished production, hypnotic and consistent.
+</code></pre>
+<hr>
+<h2>Session Templates</h2>
+<h3>Focus Session Pack</h3>
+<p><strong>Track 1: &quot;Entry Point&quot;</strong></p>
+<pre><code>Ambient electronic, calm and steady, with soft pads, gentle pulse at 65 BPM, atmospheric textures, spacious production, for easing into focused work.
+</code></pre>
+<p><strong>Track 2: &quot;Deep Work&quot;</strong></p>
+<pre><code>Minimal techno, precise and focused, with clean synths, steady beats at 120 BPM, subtle evolution, dry mix, for sustained concentration.
+</code></pre>
+<p><strong>Track 3: &quot;Flow State&quot;</strong></p>
+<pre><code>Progressive electronic, building and evolving, with layered synths, driving rhythm, subtle builds, wide production, for peak creative output.
+</code></pre>
+<h3>Creative Session Pack</h3>
+<p><strong>Track 1: &quot;Open Mind&quot;</strong></p>
+<pre><code>Ambient jazz fusion, relaxed and exploratory, with soft piano, gentle bass, brushed drums, warm production, for creative openness.
+</code></pre>
+<p><strong>Track 2: &quot;Ideas Flow&quot;</strong></p>
+<pre><code>Lo-fi electronic with organic textures, flowing and inspiring, with Rhodes, soft beats, atmospheric pads, intimate mix, for creative exploration.
+</code></pre>
+<p><strong>Track 3: &quot;Momentum&quot;</strong></p>
+<pre><code>Uplifting electronic, energetic and forward-moving, with bright synths, driving rhythm, building energy, pristine production, for productive finishing.
+</code></pre>
+<hr>
+<h2>Quality Checklist</h2>
+<p>Before finalizing a Suno prompt, verify:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Clear genre/style foundation</li>
+<li><input disabled="" type="checkbox"> Specific mood descriptors (2-3 words)</li>
+<li><input disabled="" type="checkbox"> Instrumentation details (3-6 elements)</li>
+<li><input disabled="" type="checkbox"> Production quality specified</li>
+<li><input disabled="" type="checkbox"> Use case clearly stated</li>
+<li><input disabled="" type="checkbox"> Tempo or rhythmic feel indicated</li>
+<li><input disabled="" type="checkbox"> Avoids over-specification (let Suno be creative)</li>
+<li><input disabled="" type="checkbox"> Reads naturally (not just keyword list)</li>
+</ul>
+<hr>
+<h2>Common Pitfalls to Avoid</h2>
+<p>❌ <strong>Too Generic</strong>
+&quot;Relaxing music with piano&quot;</p>
+<ul>
+<li>Missing: mood depth, production, use case, specificity</li>
+</ul>
+<p>❌ <strong>Over-Specified</strong>
+&quot;C major scale piano with exactly 4 chords, reverb at 2.3 seconds...&quot;</p>
+<ul>
+<li>Too technical, Suno can&#39;t control that detail level</li>
+</ul>
+<p>❌ <strong>Contradictory Elements</strong>
+&quot;Energizing music for deep sleep&quot;</p>
+<ul>
+<li>Conflicting purposes</li>
+</ul>
+<p>❌ <strong>Missing Purpose</strong>
+Technically perfect prompt but no clear use case</p>
+<ul>
+<li>Lacks direction</li>
+</ul>
+<hr>
+<h2>When to Use This Skill</h2>
+<p>Activate <code>suno-prompt-architect</code> when:</p>
+<ul>
+<li>Creating focus/productivity music</li>
+<li>Designing background tracks for content</li>
+<li>Building playlists for different activities</li>
+<li>Generating music for courses or products</li>
+<li>Need professional-quality Suno prompts</li>
+</ul>
+<p>This skill ensures every Suno-generated track meets professional standards for its intended purpose.</p>
+<hr>
+<p><strong>Skill Version:</strong> 2.0.0
+<strong>Last Updated:</strong> January 24, 2026
+<strong>Optimized For:</strong> Suno AI v4.5+</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

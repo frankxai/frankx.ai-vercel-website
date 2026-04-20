@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude Command: Commit</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/slash-commands/commit/commit.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Command: Commit</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands">slash-commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands%2Fcommit">commit</a> / <span>commit.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude Command: Commit</h1>
+<p>This command helps you create well-formatted commits with conventional commit messages and emoji.</p>
+<h2>Usage</h2>
+<p>To create a commit, just type:</p>
+<pre><code>/commit
+</code></pre>
+<p>Or with options:</p>
+<pre><code>/commit --no-verify
+</code></pre>
+<h2>What This Command Does</h2>
+<ol>
+<li>Unless specified with <code>--no-verify</code>, automatically runs pre-commit checks:<ul>
+<li><code>pnpm lint</code> to ensure code quality</li>
+<li><code>pnpm build</code> to verify the build succeeds</li>
+<li><code>pnpm generate:docs</code> to update documentation</li>
+</ul>
+</li>
+<li>Checks which files are staged with <code>git status</code></li>
+<li>If 0 files are staged, automatically adds all modified and new files with <code>git add</code></li>
+<li>Performs a <code>git diff</code> to understand what changes are being committed</li>
+<li>Analyzes the diff to determine if multiple distinct logical changes are present</li>
+<li>If multiple distinct changes are detected, suggests breaking the commit into multiple smaller commits</li>
+<li>For each commit (or the single commit if not split), creates a commit message using emoji conventional commit format</li>
+</ol>
+<h2>Best Practices for Commits</h2>
+<ul>
+<li><strong>Verify before committing</strong>: Ensure code is linted, builds correctly, and documentation is updated</li>
+<li><strong>Atomic commits</strong>: Each commit should contain related changes that serve a single purpose</li>
+<li><strong>Split large changes</strong>: If changes touch multiple concerns, split them into separate commits</li>
+<li><strong>Conventional commit format</strong>: Use the format <code>&lt;type&gt;: &lt;description&gt;</code> where type is one of:<ul>
+<li><code>feat</code>: A new feature</li>
+<li><code>fix</code>: A bug fix</li>
+<li><code>docs</code>: Documentation changes</li>
+<li><code>style</code>: Code style changes (formatting, etc)</li>
+<li><code>refactor</code>: Code changes that neither fix bugs nor add features</li>
+<li><code>perf</code>: Performance improvements</li>
+<li><code>test</code>: Adding or fixing tests</li>
+<li><code>chore</code>: Changes to the build process, tools, etc.</li>
+</ul>
+</li>
+<li><strong>Present tense, imperative mood</strong>: Write commit messages as commands (e.g., &quot;add feature&quot; not &quot;added feature&quot;)</li>
+<li><strong>Concise first line</strong>: Keep the first line under 72 characters</li>
+<li><strong>Emoji</strong>: Each commit type is paired with an appropriate emoji:<ul>
+<li>✨ <code>feat</code>: New feature</li>
+<li>🐛 <code>fix</code>: Bug fix</li>
+<li>📝 <code>docs</code>: Documentation</li>
+<li>💄 <code>style</code>: Formatting/style</li>
+<li>♻️ <code>refactor</code>: Code refactoring</li>
+<li>⚡️ <code>perf</code>: Performance improvements</li>
+<li>✅ <code>test</code>: Tests</li>
+<li>🔧 <code>chore</code>: Tooling, configuration</li>
+<li>🚀 <code>ci</code>: CI/CD improvements</li>
+<li>🗑️ <code>revert</code>: Reverting changes</li>
+<li>🧪 <code>test</code>: Add a failing test</li>
+<li>🚨 <code>fix</code>: Fix compiler/linter warnings</li>
+<li>🔒️ <code>fix</code>: Fix security issues</li>
+<li>👥 <code>chore</code>: Add or update contributors</li>
+<li>🚚 <code>refactor</code>: Move or rename resources</li>
+<li>🏗️ <code>refactor</code>: Make architectural changes</li>
+<li>🔀 <code>chore</code>: Merge branches</li>
+<li>📦️ <code>chore</code>: Add or update compiled files or packages</li>
+<li>➕ <code>chore</code>: Add a dependency</li>
+<li>➖ <code>chore</code>: Remove a dependency</li>
+<li>🌱 <code>chore</code>: Add or update seed files</li>
+<li>🧑‍💻 <code>chore</code>: Improve developer experience</li>
+<li>🧵 <code>feat</code>: Add or update code related to multithreading or concurrency</li>
+<li>🔍️ <code>feat</code>: Improve SEO</li>
+<li>🏷️ <code>feat</code>: Add or update types</li>
+<li>💬 <code>feat</code>: Add or update text and literals</li>
+<li>🌐 <code>feat</code>: Internationalization and localization</li>
+<li>👔 <code>feat</code>: Add or update business logic</li>
+<li>📱 <code>feat</code>: Work on responsive design</li>
+<li>🚸 <code>feat</code>: Improve user experience / usability</li>
+<li>🩹 <code>fix</code>: Simple fix for a non-critical issue</li>
+<li>🥅 <code>fix</code>: Catch errors</li>
+<li>👽️ <code>fix</code>: Update code due to external API changes</li>
+<li>🔥 <code>fix</code>: Remove code or files</li>
+<li>🎨 <code>style</code>: Improve structure/format of the code</li>
+<li>🚑️ <code>fix</code>: Critical hotfix</li>
+<li>🎉 <code>chore</code>: Begin a project</li>
+<li>🔖 <code>chore</code>: Release/Version tags</li>
+<li>🚧 <code>wip</code>: Work in progress</li>
+<li>💚 <code>fix</code>: Fix CI build</li>
+<li>📌 <code>chore</code>: Pin dependencies to specific versions</li>
+<li>👷 <code>ci</code>: Add or update CI build system</li>
+<li>📈 <code>feat</code>: Add or update analytics or tracking code</li>
+<li>✏️ <code>fix</code>: Fix typos</li>
+<li>⏪️ <code>revert</code>: Revert changes</li>
+<li>📄 <code>chore</code>: Add or update license</li>
+<li>💥 <code>feat</code>: Introduce breaking changes</li>
+<li>🍱 <code>assets</code>: Add or update assets</li>
+<li>♿️ <code>feat</code>: Improve accessibility</li>
+<li>💡 <code>docs</code>: Add or update comments in source code</li>
+<li>🗃️ <code>db</code>: Perform database related changes</li>
+<li>🔊 <code>feat</code>: Add or update logs</li>
+<li>🔇 <code>fix</code>: Remove logs</li>
+<li>🤡 <code>test</code>: Mock things</li>
+<li>🥚 <code>feat</code>: Add or update an easter egg</li>
+<li>🙈 <code>chore</code>: Add or update .gitignore file</li>
+<li>📸 <code>test</code>: Add or update snapshots</li>
+<li>⚗️ <code>experiment</code>: Perform experiments</li>
+<li>🚩 <code>feat</code>: Add, update, or remove feature flags</li>
+<li>💫 <code>ui</code>: Add or update animations and transitions</li>
+<li>⚰️ <code>refactor</code>: Remove dead code</li>
+<li>🦺 <code>feat</code>: Add or update code related to validation</li>
+<li>✈️ <code>feat</code>: Improve offline support</li>
+</ul>
+</li>
+</ul>
+<h2>Guidelines for Splitting Commits</h2>
+<p>When analyzing the diff, consider splitting commits based on these criteria:</p>
+<ol>
+<li><strong>Different concerns</strong>: Changes to unrelated parts of the codebase</li>
+<li><strong>Different types of changes</strong>: Mixing features, fixes, refactoring, etc.</li>
+<li><strong>File patterns</strong>: Changes to different types of files (e.g., source code vs documentation)</li>
+<li><strong>Logical grouping</strong>: Changes that would be easier to understand or review separately</li>
+<li><strong>Size</strong>: Very large changes that would be clearer if broken down</li>
+</ol>
+<h2>Examples</h2>
+<p>Good commit messages:</p>
+<ul>
+<li>✨ feat: add user authentication system</li>
+<li>🐛 fix: resolve memory leak in rendering process</li>
+<li>📝 docs: update API documentation with new endpoints</li>
+<li>♻️ refactor: simplify error handling logic in parser</li>
+<li>🚨 fix: resolve linter warnings in component files</li>
+<li>🧑‍💻 chore: improve developer tooling setup process</li>
+<li>👔 feat: implement business logic for transaction validation</li>
+<li>🩹 fix: address minor styling inconsistency in header</li>
+<li>🚑️ fix: patch critical security vulnerability in auth flow</li>
+<li>🎨 style: reorganize component structure for better readability</li>
+<li>🔥 fix: remove deprecated legacy code</li>
+<li>🦺 feat: add input validation for user registration form</li>
+<li>💚 fix: resolve failing CI pipeline tests</li>
+<li>📈 feat: implement analytics tracking for user engagement</li>
+<li>🔒️ fix: strengthen authentication password requirements</li>
+<li>♿️ feat: improve form accessibility for screen readers</li>
+</ul>
+<p>Example of splitting commits:</p>
+<ul>
+<li>First commit: ✨ feat: add new solc version type definitions</li>
+<li>Second commit: 📝 docs: update documentation for new solc versions</li>
+<li>Third commit: 🔧 chore: update package.json dependencies</li>
+<li>Fourth commit: 🏷️ feat: add type definitions for new API endpoints</li>
+<li>Fifth commit: 🧵 feat: improve concurrency handling in worker threads</li>
+<li>Sixth commit: 🚨 fix: resolve linting issues in new code</li>
+<li>Seventh commit: ✅ test: add unit tests for new solc version features</li>
+<li>Eighth commit: 🔒️ fix: update dependencies with security vulnerabilities</li>
+</ul>
+<h2>Command Options</h2>
+<ul>
+<li><code>--no-verify</code>: Skip running the pre-commit checks (lint, build, generate:docs)</li>
+</ul>
+<h2>Important Notes</h2>
+<ul>
+<li>By default, pre-commit checks (<code>pnpm lint</code>, <code>pnpm build</code>, <code>pnpm generate:docs</code>) will run to ensure code quality</li>
+<li>If these checks fail, you&#39;ll be asked if you want to proceed with the commit anyway or fix the issues first</li>
+<li>If specific files are already staged, the command will only commit those files</li>
+<li>If no files are staged, it will automatically stage all modified and new files</li>
+<li>The commit message will be constructed based on the changes detected</li>
+<li>Before committing, the command will review the diff to identify if multiple commits would be more appropriate</li>
+<li>If suggesting multiple commits, it will help you stage and commit the changes separately</li>
+<li>Always reviews the commit diff to ensure the message matches the changes</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

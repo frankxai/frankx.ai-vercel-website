@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Design System Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/design-system-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Design System Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fdesign-system-patterns">design-system-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: design-system-patterns
+description: Build scalable design systems with design tokens, theming infrastructure, and component architecture patterns. Use when creating design tokens, implementing theme switching, building component libraries, or establishing design system foundations.</h2>
+<h1>Design System Patterns</h1>
+<p>Master design system architecture to create consistent, maintainable, and scalable UI foundations across web and mobile applications.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Creating design tokens for colors, typography, spacing, and shadows</li>
+<li>Implementing light/dark theme switching with CSS custom properties</li>
+<li>Building multi-brand theming systems</li>
+<li>Architecting component libraries with consistent APIs</li>
+<li>Establishing design-to-code workflows with Figma tokens</li>
+<li>Creating semantic token hierarchies (primitive, semantic, component)</li>
+<li>Setting up design system documentation and guidelines</li>
+</ul>
+<h2>Core Capabilities</h2>
+<h3>1. Design Tokens</h3>
+<ul>
+<li>Primitive tokens (raw values: colors, sizes, fonts)</li>
+<li>Semantic tokens (contextual meaning: text-primary, surface-elevated)</li>
+<li>Component tokens (specific usage: button-bg, card-border)</li>
+<li>Token naming conventions and organization</li>
+<li>Multi-platform token generation (CSS, iOS, Android)</li>
+</ul>
+<h3>2. Theming Infrastructure</h3>
+<ul>
+<li>CSS custom properties architecture</li>
+<li>Theme context providers in React</li>
+<li>Dynamic theme switching</li>
+<li>System preference detection (prefers-color-scheme)</li>
+<li>Persistent theme storage</li>
+<li>Reduced motion and high contrast modes</li>
+</ul>
+<h3>3. Component Architecture</h3>
+<ul>
+<li>Compound component patterns</li>
+<li>Polymorphic components (as prop)</li>
+<li>Variant and size systems</li>
+<li>Slot-based composition</li>
+<li>Headless UI patterns</li>
+<li>Style props and responsive variants</li>
+</ul>
+<h3>4. Token Pipeline</h3>
+<ul>
+<li>Figma to code synchronization</li>
+<li>Style Dictionary configuration</li>
+<li>Token transformation and formatting</li>
+<li>CI/CD integration for token updates</li>
+</ul>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">// Design tokens with CSS custom properties
+const tokens = {
+  colors: {
+    // Primitive tokens
+    gray: {
+      50: &quot;#fafafa&quot;,
+      100: &quot;#f5f5f5&quot;,
+      900: &quot;#171717&quot;,
+    },
+    blue: {
+      500: &quot;#3b82f6&quot;,
+      600: &quot;#2563eb&quot;,
+    },
+  },
+  // Semantic tokens (reference primitives)
+  semantic: {
+    light: {
+      &quot;text-primary&quot;: &quot;var(--color-gray-900)&quot;,
+      &quot;text-secondary&quot;: &quot;var(--color-gray-600)&quot;,
+      &quot;surface-default&quot;: &quot;var(--color-white)&quot;,
+      &quot;surface-elevated&quot;: &quot;var(--color-gray-50)&quot;,
+      &quot;border-default&quot;: &quot;var(--color-gray-200)&quot;,
+      &quot;interactive-primary&quot;: &quot;var(--color-blue-500)&quot;,
+    },
+    dark: {
+      &quot;text-primary&quot;: &quot;var(--color-gray-50)&quot;,
+      &quot;text-secondary&quot;: &quot;var(--color-gray-400)&quot;,
+      &quot;surface-default&quot;: &quot;var(--color-gray-900)&quot;,
+      &quot;surface-elevated&quot;: &quot;var(--color-gray-800)&quot;,
+      &quot;border-default&quot;: &quot;var(--color-gray-700)&quot;,
+      &quot;interactive-primary&quot;: &quot;var(--color-blue-400)&quot;,
+    },
+  },
+};
+</code></pre>
+<h2>Key Patterns</h2>
+<h3>Pattern 1: Token Hierarchy</h3>
+<pre><code class="language-css">/* Layer 1: Primitive tokens (raw values) */
+:root {
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-gray-50: #fafafa;
+  --color-gray-900: #171717;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}
+
+/* Layer 2: Semantic tokens (meaning) */
+:root {
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-600);
+  --surface-default: white;
+  --interactive-primary: var(--color-blue-500);
+  --interactive-primary-hover: var(--color-blue-600);
+}
+
+/* Layer 3: Component tokens (specific usage) */
+:root {
+  --button-bg: var(--interactive-primary);
+  --button-bg-hover: var(--interactive-primary-hover);
+  --button-text: white;
+  --button-radius: var(--radius-md);
+  --button-padding-x: var(--space-4);
+  --button-padding-y: var(--space-2);
+}
+</code></pre>
+<h3>Pattern 2: Theme Switching with React</h3>
+<pre><code class="language-tsx">import { createContext, useContext, useEffect, useState } from &quot;react&quot;;
+
+type Theme = &quot;light&quot; | &quot;dark&quot; | &quot;system&quot;;
+
+interface ThemeContextValue {
+  theme: Theme;
+  resolvedTheme: &quot;light&quot; | &quot;dark&quot;;
+  setTheme: (theme: Theme) =&gt; void;
+}
+
+const ThemeContext = createContext&lt;ThemeContextValue | null&gt;(null);
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState&lt;Theme&gt;(() =&gt; {
+    if (typeof window !== &quot;undefined&quot;) {
+      return (localStorage.getItem(&quot;theme&quot;) as Theme) || &quot;system&quot;;
+    }
+    return &quot;system&quot;;
+  });
+
+  const [resolvedTheme, setResolvedTheme] = useState&lt;&quot;light&quot; | &quot;dark&quot;&gt;(&quot;light&quot;);
+
+  useEffect(() =&gt; {
+    const root = document.documentElement;
+
+    const applyTheme = (isDark: boolean) =&gt; {
+      root.classList.remove(&quot;light&quot;, &quot;dark&quot;);
+      root.classList.add(isDark ? &quot;dark&quot; : &quot;light&quot;);
+      setResolvedTheme(isDark ? &quot;dark&quot; : &quot;light&quot;);
+    };
+
+    if (theme === &quot;system&quot;) {
+      const mediaQuery = window.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
+      applyTheme(mediaQuery.matches);
+
+      const handler = (e: MediaQueryListEvent) =&gt; applyTheme(e.matches);
+      mediaQuery.addEventListener(&quot;change&quot;, handler);
+      return () =&gt; mediaQuery.removeEventListener(&quot;change&quot;, handler);
+    } else {
+      applyTheme(theme === &quot;dark&quot;);
+    }
+  }, [theme]);
+
+  useEffect(() =&gt; {
+    localStorage.setItem(&quot;theme&quot;, theme);
+  }, [theme]);
+
+  return (
+    &lt;ThemeContext.Provider value={{ theme, resolvedTheme, setTheme }}&gt;
+      {children}
+    &lt;/ThemeContext.Provider&gt;
+  );
+}
+
+export const useTheme = () =&gt; {
+  const context = useContext(ThemeContext);
+  if (!context) throw new Error(&quot;useTheme must be used within ThemeProvider&quot;);
+  return context;
+};
+</code></pre>
+<h3>Pattern 3: Variant System with CVA</h3>
+<pre><code class="language-tsx">import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
+import { cn } from &quot;@/lib/utils&quot;;
+
+const buttonVariants = cva(
+  // Base styles
+  &quot;inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50&quot;,
+  {
+    variants: {
+      variant: {
+        default: &quot;bg-primary text-primary-foreground hover:bg-primary/90&quot;,
+        destructive:
+          &quot;bg-destructive text-destructive-foreground hover:bg-destructive/90&quot;,
+        outline:
+          &quot;border border-input bg-background hover:bg-accent hover:text-accent-foreground&quot;,
+        secondary:
+          &quot;bg-secondary text-secondary-foreground hover:bg-secondary/80&quot;,
+        ghost: &quot;hover:bg-accent hover:text-accent-foreground&quot;,
+        link: &quot;text-primary underline-offset-4 hover:underline&quot;,
+      },
+      size: {
+        sm: &quot;h-9 px-3 text-sm&quot;,
+        md: &quot;h-10 px-4 text-sm&quot;,
+        lg: &quot;h-11 px-8 text-base&quot;,
+        icon: &quot;h-10 w-10&quot;,
+      },
+    },
+    defaultVariants: {
+      variant: &quot;default&quot;,
+      size: &quot;md&quot;,
+    },
+  },
+);
+
+interface ButtonProps
+  extends
+    React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt;,
+    VariantProps&lt;typeof buttonVariants&gt; {
+  asChild?: boolean;
+}
+
+export function Button({ className, variant, size, ...props }: ButtonProps) {
+  return (
+    &lt;button
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    /&gt;
+  );
+}
+</code></pre>
+<h3>Pattern 4: Style Dictionary Configuration</h3>
+<pre><code class="language-javascript">// style-dictionary.config.js
+module.exports = {
+  source: [&quot;tokens/**/*.json&quot;],
+  platforms: {
+    css: {
+      transformGroup: &quot;css&quot;,
+      buildPath: &quot;dist/css/&quot;,
+      files: [
+        {
+          destination: &quot;variables.css&quot;,
+          format: &quot;css/variables&quot;,
+          options: {
+            outputReferences: true, // Preserve token references
+          },
+        },
+      ],
+    },
+    scss: {
+      transformGroup: &quot;scss&quot;,
+      buildPath: &quot;dist/scss/&quot;,
+      files: [
+        {
+          destination: &quot;_variables.scss&quot;,
+          format: &quot;scss/variables&quot;,
+        },
+      ],
+    },
+    ios: {
+      transformGroup: &quot;ios-swift&quot;,
+      buildPath: &quot;dist/ios/&quot;,
+      files: [
+        {
+          destination: &quot;DesignTokens.swift&quot;,
+          format: &quot;ios-swift/class.swift&quot;,
+          className: &quot;DesignTokens&quot;,
+        },
+      ],
+    },
+    android: {
+      transformGroup: &quot;android&quot;,
+      buildPath: &quot;dist/android/&quot;,
+      files: [
+        {
+          destination: &quot;colors.xml&quot;,
+          format: &quot;android/colors&quot;,
+          filter: { attributes: { category: &quot;color&quot; } },
+        },
+      ],
+    },
+  },
+};
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Name Tokens by Purpose</strong>: Use semantic names (text-primary) not visual descriptions (dark-gray)</li>
+<li><strong>Maintain Token Hierarchy</strong>: Primitives &gt; Semantic &gt; Component tokens</li>
+<li><strong>Document Token Usage</strong>: Include usage guidelines with token definitions</li>
+<li><strong>Version Tokens</strong>: Treat token changes as API changes with semver</li>
+<li><strong>Test Theme Combinations</strong>: Verify all themes work with all components</li>
+<li><strong>Automate Token Pipeline</strong>: CI/CD for Figma-to-code synchronization</li>
+<li><strong>Provide Migration Paths</strong>: Deprecate tokens gradually with clear alternatives</li>
+</ol>
+<h2>Common Issues</h2>
+<ul>
+<li><strong>Token Sprawl</strong>: Too many tokens without clear hierarchy</li>
+<li><strong>Inconsistent Naming</strong>: Mixed conventions (camelCase vs kebab-case)</li>
+<li><strong>Missing Dark Mode</strong>: Tokens that don&#39;t adapt to theme changes</li>
+<li><strong>Hardcoded Values</strong>: Using raw values instead of tokens</li>
+<li><strong>Circular References</strong>: Tokens referencing each other in loops</li>
+<li><strong>Platform Gaps</strong>: Tokens missing for some platforms (web but not mobile)</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://amzn.github.io/style-dictionary/">Style Dictionary Documentation</a></li>
+<li><a href="https://tokens.studio/">Tokens Studio for Figma</a></li>
+<li><a href="https://design-tokens.github.io/community-group/format/">Design Tokens W3C Spec</a></li>
+<li><a href="https://www.radix-ui.com/themes">Radix UI Themes</a></li>
+<li><a href="https://ui.shadcn.com/docs/theming">shadcn/ui Theming</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

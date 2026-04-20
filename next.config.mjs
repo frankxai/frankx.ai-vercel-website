@@ -35,6 +35,17 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Arcanea domain canonicalization
+      {
+        source: '/arcanea',
+        destination: 'https://arcanea.ai',
+        permanent: true,
+      },
+      {
+        source: '/arcanea/:path*',
+        destination: 'https://arcanea.ai/:path*',
+        permanent: true,
+      },
       // Realm → Inner Circle rename
       {
         source: '/realm',
@@ -67,6 +78,27 @@ const nextConfig = {
         source: '/creator-lab-starter',
         destination: '/products/agentic-creator-os',
         permanent: false,
+      },
+      // Research Hub content relocation redirects
+      {
+        source: '/research/visionaries',
+        destination: '/visionaries',
+        permanent: true,
+      },
+      {
+        source: '/research/visionariers',
+        destination: '/visionaries',
+        permanent: true,
+      },
+      {
+        source: '/research/ai-evolution',
+        destination: '/ai-evolution',
+        permanent: true,
+      },
+      {
+        source: '/research/visual-intelligence',
+        destination: '/tools/visual-intelligence',
+        permanent: true,
       },
       // Blog post legacy redirects
       {

@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Benchmark Optimization Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/swarm-plans/BENCHMARK-OPTIMIZATION.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Benchmark Optimization Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fswarm-plans">swarm-plans</a> / <span>BENCHMARK-OPTIMIZATION.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Benchmark Optimization Plan</h1>
+<h2>Overview</h2>
+<p>This document defines the <strong>performance benchmarking and optimization strategy</strong> for Claude-Flow v3. Agent #14 (Performance Engineer) leads this effort, with support from all other agents.</p>
+<hr>
+<h2>Performance Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Current (v2.7.47)</th>
+<th>Target (v3.0.0)</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>CLI Startup</strong></td>
+<td>~2.5s</td>
+<td>&lt;500ms</td>
+<td>5x faster</td>
+</tr>
+<tr>
+<td><strong>MCP Init</strong></td>
+<td>~1.8s</td>
+<td>&lt;400ms</td>
+<td>4.5x faster</td>
+</tr>
+<tr>
+<td><strong>Agent Spawn</strong></td>
+<td>~800ms</td>
+<td>&lt;200ms</td>
+<td>4x faster</td>
+</tr>
+<tr>
+<td><strong>Vector Search</strong></td>
+<td>150ms/query</td>
+<td>&lt;1ms/query</td>
+<td>150x faster</td>
+</tr>
+<tr>
+<td><strong>Memory Write</strong></td>
+<td>50ms</td>
+<td>&lt;5ms</td>
+<td>10x faster</td>
+</tr>
+<tr>
+<td><strong>Swarm Consensus</strong></td>
+<td>~500ms</td>
+<td>&lt;100ms</td>
+<td>5x faster</td>
+</tr>
+<tr>
+<td><strong>Flash Attention</strong></td>
+<td>N/A</td>
+<td>2.49x-7.47x</td>
+<td>New feature</td>
+</tr>
+<tr>
+<td><strong>Memory Usage</strong></td>
+<td>512MB</td>
+<td>&lt;256MB</td>
+<td>50% reduction</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Benchmark Suite Architecture</h2>
+<pre><code>benchmarks/
+├── startup/
+│   ├── cli-cold-start.bench.ts
+│   ├── cli-warm-start.bench.ts
+│   ├── mcp-server-init.bench.ts
+│   └── agent-spawn.bench.ts
+│
+├── memory/
+│   ├── vector-search.bench.ts
+│   ├── hnsw-indexing.bench.ts
+│   ├── memory-write.bench.ts
+│   ├── cache-hit-rate.bench.ts
+│   └── garbage-collection.bench.ts
+│
+├── swarm/
+│   ├── agent-coordination.bench.ts
+│   ├── task-decomposition.bench.ts
+│   ├── consensus-latency.bench.ts
+│   ├── message-throughput.bench.ts
+│   └── topology-switching.bench.ts
+│
+├── attention/
+│   ├── flash-attention.bench.ts
+│   ├── multi-head-attention.bench.ts
+│   ├── linear-attention.bench.ts
+│   ├── hyperbolic-attention.bench.ts
+│   └── moe-attention.bench.ts
+│
+├── learning/
+│   ├── sona-adaptation.bench.ts
+│   ├── pattern-matching.bench.ts
+│   ├── model-update.bench.ts
+│   └── rl-training-step.bench.ts
+│
+├── integration/
+│   ├── agentic-flow-bridge.bench.ts
+│   ├── mcp-tool-execution.bench.ts
+│   └── hook-execution.bench.ts
+│
+└── regression/
+    ├── baseline-v2.json
+    ├── current.json
+    └── compare.ts
+</code></pre>
+<hr>
+<h2>Benchmark Implementation</h2>
+<h3>Benchmark Framework</h3>
+<pre><code class="language-typescript">// benchmarks/framework/benchmark.ts
+import { performance } from &#39;perf_hooks&#39;;
+
+interface BenchmarkResult {
+  name: string;
+  iterations: number;
+  mean: number;
+  median: number;
+  p95: number;
+  p99: number;
+  min: number;
+  max: number;
+  stdDev: number;
+  opsPerSecond: number;
+  memoryUsage: {
+    heapUsed: number;
+    heapTotal: number;
+    external: number;
+  };
+}
+
+export async function benchmark(
+  name: string,
+  fn: () =&gt; Promise&lt;void&gt; | void,
+  options: {
+    iterations?: number;
+    warmup?: number;
+    timeout?: number;
+  } = {}
+): Promise&lt;BenchmarkResult&gt; {
+  const { iterations = 1000, warmup = 100, timeout = 30000 } = options;
+  const results: number[] = [];
+
+  // Warmup
+  for (let i = 0; i &lt; warmup; i++) {
+    await fn();
+  }
+
+  // Force GC before measurement
+  if (global.gc) global.gc();
+
+  const memBefore = process.memoryUsage();
+
+  // Measure
+  for (let i = 0; i &lt; iterations; i++) {
+    const start = performance.now();
+    await fn();
+    const end = performance.now();
+    results.push(end - start);
+  }
+
+  const memAfter = process.memoryUsage();
+
+  // Calculate statistics
+  results.sort((a, b) =&gt; a - b);
+  const sum = results.reduce((a, b) =&gt; a + b, 0);
+  const mean = sum / results.length;
+  const median = results[Math.floor(results.length / 2)];
+  const p95 = results[Math.floor(results.length * 0.95)];
+  const p99 = results[Math.floor(results.length * 0.99)];
+  const min = results[0];
+  const max = results[results.length - 1];
+  const variance = results.reduce((acc, r) =&gt; acc + Math.pow(r - mean, 2), 0) / results.length;
+  const stdDev = Math.sqrt(variance);
+
+  return {
+    name,
+    iterations,
+    mean,
+    median,
+    p95,
+    p99,
+    min,
+    max,
+    stdDev,
+    opsPerSecond: 1000 / mean,
+    memoryUsage: {
+      heapUsed: memAfter.heapUsed - memBefore.heapUsed,
+      heapTotal: memAfter.heapTotal,
+      external: memAfter.external
+    }
+  };
+}
+</code></pre>
+<h3>Startup Benchmarks</h3>
+<pre><code class="language-typescript">// benchmarks/startup/cli-cold-start.bench.ts
+import { benchmark } from &#39;../framework/benchmark&#39;;
+import { spawn } from &#39;child_process&#39;;
+
+describe(&#39;CLI Startup Benchmarks&#39;, () =&gt; {
+  it(&#39;should start CLI in under 500ms (cold)&#39;, async () =&gt; {
+    const result = await benchmark(
+      &#39;CLI Cold Start&#39;,
+      async () =&gt; {
+        await new Promise&lt;void&gt;((resolve, reject) =&gt; {
+          const proc = spawn(&#39;npx&#39;, [&#39;claude-flow&#39;, &#39;--version&#39;], {
+            env: { ...process.env, NODE_ENV: &#39;production&#39; }
+          });
+          proc.on(&#39;close&#39;, (code) =&gt; code === 0 ? resolve() : reject());
+        });
+      },
+      { iterations: 50, warmup: 5 }
+    );
+
+    console.log(`CLI Cold Start: ${result.mean.toFixed(2)}ms (p95: ${result.p95.toFixed(2)}ms)`);
+    expect(result.p95).toBeLessThan(500);
+  });
+
+  it(&#39;should start CLI in under 200ms (warm)&#39;, async () =&gt; {
+    // Pre-import modules
+    await import(&#39;../../src/cli/main&#39;);
+
+    const result = await benchmark(
+      &#39;CLI Warm Start&#39;,
+      async () =&gt; {
+        const { CLI } = await import(&#39;../../src/cli/cli-core&#39;);
+        const cli = new CLI();
+        await cli.initialize();
+      },
+      { iterations: 100, warmup: 10 }
+    );
+
+    console.log(`CLI Warm Start: ${result.mean.toFixed(2)}ms (p95: ${result.p95.toFixed(2)}ms)`);
+    expect(result.p95).toBeLessThan(200);
+  });
+});
+
+// benchmarks/startup/agent-spawn.bench.ts
+describe(&#39;Agent Spawn Benchmarks&#39;, () =&gt; {
+  let coordinator: UnifiedSwarmCoordinator;
+
+  beforeAll(async () =&gt; {
+    coordinator = await UnifiedSwarmCoordinator.create();
+  });
+
+  afterAll(async () =&gt; {
+    await coordinator.shutdown();
+  });
+
+  it(&#39;should spawn agent in under 200ms&#39;, async () =&gt; {
+    const result = await benchmark(
+      &#39;Agent Spawn&#39;,
+      async () =&gt; {
+        const agent = await coordinator.spawnAgent({
+          type: &#39;coder&#39;,
+          name: `agent-${Date.now()}`
+        });
+        await coordinator.terminateAgent(agent.id);
+      },
+      { iterations: 100, warmup: 10 }
+    );
+
+    console.log(`Agent Spawn: ${result.mean.toFixed(2)}ms (p95: ${result.p95.toFixed(2)}ms)`);
+    expect(result.p95).toBeLessThan(200);
+  });
+
+  it(&#39;should spawn 15 agents concurrently in under 1s&#39;, async () =&gt; {
+    const result = await benchmark(
+      &#39;15-Agent Concurrent Spawn&#39;,
+      async () =&gt; {
+        const agents = await Promise.all(
+          Array.from({ length: 15 }, (_, i) =&gt;
+            coordinator.spawnAgent({ type: &#39;coder&#39;, name: `agent-${i}` })
+          )
+        );
+        await Promise.all(agents.map(a =&gt; coordinator.terminateAgent(a.id)));
+      },
+      { iterations: 20, warmup: 3 }
+    );
+
+    console.log(`15-Agent Spawn: ${result.mean.toFixed(2)}ms (p95: ${result.p95.toFixed(2)}ms)`);
+    expect(result.p95).toBeLessThan(1000);
+  });
+});
+</code></pre>
+<h3>Memory Benchmarks</h3>
+<pre><code class="language-typescript">// benchmarks/memory/vector-search.bench.ts
+import { benchmark } from &#39;../framework/benchmark&#39;;
+import { AgentDBAdapter } from &#39;../../src/memory/agentdb-adapter&#39;;
+
+describe(&#39;Vector Search Benchmarks&#39;, () =&gt; {
+  let adapter: AgentDBAdapter;
+  const VECTOR_DIM = 1536; // OpenAI embedding dimension
+  const DATASET_SIZE = 100000;
+
+  beforeAll(async () =&gt; {
+    adapter = await AgentDBAdapter.create({
+      indexType: &#39;hnsw&#39;,
+      dimension: VECTOR_DIM
+    });
+
+    // Seed with test data
+    console.log(`Seeding ${DATASET_SIZE} vectors...`);
+    const vectors = Array.from({ length: DATASET_SIZE }, () =&gt; ({
+      id: `vec-${Math.random().toString(36)}`,
+      embedding: new Float32Array(VECTOR_DIM).map(() =&gt; Math.random()),
+      content: &#39;Test content&#39;,
+      metadata: { type: &#39;test&#39; }
+    }));
+
+    await adapter.bulkInsert(vectors);
+    console.log(&#39;Seeding complete&#39;);
+  });
+
+  afterAll(async () =&gt; {
+    await adapter.close();
+  });
+
+  it(&#39;should search 100k vectors in under 1ms (HNSW)&#39;, async () =&gt; {
+    const queryVector = new Float32Array(VECTOR_DIM).map(() =&gt; Math.random());
+
+    const result = await benchmark(
+      &#39;HNSW Search (100k vectors)&#39;,
+      async () =&gt; {
+        await adapter.query({
+          type: &#39;semantic&#39;,
+          embedding: queryVector,
+          limit: 10
+        });
+      },
+      { iterations: 1000, warmup: 100 }
+    );
+
+    console.log(`HNSW Search: ${result.mean.toFixed(3)}ms (p95: ${result.p95.toFixed(3)}ms)`);
+    console.log(`Throughput: ${result.opsPerSecond.toFixed(0)} queries/sec`);
+    expect(result.p95).toBeLessThan(1);
+  });
+
+  it(&#39;should achieve 150x improvement over brute force&#39;, async () =&gt; {
+    const queryVector = new Float32Array(VECTOR_DIM).map(() =&gt; Math.random());
+
+    // Brute force baseline
+    const bruteForce = await benchmark(
+      &#39;Brute Force Search&#39;,
+      async () =&gt; {
+        await adapter.query({
+          type: &#39;semantic&#39;,
+          embedding: queryVector,
+          limit: 10,
+          method: &#39;brute_force&#39;
+        });
+      },
+      { iterations: 100, warmup: 10 }
+    );
+
+    // HNSW
+    const hnsw = await benchmark(
+      &#39;HNSW Search&#39;,
+      async () =&gt; {
+        await adapter.query({
+          type: &#39;semantic&#39;,
+          embedding: queryVector,
+          limit: 10,
+          method: &#39;hnsw&#39;
+        });
+      },
+      { iterations: 1000, warmup: 100 }
+    );
+
+    const improvement = bruteForce.mean / hnsw.mean;
+    console.log(`Brute Force: ${bruteForce.mean.toFixed(2)}ms`);
+    console.log(`HNSW: ${hnsw.mean.toFixed(3)}ms`);
+    console.log(`Improvement: ${improvement.toFixed(0)}x`);
+
+    expect(improvement).toBeGreaterThan(150);
+  });
+});
+
+// benchmarks/memory/memory-write.bench.ts
+describe(&#39;Memory Write Benchmarks&#39;, () =&gt; {
+  let adapter: AgentDBAdapter;
+
+  beforeAll(async () =&gt; {
+    adapter = await AgentDBAdapter.create();
+  });
+
+  afterAll(async () =&gt; {
+    await adapter.close();
+  });
+
+  it(&#39;should write memory entry in under 5ms&#39;, async () =&gt; {
+    const result = await benchmark(
+      &#39;Memory Write&#39;,
+      async () =&gt; {
+        await adapter.store({
+          id: `mem-${Date.now()}-${Math.random()}`,
+          content: &#39;Test memory content&#39;,
+          embedding: new Float32Array(1536).map(() =&gt; Math.random()),
+          metadata: { type: &#39;test&#39;, timestamp: Date.now() }
+        });
+      },
+      { iterations: 1000, warmup: 100 }
+    );
+
+    console.log(`Memory Write: ${result.mean.toFixed(3)}ms (p95: ${result.p95.toFixed(3)}ms)`);
+    expect(result.p95).toBeLessThan(5);
+  });
+
+  it(&#39;should handle batch writes efficiently&#39;, async () =&gt; {
+    const batchSize = 100;
+
+    const result = await benchmark(
+      `Batch Write (${batchSize} entries)`,
+      async () =&gt; {
+        const entries = Array.from({ length: batchSize }, (_, i) =&gt; ({
+          id: `batch-${Date.now()}-${i}`,
+          content: `Batch content ${i}`,
+          embedding: new Float32Array(1536).map(() =&gt; Math.random()),
+          metadata: { batch: true }
+        }));
+        await adapter.bulkInsert(entries);
+      },
+      { iterations: 100, warmup: 10 }
+    );
+
+    const perEntry = result.mean / batchSize;
+    console.log(`Batch Write: ${result.mean.toFixed(2)}ms total`);
+    console.log(`Per Entry: ${perEntry.toFixed(3)}ms`);
+    expect(perEntry).toBeLessThan(1);
+  });
+});
+</code></pre>
+<h3>Attention Mechanism Benchmarks</h3>
+<pre><code class="language-typescript">// benchmarks/attention/flash-attention.bench.ts
+import { benchmark } from &#39;../framework/benchmark&#39;;
+import { AttentionCoordinator } from &#39;agentic-flow/core&#39;;
+
+describe(&#39;Flash Attention Benchmarks&#39;, () =&gt; {
+  let coordinator: AttentionCoordinator;
+
+  beforeAll(async () =&gt; {
+    coordinator = new AttentionCoordinator({
+      type: &#39;flash&#39;,
+      memoryEfficient: true
+    });
+    await coordinator.initialize();
+  });
+
+  afterAll(async () =&gt; {
+    await coordinator.shutdown();
+  });
+
+  const SEQUENCE_LENGTHS = [512, 1024, 2048, 4096, 8192];
+
+  for (const seqLen of SEQUENCE_LENGTHS) {
+    it(`should process ${seqLen} tokens with Flash Attention`, async () =&gt; {
+      const input = new Float32Array(seqLen * 768).map(() =&gt; Math.random());
+
+      const result = await benchmark(
+        `Flash Attention (seq=${seqLen})`,
+        async () =&gt; {
+          await coordinator.forward(input, { sequenceLength: seqLen });
+        },
+        { iterations: 100, warmup: 10 }
+      );
+
+      console.log(`Flash Attention (${seqLen} tokens): ${result.mean.toFixed(2)}ms`);
+    });
+  }
+
+  it(&#39;should achieve 2.49x-7.47x speedup over standard attention&#39;, async () =&gt; {
+    const seqLen = 2048;
+    const input = new Float32Array(seqLen * 768).map(() =&gt; Math.random());
+
+    // Standard attention baseline
+    const standardCoord = new AttentionCoordinator({ type: &#39;multi-head&#39; });
+    await standardCoord.initialize();
+
+    const standard = await benchmark(
+      &#39;Standard Attention&#39;,
+      async () =&gt; {
+        await standardCoord.forward(input, { sequenceLength: seqLen });
+      },
+      { iterations: 50, warmup: 5 }
+    );
+
+    // Flash attention
+    const flash = await benchmark(
+      &#39;Flash Attention&#39;,
+      async () =&gt; {
+        await coordinator.forward(input, { sequenceLength: seqLen });
+      },
+      { iterations: 100, warmup: 10 }
+    );
+
+    await standardCoord.shutdown();
+
+    const speedup = standard.mean / flash.mean;
+    console.log(`Standard: ${standard.mean.toFixed(2)}ms`);
+    console.log(`Flash: ${flash.mean.toFixed(2)}ms`);
+    console.log(`Speedup: ${speedup.toFixed(2)}x`);
+
+    expect(speedup).toBeGreaterThanOrEqual(2.49);
+  });
+
+  it(&#39;should reduce memory usage by 50-75%&#39;, async () =&gt; {
+    const seqLen = 4096;
+    const input = new Float32Array(seqLen * 768).map(() =&gt; Math.random());
+
+    // Measure standard attention memory
+    if (global.gc) global.gc();
+    const memBefore = process.memoryUsage().heapUsed;
+
+    const standardCoord = new AttentionCoordinator({ type: &#39;multi-head&#39; });
+    await standardCoord.initialize();
+    await standardCoord.forward(input, { sequenceLength: seqLen });
+
+    const standardMem = process.memoryUsage().heapUsed - memBefore;
+    await standardCoord.shutdown();
+
+    // Measure flash attention memory
+    if (global.gc) global.gc();
+    const memBefore2 = process.memoryUsage().heapUsed;
+
+    await coordinator.forward(input, { sequenceLength: seqLen });
+
+    const flashMem = process.memoryUsage().heapUsed - memBefore2;
+
+    const reduction = (1 - flashMem / standardMem) * 100;
+    console.log(`Standard Memory: ${(standardMem / 1024 / 1024).toFixed(2)} MB`);
+    console.log(`Flash Memory: ${(flashMem / 1024 / 1024).toFixed(2)} MB`);
+    console.log(`Reduction: ${reduction.toFixed(1)}%`);
+
+    expect(reduction).toBeGreaterThanOrEqual(50);
+  });
+});
+</code></pre>
+<h3>Swarm Benchmarks</h3>
+<pre><code class="language-typescript">// benchmarks/swarm/agent-coordination.bench.ts
+describe(&#39;Swarm Coordination Benchmarks&#39;, () =&gt; {
+  let coordinator: UnifiedSwarmCoordinator;
+
+  beforeAll(async () =&gt; {
+    coordinator = await UnifiedSwarmCoordinator.create({
+      maxAgents: 15,
+      topology: &#39;mesh&#39;
+    });
+
+    // Spawn 15 agents
+    await Promise.all(
+      Array.from({ length: 15 }, (_, i) =&gt;
+        coordinator.spawnAgent({ type: &#39;worker&#39;, name: `agent-${i}` })
+      )
+    );
+  });
+
+  afterAll(async () =&gt; {
+    await coordinator.shutdown();
+  });
+
+  it(&#39;should coordinate 15 agents in under 100ms&#39;, async () =&gt; {
+    const result = await benchmark(
+      &#39;15-Agent Coordination&#39;,
+      async () =&gt; {
+        await coordinator.broadcastTask({
+          type: &#39;ping&#39;,
+          requireAck: true
+        });
+      },
+      { iterations: 100, warmup: 10 }
+    );
+
+    console.log(`15-Agent Coordination: ${result.mean.toFixed(2)}ms (p95: ${result.p95.toFixed(2)}ms)`);
+    expect(result.p95).toBeLessThan(100);
+  });
+
+  it(&#39;should achieve consensus in under 100ms&#39;, async () =&gt; {
+    const result = await benchmark(
+      &#39;Consensus Achievement&#39;,
+      async () =&gt; {
+        await coordinator.proposeConsensus({
+          proposal: &#39;test-proposal&#39;,
+          algorithm: &#39;raft&#39;
+        });
+      },
+      { iterations: 50, warmup: 5 }
+    );
+
+    console.log(`Consensus: ${result.mean.toFixed(2)}ms (p95: ${result.p95.toFixed(2)}ms)`);
+    expect(result.p95).toBeLessThan(100);
+  });
+
+  it(&#39;should handle 1000 messages/second&#39;, async () =&gt; {
+    const messageCount = 1000;
+    const startTime = performance.now();
+
+    await Promise.all(
+      Array.from({ length: messageCount }, (_, i) =&gt;
+        coordinator.sendMessage({
+          to: `agent-${i % 15}`,
+          type: &#39;test&#39;,
+          payload: { index: i }
+        })
+      )
+    );
+
+    const duration = performance.now() - startTime;
+    const throughput = (messageCount / duration) * 1000;
+
+    console.log(`Message Throughput: ${throughput.toFixed(0)} messages/sec`);
+    expect(throughput).toBeGreaterThanOrEqual(1000);
+  });
+});
+</code></pre>
+<hr>
+<h2>Optimization Strategies</h2>
+<h3>1. Lazy Loading</h3>
+<pre><code class="language-typescript">// Before: Eager loading (slow startup)
+import { SONA } from &#39;agentic-flow/sona&#39;;
+import { AgentDB } from &#39;agentic-flow/agentdb&#39;;
+import { Attention } from &#39;agentic-flow/attention&#39;;
+
+// After: Lazy loading (fast startup)
+let sona: SONA | undefined;
+let agentdb: AgentDB | undefined;
+let attention: Attention | undefined;
+
+export async function getSONA(): Promise&lt;SONA&gt; {
+  if (!sona) {
+    const { SONA } = await import(&#39;agentic-flow/sona&#39;);
+    sona = new SONA();
+    await sona.initialize();
+  }
+  return sona;
+}
+</code></pre>
+<h3>2. Connection Pooling</h3>
+<pre><code class="language-typescript">// MCP connection pool
+class MCPConnectionPool {
+  private connections: Map&lt;string, MCPConnection&gt; = new Map();
+  private maxConnections = 10;
+
+  async getConnection(endpoint: string): Promise&lt;MCPConnection&gt; {
+    if (this.connections.has(endpoint)) {
+      return this.connections.get(endpoint)!;
+    }
+
+    if (this.connections.size &gt;= this.maxConnections) {
+      // Evict oldest connection
+      const oldest = this.connections.keys().next().value;
+      await this.connections.get(oldest)?.close();
+      this.connections.delete(oldest);
+    }
+
+    const conn = await MCPConnection.create(endpoint);
+    this.connections.set(endpoint, conn);
+    return conn;
+  }
+}
+</code></pre>
+<h3>3. Memory Optimization</h3>
+<pre><code class="language-typescript">// Use typed arrays for vectors
+const embedding = new Float32Array(1536); // 6KB vs 12KB for number[]
+
+// Use object pooling for frequent allocations
+class TaskPool {
+  private pool: Task[] = [];
+
+  acquire(): Task {
+    return this.pool.pop() || new Task();
+  }
+
+  release(task: Task): void {
+    task.reset();
+    this.pool.push(task);
+  }
+}
+
+// Use WeakMap for caches that should be garbage collected
+const embedCache = new WeakMap&lt;object, Float32Array&gt;();
+</code></pre>
+<h3>4. Parallel Processing</h3>
+<pre><code class="language-typescript">// Process agents in parallel with concurrency limit
+import pLimit from &#39;p-limit&#39;;
+
+const limit = pLimit(4); // Max 4 concurrent operations
+
+const results = await Promise.all(
+  agents.map(agent =&gt;
+    limit(() =&gt; processAgent(agent))
+  )
+);
+</code></pre>
+<hr>
+<h2>CI/CD Integration</h2>
+<pre><code class="language-yaml"># .github/workflows/benchmarks.yml
+name: Performance Benchmarks
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: &#39;20&#39;
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run benchmarks
+        run: npm run benchmark -- --json &gt; benchmark-results.json
+
+      - name: Compare with baseline
+        run: |
+          node benchmarks/regression/compare.ts \
+            --baseline benchmarks/regression/baseline-v2.json \
+            --current benchmark-results.json \
+            --threshold 10
+
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmark-results.json
+
+      - name: Comment on PR
+        if: github.event_name == &#39;pull_request&#39;
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const results = require(&#39;./benchmark-results.json&#39;);
+            const comment = formatBenchmarkComment(results);
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });
+</code></pre>
+<hr>
+<h2>Regression Detection</h2>
+<pre><code class="language-typescript">// benchmarks/regression/compare.ts
+interface ComparisonResult {
+  name: string;
+  baseline: number;
+  current: number;
+  delta: number;
+  deltaPercent: number;
+  status: &#39;improved&#39; | &#39;regressed&#39; | &#39;stable&#39;;
+}
+
+function compareResults(
+  baseline: BenchmarkResult[],
+  current: BenchmarkResult[],
+  threshold: number = 10
+): ComparisonResult[] {
+  const results: ComparisonResult[] = [];
+
+  for (const curr of current) {
+    const base = baseline.find(b =&gt; b.name === curr.name);
+    if (!base) continue;
+
+    const delta = curr.mean - base.mean;
+    const deltaPercent = (delta / base.mean) * 100;
+
+    let status: &#39;improved&#39; | &#39;regressed&#39; | &#39;stable&#39;;
+    if (deltaPercent &lt; -threshold) status = &#39;improved&#39;;
+    else if (deltaPercent &gt; threshold) status = &#39;regressed&#39;;
+    else status = &#39;stable&#39;;
+
+    results.push({
+      name: curr.name,
+      baseline: base.mean,
+      current: curr.mean,
+      delta,
+      deltaPercent,
+      status
+    });
+  }
+
+  return results;
+}
+</code></pre>
+<hr>
+<h2>Related Documents</h2>
+<ul>
+<li><a href="./SWARM-OVERVIEW.md">SWARM-OVERVIEW.md</a> - 15-agent swarm plan</li>
+<li><a href="./AGENT-SPECIFICATIONS.md">AGENT-SPECIFICATIONS.md</a> - Agent details (Agent #14)</li>
+<li><a href="./TDD-LONDON-SCHOOL-PLAN.md">TDD-LONDON-SCHOOL-PLAN.md</a> - Test plan</li>
+<li><a href="./DEPLOYMENT-PLAN.md">DEPLOYMENT-PLAN.md</a> - Release strategy</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Notes: See Through the Noise Hub</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="notes_see-through-the-noise.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Notes: See Through the Noise Hub</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>notes_see-through-the-noise.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Notes: See Through the Noise Hub</h1>
+<h2>Source Constraints</h2>
+<ul>
+<li>User supplied Gemini Gem URL is not readable in this environment due login/consent wall.</li>
+<li>Existing repo has mature AI architecture hub pages and XYFlow-based blueprint rendering already in place.</li>
+</ul>
+<h2>Existing System Findings</h2>
+<ul>
+<li><code>@xyflow/react</code> is installed and used in blueprint diagram components.</li>
+<li>Blueprints are stored in <code>data/ai-architecture/prototypes.json</code>.</li>
+<li>Blueprint pages are rendered dynamically from the prototype dataset.</li>
+<li>Current design language is dark, glassy, neon-accented Tailwind + Framer Motion.</li>
+</ul>
+<h2>Product Direction for this Task</h2>
+<ul>
+<li>Build <code>app/see-through-the-noise/page.tsx</code> as the public misinformation defense hub.</li>
+<li>Add <code>app/api/misinformation/analyze/route.ts</code> with:<ul>
+<li>URL/domain checks</li>
+<li>Language heuristics for manipulation signals</li>
+<li>Basic citation/source extraction</li>
+<li>Risk scoring and explanation output</li>
+<li>Optional model augmentation when key is available</li>
+</ul>
+</li>
+<li>Add new AI architecture blueprint entry in <code>data/ai-architecture/prototypes.json</code>.</li>
+<li>Add a full production blueprint document with:<ul>
+<li>architecture layers</li>
+<li>trust &amp; safety controls</li>
+<li>evals, observability, incident response</li>
+<li>deployment sequence and cost envelope</li>
+</ul>
+</li>
+</ul>
+<h2>Open Decisions</h2>
+<ul>
+<li>Keep initial API BYOC/BYOK-friendly and deterministic by default.</li>
+<li>Provide clear disclaimer: this is decision support, not final truth oracle.</li>
+</ul>
+<h2>Implemented Artifacts</h2>
+<ul>
+<li><code>app/see-through-the-noise/page.tsx</code><ul>
+<li>Public hub with live analyzer form and real-time result rendering.</li>
+<li>Sections for deployment readiness + links to blueprint flows.</li>
+</ul>
+</li>
+<li><code>app/api/misinformation/analyze/route.ts</code><ul>
+<li>Safe live URL ingestion (basic SSRF controls).</li>
+<li>Deterministic signal detection + risk scoring.</li>
+<li>Explainable output: signals, claims, recommendations, limitations.</li>
+<li>In-memory rate limiting for abuse mitigation.</li>
+</ul>
+</li>
+<li><code>data/ai-architecture/prototypes.json</code><ul>
+<li>Added <code>misinformation-guardian-platform</code> as published blueprint for existing hub pages.</li>
+</ul>
+</li>
+<li><code>docs/specs/SEE_THROUGH_THE_NOISE_BLUEPRINT.md</code><ul>
+<li>Full production architecture + rollout + governance/evals.</li>
+</ul>
+</li>
+<li><code>app/sitemap.ts</code><ul>
+<li>Added <code>/see-through-the-noise</code> route entry.</li>
+</ul>
+</li>
+</ul>
+<h2>Validation</h2>
+<ul>
+<li><code>npx eslint app/api/misinformation/analyze/route.ts app/see-through-the-noise/page.tsx app/sitemap.ts</code> passed.</li>
+<li><code>npx tsc ... app/api/misinformation/analyze/route.ts app/see-through-the-noise/page.tsx</code> passed.</li>
+<li>Full repo <code>npm run type-check</code> fails due pre-existing unrelated errors in <code>.next/dev/types/validator.ts</code> and <code>lib/agents.ts</code>.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

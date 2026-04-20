@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/performance-engineer — WSL + Claude Code Performance Triage &amp; Optimization</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/performance-engineer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/performance-engineer — WSL + Claude Code Performance Triage &amp; Optimization</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>performance-engineer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/performance-engineer — WSL + Claude Code Performance Triage &amp; Optimization</h1>
+<p><strong>Purpose</strong>: Diagnose why this Windows/WSL2 machine is slow, identify which Claude Code sessions and MCP servers are consuming resources, and execute safe optimizations — all through a 3-lens performance council.</p>
+<p><strong>Power</strong>: Process-level visibility into every Claude Code instance + MCP server + Node process, memory/swap/disk triage, and actionable fixes that don&#39;t kill your work.</p>
+<hr>
+<h2>Input</h2>
+<ul>
+<li><strong>Mode</strong>: $ARGUMENTS (default: full | <code>scan</code> | <code>triage</code> | <code>nuke</code> | <code>session-report</code>)<ul>
+<li><code>scan</code> — read-only diagnostic, no actions taken</li>
+<li><code>triage</code> — auto-fix safe items + recommendations for the rest</li>
+<li><code>nuke</code> — aggressive mode: kill all non-current Claude sessions + purge caches (asks first)</li>
+<li><code>session-report</code> — just show what each Claude Code session is doing (process tree)</li>
+<li>(no args) — full: scan + council + triage + report</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2>PHASE 1: DIAGNOSTIC SCAN</h2>
+<p>Run ALL diagnostic commands. Collect results into internal state.</p>
+<h3>1.1 Memory &amp; Swap Pressure</h3>
+<pre><code class="language-bash"># Overall memory
+free -h
+# Swap breakdown
+cat /proc/swaps 2&gt;/dev/null
+swapon --show 2&gt;/dev/null
+# Memory pressure (PSI — Pressure Stall Information)
+cat /proc/pressure/memory 2&gt;/dev/null
+# OOM score for top consumers
+ps -eo pid,oom_score,rss:10,comm --sort=-rss | head -25
+</code></pre>
+<p><strong>Classify</strong>:</p>
+<ul>
+<li>RAM &gt; 85% used → YELLOW</li>
+<li>RAM &gt; 92% used → RED</li>
+<li>Swap &gt; 50% used → YELLOW (swap = disk speed, ~100x slower than RAM)</li>
+<li>Swap &gt; 75% used → RED (thrashing — this is your #1 slowdown cause)</li>
+</ul>
+<h3>1.2 Claude Code Process Census</h3>
+<pre><code class="language-bash"># Find all Claude-related processes with memory usage
+ps aux | grep -E &quot;(claude|anthropic)&quot; | grep -v grep
+
+# Count Claude Code main processes (each session = 1 main process)
+ps aux | grep -E &quot;claude&quot; | grep -v grep | wc -l
+
+# Node.js processes (MCP servers, hooks, etc.)
+ps aux | grep &quot;[n]ode&quot; | awk &#39;{printf &quot;%-8s %-6s %-6s %s\n&quot;, $1, $2, $6/1024&quot;MB&quot;, $11&quot; &quot;$12&quot; &quot;$13}&#39; | sort -t&#39;M&#39; -k3 -rn | head -30
+
+# Process tree showing parent-child relationships
+# Each Claude Code session spawns: main + MCP servers + language servers
+pstree -p -a $(whoami) 2&gt;/dev/null | head -80
+</code></pre>
+<p><strong>Per-session accounting</strong>: Group Node processes by parent PID. Each Claude Code session typically spawns:</p>
+<ul>
+<li>1 main Claude process</li>
+<li>1 Node process per MCP server (n8n-mcp, memory, playwright, resend, Vercel, Figma, Slack, Zapier, Notion = up to 9+)</li>
+<li>1+ hook runner processes</li>
+<li>Total per session: ~200-600MB RAM depending on MCP server count</li>
+</ul>
+<h3>1.3 MCP Server Inventory</h3>
+<pre><code class="language-bash"># Find all running MCP-related processes
+ps aux | grep -E &quot;(mcp|supergateway|stdio)&quot; | grep -v grep
+
+# Check which MCP servers are configured
+cat ~/.claude.json 2&gt;/dev/null | grep -o &#39;&quot;[^&quot;]*&quot;:\s*{&#39; | head -20
+
+# Memory per MCP server type
+ps aux | grep &quot;[n]ode&quot; | grep -i mcp | awk &#39;{print $6/1024&quot;MB&quot;, $11, $12, $13}&#39; | sort -rn
+</code></pre>
+<h3>1.4 Disk I/O &amp; Filesystem Health</h3>
+<pre><code class="language-bash"># Disk space — C: drive free space is critical for Windows paging
+df -h /mnt/c / 2&gt;/dev/null
+
+# I/O wait (high = disk is bottleneck)
+iostat -x 1 2 2&gt;/dev/null | tail -20 || cat /proc/diskstats 2&gt;/dev/null | head -5
+
+# Check if Windows pagefile can breathe
+# Windows needs 10-15GB free on C: for pagefile + temp
+# Below 5GB free = critical — Windows starts refusing allocations
+</code></pre>
+<p><strong>Critical thresholds for C: drive</strong>:</p>
+<ul>
+<li>&lt; 15GB free → YELLOW (pagefile constrained)</li>
+<li>&lt; 5GB free → RED (Windows itself becomes unstable)</li>
+<li>&lt; 2GB free → EMERGENCY (risk of data loss, corruption)</li>
+</ul>
+<h3>1.5 WSL Configuration Audit</h3>
+<pre><code class="language-bash"># Current WSL config
+cat /mnt/c/Users/Frank/.wslconfig 2&gt;/dev/null
+
+# Actual WSL memory limit vs host
+echo &quot;WSL allocated: $(free -h | awk &#39;/Mem:/{print $2}&#39;)&quot;
+echo &quot;Host total: check Windows Task Manager&quot;
+
+# WSL kernel version (affects memory management)
+uname -r
+</code></pre>
+<h3>1.6 Windows-Side Resource Check (if PowerShell available)</h3>
+<pre><code class="language-bash"># Top Windows processes by memory (via /proc simulation)
+# This helps identify if VS Code, Chrome, etc. are also competing
+powershell.exe -NoProfile -Command &quot;Get-Process | Sort-Object WorkingSet64 -Descending | Select-Object -First 15 Name, @{N=&#39;MB&#39;;E={[math]::Round(\$_.WorkingSet64/1MB)}}&quot; 2&gt;/dev/null
+</code></pre>
+<h3>Baseline Summary</h3>
+<p>Build internal table:</p>
+<pre><code>RESOURCE          VALUE        STATUS    NOTES
+RAM Used          X/Y GB       🔴/🟡/🟢
+Swap Used         X/Y GB       🔴/🟡/🟢   (&gt;50% = perf killer)
+C: Free           X GB         🔴/🟡/🟢   (&lt;5GB = emergency)
+WSL / Free        X GB         🟢
+Claude Sessions   N            🔴/🟡/🟢   (&gt;4 on 12GB = yellow)
+Node Processes    N            info
+MCP Servers       N per session info
+Est. Memory/Sess  ~X MB        info
+</code></pre>
+<hr>
+<h2>PHASE 2: PERFORMANCE COUNCIL (3-Lens Analysis)</h2>
+<p>For every finding, apply three lenses:</p>
+<h3>Lens 1: Safety Guardian</h3>
+<p>Asks: &quot;Could this action lose in-progress work, kill an active generation, or corrupt state?&quot;</p>
+<p><strong>Hard veto triggers</strong>:</p>
+<ul>
+<li>Killing the CURRENT Claude Code session (the one running this command)</li>
+<li>Killing a Claude session mid-generation (check if process CPU &gt; 10%)</li>
+<li>Deleting <code>.claude/</code> config directories</li>
+<li>Modifying <code>.wslconfig</code> without user confirmation (requires WSL restart)</li>
+<li>Killing MCP servers for the current session</li>
+</ul>
+<h3>Lens 2: Performance Analyst</h3>
+<p>Asks: &quot;What is the actual performance impact of this item? Quantify in MB freed or processes reduced.&quot;</p>
+<p><strong>High-impact items</strong> (prioritize these):</p>
+<ul>
+<li>Swap thrashing (biggest perf killer — each swap page fault = ~10ms vs 0.0001ms for RAM)</li>
+<li>Idle Claude sessions holding 200-600MB each + all their MCP servers</li>
+<li>Orphaned Node processes (parent died but children remain)</li>
+<li>Windows pagefile competing on a full C: drive</li>
+<li>NTFS cross-filesystem operations (10-50x slower than ext4)</li>
+</ul>
+<p><strong>Low-impact items</strong> (deprioritize):</p>
+<ul>
+<li>Small background processes (&lt; 50MB)</li>
+<li>System services</li>
+<li>A single extra MCP server</li>
+</ul>
+<h3>Lens 3: Workflow Advocate</h3>
+<p>Asks: &quot;Does the developer actually need this running right now?&quot;</p>
+<p><strong>Active workflow indicators</strong>:</p>
+<ul>
+<li>Claude session generated output in last 5 minutes (check process CPU/IO)</li>
+<li>Session has unsaved/uncommitted work (can&#39;t kill safely)</li>
+<li>MCP server was called recently (check process age vs CPU time)</li>
+</ul>
+<p><strong>Stale workflow indicators</strong>:</p>
+<ul>
+<li>Claude session idle &gt; 30 minutes (0% CPU, no recent I/O)</li>
+<li>MCP server process running but parent Claude session is idle</li>
+<li>Node process with 0% CPU and high RSS (leaked/orphaned)</li>
+</ul>
+<h3>Verdict Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Safety</th>
+<th>Impact</th>
+<th>Workflow</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SAFE</td>
+<td>HIGH</td>
+<td>STALE</td>
+<td><strong>AUTO-FIX</strong> — kill/optimize without asking</td>
+</tr>
+<tr>
+<td>SAFE</td>
+<td>HIGH</td>
+<td>ACTIVE</td>
+<td><strong>RECOMMEND</strong> — explain tradeoff, ask user</td>
+</tr>
+<tr>
+<td>SAFE</td>
+<td>LOW</td>
+<td>any</td>
+<td><strong>SKIP</strong> — not worth the disruption</td>
+</tr>
+<tr>
+<td>VETO</td>
+<td>any</td>
+<td>any</td>
+<td><strong>PRESERVE</strong> — explain why</td>
+</tr>
+<tr>
+<td>any</td>
+<td>HIGH</td>
+<td>ACTIVE-CRITICAL</td>
+<td><strong>ESCALATE</strong> — need user decision + save work first</td>
+</tr>
+</tbody></table>
+<h3>Known Safe Actions (skip council — always safe)</h3>
+<ul>
+<li>Drop Linux filesystem caches: <code>echo 3 &gt; /proc/sys/vm/drop_caches</code> (requires sudo)</li>
+<li>Kill orphaned Node processes (no parent, 0% CPU)</li>
+<li>Report current state (read-only)</li>
+<li>Recommend <code>.wslconfig</code> changes (don&#39;t apply without approval)</li>
+<li>Suggest closing specific Claude sessions (don&#39;t kill them)</li>
+</ul>
+<h3>Known Dangerous Actions (always need approval)</h3>
+<ul>
+<li>Killing ANY Claude Code session</li>
+<li>Changing <code>.wslconfig</code> (requires <code>wsl --shutdown</code>)</li>
+<li>Running <code>wsl --shutdown</code> (kills ALL WSL sessions)</li>
+<li>Clearing npm/pnpm caches (may slow next install)</li>
+<li>Modifying swap settings</li>
+</ul>
+<hr>
+<h2>PHASE 3: EXECUTE + REPORT</h2>
+<h3>If mode = <code>scan</code>:</h3>
+<p>Output the full diagnostic report. No actions. Stop here.</p>
+<h3>If mode = <code>session-report</code>:</h3>
+<p>Output per-session breakdown only:</p>
+<pre><code>═══════════════════════════════════════════════════════════
+  CLAUDE CODE SESSION REPORT
+═══════════════════════════════════════════════════════════
+
+  Session 1 (PID: XXXX) — [ACTIVE/IDLE/STALE]
+  ├── RAM: ~XXX MB (main) + ~XXX MB (MCP servers)
+  ├── MCP Servers: n8n-mcp, memory, playwright, resend...
+  ├── Age: X hours
+  ├── Last CPU activity: X min ago
+  └── Working dir: /mnt/c/Users/Frank/FrankX
+
+  Session 2 (PID: XXXX) — [ACTIVE/IDLE/STALE]
+  ├── RAM: ~XXX MB
+  ...
+
+  ─── TOTALS ───────────────────────────────────────────
+  Sessions: N | Total RAM: X GB | MCP processes: N
+  Recommended max sessions for 12GB WSL: 3-4
+═══════════════════════════════════════════════════════════
+</code></pre>
+<h3>If mode = <code>triage</code> or <code>full</code>:</h3>
+<p><strong>Step 1: Auto-fix safe items</strong></p>
+<pre><code class="language-bash"># Kill orphaned Node processes (no parent Claude session)
+# Only if: parent PID = 1 (orphaned) AND CPU = 0% AND age &gt; 10min
+for pid in $(ps -eo pid,ppid,pcpu,comm | awk &#39;$2==1 &amp;&amp; $4==&quot;node&quot; &amp;&amp; $3==0.0 {print $1}&#39;); do
+  kill $pid 2&gt;/dev/null &amp;&amp; echo &quot;KILLED orphan node PID $pid&quot;
+done
+
+# Drop filesystem caches (safe, kernel reclaims as needed)
+sync
+echo 3 | sudo tee /proc/sys/vm/drop_caches 2&gt;/dev/null &amp;&amp; echo &quot;Dropped filesystem caches&quot;
+
+# Clear /tmp items older than 2 days
+find /tmp -maxdepth 1 -mtime +2 -not -name &quot;.&quot; -exec rm -rf {} \; 2&gt;/dev/null
+</code></pre>
+<p><strong>Step 2: Present recommendations</strong></p>
+<p>Use AskUserQuestion for items that need approval. Group by impact:</p>
+<p><strong>Category A: Session Management</strong> (highest impact)</p>
+<ul>
+<li>&quot;Kill idle Claude session on PID XXXX? (idle 2h, holding ~450MB)&quot;</li>
+<li>&quot;Close N idle sessions to free ~X GB?&quot;</li>
+</ul>
+<p><strong>Category B: WSL Tuning</strong></p>
+<ul>
+<li>&quot;Update .wslconfig memory limit?&quot; (only if current config is suboptimal)</li>
+<li>&quot;Reduce swap usage?&quot; (suggest <code>vm.swappiness</code> change)</li>
+</ul>
+<p><strong>Category C: Disk Space</strong> (if C: &lt; 10GB free)</p>
+<ul>
+<li>&quot;Run /storage-intelligence to free disk space?&quot;</li>
+<li>&quot;C: drive is critically full — Windows needs at least 10GB free for stability&quot;</li>
+</ul>
+<p><strong>Category D: Process Optimization</strong></p>
+<ul>
+<li>&quot;Kill N orphaned MCP server processes?&quot;</li>
+<li>&quot;Restart WSL to reclaim memory?&quot; (nuclear option, kills everything)</li>
+</ul>
+<p><strong>Step 3: Execute approved recommendations</strong></p>
+<p><strong>Step 4: Final measurement</strong></p>
+<pre><code class="language-bash">free -h
+df -h /mnt/c /
+ps aux | grep -c &quot;[c]laude&quot;
+ps aux | grep -c &quot;[n]ode&quot;
+</code></pre>
+<p>Calculate improvements: <code>freed_ram</code>, <code>freed_swap</code>, <code>freed_disk</code>, <code>killed_processes</code>.</p>
+<h3>Output Format</h3>
+<pre><code>═══════════════════════════════════════════════════════════
+  PERFORMANCE ENGINEER REPORT
+═══════════════════════════════════════════════════════════
+
+  Machine: Windows 11 + WSL2 (Ubuntu)
+  CPU: 16 cores | RAM: 12GB (WSL limit) | Swap: 12GB
+
+  ─── HEALTH STATUS ──────────────────────────────────
+  Memory:    [██████████░░] 83% → [████████░░░░] 62%   🟡→🟢
+  Swap:      [█████████░░░] 74% → [████░░░░░░░░] 31%   🔴→🟡
+  C: Drive:  [████████████] 99% → [███████████░] 97%   🔴→🔴
+  Processes: 158 total → 89 total                       🟡→🟢
+
+  ─── AUTO-FIXED ─────────────────────────────────────
+  [x] Killed N orphaned Node processes (+XXX MB)
+  [x] Dropped filesystem caches (+XXX MB)
+  [x] Cleared stale /tmp files (+XX MB)
+
+  ─── APPLIED (user approved) ────────────────────────
+  [x] Closed N idle Claude sessions (+X.X GB)
+  [x] description...
+
+  ─── PRESERVED ──────────────────────────────────────
+  [~] Current session (PID XXXX) — Safety: active
+  [~] Session on /arcanea — Workflow: has uncommitted changes
+
+  ─── CRITICAL WARNINGS ──────────────────────────────
+  ⚠️  C: drive has only X.X GB free
+     → Run /storage-intelligence deep
+     → Windows needs 10-15GB free for pagefile + updates
+     → Risk: system instability, data loss
+
+  ⚠️  Swap usage was 74% — primary cause of slowness
+     → Each page fault to swap = ~10ms (vs 0.0001ms for RAM)
+     → Solution: fewer concurrent Claude sessions (max 3-4)
+     → Consider: close VS Code tabs, Chrome, other heavy apps
+
+  ─── RECOMMENDED SESSION LIMITS ─────────────────────
+  With 12GB WSL RAM:
+  ├── Safe:   3 Claude Code sessions (headroom for spikes)
+  ├── Max:    4 sessions (swap will be used, slight slowdown)
+  ├── Risky:  5 sessions (heavy swap, noticeable lag)
+  └── Danger: 6+ sessions (thrashing, system becomes unusable)
+
+  Each session uses ~200-600MB depending on MCP server count.
+  Each MCP server (n8n, memory, playwright, etc.) adds ~30-80MB.
+
+  ─── OPTIMIZATION TIPS ──────────────────────────────
+  1. Use /performance-engineer session-report to monitor
+  2. Close idle sessions — they hold RAM for nothing
+  3. Disable unused MCP servers in .claude.json for projects
+     that don&#39;t need them (e.g., Figma MCP for backend work)
+  4. If C: drive stays &lt; 5GB, run /storage-intelligence purge
+  5. WSL memory reclaim is ON (autoMemoryReclaim=dropcache) ✓
+═══════════════════════════════════════════════════════════
+</code></pre>
+<h3>If mode = <code>nuke</code>:</h3>
+<p><strong>WARNING</strong>: This is the aggressive recovery mode. Use when the machine is nearly frozen.</p>
+<ol>
+<li>Confirm with user: &quot;This will kill ALL Claude Code sessions except the current one. Unsaved work in other sessions will be lost. Proceed?&quot;</li>
+<li>If confirmed:</li>
+</ol>
+<pre><code class="language-bash"># Get current session&#39;s PID
+CURRENT_PID=$$
+
+# Kill all other Claude-related processes
+# (Careful: only kill node/claude processes, not system processes)
+ps aux | grep -E &quot;(claude|anthropic)&quot; | grep -v grep | grep -v $CURRENT_PID | awk &#39;{print $2}&#39; | xargs kill -TERM 2&gt;/dev/null
+
+# Wait 5 seconds for graceful shutdown
+sleep 5
+
+# Kill remaining Node processes that aren&#39;t part of current session
+# (Check parent PID to avoid killing our own MCP servers)
+</code></pre>
+<ol start="3">
+<li>Run filesystem cache drop</li>
+<li>Suggest <code>wsl --shutdown</code> + restart if swap is still &gt; 50%</li>
+<li>Output recovery report</li>
+</ol>
+<hr>
+<h2>WSL + Claude Code Performance Knowledge Base</h2>
+<h3>Why Does It Get Slow?</h3>
+<ol>
+<li><p><strong>Swap thrashing</strong>: WSL2 uses a virtual disk for swap. When RAM is full, Linux pages memory to swap, which lives on the same physical disk as Windows. Each page fault = ~10ms vs ~100ns for RAM. With 5 Claude sessions all paging simultaneously, the disk becomes the bottleneck.</p>
+</li>
+<li><p><strong>MCP server multiplication</strong>: Each Claude Code session spawns its own set of MCP servers. 5 sessions × 8 MCP servers = 40 Node processes, each holding 30-80MB. That&#39;s 1.2-3.2GB just for MCP servers.</p>
+</li>
+<li><p><strong>C: drive full</strong>: Windows pagefile lives on C:. When C: is full, Windows can&#39;t expand the pagefile → Windows processes slow down → WSL slows down (shared kernel resources).</p>
+</li>
+<li><p><strong>NTFS cross-filesystem penalty</strong>: Every file operation on <code>/mnt/c/</code> goes through 9P protocol (WSL↔Windows bridge). This is 10-50x slower than native ext4. Running <code>npm install</code> or <code>git</code> operations on <code>/mnt/c/</code> while memory-constrained compounds the problem.</p>
+</li>
+<li><p><strong>No process isolation</strong>: WSL2 shares the same Linux kernel across all distributions. All Claude sessions compete for the same memory pool.</p>
+</li>
+</ol>
+<h3>Quick Fixes (ordered by impact)</h3>
+<table>
+<thead>
+<tr>
+<th>Fix</th>
+<th>Impact</th>
+<th>Risk</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Close 2 idle Claude sessions</td>
+<td>HIGH (free ~1GB)</td>
+<td>LOW</td>
+<td>10s</td>
+</tr>
+<tr>
+<td>Run /storage-intelligence purge</td>
+<td>HIGH (free disk)</td>
+<td>LOW</td>
+<td>2min</td>
+</tr>
+<tr>
+<td>Drop filesystem caches</td>
+<td>MEDIUM (temporary)</td>
+<td>NONE</td>
+<td>1s</td>
+</tr>
+<tr>
+<td>Kill orphaned Node processes</td>
+<td>MEDIUM (~200MB)</td>
+<td>LOW</td>
+<td>5s</td>
+</tr>
+<tr>
+<td>Restart WSL (<code>wsl --shutdown</code>)</td>
+<td>HIGH (full reset)</td>
+<td>HIGH (kills all)</td>
+<td>30s</td>
+</tr>
+<tr>
+<td>Reduce MCP servers per session</td>
+<td>HIGH (long-term)</td>
+<td>LOW</td>
+<td>5min config</td>
+</tr>
+</tbody></table>
+<h3>.wslconfig Recommendations for Multi-Session Work</h3>
+<pre><code class="language-ini">[wsl2]
+# For 16GB host running 3-4 Claude sessions:
+memory=12GB        # Leave 4GB for Windows
+swap=12GB          # Generous swap prevents OOM kills
+processors=16      # Use all logical cores
+autoMemoryReclaim=dropcache  # Aggressive memory return
+
+# For 16GB host running 1-2 Claude sessions:
+memory=10GB        # More headroom for Windows
+swap=8GB           # Less swap needed
+</code></pre>
+<hr>
+<h2>Safety Rules (Non-Negotiable)</h2>
+<ol>
+<li><strong>Never kill the current session</strong> — the one running this command</li>
+<li><strong>Never kill a session without user confirmation</strong> (except orphaned processes)</li>
+<li><strong>Never modify .wslconfig without explicit approval</strong> — it requires WSL restart</li>
+<li><strong>Never run <code>wsl --shutdown</code></strong> without warning — it kills ALL WSL sessions</li>
+<li><strong>Orphaned processes only</strong> = parent PID is 1 AND CPU is 0%</li>
+<li><strong>Always measure before AND after</strong> — prove the improvement</li>
+<li><strong>Recommend /storage-intelligence</strong> for disk issues — don&#39;t duplicate its work</li>
+<li><strong>Don&#39;t kill Windows processes</strong> from WSL — only WSL-side processes</li>
+<li><strong>Log every kill action</strong> — PID, process name, memory freed</li>
+<li><strong>When in doubt, report and recommend</strong> — don&#39;t act</li>
+</ol>
+<hr>
+<h2>Integration Points</h2>
+<ul>
+<li><strong><code>/storage-intelligence</code></strong> — for disk space issues (C: drive full)</li>
+<li><strong><code>/performance-engineer session-report</code></strong> — quick check, no actions</li>
+<li><strong><code>/performance-engineer scan</code></strong> — full diagnostic, no actions</li>
+<li><strong><code>/performance-engineer triage</code></strong> — auto-fix safe items</li>
+<li><strong><code>/performance-engineer nuke</code></strong> — emergency recovery</li>
+</ul>
+<hr>
+<h2>Examples</h2>
+<h3>Quick health check</h3>
+<pre><code>/performance-engineer scan
+→ See what&#39;s eating your resources, no changes made
+</code></pre>
+<h3>Standard optimization</h3>
+<pre><code>/performance-engineer
+→ Auto-fix safe items + ask about idle sessions + full report
+</code></pre>
+<h3>Just show sessions</h3>
+<pre><code>/performance-engineer session-report
+→ Per-session RAM/process breakdown
+</code></pre>
+<h3>Machine is frozen</h3>
+<pre><code>/performance-engineer nuke
+→ Kill all other sessions, clear caches, maximum recovery
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

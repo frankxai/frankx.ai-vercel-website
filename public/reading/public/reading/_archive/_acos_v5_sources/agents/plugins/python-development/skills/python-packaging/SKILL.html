@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Python Packaging</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/python-development/skills/python-packaging/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Python Packaging</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpython-development">python-development</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpython-development%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fpython-development%2Fskills%2Fpython-packaging">python-packaging</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: python-packaging
+description: Create distributable Python packages with proper project structure, setup.py/pyproject.toml, and publishing to PyPI. Use when packaging Python libraries, creating CLI tools, or distributing Python code.</h2>
+<h1>Python Packaging</h1>
+<p>Comprehensive guide to creating, structuring, and distributing Python packages using modern packaging tools, pyproject.toml, and publishing to PyPI.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Creating Python libraries for distribution</li>
+<li>Building command-line tools with entry points</li>
+<li>Publishing packages to PyPI or private repositories</li>
+<li>Setting up Python project structure</li>
+<li>Creating installable packages with dependencies</li>
+<li>Building wheels and source distributions</li>
+<li>Versioning and releasing Python packages</li>
+<li>Creating namespace packages</li>
+<li>Implementing package metadata and classifiers</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Package Structure</h3>
+<ul>
+<li><strong>Source layout</strong>: <code>src/package_name/</code> (recommended)</li>
+<li><strong>Flat layout</strong>: <code>package_name/</code> (simpler but less flexible)</li>
+<li><strong>Package metadata</strong>: pyproject.toml, setup.py, or setup.cfg</li>
+<li><strong>Distribution formats</strong>: wheel (.whl) and source distribution (.tar.gz)</li>
+</ul>
+<h3>2. Modern Packaging Standards</h3>
+<ul>
+<li><strong>PEP 517/518</strong>: Build system requirements</li>
+<li><strong>PEP 621</strong>: Metadata in pyproject.toml</li>
+<li><strong>PEP 660</strong>: Editable installs</li>
+<li><strong>pyproject.toml</strong>: Single source of configuration</li>
+</ul>
+<h3>3. Build Backends</h3>
+<ul>
+<li><strong>setuptools</strong>: Traditional, widely used</li>
+<li><strong>hatchling</strong>: Modern, opinionated</li>
+<li><strong>flit</strong>: Lightweight, for pure Python</li>
+<li><strong>poetry</strong>: Dependency management + packaging</li>
+</ul>
+<h3>4. Distribution</h3>
+<ul>
+<li><strong>PyPI</strong>: Python Package Index (public)</li>
+<li><strong>TestPyPI</strong>: Testing before production</li>
+<li><strong>Private repositories</strong>: JFrog, AWS CodeArtifact, etc.</li>
+</ul>
+<h2>Quick Start</h2>
+<h3>Minimal Package Structure</h3>
+<pre><code>my-package/
+├── pyproject.toml
+├── README.md
+├── LICENSE
+├── src/
+│   └── my_package/
+│       ├── __init__.py
+│       └── module.py
+└── tests/
+    └── test_module.py
+</code></pre>
+<h3>Minimal pyproject.toml</h3>
+<pre><code class="language-toml">[build-system]
+requires = [&quot;setuptools&gt;=61.0&quot;]
+build-backend = &quot;setuptools.build_meta&quot;
+
+[project]
+name = &quot;my-package&quot;
+version = &quot;0.1.0&quot;
+description = &quot;A short description&quot;
+authors = [{name = &quot;Your Name&quot;, email = &quot;you@example.com&quot;}]
+readme = &quot;README.md&quot;
+requires-python = &quot;&gt;=3.8&quot;
+dependencies = [
+    &quot;requests&gt;=2.28.0&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;pytest&gt;=7.0&quot;,
+    &quot;black&gt;=22.0&quot;,
+]
+</code></pre>
+<h2>Package Structure Patterns</h2>
+<h3>Pattern 1: Source Layout (Recommended)</h3>
+<pre><code>my-package/
+├── pyproject.toml
+├── README.md
+├── LICENSE
+├── .gitignore
+├── src/
+│   └── my_package/
+│       ├── __init__.py
+│       ├── core.py
+│       ├── utils.py
+│       └── py.typed          # For type hints
+├── tests/
+│   ├── __init__.py
+│   ├── test_core.py
+│   └── test_utils.py
+└── docs/
+    └── index.md
+</code></pre>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Prevents accidentally importing from source</li>
+<li>Cleaner test imports</li>
+<li>Better isolation</li>
+</ul>
+<p><strong>pyproject.toml for source layout:</strong></p>
+<pre><code class="language-toml">[tool.setuptools.packages.find]
+where = [&quot;src&quot;]
+</code></pre>
+<h3>Pattern 2: Flat Layout</h3>
+<pre><code>my-package/
+├── pyproject.toml
+├── README.md
+├── my_package/
+│   ├── __init__.py
+│   └── module.py
+└── tests/
+    └── test_module.py
+</code></pre>
+<p><strong>Simpler but:</strong></p>
+<ul>
+<li>Can import package without installing</li>
+<li>Less professional for libraries</li>
+</ul>
+<h3>Pattern 3: Multi-Package Project</h3>
+<pre><code>project/
+├── pyproject.toml
+├── packages/
+│   ├── package-a/
+│   │   └── src/
+│   │       └── package_a/
+│   └── package-b/
+│       └── src/
+│           └── package_b/
+└── tests/
+</code></pre>
+<h2>Complete pyproject.toml Examples</h2>
+<h3>Pattern 4: Full-Featured pyproject.toml</h3>
+<pre><code class="language-toml">[build-system]
+requires = [&quot;setuptools&gt;=61.0&quot;, &quot;wheel&quot;]
+build-backend = &quot;setuptools.build_meta&quot;
+
+[project]
+name = &quot;my-awesome-package&quot;
+version = &quot;1.0.0&quot;
+description = &quot;An awesome Python package&quot;
+readme = &quot;README.md&quot;
+requires-python = &quot;&gt;=3.8&quot;
+license = {text = &quot;MIT&quot;}
+authors = [
+    {name = &quot;Your Name&quot;, email = &quot;you@example.com&quot;},
+]
+maintainers = [
+    {name = &quot;Maintainer Name&quot;, email = &quot;maintainer@example.com&quot;},
+]
+keywords = [&quot;example&quot;, &quot;package&quot;, &quot;awesome&quot;]
+classifiers = [
+    &quot;Development Status :: 4 - Beta&quot;,
+    &quot;Intended Audience :: Developers&quot;,
+    &quot;License :: OSI Approved :: MIT License&quot;,
+    &quot;Programming Language :: Python :: 3&quot;,
+    &quot;Programming Language :: Python :: 3.8&quot;,
+    &quot;Programming Language :: Python :: 3.9&quot;,
+    &quot;Programming Language :: Python :: 3.10&quot;,
+    &quot;Programming Language :: Python :: 3.11&quot;,
+    &quot;Programming Language :: Python :: 3.12&quot;,
+]
+
+dependencies = [
+    &quot;requests&gt;=2.28.0,&lt;3.0.0&quot;,
+    &quot;click&gt;=8.0.0&quot;,
+    &quot;pydantic&gt;=2.0.0&quot;,
+]
+
+[project.optional-dependencies]
+dev = [
+    &quot;pytest&gt;=7.0.0&quot;,
+    &quot;pytest-cov&gt;=4.0.0&quot;,
+    &quot;black&gt;=23.0.0&quot;,
+    &quot;ruff&gt;=0.1.0&quot;,
+    &quot;mypy&gt;=1.0.0&quot;,
+]
+docs = [
+    &quot;sphinx&gt;=5.0.0&quot;,
+    &quot;sphinx-rtd-theme&gt;=1.0.0&quot;,
+]
+all = [
+    &quot;my-awesome-package[dev,docs]&quot;,
+]
+
+[project.urls]
+Homepage = &quot;https://github.com/username/my-awesome-package&quot;
+Documentation = &quot;https://my-awesome-package.readthedocs.io&quot;
+Repository = &quot;https://github.com/username/my-awesome-package&quot;
+&quot;Bug Tracker&quot; = &quot;https://github.com/username/my-awesome-package/issues&quot;
+Changelog = &quot;https://github.com/username/my-awesome-package/blob/main/CHANGELOG.md&quot;
+
+[project.scripts]
+my-cli = &quot;my_package.cli:main&quot;
+awesome-tool = &quot;my_package.tools:run&quot;
+
+[project.entry-points.&quot;my_package.plugins&quot;]
+plugin1 = &quot;my_package.plugins:plugin1&quot;
+
+[tool.setuptools]
+package-dir = {&quot;&quot; = &quot;src&quot;}
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = [&quot;src&quot;]
+include = [&quot;my_package*&quot;]
+exclude = [&quot;tests*&quot;]
+
+[tool.setuptools.package-data]
+my_package = [&quot;py.typed&quot;, &quot;*.pyi&quot;, &quot;data/*.json&quot;]
+
+# Black configuration
+[tool.black]
+line-length = 100
+target-version = [&quot;py38&quot;, &quot;py39&quot;, &quot;py310&quot;, &quot;py311&quot;]
+include = &#39;\.pyi?$&#39;
+
+# Ruff configuration
+[tool.ruff]
+line-length = 100
+target-version = &quot;py38&quot;
+
+[tool.ruff.lint]
+select = [&quot;E&quot;, &quot;F&quot;, &quot;I&quot;, &quot;N&quot;, &quot;W&quot;, &quot;UP&quot;]
+
+# MyPy configuration
+[tool.mypy]
+python_version = &quot;3.8&quot;
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+testpaths = [&quot;tests&quot;]
+python_files = [&quot;test_*.py&quot;]
+addopts = &quot;-v --cov=my_package --cov-report=term-missing&quot;
+
+# Coverage configuration
+[tool.coverage.run]
+source = [&quot;src&quot;]
+omit = [&quot;*/tests/*&quot;]
+
+[tool.coverage.report]
+exclude_lines = [
+    &quot;pragma: no cover&quot;,
+    &quot;def __repr__&quot;,
+    &quot;raise AssertionError&quot;,
+    &quot;raise NotImplementedError&quot;,
+]
+</code></pre>
+<h3>Pattern 5: Dynamic Versioning</h3>
+<pre><code class="language-toml">[build-system]
+requires = [&quot;setuptools&gt;=61.0&quot;, &quot;setuptools-scm&gt;=8.0&quot;]
+build-backend = &quot;setuptools.build_meta&quot;
+
+[project]
+name = &quot;my-package&quot;
+dynamic = [&quot;version&quot;]
+description = &quot;Package with dynamic version&quot;
+
+[tool.setuptools.dynamic]
+version = {attr = &quot;my_package.__version__&quot;}
+
+# Or use setuptools-scm for git-based versioning
+[tool.setuptools_scm]
+write_to = &quot;src/my_package/_version.py&quot;
+</code></pre>
+<p><strong>In <strong>init</strong>.py:</strong></p>
+<pre><code class="language-python"># src/my_package/__init__.py
+__version__ = &quot;1.0.0&quot;
+
+# Or with setuptools-scm
+from importlib.metadata import version
+__version__ = version(&quot;my-package&quot;)
+</code></pre>
+<h2>Command-Line Interface (CLI) Patterns</h2>
+<h3>Pattern 6: CLI with Click</h3>
+<pre><code class="language-python"># src/my_package/cli.py
+import click
+
+@click.group()
+@click.version_option()
+def cli():
+    &quot;&quot;&quot;My awesome CLI tool.&quot;&quot;&quot;
+    pass
+
+@cli.command()
+@click.argument(&quot;name&quot;)
+@click.option(&quot;--greeting&quot;, default=&quot;Hello&quot;, help=&quot;Greeting to use&quot;)
+def greet(name: str, greeting: str):
+    &quot;&quot;&quot;Greet someone.&quot;&quot;&quot;
+    click.echo(f&quot;{greeting}, {name}!&quot;)
+
+@cli.command()
+@click.option(&quot;--count&quot;, default=1, help=&quot;Number of times to repeat&quot;)
+def repeat(count: int):
+    &quot;&quot;&quot;Repeat a message.&quot;&quot;&quot;
+    for i in range(count):
+        click.echo(f&quot;Message {i + 1}&quot;)
+
+def main():
+    &quot;&quot;&quot;Entry point for CLI.&quot;&quot;&quot;
+    cli()
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<p><strong>Register in pyproject.toml:</strong></p>
+<pre><code class="language-toml">[project.scripts]
+my-tool = &quot;my_package.cli:main&quot;
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-bash">pip install -e .
+my-tool greet World
+my-tool greet Alice --greeting=&quot;Hi&quot;
+my-tool repeat --count=3
+</code></pre>
+<h3>Pattern 7: CLI with argparse</h3>
+<pre><code class="language-python"># src/my_package/cli.py
+import argparse
+import sys
+
+def main():
+    &quot;&quot;&quot;Main CLI entry point.&quot;&quot;&quot;
+    parser = argparse.ArgumentParser(
+        description=&quot;My awesome tool&quot;,
+        prog=&quot;my-tool&quot;
+    )
+
+    parser.add_argument(
+        &quot;--version&quot;,
+        action=&quot;version&quot;,
+        version=&quot;%(prog)s 1.0.0&quot;
+    )
+
+    subparsers = parser.add_subparsers(dest=&quot;command&quot;, help=&quot;Commands&quot;)
+
+    # Add subcommand
+    process_parser = subparsers.add_parser(&quot;process&quot;, help=&quot;Process data&quot;)
+    process_parser.add_argument(&quot;input_file&quot;, help=&quot;Input file path&quot;)
+    process_parser.add_argument(
+        &quot;--output&quot;, &quot;-o&quot;,
+        default=&quot;output.txt&quot;,
+        help=&quot;Output file path&quot;
+    )
+
+    args = parser.parse_args()
+
+    if args.command == &quot;process&quot;:
+        process_data(args.input_file, args.output)
+    else:
+        parser.print_help()
+        sys.exit(1)
+
+def process_data(input_file: str, output_file: str):
+    &quot;&quot;&quot;Process data from input to output.&quot;&quot;&quot;
+    print(f&quot;Processing {input_file} -&gt; {output_file}&quot;)
+
+if __name__ == &quot;__main__&quot;:
+    main()
+</code></pre>
+<h2>Building and Publishing</h2>
+<h3>Pattern 8: Build Package Locally</h3>
+<pre><code class="language-bash"># Install build tools
+pip install build twine
+
+# Build distribution
+python -m build
+
+# This creates:
+# dist/
+#   my-package-1.0.0.tar.gz (source distribution)
+#   my_package-1.0.0-py3-none-any.whl (wheel)
+
+# Check the distribution
+twine check dist/*
+</code></pre>
+<h3>Pattern 9: Publishing to PyPI</h3>
+<pre><code class="language-bash"># Install publishing tools
+pip install twine
+
+# Test on TestPyPI first
+twine upload --repository testpypi dist/*
+
+# Install from TestPyPI to test
+pip install --index-url https://test.pypi.org/simple/ my-package
+
+# If all good, publish to PyPI
+twine upload dist/*
+</code></pre>
+<p><strong>Using API tokens (recommended):</strong></p>
+<pre><code class="language-bash"># Create ~/.pypirc
+[distutils]
+index-servers =
+    pypi
+    testpypi
+
+[pypi]
+username = __token__
+password = pypi-...your-token...
+
+[testpypi]
+username = __token__
+password = pypi-...your-test-token...
+</code></pre>
+<h3>Pattern 10: Automated Publishing with GitHub Actions</h3>
+<pre><code class="language-yaml"># .github/workflows/publish.yml
+name: Publish to PyPI
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: &quot;3.11&quot;
+
+      - name: Install dependencies
+        run: |
+          pip install build twine
+
+      - name: Build package
+        run: python -m build
+
+      - name: Check package
+        run: twine check dist/*
+
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/*
+</code></pre>
+<h2>Advanced Patterns</h2>
+<h3>Pattern 11: Including Data Files</h3>
+<pre><code class="language-toml">[tool.setuptools.package-data]
+my_package = [
+    &quot;data/*.json&quot;,
+    &quot;templates/*.html&quot;,
+    &quot;static/css/*.css&quot;,
+    &quot;py.typed&quot;,
+]
+</code></pre>
+<p><strong>Accessing data files:</strong></p>
+<pre><code class="language-python"># src/my_package/loader.py
+from importlib.resources import files
+import json
+
+def load_config():
+    &quot;&quot;&quot;Load configuration from package data.&quot;&quot;&quot;
+    config_file = files(&quot;my_package&quot;).joinpath(&quot;data/config.json&quot;)
+    with config_file.open() as f:
+        return json.load(f)
+
+# Python 3.9+
+from importlib.resources import files
+
+data = files(&quot;my_package&quot;).joinpath(&quot;data/file.txt&quot;).read_text()
+</code></pre>
+<h3>Pattern 12: Namespace Packages</h3>
+<p><strong>For large projects split across multiple repositories:</strong></p>
+<pre><code># Package 1: company-core
+company/
+└── core/
+    ├── __init__.py
+    └── models.py
+
+# Package 2: company-api
+company/
+└── api/
+    ├── __init__.py
+    └── routes.py
+</code></pre>
+<p><strong>Do NOT include <strong>init</strong>.py in the namespace directory (company/):</strong></p>
+<pre><code class="language-toml"># company-core/pyproject.toml
+[project]
+name = &quot;company-core&quot;
+
+[tool.setuptools.packages.find]
+where = [&quot;.&quot;]
+include = [&quot;company.core*&quot;]
+
+# company-api/pyproject.toml
+[project]
+name = &quot;company-api&quot;
+
+[tool.setuptools.packages.find]
+where = [&quot;.&quot;]
+include = [&quot;company.api*&quot;]
+</code></pre>
+<p><strong>Usage:</strong></p>
+<pre><code class="language-python"># Both packages can be imported under same namespace
+from company.core import models
+from company.api import routes
+</code></pre>
+<h3>Pattern 13: C Extensions</h3>
+<pre><code class="language-toml">[build-system]
+requires = [&quot;setuptools&gt;=61.0&quot;, &quot;wheel&quot;, &quot;Cython&gt;=0.29&quot;]
+build-backend = &quot;setuptools.build_meta&quot;
+
+[tool.setuptools]
+ext-modules = [
+    {name = &quot;my_package.fast_module&quot;, sources = [&quot;src/fast_module.c&quot;]},
+]
+</code></pre>
+<p><strong>Or with setup.py:</strong></p>
+<pre><code class="language-python"># setup.py
+from setuptools import setup, Extension
+
+setup(
+    ext_modules=[
+        Extension(
+            &quot;my_package.fast_module&quot;,
+            sources=[&quot;src/fast_module.c&quot;],
+            include_dirs=[&quot;src/include&quot;],
+        )
+    ]
+)
+</code></pre>
+<h2>Version Management</h2>
+<h3>Pattern 14: Semantic Versioning</h3>
+<pre><code class="language-python"># src/my_package/__init__.py
+__version__ = &quot;1.2.3&quot;
+
+# Semantic versioning: MAJOR.MINOR.PATCH
+# MAJOR: Breaking changes
+# MINOR: New features (backward compatible)
+# PATCH: Bug fixes
+</code></pre>
+<p><strong>Version constraints in dependencies:</strong></p>
+<pre><code class="language-toml">dependencies = [
+    &quot;requests&gt;=2.28.0,&lt;3.0.0&quot;,  # Compatible range
+    &quot;click~=8.1.0&quot;,              # Compatible release (~= 8.1.0 means &gt;=8.1.0,&lt;8.2.0)
+    &quot;pydantic&gt;=2.0&quot;,             # Minimum version
+    &quot;numpy==1.24.3&quot;,             # Exact version (avoid if possible)
+]
+</code></pre>
+<h3>Pattern 15: Git-Based Versioning</h3>
+<pre><code class="language-toml">[build-system]
+requires = [&quot;setuptools&gt;=61.0&quot;, &quot;setuptools-scm&gt;=8.0&quot;]
+build-backend = &quot;setuptools.build_meta&quot;
+
+[project]
+name = &quot;my-package&quot;
+dynamic = [&quot;version&quot;]
+
+[tool.setuptools_scm]
+write_to = &quot;src/my_package/_version.py&quot;
+version_scheme = &quot;post-release&quot;
+local_scheme = &quot;dirty-tag&quot;
+</code></pre>
+<p><strong>Creates versions like:</strong></p>
+<ul>
+<li><code>1.0.0</code> (from git tag)</li>
+<li><code>1.0.1.dev3+g1234567</code> (3 commits after tag)</li>
+</ul>
+<h2>Testing Installation</h2>
+<h3>Pattern 16: Editable Install</h3>
+<pre><code class="language-bash"># Install in development mode
+pip install -e .
+
+# With optional dependencies
+pip install -e &quot;.[dev]&quot;
+pip install -e &quot;.[dev,docs]&quot;
+
+# Now changes to source code are immediately reflected
+</code></pre>
+<h3>Pattern 17: Testing in Isolated Environment</h3>
+<pre><code class="language-bash"># Create virtual environment
+python -m venv test-env
+source test-env/bin/activate  # Linux/Mac
+# test-env\Scripts\activate  # Windows
+
+# Install package
+pip install dist/my_package-1.0.0-py3-none-any.whl
+
+# Test it works
+python -c &quot;import my_package; print(my_package.__version__)&quot;
+
+# Test CLI
+my-tool --help
+
+# Cleanup
+deactivate
+rm -rf test-env
+</code></pre>
+<h2>Documentation</h2>
+<h3>Pattern 18: README.md Template</h3>
+<pre><code class="language-markdown"># My Package
+
+[![PyPI version](https://badge.fury.io/py/my-package.svg)](https://pypi.org/project/my-package/)
+[![Python versions](https://img.shields.io/pypi/pyversions/my-package.svg)](https://pypi.org/project/my-package/)
+[![Tests](https://github.com/username/my-package/workflows/Tests/badge.svg)](https://github.com/username/my-package/actions)
+
+Brief description of your package.
+
+## Installation
+
+```bash
+pip install my-package
+```
+</code></pre>
+<h2>Quick Start</h2>
+<pre><code class="language-python">from my_package import something
+
+result = something.do_stuff()
+</code></pre>
+<h2>Features</h2>
+<ul>
+<li>Feature 1</li>
+<li>Feature 2</li>
+<li>Feature 3</li>
+</ul>
+<h2>Documentation</h2>
+<p>Full documentation: <a href="https://my-package.readthedocs.io">https://my-package.readthedocs.io</a></p>
+<h2>Development</h2>
+<pre><code class="language-bash">git clone https://github.com/username/my-package.git
+cd my-package
+pip install -e &quot;.[dev]&quot;
+pytest
+</code></pre>
+<h2>License</h2>
+<p>MIT</p>
+<pre><code>
+## Common Patterns
+
+### Pattern 19: Multi-Architecture Wheels
+
+```yaml
+# .github/workflows/wheels.yml
+name: Build wheels
+
+on: [push, pull_request]
+
+jobs:
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.16.2
+
+      - uses: actions/upload-artifact@v3
+        with:
+          path: ./wheelhouse/*.whl
+</code></pre>
+<h3>Pattern 20: Private Package Index</h3>
+<pre><code class="language-bash"># Install from private index
+pip install my-package --index-url https://private.pypi.org/simple/
+
+# Or add to pip.conf
+[global]
+index-url = https://private.pypi.org/simple/
+extra-index-url = https://pypi.org/simple/
+
+# Upload to private index
+twine upload --repository-url https://private.pypi.org/ dist/*
+</code></pre>
+<h2>File Templates</h2>
+<h3>.gitignore for Python Packages</h3>
+<pre><code class="language-gitignore"># Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution
+*.whl
+*.tar.gz
+</code></pre>
+<h3>MANIFEST.in</h3>
+<pre><code># MANIFEST.in
+include README.md
+include LICENSE
+include pyproject.toml
+
+recursive-include src/my_package/data *.json
+recursive-include src/my_package/templates *.html
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+</code></pre>
+<h2>Checklist for Publishing</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Code is tested (pytest passing)</li>
+<li><input disabled="" type="checkbox"> Documentation is complete (README, docstrings)</li>
+<li><input disabled="" type="checkbox"> Version number updated</li>
+<li><input disabled="" type="checkbox"> CHANGELOG.md updated</li>
+<li><input disabled="" type="checkbox"> License file included</li>
+<li><input disabled="" type="checkbox"> pyproject.toml is complete</li>
+<li><input disabled="" type="checkbox"> Package builds without errors</li>
+<li><input disabled="" type="checkbox"> Installation tested in clean environment</li>
+<li><input disabled="" type="checkbox"> CLI tools work (if applicable)</li>
+<li><input disabled="" type="checkbox"> PyPI metadata is correct (classifiers, keywords)</li>
+<li><input disabled="" type="checkbox"> GitHub repository linked</li>
+<li><input disabled="" type="checkbox"> Tested on TestPyPI first</li>
+<li><input disabled="" type="checkbox"> Git tag created for release</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><strong>Python Packaging Guide</strong>: <a href="https://packaging.python.org/">https://packaging.python.org/</a></li>
+<li><strong>PyPI</strong>: <a href="https://pypi.org/">https://pypi.org/</a></li>
+<li><strong>TestPyPI</strong>: <a href="https://test.pypi.org/">https://test.pypi.org/</a></li>
+<li><strong>setuptools documentation</strong>: <a href="https://setuptools.pypa.io/">https://setuptools.pypa.io/</a></li>
+<li><strong>build</strong>: <a href="https://pypa-build.readthedocs.io/">https://pypa-build.readthedocs.io/</a></li>
+<li><strong>twine</strong>: <a href="https://twine.readthedocs.io/">https://twine.readthedocs.io/</a></li>
+</ul>
+<h2>Best Practices Summary</h2>
+<ol>
+<li><strong>Use src/ layout</strong> for cleaner package structure</li>
+<li><strong>Use pyproject.toml</strong> for modern packaging</li>
+<li><strong>Pin build dependencies</strong> in build-system.requires</li>
+<li><strong>Version appropriately</strong> with semantic versioning</li>
+<li><strong>Include all metadata</strong> (classifiers, URLs, etc.)</li>
+<li><strong>Test installation</strong> in clean environments</li>
+<li><strong>Use TestPyPI</strong> before publishing to PyPI</li>
+<li><strong>Document thoroughly</strong> with README and docstrings</li>
+<li><strong>Include LICENSE</strong> file</li>
+<li><strong>Automate publishing</strong> with CI/CD</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

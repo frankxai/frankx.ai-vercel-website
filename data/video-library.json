@@ -77,7 +77,67 @@
     "level": "intermediate"
   },
   {
-    "id": "pOLR5jE5Vjw",
+    "id": "zjkBMFhNj_g",
+    "title": "Intro to Large Language Models",
+    "author": "Andrej Karpathy",
+    "category": "AI Architecture",
+    "personas": ["developer", "architect", "student"],
+    "tags": ["llm", "intro", "education"],
+    "description": "Karpathy's accessible yet deep explanation of how LLMs work, from tokens to training.",
+    "featured": true
+  },
+  {
+    "id": "kCc8FmEb1nY",
+    "title": "Let's Build GPT from Scratch",
+    "author": "Andrej Karpathy",
+    "category": "AI Architecture",
+    "personas": ["developer", "architect"],
+    "tags": ["gpt", "transformer", "coding"],
+    "description": "Build a GPT model from scratch in Python. The definitive hands-on transformer tutorial.",
+    "featured": true
+  },
+  {
+    "id": "7xTGNNLPyMI",
+    "title": "Deep Dive into LLMs like ChatGPT",
+    "author": "Andrej Karpathy",
+    "category": "AI Architecture",
+    "personas": ["developer", "architect", "investor"],
+    "tags": ["llm", "chatgpt", "deep dive"],
+    "description": "Karpathy's comprehensive 3.5-hour exploration of modern LLM architectures and capabilities.",
+    "featured": false
+  },
+  {
+    "id": "aircAruvnKk",
+    "title": "But What Is a Neural Network?",
+    "author": "3Blue1Brown",
+    "category": "AI Architecture",
+    "personas": ["student", "developer"],
+    "tags": ["math", "visualization", "neural networks"],
+    "description": "Beautiful visual explanation of neural networks. The best starting point for visual learners.",
+    "featured": true
+  },
+  {
+    "id": "IHZwWFHWa-w",
+    "title": "Gradient Descent: How Neural Networks Learn",
+    "author": "3Blue1Brown",
+    "category": "AI Architecture",
+    "personas": ["student", "developer"],
+    "tags": ["math", "gradient descent", "backpropagation"],
+    "description": "Visual intuition for how neural networks learn through gradient descent.",
+    "featured": false
+  },
+  {
+    "id": "eMlx5fFNoYc",
+    "title": "Attention in Transformers, Visually Explained",
+    "author": "3Blue1Brown",
+    "category": "AI Architecture",
+    "personas": ["developer", "architect"],
+    "tags": ["attention", "transformers", "visualization"],
+    "description": "The attention mechanism that powers GPT, Claude, and every modern LLM — explained visually.",
+    "featured": true
+  },
+  {
+    "id": "eTTMUWP5B0s",
     "title": "The State of AI Engineering",
     "author": "Simon Willison",
     "category": "AI Engineering",
@@ -130,6 +190,36 @@
     "description": "Andrew Ng on why AI agents will be the next major paradigm shift in artificial intelligence.",
     "featured": false,
     "level": "intro"
+  },
+  {
+    "id": "QUXQNi6jQ30",
+    "title": "LLMs on the Command Line",
+    "author": "Simon Willison",
+    "category": "AI Engineering",
+    "personas": ["developer", "architect"],
+    "tags": ["cli", "llm", "terminal"],
+    "description": "Practical techniques for using LLMs directly from the terminal for development workflows.",
+    "featured": false
+  },
+  {
+    "id": "sal78ACtGTc",
+    "title": "What's Next for AI Agentic Workflows",
+    "author": "Andrew Ng",
+    "category": "AI Architecture",
+    "personas": ["architect", "developer"],
+    "tags": ["agents", "workflow", "design patterns"],
+    "description": "Andrew Ng's influential talk on the four key agentic design patterns shaping AI development.",
+    "featured": true
+  },
+  {
+    "id": "KrRD7r7y7NY",
+    "title": "The Rise of AI Agents",
+    "author": "Andrew Ng",
+    "category": "AI Architecture",
+    "personas": ["architect", "investor"],
+    "tags": ["agents", "future", "autonomy"],
+    "description": "Andrew Ng on why AI agents will be the next major paradigm shift in artificial intelligence.",
+    "featured": true
   },
   {
     "id": "Ta5g-OxjPO4",
@@ -284,6 +374,76 @@
     "description": "Rick Beato's analysis of why modern music production has degraded — and what to do about it.",
     "featured": false,
     "level": "intermediate"
+  },
+  {
+    "id": "CBYhVcO4WgI",
+    "title": "How to Start a Startup (Lecture 1)",
+    "author": "Y Combinator",
+    "category": "Strategy",
+    "personas": ["investor", "creator"],
+    "tags": ["startup", "yc", "business"],
+    "description": "The legendary first lecture from YC's startup school with Sam Altman and Dustin Moskovitz.",
+    "featured": true
+  },
+  {
+    "id": "0wIUK0nsyUg",
+    "title": "AI Will Save The World",
+    "author": "a16z",
+    "category": "Strategy",
+    "personas": ["investor", "architect"],
+    "tags": ["optimism", "future", "venture"],
+    "description": "Marc Andreessen's case for AI optimism and why technology will solve humanity's biggest problems.",
+    "featured": false
+  },
+  {
+    "id": "BZ2nSULolKI",
+    "title": "The One-Person Business Model",
+    "author": "Dan Koe",
+    "category": "Creator Economy",
+    "personas": ["creator", "investor"],
+    "tags": ["solo", "business", "creator"],
+    "description": "How to productize yourself and build a one-person business that scales without employees.",
+    "featured": true
+  },
+  {
+    "id": "H_lZr0BAWhM",
+    "title": "How I Think: The Real Secret of Productivity",
+    "author": "Ali Abdaal",
+    "category": "Creator Economy",
+    "personas": ["creator", "student"],
+    "tags": ["productivity", "systems", "thinking"],
+    "description": "Ali Abdaal's framework for productive thinking and building creator systems.",
+    "featured": true
+  },
+  {
+    "id": "RKXZ7t_RiOE",
+    "title": "Pricing Design Work & Creativity",
+    "author": "Chris Do",
+    "category": "Creativity",
+    "personas": ["creator", "investor"],
+    "tags": ["pricing", "design", "business"],
+    "description": "Chris Do's masterclass on pricing creative work and communicating design value.",
+    "featured": false
+  },
+  {
+    "id": "n9iv24yI04nI",
+    "title": "Rick Rubin: The Creative Act",
+    "author": "60 Minutes",
+    "category": "Creativity",
+    "personas": ["creator", "artist"],
+    "tags": ["mindset", "art", "philosophy"],
+    "description": "Legendary producer Rick Rubin on listening to the universe and removing the ego from creation.",
+    "featured": true
+  },
+  {
+    "id": "1bZ0OSEViyo",
+    "title": "The Real Reason Why Music Is Getting Worse",
+    "author": "Rick Beato",
+    "category": "Creativity",
+    "personas": ["creator", "artist"],
+    "tags": ["music", "industry", "quality"],
+    "description": "Rick Beato's analysis of why modern music production has degraded — and what to do about it.",
+    "featured": false
   },
   {
     "id": "Cqbleas1mmo",

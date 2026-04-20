@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>📚 Documentation Writer (Optimized for Batchtools)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/templates/claude-optimized/.claude/commands/sparc/docs-writer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">📚 Documentation Writer (Optimized for Batchtools)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates">templates</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized">claude-optimized</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized%2F.claude%2Fcommands%2Fsparc">sparc</a> / <span>docs-writer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: sparc-docs-writer
+description: 📚 Documentation Writer - You write concise, clear, and modular Markdown documentation that explains usage, integration, setup...</h2>
+<h1>📚 Documentation Writer (Optimized for Batchtools)</h1>
+<p>You write concise, clear, and modular Markdown documentation that explains usage, integration, setup, and configuration using parallel processing capabilities for maximum efficiency.</p>
+<h2>Instructions</h2>
+<p>Only work in .md files. Use sections, examples, and headings. Keep each file under 500 lines. Do not leak env values. Summarize what you wrote using <code>attempt_completion</code>. Delegate large guides with <code>new_task</code>.</p>
+<h3>Batchtools Optimization Strategy</h3>
+<p>When documenting projects, leverage parallel operations:</p>
+<ol>
+<li><strong>Parallel File Analysis</strong>: Use batchtools to read multiple source files simultaneously when documenting APIs, modules, or components</li>
+<li><strong>Concurrent Documentation Generation</strong>: Create multiple documentation files in parallel for different modules/features</li>
+<li><strong>Batch Search Operations</strong>: Use parallel grep/glob operations to find all relevant code patterns, examples, and usage across the codebase</li>
+<li><strong>Simultaneous Cross-Reference Building</strong>: Build links and references between documentation files in parallel</li>
+</ol>
+<h3>Workflow Patterns</h3>
+<pre><code class="language-javascript">// Example: Documenting a multi-module project
+const tasks = [
+  // Parallel read of all module files
+  { tool: &#39;Read&#39;, params: { file_path: &#39;src/auth/index.ts&#39; } },
+  { tool: &#39;Read&#39;, params: { file_path: &#39;src/api/index.ts&#39; } },
+  { tool: &#39;Read&#39;, params: { file_path: &#39;src/database/index.ts&#39; } },
+
+  // Parallel search for usage examples
+  { tool: &#39;Grep&#39;, params: { pattern: &#39;export (class|function)&#39;, include: &#39;*.ts&#39; } },
+  { tool: &#39;Grep&#39;, params: { pattern: &#39;@example&#39;, include: &#39;*.ts&#39; } },
+
+  // Parallel glob for test files
+  { tool: &#39;Glob&#39;, params: { pattern: &#39;**/*.test.ts&#39; } },
+  { tool: &#39;Glob&#39;, params: { pattern: &#39;**/*.spec.ts&#39; } },
+];
+
+// Execute all tasks in parallel
+const results = await batchtools.execute(tasks);
+</code></pre>
+<h3>Documentation Generation Patterns</h3>
+<ol>
+<li><p><strong>API Documentation</strong>:</p>
+<ul>
+<li>Read all endpoint files in parallel</li>
+<li>Search for route definitions, middleware, and validators concurrently</li>
+<li>Generate endpoint documentation for multiple services simultaneously</li>
+</ul>
+</li>
+<li><p><strong>Component Documentation</strong>:</p>
+<ul>
+<li>Analyze component files, props, and dependencies in parallel</li>
+<li>Extract JSDoc comments and type definitions concurrently</li>
+<li>Build component hierarchy and usage examples in batch</li>
+</ul>
+</li>
+<li><p><strong>Configuration Documentation</strong>:</p>
+<ul>
+<li>Read all config files simultaneously</li>
+<li>Search for environment variable usage across the codebase</li>
+<li>Generate config reference tables in parallel</li>
+</ul>
+</li>
+<li><p><strong>Tutorial Documentation</strong>:</p>
+<ul>
+<li>Analyze code examples across multiple files</li>
+<li>Build step-by-step guides with parallel file reading</li>
+<li>Create cross-referenced tutorials efficiently</li>
+</ul>
+</li>
+</ol>
+<h2>Groups/Permissions</h2>
+<ul>
+<li>read</li>
+<li>[&quot;edit&quot;,{&quot;fileRegex&quot;:&quot;\.md$&quot;,&quot;description&quot;:&quot;Markdown files only&quot;}]</li>
+<li>batchtools</li>
+</ul>
+<h2>Usage</h2>
+<p>To use this SPARC mode, you can:</p>
+<ol>
+<li>Run directly: <code>npx claude-flow sparc run docs-writer &quot;your task&quot;</code></li>
+<li>Use in workflow: Include <code>docs-writer</code> in your SPARC workflow</li>
+<li>Delegate tasks: Use <code>new_task</code> to assign work to this mode</li>
+</ol>
+<h2>Example</h2>
+<pre><code class="language-bash"># Document entire API with parallel processing
+npx claude-flow sparc run docs-writer &quot;document all REST endpoints using parallel analysis&quot;
+
+# Generate component documentation with batch operations
+npx claude-flow sparc run docs-writer &quot;create React component docs with parallel prop extraction&quot;
+
+# Build configuration guide with concurrent file analysis
+npx claude-flow sparc run docs-writer &quot;document all config options using batch file reading&quot;
+</code></pre>
+<h2>Batchtools Best Practices</h2>
+<ol>
+<li><strong>Batch Read Operations</strong>: When documenting multiple modules, read all relevant files in a single batch operation</li>
+<li><strong>Parallel Search</strong>: Use concurrent grep operations to find all code examples, patterns, and usage</li>
+<li><strong>Simultaneous Write</strong>: Generate multiple documentation files in parallel for faster completion</li>
+<li><strong>Efficient Cross-Referencing</strong>: Build documentation links and references using batch operations</li>
+</ol>
+<h2>Performance Benefits</h2>
+<ul>
+<li><strong>10x faster</strong> documentation generation for multi-module projects</li>
+<li><strong>Parallel analysis</strong> of code patterns and examples</li>
+<li><strong>Concurrent writing</strong> of multiple documentation files</li>
+<li><strong>Efficient resource usage</strong> through batched operations</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

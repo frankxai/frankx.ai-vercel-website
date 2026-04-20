@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>REST API Best Practices</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/backend-development/skills/api-design-principles/references/rest-best-practices.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">REST API Best Practices</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development">backend-development</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Fapi-design-principles">api-design-principles</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Fapi-design-principles%2Freferences">references</a> / <span>rest-best-practices.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>REST API Best Practices</h1>
+<h2>URL Structure</h2>
+<h3>Resource Naming</h3>
+<pre><code># Good - Plural nouns
+GET /api/users
+GET /api/orders
+GET /api/products
+
+# Bad - Verbs or mixed conventions
+GET /api/getUser
+GET /api/user  (inconsistent singular)
+POST /api/createOrder
+</code></pre>
+<h3>Nested Resources</h3>
+<pre><code># Shallow nesting (preferred)
+GET /api/users/{id}/orders
+GET /api/orders/{id}
+
+# Deep nesting (avoid)
+GET /api/users/{id}/orders/{orderId}/items/{itemId}/reviews
+# Better:
+GET /api/order-items/{id}/reviews
+</code></pre>
+<h2>HTTP Methods and Status Codes</h2>
+<h3>GET - Retrieve Resources</h3>
+<pre><code>GET /api/users              → 200 OK (with list)
+GET /api/users/{id}         → 200 OK or 404 Not Found
+GET /api/users?page=2       → 200 OK (paginated)
+</code></pre>
+<h3>POST - Create Resources</h3>
+<pre><code>POST /api/users
+  Body: {&quot;name&quot;: &quot;John&quot;, &quot;email&quot;: &quot;john@example.com&quot;}
+  → 201 Created
+  Location: /api/users/123
+  Body: {&quot;id&quot;: &quot;123&quot;, &quot;name&quot;: &quot;John&quot;, ...}
+
+POST /api/users (validation error)
+  → 422 Unprocessable Entity
+  Body: {&quot;errors&quot;: [...]}
+</code></pre>
+<h3>PUT - Replace Resources</h3>
+<pre><code>PUT /api/users/{id}
+  Body: {complete user object}
+  → 200 OK (updated)
+  → 404 Not Found (doesn&#39;t exist)
+
+# Must include ALL fields
+</code></pre>
+<h3>PATCH - Partial Update</h3>
+<pre><code>PATCH /api/users/{id}
+  Body: {&quot;name&quot;: &quot;Jane&quot;}  (only changed fields)
+  → 200 OK
+  → 404 Not Found
+</code></pre>
+<h3>DELETE - Remove Resources</h3>
+<pre><code>DELETE /api/users/{id}
+  → 204 No Content (deleted)
+  → 404 Not Found
+  → 409 Conflict (can&#39;t delete due to references)
+</code></pre>
+<h2>Filtering, Sorting, and Searching</h2>
+<h3>Query Parameters</h3>
+<pre><code># Filtering
+GET /api/users?status=active
+GET /api/users?role=admin&amp;status=active
+
+# Sorting
+GET /api/users?sort=created_at
+GET /api/users?sort=-created_at  (descending)
+GET /api/users?sort=name,created_at
+
+# Searching
+GET /api/users?search=john
+GET /api/users?q=john
+
+# Field selection (sparse fieldsets)
+GET /api/users?fields=id,name,email
+</code></pre>
+<h2>Pagination Patterns</h2>
+<h3>Offset-Based Pagination</h3>
+<pre><code class="language-python">GET /api/users?page=2&amp;page_size=20
+
+Response:
+{
+  &quot;items&quot;: [...],
+  &quot;page&quot;: 2,
+  &quot;page_size&quot;: 20,
+  &quot;total&quot;: 150,
+  &quot;pages&quot;: 8
+}
+</code></pre>
+<h3>Cursor-Based Pagination (for large datasets)</h3>
+<pre><code class="language-python">GET /api/users?limit=20&amp;cursor=eyJpZCI6MTIzfQ
+
+Response:
+{
+  &quot;items&quot;: [...],
+  &quot;next_cursor&quot;: &quot;eyJpZCI6MTQzfQ&quot;,
+  &quot;has_more&quot;: true
+}
+</code></pre>
+<h3>Link Header Pagination (RESTful)</h3>
+<pre><code>GET /api/users?page=2
+
+Response Headers:
+Link: &lt;https://api.example.com/users?page=3&gt;; rel=&quot;next&quot;,
+      &lt;https://api.example.com/users?page=1&gt;; rel=&quot;prev&quot;,
+      &lt;https://api.example.com/users?page=1&gt;; rel=&quot;first&quot;,
+      &lt;https://api.example.com/users?page=8&gt;; rel=&quot;last&quot;
+</code></pre>
+<h2>Versioning Strategies</h2>
+<h3>URL Versioning (Recommended)</h3>
+<pre><code>/api/v1/users
+/api/v2/users
+
+Pros: Clear, easy to route
+Cons: Multiple URLs for same resource
+</code></pre>
+<h3>Header Versioning</h3>
+<pre><code>GET /api/users
+Accept: application/vnd.api+json; version=2
+
+Pros: Clean URLs
+Cons: Less visible, harder to test
+</code></pre>
+<h3>Query Parameter</h3>
+<pre><code>GET /api/users?version=2
+
+Pros: Easy to test
+Cons: Optional parameter can be forgotten
+</code></pre>
+<h2>Rate Limiting</h2>
+<h3>Headers</h3>
+<pre><code>X-RateLimit-Limit: 1000
+X-RateLimit-Remaining: 742
+X-RateLimit-Reset: 1640000000
+
+Response when limited:
+429 Too Many Requests
+Retry-After: 3600
+</code></pre>
+<h3>Implementation Pattern</h3>
+<pre><code class="language-python">from fastapi import HTTPException, Request
+from datetime import datetime, timedelta
+
+class RateLimiter:
+    def __init__(self, calls: int, period: int):
+        self.calls = calls
+        self.period = period
+        self.cache = {}
+
+    def check(self, key: str) -&gt; bool:
+        now = datetime.now()
+        if key not in self.cache:
+            self.cache[key] = []
+
+        # Remove old requests
+        self.cache[key] = [
+            ts for ts in self.cache[key]
+            if now - ts &lt; timedelta(seconds=self.period)
+        ]
+
+        if len(self.cache[key]) &gt;= self.calls:
+            return False
+
+        self.cache[key].append(now)
+        return True
+
+limiter = RateLimiter(calls=100, period=60)
+
+@app.get(&quot;/api/users&quot;)
+async def get_users(request: Request):
+    if not limiter.check(request.client.host):
+        raise HTTPException(
+            status_code=429,
+            headers={&quot;Retry-After&quot;: &quot;60&quot;}
+        )
+    return {&quot;users&quot;: [...]}
+</code></pre>
+<h2>Authentication and Authorization</h2>
+<h3>Bearer Token</h3>
+<pre><code>Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+
+401 Unauthorized - Missing/invalid token
+403 Forbidden - Valid token, insufficient permissions
+</code></pre>
+<h3>API Keys</h3>
+<pre><code>X-API-Key: your-api-key-here
+</code></pre>
+<h2>Error Response Format</h2>
+<h3>Consistent Structure</h3>
+<pre><code class="language-json">{
+  &quot;error&quot;: {
+    &quot;code&quot;: &quot;VALIDATION_ERROR&quot;,
+    &quot;message&quot;: &quot;Request validation failed&quot;,
+    &quot;details&quot;: [
+      {
+        &quot;field&quot;: &quot;email&quot;,
+        &quot;message&quot;: &quot;Invalid email format&quot;,
+        &quot;value&quot;: &quot;not-an-email&quot;
+      }
+    ],
+    &quot;timestamp&quot;: &quot;2025-10-16T12:00:00Z&quot;,
+    &quot;path&quot;: &quot;/api/users&quot;
+  }
+}
+</code></pre>
+<h3>Status Code Guidelines</h3>
+<ul>
+<li><code>200 OK</code>: Successful GET, PATCH, PUT</li>
+<li><code>201 Created</code>: Successful POST</li>
+<li><code>204 No Content</code>: Successful DELETE</li>
+<li><code>400 Bad Request</code>: Malformed request</li>
+<li><code>401 Unauthorized</code>: Authentication required</li>
+<li><code>403 Forbidden</code>: Authenticated but not authorized</li>
+<li><code>404 Not Found</code>: Resource doesn&#39;t exist</li>
+<li><code>409 Conflict</code>: State conflict (duplicate email, etc.)</li>
+<li><code>422 Unprocessable Entity</code>: Validation errors</li>
+<li><code>429 Too Many Requests</code>: Rate limited</li>
+<li><code>500 Internal Server Error</code>: Server error</li>
+<li><code>503 Service Unavailable</code>: Temporary downtime</li>
+</ul>
+<h2>Caching</h2>
+<h3>Cache Headers</h3>
+<pre><code># Client caching
+Cache-Control: public, max-age=3600
+
+# No caching
+Cache-Control: no-cache, no-store, must-revalidate
+
+# Conditional requests
+ETag: &quot;33a64df551425fcc55e4d42a148795d9f25f89d4&quot;
+If-None-Match: &quot;33a64df551425fcc55e4d42a148795d9f25f89d4&quot;
+→ 304 Not Modified
+</code></pre>
+<h2>Bulk Operations</h2>
+<h3>Batch Endpoints</h3>
+<pre><code class="language-python">POST /api/users/batch
+{
+  &quot;items&quot;: [
+    {&quot;name&quot;: &quot;User1&quot;, &quot;email&quot;: &quot;user1@example.com&quot;},
+    {&quot;name&quot;: &quot;User2&quot;, &quot;email&quot;: &quot;user2@example.com&quot;}
+  ]
+}
+
+Response:
+{
+  &quot;results&quot;: [
+    {&quot;id&quot;: &quot;1&quot;, &quot;status&quot;: &quot;created&quot;},
+    {&quot;id&quot;: null, &quot;status&quot;: &quot;failed&quot;, &quot;error&quot;: &quot;Email already exists&quot;}
+  ]
+}
+</code></pre>
+<h2>Idempotency</h2>
+<h3>Idempotency Keys</h3>
+<pre><code>POST /api/orders
+Idempotency-Key: unique-key-123
+
+If duplicate request:
+→ 200 OK (return cached response)
+</code></pre>
+<h2>CORS Configuration</h2>
+<pre><code class="language-python">from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[&quot;https://example.com&quot;],
+    allow_credentials=True,
+    allow_methods=[&quot;*&quot;],
+    allow_headers=[&quot;*&quot;],
+)
+</code></pre>
+<h2>Documentation with OpenAPI</h2>
+<pre><code class="language-python">from fastapi import FastAPI
+
+app = FastAPI(
+    title=&quot;My API&quot;,
+    description=&quot;API for managing users&quot;,
+    version=&quot;1.0.0&quot;,
+    docs_url=&quot;/docs&quot;,
+    redoc_url=&quot;/redoc&quot;
+)
+
+@app.get(
+    &quot;/api/users/{user_id}&quot;,
+    summary=&quot;Get user by ID&quot;,
+    response_description=&quot;User details&quot;,
+    tags=[&quot;Users&quot;]
+)
+async def get_user(
+    user_id: str = Path(..., description=&quot;The user ID&quot;)
+):
+    &quot;&quot;&quot;
+    Retrieve user by ID.
+
+    Returns full user profile including:
+    - Basic information
+    - Contact details
+    - Account status
+    &quot;&quot;&quot;
+    pass
+</code></pre>
+<h2>Health and Monitoring Endpoints</h2>
+<pre><code class="language-python">@app.get(&quot;/health&quot;)
+async def health_check():
+    return {
+        &quot;status&quot;: &quot;healthy&quot;,
+        &quot;version&quot;: &quot;1.0.0&quot;,
+        &quot;timestamp&quot;: datetime.now().isoformat()
+    }
+
+@app.get(&quot;/health/detailed&quot;)
+async def detailed_health():
+    return {
+        &quot;status&quot;: &quot;healthy&quot;,
+        &quot;checks&quot;: {
+            &quot;database&quot;: await check_database(),
+            &quot;redis&quot;: await check_redis(),
+            &quot;external_api&quot;: await check_external_api()
+        }
+    }
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Hive-Mind Migration Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/v3-migration/HIVE-MIND-MIGRATION.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Hive-Mind Migration Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fv3-migration">v3-migration</a> / <span>HIVE-MIND-MIGRATION.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Hive-Mind Migration Guide</h1>
+<blockquote>
+<p>Migrating from V2 Hive-Mind to V3 Swarm Coordination</p>
+</blockquote>
+<h2>Overview</h2>
+<p>V2&#39;s Hive-Mind system is a comprehensive multi-agent coordination framework. V3 consolidates this into the <code>@claude-flow/swarm</code> module with a unified <code>SwarmCoordinator</code> per ADR-003.</p>
+<h2>Architecture Comparison</h2>
+<h3>V2 Hive-Mind Structure</h3>
+<pre><code>v2/src/hive-mind/
+├── core/
+│   ├── HiveMind.ts        # Main orchestrator
+│   ├── Queen.ts           # Strategic coordinator
+│   ├── Agent.ts           # Agent base class
+│   ├── Memory.ts          # Collective memory
+│   └── Communication.ts   # Inter-agent messaging
+├── integration/
+│   ├── ConsensusEngine.ts # Voting &amp; consensus
+│   ├── SwarmOrchestrator.ts
+│   └── MCPToolWrapper.ts
+└── types.ts
+</code></pre>
+<h3>V3 Swarm Structure</h3>
+<pre><code>v3/@claude-flow/swarm/
+├── src/
+│   ├── unified-coordinator.ts  # Main coordinator (ADR-003)
+│   ├── topology-manager.ts     # Topology handling
+│   ├── types.ts
+│   ├── consensus/
+│   │   └── consensus-engine.ts
+│   ├── coordination/
+│   │   └── coordinator.ts
+│   ├── domain/
+│   │   ├── entities/
+│   │   ├── repositories/
+│   │   └── services/
+│   └── application/
+│       ├── commands/
+│       └── services/
+</code></pre>
+<h2>Feature Migration Map</h2>
+<h3>Core Components</h3>
+<table>
+<thead>
+<tr>
+<th>V2 Component</th>
+<th>V3 Equivalent</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HiveMind.ts</code></td>
+<td><code>unified-coordinator.ts</code></td>
+<td>⚠️ Partial</td>
+</tr>
+<tr>
+<td><code>Queen.ts</code></td>
+<td>Missing</td>
+<td>❌ Needs implementation</td>
+</tr>
+<tr>
+<td><code>Agent.ts</code></td>
+<td><code>domain/entities/agent.ts</code></td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td><code>Memory.ts</code></td>
+<td><code>@claude-flow/memory</code></td>
+<td>✅ Enhanced</td>
+</tr>
+<tr>
+<td><code>Communication.ts</code></td>
+<td><code>@claude-flow/shared/events</code></td>
+<td>✅ Complete</td>
+</tr>
+</tbody></table>
+<h3>Queen Coordinator - MISSING</h3>
+<p>The V2 Queen provides:</p>
+<ul>
+<li>Strategic decision-making with MCP neural analysis</li>
+<li>Agent capability scoring for task assignment</li>
+<li>Coordination strategies per topology</li>
+<li>Consensus initiation for critical tasks</li>
+<li>Performance pattern training</li>
+<li>Task stall detection and recovery</li>
+</ul>
+<p><strong>Migration Path:</strong></p>
+<pre><code class="language-typescript">// V3 Implementation needed in @claude-flow/swarm/src/queen-coordinator.ts
+export class QueenCoordinator {
+  private swarm: UnifiedSwarmCoordinator;
+  private neural: NeuralLearningSystem;
+
+  async analyzeTask(task: Task): Promise&lt;TaskAnalysis&gt; {
+    // Use ReasoningBank for pattern analysis
+    const patterns = await this.neural.retrievePatterns(task.description);
+    return this.scoreAgents(task, patterns);
+  }
+
+  async selectStrategy(topology: TopologyType): Promise&lt;CoordinationStrategy&gt; {
+    const strategies = {
+      &#39;hierarchical&#39;: &#39;hierarchical-cascade&#39;,
+      &#39;mesh&#39;: &#39;mesh-consensus&#39;,
+      &#39;hierarchical-mesh&#39;: &#39;adaptive-default&#39;
+    };
+    return strategies[topology] || &#39;adaptive-default&#39;;
+  }
+
+  async initiateConsensus(proposal: ConsensusProposal): Promise&lt;ConsensusResult&gt; {
+    return this.swarm.consensus.propose(proposal);
+  }
+}
+</code></pre>
+<h2>Topologies</h2>
+<h3>Supported Topologies</h3>
+<table>
+<thead>
+<tr>
+<th>Topology</th>
+<th>V2</th>
+<th>V3</th>
+<th>Migration Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>mesh</strong></td>
+<td>✅ All-to-all</td>
+<td>✅ All-to-all</td>
+<td>Direct migration</td>
+</tr>
+<tr>
+<td><strong>hierarchical</strong></td>
+<td>✅ Tree structure</td>
+<td>✅ Tree structure</td>
+<td>Direct migration</td>
+</tr>
+<tr>
+<td><strong>ring</strong></td>
+<td>✅ Circular</td>
+<td>⚠️ Basic</td>
+<td>Enhance circular handling</td>
+</tr>
+<tr>
+<td><strong>star</strong></td>
+<td>✅ Central hub</td>
+<td>⚠️ Basic</td>
+<td>Enhance hub management</td>
+</tr>
+<tr>
+<td><strong>hierarchical-mesh</strong></td>
+<td>❌</td>
+<td>✅ V3 only</td>
+<td>New hybrid topology</td>
+</tr>
+<tr>
+<td><strong>specs-driven</strong></td>
+<td>✅ Maestro</td>
+<td>❌ Missing</td>
+<td>Implement workflow pattern</td>
+</tr>
+</tbody></table>
+<h3>V2 Topology Configuration</h3>
+<pre><code class="language-typescript">// V2: v2/src/core/TopologyManager.ts
+const topologyConfigs = {
+  mesh: {
+    connectionType: &#39;direct&#39;,
+    reliability: 0.95,
+    latencyMs: 50
+  },
+  hierarchical: {
+    connectionType: &#39;direct+relay&#39;,
+    reliability: 0.85,
+    latencyMs: 100
+  },
+  ring: {
+    connectionType: &#39;direct&#39;,
+    reliability: 0.75,
+    latencyMs: 75
+  },
+  star: {
+    connectionType: &#39;direct&#39;,
+    reliability: 0.70,
+    latencyMs: 60
+  }
+};
+</code></pre>
+<h3>V3 Topology Configuration</h3>
+<pre><code class="language-typescript">// V3: v3/@claude-flow/swarm/src/topology-manager.ts
+const topologyConfigs = {
+  mesh: { /* similar */ },
+  hierarchical: { /* similar */ },
+  &#39;hierarchical-mesh&#39;: {
+    connectionType: &#39;hybrid&#39;,
+    reliability: 0.92,
+    latencyMs: 70,
+    queenCoordination: true
+  }
+};
+</code></pre>
+<h2>Consensus Algorithms</h2>
+<h3>Implemented in V3 ✅</h3>
+<pre><code class="language-typescript">// V3: v3/@claude-flow/swarm/src/consensus/consensus-engine.ts
+export class ConsensusEngine {
+  async raft(proposal: Proposal): Promise&lt;ConsensusResult&gt;;
+  async byzantine(proposal: Proposal): Promise&lt;ConsensusResult&gt;;
+  async simpleMajority(proposal: Proposal): Promise&lt;ConsensusResult&gt;;
+  async supermajority(proposal: Proposal): Promise&lt;ConsensusResult&gt;;
+  async unanimous(proposal: Proposal): Promise&lt;ConsensusResult&gt;;
+}
+</code></pre>
+<h3>Missing in V3 ❌</h3>
+<pre><code class="language-typescript">// Need to implement:
+export class ConsensusEngine {
+  // Missing: Performance-weighted voting
+  async proofOfLearning(proposal: Proposal): Promise&lt;ConsensusResult&gt; {
+    const votes = await this.collectWeightedVotes(proposal);
+    const weighted = votes.map(v =&gt; ({
+      ...v,
+      weight: v.agent.performanceScore * v.agent.learningScore
+    }));
+    return this.tallyWeighted(weighted);
+  }
+
+  // Missing: Expertise-weighted
+  async qualifiedMajority(proposal: Proposal, expertiseWeights: Map&lt;string, number&gt;): Promise&lt;ConsensusResult&gt;;
+
+  // Missing: Eventually consistent
+  async gossip(proposal: Proposal): Promise&lt;ConsensusResult&gt;;
+}
+</code></pre>
+<h2>Agent Types</h2>
+<h3>V2 Hive Agent Types</h3>
+<pre><code class="language-typescript">// v2/src/cli/agents/hive-agents.ts
+const hiveAgentTypes = {
+  queen: {
+    role: &#39;Orchestrator and Decision Maker&#39;,
+    capabilities: [&#39;orchestration&#39;, &#39;consensus&#39;, &#39;decision-making&#39;, &#39;delegation&#39;],
+    reliability: 0.95
+  },
+  worker: {
+    role: &#39;Implementation Specialist&#39;,
+    capabilities: [&#39;implementation&#39;, &#39;coding&#39;, &#39;testing&#39;, &#39;debugging&#39;],
+    reliability: 0.90
+  },
+  scout: {
+    role: &#39;Research and Exploration&#39;,
+    capabilities: [&#39;research&#39;, &#39;exploration&#39;, &#39;analysis&#39;, &#39;discovery&#39;],
+    reliability: 0.85
+  },
+  guardian: {
+    role: &#39;Quality Assurance&#39;,
+    capabilities: [&#39;validation&#39;, &#39;security&#39;, &#39;quality&#39;, &#39;review&#39;],
+    reliability: 0.98
+  },
+  architect: {
+    role: &#39;System Design&#39;,
+    capabilities: [&#39;design&#39;, &#39;planning&#39;, &#39;architecture&#39;, &#39;patterns&#39;],
+    reliability: 0.92
+  }
+};
+</code></pre>
+<h3>V3 Agent Types</h3>
+<pre><code class="language-typescript">// v3/@claude-flow/swarm/src/types.ts
+// V3 has 15-agent hierarchical mesh but missing hive-specific types
+// Need to add hive agent type definitions for backward compatibility
+</code></pre>
+<p><strong>Migration Action:</strong> Add hive agent types to V3 agent type registry.</p>
+<h2>CLI Migration</h2>
+<h3>V2 Hive Commands</h3>
+<pre><code class="language-bash"># V2 Commands
+npx claude-flow hive --topology mesh --consensus quorum --max-agents 8
+npx claude-flow hive-mind init
+npx claude-flow hive-mind status
+npx claude-flow hive-mind spawn --type queen
+npx claude-flow hive-mind task --description &quot;Implement feature&quot;
+npx claude-flow hive-mind wizard
+npx claude-flow hive-mind pause
+npx claude-flow hive-mind resume
+npx claude-flow hive-mind stop
+npx claude-flow hive-mind ps
+npx claude-flow hive-mind optimize-memory
+</code></pre>
+<h3>V3 Equivalent Commands</h3>
+<pre><code class="language-bash"># V3 Commands (partial coverage)
+npx claude-flow swarm init --topology hierarchical-mesh --max-agents 15
+npx claude-flow swarm status
+npx claude-flow agent spawn --type queen-coordinator
+
+# Missing V3 commands:
+# - hive (dedicated hive mode)
+# - hive-mind task
+# - hive-mind wizard
+# - hive-mind pause/resume/stop
+# - hive-mind ps
+# - hive-mind optimize-memory
+</code></pre>
+<h2>MCP Tool Migration</h2>
+<h3>V2 Hive-Mind MCP Tools</h3>
+<pre><code class="language-typescript">// V2 tools from v2/src/mcp/swarm-tools.ts
+const hiveMindTools = [
+  &#39;dispatch_agent&#39;,      // Legacy agent spawn
+  &#39;swarm_status&#39;,        // Swarm status
+  &#39;swarm/create-objective&#39;,
+  &#39;swarm/execute-objective&#39;,  // Missing in V3
+  &#39;swarm/get-status&#39;,
+  &#39;swarm/emergency-stop&#39;      // Missing in V3
+];
+</code></pre>
+<h3>V3 Swarm MCP Tools</h3>
+<pre><code class="language-typescript">// V3 tools from v3/mcp/tools/swarm-tools.ts
+const swarmTools = [
+  &#39;swarm/init&#39;,
+  &#39;swarm/status&#39;,
+  &#39;swarm/scale&#39;    // New in V3
+];
+
+// Missing: execute-objective, emergency-stop
+</code></pre>
+<h2>Migration Steps</h2>
+<h3>Step 1: Update Imports</h3>
+<pre><code class="language-typescript">// V2
+import { HiveMind } from &#39;claude-flow/hive-mind&#39;;
+import { Queen } from &#39;claude-flow/hive-mind/core/Queen&#39;;
+
+// V3
+import { UnifiedSwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+// Queen needs to be implemented
+</code></pre>
+<h3>Step 2: Initialize Swarm</h3>
+<pre><code class="language-typescript">// V2
+const hive = new HiveMind({
+  topology: &#39;hierarchical&#39;,
+  consensus: &#39;quorum&#39;,
+  maxAgents: 8
+});
+await hive.initialize();
+await hive.spawnQueen();
+
+// V3
+const swarm = new UnifiedSwarmCoordinator({
+  topology: &#39;hierarchical-mesh&#39;,
+  maxAgents: 15,
+  consensus: &#39;majority&#39;
+});
+await swarm.initialize();
+// Queen spawn needs implementation
+</code></pre>
+<h3>Step 3: Submit Tasks</h3>
+<pre><code class="language-typescript">// V2
+const task = await hive.submitTask({
+  type: &#39;implementation&#39;,
+  description: &#39;Implement feature X&#39;,
+  priority: &#39;high&#39;,
+  consensus: true
+});
+
+// V3
+const task = await swarm.submitTask({
+  type: &#39;implementation&#39;,
+  title: &#39;Implement feature X&#39;,
+  description: &#39;Details...&#39;,
+  priority: &#39;high&#39;
+  // consensus not yet supported
+});
+</code></pre>
+<h2>Implementation Priorities</h2>
+<h3>Priority 1 - HIGH</h3>
+<ol>
+<li><strong>Queen Coordinator</strong> - Strategic decision-making</li>
+<li><strong>Proof-of-Learning Consensus</strong> - Performance-weighted voting</li>
+<li><strong>Execute Objective</strong> - MCP tool</li>
+<li><strong>Emergency Stop</strong> - MCP tool</li>
+</ol>
+<h3>Priority 2 - MEDIUM</h3>
+<ol>
+<li><strong>Specs-Driven Topology</strong> - Maestro workflow</li>
+<li><strong>Hive CLI Command</strong> - Full hive mode</li>
+<li><strong>Task Wizard</strong> - Interactive task creation</li>
+<li><strong>Qualified Majority</strong> - Expertise-weighted consensus</li>
+</ol>
+<h3>Priority 3 - LOW</h3>
+<ol>
+<li><strong>Gossip Consensus</strong> - Eventually consistent</li>
+<li><strong>PS Command</strong> - Process listing</li>
+<li><strong>Optimize Memory</strong> - Memory optimization command</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

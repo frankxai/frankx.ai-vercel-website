@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agent Capabilities Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/commands/agents/agent-capabilities.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Agent Capabilities Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands%2Fagents">agents</a> / <span>agent-capabilities.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: agent-capabilities
+description: Capability matrix for all agent types
+type: reference</h2>
+<h1>Agent Capabilities Reference</h1>
+<p>Matrix of agent capabilities and their specializations for Claude Flow V3.</p>
+<h2>Capability Matrix</h2>
+<h3>Core Development</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th align="center">Code</th>
+<th align="center">Test</th>
+<th align="center">Review</th>
+<th align="center">Design</th>
+<th align="center">Research</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>coder</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>reviewer</td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">3</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>tester</td>
+<td align="center">2</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>planner</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td>researcher</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center"><strong>5</strong></td>
+</tr>
+</tbody></table>
+<h3>V3 Specialized</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th align="center">Security</th>
+<th align="center">Memory</th>
+<th align="center">Performance</th>
+<th align="center">Architecture</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>security-architect</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center"><strong>5</strong></td>
+</tr>
+<tr>
+<td>security-auditor</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td>memory-specialist</td>
+<td align="center">3</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td>performance-engineer</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td>core-architect</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center"><strong>5</strong></td>
+</tr>
+</tbody></table>
+<h3>Swarm Coordination</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th align="center">Coordination</th>
+<th align="center">Consensus</th>
+<th align="center">Scaling</th>
+<th align="center">Fault Tolerance</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hierarchical-coordinator</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td>mesh-coordinator</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td>adaptive-coordinator</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td>collective-intelligence-coordinator</td>
+<td align="center">4</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+<td align="center">4</td>
+</tr>
+</tbody></table>
+<h3>GitHub Integration</h3>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th align="center">PR</th>
+<th align="center">Issues</th>
+<th align="center">CI/CD</th>
+<th align="center">Release</th>
+<th align="center">Review</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pr-manager</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+</tr>
+<tr>
+<td>code-review-swarm</td>
+<td align="center">4</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center"><strong>5</strong></td>
+</tr>
+<tr>
+<td>issue-tracker</td>
+<td align="center">2</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>release-manager</td>
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>workflow-automation</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">4</td>
+<td align="center">2</td>
+</tr>
+</tbody></table>
+<h2>Capability Levels</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>5</strong></td>
+<td>Expert - Primary specialization</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Advanced - Strong capability</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Intermediate - Good capability</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Basic - Limited capability</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Minimal - Not a focus</td>
+</tr>
+</tbody></table>
+<h2>V3 Performance Capabilities</h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Agents</th>
+<th>Performance Gain</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Flash Attention</td>
+<td>memory-specialist, performance-engineer</td>
+<td>2.49x-7.47x</td>
+</tr>
+<tr>
+<td>HNSW Search</td>
+<td>memory-specialist</td>
+<td>150x-12,500x</td>
+</tr>
+<tr>
+<td>Quantization</td>
+<td>performance-engineer</td>
+<td>50-75% memory</td>
+</tr>
+<tr>
+<td>SONA Adaptation</td>
+<td>sona-learning-optimizer</td>
+<td>&lt;0.05ms</td>
+</tr>
+</tbody></table>
+<h2>Consensus Capabilities</h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th align="center">BFT</th>
+<th align="center">Raft</th>
+<th align="center">Gossip</th>
+<th align="center">CRDT</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byzantine-coordinator</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>raft-manager</td>
+<td align="center">2</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td>gossip-coordinator</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center"><strong>5</strong></td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td>crdt-synchronizer</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center"><strong>5</strong></td>
+</tr>
+<tr>
+<td>quorum-manager</td>
+<td align="center">4</td>
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+</tbody></table>
+<h2>Tool Access by Agent Type</h2>
+<h3>Code Tools</h3>
+<pre><code>coder: Read, Write, Edit, MultiEdit, Glob, Grep, Bash
+reviewer: Read, Glob, Grep
+tester: Read, Write, Bash, Glob
+</code></pre>
+<h3>Swarm Tools</h3>
+<pre><code>hierarchical-coordinator: mcp__claude-flow__swarm_*, mcp__claude-flow__agent_*
+mesh-coordinator: mcp__claude-flow__swarm_*, mcp__claude-flow__coordination_*
+adaptive-coordinator: mcp__claude-flow__topology_*, mcp__claude-flow__swarm_*
+</code></pre>
+<h3>GitHub Tools</h3>
+<pre><code>pr-manager: mcp__github__*, Bash (gh CLI)
+code-review-swarm: mcp__github__*, mcp__claude-flow__swarm_*
+release-manager: mcp__github__*, mcp__claude-flow__workflow_*
+</code></pre>
+<h2>Querying Capabilities</h2>
+<pre><code class="language-bash"># List all capabilities for an agent type
+npx claude-flow agent spawn -t coder --help
+
+# View agent definition
+cat .claude/agents/core/coder.md
+</code></pre>
+<h2>Capability-Based Selection</h2>
+<h3>For Security Tasks</h3>
+<ol>
+<li><code>security-architect</code> - Design and threat modeling</li>
+<li><code>security-auditor</code> - Vulnerability assessment</li>
+<li><code>security-manager</code> - Consensus security</li>
+</ol>
+<h3>For Performance Tasks</h3>
+<ol>
+<li><code>performance-engineer</code> - Optimization</li>
+<li><code>memory-specialist</code> - Memory/search optimization</li>
+<li><code>performance-analyzer</code> - Bottleneck analysis</li>
+</ol>
+<h3>For Multi-Agent Coordination</h3>
+<ol>
+<li><code>hierarchical-coordinator</code> - Complex hierarchical tasks</li>
+<li><code>mesh-coordinator</code> - Research and exploration</li>
+<li><code>adaptive-coordinator</code> - Dynamic requirements</li>
+</ol>
+<h3>For GitHub Workflows</h3>
+<ol>
+<li><code>pr-manager</code> - PR lifecycle</li>
+<li><code>code-review-swarm</code> - Comprehensive reviews</li>
+<li><code>workflow-automation</code> - CI/CD automation</li>
+</ol>
+<h2>See Also</h2>
+<ul>
+<li><a href="./agent-types.md">agent-types</a> - All 87 agent types</li>
+<li><a href="./agent-coordination.md">agent-coordination</a> - Coordination patterns</li>
+<li><a href="./spawn.md">spawn</a> - Spawn command</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

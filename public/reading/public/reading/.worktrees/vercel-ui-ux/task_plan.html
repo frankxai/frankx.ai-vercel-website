@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Music Empire — Complete Catalog &amp; Strategy Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/task_plan.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Music Empire — Complete Catalog &amp; Strategy Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.worktrees">.worktrees</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <span>task_plan.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Music Empire — Complete Catalog &amp; Strategy Plan</h1>
+<p><strong>Created</strong>: 2026-03-02 01:00 UTC
+<strong>Goal</strong>: Index ALL ~500 tracks, download MP3s, clean data, build full music production strategy
+<strong>Timebox</strong>: 4 hours (until ~05:00 UTC)</p>
+<h2>Current State Audit</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tracks indexed</td>
+<td>52</td>
+<td>500+</td>
+</tr>
+<tr>
+<td>Self-hosted MP3s</td>
+<td>0</td>
+<td>All public tracks</td>
+</tr>
+<tr>
+<td>With cover art</td>
+<td>9</td>
+<td>All</td>
+</tr>
+<tr>
+<td>Unnamed tracks</td>
+<td>9</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Empty genre</td>
+<td>13</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Raw prompt in genre</td>
+<td>7</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Albums defined</td>
+<td>5 (draft)</td>
+<td>5+ (published)</td>
+</tr>
+<tr>
+<td>Playlists indexed</td>
+<td>9 URLs</td>
+<td>All tracks from playlists scraped</td>
+</tr>
+</tbody></table>
+<h2>Phase 1: Complete Catalog Scraping <code>[in_progress]</code></h2>
+<ul>
+<li><input disabled="" type="checkbox"> Fix scraper to navigate to Songs sub-tab (not just profile overview)</li>
+<li><input disabled="" type="checkbox"> Scrape each playlist URL individually (9 playlists = more unique tracks)</li>
+<li><input disabled="" type="checkbox"> Add pagination/infinite scroll handling for Songs tab</li>
+<li><input disabled="" type="checkbox"> Run full scrape with --index-only</li>
+<li><strong>Target</strong>: 200+ tracks minimum, ideally all 500</li>
+</ul>
+<h2>Phase 2: Data Quality Cleanup <code>[pending]</code></h2>
+<ul>
+<li><input disabled="" type="checkbox"> Clean genre data: extract keywords from raw Suno prompts</li>
+<li><input disabled="" type="checkbox"> Name unnamed tracks: fetch metadata via API for &quot;Track xxxxx&quot; entries</li>
+<li><input disabled="" type="checkbox"> Fetch cover art for all tracks with sunoId</li>
+<li><input disabled="" type="checkbox"> Validate all sunoUrls are correct</li>
+<li><input disabled="" type="checkbox"> Deduplicate any tracks with same sunoId</li>
+</ul>
+<h2>Phase 3: MP3 Download + Self-Hosting <code>[pending]</code></h2>
+<ul>
+<li><input disabled="" type="checkbox"> Download all MP3s via CDN: <code>node scripts/scrape-suno-catalog.mjs --download</code></li>
+<li><input disabled="" type="checkbox"> Upload to Vercel Blob: <code>--upload</code> flag</li>
+<li><input disabled="" type="checkbox"> Update audioUrl fields in inventory</li>
+<li><input disabled="" type="checkbox"> Verify playback from self-hosted URLs</li>
+</ul>
+<h2>Phase 4: Music Strategy Document <code>[pending]</code></h2>
+<ul>
+<li><input disabled="" type="checkbox"> Create <code>docs/plans/music-empire.md</code> with full strategy</li>
+<li><input disabled="" type="checkbox"> Map storage: Google Drive (masters), Vercel Blob (web), local backups</li>
+<li><input disabled="" type="checkbox"> Map publishing: Suno → DistroKid → Spotify/Apple/YouTube Music</li>
+<li><input disabled="" type="checkbox"> Map amplification: Social content, website, newsletter, Arcanea integration</li>
+<li><input disabled="" type="checkbox"> Album packaging: cover art, metadata, pricing, release dates</li>
+<li><input disabled="" type="checkbox"> Video assets: where to store, how to produce, pipeline</li>
+</ul>
+<h2>Phase 5: Update Memory + CLAUDE.md <code>[pending]</code></h2>
+<ul>
+<li><input disabled="" type="checkbox"> Update MEMORY.md with music system architecture</li>
+<li><input disabled="" type="checkbox"> Create memory/music-production.md detail file</li>
+<li><input disabled="" type="checkbox"> Ensure future sessions have full context</li>
+</ul>
+<h2>Phase 6: Commit + Deploy <code>[pending]</code></h2>
+<ul>
+<li><input disabled="" type="checkbox"> Commit all changes</li>
+<li><input disabled="" type="checkbox"> Push to production</li>
+<li><input disabled="" type="checkbox"> Verify Vercel deployment</li>
+</ul>
+<h2>Errors Encountered</h2>
+<table>
+<thead>
+<tr>
+<th>Error</th>
+<th>Attempt</th>
+<th>Resolution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>(none yet)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

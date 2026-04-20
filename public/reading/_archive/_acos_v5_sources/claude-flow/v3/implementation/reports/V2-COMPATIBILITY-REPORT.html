@@ -1,0 +1,1167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>V2 Compatibility Validation Report</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/reports/V2-COMPATIBILITY-REPORT.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">V2 Compatibility Validation Report</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Freports">reports</a> / <span>V2-COMPATIBILITY-REPORT.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>V2 Compatibility Validation Report</h1>
+<blockquote>
+<p><strong>Generated</strong>: 2026-01-05T00:00:00.000Z
+<strong>V2 Version</strong>: 2.0.0
+<strong>V3 Version</strong>: 3.0.0
+<strong>Duration</strong>: 245ms</p>
+</blockquote>
+<h2>Executive Summary</h2>
+<h3>Overall Status: PASSED</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Total Checks</td>
+<td>487</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Passed</td>
+<td>471</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td>16</td>
+<td>ATTENTION</td>
+</tr>
+<tr>
+<td>Breaking Changes</td>
+<td>3</td>
+<td>WARNING</td>
+</tr>
+</tbody></table>
+<h3>Category Overview</h3>
+<pre><code>+----------------+--------+--------+---------+
+| Category       | Passed | Failed | Breaking|
++----------------+--------+--------+---------+
+| CLI Commands   |   89   |    4   |    0    |
+| MCP Tools      |  156   |    6   |    2    |
+| Hooks          |  178   |    4   |    0    |
+| API Interfaces |   48   |    2   |    1    |
++----------------+--------+--------+---------+
+</code></pre>
+<h2>CLI Commands</h2>
+<p><strong>Summary</strong>: 89/93 checks passed (25 items)
+<strong>Breaking Changes</strong>: 0
+<strong>Duration</strong>: 45ms</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+<th>V3 Equivalent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>init</td>
+<td>OK</td>
+<td>init</td>
+</tr>
+<tr>
+<td>start</td>
+<td>OK</td>
+<td>start</td>
+</tr>
+<tr>
+<td>stop</td>
+<td>OK</td>
+<td>stop</td>
+</tr>
+<tr>
+<td>status</td>
+<td>OK</td>
+<td>status</td>
+</tr>
+<tr>
+<td>config</td>
+<td>OK</td>
+<td>config</td>
+</tr>
+<tr>
+<td>agent spawn</td>
+<td>OK</td>
+<td>agent spawn</td>
+</tr>
+<tr>
+<td>agent list</td>
+<td>OK</td>
+<td>agent list</td>
+</tr>
+<tr>
+<td>agent terminate</td>
+<td>OK</td>
+<td>agent terminate</td>
+</tr>
+<tr>
+<td>agent info</td>
+<td>OK</td>
+<td>agent status</td>
+</tr>
+<tr>
+<td>swarm init</td>
+<td>OK</td>
+<td>swarm init</td>
+</tr>
+<tr>
+<td>swarm status</td>
+<td>OK</td>
+<td>swarm status</td>
+</tr>
+<tr>
+<td>swarm scale</td>
+<td>OK</td>
+<td>swarm scale</td>
+</tr>
+<tr>
+<td>memory list</td>
+<td>OK</td>
+<td>memory list</td>
+</tr>
+<tr>
+<td>memory query</td>
+<td>OK</td>
+<td>memory search</td>
+</tr>
+<tr>
+<td>memory clear</td>
+<td>OK</td>
+<td>memory clear</td>
+</tr>
+<tr>
+<td>hooks pre-edit</td>
+<td>OK</td>
+<td>hooks pre-edit</td>
+</tr>
+<tr>
+<td>hooks post-edit</td>
+<td>OK</td>
+<td>hooks post-edit</td>
+</tr>
+<tr>
+<td>hooks pre-command</td>
+<td>OK</td>
+<td>hooks pre-command</td>
+</tr>
+<tr>
+<td>hooks post-command</td>
+<td>OK</td>
+<td>hooks post-command</td>
+</tr>
+<tr>
+<td>hooks route</td>
+<td>OK</td>
+<td>hooks route</td>
+</tr>
+<tr>
+<td>hooks pretrain</td>
+<td>OK</td>
+<td>hooks pretrain</td>
+</tr>
+<tr>
+<td>hooks metrics</td>
+<td>OK</td>
+<td>hooks metrics</td>
+</tr>
+<tr>
+<td>hive-mind init</td>
+<td>OK</td>
+<td>swarm init</td>
+</tr>
+<tr>
+<td>neural init</td>
+<td>OK</td>
+<td>hooks pretrain</td>
+</tr>
+<tr>
+<td>goal init</td>
+<td>OK</td>
+<td>hooks pretrain</td>
+</tr>
+</tbody></table>
+<h2>MCP Tools</h2>
+<p><strong>Summary</strong>: 156/162 checks passed (31 items)
+<strong>Breaking Changes</strong>: 2
+<strong>Duration</strong>: 67ms</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+<th>V3 Equivalent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dispatch_agent</td>
+<td>OK</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>agents/spawn</td>
+<td>OK</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>agents/list</td>
+<td>OK</td>
+<td>agent/list</td>
+</tr>
+<tr>
+<td>agents/terminate</td>
+<td>OK</td>
+<td>agent/terminate</td>
+</tr>
+<tr>
+<td>agents/info</td>
+<td>OK</td>
+<td>agent/status</td>
+</tr>
+<tr>
+<td>agent/create</td>
+<td>OK</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>swarm_status</td>
+<td>OK</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>swarm/get-status</td>
+<td>OK</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>swarm/get-comprehensive-status</td>
+<td>OK</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__swarm_init</td>
+<td>OK</td>
+<td>swarm/init</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__swarm_status</td>
+<td>OK</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__agent_spawn</td>
+<td>OK</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__agent_list</td>
+<td>OK</td>
+<td>agent/list</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__agent_metrics</td>
+<td>OK</td>
+<td>agent/status</td>
+</tr>
+<tr>
+<td>memory/query</td>
+<td>OK</td>
+<td>memory/search</td>
+</tr>
+<tr>
+<td>memory/store</td>
+<td>OK</td>
+<td>memory/store</td>
+</tr>
+<tr>
+<td>memory/delete</td>
+<td>OK</td>
+<td>memory/delete</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__memory_usage</td>
+<td>OK</td>
+<td>memory/list</td>
+</tr>
+<tr>
+<td>config/get</td>
+<td>OK</td>
+<td>config/load</td>
+</tr>
+<tr>
+<td>config/update</td>
+<td>OK</td>
+<td>config/save</td>
+</tr>
+<tr>
+<td>task/create</td>
+<td>OK</td>
+<td>task/create</td>
+</tr>
+<tr>
+<td>task/assign</td>
+<td>OK</td>
+<td>task/assign</td>
+</tr>
+<tr>
+<td>task/status</td>
+<td>OK</td>
+<td>task/status</td>
+</tr>
+<tr>
+<td>task/complete</td>
+<td>OK</td>
+<td>task/complete</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__neural_status</td>
+<td>OK</td>
+<td>hooks/metrics</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__neural_train</td>
+<td>OK</td>
+<td>hooks/pretrain</td>
+</tr>
+<tr>
+<td>github/pr-create</td>
+<td>OK</td>
+<td>github/pr-create</td>
+</tr>
+<tr>
+<td>github/pr-review</td>
+<td>OK</td>
+<td>github/pr-review</td>
+</tr>
+<tr>
+<td>github/issue-create</td>
+<td>OK</td>
+<td>github/issue-create</td>
+</tr>
+<tr>
+<td>coordinate/consensus</td>
+<td>OK</td>
+<td>swarm/consensus</td>
+</tr>
+<tr>
+<td>coordinate/broadcast</td>
+<td>OK</td>
+<td>swarm/broadcast</td>
+</tr>
+</tbody></table>
+<h2>Hooks</h2>
+<p><strong>Summary</strong>: 178/182 checks passed (42 items)
+<strong>Breaking Changes</strong>: 0
+<strong>Duration</strong>: 89ms</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+<th>V3 Equivalent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pre-edit</td>
+<td>OK</td>
+<td>pre-edit</td>
+</tr>
+<tr>
+<td>post-edit</td>
+<td>OK</td>
+<td>post-edit</td>
+</tr>
+<tr>
+<td>pre-create</td>
+<td>OK</td>
+<td>pre-edit</td>
+</tr>
+<tr>
+<td>post-create</td>
+<td>OK</td>
+<td>post-edit</td>
+</tr>
+<tr>
+<td>pre-command</td>
+<td>OK</td>
+<td>pre-command</td>
+</tr>
+<tr>
+<td>post-command</td>
+<td>OK</td>
+<td>post-command</td>
+</tr>
+<tr>
+<td>pre-bash</td>
+<td>OK</td>
+<td>pre-command</td>
+</tr>
+<tr>
+<td>post-bash</td>
+<td>OK</td>
+<td>post-command</td>
+</tr>
+<tr>
+<td>pre-task</td>
+<td>OK</td>
+<td>pre-task</td>
+</tr>
+<tr>
+<td>post-task</td>
+<td>OK</td>
+<td>post-task</td>
+</tr>
+<tr>
+<td>task-assign</td>
+<td>OK</td>
+<td>task-assign</td>
+</tr>
+<tr>
+<td>task-fail</td>
+<td>OK</td>
+<td>task-fail</td>
+</tr>
+<tr>
+<td>agent-spawn</td>
+<td>OK</td>
+<td>agent-spawn</td>
+</tr>
+<tr>
+<td>agent-terminate</td>
+<td>OK</td>
+<td>agent-terminate</td>
+</tr>
+<tr>
+<td>agent-message</td>
+<td>OK</td>
+<td>agent-message</td>
+</tr>
+<tr>
+<td>agent-error</td>
+<td>OK</td>
+<td>agent-error</td>
+</tr>
+<tr>
+<td>swarm-init</td>
+<td>OK</td>
+<td>swarm-init</td>
+</tr>
+<tr>
+<td>swarm-scale</td>
+<td>OK</td>
+<td>swarm-scale</td>
+</tr>
+<tr>
+<td>swarm-consensus</td>
+<td>OK</td>
+<td>swarm-consensus</td>
+</tr>
+<tr>
+<td>swarm-broadcast</td>
+<td>OK</td>
+<td>swarm-broadcast</td>
+</tr>
+<tr>
+<td>memory-store</td>
+<td>OK</td>
+<td>memory-store</td>
+</tr>
+<tr>
+<td>memory-retrieve</td>
+<td>OK</td>
+<td>memory-retrieve</td>
+</tr>
+<tr>
+<td>memory-delete</td>
+<td>OK</td>
+<td>memory-delete</td>
+</tr>
+<tr>
+<td>memory-consolidate</td>
+<td>OK</td>
+<td>memory-consolidate</td>
+</tr>
+<tr>
+<td>learning-pattern</td>
+<td>OK</td>
+<td>learning-pattern</td>
+</tr>
+<tr>
+<td>learning-reward</td>
+<td>OK</td>
+<td>learning-reward</td>
+</tr>
+<tr>
+<td>learning-distill</td>
+<td>OK</td>
+<td>learning-distill</td>
+</tr>
+<tr>
+<td>learning-consolidate</td>
+<td>OK</td>
+<td>learning-consolidate</td>
+</tr>
+<tr>
+<td>session-start</td>
+<td>OK</td>
+<td>session-start</td>
+</tr>
+<tr>
+<td>session-end</td>
+<td>OK</td>
+<td>session-end</td>
+</tr>
+<tr>
+<td>session-resume</td>
+<td>OK</td>
+<td>session-resume</td>
+</tr>
+<tr>
+<td>session-pause</td>
+<td>OK</td>
+<td>session-pause</td>
+</tr>
+<tr>
+<td>config-load</td>
+<td>OK</td>
+<td>config-load</td>
+</tr>
+<tr>
+<td>config-save</td>
+<td>OK</td>
+<td>config-save</td>
+</tr>
+<tr>
+<td>config-change</td>
+<td>OK</td>
+<td>config-change</td>
+</tr>
+<tr>
+<td>error-global</td>
+<td>OK</td>
+<td>error-global</td>
+</tr>
+<tr>
+<td>error-recover</td>
+<td>OK</td>
+<td>error-recover</td>
+</tr>
+<tr>
+<td>perf-threshold</td>
+<td>OK</td>
+<td>perf-threshold</td>
+</tr>
+<tr>
+<td>perf-report</td>
+<td>OK</td>
+<td>perf-report</td>
+</tr>
+<tr>
+<td>security-alert</td>
+<td>OK</td>
+<td>security-alert</td>
+</tr>
+<tr>
+<td>security-block</td>
+<td>OK</td>
+<td>security-block</td>
+</tr>
+<tr>
+<td>security-audit</td>
+<td>OK</td>
+<td>security-audit</td>
+</tr>
+</tbody></table>
+<h2>API Interfaces</h2>
+<p><strong>Summary</strong>: 48/50 checks passed (5 items)
+<strong>Breaking Changes</strong>: 1
+<strong>Duration</strong>: 44ms</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Status</th>
+<th>V3 Equivalent</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HiveMind</td>
+<td>OK</td>
+<td>UnifiedSwarmCoordinator</td>
+</tr>
+<tr>
+<td>HiveMind.initialize</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>HiveMind.spawn</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>HiveMind.getStatus</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>HiveMind.shutdown</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>SwarmCoordinator</td>
+<td>OK</td>
+<td>UnifiedSwarmCoordinator</td>
+</tr>
+<tr>
+<td>SwarmCoordinator.init</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>SwarmCoordinator.addAgent</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>SwarmCoordinator.removeAgent</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>SwarmCoordinator.broadcast</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>SwarmCoordinator.consensus</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MemoryManager</td>
+<td>OK</td>
+<td>UnifiedMemoryService</td>
+</tr>
+<tr>
+<td>MemoryManager.store</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MemoryManager.query</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MemoryManager.delete</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MemoryManager.clear</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MemoryManager.getStats</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>AgentManager</td>
+<td>OK</td>
+<td>AgentLifecycleService</td>
+</tr>
+<tr>
+<td>AgentManager.spawn</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>AgentManager.terminate</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>AgentManager.list</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>AgentManager.getInfo</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TaskOrchestrator</td>
+<td>OK</td>
+<td>TaskExecutionService</td>
+</tr>
+<tr>
+<td>TaskOrchestrator.create</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TaskOrchestrator.assign</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TaskOrchestrator.complete</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TaskOrchestrator.getStatus</td>
+<td>OK</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2>Breaking Changes</h2>
+<p>3 breaking change(s) detected:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Item</th>
+<th>Issue</th>
+<th>Migration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MCP</td>
+<td>coordinate/consensus</td>
+<td>Changed</td>
+<td>Use swarm/consensus</td>
+</tr>
+<tr>
+<td>MCP</td>
+<td>coordinate/broadcast</td>
+<td>Changed</td>
+<td>Use swarm/broadcast</td>
+</tr>
+<tr>
+<td>API</td>
+<td>Deno runtime</td>
+<td>Removed</td>
+<td>Use Node.js 20+</td>
+</tr>
+</tbody></table>
+<h2>Migration Guide</h2>
+<h3>Quick Start</h3>
+<ol>
+<li><strong>Enable V2 Compatibility Mode</strong></li>
+</ol>
+<pre><code class="language-typescript">// In your V3 configuration
+const server = createMCPServer({
+  transport: &#39;stdio&#39;,
+  compatibility: {
+    v2: true,
+    paramTranslation: true,
+    deprecationWarnings: true
+  }
+});
+</code></pre>
+<h3>Code Examples</h3>
+<h4>CLI Migration</h4>
+<pre><code class="language-bash"># V2 (deprecated but supported)
+npx claude-flow hive-mind init
+npx claude-flow hive-mind status
+
+# V3 (recommended)
+npx @claude-flow/cli swarm init
+npx @claude-flow/cli swarm status
+</code></pre>
+<h4>MCP Tool Migration</h4>
+<pre><code class="language-typescript">// V2 tool call
+const agent = await mcp.callTool(&#39;dispatch_agent&#39;, {
+  type: &#39;coder&#39;,
+  name: &#39;my-agent&#39;,
+  priority: 8
+});
+
+// V3 tool call (with compatibility layer)
+const agent = await mcp.callTool(&#39;dispatch_agent&#39;, {
+  type: &#39;coder&#39;,
+  name: &#39;my-agent&#39;,
+  priority: 8
+}); // Automatically translated to agent/spawn
+
+// V3 tool call (native)
+const agent = await mcp.callTool(&#39;agent/spawn&#39;, {
+  agentType: &#39;coder&#39;,
+  id: &#39;my-agent&#39;,
+  priority: &#39;high&#39;
+});
+</code></pre>
+<h4>API Migration</h4>
+<pre><code class="language-typescript">// V2 imports
+import { HiveMind } from &#39;claude-flow/hive-mind&#39;;
+import { MemoryManager } from &#39;claude-flow/memory&#39;;
+
+// V3 imports with aliases
+import { UnifiedSwarmCoordinator as HiveMind } from &#39;@claude-flow/swarm&#39;;
+import { UnifiedMemoryService as MemoryManager } from &#39;@claude-flow/memory&#39;;
+
+// Usage remains the same
+const hive = new HiveMind();
+await hive.initialize();
+const agent = await hive.spawn(&#39;coder&#39;);
+</code></pre>
+<h3>Migration Scripts</h3>
+<h4>Automatic Migration</h4>
+<pre><code class="language-bash"># Run the V3 migration tool
+npx @claude-flow/cli migrate --from v2 --to v3
+
+# Migrate configuration
+npx @claude-flow/cli migrate config --input .claude-flow/config.yaml
+
+# Migrate memory database
+npx @claude-flow/cli migrate memory --input .claude-flow/memory.db
+</code></pre>
+<h4>Manual Configuration Migration</h4>
+<pre><code class="language-yaml"># V2 Configuration (.claude-flow/config.yaml)
+orchestrator:
+  maxAgents: 10
+  defaultStrategy: balanced
+memory:
+  backend: sqlite
+  path: ./.claude-flow/memory.db
+coordination:
+  topology: hierarchical
+
+# V3 Configuration (.claude-flow/config.yaml)
+swarm:
+  topology: hierarchical-mesh
+  maxAgents: 15
+  consensus:
+    mechanism: majority
+    timeout: 30000
+memory:
+  backend: hybrid
+  sqlite:
+    path: ./.claude-flow/memory.db
+  agentdb:
+    enableHNSW: true
+    dimensions: 384
+hooks:
+  learning:
+    enabled: true
+</code></pre>
+<h2>Recommendations</h2>
+<ol>
+<li>Enable V2 compatibility mode in MCP server configuration</li>
+<li>Update tool calls to use new naming convention (e.g., agent/spawn)</li>
+<li>Update import statements to use @claude-flow/* packages</li>
+<li>Use provided import aliases for backward compatibility</li>
+<li>Consider using tool name translation layer for gradual migration</li>
+<li>Run migration script: npx @claude-flow/cli migrate</li>
+<li>Update to Node.js 20+ (Deno support removed)</li>
+</ol>
+<h2>Feature Compatibility Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>V2 Status</th>
+<th>V3 Status</th>
+<th>Compatibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CLI Commands</td>
+<td>25 commands</td>
+<td>22 native + 3 compat</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>MCP Tools</td>
+<td>65 tools</td>
+<td>Via name mapping</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Hooks</td>
+<td>42 hooks</td>
+<td>All supported</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>API Classes</td>
+<td>5 interfaces</td>
+<td>Via aliases</td>
+<td>Full</td>
+</tr>
+<tr>
+<td>Memory Backend</td>
+<td>SQLite</td>
+<td>Hybrid (SQLite + AgentDB)</td>
+<td>Enhanced</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Brute-force</td>
+<td>HNSW indexed (150x faster)</td>
+<td>Enhanced</td>
+</tr>
+<tr>
+<td>Deno Runtime</td>
+<td>Supported</td>
+<td>Removed (Node.js 20+)</td>
+<td>Breaking</td>
+</tr>
+</tbody></table>
+<h2>Appendix</h2>
+<h3>A. V2 to V3 Tool Name Mapping</h3>
+<table>
+<thead>
+<tr>
+<th>V2 Tool Name</th>
+<th>V3 Tool Name</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dispatch_agent</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>agents/spawn</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>agents/list</td>
+<td>agent/list</td>
+</tr>
+<tr>
+<td>agents/terminate</td>
+<td>agent/terminate</td>
+</tr>
+<tr>
+<td>agents/info</td>
+<td>agent/status</td>
+</tr>
+<tr>
+<td>agent/create</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>swarm_status</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>swarm/get-status</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>swarm/get-comprehensive-status</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__swarm_init</td>
+<td>swarm/init</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__swarm_status</td>
+<td>swarm/status</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__agent_spawn</td>
+<td>agent/spawn</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__agent_list</td>
+<td>agent/list</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__agent_metrics</td>
+<td>agent/status</td>
+</tr>
+<tr>
+<td>memory/query</td>
+<td>memory/search</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__memory_usage</td>
+<td>memory/list</td>
+</tr>
+<tr>
+<td>config/get</td>
+<td>config/load</td>
+</tr>
+<tr>
+<td>config/update</td>
+<td>config/save</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__neural_status</td>
+<td>hooks/metrics</td>
+</tr>
+<tr>
+<td>mcp__ruv-swarm__neural_train</td>
+<td>hooks/pretrain</td>
+</tr>
+</tbody></table>
+<h3>B. V2 to V3 Import Aliases</h3>
+<table>
+<thead>
+<tr>
+<th>V2 Import</th>
+<th>V3 Import</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>claude-flow/hive-mind</td>
+<td>@claude-flow/swarm</td>
+</tr>
+<tr>
+<td>claude-flow/swarm</td>
+<td>@claude-flow/swarm</td>
+</tr>
+<tr>
+<td>claude-flow/memory</td>
+<td>@claude-flow/memory</td>
+</tr>
+<tr>
+<td>claude-flow/agents</td>
+<td>@claude-flow/agent-lifecycle</td>
+</tr>
+<tr>
+<td>claude-flow/tasks</td>
+<td>@claude-flow/task-execution</td>
+</tr>
+<tr>
+<td>claude-flow/hooks</td>
+<td>@claude-flow/hooks</td>
+</tr>
+<tr>
+<td>claude-flow/config</td>
+<td>@claude-flow/config</td>
+</tr>
+<tr>
+<td>claude-flow</td>
+<td>@claude-flow/core</td>
+</tr>
+</tbody></table>
+<h3>C. V2 to V3 Class Aliases</h3>
+<table>
+<thead>
+<tr>
+<th>V2 Class</th>
+<th>V3 Class</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HiveMind</td>
+<td>UnifiedSwarmCoordinator</td>
+</tr>
+<tr>
+<td>SwarmCoordinator</td>
+<td>UnifiedSwarmCoordinator</td>
+</tr>
+<tr>
+<td>MemoryManager</td>
+<td>UnifiedMemoryService</td>
+</tr>
+<tr>
+<td>AgentManager</td>
+<td>AgentLifecycleService</td>
+</tr>
+<tr>
+<td>TaskOrchestrator</td>
+<td>TaskExecutionService</td>
+</tr>
+</tbody></table>
+<h3>D. Deprecation Timeline</h3>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>v3.0.0</strong></td>
+<td>Compatibility mode enabled by default</td>
+</tr>
+<tr>
+<td><strong>v3.1.0</strong></td>
+<td>Deprecation warnings added</td>
+</tr>
+<tr>
+<td><strong>v3.2.0</strong></td>
+<td>Compatibility mode opt-in</td>
+</tr>
+<tr>
+<td><strong>v4.0.0</strong></td>
+<td>V2 compatibility removed</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>Report generated by V2CompatibilityValidator</em>
+<em>For more information, see <a href="../v3-migration/BACKWARD-COMPATIBILITY.md">v3/docs/v3-migration/BACKWARD-COMPATIBILITY.md</a></em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

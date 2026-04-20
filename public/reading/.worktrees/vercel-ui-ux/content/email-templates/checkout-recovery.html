@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Checkout Recovery Series</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".worktrees/vercel-ui-ux/content/email-templates/checkout-recovery.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Checkout Recovery Series</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#.worktrees">.worktrees</a> / <a href="../../index.html#.worktrees%2Fvercel-ui-ux">vercel-ui-ux</a> / <a href="../index.html#.worktrees%2Fvercel-ui-ux%2Fcontent">content</a> / <a href="index.html#.worktrees%2Fvercel-ui-ux%2Fcontent%2Femail-templates">email-templates</a> / <span>checkout-recovery.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Checkout Recovery Series</h1>
+<p>3-email sequence to recover abandoned checkouts (started but didn&#39;t complete purchase).</p>
+<hr>
+<h2>Email 1: &quot;Forgot something?&quot; (1 hour after abandonment)</h2>
+<p><strong>Subject:</strong> You left something behind</p>
+<p><strong>Preheader:</strong> Your Golden Path order is waiting</p>
+<p><strong>Body:</strong></p>
+<p>Hey {{firstName}},</p>
+<p>You started checking out for <strong>The Golden Path</strong> but didn&#39;t complete your order.</p>
+<p><strong>Technical issue?</strong> Reply and I&#39;ll help.</p>
+<p><strong>Not sure if it&#39;s worth it?</strong> I get it. $297 is real money.</p>
+<p>Here&#39;s what you get:</p>
+<ul>
+<li>80-page structured workbook</li>
+<li>40+ interactive exercises</li>
+<li>4-week transformation program</li>
+<li>3 core pillars: Awareness, Emotional Mastery, Purpose</li>
+<li>Lifetime access + updates</li>
+</ul>
+<p><strong>1,200+ creators</strong> have used it. Most say Week 2 (Emotional Mastery) alone was worth 10x the price.</p>
+<p><strong>Your cart is still active:</strong>
+<a href="/soulbook/golden-path/checkout?session=%7B%7Bcheckout_session_id%7D%7D">Complete Your Order</a></p>
+<p>Questions? Hit reply.</p>
+<p>— Frank</p>
+<p>P.S. If you&#39;re on the fence, check the <a href="/soulbook/golden-path#faq">FAQ section</a>. Covers most concerns.</p>
+<hr>
+<h2>Email 2: &quot;Common objections&quot; (24 hours after abandonment)</h2>
+<p><strong>Subject:</strong> 3 reasons people hesitate (and why they&#39;re wrong)</p>
+<p><strong>Preheader:</strong> Addressing the &quot;but what if...&quot; thoughts</p>
+<p><strong>Body:</strong></p>
+<p>{{firstName}},</p>
+<p>Still haven&#39;t completed your Golden Path order.</p>
+<p>Let me guess what&#39;s holding you back:</p>
+<h3>1. &quot;I don&#39;t have time for a 4-week program&quot;</h3>
+<p><strong>Reality</strong>: 30-45 minutes per day. Less time than you spend on Twitter.</p>
+<p>Most people who say &quot;no time&quot; actually mean &quot;not a priority.&quot; Which is fine - but be honest about it.</p>
+<h3>2. &quot;I&#39;m not sure it&#39;ll work for me&quot;</h3>
+<p><strong>Reality</strong>: 30-day guarantee. Try all 4 weeks. If you&#39;re not clearer about your patterns, emotions, and purpose, I refund everything.</p>
+<p>Zero risk.</p>
+<h3>3. &quot;$297 is expensive for a PDF&quot;</h3>
+<p><strong>Fair point.</strong> If you&#39;re comparing it to a $15 Kindle book, yes.</p>
+<p>But compare it to:</p>
+<ul>
+<li>Therapy: $150/session × 4 weeks = $600+</li>
+<li>Coaching: $500-2,000/month</li>
+<li>Doing nothing: How much is lack of clarity costing you?</li>
+</ul>
+<p><strong>This isn&#39;t a PDF. It&#39;s a structured system</strong> that 1,200+ people have used to transform their relationship with themselves.</p>
+<p><strong>Your order is still waiting:</strong>
+<a href="/soulbook/golden-path/checkout?session=%7B%7Bcheckout_session_id%7D%7D">Complete Your Order</a></p>
+<p>— Frank</p>
+<p>P.S. If none of this resonates, that&#39;s fine. <a href="#">Delete this email and move on</a>. No hard feelings.</p>
+<hr>
+<h2>Email 3: &quot;Final call&quot; (48 hours after abandonment)</h2>
+<p><strong>Subject:</strong> Your cart expires in 24 hours</p>
+<p><strong>Preheader:</strong> Last chance to complete your order</p>
+<p><strong>Body:</strong></p>
+<p>{{firstName}},</p>
+<p>Your Golden Path checkout session expires in 24 hours.</p>
+<p>After that, you&#39;ll need to start over.</p>
+<p><strong>Here&#39;s what happens if you don&#39;t buy:</strong></p>
+<p>Nothing. Seriously.</p>
+<p>You&#39;ll keep getting my free weekly emails. You&#39;ll still have access to free resources. Life goes on.</p>
+<p><strong>Here&#39;s what happens if you do buy:</strong></p>
+<p>You get a structured 4-week framework for building awareness, mastering emotions, and clarifying purpose.</p>
+<p><strong>The difference:</strong></p>
+<ul>
+<li>Not buying: You stay in reactive mode, same patterns, same outcomes</li>
+<li>Buying: You spend 4 weeks systematically building clarity</li>
+</ul>
+<p><strong>Both are valid choices.</strong> But make the choice consciously.</p>
+<p><strong>Complete your order:</strong>
+<a href="/soulbook/golden-path/checkout?session=%7B%7Bcheckout_session_id%7D%7D">Finish Checkout - Expires in 24h</a></p>
+<p><strong>Not ready?</strong> No problem. You can always buy later at the regular price.</p>
+<p>— Frank</p>
+<p>P.S. This is the last email about this cart. After 72 hours, the session expires and I stop following up.</p>
+<hr>
+<h2>Sequence Configuration</h2>
+<p><strong>Trigger</strong>: Started checkout but didn&#39;t complete payment</p>
+<p><strong>Trigger Events</strong>:</p>
+<ul>
+<li>User clicks &quot;Get Instant Access&quot; button</li>
+<li>Lemon Squeezy checkout session created</li>
+<li>User leaves checkout page without payment</li>
+<li>No <code>order.success</code> webhook received within 10 minutes</li>
+</ul>
+<p><strong>Targeting</strong>:</p>
+<ul>
+<li>✅ Created checkout session</li>
+<li>❌ Payment completed</li>
+<li>❌ Already owns product</li>
+<li>✅ Email provided during checkout</li>
+</ul>
+<p><strong>Schedule</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Email</th>
+<th>Time After Abandonment</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1 hour (immediate recovery)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>24 hours (address objections)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>48 hours (final urgency)</td>
+</tr>
+</tbody></table>
+<p><strong>Session Expiry</strong>: 72 hours (Lemon Squeezy default)</p>
+<p><strong>Actions</strong>:</p>
+<ul>
+<li>Email 1: Tag <code>checkout-abandoned</code></li>
+<li>Email 2: Tag <code>checkout-objections-sent</code></li>
+<li>Email 3: Tag <code>checkout-final-warning</code></li>
+<li>If purchases: Remove from sequence, start <code>golden-path-onboarding</code></li>
+</ul>
+<p><strong>Conversion Events</strong>:</p>
+<ul>
+<li>If completes checkout: Exit sequence immediately</li>
+<li>If 72 hours pass: Mark session expired, remove from sequence</li>
+<li>If explicitly declines (clicks &quot;delete this email&quot;): Tag <code>not-interested</code>, remove from sequence</li>
+</ul>
+<p><strong>Performance Goals</strong>:</p>
+<ul>
+<li>30% recovery rate (industry average: 10-15%)</li>
+<li>Email 1: 40% open rate (fresh abandonment)</li>
+<li>Email 2: 25% open rate (objection handling)</li>
+<li>Email 3: 20% open rate (final urgency)</li>
+</ul>
+<p><strong>A/B Test Ideas</strong>:</p>
+<ul>
+<li>Subject lines: Question vs statement vs urgency</li>
+<li>Timing: 1h/24h/48h vs 30m/12h/36h</li>
+<li>Incentive: No discount vs 10% off vs bonus resource</li>
+<li>Tone: Helpful vs urgent vs indifferent</li>
+</ul>
+<hr>
+<h2>Revenue Impact</h2>
+<p><strong>Assumptions</strong>:</p>
+<ul>
+<li>40% of visitors start checkout (100 visitors → 40 checkouts)</li>
+<li>50% complete without recovery (20 sales without emails)</li>
+<li>30% recovery rate from abandoned carts (20 × 30% = 6 additional sales)</li>
+</ul>
+<p><strong>Without Recovery Sequence</strong>: 20 sales × $297 = $5,940/month<br><strong>With Recovery Sequence</strong>: 26 sales × $297 = $7,722/month<br><strong>Incremental Revenue</strong>: $1,782/month ($21,384/year)</p>
+<p><strong>ROI</strong>: 6 recovered sales × $297 = $1,782/month from automated emails (zero marginal cost)</p>
+<hr>
+<h2>Technical Implementation</h2>
+<h3>Webhook Handler Updates</h3>
+<p><strong>Checkout Started Event</strong>:</p>
+<pre><code class="language-typescript">// app/api/checkout/webhook/route.ts
+case &#39;checkout.created&#39;:
+  // Store checkout session
+  const session = {
+    id: data.id,
+    email: data.customer_email,
+    productId: data.product_id,
+    createdAt: new Date().toISOString()
+  }
+  
+  // Schedule recovery emails (1h, 24h, 48h)
+  scheduleRecoverySequence(session)
+  break;
+</code></pre>
+<p><strong>Order Success Event</strong>:</p>
+<pre><code class="language-typescript">case &#39;order.created&#39;:
+  // Cancel recovery sequence
+  cancelRecoverySequence(data.customer_email, data.product_id)
+  
+  // Start upsell sequence instead
+  if (data.product_id === &#39;golden-path&#39;) {
+    enrollInSequence(subscriber.id, &#39;golden-path-upsell&#39;)
+  }
+  break;
+</code></pre>
+<h3>Recovery Email Scheduler</h3>
+<pre><code class="language-typescript">// lib/email-sequences/recovery.ts
+export function scheduleRecoverySequence(session: CheckoutSession) {
+  const { id, email, productId } = session
+  const now = new Date()
+  
+  // Email 1: 1 hour later
+  createDelivery({
+    subscriberId: email,
+    sequenceId: &#39;checkout-recovery&#39;,
+    stepId: &#39;recovery-01&#39;,
+    templateId: &#39;recovery-01-template&#39;,
+    status: &#39;scheduled&#39;,
+    scheduledFor: addHours(now, 1).toISOString(),
+    metadata: { checkoutSessionId: id, productId }
+  })
+  
+  // Email 2: 24 hours later
+  createDelivery({
+    subscriberId: email,
+    sequenceId: &#39;checkout-recovery&#39;,
+    stepId: &#39;recovery-02&#39;,
+    templateId: &#39;recovery-02-template&#39;,
+    status: &#39;scheduled&#39;,
+    scheduledFor: addHours(now, 24).toISOString(),
+    metadata: { checkoutSessionId: id, productId }
+  })
+  
+  // Email 3: 48 hours later
+  createDelivery({
+    subscriberId: email,
+    sequenceId: &#39;checkout-recovery&#39;,
+    stepId: &#39;recovery-03&#39;,
+    templateId: &#39;recovery-03-template&#39;,
+    status: &#39;scheduled&#39;,
+    scheduledFor: addHours(now, 48).toISOString(),
+    metadata: { checkoutSessionId: id, productId }
+  })
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

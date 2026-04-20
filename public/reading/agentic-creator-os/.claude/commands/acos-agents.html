@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ACOS Agents - Agent Registry &amp; Spawning</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/commands/acos-agents.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ACOS Agents - Agent Registry &amp; Spawning</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fcommands">commands</a> / <span>acos-agents.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ACOS Agents - Agent Registry &amp; Spawning</h1>
+<p>List available agent types and spawn specialized agents for tasks.</p>
+<h2>FrankX Specialized Agents</h2>
+<p>These agents are configured for FrankX workflows:</p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Role</th>
+<th>Triggers</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Technical Architect</strong></td>
+<td>AI systems, Oracle, agentic orchestration</td>
+<td>architecture, system design, API</td>
+</tr>
+<tr>
+<td><strong>Music Producer</strong></td>
+<td>Suno prompts, genre production, licensing</td>
+<td>suno, music, song, audio</td>
+</tr>
+<tr>
+<td><strong>Content Engine</strong></td>
+<td>Blog articles, courses, products, SEO</td>
+<td>article, blog, content, post</td>
+</tr>
+<tr>
+<td><strong>SEO Intelligence</strong></td>
+<td>AI citations, topic clusters, structured data</td>
+<td>seo, keywords, rankings</td>
+</tr>
+<tr>
+<td><strong>Frontend Designer</strong></td>
+<td>Glassmorphic UI, accessibility, performance</td>
+<td>component, design, ui, ux</td>
+</tr>
+<tr>
+<td><strong>DevOps Engineer</strong></td>
+<td>Vercel deployments, CI/CD, monitoring</td>
+<td>deploy, build, ci, pipeline</td>
+</tr>
+</tbody></table>
+<h2>Claude Flow Core Agents</h2>
+<p>Ported from claude-flow V3 (37 definitions in <code>.claude-flow/agents/</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Agents</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Core</strong></td>
+<td>5</td>
+<td>coder, reviewer, tester, planner, researcher</td>
+</tr>
+<tr>
+<td><strong>Development</strong></td>
+<td>4</td>
+<td>backend-specialist, frontend-specialist, fullstack, devops</td>
+</tr>
+<tr>
+<td><strong>GitHub</strong></td>
+<td>5</td>
+<td>pr-reviewer, issue-triager, release-manager</td>
+</tr>
+<tr>
+<td><strong>Swarm</strong></td>
+<td>4</td>
+<td>coordinator, dispatcher, aggregator, monitor</td>
+</tr>
+<tr>
+<td><strong>Testing</strong></td>
+<td>4</td>
+<td>unit-tester, integration-tester, e2e-tester, load-tester</td>
+</tr>
+<tr>
+<td><strong>Architecture</strong></td>
+<td>4</td>
+<td>system-designer, api-architect, data-modeler, security-architect</td>
+</tr>
+</tbody></table>
+<h2>Swarm Coordinators</h2>
+<p>For multi-agent tasks, these coordinators manage the swarm:</p>
+<table>
+<thead>
+<tr>
+<th>Coordinator</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Hierarchical</strong></td>
+<td>Single coordinator validates all outputs (default, anti-drift)</td>
+</tr>
+<tr>
+<td><strong>Pipeline</strong></td>
+<td>Sequential handoff: Agent A -&gt; Agent B -&gt; Agent C</td>
+</tr>
+<tr>
+<td><strong>Broadcast</strong></td>
+<td>All agents work in parallel, results merged</td>
+</tr>
+</tbody></table>
+<h2>Spawning Agents</h2>
+<p>Use Claude Code&#39;s Task tool to spawn agents:</p>
+<ul>
+<li><strong>Single agent</strong>: Use Task tool with subagent_type matching the role</li>
+<li><strong>Swarm</strong>: Use /acos-swarm to coordinate multi-agent tasks</li>
+</ul>
+<h3>Auto-Routing</h3>
+<p>The UserPromptSubmit hook automatically detects which agent profile fits your request.
+The PreToolUse hook routes Task spawns through swarm context.
+No manual agent selection needed for most tasks.</p>
+<h3>Manual Override</h3>
+<p>If auto-routing picks the wrong agent, specify directly:</p>
+<ul>
+<li>&quot;As Technical Architect, design the API for...&quot;</li>
+<li>&quot;As Content Engine, write a blog post about...&quot;</li>
+<li>&quot;As Frontend Designer, build a component for...&quot;</li>
+</ul>
+<h2>Agent Definitions</h2>
+<p>Full agent definitions are stored at:</p>
+<ul>
+<li><code>.claude-flow/agents/core/</code> - Core development agents</li>
+<li><code>.claude-flow/agents/development/</code> - Specialist developers</li>
+<li><code>.claude-flow/agents/github/</code> - GitHub workflow agents</li>
+<li><code>.claude-flow/agents/swarm/</code> - Coordination agents</li>
+<li><code>.claude-flow/agents/testing/</code> - Testing specialists</li>
+<li><code>.claude-flow/agents/architecture/</code> - Architecture agents</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

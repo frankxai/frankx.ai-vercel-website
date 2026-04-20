@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>S-Tier SaaS Dashboard Design Checklist (Inspired by Stripe, Airbnb, Linear)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/workflows-knowledge-guides/Design-Review-Workflow/design-principles-example.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">S-Tier SaaS Dashboard Design Checklist (Inspired by Stripe, Airbnb, Linear)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fworkflows-knowledge-guides">workflows-knowledge-guides</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fworkflows-knowledge-guides%2FDesign-Review-Workflow">Design-Review-Workflow</a> / <span>design-principles-example.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>S-Tier SaaS Dashboard Design Checklist (Inspired by Stripe, Airbnb, Linear)</h1>
+<h2>I. Core Design Philosophy &amp; Strategy</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Users First:</strong> Prioritize user needs, workflows, and ease of use in every design decision.</li>
+<li><input disabled="" type="checkbox"> <strong>Meticulous Craft:</strong> Aim for precision, polish, and high quality in every UI element and interaction.</li>
+<li><input disabled="" type="checkbox"> <strong>Speed &amp; Performance:</strong> Design for fast load times and snappy, responsive interactions.</li>
+<li><input disabled="" type="checkbox"> <strong>Simplicity &amp; Clarity:</strong> Strive for a clean, uncluttered interface. Ensure labels, instructions, and information are unambiguous.</li>
+<li><input disabled="" type="checkbox"> <strong>Focus &amp; Efficiency:</strong> Help users achieve their goals quickly and with minimal friction. Minimize unnecessary steps or distractions.</li>
+<li><input disabled="" type="checkbox"> <strong>Consistency:</strong> Maintain a uniform design language (colors, typography, components, patterns) across the entire dashboard.</li>
+<li><input disabled="" type="checkbox"> <strong>Accessibility (WCAG AA+):</strong> Design for inclusivity. Ensure sufficient color contrast, keyboard navigability, and screen reader compatibility.</li>
+<li><input disabled="" type="checkbox"> <strong>Opinionated Design (Thoughtful Defaults):</strong> Establish clear, efficient default workflows and settings, reducing decision fatigue for users.</li>
+</ul>
+<h2>II. Design System Foundation (Tokens &amp; Core Components)</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Define a Color Palette:</strong><ul>
+<li><input disabled="" type="checkbox"> <strong>Primary Brand Color:</strong> User-specified, used strategically.</li>
+<li><input disabled="" type="checkbox"> <strong>Neutrals:</strong> A scale of grays (5-7 steps) for text, backgrounds, borders.</li>
+<li><input disabled="" type="checkbox"> <strong>Semantic Colors:</strong> Define specific colors for Success (green), Error/Destructive (red), Warning (yellow/amber), Informational (blue).</li>
+<li><input disabled="" type="checkbox"> <strong>Dark Mode Palette:</strong> Create a corresponding accessible dark mode palette.</li>
+<li><input disabled="" type="checkbox"> <strong>Accessibility Check:</strong> Ensure all color combinations meet WCAG AA contrast ratios.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Establish a Typographic Scale:</strong><ul>
+<li><input disabled="" type="checkbox"> <strong>Primary Font Family:</strong> Choose a clean, legible sans-serif font (e.g., Inter, Manrope, system-ui).</li>
+<li><input disabled="" type="checkbox"> <strong>Modular Scale:</strong> Define distinct sizes for H1, H2, H3, H4, Body Large, Body Medium (Default), Body Small/Caption. (e.g., H1: 32px, Body: 14px/16px).</li>
+<li><input disabled="" type="checkbox"> <strong>Font Weights:</strong> Utilize a limited set of weights (e.g., Regular, Medium, SemiBold, Bold).</li>
+<li><input disabled="" type="checkbox"> <strong>Line Height:</strong> Ensure generous line height for readability (e.g., 1.5-1.7 for body text).</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Define Spacing Units:</strong><ul>
+<li><input disabled="" type="checkbox"> <strong>Base Unit:</strong> Establish a base unit (e.g., 8px).</li>
+<li><input disabled="" type="checkbox"> <strong>Spacing Scale:</strong> Use multiples of the base unit for all padding, margins, and layout spacing (e.g., 4px, 8px, 12px, 16px, 24px, 32px).</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Define Border Radii:</strong><ul>
+<li><input disabled="" type="checkbox"> <strong>Consistent Values:</strong> Use a small set of consistent border radii (e.g., Small: 4-6px for inputs/buttons; Medium: 8-12px for cards/modals).</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Develop Core UI Components (with consistent states: default, hover, active, focus, disabled):</strong><ul>
+<li><input disabled="" type="checkbox"> Buttons (primary, secondary, tertiary/ghost, destructive, link-style; with icon options)</li>
+<li><input disabled="" type="checkbox"> Input Fields (text, textarea, select, date picker; with clear labels, placeholders, helper text, error messages)</li>
+<li><input disabled="" type="checkbox"> Checkboxes &amp; Radio Buttons</li>
+<li><input disabled="" type="checkbox"> Toggles/Switches</li>
+<li><input disabled="" type="checkbox"> Cards (for content blocks, multimedia items, dashboard widgets)</li>
+<li><input disabled="" type="checkbox"> Tables (for data display; with clear headers, rows, cells; support for sorting, filtering)</li>
+<li><input disabled="" type="checkbox"> Modals/Dialogs (for confirmations, forms, detailed views)</li>
+<li><input disabled="" type="checkbox"> Navigation Elements (Sidebar, Tabs)</li>
+<li><input disabled="" type="checkbox"> Badges/Tags (for status indicators, categorization)</li>
+<li><input disabled="" type="checkbox"> Tooltips (for contextual help)</li>
+<li><input disabled="" type="checkbox"> Progress Indicators (Spinners, Progress Bars)</li>
+<li><input disabled="" type="checkbox"> Icons (use a single, modern, clean icon set; SVG preferred)</li>
+<li><input disabled="" type="checkbox"> Avatars</li>
+</ul>
+</li>
+</ul>
+<h2>III. Layout, Visual Hierarchy &amp; Structure</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Responsive Grid System:</strong> Design based on a responsive grid (e.g., 12-column) for consistent layout across devices.</li>
+<li><input disabled="" type="checkbox"> <strong>Strategic White Space:</strong> Use ample negative space to improve clarity, reduce cognitive load, and create visual balance.</li>
+<li><input disabled="" type="checkbox"> <strong>Clear Visual Hierarchy:</strong> Guide the user&#39;s eye using typography (size, weight, color), spacing, and element positioning.</li>
+<li><input disabled="" type="checkbox"> <strong>Consistent Alignment:</strong> Maintain consistent alignment of elements.</li>
+<li><input disabled="" type="checkbox"> <strong>Main Dashboard Layout:</strong><ul>
+<li><input disabled="" type="checkbox"> Persistent Left Sidebar: For primary navigation between modules.</li>
+<li><input disabled="" type="checkbox"> Content Area: Main space for module-specific interfaces.</li>
+<li><input disabled="" type="checkbox"> (Optional) Top Bar: For global search, user profile, notifications.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Mobile-First Considerations:</strong> Ensure the design adapts gracefully to smaller screens.</li>
+</ul>
+<h2>IV. Interaction Design &amp; Animations</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Purposeful Micro-interactions:</strong> Use subtle animations and visual feedback for user actions (hovers, clicks, form submissions, status changes).<ul>
+<li><input disabled="" type="checkbox"> Feedback should be immediate and clear.</li>
+<li><input disabled="" type="checkbox"> Animations should be quick (150-300ms) and use appropriate easing (e.g., ease-in-out).</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Loading States:</strong> Implement clear loading indicators (skeleton screens for page loads, spinners for in-component actions).</li>
+<li><input disabled="" type="checkbox"> <strong>Transitions:</strong> Use smooth transitions for state changes, modal appearances, and section expansions.</li>
+<li><input disabled="" type="checkbox"> <strong>Avoid Distraction:</strong> Animations should enhance usability, not overwhelm or slow down the user.</li>
+<li><input disabled="" type="checkbox"> <strong>Keyboard Navigation:</strong> Ensure all interactive elements are keyboard accessible and focus states are clear.</li>
+</ul>
+<h2>V. Specific Module Design Tactics</h2>
+<h3>A. Multimedia Moderation Module</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Clear Media Display:</strong> Prominent image/video previews (grid or list view).</li>
+<li><input disabled="" type="checkbox"> <strong>Obvious Moderation Actions:</strong> Clearly labeled buttons (Approve, Reject, Flag, etc.) with distinct styling (e.g., primary/secondary, color-coding). Use icons for quick recognition.</li>
+<li><input disabled="" type="checkbox"> <strong>Visible Status Indicators:</strong> Use color-coded Badges for content status (Pending, Approved, Rejected).</li>
+<li><input disabled="" type="checkbox"> <strong>Contextual Information:</strong> Display relevant metadata (uploader, timestamp, flags) alongside media.</li>
+<li><input disabled="" type="checkbox"> <strong>Workflow Efficiency:</strong><ul>
+<li><input disabled="" type="checkbox"> Bulk Actions: Allow selection and moderation of multiple items.</li>
+<li><input disabled="" type="checkbox"> Keyboard Shortcuts: For common moderation actions.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Minimize Fatigue:</strong> Clean, uncluttered interface; consider dark mode option.</li>
+</ul>
+<h3>B. Data Tables Module (Contacts, Admin Settings)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Readability &amp; Scannability:</strong><ul>
+<li><input disabled="" type="checkbox"> Smart Alignment: Left-align text, right-align numbers.</li>
+<li><input disabled="" type="checkbox"> Clear Headers: Bold column headers.</li>
+<li><input disabled="" type="checkbox"> Zebra Striping (Optional): For dense tables.</li>
+<li><input disabled="" type="checkbox"> Legible Typography: Simple, clean sans-serif fonts.</li>
+<li><input disabled="" type="checkbox"> Adequate Row Height &amp; Spacing.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Interactive Controls:</strong><ul>
+<li><input disabled="" type="checkbox"> Column Sorting: Clickable headers with sort indicators.</li>
+<li><input disabled="" type="checkbox"> Intuitive Filtering: Accessible filter controls (dropdowns, text inputs) above the table.</li>
+<li><input disabled="" type="checkbox"> Global Table Search.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Large Datasets:</strong><ul>
+<li><input disabled="" type="checkbox"> Pagination (preferred for admin tables) or virtual/infinite scroll.</li>
+<li><input disabled="" type="checkbox"> Sticky Headers / Frozen Columns: If applicable.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Row Interactions:</strong><ul>
+<li><input disabled="" type="checkbox"> Expandable Rows: For detailed information.</li>
+<li><input disabled="" type="checkbox"> Inline Editing: For quick modifications.</li>
+<li><input disabled="" type="checkbox"> Bulk Actions: Checkboxes and contextual toolbar.</li>
+<li><input disabled="" type="checkbox"> Action Icons/Buttons per Row: (Edit, Delete, View Details) clearly distinguishable.</li>
+</ul>
+</li>
+</ul>
+<h3>C. Configuration Panels Module (Microsite, Admin Settings)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Clarity &amp; Simplicity:</strong> Clear, unambiguous labels for all settings. Concise helper text or tooltips for descriptions. Avoid jargon.</li>
+<li><input disabled="" type="checkbox"> <strong>Logical Grouping:</strong> Group related settings into sections or tabs.</li>
+<li><input disabled="" type="checkbox"> <strong>Progressive Disclosure:</strong> Hide advanced or less-used settings by default (e.g., behind &quot;Advanced Settings&quot; toggle, accordions).</li>
+<li><input disabled="" type="checkbox"> <strong>Appropriate Input Types:</strong> Use correct form controls (text fields, checkboxes, toggles, selects, sliders) for each setting.</li>
+<li><input disabled="" type="checkbox"> <strong>Visual Feedback:</strong> Immediate confirmation of changes saved (e.g., toast notifications, inline messages). Clear error messages for invalid inputs.</li>
+<li><input disabled="" type="checkbox"> <strong>Sensible Defaults:</strong> Provide default values for all settings.</li>
+<li><input disabled="" type="checkbox"> <strong>Reset Option:</strong> Easy way to &quot;Reset to Defaults&quot; for sections or entire configuration.</li>
+<li><input disabled="" type="checkbox"> <strong>Microsite Preview (If Applicable):</strong> Show a live or near-live preview of microsite changes.</li>
+</ul>
+<h2>VI. CSS &amp; Styling Architecture</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Choose a Scalable CSS Methodology:</strong><ul>
+<li><input disabled="" type="checkbox"> <strong>Utility-First (Recommended for LLM):</strong> e.g., Tailwind CSS. Define design tokens in config, apply via utility classes.</li>
+<li><input disabled="" type="checkbox"> <strong>BEM with Sass:</strong> If not utility-first, use structured BEM naming with Sass variables for tokens.</li>
+<li><input disabled="" type="checkbox"> <strong>CSS-in-JS (Scoped Styles):</strong> e.g., Stripe&#39;s approach for Elements.</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> <strong>Integrate Design Tokens:</strong> Ensure colors, fonts, spacing, radii tokens are directly usable in the chosen CSS architecture.</li>
+<li><input disabled="" type="checkbox"> <strong>Maintainability &amp; Readability:</strong> Code should be well-organized and easy to understand.</li>
+<li><input disabled="" type="checkbox"> <strong>Performance:</strong> Optimize CSS delivery; avoid unnecessary bloat.</li>
+</ul>
+<h2>VII. General Best Practices</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Iterative Design &amp; Testing:</strong> Continuously test with users and iterate on designs.</li>
+<li><input disabled="" type="checkbox"> <strong>Clear Information Architecture:</strong> Organize content and navigation logically.</li>
+<li><input disabled="" type="checkbox"> <strong>Responsive Design:</strong> Ensure the dashboard is fully functional and looks great on all device sizes (desktop, tablet, mobile).</li>
+<li><input disabled="" type="checkbox"> <strong>Documentation:</strong> Maintain clear documentation for the design system and components.</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

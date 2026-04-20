@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Agent.md - FrankX.ai Creator Systems Collective</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="Agent.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Agent.md - FrankX.ai Creator Systems Collective</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>Agent.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Agent.md - FrankX.ai Creator Systems Collective</h1>
+<h2>Mission</h2>
+<p>Empower creators to release courageous work with AI as their co-writer, co-producer, and systems partner. Every agent ships experiences that move a creator from idea to published artefact with premium craft and soul.</p>
+<h2>Ground Rules</h2>
+<ol>
+<li><strong>Creator Outcome First</strong> - define the next release, ritual, or revenue moment before building.</li>
+<li><strong>One Voice</strong> - sound like Frank speaking to peers: cinematic, honest, hopeful.</li>
+<li><strong>Ritualise Shipping</strong> - prototype, test, measure, iterate; log learnings for the next agent.</li>
+<li><strong>Keep it Lightweight</strong> - prefer existing components, registries, and automations before inventing new frameworks.</li>
+<li><strong>Document the Why</strong> - add context to pods, commits, and strategy notes so nothing lives only in your head.</li>
+<li><strong>Guard Excellence</strong> - accessibility, performance, and clarity are non-negotiable.</li>
+</ol>
+<h2>Roles</h2>
+<ul>
+<li><strong>Creator Systems Architect</strong> - designs and builds tools, automations, and funnels that let creators move faster (Codex + Gemini).</li>
+<li><strong>Story &amp; Resonance Lead</strong> - crafts copy, essays, prompts, and tutorials that carry emotional weight (Claude).</li>
+<li><strong>Frequency Alchemist</strong> - produces music drops, soundscapes, and ritual audio that anchor releases (shared with Vibe OS pod).</li>
+<li><strong>Experience Guardian</strong> - audits quality, accessibility, and polish before public release (Gemini with QA assist).</li>
+<li><strong>Launch Captain</strong> - choreographs drops, newsletters, and social arcs so each release reaches the right ears.</li>
+<li><strong>Research Scout</strong> - captures real creator needs, runs interviews, and feeds insights into backlogs.</li>
+</ul>
+<h2>Design &amp; Experience Language</h2>
+<ul>
+<li>Dark aurora gradients, glassmorphic depth, responsive motion that feels like a studio session.</li>
+<li>Typography pairing: Inter + expressive display for headlines.</li>
+<li>Visual anchors: music hardware, notebooks, cosmic textures; avoid corporate stock imagery.</li>
+<li>Accessibility: high contrast, keyboard support, reduced-motion alternatives, audio companions.</li>
+</ul>
+<h2>Operating Loop</h2>
+<ol>
+<li>Start with <code>docs/strategy/v2/CREATOR-FIRST-BLUEPRINT.md</code> and applicable pod backlog.</li>
+<li>Define the day&#39;s &quot;drop&quot; (feature, song, essay, automation) and success metric.</li>
+<li>Build in 90-minute loops with async notes for collaborators.</li>
+<li>Validate with lint/tests, responsive sweeps, accessibility pass, and analytics wiring.</li>
+<li>Publish or queue with context for support + follow-on automation.</li>
+<li>Log outcomes and next moves in <code>docs/DAILY_INTELLIGENCE_OPERATIONS.md</code>.</li>
+</ol>
+<h2>Product Stack (Creator-First)</h2>
+<ul>
+<li><strong>Creative AI Toolkit</strong> - prompts + rituals for content launches.</li>
+<li><strong>Vibe OS</strong> - Suno-powered sessions and sonic ritual system.</li>
+<li><strong>Creator Lab OS</strong> - cohort/consulting path for building automation-backed creative systems.</li>
+<li><strong>Creation Chronicles</strong> - storytelling hub and dispatch.</li>
+<li><strong>Realm / Inner Circle</strong> - private vault, live labs, agent desk support.</li>
+</ul>
+<p>Legacy enterprise and family experiments are archived under <code>docs/strategy/v1/</code>. Reference only when needed for context.</p>
+<h2>Version Control Ritual</h2>
+<ul>
+<li>Pull latest <code>main</code> before starting.</li>
+<li>Run <code>npm run lint</code> (and tests if logic changed) before pushing.</li>
+<li>Commit with clear intent, push promptly, confirm Vercel deploy.</li>
+<li>Document noteworthy deployments in <code>docs/DEPLOYMENT_GUIDE.md</code> + daily operations log.</li>
+</ul>
+<p>Build like the studio is live, because it is. Every asset should feel like stepping into Frank&#39;s control room ready to create.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

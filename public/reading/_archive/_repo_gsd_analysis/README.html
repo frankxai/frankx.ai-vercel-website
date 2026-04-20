@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GET SHIT DONE</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">GET SHIT DONE</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#_archive">_archive</a> / <a href="index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <div align="center">
+
+<h1>GET SHIT DONE</h1>
+<p><strong>A light-weight and powerful meta-prompting, context engineering and spec-driven development system for Claude Code by TÂCHES.</strong></p>
+<p><strong>Solves context rot — the quality degradation that happens as Claude fills its context window.</strong></p>
+<p><a href="https://www.npmjs.com/package/get-shit-done-cc"><img src="https://img.shields.io/npm/v/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/get-shit-done-cc"><img src="https://img.shields.io/npm/dm/get-shit-done-cc?style=for-the-badge&logo=npm&logoColor=white&color=CB3837" alt="npm downloads"></a>
+<a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License"></a>
+<a href="https://github.com/glittercowboy/get-shit-done"><img src="https://img.shields.io/github/stars/glittercowboy/get-shit-done?style=for-the-badge&logo=github&color=181717" alt="GitHub stars"></a></p>
+<br>
+
+<pre><code class="language-bash">npx get-shit-done-cc
+</code></pre>
+<p><strong>Works on Mac, Windows, and Linux.</strong></p>
+<br>
+
+<p><img src="assets/terminal.svg" alt="GSD Install"></p>
+<br>
+
+<p><em>&quot;If you know clearly what you want, this WILL build it for you. No bs.&quot;</em></p>
+<p><em>&quot;I&#39;ve done SpecKit, OpenSpec and Taskmaster — this has produced the best results for me.&quot;</em></p>
+<p><em>&quot;By far the most powerful addition to my Claude Code. Nothing over-engineered. Literally just gets shit done.&quot;</em></p>
+<br>
+
+<p><strong>Trusted by engineers at Amazon, Google, Shopify, and Webflow.</strong></p>
+<p><a href="#why-i-built-this">Why I Built This</a> · <a href="#how-it-works">How It Works</a> · <a href="#commands">Commands</a> · <a href="#why-it-works">Why It Works</a></p>
+</div>
+
+<hr>
+<h2>Why I Built This</h2>
+<p>I&#39;m a solo developer. I don&#39;t write code — Claude Code does.</p>
+<p>Other spec-driven development tools exist; BMAD, Speckit... But they all seem to make things way more complicated than they need to be (sprint ceremonies, story points, stakeholder syncs, retrospectives, Jira workflows) or lack real big picture understanding of what you&#39;re building. I&#39;m not a 50-person software company. I don&#39;t want to play enterprise theater. I&#39;m just a creative person trying to build great things that work.</p>
+<p>So I built GSD. The complexity is in the system, not in your workflow. Behind the scenes: context engineering, XML prompt formatting, subagent orchestration, state management. What you see: a few commands that just work.</p>
+<p>The system gives Claude everything it needs to do the work <em>and</em> verify it. I trust the workflow. It just does a good job.</p>
+<p>That&#39;s what this is. No enterprise roleplay bullshit. Just an incredibly effective system for building cool stuff consistently using Claude Code.</p>
+<p>— <strong>TÂCHES</strong></p>
+<hr>
+<p>Vibecoding has a bad reputation. You describe what you want, AI generates code, and you get inconsistent garbage that falls apart at scale.</p>
+<p>GSD fixes that. It&#39;s the context engineering layer that makes Claude Code reliable. Describe your idea, let the system extract everything it needs to know, and let Claude Code get to work.</p>
+<hr>
+<h2>Who This Is For</h2>
+<p>People who want to describe what they want and have it built correctly — without pretending they&#39;re running a 50-person engineering org.</p>
+<hr>
+<h2>Getting Started</h2>
+<pre><code class="language-bash">npx get-shit-done-cc
+</code></pre>
+<p>That&#39;s it. Verify with <code>/gsd:help</code> inside your Claude Code interface.</p>
+<h3>Staying Updated</h3>
+<p>GSD evolves fast. Check for updates periodically:</p>
+<pre><code>/gsd:whats-new
+</code></pre>
+<p>Update with:</p>
+<pre><code class="language-bash">npx get-shit-done-cc@latest
+</code></pre>
+<details>
+<summary><strong>Non-interactive Install (Docker, CI, Scripts)</strong></summary>
+
+<pre><code class="language-bash">npx get-shit-done-cc --global   # Install to ~/.claude/
+npx get-shit-done-cc --local    # Install to ./.claude/
+</code></pre>
+<p>Use <code>--global</code> (<code>-g</code>) or <code>--local</code> (<code>-l</code>) to skip the interactive prompt.</p>
+</details>
+
+<details>
+<summary><strong>Development Installation</strong></summary>
+
+<p>Clone the repository and run the installer locally:</p>
+<pre><code class="language-bash">git clone https://github.com/glittercowboy/get-shit-done.git
+cd get-shit-done
+node bin/install.js --local
+</code></pre>
+<p>Installs to <code>./.claude/</code> for testing modifications before contributing.</p>
+</details>
+
+<h3>Recommended: Skip Permissions Mode</h3>
+<p>GSD is designed for frictionless automation. Run Claude Code with:</p>
+<pre><code class="language-bash">claude --dangerously-skip-permissions
+</code></pre>
+<blockquote>
+<p>[!TIP]
+This is how GSD is intended to be used — stopping to approve <code>date</code> and <code>git commit</code> 50 times defeats the purpose.</p>
+</blockquote>
+<details>
+<summary><strong>Alternative: Granular Permissions</strong></summary>
+
+<p>If you prefer not to use that flag, add this to your project&#39;s <code>.claude/settings.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: {
+    &quot;allow&quot;: [
+      &quot;Bash(date:*)&quot;,
+      &quot;Bash(echo:*)&quot;,
+      &quot;Bash(cat:*)&quot;,
+      &quot;Bash(ls:*)&quot;,
+      &quot;Bash(mkdir:*)&quot;,
+      &quot;Bash(wc:*)&quot;,
+      &quot;Bash(head:*)&quot;,
+      &quot;Bash(tail:*)&quot;,
+      &quot;Bash(sort:*)&quot;,
+      &quot;Bash(grep:*)&quot;,
+      &quot;Bash(tr:*)&quot;,
+      &quot;Bash(git add:*)&quot;,
+      &quot;Bash(git commit:*)&quot;,
+      &quot;Bash(git status:*)&quot;,
+      &quot;Bash(git log:*)&quot;,
+      &quot;Bash(git diff:*)&quot;,
+      &quot;Bash(git tag:*)&quot;
+    ]
+  }
+}
+</code></pre>
+</details>
+
+<hr>
+<h2>How It Works</h2>
+<blockquote>
+<p><strong>Already have code?</strong> Run <code>/gsd:map-codebase</code> first. It spawns parallel agents to analyze your stack, architecture, conventions, and concerns. Then <code>/gsd:new-project</code> knows your codebase — questions focus on what you&#39;re adding, and planning automatically loads your patterns.</p>
+</blockquote>
+<h3>1. Initialize Project</h3>
+<pre><code>/gsd:new-project
+</code></pre>
+<p>One command, one flow. The system:</p>
+<ol>
+<li><strong>Questions</strong> — Asks until it understands your idea completely (goals, constraints, tech preferences, edge cases)</li>
+<li><strong>Research</strong> — Spawns parallel agents to investigate the domain (optional but recommended)</li>
+<li><strong>Requirements</strong> — Extracts what&#39;s v1, v2, and out of scope</li>
+<li><strong>Roadmap</strong> — Creates phases mapped to requirements</li>
+</ol>
+<p>You approve the roadmap. Now you&#39;re ready to build.</p>
+<p><strong>Creates:</strong> <code>PROJECT.md</code>, <code>REQUIREMENTS.md</code>, <code>ROADMAP.md</code>, <code>STATE.md</code>, <code>.planning/research/</code></p>
+<hr>
+<h3>2. Discuss Phase</h3>
+<pre><code>/gsd:discuss-phase 1
+</code></pre>
+<p><strong>This is where you shape the implementation.</strong></p>
+<p>Your roadmap has a sentence or two per phase. That&#39;s not enough context to build something the way <em>you</em> imagine it. This step captures your preferences before anything gets researched or planned.</p>
+<p>The system analyzes the phase and identifies gray areas based on what&#39;s being built:</p>
+<ul>
+<li><strong>Visual features</strong> → Layout, density, interactions, empty states</li>
+<li><strong>APIs/CLIs</strong> → Response format, flags, error handling, verbosity</li>
+<li><strong>Content systems</strong> → Structure, tone, depth, flow</li>
+<li><strong>Organization tasks</strong> → Grouping criteria, naming, duplicates, exceptions</li>
+</ul>
+<p>For each area you select, it asks until you&#39;re satisfied. The output — <code>CONTEXT.md</code> — feeds directly into the next two steps:</p>
+<ol>
+<li><strong>Researcher reads it</strong> — Knows what patterns to investigate (&quot;user wants card layout&quot; → research card component libraries)</li>
+<li><strong>Planner reads it</strong> — Knows what decisions are locked (&quot;infinite scroll decided&quot; → plan includes scroll handling)</li>
+</ol>
+<p>The deeper you go here, the more the system builds what you actually want. Skip it and you get reasonable defaults. Use it and you get <em>your</em> vision.</p>
+<p><strong>Creates:</strong> <code>{phase}-CONTEXT.md</code></p>
+<hr>
+<h3>3. Plan Phase</h3>
+<pre><code>/gsd:plan-phase 1
+</code></pre>
+<p>The system:</p>
+<ol>
+<li><strong>Researches</strong> — Investigates how to implement this phase, guided by your CONTEXT.md decisions</li>
+<li><strong>Plans</strong> — Creates 2-3 atomic task plans with XML structure</li>
+<li><strong>Verifies</strong> — Checks plans against requirements, loops until they pass</li>
+</ol>
+<p>Each plan is small enough to execute in a fresh context window. No degradation, no &quot;I&#39;ll be more concise now.&quot;</p>
+<p><strong>Creates:</strong> <code>{phase}-RESEARCH.md</code>, <code>{phase}-{N}-PLAN.md</code></p>
+<hr>
+<h3>4. Execute Phase</h3>
+<pre><code>/gsd:execute-phase 1
+</code></pre>
+<p>The system:</p>
+<ol>
+<li><strong>Runs plans in waves</strong> — Parallel where possible, sequential when dependent</li>
+<li><strong>Fresh context per plan</strong> — 200k tokens purely for implementation, zero accumulated garbage</li>
+<li><strong>Commits per task</strong> — Every task gets its own atomic commit</li>
+<li><strong>Verifies against goals</strong> — Checks the codebase delivers what the phase promised</li>
+</ol>
+<p>Walk away, come back to completed work with clean git history.</p>
+<p><strong>Creates:</strong> <code>{phase}-{N}-SUMMARY.md</code>, <code>{phase}-VERIFICATION.md</code></p>
+<hr>
+<h3>5. Verify Work</h3>
+<pre><code>/gsd:verify-work 1
+</code></pre>
+<p><strong>This is where you confirm it actually works.</strong></p>
+<p>Automated verification checks that code exists and tests pass. But does the feature <em>work</em> the way you expected? This is your chance to use it.</p>
+<p>The system:</p>
+<ol>
+<li><strong>Extracts testable deliverables</strong> — What you should be able to do now</li>
+<li><strong>Walks you through one at a time</strong> — &quot;Can you log in with email?&quot; Yes/no, or describe what&#39;s wrong</li>
+<li><strong>Diagnoses failures automatically</strong> — Spawns debug agents to find root causes</li>
+<li><strong>Creates verified fix plans</strong> — Ready for immediate re-execution</li>
+</ol>
+<p>If everything passes, you move on. If something&#39;s broken, you don&#39;t manually debug — you just run <code>/gsd:execute-phase</code> again with the fix plans it created.</p>
+<p><strong>Creates:</strong> <code>{phase}-UAT.md</code>, fix plans if issues found</p>
+<hr>
+<h3>6. Repeat → Complete → Next Milestone</h3>
+<pre><code>/gsd:discuss-phase 2
+/gsd:plan-phase 2
+/gsd:execute-phase 2
+/gsd:verify-work 2
+...
+/gsd:complete-milestone
+/gsd:new-milestone
+</code></pre>
+<p>Loop <strong>discuss → plan → execute → verify</strong> until milestone complete.</p>
+<p>Each phase gets your input (discuss), proper research (plan), clean execution (execute), and human verification (verify). Context stays fresh. Quality stays high.</p>
+<p>When all phases are done, <code>/gsd:complete-milestone</code> archives the milestone and tags the release.</p>
+<p>Then <code>/gsd:new-milestone</code> starts the next version — same flow as <code>new-project</code> but for your existing codebase. You describe what you want to build next, the system researches the domain, you scope requirements, and it creates a fresh roadmap. Each milestone is a clean cycle: define → build → ship.</p>
+<hr>
+<h3>Quick Mode</h3>
+<pre><code>/gsd:quick
+</code></pre>
+<p><strong>For ad-hoc tasks that don&#39;t need full planning.</strong></p>
+<p>Quick mode gives you GSD guarantees (atomic commits, state tracking) with a faster path:</p>
+<ul>
+<li><strong>Same agents</strong> — Planner + executor, same quality</li>
+<li><strong>Skips optional steps</strong> — No research, no plan checker, no verifier</li>
+<li><strong>Separate tracking</strong> — Lives in <code>.planning/quick/</code>, not phases</li>
+</ul>
+<p>Use for: bug fixes, small features, config changes, one-off tasks.</p>
+<pre><code>/gsd:quick
+&gt; What do you want to do? &quot;Add dark mode toggle to settings&quot;
+</code></pre>
+<p><strong>Creates:</strong> <code>.planning/quick/001-add-dark-mode-toggle/PLAN.md</code>, <code>SUMMARY.md</code></p>
+<hr>
+<h2>Why It Works</h2>
+<h3>Context Engineering</h3>
+<p>Claude Code is incredibly powerful <em>if</em> you give it the context it needs. Most people don&#39;t.</p>
+<p>GSD handles it for you:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>PROJECT.md</code></td>
+<td>Project vision, always loaded</td>
+</tr>
+<tr>
+<td><code>research/</code></td>
+<td>Ecosystem knowledge (stack, features, architecture, pitfalls)</td>
+</tr>
+<tr>
+<td><code>REQUIREMENTS.md</code></td>
+<td>Scoped v1/v2 requirements with phase traceability</td>
+</tr>
+<tr>
+<td><code>ROADMAP.md</code></td>
+<td>Where you&#39;re going, what&#39;s done</td>
+</tr>
+<tr>
+<td><code>STATE.md</code></td>
+<td>Decisions, blockers, position — memory across sessions</td>
+</tr>
+<tr>
+<td><code>PLAN.md</code></td>
+<td>Atomic task with XML structure, verification steps</td>
+</tr>
+<tr>
+<td><code>SUMMARY.md</code></td>
+<td>What happened, what changed, committed to history</td>
+</tr>
+<tr>
+<td><code>todos/</code></td>
+<td>Captured ideas and tasks for later work</td>
+</tr>
+</tbody></table>
+<p>Size limits based on where Claude&#39;s quality degrades. Stay under, get consistent excellence.</p>
+<h3>XML Prompt Formatting</h3>
+<p>Every plan is structured XML optimized for Claude:</p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Create login endpoint&lt;/name&gt;
+  &lt;files&gt;src/app/api/auth/login/route.ts&lt;/files&gt;
+  &lt;action&gt;
+    Use jose for JWT (not jsonwebtoken - CommonJS issues).
+    Validate credentials against users table.
+    Return httpOnly cookie on success.
+  &lt;/action&gt;
+  &lt;verify&gt;curl -X POST localhost:3000/api/auth/login returns 200 + Set-Cookie&lt;/verify&gt;
+  &lt;done&gt;Valid credentials return cookie, invalid return 401&lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<p>Precise instructions. No guessing. Verification built in.</p>
+<h3>Multi-Agent Orchestration</h3>
+<p>Every stage uses the same pattern: a thin orchestrator spawns specialized agents, collects results, and routes to the next step.</p>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Orchestrator does</th>
+<th>Agents do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Research</td>
+<td>Coordinates, presents findings</td>
+<td>4 parallel researchers investigate stack, features, architecture, pitfalls</td>
+</tr>
+<tr>
+<td>Planning</td>
+<td>Validates, manages iteration</td>
+<td>Planner creates plans, checker verifies, loop until pass</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td>Groups into waves, tracks progress</td>
+<td>Executors implement in parallel, each with fresh 200k context</td>
+</tr>
+<tr>
+<td>Verification</td>
+<td>Presents results, routes next</td>
+<td>Verifier checks codebase against goals, debuggers diagnose failures</td>
+</tr>
+</tbody></table>
+<p>The orchestrator never does heavy lifting. It spawns agents, waits, integrates results.</p>
+<p><strong>The result:</strong> You can run an entire phase — deep research, multiple plans created and verified, thousands of lines of code written across parallel executors, automated verification against goals — and your main context window stays at 30-40%. The work happens in fresh subagent contexts. Your session stays fast and responsive.</p>
+<h3>Atomic Git Commits</h3>
+<p>Each task gets its own commit immediately after completion:</p>
+<pre><code class="language-bash">abc123f docs(08-02): complete user registration plan
+def456g feat(08-02): add email confirmation flow
+hij789k feat(08-02): implement password hashing
+lmn012o feat(08-02): create registration endpoint
+</code></pre>
+<blockquote>
+<p>[!NOTE]
+<strong>Benefits:</strong> Git bisect finds exact failing task. Each task independently revertable. Clear history for Claude in future sessions. Better observability in AI-automated workflow.</p>
+</blockquote>
+<p>Every commit is surgical, traceable, and meaningful.</p>
+<h3>Modular by Design</h3>
+<ul>
+<li>Add phases to current milestone</li>
+<li>Insert urgent work between phases</li>
+<li>Complete milestones and start fresh</li>
+<li>Adjust plans without rebuilding everything</li>
+</ul>
+<p>You&#39;re never locked in. The system adapts.</p>
+<hr>
+<h2>Commands</h2>
+<h3>Core Workflow</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gsd:new-project</code></td>
+<td>Full initialization: questions → research → requirements → roadmap</td>
+</tr>
+<tr>
+<td><code>/gsd:discuss-phase [N]</code></td>
+<td>Capture implementation decisions before planning</td>
+</tr>
+<tr>
+<td><code>/gsd:plan-phase [N]</code></td>
+<td>Research + plan + verify for a phase</td>
+</tr>
+<tr>
+<td><code>/gsd:execute-phase &lt;N&gt;</code></td>
+<td>Execute all plans in parallel waves, verify when complete</td>
+</tr>
+<tr>
+<td><code>/gsd:verify-work [N]</code></td>
+<td>Manual user acceptance testing ¹</td>
+</tr>
+<tr>
+<td><code>/gsd:audit-milestone</code></td>
+<td>Verify milestone achieved its definition of done</td>
+</tr>
+<tr>
+<td><code>/gsd:complete-milestone</code></td>
+<td>Archive milestone, tag release</td>
+</tr>
+<tr>
+<td><code>/gsd:new-milestone [name]</code></td>
+<td>Start next version: questions → research → requirements → roadmap</td>
+</tr>
+</tbody></table>
+<h3>Navigation</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gsd:progress</code></td>
+<td>Where am I? What&#39;s next?</td>
+</tr>
+<tr>
+<td><code>/gsd:help</code></td>
+<td>Show all commands and usage guide</td>
+</tr>
+<tr>
+<td><code>/gsd:whats-new</code></td>
+<td>See what changed since your installed version</td>
+</tr>
+<tr>
+<td><code>/gsd:update</code></td>
+<td>Update GSD with changelog preview</td>
+</tr>
+</tbody></table>
+<h3>Brownfield</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gsd:map-codebase</code></td>
+<td>Analyze existing codebase before new-project</td>
+</tr>
+</tbody></table>
+<h3>Phase Management</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gsd:add-phase</code></td>
+<td>Append phase to roadmap</td>
+</tr>
+<tr>
+<td><code>/gsd:insert-phase [N]</code></td>
+<td>Insert urgent work between phases</td>
+</tr>
+<tr>
+<td><code>/gsd:remove-phase [N]</code></td>
+<td>Remove future phase, renumber</td>
+</tr>
+<tr>
+<td><code>/gsd:list-phase-assumptions [N]</code></td>
+<td>See Claude&#39;s intended approach before planning</td>
+</tr>
+<tr>
+<td><code>/gsd:plan-milestone-gaps</code></td>
+<td>Create phases to close gaps from audit</td>
+</tr>
+</tbody></table>
+<h3>Session</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gsd:pause-work</code></td>
+<td>Create handoff when stopping mid-phase</td>
+</tr>
+<tr>
+<td><code>/gsd:resume-work</code></td>
+<td>Restore from last session</td>
+</tr>
+</tbody></table>
+<h3>Utilities</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/gsd:settings</code></td>
+<td>Configure model profile and workflow agents</td>
+</tr>
+<tr>
+<td><code>/gsd:set-profile &lt;profile&gt;</code></td>
+<td>Switch model profile (quality/balanced/budget)</td>
+</tr>
+<tr>
+<td><code>/gsd:add-todo [desc]</code></td>
+<td>Capture idea for later</td>
+</tr>
+<tr>
+<td><code>/gsd:check-todos</code></td>
+<td>List pending todos</td>
+</tr>
+<tr>
+<td><code>/gsd:debug [desc]</code></td>
+<td>Systematic debugging with persistent state</td>
+</tr>
+<tr>
+<td><code>/gsd:quick</code></td>
+<td>Execute ad-hoc task with GSD guarantees</td>
+</tr>
+</tbody></table>
+<p><sup>¹ Contributed by reddit user OracleGreyBeard</sup></p>
+<hr>
+<h2>Configuration</h2>
+<p>GSD stores project settings in <code>.planning/config.json</code>. Configure during <code>/gsd:new-project</code> or update later with <code>/gsd:settings</code>.</p>
+<h3>Core Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Options</th>
+<th>Default</th>
+<th>What it controls</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mode</code></td>
+<td><code>yolo</code>, <code>interactive</code></td>
+<td><code>interactive</code></td>
+<td>Auto-approve vs confirm at each step</td>
+</tr>
+<tr>
+<td><code>depth</code></td>
+<td><code>quick</code>, <code>standard</code>, <code>comprehensive</code></td>
+<td><code>standard</code></td>
+<td>Planning thoroughness (phases × plans)</td>
+</tr>
+</tbody></table>
+<h3>Model Profiles</h3>
+<p>Control which Claude model each agent uses. Balance quality vs token spend.</p>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Planning</th>
+<th>Execution</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>quality</code></td>
+<td>Opus</td>
+<td>Opus</td>
+<td>Sonnet</td>
+</tr>
+<tr>
+<td><code>balanced</code> (default)</td>
+<td>Opus</td>
+<td>Sonnet</td>
+<td>Sonnet</td>
+</tr>
+<tr>
+<td><code>budget</code></td>
+<td>Sonnet</td>
+<td>Sonnet</td>
+<td>Haiku</td>
+</tr>
+</tbody></table>
+<p>Switch profiles:</p>
+<pre><code>/gsd:set-profile budget
+</code></pre>
+<p>Or configure via <code>/gsd:settings</code>.</p>
+<h3>Workflow Agents</h3>
+<p>These spawn additional agents during planning/execution. They improve quality but add tokens and time.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>workflow.research</code></td>
+<td><code>true</code></td>
+<td>Researches domain before planning each phase</td>
+</tr>
+<tr>
+<td><code>workflow.plan_check</code></td>
+<td><code>true</code></td>
+<td>Verifies plans achieve phase goals before execution</td>
+</tr>
+<tr>
+<td><code>workflow.verifier</code></td>
+<td><code>true</code></td>
+<td>Confirms must-haves were delivered after execution</td>
+</tr>
+</tbody></table>
+<p>Use <code>/gsd:settings</code> to toggle these, or override per-invocation:</p>
+<ul>
+<li><code>/gsd:plan-phase --skip-research</code></li>
+<li><code>/gsd:plan-phase --skip-verify</code></li>
+</ul>
+<h3>Execution</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th>What it controls</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>parallelization.enabled</code></td>
+<td><code>true</code></td>
+<td>Run independent plans simultaneously</td>
+</tr>
+<tr>
+<td><code>planning.commit_docs</code></td>
+<td><code>true</code></td>
+<td>Track <code>.planning/</code> in git</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Troubleshooting</h2>
+<p><strong>Commands not found after install?</strong></p>
+<ul>
+<li>Restart Claude Code to reload slash commands</li>
+<li>Verify files exist in <code>~/.claude/commands/gsd/</code> (global) or <code>./.claude/commands/gsd/</code> (local)</li>
+</ul>
+<p><strong>Commands not working as expected?</strong></p>
+<ul>
+<li>Run <code>/gsd:help</code> to verify installation</li>
+<li>Re-run <code>npx get-shit-done-cc</code> to reinstall</li>
+</ul>
+<p><strong>Updating to the latest version?</strong></p>
+<pre><code class="language-bash">npx get-shit-done-cc@latest
+</code></pre>
+<p><strong>Using Docker or containerized environments?</strong></p>
+<p>If file reads fail with tilde paths (<code>~/.claude/...</code>), set <code>CLAUDE_CONFIG_DIR</code> before installing:</p>
+<pre><code class="language-bash">CLAUDE_CONFIG_DIR=/home/youruser/.claude npx get-shit-done-cc --global
+</code></pre>
+<p>This ensures absolute paths are used instead of <code>~</code> which may not expand correctly in containers.</p>
+<hr>
+<h2>Star History</h2>
+<a href="https://star-history.com/#glittercowboy/get-shit-done&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=glittercowboy/get-shit-done&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=glittercowboy/get-shit-done&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=glittercowboy/get-shit-done&type=Date" />
+ </picture>
+</a>
+
+<hr>
+<h2>License</h2>
+<p>MIT License. See <a href="LICENSE">LICENSE</a> for details.</p>
+<hr>
+<div align="center">
+
+<p><strong>Claude Code is powerful. GSD makes it reliable.</strong></p>
+</div>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/create-visual — Autonomous Visual Creation Pipeline</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/create-visual.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/create-visual — Autonomous Visual Creation Pipeline</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>create-visual.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/create-visual — Autonomous Visual Creation Pipeline</h1>
+<p><strong>Input</strong>: $ARGUMENTS (description of what image to create, e.g. &quot;Golden Age hero&quot;, &quot;Arcanea classroom replacement&quot;, &quot;team assembly group shot&quot;)</p>
+<hr>
+<h2>Pipeline Overview</h2>
+<p>This command runs the full 6-step Visual Creation workflow autonomously. Every image passes through the council before generation. Every generation is logged. Nothing ships without human approval.</p>
+<hr>
+<h2>STEP 1: STUDY</h2>
+<ol>
+<li><strong>Read</strong> <code>docs/strategy/IMAGE_STYLE_DNA.md</code> (focus on organic-first principle + the 3 approved styles)</li>
+<li><strong>Read</strong> <code>data/visual-prompt-templates.json</code> (load the matching template type)</li>
+<li><strong>View the gold standard</strong>: Read <code>public/images/mascot/mascot-v05-techno-beast-standing.png</code> to recalibrate visual quality bar</li>
+<li><strong>Determine</strong>:<ul>
+<li>Which of the 3 styles fits: Dark Premium Glass / Da Vinci Codex / Light Workshop</li>
+<li>Which sub-variant if Dark Premium Glass: Cyberpunk Neon / Da Vinci Dark / Cinematic Studio / Holographic Command</li>
+<li>What physical organizing metaphor anchors the composition (NOT &quot;a futuristic visualization&quot; — a real place/object)</li>
+<li>4+ named components with CAPS LABELS, hex colors, and materials</li>
+</ul>
+</li>
+</ol>
+<p><strong>Self-check</strong>: Can you name the style, sub-variant, metaphor, and 4+ components? If not, study more.</p>
+<hr>
+<h2>STEP 2: DRAFT</h2>
+<p>Fill the structured template completely. ALL fields mandatory:</p>
+<pre><code>SUBJECT: [specific topic]
+ORGANIZING METAPHOR: [physical scene/object — workbench, observatory, forest canopy, crystal cave]
+STYLE: [approved style + sub-variant]
+VIEWPOINT: [camera angle with degrees]
+
+COMPONENTS (min 4):
+1. NAME: [CAPS]  |  POSITION: [where]  |  COLOR: [name + #hex]  |  MATERIAL: [tactile]
+2. NAME: [CAPS]  |  POSITION: [where]  |  COLOR: [name + #hex]  |  MATERIAL: [tactile]
+3. NAME: [CAPS]  |  POSITION: [where]  |  COLOR: [name + #hex]  |  MATERIAL: [tactile]
+4. NAME: [CAPS]  |  POSITION: [where]  |  COLOR: [name + #hex]  |  MATERIAL: [tactile]
+
+ORGANIC ANCHOR: [living/organic element — creature, root network, bark, crystal growth, moss]
+FOREGROUND: [specific elements]
+MIDGROUND: [primary subject]
+BACKGROUND: [atmospheric depth]
+ATMOSPHERE: [lighting with source, color, shadows]
+EMOTIONAL TONE: [single evocative phrase]
+NEGATIVE: clay, claymorphic, pastel, chrome robot, sterile geometry, generic brain, flat clipart, cartoon, stock photo, [add specifics]
+</code></pre>
+<p><strong>Critical rule</strong>: Every prompt MUST have an organic anchor. If you can&#39;t name the organic element, the prompt will fail council review.</p>
+<hr>
+<h2>STEP 3: COUNCIL</h2>
+<p>Invoke the visual-creation-council agent as a Task:</p>
+<pre><code>Use the Task tool with subagent_type=&quot;general-purpose&quot;:
+&quot;You are the Visual Creation Council for FrankX. Read .claude/agents/visual-creation-council.md for your full scoring criteria. Then review this prompt: [paste filled template]. Produce the full council review with scores per lens and a binding verdict.&quot;
+</code></pre>
+<p><strong>BLOCKING</strong>: Do not proceed without APPROVED verdict.</p>
+<ul>
+<li>APPROVED (&gt;=7.5, no vetoes) → proceed to Step 4</li>
+<li>NEEDS-REVISION (6.0-7.4) → apply ALL feedback, re-draft, re-submit (max 3 cycles)</li>
+<li>REJECTED (&lt;6.0 or any veto) → fundamentally rework the concept</li>
+</ul>
+<hr>
+<h2>STEP 4: TEST (Human Gate)</h2>
+<p>Generate exactly <strong>1 image</strong> using the approved prompt via MCP:</p>
+<pre><code>mcp__nanobanana__generate_image({
+  prompt: &quot;[composed prompt from template]&quot;,
+  aspect_ratio: &quot;16:9&quot;,        // or 1:1, 9:16 as needed
+  model_tier: &quot;pro&quot;,
+  enable_grounding: false,
+  thinking_level: &quot;high&quot;,
+  resolution: &quot;high&quot;,
+  negative_prompt: &quot;[from template]&quot;,
+  output_path: &quot;[target path in public/images/]&quot;
+})
+</code></pre>
+<p>After generation:</p>
+<ol>
+<li><strong>Read the generated image</strong> using the Read tool to show it inline</li>
+<li><strong>Score honestly</strong> against 7 gates + organic warmth test:<ul>
+<li>Gate 1: Brand Alignment (matches style?)</li>
+<li>Gate 2: Color Balance (3+ accents visible?)</li>
+<li>Gate 3: Information Density (every area purposeful?)</li>
+<li>Gate 4: Depth Layers (foreground/mid/background?)</li>
+<li>Gate 5: Text Legibility (labels readable at 680px?)</li>
+<li>Gate 6: Icon Quality (rich 3D, not flat?)</li>
+<li>Gate 7: Scroll-Stop (would you pause scrolling?)</li>
+<li>Organic Warmth: living presence or sterile chrome?</li>
+</ul>
+</li>
+<li><strong>Log to data/image-generation-log.json</strong> (append entry with full metadata)</li>
+<li><strong>Ask the user</strong>: &quot;Continue as-is, iterate on [aspect], or discard and restart?&quot;</li>
+</ol>
+<p><strong>BLOCKING</strong>: Do NOT proceed until user responds.</p>
+<hr>
+<h2>STEP 5: ITERATE (If Needed)</h2>
+<p>If user requests changes:</p>
+<ol>
+<li>Apply feedback to the prompt template (modify specific fields)</li>
+<li>If changes are significant (new metaphor, style switch): re-submit to council (Step 3)</li>
+<li>If changes are minor (color tweak, position shift): generate another test</li>
+<li>Max 2 iteration cycles before proceeding</li>
+</ol>
+<hr>
+<h2>STEP 6: EXECUTE (Batch)</h2>
+<p>If user approves and wants variations or a batch:</p>
+<ol>
+<li>Generate <strong>3-5 images max</strong> with minor prompt variations</li>
+<li>Score each against 7 gates + organic warmth</li>
+<li>Log all to image-generation-log.json</li>
+<li>Show each image inline with honest score</li>
+<li>Flag any scoring &lt; 6/8 gates for regeneration</li>
+</ol>
+<hr>
+<h2>Auto-Logging</h2>
+<p>After EVERY generation (test or batch), append to <code>data/image-generation-log.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;gen-XXX&quot;,
+  &quot;timestamp&quot;: &quot;[ISO]&quot;,
+  &quot;subject&quot;: &quot;[description]&quot;,
+  &quot;template_type&quot;: &quot;[blog-hero/thumbnail/social/product/mascot]&quot;,
+  &quot;style&quot;: &quot;[style:sub-variant]&quot;,
+  &quot;organizing_metaphor&quot;: &quot;[metaphor]&quot;,
+  &quot;prompt_excerpt&quot;: &quot;[first 200 chars]&quot;,
+  &quot;model&quot;: &quot;gemini-3-pro-image-preview&quot;,
+  &quot;model_tier&quot;: &quot;pro&quot;,
+  &quot;cost_usd&quot;: 0.10,
+  &quot;output_path&quot;: &quot;[path]&quot;,
+  &quot;file_size_bytes&quot;: 0,
+  &quot;dimensions&quot;: &quot;[WxH]&quot;,
+  &quot;council_review&quot;: {
+    &quot;brand_guardian&quot;: 0,
+    &quot;art_director&quot;: 0,
+    &quot;storyteller&quot;: 0,
+    &quot;weighted_score&quot;: 0,
+    &quot;verdict&quot;: &quot;[APPROVED/NEEDS-REVISION/REJECTED]&quot;
+  },
+  &quot;gates&quot;: {
+    &quot;brand_alignment&quot;: false,
+    &quot;color_balance&quot;: false,
+    &quot;information_density&quot;: false,
+    &quot;depth_layers&quot;: false,
+    &quot;text_legibility&quot;: false,
+    &quot;icon_quality&quot;: false,
+    &quot;scroll_stop&quot;: false,
+    &quot;organic_warmth&quot;: false
+  },
+  &quot;gates_passed&quot;: 0,
+  &quot;gates_total&quot;: 8,
+  &quot;status&quot;: &quot;[test/approved/rejected/batch]&quot;,
+  &quot;step&quot;: 4,
+  &quot;notes&quot;: &quot;&quot;
+}
+</code></pre>
+<p>Update <code>total_cost_usd</code> and <code>total_images</code> in the log header after each entry.</p>
+<hr>
+<h2>Key Rules</h2>
+<ol>
+<li><strong>NEVER batch 24 images at once</strong> — max 5 per batch, always with test first</li>
+<li><strong>NEVER cheerleader</strong> — if an image scores 5/8 gates, say 5/8, not &quot;looking great&quot;</li>
+<li><strong>ALWAYS show images inline</strong> — use Read tool after every generation</li>
+<li><strong>ALWAYS log</strong> — no generation goes untracked</li>
+<li><strong>Organic-first or fail</strong> — every prompt needs a living anchor before any tech layer</li>
+<li><strong>Human gate at Step 4</strong> — no batch without explicit user approval of test image</li>
+</ol>
+<hr>
+<p><em>Part of the Visual Creation Council system. Quality over quantity.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

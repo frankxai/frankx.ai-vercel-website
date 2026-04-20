@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Bats Testing Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/shell-scripting/skills/bats-testing-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Bats Testing Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fshell-scripting">shell-scripting</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fshell-scripting%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fshell-scripting%2Fskills%2Fbats-testing-patterns">bats-testing-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: bats-testing-patterns
+description: Master Bash Automated Testing System (Bats) for comprehensive shell script testing. Use when writing tests for shell scripts, CI/CD pipelines, or requiring test-driven development of shell utilities.</h2>
+<h1>Bats Testing Patterns</h1>
+<p>Comprehensive guidance for writing comprehensive unit tests for shell scripts using Bats (Bash Automated Testing System), including test patterns, fixtures, and best practices for production-grade shell testing.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Writing unit tests for shell scripts</li>
+<li>Implementing test-driven development (TDD) for scripts</li>
+<li>Setting up automated testing in CI/CD pipelines</li>
+<li>Testing edge cases and error conditions</li>
+<li>Validating behavior across different shell environments</li>
+<li>Building maintainable test suites for scripts</li>
+<li>Creating fixtures for complex test scenarios</li>
+<li>Testing multiple shell dialects (bash, sh, dash)</li>
+</ul>
+<h2>Bats Fundamentals</h2>
+<h3>What is Bats?</h3>
+<p>Bats (Bash Automated Testing System) is a TAP (Test Anything Protocol) compliant testing framework for shell scripts that provides:</p>
+<ul>
+<li>Simple, natural test syntax</li>
+<li>TAP output format compatible with CI systems</li>
+<li>Fixtures and setup/teardown support</li>
+<li>Assertion helpers</li>
+<li>Parallel test execution</li>
+</ul>
+<h3>Installation</h3>
+<pre><code class="language-bash"># macOS with Homebrew
+brew install bats-core
+
+# Ubuntu/Debian
+git clone https://github.com/bats-core/bats-core.git
+cd bats-core
+./install.sh /usr/local
+
+# From npm (Node.js)
+npm install --global bats
+
+# Verify installation
+bats --version
+</code></pre>
+<h3>File Structure</h3>
+<pre><code>project/
+├── bin/
+│   ├── script.sh
+│   └── helper.sh
+├── tests/
+│   ├── test_script.bats
+│   ├── test_helper.sh
+│   ├── fixtures/
+│   │   ├── input.txt
+│   │   └── expected_output.txt
+│   └── helpers/
+│       └── mocks.bash
+└── README.md
+</code></pre>
+<h2>Basic Test Structure</h2>
+<h3>Simple Test File</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+# Load test helper if present
+load test_helper
+
+# Setup runs before each test
+setup() {
+    export TMPDIR=$(mktemp -d)
+}
+
+# Teardown runs after each test
+teardown() {
+    rm -rf &quot;$TMPDIR&quot;
+}
+
+# Test: simple assertion
+@test &quot;Function returns 0 on success&quot; {
+    run my_function &quot;input&quot;
+    [ &quot;$status&quot; -eq 0 ]
+}
+
+# Test: output verification
+@test &quot;Function outputs correct result&quot; {
+    run my_function &quot;test&quot;
+    [ &quot;$output&quot; = &quot;expected output&quot; ]
+}
+
+# Test: error handling
+@test &quot;Function returns 1 on missing argument&quot; {
+    run my_function
+    [ &quot;$status&quot; -eq 1 ]
+}
+</code></pre>
+<h2>Assertion Patterns</h2>
+<h3>Exit Code Assertions</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+@test &quot;Command succeeds&quot; {
+    run true
+    [ &quot;$status&quot; -eq 0 ]
+}
+
+@test &quot;Command fails as expected&quot; {
+    run false
+    [ &quot;$status&quot; -ne 0 ]
+}
+
+@test &quot;Command returns specific exit code&quot; {
+    run my_function --invalid
+    [ &quot;$status&quot; -eq 127 ]
+}
+
+@test &quot;Can capture command result&quot; {
+    run echo &quot;hello&quot;
+    [ $status -eq 0 ]
+    [ &quot;$output&quot; = &quot;hello&quot; ]
+}
+</code></pre>
+<h3>Output Assertions</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+@test &quot;Output matches string&quot; {
+    result=$(echo &quot;hello world&quot;)
+    [ &quot;$result&quot; = &quot;hello world&quot; ]
+}
+
+@test &quot;Output contains substring&quot; {
+    result=$(echo &quot;hello world&quot;)
+    [[ &quot;$result&quot; == *&quot;world&quot;* ]]
+}
+
+@test &quot;Output matches pattern&quot; {
+    result=$(date +%Y)
+    [[ &quot;$result&quot; =~ ^[0-9]{4}$ ]]
+}
+
+@test &quot;Multi-line output&quot; {
+    run printf &quot;line1\nline2\nline3&quot;
+    [ &quot;$output&quot; = &quot;line1
+line2
+line3&quot; ]
+}
+
+@test &quot;Lines variable contains output&quot; {
+    run printf &quot;line1\nline2\nline3&quot;
+    [ &quot;${lines[0]}&quot; = &quot;line1&quot; ]
+    [ &quot;${lines[1]}&quot; = &quot;line2&quot; ]
+    [ &quot;${lines[2]}&quot; = &quot;line3&quot; ]
+}
+</code></pre>
+<h3>File Assertions</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+@test &quot;File is created&quot; {
+    [ ! -f &quot;$TMPDIR/output.txt&quot; ]
+    my_function &gt; &quot;$TMPDIR/output.txt&quot;
+    [ -f &quot;$TMPDIR/output.txt&quot; ]
+}
+
+@test &quot;File contents match expected&quot; {
+    my_function &gt; &quot;$TMPDIR/output.txt&quot;
+    [ &quot;$(cat &quot;$TMPDIR/output.txt&quot;)&quot; = &quot;expected content&quot; ]
+}
+
+@test &quot;File is readable&quot; {
+    touch &quot;$TMPDIR/test.txt&quot;
+    [ -r &quot;$TMPDIR/test.txt&quot; ]
+}
+
+@test &quot;File has correct permissions&quot; {
+    touch &quot;$TMPDIR/test.txt&quot;
+    chmod 644 &quot;$TMPDIR/test.txt&quot;
+    [ &quot;$(stat -f %OLp &quot;$TMPDIR/test.txt&quot;)&quot; = &quot;644&quot; ]
+}
+
+@test &quot;File size is correct&quot; {
+    echo -n &quot;12345&quot; &gt; &quot;$TMPDIR/test.txt&quot;
+    [ &quot;$(wc -c &lt; &quot;$TMPDIR/test.txt&quot;)&quot; -eq 5 ]
+}
+</code></pre>
+<h2>Setup and Teardown Patterns</h2>
+<h3>Basic Setup and Teardown</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+setup() {
+    # Create test directory
+    TEST_DIR=$(mktemp -d)
+    export TEST_DIR
+
+    # Source script under test
+    source &quot;${BATS_TEST_DIRNAME}/../bin/script.sh&quot;
+}
+
+teardown() {
+    # Clean up temporary directory
+    rm -rf &quot;$TEST_DIR&quot;
+}
+
+@test &quot;Test using TEST_DIR&quot; {
+    touch &quot;$TEST_DIR/file.txt&quot;
+    [ -f &quot;$TEST_DIR/file.txt&quot; ]
+}
+</code></pre>
+<h3>Setup with Resources</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+setup() {
+    # Create directory structure
+    mkdir -p &quot;$TMPDIR/data/input&quot;
+    mkdir -p &quot;$TMPDIR/data/output&quot;
+
+    # Create test fixtures
+    echo &quot;line1&quot; &gt; &quot;$TMPDIR/data/input/file1.txt&quot;
+    echo &quot;line2&quot; &gt; &quot;$TMPDIR/data/input/file2.txt&quot;
+
+    # Initialize environment
+    export DATA_DIR=&quot;$TMPDIR/data&quot;
+    export INPUT_DIR=&quot;$DATA_DIR/input&quot;
+    export OUTPUT_DIR=&quot;$DATA_DIR/output&quot;
+}
+
+teardown() {
+    rm -rf &quot;$TMPDIR/data&quot;
+}
+
+@test &quot;Processes input files&quot; {
+    run my_process_script &quot;$INPUT_DIR&quot; &quot;$OUTPUT_DIR&quot;
+    [ &quot;$status&quot; -eq 0 ]
+    [ -f &quot;$OUTPUT_DIR/file1.txt&quot; ]
+}
+</code></pre>
+<h3>Global Setup/Teardown</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+# Load shared setup from test_helper.sh
+load test_helper
+
+# setup_file runs once before all tests
+setup_file() {
+    export SHARED_RESOURCE=$(mktemp -d)
+    echo &quot;Expensive setup&quot; &gt; &quot;$SHARED_RESOURCE/data.txt&quot;
+}
+
+# teardown_file runs once after all tests
+teardown_file() {
+    rm -rf &quot;$SHARED_RESOURCE&quot;
+}
+
+@test &quot;First test uses shared resource&quot; {
+    [ -f &quot;$SHARED_RESOURCE/data.txt&quot; ]
+}
+
+@test &quot;Second test uses shared resource&quot; {
+    [ -d &quot;$SHARED_RESOURCE&quot; ]
+}
+</code></pre>
+<h2>Mocking and Stubbing Patterns</h2>
+<h3>Function Mocking</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+# Mock external command
+my_external_tool() {
+    echo &quot;mocked output&quot;
+    return 0
+}
+
+@test &quot;Function uses mocked tool&quot; {
+    export -f my_external_tool
+    run my_function
+    [[ &quot;$output&quot; == *&quot;mocked output&quot;* ]]
+}
+</code></pre>
+<h3>Command Stubbing</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+setup() {
+    # Create stub directory
+    STUBS_DIR=&quot;$TMPDIR/stubs&quot;
+    mkdir -p &quot;$STUBS_DIR&quot;
+
+    # Add to PATH
+    export PATH=&quot;$STUBS_DIR:$PATH&quot;
+}
+
+create_stub() {
+    local cmd=&quot;$1&quot;
+    local output=&quot;$2&quot;
+    local code=&quot;${3:-0}&quot;
+
+    cat &gt; &quot;$STUBS_DIR/$cmd&quot; &lt;&lt;EOF
+#!/bin/bash
+echo &quot;$output&quot;
+exit $code
+EOF
+    chmod +x &quot;$STUBS_DIR/$cmd&quot;
+}
+
+@test &quot;Function works with stubbed curl&quot; {
+    create_stub curl &quot;{ \&quot;status\&quot;: \&quot;ok\&quot; }&quot; 0
+    run my_api_function
+    [ &quot;$status&quot; -eq 0 ]
+}
+</code></pre>
+<h3>Variable Stubbing</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+@test &quot;Function handles environment override&quot; {
+    export MY_SETTING=&quot;override_value&quot;
+    run my_function
+    [ &quot;$status&quot; -eq 0 ]
+    [[ &quot;$output&quot; == *&quot;override_value&quot;* ]]
+}
+
+@test &quot;Function uses default when var unset&quot; {
+    unset MY_SETTING
+    run my_function
+    [ &quot;$status&quot; -eq 0 ]
+    [[ &quot;$output&quot; == *&quot;default&quot;* ]]
+}
+</code></pre>
+<h2>Fixture Management</h2>
+<h3>Using Fixture Files</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+# Fixture directory: tests/fixtures/
+
+setup() {
+    FIXTURES_DIR=&quot;${BATS_TEST_DIRNAME}/fixtures&quot;
+    WORK_DIR=$(mktemp -d)
+    export WORK_DIR
+}
+
+teardown() {
+    rm -rf &quot;$WORK_DIR&quot;
+}
+
+@test &quot;Process fixture file&quot; {
+    # Copy fixture to work directory
+    cp &quot;$FIXTURES_DIR/input.txt&quot; &quot;$WORK_DIR/input.txt&quot;
+
+    # Run function
+    run my_process_function &quot;$WORK_DIR/input.txt&quot;
+
+    # Compare output
+    diff &quot;$WORK_DIR/output.txt&quot; &quot;$FIXTURES_DIR/expected_output.txt&quot;
+}
+</code></pre>
+<h3>Dynamic Fixture Generation</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+generate_fixture() {
+    local lines=&quot;$1&quot;
+    local file=&quot;$2&quot;
+
+    for i in $(seq 1 &quot;$lines&quot;); do
+        echo &quot;Line $i content&quot; &gt;&gt; &quot;$file&quot;
+    done
+}
+
+@test &quot;Handle large input file&quot; {
+    generate_fixture 1000 &quot;$TMPDIR/large.txt&quot;
+    run my_function &quot;$TMPDIR/large.txt&quot;
+    [ &quot;$status&quot; -eq 0 ]
+    [ &quot;$(wc -l &lt; &quot;$TMPDIR/large.txt&quot;)&quot; -eq 1000 ]
+}
+</code></pre>
+<h2>Advanced Patterns</h2>
+<h3>Testing Error Conditions</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+@test &quot;Function fails with missing file&quot; {
+    run my_function &quot;/nonexistent/file.txt&quot;
+    [ &quot;$status&quot; -ne 0 ]
+    [[ &quot;$output&quot; == *&quot;not found&quot;* ]]
+}
+
+@test &quot;Function fails with invalid input&quot; {
+    run my_function &quot;&quot;
+    [ &quot;$status&quot; -ne 0 ]
+}
+
+@test &quot;Function fails with permission denied&quot; {
+    touch &quot;$TMPDIR/readonly.txt&quot;
+    chmod 000 &quot;$TMPDIR/readonly.txt&quot;
+    run my_function &quot;$TMPDIR/readonly.txt&quot;
+    [ &quot;$status&quot; -ne 0 ]
+    chmod 644 &quot;$TMPDIR/readonly.txt&quot;  # Cleanup
+}
+
+@test &quot;Function provides helpful error message&quot; {
+    run my_function --invalid-option
+    [ &quot;$status&quot; -ne 0 ]
+    [[ &quot;$output&quot; == *&quot;Usage:&quot;* ]]
+}
+</code></pre>
+<h3>Testing with Dependencies</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+setup() {
+    # Check for required tools
+    if ! command -v jq &amp;&gt;/dev/null; then
+        skip &quot;jq is not installed&quot;
+    fi
+
+    export SCRIPT=&quot;${BATS_TEST_DIRNAME}/../bin/script.sh&quot;
+}
+
+@test &quot;JSON parsing works&quot; {
+    skip_if ! command -v jq &amp;&gt;/dev/null
+    run my_json_parser &#39;{&quot;key&quot;: &quot;value&quot;}&#39;
+    [ &quot;$status&quot; -eq 0 ]
+}
+</code></pre>
+<h3>Testing Shell Compatibility</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+@test &quot;Script works in bash&quot; {
+    bash &quot;${BATS_TEST_DIRNAME}/../bin/script.sh&quot; arg1
+}
+
+@test &quot;Script works in sh (POSIX)&quot; {
+    sh &quot;${BATS_TEST_DIRNAME}/../bin/script.sh&quot; arg1
+}
+
+@test &quot;Script works in dash&quot; {
+    if command -v dash &amp;&gt;/dev/null; then
+        dash &quot;${BATS_TEST_DIRNAME}/../bin/script.sh&quot; arg1
+    else
+        skip &quot;dash not installed&quot;
+    fi
+}
+</code></pre>
+<h3>Parallel Execution</h3>
+<pre><code class="language-bash">#!/usr/bin/env bats
+
+@test &quot;Multiple independent operations&quot; {
+    run bash -c &#39;for i in {1..10}; do
+        my_operation &quot;$i&quot; &amp;
+    done
+    wait&#39;
+    [ &quot;$status&quot; -eq 0 ]
+}
+
+@test &quot;Concurrent file operations&quot; {
+    for i in {1..5}; do
+        my_function &quot;$TMPDIR/file$i&quot; &amp;
+    done
+    wait
+    [ -f &quot;$TMPDIR/file1&quot; ]
+    [ -f &quot;$TMPDIR/file5&quot; ]
+}
+</code></pre>
+<h2>Test Helper Pattern</h2>
+<h3>test_helper.sh</h3>
+<pre><code class="language-bash">#!/usr/bin/env bash
+
+# Source script under test
+export SCRIPT_DIR=&quot;${BATS_TEST_DIRNAME%/*}/bin&quot;
+
+# Common test utilities
+assert_file_exists() {
+    if [ ! -f &quot;$1&quot; ]; then
+        echo &quot;Expected file to exist: $1&quot;
+        return 1
+    fi
+}
+
+assert_file_equals() {
+    local file=&quot;$1&quot;
+    local expected=&quot;$2&quot;
+
+    if [ ! -f &quot;$file&quot; ]; then
+        echo &quot;File does not exist: $file&quot;
+        return 1
+    fi
+
+    local actual=$(cat &quot;$file&quot;)
+    if [ &quot;$actual&quot; != &quot;$expected&quot; ]; then
+        echo &quot;File contents do not match&quot;
+        echo &quot;Expected: $expected&quot;
+        echo &quot;Actual: $actual&quot;
+        return 1
+    fi
+}
+
+# Create temporary test directory
+setup_test_dir() {
+    export TEST_DIR=$(mktemp -d)
+}
+
+cleanup_test_dir() {
+    rm -rf &quot;$TEST_DIR&quot;
+}
+</code></pre>
+<h2>Integration with CI/CD</h2>
+<h3>GitHub Actions Workflow</h3>
+<pre><code class="language-yaml">name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Bats
+        run: |
+          npm install --global bats
+
+      - name: Run Tests
+        run: |
+          bats tests/*.bats
+
+      - name: Run Tests with Tap Reporter
+        run: |
+          bats tests/*.bats --tap | tee test_output.tap
+</code></pre>
+<h3>Makefile Integration</h3>
+<pre><code class="language-makefile">.PHONY: test test-verbose test-tap
+
+test:
+    bats tests/*.bats
+
+test-verbose:
+    bats tests/*.bats --verbose
+
+test-tap:
+    bats tests/*.bats --tap
+
+test-parallel:
+    bats tests/*.bats --parallel 4
+
+coverage: test
+    # Optional: Generate coverage reports
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Test one thing per test</strong> - Single responsibility principle</li>
+<li><strong>Use descriptive test names</strong> - Clearly states what is being tested</li>
+<li><strong>Clean up after tests</strong> - Always remove temporary files in teardown</li>
+<li><strong>Test both success and failure paths</strong> - Don&#39;t just test happy path</li>
+<li><strong>Mock external dependencies</strong> - Isolate unit under test</li>
+<li><strong>Use fixtures for complex data</strong> - Makes tests more readable</li>
+<li><strong>Run tests in CI/CD</strong> - Catch regressions early</li>
+<li><strong>Test across shell dialects</strong> - Ensure portability</li>
+<li><strong>Keep tests fast</strong> - Run in parallel when possible</li>
+<li><strong>Document complex test setup</strong> - Explain unusual patterns</li>
+</ol>
+<h2>Resources</h2>
+<ul>
+<li><strong>Bats GitHub</strong>: <a href="https://github.com/bats-core/bats-core">https://github.com/bats-core/bats-core</a></li>
+<li><strong>Bats Documentation</strong>: <a href="https://bats-core.readthedocs.io/">https://bats-core.readthedocs.io/</a></li>
+<li><strong>TAP Protocol</strong>: <a href="https://testanything.org/">https://testanything.org/</a></li>
+<li><strong>Test-Driven Development</strong>: <a href="https://en.wikipedia.org/wiki/Test-driven_development">https://en.wikipedia.org/wiki/Test-driven_development</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

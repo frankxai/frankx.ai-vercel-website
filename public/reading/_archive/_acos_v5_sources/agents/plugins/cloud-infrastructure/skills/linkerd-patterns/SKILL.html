@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Linkerd Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cloud-infrastructure/skills/linkerd-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Linkerd Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure">cloud-infrastructure</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills%2Flinkerd-patterns">linkerd-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: linkerd-patterns
+description: Implement Linkerd service mesh patterns for lightweight, security-focused service mesh deployments. Use when setting up Linkerd, configuring traffic policies, or implementing zero-trust networking with minimal overhead.</h2>
+<h1>Linkerd Patterns</h1>
+<p>Production patterns for Linkerd service mesh - the lightweight, security-first service mesh for Kubernetes.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Setting up a lightweight service mesh</li>
+<li>Implementing automatic mTLS</li>
+<li>Configuring traffic splits for canary deployments</li>
+<li>Setting up service profiles for per-route metrics</li>
+<li>Implementing retries and timeouts</li>
+<li>Multi-cluster service mesh</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Linkerd Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────┐
+│                Control Plane                 │
+│  ┌─────────┐ ┌──────────┐ ┌──────────────┐ │
+│  │ destiny │ │ identity │ │ proxy-inject │ │
+│  └─────────┘ └──────────┘ └──────────────┘ │
+└─────────────────────────────────────────────┘
+                      │
+┌─────────────────────────────────────────────┐
+│                 Data Plane                   │
+│  ┌─────┐    ┌─────┐    ┌─────┐             │
+│  │proxy│────│proxy│────│proxy│             │
+│  └─────┘    └─────┘    └─────┘             │
+│     │           │           │               │
+│  ┌──┴──┐    ┌──┴──┐    ┌──┴──┐            │
+│  │ app │    │ app │    │ app │            │
+│  └─────┘    └─────┘    └─────┘            │
+└─────────────────────────────────────────────┘
+</code></pre>
+<h3>2. Key Resources</h3>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>ServiceProfile</strong></td>
+<td>Per-route metrics, retries, timeouts</td>
+</tr>
+<tr>
+<td><strong>TrafficSplit</strong></td>
+<td>Canary deployments, A/B testing</td>
+</tr>
+<tr>
+<td><strong>Server</strong></td>
+<td>Define server-side policies</td>
+</tr>
+<tr>
+<td><strong>ServerAuthorization</strong></td>
+<td>Access control policies</td>
+</tr>
+</tbody></table>
+<h2>Templates</h2>
+<h3>Template 1: Mesh Installation</h3>
+<pre><code class="language-bash"># Install CLI
+curl --proto &#39;=https&#39; --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
+
+# Validate cluster
+linkerd check --pre
+
+# Install CRDs
+linkerd install --crds | kubectl apply -f -
+
+# Install control plane
+linkerd install | kubectl apply -f -
+
+# Verify installation
+linkerd check
+
+# Install viz extension (optional)
+linkerd viz install | kubectl apply -f -
+</code></pre>
+<h3>Template 2: Inject Namespace</h3>
+<pre><code class="language-yaml"># Automatic injection for namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-app
+  annotations:
+    linkerd.io/inject: enabled
+---
+# Or inject specific deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  annotations:
+    linkerd.io/inject: enabled
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+</code></pre>
+<h3>Template 3: Service Profile with Retries</h3>
+<pre><code class="language-yaml">apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  name: my-service.my-namespace.svc.cluster.local
+  namespace: my-namespace
+spec:
+  routes:
+    - name: GET /api/users
+      condition:
+        method: GET
+        pathRegex: /api/users
+      responseClasses:
+        - condition:
+            status:
+              min: 500
+              max: 599
+          isFailure: true
+      isRetryable: true
+    - name: POST /api/users
+      condition:
+        method: POST
+        pathRegex: /api/users
+      # POST not retryable by default
+      isRetryable: false
+    - name: GET /api/users/{id}
+      condition:
+        method: GET
+        pathRegex: /api/users/[^/]+
+      timeout: 5s
+      isRetryable: true
+  retryBudget:
+    retryRatio: 0.2
+    minRetriesPerSecond: 10
+    ttl: 10s
+</code></pre>
+<h3>Template 4: Traffic Split (Canary)</h3>
+<pre><code class="language-yaml">apiVersion: split.smi-spec.io/v1alpha1
+kind: TrafficSplit
+metadata:
+  name: my-service-canary
+  namespace: my-namespace
+spec:
+  service: my-service
+  backends:
+    - service: my-service-stable
+      weight: 900m # 90%
+    - service: my-service-canary
+      weight: 100m # 10%
+</code></pre>
+<h3>Template 5: Server Authorization Policy</h3>
+<pre><code class="language-yaml"># Define the server
+apiVersion: policy.linkerd.io/v1beta1
+kind: Server
+metadata:
+  name: my-service-http
+  namespace: my-namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: my-service
+  port: http
+  proxyProtocol: HTTP/1
+---
+# Allow traffic from specific clients
+apiVersion: policy.linkerd.io/v1beta1
+kind: ServerAuthorization
+metadata:
+  name: allow-frontend
+  namespace: my-namespace
+spec:
+  server:
+    name: my-service-http
+  client:
+    meshTLS:
+      serviceAccounts:
+        - name: frontend
+          namespace: my-namespace
+---
+# Allow unauthenticated traffic (e.g., from ingress)
+apiVersion: policy.linkerd.io/v1beta1
+kind: ServerAuthorization
+metadata:
+  name: allow-ingress
+  namespace: my-namespace
+spec:
+  server:
+    name: my-service-http
+  client:
+    unauthenticated: true
+    networks:
+      - cidr: 10.0.0.0/8
+</code></pre>
+<h3>Template 6: HTTPRoute for Advanced Routing</h3>
+<pre><code class="language-yaml">apiVersion: policy.linkerd.io/v1beta2
+kind: HTTPRoute
+metadata:
+  name: my-route
+  namespace: my-namespace
+spec:
+  parentRefs:
+    - name: my-service
+      kind: Service
+      group: core
+      port: 8080
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api/v2
+        - headers:
+            - name: x-api-version
+              value: v2
+      backendRefs:
+        - name: my-service-v2
+          port: 8080
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /api
+      backendRefs:
+        - name: my-service-v1
+          port: 8080
+</code></pre>
+<h3>Template 7: Multi-cluster Setup</h3>
+<pre><code class="language-bash"># On each cluster, install with cluster credentials
+linkerd multicluster install | kubectl apply -f -
+
+# Link clusters
+linkerd multicluster link --cluster-name west \
+  --api-server-address https://west.example.com:6443 \
+  | kubectl apply -f -
+
+# Export a service to other clusters
+kubectl label svc/my-service mirror.linkerd.io/exported=true
+
+# Verify cross-cluster connectivity
+linkerd multicluster check
+linkerd multicluster gateways
+</code></pre>
+<h2>Monitoring Commands</h2>
+<pre><code class="language-bash"># Live traffic view
+linkerd viz top deploy/my-app
+
+# Per-route metrics
+linkerd viz routes deploy/my-app
+
+# Check proxy status
+linkerd viz stat deploy -n my-namespace
+
+# View service dependencies
+linkerd viz edges deploy -n my-namespace
+
+# Dashboard
+linkerd viz dashboard
+</code></pre>
+<h2>Debugging</h2>
+<pre><code class="language-bash"># Check injection status
+linkerd check --proxy -n my-namespace
+
+# View proxy logs
+kubectl logs deploy/my-app -c linkerd-proxy
+
+# Debug identity/TLS
+linkerd identity -n my-namespace
+
+# Tap traffic (live)
+linkerd viz tap deploy/my-app --to deploy/my-backend
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Enable mTLS everywhere</strong> - It&#39;s automatic with Linkerd</li>
+<li><strong>Use ServiceProfiles</strong> - Get per-route metrics and retries</li>
+<li><strong>Set retry budgets</strong> - Prevent retry storms</li>
+<li><strong>Monitor golden metrics</strong> - Success rate, latency, throughput</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t skip check</strong> - Always run <code>linkerd check</code> after changes</li>
+<li><strong>Don&#39;t over-configure</strong> - Linkerd defaults are sensible</li>
+<li><strong>Don&#39;t ignore ServiceProfiles</strong> - They unlock advanced features</li>
+<li><strong>Don&#39;t forget timeouts</strong> - Set appropriate values per route</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://linkerd.io/2.14/overview/">Linkerd Documentation</a></li>
+<li><a href="https://linkerd.io/2.14/features/service-profiles/">Service Profiles</a></li>
+<li><a href="https://linkerd.io/2.14/features/server-policy/">Authorization Policy</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

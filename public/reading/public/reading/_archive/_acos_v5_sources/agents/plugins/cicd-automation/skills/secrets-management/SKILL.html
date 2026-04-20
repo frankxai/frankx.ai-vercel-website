@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Secrets Management</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cicd-automation/skills/secrets-management/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Secrets Management</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation">cicd-automation</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation%2Fskills%2Fsecrets-management">secrets-management</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: secrets-management
+description: Implement secure secrets management for CI/CD pipelines using Vault, AWS Secrets Manager, or native platform solutions. Use when handling sensitive credentials, rotating secrets, or securing CI/CD environments.</h2>
+<h1>Secrets Management</h1>
+<p>Secure secrets management practices for CI/CD pipelines using Vault, AWS Secrets Manager, and other tools.</p>
+<h2>Purpose</h2>
+<p>Implement secure secrets management in CI/CD pipelines without hardcoding sensitive information.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Store API keys and credentials</li>
+<li>Manage database passwords</li>
+<li>Handle TLS certificates</li>
+<li>Rotate secrets automatically</li>
+<li>Implement least-privilege access</li>
+</ul>
+<h2>Secrets Management Tools</h2>
+<h3>HashiCorp Vault</h3>
+<ul>
+<li>Centralized secrets management</li>
+<li>Dynamic secrets generation</li>
+<li>Secret rotation</li>
+<li>Audit logging</li>
+<li>Fine-grained access control</li>
+</ul>
+<h3>AWS Secrets Manager</h3>
+<ul>
+<li>AWS-native solution</li>
+<li>Automatic rotation</li>
+<li>Integration with RDS</li>
+<li>CloudFormation support</li>
+</ul>
+<h3>Azure Key Vault</h3>
+<ul>
+<li>Azure-native solution</li>
+<li>HSM-backed keys</li>
+<li>Certificate management</li>
+<li>RBAC integration</li>
+</ul>
+<h3>Google Secret Manager</h3>
+<ul>
+<li>GCP-native solution</li>
+<li>Versioning</li>
+<li>IAM integration</li>
+</ul>
+<h2>HashiCorp Vault Integration</h2>
+<h3>Setup Vault</h3>
+<pre><code class="language-bash"># Start Vault dev server
+vault server -dev
+
+# Set environment
+export VAULT_ADDR=&#39;http://127.0.0.1:8200&#39;
+export VAULT_TOKEN=&#39;root&#39;
+
+# Enable secrets engine
+vault secrets enable -path=secret kv-v2
+
+# Store secret
+vault kv put secret/database/config username=admin password=secret
+</code></pre>
+<h3>GitHub Actions with Vault</h3>
+<pre><code class="language-yaml">name: Deploy with Vault Secrets
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Import Secrets from Vault
+        uses: hashicorp/vault-action@v2
+        with:
+          url: https://vault.example.com:8200
+          token: ${{ secrets.VAULT_TOKEN }}
+          secrets: |
+            secret/data/database username | DB_USERNAME ;
+            secret/data/database password | DB_PASSWORD ;
+            secret/data/api key | API_KEY
+
+      - name: Use secrets
+        run: |
+          echo &quot;Connecting to database as $DB_USERNAME&quot;
+          # Use $DB_PASSWORD, $API_KEY
+</code></pre>
+<h3>GitLab CI with Vault</h3>
+<pre><code class="language-yaml">deploy:
+  image: vault:latest
+  before_script:
+    - export VAULT_ADDR=https://vault.example.com:8200
+    - export VAULT_TOKEN=$VAULT_TOKEN
+    - apk add curl jq
+  script:
+    - |
+      DB_PASSWORD=$(vault kv get -field=password secret/database/config)
+      API_KEY=$(vault kv get -field=key secret/api/credentials)
+      echo &quot;Deploying with secrets...&quot;
+      # Use $DB_PASSWORD, $API_KEY
+</code></pre>
+<p><strong>Reference:</strong> See <code>references/vault-setup.md</code></p>
+<h2>AWS Secrets Manager</h2>
+<h3>Store Secret</h3>
+<pre><code class="language-bash">aws secretsmanager create-secret \
+  --name production/database/password \
+  --secret-string &quot;super-secret-password&quot;
+</code></pre>
+<h3>Retrieve in GitHub Actions</h3>
+<pre><code class="language-yaml">- name: Configure AWS credentials
+  uses: aws-actions/configure-aws-credentials@v4
+  with:
+    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    aws-region: us-west-2
+
+- name: Get secret from AWS
+  run: |
+    SECRET=$(aws secretsmanager get-secret-value \
+      --secret-id production/database/password \
+      --query SecretString \
+      --output text)
+    echo &quot;::add-mask::$SECRET&quot;
+    echo &quot;DB_PASSWORD=$SECRET&quot; &gt;&gt; $GITHUB_ENV
+
+- name: Use secret
+  run: |
+    # Use $DB_PASSWORD
+    ./deploy.sh
+</code></pre>
+<h3>Terraform with AWS Secrets Manager</h3>
+<pre><code class="language-hcl">data &quot;aws_secretsmanager_secret_version&quot; &quot;db_password&quot; {
+  secret_id = &quot;production/database/password&quot;
+}
+
+resource &quot;aws_db_instance&quot; &quot;main&quot; {
+  allocated_storage    = 100
+  engine              = &quot;postgres&quot;
+  instance_class      = &quot;db.t3.large&quot;
+  username            = &quot;admin&quot;
+  password            = jsondecode(data.aws_secretsmanager_secret_version.db_password.secret_string)[&quot;password&quot;]
+}
+</code></pre>
+<h2>GitHub Secrets</h2>
+<h3>Organization/Repository Secrets</h3>
+<pre><code class="language-yaml">- name: Use GitHub secret
+  run: |
+    echo &quot;API Key: ${{ secrets.API_KEY }}&quot;
+    echo &quot;Database URL: ${{ secrets.DATABASE_URL }}&quot;
+</code></pre>
+<h3>Environment Secrets</h3>
+<pre><code class="language-yaml">deploy:
+  runs-on: ubuntu-latest
+  environment: production
+  steps:
+    - name: Deploy
+      run: |
+        echo &quot;Deploying with ${{ secrets.PROD_API_KEY }}&quot;
+</code></pre>
+<p><strong>Reference:</strong> See <code>references/github-secrets.md</code></p>
+<h2>GitLab CI/CD Variables</h2>
+<h3>Project Variables</h3>
+<pre><code class="language-yaml">deploy:
+  script:
+    - echo &quot;Deploying with $API_KEY&quot;
+    - echo &quot;Database: $DATABASE_URL&quot;
+</code></pre>
+<h3>Protected and Masked Variables</h3>
+<ul>
+<li>Protected: Only available in protected branches</li>
+<li>Masked: Hidden in job logs</li>
+<li>File type: Stored as file</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Never commit secrets</strong> to Git</li>
+<li><strong>Use different secrets</strong> per environment</li>
+<li><strong>Rotate secrets regularly</strong></li>
+<li><strong>Implement least-privilege access</strong></li>
+<li><strong>Enable audit logging</strong></li>
+<li><strong>Use secret scanning</strong> (GitGuardian, TruffleHog)</li>
+<li><strong>Mask secrets in logs</strong></li>
+<li><strong>Encrypt secrets at rest</strong></li>
+<li><strong>Use short-lived tokens</strong> when possible</li>
+<li><strong>Document secret requirements</strong></li>
+</ol>
+<h2>Secret Rotation</h2>
+<h3>Automated Rotation with AWS</h3>
+<pre><code class="language-python">import boto3
+import json
+
+def lambda_handler(event, context):
+    client = boto3.client(&#39;secretsmanager&#39;)
+
+    # Get current secret
+    response = client.get_secret_value(SecretId=&#39;my-secret&#39;)
+    current_secret = json.loads(response[&#39;SecretString&#39;])
+
+    # Generate new password
+    new_password = generate_strong_password()
+
+    # Update database password
+    update_database_password(new_password)
+
+    # Update secret
+    client.put_secret_value(
+        SecretId=&#39;my-secret&#39;,
+        SecretString=json.dumps({
+            &#39;username&#39;: current_secret[&#39;username&#39;],
+            &#39;password&#39;: new_password
+        })
+    )
+
+    return {&#39;statusCode&#39;: 200}
+</code></pre>
+<h3>Manual Rotation Process</h3>
+<ol>
+<li>Generate new secret</li>
+<li>Update secret in secret store</li>
+<li>Update applications to use new secret</li>
+<li>Verify functionality</li>
+<li>Revoke old secret</li>
+</ol>
+<h2>External Secrets Operator</h2>
+<h3>Kubernetes Integration</h3>
+<pre><code class="language-yaml">apiVersion: external-secrets.io/v1beta1
+kind: SecretStore
+metadata:
+  name: vault-backend
+  namespace: production
+spec:
+  provider:
+    vault:
+      server: &quot;https://vault.example.com:8200&quot;
+      path: &quot;secret&quot;
+      version: &quot;v2&quot;
+      auth:
+        kubernetes:
+          mountPath: &quot;kubernetes&quot;
+          role: &quot;production&quot;
+
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: database-credentials
+  namespace: production
+spec:
+  refreshInterval: 1h
+  secretStoreRef:
+    name: vault-backend
+    kind: SecretStore
+  target:
+    name: database-credentials
+    creationPolicy: Owner
+  data:
+    - secretKey: username
+      remoteRef:
+        key: database/config
+        property: username
+    - secretKey: password
+      remoteRef:
+        key: database/config
+        property: password
+</code></pre>
+<h2>Secret Scanning</h2>
+<h3>Pre-commit Hook</h3>
+<pre><code class="language-bash">#!/bin/bash
+# .git/hooks/pre-commit
+
+# Check for secrets with TruffleHog
+docker run --rm -v &quot;$(pwd):/repo&quot; \
+  trufflesecurity/trufflehog:latest \
+  filesystem --directory=/repo
+
+if [ $? -ne 0 ]; then
+  echo &quot;❌ Secret detected! Commit blocked.&quot;
+  exit 1
+fi
+</code></pre>
+<h3>CI/CD Secret Scanning</h3>
+<pre><code class="language-yaml">secret-scan:
+  stage: security
+  image: trufflesecurity/trufflehog:latest
+  script:
+    - trufflehog filesystem .
+  allow_failure: false
+</code></pre>
+<h2>Reference Files</h2>
+<ul>
+<li><code>references/vault-setup.md</code> - HashiCorp Vault configuration</li>
+<li><code>references/github-secrets.md</code> - GitHub Secrets best practices</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>github-actions-templates</code> - For GitHub Actions integration</li>
+<li><code>gitlab-ci-patterns</code> - For GitLab CI integration</li>
+<li><code>deployment-pipeline-design</code> - For pipeline architecture</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

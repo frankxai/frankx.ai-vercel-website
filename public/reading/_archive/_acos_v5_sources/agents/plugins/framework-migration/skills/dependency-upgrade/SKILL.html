@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Dependency Upgrade</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/framework-migration/skills/dependency-upgrade/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Dependency Upgrade</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration">framework-migration</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration%2Fskills%2Fdependency-upgrade">dependency-upgrade</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: dependency-upgrade
+description: Manage major dependency version upgrades with compatibility analysis, staged rollout, and comprehensive testing. Use when upgrading framework versions, updating major dependencies, or managing breaking changes in libraries.</h2>
+<h1>Dependency Upgrade</h1>
+<p>Master major dependency version upgrades, compatibility analysis, staged upgrade strategies, and comprehensive testing approaches.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Upgrading major framework versions</li>
+<li>Updating security-vulnerable dependencies</li>
+<li>Modernizing legacy dependencies</li>
+<li>Resolving dependency conflicts</li>
+<li>Planning incremental upgrade paths</li>
+<li>Testing compatibility matrices</li>
+<li>Automating dependency updates</li>
+</ul>
+<h2>Semantic Versioning Review</h2>
+<pre><code>MAJOR.MINOR.PATCH (e.g., 2.3.1)
+
+MAJOR: Breaking changes
+MINOR: New features, backward compatible
+PATCH: Bug fixes, backward compatible
+
+^2.3.1 = &gt;=2.3.1 &lt;3.0.0 (minor updates)
+~2.3.1 = &gt;=2.3.1 &lt;2.4.0 (patch updates)
+2.3.1 = exact version
+</code></pre>
+<h2>Dependency Analysis</h2>
+<h3>Audit Dependencies</h3>
+<pre><code class="language-bash"># npm
+npm outdated
+npm audit
+npm audit fix
+
+# yarn
+yarn outdated
+yarn audit
+
+# Check for major updates
+npx npm-check-updates
+npx npm-check-updates -u  # Update package.json
+</code></pre>
+<h3>Analyze Dependency Tree</h3>
+<pre><code class="language-bash"># See why a package is installed
+npm ls package-name
+yarn why package-name
+
+# Find duplicate packages
+npm dedupe
+yarn dedupe
+
+# Visualize dependencies
+npx madge --image graph.png src/
+</code></pre>
+<h2>Compatibility Matrix</h2>
+<pre><code class="language-javascript">// compatibility-matrix.js
+const compatibilityMatrix = {
+  react: {
+    &quot;16.x&quot;: {
+      &quot;react-dom&quot;: &quot;^16.0.0&quot;,
+      &quot;react-router-dom&quot;: &quot;^5.0.0&quot;,
+      &quot;@testing-library/react&quot;: &quot;^11.0.0&quot;,
+    },
+    &quot;17.x&quot;: {
+      &quot;react-dom&quot;: &quot;^17.0.0&quot;,
+      &quot;react-router-dom&quot;: &quot;^5.0.0 || ^6.0.0&quot;,
+      &quot;@testing-library/react&quot;: &quot;^12.0.0&quot;,
+    },
+    &quot;18.x&quot;: {
+      &quot;react-dom&quot;: &quot;^18.0.0&quot;,
+      &quot;react-router-dom&quot;: &quot;^6.0.0&quot;,
+      &quot;@testing-library/react&quot;: &quot;^13.0.0&quot;,
+    },
+  },
+};
+
+function checkCompatibility(packages) {
+  // Validate package versions against matrix
+}
+</code></pre>
+<h2>Staged Upgrade Strategy</h2>
+<h3>Phase 1: Planning</h3>
+<pre><code class="language-bash"># 1. Identify current versions
+npm list --depth=0
+
+# 2. Check for breaking changes
+# Read CHANGELOG.md and MIGRATION.md
+
+# 3. Create upgrade plan
+echo &quot;Upgrade order:
+1. TypeScript
+2. React
+3. React Router
+4. Testing libraries
+5. Build tools&quot; &gt; UPGRADE_PLAN.md
+</code></pre>
+<h3>Phase 2: Incremental Updates</h3>
+<pre><code class="language-bash"># Don&#39;t upgrade everything at once!
+
+# Step 1: Update TypeScript
+npm install typescript@latest
+
+# Test
+npm run test
+npm run build
+
+# Step 2: Update React (one major version at a time)
+npm install react@17 react-dom@17
+
+# Test again
+npm run test
+
+# Step 3: Continue with other packages
+npm install react-router-dom@6
+
+# And so on...
+</code></pre>
+<h3>Phase 3: Validation</h3>
+<pre><code class="language-javascript">// tests/compatibility.test.js
+describe(&quot;Dependency Compatibility&quot;, () =&gt; {
+  it(&quot;should have compatible React versions&quot;, () =&gt; {
+    const reactVersion = require(&quot;react/package.json&quot;).version;
+    const reactDomVersion = require(&quot;react-dom/package.json&quot;).version;
+
+    expect(reactVersion).toBe(reactDomVersion);
+  });
+
+  it(&quot;should not have peer dependency warnings&quot;, () =&gt; {
+    // Run npm ls and check for warnings
+  });
+});
+</code></pre>
+<h2>Breaking Change Handling</h2>
+<h3>Identifying Breaking Changes</h3>
+<pre><code class="language-bash"># Use changelog parsers
+npx changelog-parser react 16.0.0 17.0.0
+
+# Or manually check
+curl https://raw.githubusercontent.com/facebook/react/main/CHANGELOG.md
+</code></pre>
+<h3>Codemod for Automated Fixes</h3>
+<pre><code class="language-bash"># React upgrade codemods
+npx react-codeshift &lt;transform&gt; &lt;path&gt;
+
+# Example: Update lifecycle methods
+npx react-codeshift \
+  --parser tsx \
+  --transform react-codeshift/transforms/rename-unsafe-lifecycles.js \
+  src/
+</code></pre>
+<h3>Custom Migration Script</h3>
+<pre><code class="language-javascript">// migration-script.js
+const fs = require(&quot;fs&quot;);
+const glob = require(&quot;glob&quot;);
+
+glob(&quot;src/**/*.tsx&quot;, (err, files) =&gt; {
+  files.forEach((file) =&gt; {
+    let content = fs.readFileSync(file, &quot;utf8&quot;);
+
+    // Replace old API with new API
+    content = content.replace(
+      /componentWillMount/g,
+      &quot;UNSAFE_componentWillMount&quot;,
+    );
+
+    // Update imports
+    content = content.replace(
+      /import { Component } from &#39;react&#39;/g,
+      &quot;import React, { Component } from &#39;react&#39;&quot;,
+    );
+
+    fs.writeFileSync(file, content);
+  });
+});
+</code></pre>
+<h2>Testing Strategy</h2>
+<h3>Unit Tests</h3>
+<pre><code class="language-javascript">// Ensure tests pass before and after upgrade
+npm run test
+
+// Update test utilities if needed
+npm install @testing-library/react@latest
+</code></pre>
+<h3>Integration Tests</h3>
+<pre><code class="language-javascript">// tests/integration/app.test.js
+describe(&quot;App Integration&quot;, () =&gt; {
+  it(&quot;should render without crashing&quot;, () =&gt; {
+    render(&lt;App /&gt;);
+  });
+
+  it(&quot;should handle navigation&quot;, () =&gt; {
+    const { getByText } = render(&lt;App /&gt;);
+    fireEvent.click(getByText(&quot;Navigate&quot;));
+    expect(screen.getByText(&quot;New Page&quot;)).toBeInTheDocument();
+  });
+});
+</code></pre>
+<h3>Visual Regression Tests</h3>
+<pre><code class="language-javascript">// visual-regression.test.js
+describe(&quot;Visual Regression&quot;, () =&gt; {
+  it(&quot;should match snapshot&quot;, () =&gt; {
+    const { container } = render(&lt;App /&gt;);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+});
+</code></pre>
+<h3>E2E Tests</h3>
+<pre><code class="language-javascript">// cypress/e2e/app.cy.js
+describe(&quot;E2E Tests&quot;, () =&gt; {
+  it(&quot;should complete user flow&quot;, () =&gt; {
+    cy.visit(&quot;/&quot;);
+    cy.get(&#39;[data-testid=&quot;login&quot;]&#39;).click();
+    cy.get(&#39;input[name=&quot;email&quot;]&#39;).type(&quot;user@example.com&quot;);
+    cy.get(&#39;button[type=&quot;submit&quot;]&#39;).click();
+    cy.url().should(&quot;include&quot;, &quot;/dashboard&quot;);
+  });
+});
+</code></pre>
+<h2>Automated Dependency Updates</h2>
+<h3>Renovate Configuration</h3>
+<pre><code class="language-json">// renovate.json
+{
+  &quot;extends&quot;: [&quot;config:base&quot;],
+  &quot;packageRules&quot;: [
+    {
+      &quot;matchUpdateTypes&quot;: [&quot;minor&quot;, &quot;patch&quot;],
+      &quot;automerge&quot;: true
+    },
+    {
+      &quot;matchUpdateTypes&quot;: [&quot;major&quot;],
+      &quot;automerge&quot;: false,
+      &quot;labels&quot;: [&quot;major-update&quot;]
+    }
+  ],
+  &quot;schedule&quot;: [&quot;before 3am on Monday&quot;],
+  &quot;timezone&quot;: &quot;America/New_York&quot;
+}
+</code></pre>
+<h3>Dependabot Configuration</h3>
+<pre><code class="language-yaml"># .github/dependabot.yml
+version: 2
+updates:
+  - package-ecosystem: &quot;npm&quot;
+    directory: &quot;/&quot;
+    schedule:
+      interval: &quot;weekly&quot;
+    open-pull-requests-limit: 5
+    reviewers:
+      - &quot;team-leads&quot;
+    commit-message:
+      prefix: &quot;chore&quot;
+      include: &quot;scope&quot;
+</code></pre>
+<h2>Rollback Plan</h2>
+<pre><code class="language-javascript">// rollback.sh
+#!/bin/bash
+
+# Save current state
+git stash
+git checkout -b upgrade-branch
+
+# Attempt upgrade
+npm install package@latest
+
+# Run tests
+if npm run test; then
+  echo &quot;Upgrade successful&quot;
+  git add package.json package-lock.json
+  git commit -m &quot;chore: upgrade package&quot;
+else
+  echo &quot;Upgrade failed, rolling back&quot;
+  git checkout main
+  git branch -D upgrade-branch
+  npm install  # Restore from package-lock.json
+fi
+</code></pre>
+<h2>Common Upgrade Patterns</h2>
+<h3>Lock File Management</h3>
+<pre><code class="language-bash"># npm
+npm install --package-lock-only  # Update lock file only
+npm ci  # Clean install from lock file
+
+# yarn
+yarn install --frozen-lockfile  # CI mode
+yarn upgrade-interactive  # Interactive upgrades
+</code></pre>
+<h3>Peer Dependency Resolution</h3>
+<pre><code class="language-bash"># npm 7+: strict peer dependencies
+npm install --legacy-peer-deps  # Ignore peer deps
+
+# npm 8+: override peer dependencies
+npm install --force
+</code></pre>
+<h3>Workspace Upgrades</h3>
+<pre><code class="language-bash"># Update all workspace packages
+npm install --workspaces
+
+# Update specific workspace
+npm install package@latest --workspace=packages/app
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/semver.md</strong>: Semantic versioning guide</li>
+<li><strong>references/compatibility-matrix.md</strong>: Common compatibility issues</li>
+<li><strong>references/staged-upgrades.md</strong>: Incremental upgrade strategies</li>
+<li><strong>references/testing-strategy.md</strong>: Comprehensive testing approaches</li>
+<li><strong>assets/upgrade-checklist.md</strong>: Step-by-step checklist</li>
+<li><strong>assets/compatibility-matrix.csv</strong>: Version compatibility table</li>
+<li><strong>scripts/audit-dependencies.sh</strong>: Dependency audit script</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Read Changelogs</strong>: Understand what changed</li>
+<li><strong>Upgrade Incrementally</strong>: One major version at a time</li>
+<li><strong>Test Thoroughly</strong>: Unit, integration, E2E tests</li>
+<li><strong>Check Peer Dependencies</strong>: Resolve conflicts early</li>
+<li><strong>Use Lock Files</strong>: Ensure reproducible installs</li>
+<li><strong>Automate Updates</strong>: Use Renovate or Dependabot</li>
+<li><strong>Monitor</strong>: Watch for runtime errors post-upgrade</li>
+<li><strong>Document</strong>: Keep upgrade notes</li>
+</ol>
+<h2>Upgrade Checklist</h2>
+<pre><code class="language-markdown">Pre-Upgrade:
+
+- [ ] Review current dependency versions
+- [ ] Read changelogs for breaking changes
+- [ ] Create feature branch
+- [ ] Backup current state (git tag)
+- [ ] Run full test suite (baseline)
+
+During Upgrade:
+
+- [ ] Upgrade one dependency at a time
+- [ ] Update peer dependencies
+- [ ] Fix TypeScript errors
+- [ ] Update tests if needed
+- [ ] Run test suite after each upgrade
+- [ ] Check bundle size impact
+
+Post-Upgrade:
+
+- [ ] Full regression testing
+- [ ] Performance testing
+- [ ] Update documentation
+- [ ] Deploy to staging
+- [ ] Monitor for errors
+- [ ] Deploy to production
+</code></pre>
+<h2>Common Pitfalls</h2>
+<ul>
+<li>Upgrading all dependencies at once</li>
+<li>Not testing after each upgrade</li>
+<li>Ignoring peer dependency warnings</li>
+<li>Forgetting to update lock file</li>
+<li>Not reading breaking change notes</li>
+<li>Skipping major versions</li>
+<li>Not having rollback plan</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

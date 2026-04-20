@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Spacing and Iconography Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/visual-design-foundations/references/spacing-iconography.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Spacing and Iconography Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fvisual-design-foundations">visual-design-foundations</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Fvisual-design-foundations%2Freferences">references</a> / <span>spacing-iconography.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Spacing and Iconography Reference</h1>
+<h2>Spacing Systems</h2>
+<h3>8-Point Grid System</h3>
+<p>The 8-point grid is the industry standard for consistent spacing.</p>
+<pre><code class="language-css">:root {
+  /* Base spacing unit */
+  --space-unit: 0.25rem; /* 4px */
+
+  /* Spacing scale */
+  --space-0: 0;
+  --space-px: 1px;
+  --space-0-5: calc(var(--space-unit) * 0.5); /* 2px */
+  --space-1: var(--space-unit); /* 4px */
+  --space-1-5: calc(var(--space-unit) * 1.5); /* 6px */
+  --space-2: calc(var(--space-unit) * 2); /* 8px */
+  --space-2-5: calc(var(--space-unit) * 2.5); /* 10px */
+  --space-3: calc(var(--space-unit) * 3); /* 12px */
+  --space-3-5: calc(var(--space-unit) * 3.5); /* 14px */
+  --space-4: calc(var(--space-unit) * 4); /* 16px */
+  --space-5: calc(var(--space-unit) * 5); /* 20px */
+  --space-6: calc(var(--space-unit) * 6); /* 24px */
+  --space-7: calc(var(--space-unit) * 7); /* 28px */
+  --space-8: calc(var(--space-unit) * 8); /* 32px */
+  --space-9: calc(var(--space-unit) * 9); /* 36px */
+  --space-10: calc(var(--space-unit) * 10); /* 40px */
+  --space-11: calc(var(--space-unit) * 11); /* 44px */
+  --space-12: calc(var(--space-unit) * 12); /* 48px */
+  --space-14: calc(var(--space-unit) * 14); /* 56px */
+  --space-16: calc(var(--space-unit) * 16); /* 64px */
+  --space-20: calc(var(--space-unit) * 20); /* 80px */
+  --space-24: calc(var(--space-unit) * 24); /* 96px */
+  --space-28: calc(var(--space-unit) * 28); /* 112px */
+  --space-32: calc(var(--space-unit) * 32); /* 128px */
+}
+</code></pre>
+<h3>Semantic Spacing Tokens</h3>
+<pre><code class="language-css">:root {
+  /* Component-level spacing */
+  --spacing-xs: var(--space-1); /* 4px - tight spacing */
+  --spacing-sm: var(--space-2); /* 8px - compact spacing */
+  --spacing-md: var(--space-4); /* 16px - default spacing */
+  --spacing-lg: var(--space-6); /* 24px - comfortable spacing */
+  --spacing-xl: var(--space-8); /* 32px - loose spacing */
+  --spacing-2xl: var(--space-12); /* 48px - generous spacing */
+  --spacing-3xl: var(--space-16); /* 64px - section spacing */
+
+  /* Specific use cases */
+  --spacing-inline: var(--space-2); /* Between inline elements */
+  --spacing-stack: var(--space-4); /* Between stacked elements */
+  --spacing-inset: var(--space-4); /* Padding inside containers */
+  --spacing-section: var(--space-16); /* Between major sections */
+  --spacing-page: var(--space-24); /* Page margins */
+}
+</code></pre>
+<h3>Spacing Utility Functions</h3>
+<pre><code class="language-tsx">// Tailwind-like spacing scale generator
+function createSpacingScale(baseUnit: number = 4): Record&lt;string, string&gt; {
+  const scale: Record&lt;string, string&gt; = {
+    &quot;0&quot;: &quot;0&quot;,
+    px: &quot;1px&quot;,
+  };
+
+  const multipliers = [
+    0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24,
+    28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96,
+  ];
+
+  for (const m of multipliers) {
+    const key = m % 1 === 0 ? String(m) : String(m).replace(&quot;.&quot;, &quot;-&quot;);
+    scale[key] = `${baseUnit * m}px`;
+  }
+
+  return scale;
+}
+</code></pre>
+<h2>Layout Spacing Patterns</h2>
+<h3>Container Queries for Spacing</h3>
+<pre><code class="language-css">/* Responsive spacing based on container size */
+.card {
+  container-type: inline-size;
+  padding: var(--space-4);
+}
+
+@container (min-width: 400px) {
+  .card {
+    padding: var(--space-6);
+  }
+}
+
+@container (min-width: 600px) {
+  .card {
+    padding: var(--space-8);
+  }
+}
+</code></pre>
+<h3>Negative Space Patterns</h3>
+<pre><code class="language-css">/* Asymmetric spacing for visual hierarchy */
+.hero-section {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-16);
+}
+
+/* Content breathing room */
+.prose &gt; * + * {
+  margin-top: var(--space-4);
+}
+
+.prose &gt; h2 + * {
+  margin-top: var(--space-2);
+}
+
+.prose &gt; * + h2 {
+  margin-top: var(--space-8);
+}
+</code></pre>
+<h2>Icon Systems</h2>
+<h3>Icon Size Scale</h3>
+<pre><code class="language-css">:root {
+  /* Icon sizes aligned to spacing grid */
+  --icon-xs: 12px; /* Inline decorators */
+  --icon-sm: 16px; /* Small UI elements */
+  --icon-md: 20px; /* Default size */
+  --icon-lg: 24px; /* Emphasis */
+  --icon-xl: 32px; /* Large displays */
+  --icon-2xl: 48px; /* Hero icons */
+
+  /* Touch target sizes */
+  --touch-target-min: 44px; /* WCAG minimum */
+  --touch-target-comfortable: 48px;
+}
+</code></pre>
+<h3>SVG Icon Component</h3>
+<pre><code class="language-tsx">import { forwardRef, type SVGProps } from &quot;react&quot;;
+
+interface IconProps extends SVGProps&lt;SVGSVGElement&gt; {
+  name: string;
+  size?: &quot;xs&quot; | &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; | &quot;xl&quot; | &quot;2xl&quot;;
+  label?: string;
+}
+
+const sizeMap = {
+  xs: 12,
+  sm: 16,
+  md: 20,
+  lg: 24,
+  xl: 32,
+  &quot;2xl&quot;: 48,
+};
+
+export const Icon = forwardRef&lt;SVGSVGElement, IconProps&gt;(
+  ({ name, size = &quot;md&quot;, label, className, ...props }, ref) =&gt; {
+    const pixelSize = sizeMap[size];
+
+    return (
+      &lt;svg
+        ref={ref}
+        width={pixelSize}
+        height={pixelSize}
+        className={`inline-block flex-shrink-0 ${className}`}
+        aria-hidden={!label}
+        aria-label={label}
+        role={label ? &quot;img&quot; : undefined}
+        {...props}
+      &gt;
+        &lt;use href={`/icons.svg#${name}`} /&gt;
+      &lt;/svg&gt;
+    );
+  },
+);
+
+Icon.displayName = &quot;Icon&quot;;
+</code></pre>
+<h3>Icon Button Patterns</h3>
+<pre><code class="language-tsx">interface IconButtonProps extends React.ButtonHTMLAttributes&lt;HTMLButtonElement&gt; {
+  icon: string;
+  label: string;
+  size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot;;
+  variant?: &quot;solid&quot; | &quot;ghost&quot; | &quot;outline&quot;;
+}
+
+const sizeClasses = {
+  sm: &quot;p-1.5&quot; /* 32px total with 16px icon */,
+  md: &quot;p-2&quot; /* 40px total with 20px icon */,
+  lg: &quot;p-2.5&quot; /* 48px total with 24px icon */,
+};
+
+const iconSizes = {
+  sm: &quot;sm&quot; as const,
+  md: &quot;md&quot; as const,
+  lg: &quot;lg&quot; as const,
+};
+
+export function IconButton({
+  icon,
+  label,
+  size = &quot;md&quot;,
+  variant = &quot;ghost&quot;,
+  className,
+  ...props
+}: IconButtonProps) {
+  return (
+    &lt;button
+      className={`
+        inline-flex items-center justify-center rounded-lg
+        transition-colors focus-visible:outline-none focus-visible:ring-2
+        ${sizeClasses[size]}
+        ${variant === &quot;solid&quot; &amp;&amp; &quot;bg-blue-600 text-white hover:bg-blue-700&quot;}
+        ${variant === &quot;ghost&quot; &amp;&amp; &quot;hover:bg-gray-100&quot;}
+        ${variant === &quot;outline&quot; &amp;&amp; &quot;border border-gray-300 hover:bg-gray-50&quot;}
+        ${className}
+      `}
+      aria-label={label}
+      {...props}
+    &gt;
+      &lt;Icon name={icon} size={iconSizes[size]} /&gt;
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<h3>Icon Sprite Generation</h3>
+<pre><code class="language-tsx">// Build script for SVG sprite
+import { readdir, readFile, writeFile } from &quot;fs/promises&quot;;
+import { optimize } from &quot;svgo&quot;;
+
+async function buildIconSprite(iconDir: string, outputPath: string) {
+  const files = await readdir(iconDir);
+  const svgFiles = files.filter((f) =&gt; f.endsWith(&quot;.svg&quot;));
+
+  const symbols = await Promise.all(
+    svgFiles.map(async (file) =&gt; {
+      const content = await readFile(`${iconDir}/${file}`, &quot;utf-8&quot;);
+      const name = file.replace(&quot;.svg&quot;, &quot;&quot;);
+
+      // Optimize SVG
+      const result = optimize(content, {
+        plugins: [
+          &quot;removeDoctype&quot;,
+          &quot;removeXMLProcInst&quot;,
+          &quot;removeComments&quot;,
+          &quot;removeMetadata&quot;,
+          &quot;removeTitle&quot;,
+          &quot;removeDesc&quot;,
+          &quot;removeUselessDefs&quot;,
+          &quot;removeEditorsNSData&quot;,
+          &quot;removeEmptyAttrs&quot;,
+          &quot;removeHiddenElems&quot;,
+          &quot;removeEmptyText&quot;,
+          &quot;removeEmptyContainers&quot;,
+          &quot;convertStyleToAttrs&quot;,
+          &quot;convertColors&quot;,
+          &quot;convertPathData&quot;,
+          &quot;convertTransform&quot;,
+          &quot;removeUnknownsAndDefaults&quot;,
+          &quot;removeNonInheritableGroupAttrs&quot;,
+          &quot;removeUselessStrokeAndFill&quot;,
+          &quot;removeUnusedNS&quot;,
+          &quot;cleanupNumericValues&quot;,
+          &quot;cleanupListOfValues&quot;,
+          &quot;moveElemsAttrsToGroup&quot;,
+          &quot;moveGroupAttrsToElems&quot;,
+          &quot;collapseGroups&quot;,
+          &quot;mergePaths&quot;,
+        ],
+      });
+
+      // Extract viewBox and content
+      const viewBoxMatch = result.data.match(/viewBox=&quot;([^&quot;]+)&quot;/);
+      const viewBox = viewBoxMatch ? viewBoxMatch[1] : &quot;0 0 24 24&quot;;
+      const innerContent = result.data
+        .replace(/&lt;svg[^&gt;]*&gt;/, &quot;&quot;)
+        .replace(/&lt;\/svg&gt;/, &quot;&quot;);
+
+      return `&lt;symbol id=&quot;${name}&quot; viewBox=&quot;${viewBox}&quot;&gt;${innerContent}&lt;/symbol&gt;`;
+    }),
+  );
+
+  const sprite = `&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; style=&quot;display:none&quot;&gt;${symbols.join(&quot;&quot;)}&lt;/svg&gt;`;
+
+  await writeFile(outputPath, sprite);
+  console.log(`Generated sprite with ${symbols.length} icons`);
+}
+</code></pre>
+<h3>Icon Libraries Integration</h3>
+<pre><code class="language-tsx">// Lucide React
+import { Home, Settings, User, Search } from &quot;lucide-react&quot;;
+
+function Navigation() {
+  return (
+    &lt;nav className=&quot;flex gap-4&quot;&gt;
+      &lt;NavItem icon={Home} label=&quot;Home&quot; /&gt;
+      &lt;NavItem icon={Search} label=&quot;Search&quot; /&gt;
+      &lt;NavItem icon={Settings} label=&quot;Settings&quot; /&gt;
+      &lt;NavItem icon={User} label=&quot;Profile&quot; /&gt;
+    &lt;/nav&gt;
+  );
+}
+
+// Heroicons
+import { HomeIcon, Cog6ToothIcon } from &quot;@heroicons/react/24/outline&quot;;
+import { HomeIcon as HomeIconSolid } from &quot;@heroicons/react/24/solid&quot;;
+
+function ToggleIcon({ active }: { active: boolean }) {
+  const Icon = active ? HomeIconSolid : HomeIcon;
+  return &lt;Icon className=&quot;w-6 h-6&quot; /&gt;;
+}
+
+// Radix Icons
+import { HomeIcon, GearIcon } from &quot;@radix-ui/react-icons&quot;;
+</code></pre>
+<h2>Sizing Systems</h2>
+<h3>Element Sizing Scale</h3>
+<pre><code class="language-css">:root {
+  /* Fixed sizes */
+  --size-4: 1rem; /* 16px */
+  --size-5: 1.25rem; /* 20px */
+  --size-6: 1.5rem; /* 24px */
+  --size-8: 2rem; /* 32px */
+  --size-10: 2.5rem; /* 40px */
+  --size-12: 3rem; /* 48px */
+  --size-14: 3.5rem; /* 56px */
+  --size-16: 4rem; /* 64px */
+  --size-20: 5rem; /* 80px */
+  --size-24: 6rem; /* 96px */
+  --size-32: 8rem; /* 128px */
+
+  /* Component heights */
+  --height-input-sm: var(--size-8); /* 32px */
+  --height-input-md: var(--size-10); /* 40px */
+  --height-input-lg: var(--size-12); /* 48px */
+
+  /* Avatar sizes */
+  --avatar-xs: var(--size-6); /* 24px */
+  --avatar-sm: var(--size-8); /* 32px */
+  --avatar-md: var(--size-10); /* 40px */
+  --avatar-lg: var(--size-12); /* 48px */
+  --avatar-xl: var(--size-16); /* 64px */
+  --avatar-2xl: var(--size-24); /* 96px */
+}
+</code></pre>
+<h3>Aspect Ratios</h3>
+<pre><code class="language-css">.aspect-ratios {
+  /* Standard ratios */
+  --aspect-square: 1 / 1;
+  --aspect-video: 16 / 9;
+  --aspect-photo: 4 / 3;
+  --aspect-portrait: 3 / 4;
+  --aspect-cinema: 21 / 9;
+  --aspect-golden: 1.618 / 1;
+}
+
+/* Usage */
+.thumbnail {
+  aspect-ratio: var(--aspect-video);
+  object-fit: cover;
+}
+
+.avatar {
+  aspect-ratio: var(--aspect-square);
+  border-radius: 50%;
+}
+</code></pre>
+<h3>Border Radius Scale</h3>
+<pre><code class="language-css">:root {
+  --radius-none: 0;
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-default: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-3xl: 1.5rem; /* 24px */
+  --radius-full: 9999px;
+
+  /* Component-specific */
+  --radius-button: var(--radius-md);
+  --radius-input: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-modal: var(--radius-xl);
+  --radius-badge: var(--radius-full);
+}
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

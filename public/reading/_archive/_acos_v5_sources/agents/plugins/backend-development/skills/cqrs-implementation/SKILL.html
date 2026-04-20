@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>CQRS Implementation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/backend-development/skills/cqrs-implementation/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">CQRS Implementation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development">backend-development</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Fcqrs-implementation">cqrs-implementation</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: cqrs-implementation
+description: Implement Command Query Responsibility Segregation for scalable architectures. Use when separating read and write models, optimizing query performance, or building event-sourced systems.</h2>
+<h1>CQRS Implementation</h1>
+<p>Comprehensive guide to implementing CQRS (Command Query Responsibility Segregation) patterns.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Separating read and write concerns</li>
+<li>Scaling reads independently from writes</li>
+<li>Building event-sourced systems</li>
+<li>Optimizing complex query scenarios</li>
+<li>Different read/write data models needed</li>
+<li>High-performance reporting requirements</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. CQRS Architecture</h3>
+<pre><code>                    ┌─────────────┐
+                    │   Client    │
+                    └──────┬──────┘
+                           │
+              ┌────────────┴────────────┐
+              │                         │
+              ▼                         ▼
+       ┌─────────────┐          ┌─────────────┐
+       │  Commands   │          │   Queries   │
+       │    API      │          │    API      │
+       └──────┬──────┘          └──────┬──────┘
+              │                         │
+              ▼                         ▼
+       ┌─────────────┐          ┌─────────────┐
+       │  Command    │          │   Query     │
+       │  Handlers   │          │  Handlers   │
+       └──────┬──────┘          └──────┬──────┘
+              │                         │
+              ▼                         ▼
+       ┌─────────────┐          ┌─────────────┐
+       │   Write     │─────────►│    Read     │
+       │   Model     │  Events  │   Model     │
+       └─────────────┘          └─────────────┘
+</code></pre>
+<h3>2. Key Components</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Command</strong></td>
+<td>Intent to change state</td>
+</tr>
+<tr>
+<td><strong>Command Handler</strong></td>
+<td>Validates and executes commands</td>
+</tr>
+<tr>
+<td><strong>Event</strong></td>
+<td>Record of state change</td>
+</tr>
+<tr>
+<td><strong>Query</strong></td>
+<td>Request for data</td>
+</tr>
+<tr>
+<td><strong>Query Handler</strong></td>
+<td>Retrieves data from read model</td>
+</tr>
+<tr>
+<td><strong>Projector</strong></td>
+<td>Updates read model from events</td>
+</tr>
+</tbody></table>
+<h2>Templates</h2>
+<h3>Template 1: Command Infrastructure</h3>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from typing import TypeVar, Generic, Dict, Any, Type
+from datetime import datetime
+import uuid
+
+# Command base
+@dataclass
+class Command:
+    command_id: str = None
+    timestamp: datetime = None
+
+    def __post_init__(self):
+        self.command_id = self.command_id or str(uuid.uuid4())
+        self.timestamp = self.timestamp or datetime.utcnow()
+
+
+# Concrete commands
+@dataclass
+class CreateOrder(Command):
+    customer_id: str
+    items: list
+    shipping_address: dict
+
+
+@dataclass
+class AddOrderItem(Command):
+    order_id: str
+    product_id: str
+    quantity: int
+    price: float
+
+
+@dataclass
+class CancelOrder(Command):
+    order_id: str
+    reason: str
+
+
+# Command handler base
+T = TypeVar(&#39;T&#39;, bound=Command)
+
+class CommandHandler(ABC, Generic[T]):
+    @abstractmethod
+    async def handle(self, command: T) -&gt; Any:
+        pass
+
+
+# Command bus
+class CommandBus:
+    def __init__(self):
+        self._handlers: Dict[Type[Command], CommandHandler] = {}
+
+    def register(self, command_type: Type[Command], handler: CommandHandler):
+        self._handlers[command_type] = handler
+
+    async def dispatch(self, command: Command) -&gt; Any:
+        handler = self._handlers.get(type(command))
+        if not handler:
+            raise ValueError(f&quot;No handler for {type(command).__name__}&quot;)
+        return await handler.handle(command)
+
+
+# Command handler implementation
+class CreateOrderHandler(CommandHandler[CreateOrder]):
+    def __init__(self, order_repository, event_store):
+        self.order_repository = order_repository
+        self.event_store = event_store
+
+    async def handle(self, command: CreateOrder) -&gt; str:
+        # Validate
+        if not command.items:
+            raise ValueError(&quot;Order must have at least one item&quot;)
+
+        # Create aggregate
+        order = Order.create(
+            customer_id=command.customer_id,
+            items=command.items,
+            shipping_address=command.shipping_address
+        )
+
+        # Persist events
+        await self.event_store.append_events(
+            stream_id=f&quot;Order-{order.id}&quot;,
+            stream_type=&quot;Order&quot;,
+            events=order.uncommitted_events
+        )
+
+        return order.id
+</code></pre>
+<h3>Template 2: Query Infrastructure</h3>
+<pre><code class="language-python">from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from typing import TypeVar, Generic, List, Optional
+
+# Query base
+@dataclass
+class Query:
+    pass
+
+
+# Concrete queries
+@dataclass
+class GetOrderById(Query):
+    order_id: str
+
+
+@dataclass
+class GetCustomerOrders(Query):
+    customer_id: str
+    status: Optional[str] = None
+    page: int = 1
+    page_size: int = 20
+
+
+@dataclass
+class SearchOrders(Query):
+    query: str
+    filters: dict = None
+    sort_by: str = &quot;created_at&quot;
+    sort_order: str = &quot;desc&quot;
+
+
+# Query result types
+@dataclass
+class OrderView:
+    order_id: str
+    customer_id: str
+    status: str
+    total_amount: float
+    item_count: int
+    created_at: datetime
+    shipped_at: Optional[datetime] = None
+
+
+@dataclass
+class PaginatedResult(Generic[T]):
+    items: List[T]
+    total: int
+    page: int
+    page_size: int
+
+    @property
+    def total_pages(self) -&gt; int:
+        return (self.total + self.page_size - 1) // self.page_size
+
+
+# Query handler base
+T = TypeVar(&#39;T&#39;, bound=Query)
+R = TypeVar(&#39;R&#39;)
+
+class QueryHandler(ABC, Generic[T, R]):
+    @abstractmethod
+    async def handle(self, query: T) -&gt; R:
+        pass
+
+
+# Query bus
+class QueryBus:
+    def __init__(self):
+        self._handlers: Dict[Type[Query], QueryHandler] = {}
+
+    def register(self, query_type: Type[Query], handler: QueryHandler):
+        self._handlers[query_type] = handler
+
+    async def dispatch(self, query: Query) -&gt; Any:
+        handler = self._handlers.get(type(query))
+        if not handler:
+            raise ValueError(f&quot;No handler for {type(query).__name__}&quot;)
+        return await handler.handle(query)
+
+
+# Query handler implementation
+class GetOrderByIdHandler(QueryHandler[GetOrderById, Optional[OrderView]]):
+    def __init__(self, read_db):
+        self.read_db = read_db
+
+    async def handle(self, query: GetOrderById) -&gt; Optional[OrderView]:
+        async with self.read_db.acquire() as conn:
+            row = await conn.fetchrow(
+                &quot;&quot;&quot;
+                SELECT order_id, customer_id, status, total_amount,
+                       item_count, created_at, shipped_at
+                FROM order_views
+                WHERE order_id = $1
+                &quot;&quot;&quot;,
+                query.order_id
+            )
+            if row:
+                return OrderView(**dict(row))
+            return None
+
+
+class GetCustomerOrdersHandler(QueryHandler[GetCustomerOrders, PaginatedResult[OrderView]]):
+    def __init__(self, read_db):
+        self.read_db = read_db
+
+    async def handle(self, query: GetCustomerOrders) -&gt; PaginatedResult[OrderView]:
+        async with self.read_db.acquire() as conn:
+            # Build query with optional status filter
+            where_clause = &quot;customer_id = $1&quot;
+            params = [query.customer_id]
+
+            if query.status:
+                where_clause += &quot; AND status = $2&quot;
+                params.append(query.status)
+
+            # Get total count
+            total = await conn.fetchval(
+                f&quot;SELECT COUNT(*) FROM order_views WHERE {where_clause}&quot;,
+                *params
+            )
+
+            # Get paginated results
+            offset = (query.page - 1) * query.page_size
+            rows = await conn.fetch(
+                f&quot;&quot;&quot;
+                SELECT order_id, customer_id, status, total_amount,
+                       item_count, created_at, shipped_at
+                FROM order_views
+                WHERE {where_clause}
+                ORDER BY created_at DESC
+                LIMIT ${len(params) + 1} OFFSET ${len(params) + 2}
+                &quot;&quot;&quot;,
+                *params, query.page_size, offset
+            )
+
+            return PaginatedResult(
+                items=[OrderView(**dict(row)) for row in rows],
+                total=total,
+                page=query.page,
+                page_size=query.page_size
+            )
+</code></pre>
+<h3>Template 3: FastAPI CQRS Application</h3>
+<pre><code class="language-python">from fastapi import FastAPI, HTTPException, Depends
+from pydantic import BaseModel
+from typing import List, Optional
+
+app = FastAPI()
+
+# Request/Response models
+class CreateOrderRequest(BaseModel):
+    customer_id: str
+    items: List[dict]
+    shipping_address: dict
+
+
+class OrderResponse(BaseModel):
+    order_id: str
+    customer_id: str
+    status: str
+    total_amount: float
+    item_count: int
+    created_at: datetime
+
+
+# Dependency injection
+def get_command_bus() -&gt; CommandBus:
+    return app.state.command_bus
+
+
+def get_query_bus() -&gt; QueryBus:
+    return app.state.query_bus
+
+
+# Command endpoints (POST, PUT, DELETE)
+@app.post(&quot;/orders&quot;, response_model=dict)
+async def create_order(
+    request: CreateOrderRequest,
+    command_bus: CommandBus = Depends(get_command_bus)
+):
+    command = CreateOrder(
+        customer_id=request.customer_id,
+        items=request.items,
+        shipping_address=request.shipping_address
+    )
+    order_id = await command_bus.dispatch(command)
+    return {&quot;order_id&quot;: order_id}
+
+
+@app.post(&quot;/orders/{order_id}/items&quot;)
+async def add_item(
+    order_id: str,
+    product_id: str,
+    quantity: int,
+    price: float,
+    command_bus: CommandBus = Depends(get_command_bus)
+):
+    command = AddOrderItem(
+        order_id=order_id,
+        product_id=product_id,
+        quantity=quantity,
+        price=price
+    )
+    await command_bus.dispatch(command)
+    return {&quot;status&quot;: &quot;item_added&quot;}
+
+
+@app.delete(&quot;/orders/{order_id}&quot;)
+async def cancel_order(
+    order_id: str,
+    reason: str,
+    command_bus: CommandBus = Depends(get_command_bus)
+):
+    command = CancelOrder(order_id=order_id, reason=reason)
+    await command_bus.dispatch(command)
+    return {&quot;status&quot;: &quot;cancelled&quot;}
+
+
+# Query endpoints (GET)
+@app.get(&quot;/orders/{order_id}&quot;, response_model=OrderResponse)
+async def get_order(
+    order_id: str,
+    query_bus: QueryBus = Depends(get_query_bus)
+):
+    query = GetOrderById(order_id=order_id)
+    result = await query_bus.dispatch(query)
+    if not result:
+        raise HTTPException(status_code=404, detail=&quot;Order not found&quot;)
+    return result
+
+
+@app.get(&quot;/customers/{customer_id}/orders&quot;)
+async def get_customer_orders(
+    customer_id: str,
+    status: Optional[str] = None,
+    page: int = 1,
+    page_size: int = 20,
+    query_bus: QueryBus = Depends(get_query_bus)
+):
+    query = GetCustomerOrders(
+        customer_id=customer_id,
+        status=status,
+        page=page,
+        page_size=page_size
+    )
+    return await query_bus.dispatch(query)
+
+
+@app.get(&quot;/orders/search&quot;)
+async def search_orders(
+    q: str,
+    sort_by: str = &quot;created_at&quot;,
+    query_bus: QueryBus = Depends(get_query_bus)
+):
+    query = SearchOrders(query=q, sort_by=sort_by)
+    return await query_bus.dispatch(query)
+</code></pre>
+<h3>Template 4: Read Model Synchronization</h3>
+<pre><code class="language-python">class ReadModelSynchronizer:
+    &quot;&quot;&quot;Keeps read models in sync with events.&quot;&quot;&quot;
+
+    def __init__(self, event_store, read_db, projections: List[Projection]):
+        self.event_store = event_store
+        self.read_db = read_db
+        self.projections = {p.name: p for p in projections}
+
+    async def run(self):
+        &quot;&quot;&quot;Continuously sync read models.&quot;&quot;&quot;
+        while True:
+            for name, projection in self.projections.items():
+                await self._sync_projection(projection)
+            await asyncio.sleep(0.1)
+
+    async def _sync_projection(self, projection: Projection):
+        checkpoint = await self._get_checkpoint(projection.name)
+
+        events = await self.event_store.read_all(
+            from_position=checkpoint,
+            limit=100
+        )
+
+        for event in events:
+            if event.event_type in projection.handles():
+                try:
+                    await projection.apply(event)
+                except Exception as e:
+                    # Log error, possibly retry or skip
+                    logger.error(f&quot;Projection error: {e}&quot;)
+                    continue
+
+            await self._save_checkpoint(projection.name, event.global_position)
+
+    async def rebuild_projection(self, projection_name: str):
+        &quot;&quot;&quot;Rebuild a projection from scratch.&quot;&quot;&quot;
+        projection = self.projections[projection_name]
+
+        # Clear existing data
+        await projection.clear()
+
+        # Reset checkpoint
+        await self._save_checkpoint(projection_name, 0)
+
+        # Rebuild
+        while True:
+            checkpoint = await self._get_checkpoint(projection_name)
+            events = await self.event_store.read_all(checkpoint, 1000)
+
+            if not events:
+                break
+
+            for event in events:
+                if event.event_type in projection.handles():
+                    await projection.apply(event)
+
+            await self._save_checkpoint(
+                projection_name,
+                events[-1].global_position
+            )
+</code></pre>
+<h3>Template 5: Eventual Consistency Handling</h3>
+<pre><code class="language-python">class ConsistentQueryHandler:
+    &quot;&quot;&quot;Query handler that can wait for consistency.&quot;&quot;&quot;
+
+    def __init__(self, read_db, event_store):
+        self.read_db = read_db
+        self.event_store = event_store
+
+    async def query_after_command(
+        self,
+        query: Query,
+        expected_version: int,
+        stream_id: str,
+        timeout: float = 5.0
+    ):
+        &quot;&quot;&quot;
+        Execute query, ensuring read model is at expected version.
+        Used for read-your-writes consistency.
+        &quot;&quot;&quot;
+        start_time = time.time()
+
+        while time.time() - start_time &lt; timeout:
+            # Check if read model is caught up
+            projection_version = await self._get_projection_version(stream_id)
+
+            if projection_version &gt;= expected_version:
+                return await self.execute_query(query)
+
+            # Wait a bit and retry
+            await asyncio.sleep(0.1)
+
+        # Timeout - return stale data with warning
+        return {
+            &quot;data&quot;: await self.execute_query(query),
+            &quot;_warning&quot;: &quot;Data may be stale&quot;
+        }
+
+    async def _get_projection_version(self, stream_id: str) -&gt; int:
+        &quot;&quot;&quot;Get the last processed event version for a stream.&quot;&quot;&quot;
+        async with self.read_db.acquire() as conn:
+            return await conn.fetchval(
+                &quot;SELECT last_event_version FROM projection_state WHERE stream_id = $1&quot;,
+                stream_id
+            ) or 0
+</code></pre>
+<h2>Best Practices</h2>
+<h3>Do&#39;s</h3>
+<ul>
+<li><strong>Separate command and query models</strong> - Different needs</li>
+<li><strong>Use eventual consistency</strong> - Accept propagation delay</li>
+<li><strong>Validate in command handlers</strong> - Before state change</li>
+<li><strong>Denormalize read models</strong> - Optimize for queries</li>
+<li><strong>Version your events</strong> - For schema evolution</li>
+</ul>
+<h3>Don&#39;ts</h3>
+<ul>
+<li><strong>Don&#39;t query in commands</strong> - Use only for writes</li>
+<li><strong>Don&#39;t couple read/write schemas</strong> - Independent evolution</li>
+<li><strong>Don&#39;t over-engineer</strong> - Start simple</li>
+<li><strong>Don&#39;t ignore consistency SLAs</strong> - Define acceptable lag</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://martinfowler.com/bliki/CQRS.html">CQRS Pattern</a></li>
+<li><a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs">Microsoft CQRS Guidance</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

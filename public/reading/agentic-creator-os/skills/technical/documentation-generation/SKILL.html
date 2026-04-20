@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Documentation Generation Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/skills/technical/documentation-generation/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Documentation Generation Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2Fskills">skills</a> / <a href="../index.html#agentic-creator-os%2Fskills%2Ftechnical">technical</a> / <a href="index.html#agentic-creator-os%2Fskills%2Ftechnical%2Fdocumentation-generation">documentation-generation</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: documentation-generation
+description: &quot;Automated documentation generation patterns. Covers TSDoc, JSDoc, OpenAPI, README templates, and documentation-as-code workflows.&quot;
+version: 1.0.0
+triggers:
+  - documentation
+  - tsdoc
+  - jsdoc
+  - openapi
+  - readme
+  - docs generation</h2>
+<h1>Documentation Generation Skill</h1>
+<p>Create and maintain high-quality documentation with automated generation tools.</p>
+<h2>TSDoc / JSDoc Standards</h2>
+<h3>Function Documentation</h3>
+<pre><code class="language-typescript">/**
+ * Calculates the total price including tax and discounts.
+ *
+ * @param items - Array of cart items to calculate
+ * @param taxRate - Tax rate as decimal (e.g., 0.08 for 8%)
+ * @param discountCode - Optional discount code to apply
+ * @returns The calculated total with tax and discounts applied
+ *
+ * @example
+ * ```ts
+ * const total = calculateTotal(
+ *   [{ price: 100, quantity: 2 }],
+ *   0.08,
+ *   &#39;SAVE10&#39;
+ * );
+ * // Returns: 194.40
+ * ```
+ *
+ * @throws {InvalidDiscountError} If discount code is invalid
+ * @see {@link applyDiscount} for discount logic
+ */
+export function calculateTotal(
+  items: CartItem[],
+  taxRate: number,
+  discountCode?: string
+): number {
+  // Implementation
+}
+</code></pre>
+<h3>Interface Documentation</h3>
+<pre><code class="language-typescript">/**
+ * Represents a user in the system.
+ *
+ * @remarks
+ * Users are created during registration and can have
+ * multiple roles assigned for authorization.
+ */
+export interface User {
+  /** Unique identifier (UUID v4) */
+  id: string;
+
+  /** Email address (must be unique) */
+  email: string;
+
+  /** Display name shown in UI */
+  name: string;
+
+  /**
+   * User roles for authorization.
+   * @defaultValue `[&#39;user&#39;]`
+   */
+  roles: Role[];
+
+  /** ISO 8601 timestamp of account creation */
+  createdAt: string;
+}
+</code></pre>
+<h3>Component Documentation</h3>
+<pre><code class="language-tsx">/**
+ * A reusable button component with multiple variants.
+ *
+ * @example
+ * ```tsx
+ * &lt;Button variant=&quot;primary&quot; onClick={handleSubmit}&gt;
+ *   Submit Form
+ * &lt;/Button&gt;
+ * ```
+ *
+ * @example
+ * ```tsx
+ * &lt;Button variant=&quot;outline&quot; size=&quot;sm&quot; disabled&gt;
+ *   Loading...
+ * &lt;/Button&gt;
+ * ```
+ */
+export function Button({
+  variant = &#39;primary&#39;,
+  size = &#39;md&#39;,
+  children,
+  ...props
+}: ButtonProps) {
+  // Implementation
+}
+</code></pre>
+<h2>API Documentation with OpenAPI</h2>
+<h3>Generate from Types</h3>
+<pre><code class="language-typescript">// lib/openapi.ts
+import { generateOpenApi } from &#39;@ts-rest/open-api&#39;;
+import { contract } from &#39;./contract&#39;;
+
+export const openApiDocument = generateOpenApi(contract, {
+  info: {
+    title: &#39;FrankX API&#39;,
+    version: &#39;1.0.0&#39;,
+    description: &#39;API for the FrankX creator platform&#39;,
+  },
+  servers: [
+    { url: &#39;https://api.frankx.ai&#39;, description: &#39;Production&#39; },
+    { url: &#39;http://localhost:3000&#39;, description: &#39;Development&#39; },
+  ],
+});
+
+// Serve at /api/docs
+export async function GET() {
+  return Response.json(openApiDocument);
+}
+</code></pre>
+<h3>Swagger UI Integration</h3>
+<pre><code class="language-tsx">// app/api/docs/page.tsx
+&#39;use client&#39;;
+
+import SwaggerUI from &#39;swagger-ui-react&#39;;
+import &#39;swagger-ui-react/swagger-ui.css&#39;;
+
+export default function ApiDocs() {
+  return &lt;SwaggerUI url=&quot;/api/openapi.json&quot; /&gt;;
+}
+</code></pre>
+<h2>README Template</h2>
+<pre><code class="language-markdown"># Project Name
+
+Brief description of what this project does.
+
+## Features
+
+- Feature 1: Description
+- Feature 2: Description
+
+## Quick Start
+
+\`\`\`bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+\`\`\`
+
+## Installation
+
+\`\`\`bash
+npm install package-name
+\`\`\`
+
+## Usage
+
+\`\`\`typescript
+import { Component } from &#39;package-name&#39;;
+
+// Basic usage
+const result = Component.doSomething();
+\`\`\`
+
+## API Reference
+
+### `functionName(param1, param2)`
+
+Description of what this function does.
+
+**Parameters:**
+- `param1` (string): Description
+- `param2` (number, optional): Description
+
+**Returns:** `ReturnType` - Description
+
+**Example:**
+\`\`\`typescript
+const result = functionName(&#39;value&#39;, 42);
+\`\`\`
+
+## Configuration
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `option1` | `string` | `&#39;default&#39;` | Description |
+| `option2` | `boolean` | `false` | Description |
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+## License
+
+MIT - see [LICENSE](./LICENSE) for details.
+</code></pre>
+<h2>TypeDoc Setup</h2>
+<h3>Configuration</h3>
+<pre><code class="language-json">// typedoc.json
+{
+  &quot;entryPoints&quot;: [&quot;src/index.ts&quot;],
+  &quot;out&quot;: &quot;docs&quot;,
+  &quot;plugin&quot;: [&quot;typedoc-plugin-markdown&quot;],
+  &quot;readme&quot;: &quot;README.md&quot;,
+  &quot;excludePrivate&quot;: true,
+  &quot;excludeProtected&quot;: true,
+  &quot;githubPages&quot;: true
+}
+</code></pre>
+<h3>Generate Docs</h3>
+<pre><code class="language-bash"># Add to package.json scripts
+&quot;scripts&quot;: {
+  &quot;docs&quot;: &quot;typedoc&quot;,
+  &quot;docs:watch&quot;: &quot;typedoc --watch&quot;
+}
+
+# Generate
+npm run docs
+</code></pre>
+<h2>Docusaurus for Documentation Sites</h2>
+<h3>Project Structure</h3>
+<pre><code>docs/
+├── docs/
+│   ├── intro.md
+│   ├── getting-started/
+│   │   ├── installation.md
+│   │   └── configuration.md
+│   └── api/
+│       └── reference.md
+├── blog/
+├── src/
+├── docusaurus.config.js
+└── sidebars.js
+</code></pre>
+<h3>Configuration</h3>
+<pre><code class="language-javascript">// docusaurus.config.js
+module.exports = {
+  title: &#39;FrankX Docs&#39;,
+  tagline: &#39;Documentation for the FrankX platform&#39;,
+  url: &#39;https://docs.frankx.ai&#39;,
+  baseUrl: &#39;/&#39;,
+
+  presets: [
+    [
+      &#39;@docusaurus/preset-classic&#39;,
+      {
+        docs: {
+          sidebarPath: require.resolve(&#39;./sidebars.js&#39;),
+          editUrl: &#39;https://github.com/frankxai/docs/edit/main/&#39;,
+        },
+        blog: {
+          showReadingTime: true,
+        },
+        theme: {
+          customCss: require.resolve(&#39;./src/css/custom.css&#39;),
+        },
+      },
+    ],
+  ],
+};
+</code></pre>
+<h2>Documentation Best Practices</h2>
+<h3>What to Document</h3>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Public APIs</strong></td>
+<td>Always - every exported function/type</td>
+</tr>
+<tr>
+<td><strong>Complex logic</strong></td>
+<td>When not self-evident</td>
+</tr>
+<tr>
+<td><strong>Configuration</strong></td>
+<td>All options with defaults</td>
+</tr>
+<tr>
+<td><strong>Examples</strong></td>
+<td>For every public API</td>
+</tr>
+<tr>
+<td><strong>Breaking changes</strong></td>
+<td>In CHANGELOG</td>
+</tr>
+</tbody></table>
+<h3>Documentation Checklist</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All public APIs have TSDoc/JSDoc</li>
+<li><input disabled="" type="checkbox"> README has quick start guide</li>
+<li><input disabled="" type="checkbox"> API reference is generated</li>
+<li><input disabled="" type="checkbox"> Examples are tested and working</li>
+<li><input disabled="" type="checkbox"> CHANGELOG is updated</li>
+<li><input disabled="" type="checkbox"> Migration guides for breaking changes</li>
+</ul>
+<h2>Automation</h2>
+<h3>Pre-commit Hook</h3>
+<pre><code class="language-bash"># .husky/pre-commit
+npx typedoc --emit none  # Validate docs compile
+</code></pre>
+<h3>CI Documentation Build</h3>
+<pre><code class="language-yaml"># .github/workflows/docs.yml
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+      - run: npm ci
+      - run: npm run docs
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+</code></pre>
+<h2>Anti-Patterns</h2>
+<p>❌ Documenting obvious code (<code>// increment i</code>)
+❌ Outdated documentation
+❌ No examples
+❌ Missing parameter descriptions
+❌ Documentation separate from code</p>
+<p>✅ Document &quot;why&quot; not &quot;what&quot;
+✅ Keep docs near code
+✅ Include runnable examples
+✅ Automate doc generation
+✅ Review docs in PRs</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Product Guidelines</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/templates/product-guidelines.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Product Guidelines</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Ftemplates">templates</a> / <span>product-guidelines.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Product Guidelines</h1>
+<h2>Voice &amp; Tone</h2>
+<h3>Brand Voice</h3>
+<p>{{BRAND_VOICE_DESCRIPTION}}</p>
+<h3>Voice Attributes</h3>
+<ul>
+<li><strong>{{ATTRIBUTE_1}}:</strong> {{ATTRIBUTE_1_DESCRIPTION}}</li>
+<li><strong>{{ATTRIBUTE_2}}:</strong> {{ATTRIBUTE_2_DESCRIPTION}}</li>
+<li><strong>{{ATTRIBUTE_3}}:</strong> {{ATTRIBUTE_3_DESCRIPTION}}</li>
+</ul>
+<h3>Tone Variations by Context</h3>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Tone</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Success states</td>
+<td>{{SUCCESS_TONE}}</td>
+<td>{{SUCCESS_EXAMPLE}}</td>
+</tr>
+<tr>
+<td>Error states</td>
+<td>{{ERROR_TONE}}</td>
+<td>{{ERROR_EXAMPLE}}</td>
+</tr>
+<tr>
+<td>Onboarding</td>
+<td>{{ONBOARDING_TONE}}</td>
+<td>{{ONBOARDING_EXAMPLE}}</td>
+</tr>
+<tr>
+<td>Empty states</td>
+<td>{{EMPTY_STATE_TONE}}</td>
+<td>{{EMPTY_STATE_EXAMPLE}}</td>
+</tr>
+</tbody></table>
+<h3>Words We Use</h3>
+<ul>
+<li>{{PREFERRED_WORD_1}}</li>
+<li>{{PREFERRED_WORD_2}}</li>
+<li>{{PREFERRED_WORD_3}}</li>
+</ul>
+<h3>Words We Avoid</h3>
+<ul>
+<li>{{AVOIDED_WORD_1}}</li>
+<li>{{AVOIDED_WORD_2}}</li>
+<li>{{AVOIDED_WORD_3}}</li>
+</ul>
+<h2>Messaging Guidelines</h2>
+<h3>Core Messages</h3>
+<p><strong>Primary Message:</strong></p>
+<blockquote>
+<p>{{PRIMARY_MESSAGE}}</p>
+</blockquote>
+<p><strong>Supporting Messages:</strong></p>
+<ol>
+<li>{{SUPPORTING_MESSAGE_1}}</li>
+<li>{{SUPPORTING_MESSAGE_2}}</li>
+<li>{{SUPPORTING_MESSAGE_3}}</li>
+</ol>
+<h3>Message Hierarchy</h3>
+<ol>
+<li><strong>Must Communicate:</strong> {{MUST_COMMUNICATE}}</li>
+<li><strong>Should Communicate:</strong> {{SHOULD_COMMUNICATE}}</li>
+<li><strong>Could Communicate:</strong> {{COULD_COMMUNICATE}}</li>
+</ol>
+<h3>Audience-Specific Messaging</h3>
+<table>
+<thead>
+<tr>
+<th>Audience</th>
+<th>Key Message</th>
+<th>Proof Points</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{AUDIENCE_1}}</td>
+<td>{{MESSAGE_1}}</td>
+<td>{{PROOF_1}}</td>
+</tr>
+<tr>
+<td>{{AUDIENCE_2}}</td>
+<td>{{MESSAGE_2}}</td>
+<td>{{PROOF_2}}</td>
+</tr>
+</tbody></table>
+<h2>Design Principles</h2>
+<h3>Principle 1: {{PRINCIPLE_1_NAME}}</h3>
+<p>{{PRINCIPLE_1_DESCRIPTION}}</p>
+<p><strong>Do:</strong></p>
+<ul>
+<li>{{PRINCIPLE_1_DO_1}}</li>
+<li>{{PRINCIPLE_1_DO_2}}</li>
+</ul>
+<p><strong>Don&#39;t:</strong></p>
+<ul>
+<li>{{PRINCIPLE_1_DONT_1}}</li>
+<li>{{PRINCIPLE_1_DONT_2}}</li>
+</ul>
+<h3>Principle 2: {{PRINCIPLE_2_NAME}}</h3>
+<p>{{PRINCIPLE_2_DESCRIPTION}}</p>
+<p><strong>Do:</strong></p>
+<ul>
+<li>{{PRINCIPLE_2_DO_1}}</li>
+<li>{{PRINCIPLE_2_DO_2}}</li>
+</ul>
+<p><strong>Don&#39;t:</strong></p>
+<ul>
+<li>{{PRINCIPLE_2_DONT_1}}</li>
+<li>{{PRINCIPLE_2_DONT_2}}</li>
+</ul>
+<h3>Principle 3: {{PRINCIPLE_3_NAME}}</h3>
+<p>{{PRINCIPLE_3_DESCRIPTION}}</p>
+<p><strong>Do:</strong></p>
+<ul>
+<li>{{PRINCIPLE_3_DO_1}}</li>
+<li>{{PRINCIPLE_3_DO_2}}</li>
+</ul>
+<p><strong>Don&#39;t:</strong></p>
+<ul>
+<li>{{PRINCIPLE_3_DONT_1}}</li>
+<li>{{PRINCIPLE_3_DONT_2}}</li>
+</ul>
+<h2>Accessibility Standards</h2>
+<h3>Compliance Target</h3>
+<p>{{ACCESSIBILITY_STANDARD}} (e.g., WCAG 2.1 AA)</p>
+<h3>Core Requirements</h3>
+<h4>Perceivable</h4>
+<ul>
+<li>All images have meaningful alt text</li>
+<li>Color is not the only means of conveying information</li>
+<li>Text has minimum contrast ratio of 4.5:1</li>
+<li>Content is readable at 200% zoom</li>
+</ul>
+<h4>Operable</h4>
+<ul>
+<li>All functionality available via keyboard</li>
+<li>No content flashes more than 3 times per second</li>
+<li>Skip navigation links provided</li>
+<li>Focus indicators clearly visible</li>
+</ul>
+<h4>Understandable</h4>
+<ul>
+<li>Language is clear and simple</li>
+<li>Navigation is consistent</li>
+<li>Error messages are descriptive and helpful</li>
+<li>Labels and instructions are clear</li>
+</ul>
+<h4>Robust</h4>
+<ul>
+<li>Valid HTML markup</li>
+<li>ARIA labels used appropriately</li>
+<li>Compatible with assistive technologies</li>
+<li>Progressive enhancement approach</li>
+</ul>
+<h3>Testing Requirements</h3>
+<ul>
+<li>Screen reader testing with {{SCREEN_READER}}</li>
+<li>Keyboard-only navigation testing</li>
+<li>Color contrast verification</li>
+<li>Automated accessibility scans</li>
+</ul>
+<h2>Error Handling Philosophy</h2>
+<h3>Error Prevention</h3>
+<ul>
+<li>Validate input early and often</li>
+<li>Provide clear constraints and requirements upfront</li>
+<li>Use inline validation where appropriate</li>
+<li>Confirm destructive actions</li>
+</ul>
+<h3>Error Communication</h3>
+<h4>Principles</h4>
+<ol>
+<li><strong>Be specific:</strong> Tell users exactly what went wrong</li>
+<li><strong>Be helpful:</strong> Explain how to fix the problem</li>
+<li><strong>Be human:</strong> Use friendly, non-technical language</li>
+<li><strong>Be timely:</strong> Show errors as soon as they&#39;re detected</li>
+</ol>
+<h4>Error Message Structure</h4>
+<pre><code>[What happened] + [Why it happened (if relevant)] + [How to fix it]
+</code></pre>
+<h4>Examples</h4>
+<table>
+<thead>
+<tr>
+<th>Bad</th>
+<th>Good</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;Invalid input&quot;</td>
+<td>&quot;Email address must include @ symbol&quot;</td>
+</tr>
+<tr>
+<td>&quot;Error 500&quot;</td>
+<td>&quot;We couldn&#39;t save your changes. Please try again.&quot;</td>
+</tr>
+<tr>
+<td>&quot;Failed&quot;</td>
+<td>&quot;Unable to connect. Check your internet connection.&quot;</td>
+</tr>
+</tbody></table>
+<h3>Error States</h3>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Visual Treatment</th>
+<th>User Action Required</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Info</td>
+<td>{{INFO_TREATMENT}}</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>{{WARNING_TREATMENT}}</td>
+<td>Recommended</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>{{ERROR_TREATMENT}}</td>
+<td>Required</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>{{CRITICAL_TREATMENT}}</td>
+<td>Immediate</td>
+</tr>
+</tbody></table>
+<h3>Recovery Patterns</h3>
+<ul>
+<li>Auto-save user progress where possible</li>
+<li>Provide clear &quot;try again&quot; actions</li>
+<li>Offer alternative paths when primary fails</li>
+<li>Preserve user input on errors</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

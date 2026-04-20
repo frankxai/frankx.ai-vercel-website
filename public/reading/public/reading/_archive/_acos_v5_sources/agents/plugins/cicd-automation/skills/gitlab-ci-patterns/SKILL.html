@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>GitLab CI Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cicd-automation/skills/gitlab-ci-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">GitLab CI Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation">cicd-automation</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcicd-automation%2Fskills%2Fgitlab-ci-patterns">gitlab-ci-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: gitlab-ci-patterns
+description: Build GitLab CI/CD pipelines with multi-stage workflows, caching, and distributed runners for scalable automation. Use when implementing GitLab CI/CD, optimizing pipeline performance, or setting up automated testing and deployment.</h2>
+<h1>GitLab CI Patterns</h1>
+<p>Comprehensive GitLab CI/CD pipeline patterns for automated testing, building, and deployment.</p>
+<h2>Purpose</h2>
+<p>Create efficient GitLab CI pipelines with proper stage organization, caching, and deployment strategies.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Automate GitLab-based CI/CD</li>
+<li>Implement multi-stage pipelines</li>
+<li>Configure GitLab Runners</li>
+<li>Deploy to Kubernetes from GitLab</li>
+<li>Implement GitOps workflows</li>
+</ul>
+<h2>Basic Pipeline Structure</h2>
+<pre><code class="language-yaml">stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: &quot;/certs&quot;
+
+build:
+  stage: build
+  image: node:20
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+
+test:
+  stage: test
+  image: node:20
+  script:
+    - npm ci
+    - npm run lint
+    - npm test
+  coverage: &#39;/Lines\s*:\s*(\d+\.\d+)%/&#39;
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+
+deploy:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    - kubectl apply -f k8s/
+    - kubectl rollout status deployment/my-app
+  only:
+    - main
+  environment:
+    name: production
+    url: https://app.example.com
+</code></pre>
+<h2>Docker Build and Push</h2>
+<pre><code class="language-yaml">build-docker:
+  stage: build
+  image: docker:24
+  services:
+    - docker:24-dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    - docker push $CI_REGISTRY_IMAGE:latest
+  only:
+    - main
+    - tags
+</code></pre>
+<h2>Multi-Environment Deployment</h2>
+<pre><code class="language-yaml">.deploy_template: &amp;deploy_template
+  image: bitnami/kubectl:latest
+  before_script:
+    - kubectl config set-cluster k8s --server=&quot;$KUBE_URL&quot; --insecure-skip-tls-verify=true
+    - kubectl config set-credentials admin --token=&quot;$KUBE_TOKEN&quot;
+    - kubectl config set-context default --cluster=k8s --user=admin
+    - kubectl config use-context default
+
+deploy:staging:
+  &lt;&lt;: *deploy_template
+  stage: deploy
+  script:
+    - kubectl apply -f k8s/ -n staging
+    - kubectl rollout status deployment/my-app -n staging
+  environment:
+    name: staging
+    url: https://staging.example.com
+  only:
+    - develop
+
+deploy:production:
+  &lt;&lt;: *deploy_template
+  stage: deploy
+  script:
+    - kubectl apply -f k8s/ -n production
+    - kubectl rollout status deployment/my-app -n production
+  environment:
+    name: production
+    url: https://app.example.com
+  when: manual
+  only:
+    - main
+</code></pre>
+<h2>Terraform Pipeline</h2>
+<pre><code class="language-yaml">stages:
+  - validate
+  - plan
+  - apply
+
+variables:
+  TF_ROOT: ${CI_PROJECT_DIR}/terraform
+  TF_VERSION: &quot;1.6.0&quot;
+
+before_script:
+  - cd ${TF_ROOT}
+  - terraform --version
+
+validate:
+  stage: validate
+  image: hashicorp/terraform:${TF_VERSION}
+  script:
+    - terraform init -backend=false
+    - terraform validate
+    - terraform fmt -check
+
+plan:
+  stage: plan
+  image: hashicorp/terraform:${TF_VERSION}
+  script:
+    - terraform init
+    - terraform plan -out=tfplan
+  artifacts:
+    paths:
+      - ${TF_ROOT}/tfplan
+    expire_in: 1 day
+
+apply:
+  stage: apply
+  image: hashicorp/terraform:${TF_VERSION}
+  script:
+    - terraform init
+    - terraform apply -auto-approve tfplan
+  dependencies:
+    - plan
+  when: manual
+  only:
+    - main
+</code></pre>
+<h2>Security Scanning</h2>
+<pre><code class="language-yaml">include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/Container-Scanning.gitlab-ci.yml
+
+trivy-scan:
+  stage: test
+  image: aquasec/trivy:latest
+  script:
+    - trivy image --exit-code 1 --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+  allow_failure: true
+</code></pre>
+<h2>Caching Strategies</h2>
+<pre><code class="language-yaml"># Cache node_modules
+build:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+    policy: pull-push
+
+# Global cache
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .cache/
+    - vendor/
+
+# Separate cache per job
+job1:
+  cache:
+    key: job1-cache
+    paths:
+      - build/
+
+job2:
+  cache:
+    key: job2-cache
+    paths:
+      - dist/
+</code></pre>
+<h2>Dynamic Child Pipelines</h2>
+<pre><code class="language-yaml">generate-pipeline:
+  stage: build
+  script:
+    - python generate_pipeline.py &gt; child-pipeline.yml
+  artifacts:
+    paths:
+      - child-pipeline.yml
+
+trigger-child:
+  stage: deploy
+  trigger:
+    include:
+      - artifact: child-pipeline.yml
+        job: generate-pipeline
+    strategy: depend
+</code></pre>
+<h2>Reference Files</h2>
+<ul>
+<li><code>assets/gitlab-ci.yml.template</code> - Complete pipeline template</li>
+<li><code>references/pipeline-stages.md</code> - Stage organization patterns</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Use specific image tags</strong> (node:20, not node:latest)</li>
+<li><strong>Cache dependencies</strong> appropriately</li>
+<li><strong>Use artifacts</strong> for build outputs</li>
+<li><strong>Implement manual gates</strong> for production</li>
+<li><strong>Use environments</strong> for deployment tracking</li>
+<li><strong>Enable merge request pipelines</strong></li>
+<li><strong>Use pipeline schedules</strong> for recurring jobs</li>
+<li><strong>Implement security scanning</strong></li>
+<li><strong>Use CI/CD variables</strong> for secrets</li>
+<li><strong>Monitor pipeline performance</strong></li>
+</ol>
+<h2>Related Skills</h2>
+<ul>
+<li><code>github-actions-templates</code> - For GitHub Actions</li>
+<li><code>deployment-pipeline-design</code> - For architecture</li>
+<li><code>secrets-management</code> - For secrets handling</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

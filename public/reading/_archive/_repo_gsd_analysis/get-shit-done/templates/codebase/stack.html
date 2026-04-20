@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Technology Stack Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/codebase/stack.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Technology Stack Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates%2Fcodebase">codebase</a> / <span>stack.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Technology Stack Template</h1>
+<p>Template for <code>.planning/codebase/STACK.md</code> - captures the technology foundation.</p>
+<p><strong>Purpose:</strong> Document what technologies run this codebase. Focused on &quot;what executes when you run the code.&quot;</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown"># Technology Stack
+
+**Analysis Date:** [YYYY-MM-DD]
+
+## Languages
+
+**Primary:**
+- [Language] [Version] - [Where used: e.g., &quot;all application code&quot;]
+
+**Secondary:**
+- [Language] [Version] - [Where used: e.g., &quot;build scripts, tooling&quot;]
+
+## Runtime
+
+**Environment:**
+- [Runtime] [Version] - [e.g., &quot;Node.js 20.x&quot;]
+- [Additional requirements if any]
+
+**Package Manager:**
+- [Manager] [Version] - [e.g., &quot;npm 10.x&quot;]
+- Lockfile: [e.g., &quot;package-lock.json present&quot;]
+
+## Frameworks
+
+**Core:**
+- [Framework] [Version] - [Purpose: e.g., &quot;web server&quot;, &quot;UI framework&quot;]
+
+**Testing:**
+- [Framework] [Version] - [e.g., &quot;Jest for unit tests&quot;]
+- [Framework] [Version] - [e.g., &quot;Playwright for E2E&quot;]
+
+**Build/Dev:**
+- [Tool] [Version] - [e.g., &quot;Vite for bundling&quot;]
+- [Tool] [Version] - [e.g., &quot;TypeScript compiler&quot;]
+
+## Key Dependencies
+
+[Only include dependencies critical to understanding the stack - limit to 5-10 most important]
+
+**Critical:**
+- [Package] [Version] - [Why it matters: e.g., &quot;authentication&quot;, &quot;database access&quot;]
+- [Package] [Version] - [Why it matters]
+
+**Infrastructure:**
+- [Package] [Version] - [e.g., &quot;Express for HTTP routing&quot;]
+- [Package] [Version] - [e.g., &quot;PostgreSQL client&quot;]
+
+## Configuration
+
+**Environment:**
+- [How configured: e.g., &quot;.env files&quot;, &quot;environment variables&quot;]
+- [Key configs: e.g., &quot;DATABASE_URL, API_KEY required&quot;]
+
+**Build:**
+- [Build config files: e.g., &quot;vite.config.ts, tsconfig.json&quot;]
+
+## Platform Requirements
+
+**Development:**
+- [OS requirements or &quot;any platform&quot;]
+- [Additional tooling: e.g., &quot;Docker for local DB&quot;]
+
+**Production:**
+- [Deployment target: e.g., &quot;Vercel&quot;, &quot;AWS Lambda&quot;, &quot;Docker container&quot;]
+- [Version requirements]
+
+---
+
+*Stack analysis: [date]*
+*Update after major dependency changes*
+</code></pre>
+<good_examples>
+```markdown
+# Technology Stack
+
+<p><strong>Analysis Date:</strong> 2025-01-20</p>
+<h2>Languages</h2>
+<p><strong>Primary:</strong></p>
+<ul>
+<li>TypeScript 5.3 - All application code</li>
+</ul>
+<p><strong>Secondary:</strong></p>
+<ul>
+<li>JavaScript - Build scripts, config files</li>
+</ul>
+<h2>Runtime</h2>
+<p><strong>Environment:</strong></p>
+<ul>
+<li>Node.js 20.x (LTS)</li>
+<li>No browser runtime (CLI tool only)</li>
+</ul>
+<p><strong>Package Manager:</strong></p>
+<ul>
+<li>npm 10.x</li>
+<li>Lockfile: <code>package-lock.json</code> present</li>
+</ul>
+<h2>Frameworks</h2>
+<p><strong>Core:</strong></p>
+<ul>
+<li>None (vanilla Node.js CLI)</li>
+</ul>
+<p><strong>Testing:</strong></p>
+<ul>
+<li>Vitest 1.0 - Unit tests</li>
+<li>tsx - TypeScript execution without build step</li>
+</ul>
+<p><strong>Build/Dev:</strong></p>
+<ul>
+<li>TypeScript 5.3 - Compilation to JavaScript</li>
+<li>esbuild - Used by Vitest for fast transforms</li>
+</ul>
+<h2>Key Dependencies</h2>
+<p><strong>Critical:</strong></p>
+<ul>
+<li>commander 11.x - CLI argument parsing and command structure</li>
+<li>chalk 5.x - Terminal output styling</li>
+<li>fs-extra 11.x - Extended file system operations</li>
+</ul>
+<p><strong>Infrastructure:</strong></p>
+<ul>
+<li>Node.js built-ins - fs, path, child_process for file operations</li>
+</ul>
+<h2>Configuration</h2>
+<p><strong>Environment:</strong></p>
+<ul>
+<li>No environment variables required</li>
+<li>Configuration via CLI flags only</li>
+</ul>
+<p><strong>Build:</strong></p>
+<ul>
+<li><code>tsconfig.json</code> - TypeScript compiler options</li>
+<li><code>vitest.config.ts</code> - Test runner configuration</li>
+</ul>
+<h2>Platform Requirements</h2>
+<p><strong>Development:</strong></p>
+<ul>
+<li>macOS/Linux/Windows (any platform with Node.js)</li>
+<li>No external dependencies</li>
+</ul>
+<p><strong>Production:</strong></p>
+<ul>
+<li>Distributed as npm package</li>
+<li>Installed globally via npm install -g</li>
+<li>Runs on user&#39;s Node.js installation</li>
+</ul>
+<hr>
+<p><em>Stack analysis: 2025-01-20</em>
+<em>Update after major dependency changes</em></p>
+<pre><code>&lt;/good_examples&gt;
+
+&lt;guidelines&gt;
+**What belongs in STACK.md:**
+- Languages and versions
+- Runtime requirements (Node, Bun, Deno, browser)
+- Package manager and lockfile
+- Framework choices
+- Critical dependencies (limit to 5-10 most important)
+- Build tooling
+- Platform/deployment requirements
+
+**What does NOT belong here:**
+- File structure (that&#39;s STRUCTURE.md)
+- Architectural patterns (that&#39;s ARCHITECTURE.md)
+- Every dependency in package.json (only critical ones)
+- Implementation details (defer to code)
+
+**When filling this template:**
+- Check package.json for dependencies
+- Note runtime version from .nvmrc or package.json engines
+- Include only dependencies that affect understanding (not every utility)
+- Specify versions only when version matters (breaking changes, compatibility)
+
+**Useful for phase planning when:**
+- Adding new dependencies (check compatibility)
+- Upgrading frameworks (know what&#39;s in use)
+- Choosing implementation approach (must work with existing stack)
+- Understanding build requirements
+&lt;/guidelines&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Workshop Quality Gates</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/quality-gates/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">FrankX Workshop Quality Gates</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#_archive">_archive</a> / <a href="../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fquality-gates">quality-gates</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Workshop Quality Gates</h1>
+<p><strong>Ensuring Excellence in Every Learning Experience</strong></p>
+<hr>
+<h2>Philosophy</h2>
+<p>Every FrankX workshop passes rigorous quality gates before publication. We believe learners deserve content that:</p>
+<ul>
+<li><strong>Works</strong> - All code examples execute successfully</li>
+<li><strong>Teaches</strong> - Clear progression from concept to mastery</li>
+<li><strong>Respects time</strong> - Accurate duration estimates</li>
+<li><strong>Inspires</strong> - Motivates continued learning</li>
+</ul>
+<hr>
+<h2>Quality Gate Levels</h2>
+<h3>Level 1: Content Gates</h3>
+<p>Every piece of content must pass:</p>
+<pre><code class="language-yaml">content_quality:
+  accuracy:
+    - all_code_tested: true        # Every code snippet runs
+    - facts_verified: true         # Claims are accurate
+    - links_valid: true            # No broken links
+
+  clarity:
+    - jargon_explained: true       # Technical terms defined
+    - steps_complete: true         # No missing steps
+    - prerequisites_clear: true    # Entry requirements stated
+
+  structure:
+    - objectives_defined: true     # Learning goals stated
+    - progression_logical: true    # Builds appropriately
+    - assessment_included: true    # Knowledge checks exist
+</code></pre>
+<h3>Level 2: Experience Gates</h3>
+<p>The learning experience must satisfy:</p>
+<pre><code class="language-yaml">experience_quality:
+  engagement:
+    - hands_on_percentage: &quot;&gt;= 40%&quot;   # At least 40% practical
+    - variety_of_formats: true         # Not just text walls
+    - real_world_examples: true        # Applicable scenarios
+
+  pacing:
+    - time_estimates_accurate: true    # Tested with real users
+    - breaks_suggested: true           # For longer content
+    - difficulty_progression: true     # Gradual increase
+
+  accessibility:
+    - multiple_learning_styles: true   # Visual, textual, practical
+    - prerequisite_links: true         # Path to fill gaps
+    - advanced_paths_available: true   # Room to grow
+</code></pre>
+<h3>Level 3: Outcome Gates</h3>
+<p>Measurable results required:</p>
+<pre><code class="language-yaml">outcome_quality:
+  transformation:
+    - before_after_clear: true     # What changes for learner
+    - skills_demonstrable: true    # Can show what they learned
+    - portfolio_worthy: true       # Creates something to show
+
+  retention:
+    - key_concepts_summarized: true    # Takeaways clear
+    - resources_for_reference: true    # Future lookup
+    - community_connection: true       # Where to get help
+
+  continuation:
+    - next_steps_defined: true     # Where to go next
+    - related_content_linked: true # Expand knowledge
+    - feedback_mechanism: true     # Way to improve
+</code></pre>
+<hr>
+<h2>Quality Gate Checklist</h2>
+<h3>Pre-Publication Checklist</h3>
+<pre><code class="language-markdown">## Module: [Name]
+## Reviewer: [Name]
+## Date: [Date]
+
+### Content Quality
+- [ ] All code examples tested and working
+- [ ] All facts verified against sources
+- [ ] All links checked and valid
+- [ ] Technical terms explained on first use
+- [ ] No missing steps in procedures
+- [ ] Prerequisites clearly stated
+
+### Experience Quality
+- [ ] At least 40% hands-on content
+- [ ] Visual aids included where helpful
+- [ ] Time estimates tested
+- [ ] Difficulty level appropriate
+- [ ] Multiple learning paths available
+
+### Outcome Quality
+- [ ] Learning objectives measurable
+- [ ] Learner can demonstrate skills
+- [ ] Key takeaways summarized
+- [ ] Next steps clearly defined
+- [ ] Feedback mechanism included
+
+### Final Sign-off
+- [ ] Tested by someone unfamiliar with topic
+- [ ] Updated to latest tool versions
+- [ ] FrankX brand voice applied
+- [ ] SEO optimization complete (if web)
+</code></pre>
+<hr>
+<h2>Testing Protocol</h2>
+<h3>Code Testing</h3>
+<p>Every code example must be tested:</p>
+<pre><code class="language-bash"># 1. Create clean environment
+mkdir test-env &amp;&amp; cd test-env
+
+# 2. Follow prerequisites exactly as written
+# [Execute prerequisite steps]
+
+# 3. Run each code block in sequence
+# Document any issues
+
+# 4. Verify final state matches expected outcome
+
+# 5. Clean up
+cd .. &amp;&amp; rm -rf test-env
+</code></pre>
+<h3>Duration Testing</h3>
+<p>Time estimates verified by:</p>
+<ol>
+<li><strong>Author run</strong> - Time yourself creating</li>
+<li><strong>Peer run</strong> - Someone familiar with topic</li>
+<li><strong>Target audience run</strong> - Someone at stated level</li>
+<li><strong>Average and adjust</strong> - Use realistic estimate</li>
+</ol>
+<h3>Comprehension Testing</h3>
+<p>Understanding verified by:</p>
+<ol>
+<li><strong>Pre-quiz</strong> - Before starting module</li>
+<li><strong>Post-quiz</strong> - After completing module</li>
+<li><strong>Practical assessment</strong> - Can they do the task?</li>
+<li><strong>Retention check</strong> - 1 week later recall</li>
+</ol>
+<hr>
+<h2>Quality Metrics Dashboard</h2>
+<h3>Per-Workshop Metrics</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Measurement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Completion rate</td>
+<td>&gt; 70%</td>
+<td>Analytics</td>
+</tr>
+<tr>
+<td>Time accuracy</td>
+<td>±15%</td>
+<td>User feedback</td>
+</tr>
+<tr>
+<td>Code success rate</td>
+<td>100%</td>
+<td>Testing + reports</td>
+</tr>
+<tr>
+<td>Satisfaction</td>
+<td>&gt; 4.5/5</td>
+<td>User ratings</td>
+</tr>
+<tr>
+<td>Skill gain</td>
+<td>Measurable</td>
+<td>Pre/post assessment</td>
+</tr>
+</tbody></table>
+<h3>Aggregate Metrics</h3>
+<pre><code>WORKSHOP QUALITY SCORECARD
+══════════════════════════
+
+Content Accuracy:     ████████████░░ 92%
+Time Accuracy:        █████████░░░░░ 78%
+Hands-On Ratio:       ██████████████ 100% (always ≥40%)
+Code Working:         ████████████░░ 95%
+User Satisfaction:    █████████████░ 4.6/5
+
+Areas for Improvement:
+• Time estimates in Module 4 need adjustment
+• Add more troubleshooting for Windows users
+</code></pre>
+<hr>
+<h2>Continuous Improvement</h2>
+<h3>Feedback Collection</h3>
+<pre><code class="language-yaml">feedback_channels:
+  in_content:
+    - reaction_buttons: &quot;Was this helpful? 👍 👎&quot;
+    - comment_sections: &quot;Questions or suggestions?&quot;
+
+  post_completion:
+    - satisfaction_survey: &quot;How was your experience?&quot;
+    - skill_assessment: &quot;What can you do now?&quot;
+
+  community:
+    - discord_channel: &quot;#workshop-feedback&quot;
+    - github_issues: &quot;Bug reports and suggestions&quot;
+</code></pre>
+<h3>Update Cycle</h3>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Action</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tool version update</td>
+<td>Verify and update examples</td>
+<td>As needed</td>
+</tr>
+<tr>
+<td>User confusion reported</td>
+<td>Clarify content</td>
+<td>Weekly review</td>
+</tr>
+<tr>
+<td>Completion rate drop</td>
+<td>Investigate and fix</td>
+<td>Monthly</td>
+</tr>
+<tr>
+<td>Major feedback theme</td>
+<td>Content revision</td>
+<td>Quarterly</td>
+</tr>
+</tbody></table>
+<h3>Version Control</h3>
+<p>All workshop content is versioned:</p>
+<pre><code>workshops/
+├── ai-coding-agents/
+│   ├── README.md           # Current version
+│   ├── CHANGELOG.md        # Version history
+│   └── versions/
+│       ├── v1.0/           # Initial release
+│       └── v1.1/           # Current
+</code></pre>
+<hr>
+<h2>Quality Gate Automation</h2>
+<h3>Pre-commit Checks</h3>
+<pre><code class="language-yaml"># .github/workflows/workshop-quality.yml
+name: Workshop Quality Gates
+
+on:
+  pull_request:
+    paths:
+      - &#39;workshops/**&#39;
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links
+        run: |
+          npm install -g markdown-link-check
+          find workshops -name &quot;*.md&quot; -exec markdown-link-check {} \;
+
+      - name: Lint markdown
+        run: |
+          npm install -g markdownlint-cli
+          markdownlint workshops/**/*.md
+
+      - name: Check code blocks
+        run: |
+          # Extract and test code blocks
+          node scripts/test-code-blocks.js
+
+      - name: Verify structure
+        run: |
+          # Check required sections exist
+          node scripts/verify-structure.js
+</code></pre>
+<h3>Automated Reporting</h3>
+<pre><code class="language-typescript">// scripts/quality-report.ts
+async function generateQualityReport(workshopPath: string) {
+  const report = {
+    codeBlocksTested: await testCodeBlocks(workshopPath),
+    linksValid: await checkLinks(workshopPath),
+    structureComplete: await verifyStructure(workshopPath),
+    estimatedDuration: await calculateDuration(workshopPath),
+    handsOnRatio: await calculateHandsOnRatio(workshopPath)
+  };
+
+  return report;
+}
+</code></pre>
+<hr>
+<h2>Certification</h2>
+<p>Workshops that pass all quality gates receive:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                                                              │
+│              FRANKX QUALITY CERTIFIED                        │
+│                                                              │
+│         ✓ All code tested and working                       │
+│         ✓ Time estimates verified                           │
+│         ✓ 40%+ hands-on content                             │
+│         ✓ Clear learning outcomes                           │
+│         ✓ Community tested                                  │
+│                                                              │
+│         Certified: [Date]                                   │
+│         Last Verified: [Date]                               │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<hr>
+<p><em>Quality is not negotiable. Every FrankX workshop earns the trust of learners through rigorous verification.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

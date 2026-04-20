@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>DeFi Protocol Templates</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/blockchain-web3/skills/defi-protocol-templates/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">DeFi Protocol Templates</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fblockchain-web3">blockchain-web3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fblockchain-web3%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fblockchain-web3%2Fskills%2Fdefi-protocol-templates">defi-protocol-templates</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: defi-protocol-templates
+description: Implement DeFi protocols with production-ready templates for staking, AMMs, governance, and lending systems. Use when building decentralized finance applications or smart contract protocols.</h2>
+<h1>DeFi Protocol Templates</h1>
+<p>Production-ready templates for common DeFi protocols including staking, AMMs, governance, lending, and flash loans.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Building staking platforms with reward distribution</li>
+<li>Implementing AMM (Automated Market Maker) protocols</li>
+<li>Creating governance token systems</li>
+<li>Developing lending/borrowing protocols</li>
+<li>Integrating flash loan functionality</li>
+<li>Launching yield farming platforms</li>
+</ul>
+<h2>Staking Contract</h2>
+<pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import &quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;;
+import &quot;@openzeppelin/contracts/security/ReentrancyGuard.sol&quot;;
+import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;
+
+contract StakingRewards is ReentrancyGuard, Ownable {
+    IERC20 public stakingToken;
+    IERC20 public rewardsToken;
+
+    uint256 public rewardRate = 100; // Rewards per second
+    uint256 public lastUpdateTime;
+    uint256 public rewardPerTokenStored;
+
+    mapping(address =&gt; uint256) public userRewardPerTokenPaid;
+    mapping(address =&gt; uint256) public rewards;
+    mapping(address =&gt; uint256) public balances;
+
+    uint256 private _totalSupply;
+
+    event Staked(address indexed user, uint256 amount);
+    event Withdrawn(address indexed user, uint256 amount);
+    event RewardPaid(address indexed user, uint256 reward);
+
+    constructor(address _stakingToken, address _rewardsToken) {
+        stakingToken = IERC20(_stakingToken);
+        rewardsToken = IERC20(_rewardsToken);
+    }
+
+    modifier updateReward(address account) {
+        rewardPerTokenStored = rewardPerToken();
+        lastUpdateTime = block.timestamp;
+
+        if (account != address(0)) {
+            rewards[account] = earned(account);
+            userRewardPerTokenPaid[account] = rewardPerTokenStored;
+        }
+        _;
+    }
+
+    function rewardPerToken() public view returns (uint256) {
+        if (_totalSupply == 0) {
+            return rewardPerTokenStored;
+        }
+        return rewardPerTokenStored +
+            ((block.timestamp - lastUpdateTime) * rewardRate * 1e18) / _totalSupply;
+    }
+
+    function earned(address account) public view returns (uint256) {
+        return (balances[account] *
+            (rewardPerToken() - userRewardPerTokenPaid[account])) / 1e18 +
+            rewards[account];
+    }
+
+    function stake(uint256 amount) external nonReentrant updateReward(msg.sender) {
+        require(amount &gt; 0, &quot;Cannot stake 0&quot;);
+        _totalSupply += amount;
+        balances[msg.sender] += amount;
+        stakingToken.transferFrom(msg.sender, address(this), amount);
+        emit Staked(msg.sender, amount);
+    }
+
+    function withdraw(uint256 amount) public nonReentrant updateReward(msg.sender) {
+        require(amount &gt; 0, &quot;Cannot withdraw 0&quot;);
+        _totalSupply -= amount;
+        balances[msg.sender] -= amount;
+        stakingToken.transfer(msg.sender, amount);
+        emit Withdrawn(msg.sender, amount);
+    }
+
+    function getReward() public nonReentrant updateReward(msg.sender) {
+        uint256 reward = rewards[msg.sender];
+        if (reward &gt; 0) {
+            rewards[msg.sender] = 0;
+            rewardsToken.transfer(msg.sender, reward);
+            emit RewardPaid(msg.sender, reward);
+        }
+    }
+
+    function exit() external {
+        withdraw(balances[msg.sender]);
+        getReward();
+    }
+}
+</code></pre>
+<h2>AMM (Automated Market Maker)</h2>
+<pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import &quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;;
+
+contract SimpleAMM {
+    IERC20 public token0;
+    IERC20 public token1;
+
+    uint256 public reserve0;
+    uint256 public reserve1;
+
+    uint256 public totalSupply;
+    mapping(address =&gt; uint256) public balanceOf;
+
+    event Mint(address indexed to, uint256 amount);
+    event Burn(address indexed from, uint256 amount);
+    event Swap(address indexed trader, uint256 amount0In, uint256 amount1In, uint256 amount0Out, uint256 amount1Out);
+
+    constructor(address _token0, address _token1) {
+        token0 = IERC20(_token0);
+        token1 = IERC20(_token1);
+    }
+
+    function addLiquidity(uint256 amount0, uint256 amount1) external returns (uint256 shares) {
+        token0.transferFrom(msg.sender, address(this), amount0);
+        token1.transferFrom(msg.sender, address(this), amount1);
+
+        if (totalSupply == 0) {
+            shares = sqrt(amount0 * amount1);
+        } else {
+            shares = min(
+                (amount0 * totalSupply) / reserve0,
+                (amount1 * totalSupply) / reserve1
+            );
+        }
+
+        require(shares &gt; 0, &quot;Shares = 0&quot;);
+        _mint(msg.sender, shares);
+        _update(
+            token0.balanceOf(address(this)),
+            token1.balanceOf(address(this))
+        );
+
+        emit Mint(msg.sender, shares);
+    }
+
+    function removeLiquidity(uint256 shares) external returns (uint256 amount0, uint256 amount1) {
+        uint256 bal0 = token0.balanceOf(address(this));
+        uint256 bal1 = token1.balanceOf(address(this));
+
+        amount0 = (shares * bal0) / totalSupply;
+        amount1 = (shares * bal1) / totalSupply;
+
+        require(amount0 &gt; 0 &amp;&amp; amount1 &gt; 0, &quot;Amount0 or amount1 = 0&quot;);
+
+        _burn(msg.sender, shares);
+        _update(bal0 - amount0, bal1 - amount1);
+
+        token0.transfer(msg.sender, amount0);
+        token1.transfer(msg.sender, amount1);
+
+        emit Burn(msg.sender, shares);
+    }
+
+    function swap(address tokenIn, uint256 amountIn) external returns (uint256 amountOut) {
+        require(tokenIn == address(token0) || tokenIn == address(token1), &quot;Invalid token&quot;);
+
+        bool isToken0 = tokenIn == address(token0);
+        (IERC20 tokenIn_, IERC20 tokenOut, uint256 resIn, uint256 resOut) = isToken0
+            ? (token0, token1, reserve0, reserve1)
+            : (token1, token0, reserve1, reserve0);
+
+        tokenIn_.transferFrom(msg.sender, address(this), amountIn);
+
+        // 0.3% fee
+        uint256 amountInWithFee = (amountIn * 997) / 1000;
+        amountOut = (resOut * amountInWithFee) / (resIn + amountInWithFee);
+
+        tokenOut.transfer(msg.sender, amountOut);
+
+        _update(
+            token0.balanceOf(address(this)),
+            token1.balanceOf(address(this))
+        );
+
+        emit Swap(msg.sender, isToken0 ? amountIn : 0, isToken0 ? 0 : amountIn, isToken0 ? 0 : amountOut, isToken0 ? amountOut : 0);
+    }
+
+    function _mint(address to, uint256 amount) private {
+        balanceOf[to] += amount;
+        totalSupply += amount;
+    }
+
+    function _burn(address from, uint256 amount) private {
+        balanceOf[from] -= amount;
+        totalSupply -= amount;
+    }
+
+    function _update(uint256 res0, uint256 res1) private {
+        reserve0 = res0;
+        reserve1 = res1;
+    }
+
+    function sqrt(uint256 y) private pure returns (uint256 z) {
+        if (y &gt; 3) {
+            z = y;
+            uint256 x = y / 2 + 1;
+            while (x &lt; z) {
+                z = x;
+                x = (y / x + x) / 2;
+            }
+        } else if (y != 0) {
+            z = 1;
+        }
+    }
+
+    function min(uint256 x, uint256 y) private pure returns (uint256) {
+        return x &lt;= y ? x : y;
+    }
+}
+</code></pre>
+<h2>Governance Token</h2>
+<pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import &quot;@openzeppelin/contracts/token/ERC20/extensions/ERC20Votes.sol&quot;;
+import &quot;@openzeppelin/contracts/access/Ownable.sol&quot;;
+
+contract GovernanceToken is ERC20Votes, Ownable {
+    constructor() ERC20(&quot;Governance Token&quot;, &quot;GOV&quot;) ERC20Permit(&quot;Governance Token&quot;) {
+        _mint(msg.sender, 1000000 * 10**decimals());
+    }
+
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal override(ERC20Votes) {
+        super._afterTokenTransfer(from, to, amount);
+    }
+
+    function _mint(address to, uint256 amount) internal override(ERC20Votes) {
+        super._mint(to, amount);
+    }
+
+    function _burn(address account, uint256 amount) internal override(ERC20Votes) {
+        super._burn(account, amount);
+    }
+}
+
+contract Governor is Ownable {
+    GovernanceToken public governanceToken;
+
+    struct Proposal {
+        uint256 id;
+        address proposer;
+        string description;
+        uint256 forVotes;
+        uint256 againstVotes;
+        uint256 startBlock;
+        uint256 endBlock;
+        bool executed;
+        mapping(address =&gt; bool) hasVoted;
+    }
+
+    uint256 public proposalCount;
+    mapping(uint256 =&gt; Proposal) public proposals;
+
+    uint256 public votingPeriod = 17280; // ~3 days in blocks
+    uint256 public proposalThreshold = 100000 * 10**18;
+
+    event ProposalCreated(uint256 indexed proposalId, address proposer, string description);
+    event VoteCast(address indexed voter, uint256 indexed proposalId, bool support, uint256 weight);
+    event ProposalExecuted(uint256 indexed proposalId);
+
+    constructor(address _governanceToken) {
+        governanceToken = GovernanceToken(_governanceToken);
+    }
+
+    function propose(string memory description) external returns (uint256) {
+        require(
+            governanceToken.getPastVotes(msg.sender, block.number - 1) &gt;= proposalThreshold,
+            &quot;Proposer votes below threshold&quot;
+        );
+
+        proposalCount++;
+        Proposal storage newProposal = proposals[proposalCount];
+        newProposal.id = proposalCount;
+        newProposal.proposer = msg.sender;
+        newProposal.description = description;
+        newProposal.startBlock = block.number;
+        newProposal.endBlock = block.number + votingPeriod;
+
+        emit ProposalCreated(proposalCount, msg.sender, description);
+        return proposalCount;
+    }
+
+    function vote(uint256 proposalId, bool support) external {
+        Proposal storage proposal = proposals[proposalId];
+        require(block.number &gt;= proposal.startBlock, &quot;Voting not started&quot;);
+        require(block.number &lt;= proposal.endBlock, &quot;Voting ended&quot;);
+        require(!proposal.hasVoted[msg.sender], &quot;Already voted&quot;);
+
+        uint256 weight = governanceToken.getPastVotes(msg.sender, proposal.startBlock);
+        require(weight &gt; 0, &quot;No voting power&quot;);
+
+        proposal.hasVoted[msg.sender] = true;
+
+        if (support) {
+            proposal.forVotes += weight;
+        } else {
+            proposal.againstVotes += weight;
+        }
+
+        emit VoteCast(msg.sender, proposalId, support, weight);
+    }
+
+    function execute(uint256 proposalId) external {
+        Proposal storage proposal = proposals[proposalId];
+        require(block.number &gt; proposal.endBlock, &quot;Voting not ended&quot;);
+        require(!proposal.executed, &quot;Already executed&quot;);
+        require(proposal.forVotes &gt; proposal.againstVotes, &quot;Proposal failed&quot;);
+
+        proposal.executed = true;
+
+        // Execute proposal logic here
+
+        emit ProposalExecuted(proposalId);
+    }
+}
+</code></pre>
+<h2>Flash Loan</h2>
+<pre><code class="language-solidity">// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import &quot;@openzeppelin/contracts/token/ERC20/IERC20.sol&quot;;
+
+interface IFlashLoanReceiver {
+    function executeOperation(
+        address asset,
+        uint256 amount,
+        uint256 fee,
+        bytes calldata params
+    ) external returns (bool);
+}
+
+contract FlashLoanProvider {
+    IERC20 public token;
+    uint256 public feePercentage = 9; // 0.09% fee
+
+    event FlashLoan(address indexed borrower, uint256 amount, uint256 fee);
+
+    constructor(address _token) {
+        token = IERC20(_token);
+    }
+
+    function flashLoan(
+        address receiver,
+        uint256 amount,
+        bytes calldata params
+    ) external {
+        uint256 balanceBefore = token.balanceOf(address(this));
+        require(balanceBefore &gt;= amount, &quot;Insufficient liquidity&quot;);
+
+        uint256 fee = (amount * feePercentage) / 10000;
+
+        // Send tokens to receiver
+        token.transfer(receiver, amount);
+
+        // Execute callback
+        require(
+            IFlashLoanReceiver(receiver).executeOperation(
+                address(token),
+                amount,
+                fee,
+                params
+            ),
+            &quot;Flash loan failed&quot;
+        );
+
+        // Verify repayment
+        uint256 balanceAfter = token.balanceOf(address(this));
+        require(balanceAfter &gt;= balanceBefore + fee, &quot;Flash loan not repaid&quot;);
+
+        emit FlashLoan(receiver, amount, fee);
+    }
+}
+
+// Example flash loan receiver
+contract FlashLoanReceiver is IFlashLoanReceiver {
+    function executeOperation(
+        address asset,
+        uint256 amount,
+        uint256 fee,
+        bytes calldata params
+    ) external override returns (bool) {
+        // Decode params and execute arbitrage, liquidation, etc.
+        // ...
+
+        // Approve repayment
+        IERC20(asset).approve(msg.sender, amount + fee);
+
+        return true;
+    }
+}
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/staking.md</strong>: Staking mechanics and reward distribution</li>
+<li><strong>references/liquidity-pools.md</strong>: AMM mathematics and pricing</li>
+<li><strong>references/governance-tokens.md</strong>: Governance and voting systems</li>
+<li><strong>references/lending-protocols.md</strong>: Lending/borrowing implementation</li>
+<li><strong>references/flash-loans.md</strong>: Flash loan security and use cases</li>
+<li><strong>assets/staking-contract.sol</strong>: Production staking template</li>
+<li><strong>assets/amm-contract.sol</strong>: Full AMM implementation</li>
+<li><strong>assets/governance-token.sol</strong>: Governance system</li>
+<li><strong>assets/lending-protocol.sol</strong>: Lending platform template</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Use Established Libraries</strong>: OpenZeppelin, Solmate</li>
+<li><strong>Test Thoroughly</strong>: Unit tests, integration tests, fuzzing</li>
+<li><strong>Audit Before Launch</strong>: Professional security audits</li>
+<li><strong>Start Simple</strong>: MVP first, add features incrementally</li>
+<li><strong>Monitor</strong>: Track contract health and user activity</li>
+<li><strong>Upgradability</strong>: Consider proxy patterns for upgrades</li>
+<li><strong>Emergency Controls</strong>: Pause mechanisms for critical issues</li>
+</ol>
+<h2>Common DeFi Patterns</h2>
+<ul>
+<li><strong>Time-Weighted Average Price (TWAP)</strong>: Price oracle resistance</li>
+<li><strong>Liquidity Mining</strong>: Incentivize liquidity provision</li>
+<li><strong>Vesting</strong>: Lock tokens with gradual release</li>
+<li><strong>Multisig</strong>: Require multiple signatures for critical operations</li>
+<li><strong>Timelocks</strong>: Delay execution of governance decisions</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

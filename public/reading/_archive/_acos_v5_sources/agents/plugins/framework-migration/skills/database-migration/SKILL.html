@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Database Migration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/framework-migration/skills/database-migration/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Database Migration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration">framework-migration</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fframework-migration%2Fskills%2Fdatabase-migration">database-migration</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: database-migration
+description: Execute database migrations across ORMs and platforms with zero-downtime strategies, data transformation, and rollback procedures. Use when migrating databases, changing schemas, performing data transformations, or implementing zero-downtime deployment strategies.</h2>
+<h1>Database Migration</h1>
+<p>Master database schema and data migrations across ORMs (Sequelize, TypeORM, Prisma), including rollback strategies and zero-downtime deployments.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Migrating between different ORMs</li>
+<li>Performing schema transformations</li>
+<li>Moving data between databases</li>
+<li>Implementing rollback procedures</li>
+<li>Zero-downtime deployments</li>
+<li>Database version upgrades</li>
+<li>Data model refactoring</li>
+</ul>
+<h2>ORM Migrations</h2>
+<h3>Sequelize Migrations</h3>
+<pre><code class="language-javascript">// migrations/20231201-create-users.js
+module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    await queryInterface.createTable(&quot;users&quot;, {
+      id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      email: {
+        type: Sequelize.STRING,
+        unique: true,
+        allowNull: false,
+      },
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
+    });
+  },
+
+  down: async (queryInterface, Sequelize) =&gt; {
+    await queryInterface.dropTable(&quot;users&quot;);
+  },
+};
+
+// Run: npx sequelize-cli db:migrate
+// Rollback: npx sequelize-cli db:migrate:undo
+</code></pre>
+<h3>TypeORM Migrations</h3>
+<pre><code class="language-typescript">// migrations/1701234567-CreateUsers.ts
+import { MigrationInterface, QueryRunner, Table } from &quot;typeorm&quot;;
+
+export class CreateUsers1701234567 implements MigrationInterface {
+  public async up(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.createTable(
+      new Table({
+        name: &quot;users&quot;,
+        columns: [
+          {
+            name: &quot;id&quot;,
+            type: &quot;int&quot;,
+            isPrimary: true,
+            isGenerated: true,
+            generationStrategy: &quot;increment&quot;,
+          },
+          {
+            name: &quot;email&quot;,
+            type: &quot;varchar&quot;,
+            isUnique: true,
+          },
+          {
+            name: &quot;created_at&quot;,
+            type: &quot;timestamp&quot;,
+            default: &quot;CURRENT_TIMESTAMP&quot;,
+          },
+        ],
+      }),
+    );
+  }
+
+  public async down(queryRunner: QueryRunner): Promise&lt;void&gt; {
+    await queryRunner.dropTable(&quot;users&quot;);
+  }
+}
+
+// Run: npm run typeorm migration:run
+// Rollback: npm run typeorm migration:revert
+</code></pre>
+<h3>Prisma Migrations</h3>
+<pre><code class="language-prisma">// schema.prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+// Generate migration: npx prisma migrate dev --name create_users
+// Apply: npx prisma migrate deploy
+</code></pre>
+<h2>Schema Transformations</h2>
+<h3>Adding Columns with Defaults</h3>
+<pre><code class="language-javascript">// Safe migration: add column with default
+module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    await queryInterface.addColumn(&quot;users&quot;, &quot;status&quot;, {
+      type: Sequelize.STRING,
+      defaultValue: &quot;active&quot;,
+      allowNull: false,
+    });
+  },
+
+  down: async (queryInterface) =&gt; {
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;status&quot;);
+  },
+};
+</code></pre>
+<h3>Renaming Columns (Zero Downtime)</h3>
+<pre><code class="language-javascript">// Step 1: Add new column
+module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    await queryInterface.addColumn(&quot;users&quot;, &quot;full_name&quot;, {
+      type: Sequelize.STRING,
+    });
+
+    // Copy data from old column
+    await queryInterface.sequelize.query(&quot;UPDATE users SET full_name = name&quot;);
+  },
+
+  down: async (queryInterface) =&gt; {
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;full_name&quot;);
+  },
+};
+
+// Step 2: Update application to use new column
+
+// Step 3: Remove old column
+module.exports = {
+  up: async (queryInterface) =&gt; {
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;name&quot;);
+  },
+
+  down: async (queryInterface, Sequelize) =&gt; {
+    await queryInterface.addColumn(&quot;users&quot;, &quot;name&quot;, {
+      type: Sequelize.STRING,
+    });
+  },
+};
+</code></pre>
+<h3>Changing Column Types</h3>
+<pre><code class="language-javascript">module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    // For large tables, use multi-step approach
+
+    // 1. Add new column
+    await queryInterface.addColumn(&quot;users&quot;, &quot;age_new&quot;, {
+      type: Sequelize.INTEGER,
+    });
+
+    // 2. Copy and transform data
+    await queryInterface.sequelize.query(`
+      UPDATE users
+      SET age_new = CAST(age AS INTEGER)
+      WHERE age IS NOT NULL
+    `);
+
+    // 3. Drop old column
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;age&quot;);
+
+    // 4. Rename new column
+    await queryInterface.renameColumn(&quot;users&quot;, &quot;age_new&quot;, &quot;age&quot;);
+  },
+
+  down: async (queryInterface, Sequelize) =&gt; {
+    await queryInterface.changeColumn(&quot;users&quot;, &quot;age&quot;, {
+      type: Sequelize.STRING,
+    });
+  },
+};
+</code></pre>
+<h2>Data Transformations</h2>
+<h3>Complex Data Migration</h3>
+<pre><code class="language-javascript">module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    // Get all records
+    const [users] = await queryInterface.sequelize.query(
+      &quot;SELECT id, address_string FROM users&quot;,
+    );
+
+    // Transform each record
+    for (const user of users) {
+      const addressParts = user.address_string.split(&quot;,&quot;);
+
+      await queryInterface.sequelize.query(
+        `UPDATE users
+         SET street = :street,
+             city = :city,
+             state = :state
+         WHERE id = :id`,
+        {
+          replacements: {
+            id: user.id,
+            street: addressParts[0]?.trim(),
+            city: addressParts[1]?.trim(),
+            state: addressParts[2]?.trim(),
+          },
+        },
+      );
+    }
+
+    // Drop old column
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;address_string&quot;);
+  },
+
+  down: async (queryInterface, Sequelize) =&gt; {
+    // Reconstruct original column
+    await queryInterface.addColumn(&quot;users&quot;, &quot;address_string&quot;, {
+      type: Sequelize.STRING,
+    });
+
+    await queryInterface.sequelize.query(`
+      UPDATE users
+      SET address_string = CONCAT(street, &#39;, &#39;, city, &#39;, &#39;, state)
+    `);
+
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;street&quot;);
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;city&quot;);
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;state&quot;);
+  },
+};
+</code></pre>
+<h2>Rollback Strategies</h2>
+<h3>Transaction-Based Migrations</h3>
+<pre><code class="language-javascript">module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    const transaction = await queryInterface.sequelize.transaction();
+
+    try {
+      await queryInterface.addColumn(
+        &quot;users&quot;,
+        &quot;verified&quot;,
+        { type: Sequelize.BOOLEAN, defaultValue: false },
+        { transaction },
+      );
+
+      await queryInterface.sequelize.query(
+        &quot;UPDATE users SET verified = true WHERE email_verified_at IS NOT NULL&quot;,
+        { transaction },
+      );
+
+      await transaction.commit();
+    } catch (error) {
+      await transaction.rollback();
+      throw error;
+    }
+  },
+
+  down: async (queryInterface) =&gt; {
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;verified&quot;);
+  },
+};
+</code></pre>
+<h3>Checkpoint-Based Rollback</h3>
+<pre><code class="language-javascript">module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    // Create backup table
+    await queryInterface.sequelize.query(
+      &quot;CREATE TABLE users_backup AS SELECT * FROM users&quot;,
+    );
+
+    try {
+      // Perform migration
+      await queryInterface.addColumn(&quot;users&quot;, &quot;new_field&quot;, {
+        type: Sequelize.STRING,
+      });
+
+      // Verify migration
+      const [result] = await queryInterface.sequelize.query(
+        &quot;SELECT COUNT(*) as count FROM users WHERE new_field IS NULL&quot;,
+      );
+
+      if (result[0].count &gt; 0) {
+        throw new Error(&quot;Migration verification failed&quot;);
+      }
+
+      // Drop backup
+      await queryInterface.dropTable(&quot;users_backup&quot;);
+    } catch (error) {
+      // Restore from backup
+      await queryInterface.sequelize.query(&quot;DROP TABLE users&quot;);
+      await queryInterface.sequelize.query(
+        &quot;CREATE TABLE users AS SELECT * FROM users_backup&quot;,
+      );
+      await queryInterface.dropTable(&quot;users_backup&quot;);
+      throw error;
+    }
+  },
+};
+</code></pre>
+<h2>Zero-Downtime Migrations</h2>
+<h3>Blue-Green Deployment Strategy</h3>
+<pre><code class="language-javascript">// Phase 1: Make changes backward compatible
+module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    // Add new column (both old and new code can work)
+    await queryInterface.addColumn(&quot;users&quot;, &quot;email_new&quot;, {
+      type: Sequelize.STRING,
+    });
+  },
+};
+
+// Phase 2: Deploy code that writes to both columns
+
+// Phase 3: Backfill data
+module.exports = {
+  up: async (queryInterface) =&gt; {
+    await queryInterface.sequelize.query(`
+      UPDATE users
+      SET email_new = email
+      WHERE email_new IS NULL
+    `);
+  },
+};
+
+// Phase 4: Deploy code that reads from new column
+
+// Phase 5: Remove old column
+module.exports = {
+  up: async (queryInterface) =&gt; {
+    await queryInterface.removeColumn(&quot;users&quot;, &quot;email&quot;);
+  },
+};
+</code></pre>
+<h2>Cross-Database Migrations</h2>
+<h3>PostgreSQL to MySQL</h3>
+<pre><code class="language-javascript">// Handle differences
+module.exports = {
+  up: async (queryInterface, Sequelize) =&gt; {
+    const dialectName = queryInterface.sequelize.getDialect();
+
+    if (dialectName === &quot;mysql&quot;) {
+      await queryInterface.createTable(&quot;users&quot;, {
+        id: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+        },
+        data: {
+          type: Sequelize.JSON, // MySQL JSON type
+        },
+      });
+    } else if (dialectName === &quot;postgres&quot;) {
+      await queryInterface.createTable(&quot;users&quot;, {
+        id: {
+          type: Sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true,
+        },
+        data: {
+          type: Sequelize.JSONB, // PostgreSQL JSONB type
+        },
+      });
+    }
+  },
+};
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/orm-switching.md</strong>: ORM migration guides</li>
+<li><strong>references/schema-migration.md</strong>: Schema transformation patterns</li>
+<li><strong>references/data-transformation.md</strong>: Data migration scripts</li>
+<li><strong>references/rollback-strategies.md</strong>: Rollback procedures</li>
+<li><strong>assets/schema-migration-template.sql</strong>: SQL migration templates</li>
+<li><strong>assets/data-migration-script.py</strong>: Data migration utilities</li>
+<li><strong>scripts/test-migration.sh</strong>: Migration testing script</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Always Provide Rollback</strong>: Every up() needs a down()</li>
+<li><strong>Test Migrations</strong>: Test on staging first</li>
+<li><strong>Use Transactions</strong>: Atomic migrations when possible</li>
+<li><strong>Backup First</strong>: Always backup before migration</li>
+<li><strong>Small Changes</strong>: Break into small, incremental steps</li>
+<li><strong>Monitor</strong>: Watch for errors during deployment</li>
+<li><strong>Document</strong>: Explain why and how</li>
+<li><strong>Idempotent</strong>: Migrations should be rerunnable</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li>Not testing rollback procedures</li>
+<li>Making breaking changes without downtime strategy</li>
+<li>Forgetting to handle NULL values</li>
+<li>Not considering index performance</li>
+<li>Ignoring foreign key constraints</li>
+<li>Migrating too much data at once</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

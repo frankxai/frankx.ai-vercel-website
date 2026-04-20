@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Validate after_phase is an integer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/commands/gsd/insert-phase.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Validate after_phase is an integer</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fcommands">commands</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fcommands%2Fgsd">gsd</a> / <span>insert-phase.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: gsd:insert-phase
+description: Insert urgent work as decimal phase (e.g., 72.1) between existing phases
+argument-hint: <after> <description>
+allowed-tools:
+  - Read
+  - Write
+  - Bash</h2>
+<objective>
+Insert a decimal phase for urgent work discovered mid-milestone that must be completed between existing integer phases.
+
+<p>Uses decimal numbering (72.1, 72.2, etc.) to preserve the logical sequence of planned phases while accommodating urgent insertions.</p>
+<p>Purpose: Handle urgent work discovered during execution without renumbering entire roadmap.
+</objective></p>
+<execution_context>
+@.planning/ROADMAP.md
+@.planning/STATE.md
+</execution_context>
+
+<process>
+
+<step name="parse_arguments">
+Parse the command arguments:
+- First argument: integer phase number to insert after
+- Remaining arguments: phase description
+
+<p>Example: <code>/gsd:insert-phase 72 Fix critical auth bug</code>
+→ after = 72
+→ description = &quot;Fix critical auth bug&quot;</p>
+<p>Validation:</p>
+<pre><code class="language-bash">if [ $# -lt 2 ]; then
+  echo &quot;ERROR: Both phase number and description required&quot;
+  echo &quot;Usage: /gsd:insert-phase &lt;after&gt; &lt;description&gt;&quot;
+  echo &quot;Example: /gsd:insert-phase 72 Fix critical auth bug&quot;
+  exit 1
+fi
+</code></pre>
+<p>Parse first argument as integer:</p>
+<pre><code class="language-bash">after_phase=$1
+shift
+description=&quot;$*&quot;
+
+# Validate after_phase is an integer
+if ! [[ &quot;$after_phase&quot; =~ ^[0-9]+$ ]]; then
+  echo &quot;ERROR: Phase number must be an integer&quot;
+  exit 1
+fi
+</code></pre>
+</step>
+
+<step name="load_roadmap">
+Load the roadmap file:
+
+<pre><code class="language-bash">if [ -f .planning/ROADMAP.md ]; then
+  ROADMAP=&quot;.planning/ROADMAP.md&quot;
+else
+  echo &quot;ERROR: No roadmap found (.planning/ROADMAP.md)&quot;
+  exit 1
+fi
+</code></pre>
+<p>Read roadmap content for parsing.
+</step></p>
+<step name="verify_target_phase">
+Verify that the target phase exists in the roadmap:
+
+<ol>
+<li><p>Search for &quot;### Phase {after_phase}:&quot; heading</p>
+</li>
+<li><p>If not found:</p>
+<pre><code>ERROR: Phase {after_phase} not found in roadmap
+Available phases: [list phase numbers]
+</code></pre>
+<p>Exit.</p>
+</li>
+<li><p>Verify phase is in current milestone (not completed/archived)</p>
+</step></li>
+</ol>
+<step name="find_existing_decimals">
+Find existing decimal phases after the target phase:
+
+<ol>
+<li>Search for all &quot;### Phase {after_phase}.N:&quot; headings</li>
+<li>Extract decimal suffixes (e.g., for Phase 72: find 72.1, 72.2, 72.3)</li>
+<li>Find the highest decimal suffix</li>
+<li>Calculate next decimal: max + 1</li>
+</ol>
+<p>Examples:</p>
+<ul>
+<li>Phase 72 with no decimals → next is 72.1</li>
+<li>Phase 72 with 72.1 → next is 72.2</li>
+<li>Phase 72 with 72.1, 72.2 → next is 72.3</li>
+</ul>
+<p>Store as: <code>decimal_phase=&quot;$(printf &quot;%02d&quot; $after_phase).${next_decimal}&quot;</code>
+</step></p>
+<step name="generate_slug">
+Convert the phase description to a kebab-case slug:
+
+<pre><code class="language-bash">slug=$(echo &quot;$description&quot; | tr &#39;[:upper:]&#39; &#39;[:lower:]&#39; | sed &#39;s/[^a-z0-9]/-/g&#39; | sed &#39;s/--*/-/g&#39; | sed &#39;s/^-//;s/-$//&#39;)
+</code></pre>
+<p>Phase directory name: <code>{decimal-phase}-{slug}</code>
+Example: <code>06.1-fix-critical-auth-bug</code> (phase 6 insertion)
+</step></p>
+<step name="create_phase_directory">
+Create the phase directory structure:
+
+<pre><code class="language-bash">phase_dir=&quot;.planning/phases/${decimal_phase}-${slug}&quot;
+mkdir -p &quot;$phase_dir&quot;
+</code></pre>
+<p>Confirm: &quot;Created directory: $phase_dir&quot;
+</step></p>
+<step name="update_roadmap">
+Insert the new phase entry into the roadmap:
+
+<ol>
+<li><p>Find insertion point: immediately after Phase {after_phase}&#39;s content (before next phase heading or &quot;---&quot;)</p>
+</li>
+<li><p>Insert new phase heading with (INSERTED) marker:</p>
+<pre><code>### Phase {decimal_phase}: {Description} (INSERTED)
+
+**Goal:** [Urgent work - to be planned]
+**Depends on:** Phase {after_phase}
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd:plan-phase {decimal_phase} to break down)
+
+**Details:**
+[To be added during planning]
+</code></pre>
+</li>
+<li><p>Write updated roadmap back to file</p>
+</li>
+</ol>
+<p>The &quot;(INSERTED)&quot; marker helps identify decimal phases as urgent insertions.</p>
+<p>Preserve all other content exactly (formatting, spacing, other phases).
+</step></p>
+<step name="update_project_state">
+Update STATE.md to reflect the inserted phase:
+
+<ol>
+<li>Read <code>.planning/STATE.md</code></li>
+<li>Under &quot;## Accumulated Context&quot; → &quot;### Roadmap Evolution&quot; add entry:<pre><code>- Phase {decimal_phase} inserted after Phase {after_phase}: {description} (URGENT)
+</code></pre>
+</li>
+</ol>
+<p>If &quot;Roadmap Evolution&quot; section doesn&#39;t exist, create it.</p>
+<p>Add note about insertion reason if appropriate.
+</step></p>
+<step name="completion">
+Present completion summary:
+
+<pre><code>Phase {decimal_phase} inserted after Phase {after_phase}:
+- Description: {description}
+- Directory: .planning/phases/{decimal-phase}-{slug}/
+- Status: Not planned yet
+- Marker: (INSERTED) - indicates urgent work
+
+Roadmap updated: {roadmap-path}
+Project state updated: .planning/STATE.md
+
+---
+
+## ▶ Next Up
+
+**Phase {decimal_phase}: {description}** — urgent insertion
+
+`/gsd:plan-phase {decimal_phase}`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+---
+
+**Also available:**
+- Review insertion impact: Check if Phase {next_integer} dependencies still make sense
+- Review roadmap
+
+---
+</code></pre>
+</step>
+
+</process>
+
+<anti_patterns>
+
+<ul>
+<li>Don&#39;t use this for planned work at end of milestone (use /gsd:add-phase)</li>
+<li>Don&#39;t insert before Phase 1 (decimal 0.1 makes no sense)</li>
+<li>Don&#39;t renumber existing phases</li>
+<li>Don&#39;t modify the target phase content</li>
+<li>Don&#39;t create plans yet (that&#39;s /gsd:plan-phase)</li>
+<li>Don&#39;t commit changes (user decides when to commit)</anti_patterns></li>
+</ul>
+<success_criteria>
+Phase insertion is complete when:
+
+<ul>
+<li><input disabled="" type="checkbox"> Phase directory created: <code>.planning/phases/{N.M}-{slug}/</code></li>
+<li><input disabled="" type="checkbox"> Roadmap updated with new phase entry (includes &quot;(INSERTED)&quot; marker)</li>
+<li><input disabled="" type="checkbox"> Phase inserted in correct position (after target phase, before next integer phase)</li>
+<li><input disabled="" type="checkbox"> STATE.md updated with roadmap evolution note</li>
+<li><input disabled="" type="checkbox"> Decimal number calculated correctly (based on existing decimals)</li>
+<li><input disabled="" type="checkbox"> User informed of next steps and dependency implications
+</success_criteria></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

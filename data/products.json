@@ -1496,5 +1496,35 @@
       "label": "Download Free PDF",
       "href": "/books/hoffnung"
     }
+  },
+  {
+    "id": "golden-age-book",
+    "slug": "golden-age",
+    "title": "The Golden Age of Creators",
+    "description": "How the creator economy crossed $250 billion and the barriers to creative expression evaporated. The definitive guide to building in the golden age.",
+    "category": "book",
+    "badge": "FREE PDF",
+    "image": "/images/golden-age/golden-age-hero-council-v2.png",
+    "price": 0,
+    "status": "published",
+    "featured": true,
+    "cta": {
+      "label": "Download Free PDF",
+      "href": "/books/golden-age"
+    },
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "The Golden Age of Creators (PDF)",
+          "blobKey": "books/golden-age/golden-age.pdf",
+          "format": "pdf",
+          "size": "1.0 MB"
+        }
+      ]
+    },
+    "tags": ["book", "creator-economy", "ai", "golden-age"],
+    "pillar": "creator"
   }
 ]

@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Neural Domain Mapper Examples</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/neural/examples.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Neural Domain Mapper Examples</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fneural">neural</a> / <span>examples.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Neural Domain Mapper Examples</h1>
+<p>This document provides comprehensive examples of how to use the NeuralDomainMapper class for GNN-style domain relationship mapping.</p>
+<h2>Quick Start</h2>
+<pre><code class="language-typescript">import { 
+  NeuralDomainMapper, 
+  NeuralUtils, 
+  DEFAULT_CONFIGS,
+  createDomainMapperIntegration 
+} from &#39;./neural&#39;;
+
+// Create a basic domain mapper
+const mapper = new NeuralDomainMapper(DEFAULT_CONFIGS.SMALL_SCALE.training);
+</code></pre>
+<h2>Example 1: Basic Domain Analysis</h2>
+<pre><code class="language-typescript">import { NeuralDomainMapper, NeuralUtils } from &#39;./neural&#39;;
+
+async function basicDomainAnalysis() {
+  // Initialize the mapper
+  const mapper = new NeuralDomainMapper();
+
+  // Define domains
+  const domains = [
+    { id: &#39;user-service&#39;, name: &#39;User Management Service&#39;, type: &#39;api&#39; },
+    { id: &#39;auth-service&#39;, name: &#39;Authentication Service&#39;, type: &#39;api&#39; },
+    { id: &#39;notification-service&#39;, name: &#39;Notification Service&#39;, type: &#39;api&#39; },
+    { id: &#39;user-db&#39;, name: &#39;User Database&#39;, type: &#39;data&#39; },
+    { id: &#39;cache-layer&#39;, name: &#39;Redis Cache&#39;, type: &#39;data&#39; },
+    { id: &#39;admin-ui&#39;, name: &#39;Admin Dashboard&#39;, type: &#39;ui&#39; },
+    { id: &#39;mobile-app&#39;, name: &#39;Mobile Application&#39;, type: &#39;ui&#39; }
+  ];
+
+  // Define relationships
+  const relationships = [
+    { source: &#39;user-service&#39;, target: &#39;auth-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;user-service&#39;, target: &#39;user-db&#39;, type: &#39;data-flow&#39; },
+    { source: &#39;user-service&#39;, target: &#39;cache-layer&#39;, type: &#39;data-flow&#39; },
+    { source: &#39;notification-service&#39;, target: &#39;user-service&#39;, type: &#39;communication&#39; },
+    { source: &#39;admin-ui&#39;, target: &#39;user-service&#39;, type: &#39;communication&#39; },
+    { source: &#39;mobile-app&#39;, target: &#39;user-service&#39;, type: &#39;communication&#39; },
+    { source: &#39;mobile-app&#39;, target: &#39;notification-service&#39;, type: &#39;communication&#39; }
+  ];
+
+  // Create domain graph
+  const graph = NeuralUtils.createSimpleDomainGraph(domains, relationships);
+
+  // Perform comprehensive analysis
+  const analysis = await mapper.analyzeDomains(graph);
+
+  console.log(&#39;=== Domain Analysis Results ===&#39;);
+  console.log(`Overall Cohesion Score: ${analysis.cohesion.overallScore.toFixed(3)}`);
+  console.log(`Circular Dependencies: ${analysis.dependencies.circularDependencies.length}`);
+  console.log(`Optimization Proposals: ${analysis.optimization.proposals.length}`);
+  console.log(`Recommendations:`);
+  analysis.recommendations.forEach(rec =&gt; console.log(`  - ${rec}`));
+
+  return analysis;
+}
+</code></pre>
+<h2>Example 2: Domain Cohesion Analysis</h2>
+<pre><code class="language-typescript">async function detailedCohesionAnalysis() {
+  const mapper = new NeuralDomainMapper();
+  
+  // Create a complex graph with mixed cohesion levels
+  const domains = [
+    // High cohesion group - Authentication
+    { id: &#39;auth-api&#39;, name: &#39;Auth API&#39;, type: &#39;api&#39; },
+    { id: &#39;auth-db&#39;, name: &#39;Auth Database&#39;, type: &#39;data&#39; },
+    { id: &#39;token-service&#39;, name: &#39;Token Service&#39;, type: &#39;api&#39; },
+    
+    // Medium cohesion group - User Management
+    { id: &#39;user-api&#39;, name: &#39;User API&#39;, type: &#39;api&#39; },
+    { id: &#39;user-db&#39;, name: &#39;User Database&#39;, type: &#39;data&#39; },
+    { id: &#39;profile-service&#39;, name: &#39;Profile Service&#39;, type: &#39;api&#39; },
+    
+    // Low cohesion group - Mixed services
+    { id: &#39;email-service&#39;, name: &#39;Email Service&#39;, type: &#39;api&#39; },
+    { id: &#39;file-storage&#39;, name: &#39;File Storage&#39;, type: &#39;data&#39; },
+    { id: &#39;analytics&#39;, name: &#39;Analytics Service&#39;, type: &#39;api&#39; }
+  ];
+
+  const relationships = [
+    // High cohesion relationships
+    { source: &#39;auth-api&#39;, target: &#39;auth-db&#39;, type: &#39;data-flow&#39; },
+    { source: &#39;auth-api&#39;, target: &#39;token-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;token-service&#39;, target: &#39;auth-db&#39;, type: &#39;data-flow&#39; },
+    
+    // Medium cohesion relationships
+    { source: &#39;user-api&#39;, target: &#39;user-db&#39;, type: &#39;data-flow&#39; },
+    { source: &#39;profile-service&#39;, target: &#39;user-db&#39;, type: &#39;data-flow&#39; },
+    
+    // Weak cross-domain relationships
+    { source: &#39;user-api&#39;, target: &#39;auth-api&#39;, type: &#39;dependency&#39; },
+    { source: &#39;email-service&#39;, target: &#39;user-api&#39;, type: &#39;communication&#39; },
+    { source: &#39;analytics&#39;, target: &#39;user-api&#39;, type: &#39;data-flow&#39; },
+    { source: &#39;profile-service&#39;, target: &#39;file-storage&#39;, type: &#39;data-flow&#39; }
+  ];
+
+  const graph = NeuralUtils.createSimpleDomainGraph(domains, relationships);
+  const cohesionAnalysis = await mapper.calculateDomainCohesion();
+
+  console.log(&#39;=== Cohesion Analysis ===&#39;);
+  console.log(`Overall Score: ${cohesionAnalysis.overallScore.toFixed(3)}`);
+  console.log(&#39;Domain Scores:&#39;);
+  
+  for (const [domainId, score] of cohesionAnalysis.domainScores) {
+    console.log(`  ${domainId}: ${score.toFixed(3)}`);
+  }
+
+  console.log(&#39;Weak Points:&#39;);
+  cohesionAnalysis.weakPoints.forEach(wp =&gt; {
+    console.log(`  ${wp.domainId} (${wp.score.toFixed(3)}): ${wp.reason}`);
+    wp.suggestions.forEach(suggestion =&gt; {
+      console.log(`    - ${suggestion}`);
+    });
+  });
+
+  return cohesionAnalysis;
+}
+</code></pre>
+<h2>Example 3: Dependency Analysis and Optimization</h2>
+<pre><code class="language-typescript">async function dependencyAnalysisExample() {
+  const mapper = new NeuralDomainMapper();
+
+  // Create a graph with circular dependencies
+  const domains = [
+    { id: &#39;order-service&#39;, name: &#39;Order Service&#39;, type: &#39;api&#39; },
+    { id: &#39;payment-service&#39;, name: &#39;Payment Service&#39;, type: &#39;api&#39; },
+    { id: &#39;inventory-service&#39;, name: &#39;Inventory Service&#39;, type: &#39;api&#39; },
+    { id: &#39;user-service&#39;, name: &#39;User Service&#39;, type: &#39;api&#39; },
+    { id: &#39;notification-service&#39;, name: &#39;Notification Service&#39;, type: &#39;api&#39; }
+  ];
+
+  const relationships = [
+    // Circular dependency: order -&gt; payment -&gt; inventory -&gt; order
+    { source: &#39;order-service&#39;, target: &#39;payment-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;payment-service&#39;, target: &#39;inventory-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;inventory-service&#39;, target: &#39;order-service&#39;, type: &#39;dependency&#39; },
+    
+    // Additional dependencies
+    { source: &#39;order-service&#39;, target: &#39;user-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;payment-service&#39;, target: &#39;user-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;notification-service&#39;, target: &#39;order-service&#39;, type: &#39;communication&#39; },
+    { source: &#39;notification-service&#39;, target: &#39;payment-service&#39;, type: &#39;communication&#39; }
+  ];
+
+  const graph = NeuralUtils.createSimpleDomainGraph(domains, relationships);
+  const dependencyAnalysis = await mapper.identifyCrossDomainDependencies();
+
+  console.log(&#39;=== Dependency Analysis ===&#39;);
+  console.log(`Circular Dependencies Found: ${dependencyAnalysis.circularDependencies.length}`);
+  
+  dependencyAnalysis.circularDependencies.forEach((cycle, index) =&gt; {
+    console.log(`  Cycle ${index + 1}: ${cycle.join(&#39; -&gt; &#39;)}`);
+  });
+
+  console.log(&#39;\nCritical Paths:&#39;);
+  dependencyAnalysis.criticalPaths.slice(0, 5).forEach((path, index) =&gt; {
+    console.log(`  Path ${index + 1}: ${path.path.join(&#39; -&gt; &#39;)}`);
+    console.log(`    Risk: ${path.risk.toFixed(3)}, Impact: ${path.impact.toFixed(3)}`);
+  });
+
+  console.log(&#39;\nOptimizations:&#39;);
+  dependencyAnalysis.optimizations.forEach(opt =&gt; {
+    console.log(`  ${opt.type}: ${opt.affected.join(&#39;, &#39;)}`);
+    console.log(`    Benefit: ${opt.benefit.toFixed(3)}, Effort: ${opt.effort.toFixed(3)}`);
+  });
+
+  return dependencyAnalysis;
+}
+</code></pre>
+<h2>Example 4: Training the Neural Network</h2>
+<pre><code class="language-typescript">async function neuralNetworkTrainingExample() {
+  const mapper = new NeuralDomainMapper({
+    learningRate: 0.001,
+    batchSize: 32,
+    epochs: 100,
+    optimizer: &#39;adam&#39;,
+    lossFunction: &#39;mse&#39;,
+    regularization: {
+      l1: 0.0001,
+      l2: 0.0001,
+      dropout: 0.1
+    },
+    earlyStoping: {
+      enabled: true,
+      patience: 10,
+      minDelta: 0.001
+    },
+    validationSplit: 0.2
+  });
+
+  // Generate training data from known good and bad domain structures
+  const trainingInputs = [];
+  const trainingOutputs = [];
+
+  // Good structure examples (high cohesion, low coupling)
+  const goodExamples = [
+    {
+      features: [1, 0, 0, 0.8, 0.9, 0.7, /* ... more features */],
+      target: [0.9, 1, 0, 0.8] // [cohesion, success, failure, frequency]
+    },
+    // ... more good examples
+  ];
+
+  // Bad structure examples (low cohesion, high coupling)
+  const badExamples = [
+    {
+      features: [0, 1, 1, 0.3, 0.4, 0.2, /* ... more features */],
+      target: [0.2, 0, 1, 0.9] // [cohesion, success, failure, frequency]
+    },
+    // ... more bad examples
+  ];
+
+  // Combine examples
+  const allExamples = [...goodExamples, ...badExamples];
+  
+  const trainingData = {
+    inputs: allExamples.map(ex =&gt; ({ features: ex.features })),
+    outputs: allExamples.map(ex =&gt; ex.target),
+    batchSize: 32,
+    epochs: 100
+  };
+
+  const validationData = {
+    inputs: trainingData.inputs.slice(-20), // Last 20 for validation
+    outputs: trainingData.outputs.slice(-20),
+    batchSize: 16,
+    epochs: 1
+  };
+
+  // Train the model
+  console.log(&#39;Starting neural network training...&#39;);
+  const trainingResult = await mapper.train(trainingData, validationData);
+
+  console.log(&#39;=== Training Results ===&#39;);
+  console.log(`Final Accuracy: ${trainingResult.finalAccuracy.toFixed(3)}`);
+  console.log(`Training Epochs: ${trainingResult.trainingHistory.length}`);
+  
+  console.log(&#39;\nTraining History (last 10 epochs):&#39;);
+  const recentHistory = trainingResult.trainingHistory.slice(-10);
+  recentHistory.forEach(epoch =&gt; {
+    console.log(`  Epoch ${epoch.epoch}: loss=${epoch.loss.toFixed(4)}, acc=${epoch.accuracy.toFixed(4)}`);
+  });
+
+  // Test prediction
+  const testInput = { features: Array.from({ length: 64 }, () =&gt; Math.random()) };
+  const prediction = await mapper.predict(testInput);
+
+  console.log(&#39;\n=== Test Prediction ===&#39;);
+  console.log(`Confidence: ${prediction.confidence.toFixed(3)}`);
+  console.log(`Alternatives: ${prediction.alternatives.length}`);
+
+  return { trainingResult, prediction };
+}
+</code></pre>
+<h2>Example 5: Integration with Hooks System</h2>
+<pre><code class="language-typescript">import { createDomainMapperIntegration } from &#39;./neural&#39;;
+
+async function hookIntegrationExample() {
+  // Create integrated mapper with auto-analysis enabled
+  const integration = await createDomainMapperIntegration({
+    enableAutoAnalysis: true,
+    enableOptimizationSuggestions: true,
+    enableContinuousLearning: true,
+    confidenceThreshold: 0.7,
+    analysisInterval: 30000, // 30 seconds
+    maxOptimizationProposals: 10
+  });
+
+  // Set up event listeners
+  integration.on(&#39;domain-analysis-completed&#39;, (result) =&gt; {
+    console.log(`Domain analysis completed for ${result.graph.nodes.size} domains`);
+    console.log(`Cohesion score: ${result.cohesion.overallScore.toFixed(3)}`);
+    
+    if (result.optimization.priority === &#39;high&#39; || result.optimization.priority === &#39;critical&#39;) {
+      console.log(&#39;🚨 High priority optimizations available!&#39;);
+    }
+  });
+
+  integration.on(&#39;optimization-suggestions-generated&#39;, (result) =&gt; {
+    console.log(&#39;💡 New optimization suggestions:&#39;);
+    result.prioritizedActions.forEach(action =&gt; {
+      console.log(`  ${action.priority.toUpperCase()}: ${action.action}`);
+      console.log(`    Impact: ${action.impact.toFixed(2)}, Effort: ${action.effort.toFixed(2)}`);
+    });
+  });
+
+  integration.on(&#39;continuous-learning-completed&#39;, (result) =&gt; {
+    console.log(`🧠 Learning update: ${result.dataSize} samples processed`);
+  });
+
+  // Simulate domain analysis with mock context
+  const mockContext = {
+    sessionId: &#39;example-session&#39;,
+    timestamp: Date.now(),
+    correlationId: &#39;example-correlation-id&#39;,
+    metadata: { source: &#39;integration-example&#39; },
+    memory: {
+      namespace: &#39;domain-analysis&#39;,
+      provider: &#39;default&#39;,
+      cache: new Map()
+    },
+    neural: {
+      modelId: &#39;domain-mapper&#39;,
+      patterns: {
+        add: () =&gt; {},
+        get: () =&gt; undefined,
+        findSimilar: () =&gt; [],
+        getByType: () =&gt; [],
+        prune: () =&gt; {},
+        export: () =&gt; [],
+        import: () =&gt; {}
+      },
+      training: {
+        epoch: 0,
+        loss: 0,
+        accuracy: 0,
+        learningRate: 0.001,
+        optimizer: &#39;adam&#39;,
+        checkpoints: []
+      }
+    },
+    performance: {
+      metrics: new Map(),
+      bottlenecks: [],
+      optimizations: []
+    }
+  };
+
+  // Create a sample domain graph
+  const domains = [
+    { id: &#39;web-api&#39;, name: &#39;Web API Gateway&#39;, type: &#39;api&#39; },
+    { id: &#39;user-service&#39;, name: &#39;User Service&#39;, type: &#39;api&#39; },
+    { id: &#39;order-service&#39;, name: &#39;Order Service&#39;, type: &#39;api&#39; },
+    { id: &#39;database&#39;, name: &#39;Primary Database&#39;, type: &#39;data&#39; },
+    { id: &#39;cache&#39;, name: &#39;Redis Cache&#39;, type: &#39;data&#39; }
+  ];
+
+  const relationships = [
+    { source: &#39;web-api&#39;, target: &#39;user-service&#39; },
+    { source: &#39;web-api&#39;, target: &#39;order-service&#39; },
+    { source: &#39;user-service&#39;, target: &#39;database&#39; },
+    { source: &#39;order-service&#39;, target: &#39;database&#39; },
+    { source: &#39;user-service&#39;, target: &#39;cache&#39; },
+    { source: &#39;order-service&#39;, target: &#39;cache&#39; }
+  ];
+
+  const graph = NeuralUtils.createSimpleDomainGraph(domains, relationships);
+
+  // Perform integrated analysis
+  const analysisResult = await integration.analyzeDomains(graph, mockContext);
+
+  console.log(&#39;=== Integration Analysis Results ===&#39;);
+  console.log(`Analysis Time: ${analysisResult.metrics.analysisTime}ms`);
+  console.log(`Patterns Detected: ${analysisResult.patterns.length}`);
+  console.log(`Nodes Analyzed: ${analysisResult.metrics.nodesAnalyzed}`);
+  console.log(`Edges Analyzed: ${analysisResult.metrics.edgesAnalyzed}`);
+
+  // Get optimization suggestions
+  const optimizationResult = await integration.getOptimizationSuggestions(mockContext);
+  console.log(`\nOptimization applicability: ${optimizationResult.applicability.toFixed(3)}`);
+
+  // Get integration statistics
+  const stats = integration.getIntegrationStats();
+  console.log(&#39;\n=== Integration Statistics ===&#39;);
+  console.log(`Analyses performed: ${stats.analysesPerformed}`);
+  console.log(`Average analysis time: ${stats.averageAnalysisTime.toFixed(2)}ms`);
+  console.log(`Patterns learned: ${stats.patternsLearned}`);
+  console.log(`Optimizations suggested: ${stats.optimizationsSuggested}`);
+
+  return { analysisResult, optimizationResult, stats };
+}
+</code></pre>
+<h2>Example 6: Advanced Boundary Optimization</h2>
+<pre><code class="language-typescript">async function boundaryOptimizationExample() {
+  const mapper = new NeuralDomainMapper();
+
+  // Create a suboptimal domain structure
+  const domains = [
+    // Monolithic user domain (should be split)
+    { id: &#39;user-monolith&#39;, name: &#39;User Monolith&#39;, type: &#39;api&#39; },
+    
+    // Fragmented authentication (should be merged)
+    { id: &#39;auth-validation&#39;, name: &#39;Auth Validation&#39;, type: &#39;api&#39; },
+    { id: &#39;auth-tokens&#39;, name: &#39;Auth Tokens&#39;, type: &#39;api&#39; },
+    { id: &#39;auth-permissions&#39;, name: &#39;Auth Permissions&#39;, type: &#39;api&#39; },
+    
+    // Well-structured order domain
+    { id: &#39;order-api&#39;, name: &#39;Order API&#39;, type: &#39;api&#39; },
+    { id: &#39;order-db&#39;, name: &#39;Order Database&#39;, type: &#39;data&#39; },
+    
+    // Shared utilities (good candidates for abstraction)
+    { id: &#39;logging-service&#39;, name: &#39;Logging Service&#39;, type: &#39;api&#39; },
+    { id: &#39;config-service&#39;, name: &#39;Config Service&#39;, type: &#39;api&#39; }
+  ];
+
+  const relationships = [
+    // Monolith has too many responsibilities
+    { source: &#39;user-monolith&#39;, target: &#39;auth-validation&#39;, type: &#39;dependency&#39; },
+    { source: &#39;user-monolith&#39;, target: &#39;order-api&#39;, type: &#39;communication&#39; },
+    { source: &#39;user-monolith&#39;, target: &#39;logging-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;user-monolith&#39;, target: &#39;config-service&#39;, type: &#39;dependency&#39; },
+    
+    // Fragmented auth services
+    { source: &#39;auth-validation&#39;, target: &#39;auth-tokens&#39;, type: &#39;dependency&#39; },
+    { source: &#39;auth-validation&#39;, target: &#39;auth-permissions&#39;, type: &#39;dependency&#39; },
+    { source: &#39;auth-tokens&#39;, target: &#39;auth-permissions&#39;, type: &#39;communication&#39; },
+    
+    // Good order structure
+    { source: &#39;order-api&#39;, target: &#39;order-db&#39;, type: &#39;data-flow&#39; },
+    
+    // Shared dependencies
+    { source: &#39;order-api&#39;, target: &#39;logging-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;order-api&#39;, target: &#39;config-service&#39;, type: &#39;dependency&#39; },
+    { source: &#39;auth-validation&#39;, target: &#39;logging-service&#39;, type: &#39;dependency&#39; }
+  ];
+
+  const graph = NeuralUtils.createSimpleDomainGraph(domains, relationships);
+  const optimization = await mapper.provideBoundaryOptimization();
+
+  console.log(&#39;=== Boundary Optimization Analysis ===&#39;);
+  console.log(`Optimization Score: ${optimization.optimizationScore.toFixed(3)}`);
+  console.log(`Priority: ${optimization.priority.toUpperCase()}`);
+  console.log(`\nOptimization Proposals:`);
+
+  optimization.proposals.forEach((proposal, index) =&gt; {
+    console.log(`\n${index + 1}. ${proposal.type.toUpperCase()} - ${proposal.domains.join(&#39;, &#39;)}`);
+    console.log(`   Confidence: ${proposal.confidence.toFixed(3)}`);
+    console.log(`   Metrics:`);
+    console.log(`     Cohesion Improvement: ${proposal.metrics.cohesionImprovement.toFixed(3)}`);
+    console.log(`     Coupling Reduction: ${proposal.metrics.couplingReduction.toFixed(3)}`);
+    console.log(`     Performance Impact: ${proposal.metrics.performanceImpact.toFixed(3)}`);
+    console.log(`     Maintainability Impact: ${proposal.metrics.maintainabilityImpact.toFixed(3)}`);
+    
+    if (proposal.newBoundary) {
+      console.log(`   New Boundary: ${proposal.newBoundary.nodes.length} nodes, ${proposal.newBoundary.edges.length} edges`);
+    }
+  });
+
+  return optimization;
+}
+</code></pre>
+<h2>Example 7: Performance Monitoring and Metrics</h2>
+<pre><code class="language-typescript">async function performanceMonitoringExample() {
+  const mapper = new NeuralDomainMapper();
+
+  // Create a large graph for performance testing
+  const domainCount = 100;
+  const edgeCount = 200;
+
+  const domains = Array.from({ length: domainCount }, (_, i) =&gt; ({
+    id: `domain-${i}`,
+    name: `Domain ${i}`,
+    type: i % 4 === 0 ? &#39;api&#39; : i % 4 === 1 ? &#39;data&#39; : i % 4 === 2 ? &#39;ui&#39; : &#39;integration&#39;
+  }));
+
+  const relationships = Array.from({ length: edgeCount }, (_, i) =&gt; {
+    const source = Math.floor(Math.random() * domainCount);
+    let target = Math.floor(Math.random() * domainCount);
+    
+    // Ensure no self-loops
+    while (target === source) {
+      target = Math.floor(Math.random() * domainCount);
+    }
+
+    return {
+      source: `domain-${source}`,
+      target: `domain-${target}`,
+      type: [&#39;dependency&#39;, &#39;communication&#39;, &#39;data-flow&#39;][Math.floor(Math.random() * 3)]
+    };
+  });
+
+  const graph = NeuralUtils.createSimpleDomainGraph(domains, relationships);
+
+  console.log(&#39;=== Performance Test Setup ===&#39;);
+  console.log(`Domains: ${domainCount}`);
+  console.log(`Relationships: ${edgeCount}`);
+
+  // Measure analysis performance
+  const startTime = Date.now();
+  
+  const [cohesionAnalysis, dependencyAnalysis, optimization] = await Promise.all([
+    mapper.calculateDomainCohesion(),
+    mapper.identifyCrossDomainDependencies(),
+    mapper.provideBoundaryOptimization()
+  ]);
+
+  const analysisTime = Date.now() - startTime;
+
+  console.log(&#39;\n=== Performance Results ===&#39;);
+  console.log(`Total Analysis Time: ${analysisTime}ms`);
+  console.log(`Cohesion Score: ${cohesionAnalysis.overallScore.toFixed(3)}`);
+  console.log(`Circular Dependencies: ${dependencyAnalysis.circularDependencies.length}`);
+  console.log(`Optimization Proposals: ${optimization.proposals.length}`);
+
+  // Get model statistics
+  const stats = mapper.getModelStats();
+  console.log(&#39;\n=== Model Statistics ===&#39;);
+  console.log(`Graph Size: ${stats.graphSize.nodes} nodes, ${stats.graphSize.edges} edges`);
+  console.log(`Training State: Epoch ${stats.trainingState.epoch}, Accuracy ${stats.trainingState.accuracy.toFixed(3)}`);
+  console.log(`Model Version: ${stats.modelVersion}`);
+  console.log(`Last Training: ${stats.lastTraining ? new Date(stats.lastTraining).toISOString() : &#39;Never&#39;}`);
+  console.log(`Cohesion Score: ${stats.cohesionScore.toFixed(3)}`);
+
+  // Memory usage estimation
+  const memoryUsage = {
+    nodesMemory: stats.graphSize.nodes * 64 * 8, // 64 features * 8 bytes per float
+    edgesMemory: stats.graphSize.edges * 32 * 8,  // 32 features * 8 bytes per float
+    weightsMemory: Array.from(mapper.weights.values()).reduce((sum, w) =&gt; sum + w.length * 8, 0),
+    biasesMemory: Array.from(mapper.biases.values()).reduce((sum, b) =&gt; sum + b.length * 8, 0)
+  };
+
+  const totalMemory = Object.values(memoryUsage).reduce((sum, mem) =&gt; sum + mem, 0);
+
+  console.log(&#39;\n=== Memory Usage Estimation ===&#39;);
+  console.log(`Nodes: ${(memoryUsage.nodesMemory / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`Edges: ${(memoryUsage.edgesMemory / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`Weights: ${(memoryUsage.weightsMemory / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`Biases: ${(memoryUsage.biasesMemory / 1024 / 1024).toFixed(2)} MB`);
+  console.log(`Total: ${(totalMemory / 1024 / 1024).toFixed(2)} MB`);
+
+  return {
+    analysisTime,
+    stats,
+    memoryUsage,
+    results: { cohesionAnalysis, dependencyAnalysis, optimization }
+  };
+}
+</code></pre>
+<h2>Running the Examples</h2>
+<p>To run any of these examples, save them in a TypeScript file and execute:</p>
+<pre><code class="language-bash"># Install dependencies
+npm install
+
+# Compile TypeScript
+npm run build
+
+# Run example
+node dist/examples.js
+</code></pre>
+<p>Or if using ts-node:</p>
+<pre><code class="language-bash">npx ts-node examples.ts
+</code></pre>
+<h2>Integration with Claude Flow</h2>
+<p>These examples demonstrate how the NeuralDomainMapper integrates with the broader Claude Flow ecosystem:</p>
+<ol>
+<li><strong>Hooks Integration</strong>: Automatic analysis triggers based on neural patterns</li>
+<li><strong>Memory System</strong>: Persistent storage of analysis results and learning patterns  </li>
+<li><strong>Performance Monitoring</strong>: Real-time metrics and optimization suggestions</li>
+<li><strong>Event System</strong>: Reactive updates and notifications</li>
+<li><strong>Configuration Management</strong>: Flexible configuration for different use cases</li>
+</ol>
+<p>The NeuralDomainMapper provides a powerful foundation for understanding and optimizing domain relationships in complex systems, enabling better architecture decisions and improved system maintainability.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Components Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/init/COMPONENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Components Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Finit">init</a> / <span>COMPONENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Components Reference</h1>
+<p>Detailed documentation for each component created by the V3 init system.</p>
+<h2>Directory Structure</h2>
+<pre><code>project/
+├── .claude/                    # Claude Code integration
+│   ├── settings.json           # Hooks and permissions
+│   ├── skills/                 # Claude Code skills
+│   ├── commands/               # Claude Code commands
+│   ├── agents/                 # Agent definitions
+│   ├── helpers/                # Utility scripts
+│   ├── statusline.sh           # Unix/macOS statusline
+│   └── statusline.mjs          # ESM statusline module
+├── .claude-flow/               # V3 runtime
+│   ├── config.yaml             # Runtime configuration
+│   ├── data/                   # Persistent data
+│   ├── logs/                   # Log files
+│   ├── sessions/               # Session archives
+│   ├── hooks/                  # Custom hooks
+│   ├── agents/                 # Agent state
+│   ├── workflows/              # Workflow definitions
+│   └── pids/                   # Process ID files
+└── .mcp.json                   # MCP server configuration
+</code></pre>
+<h2>Skills</h2>
+<p>Skills are installed to <code>.claude/skills/</code> and provide specialized capabilities.</p>
+<h3>Core Skills</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>swarm-orchestration</td>
+<td>Multi-agent swarm coordination</td>
+</tr>
+<tr>
+<td>swarm-advanced</td>
+<td>Advanced swarm patterns</td>
+</tr>
+<tr>
+<td>sparc-methodology</td>
+<td>SPARC development methodology</td>
+</tr>
+<tr>
+<td>hooks-automation</td>
+<td>Hook automation and learning</td>
+</tr>
+<tr>
+<td>pair-programming</td>
+<td>AI-assisted pair programming</td>
+</tr>
+<tr>
+<td>verification-quality</td>
+<td>Code quality verification</td>
+</tr>
+<tr>
+<td>stream-chain</td>
+<td>Data stream processing</td>
+</tr>
+<tr>
+<td>skill-builder</td>
+<td>Custom skill creation</td>
+</tr>
+</tbody></table>
+<h3>AgentDB Skills</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>agentdb-advanced</td>
+<td>Advanced AgentDB features</td>
+</tr>
+<tr>
+<td>agentdb-learning</td>
+<td>AI learning with AgentDB</td>
+</tr>
+<tr>
+<td>agentdb-memory-patterns</td>
+<td>Memory pattern implementation</td>
+</tr>
+<tr>
+<td>agentdb-optimization</td>
+<td>AgentDB performance optimization</td>
+</tr>
+<tr>
+<td>agentdb-vector-search</td>
+<td>Semantic vector search</td>
+</tr>
+<tr>
+<td>reasoningbank-agentdb</td>
+<td>ReasoningBank integration</td>
+</tr>
+<tr>
+<td>reasoningbank-intelligence</td>
+<td>Adaptive learning patterns</td>
+</tr>
+</tbody></table>
+<h3>GitHub Skills</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>github-code-review</td>
+<td>AI-powered code review</td>
+</tr>
+<tr>
+<td>github-multi-repo</td>
+<td>Multi-repository management</td>
+</tr>
+<tr>
+<td>github-project-management</td>
+<td>Project board automation</td>
+</tr>
+<tr>
+<td>github-release-management</td>
+<td>Release orchestration</td>
+</tr>
+<tr>
+<td>github-workflow-automation</td>
+<td>GitHub Actions automation</td>
+</tr>
+</tbody></table>
+<h3>V3 Skills</h3>
+<table>
+<thead>
+<tr>
+<th>Skill</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v3-cli-modernization</td>
+<td>CLI enhancement</td>
+</tr>
+<tr>
+<td>v3-core-implementation</td>
+<td>Core module implementation</td>
+</tr>
+<tr>
+<td>v3-ddd-architecture</td>
+<td>Domain-driven design</td>
+</tr>
+<tr>
+<td>v3-integration-deep</td>
+<td>agentic-flow integration</td>
+</tr>
+<tr>
+<td>v3-mcp-optimization</td>
+<td>MCP server optimization</td>
+</tr>
+<tr>
+<td>v3-memory-unification</td>
+<td>Memory system unification</td>
+</tr>
+<tr>
+<td>v3-performance-optimization</td>
+<td>Performance targets</td>
+</tr>
+<tr>
+<td>v3-security-overhaul</td>
+<td>Security improvements</td>
+</tr>
+<tr>
+<td>v3-swarm-coordination</td>
+<td>Swarm coordination</td>
+</tr>
+</tbody></table>
+<h2>Commands</h2>
+<p>Commands are installed to <code>.claude/commands/</code> and provide quick actions.</p>
+<h3>Core Commands</h3>
+<ul>
+<li><code>claude-flow-help.md</code> - Help documentation</li>
+<li><code>claude-flow-swarm.md</code> - Swarm operations</li>
+<li><code>claude-flow-memory.md</code> - Memory operations</li>
+</ul>
+<h3>Command Groups</h3>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>analysis/</td>
+<td>Code analysis commands</td>
+</tr>
+<tr>
+<td>automation/</td>
+<td>Task automation</td>
+</tr>
+<tr>
+<td>github/</td>
+<td>GitHub operations</td>
+</tr>
+<tr>
+<td>hooks/</td>
+<td>Hook management</td>
+</tr>
+<tr>
+<td>monitoring/</td>
+<td>System monitoring</td>
+</tr>
+<tr>
+<td>optimization/</td>
+<td>Performance tuning</td>
+</tr>
+<tr>
+<td>sparc/</td>
+<td>SPARC methodology</td>
+</tr>
+</tbody></table>
+<h2>Agents</h2>
+<p>Agent definitions are installed to <code>.claude/agents/</code>.</p>
+<h3>Core Agents</h3>
+<ul>
+<li>coder - Code generation and implementation</li>
+<li>tester - Testing and quality assurance</li>
+<li>reviewer - Code review and security</li>
+<li>researcher - Information gathering</li>
+<li>architect - System design</li>
+</ul>
+<h3>Agent Categories</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Agents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>core/</td>
+<td>Basic development agents</td>
+</tr>
+<tr>
+<td>github/</td>
+<td>GitHub-integrated agents</td>
+</tr>
+<tr>
+<td>sparc/</td>
+<td>SPARC methodology agents</td>
+</tr>
+<tr>
+<td>swarm/</td>
+<td>Swarm coordination agents</td>
+</tr>
+<tr>
+<td>consensus/</td>
+<td>Distributed consensus agents</td>
+</tr>
+<tr>
+<td>hive-mind/</td>
+<td>Collective intelligence agents</td>
+</tr>
+</tbody></table>
+<h2>Helpers</h2>
+<p>Helper scripts are installed to <code>.claude/helpers/</code>.</p>
+<h3>Cross-Platform Scripts (Node.js)</h3>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>session.js</td>
+<td>Session lifecycle management</td>
+</tr>
+<tr>
+<td>router.js</td>
+<td>Intelligent task routing</td>
+</tr>
+<tr>
+<td>memory.js</td>
+<td>Key-value memory store</td>
+</tr>
+<tr>
+<td>statusline.js</td>
+<td>Progress display</td>
+</tr>
+</tbody></table>
+<h3>Unix/macOS Scripts</h3>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>daemon-manager.sh</td>
+<td>Background process management</td>
+</tr>
+<tr>
+<td>swarm-monitor.sh</td>
+<td>Real-time swarm monitoring</td>
+</tr>
+<tr>
+<td>checkpoint-manager.sh</td>
+<td>Session checkpointing</td>
+</tr>
+<tr>
+<td>pre-commit</td>
+<td>Git pre-commit hook</td>
+</tr>
+<tr>
+<td>post-commit</td>
+<td>Git post-commit hook</td>
+</tr>
+</tbody></table>
+<h3>Windows Scripts</h3>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>daemon-manager.ps1</td>
+<td>PowerShell daemon manager</td>
+</tr>
+<tr>
+<td>daemon-manager.cmd</td>
+<td>Batch wrapper for PowerShell</td>
+</tr>
+</tbody></table>
+<h2>Statusline</h2>
+<p>The statusline provides real-time V3 progress in the shell.</p>
+<h3>statusline.sh (Unix/macOS)</h3>
+<p>Advanced bash script showing:</p>
+<ul>
+<li>DDD domain progress</li>
+<li>Swarm agent count</li>
+<li>Security CVE status</li>
+<li>Performance metrics</li>
+<li>Context window usage</li>
+<li>Model and branch info</li>
+</ul>
+<h3>statusline.mjs (ESM Module)</h3>
+<p>Claude Code statusline module showing:</p>
+<ul>
+<li>Model name</li>
+<li>Token usage</li>
+<li>Cost tracking</li>
+<li>Swarm status</li>
+<li>Session time</li>
+</ul>
+<h2>MCP Configuration</h2>
+<p><code>.mcp.json</code> configures MCP server integration.</p>
+<pre><code class="language-json">{
+  &quot;mcpServers&quot;: {
+    &quot;claude-flow&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@claude-flow/cli&quot;, &quot;mcp&quot;, &quot;start&quot;],
+      &quot;env&quot;: {
+        &quot;CLAUDE_FLOW_MODE&quot;: &quot;v3&quot;,
+        &quot;CLAUDE_FLOW_HOOKS_ENABLED&quot;: &quot;true&quot;,
+        &quot;CLAUDE_FLOW_TOPOLOGY&quot;: &quot;hierarchical-mesh&quot;,
+        &quot;CLAUDE_FLOW_MAX_AGENTS&quot;: &quot;15&quot;,
+        &quot;CLAUDE_FLOW_MEMORY_BACKEND&quot;: &quot;hybrid&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h2>Runtime Configuration</h2>
+<p><code>.claude-flow/config.yaml</code> configures V3 runtime.</p>
+<pre><code class="language-yaml">version: &quot;3.0.0&quot;
+
+swarm:
+  topology: hierarchical-mesh
+  maxAgents: 15
+  autoScale: true
+  coordinationStrategy: consensus
+
+memory:
+  backend: hybrid
+  enableHNSW: true
+  persistPath: .claude-flow/data
+  cacheSize: 100
+
+neural:
+  enabled: true
+  modelPath: .claude-flow/neural
+
+hooks:
+  enabled: true
+  autoExecute: true
+
+mcp:
+  autoStart: false
+  port: 3000
+</code></pre>
+<h2>Platform-Specific Files</h2>
+<p>The init system auto-detects the platform and generates appropriate files:</p>
+<h3>Windows</h3>
+<ul>
+<li><code>daemon-manager.ps1</code> - PowerShell daemon management</li>
+<li><code>daemon-manager.cmd</code> - Batch wrapper</li>
+<li>Platform paths use backslashes</li>
+<li>Config stored in <code>%APPDATA%</code></li>
+</ul>
+<h3>macOS</h3>
+<ul>
+<li><code>daemon-manager.sh</code> - Bash daemon management</li>
+<li>Zsh-compatible statusline hooks</li>
+<li>Config stored in <code>~/Library/Application Support</code></li>
+</ul>
+<h3>Linux</h3>
+<ul>
+<li><code>daemon-manager.sh</code> - Bash daemon management</li>
+<li>XDG-compliant config paths</li>
+<li>Config stored in <code>~/.config</code></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

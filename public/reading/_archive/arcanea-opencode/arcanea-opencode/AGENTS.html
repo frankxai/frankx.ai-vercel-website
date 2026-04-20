@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>PROJECT KNOWLEDGE BASE</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/arcanea-opencode/arcanea-opencode/AGENTS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">PROJECT KNOWLEDGE BASE</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#_archive">_archive</a> / <a href="../index.html#_archive%2Farcanea-opencode">arcanea-opencode</a> / <a href="index.html#_archive%2Farcanea-opencode%2Farcanea-opencode">arcanea-opencode</a> / <span>AGENTS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>PROJECT KNOWLEDGE BASE</h1>
+<p><strong>Generated:</strong> 2026-01-02T22:41:22+09:00
+<strong>Commit:</strong> d0694e5
+<strong>Branch:</strong> dev</p>
+<h2>OVERVIEW</h2>
+<p>OpenCode plugin implementing Claude Code/AmpCode features. Multi-model agent orchestration (GPT-5.2, Claude, Gemini, Grok), LSP tools (11), AST-Grep search, MCP integrations (context7, websearch_exa, grep_app). &quot;oh-my-zsh&quot; for OpenCode.</p>
+<h2>STRUCTURE</h2>
+<pre><code>oh-my-opencode/
+├── src/
+│   ├── agents/        # AI agents (7): Sisyphus, oracle, librarian, explore, frontend, document-writer, multimodal-looker
+│   ├── hooks/         # 22 lifecycle hooks - see src/hooks/AGENTS.md
+│   ├── tools/         # LSP, AST-Grep, Grep, Glob, session mgmt - see src/tools/AGENTS.md
+│   ├── features/      # Claude Code compat layer - see src/features/AGENTS.md
+│   ├── auth/          # Google Antigravity OAuth - see src/auth/AGENTS.md
+│   ├── shared/        # Cross-cutting utilities - see src/shared/AGENTS.md
+│   ├── cli/           # CLI installer, doctor - see src/cli/AGENTS.md
+│   ├── mcp/           # MCP configs: context7, grep_app
+│   ├── config/        # Zod schema, TypeScript types
+│   └── index.ts       # Main plugin entry (464 lines)
+├── script/            # build-schema.ts, publish.ts, generate-changelog.ts
+├── assets/            # JSON schema
+└── dist/              # Build output (ESM + .d.ts)
+</code></pre>
+<h2>WHERE TO LOOK</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Location</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Add agent</td>
+<td><code>src/agents/</code></td>
+<td>Create .ts, add to builtinAgents in index.ts, update types.ts</td>
+</tr>
+<tr>
+<td>Add hook</td>
+<td><code>src/hooks/</code></td>
+<td>Create dir with createXXXHook(), export from index.ts</td>
+</tr>
+<tr>
+<td>Add tool</td>
+<td><code>src/tools/</code></td>
+<td>Dir with index/types/constants/tools.ts, add to builtinTools</td>
+</tr>
+<tr>
+<td>Add MCP</td>
+<td><code>src/mcp/</code></td>
+<td>Create config, add to index.ts and types.ts</td>
+</tr>
+<tr>
+<td>Add skill</td>
+<td><code>src/features/builtin-skills/</code></td>
+<td>Create skill dir with SKILL.md</td>
+</tr>
+<tr>
+<td>LSP behavior</td>
+<td><code>src/tools/lsp/</code></td>
+<td>client.ts (connection), tools.ts (handlers)</td>
+</tr>
+<tr>
+<td>AST-Grep</td>
+<td><code>src/tools/ast-grep/</code></td>
+<td>napi.ts for @ast-grep/napi binding</td>
+</tr>
+<tr>
+<td>Google OAuth</td>
+<td><code>src/auth/antigravity/</code></td>
+<td>OAuth plugin for Google/Gemini models</td>
+</tr>
+<tr>
+<td>Config schema</td>
+<td><code>src/config/schema.ts</code></td>
+<td>Zod schema, run <code>bun run build:schema</code> after changes</td>
+</tr>
+<tr>
+<td>Claude Code compat</td>
+<td><code>src/features/claude-code-*-loader/</code></td>
+<td>Command, skill, agent, mcp loaders</td>
+</tr>
+<tr>
+<td>Background agents</td>
+<td><code>src/features/background-agent/</code></td>
+<td>manager.ts for task management</td>
+</tr>
+<tr>
+<td>Skill MCP</td>
+<td><code>src/features/skill-mcp-manager/</code></td>
+<td>MCP servers embedded in skills</td>
+</tr>
+<tr>
+<td>Interactive terminal</td>
+<td><code>src/tools/interactive-bash/</code></td>
+<td>tmux session management</td>
+</tr>
+<tr>
+<td>CLI installer</td>
+<td><code>src/cli/install.ts</code></td>
+<td>Interactive TUI installation</td>
+</tr>
+<tr>
+<td>Doctor checks</td>
+<td><code>src/cli/doctor/checks/</code></td>
+<td>Health checks for environment</td>
+</tr>
+<tr>
+<td>Shared utilities</td>
+<td><code>src/shared/</code></td>
+<td>Cross-cutting utilities</td>
+</tr>
+<tr>
+<td>Slash commands</td>
+<td><code>src/hooks/auto-slash-command/</code></td>
+<td>Auto-detect and execute <code>/command</code> patterns</td>
+</tr>
+<tr>
+<td>Ralph Loop</td>
+<td><code>src/hooks/ralph-loop/</code></td>
+<td>Self-referential dev loop until completion</td>
+</tr>
+</tbody></table>
+<h2>TDD (Test-Driven Development)</h2>
+<p><strong>MANDATORY for new features and bug fixes.</strong> Follow RED-GREEN-REFACTOR:</p>
+<pre><code>1. RED    - Write failing test first (test MUST fail)
+2. GREEN  - Write MINIMAL code to pass (nothing more)
+3. REFACTOR - Clean up while tests stay GREEN
+4. REPEAT - Next test case
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Action</th>
+<th>Verification</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>RED</strong></td>
+<td>Write test describing expected behavior</td>
+<td><code>bun test</code> → FAIL (expected)</td>
+</tr>
+<tr>
+<td><strong>GREEN</strong></td>
+<td>Implement minimum code to pass</td>
+<td><code>bun test</code> → PASS</td>
+</tr>
+<tr>
+<td><strong>REFACTOR</strong></td>
+<td>Improve code quality, remove duplication</td>
+<td><code>bun test</code> → PASS (must stay green)</td>
+</tr>
+</tbody></table>
+<p><strong>Rules:</strong></p>
+<ul>
+<li>NEVER write implementation before test</li>
+<li>NEVER delete failing tests to &quot;pass&quot; - fix the code</li>
+<li>One test at a time - don&#39;t batch</li>
+<li>Test file naming: <code>*.test.ts</code> alongside source</li>
+</ul>
+<h2>CONVENTIONS</h2>
+<ul>
+<li><strong>Package manager</strong>: Bun only (<code>bun run</code>, <code>bun build</code>, <code>bunx</code>)</li>
+<li><strong>Types</strong>: bun-types (not @types/node)</li>
+<li><strong>Build</strong>: <code>bun build</code> (ESM) + <code>tsc --emitDeclarationOnly</code></li>
+<li><strong>Exports</strong>: Barrel pattern in index.ts; explicit named exports for tools/hooks</li>
+<li><strong>Naming</strong>: kebab-case directories, createXXXHook/createXXXTool factories</li>
+<li><strong>Testing</strong>: BDD comments <code>#given</code>, <code>#when</code>, <code>#then</code> (same as AAA); TDD workflow (RED-GREEN-REFACTOR)</li>
+<li><strong>Temperature</strong>: 0.1 for code agents, max 0.3</li>
+</ul>
+<h2>ANTI-PATTERNS (THIS PROJECT)</h2>
+<ul>
+<li><strong>npm/yarn</strong>: Use bun exclusively</li>
+<li><strong>@types/node</strong>: Use bun-types</li>
+<li><strong>Bash file ops</strong>: Never mkdir/touch/rm/cp/mv for file creation in code</li>
+<li><strong>Direct bun publish</strong>: GitHub Actions workflow_dispatch only (OIDC provenance)</li>
+<li><strong>Local version bump</strong>: Version managed by CI workflow</li>
+<li><strong>Year 2024</strong>: NEVER use 2024 in code/prompts (use current year)</li>
+<li><strong>Rush completion</strong>: Never mark tasks complete without verification</li>
+<li><strong>Over-exploration</strong>: Stop searching when sufficient context found</li>
+<li><strong>High temperature</strong>: Don&#39;t use &gt;0.3 for code-related agents</li>
+<li><strong>Broad tool access</strong>: Prefer explicit <code>include</code> over unrestricted access</li>
+<li><strong>Sequential agent calls</strong>: Use <code>sisyphus_task</code> for parallel execution</li>
+<li><strong>Heavy PreToolUse logic</strong>: Slows every tool call</li>
+<li><strong>Self-planning for complex tasks</strong>: Spawn planning agent (Prometheus) instead</li>
+</ul>
+<h2>UNIQUE STYLES</h2>
+<ul>
+<li><strong>Platform</strong>: Union type <code>&quot;darwin&quot; | &quot;linux&quot; | &quot;win32&quot; | &quot;unsupported&quot;</code></li>
+<li><strong>Optional props</strong>: Extensive <code>?</code> for optional interface properties</li>
+<li><strong>Flexible objects</strong>: <code>Record&lt;string, unknown&gt;</code> for dynamic configs</li>
+<li><strong>Error handling</strong>: Consistent try/catch with async/await</li>
+<li><strong>Agent tools</strong>: <code>tools: { include: [...] }</code> or <code>tools: { exclude: [...] }</code></li>
+<li><strong>Temperature</strong>: Most agents use <code>0.1</code> for consistency</li>
+<li><strong>Hook naming</strong>: <code>createXXXHook</code> function convention</li>
+<li><strong>Factory pattern</strong>: Components created via <code>createXXX()</code> functions</li>
+</ul>
+<h2>AGENT MODELS</h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Default Model</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Sisyphus</td>
+<td>anthropic/claude-opus-4-5</td>
+<td>Primary orchestrator</td>
+</tr>
+<tr>
+<td>oracle</td>
+<td>openai/gpt-5.2</td>
+<td>Read-only consultation. High-IQ debugging, architecture</td>
+</tr>
+<tr>
+<td>librarian</td>
+<td>anthropic/claude-sonnet-4-5</td>
+<td>Multi-repo analysis, docs</td>
+</tr>
+<tr>
+<td>explore</td>
+<td>opencode/grok-code</td>
+<td>Fast codebase exploration</td>
+</tr>
+<tr>
+<td>frontend-ui-ux-engineer</td>
+<td>google/gemini-3-pro-preview</td>
+<td>UI generation</td>
+</tr>
+<tr>
+<td>document-writer</td>
+<td>google/gemini-3-pro-preview</td>
+<td>Technical docs</td>
+</tr>
+<tr>
+<td>multimodal-looker</td>
+<td>google/gemini-3-flash</td>
+<td>PDF/image analysis</td>
+</tr>
+</tbody></table>
+<h2>COMMANDS</h2>
+<pre><code class="language-bash">bun run typecheck      # Type check
+bun run build          # ESM + declarations + schema
+bun run rebuild        # Clean + Build
+bun run build:schema   # Schema only
+bun test               # Run tests
+</code></pre>
+<h2>DEPLOYMENT</h2>
+<p><strong>GitHub Actions workflow_dispatch only</strong></p>
+<ol>
+<li>Never modify package.json version locally</li>
+<li>Commit &amp; push changes</li>
+<li>Trigger <code>publish</code> workflow: <code>gh workflow run publish -f bump=patch</code></li>
+</ol>
+<p><strong>Critical</strong>: Never <code>bun publish</code> directly. Never bump version locally.</p>
+<h2>CI PIPELINE</h2>
+<ul>
+<li><strong>ci.yml</strong>: Parallel test/typecheck, build verification, auto-commit schema on master, rolling <code>next</code> draft release</li>
+<li><strong>publish.yml</strong>: Manual workflow_dispatch, version bump, changelog, OIDC npm publish</li>
+<li><strong>sisyphus-agent.yml</strong>: Agent-in-CI for automated issue handling via <code>@sisyphus-dev-ai</code> mentions</li>
+</ul>
+<h2>COMPLEXITY HOTSPOTS</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Lines</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/index.ts</code></td>
+<td>464</td>
+<td>Main plugin, all hook/tool init</td>
+</tr>
+<tr>
+<td><code>src/cli/config-manager.ts</code></td>
+<td>669</td>
+<td>JSONC parsing, env detection</td>
+</tr>
+<tr>
+<td><code>src/auth/antigravity/fetch.ts</code></td>
+<td>621</td>
+<td>Token refresh, URL rewriting</td>
+</tr>
+<tr>
+<td><code>src/tools/lsp/client.ts</code></td>
+<td>611</td>
+<td>LSP protocol, JSON-RPC</td>
+</tr>
+<tr>
+<td><code>src/auth/antigravity/response.ts</code></td>
+<td>598</td>
+<td>Response transformation, streaming</td>
+</tr>
+<tr>
+<td><code>src/auth/antigravity/thinking.ts</code></td>
+<td>571</td>
+<td>Thinking block extraction/transformation</td>
+</tr>
+<tr>
+<td><code>src/hooks/anthropic-context-window-limit-recovery/executor.ts</code></td>
+<td>564</td>
+<td>Multi-stage recovery</td>
+</tr>
+<tr>
+<td><code>src/agents/sisyphus.ts</code></td>
+<td>504</td>
+<td>Orchestrator prompt</td>
+</tr>
+</tbody></table>
+<h2>NOTES</h2>
+<ul>
+<li><strong>Testing</strong>: Bun native test (<code>bun test</code>), BDD-style <code>#given/#when/#then</code>, 360+ tests</li>
+<li><strong>OpenCode</strong>: Requires &gt;= 1.0.150</li>
+<li><strong>Multi-lang docs</strong>: README.md (EN), README.ko.md (KO), README.ja.md (JA), README.zh-cn.md (ZH-CN)</li>
+<li><strong>Config</strong>: <code>~/.config/opencode/oh-my-opencode.json</code> (user) or <code>.opencode/oh-my-opencode.json</code> (project)</li>
+<li><strong>Trusted deps</strong>: @ast-grep/cli, @ast-grep/napi, @code-yeongyu/comment-checker</li>
+<li><strong>JSONC support</strong>: Config files support comments (<code>// comment</code>, <code>/* block */</code>) and trailing commas</li>
+<li><strong>Claude Code Compat</strong>: Full compatibility layer for settings.json hooks, commands, skills, agents, MCPs</li>
+<li><strong>Skill MCP</strong>: Skills can embed MCP server configs in YAML frontmatter</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

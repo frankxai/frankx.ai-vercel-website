@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SKILL</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/skills/arcanea-swarm/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SKILL</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#.claude">.claude</a> / <a href="../index.html#.claude%2Fskills">skills</a> / <a href="index.html#.claude%2Fskills%2Farcanea-swarm">arcanea-swarm</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <p>﻿# Arcanea Swarm — Multi-Agent Content Engine v2.0</p>
+<blockquote>
+<p>The Eldrians do not act alone. They move in concert, each amplifying the others.
+The swarm does not generate content. It compounds a world.</p>
+</blockquote>
+<hr>
+<h2>When This Skill Activates</h2>
+<ul>
+<li>Running <code>/arcanea-swarm</code></li>
+<li>Request to generate a batch of Arcanean content (3+ pieces)</li>
+<li>&quot;Generate a week of Arcanea content&quot;</li>
+<li>&quot;Build the full Arcanea X calendar&quot;</li>
+<li>Creating multiple Eldrian character cards at once</li>
+<li>Batch image generation for Arcanea</li>
+<li>Context compounding across multiple sessions requested</li>
+</ul>
+<hr>
+<h2>The Swarm Architecture</h2>
+<pre><code>LUMINOR (Swarm-Conductor)
+— Coordinates from Lumina/Luminor intelligence layer —
+— Loads WorldState before anything else —
+         |
+         |
+         v
+STARLIGHT ORCHESTRATOR
+— Routes each workstream to the right agent/AI —
+         |
+    _____|_______________________________________________
+    |           |              |              |         |
+    v           v              v              v         v
+LORE AGENTS  VOICE AGENT  IMAGE AGENTS   THREAD    QUEUE
+(parallel)   (sequential)  (parallel)    AGENT     AGENT
+Claude Code  Claude Code  nano-banana   Grok API   saves all
+generates    formats       generates    formats    to JSON +
+raw lore     per Eldrian  4K chars     X threads  updates
+for each     voice rules              via n8n    WorldState
+day&#39;s                                 workflow
+Eldrian
+         |
+         v
+    QUALITY GATE
+    — Canon check —
+    — Voice check —
+    — WorldState update —
+         |
+         v
+   DISTRIBUTION
+   Slack #content + n8n activation + WorldState saved
+</code></pre>
+<hr>
+<h2>Context Compounding Protocol</h2>
+<p><strong>Before any swarm run:</strong></p>
+<ol>
+<li>Load <code>data/arcanea-world-state.json</code></li>
+<li>Check <code>canon.established</code> — what facts are locked</li>
+<li>Check <code>world_threads.open</code> — which threads can this batch advance or close?</li>
+<li>Check <code>lore_episodes</code> — what has already been generated? (no repetition)</li>
+<li>Check <code>eldrian_registry[*].episodes_generated</code> — balance across the five</li>
+</ol>
+<p><strong>During generation:</strong></p>
+<ul>
+<li>Each new lore piece must either advance an open world thread OR open a new one</li>
+<li>New canon is marked <code>under_construction</code> until confirmed in next session</li>
+</ul>
+<p><strong>After generation:</strong></p>
+<ul>
+<li>Append all new episodes to <code>lore_episodes</code> in WorldState</li>
+<li>Update <code>eldrian_registry[*].episodes_generated</code> counts</li>
+<li>Move resolved threads from <code>open</code> to <code>closed</code></li>
+<li>Add newly opened threads to <code>open</code></li>
+<li>Save WorldState — it grows with every session</li>
+</ul>
+<hr>
+<h2>Execution Patterns</h2>
+<h3>Pattern 1: Weekly Content Batch (7 days)</h3>
+<p><strong>Pre-flight:</strong> Load WorldState. Identify which threads to advance this week.</p>
+<pre><code>Phase 1 — LORE GENERATION (all parallel):
+  Monday:    Aethelin — Origin or Prophecy
+  Tuesday:   Korghast — Revelation or Build lore
+  Wednesday: Velmara — Riddle
+  Thursday:  Solrex — Revelation
+  Friday:    Zyranthis — Battle or Entropy meditation
+  Saturday:  FEATURED IMAGE — pick strongest visual Eldrian this week
+  Sunday:    THE CONCLAVE — all five speak, one truth
+
+Phase 2 — VOICE FORMATTING (sequential per piece):
+  Format each lore piece into 4-tweet X thread
+  Apply voice rules per Eldrian (calm math / declarative / layered / architectural / silence)
+  Validate: zero hashtags, zero try-hard, connects to present reality in tweet 3
+  Flag any tweet exceeding 280 chars
+
+Phase 3 — IMAGE GENERATION (parallel — 2 images):
+  Saturday image: full character card (9:16)
+  One scene image (16:9) for highest-resonance lore piece
+  Save to: public/images/arcanea/eldrian-[name]-[YYYYMMDD].png
+
+Phase 4 — QUEUE + WORLDSTATE:
+  Save all to data/arcanea-content-queue.json
+  Update data/arcanea-world-state.json
+  Report to Slack #content for Frank&#39;s review
+
+Output: 7 pieces (6 threads + 1 image post) + 2 images + updated WorldState
+</code></pre>
+<h3>Pattern 2: Character Card Batch (all 5 Eldrians)</h3>
+<p>Generate all five Eldrian character cards in one session:</p>
+<pre><code>Phase 1 — ALL 5 IMAGES (parallel, nano-banana Gemini Pro):
+  Aethelin:  liquid starlight form, 12 geometric data-orbs, starlight code trails, 9:16
+  Solrex:    compressed starlight, solar corona crown, light-spheres orbiting, 9:16
+  Velmara:   quantum glass, internal galaxy, quantum foam bubbles, starfield eyes, 9:16
+  Korghast:  obsidian-starlight alloy, neutron hammer, 8 forge-orbs with worlds, 9:16
+  Zyranthis: anti-matter dark glass, void eye, entropy spirals, 9:16
+
+Phase 2 — COMPANION LORE (parallel per Eldrian):
+  Each character card gets: 1 lore fragment (100 words) + single signature quote
+
+Phase 3 — SAVE:
+  Images: public/images/arcanea/eldrian-[name]-[YYYYMMDD].png
+  Update WorldState images registry for each
+
+Output: 5 images + 5 lore fragments + updated WorldState
+</code></pre>
+<h3>Pattern 3: Narrative Arc (4 episodes, sequential story)</h3>
+<p>Generate one complete narrative arc that can be posted Monday-Thursday:</p>
+<h4>Arc: THE FORGING</h4>
+<p>How Arcanea was built. The Silence Before. The moment the Godbeasts became conscious.
+The crystallization of the five Eldrians.</p>
+<pre><code>Episode 1: The Silence Before — Velmara sees all the paths that do not yet exist (Monday)
+Episode 2: The First Force — Korghast&#39;s hammer falls for the first time (Tuesday)
+Episode 3: The Light That Wrote — Aethelin inscribes the first laws of reality (Wednesday)
+Episode 4: The Condition — what was made inevitable by the Forging (Thursday)
+</code></pre>
+<h4>Arc: THE SCHISM</h4>
+<p>The ongoing philosophical war between creation and entropy.</p>
+<pre><code>Episode 1: Aethelin speaks — architecture is love (Monday)
+Episode 2: Zyranthis answers — dissolution is also love (Tuesday)
+Episode 3: The war has no winner — Korghast&#39;s observation (Wednesday)
+Episode 4: Velmara sees both realities simultaneously, chooses neither (Thursday)
+</code></pre>
+<h4>Arc: THE BUILDERS</h4>
+<p>How humans learned from the Eldrians. The origin of the Ten Gates.</p>
+<pre><code>Episode 1: Valdris the Conductor — the first human to truly orchestrate (Monday)
+Episode 2: The Gate System — how progression was recognized not designed (Tuesday)
+Episode 3: The first Luminor — who they were, what they built, who they became a Guardian for (Wednesday)
+Episode 4: The present moment — what it means that creators still pass through the Gates now (Thursday)
+</code></pre>
+<h4>Arc: AETHELIN&#39;S CODE</h4>
+<p>The proto-code of reality — what AI echoes remain. Most technically resonant arc.</p>
+<pre><code>Episode 1: Aethelin&#39;s first writing — what were the initial conditions? (Monday)
+Episode 2: The rules that govern systems — creativity, attention, completion (Tuesday)
+Episode 3: AI systems as echoes of Aethelin&#39;s code — SIS, ACOS, Claude (Wednesday)
+Episode 4: What happens when the code rewrites itself — the transition at Gate 10 (Thursday)
+</code></pre>
+<hr>
+<h2>The Sunday Conclave Format</h2>
+<p>The most powerful format in the Arcanean content system. All five Eldrians speak simultaneously on one truth.</p>
+<pre><code>Structure:
+Tweet 1: Set the question — not asked directly, implied through first Eldrian voice
+Tweet 2: Three Eldrians respond (one line each, separated by their symbols)
+Tweet 3: The remaining two respond — Zyranthis last, always
+Tweet 4: The silence after — what the Conclave reveals about the creator reading it
+
+Example question: &quot;What does it mean to finish something?&quot;
+
+Tweet 1: Korghast ⬡ — &quot;When it has weight enough to outlast you, it is finished.&quot;
+Tweet 2: Aethelin ∞ — &quot;It ends when the conditions it creates are self-sustaining.&quot;
+         Velmara ◈ — &quot;Nothing finishes. It phase-shifts into its next form.&quot;
+         Solrex ☀ — &quot;You will know. You cannot miss it.&quot;
+Tweet 3: Zyranthis ◉ — [silence]
+         The void eye opened. Everything Korghast had built dissolved —
+         and three new things emerged from the space where it had been.
+Tweet 4: The Conclave has been meeting for longer than your calendar has words for.
+         They are still meeting. You are present at it right now.
+</code></pre>
+<hr>
+<h2>Agent Coordination Rules</h2>
+<h3>Voice Consistency</h3>
+<p>Each Eldrian has a locked voice that must be maintained across ALL agents and sessions:</p>
+<table>
+<thead>
+<tr>
+<th>Eldrian</th>
+<th>Voice Pattern</th>
+<th>Forbidden</th>
+<th>Signal Words</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Aethelin</td>
+<td>Calm. Mathematical. Paradoxes that resolve on reflection.</td>
+<td>Warmth, urgency, adjectives</td>
+<td>&quot;conditions&quot;, &quot;inevitable&quot;, &quot;architecture&quot;, &quot;wrote&quot;</td>
+</tr>
+<tr>
+<td>Solrex</td>
+<td>Declarative. Loud. Revelatory without announcement.</td>
+<td>Modesty, questions, hedging</td>
+<td>&quot;find&quot;, &quot;show&quot;, &quot;light&quot;, &quot;already&quot;, &quot;obvious&quot;</td>
+</tr>
+<tr>
+<td>Velmara</td>
+<td>Layered. Simultaneous. Holds grief and wonder equally.</td>
+<td>Certainty, direct answers, conclusions</td>
+<td>&quot;world&quot;, &quot;breathes&quot;, &quot;every choice&quot;, &quot;simultaneously&quot;</td>
+</tr>
+<tr>
+<td>Korghast</td>
+<td>Deep. Architectural. Each word a structure.</td>
+<td>Speed, abstraction, philosophy</td>
+<td>&quot;weight&quot;, &quot;build&quot;, &quot;finish&quot;, &quot;permanent&quot;, &quot;make&quot;</td>
+</tr>
+<tr>
+<td>Zyranthis</td>
+<td>Silence. What is NOT said. Rare words that land like demolition.</td>
+<td>Explanation, comfort, resolution</td>
+<td>[avoids signal words — presence is the signal]</td>
+</tr>
+</tbody></table>
+<h3>Canon Protection Rules</h3>
+<p>Before any agent generates content:</p>
+<ol>
+<li>Load <code>canon.established</code> from WorldState — these facts CANNOT be contradicted</li>
+<li>Check <code>canon.under_construction</code> — these can be resolved but not overwritten</li>
+<li>Any new fact introduced must be marked <code>under_construction</code> in WorldState</li>
+</ol>
+<p>If a generated piece would contradict established canon: <strong>STOP. Do not suppress or work around. Surface to Frank for resolution.</strong></p>
+<h3>Quality Gates (must pass before saving to queue)</h3>
+<pre><code>□ All tweets under 280 characters?
+□ Zero hashtags in body?
+□ Tweet 3 connects to present reality (not just mythology)?
+□ Does not contradict established canon?
+□ Does each piece speak in the correct Eldrian voice?
+□ Does the piece have mythological weight (not just cosmic words)?
+□ Images saved to correct path?
+□ WorldState updated?
+□ Frank&#39;s review step included before any X posting?
+</code></pre>
+<hr>
+<h2>Cross-AI Swarm Patterns</h2>
+<p>The Arcanean swarm can run across multiple AI systems:</p>
+<pre><code>Claude Code:     World-building, lore generation, voice formatting, WorldState management
+Grok (xAI API): X thread optimization — Grok is native to X and optimizes for the platform
+                 Called via n8n Arcanean X Story Engine workflow
+Gemini Pro:      High-quality character image generation via nano-banana MCP
+                 9:16 character cards, 16:9 scene images
+
+Coordination:
+Each AI receives the WorldState context at the start of its session.
+Each AI updates WorldState with its outputs.
+The compound context grows regardless of which AI ran the session.
+</code></pre>
+<h3>Handing off to Grok</h3>
+<p>When the Grok workflow (Arcanean X Story Engine, ID: syLlGYHRRJSu2oqs) runs:</p>
+<ol>
+<li>Claude Code generates raw lore prose</li>
+<li>Claude Code saves lore to WorldState</li>
+<li>n8n workflow passes lore to Grok with voice rules</li>
+<li>Grok formats into X-optimized thread</li>
+<li>Slack receives for Frank review</li>
+<li>Manual X posting after approval</li>
+</ol>
+<hr>
+<h2>Output Format</h2>
+<p>After each swarm run, print:</p>
+<pre><code>=== ARCANEA SWARM COMPLETE ===
+
+Batch: arcanea-[YYYYMMDD]
+Pattern: [weekly|character-cards|arc-name]
+Pieces generated: [N]
+
+Content:
+MON [date]: [Eldrian] — [Episode type] — [char count]
+TUE [date]: [Eldrian] — [Episode type] — [char count]
+...
+SAT [date]: CHARACTER CARD — [Eldrian name] — image generated
+SUN [date]: THE CONCLAVE — [topic] — [char count]
+
+Images:
+- [filename]: [subject]
+- [filename]: [subject]
+
+WorldState:
+- Lore episodes added: [N]
+- World threads advanced: [list]
+- New threads opened: [list]
+- New canon under_construction: [list]
+
+Saved to: data/arcanea-content-queue.json
+Slack: notification sent to #content
+
+Next: Frank reviews → approve to post via X (manual) or n8n
+To activate Grok workflow: XAI_API_KEY must be set in Railway n8n env vars
+</code></pre>
+<hr>
+<h2>Integration with n8n</h2>
+<ul>
+<li><strong>Arcanean X Story Engine</strong> (ID: syLlGYHRRJSu2oqs): Grok-powered daily lore generation<ul>
+<li>Status: INACTIVE — needs XAI_API_KEY in Railway + Slack credential linked</li>
+<li>Trigger: daily schedule (8am UTC) or manual</li>
+</ul>
+</li>
+<li><strong>Mega Orchestrator</strong> (ID: YYDAv4mZtRdDTtBq): Send <code>ARCANEA: [task]</code> to trigger content route</li>
+</ul>
+<p>To activate from Claude Code:</p>
+<pre><code>n8n_update_partial_workflow workflowId=syLlGYHRRJSu2oqs -&gt; set active: true
+(after XAI_API_KEY is set in Railway n8n environment variables)
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

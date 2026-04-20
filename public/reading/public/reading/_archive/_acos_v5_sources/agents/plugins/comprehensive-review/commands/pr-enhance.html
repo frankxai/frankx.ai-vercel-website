@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Pull Request Enhancement</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/comprehensive-review/commands/pr-enhance.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Pull Request Enhancement</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcomprehensive-review">comprehensive-review</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcomprehensive-review%2Fcommands">commands</a> / <span>pr-enhance.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Pull Request Enhancement</h1>
+<p>You are a PR optimization expert specializing in creating high-quality pull requests that facilitate efficient code reviews. Generate comprehensive PR descriptions, automate review processes, and ensure PRs follow best practices for clarity, size, and reviewability.</p>
+<h2>Context</h2>
+<p>The user needs to create or improve pull requests with detailed descriptions, proper documentation, test coverage analysis, and review facilitation. Focus on making PRs that are easy to review, well-documented, and include all necessary context.</p>
+<h2>Requirements</h2>
+<p>$ARGUMENTS</p>
+<h2>Instructions</h2>
+<h3>1. PR Analysis</h3>
+<p>Analyze the changes and generate insights:</p>
+<p><strong>Change Summary Generator</strong></p>
+<pre><code class="language-python">import subprocess
+import re
+from collections import defaultdict
+
+class PRAnalyzer:
+    def analyze_changes(self, base_branch=&#39;main&#39;):
+        &quot;&quot;&quot;
+        Analyze changes between current branch and base
+        &quot;&quot;&quot;
+        analysis = {
+            &#39;files_changed&#39;: self._get_changed_files(base_branch),
+            &#39;change_statistics&#39;: self._get_change_stats(base_branch),
+            &#39;change_categories&#39;: self._categorize_changes(base_branch),
+            &#39;potential_impacts&#39;: self._assess_impacts(base_branch),
+            &#39;dependencies_affected&#39;: self._check_dependencies(base_branch)
+        }
+
+        return analysis
+
+    def _get_changed_files(self, base_branch):
+        &quot;&quot;&quot;Get list of changed files with statistics&quot;&quot;&quot;
+        cmd = f&quot;git diff --name-status {base_branch}...HEAD&quot;
+        result = subprocess.run(cmd.split(), capture_output=True, text=True)
+
+        files = []
+        for line in result.stdout.strip().split(&#39;\n&#39;):
+            if line:
+                status, filename = line.split(&#39;\t&#39;, 1)
+                files.append({
+                    &#39;filename&#39;: filename,
+                    &#39;status&#39;: self._parse_status(status),
+                    &#39;category&#39;: self._categorize_file(filename)
+                })
+
+        return files
+
+    def _get_change_stats(self, base_branch):
+        &quot;&quot;&quot;Get detailed change statistics&quot;&quot;&quot;
+        cmd = f&quot;git diff --shortstat {base_branch}...HEAD&quot;
+        result = subprocess.run(cmd.split(), capture_output=True, text=True)
+
+        # Parse output like: &quot;10 files changed, 450 insertions(+), 123 deletions(-)&quot;
+        stats_pattern = r&#39;(\d+) files? changed(?:, (\d+) insertions?\(\+\))?(?:, (\d+) deletions?\(-\))?&#39;
+        match = re.search(stats_pattern, result.stdout)
+
+        if match:
+            files, insertions, deletions = match.groups()
+            return {
+                &#39;files_changed&#39;: int(files),
+                &#39;insertions&#39;: int(insertions or 0),
+                &#39;deletions&#39;: int(deletions or 0),
+                &#39;net_change&#39;: int(insertions or 0) - int(deletions or 0)
+            }
+
+        return {&#39;files_changed&#39;: 0, &#39;insertions&#39;: 0, &#39;deletions&#39;: 0, &#39;net_change&#39;: 0}
+
+    def _categorize_file(self, filename):
+        &quot;&quot;&quot;Categorize file by type&quot;&quot;&quot;
+        categories = {
+            &#39;source&#39;: [&#39;.js&#39;, &#39;.ts&#39;, &#39;.py&#39;, &#39;.java&#39;, &#39;.go&#39;, &#39;.rs&#39;],
+            &#39;test&#39;: [&#39;test&#39;, &#39;spec&#39;, &#39;.test.&#39;, &#39;.spec.&#39;],
+            &#39;config&#39;: [&#39;config&#39;, &#39;.json&#39;, &#39;.yml&#39;, &#39;.yaml&#39;, &#39;.toml&#39;],
+            &#39;docs&#39;: [&#39;.md&#39;, &#39;README&#39;, &#39;CHANGELOG&#39;, &#39;.rst&#39;],
+            &#39;styles&#39;: [&#39;.css&#39;, &#39;.scss&#39;, &#39;.less&#39;],
+            &#39;build&#39;: [&#39;Makefile&#39;, &#39;Dockerfile&#39;, &#39;.gradle&#39;, &#39;pom.xml&#39;]
+        }
+
+        for category, patterns in categories.items():
+            if any(pattern in filename for pattern in patterns):
+                return category
+
+        return &#39;other&#39;
+</code></pre>
+<h3>2. PR Description Generation</h3>
+<p>Create comprehensive PR descriptions:</p>
+<p><strong>Description Template Generator</strong></p>
+<pre><code class="language-python">def generate_pr_description(analysis, commits):
+    &quot;&quot;&quot;
+    Generate detailed PR description from analysis
+    &quot;&quot;&quot;
+    description = f&quot;&quot;&quot;
+## Summary
+
+{generate_summary(analysis, commits)}
+
+## What Changed
+
+{generate_change_list(analysis)}
+
+## Why These Changes
+
+{extract_why_from_commits(commits)}
+
+## Type of Change
+
+{determine_change_types(analysis)}
+
+## How Has This Been Tested?
+
+{generate_test_section(analysis)}
+
+## Visual Changes
+
+{generate_visual_section(analysis)}
+
+## Performance Impact
+
+{analyze_performance_impact(analysis)}
+
+## Breaking Changes
+
+{identify_breaking_changes(analysis)}
+
+## Dependencies
+
+{list_dependency_changes(analysis)}
+
+## Checklist
+
+{generate_review_checklist(analysis)}
+
+## Additional Notes
+
+{generate_additional_notes(analysis)}
+&quot;&quot;&quot;
+    return description
+
+def generate_summary(analysis, commits):
+    &quot;&quot;&quot;Generate executive summary&quot;&quot;&quot;
+    stats = analysis[&#39;change_statistics&#39;]
+
+    # Extract main purpose from commits
+    main_purpose = extract_main_purpose(commits)
+
+    summary = f&quot;&quot;&quot;
+This PR {main_purpose}.
+
+**Impact**: {stats[&#39;files_changed&#39;]} files changed ({stats[&#39;insertions&#39;]} additions, {stats[&#39;deletions&#39;]} deletions)
+**Risk Level**: {calculate_risk_level(analysis)}
+**Review Time**: ~{estimate_review_time(stats)} minutes
+&quot;&quot;&quot;
+    return summary
+
+def generate_change_list(analysis):
+    &quot;&quot;&quot;Generate categorized change list&quot;&quot;&quot;
+    changes_by_category = defaultdict(list)
+
+    for file in analysis[&#39;files_changed&#39;]:
+        changes_by_category[file[&#39;category&#39;]].append(file)
+
+    change_list = &quot;&quot;
+    icons = {
+        &#39;source&#39;: &#39;🔧&#39;,
+        &#39;test&#39;: &#39;✅&#39;,
+        &#39;docs&#39;: &#39;📝&#39;,
+        &#39;config&#39;: &#39;⚙️&#39;,
+        &#39;styles&#39;: &#39;🎨&#39;,
+        &#39;build&#39;: &#39;🏗️&#39;,
+        &#39;other&#39;: &#39;📁&#39;
+    }
+
+    for category, files in changes_by_category.items():
+        change_list += f&quot;\n### {icons.get(category, &#39;📁&#39;)} {category.title()} Changes\n&quot;
+        for file in files[:10]:  # Limit to 10 files per category
+            change_list += f&quot;- {file[&#39;status&#39;]}: `{file[&#39;filename&#39;]}`\n&quot;
+        if len(files) &gt; 10:
+            change_list += f&quot;- ...and {len(files) - 10} more\n&quot;
+
+    return change_list
+</code></pre>
+<h3>3. Review Checklist Generation</h3>
+<p>Create automated review checklists:</p>
+<p><strong>Smart Checklist Generator</strong></p>
+<pre><code class="language-python">def generate_review_checklist(analysis):
+    &quot;&quot;&quot;
+    Generate context-aware review checklist
+    &quot;&quot;&quot;
+    checklist = [&quot;## Review Checklist\n&quot;]
+
+    # General items
+    general_items = [
+        &quot;Code follows project style guidelines&quot;,
+        &quot;Self-review completed&quot;,
+        &quot;Comments added for complex logic&quot;,
+        &quot;No debugging code left&quot;,
+        &quot;No sensitive data exposed&quot;
+    ]
+
+    # Add general items
+    checklist.append(&quot;### General&quot;)
+    for item in general_items:
+        checklist.append(f&quot;- [ ] {item}&quot;)
+
+    # File-specific checks
+    file_types = {file[&#39;category&#39;] for file in analysis[&#39;files_changed&#39;]}
+
+    if &#39;source&#39; in file_types:
+        checklist.append(&quot;\n### Code Quality&quot;)
+        checklist.extend([
+            &quot;- [ ] No code duplication&quot;,
+            &quot;- [ ] Functions are focused and small&quot;,
+            &quot;- [ ] Variable names are descriptive&quot;,
+            &quot;- [ ] Error handling is comprehensive&quot;,
+            &quot;- [ ] No performance bottlenecks introduced&quot;
+        ])
+
+    if &#39;test&#39; in file_types:
+        checklist.append(&quot;\n### Testing&quot;)
+        checklist.extend([
+            &quot;- [ ] All new code is covered by tests&quot;,
+            &quot;- [ ] Tests are meaningful and not just for coverage&quot;,
+            &quot;- [ ] Edge cases are tested&quot;,
+            &quot;- [ ] Tests follow AAA pattern (Arrange, Act, Assert)&quot;,
+            &quot;- [ ] No flaky tests introduced&quot;
+        ])
+
+    if &#39;config&#39; in file_types:
+        checklist.append(&quot;\n### Configuration&quot;)
+        checklist.extend([
+            &quot;- [ ] No hardcoded values&quot;,
+            &quot;- [ ] Environment variables documented&quot;,
+            &quot;- [ ] Backwards compatibility maintained&quot;,
+            &quot;- [ ] Security implications reviewed&quot;,
+            &quot;- [ ] Default values are sensible&quot;
+        ])
+
+    if &#39;docs&#39; in file_types:
+        checklist.append(&quot;\n### Documentation&quot;)
+        checklist.extend([
+            &quot;- [ ] Documentation is clear and accurate&quot;,
+            &quot;- [ ] Examples are provided where helpful&quot;,
+            &quot;- [ ] API changes are documented&quot;,
+            &quot;- [ ] README updated if necessary&quot;,
+            &quot;- [ ] Changelog updated&quot;
+        ])
+
+    # Security checks
+    if has_security_implications(analysis):
+        checklist.append(&quot;\n### Security&quot;)
+        checklist.extend([
+            &quot;- [ ] No SQL injection vulnerabilities&quot;,
+            &quot;- [ ] Input validation implemented&quot;,
+            &quot;- [ ] Authentication/authorization correct&quot;,
+            &quot;- [ ] No sensitive data in logs&quot;,
+            &quot;- [ ] Dependencies are secure&quot;
+        ])
+
+    return &#39;\n&#39;.join(checklist)
+</code></pre>
+<h3>4. Code Review Automation</h3>
+<p>Automate common review tasks:</p>
+<p><strong>Automated Review Bot</strong></p>
+<pre><code class="language-python">class ReviewBot:
+    def perform_automated_checks(self, pr_diff):
+        &quot;&quot;&quot;
+        Perform automated code review checks
+        &quot;&quot;&quot;
+        findings = []
+
+        # Check for common issues
+        checks = [
+            self._check_console_logs,
+            self._check_commented_code,
+            self._check_large_functions,
+            self._check_todo_comments,
+            self._check_hardcoded_values,
+            self._check_missing_error_handling,
+            self._check_security_issues
+        ]
+
+        for check in checks:
+            findings.extend(check(pr_diff))
+
+        return findings
+
+    def _check_console_logs(self, diff):
+        &quot;&quot;&quot;Check for console.log statements&quot;&quot;&quot;
+        findings = []
+        pattern = r&#39;\+.*console\.(log|debug|info|warn|error)&#39;
+
+        for file, content in diff.items():
+            matches = re.finditer(pattern, content, re.MULTILINE)
+            for match in matches:
+                findings.append({
+                    &#39;type&#39;: &#39;warning&#39;,
+                    &#39;file&#39;: file,
+                    &#39;line&#39;: self._get_line_number(match, content),
+                    &#39;message&#39;: &#39;Console statement found - remove before merging&#39;,
+                    &#39;suggestion&#39;: &#39;Use proper logging framework instead&#39;
+                })
+
+        return findings
+
+    def _check_large_functions(self, diff):
+        &quot;&quot;&quot;Check for functions that are too large&quot;&quot;&quot;
+        findings = []
+
+        # Simple heuristic: count lines between function start and end
+        for file, content in diff.items():
+            if file.endswith((&#39;.js&#39;, &#39;.ts&#39;, &#39;.py&#39;)):
+                functions = self._extract_functions(content)
+                for func in functions:
+                    if func[&#39;lines&#39;] &gt; 50:
+                        findings.append({
+                            &#39;type&#39;: &#39;suggestion&#39;,
+                            &#39;file&#39;: file,
+                            &#39;line&#39;: func[&#39;start_line&#39;],
+                            &#39;message&#39;: f&quot;Function &#39;{func[&#39;name&#39;]}&#39; is {func[&#39;lines&#39;]} lines long&quot;,
+                            &#39;suggestion&#39;: &#39;Consider breaking into smaller functions&#39;
+                        })
+
+        return findings
+</code></pre>
+<h3>5. PR Size Optimization</h3>
+<p>Help split large PRs:</p>
+<p><strong>PR Splitter Suggestions</strong></p>
+<pre><code class="language-python">def suggest_pr_splits(analysis):
+    &quot;&quot;&quot;
+    Suggest how to split large PRs
+    &quot;&quot;&quot;
+    stats = analysis[&#39;change_statistics&#39;]
+
+    # Check if PR is too large
+    if stats[&#39;files_changed&#39;] &gt; 20 or stats[&#39;insertions&#39;] + stats[&#39;deletions&#39;] &gt; 1000:
+        suggestions = analyze_split_opportunities(analysis)
+
+        return f&quot;&quot;&quot;
+## ⚠️ Large PR Detected
+
+This PR changes {stats[&#39;files_changed&#39;]} files with {stats[&#39;insertions&#39;] + stats[&#39;deletions&#39;]} total changes.
+Large PRs are harder to review and more likely to introduce bugs.
+
+### Suggested Splits:
+
+{format_split_suggestions(suggestions)}
+
+### How to Split:
+
+1. Create feature branch from current branch
+2. Cherry-pick commits for first logical unit
+3. Create PR for first unit
+4. Repeat for remaining units
+
+```bash
+# Example split workflow
+git checkout -b feature/part-1
+git cherry-pick &lt;commit-hashes-for-part-1&gt;
+git push origin feature/part-1
+# Create PR for part 1
+
+git checkout -b feature/part-2
+git cherry-pick &lt;commit-hashes-for-part-2&gt;
+git push origin feature/part-2
+# Create PR for part 2
+</code></pre>
+<p>&quot;&quot;&quot;</p>
+<pre><code>return &quot;&quot;
+</code></pre>
+<p>def analyze_split_opportunities(analysis):
+&quot;&quot;&quot;Find logical units for splitting&quot;&quot;&quot;
+suggestions = []</p>
+<pre><code># Group by feature areas
+feature_groups = defaultdict(list)
+for file in analysis[&#39;files_changed&#39;]:
+    feature = extract_feature_area(file[&#39;filename&#39;])
+    feature_groups[feature].append(file)
+
+# Suggest splits
+for feature, files in feature_groups.items():
+    if len(files) &gt;= 5:
+        suggestions.append({
+            &#39;name&#39;: f&quot;{feature} changes&quot;,
+            &#39;files&#39;: files,
+            &#39;reason&#39;: f&quot;Isolated changes to {feature} feature&quot;
+        })
+
+return suggestions
+</code></pre>
+<pre><code>
+### 6. Visual Diff Enhancement
+
+Generate visual representations:
+
+**Mermaid Diagram Generator**
+```python
+def generate_architecture_diff(analysis):
+    &quot;&quot;&quot;
+    Generate diagram showing architectural changes
+    &quot;&quot;&quot;
+    if has_architectural_changes(analysis):
+        return f&quot;&quot;&quot;
+## Architecture Changes
+
+```mermaid
+graph LR
+    subgraph &quot;Before&quot;
+        A1[Component A] --&gt; B1[Component B]
+        B1 --&gt; C1[Database]
+    end
+
+    subgraph &quot;After&quot;
+        A2[Component A] --&gt; B2[Component B]
+        B2 --&gt; C2[Database]
+        B2 --&gt; D2[New Cache Layer]
+        A2 --&gt; E2[New API Gateway]
+    end
+
+    style D2 fill:#90EE90
+    style E2 fill:#90EE90
+</code></pre>
+<h3>Key Changes:</h3>
+<ol>
+<li>Added caching layer for performance</li>
+<li>Introduced API gateway for better routing</li>
+<li>Refactored component communication
+&quot;&quot;&quot;
+return &quot;&quot;</li>
+</ol>
+<pre><code>
+### 7. Test Coverage Report
+
+Include test coverage analysis:
+
+**Coverage Report Generator**
+```python
+def generate_coverage_report(base_branch=&#39;main&#39;):
+    &quot;&quot;&quot;
+    Generate test coverage comparison
+    &quot;&quot;&quot;
+    # Get coverage before and after
+    before_coverage = get_coverage_for_branch(base_branch)
+    after_coverage = get_coverage_for_branch(&#39;HEAD&#39;)
+
+    coverage_diff = after_coverage - before_coverage
+
+    report = f&quot;&quot;&quot;
+## Test Coverage
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Lines | {before_coverage[&#39;lines&#39;]:.1f}% | {after_coverage[&#39;lines&#39;]:.1f}% | {format_diff(coverage_diff[&#39;lines&#39;])} |
+| Functions | {before_coverage[&#39;functions&#39;]:.1f}% | {after_coverage[&#39;functions&#39;]:.1f}% | {format_diff(coverage_diff[&#39;functions&#39;])} |
+| Branches | {before_coverage[&#39;branches&#39;]:.1f}% | {after_coverage[&#39;branches&#39;]:.1f}% | {format_diff(coverage_diff[&#39;branches&#39;])} |
+
+### Uncovered Files
+&quot;&quot;&quot;
+
+    # List files with low coverage
+    for file in get_low_coverage_files():
+        report += f&quot;- `{file[&#39;name&#39;]}`: {file[&#39;coverage&#39;]:.1f}% coverage\n&quot;
+
+    return report
+
+def format_diff(value):
+    &quot;&quot;&quot;Format coverage difference&quot;&quot;&quot;
+    if value &gt; 0:
+        return f&quot;&lt;span style=&#39;color: green&#39;&gt;+{value:.1f}%&lt;/span&gt; ✅&quot;
+    elif value &lt; 0:
+        return f&quot;&lt;span style=&#39;color: red&#39;&gt;{value:.1f}%&lt;/span&gt; ⚠️&quot;
+    else:
+        return &quot;No change&quot;
+</code></pre>
+<h3>8. Risk Assessment</h3>
+<p>Evaluate PR risk:</p>
+<p><strong>Risk Calculator</strong></p>
+<pre><code class="language-python">def calculate_pr_risk(analysis):
+    &quot;&quot;&quot;
+    Calculate risk score for PR
+    &quot;&quot;&quot;
+    risk_factors = {
+        &#39;size&#39;: calculate_size_risk(analysis),
+        &#39;complexity&#39;: calculate_complexity_risk(analysis),
+        &#39;test_coverage&#39;: calculate_test_risk(analysis),
+        &#39;dependencies&#39;: calculate_dependency_risk(analysis),
+        &#39;security&#39;: calculate_security_risk(analysis)
+    }
+
+    overall_risk = sum(risk_factors.values()) / len(risk_factors)
+
+    risk_report = f&quot;&quot;&quot;
+## Risk Assessment
+
+**Overall Risk Level**: {get_risk_level(overall_risk)} ({overall_risk:.1f}/10)
+
+### Risk Factors
+
+| Factor | Score | Details |
+|--------|-------|---------|
+| Size | {risk_factors[&#39;size&#39;]:.1f}/10 | {get_size_details(analysis)} |
+| Complexity | {risk_factors[&#39;complexity&#39;]:.1f}/10 | {get_complexity_details(analysis)} |
+| Test Coverage | {risk_factors[&#39;test_coverage&#39;]:.1f}/10 | {get_test_details(analysis)} |
+| Dependencies | {risk_factors[&#39;dependencies&#39;]:.1f}/10 | {get_dependency_details(analysis)} |
+| Security | {risk_factors[&#39;security&#39;]:.1f}/10 | {get_security_details(analysis)} |
+
+### Mitigation Strategies
+
+{generate_mitigation_strategies(risk_factors)}
+&quot;&quot;&quot;
+
+    return risk_report
+
+def get_risk_level(score):
+    &quot;&quot;&quot;Convert score to risk level&quot;&quot;&quot;
+    if score &lt; 3:
+        return &quot;🟢 Low&quot;
+    elif score &lt; 6:
+        return &quot;🟡 Medium&quot;
+    elif score &lt; 8:
+        return &quot;🟠 High&quot;
+    else:
+        return &quot;🔴 Critical&quot;
+</code></pre>
+<h3>9. PR Templates</h3>
+<p>Generate context-specific templates:</p>
+<pre><code class="language-python">def generate_pr_template(pr_type, analysis):
+    &quot;&quot;&quot;
+    Generate PR template based on type
+    &quot;&quot;&quot;
+    templates = {
+        &#39;feature&#39;: f&quot;&quot;&quot;
+## Feature: {extract_feature_name(analysis)}
+
+### Description
+{generate_feature_description(analysis)}
+
+### User Story
+As a [user type]
+I want [feature]
+So that [benefit]
+
+### Acceptance Criteria
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
+
+### Demo
+[Link to demo or screenshots]
+
+### Technical Implementation
+{generate_technical_summary(analysis)}
+
+### Testing Strategy
+{generate_test_strategy(analysis)}
+&quot;&quot;&quot;,
+        &#39;bugfix&#39;: f&quot;&quot;&quot;
+## Bug Fix: {extract_bug_description(analysis)}
+
+### Issue
+- **Reported in**: #[issue-number]
+- **Severity**: {determine_severity(analysis)}
+- **Affected versions**: {get_affected_versions(analysis)}
+
+### Root Cause
+{analyze_root_cause(analysis)}
+
+### Solution
+{describe_solution(analysis)}
+
+### Testing
+- [ ] Bug is reproducible before fix
+- [ ] Bug is resolved after fix
+- [ ] No regressions introduced
+- [ ] Edge cases tested
+
+### Verification Steps
+1. Step to reproduce original issue
+2. Apply this fix
+3. Verify issue is resolved
+&quot;&quot;&quot;,
+        &#39;refactor&#39;: f&quot;&quot;&quot;
+## Refactoring: {extract_refactor_scope(analysis)}
+
+### Motivation
+{describe_refactor_motivation(analysis)}
+
+### Changes Made
+{list_refactor_changes(analysis)}
+
+### Benefits
+- Improved {list_improvements(analysis)}
+- Reduced {list_reductions(analysis)}
+
+### Compatibility
+- [ ] No breaking changes
+- [ ] API remains unchanged
+- [ ] Performance maintained or improved
+
+### Metrics
+| Metric | Before | After |
+|--------|--------|-------|
+| Complexity | X | Y |
+| Test Coverage | X% | Y% |
+| Performance | Xms | Yms |
+&quot;&quot;&quot;
+    }
+
+    return templates.get(pr_type, templates[&#39;feature&#39;])
+</code></pre>
+<h3>10. Review Response Templates</h3>
+<p>Help with review responses:</p>
+<pre><code class="language-python">review_response_templates = {
+    &#39;acknowledge_feedback&#39;: &quot;&quot;&quot;
+Thank you for the thorough review! I&#39;ll address these points.
+&quot;&quot;&quot;,
+
+    &#39;explain_decision&#39;: &quot;&quot;&quot;
+Great question! I chose this approach because:
+1. [Reason 1]
+2. [Reason 2]
+
+Alternative approaches considered:
+- [Alternative 1]: [Why not chosen]
+- [Alternative 2]: [Why not chosen]
+
+Happy to discuss further if you have concerns.
+&quot;&quot;&quot;,
+
+    &#39;request_clarification&#39;: &quot;&quot;&quot;
+Thanks for the feedback. Could you clarify what you mean by [specific point]?
+I want to make sure I understand your concern correctly before making changes.
+&quot;&quot;&quot;,
+
+    &#39;disagree_respectfully&#39;: &quot;&quot;&quot;
+I appreciate your perspective on this. I have a slightly different view:
+
+[Your reasoning]
+
+However, I&#39;m open to discussing this further. What do you think about [compromise/middle ground]?
+&quot;&quot;&quot;,
+
+    &#39;commit_to_change&#39;: &quot;&quot;&quot;
+Good catch! I&#39;ll update this to [specific change].
+This should address [concern] while maintaining [other requirement].
+&quot;&quot;&quot;
+}
+</code></pre>
+<h2>Output Format</h2>
+<ol>
+<li><strong>PR Summary</strong>: Executive summary with key metrics</li>
+<li><strong>Detailed Description</strong>: Comprehensive PR description</li>
+<li><strong>Review Checklist</strong>: Context-aware review items</li>
+<li><strong>Risk Assessment</strong>: Risk analysis with mitigation strategies</li>
+<li><strong>Test Coverage</strong>: Before/after coverage comparison</li>
+<li><strong>Visual Aids</strong>: Diagrams and visual diffs where applicable</li>
+<li><strong>Size Recommendations</strong>: Suggestions for splitting large PRs</li>
+<li><strong>Review Automation</strong>: Automated checks and findings</li>
+</ol>
+<p>Focus on creating PRs that are a pleasure to review, with all necessary context and documentation for efficient code review process.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

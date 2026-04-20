@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Real Claude Flow Execution Configuration</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/benchmark/REAL_EXECUTION.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Real Claude Flow Execution Configuration</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbenchmark">benchmark</a> / <span>REAL_EXECUTION.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Real Claude Flow Execution Configuration</h1>
+<h2>Overview</h2>
+<p>The benchmark system is configured to use real claude-flow commands without any simulations.</p>
+<h2>Current Status</h2>
+<h3>✅ Working Commands</h3>
+<h4>SPARC Commands</h4>
+<p>All SPARC modes work correctly and produce real output:</p>
+<ul>
+<li><code>sparc spec</code> - Specification mode</li>
+<li><code>sparc architect</code> - Architecture mode  </li>
+<li><code>sparc tdd</code> - Test-driven development mode</li>
+<li><code>sparc integration</code> - Integration mode</li>
+<li><code>sparc refactor</code> - Refactoring mode</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-bash">swarm-benchmark real sparc tdd &quot;Create a function&quot; --timeout 1
+</code></pre>
+<h3>⚠️ Commands Requiring Claude CLI</h3>
+<h4>Swarm Command</h4>
+<p>The <code>swarm</code> command requires Claude CLI even with <code>--executor</code> flag:</p>
+<pre><code class="language-bash"># This will timeout without Claude CLI installed
+swarm-benchmark real swarm &quot;Create API&quot; --strategy development
+</code></pre>
+<p>To install Claude CLI:</p>
+<pre><code class="language-bash">npm install -g @anthropic-ai/claude-code
+</code></pre>
+<h4>Hive-Mind Command</h4>
+<p>Similar to swarm, requires Claude CLI for execution.</p>
+<h2>Configuration</h2>
+<h3>Non-Interactive Defaults</h3>
+<p>All commands are configured to run non-interactively by default:</p>
+<ol>
+<li><strong>SPARC</strong>: Runs without user interaction, produces workflow information</li>
+<li><strong>Swarm</strong>: Uses <code>--executor</code> flag (requires Claude CLI)</li>
+<li><strong>Hive-Mind</strong>: Uses <code>--executor</code> flag (requires Claude CLI)</li>
+</ol>
+<h3>Benchmark Configuration</h3>
+<pre><code class="language-python"># In benchmark/src/swarm_benchmark/core/claude_flow_real_executor.py
+class RealClaudeFlowExecutor:
+    def __init__(self, force_non_interactive=True):
+        # Always uses non-interactive mode
+</code></pre>
+<h3>Command Execution</h3>
+<p>All commands use real claude-flow binary at <code>/workspaces/claude-code-flow/claude-flow</code></p>
+<h2>Testing Real Execution</h2>
+<h3>Test SPARC (Works without Claude CLI)</h3>
+<pre><code class="language-bash"># Test different SPARC modes
+swarm-benchmark real sparc spec &quot;Design a system&quot;
+swarm-benchmark real sparc tdd &quot;Create a calculator&quot;
+swarm-benchmark real sparc architect &quot;Design API structure&quot;
+</code></pre>
+<h3>Test with Process Tracking</h3>
+<pre><code class="language-bash"># View detailed execution metrics
+swarm-benchmark real sparc tdd &quot;Build feature&quot; --output-dir ./my-reports
+cat ./my-reports/sparc_tdd_*.json
+</code></pre>
+<h2>No Simulations</h2>
+<p>The system has been updated to:</p>
+<ul>
+<li>❌ Remove all simulation/fallback code</li>
+<li>✅ Always use real claude-flow commands</li>
+<li>✅ Report actual command output</li>
+<li>✅ Track real execution metrics</li>
+</ul>
+<h2>Limitations</h2>
+<ol>
+<li><strong>Claude CLI Dependency</strong>: Swarm and hive-mind commands require Claude CLI</li>
+<li><strong>Non-Interactive Only</strong>: Interactive mode is not supported in benchmarks</li>
+<li><strong>Timeout Handling</strong>: Commands that require Claude CLI will timeout if not installed</li>
+</ol>
+<h2>Recommended Usage</h2>
+<p>For benchmarking without Claude CLI, use SPARC commands which provide real workflow information and execution metrics.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow Commands (Batchtools Optimized)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/templates/claude-optimized/.claude/commands/claude-flow-help.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow Commands (Batchtools Optimized)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates">templates</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized">claude-optimized</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized%2F.claude%2Fcommands">commands</a> / <span>claude-flow-help.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: claude-flow-help
+description: Show Claude-Flow commands and usage with batchtools optimization</h2>
+<h1>Claude-Flow Commands (Batchtools Optimized)</h1>
+<h2>Core Commands with Batch Operations</h2>
+<h3>System Management (Batch Operations)</h3>
+<ul>
+<li><code>npx claude-flow start</code> - Start orchestration system</li>
+<li><code>npx claude-flow status</code> - Check system status</li>
+<li><code>npx claude-flow monitor</code> - Real-time monitoring</li>
+<li><code>npx claude-flow stop</code> - Stop orchestration</li>
+</ul>
+<p><strong>Batch Operations:</strong></p>
+<pre><code class="language-bash"># Check multiple system components in parallel
+npx claude-flow batch status --components &quot;agents,tasks,memory,connections&quot;
+
+# Start multiple services concurrently
+npx claude-flow batch start --services &quot;monitor,scheduler,coordinator&quot;
+</code></pre>
+<h3>Agent Management (Parallel Operations)</h3>
+<ul>
+<li><code>npx claude-flow agent spawn &lt;type&gt;</code> - Create new agent</li>
+<li><code>npx claude-flow agent list</code> - List active agents</li>
+<li><code>npx claude-flow agent info &lt;id&gt;</code> - Agent details</li>
+<li><code>npx claude-flow agent terminate &lt;id&gt;</code> - Stop agent</li>
+</ul>
+<p><strong>Batch Operations:</strong></p>
+<pre><code class="language-bash"># Spawn multiple agents in parallel
+npx claude-flow agent batch-spawn &quot;code:3,test:2,review:1&quot;
+
+# Get info for multiple agents concurrently
+npx claude-flow agent batch-info &quot;agent1,agent2,agent3&quot;
+
+# Terminate multiple agents
+npx claude-flow agent batch-terminate --pattern &quot;test-*&quot;
+</code></pre>
+<h3>Task Management (Concurrent Processing)</h3>
+<ul>
+<li><code>npx claude-flow task create &lt;type&gt; &quot;description&quot;</code> - Create task</li>
+<li><code>npx claude-flow task list</code> - List all tasks</li>
+<li><code>npx claude-flow task status &lt;id&gt;</code> - Task status</li>
+<li><code>npx claude-flow task cancel &lt;id&gt;</code> - Cancel task</li>
+</ul>
+<p><strong>Batch Operations:</strong></p>
+<pre><code class="language-bash"># Create multiple tasks from file
+npx claude-flow task batch-create tasks.json
+
+# Check status of multiple tasks concurrently
+npx claude-flow task batch-status --ids &quot;task1,task2,task3&quot;
+
+# Process task queue in parallel
+npx claude-flow task process-queue --parallel 5
+</code></pre>
+<h3>Memory Operations (Bulk Processing)</h3>
+<ul>
+<li><code>npx claude-flow memory store &quot;key&quot; &quot;value&quot;</code> - Store data</li>
+<li><code>npx claude-flow memory query &quot;search&quot;</code> - Search memory</li>
+<li><code>npx claude-flow memory stats</code> - Memory statistics</li>
+<li><code>npx claude-flow memory export &lt;file&gt;</code> - Export memory</li>
+</ul>
+<p><strong>Batch Operations:</strong></p>
+<pre><code class="language-bash"># Bulk store from JSON file
+npx claude-flow memory batch-store data.json
+
+# Parallel query across namespaces
+npx claude-flow memory batch-query &quot;search term&quot; --namespaces &quot;all&quot;
+
+# Export multiple namespaces concurrently
+npx claude-flow memory batch-export --namespaces &quot;project,agents,tasks&quot;
+</code></pre>
+<h3>SPARC Development (Parallel Workflows)</h3>
+<ul>
+<li><code>npx claude-flow sparc modes</code> - List SPARC modes</li>
+<li><code>npx claude-flow sparc run &lt;mode&gt; &quot;task&quot;</code> - Run mode</li>
+<li><code>npx claude-flow sparc tdd &quot;feature&quot;</code> - TDD workflow</li>
+<li><code>npx claude-flow sparc info &lt;mode&gt;</code> - Mode details</li>
+</ul>
+<p><strong>Batch Operations:</strong></p>
+<pre><code class="language-bash"># Run multiple SPARC modes in parallel
+npx claude-flow sparc batch-run --modes &quot;spec:task1,architect:task2,code:task3&quot;
+
+# Execute parallel TDD for multiple features
+npx claude-flow sparc batch-tdd features.json
+
+# Analyze multiple components concurrently
+npx claude-flow sparc batch-analyze --components &quot;auth,api,database&quot;
+</code></pre>
+<h3>Swarm Coordination (Enhanced Parallelization)</h3>
+<ul>
+<li><code>npx claude-flow swarm &quot;task&quot; --strategy &lt;type&gt;</code> - Start swarm</li>
+<li><code>npx claude-flow swarm &quot;task&quot; --background</code> - Long-running swarm</li>
+<li><code>npx claude-flow swarm &quot;task&quot; --monitor</code> - With monitoring</li>
+</ul>
+<p><strong>Batch Operations:</strong></p>
+<pre><code class="language-bash"># Launch multiple swarms for different components
+npx claude-flow swarm batch --config swarms.json
+
+# Coordinate parallel swarm strategies
+npx claude-flow swarm multi-strategy &quot;project&quot; --strategies &quot;dev:frontend,test:backend,docs:api&quot;
+</code></pre>
+<h2>Advanced Batch Examples</h2>
+<h3>Parallel Development Workflow:</h3>
+<pre><code class="language-bash"># Initialize complete project setup in parallel
+npx claude-flow batch init --actions &quot;memory:setup,agents:spawn,tasks:queue&quot;
+
+# Run comprehensive analysis
+npx claude-flow batch analyze --targets &quot;code:quality,security:audit,performance:profile&quot;
+</code></pre>
+<h3>Concurrent Testing Suite:</h3>
+<pre><code class="language-bash"># Execute parallel test suites
+npx claude-flow sparc batch-test --suites &quot;unit,integration,e2e&quot; --parallel
+
+# Generate reports concurrently
+npx claude-flow batch report --types &quot;coverage,performance,security&quot;
+</code></pre>
+<h3>Bulk Operations:</h3>
+<pre><code class="language-bash"># Process multiple files in parallel
+npx claude-flow batch process --files &quot;*.ts&quot; --action &quot;lint,format,analyze&quot;
+
+# Parallel code generation
+npx claude-flow batch generate --templates &quot;api:users,api:products,api:orders&quot;
+</code></pre>
+<h2>Performance Tips</h2>
+<ul>
+<li>Use <code>--parallel</code> flag for concurrent operations</li>
+<li>Batch similar operations to reduce overhead</li>
+<li>Leverage <code>--async</code> for non-blocking execution</li>
+<li>Use <code>--stream</code> for real-time progress updates</li>
+<li>Enable <code>--cache</code> for repeated operations</li>
+</ul>
+<h2>Monitoring Batch Operations</h2>
+<pre><code class="language-bash"># Real-time batch monitoring
+npx claude-flow monitor --batch
+
+# Batch operation statistics
+npx claude-flow stats --batch-ops
+
+# Performance profiling
+npx claude-flow profile --batch-execution
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

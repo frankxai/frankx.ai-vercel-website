@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ADR-025: Auto-Update System for @claude-flow Packages</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/adrs/ADR-025-auto-update-system.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ADR-025: Auto-Update System for @claude-flow Packages</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fadrs">adrs</a> / <span>ADR-025-auto-update-system.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ADR-025: Auto-Update System for @claude-flow Packages</h1>
+<h2>Status</h2>
+<p><strong>Implemented</strong> - 2026-01-13</p>
+<h3>Implementation Details</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>File</th>
+<th>Lines</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Rate Limiter</td>
+<td><code>src/update/rate-limiter.ts</code></td>
+<td>~100</td>
+</tr>
+<tr>
+<td>Checker</td>
+<td><code>src/update/checker.ts</code></td>
+<td>~180</td>
+</tr>
+<tr>
+<td>Validator</td>
+<td><code>src/update/validator.ts</code></td>
+<td>~150</td>
+</tr>
+<tr>
+<td>Executor</td>
+<td><code>src/update/executor.ts</code></td>
+<td>~200</td>
+</tr>
+<tr>
+<td>CLI Commands</td>
+<td><code>src/commands/update.ts</code></td>
+<td>~340</td>
+</tr>
+<tr>
+<td>Startup Integration</td>
+<td><code>src/index.ts</code></td>
+<td>~20</td>
+</tr>
+</tbody></table>
+<p><strong>Published:</strong> @claude-flow/<a href="mailto:cli@3.0.0-alpha.83">cli@3.0.0-alpha.83</a></p>
+<h2>Context</h2>
+<p>The Claude Flow V3 ecosystem consists of multiple packages:</p>
+<ul>
+<li><code>@claude-flow/cli</code> - Main CLI tool</li>
+<li><code>@claude-flow/embeddings</code> - Vector embeddings</li>
+<li><code>@claude-flow/security</code> - Security utilities</li>
+<li><code>@claude-flow/integration</code> - agentic-flow integration</li>
+<li><code>@claude-flow/testing</code> - Test utilities</li>
+</ul>
+<p>When one package is updated, dependent packages may need updates for compatibility. Currently, users must manually check for updates, leading to:</p>
+<ul>
+<li>Version mismatches causing runtime errors</li>
+<li>Missing security patches</li>
+<li>Delayed access to performance improvements</li>
+<li>Inconsistent behavior across installations</li>
+</ul>
+<h2>Decision</h2>
+<p>Implement an <strong>auto-update system</strong> that:</p>
+<ol>
+<li><strong>Checks for updates on startup</strong> (with rate limiting)</li>
+<li><strong>Validates package compatibility</strong> before updating</li>
+<li><strong>Auto-updates minor/patch versions</strong> (configurable)</li>
+<li><strong>Notifies users</strong> of major version updates</li>
+<li><strong>Maintains update history</strong> for rollback capability</li>
+</ol>
+<h3>Update Check Frequency</h3>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>First run of day</td>
+<td>Full update check</td>
+</tr>
+<tr>
+<td>Subsequent runs same day</td>
+<td>Skip check (use cache)</td>
+</tr>
+<tr>
+<td><code>--force-update</code> flag</td>
+<td>Force immediate check</td>
+</tr>
+<tr>
+<td><code>--no-update</code> flag</td>
+<td>Skip all update checks</td>
+</tr>
+<tr>
+<td>CI/CD environment</td>
+<td>Skip by default</td>
+</tr>
+</tbody></table>
+<h3>Package Priority</h3>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Packages</th>
+<th>Auto-Update</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Critical</td>
+<td><code>@claude-flow/security</code></td>
+<td>Always (patches)</td>
+</tr>
+<tr>
+<td>High</td>
+<td><code>@claude-flow/cli</code></td>
+<td>Minor + Patch</td>
+</tr>
+<tr>
+<td>Normal</td>
+<td><code>@claude-flow/embeddings</code>, <code>@claude-flow/integration</code></td>
+<td>Patch only</td>
+</tr>
+<tr>
+<td>Low</td>
+<td><code>@claude-flow/testing</code></td>
+<td>Notify only</td>
+</tr>
+</tbody></table>
+<h2>Implementation</h2>
+<h3>Architecture</h3>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                    CLI Startup                          │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│              UpdateChecker Service                       │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐ │
+│  │ RateLimiter │  │ NPM Registry│  │ Version Compare │ │
+│  │ (24h cache) │  │    Client   │  │    (semver)     │ │
+│  └─────────────┘  └─────────────┘  └─────────────────┘ │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│              PackageValidator                            │
+│  - Dependency compatibility check                        │
+│  - Peer dependency verification                          │
+│  - Breaking change detection                             │
+└─────────────────────┬───────────────────────────────────┘
+                      │
+                      ▼
+┌─────────────────────────────────────────────────────────┐
+│              UpdateExecutor                              │
+│  - npm install with specific versions                    │
+│  - Rollback on failure                                   │
+│  - Update history logging                                │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Core Components</h3>
+<h4>1. UpdateChecker (<code>src/update/checker.ts</code>)</h4>
+<pre><code class="language-typescript">interface UpdateCheckResult {
+  package: string;
+  currentVersion: string;
+  latestVersion: string;
+  updateType: &#39;major&#39; | &#39;minor&#39; | &#39;patch&#39; | &#39;none&#39;;
+  shouldAutoUpdate: boolean;
+  changelog?: string;
+}
+
+interface UpdateConfig {
+  enabled: boolean;
+  checkIntervalHours: number;  // Default: 24
+  autoUpdatePatch: boolean;    // Default: true
+  autoUpdateMinor: boolean;    // Default: false
+  autoUpdateMajor: boolean;    // Default: false
+  excludePackages: string[];   // Packages to skip
+  priorityPackages: string[];  // Check these first
+}
+</code></pre>
+<h4>2. RateLimiter (<code>src/update/rate-limiter.ts</code>)</h4>
+<pre><code class="language-typescript">interface RateLimitState {
+  lastCheck: string;           // ISO timestamp
+  checksToday: number;
+  packageVersions: Record&lt;string, string&gt;;
+}
+
+// Stored in: ~/.claude-flow/update-state.json
+</code></pre>
+<h4>3. PackageValidator (<code>src/update/validator.ts</code>)</h4>
+<pre><code class="language-typescript">interface ValidationResult {
+  valid: boolean;
+  incompatibilities: string[];
+  warnings: string[];
+  requiredPeerUpdates: string[];
+}
+</code></pre>
+<h3>Update Flow</h3>
+<pre><code>1. CLI Start
+   │
+   ├─► Check rate limit cache (~/.claude-flow/update-state.json)
+   │   └─► If checked within 24h AND no --force-update → Skip
+   │
+   ├─► Query npm registry for @claude-flow/* packages
+   │   └─► Compare versions using semver
+   │
+   ├─► For each package with available update:
+   │   ├─► Check update priority (critical/high/normal/low)
+   │   ├─► Validate compatibility with other packages
+   │   └─► Determine if auto-update applies
+   │
+   ├─► Execute auto-updates (if any)
+   │   ├─► npm install @claude-flow/package@version
+   │   ├─► Verify installation success
+   │   └─► Log to update history
+   │
+   └─► Display notification for non-auto updates
+       └─► &quot;Run `npx claude-flow update` to update X packages&quot;
+</code></pre>
+<h3>CLI Commands</h3>
+<pre><code class="language-bash"># Check for updates (manual)
+npx claude-flow update check
+
+# Update all packages
+npx claude-flow update all
+
+# Update specific package
+npx claude-flow update @claude-flow/embeddings
+
+# View update history
+npx claude-flow update history
+
+# Rollback last update
+npx claude-flow update rollback
+
+# Configure auto-update
+npx claude-flow config set update.autoUpdateMinor true
+npx claude-flow config set update.checkIntervalHours 12
+</code></pre>
+<h3>Environment Variables</h3>
+<pre><code class="language-bash"># Disable auto-update entirely
+CLAUDE_FLOW_AUTO_UPDATE=false
+
+# Force update check
+CLAUDE_FLOW_FORCE_UPDATE=true
+
+# CI/CD mode (no interactive prompts, no auto-update)
+CI=true
+</code></pre>
+<h3>Configuration File</h3>
+<pre><code class="language-json">// claude-flow.config.json
+{
+  &quot;update&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;checkIntervalHours&quot;: 24,
+    &quot;autoUpdate&quot;: {
+      &quot;patch&quot;: true,
+      &quot;minor&quot;: false,
+      &quot;major&quot;: false
+    },
+    &quot;priority&quot;: {
+      &quot;@claude-flow/security&quot;: &quot;critical&quot;,
+      &quot;@claude-flow/cli&quot;: &quot;high&quot;,
+      &quot;@claude-flow/embeddings&quot;: &quot;normal&quot;,
+      &quot;@claude-flow/integration&quot;: &quot;normal&quot;,
+      &quot;@claude-flow/testing&quot;: &quot;low&quot;
+    },
+    &quot;exclude&quot;: []
+  }
+}
+</code></pre>
+<h2>Security Considerations</h2>
+<ol>
+<li><strong>Registry verification</strong>: Only fetch from official npm registry</li>
+<li><strong>Checksum validation</strong>: Verify package integrity before install</li>
+<li><strong>Rollback capability</strong>: Maintain previous versions for quick rollback</li>
+<li><strong>Audit logging</strong>: Log all update operations for traceability</li>
+<li><strong>Signature verification</strong>: Verify npm package signatures when available</li>
+</ol>
+<h2>Consequences</h2>
+<h3>Positive</h3>
+<ul>
+<li>Users always have latest security patches</li>
+<li>Reduced version mismatch issues</li>
+<li>Improved ecosystem consistency</li>
+<li>Automatic performance improvements</li>
+<li>Reduced support burden</li>
+</ul>
+<h3>Negative</h3>
+<ul>
+<li>Slightly slower startup (mitigated by rate limiting)</li>
+<li>Requires network access (gracefully degrades offline)</li>
+<li>Potential for breaking changes (mitigated by validation)</li>
+</ul>
+<h3>Neutral</h3>
+<ul>
+<li>Additional storage for update state (~1KB)</li>
+<li>New CLI commands to learn</li>
+</ul>
+<h2>Alternatives Considered</h2>
+<ol>
+<li><strong>No auto-update</strong>: Rejected - too many version mismatch issues</li>
+<li><strong>Update on every run</strong>: Rejected - too slow, network overhead</li>
+<li><strong>Weekly update check</strong>: Rejected - security patches delayed too long</li>
+<li><strong>npm-check-updates integration</strong>: Rejected - external dependency</li>
+</ol>
+<h2>Implementation Plan</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Task</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>UpdateChecker service</td>
+<td>High</td>
+</tr>
+<tr>
+<td>2</td>
+<td>RateLimiter with file cache</td>
+<td>High</td>
+</tr>
+<tr>
+<td>3</td>
+<td>PackageValidator</td>
+<td>High</td>
+</tr>
+<tr>
+<td>4</td>
+<td>UpdateExecutor with rollback</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>5</td>
+<td>CLI commands</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Configuration integration</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Telemetry/logging</td>
+<td>Low</td>
+</tr>
+</tbody></table>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/npm/registry/blob/master/docs/REGISTRY-API.md">npm registry API</a></li>
+<li><a href="https://semver.org/">semver specification</a></li>
+<li><a href="./ADR-013-core-security-module.md">ADR-013: Core Security Module</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

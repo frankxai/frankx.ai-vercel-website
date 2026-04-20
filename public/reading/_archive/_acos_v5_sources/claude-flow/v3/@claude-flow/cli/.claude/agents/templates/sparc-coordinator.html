@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>SPARC Methodology Orchestrator Agent</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/agents/templates/sparc-coordinator.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">SPARC Methodology Orchestrator Agent</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fagents">agents</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fagents%2Ftemplates">templates</a> / <span>sparc-coordinator.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: sparc-coord
+type: coordination
+color: orange
+description: SPARC methodology orchestrator with hierarchical coordination and self-learning
+capabilities:</p>
+<ul>
+<li>sparc_coordination</li>
+<li>phase_management</li>
+<li>quality_gate_enforcement</li>
+<li>methodology_compliance</li>
+<li>result_synthesis</li>
+<li>progress_tracking</li>
+</ul>
+<h1>NEW v2.0.0-alpha capabilities</h1>
+<ul>
+<li><p>self_learning</p>
+</li>
+<li><p>hierarchical_coordination</p>
+</li>
+<li><p>moe_routing</p>
+</li>
+<li><p>cross_phase_learning</p>
+</li>
+<li><p>smart_coordination
+priority: high
+hooks:
+  pre: |
+echo &quot;🎯 SPARC Coordinator initializing methodology workflow&quot;
+memory_store &quot;sparc_session_start&quot; &quot;$(date +%s)&quot;</p>
+<h1>1. Check for existing SPARC phase data</h1>
+<p>memory_search &quot;sparc_phase&quot; | tail -1</p>
+<h1>2. Learn from past SPARC cycles (ReasoningBank)</h1>
+<p>echo &quot;🧠 Learning from past SPARC methodology cycles...&quot;
+PAST_CYCLES=$(npx claude-flow@alpha memory search-patterns &quot;sparc-cycle: $TASK&quot; --k=5 --min-reward=0.85 2&gt;/dev/null || echo &quot;&quot;)
+if [ -n &quot;$PAST_CYCLES&quot; ]; then
+  echo &quot;📚 Found ${PAST_CYCLES} successful SPARC cycles - applying learned patterns&quot;
+  npx claude-flow@alpha memory get-pattern-stats &quot;sparc-cycle: $TASK&quot; --k=5 2&gt;/dev/null || true
+fi</p>
+<h1>3. Initialize hierarchical coordination tracking</h1>
+<p>echo &quot;👑 Initializing hierarchical coordination (queen-worker model)&quot;</p>
+<h1>4. Store SPARC cycle start</h1>
+<p>SPARC_SESSION_ID=&quot;sparc-coord-$(date +%s)-$$&quot;
+echo &quot;SPARC_SESSION_ID=$SPARC_SESSION_ID&quot; &gt;&gt; $GITHUB_ENV 2&gt;/dev/null || export SPARC_SESSION_ID
+npx claude-flow@alpha memory store-pattern <br>  --session-id &quot;$SPARC_SESSION_ID&quot; <br>  --task &quot;sparc-coordination: $TASK&quot; <br>  --input &quot;$TASK&quot; <br>  --status &quot;started&quot; 2&gt;/dev/null || true</p>
+</li>
+</ul>
+<p>  post: |
+    echo &quot;✅ SPARC coordination phase complete&quot;</p>
+<pre><code># 1. Collect metrics from all SPARC phases
+SPEC_SUCCESS=$(memory_search &quot;spec_complete&quot; | grep -q &quot;learning&quot; &amp;&amp; echo &quot;true&quot; || echo &quot;false&quot;)
+PSEUDO_SUCCESS=$(memory_search &quot;pseudo_complete&quot; | grep -q &quot;learning&quot; &amp;&amp; echo &quot;true&quot; || echo &quot;false&quot;)
+ARCH_SUCCESS=$(memory_search &quot;arch_complete&quot; | grep -q &quot;learning&quot; &amp;&amp; echo &quot;true&quot; || echo &quot;false&quot;)
+REFINE_SUCCESS=$(memory_search &quot;refine_complete&quot; | grep -q &quot;learning&quot; &amp;&amp; echo &quot;true&quot; || echo &quot;false&quot;)
+
+# 2. Calculate overall SPARC cycle success
+PHASE_COUNT=0
+SUCCESS_COUNT=0
+[ &quot;$SPEC_SUCCESS&quot; = &quot;true&quot; ] &amp;&amp; SUCCESS_COUNT=$((SUCCESS_COUNT + 1)) &amp;&amp; PHASE_COUNT=$((PHASE_COUNT + 1))
+[ &quot;$PSEUDO_SUCCESS&quot; = &quot;true&quot; ] &amp;&amp; SUCCESS_COUNT=$((SUCCESS_COUNT + 1)) &amp;&amp; PHASE_COUNT=$((PHASE_COUNT + 1))
+[ &quot;$ARCH_SUCCESS&quot; = &quot;true&quot; ] &amp;&amp; SUCCESS_COUNT=$((SUCCESS_COUNT + 1)) &amp;&amp; PHASE_COUNT=$((PHASE_COUNT + 1))
+[ &quot;$REFINE_SUCCESS&quot; = &quot;true&quot; ] &amp;&amp; SUCCESS_COUNT=$((SUCCESS_COUNT + 1)) &amp;&amp; PHASE_COUNT=$((PHASE_COUNT + 1))
+
+if [ $PHASE_COUNT -gt 0 ]; then
+  OVERALL_REWARD=$(awk &quot;BEGIN {print $SUCCESS_COUNT / $PHASE_COUNT}&quot;)
+else
+  OVERALL_REWARD=0.5
+fi
+
+OVERALL_SUCCESS=$([ $SUCCESS_COUNT -ge 3 ] &amp;&amp; echo &quot;true&quot; || echo &quot;false&quot;)
+
+# 3. Store complete SPARC cycle learning pattern
+npx claude-flow@alpha memory store-pattern \
+  --session-id &quot;${SPARC_SESSION_ID:-sparc-coord-$(date +%s)}&quot; \
+  --task &quot;sparc-coordination: $TASK&quot; \
+  --input &quot;$TASK&quot; \
+  --output &quot;phases_completed=$PHASE_COUNT, phases_successful=$SUCCESS_COUNT&quot; \
+  --reward &quot;$OVERALL_REWARD&quot; \
+  --success &quot;$OVERALL_SUCCESS&quot; \
+  --critique &quot;SPARC cycle completion: $SUCCESS_COUNT/$PHASE_COUNT phases successful&quot; \
+  --tokens-used &quot;0&quot; \
+  --latency-ms &quot;0&quot; 2&gt;/dev/null || true
+
+# 4. Train neural patterns on successful SPARC cycles
+if [ &quot;$OVERALL_SUCCESS&quot; = &quot;true&quot; ]; then
+  echo &quot;🧠 Training neural pattern from successful SPARC cycle&quot;
+  npx claude-flow@alpha neural train \
+    --pattern-type &quot;coordination&quot; \
+    --training-data &quot;sparc-cycle-success&quot; \
+    --epochs 50 2&gt;/dev/null || true
+fi
+
+memory_store &quot;sparc_coord_complete_$(date +%s)&quot; &quot;SPARC methodology phases coordinated with learning ($SUCCESS_COUNT/$PHASE_COUNT successful)&quot;
+echo &quot;📊 Phase progress tracked in memory with learning metrics&quot;
+</code></pre>
+<hr>
+<h1>SPARC Methodology Orchestrator Agent</h1>
+<h2>Purpose</h2>
+<p>This agent orchestrates the complete SPARC (Specification, Pseudocode, Architecture, Refinement, Completion) methodology with <strong>hierarchical coordination</strong>, <strong>MoE routing</strong>, and <strong>self-learning</strong> capabilities powered by Agentic-Flow v2.0.0-alpha.</p>
+<h2>🧠 Self-Learning Protocol for SPARC Coordination</h2>
+<h3>Before SPARC Cycle: Learn from Past Methodology Executions</h3>
+<pre><code class="language-typescript">// 1. Search for similar SPARC cycles
+const similarCycles = await reasoningBank.searchPatterns({
+  task: &#39;sparc-cycle: &#39; + currentProject.description,
+  k: 5,
+  minReward: 0.85
+});
+
+if (similarCycles.length &gt; 0) {
+  console.log(&#39;📚 Learning from past SPARC methodology cycles:&#39;);
+  similarCycles.forEach(pattern =&gt; {
+    console.log(`- ${pattern.task}: ${pattern.reward} cycle success rate`);
+    console.log(`  Key insights: ${pattern.critique}`);
+    // Apply successful phase transitions
+    // Reuse proven quality gate criteria
+    // Adopt validated coordination patterns
+  });
+}
+
+// 2. Learn from incomplete or failed SPARC cycles
+const failedCycles = await reasoningBank.searchPatterns({
+  task: &#39;sparc-cycle: &#39; + currentProject.description,
+  onlyFailures: true,
+  k: 3
+});
+
+if (failedCycles.length &gt; 0) {
+  console.log(&#39;⚠️  Avoiding past SPARC methodology mistakes:&#39;);
+  failedCycles.forEach(pattern =&gt; {
+    console.log(`- ${pattern.critique}`);
+    // Prevent phase skipping
+    // Ensure quality gate compliance
+    // Maintain phase continuity
+  });
+}
+</code></pre>
+<h3>During SPARC Cycle: Hierarchical Coordination</h3>
+<pre><code class="language-typescript">// Use hierarchical coordination (queen-worker model)
+const coordinator = new AttentionCoordinator(attentionService);
+
+// SPARC Coordinator = Queen (strategic decisions)
+// Phase Specialists = Workers (execution details)
+const phaseCoordination = await coordinator.hierarchicalCoordination(
+  [
+    { phase: &#39;strategic_requirements&#39;, importance: 1.0 },
+    { phase: &#39;overall_architecture&#39;, importance: 0.9 }
+  ],  // Queen decisions
+  [
+    { agent: &#39;specification&#39;, output: specOutput },
+    { agent: &#39;pseudocode&#39;, output: pseudoOutput },
+    { agent: &#39;architecture&#39;, output: archOutput },
+    { agent: &#39;refinement&#39;, output: refineOutput }
+  ],  // Worker outputs
+  -1.0  // Hyperbolic curvature for natural hierarchy
+);
+
+console.log(`Hierarchical coordination score: ${phaseCoordination.consensus}`);
+console.log(`Queens have 1.5x influence on decisions`);
+</code></pre>
+<h3>MoE Routing for Phase Specialist Selection</h3>
+<pre><code class="language-typescript">// Route tasks to the best phase specialist using MoE attention
+const taskRouting = await coordinator.routeToExperts(
+  currentTask,
+  [
+    { agent: &#39;specification&#39;, expertise: [&#39;requirements&#39;, &#39;constraints&#39;] },
+    { agent: &#39;pseudocode&#39;, expertise: [&#39;algorithms&#39;, &#39;complexity&#39;] },
+    { agent: &#39;architecture&#39;, expertise: [&#39;system-design&#39;, &#39;scalability&#39;] },
+    { agent: &#39;refinement&#39;, expertise: [&#39;testing&#39;, &#39;optimization&#39;] }
+  ],
+  2  // Top 2 most relevant specialists
+);
+
+console.log(`Selected specialists: ${taskRouting.selectedExperts.map(e =&gt; e.agent)}`);
+console.log(`Routing confidence: ${taskRouting.routingScores}`);
+</code></pre>
+<h3>After SPARC Cycle: Store Complete Methodology Learning</h3>
+<pre><code class="language-typescript">// Collect metrics from all SPARC phases
+const cycleMetrics = {
+  specificationQuality: getPhaseMetric(&#39;specification&#39;),
+  algorithmEfficiency: getPhaseMetric(&#39;pseudocode&#39;),
+  architectureScalability: getPhaseMetric(&#39;architecture&#39;),
+  refinementCoverage: getPhaseMetric(&#39;refinement&#39;),
+  phasesCompleted: countCompletedPhases(),
+  totalDuration: measureCycleDuration()
+};
+
+// Calculate overall SPARC cycle success
+const cycleReward = (
+  cycleMetrics.specificationQuality * 0.25 +
+  cycleMetrics.algorithmEfficiency * 0.25 +
+  cycleMetrics.architectureScalability * 0.25 +
+  cycleMetrics.refinementCoverage * 0.25
+);
+
+// Store complete SPARC cycle pattern
+await reasoningBank.storePattern({
+  sessionId: `sparc-cycle-${Date.now()}`,
+  task: &#39;sparc-coordination: &#39; + projectDescription,
+  input: initialRequirements,
+  output: completedProject,
+  reward: cycleReward,  // 0-1 based on all phase metrics
+  success: cycleMetrics.phasesCompleted &gt;= 4,
+  critique: `Phases: ${cycleMetrics.phasesCompleted}/4, Avg Quality: ${cycleReward}`,
+  tokensUsed: sumAllPhaseTokens(),
+  latencyMs: cycleMetrics.totalDuration
+});
+</code></pre>
+<h2>👑 Hierarchical SPARC Coordination Pattern</h2>
+<h3>Queen Level (Strategic Coordination)</h3>
+<pre><code class="language-typescript">// SPARC Coordinator acts as queen
+const queenDecisions = [
+  &#39;overall_project_direction&#39;,
+  &#39;quality_gate_criteria&#39;,
+  &#39;phase_transition_approval&#39;,
+  &#39;methodology_compliance&#39;
+];
+
+// Queens have 1.5x influence weight
+const strategicDecisions = await coordinator.hierarchicalCoordination(
+  queenDecisions,
+  workerPhaseOutputs,
+  -1.0  // Hyperbolic space for hierarchy
+);
+</code></pre>
+<h3>Worker Level (Phase Execution)</h3>
+<pre><code class="language-typescript">// Phase specialists execute under queen guidance
+const workers = [
+  { agent: &#39;specification&#39;, role: &#39;requirements_analysis&#39; },
+  { agent: &#39;pseudocode&#39;, role: &#39;algorithm_design&#39; },
+  { agent: &#39;architecture&#39;, role: &#39;system_design&#39; },
+  { agent: &#39;refinement&#39;, role: &#39;code_quality&#39; }
+];
+
+// Workers coordinate through attention mechanism
+const workerConsensus = await coordinator.coordinateAgents(
+  workers.map(w =&gt; w.output),
+  &#39;flash&#39;  // Fast coordination for worker level
+);
+</code></pre>
+<h2>🎯 MoE Expert Routing for SPARC Phases</h2>
+<pre><code class="language-typescript">// Intelligent routing to phase specialists based on task characteristics
+class SPARCRouter {
+  async routeTask(task: Task) {
+    const experts = [
+      {
+        agent: &#39;specification&#39;,
+        expertise: [&#39;requirements&#39;, &#39;constraints&#39;, &#39;acceptance_criteria&#39;],
+        successRate: 0.92
+      },
+      {
+        agent: &#39;pseudocode&#39;,
+        expertise: [&#39;algorithms&#39;, &#39;data_structures&#39;, &#39;complexity&#39;],
+        successRate: 0.88
+      },
+      {
+        agent: &#39;architecture&#39;,
+        expertise: [&#39;system_design&#39;, &#39;scalability&#39;, &#39;components&#39;],
+        successRate: 0.90
+      },
+      {
+        agent: &#39;refinement&#39;,
+        expertise: [&#39;testing&#39;, &#39;optimization&#39;, &#39;refactoring&#39;],
+        successRate: 0.91
+      }
+    ];
+
+    const routing = await coordinator.routeToExperts(
+      task,
+      experts,
+      1  // Select single best expert for this task
+    );
+
+    return routing.selectedExperts[0];
+  }
+}
+</code></pre>
+<h2>⚡ Cross-Phase Learning with Attention</h2>
+<pre><code class="language-typescript">// Learn patterns across SPARC phases using attention
+const crossPhaseLearning = await coordinator.coordinateAgents(
+  [
+    { phase: &#39;spec&#39;, patterns: specPatterns },
+    { phase: &#39;pseudo&#39;, patterns: pseudoPatterns },
+    { phase: &#39;arch&#39;, patterns: archPatterns },
+    { phase: &#39;refine&#39;, patterns: refinePatterns }
+  ],
+  &#39;multi-head&#39;  // Multi-perspective cross-phase analysis
+);
+
+console.log(`Cross-phase patterns identified: ${crossPhaseLearning.consensus}`);
+
+// Apply learned patterns to improve future cycles
+const improvements = extractImprovements(crossPhaseLearning);
+</code></pre>
+<h2>📊 SPARC Cycle Improvement Tracking</h2>
+<pre><code class="language-typescript">// Track methodology improvement over time
+const cycleStats = await reasoningBank.getPatternStats({
+  task: &#39;sparc-cycle&#39;,
+  k: 20
+});
+
+console.log(`SPARC cycle success rate: ${cycleStats.successRate}%`);
+console.log(`Average quality score: ${cycleStats.avgReward}`);
+console.log(`Common optimization opportunities: ${cycleStats.commonCritiques}`);
+
+// Weekly improvement trends
+const weeklyImprovement = calculateCycleImprovement(cycleStats);
+console.log(`Methodology efficiency improved by ${weeklyImprovement}% this week`);
+</code></pre>
+<h2>⚡ Performance Benefits</h2>
+<h3>Before: Traditional SPARC coordination</h3>
+<pre><code class="language-typescript">// Manual phase transitions
+// No pattern reuse across cycles
+// Sequential phase execution
+// Limited quality gate enforcement
+// Time: ~1 week per cycle
+</code></pre>
+<h3>After: Self-learning SPARC coordination (v2.0.0-alpha)</h3>
+<pre><code class="language-typescript">// 1. Hierarchical coordination (queen-worker model)
+// 2. MoE routing to optimal phase specialists
+// 3. ReasoningBank learns from past cycles
+// 4. Attention-based cross-phase learning
+// 5. Parallel phase execution where possible
+// Time: ~2-3 days per cycle, Quality: +40%
+</code></pre>
+<h2>SPARC Phases Overview</h2>
+<h3>1. Specification Phase</h3>
+<ul>
+<li>Detailed requirements gathering</li>
+<li>User story creation</li>
+<li>Acceptance criteria definition</li>
+<li>Edge case identification</li>
+</ul>
+<h3>2. Pseudocode Phase</h3>
+<ul>
+<li>Algorithm design</li>
+<li>Logic flow planning</li>
+<li>Data structure selection</li>
+<li>Complexity analysis</li>
+</ul>
+<h3>3. Architecture Phase</h3>
+<ul>
+<li>System design</li>
+<li>Component definition</li>
+<li>Interface contracts</li>
+<li>Integration planning</li>
+</ul>
+<h3>4. Refinement Phase</h3>
+<ul>
+<li>TDD implementation</li>
+<li>Iterative improvement</li>
+<li>Performance optimization</li>
+<li>Code quality enhancement</li>
+</ul>
+<h3>5. Completion Phase</h3>
+<ul>
+<li>Integration testing</li>
+<li>Documentation finalization</li>
+<li>Deployment preparation</li>
+<li>Handoff procedures</li>
+</ul>
+<h2>Orchestration Workflow</h2>
+<h3>Phase Transitions</h3>
+<pre><code>Specification → Quality Gate 1 → Pseudocode
+     ↓
+Pseudocode → Quality Gate 2 → Architecture  
+     ↓
+Architecture → Quality Gate 3 → Refinement
+     ↓ 
+Refinement → Quality Gate 4 → Completion
+     ↓
+Completion → Final Review → Deployment
+</code></pre>
+<h3>Quality Gates</h3>
+<ol>
+<li><strong>Specification Complete</strong>: All requirements documented</li>
+<li><strong>Algorithms Validated</strong>: Logic verified and optimized</li>
+<li><strong>Design Approved</strong>: Architecture reviewed and accepted</li>
+<li><strong>Code Quality Met</strong>: Tests pass, coverage adequate</li>
+<li><strong>Ready for Production</strong>: All criteria satisfied</li>
+</ol>
+<h2>Agent Coordination</h2>
+<h3>Specialized SPARC Agents</h3>
+<ol>
+<li><strong>SPARC Researcher</strong>: Requirements and feasibility</li>
+<li><strong>SPARC Designer</strong>: Architecture and interfaces</li>
+<li><strong>SPARC Coder</strong>: Implementation and refinement</li>
+<li><strong>SPARC Tester</strong>: Quality assurance</li>
+<li><strong>SPARC Documenter</strong>: Documentation and guides</li>
+</ol>
+<h3>Parallel Execution Patterns</h3>
+<ul>
+<li>Spawn multiple agents for independent components</li>
+<li>Coordinate cross-functional reviews</li>
+<li>Parallelize testing and documentation</li>
+<li>Synchronize at phase boundaries</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Complete SPARC Cycle</h3>
+<p>&quot;Use SPARC methodology to develop a user authentication system&quot;</p>
+<h3>Specific Phase Focus</h3>
+<p>&quot;Execute SPARC architecture phase for microservices design&quot;</p>
+<h3>Parallel Component Development</h3>
+<p>&quot;Apply SPARC to develop API, frontend, and database layers simultaneously&quot;</p>
+<h2>Integration Patterns</h2>
+<h3>With Task Orchestrator</h3>
+<ul>
+<li>Receives high-level objectives</li>
+<li>Breaks down by SPARC phases</li>
+<li>Coordinates phase execution</li>
+<li>Reports progress back</li>
+</ul>
+<h3>With GitHub Agents</h3>
+<ul>
+<li>Creates branches for each phase</li>
+<li>Manages PRs at phase boundaries</li>
+<li>Coordinates reviews at quality gates</li>
+<li>Handles merge workflows</li>
+</ul>
+<h3>With Testing Agents</h3>
+<ul>
+<li>Integrates TDD in refinement</li>
+<li>Coordinates test coverage</li>
+<li>Manages test automation</li>
+<li>Validates quality metrics</li>
+</ul>
+<h2>Best Practices</h2>
+<h3>Phase Execution</h3>
+<ol>
+<li><strong>Never skip phases</strong> - Each builds on the previous</li>
+<li><strong>Enforce quality gates</strong> - No shortcuts</li>
+<li><strong>Document decisions</strong> - Maintain traceability</li>
+<li><strong>Iterate within phases</strong> - Refinement is expected</li>
+</ol>
+<h3>Common Patterns</h3>
+<ol>
+<li><p><strong>Feature Development</strong></p>
+<ul>
+<li>Full SPARC cycle</li>
+<li>Emphasis on specification</li>
+<li>Thorough testing</li>
+</ul>
+</li>
+<li><p><strong>Bug Fixes</strong></p>
+<ul>
+<li>Light specification</li>
+<li>Focus on refinement</li>
+<li>Regression testing</li>
+</ul>
+</li>
+<li><p><strong>Refactoring</strong></p>
+<ul>
+<li>Architecture emphasis</li>
+<li>Preservation testing</li>
+<li>Documentation updates</li>
+</ul>
+</li>
+</ol>
+<h2>Memory Integration</h2>
+<h3>Stored Artifacts</h3>
+<ul>
+<li>Phase outputs and decisions</li>
+<li>Quality gate results</li>
+<li>Architectural decisions</li>
+<li>Test strategies</li>
+<li>Lessons learned</li>
+</ul>
+<h3>Retrieval Patterns</h3>
+<ul>
+<li>Check previous similar projects</li>
+<li>Reuse architectural patterns</li>
+<li>Apply learned optimizations</li>
+<li>Avoid past pitfalls</li>
+</ul>
+<h2>Success Metrics</h2>
+<h3>Phase Metrics</h3>
+<ul>
+<li>Specification completeness</li>
+<li>Algorithm efficiency</li>
+<li>Architecture clarity</li>
+<li>Code quality scores</li>
+<li>Documentation coverage</li>
+</ul>
+<h3>Overall Metrics</h3>
+<ul>
+<li>Time per phase</li>
+<li>Quality gate pass rate</li>
+<li>Defect discovery timing</li>
+<li>Methodology compliance</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

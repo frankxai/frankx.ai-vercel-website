@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Terraform Module Library</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cloud-infrastructure/skills/terraform-module-library/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Terraform Module Library</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure">cloud-infrastructure</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills%2Fterraform-module-library">terraform-module-library</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: terraform-module-library
+description: Build reusable Terraform modules for AWS, Azure, and GCP infrastructure following infrastructure-as-code best practices. Use when creating infrastructure modules, standardizing cloud provisioning, or implementing reusable IaC components.</h2>
+<h1>Terraform Module Library</h1>
+<p>Production-ready Terraform module patterns for AWS, Azure, and GCP infrastructure.</p>
+<h2>Purpose</h2>
+<p>Create reusable, well-tested Terraform modules for common cloud infrastructure patterns across multiple cloud providers.</p>
+<h2>When to Use</h2>
+<ul>
+<li>Build reusable infrastructure components</li>
+<li>Standardize cloud resource provisioning</li>
+<li>Implement infrastructure as code best practices</li>
+<li>Create multi-cloud compatible modules</li>
+<li>Establish organizational Terraform standards</li>
+</ul>
+<h2>Module Structure</h2>
+<pre><code>terraform-modules/
+├── aws/
+│   ├── vpc/
+│   ├── eks/
+│   ├── rds/
+│   └── s3/
+├── azure/
+│   ├── vnet/
+│   ├── aks/
+│   └── storage/
+└── gcp/
+    ├── vpc/
+    ├── gke/
+    └── cloud-sql/
+</code></pre>
+<h2>Standard Module Pattern</h2>
+<pre><code>module-name/
+├── main.tf          # Main resources
+├── variables.tf     # Input variables
+├── outputs.tf       # Output values
+├── versions.tf      # Provider versions
+├── README.md        # Documentation
+├── examples/        # Usage examples
+│   └── complete/
+│       ├── main.tf
+│       └── variables.tf
+└── tests/           # Terratest files
+    └── module_test.go
+</code></pre>
+<h2>AWS VPC Module Example</h2>
+<p><strong>main.tf:</strong></p>
+<pre><code class="language-hcl">resource &quot;aws_vpc&quot; &quot;main&quot; {
+  cidr_block           = var.cidr_block
+  enable_dns_hostnames = var.enable_dns_hostnames
+  enable_dns_support   = var.enable_dns_support
+
+  tags = merge(
+    {
+      Name = var.name
+    },
+    var.tags
+  )
+}
+
+resource &quot;aws_subnet&quot; &quot;private&quot; {
+  count             = length(var.private_subnet_cidrs)
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = var.private_subnet_cidrs[count.index]
+  availability_zone = var.availability_zones[count.index]
+
+  tags = merge(
+    {
+      Name = &quot;${var.name}-private-${count.index + 1}&quot;
+      Tier = &quot;private&quot;
+    },
+    var.tags
+  )
+}
+
+resource &quot;aws_internet_gateway&quot; &quot;main&quot; {
+  count  = var.create_internet_gateway ? 1 : 0
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    {
+      Name = &quot;${var.name}-igw&quot;
+    },
+    var.tags
+  )
+}
+</code></pre>
+<p><strong>variables.tf:</strong></p>
+<pre><code class="language-hcl">variable &quot;name&quot; {
+  description = &quot;Name of the VPC&quot;
+  type        = string
+}
+
+variable &quot;cidr_block&quot; {
+  description = &quot;CIDR block for VPC&quot;
+  type        = string
+  validation {
+    condition     = can(regex(&quot;^([0-9]{1,3}\\.){3}[0-9]{1,3}/[0-9]{1,2}$&quot;, var.cidr_block))
+    error_message = &quot;CIDR block must be valid IPv4 CIDR notation.&quot;
+  }
+}
+
+variable &quot;availability_zones&quot; {
+  description = &quot;List of availability zones&quot;
+  type        = list(string)
+}
+
+variable &quot;private_subnet_cidrs&quot; {
+  description = &quot;CIDR blocks for private subnets&quot;
+  type        = list(string)
+  default     = []
+}
+
+variable &quot;enable_dns_hostnames&quot; {
+  description = &quot;Enable DNS hostnames in VPC&quot;
+  type        = bool
+  default     = true
+}
+
+variable &quot;tags&quot; {
+  description = &quot;Additional tags&quot;
+  type        = map(string)
+  default     = {}
+}
+</code></pre>
+<p><strong>outputs.tf:</strong></p>
+<pre><code class="language-hcl">output &quot;vpc_id&quot; {
+  description = &quot;ID of the VPC&quot;
+  value       = aws_vpc.main.id
+}
+
+output &quot;private_subnet_ids&quot; {
+  description = &quot;IDs of private subnets&quot;
+  value       = aws_subnet.private[*].id
+}
+
+output &quot;vpc_cidr_block&quot; {
+  description = &quot;CIDR block of VPC&quot;
+  value       = aws_vpc.main.cidr_block
+}
+</code></pre>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Use semantic versioning</strong> for modules</li>
+<li><strong>Document all variables</strong> with descriptions</li>
+<li><strong>Provide examples</strong> in examples/ directory</li>
+<li><strong>Use validation blocks</strong> for input validation</li>
+<li><strong>Output important attributes</strong> for module composition</li>
+<li><strong>Pin provider versions</strong> in versions.tf</li>
+<li><strong>Use locals</strong> for computed values</li>
+<li><strong>Implement conditional resources</strong> with count/for_each</li>
+<li><strong>Test modules</strong> with Terratest</li>
+<li><strong>Tag all resources</strong> consistently</li>
+</ol>
+<h2>Module Composition</h2>
+<pre><code class="language-hcl">module &quot;vpc&quot; {
+  source = &quot;../../modules/aws/vpc&quot;
+
+  name               = &quot;production&quot;
+  cidr_block         = &quot;10.0.0.0/16&quot;
+  availability_zones = [&quot;us-west-2a&quot;, &quot;us-west-2b&quot;, &quot;us-west-2c&quot;]
+
+  private_subnet_cidrs = [
+    &quot;10.0.1.0/24&quot;,
+    &quot;10.0.2.0/24&quot;,
+    &quot;10.0.3.0/24&quot;
+  ]
+
+  tags = {
+    Environment = &quot;production&quot;
+    ManagedBy   = &quot;terraform&quot;
+  }
+}
+
+module &quot;rds&quot; {
+  source = &quot;../../modules/aws/rds&quot;
+
+  identifier     = &quot;production-db&quot;
+  engine         = &quot;postgres&quot;
+  engine_version = &quot;15.3&quot;
+  instance_class = &quot;db.t3.large&quot;
+
+  vpc_id     = module.vpc.vpc_id
+  subnet_ids = module.vpc.private_subnet_ids
+
+  tags = {
+    Environment = &quot;production&quot;
+  }
+}
+</code></pre>
+<h2>Reference Files</h2>
+<ul>
+<li><code>assets/vpc-module/</code> - Complete VPC module example</li>
+<li><code>assets/rds-module/</code> - RDS module example</li>
+<li><code>references/aws-modules.md</code> - AWS module patterns</li>
+<li><code>references/azure-modules.md</code> - Azure module patterns</li>
+<li><code>references/gcp-modules.md</code> - GCP module patterns</li>
+</ul>
+<h2>Testing</h2>
+<pre><code class="language-go">// tests/vpc_test.go
+package test
+
+import (
+    &quot;testing&quot;
+    &quot;github.com/gruntwork-io/terratest/modules/terraform&quot;
+    &quot;github.com/stretchr/testify/assert&quot;
+)
+
+func TestVPCModule(t *testing.T) {
+    terraformOptions := &amp;terraform.Options{
+        TerraformDir: &quot;../examples/complete&quot;,
+    }
+
+    defer terraform.Destroy(t, terraformOptions)
+    terraform.InitAndApply(t, terraformOptions)
+
+    vpcID := terraform.Output(t, terraformOptions, &quot;vpc_id&quot;)
+    assert.NotEmpty(t, vpcID)
+}
+</code></pre>
+<h2>Related Skills</h2>
+<ul>
+<li><code>multi-cloud-architecture</code> - For architectural decisions</li>
+<li><code>cost-optimization</code> - For cost-effective designs</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

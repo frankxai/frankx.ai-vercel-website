@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Generate Newsletter</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/generate-newsletter.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Generate Newsletter</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>generate-newsletter.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Generate newsletter content for a specific stream and send to Slack for approval
+thinking: true</h2>
+<h1>Generate Newsletter</h1>
+<p><strong>Purpose</strong>: Generate a newsletter issue for a specific stream, preview it, and send to Slack for approval before sending via Resend.</p>
+<h2>Input</h2>
+<p>The user provides:</p>
+<ol>
+<li><strong>Stream ID</strong> — one of: <code>creation-chronicles</code>, <code>ai-architect</code>, <code>music-lab</code>, <code>arcanea</code>, <code>investor</code>, <code>inner-circle</code></li>
+<li><strong>Date range</strong> (optional) — defaults to &quot;last 7 days&quot; of content</li>
+<li><strong>Custom topic</strong> (optional) — override auto-generated content with specific topic</li>
+</ol>
+<h2>Process</h2>
+<h3>Step 1: Load Stream Configuration</h3>
+<p>Read <code>data/newsletter-streams.json</code> to get the stream&#39;s:</p>
+<ul>
+<li>Name, tagline, voice guidelines</li>
+<li>Email template mapping</li>
+<li>Stream tags for content matching</li>
+</ul>
+<h3>Step 2: Pull Content from Registry</h3>
+<p>Read <code>data/content-index.json</code> and filter entries that:</p>
+<ul>
+<li>Have <code>streams</code> array containing the target stream ID</li>
+<li>Were published within the date range</li>
+<li>Sort by date (newest first), take top 5</li>
+</ul>
+<p>If no content found in date range, expand to last 14 days.</p>
+<h3>Step 3: Read Voice DNA</h3>
+<p>Read <code>docs/strategy/CONTENT_VOICE_DNA.md</code> for FrankX voice rules:</p>
+<ul>
+<li>No emojis, no guru language</li>
+<li>Fragment rhythm, cool authority</li>
+<li>Lead with results, specific numbers</li>
+<li>12,000+ songs (NOT 500)</li>
+</ul>
+<h3>Step 4: Generate Newsletter Content</h3>
+<p>Generate the newsletter issue with these sections:</p>
+<pre><code>SUBJECT: [Compelling subject line, max 60 chars]
+PREVIEW: [Preview text for email clients, max 90 chars]
+
+---
+
+HERO: [One-paragraph hook — the most interesting thing this week]
+
+MAIN STORY: [2-3 paragraphs on the top piece of content]
+
+QUICK HITS: [3-5 bullet points of other content, each with link]
+
+TOOL/TIP OF THE WEEK: [One actionable recommendation]
+
+CLOSING: [1-2 sentences, personal, forward-looking]
+</code></pre>
+<p>Adapt voice per stream:</p>
+<ul>
+<li><strong>creation-chronicles</strong>: Personal, behind-the-scenes, &quot;here&#39;s what happened&quot;</li>
+<li><strong>ai-architect</strong>: Technical, precise, show-don&#39;t-tell</li>
+<li><strong>music-lab</strong>: Creative, producer energy, &quot;listen to this&quot;</li>
+<li><strong>arcanea</strong>: Mythological, narrative, immersive worldbuilding</li>
+<li><strong>investor</strong>: Analytical, data-driven, actionable recommendations</li>
+<li><strong>inner-circle</strong>: Exclusive, direct, unfiltered</li>
+</ul>
+<h3>Step 5: Save Draft</h3>
+<p>Save the generated content to <code>data/newsletter-drafts/</code>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;newsletter-{stream}-{date}&quot;,
+  &quot;stream&quot;: &quot;ai-architect&quot;,
+  &quot;generatedAt&quot;: &quot;2026-02-20T00:00:00Z&quot;,
+  &quot;subject&quot;: &quot;...&quot;,
+  &quot;preview&quot;: &quot;...&quot;,
+  &quot;sections&quot;: {
+    &quot;hero&quot;: &quot;...&quot;,
+    &quot;mainStory&quot;: &quot;...&quot;,
+    &quot;quickHits&quot;: [&quot;...&quot;],
+    &quot;toolTip&quot;: &quot;...&quot;,
+    &quot;closing&quot;: &quot;...&quot;
+  },
+  &quot;sourceEntries&quot;: [&quot;blog-slug-1&quot;, &quot;blog-slug-2&quot;],
+  &quot;status&quot;: &quot;draft&quot;
+}
+</code></pre>
+<h3>Step 6: Send to Slack for Approval</h3>
+<p>Use the Slack MCP to send the draft to the <code>#content</code> channel (or DM Frank):</p>
+<p>Format the Slack message as:</p>
+<pre><code>📨 *Newsletter Draft: {Stream Name}*
+Subject: {subject}
+Preview: {preview}
+
+---
+
+{Full newsletter text, formatted for readability}
+
+---
+
+_Stream: {stream name} | {date range} | {N} source articles_
+
+React with ✅ to approve and send, or reply with edits.
+</code></pre>
+<p>Use <code>mcp__claude_ai_Slack__slack_send_message</code> to post the message.</p>
+<h3>Step 7: Wait for Approval</h3>
+<p>After posting to Slack, inform Frank:</p>
+<blockquote>
+<p>Newsletter draft sent to Slack. React with checkmark to approve, or reply with edits.
+When approved, run <code>/send-newsletter {stream} {date}</code> to send via Resend.</p>
+</blockquote>
+<h2>Examples</h2>
+<p><strong>Generate weekly Creation Chronicles:</strong></p>
+<pre><code>/generate-newsletter creation-chronicles
+</code></pre>
+<p><strong>Generate AI Architect Dispatch for specific date range:</strong></p>
+<pre><code>/generate-newsletter ai-architect 2026-02-10 to 2026-02-20
+</code></pre>
+<p><strong>Generate with custom topic:</strong></p>
+<pre><code>/generate-newsletter music-lab &quot;Suno v4.5 release breakdown&quot;
+</code></pre>
+<h2>Important Notes</h2>
+<ul>
+<li>NEVER send emails directly without Slack approval first</li>
+<li>Always read CONTENT_VOICE_DNA.md before generating content</li>
+<li>Use content-index.json as the source of truth for what to include</li>
+<li>Keep subject lines under 60 characters</li>
+<li>The preview text should complement, not repeat, the subject</li>
+<li>Each stream has a distinct voice — don&#39;t homogenize</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

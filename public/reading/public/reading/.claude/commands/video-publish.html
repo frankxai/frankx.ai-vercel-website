@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Video Publish</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/video-publish.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Video Publish</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>video-publish.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: Generate platform-optimized metadata and cross-promotion plan for video publishing
+thinking: true</h2>
+<h1>Video Publish</h1>
+<p><strong>Purpose</strong>: Generate platform-specific metadata for a video, optimized for each platform&#39;s algorithm and format requirements, with a cross-promotion schedule.</p>
+<h2>Input</h2>
+<p>The user provides:</p>
+<ol>
+<li><strong>Video title</strong> (required) — the title of the video to publish</li>
+<li><strong>Video URL</strong> (optional) — YouTube link if already uploaded</li>
+<li><strong>Source</strong> (optional) — <code>production</code> (from <code>/video-produce</code> output) or <code>vault</code> (from video-vault-100.json)</li>
+</ol>
+<p>If source is <code>production</code>, read the matching entry from <code>data/video-productions/</code>.
+If source is <code>vault</code>, read from <code>data/video-vault-100.json</code>.
+Otherwise, generate metadata from the title alone.</p>
+<h2>Process</h2>
+<h3>Step 1: Load Context</h3>
+<p>Read these files:</p>
+<ul>
+<li><code>docs/strategy/CONTENT_VOICE_DNA.md</code> — voice rules</li>
+<li><code>data/video-annotations.json</code> — check for existing clip annotations</li>
+<li><code>data/clip-queue.json</code> — check for queued clips from this video</li>
+</ul>
+<p>If a production package exists in <code>data/video-productions/</code>, load the full script, tags, and description.</p>
+<h3>Step 2: Generate Platform Metadata</h3>
+<p>Generate optimized metadata for each platform:</p>
+<h4>YouTube (Primary)</h4>
+<pre><code>=== YOUTUBE ===
+Title: {title} (max 100 chars, front-load keywords)
+Description: {full description with chapters, links, tags — max 5,000 chars}
+Tags: {30 tags from production package or generated fresh}
+Category: Science &amp; Technology | Education | Entertainment
+Thumbnail text: {2-4 words for overlay}
+Publish time: {recommended — typically Tuesday/Thursday 9am EST}
+End screen: {which video to link as &quot;next&quot;}
+Cards: {timestamps where cards should appear}
+Playlist: {which playlist to add to}
+</code></pre>
+<h4>TikTok</h4>
+<pre><code>=== TIKTOK ===
+Title: {max 150 chars — hook-first, curiosity-driven}
+Description: {max 2,200 chars — front-load the value proposition}
+Hashtags: {5-8 hashtags — mix trending + niche}
+  Examples: #ai #techcreator #coding #aiagents #frankx
+Sound: Original | {trending sound suggestion if applicable}
+Duration target: 30-60 seconds (from clip queue if available)
+Hook (first 2 sec): {text overlay or spoken line that stops the scroll}
+Publish time: {Tuesday/Thursday 11am-1pm or 7pm-9pm EST}
+</code></pre>
+<h4>Instagram Reels</h4>
+<pre><code>=== INSTAGRAM REELS ===
+Title: {max 2,200 chars total caption}
+Caption structure:
+  Line 1: {Hook — the scroll-stopper}
+  Line 2-3: {Context — what and why, 1-2 sentences}
+  Line 4: {CTA — &quot;Full breakdown on YouTube&quot; or &quot;Link in bio&quot;}
+  Line 5+: {Hashtags — 15-20, mix of sizes}
+Hashtags: {15-20, organized by reach}
+  Mega (1M+): #ai #tech #coding #entrepreneur
+  Mid (100K-1M): #aitools #techcreator #aiagents #buildwithAI
+  Niche (10K-100K): #acos #agenticai #frankxai #creatortools
+Cover image: {frame selection recommendation or custom thumbnail}
+Publish time: {Wednesday/Friday 12pm or 6pm EST}
+</code></pre>
+<h4>X/Twitter</h4>
+<pre><code>=== X/TWITTER ===
+Tweet 1 (standalone post):
+  {max 280 chars — the sharpest insight from the video, no link}
+
+Tweet 2 (with link):
+  {max 280 chars — brief context + YouTube link}
+
+Thread option (if video &gt; 10 min):
+  Tweet 1: {Hook — bold statement}
+  Tweet 2-4: {Key insights, one per tweet}
+  Tweet 5: {Link + one dry line}
+
+Publish time: {Tuesday-Thursday 8am-10am EST or 12pm-2pm EST}
+</code></pre>
+<h3>Step 3: Character Count Validation</h3>
+<p>Validate all outputs against platform limits:</p>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Field</th>
+<th>Limit</th>
+<th>Generated</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>YouTube</td>
+<td>Title</td>
+<td>100 chars</td>
+<td>{count}</td>
+</tr>
+<tr>
+<td>YouTube</td>
+<td>Description</td>
+<td>5,000 chars</td>
+<td>{count}</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>Title</td>
+<td>150 chars</td>
+<td>{count}</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>Description</td>
+<td>2,200 chars</td>
+<td>{count}</td>
+</tr>
+<tr>
+<td>Instagram</td>
+<td>Caption</td>
+<td>2,200 chars</td>
+<td>{count}</td>
+</tr>
+<tr>
+<td>X/Twitter</td>
+<td>Tweet</td>
+<td>280 chars</td>
+<td>{count}</td>
+</tr>
+</tbody></table>
+<p>Flag any field that exceeds the limit with a warning.</p>
+<h3>Step 4: Cross-Promotion Plan</h3>
+<p>Generate a 7-day distribution schedule:</p>
+<pre><code>=== CROSS-PROMOTION PLAN ===
+
+Day 0 (Publish Day — {recommended day}):
+  09:00 EST — YouTube: Full video goes live
+  11:00 EST — X/Twitter: Standalone insight tweet (no link)
+  12:00 EST — X/Twitter: Link tweet with brief context
+  13:00 EST — Instagram Story: Behind-the-scenes frame
+
+Day 1:
+  11:00 EST — TikTok: Clip 1 (highest viral score from clip queue)
+  18:00 EST — Instagram Reel: Clip 1 (same clip, IG-optimized caption)
+
+Day 2:
+  09:00 EST — X/Twitter: Thread (key insights from video)
+  12:00 EST — LinkedIn: Professional angle post (if applicable)
+
+Day 3:
+  11:00 EST — TikTok: Clip 2 (second highest viral score)
+  18:00 EST — Instagram Reel: Clip 2
+
+Day 5:
+  12:00 EST — X/Twitter: Quote graphic or key takeaway
+  14:00 EST — Newsletter mention (next scheduled stream)
+
+Day 7:
+  11:00 EST — TikTok: Clip 3 or remix (if available)
+  {Evaluate performance — double down on what worked}
+</code></pre>
+<h3>Step 5: Generate Clip Cross-References</h3>
+<p>If <code>data/clip-queue.json</code> has clips for this video, map them to the schedule:</p>
+<pre><code>=== CLIP ASSIGNMENTS ===
+
+Clip 1: &quot;{title}&quot; — Score {N}/10 — Day 1 TikTok + Day 1 IG Reel
+Clip 2: &quot;{title}&quot; — Score {N}/10 — Day 3 TikTok + Day 3 IG Reel
+Clip 3: &quot;{title}&quot; — Score {N}/10 — Day 7 TikTok (if score &gt;= 7)
+</code></pre>
+<h3>Step 6: Save Publish Package</h3>
+<p>Save to <code>data/video-publish/</code>:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;publish-{slug}-{date}&quot;,
+  &quot;videoTitle&quot;: &quot;...&quot;,
+  &quot;videoUrl&quot;: &quot;...&quot;,
+  &quot;createdAt&quot;: &quot;ISO date&quot;,
+  &quot;status&quot;: &quot;draft&quot;,
+  &quot;platforms&quot;: {
+    &quot;youtube&quot;: { &quot;title&quot;: &quot;...&quot;, &quot;description&quot;: &quot;...&quot;, &quot;tags&quot;: [...], &quot;publishTime&quot;: &quot;...&quot; },
+    &quot;tiktok&quot;: { &quot;title&quot;: &quot;...&quot;, &quot;description&quot;: &quot;...&quot;, &quot;hashtags&quot;: [...], &quot;publishTime&quot;: &quot;...&quot; },
+    &quot;instagram&quot;: { &quot;caption&quot;: &quot;...&quot;, &quot;hashtags&quot;: [...], &quot;publishTime&quot;: &quot;...&quot; },
+    &quot;twitter&quot;: { &quot;tweet&quot;: &quot;...&quot;, &quot;thread&quot;: [...], &quot;publishTime&quot;: &quot;...&quot; }
+  },
+  &quot;crossPromotion&quot;: {
+    &quot;schedule&quot;: [
+      { &quot;day&quot;: 0, &quot;time&quot;: &quot;09:00&quot;, &quot;platform&quot;: &quot;youtube&quot;, &quot;action&quot;: &quot;Full video publish&quot; },
+      { &quot;day&quot;: 0, &quot;time&quot;: &quot;11:00&quot;, &quot;platform&quot;: &quot;twitter&quot;, &quot;action&quot;: &quot;Standalone tweet&quot; }
+    ]
+  },
+  &quot;clips&quot;: [&quot;clip-id-1&quot;, &quot;clip-id-2&quot;]
+}
+</code></pre>
+<h3>Step 7: Terminal Output</h3>
+<p>Display the complete publish package formatted for copy-paste. For each platform, output the ready-to-use text inside a code block so Frank can copy it directly.</p>
+<pre><code>=== PUBLISH PACKAGE: {Title} ===
+
+Platforms: YouTube, TikTok, Instagram Reels, X/Twitter
+Clips mapped: {N}
+Schedule: 7-day cross-promotion
+
+Character validation: {PASS/FAIL per platform}
+
+Ready for copy-paste below.
+</code></pre>
+<h2>Voice Rules (CRITICAL)</h2>
+<p>Same rules as <code>/video-produce</code>. Read <code>docs/strategy/CONTENT_VOICE_DNA.md</code>.</p>
+<p>Adapt voice per platform:</p>
+<ul>
+<li><strong>YouTube</strong>: Full technical depth. No dumbing down.</li>
+<li><strong>TikTok</strong>: Punchy, visual, hook-first. Still no emojis.</li>
+<li><strong>Instagram</strong>: Slightly warmer but still data-backed. No guru energy.</li>
+<li><strong>X/Twitter</strong>: Sharpest version. Every word earns its place.</li>
+</ul>
+<p>Across all platforms:</p>
+<ul>
+<li>No &quot;smash that like button&quot;</li>
+<li>No &quot;follow for more&quot;</li>
+<li>No emojis</li>
+<li>No &quot;game-changer&quot; / &quot;revolutionary&quot; / &quot;unlock your potential&quot;</li>
+<li>Lead with results, specific numbers, or a contrarian take</li>
+</ul>
+<h2>Examples</h2>
+<p><strong>Publish metadata for a new video:</strong></p>
+<pre><code>/video-publish &quot;Building multi-agent systems with ACOS v11&quot;
+</code></pre>
+<p><strong>Publish with existing YouTube URL:</strong></p>
+<pre><code>/video-publish &quot;ACOS v11 deep dive&quot; https://youtube.com/watch?v=abc123
+</code></pre>
+<p><strong>Publish from production package:</strong></p>
+<pre><code>/video-publish &quot;RAG pipeline tutorial&quot; production
+</code></pre>
+<p><strong>Generate the publish package now.</strong></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

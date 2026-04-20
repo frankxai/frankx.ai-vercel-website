@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>XML Task Specification</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/hub-generator/references/task-specification.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">XML Task Specification</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2Fhub-generator">hub-generator</a> / <a href="index.html#agentic-creator-os%2Fhub-generator%2Freferences">references</a> / <span>task-specification.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>XML Task Specification</h1>
+<p>Every task MUST have verification built in. Vague tasks are banned.</p>
+<hr>
+<h2>The Problem</h2>
+<p><strong>Bad task</strong>:</p>
+<pre><code class="language-xml">&lt;task&gt;
+  &lt;name&gt;Add authentication&lt;/name&gt;
+  &lt;action&gt;Implement auth&lt;/action&gt;
+&lt;/task&gt;
+</code></pre>
+<p>This fails because:</p>
+<ul>
+<li>No files specified</li>
+<li>No verification criteria</li>
+<li>No definition of &quot;done&quot;</li>
+<li>Claude will guess (and probably be wrong)</li>
+</ul>
+<hr>
+<h2>The Solution</h2>
+<p><strong>Good task</strong>:</p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task N: Create login endpoint with JWT&lt;/name&gt;
+  &lt;files&gt;src/app/api/auth/login/route.ts&lt;/files&gt;
+  &lt;action&gt;
+    POST endpoint accepting {email, password}.
+    Query User by email, compare password with bcrypt.
+    On match, create JWT with jose library, set as httpOnly cookie.
+    Return 200 with user data (no password).
+    On mismatch, return 401.
+    Do NOT use any other auth library.
+  &lt;/action&gt;
+  &lt;verify&gt;curl -X POST localhost:3000/api/auth/login returns 200 with Set-Cookie header&lt;/verify&gt;
+  &lt;done&gt;Valid credentials → 200 + cookie. Invalid → 401.&lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<hr>
+<h2>Task Structure</h2>
+<pre><code class="language-xml">&lt;task type=&quot;[type]&quot;&gt;
+  &lt;name&gt;Task N: Action-oriented name&lt;/name&gt;
+  &lt;files&gt;exact/paths/to/files.ts, other/file.ts&lt;/files&gt;
+  &lt;action&gt;
+    What to do.
+    What to avoid and WHY.
+    Specific implementation approach.
+  &lt;/action&gt;
+  &lt;verify&gt;
+    Exact command or check to prove completion.
+    Must be executable, not vague.
+  &lt;/verify&gt;
+  &lt;done&gt;
+    Measurable acceptance criteria.
+    Binary: either met or not.
+  &lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<hr>
+<h2>Task Types</h2>
+<h3><code>type=&quot;auto&quot;</code> — Autonomous Execution</h3>
+<p>Claude executes without stopping. Use for:</p>
+<ul>
+<li>Code implementation</li>
+<li>Content creation</li>
+<li>File operations</li>
+<li>Standard workflows</li>
+</ul>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task 1: Create blog post draft&lt;/name&gt;
+  &lt;files&gt;content/blog/new-post.mdx&lt;/files&gt;
+  &lt;action&gt;Write 1500-word blog post on AI music creation&lt;/action&gt;
+  &lt;verify&gt;wc -w content/blog/new-post.mdx shows ~1500 words&lt;/verify&gt;
+  &lt;done&gt;Draft complete, frontmatter valid, images referenced&lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<h3><code>type=&quot;checkpoint:human-verify&quot;</code> — User Must Verify</h3>
+<p>Use for anything visual or subjective:</p>
+<ul>
+<li>UI changes</li>
+<li>Design decisions</li>
+<li>User experience</li>
+<li>Content tone</li>
+</ul>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-verify&quot; gate=&quot;blocking&quot;&gt;
+  &lt;what-built&gt;Login page with email/password form&lt;/what-built&gt;
+  &lt;how-to-verify&gt;
+    1. Go to /login
+    2. Check form renders correctly
+    3. Test with invalid input (error messages?)
+    4. Check mobile responsiveness
+  &lt;/how-to-verify&gt;
+  &lt;resume-signal&gt;Say &quot;verified&quot; to continue or describe issues&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3><code>type=&quot;checkpoint:decision&quot;</code> — User Must Choose</h3>
+<p>Use when multiple valid approaches exist:</p>
+<ul>
+<li>Architecture decisions</li>
+<li>Feature scope</li>
+<li>Tool selection</li>
+<li>Tradeoffs</li>
+</ul>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:decision&quot; gate=&quot;blocking&quot;&gt;
+  &lt;decision&gt;Choose authentication strategy&lt;/decision&gt;
+  &lt;context&gt;Need to add auth to the app. Budget and timeline constrain options.&lt;/context&gt;
+  &lt;options&gt;
+    &lt;option id=&quot;jwt&quot;&gt;
+      &lt;name&gt;JWT with httpOnly cookies&lt;/name&gt;
+      &lt;pros&gt;Simple, stateless, works well with API&lt;/pros&gt;
+      &lt;cons&gt;Token refresh complexity, cookie security setup&lt;/cons&gt;
+    &lt;/option&gt;
+    &lt;option id=&quot;session&quot;&gt;
+      &lt;name&gt;Server-side sessions&lt;/name&gt;
+      &lt;pros&gt;Simple revocation, familiar pattern&lt;/pros&gt;
+      &lt;cons&gt;Requires session store, less scalable&lt;/cons&gt;
+    &lt;/option&gt;
+    &lt;option id=&quot;oauth&quot;&gt;
+      &lt;name&gt;OAuth providers only&lt;/name&gt;
+      &lt;pros&gt;No password management, trusted providers&lt;/pros&gt;
+      &lt;cons&gt;Dependency on third parties, less control&lt;/cons&gt;
+    &lt;/option&gt;
+  &lt;/options&gt;
+  &lt;resume-signal&gt;Reply with option ID (jwt/session/oauth)&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<h3><code>type=&quot;checkpoint:human-action&quot;</code> — Manual Step Required</h3>
+<p>Use for things Claude can&#39;t do:</p>
+<ul>
+<li>Login to external services</li>
+<li>2FA verification</li>
+<li>Physical actions</li>
+<li>Account creation</li>
+</ul>
+<pre><code class="language-xml">&lt;task type=&quot;checkpoint:human-action&quot; gate=&quot;blocking&quot;&gt;
+  &lt;requires&gt;Stripe API keys&lt;/requires&gt;
+  &lt;instructions&gt;
+    1. Log into Stripe Dashboard
+    2. Go to Developers → API Keys
+    3. Copy the Secret Key (sk_live_xxx)
+    4. Add to .env.local as STRIPE_SECRET_KEY
+  &lt;/instructions&gt;
+  &lt;resume-signal&gt;Say &quot;done&quot; when keys are added to .env.local&lt;/resume-signal&gt;
+&lt;/task&gt;
+</code></pre>
+<hr>
+<h2>Elements Explained</h2>
+<h3><code>&lt;name&gt;</code></h3>
+<p>Action-oriented, numbered. Start with verb.</p>
+<ul>
+<li>Good: &quot;Task 3: Implement password reset flow&quot;</li>
+<li>Bad: &quot;Password reset&quot; or &quot;Task about resetting&quot;</li>
+</ul>
+<h3><code>&lt;files&gt;</code></h3>
+<p>Comma-separated list of exact file paths.</p>
+<ul>
+<li>Good: <code>src/lib/auth.ts, src/app/api/auth/route.ts</code></li>
+<li>Bad: <code>auth files</code> or <code>somewhere in lib</code></li>
+</ul>
+<h3><code>&lt;action&gt;</code></h3>
+<p>Three parts:</p>
+<ol>
+<li>What to do (positive instruction)</li>
+<li>What to avoid (anti-patterns)</li>
+<li>Why (context for decisions)</li>
+</ol>
+<h3><code>&lt;verify&gt;</code></h3>
+<p>Executable check. Must be:</p>
+<ul>
+<li>Runnable command OR</li>
+<li>Specific manual check steps</li>
+</ul>
+<p><strong>Good verifications:</strong></p>
+<pre><code class="language-xml">&lt;verify&gt;npm run test:auth passes&lt;/verify&gt;
+&lt;verify&gt;curl localhost:3000/api/health returns {&quot;status&quot;:&quot;ok&quot;}&lt;/verify&gt;
+&lt;verify&gt;File exists at public/images/hero.jpg&lt;/verify&gt;
+</code></pre>
+<p><strong>Bad verifications:</strong></p>
+<pre><code class="language-xml">&lt;verify&gt;It works&lt;/verify&gt;
+&lt;verify&gt;Check if it&#39;s good&lt;/verify&gt;
+&lt;verify&gt;Should be fine&lt;/verify&gt;
+</code></pre>
+<h3><code>&lt;done&gt;</code></h3>
+<p>Binary acceptance criteria. Either true or false.</p>
+<p><strong>Good:</strong></p>
+<pre><code class="language-xml">&lt;done&gt;All tests pass. Login returns 200 with valid creds, 401 otherwise.&lt;/done&gt;
+</code></pre>
+<p><strong>Bad:</strong></p>
+<pre><code class="language-xml">&lt;done&gt;Auth is working well&lt;/done&gt;
+</code></pre>
+<hr>
+<h2>For Content Creators</h2>
+<p>Task specs work for content too:</p>
+<pre><code class="language-xml">&lt;task type=&quot;auto&quot;&gt;
+  &lt;name&gt;Task 1: Write newsletter intro&lt;/name&gt;
+  &lt;files&gt;content/newsletter/issue-42.md&lt;/files&gt;
+  &lt;action&gt;
+    Write 150-word intro for this week&#39;s newsletter.
+    Hook with a question about AI music.
+    Tease the main content.
+    Match voice in VOICE.md (conversational, no jargon).
+  &lt;/action&gt;
+  &lt;verify&gt;Word count between 140-160. First sentence is a question.&lt;/verify&gt;
+  &lt;done&gt;Intro written, voice-matched, ready for main content.&lt;/done&gt;
+&lt;/task&gt;
+</code></pre>
+<hr>
+<h2>Task Size Guidelines</h2>
+<p>From GSD&#39;s context engineering:</p>
+<ul>
+<li><strong>2-3 tasks per plan maximum</strong></li>
+<li><strong>Split triggers</strong>:<ul>
+<li>More than 3 tasks → multiple plans</li>
+<li>Multiple subsystems → separate plans</li>
+<li>More than 5 files per task → break down</li>
+</ul>
+</li>
+</ul>
+<p>Keep tasks focused. A task that tries to do too much will do nothing well.</p>
+<hr>
+<p><em>Adapted from GSD&#39;s task specification pattern</em>
+<em>Creator Hub Generator - Part of Agentic Creator OS v4</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

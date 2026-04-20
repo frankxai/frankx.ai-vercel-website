@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Pull Request</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/.github/PULL_REQUEST_TEMPLATE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Pull Request</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2F.github">.github</a> / <span>PULL_REQUEST_TEMPLATE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Pull Request</h1>
+<p>If you want to submit a resource for recommendation for Awesome Claude Code, please use the <a href="https://github.com/hesreallyhim/awesome-claude-code/issues/new?template=recommen-resource.yml">resource recommendation issue form</a> and don&#39;t open a PR.</p>
+<p>It&#39;s fairly uncommon for anyone to open a PR to this repo, even the maintainer. However, if you&#39;ve noticed a technical problem/bug or a documentation problem, then this may be appropriate. Otherwise, in general, only the bots get to make PRs.</p>
+<h2>Type of Contribution</h2>
+<!-- Select ONE by marking with an [x] -->
+
+<ul>
+<li><input disabled="" type="checkbox"> <strong>New Resource</strong> - Adding a new resource to the list [ONLY THE BOT MAY DO THIS]</li>
+<li><input disabled="" type="checkbox"> <strong>Update Resource</strong> - Updating existing resource information (e.g., broken link, license info)</li>
+<li><input disabled="" type="checkbox"> <strong>Repository Improvement</strong> - Improving the repository itself (not adding resources) [Use <a href="https://github.com/hesreallyhim/awesome-claude-code/issues/new?template=repository-enhancement.yml">this issue template</a> to suggest general improvements]</li>
+</ul>
+<hr>
+<h2>For New Resources</h2>
+<h3>Resource Information</h3>
+<ul>
+<li><strong>Display Name</strong>: <!-- e.g., "Claude Task Manager" or "/commit" --></li>
+<li><strong>Category</strong>: <!-- Select from: Workflows & Knowledge Guides, Tooling, Hooks, Slash-Commands, CLAUDE.md Files, Official Documentation --></li>
+<li><strong>Sub-Category</strong> (if applicable): <!-- e.g., "Version Control & Git", "Code Analysis & Testing" --></li>
+<li><strong>Primary Link</strong>: <!-- The main URL for the resource --></li>
+<li><strong>Author Name</strong>: <!-- Creator/maintainer name --></li>
+<li><strong>Author Link</strong>: <!-- Link to author's profile --></li>
+<li><strong>License</strong> (if known): <!-- e.g., MIT, Apache-2.0, GPL-3.0 --></li>
+</ul>
+<h3>Description</h3>
+<!-- 1-2 sentences describing what the resource does and why it's valuable to Claude Code users -->
+
+<h3>Automated Notification</h3>
+<!-- Check if applicable -->
+<ul>
+<li><input disabled="" type="checkbox"> This is a GitHub-hosted resource and will receive an automatic notification issue when merged</li>
+</ul>
+<hr>
+<h2>For Resource Updates</h2>
+<h3>What Changed?</h3>
+<!-- Describe what you're updating -->
+
+<ul>
+<li><strong>Resource Name</strong>:</li>
+<li><strong>Change Type</strong>: <!-- e.g., Fix broken link, Update license, Update description --></li>
+<li><strong>Details</strong>:</li>
+</ul>
+<hr>
+<h2>For Repository Improvements</h2>
+<h3>Description of Changes</h3>
+<!-- Describe what you're improving and why -->
+
+<h3>Checklist for Repository Changes</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Changes follow existing code style</li>
+<li><input disabled="" type="checkbox"> Updated relevant documentation</li>
+<li><input disabled="" type="checkbox"> Tested changes locally</li>
+<li><input disabled="" type="checkbox"> Pre-commit hooks pass</li>
+</ul>
+<hr>
+<h2>Additional Notes</h2>
+<!-- Any additional context that would help reviewers -->
+
+<h2>Questions?</h2>
+<ul>
+<li>See <a href="../docs/CONTRIBUTING.md">CONTRIBUTING.md</a> for detailed contribution guidelines</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

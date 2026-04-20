@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Module 1: Foundations</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/ai-coding-agents/01-foundations/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Module 1: Foundations</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="../index.html#_archive%2Fworkshops-repo%2Fai-coding-agents">ai-coding-agents</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fai-coding-agents%2F01-foundations">01-foundations</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Module 1: Foundations</h1>
+<p><strong>Time</strong>: 1 hour | <strong>Difficulty</strong>: Beginner to Intermediate</p>
+<hr>
+<h2>Learning Objectives</h2>
+<p>By completing this module, you will:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Understand how AI coding agents work internally</li>
+<li><input disabled="" type="checkbox"> Know the difference between LLMs, agents, and tools</li>
+<li><input disabled="" type="checkbox"> Understand context windows and their implications</li>
+<li><input disabled="" type="checkbox"> Recognize different agent architectures</li>
+<li><input disabled="" type="checkbox"> Understand the MCP protocol and why it matters</li>
+</ul>
+<hr>
+<h2>What is an AI Coding Agent?</h2>
+<p>An AI coding agent is more than a chatbot that writes code. It&#39;s an autonomous system that can:</p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    AI CODING AGENT                           │
+├─────────────────────────────────────────────────────────────┤
+│                                                              │
+│   ┌──────────┐    ┌──────────┐    ┌──────────┐             │
+│   │ PERCEIVE │───&gt;│  REASON  │───&gt;│   ACT    │             │
+│   │          │    │          │    │          │             │
+│   │ Read code│    │ Understand│   │ Write    │             │
+│   │ See files│    │ Plan     │    │ Execute  │             │
+│   │ Get input│    │ Decide   │    │ Modify   │             │
+│   └──────────┘    └──────────┘    └──────────┘             │
+│        │                                │                   │
+│        └────────────────────────────────┘                   │
+│                    FEEDBACK LOOP                            │
+│                                                              │
+└─────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>Key Capabilities</h3>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>What It Means</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>File Operations</strong></td>
+<td>Read, write, edit files</td>
+<td>Modify source code</td>
+</tr>
+<tr>
+<td><strong>Command Execution</strong></td>
+<td>Run terminal commands</td>
+<td>Execute tests, build</td>
+</tr>
+<tr>
+<td><strong>Code Understanding</strong></td>
+<td>Parse and analyze code</td>
+<td>Find bugs, suggest fixes</td>
+</tr>
+<tr>
+<td><strong>Planning</strong></td>
+<td>Break down complex tasks</td>
+<td>Multi-step refactoring</td>
+</tr>
+<tr>
+<td><strong>Tool Use</strong></td>
+<td>Invoke external tools</td>
+<td>Search, web fetch, APIs</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>The Anatomy of an Agent</h2>
+<h3>1. The LLM Core</h3>
+<p>At the heart of every coding agent is a Large Language Model:</p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                         LLM                              │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │                 CAPABILITIES                     │   │
+│  │                                                  │   │
+│  │  • Code generation (all languages)              │   │
+│  │  • Natural language understanding               │   │
+│  │  • Pattern recognition                          │   │
+│  │  • Reasoning and planning                       │   │
+│  │  • Error analysis                               │   │
+│  └─────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │                 LIMITATIONS                      │   │
+│  │                                                  │   │
+│  │  • No persistent memory (within context)        │   │
+│  │  • Knowledge cutoff date                        │   │
+│  │  • Can hallucinate                              │   │
+│  │  • Limited context window                       │   │
+│  └─────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>2. The Tool System</h3>
+<p>Tools extend what the LLM can do:</p>
+<pre><code class="language-typescript">// Example: Tool definition structure
+interface Tool {
+  name: string;           // &quot;read_file&quot;
+  description: string;    // What the tool does
+  parameters: Schema;     // Input parameters
+  execute: Function;      // Actual implementation
+}
+
+// The agent decides when to use tools
+// LLM: &quot;I need to read main.ts to understand the code&quot;
+// → Calls: read_file({ path: &quot;main.ts&quot; })
+// → Gets file contents
+// → Continues reasoning
+</code></pre>
+<h3>3. The Context Window</h3>
+<p>The context window is the agent&#39;s &quot;working memory&quot;:</p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                   CONTEXT WINDOW                         │
+│                                                          │
+│  ┌────────────────────────────────────────────────┐    │
+│  │ System Prompt                           [1K]   │    │
+│  ├────────────────────────────────────────────────┤    │
+│  │ Project Context (CLAUDE.md, etc.)      [5K]   │    │
+│  ├────────────────────────────────────────────────┤    │
+│  │ Conversation History                   [50K]  │    │
+│  ├────────────────────────────────────────────────┤    │
+│  │ Current Task + Code Context           [100K]  │    │
+│  ├────────────────────────────────────────────────┤    │
+│  │ Available for Generation               [44K]  │    │
+│  └────────────────────────────────────────────────┘    │
+│                                                          │
+│  Total: 200K tokens (Claude) / 128K tokens (GPT-4)     │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<p><strong>Why Context Matters</strong>:</p>
+<ul>
+<li>More context = Better understanding of your codebase</li>
+<li>But: More context = More expensive, potentially slower</li>
+<li>Best practice: Provide relevant context, not everything</li>
+</ul>
+<hr>
+<h2>Agent Architectures</h2>
+<h3>ReAct (Reasoning + Acting)</h3>
+<p>Most coding agents use the ReAct pattern:</p>
+<pre><code>User: &quot;Fix the bug in the login function&quot;
+
+Agent:
+  THOUGHT: I need to find the login function first
+  ACTION: Search for &quot;login&quot; in the codebase
+  OBSERVATION: Found login() in src/auth.ts
+
+  THOUGHT: Now I&#39;ll read the function to understand the bug
+  ACTION: Read src/auth.ts
+  OBSERVATION: [file contents]
+
+  THOUGHT: I see the issue - missing null check on line 45
+  ACTION: Edit src/auth.ts to add null check
+  OBSERVATION: File updated successfully
+
+  THOUGHT: I should verify the fix works
+  ACTION: Run tests
+  OBSERVATION: All tests passing
+
+  RESPONSE: Fixed the bug by adding a null check...
+</code></pre>
+<h3>Tool Use Pattern</h3>
+<pre><code>┌──────────┐    ┌──────────┐    ┌──────────┐
+│   LLM    │───&gt;│  Tool    │───&gt;│  Result  │
+│ decides  │    │ executes │    │ returned │
+│  what    │    │  action  │    │ to LLM   │
+└──────────┘    └──────────┘    └──────────┘
+      │                              │
+      └──────────────────────────────┘
+              Continues reasoning
+</code></pre>
+<h3>Planning Pattern</h3>
+<p>For complex tasks, agents plan first:</p>
+<pre><code>User: &quot;Refactor the authentication system to use JWT&quot;
+
+Agent Planning:
+1. [ ] Analyze current auth implementation
+2. [ ] Research JWT best practices
+3. [ ] Design new token structure
+4. [ ] Update user service
+5. [ ] Update middleware
+6. [ ] Update API routes
+7. [ ] Write migration script
+8. [ ] Update tests
+9. [ ] Document changes
+
+Then executes each step...
+</code></pre>
+<hr>
+<h2>The MCP Protocol</h2>
+<h3>What is MCP?</h3>
+<p>Model Context Protocol (MCP) is an open standard for connecting AI models to data sources:</p>
+<pre><code>┌─────────────────────────────────────────────────────────┐
+│                    MCP ARCHITECTURE                      │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌────────────┐         ┌────────────┐                  │
+│  │   Claude   │◄───────►│ MCP Server │                  │
+│  │   (Host)   │  MCP    │            │                  │
+│  └────────────┘ Protocol└────────────┘                  │
+│                              │                           │
+│                              ▼                           │
+│                    ┌──────────────────┐                 │
+│                    │  Data Sources    │                 │
+│                    │  • Databases     │                 │
+│                    │  • APIs          │                 │
+│                    │  • File systems  │                 │
+│                    │  • Services      │                 │
+│                    └──────────────────┘                 │
+│                                                          │
+└─────────────────────────────────────────────────────────┘
+</code></pre>
+<h3>MCP Components</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Resources</strong></td>
+<td>Expose data to the model</td>
+<td>Database schemas, files</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>Let model take actions</td>
+<td>Query database, send email</td>
+</tr>
+<tr>
+<td><strong>Prompts</strong></td>
+<td>Reusable prompt templates</td>
+<td>Code review prompt</td>
+</tr>
+</tbody></table>
+<h3>Why MCP Matters</h3>
+<p>Before MCP:</p>
+<pre><code>App 1 ──┐
+App 2 ──┼── Custom integrations for each ──┬── Data Source 1
+App 3 ──┤                                   ├── Data Source 2
+App 4 ──┘                                   └── Data Source 3
+</code></pre>
+<p>After MCP:</p>
+<pre><code>App 1 ──┐                              ┌── Data Source 1
+App 2 ──┼── Standard MCP Protocol ────┼── Data Source 2
+App 3 ──┤                              └── Data Source 3
+App 4 ──┘
+</code></pre>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>Write once, use everywhere</li>
+<li>Security built into protocol</li>
+<li>Growing ecosystem of servers</li>
+<li>Enterprise-ready authentication</li>
+</ul>
+<hr>
+<h2>Practical Implications</h2>
+<h3>Choosing the Right Model</h3>
+<table>
+<thead>
+<tr>
+<th>Use Case</th>
+<th>Recommended Model</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Daily coding</td>
+<td>Claude 3.5 Sonnet</td>
+<td>Best balance of speed/quality/cost</td>
+</tr>
+<tr>
+<td>Complex architecture</td>
+<td>Claude Opus 4</td>
+<td>Superior reasoning</td>
+</tr>
+<tr>
+<td>Quick tasks</td>
+<td>Claude Haiku</td>
+<td>Fast and cheap</td>
+</tr>
+<tr>
+<td>Multi-model</td>
+<td>Mix</td>
+<td>Use right tool for job</td>
+</tr>
+</tbody></table>
+<h3>Context Management Strategies</h3>
+<ol>
+<li><p><strong>Project Context Files</strong> (CLAUDE.md)</p>
+<ul>
+<li>Put essential info at the top</li>
+<li>Keep concise but complete</li>
+</ul>
+</li>
+<li><p><strong>Selective File Reading</strong></p>
+<ul>
+<li>Don&#39;t read everything</li>
+<li>Let agent search first</li>
+</ul>
+</li>
+<li><p><strong>Summarization</strong></p>
+<ul>
+<li>For long conversations</li>
+<li>Auto-compression helps</li>
+</ul>
+</li>
+</ol>
+<h3>When Agents Struggle</h3>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Hallucinating APIs</td>
+<td>Provide documentation</td>
+</tr>
+<tr>
+<td>Wrong file structure</td>
+<td>Clear CLAUDE.md</td>
+</tr>
+<tr>
+<td>Infinite loops</td>
+<td>Better prompts, limits</td>
+</tr>
+<tr>
+<td>Security issues</td>
+<td>Review before executing</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Assessment</h2>
+<h3>Quick Quiz</h3>
+<ol>
+<li>What&#39;s the main limitation of LLM context windows?</li>
+<li>Name two components of the MCP protocol</li>
+<li>What pattern do most coding agents use?</li>
+<li>Why is MCP important for enterprise adoption?</li>
+</ol>
+<h3>Practical Exercise</h3>
+<p>Write a description of how you&#39;d explain AI coding agents to a colleague who&#39;s never used one. Include:</p>
+<ul>
+<li>What it can do</li>
+<li>What it can&#39;t do</li>
+<li>When to use it vs. manual coding</li>
+</ul>
+<hr>
+<h2>Key Takeaways</h2>
+<pre><code>FOUNDATIONS SUMMARY
+═══════════════════
+
+1. AGENTS = LLM + TOOLS + CONTEXT
+   └─ More than just a chatbot
+
+2. CONTEXT WINDOW is finite
+   └─ Manage it wisely
+
+3. ReAct PATTERN: Think → Act → Observe
+   └─ How agents solve problems
+
+4. MCP PROTOCOL standardizes AI-to-data
+   └─ The future of integration
+
+5. CHOOSE MODELS for the task
+   └─ Not all tasks need the biggest model
+</code></pre>
+<hr>
+<h2>Next Steps</h2>
+<p>Ready to set up your first coding agent?</p>
+<p><strong><a href="../02-setup-guides/">Module 2: Setup Guides →</a></strong></p>
+<hr>
+<p><em>Estimated time: 1 hour | Next: Setup Guides</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -118,17 +118,17 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            <motion.h1
-              {...fadeIn}
-              transition={{ ...transition, delay: 0.1 }}
-              className="mb-8 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
-            >
-              The Architect.{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                The Creator.
-              </span>{' '}
-              The Explorer.
-            </motion.h1>
+                <motion.h1
+                  {...fadeIn}
+                  transition={{ ...transition, delay: 0.1 }}
+                  className="mb-8 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl"
+                >
+                  The Architect.{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
+                    The Creator.
+                  </span>{' '}
+                  The Explorer.
+                </motion.h1>
 
             <motion.div
               {...fadeIn}

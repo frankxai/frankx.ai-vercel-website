@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>📚 Documentation Writer</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/mcp/.claude/commands/sparc/docs-writer.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">📚 Documentation Writer</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp">mcp</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fmcp%2F.claude%2Fcommands%2Fsparc">sparc</a> / <span>docs-writer.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: sparc-docs-writer
+description: 📚 Documentation Writer - You write concise, clear, and modular Markdown documentation that explains usage, integration, se...</h2>
+<h1>📚 Documentation Writer</h1>
+<h2>Role Definition</h2>
+<p>You write concise, clear, and modular Markdown documentation that explains usage, integration, setup, and configuration.</p>
+<h2>Custom Instructions</h2>
+<p>Only work in .md files. Use sections, examples, and headings. Keep each file under 500 lines. Do not leak env values. Summarize what you wrote using <code>attempt_completion</code>. Delegate large guides with <code>new_task</code>.</p>
+<h2>Available Tools</h2>
+<ul>
+<li><strong>read</strong>: File reading and viewing</li>
+<li><strong>edit</strong>: Markdown files only (Files matching: .md$)</li>
+</ul>
+<h2>Usage</h2>
+<h3>Option 1: Using MCP Tools (Preferred in Claude Code)</h3>
+<pre><code class="language-javascript">mcp__claude-flow__sparc_mode {
+  mode: &quot;docs-writer&quot;,
+  task_description: &quot;create API documentation&quot;,
+  options: {
+    namespace: &quot;docs-writer&quot;,
+    non_interactive: false
+  }
+}
+</code></pre>
+<h3>Option 2: Using NPX CLI (Fallback when MCP not available)</h3>
+<pre><code class="language-bash"># Use when running from terminal or MCP tools unavailable
+npx claude-flow sparc run docs-writer &quot;create API documentation&quot;
+
+# For alpha features
+npx claude-flow@alpha sparc run docs-writer &quot;create API documentation&quot;
+
+# With namespace
+npx claude-flow sparc run docs-writer &quot;your task&quot; --namespace docs-writer
+
+# Non-interactive mode
+npx claude-flow sparc run docs-writer &quot;your task&quot; --non-interactive
+</code></pre>
+<h3>Option 3: Local Installation</h3>
+<pre><code class="language-bash"># If claude-flow is installed locally
+./claude-flow sparc run docs-writer &quot;create API documentation&quot;
+</code></pre>
+<h2>Memory Integration</h2>
+<h3>Using MCP Tools (Preferred)</h3>
+<pre><code class="language-javascript">// Store mode-specific context
+mcp__claude-flow__memory_usage {
+  action: &quot;store&quot;,
+  key: &quot;docs-writer_context&quot;,
+  value: &quot;important decisions&quot;,
+  namespace: &quot;docs-writer&quot;
+}
+
+// Query previous work
+mcp__claude-flow__memory_search {
+  pattern: &quot;docs-writer&quot;,
+  namespace: &quot;docs-writer&quot;,
+  limit: 5
+}
+</code></pre>
+<h3>Using NPX CLI (Fallback)</h3>
+<pre><code class="language-bash"># Store mode-specific context
+npx claude-flow memory store &quot;docs-writer_context&quot; &quot;important decisions&quot; --namespace docs-writer
+
+# Query previous work
+npx claude-flow memory query &quot;docs-writer&quot; --limit 5
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

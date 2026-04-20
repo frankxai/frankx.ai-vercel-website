@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Check if planning docs should be committed (default: true)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/workflows/execute-phase.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Check if planning docs should be committed (default: true)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Fworkflows">workflows</a> / <span>execute-phase.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <purpose>
+Execute all plans in a phase using wave-based parallel execution. Orchestrator stays lean by delegating plan execution to subagents.
+</purpose>
+
+<core_principle>
+The orchestrator's job is coordination, not execution. Each subagent loads the full execute-plan context itself. Orchestrator discovers plans, analyzes dependencies, groups into waves, spawns agents, handles checkpoints, collects results.
+</core_principle>
+
+<required_reading>
+Read STATE.md before any operation to load project context.
+Read config.json for planning behavior settings.
+</required_reading>
+
+<process>
+
+<step name="resolve_model_profile" priority="first">
+Read model profile for agent spawning:
+
+<pre><code class="language-bash">MODEL_PROFILE=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;model_profile&quot;[[:space:]]*:[[:space:]]*&quot;[^&quot;]*&quot;&#39; | grep -o &#39;&quot;[^&quot;]*&quot;$&#39; | tr -d &#39;&quot;&#39; || echo &quot;balanced&quot;)
+</code></pre>
+<p>Default to &quot;balanced&quot; if not set.</p>
+<p><strong>Model lookup table:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>quality</th>
+<th>balanced</th>
+<th>budget</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gsd-executor</td>
+<td>opus</td>
+<td>sonnet</td>
+<td>sonnet</td>
+</tr>
+<tr>
+<td>gsd-verifier</td>
+<td>sonnet</td>
+<td>sonnet</td>
+<td>haiku</td>
+</tr>
+<tr>
+<td>general-purpose</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>Store resolved models for use in Task calls below.
+</step></p>
+<step name="load_project_state">
+Before any operation, read project state:
+
+<pre><code class="language-bash">cat .planning/STATE.md 2&gt;/dev/null
+</code></pre>
+<p><strong>If file exists:</strong> Parse and internalize:</p>
+<ul>
+<li>Current position (phase, plan, status)</li>
+<li>Accumulated decisions (constraints on this execution)</li>
+<li>Blockers/concerns (things to watch for)</li>
+</ul>
+<p><strong>If file missing but .planning/ exists:</strong></p>
+<pre><code>STATE.md missing but planning artifacts exist.
+Options:
+1. Reconstruct from existing artifacts
+2. Continue without project state (may lose accumulated context)
+</code></pre>
+<p><strong>If .planning/ doesn&#39;t exist:</strong> Error - project not initialized.</p>
+<p><strong>Load planning config:</strong></p>
+<pre><code class="language-bash"># Check if planning docs should be committed (default: true)
+COMMIT_PLANNING_DOCS=$(cat .planning/config.json 2&gt;/dev/null | grep -o &#39;&quot;commit_docs&quot;[[:space:]]*:[[:space:]]*[^,}]*&#39; | grep -o &#39;true\|false&#39; || echo &quot;true&quot;)
+# Auto-detect gitignored (overrides config)
+git check-ignore -q .planning 2&gt;/dev/null &amp;&amp; COMMIT_PLANNING_DOCS=false
+</code></pre>
+<p>Store <code>COMMIT_PLANNING_DOCS</code> for use in git operations.
+</step></p>
+<step name="validate_phase">
+Confirm phase exists and has plans:
+
+<pre><code class="language-bash"># Match both zero-padded (05-*) and unpadded (5-*) folders
+PADDED_PHASE=$(printf &quot;%02d&quot; ${PHASE_ARG} 2&gt;/dev/null || echo &quot;${PHASE_ARG}&quot;)
+PHASE_DIR=$(ls -d .planning/phases/${PADDED_PHASE}-* .planning/phases/${PHASE_ARG}-* 2&gt;/dev/null | head -1)
+if [ -z &quot;$PHASE_DIR&quot; ]; then
+  echo &quot;ERROR: No phase directory matching &#39;${PHASE_ARG}&#39;&quot;
+  exit 1
+fi
+
+PLAN_COUNT=$(ls -1 &quot;$PHASE_DIR&quot;/*-PLAN.md 2&gt;/dev/null | wc -l | tr -d &#39; &#39;)
+if [ &quot;$PLAN_COUNT&quot; -eq 0 ]; then
+  echo &quot;ERROR: No plans found in $PHASE_DIR&quot;
+  exit 1
+fi
+</code></pre>
+<p>Report: &quot;Found {N} plans in {phase_dir}&quot;
+</step></p>
+<step name="discover_plans">
+List all plans and extract metadata:
+
+<pre><code class="language-bash"># Get all plans
+ls -1 &quot;$PHASE_DIR&quot;/*-PLAN.md 2&gt;/dev/null | sort
+
+# Get completed plans (have SUMMARY.md)
+ls -1 &quot;$PHASE_DIR&quot;/*-SUMMARY.md 2&gt;/dev/null | sort
+</code></pre>
+<p>For each plan, read frontmatter to extract:</p>
+<ul>
+<li><code>wave: N</code> - Execution wave (pre-computed)</li>
+<li><code>autonomous: true/false</code> - Whether plan has checkpoints</li>
+<li><code>gap_closure: true/false</code> - Whether plan closes gaps from verification/UAT</li>
+</ul>
+<p>Build plan inventory:</p>
+<ul>
+<li>Plan path</li>
+<li>Plan ID (e.g., &quot;03-01&quot;)</li>
+<li>Wave number</li>
+<li>Autonomous flag</li>
+<li>Gap closure flag</li>
+<li>Completion status (SUMMARY exists = complete)</li>
+</ul>
+<p><strong>Filtering:</strong></p>
+<ul>
+<li>Skip completed plans (have SUMMARY.md)</li>
+<li>If <code>--gaps-only</code> flag: also skip plans where <code>gap_closure</code> is not <code>true</code></li>
+</ul>
+<p>If all plans filtered out, report &quot;No matching incomplete plans&quot; and exit.
+</step></p>
+<step name="group_by_wave">
+Read `wave` from each plan's frontmatter and group by wave number:
+
+<pre><code class="language-bash"># For each plan, extract wave from frontmatter
+for plan in $PHASE_DIR/*-PLAN.md; do
+  wave=$(grep &quot;^wave:&quot; &quot;$plan&quot; | cut -d: -f2 | tr -d &#39; &#39;)
+  autonomous=$(grep &quot;^autonomous:&quot; &quot;$plan&quot; | cut -d: -f2 | tr -d &#39; &#39;)
+  echo &quot;$plan:$wave:$autonomous&quot;
+done
+</code></pre>
+<p><strong>Group plans:</strong></p>
+<pre><code>waves = {
+  1: [plan-01, plan-02],
+  2: [plan-03, plan-04],
+  3: [plan-05]
+}
+</code></pre>
+<p><strong>No dependency analysis needed.</strong> Wave numbers are pre-computed during <code>/gsd:plan-phase</code>.</p>
+<p>Report wave structure with context:</p>
+<pre><code>## Execution Plan
+
+**Phase {X}: {Name}** — {total_plans} plans across {wave_count} waves
+
+| Wave | Plans | What it builds |
+|------|-------|----------------|
+| 1 | 01-01, 01-02 | {from plan objectives} |
+| 2 | 01-03 | {from plan objectives} |
+| 3 | 01-04 [checkpoint] | {from plan objectives} |
+</code></pre>
+<p>The &quot;What it builds&quot; column comes from skimming plan names/objectives. Keep it brief (3-8 words).
+</step></p>
+<step name="execute_waves">
+Execute each wave in sequence. Autonomous plans within a wave run in parallel.
+
+<p><strong>For each wave:</strong></p>
+<ol>
+<li><p><strong>Describe what&#39;s being built (BEFORE spawning):</strong></p>
+<p>Read each plan&#39;s <code>&lt;objective&gt;</code> section. Extract what&#39;s being built and why it matters.</p>
+<p><strong>Output:</strong></p>
+<pre><code>---
+
+## Wave {N}
+
+**{Plan ID}: {Plan Name}**
+{2-3 sentences: what this builds, key technical approach, why it matters in context}
+
+**{Plan ID}: {Plan Name}** (if parallel)
+{same format}
+
+Spawning {count} agent(s)...
+
+---
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Bad: &quot;Executing terrain generation plan&quot;</li>
+<li>Good: &quot;Procedural terrain generator using Perlin noise — creates height maps, biome zones, and collision meshes. Required before vehicle physics can interact with ground.&quot;</li>
+</ul>
+</li>
+<li><p><strong>Read files and spawn all autonomous agents in wave simultaneously:</strong></p>
+<p>Before spawning, read file contents. The <code>@</code> syntax does not work across Task() boundaries - content must be inlined.</p>
+<pre><code class="language-bash"># Read each plan in the wave
+PLAN_CONTENT=$(cat &quot;{plan_path}&quot;)
+STATE_CONTENT=$(cat .planning/STATE.md)
+CONFIG_CONTENT=$(cat .planning/config.json 2&gt;/dev/null)
+</code></pre>
+<p>Use Task tool with multiple parallel calls. Each agent gets prompt with inlined content:</p>
+<pre><code>&lt;objective&gt;
+Execute plan {plan_number} of phase {phase_number}-{phase_name}.
+
+Commit each task atomically. Create SUMMARY.md. Update STATE.md.
+&lt;/objective&gt;
+
+&lt;execution_context&gt;
+@~/.claude/get-shit-done/workflows/execute-plan.md
+@~/.claude/get-shit-done/templates/summary.md
+@~/.claude/get-shit-done/references/checkpoints.md
+@~/.claude/get-shit-done/references/tdd.md
+&lt;/execution_context&gt;
+
+&lt;context&gt;
+Plan:
+{plan_content}
+
+Project state:
+{state_content}
+
+Config (if exists):
+{config_content}
+&lt;/context&gt;
+
+&lt;success_criteria&gt;
+- [ ] All tasks executed
+- [ ] Each task committed individually
+- [ ] SUMMARY.md created in plan directory
+- [ ] STATE.md updated with position and decisions
+&lt;/success_criteria&gt;
+</code></pre>
+</li>
+<li><p><strong>Wait for all agents in wave to complete:</strong></p>
+<p>Task tool blocks until each agent finishes. All parallel agents return together.</p>
+</li>
+<li><p><strong>Report completion and what was built:</strong></p>
+<p>For each completed agent:</p>
+<ul>
+<li>Verify SUMMARY.md exists at expected path</li>
+<li>Read SUMMARY.md to extract what was built</li>
+<li>Note any issues or deviations</li>
+</ul>
+<p><strong>Output:</strong></p>
+<pre><code>---
+
+## Wave {N} Complete
+
+**{Plan ID}: {Plan Name}**
+{What was built — from SUMMARY.md deliverables}
+{Notable deviations or discoveries, if any}
+
+**{Plan ID}: {Plan Name}** (if parallel)
+{same format}
+
+{If more waves: brief note on what this enables for next wave}
+
+---
+</code></pre>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Bad: &quot;Wave 2 complete. Proceeding to Wave 3.&quot;</li>
+<li>Good: &quot;Terrain system complete — 3 biome types, height-based texturing, physics collision meshes. Vehicle physics (Wave 3) can now reference ground surfaces.&quot;</li>
+</ul>
+</li>
+<li><p><strong>Handle failures:</strong></p>
+<p>If any agent in wave fails:</p>
+<ul>
+<li>Report which plan failed and why</li>
+<li>Ask user: &quot;Continue with remaining waves?&quot; or &quot;Stop execution?&quot;</li>
+<li>If continue: proceed to next wave (dependent plans may also fail)</li>
+<li>If stop: exit with partial completion report</li>
+</ul>
+</li>
+<li><p><strong>Execute checkpoint plans between waves:</strong></p>
+<p>See <code>&lt;checkpoint_handling&gt;</code> for details.</p>
+</li>
+<li><p><strong>Proceed to next wave</strong></p>
+</li>
+</ol>
+</step>
+
+<step name="checkpoint_handling">
+Plans with `autonomous: false` require user interaction.
+
+<p><strong>Detection:</strong> Check <code>autonomous</code> field in frontmatter.</p>
+<p><strong>Execution flow for checkpoint plans:</strong></p>
+<ol>
+<li><p><strong>Spawn agent for checkpoint plan:</strong></p>
+<pre><code>Task(prompt=&quot;{subagent-task-prompt}&quot;, subagent_type=&quot;gsd-executor&quot;, model=&quot;{executor_model}&quot;)
+</code></pre>
+</li>
+<li><p><strong>Agent runs until checkpoint:</strong></p>
+<ul>
+<li>Executes auto tasks normally</li>
+<li>Reaches checkpoint task (e.g., <code>type=&quot;checkpoint:human-verify&quot;</code>) or auth gate</li>
+<li>Agent returns with structured checkpoint (see checkpoint-return.md template)</li>
+</ul>
+</li>
+<li><p><strong>Agent return includes (structured format):</strong></p>
+<ul>
+<li>Completed Tasks table with commit hashes and files</li>
+<li>Current task name and blocker</li>
+<li>Checkpoint type and details for user</li>
+<li>What&#39;s awaited from user</li>
+</ul>
+</li>
+<li><p><strong>Orchestrator presents checkpoint to user:</strong></p>
+<p>Extract and display the &quot;Checkpoint Details&quot; and &quot;Awaiting&quot; sections from agent return:</p>
+<pre><code>## Checkpoint: [Type]
+
+**Plan:** 03-03 Dashboard Layout
+**Progress:** 2/3 tasks complete
+
+[Checkpoint Details section from agent return]
+
+[Awaiting section from agent return]
+</code></pre>
+</li>
+<li><p><strong>User responds:</strong></p>
+<ul>
+<li>&quot;approved&quot; / &quot;done&quot; → spawn continuation agent</li>
+<li>Description of issues → spawn continuation agent with feedback</li>
+<li>Decision selection → spawn continuation agent with choice</li>
+</ul>
+</li>
+<li><p><strong>Spawn continuation agent (NOT resume):</strong></p>
+<p>Use the continuation-prompt.md template:</p>
+<pre><code>Task(
+  prompt=filled_continuation_template,
+  subagent_type=&quot;gsd-executor&quot;,
+  model=&quot;{executor_model}&quot;
+)
+</code></pre>
+<p>Fill template with:</p>
+<ul>
+<li><code>{completed_tasks_table}</code>: From agent&#39;s checkpoint return</li>
+<li><code>{resume_task_number}</code>: Current task from checkpoint</li>
+<li><code>{resume_task_name}</code>: Current task name from checkpoint</li>
+<li><code>{user_response}</code>: What user provided</li>
+<li><code>{resume_instructions}</code>: Based on checkpoint type (see continuation-prompt.md)</li>
+</ul>
+</li>
+<li><p><strong>Continuation agent executes:</strong></p>
+<ul>
+<li>Verifies previous commits exist</li>
+<li>Continues from resume point</li>
+<li>May hit another checkpoint (repeat from step 4)</li>
+<li>Or completes plan</li>
+</ul>
+</li>
+<li><p><strong>Repeat until plan completes or user stops</strong></p>
+</li>
+</ol>
+<p><strong>Why fresh agent instead of resume:</strong>
+Resume relies on Claude Code&#39;s internal serialization which breaks with parallel tool calls.
+Fresh agents with explicit state are more reliable and maintain full context.</p>
+<p><strong>Checkpoint in parallel context:</strong>
+If a plan in a parallel wave has a checkpoint:</p>
+<ul>
+<li>Spawn as normal</li>
+<li>Agent pauses at checkpoint and returns with structured state</li>
+<li>Other parallel agents may complete while waiting</li>
+<li>Present checkpoint to user</li>
+<li>Spawn continuation agent with user response</li>
+<li>Wait for all agents to finish before next wave</step></li>
+</ul>
+<step name="aggregate_results">
+After all waves complete, aggregate results:
+
+<pre><code class="language-markdown">## Phase {X}: {Name} Execution Complete
+
+**Waves executed:** {N}
+**Plans completed:** {M} of {total}
+
+### Wave Summary
+
+| Wave | Plans | Status |
+|------|-------|--------|
+| 1 | plan-01, plan-02 | ✓ Complete |
+| CP | plan-03 | ✓ Verified |
+| 2 | plan-04 | ✓ Complete |
+| 3 | plan-05 | ✓ Complete |
+
+### Plan Details
+
+1. **03-01**: [one-liner from SUMMARY.md]
+2. **03-02**: [one-liner from SUMMARY.md]
+...
+
+### Issues Encountered
+[Aggregate from all SUMMARYs, or &quot;None&quot;]
+</code></pre>
+</step>
+
+<step name="verify_phase_goal">
+Verify phase achieved its GOAL, not just completed its TASKS.
+
+<p><strong>Spawn verifier:</strong></p>
+<pre><code>Task(
+  prompt=&quot;Verify phase {phase_number} goal achievement.
+
+Phase directory: {phase_dir}
+Phase goal: {goal from ROADMAP.md}
+
+Check must_haves against actual codebase. Create VERIFICATION.md.
+Verify what actually exists in the code.&quot;,
+  subagent_type=&quot;gsd-verifier&quot;,
+  model=&quot;{verifier_model}&quot;
+)
+</code></pre>
+<p><strong>Read verification status:</strong></p>
+<pre><code class="language-bash">grep &quot;^status:&quot; &quot;$PHASE_DIR&quot;/*-VERIFICATION.md | cut -d: -f2 | tr -d &#39; &#39;
+</code></pre>
+<p><strong>Route by status:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>passed</code></td>
+<td>Continue to update_roadmap</td>
+</tr>
+<tr>
+<td><code>human_needed</code></td>
+<td>Present items to user, get approval or feedback</td>
+</tr>
+<tr>
+<td><code>gaps_found</code></td>
+<td>Present gap summary, offer <code>/gsd:plan-phase {phase} --gaps</code></td>
+</tr>
+</tbody></table>
+<p><strong>If passed:</strong></p>
+<p>Phase goal verified. Proceed to update_roadmap.</p>
+<p><strong>If human_needed:</strong></p>
+<pre><code class="language-markdown">## ✓ Phase {X}: {Name} — Human Verification Required
+
+All automated checks passed. {N} items need human testing:
+
+### Human Verification Checklist
+
+{Extract from VERIFICATION.md human_verification section}
+
+---
+
+**After testing:**
+- &quot;approved&quot; → continue to update_roadmap
+- Report issues → will route to gap closure planning
+</code></pre>
+<p>If user approves → continue to update_roadmap.
+If user reports issues → treat as gaps_found.</p>
+<p><strong>If gaps_found:</strong></p>
+<p>Present gaps and offer next command:</p>
+<pre><code class="language-markdown">## ⚠ Phase {X}: {Name} — Gaps Found
+
+**Score:** {N}/{M} must-haves verified
+**Report:** {phase_dir}/{phase}-VERIFICATION.md
+
+### What&#39;s Missing
+
+{Extract gap summaries from VERIFICATION.md gaps section}
+
+---
+
+## ▶ Next Up
+
+**Plan gap closure** — create additional plans to complete the phase
+
+`/gsd:plan-phase {X} --gaps`
+
+&lt;sub&gt;`/clear` first → fresh context window&lt;/sub&gt;
+
+---
+
+**Also available:**
+- `cat {phase_dir}/{phase}-VERIFICATION.md` — see full report
+- `/gsd:verify-work {X}` — manual testing before planning
+</code></pre>
+<p>User runs <code>/gsd:plan-phase {X} --gaps</code> which:</p>
+<ol>
+<li>Reads VERIFICATION.md gaps</li>
+<li>Creates additional plans (04, 05, etc.) with <code>gap_closure: true</code> to close gaps</li>
+<li>User then runs <code>/gsd:execute-phase {X} --gaps-only</code></li>
+<li>Execute-phase runs only gap closure plans (04-05)</li>
+<li>Verifier runs again after new plans complete</li>
+</ol>
+<p>User stays in control at each decision point.
+</step></p>
+<step name="update_roadmap">
+Update ROADMAP.md to reflect phase completion:
+
+<pre><code class="language-bash"># Mark phase complete
+# Update completion date
+# Update status
+</code></pre>
+<p><strong>Check planning config:</strong></p>
+<p>If <code>COMMIT_PLANNING_DOCS=false</code> (set in load_project_state):</p>
+<ul>
+<li>Skip all git operations for .planning/ files</li>
+<li>Planning docs exist locally but are gitignored</li>
+<li>Log: &quot;Skipping planning docs commit (commit_docs: false)&quot;</li>
+<li>Proceed to offer_next step</li>
+</ul>
+<p>If <code>COMMIT_PLANNING_DOCS=true</code> (default):</p>
+<ul>
+<li>Continue with git operations below</li>
+</ul>
+<p>Commit phase completion (roadmap, state, verification):</p>
+<pre><code class="language-bash">git add .planning/ROADMAP.md .planning/STATE.md .planning/phases/{phase_dir}/*-VERIFICATION.md
+git add .planning/REQUIREMENTS.md  # if updated
+git commit -m &quot;docs(phase-{X}): complete phase execution&quot;
+</code></pre>
+</step>
+
+<step name="offer_next">
+Present next steps based on milestone status:
+
+<p><strong>If more phases remain:</strong></p>
+<pre><code>## Next Up
+
+**Phase {X+1}: {Name}** — {Goal}
+
+`/gsd:plan-phase {X+1}`
+
+&lt;sub&gt;`/clear` first for fresh context&lt;/sub&gt;
+</code></pre>
+<p><strong>If milestone complete:</strong></p>
+<pre><code>MILESTONE COMPLETE!
+
+All {N} phases executed.
+
+`/gsd:complete-milestone`
+</code></pre>
+</step>
+
+</process>
+
+<context_efficiency>
+**Why this works:**
+
+<p>Orchestrator context usage: ~10-15%</p>
+<ul>
+<li>Read plan frontmatter (small)</li>
+<li>Analyze dependencies (logic, no heavy reads)</li>
+<li>Fill template strings</li>
+<li>Spawn Task calls</li>
+<li>Collect results</li>
+</ul>
+<p>Each subagent: Fresh 200k context</p>
+<ul>
+<li>Loads full execute-plan workflow</li>
+<li>Loads templates, references</li>
+<li>Executes plan with full capacity</li>
+<li>Creates SUMMARY, commits</li>
+</ul>
+<p><strong>No polling.</strong> Task tool blocks until completion. No TaskOutput loops.</p>
+<p><strong>No context bleed.</strong> Orchestrator never reads workflow internals. Just paths and results.
+</context_efficiency></p>
+<failure_handling>
+**Subagent fails mid-plan:**
+- SUMMARY.md won't exist
+- Orchestrator detects missing SUMMARY
+- Reports failure, asks user how to proceed
+
+<p><strong>Dependency chain breaks:</strong></p>
+<ul>
+<li>Wave 1 plan fails</li>
+<li>Wave 2 plans depending on it will likely fail</li>
+<li>Orchestrator can still attempt them (user choice)</li>
+<li>Or skip dependent plans entirely</li>
+</ul>
+<p><strong>All agents in wave fail:</strong></p>
+<ul>
+<li>Something systemic (git issues, permissions, etc.)</li>
+<li>Stop execution</li>
+<li>Report for manual investigation</li>
+</ul>
+<p><strong>Checkpoint fails to resolve:</strong></p>
+<ul>
+<li>User can&#39;t approve or provides repeated issues</li>
+<li>Ask: &quot;Skip this plan?&quot; or &quot;Abort phase execution?&quot;</li>
+<li>Record partial progress in STATE.md</failure_handling></li>
+</ul>
+<resumption>
+**Resuming interrupted execution:**
+
+<p>If phase execution was interrupted (context limit, user exit, error):</p>
+<ol>
+<li>Run <code>/gsd:execute-phase {phase}</code> again</li>
+<li>discover_plans finds completed SUMMARYs</li>
+<li>Skips completed plans</li>
+<li>Resumes from first incomplete plan</li>
+<li>Continues wave-based execution</li>
+</ol>
+<p><strong>STATE.md tracks:</strong></p>
+<ul>
+<li>Last completed plan</li>
+<li>Current wave</li>
+<li>Any pending checkpoints</resumption></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

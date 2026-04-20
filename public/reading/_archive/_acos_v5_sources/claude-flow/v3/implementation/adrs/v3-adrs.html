@@ -1,0 +1,1005 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow v3 - Architecture Decision Records</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/adrs/v3-adrs.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow v3 - Architecture Decision Records</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fadrs">adrs</a> / <span>v3-adrs.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude-Flow v3 - Architecture Decision Records</h1>
+<p><strong>Project:</strong> Claude-Flow v3 Reimagining
+<strong>Date Range:</strong> 2026-01-03 onwards
+<strong>Status:</strong> Proposed
+<strong>Decision Authority:</strong> Architecture Team</p>
+<hr>
+<h2>ADR Index</h2>
+<table>
+<thead>
+<tr>
+<th>ADR</th>
+<th>Title</th>
+<th>Status</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADR-001</td>
+<td>Adopt agentic-flow as Core Foundation</td>
+<td>In Progress</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-002</td>
+<td>Implement Domain-Driven Design Structure</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-003</td>
+<td>Single Coordination Engine</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-004</td>
+<td>Plugin-Based Architecture</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-005</td>
+<td>MCP-First API Design</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-006</td>
+<td>Unified Memory Service</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-007</td>
+<td>Event Sourcing for State Changes</td>
+<td>In Progress</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-008</td>
+<td>Vitest Over Jest</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-009</td>
+<td>Hybrid Memory Backend as Default</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-010</td>
+<td>Remove Deno Support</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-03</td>
+</tr>
+<tr>
+<td>ADR-011</td>
+<td>LLM Provider System</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-05</td>
+</tr>
+<tr>
+<td>ADR-012</td>
+<td>MCP Security Features</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-05</td>
+</tr>
+<tr>
+<td>ADR-013</td>
+<td>Core Security Module</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-05</td>
+</tr>
+<tr>
+<td>ADR-014</td>
+<td>Cross-Platform Workers System</td>
+<td><strong>Implemented</strong> ✅</td>
+<td>2026-01-05</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>ADR-001: Adopt agentic-flow as Core Foundation</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03
+<strong>Decision Makers:</strong> Architecture Team
+<strong>Context Owner:</strong> Lead Architect</p>
+<h3>Context</h3>
+<p>Claude-Flow v2.x implements its own agent orchestration, coordination, and execution systems. This duplicates significant functionality available in agentic-flow, our primary dependency. The current architecture treats agentic-flow as an optional add-on rather than the foundation.</p>
+<p><strong>Current State:</strong></p>
+<ul>
+<li>Custom SwarmCoordinator (800+ lines)</li>
+<li>Custom AgentManager (1,736 lines)</li>
+<li>Custom session management</li>
+<li>Custom task execution</li>
+<li>agentic-flow used only via hooks system</li>
+<li>Duplicate implementations increase maintenance burden</li>
+</ul>
+<p><strong>Analysis:</strong></p>
+<pre><code>Functionality Overlap:
+┌─────────────────────────────────────┐
+│  claude-flow   │   agentic-flow     │
+├─────────────────────────────────────┤
+│ SwarmCoordinator │ Swarm System    │ 80% overlap
+│ AgentManager     │ Agent Lifecycle │ 70% overlap
+│ TaskScheduler    │ Task Execution  │ 60% overlap
+│ SessionManager   │ Session Mgmt    │ 50% overlap
+└─────────────────────────────────────┘
+</code></pre>
+<h3>Decision</h3>
+<p><strong>We will adopt agentic-flow as the core foundation for v3, building claude-flow as a specialized extension rather than a parallel implementation.</strong></p>
+<p>Specifically:</p>
+<ol>
+<li>Use agentic-flow&#39;s Agent base class for all agents</li>
+<li>Use agentic-flow&#39;s Swarm system for coordination</li>
+<li>Use agentic-flow&#39;s task graph execution engine</li>
+<li>Extend agentic-flow via plugins and hooks</li>
+<li>Contribute improvements back to agentic-flow</li>
+<li>Maintain abstraction layer for future flexibility</li>
+</ol>
+<h3>Rationale</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Eliminate 10,000+ lines of duplicate code</li>
+<li>Leverage battle-tested agentic-flow patterns</li>
+<li>Faster development (build on existing)</li>
+<li>Better integration with agentic-flow ecosystem</li>
+<li>Smaller maintenance surface area</li>
+<li>Community alignment</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Dependency on external library</li>
+<li>Less control over core orchestration</li>
+<li>Need to contribute upstream for custom needs</li>
+<li>Migration effort from v2 to v3</li>
+<li>Learning curve for contributors</li>
+</ul>
+<p><strong>Alternatives Considered:</strong></p>
+<ol>
+<li><p><strong>Status Quo (Keep Custom Implementation)</strong></p>
+<ul>
+<li>Rejected: High maintenance burden, duplicate effort</li>
+<li>Would require 2-3 FTE just to maintain parity with agentic-flow</li>
+</ul>
+</li>
+<li><p><strong>Fork agentic-flow</strong></p>
+<ul>
+<li>Rejected: Fragments ecosystem, loses upstream improvements</li>
+<li>Creates long-term technical debt</li>
+</ul>
+</li>
+<li><p><strong>Build Abstraction Over Both</strong></p>
+<ul>
+<li>Rejected: Adds complexity, doesn&#39;t reduce maintenance</li>
+<li>Still need to maintain two systems</li>
+</ul>
+</li>
+</ol>
+<h3>Implementation Plan</h3>
+<p><strong>Phase 1: Foundation (Week 1-2)</strong></p>
+<pre><code class="language-typescript">// Create agentic-flow adapter layer
+import { Agent as AgenticFlowAgent } from &#39;agentic-flow&#39;;
+
+export class ClaudeFlowAgent extends AgenticFlowAgent {
+  // Add claude-flow specific capabilities
+  async handleClaudeFlowTask(task: ClaudeTask): Promise&lt;TaskResult&gt; {
+    // Claude-specific logic
+  }
+}
+</code></pre>
+<p><strong>Phase 2: Migration (Week 3-8)</strong></p>
+<ul>
+<li>Migrate SwarmCoordinator to agentic-flow Swarm</li>
+<li>Migrate AgentManager to agentic-flow Agent system</li>
+<li>Migrate task execution to agentic-flow task graph</li>
+<li>Keep backward compatibility layer</li>
+</ul>
+<p><strong>Phase 3: Optimization (Week 9-12)</strong></p>
+<ul>
+<li>Remove compatibility layer</li>
+<li>Optimize integration points</li>
+<li>Contribute improvements to agentic-flow</li>
+</ul>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> &lt;5,000 lines of orchestration code in claude-flow (vs 15,000+ currently)</li>
+<li><input disabled="" type="checkbox"> 100% feature parity with v2</li>
+<li><input disabled="" type="checkbox"> &lt;10% performance regression (ideally improvement)</li>
+<li><input disabled="" type="checkbox"> All tests passing</li>
+<li><input disabled="" type="checkbox"> Documentation complete</li>
+</ul>
+<h3>Risks and Mitigations</h3>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Likelihood</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>agentic-flow breaking changes</td>
+<td>Medium</td>
+<td>High</td>
+<td>Pin version, maintain adapter</td>
+</tr>
+<tr>
+<td>Performance regression</td>
+<td>Low</td>
+<td>Medium</td>
+<td>Benchmark continuously</td>
+</tr>
+<tr>
+<td>Feature limitations</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Contribute upstream</td>
+</tr>
+<tr>
+<td>Migration complexity</td>
+<td>High</td>
+<td>Medium</td>
+<td>Phased approach, compatibility layer</td>
+</tr>
+</tbody></table>
+<h3>Related Decisions</h3>
+<ul>
+<li>ADR-004: Plugin architecture enables clean extension of agentic-flow</li>
+<li>ADR-003: Single coordination engine built on agentic-flow</li>
+<li>ADR-006: Memory service can leverage agentic-flow memory</li>
+</ul>
+<h3>References</h3>
+<ul>
+<li>agentic-flow documentation: <a href="https://github.com/agentic-flow">https://github.com/agentic-flow</a></li>
+<li>Current dependency: package.json line 123: &quot;agentic-flow&quot;: &quot;^1.9.4&quot;</li>
+<li>Integration points: src/services/agentic-flow-hooks/</li>
+</ul>
+<hr>
+<h2>ADR-002: Implement Domain-Driven Design Structure</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>Current v2 structure organizes code by technical layer (cli/, core/, mcp/, swarm/), making it difficult to understand complete features and leading to high coupling between layers.</p>
+<p><strong>Problems:</strong></p>
+<ul>
+<li>Feature code scattered across 5+ directories</li>
+<li>Unclear ownership and boundaries</li>
+<li>Changes require touching many files</li>
+<li>Difficult for new contributors to navigate</li>
+</ul>
+<p><strong>Example: Agent Management Feature</strong></p>
+<pre><code>Current (scattered):
+├── cli/commands/agent.ts          # CLI interface
+├── core/orchestrator.ts           # Orchestration logic
+├── agents/agent-manager.ts        # Management logic
+├── mcp/tools.ts                   # MCP tools
+└── swarm/coordinator.ts           # Coordination logic
+
+Proposed (cohesive):
+└── agent-lifecycle/
+    ├── api/cli/agent-commands.ts
+    ├── api/mcp/agent-tools.ts
+    ├── application/agent-service.ts
+    ├── domain/agent.ts
+    └── infrastructure/agent-repository.ts
+</code></pre>
+<h3>Decision</h3>
+<p><strong>We will restructure v3 using Domain-Driven Design (DDD) principles with clear bounded contexts.</strong></p>
+<p><strong>Structure:</strong></p>
+<pre><code>src/
+├── agent-lifecycle/      # Bounded Context 1
+│   ├── domain/          # Business logic, entities
+│   ├── application/     # Use cases, services
+│   ├── infrastructure/  # Persistence, external systems
+│   └── api/            # External interfaces (CLI, MCP)
+├── task-execution/      # Bounded Context 2
+├── memory-management/   # Bounded Context 3
+├── coordination/        # Bounded Context 4
+├── shared-kernel/       # Shared types and utilities
+└── infrastructure/      # Cross-cutting concerns
+</code></pre>
+<p><strong>Layer Rules:</strong></p>
+<ol>
+<li>Domain layer: No external dependencies, pure business logic</li>
+<li>Application layer: Orchestrates domain, no infrastructure details</li>
+<li>Infrastructure layer: Implements technical concerns</li>
+<li>API layer: Thin adapters to external world</li>
+</ol>
+<h3>Rationale</h3>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Features colocated, easy to find</li>
+<li>Clear boundaries reduce coupling</li>
+<li>Easy to understand and modify</li>
+<li>Enables team scaling (own a domain)</li>
+<li>Facilitates testing (mock boundaries)</li>
+<li>Supports microservices future (extract domains)</li>
+</ul>
+<p><strong>Costs:</strong></p>
+<ul>
+<li>Migration effort from v2 structure</li>
+<li>Learning curve for DDD concepts</li>
+<li>More directories to navigate</li>
+<li>Requires discipline to maintain boundaries</li>
+</ul>
+<h3>Implementation</h3>
+<p><strong>Directory Template:</strong></p>
+<pre><code>domain-name/
+├── domain/
+│   ├── models/           # Entities, value objects
+│   ├── interfaces/       # Repository interfaces
+│   ├── events/          # Domain events
+│   └── services/        # Domain services
+├── application/
+│   ├── services/        # Application services
+│   ├── handlers/        # Event handlers
+│   └── queries/         # Query services (CQRS)
+├── infrastructure/
+│   ├── repositories/    # Repository implementations
+│   ├── adapters/        # External system adapters
+│   └── persistence/     # Persistence implementations
+└── api/
+    ├── cli/            # CLI commands
+    ├── mcp/            # MCP tools
+    └── dto/            # Data transfer objects
+</code></pre>
+<p><strong>Example: Task Execution Domain</strong></p>
+<pre><code class="language-typescript">// domain/models/task.ts
+export class Task {
+  constructor(
+    readonly id: TaskId,
+    readonly type: TaskType,
+    private status: TaskStatus
+  ) {}
+
+  assign(agentId: AgentId): void {
+    if (this.status !== TaskStatus.Created) {
+      throw new InvalidStateError(&#39;Task already assigned&#39;);
+    }
+    this.status = TaskStatus.Assigned;
+    this.emit(new TaskAssigned(this.id, agentId));
+  }
+}
+
+// application/services/task-service.ts
+export class TaskExecutionService {
+  constructor(
+    private taskRepo: ITaskRepository,
+    private agentService: AgentLifecycleService,
+    private eventBus: IEventBus
+  ) {}
+
+  async createTask(spec: TaskSpec): Promise&lt;TaskId&gt; {
+    const task = Task.create(spec);
+    await this.taskRepo.save(task);
+    return task.id;
+  }
+}
+
+// api/cli/task-commands.ts
+export class CreateTaskCommand {
+  constructor(private taskService: TaskExecutionService) {}
+
+  async execute(args: CreateTaskArgs): Promise&lt;void&gt; {
+    const taskId = await this.taskService.createTask(args);
+    console.log(`Task created: ${taskId}`);
+  }
+}
+</code></pre>
+<h3>Success Criteria</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Clear domain boundaries documented</li>
+<li><input disabled="" type="checkbox"> All features contained within single domain</li>
+<li><input disabled="" type="checkbox"> No circular dependencies between domains</li>
+<li><input disabled="" type="checkbox"> Domain models independent of infrastructure</li>
+<li><input disabled="" type="checkbox"> New features can be added in &lt;3 files</li>
+</ul>
+<h3>References</h3>
+<ul>
+<li>Domain-Driven Design by Eric Evans</li>
+<li>Implementing Domain-Driven Design by Vaughn Vernon</li>
+<li>Current architecture assessment: docs/architecture/v3-assessment.md</li>
+</ul>
+<hr>
+<h2>ADR-003: Single Coordination Engine</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>v2 has four overlapping coordination systems:</p>
+<ol>
+<li>SwarmCoordinator (mesh, hierarchical, centralized)</li>
+<li>Hive Mind (queen-led with consensus)</li>
+<li>Maestro (SPARC methodology)</li>
+<li>AgentManager (pools and clusters)</li>
+</ol>
+<p>This creates:</p>
+<ul>
+<li>Confusion about which to use</li>
+<li>Duplicate code (coordination logic)</li>
+<li>Maintenance burden</li>
+<li>Potential conflicts and bugs</li>
+</ul>
+<h3>Decision</h3>
+<p><strong>We will consolidate to a single CoordinationEngine with pluggable strategies.</strong></p>
+<p><strong>Architecture:</strong></p>
+<pre><code class="language-typescript">class CoordinationEngine {
+  constructor(
+    private topology: ITopologyStrategy,
+    private scheduler: ITaskScheduler,
+    private consensus: IConsensusProtocol,
+    private loadBalancer: ILoadBalancer
+  ) {}
+
+  // Core coordination methods
+  async assignTask(task: Task): Promise&lt;AgentId&gt;;
+  async electLeader(): Promise&lt;AgentId&gt;;
+  async rebalanceLoad(): Promise&lt;void&gt;;
+}
+
+// Topology strategies (pluggable)
+interface ITopologyStrategy {
+  type: &#39;mesh&#39; | &#39;hierarchical&#39; | &#39;centralized&#39;;
+  // ... methods
+}
+
+// Specialized behaviors as plugins
+class HiveMindPlugin implements ClaudeFlowPlugin {
+  enhance(engine: CoordinationEngine): void {
+    engine.addConsensusProtocol(new ByzantineConsensus());
+    engine.addStrategy(&#39;queen-led&#39;, new QueenLedStrategy());
+  }
+}
+</code></pre>
+<h3>Rationale</h3>
+<p><strong>Pros:</strong></p>
+<ul>
+<li>Single source of truth</li>
+<li>Easier to understand and maintain</li>
+<li>Consistent coordination behavior</li>
+<li>Extensible via strategies</li>
+<li>Reduced code size</li>
+</ul>
+<p><strong>Cons:</strong></p>
+<ul>
+<li>Migration effort from specialized systems</li>
+<li>May lose some specialized features initially</li>
+<li>Need to support all use cases</li>
+</ul>
+<p><strong>Strategy Selection Guide:</strong></p>
+<pre><code>Use Case → Topology Strategy
+├── Simple tasks → Centralized
+├── Large teams → Hierarchical
+├── Resilience → Mesh
+└── Consensus → Byzantine (via plugin)
+</code></pre>
+<h3>Implementation</h3>
+<p><strong>Phase 1: Core Engine</strong></p>
+<pre><code class="language-typescript">class CoordinationEngine {
+  private strategies = new Map&lt;string, ITopologyStrategy&gt;();
+
+  registerStrategy(name: string, strategy: ITopologyStrategy): void {
+    this.strategies.set(name, strategy);
+  }
+
+  async initialize(config: CoordinationConfig): Promise&lt;void&gt; {
+    const strategy = this.strategies.get(config.topology);
+    if (!strategy) throw new Error(&#39;Unknown topology&#39;);
+
+    this.topology = strategy;
+    await this.topology.initialize();
+  }
+}
+</code></pre>
+<p><strong>Phase 2: Built-in Strategies</strong></p>
+<ul>
+<li>CentralizedStrategy (default)</li>
+<li>HierarchicalStrategy</li>
+<li>MeshStrategy</li>
+</ul>
+<p><strong>Phase 3: Plugin Strategies</strong></p>
+<ul>
+<li>HiveMind (via plugin)</li>
+<li>Maestro (via plugin)</li>
+</ul>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Single CoordinationEngine class</li>
+<li><input disabled="" type="checkbox"> All v2 topologies supported</li>
+<li><input disabled="" type="checkbox"> 50% reduction in coordination code</li>
+<li><input disabled="" type="checkbox"> No performance regression</li>
+<li><input disabled="" type="checkbox"> All tests migrated and passing</li>
+</ul>
+<hr>
+<h2>ADR-004: Plugin-Based Architecture</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>v2 bundles all features (Hive Mind, Maestro, Neural, Verification) into core, making the system large and complex even for users who only need basic features.</p>
+<h3>Decision</h3>
+<p><strong>We will adopt a microkernel architecture with plugins for optional features.</strong></p>
+<p><strong>Core:</strong></p>
+<ul>
+<li>Agent lifecycle</li>
+<li>Task execution</li>
+<li>Memory management</li>
+<li>Basic coordination</li>
+<li>MCP server</li>
+</ul>
+<p><strong>Plugins:</strong></p>
+<ul>
+<li>HiveMindPlugin (advanced coordination)</li>
+<li>MaestroPlugin (SPARC methodology)</li>
+<li>NeuralPlugin (neural training)</li>
+<li>VerificationPlugin (truth scoring)</li>
+<li>EnterprisePlugin (advanced features)</li>
+</ul>
+<h3>Plugin Interface</h3>
+<pre><code class="language-typescript">interface ClaudeFlowPlugin {
+  name: string;
+  version: string;
+  dependencies?: string[];
+
+  initialize(context: PluginContext): Promise&lt;void&gt;;
+  shutdown(): Promise&lt;void&gt;;
+
+  // Optional extensions
+  registerAgentTypes?(): AgentTypeDefinition[];
+  registerTaskTypes?(): TaskTypeDefinition[];
+  registerMCPTools?(): MCPTool[];
+  registerCLICommands?(): Command[];
+  registerMemoryBackends?(): MemoryBackendFactory[];
+}
+
+// Plugin loading
+const core = new ClaudeFlowCore();
+await core.loadPlugin(new HiveMindPlugin());
+await core.initialize();
+</code></pre>
+<h3>Rationale</h3>
+<p><strong>Benefits:</strong></p>
+<ul>
+<li>Smaller core (faster startup)</li>
+<li>User chooses features</li>
+<li>Easier to maintain (clear boundaries)</li>
+<li>Community can build plugins</li>
+<li>Optional dependencies</li>
+</ul>
+<p><strong>Costs:</strong></p>
+<ul>
+<li>Plugin system complexity</li>
+<li>Versioning challenges</li>
+<li>Testing matrix expansion</li>
+</ul>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Core &lt;20MB (vs 50MB+ currently)</li>
+<li><input disabled="" type="checkbox"> Plugin loading &lt;100ms</li>
+<li><input disabled="" type="checkbox"> At least 3 official plugins</li>
+<li><input disabled="" type="checkbox"> Plugin development guide</li>
+<li><input disabled="" type="checkbox"> Community plugin contributed</li>
+</ul>
+<hr>
+<h2>ADR-005: MCP-First API Design</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>v2 CLI commands contain business logic, making it hard to use claude-flow programmatically or via other interfaces.</p>
+<h3>Decision</h3>
+<p><strong>All functionality will be exposed as MCP tools first, with CLI as a thin wrapper.</strong></p>
+<p><strong>Architecture:</strong></p>
+<pre><code>MCP Tools (primary interface)
+    ↓
+Application Services (business logic)
+    ↓
+Domain Models
+
+CLI Commands = MCP tool wrappers
+Programmatic API = Direct service access
+</code></pre>
+<h3>Example</h3>
+<pre><code class="language-typescript">// MCP tool (primary)
+const spawnAgentTool: MCPTool = {
+  name: &#39;agent/spawn&#39;,
+  handler: async (input, context) =&gt; {
+    return context.agentService.spawnAgent(input);
+  }
+};
+
+// CLI command (wrapper)
+class SpawnCommand {
+  async execute(args: SpawnArgs): Promise&lt;void&gt; {
+    const result = await mcpClient.callTool(&#39;agent/spawn&#39;, args);
+    console.log(result);
+  }
+}
+</code></pre>
+<h3>Benefits</h3>
+<ul>
+<li>Consistent API across interfaces</li>
+<li>Easy to test (MCP tool tests)</li>
+<li>CLI automatically gets features</li>
+<li>External integrations use same API</li>
+<li>Documentation from MCP schema</li>
+</ul>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 100% CLI commands backed by MCP tools</li>
+<li><input disabled="" type="checkbox"> MCP schema complete</li>
+<li><input disabled="" type="checkbox"> CLI adds &lt;10% code vs MCP tools</li>
+</ul>
+<hr>
+<h2>ADR-006: Unified Memory Service</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>v2 has 6 memory implementations: MemoryManager, DistributedMemory, SwarmMemory, AdvancedMemoryManager, SQLiteBackend, MarkdownBackend.</p>
+<h3>Decision</h3>
+<p><strong>Single MemoryService with pluggable backends.</strong></p>
+<pre><code class="language-typescript">class MemoryService {
+  constructor(
+    private backend: IMemoryBackend, // SQLite, AgentDB, or Hybrid
+    private cache: MemoryCache,
+    private indexer: MemoryIndexer
+  ) {}
+}
+
+// Backend selection via config
+{
+  memory: {
+    backend: &#39;hybrid&#39;, // &#39;sqlite&#39; | &#39;agentdb&#39; | &#39;hybrid&#39;
+    cacheSize: 100,
+    indexing: true
+  }
+}
+</code></pre>
+<h3>Backend Selection</h3>
+<table>
+<thead>
+<tr>
+<th>Backend</th>
+<th>Use Case</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SQLite</td>
+<td>Structured queries, ACID</td>
+<td>Fast, reliable</td>
+<td>No vector search</td>
+</tr>
+<tr>
+<td>AgentDB</td>
+<td>Semantic search, RAG</td>
+<td>Vector similarity</td>
+<td>Requires setup</td>
+</tr>
+<tr>
+<td>Hybrid</td>
+<td>General purpose</td>
+<td>Best of both</td>
+<td>Higher memory</td>
+</tr>
+</tbody></table>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Single MemoryService interface</li>
+<li><input disabled="" type="checkbox"> 3 backend implementations</li>
+<li><input disabled="" type="checkbox"> 90% reduction in memory code</li>
+<li><input disabled="" type="checkbox"> Migration from v2 data</li>
+</ul>
+<hr>
+<h2>ADR-007: Event Sourcing for State Changes</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>v2 uses direct state mutation, making it hard to:</p>
+<ul>
+<li>Debug state changes</li>
+<li>Implement undo/redo</li>
+<li>Audit operations</li>
+<li>Replay events</li>
+</ul>
+<h3>Decision</h3>
+<p><strong>Use event sourcing pattern for critical state changes.</strong></p>
+<pre><code class="language-typescript">// Domain events
+class AgentSpawned extends DomainEvent {
+  constructor(
+    readonly agentId: AgentId,
+    readonly type: AgentType,
+    readonly timestamp: Date
+  ) {}
+}
+
+// Event store
+interface IEventStore {
+  append(event: DomainEvent): Promise&lt;void&gt;;
+  getEvents(aggregateId: string): Promise&lt;DomainEvent[]&gt;;
+  subscribe(handler: EventHandler): void;
+}
+
+// Rebuild state from events
+class Agent {
+  static fromEvents(events: DomainEvent[]): Agent {
+    const agent = new Agent();
+    events.forEach(e =&gt; agent.apply(e));
+    return agent;
+  }
+
+  private apply(event: DomainEvent): void {
+    if (event instanceof AgentSpawned) {
+      this.id = event.agentId;
+      this.type = event.type;
+    }
+    // ... more events
+  }
+}
+</code></pre>
+<h3>Benefits</h3>
+<ul>
+<li>Complete audit trail</li>
+<li>Time travel debugging</li>
+<li>Replay for testing</li>
+<li>Event-driven integration</li>
+<li>Temporal queries</li>
+</ul>
+<h3>Scope</h3>
+<p><strong>Apply to:</strong></p>
+<ul>
+<li>Agent lifecycle events</li>
+<li>Task state changes</li>
+<li>Coordination decisions</li>
+<li>Critical errors</li>
+</ul>
+<p><strong>Don&#39;t apply to:</strong></p>
+<ul>
+<li>High-frequency metrics</li>
+<li>Log messages</li>
+<li>Ephemeral cache</li>
+</ul>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Event store implemented</li>
+<li><input disabled="" type="checkbox"> All critical state changes emit events</li>
+<li><input disabled="" type="checkbox"> Can rebuild state from events</li>
+<li><input disabled="" type="checkbox"> Event replay for debugging</li>
+</ul>
+<hr>
+<h2>ADR-008: Vitest Over Jest</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>v2 uses Jest for testing. Vitest is a modern alternative that&#39;s faster and has better ESM support.</p>
+<h3>Decision</h3>
+<p><strong>Migrate to Vitest for v3.</strong></p>
+<h3>Rationale</h3>
+<p><strong>Vitest Advantages:</strong></p>
+<ul>
+<li>10x faster (uses Vite)</li>
+<li>Better ESM support (native)</li>
+<li>Compatible Jest API (easy migration)</li>
+<li>Better watch mode</li>
+<li>Built-in coverage</li>
+</ul>
+<p><strong>Migration:</strong></p>
+<pre><code class="language-json">// package.json
+{
+  &quot;devDependencies&quot;: {
+    &quot;vitest&quot;: &quot;^1.0.0&quot;,
+    &quot;vite&quot;: &quot;^5.0.0&quot;
+  },
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;vitest&quot;,
+    &quot;test:ui&quot;: &quot;vitest --ui&quot;
+  }
+}
+</code></pre>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All tests migrated to Vitest</li>
+<li><input disabled="" type="checkbox"> Test execution &lt;5s (vs 30s+ with Jest)</li>
+<li><input disabled="" type="checkbox"> Coverage reporting working</li>
+<li><input disabled="" type="checkbox"> CI integration complete</li>
+</ul>
+<hr>
+<h2>ADR-009: Hybrid Memory Backend as Default</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>Need to choose default memory backend for v3.</p>
+<h3>Decision</h3>
+<p><strong>HybridBackend (SQLite + AgentDB) as default.</strong></p>
+<h3>Rationale</h3>
+<p><strong>SQLite:</strong> Reliable, fast for structured queries
+<strong>AgentDB:</strong> Vector search for semantic queries
+<strong>Together:</strong> Best of both worlds</p>
+<p><strong>Configuration:</strong></p>
+<pre><code class="language-typescript">{
+  memory: {
+    backend: &#39;hybrid&#39;,
+    sqlite: {
+      path: &#39;./claude-flow.db&#39;
+    },
+    agentdb: {
+      dimensions: 1536, // OpenAI embeddings
+      indexType: &#39;HNSW&#39;
+    }
+  }
+}
+</code></pre>
+<h3>Implementation</h3>
+<pre><code class="language-typescript">class HybridBackend implements IMemoryBackend {
+  constructor(
+    private structured: SQLiteBackend,
+    private vector: AgentDBBackend
+  ) {}
+
+  async store(entry: MemoryEntry): Promise&lt;void&gt; {
+    // Store in both
+    await Promise.all([
+      this.structured.store(entry),
+      this.vector.store(entry)
+    ]);
+  }
+
+  async query(query: MemoryQuery): Promise&lt;MemoryEntry[]&gt; {
+    if (query.semantic) {
+      // Use vector search
+      return this.vector.query(query);
+    } else {
+      // Use SQL
+      return this.structured.query(query);
+    }
+  }
+}
+</code></pre>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Hybrid backend working</li>
+<li><input disabled="" type="checkbox"> Both SQL and semantic queries supported</li>
+<li><input disabled="" type="checkbox"> Performance acceptable (&lt;100ms queries)</li>
+<li><input disabled="" type="checkbox"> Migration from v2 SQLite</li>
+</ul>
+<hr>
+<h2>ADR-010: Remove Deno Support</h2>
+<p><strong>Status:</strong> Proposed
+<strong>Date:</strong> 2026-01-03</p>
+<h3>Context</h3>
+<p>v2 attempted to support both Node.js and Deno runtimes. This added complexity without clear benefit.</p>
+<p><strong>Issues:</strong></p>
+<ul>
+<li>Dual testing required</li>
+<li>Different module systems</li>
+<li>Import path differences</li>
+<li>Limited adoption of Deno version</li>
+</ul>
+<h3>Decision</h3>
+<p><strong>v3 will support Node.js 20+ only. Deno support removed.</strong></p>
+<h3>Rationale</h3>
+<p><strong>Focus on Node.js:</strong></p>
+<ul>
+<li>Primary user base on Node</li>
+<li>Better ecosystem (npm packages)</li>
+<li>Simpler build and test</li>
+<li>Deno can run Node code via compatibility</li>
+</ul>
+<p><strong>If Deno support needed:</strong></p>
+<ul>
+<li>Wait for Deno 2.0 full Node compatibility</li>
+<li>Add as plugin in v3.1+</li>
+</ul>
+<h3>Migration</h3>
+<pre><code class="language-typescript">// Remove Deno-specific code
+- src/cli/main.deno.ts ❌
+- deno.json ❌
+- Deno imports ❌
+
+// Keep Node-only
++ src/cli/main.ts ✅
++ package.json ✅
++ Node imports ✅
+</code></pre>
+<h3>Success Metrics</h3>
+<ul>
+<li><input disabled="" type="checkbox"> All Deno code removed</li>
+<li><input disabled="" type="checkbox"> Single test suite (Node only)</li>
+<li><input disabled="" type="checkbox"> Build simplified</li>
+<li><input disabled="" type="checkbox"> Documentation updated</li>
+</ul>
+<hr>
+<h2>Decision Framework</h2>
+<p>For future ADRs, use this template:</p>
+<h3>ADR-XXX: [Title]</h3>
+<p><strong>Status:</strong> Proposed | Accepted | Deprecated | Superseded
+<strong>Date:</strong> YYYY-MM-DD</p>
+<h4>Context</h4>
+<p>What is the issue we&#39;re trying to solve?</p>
+<h4>Decision</h4>
+<p>What are we going to do?</p>
+<h4>Rationale</h4>
+<p>Why this decision? What alternatives did we consider?</p>
+<h4>Consequences</h4>
+<p>What are the trade-offs?</p>
+<h4>Implementation</h4>
+<p>How will we do this?</p>
+<h4>Success Metrics</h4>
+<p>How do we know it worked?</p>
+<h4>Related Decisions</h4>
+<p>Links to other ADRs</p>
+<hr>
+<h2>Approval Process</h2>
+<ol>
+<li><strong>Propose:</strong> Create ADR in Proposed status</li>
+<li><strong>Review:</strong> Team discusses (1 week)</li>
+<li><strong>Revise:</strong> Incorporate feedback</li>
+<li><strong>Accept:</strong> Merge with Accepted status</li>
+<li><strong>Implement:</strong> Build according to ADR</li>
+<li><strong>Validate:</strong> Check success metrics</li>
+</ol>
+<hr>
+<p><strong>Document Maintained By:</strong> Architecture Team
+<strong>Last Updated:</strong> 2026-01-05
+<strong>Next Review:</strong> After Sprint 4 (2026-02-01)</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

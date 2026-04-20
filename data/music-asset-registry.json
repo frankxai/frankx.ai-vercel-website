@@ -1,0 +1,1852 @@
+{
+  "_description": "FrankX music asset registry (sync + usage source of truth)",
+  "_lastUpdated": "2026-03-04T20:38:47.240Z",
+  "_source": {
+    "musicIndex": "data/music-index.json",
+    "inventory": "data/inventories/frankx/music.json"
+  },
+  "_stats": {
+    "totalTracks": 61,
+    "withVideo": 0,
+    "withDriveLinked": 0,
+    "withNotionLinked": 0
+  },
+  "tracks": [
+    {
+      "sunoId": "9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
+      "inventoryId": "arcanea-light-me-up",
+      "title": "Arcanea (light me up) (Remastered)",
+      "status": "published",
+      "section": "featured",
+      "genre": ["pop rock", "soul"],
+      "tags": ["featured", "arcanea", "pop-rock", "soul"],
+      "metrics": {
+        "plays": 71,
+        "likes": 10
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
+        "embedUrl": "https://suno.com/embed/9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9ff8a563-4ebf-4481-85c1-9f445cfce9e1/9ff8a563-4ebf-4481-85c1-9f445cfce9e1.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_9ff8a563-4ebf-4481-85c1-9f445cfce9e1.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "eb702834-22c6-44b3-8d5b-bba83c1e9801",
+      "inventoryId": "arcanean-legends",
+      "title": "Arcanean Legends",
+      "status": "published",
+      "section": null,
+      "genre": ["pop-rock", "orchestral", "fantasy"],
+      "tags": ["playlist", "arcanea", "orchestral", "elvish"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/eb702834-22c6-44b3-8d5b-bba83c1e9801",
+        "embedUrl": "https://suno.com/embed/eb702834-22c6-44b3-8d5b-bba83c1e9801",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/eb702834-22c6-44b3-8d5b-bba83c1e9801/eb702834-22c6-44b3-8d5b-bba83c1e9801.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_eb702834-22c6-44b3-8d5b-bba83c1e9801.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
+      "inventoryId": "arcanean-starlight",
+      "title": "Arcanean Starlight",
+      "status": "published",
+      "section": null,
+      "genre": ["arena-rock", "orchestral", "fantasy"],
+      "tags": ["playlist", "arcanea", "orchestral", "elvish"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
+        "embedUrl": "https://suno.com/embed/5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/5d17255b-f997-4f4c-82ea-9fa1d5aa982a/5d17255b-f997-4f4c-82ea-9fa1d5aa982a.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_5d17255b-f997-4f4c-82ea-9fa1d5aa982a.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "3faa6621-9edb-441f-9ba9-279be2716bba",
+      "inventoryId": "art-of-soulful-living",
+      "title": "Art Of Soulful Living",
+      "status": "published",
+      "section": "featured",
+      "genre": ["rock", "edm", "drum and bass"],
+      "tags": ["featured", "rock", "edm", "drum-and-bass"],
+      "metrics": {
+        "plays": 18,
+        "likes": 4
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/3faa6621-9edb-441f-9ba9-279be2716bba",
+        "embedUrl": "https://suno.com/embed/3faa6621-9edb-441f-9ba9-279be2716bba",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/3faa6621-9edb-441f-9ba9-279be2716bba/3faa6621-9edb-441f-9ba9-279be2716bba.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_3faa6621-9edb-441f-9ba9-279be2716bba.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "e7f3ebea-55ae-428b-9add-cb9abdd08345",
+      "inventoryId": "beast-mode-switch",
+      "title": "Beast Mode Switch",
+      "status": "published",
+      "section": "songs",
+      "genre": ["rap", "trap"],
+      "tags": ["recent", "rap", "trap"],
+      "metrics": {
+        "plays": 5,
+        "likes": 2
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/e7f3ebea-55ae-428b-9add-cb9abdd08345",
+        "embedUrl": "https://suno.com/embed/e7f3ebea-55ae-428b-9add-cb9abdd08345",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/e7f3ebea-55ae-428b-9add-cb9abdd08345/e7f3ebea-55ae-428b-9add-cb9abdd08345.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_e7f3ebea-55ae-428b-9add-cb9abdd08345.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "b4db2632-d9ee-4924-9c21-e788b0339a15",
+      "inventoryId": "create-millions-of-starlights",
+      "title": "Create Millions of Starlights",
+      "status": "published",
+      "section": "songs",
+      "genre": ["rock", "drum and bass", "punk"],
+      "tags": ["recent", "rock", "drum-and-bass", "punk"],
+      "metrics": {
+        "plays": 12,
+        "likes": 1
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/b4db2632-d9ee-4924-9c21-e788b0339a15",
+        "embedUrl": "https://suno.com/embed/b4db2632-d9ee-4924-9c21-e788b0339a15",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/b4db2632-d9ee-4924-9c21-e788b0339a15/b4db2632-d9ee-4924-9c21-e788b0339a15.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_b4db2632-d9ee-4924-9c21-e788b0339a15.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "f2c6fa51-1ac7-409d-8642-49d553dd8844",
+      "inventoryId": "feel-your-magic",
+      "title": "Feel Your Magic",
+      "status": "published",
+      "section": "songs",
+      "genre": ["tech house"],
+      "tags": ["recent", "tech-house"],
+      "metrics": {
+        "plays": 18,
+        "likes": 1
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/f2c6fa51-1ac7-409d-8642-49d553dd8844",
+        "embedUrl": "https://suno.com/embed/f2c6fa51-1ac7-409d-8642-49d553dd8844",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/f2c6fa51-1ac7-409d-8642-49d553dd8844/f2c6fa51-1ac7-409d-8642-49d553dd8844.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_f2c6fa51-1ac7-409d-8642-49d553dd8844.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "d1ad41a9-9239-454d-bc2c-a187f42ac30b",
+      "inventoryId": "golden-age-of-intelligence",
+      "title": "Golden Age of Intelligence",
+      "status": "published",
+      "section": "featured",
+      "genre": ["edm hit", "metalcore", "sophisticated hip hop"],
+      "tags": ["featured", "edm", "metalcore", "signature", "top-performer"],
+      "metrics": {
+        "plays": 119,
+        "likes": 20
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/d1ad41a9-9239-454d-bc2c-a187f42ac30b",
+        "embedUrl": "https://suno.com/embed/d1ad41a9-9239-454d-bc2c-a187f42ac30b",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/d1ad41a9-9239-454d-bc2c-a187f42ac30b/d1ad41a9-9239-454d-bc2c-a187f42ac30b.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_d1ad41a9-9239-454d-bc2c-a187f42ac30b.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
+      "inventoryId": "golden-frequencies-v5",
+      "title": "Golden Frequencies",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "ambient"],
+      "tags": ["playlist", "neoclassical", "528hz", "963hz"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
+        "embedUrl": "https://suno.com/embed/5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/5281ac63-ed5a-4933-b8ae-10d2312f3c1a/5281ac63-ed5a-4933-b8ae-10d2312f3c1a.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_5281ac63-ed5a-4933-b8ae-10d2312f3c1a.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "3841ae2a-1147-4adb-8b4e-c0491d554fee",
+      "inventoryId": "golden-frequencies-v4",
+      "title": "Golden Frequencies v4",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "ambient"],
+      "tags": ["playlist", "neoclassical", "healing", "528hz"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/3841ae2a-1147-4adb-8b4e-c0491d554fee",
+        "embedUrl": "https://suno.com/embed/3841ae2a-1147-4adb-8b4e-c0491d554fee",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/3841ae2a-1147-4adb-8b4e-c0491d554fee/3841ae2a-1147-4adb-8b4e-c0491d554fee.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_3841ae2a-1147-4adb-8b4e-c0491d554fee.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
+      "inventoryId": "golden-frequency-choir-1",
+      "title": "Golden Frequency Choir",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "choral", "world"],
+      "tags": ["playlist", "choir", "world-music", "healing"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
+        "embedUrl": "https://suno.com/embed/69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/69fa45d3-8d45-4f6d-9424-9361cc95fe0a/69fa45d3-8d45-4f6d-9424-9361cc95fe0a.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_69fa45d3-8d45-4f6d-9424-9361cc95fe0a.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
+      "inventoryId": "golden-frequency-choir-extended",
+      "title": "Golden Frequency Choir (Extended)",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "world", "choral"],
+      "tags": ["playlist", "choir", "extended"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
+        "embedUrl": "https://suno.com/embed/b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/b1c58d80-f4d6-45aa-8ffc-c531be288a5a/b1c58d80-f4d6-45aa-8ffc-c531be288a5a.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_b1c58d80-f4d6-45aa-8ffc-c531be288a5a.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "266413cf-32a2-4d56-b143-25424244a025",
+      "inventoryId": "golden-frequency-choir-male-native",
+      "title": "Golden Frequency Choir (Male Native)",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "world", "choral"],
+      "tags": ["playlist", "choir", "throat-singing"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/266413cf-32a2-4d56-b143-25424244a025",
+        "embedUrl": "https://suno.com/embed/266413cf-32a2-4d56-b143-25424244a025",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/266413cf-32a2-4d56-b143-25424244a025/266413cf-32a2-4d56-b143-25424244a025.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_266413cf-32a2-4d56-b143-25424244a025.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
+      "inventoryId": "golden-frequency-choir-mongolian-2",
+      "title": "Golden Frequency Choir (Mongolian Harmonies)",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "electronic", "choral"],
+      "tags": ["playlist", "choir", "mongolian"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
+        "embedUrl": "https://suno.com/embed/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "8c35ffd4-193a-4955-832c-7a5be69b8604",
+      "inventoryId": "golden-frequency-choir-mongolian",
+      "title": "Golden Frequency Choir (Mongolian Lead)",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "electronic", "choral"],
+      "tags": ["playlist", "choir", "mongolian", "throat-singing"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/8c35ffd4-193a-4955-832c-7a5be69b8604",
+        "embedUrl": "https://suno.com/embed/8c35ffd4-193a-4955-832c-7a5be69b8604",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/8c35ffd4-193a-4955-832c-7a5be69b8604/8c35ffd4-193a-4955-832c-7a5be69b8604.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_8c35ffd4-193a-4955-832c-7a5be69b8604.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
+      "inventoryId": "golden-frequency-choir-native",
+      "title": "Golden Frequency Choir (Native American)",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "world", "choral"],
+      "tags": ["playlist", "choir", "throat-singing", "world"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
+        "embedUrl": "https://suno.com/embed/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "58fc5583-b33f-4c62-bbdc-d10dfc19de69",
+      "inventoryId": "golden-frequency-floor",
+      "title": "Golden Frequency Floor",
+      "status": "published",
+      "section": "songs",
+      "genre": ["pop", "drum and bass", "techno"],
+      "tags": ["recent", "pop", "drum-and-bass", "techno"],
+      "metrics": {
+        "plays": 5,
+        "likes": 1
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/58fc5583-b33f-4c62-bbdc-d10dfc19de69",
+        "embedUrl": "https://suno.com/embed/58fc5583-b33f-4c62-bbdc-d10dfc19de69",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/58fc5583-b33f-4c62-bbdc-d10dfc19de69/58fc5583-b33f-4c62-bbdc-d10dfc19de69.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_58fc5583-b33f-4c62-bbdc-d10dfc19de69.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "721ba24a-ce51-4bba-82f2-83179a8d1ae4",
+      "inventoryId": "golden-frequency-v3",
+      "title": "Golden Frequency v3",
+      "status": "published",
+      "section": null,
+      "genre": ["neoclassical", "choral"],
+      "tags": ["playlist", "choir", "528hz", "sound-bowls"],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/721ba24a-ce51-4bba-82f2-83179a8d1ae4",
+        "embedUrl": "https://suno.com/embed/721ba24a-ce51-4bba-82f2-83179a8d1ae4",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/721ba24a-ce51-4bba-82f2-83179a8d1ae4/721ba24a-ce51-4bba-82f2-83179a8d1ae4.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_721ba24a-ce51-4bba-82f2-83179a8d1ae4.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "f4a7a0e3-5689-4f47-8100-792a73034b54",
+      "inventoryId": "i-feel-the-vibe",
+      "title": "I Feel the Vibe",
+      "status": "published",
+      "section": "featured",
+      "genre": ["female hip hop", "sophisticated"],
+      "tags": ["featured", "hip-hop", "female-vocals"],
+      "metrics": {
+        "plays": 56,
+        "likes": 19
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/f4a7a0e3-5689-4f47-8100-792a73034b54",
+        "embedUrl": "https://suno.com/embed/f4a7a0e3-5689-4f47-8100-792a73034b54",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/f4a7a0e3-5689-4f47-8100-792a73034b54/f4a7a0e3-5689-4f47-8100-792a73034b54.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_f4a7a0e3-5689-4f47-8100-792a73034b54.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "353f6f50-f69d-4a72-8dbe-da58e59dcd73",
+      "inventoryId": "i-want-to-be-free",
+      "title": "I Want To Be Free",
+      "status": "published",
+      "section": "songs",
+      "genre": ["tech house"],
+      "tags": ["recent", "tech-house"],
+      "metrics": {
+        "plays": 12,
+        "likes": 1
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/353f6f50-f69d-4a72-8dbe-da58e59dcd73",
+        "embedUrl": "https://suno.com/embed/353f6f50-f69d-4a72-8dbe-da58e59dcd73",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/353f6f50-f69d-4a72-8dbe-da58e59dcd73/353f6f50-f69d-4a72-8dbe-da58e59dcd73.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_353f6f50-f69d-4a72-8dbe-da58e59dcd73.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "d4fcd916-bfb2-4770-87c9-bd6257a00f2f",
+      "inventoryId": "i-want-to-build-a-free-world",
+      "title": "I Want To Build A Free World",
+      "status": "published",
+      "section": "songs",
+      "genre": ["tech house"],
+      "tags": ["recent", "tech-house"],
+      "metrics": {
+        "plays": 26,
+        "likes": 2
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/d4fcd916-bfb2-4770-87c9-bd6257a00f2f",
+        "embedUrl": "https://suno.com/embed/d4fcd916-bfb2-4770-87c9-bd6257a00f2f",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/d4fcd916-bfb2-4770-87c9-bd6257a00f2f/d4fcd916-bfb2-4770-87c9-bd6257a00f2f.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_d4fcd916-bfb2-4770-87c9-bd6257a00f2f.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "1fc13c04-a7b3-427d-bff0-cac92ee524ae",
+      "inventoryId": "lumina",
+      "title": "Lumina",
+      "status": "published",
+      "section": "featured",
+      "genre": ["rock", "soul", "orchestral"],
+      "tags": ["featured", "rock", "soul", "orchestral", "top-performer"],
+      "metrics": {
+        "plays": 108,
+        "likes": 16
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae",
+        "embedUrl": "https://suno.com/embed/1fc13c04-a7b3-427d-bff0-cac92ee524ae",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/1fc13c04-a7b3-427d-bff0-cac92ee524ae/1fc13c04-a7b3-427d-bff0-cac92ee524ae.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_1fc13c04-a7b3-427d-bff0-cac92ee524ae.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "74856905-1e50-419c-ad15-92081a743511",
+      "inventoryId": "magical-times",
+      "title": "Magical Times",
+      "status": "published",
+      "section": "featured",
+      "genre": ["magical", "symphonic"],
+      "tags": ["featured", "magical", "symphonic", "female-vocals"],
+      "metrics": {
+        "plays": 29,
+        "likes": 3
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/74856905-1e50-419c-ad15-92081a743511",
+        "embedUrl": "https://suno.com/embed/74856905-1e50-419c-ad15-92081a743511",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/74856905-1e50-419c-ad15-92081a743511/74856905-1e50-419c-ad15-92081a743511.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_74856905-1e50-419c-ad15-92081a743511.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "0f29d2c8-e0a7-4a67-bda6-d4baa200451e",
+      "inventoryId": "magical-world-v3",
+      "title": "Magical World v3",
+      "status": "published",
+      "section": "songs",
+      "genre": ["tech house", "dance"],
+      "tags": ["recent", "tech-house", "dance"],
+      "metrics": {
+        "plays": 10,
+        "likes": 2
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/0f29d2c8-e0a7-4a67-bda6-d4baa200451e",
+        "embedUrl": "https://suno.com/embed/0f29d2c8-e0a7-4a67-bda6-d4baa200451e",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/0f29d2c8-e0a7-4a67-bda6-d4baa200451e/0f29d2c8-e0a7-4a67-bda6-d4baa200451e.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_0f29d2c8-e0a7-4a67-bda6-d4baa200451e.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "8380e34f-d61c-47e9-ac17-3538a8c17d99",
+      "inventoryId": "need-to-feel-your-magic-v2",
+      "title": "Need To Feel Your Magic v2",
+      "status": "published",
+      "section": "songs",
+      "genre": ["tech house"],
+      "tags": ["recent", "tech-house"],
+      "metrics": {
+        "plays": 12,
+        "likes": 1
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/8380e34f-d61c-47e9-ac17-3538a8c17d99",
+        "embedUrl": "https://suno.com/embed/8380e34f-d61c-47e9-ac17-3538a8c17d99",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/8380e34f-d61c-47e9-ac17-3538a8c17d99/8380e34f-d61c-47e9-ac17-3538a8c17d99.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_8380e34f-d61c-47e9-ac17-3538a8c17d99.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "2d33b5c5-94b1-418b-8bc8-26d77e12dc92",
+      "inventoryId": "starlight-delight-remastered",
+      "title": "Starlight Delight (Remastered)",
+      "status": "published",
+      "section": "featured",
+      "genre": ["pop", "bassline", "drum and bass"],
+      "tags": ["featured", "pop", "bassline", "drum-and-bass", "top-performer"],
+      "metrics": {
+        "plays": 86,
+        "likes": 20
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/2d33b5c5-94b1-418b-8bc8-26d77e12dc92",
+        "embedUrl": "https://suno.com/embed/2d33b5c5-94b1-418b-8bc8-26d77e12dc92",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/2d33b5c5-94b1-418b-8bc8-26d77e12dc92/2d33b5c5-94b1-418b-8bc8-26d77e12dc92.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_2d33b5c5-94b1-418b-8bc8-26d77e12dc92.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "8374d2ad-9142-4900-9028-a1e805688407",
+      "inventoryId": "the-awakening",
+      "title": "The Awakening",
+      "status": "published",
+      "section": "featured",
+      "genre": ["african", "world"],
+      "tags": ["featured", "african", "world", "vocals", "top-performer"],
+      "metrics": {
+        "plays": 134,
+        "likes": 20
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/8374d2ad-9142-4900-9028-a1e805688407",
+        "embedUrl": "https://suno.com/embed/8374d2ad-9142-4900-9028-a1e805688407",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/8374d2ad-9142-4900-9028-a1e805688407/8374d2ad-9142-4900-9028-a1e805688407.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_8374d2ad-9142-4900-9028-a1e805688407.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "0401cf9c-54b8-41f2-bfc6-c1e46f7d72e9",
+      "inventoryId": null,
+      "title": "Track 0401cf9c",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/0401cf9c-54b8-41f2-bfc6-c1e46f7d72e9",
+        "embedUrl": "https://suno.com/embed/0401cf9c-54b8-41f2-bfc6-c1e46f7d72e9",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/0401cf9c-54b8-41f2-bfc6-c1e46f7d72e9/0401cf9c-54b8-41f2-bfc6-c1e46f7d72e9.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_0401cf9c-54b8-41f2-bfc6-c1e46f7d72e9.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "2c5c730b-43b7-499c-a8cc-bade029bb9e4",
+      "inventoryId": null,
+      "title": "Track 2c5c730b",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/2c5c730b-43b7-499c-a8cc-bade029bb9e4",
+        "embedUrl": "https://suno.com/embed/2c5c730b-43b7-499c-a8cc-bade029bb9e4",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/2c5c730b-43b7-499c-a8cc-bade029bb9e4/2c5c730b-43b7-499c-a8cc-bade029bb9e4.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_2c5c730b-43b7-499c-a8cc-bade029bb9e4.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "38b38a65-13c3-4f31-8ab0-78fd7b218c11",
+      "inventoryId": null,
+      "title": "Track 38b38a65",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/38b38a65-13c3-4f31-8ab0-78fd7b218c11",
+        "embedUrl": "https://suno.com/embed/38b38a65-13c3-4f31-8ab0-78fd7b218c11",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/38b38a65-13c3-4f31-8ab0-78fd7b218c11/38b38a65-13c3-4f31-8ab0-78fd7b218c11.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_38b38a65-13c3-4f31-8ab0-78fd7b218c11.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "4e7fb514-7aa2-4ddd-aba0-859077386118",
+      "inventoryId": null,
+      "title": "Track 4e7fb514",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/4e7fb514-7aa2-4ddd-aba0-859077386118",
+        "embedUrl": "https://suno.com/embed/4e7fb514-7aa2-4ddd-aba0-859077386118",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/4e7fb514-7aa2-4ddd-aba0-859077386118/4e7fb514-7aa2-4ddd-aba0-859077386118.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_4e7fb514-7aa2-4ddd-aba0-859077386118.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "57d126dd-0367-4535-8888-10937be86819",
+      "inventoryId": null,
+      "title": "Track 57d126dd",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/57d126dd-0367-4535-8888-10937be86819",
+        "embedUrl": "https://suno.com/embed/57d126dd-0367-4535-8888-10937be86819",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/57d126dd-0367-4535-8888-10937be86819/57d126dd-0367-4535-8888-10937be86819.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_57d126dd-0367-4535-8888-10937be86819.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "5b91499d-9d35-47fb-a832-5dd37a503875",
+      "inventoryId": null,
+      "title": "Track 5b91499d",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/5b91499d-9d35-47fb-a832-5dd37a503875",
+        "embedUrl": "https://suno.com/embed/5b91499d-9d35-47fb-a832-5dd37a503875",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/5b91499d-9d35-47fb-a832-5dd37a503875/5b91499d-9d35-47fb-a832-5dd37a503875.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_5b91499d-9d35-47fb-a832-5dd37a503875.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "63503780-8ba6-4320-a94b-bc6586e31d13",
+      "inventoryId": null,
+      "title": "Track 63503780",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/63503780-8ba6-4320-a94b-bc6586e31d13",
+        "embedUrl": "https://suno.com/embed/63503780-8ba6-4320-a94b-bc6586e31d13",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/63503780-8ba6-4320-a94b-bc6586e31d13/63503780-8ba6-4320-a94b-bc6586e31d13.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_63503780-8ba6-4320-a94b-bc6586e31d13.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "654ece10-731f-4ede-9f09-3518a3a385fd",
+      "inventoryId": null,
+      "title": "Track 654ece10",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/654ece10-731f-4ede-9f09-3518a3a385fd",
+        "embedUrl": "https://suno.com/embed/654ece10-731f-4ede-9f09-3518a3a385fd",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/654ece10-731f-4ede-9f09-3518a3a385fd/654ece10-731f-4ede-9f09-3518a3a385fd.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_654ece10-731f-4ede-9f09-3518a3a385fd.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "66a7e1d5-5b8c-4d4c-8964-68ab80d5a068",
+      "inventoryId": null,
+      "title": "Track 66a7e1d5",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/66a7e1d5-5b8c-4d4c-8964-68ab80d5a068",
+        "embedUrl": "https://suno.com/embed/66a7e1d5-5b8c-4d4c-8964-68ab80d5a068",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/66a7e1d5-5b8c-4d4c-8964-68ab80d5a068/66a7e1d5-5b8c-4d4c-8964-68ab80d5a068.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_66a7e1d5-5b8c-4d4c-8964-68ab80d5a068.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "69e30121-c4b9-4b09-a76b-c2e88df0a074",
+      "inventoryId": null,
+      "title": "Track 69e30121",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/69e30121-c4b9-4b09-a76b-c2e88df0a074",
+        "embedUrl": "https://suno.com/embed/69e30121-c4b9-4b09-a76b-c2e88df0a074",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/69e30121-c4b9-4b09-a76b-c2e88df0a074/69e30121-c4b9-4b09-a76b-c2e88df0a074.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_69e30121-c4b9-4b09-a76b-c2e88df0a074.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "7b890756-b129-44ee-bdd4-5b33eaf8f34f",
+      "inventoryId": null,
+      "title": "Track 7b890756",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/7b890756-b129-44ee-bdd4-5b33eaf8f34f",
+        "embedUrl": "https://suno.com/embed/7b890756-b129-44ee-bdd4-5b33eaf8f34f",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/7b890756-b129-44ee-bdd4-5b33eaf8f34f/7b890756-b129-44ee-bdd4-5b33eaf8f34f.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_7b890756-b129-44ee-bdd4-5b33eaf8f34f.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e",
+      "inventoryId": null,
+      "title": "Track 7c8bd184",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e",
+        "embedUrl": "https://suno.com/embed/7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e/7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "83163f8a-bc3f-4f67-83e1-05c077472bd1",
+      "inventoryId": null,
+      "title": "Track 83163f8a",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/83163f8a-bc3f-4f67-83e1-05c077472bd1",
+        "embedUrl": "https://suno.com/embed/83163f8a-bc3f-4f67-83e1-05c077472bd1",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/83163f8a-bc3f-4f67-83e1-05c077472bd1/83163f8a-bc3f-4f67-83e1-05c077472bd1.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_83163f8a-bc3f-4f67-83e1-05c077472bd1.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "8863d758-d882-4745-a371-78ee515c6c2d",
+      "inventoryId": null,
+      "title": "Track 8863d758",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/8863d758-d882-4745-a371-78ee515c6c2d",
+        "embedUrl": "https://suno.com/embed/8863d758-d882-4745-a371-78ee515c6c2d",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/8863d758-d882-4745-a371-78ee515c6c2d/8863d758-d882-4745-a371-78ee515c6c2d.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_8863d758-d882-4745-a371-78ee515c6c2d.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "90062ca7-cc19-4cdc-af8d-840180f26fc9",
+      "inventoryId": null,
+      "title": "Track 90062ca7",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/90062ca7-cc19-4cdc-af8d-840180f26fc9",
+        "embedUrl": "https://suno.com/embed/90062ca7-cc19-4cdc-af8d-840180f26fc9",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/90062ca7-cc19-4cdc-af8d-840180f26fc9/90062ca7-cc19-4cdc-af8d-840180f26fc9.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_90062ca7-cc19-4cdc-af8d-840180f26fc9.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "9aa01775-4430-41a0-8523-2e540aa48a4c",
+      "inventoryId": null,
+      "title": "Track 9aa01775",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/9aa01775-4430-41a0-8523-2e540aa48a4c",
+        "embedUrl": "https://suno.com/embed/9aa01775-4430-41a0-8523-2e540aa48a4c",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9aa01775-4430-41a0-8523-2e540aa48a4c/9aa01775-4430-41a0-8523-2e540aa48a4c.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_9aa01775-4430-41a0-8523-2e540aa48a4c.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "a0a74bce-7059-4422-bbb3-db7c5041f797",
+      "inventoryId": null,
+      "title": "Track a0a74bce",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/a0a74bce-7059-4422-bbb3-db7c5041f797",
+        "embedUrl": "https://suno.com/embed/a0a74bce-7059-4422-bbb3-db7c5041f797",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/a0a74bce-7059-4422-bbb3-db7c5041f797/a0a74bce-7059-4422-bbb3-db7c5041f797.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_a0a74bce-7059-4422-bbb3-db7c5041f797.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "a0ab75fe-f6f2-446e-ae15-fa088a1853e3",
+      "inventoryId": null,
+      "title": "Track a0ab75fe",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/a0ab75fe-f6f2-446e-ae15-fa088a1853e3",
+        "embedUrl": "https://suno.com/embed/a0ab75fe-f6f2-446e-ae15-fa088a1853e3",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/a0ab75fe-f6f2-446e-ae15-fa088a1853e3/a0ab75fe-f6f2-446e-ae15-fa088a1853e3.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_a0ab75fe-f6f2-446e-ae15-fa088a1853e3.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "a311fbf4-d87a-44ae-a499-0d13813db17a",
+      "inventoryId": null,
+      "title": "Track a311fbf4",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/a311fbf4-d87a-44ae-a499-0d13813db17a",
+        "embedUrl": "https://suno.com/embed/a311fbf4-d87a-44ae-a499-0d13813db17a",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/a311fbf4-d87a-44ae-a499-0d13813db17a/a311fbf4-d87a-44ae-a499-0d13813db17a.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_a311fbf4-d87a-44ae-a499-0d13813db17a.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "a35e5052-0693-426f-8e5e-858c163282db",
+      "inventoryId": null,
+      "title": "Track a35e5052",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/a35e5052-0693-426f-8e5e-858c163282db",
+        "embedUrl": "https://suno.com/embed/a35e5052-0693-426f-8e5e-858c163282db",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/a35e5052-0693-426f-8e5e-858c163282db/a35e5052-0693-426f-8e5e-858c163282db.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_a35e5052-0693-426f-8e5e-858c163282db.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "a89aeb94-e4a6-4486-9325-ddbbb43d481f",
+      "inventoryId": null,
+      "title": "Track a89aeb94",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/a89aeb94-e4a6-4486-9325-ddbbb43d481f",
+        "embedUrl": "https://suno.com/embed/a89aeb94-e4a6-4486-9325-ddbbb43d481f",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/a89aeb94-e4a6-4486-9325-ddbbb43d481f/a89aeb94-e4a6-4486-9325-ddbbb43d481f.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_a89aeb94-e4a6-4486-9325-ddbbb43d481f.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "afb1cd30-7aca-4edf-aa21-73db4766b132",
+      "inventoryId": null,
+      "title": "Track afb1cd30",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/afb1cd30-7aca-4edf-aa21-73db4766b132",
+        "embedUrl": "https://suno.com/embed/afb1cd30-7aca-4edf-aa21-73db4766b132",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/afb1cd30-7aca-4edf-aa21-73db4766b132/afb1cd30-7aca-4edf-aa21-73db4766b132.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_afb1cd30-7aca-4edf-aa21-73db4766b132.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "b4b8622f-6d4d-4808-ac56-bbb4effd24a9",
+      "inventoryId": null,
+      "title": "Track b4b8622f",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/b4b8622f-6d4d-4808-ac56-bbb4effd24a9",
+        "embedUrl": "https://suno.com/embed/b4b8622f-6d4d-4808-ac56-bbb4effd24a9",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/b4b8622f-6d4d-4808-ac56-bbb4effd24a9/b4b8622f-6d4d-4808-ac56-bbb4effd24a9.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_b4b8622f-6d4d-4808-ac56-bbb4effd24a9.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "ba5559f9-f6ce-465d-9b5b-ecc916e2cb45",
+      "inventoryId": null,
+      "title": "Track ba5559f9",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/ba5559f9-f6ce-465d-9b5b-ecc916e2cb45",
+        "embedUrl": "https://suno.com/embed/ba5559f9-f6ce-465d-9b5b-ecc916e2cb45",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/ba5559f9-f6ce-465d-9b5b-ecc916e2cb45/ba5559f9-f6ce-465d-9b5b-ecc916e2cb45.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_ba5559f9-f6ce-465d-9b5b-ecc916e2cb45.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "bf6d9c6a-7613-4562-8902-6380bfa04851",
+      "inventoryId": null,
+      "title": "Track bf6d9c6a",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/bf6d9c6a-7613-4562-8902-6380bfa04851",
+        "embedUrl": "https://suno.com/embed/bf6d9c6a-7613-4562-8902-6380bfa04851",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/bf6d9c6a-7613-4562-8902-6380bfa04851/bf6d9c6a-7613-4562-8902-6380bfa04851.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_bf6d9c6a-7613-4562-8902-6380bfa04851.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "c119ae26-a57d-42a2-882a-b871fd1409d7",
+      "inventoryId": null,
+      "title": "Track c119ae26",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/c119ae26-a57d-42a2-882a-b871fd1409d7",
+        "embedUrl": "https://suno.com/embed/c119ae26-a57d-42a2-882a-b871fd1409d7",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/c119ae26-a57d-42a2-882a-b871fd1409d7/c119ae26-a57d-42a2-882a-b871fd1409d7.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_c119ae26-a57d-42a2-882a-b871fd1409d7.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "ce0f395d-880e-4c62-b46e-20962d6f98e6",
+      "inventoryId": null,
+      "title": "Track ce0f395d",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/ce0f395d-880e-4c62-b46e-20962d6f98e6",
+        "embedUrl": "https://suno.com/embed/ce0f395d-880e-4c62-b46e-20962d6f98e6",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/ce0f395d-880e-4c62-b46e-20962d6f98e6/ce0f395d-880e-4c62-b46e-20962d6f98e6.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_ce0f395d-880e-4c62-b46e-20962d6f98e6.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "ced929d0-db1f-49a2-a2f9-be78fdc18087",
+      "inventoryId": null,
+      "title": "Track ced929d0",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/ced929d0-db1f-49a2-a2f9-be78fdc18087",
+        "embedUrl": "https://suno.com/embed/ced929d0-db1f-49a2-a2f9-be78fdc18087",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/ced929d0-db1f-49a2-a2f9-be78fdc18087/ced929d0-db1f-49a2-a2f9-be78fdc18087.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_ced929d0-db1f-49a2-a2f9-be78fdc18087.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "d2be5f1a-d27d-4c42-821c-1cf804d51279",
+      "inventoryId": null,
+      "title": "Track d2be5f1a",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/d2be5f1a-d27d-4c42-821c-1cf804d51279",
+        "embedUrl": "https://suno.com/embed/d2be5f1a-d27d-4c42-821c-1cf804d51279",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/d2be5f1a-d27d-4c42-821c-1cf804d51279/d2be5f1a-d27d-4c42-821c-1cf804d51279.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_d2be5f1a-d27d-4c42-821c-1cf804d51279.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "d56a7f92-9578-4624-b06a-2a2f1ad5b4d1",
+      "inventoryId": null,
+      "title": "Track d56a7f92",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/d56a7f92-9578-4624-b06a-2a2f1ad5b4d1",
+        "embedUrl": "https://suno.com/embed/d56a7f92-9578-4624-b06a-2a2f1ad5b4d1",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/d56a7f92-9578-4624-b06a-2a2f1ad5b4d1/d56a7f92-9578-4624-b06a-2a2f1ad5b4d1.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_d56a7f92-9578-4624-b06a-2a2f1ad5b4d1.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7",
+      "inventoryId": null,
+      "title": "Track e5bc4eb1",
+      "status": "published",
+      "section": null,
+      "genre": [],
+      "tags": [],
+      "metrics": {
+        "plays": 0,
+        "likes": 0
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7",
+        "embedUrl": "https://suno.com/embed/e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7/e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "66572f21-2682-41f3-9051-86446e9b9bd7",
+      "inventoryId": "trust-in-yourself",
+      "title": "Trust in Yourself",
+      "status": "published",
+      "section": "featured",
+      "genre": ["pop punk", "pop", "symphonic"],
+      "tags": ["featured", "pop-punk", "pop", "symphonic", "top-performer"],
+      "metrics": {
+        "plays": 70,
+        "likes": 34
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/66572f21-2682-41f3-9051-86446e9b9bd7",
+        "embedUrl": "https://suno.com/embed/66572f21-2682-41f3-9051-86446e9b9bd7",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/66572f21-2682-41f3-9051-86446e9b9bd7/66572f21-2682-41f3-9051-86446e9b9bd7.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_66572f21-2682-41f3-9051-86446e9b9bd7.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "9cbad174-9276-427f-9aed-1ba00c7db3db",
+      "inventoryId": "vibe-os-track",
+      "title": "Vibe O S",
+      "status": "published",
+      "section": "featured",
+      "genre": ["female hip hop", "bass-heavy", "lyrical", "sophisticated"],
+      "tags": [
+        "featured",
+        "hip-hop",
+        "female-vocals",
+        "signature",
+        "top-performer"
+      ],
+      "metrics": {
+        "plays": 128,
+        "likes": 24
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db",
+        "embedUrl": "https://suno.com/embed/9cbad174-9276-427f-9aed-1ba00c7db3db",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9cbad174-9276-427f-9aed-1ba00c7db3db/9cbad174-9276-427f-9aed-1ba00c7db3db.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_9cbad174-9276-427f-9aed-1ba00c7db3db.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    },
+    {
+      "sunoId": "e5fd662d-52d6-45d3-bc12-03ec02e85b43",
+      "inventoryId": "we-are-millions-of-starlights",
+      "title": "We Are Millions of Starlights",
+      "status": "published",
+      "section": "songs",
+      "genre": ["dance"],
+      "tags": ["recent", "dance"],
+      "metrics": {
+        "plays": 8,
+        "likes": 1
+      },
+      "origins": {
+        "cover": "suno-generated",
+        "animation": "none",
+        "audioMaster": "suno-export"
+      },
+      "assetRefs": {
+        "sunoUrl": "https://suno.com/song/e5fd662d-52d6-45d3-bc12-03ec02e85b43",
+        "embedUrl": "https://suno.com/embed/e5fd662d-52d6-45d3-bc12-03ec02e85b43",
+        "audioUrl": "https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/e5fd662d-52d6-45d3-bc12-03ec02e85b43/e5fd662d-52d6-45d3-bc12-03ec02e85b43.mp3",
+        "videoUrl": null,
+        "coverUrl": "https://cdn1.suno.ai/image_e5fd662d-52d6-45d3-bc12-03ec02e85b43.jpeg",
+        "googleDriveFolder": null,
+        "notionPageId": null
+      },
+      "usage": [],
+      "notes": "",
+      "updatedAt": "2026-03-04T20:38:47.240Z"
+    }
+  ]
+}

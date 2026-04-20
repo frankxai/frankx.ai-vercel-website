@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>husky</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/awesome-claude-code/resources/slash-commands/husky/husky.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">husky</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code">awesome-claude-code</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources">resources</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands">slash-commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fawesome-claude-code%2Fresources%2Fslash-commands%2Fhusky">husky</a> / <span>husky.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h2>Summary</h2>
+<p>The goal of this command is to verify the repo is in a working state and fix issues if they exist.</p>
+<h2>Goals</h2>
+<p>Run CI checks and fix issues until repo is in a good state and then add files to staging. All commands are run from repo root.
+0. Make sure repo is up to date via running <code>pnpm i</code></p>
+<ol>
+<li>Check that the linter passes by running <code>pnpm lint</code></li>
+<li>Check that types and build pass by running <code>pnpm nx run-many --targets=build:types,build:dist,build:app,generate:docs,dev:run,typecheck</code>. 
+If one of the specific commands fail, save tokens via only running that command while debugging</li>
+<li>Check that tests pass via running <code>pnpm nx run-many --target=test:coverage</code>
+Source the .env file first before running if it exists</li>
+<li>Check package.json is sorted via running <code>pnpm run sort-package-json</code></li>
+<li>Check packages are linted via running <code>pnpm nx run-many --targets=lint:package,lint:deps</code></li>
+<li>Double check. If you made any fixes run preceeding checks again. For example, if you made fixes on step 3. run steps 1., 2., and 3. again to doublecheck there wasn&#39;t a regression on the earlier step.</li>
+<li>Add files to staging with <code>git status</code> and <code>git add</code>. Make sure you don&#39;t add any git submodules in the <code>lib/*</code> folders though</li>
+</ol>
+<p>Do NOT continue on to the next step until the command listed succeeds. You may sometimes have prompts in between or have to debug but always continue on unless I specifically give you permission to skip a check.
+Print the list of tasks with a checkmark emoji next to every step that passed at the very end</p>
+<h2>Protocol when something breaks</h2>
+<p>Take the following steps if CI breaks</p>
+<h3>1. Explain why it&#39;s broke</h3>
+<ul>
+<li>Whenever a test is broken first give think very hard and a complete explanation of what broke. Cite source code and logs that support your thesis.</li>
+<li>If you don&#39;t have source code or logs to support your thesis, think hard and look in codebase for proof. </li>
+<li>Add console logs if it will help you confirm your thesis or find out why it&#39;s broke</li>
+<li>If you don&#39;t know why it&#39;s broke or there just isn&#39;t enough context ask for help</li>
+</ul>
+<h3>2. Fix issue</h3>
+<ul>
+<li>Propose your fix</li>
+<li>Fully explain why you are doing your fix and why you believe it will work</li>
+<li>If your fix does not work go back to Step 1</li>
+</ul>
+<h3>3. Consider if same bug exists elsewhere</h3>
+<ul>
+<li>Think hard about whether the bug might exist elsewhere and how to best find it and fix it</li>
+</ul>
+<h3>4. Clean up</h3>
+<p>Always clean up added console.logs after fixing</p>
+<h2>Tips</h2>
+<p>Generally most functions and types like <code>createTevmNode</code> are in a file named <code>createTevmNode.js</code> with a type called <code>TevmNode.ts</code> and tests <code>createTevmNode.spec.ts</code>. We generally have one item per file so the files are easy to find.</p>
+<h3>pnpm i</h3>
+<p>If this fails you should just abort because something is very wrong unless the issue is simply syntax error like a missing comma.</p>
+<h3>pnpm lint</h3>
+<p>This is using biome to lint the entire codebase</p>
+<h3>pnpm nx-run-many --targets=build:types,typecheck</h3>
+<p>These commands from step 2 check typescript types and when they are broken it&#39;s likely for typescript error reasons. It&#39;s generally a good idea to fix the issue if it&#39;s obvious.
+If the proof of why your typescript type isn&#39;t already in context or obvious it&#39;s best to look for the typescript type for confirmation before attempting to fix it. THis includes looking for it in node_modules. If it&#39;s a tevm package it&#39;s in this monorepo. 
+If you fail more than a few times here we should look at documentation</p>
+<h3>Run tests</h3>
+<p>To run the tests run the nx command for test:coverage. NEVER RUN normal test command as that command will time out. Run on individual packages in the same order the previous command ran the packages 1 by 1.</p>
+<p>Run tests 1 package at a time to make them easier to debug</p>
+<p>We use vite for all our tests.</p>
+<ul>
+<li>oftentimes snapshot tests will fail. Before updating snapshot tests we should clearly explain our thesis for why the snapshot changes are expected</li>
+<li>whenever a test fails follow the Protocol for when something breaks</li>
+<li>It often is a good idea to test assumptions via adding console logs to test that any assumptions of things that are working as expected are true</li>
+</ul>
+<h2>Never commit</h2>
+<p>Only add to staging never actually make a commit</p>
+<h2>Go ahead and fix errors</h2>
+<p>Don&#39;t be afraid to make fixes to things as the typescript types and tests will warn us if anything else breaks. No need to skip the fixes because they are considered dangerous.</p>
+<h2>When fixes are made</h2>
+<p>When a step requires code changes to fix always do following steps after you are finished fixing that step.</p>
+<ol>
+<li>Run <code>pnpm run lint</code> to make sure files are formatted</li>
+<li>ask the the user if they want to add files to staging first</li>
+<li>suggest a commit message but don&#39;t actually do the commit let the user do it themselves</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

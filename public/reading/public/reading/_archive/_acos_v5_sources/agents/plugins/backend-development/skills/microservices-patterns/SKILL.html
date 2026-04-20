@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Microservices Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/backend-development/skills/microservices-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Microservices Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development">backend-development</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fbackend-development%2Fskills%2Fmicroservices-patterns">microservices-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: microservices-patterns
+description: Design microservices architectures with service boundaries, event-driven communication, and resilience patterns. Use when building distributed systems, decomposing monoliths, or implementing microservices.</h2>
+<h1>Microservices Patterns</h1>
+<p>Master microservices architecture patterns including service boundaries, inter-service communication, data management, and resilience patterns for building distributed systems.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Decomposing monoliths into microservices</li>
+<li>Designing service boundaries and contracts</li>
+<li>Implementing inter-service communication</li>
+<li>Managing distributed data and transactions</li>
+<li>Building resilient distributed systems</li>
+<li>Implementing service discovery and load balancing</li>
+<li>Designing event-driven architectures</li>
+</ul>
+<h2>Core Concepts</h2>
+<h3>1. Service Decomposition Strategies</h3>
+<p><strong>By Business Capability</strong></p>
+<ul>
+<li>Organize services around business functions</li>
+<li>Each service owns its domain</li>
+<li>Example: OrderService, PaymentService, InventoryService</li>
+</ul>
+<p><strong>By Subdomain (DDD)</strong></p>
+<ul>
+<li>Core domain, supporting subdomains</li>
+<li>Bounded contexts map to services</li>
+<li>Clear ownership and responsibility</li>
+</ul>
+<p><strong>Strangler Fig Pattern</strong></p>
+<ul>
+<li>Gradually extract from monolith</li>
+<li>New functionality as microservices</li>
+<li>Proxy routes to old/new systems</li>
+</ul>
+<h3>2. Communication Patterns</h3>
+<p><strong>Synchronous (Request/Response)</strong></p>
+<ul>
+<li>REST APIs</li>
+<li>gRPC</li>
+<li>GraphQL</li>
+</ul>
+<p><strong>Asynchronous (Events/Messages)</strong></p>
+<ul>
+<li>Event streaming (Kafka)</li>
+<li>Message queues (RabbitMQ, SQS)</li>
+<li>Pub/Sub patterns</li>
+</ul>
+<h3>3. Data Management</h3>
+<p><strong>Database Per Service</strong></p>
+<ul>
+<li>Each service owns its data</li>
+<li>No shared databases</li>
+<li>Loose coupling</li>
+</ul>
+<p><strong>Saga Pattern</strong></p>
+<ul>
+<li>Distributed transactions</li>
+<li>Compensating actions</li>
+<li>Eventual consistency</li>
+</ul>
+<h3>4. Resilience Patterns</h3>
+<p><strong>Circuit Breaker</strong></p>
+<ul>
+<li>Fail fast on repeated errors</li>
+<li>Prevent cascade failures</li>
+</ul>
+<p><strong>Retry with Backoff</strong></p>
+<ul>
+<li>Transient fault handling</li>
+<li>Exponential backoff</li>
+</ul>
+<p><strong>Bulkhead</strong></p>
+<ul>
+<li>Isolate resources</li>
+<li>Limit impact of failures</li>
+</ul>
+<h2>Service Decomposition Patterns</h2>
+<h3>Pattern 1: By Business Capability</h3>
+<pre><code class="language-python"># E-commerce example
+
+# Order Service
+class OrderService:
+    &quot;&quot;&quot;Handles order lifecycle.&quot;&quot;&quot;
+
+    async def create_order(self, order_data: dict) -&gt; Order:
+        order = Order.create(order_data)
+
+        # Publish event for other services
+        await self.event_bus.publish(
+            OrderCreatedEvent(
+                order_id=order.id,
+                customer_id=order.customer_id,
+                items=order.items,
+                total=order.total
+            )
+        )
+
+        return order
+
+# Payment Service (separate service)
+class PaymentService:
+    &quot;&quot;&quot;Handles payment processing.&quot;&quot;&quot;
+
+    async def process_payment(self, payment_request: PaymentRequest) -&gt; PaymentResult:
+        # Process payment
+        result = await self.payment_gateway.charge(
+            amount=payment_request.amount,
+            customer=payment_request.customer_id
+        )
+
+        if result.success:
+            await self.event_bus.publish(
+                PaymentCompletedEvent(
+                    order_id=payment_request.order_id,
+                    transaction_id=result.transaction_id
+                )
+            )
+
+        return result
+
+# Inventory Service (separate service)
+class InventoryService:
+    &quot;&quot;&quot;Handles inventory management.&quot;&quot;&quot;
+
+    async def reserve_items(self, order_id: str, items: List[OrderItem]) -&gt; ReservationResult:
+        # Check availability
+        for item in items:
+            available = await self.inventory_repo.get_available(item.product_id)
+            if available &lt; item.quantity:
+                return ReservationResult(
+                    success=False,
+                    error=f&quot;Insufficient inventory for {item.product_id}&quot;
+                )
+
+        # Reserve items
+        reservation = await self.create_reservation(order_id, items)
+
+        await self.event_bus.publish(
+            InventoryReservedEvent(
+                order_id=order_id,
+                reservation_id=reservation.id
+            )
+        )
+
+        return ReservationResult(success=True, reservation=reservation)
+</code></pre>
+<h3>Pattern 2: API Gateway</h3>
+<pre><code class="language-python">from fastapi import FastAPI, HTTPException, Depends
+import httpx
+from circuitbreaker import circuit
+
+app = FastAPI()
+
+class APIGateway:
+    &quot;&quot;&quot;Central entry point for all client requests.&quot;&quot;&quot;
+
+    def __init__(self):
+        self.order_service_url = &quot;http://order-service:8000&quot;
+        self.payment_service_url = &quot;http://payment-service:8001&quot;
+        self.inventory_service_url = &quot;http://inventory-service:8002&quot;
+        self.http_client = httpx.AsyncClient(timeout=5.0)
+
+    @circuit(failure_threshold=5, recovery_timeout=30)
+    async def call_order_service(self, path: str, method: str = &quot;GET&quot;, **kwargs):
+        &quot;&quot;&quot;Call order service with circuit breaker.&quot;&quot;&quot;
+        response = await self.http_client.request(
+            method,
+            f&quot;{self.order_service_url}{path}&quot;,
+            **kwargs
+        )
+        response.raise_for_status()
+        return response.json()
+
+    async def create_order_aggregate(self, order_id: str) -&gt; dict:
+        &quot;&quot;&quot;Aggregate data from multiple services.&quot;&quot;&quot;
+        # Parallel requests
+        order, payment, inventory = await asyncio.gather(
+            self.call_order_service(f&quot;/orders/{order_id}&quot;),
+            self.call_payment_service(f&quot;/payments/order/{order_id}&quot;),
+            self.call_inventory_service(f&quot;/reservations/order/{order_id}&quot;),
+            return_exceptions=True
+        )
+
+        # Handle partial failures
+        result = {&quot;order&quot;: order}
+        if not isinstance(payment, Exception):
+            result[&quot;payment&quot;] = payment
+        if not isinstance(inventory, Exception):
+            result[&quot;inventory&quot;] = inventory
+
+        return result
+
+@app.post(&quot;/api/orders&quot;)
+async def create_order(
+    order_data: dict,
+    gateway: APIGateway = Depends()
+):
+    &quot;&quot;&quot;API Gateway endpoint.&quot;&quot;&quot;
+    try:
+        # Route to order service
+        order = await gateway.call_order_service(
+            &quot;/orders&quot;,
+            method=&quot;POST&quot;,
+            json=order_data
+        )
+        return {&quot;order&quot;: order}
+    except httpx.HTTPError as e:
+        raise HTTPException(status_code=503, detail=&quot;Order service unavailable&quot;)
+</code></pre>
+<h2>Communication Patterns</h2>
+<h3>Pattern 1: Synchronous REST Communication</h3>
+<pre><code class="language-python"># Service A calls Service B
+import httpx
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+class ServiceClient:
+    &quot;&quot;&quot;HTTP client with retries and timeout.&quot;&quot;&quot;
+
+    def __init__(self, base_url: str):
+        self.base_url = base_url
+        self.client = httpx.AsyncClient(
+            timeout=httpx.Timeout(5.0, connect=2.0),
+            limits=httpx.Limits(max_keepalive_connections=20)
+        )
+
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=2, max=10)
+    )
+    async def get(self, path: str, **kwargs):
+        &quot;&quot;&quot;GET with automatic retries.&quot;&quot;&quot;
+        response = await self.client.get(f&quot;{self.base_url}{path}&quot;, **kwargs)
+        response.raise_for_status()
+        return response.json()
+
+    async def post(self, path: str, **kwargs):
+        &quot;&quot;&quot;POST request.&quot;&quot;&quot;
+        response = await self.client.post(f&quot;{self.base_url}{path}&quot;, **kwargs)
+        response.raise_for_status()
+        return response.json()
+
+# Usage
+payment_client = ServiceClient(&quot;http://payment-service:8001&quot;)
+result = await payment_client.post(&quot;/payments&quot;, json=payment_data)
+</code></pre>
+<h3>Pattern 2: Asynchronous Event-Driven</h3>
+<pre><code class="language-python"># Event-driven communication with Kafka
+from aiokafka import AIOKafkaProducer, AIOKafkaConsumer
+import json
+from dataclasses import dataclass, asdict
+from datetime import datetime
+
+@dataclass
+class DomainEvent:
+    event_id: str
+    event_type: str
+    aggregate_id: str
+    occurred_at: datetime
+    data: dict
+
+class EventBus:
+    &quot;&quot;&quot;Event publishing and subscription.&quot;&quot;&quot;
+
+    def __init__(self, bootstrap_servers: List[str]):
+        self.bootstrap_servers = bootstrap_servers
+        self.producer = None
+
+    async def start(self):
+        self.producer = AIOKafkaProducer(
+            bootstrap_servers=self.bootstrap_servers,
+            value_serializer=lambda v: json.dumps(v).encode()
+        )
+        await self.producer.start()
+
+    async def publish(self, event: DomainEvent):
+        &quot;&quot;&quot;Publish event to Kafka topic.&quot;&quot;&quot;
+        topic = event.event_type
+        await self.producer.send_and_wait(
+            topic,
+            value=asdict(event),
+            key=event.aggregate_id.encode()
+        )
+
+    async def subscribe(self, topic: str, handler: callable):
+        &quot;&quot;&quot;Subscribe to events.&quot;&quot;&quot;
+        consumer = AIOKafkaConsumer(
+            topic,
+            bootstrap_servers=self.bootstrap_servers,
+            value_deserializer=lambda v: json.loads(v.decode()),
+            group_id=&quot;my-service&quot;
+        )
+        await consumer.start()
+
+        try:
+            async for message in consumer:
+                event_data = message.value
+                await handler(event_data)
+        finally:
+            await consumer.stop()
+
+# Order Service publishes event
+async def create_order(order_data: dict):
+    order = await save_order(order_data)
+
+    event = DomainEvent(
+        event_id=str(uuid.uuid4()),
+        event_type=&quot;OrderCreated&quot;,
+        aggregate_id=order.id,
+        occurred_at=datetime.now(),
+        data={
+            &quot;order_id&quot;: order.id,
+            &quot;customer_id&quot;: order.customer_id,
+            &quot;total&quot;: order.total
+        }
+    )
+
+    await event_bus.publish(event)
+
+# Inventory Service listens for OrderCreated
+async def handle_order_created(event_data: dict):
+    &quot;&quot;&quot;React to order creation.&quot;&quot;&quot;
+    order_id = event_data[&quot;data&quot;][&quot;order_id&quot;]
+    items = event_data[&quot;data&quot;][&quot;items&quot;]
+
+    # Reserve inventory
+    await reserve_inventory(order_id, items)
+</code></pre>
+<h3>Pattern 3: Saga Pattern (Distributed Transactions)</h3>
+<pre><code class="language-python"># Saga orchestration for order fulfillment
+from enum import Enum
+from typing import List, Callable
+
+class SagaStep:
+    &quot;&quot;&quot;Single step in saga.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        name: str,
+        action: Callable,
+        compensation: Callable
+    ):
+        self.name = name
+        self.action = action
+        self.compensation = compensation
+
+class SagaStatus(Enum):
+    PENDING = &quot;pending&quot;
+    COMPLETED = &quot;completed&quot;
+    COMPENSATING = &quot;compensating&quot;
+    FAILED = &quot;failed&quot;
+
+class OrderFulfillmentSaga:
+    &quot;&quot;&quot;Orchestrated saga for order fulfillment.&quot;&quot;&quot;
+
+    def __init__(self):
+        self.steps: List[SagaStep] = [
+            SagaStep(
+                &quot;create_order&quot;,
+                action=self.create_order,
+                compensation=self.cancel_order
+            ),
+            SagaStep(
+                &quot;reserve_inventory&quot;,
+                action=self.reserve_inventory,
+                compensation=self.release_inventory
+            ),
+            SagaStep(
+                &quot;process_payment&quot;,
+                action=self.process_payment,
+                compensation=self.refund_payment
+            ),
+            SagaStep(
+                &quot;confirm_order&quot;,
+                action=self.confirm_order,
+                compensation=self.cancel_order_confirmation
+            )
+        ]
+
+    async def execute(self, order_data: dict) -&gt; SagaResult:
+        &quot;&quot;&quot;Execute saga steps.&quot;&quot;&quot;
+        completed_steps = []
+        context = {&quot;order_data&quot;: order_data}
+
+        try:
+            for step in self.steps:
+                # Execute step
+                result = await step.action(context)
+                if not result.success:
+                    # Compensate
+                    await self.compensate(completed_steps, context)
+                    return SagaResult(
+                        status=SagaStatus.FAILED,
+                        error=result.error
+                    )
+
+                completed_steps.append(step)
+                context.update(result.data)
+
+            return SagaResult(status=SagaStatus.COMPLETED, data=context)
+
+        except Exception as e:
+            # Compensate on error
+            await self.compensate(completed_steps, context)
+            return SagaResult(status=SagaStatus.FAILED, error=str(e))
+
+    async def compensate(self, completed_steps: List[SagaStep], context: dict):
+        &quot;&quot;&quot;Execute compensating actions in reverse order.&quot;&quot;&quot;
+        for step in reversed(completed_steps):
+            try:
+                await step.compensation(context)
+            except Exception as e:
+                # Log compensation failure
+                print(f&quot;Compensation failed for {step.name}: {e}&quot;)
+
+    # Step implementations
+    async def create_order(self, context: dict) -&gt; StepResult:
+        order = await order_service.create(context[&quot;order_data&quot;])
+        return StepResult(success=True, data={&quot;order_id&quot;: order.id})
+
+    async def cancel_order(self, context: dict):
+        await order_service.cancel(context[&quot;order_id&quot;])
+
+    async def reserve_inventory(self, context: dict) -&gt; StepResult:
+        result = await inventory_service.reserve(
+            context[&quot;order_id&quot;],
+            context[&quot;order_data&quot;][&quot;items&quot;]
+        )
+        return StepResult(
+            success=result.success,
+            data={&quot;reservation_id&quot;: result.reservation_id}
+        )
+
+    async def release_inventory(self, context: dict):
+        await inventory_service.release(context[&quot;reservation_id&quot;])
+
+    async def process_payment(self, context: dict) -&gt; StepResult:
+        result = await payment_service.charge(
+            context[&quot;order_id&quot;],
+            context[&quot;order_data&quot;][&quot;total&quot;]
+        )
+        return StepResult(
+            success=result.success,
+            data={&quot;transaction_id&quot;: result.transaction_id},
+            error=result.error
+        )
+
+    async def refund_payment(self, context: dict):
+        await payment_service.refund(context[&quot;transaction_id&quot;])
+</code></pre>
+<h2>Resilience Patterns</h2>
+<h3>Circuit Breaker Pattern</h3>
+<pre><code class="language-python">from enum import Enum
+from datetime import datetime, timedelta
+from typing import Callable, Any
+
+class CircuitState(Enum):
+    CLOSED = &quot;closed&quot;  # Normal operation
+    OPEN = &quot;open&quot;      # Failing, reject requests
+    HALF_OPEN = &quot;half_open&quot;  # Testing if recovered
+
+class CircuitBreaker:
+    &quot;&quot;&quot;Circuit breaker for service calls.&quot;&quot;&quot;
+
+    def __init__(
+        self,
+        failure_threshold: int = 5,
+        recovery_timeout: int = 30,
+        success_threshold: int = 2
+    ):
+        self.failure_threshold = failure_threshold
+        self.recovery_timeout = recovery_timeout
+        self.success_threshold = success_threshold
+
+        self.failure_count = 0
+        self.success_count = 0
+        self.state = CircuitState.CLOSED
+        self.opened_at = None
+
+    async def call(self, func: Callable, *args, **kwargs) -&gt; Any:
+        &quot;&quot;&quot;Execute function with circuit breaker.&quot;&quot;&quot;
+
+        if self.state == CircuitState.OPEN:
+            if self._should_attempt_reset():
+                self.state = CircuitState.HALF_OPEN
+            else:
+                raise CircuitBreakerOpenError(&quot;Circuit breaker is open&quot;)
+
+        try:
+            result = await func(*args, **kwargs)
+            self._on_success()
+            return result
+
+        except Exception as e:
+            self._on_failure()
+            raise
+
+    def _on_success(self):
+        &quot;&quot;&quot;Handle successful call.&quot;&quot;&quot;
+        self.failure_count = 0
+
+        if self.state == CircuitState.HALF_OPEN:
+            self.success_count += 1
+            if self.success_count &gt;= self.success_threshold:
+                self.state = CircuitState.CLOSED
+                self.success_count = 0
+
+    def _on_failure(self):
+        &quot;&quot;&quot;Handle failed call.&quot;&quot;&quot;
+        self.failure_count += 1
+
+        if self.failure_count &gt;= self.failure_threshold:
+            self.state = CircuitState.OPEN
+            self.opened_at = datetime.now()
+
+        if self.state == CircuitState.HALF_OPEN:
+            self.state = CircuitState.OPEN
+            self.opened_at = datetime.now()
+
+    def _should_attempt_reset(self) -&gt; bool:
+        &quot;&quot;&quot;Check if enough time passed to try again.&quot;&quot;&quot;
+        return (
+            datetime.now() - self.opened_at
+            &gt; timedelta(seconds=self.recovery_timeout)
+        )
+
+# Usage
+breaker = CircuitBreaker(failure_threshold=5, recovery_timeout=30)
+
+async def call_payment_service(payment_data: dict):
+    return await breaker.call(
+        payment_client.process_payment,
+        payment_data
+    )
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><strong>references/service-decomposition-guide.md</strong>: Breaking down monoliths</li>
+<li><strong>references/communication-patterns.md</strong>: Sync vs async patterns</li>
+<li><strong>references/saga-implementation.md</strong>: Distributed transactions</li>
+<li><strong>assets/circuit-breaker.py</strong>: Production circuit breaker</li>
+<li><strong>assets/event-bus-template.py</strong>: Kafka event bus implementation</li>
+<li><strong>assets/api-gateway-template.py</strong>: Complete API gateway</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Service Boundaries</strong>: Align with business capabilities</li>
+<li><strong>Database Per Service</strong>: No shared databases</li>
+<li><strong>API Contracts</strong>: Versioned, backward compatible</li>
+<li><strong>Async When Possible</strong>: Events over direct calls</li>
+<li><strong>Circuit Breakers</strong>: Fail fast on service failures</li>
+<li><strong>Distributed Tracing</strong>: Track requests across services</li>
+<li><strong>Service Registry</strong>: Dynamic service discovery</li>
+<li><strong>Health Checks</strong>: Liveness and readiness probes</li>
+</ol>
+<h2>Common Pitfalls</h2>
+<ul>
+<li><strong>Distributed Monolith</strong>: Tightly coupled services</li>
+<li><strong>Chatty Services</strong>: Too many inter-service calls</li>
+<li><strong>Shared Databases</strong>: Tight coupling through data</li>
+<li><strong>No Circuit Breakers</strong>: Cascade failures</li>
+<li><strong>Synchronous Everything</strong>: Tight coupling, poor resilience</li>
+<li><strong>Premature Microservices</strong>: Starting with microservices</li>
+<li><strong>Ignoring Network Failures</strong>: Assuming reliable network</li>
+<li><strong>No Compensation Logic</strong>: Can&#39;t undo failed transactions</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

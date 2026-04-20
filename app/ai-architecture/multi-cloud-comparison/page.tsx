@@ -1,6 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import {
@@ -693,6 +694,18 @@ export default function AIArchitecturePage() {
       <AuroraBackground />
 
       <div className="relative z-10">
+        {/* Hero */}
+        <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
+          <div className="relative aspect-[21/9]">
+            <Image src="/images/architectures/ai-gateway.png" alt="AI gateway architecture diagram" fill className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+          </div>
+          <div className="absolute bottom-0 left-0 p-6">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
+            <h1 className="text-2xl font-bold text-white">Multi-Cloud Architecture Comparison</h1>
+          </div>
+        </div>
+
         <HeroSection />
         <CloudProviderTabs />
         <DecisionFramework />

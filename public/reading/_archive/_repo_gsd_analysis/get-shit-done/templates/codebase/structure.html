@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Structure Template</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_repo_gsd_analysis/get-shit-done/templates/codebase/structure.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Structure Template</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../index.html#_archive">_archive</a> / <a href="../../../index.html#_archive%2F_repo_gsd_analysis">_repo_gsd_analysis</a> / <a href="../../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done">get-shit-done</a> / <a href="../index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates">templates</a> / <a href="index.html#_archive%2F_repo_gsd_analysis%2Fget-shit-done%2Ftemplates%2Fcodebase">codebase</a> / <span>structure.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Structure Template</h1>
+<p>Template for <code>.planning/codebase/STRUCTURE.md</code> - captures physical file organization.</p>
+<p><strong>Purpose:</strong> Document where things physically live in the codebase. Answers &quot;where do I put X?&quot;</p>
+<hr>
+<h2>File Template</h2>
+<pre><code class="language-markdown"># Codebase Structure
+
+**Analysis Date:** [YYYY-MM-DD]
+
+## Directory Layout
+
+[ASCII tree of top-level directories with purpose]
+</code></pre>
+<p>[project-root]/
+├── [dir]/          # [Purpose]
+├── [dir]/          # [Purpose]
+├── [dir]/          # [Purpose]
+└── [file]          # [Purpose]</p>
+<pre><code>
+## Directory Purposes
+
+**[Directory Name]:**
+- Purpose: [What lives here]
+- Contains: [Types of files: e.g., &quot;*.ts source files&quot;, &quot;component directories&quot;]
+- Key files: [Important files in this directory]
+- Subdirectories: [If nested, describe structure]
+
+**[Directory Name]:**
+- Purpose: [What lives here]
+- Contains: [Types of files]
+- Key files: [Important files]
+- Subdirectories: [Structure]
+
+## Key File Locations
+
+**Entry Points:**
+- [Path]: [Purpose: e.g., &quot;CLI entry point&quot;]
+- [Path]: [Purpose: e.g., &quot;Server startup&quot;]
+
+**Configuration:**
+- [Path]: [Purpose: e.g., &quot;TypeScript config&quot;]
+- [Path]: [Purpose: e.g., &quot;Build configuration&quot;]
+- [Path]: [Purpose: e.g., &quot;Environment variables&quot;]
+
+**Core Logic:**
+- [Path]: [Purpose: e.g., &quot;Business services&quot;]
+- [Path]: [Purpose: e.g., &quot;Database models&quot;]
+- [Path]: [Purpose: e.g., &quot;API routes&quot;]
+
+**Testing:**
+- [Path]: [Purpose: e.g., &quot;Unit tests&quot;]
+- [Path]: [Purpose: e.g., &quot;Test fixtures&quot;]
+
+**Documentation:**
+- [Path]: [Purpose: e.g., &quot;User-facing docs&quot;]
+- [Path]: [Purpose: e.g., &quot;Developer guide&quot;]
+
+## Naming Conventions
+
+**Files:**
+- [Pattern]: [Example: e.g., &quot;kebab-case.ts for modules&quot;]
+- [Pattern]: [Example: e.g., &quot;PascalCase.tsx for React components&quot;]
+- [Pattern]: [Example: e.g., &quot;*.test.ts for test files&quot;]
+
+**Directories:**
+- [Pattern]: [Example: e.g., &quot;kebab-case for feature directories&quot;]
+- [Pattern]: [Example: e.g., &quot;plural names for collections&quot;]
+
+**Special Patterns:**
+- [Pattern]: [Example: e.g., &quot;index.ts for directory exports&quot;]
+- [Pattern]: [Example: e.g., &quot;__tests__ for test directories&quot;]
+
+## Where to Add New Code
+
+**New Feature:**
+- Primary code: [Directory path]
+- Tests: [Directory path]
+- Config if needed: [Directory path]
+
+**New Component/Module:**
+- Implementation: [Directory path]
+- Types: [Directory path]
+- Tests: [Directory path]
+
+**New Route/Command:**
+- Definition: [Directory path]
+- Handler: [Directory path]
+- Tests: [Directory path]
+
+**Utilities:**
+- Shared helpers: [Directory path]
+- Type definitions: [Directory path]
+
+## Special Directories
+
+[Any directories with special meaning or generation]
+
+**[Directory]:**
+- Purpose: [e.g., &quot;Generated code&quot;, &quot;Build output&quot;]
+- Source: [e.g., &quot;Auto-generated by X&quot;, &quot;Build artifacts&quot;]
+- Committed: [Yes/No - in .gitignore?]
+
+---
+
+*Structure analysis: [date]*
+*Update when directory structure changes*
+</code></pre>
+<good_examples>
+```markdown
+# Codebase Structure
+
+<p><strong>Analysis Date:</strong> 2025-01-20</p>
+<h2>Directory Layout</h2>
+<pre><code>get-shit-done/
+├── bin/                # Executable entry points
+├── commands/           # Slash command definitions
+│   └── gsd/           # GSD-specific commands
+├── get-shit-done/     # Skill resources
+│   ├── references/    # Principle documents
+│   ├── templates/     # File templates
+│   └── workflows/     # Multi-step procedures
+├── src/               # Source code (if applicable)
+├── tests/             # Test files
+├── package.json       # Project manifest
+└── README.md          # User documentation
+</code></pre>
+<h2>Directory Purposes</h2>
+<p><strong>bin/</strong></p>
+<ul>
+<li>Purpose: CLI entry points</li>
+<li>Contains: install.js (installer script)</li>
+<li>Key files: install.js - handles npx installation</li>
+<li>Subdirectories: None</li>
+</ul>
+<p><strong>commands/gsd/</strong></p>
+<ul>
+<li>Purpose: Slash command definitions for Claude Code</li>
+<li>Contains: *.md files (one per command)</li>
+<li>Key files: new-project.md, plan-phase.md, execute-plan.md</li>
+<li>Subdirectories: None (flat structure)</li>
+</ul>
+<p><strong>get-shit-done/references/</strong></p>
+<ul>
+<li>Purpose: Core philosophy and guidance documents</li>
+<li>Contains: principles.md, questioning.md, plan-format.md</li>
+<li>Key files: principles.md - system philosophy</li>
+<li>Subdirectories: None</li>
+</ul>
+<p><strong>get-shit-done/templates/</strong></p>
+<ul>
+<li>Purpose: Document templates for .planning/ files</li>
+<li>Contains: Template definitions with frontmatter</li>
+<li>Key files: project.md, roadmap.md, plan.md, summary.md</li>
+<li>Subdirectories: codebase/ (new - for stack/architecture/structure templates)</li>
+</ul>
+<p><strong>get-shit-done/workflows/</strong></p>
+<ul>
+<li>Purpose: Reusable multi-step procedures</li>
+<li>Contains: Workflow definitions called by commands</li>
+<li>Key files: execute-plan.md, research-phase.md</li>
+<li>Subdirectories: None</li>
+</ul>
+<h2>Key File Locations</h2>
+<p><strong>Entry Points:</strong></p>
+<ul>
+<li><code>bin/install.js</code> - Installation script (npx entry)</li>
+</ul>
+<p><strong>Configuration:</strong></p>
+<ul>
+<li><code>package.json</code> - Project metadata, dependencies, bin entry</li>
+<li><code>.gitignore</code> - Excluded files</li>
+</ul>
+<p><strong>Core Logic:</strong></p>
+<ul>
+<li><code>bin/install.js</code> - All installation logic (file copying, path replacement)</li>
+</ul>
+<p><strong>Testing:</strong></p>
+<ul>
+<li><code>tests/</code> - Test files (if present)</li>
+</ul>
+<p><strong>Documentation:</strong></p>
+<ul>
+<li><code>README.md</code> - User-facing installation and usage guide</li>
+<li><code>CLAUDE.md</code> - Instructions for Claude Code when working in this repo</li>
+</ul>
+<h2>Naming Conventions</h2>
+<p><strong>Files:</strong></p>
+<ul>
+<li>kebab-case.md: Markdown documents</li>
+<li>kebab-case.js: JavaScript source files</li>
+<li>UPPERCASE.md: Important project files (README, CLAUDE, CHANGELOG)</li>
+</ul>
+<p><strong>Directories:</strong></p>
+<ul>
+<li>kebab-case: All directories</li>
+<li>Plural for collections: templates/, commands/, workflows/</li>
+</ul>
+<p><strong>Special Patterns:</strong></p>
+<ul>
+<li>{command-name}.md: Slash command definition</li>
+<li>*-template.md: Could be used but templates/ directory preferred</li>
+</ul>
+<h2>Where to Add New Code</h2>
+<p><strong>New Slash Command:</strong></p>
+<ul>
+<li>Primary code: <code>commands/gsd/{command-name}.md</code></li>
+<li>Tests: <code>tests/commands/{command-name}.test.js</code> (if testing implemented)</li>
+<li>Documentation: Update <code>README.md</code> with new command</li>
+</ul>
+<p><strong>New Template:</strong></p>
+<ul>
+<li>Implementation: <code>get-shit-done/templates/{name}.md</code></li>
+<li>Documentation: Template is self-documenting (includes guidelines)</li>
+</ul>
+<p><strong>New Workflow:</strong></p>
+<ul>
+<li>Implementation: <code>get-shit-done/workflows/{name}.md</code></li>
+<li>Usage: Reference from command with <code>@~/.claude/get-shit-done/workflows/{name}.md</code></li>
+</ul>
+<p><strong>New Reference Document:</strong></p>
+<ul>
+<li>Implementation: <code>get-shit-done/references/{name}.md</code></li>
+<li>Usage: Reference from commands/workflows as needed</li>
+</ul>
+<p><strong>Utilities:</strong></p>
+<ul>
+<li>No utilities yet (<code>install.js</code> is monolithic)</li>
+<li>If extracted: <code>src/utils/</code></li>
+</ul>
+<h2>Special Directories</h2>
+<p><strong>get-shit-done/</strong></p>
+<ul>
+<li>Purpose: Resources installed to ~/.claude/</li>
+<li>Source: Copied by bin/install.js during installation</li>
+<li>Committed: Yes (source of truth)</li>
+</ul>
+<p><strong>commands/</strong></p>
+<ul>
+<li>Purpose: Slash commands installed to ~/.claude/commands/</li>
+<li>Source: Copied by bin/install.js during installation</li>
+<li>Committed: Yes (source of truth)</li>
+</ul>
+<hr>
+<p><em>Structure analysis: 2025-01-20</em>
+<em>Update when directory structure changes</em></p>
+<pre><code>&lt;/good_examples&gt;
+
+&lt;guidelines&gt;
+**What belongs in STRUCTURE.md:**
+- Directory layout (ASCII tree)
+- Purpose of each directory
+- Key file locations (entry points, configs, core logic)
+- Naming conventions
+- Where to add new code (by type)
+- Special/generated directories
+
+**What does NOT belong here:**
+- Conceptual architecture (that&#39;s ARCHITECTURE.md)
+- Technology stack (that&#39;s STACK.md)
+- Code implementation details (defer to code reading)
+- Every single file (focus on directories and key files)
+
+**When filling this template:**
+- Use `tree -L 2` or similar to visualize structure
+- Identify top-level directories and their purposes
+- Note naming patterns by observing existing files
+- Locate entry points, configs, and main logic areas
+- Keep directory tree concise (max 2-3 levels)
+
+**ASCII tree format:**
+</code></pre>
+<p>root/
+├── dir1/           # Purpose
+│   ├── subdir/    # Purpose
+│   └── file.ts    # Purpose
+├── dir2/          # Purpose
+└── file.ts        # Purpose</p>
+<pre><code>
+**Useful for phase planning when:**
+- Adding new features (where should files go?)
+- Understanding project organization
+- Finding where specific logic lives
+- Following existing conventions
+&lt;/guidelines&gt;
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

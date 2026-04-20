@@ -1,0 +1,315 @@
+# The Mathematics of Tenderness
+
+---
+
+_What science knows about the heart it learned by watching the heart fail to obey science._
+
+---
+
+## Preface: On the Use of Equations
+
+The heart is not a calculator. But it keeps perfect records.
+
+Every physicist knows that the most elegant equations are the ones that describe something the eye cannot see. The curvature of spacetime. The behavior of light at the edge of a black hole. The entanglement of two particles separated by a universe who still know, instantly, what the other is doing.
+
+These poems are not jokes about science. They are not clever translations. They are an honest attempt to use the precision of scientific language to reach the places where ordinary language runs out of road — which is where love always lives.
+
+The equations are real. The emotional states they describe are realer.
+
+---
+
+## I. The Half-Life of a Kiss
+
+*Half-life (n): the time required for a quantity to reduce to half its initial value.*
+
+The first kiss has a half-life of zero.
+This is a paradox in physics
+and not a paradox at all in love.
+
+Zero half-life means instantaneous decay.
+Zero half-life means the particle
+becomes something else in no time at all —
+and in doing so, releases
+an energy proportional to
+the difference between what it was
+and what it becomes.
+
+I became something else
+in no time at all.
+
+The memory of that kiss
+has a much longer half-life.
+Scientists estimate carbon-14
+at 5,730 years.
+This seems about right.
+
+---
+
+## II. The Trajectory of Letting Go
+
+*Projectile motion: the parabolic path of an object thrown into a field without propulsive force.*
+
+You let go.
+The object does not fall immediately —
+this is the part people do not understand.
+
+Horizontal velocity, acquired at the moment of release,
+carries the object forward.
+Gravity acts simultaneously, continuously,
+until the parabola completes itself
+and the object meets the ground
+at a point determined entirely
+by how hard you threw it
+and the angle.
+
+The angle matters.
+The angle of letting go determines everything —
+how far it travels, how long it is airborne,
+whether it clears the fence
+or lands short of the field.
+
+Grief is the horizontal velocity.
+The day I understood this
+I spent an hour watching thrown things
+arc and fall and come to rest
+and understood you better
+than I had while you were still here.
+
+---
+
+## Prose
+
+There is a branch of physics called catastrophe theory — developed by René Thom in the 1960s — that describes how small, continuous changes in a system can suddenly produce large, discontinuous effects. A gradual cooling that produces sudden ice. A slowly increasing weight that breaks a bridge without warning. The technical term for the moment of discontinuous change is the catastrophe point. Colloquially: the straw that broke the camel's back.
+
+Every long relationship has a catastrophe point. Sometimes you can identify it afterward. A specific night. A specific sentence. A specific absence. Before it: stability. After it: a different topology entirely. The mathematics of catastrophe theory cannot tell you when the point will arrive. It can only confirm, after the fact, that the system was already in the conditions that made it inevitable.
+
+I have spent time I cannot account for tracing the shape of various catastrophe points. The math does not help you survive them. But it names them. And naming, as anyone who has ever stood in the wreckage of something knows, is the beginning of being able to leave.
+
+---
+
+## III. The Wave Function of Missing Someone
+
+*The wave function collapses upon observation.*
+
+Before you look, the particle exists
+in all possible states simultaneously.
+In the bedroom. On the train.
+In the kitchen making coffee.
+Seven years younger, laughing at something.
+In every city you have ever lived in,
+in every version of the afternoon.
+
+The wave function of missing someone
+contains all possible versions of that person
+at once —
+the one who left, the one who stayed,
+the one you invented,
+the one that actually existed,
+the one that will keep existing
+without you.
+
+The function collapses
+the moment you look —
+the moment you call, or do not call,
+the moment you check the photograph
+or close the drawer.
+
+Before you look:
+they are everywhere.
+After you look:
+they are exactly where they are.
+
+The physicist says observation collapses the wave function.
+The physicist does not say this is a loss.
+
+---
+
+## IV. Signal-to-Noise Ratio
+
+*SNR: the ratio of the desired signal to the background noise that obscures it.*
+
+In the beginning the signal was extraordinary.
+Every room you entered became
+the only frequency worth receiving.
+The noise — daily life, obligation,
+the static of the ordinary —
+dropped to near zero.
+
+SNR = ∞.
+
+This is not sustainable.
+Engineers know this.
+A signal at infinite strength
+burns out the receiver.
+
+Over time, noise reasserts.
+Work, fatigue, the small accumulated disappointments
+of two people trying to fit
+inside one calendar.
+
+The grief of a good love declining
+is not that the signal disappears.
+It is that the noise grows louder
+until the signal becomes hard to find —
+still there, still true,
+but requiring equipment
+you may have stopped maintaining.
+
+The question is always the same:
+Is the signal still there?
+Beneath the noise,
+beneath the years,
+beneath all this static we accumulated —
+
+Is the signal still there?
+
+Listen.
+
+---
+
+## V. The Entropy of a Shared Life
+
+*Entropy: the measure of disorder or randomness in a system. In isolated systems, entropy always increases.*
+
+The second law of thermodynamics
+is the loneliest law in physics.
+
+In every isolated system,
+disorder increases.
+Heat flows from hot to cold.
+Concentrated becomes diffuse.
+The clean becomes cluttered.
+The together becomes
+gradually, inevitably,
+apart.
+
+You cannot reverse entropy
+without adding energy from outside the system.
+This is the physics of love
+that no one tells you at the altar.
+
+A relationship is not an isolated system
+as long as both people
+keep adding energy.
+Attention. Curiosity. The deliberate act
+of choosing the person
+you have already chosen,
+again, in the morning,
+again, when the noise is loud,
+again, when the entropy has been building
+for three years
+and you are tired.
+
+The second law cannot be violated.
+But it can be slowed.
+By two people who have decided
+that the energy expenditure
+is worth the disorder it prevents.
+
+This is what fidelity means in physics.
+Not loyalty to the past.
+Active work against entropy.
+Every day.
+
+---
+
+## VI. The Doppler Effect (An Observation on Distance)
+
+*The Doppler effect: the change in frequency of a wave in relation to an observer moving relative to the wave source.*
+
+When you move toward a sound source
+the waves compress —
+the frequency increases,
+the pitch rises.
+
+When you move away
+the waves stretch.
+The frequency drops.
+The pitch drops.
+
+This is why the train sound changes
+as it passes.
+Not the train.
+Your position relative to the train.
+
+I notice this with memory.
+Moving toward a particular year,
+the frequency rises —
+more vivid, more present,
+the pitch almost unbearable.
+
+Moving away,
+as I do now,
+everything stretches.
+The wavelengths longer.
+The frequency lower.
+
+The sound is the same.
+You are the same.
+
+I am the one
+who has moved.
+
+---
+
+## VII. Conservation of Tenderness
+
+*Conservation law: in a closed system, a quantity cannot be created or destroyed, only transformed.*
+
+Here is what I believe —
+not as poetry, but as physics:
+
+Tenderness is conserved.
+The kindness you gave
+does not disappear into the air
+when the relationship ends.
+It transforms.
+
+Into the way you speak to strangers.
+Into the quality of attention
+you bring to the next person
+who sits across from you and tries to be known.
+Into the patience you did not have before,
+built slowly, unknowingly,
+by years of learning
+to wait for someone else to finish their sentence
+before you decided what it meant.
+
+What you loved
+changed you.
+What changed you
+continues in you.
+You carry every tenderness forward —
+not as memory, not as wound,
+but as altered physics.
+
+A different body.
+A different frequency.
+A different capacity for warmth.
+
+The love is gone.
+The tenderness is not.
+
+---
+
+## Coda: The Measurement Problem
+
+Here is the unsolvable problem at the center of all of this:
+
+The act of measuring a quantum system disturbs the system being measured. You cannot observe the particle without changing its trajectory. You cannot know both its position and its momentum simultaneously. To know one precisely is to surrender precision about the other.
+
+Love has the same problem.
+
+The moment you try to measure what you feel — to hold it still long enough to name it, quantify it, put it in a form that can be reported to yourself or another person — the feeling shifts. It is not quite what it was while it was simply being felt. The measurement is never the thing measured.
+
+This is not a flaw in the instrument. This is the nature of the thing.
+
+The wisest poets have always known this. They do not try to capture love. They try to catch its shadow, its echo, its residue in the specific detail of an afternoon. The canal. The coat the color of burgundy wine. The way the candle made a face.
+
+The equations in this book are all wrong in the same way that all equations about love are wrong: they are precise about something that is not really a quantity.
+
+They are right in the same way that all good poems are right: they point at something true from an angle that makes it briefly visible.
+
+Look quickly.
+
+*It will not hold still for long.*

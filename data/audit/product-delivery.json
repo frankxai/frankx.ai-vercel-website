@@ -1,0 +1,514 @@
+{
+  "timestamp": "2026-03-28T00:00:00.000Z",
+  "auditVersion": "1.0",
+  "products": [
+    {
+      "slug": "soulbook",
+      "title": "The Creator's Soulbook",
+      "id": "creators-soulbook",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/soulbook/page.tsx (dedicated route, not /products/soulbook)",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "products/soulbook/soulbook-7-pillars-framework.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "CTA href is /soulbook/vault — no dedicated product page at /products/soulbook (uses /soulbook instead)",
+        "Delivery config in lib/delivery.ts does NOT include 'creators-soulbook' — only 5 products are configured there",
+        "No email template configured for gated download delivery"
+      ],
+      "score": 55
+    },
+    {
+      "slug": "creative-ai-toolkit",
+      "title": "The Creative AI Toolkit",
+      "id": "creative-ai-toolkit",
+      "status": "published",
+      "price": 47,
+      "hasPage": true,
+      "pageLocation": "app/products/creative-ai-toolkit/page.tsx",
+      "hasDownloadUrl": false,
+      "hasBlobUrl": false,
+      "blobKey": null,
+      "downloadApiConfigured": false,
+      "stripeConnected": true,
+      "stripeProductId": "creative-ai-toolkit (in checkout route)",
+      "emailTemplateExists": true,
+      "emailTemplateId": "product-delivery",
+      "deliveryMethods": null,
+      "requiresEmail": false,
+      "issues": [
+        "NO delivery block in products.json — product has no downloadable files defined",
+        "lib/delivery.ts references file 'creative-ai-toolkit-v1.pdf' but no blobKey exists in products.json",
+        "CTA points to Gumroad (https://frankx.gumroad.com/l/creative-ai-toolkit), NOT Stripe checkout — checkout route has Stripe mapping but CTA bypasses it",
+        "Paid product ($47) with NO download pipeline — customer cannot receive files after purchase",
+        "Stripe price ID uses env var STRIPE_PRICE_TOOLKIT which may not be set"
+      ],
+      "score": 20
+    },
+    {
+      "slug": "vibe-os",
+      "title": "Vibe OS: Creative State Management",
+      "id": "vibe-os",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/products/vibe-os/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "products/vibe-os/Vibe-OS-Guide.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": true,
+      "emailTemplateId": "free-product",
+      "deliveryMethods": ["download"],
+      "requiresEmail": false,
+      "issues": [],
+      "score": 95
+    },
+    {
+      "slug": "creation-chronicles",
+      "title": "Creation Chronicles",
+      "id": "creation-chronicles",
+      "status": "published",
+      "price": 497,
+      "hasPage": true,
+      "pageLocation": "app/products/creation-chronicles/page.tsx",
+      "hasDownloadUrl": false,
+      "hasBlobUrl": false,
+      "blobKey": null,
+      "downloadApiConfigured": false,
+      "stripeConnected": false,
+      "stripeNeeded": true,
+      "emailTemplateExists": true,
+      "emailTemplateId": "product-delivery",
+      "deliveryMethods": null,
+      "requiresEmail": false,
+      "issues": [
+        "NO delivery block in products.json — $497 product has no download files",
+        "lib/delivery.ts references file 'creation-chronicles-framework.pdf' but no blobKey defined in products.json",
+        "NOT in Stripe checkout route — no payment path exists",
+        "CTA points to Gumroad (https://frankx.gumroad.com/l/creation-chronicles-creator) for Creator tier",
+        "Paid product ($497-$2497) with ZERO file delivery pipeline"
+      ],
+      "score": 15
+    },
+    {
+      "slug": "generative-creator-os",
+      "title": "Creator Studio OS",
+      "id": "generative-creator-os",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Creator Studio Diagnostic",
+      "hasPage": true,
+      "pageLocation": "app/products/generative-creator-os/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "products/generative-creator-os/GenCreator-OS-Guide.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": true,
+      "emailTemplateId": "premium-product",
+      "deliveryMethods": ["download"],
+      "requiresEmail": false,
+      "issues": [
+        "Listed as free diagnostic but lib/delivery.ts configures it as 'access-code' delivery type — mismatch",
+        "Pricing tiers range $4,800-$12k+ but no Stripe integration for any tier — all CTAs are mailto: links",
+        "Welcome email references '/gencreator' URL which may not exist (products route is /products/generative-creator-os)"
+      ],
+      "score": 65
+    },
+    {
+      "slug": "agentic-creator-os",
+      "title": "Creator Lab OS",
+      "id": "agentic-creator-os",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Apply for the Lab",
+      "hasPage": true,
+      "pageLocation": "app/products/agentic-creator-os/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKeys": [
+        "products/agentic-creator-os/ACOS-Product-Guide-v2.pdf",
+        "products/agentic-creator-os/ACOS-Quickstart-Guide.pdf",
+        "products/agentic-creator-os/ACOS-Complete-Reference.pdf",
+        "products/agentic-creator-os/ACOS-Custom-Agent-Guide.pdf"
+      ],
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": true,
+      "emailTemplateId": "premium-product",
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "lib/delivery.ts file list does NOT match products.json — delivery.ts has 3 files, products.json has 4 (missing ACOS-Product-Guide-v2.pdf)",
+        "Pricing tiers ($297-Custom) have no Stripe integration — starter CTA points to '/creator-lab-starter' which may not exist",
+        "Product CTA says 'Apply for the Lab' but download is also available — mixed model unclear"
+      ],
+      "score": 70
+    },
+    {
+      "slug": "suno-prompt-library",
+      "title": "Suno Prompt Library Pack",
+      "id": "suno-prompt-library",
+      "status": "published",
+      "price": 27,
+      "hasPage": true,
+      "pageLocation": "app/products/suno-prompt-library/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKeys": [
+        "suno-prompt-library-guide.pdf",
+        "suno-prompt-library-notion.zip",
+        "suno-prompt-cheatsheet.pdf"
+      ],
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": true,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download"],
+      "requiresEmail": false,
+      "issues": [
+        "Paid product ($27) with NO Stripe checkout — not in checkout route PRODUCTS map",
+        "CTA points to Gumroad (https://frankx.gumroad.com/l/suno-prompt-library)",
+        "Blob keys are NOT namespaced under products/ directory — uses root-level keys (suno-prompt-library-guide.pdf) unlike other products",
+        "Not in lib/delivery.ts DELIVERY_CONFIG — no delivery email configured",
+        "No email template for purchase confirmation"
+      ],
+      "score": 35
+    },
+    {
+      "slug": "aurora-ui-kit",
+      "title": "Aurora UI Kit",
+      "id": "aurora-ui-kit",
+      "status": "published",
+      "price": 19,
+      "hasPage": false,
+      "pageLocation": "Dynamic route only (app/products/[slug]/page.tsx) — no dedicated page",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKeys": ["aurora-ui-kit.zip", "aurora-ui-kit-docs.pdf"],
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": true,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download"],
+      "requiresEmail": false,
+      "issues": [
+        "Paid product ($19) with NO Stripe checkout — not in checkout route",
+        "CTA points to Gumroad (https://frankx.gumroad.com/l/aurora-ui-kit)",
+        "No dedicated product page (served by dynamic [slug] route — fine but less polished)",
+        "Blob keys are NOT namespaced under products/ directory",
+        "Not in lib/delivery.ts — no delivery email configured",
+        "No email template for purchase confirmation"
+      ],
+      "score": 30
+    },
+    {
+      "slug": "agentic-content-engine",
+      "title": "Agentic Content Engine",
+      "id": "agentic-content-engine",
+      "status": "published",
+      "price": 97,
+      "hasPage": false,
+      "pageLocation": "Dynamic route only (app/products/[slug]/page.tsx)",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKeys": [
+        "agentic-content-engine.zip",
+        "content-engine-setup.pdf",
+        "content-engine-seo-scripts.zip"
+      ],
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": true,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download"],
+      "requiresEmail": false,
+      "issues": [
+        "Paid product ($97) with NO Stripe checkout — not in checkout route",
+        "CTA points to Gumroad (https://frankx.gumroad.com/l/agentic-content-engine)",
+        "Blob keys are NOT namespaced under products/ directory",
+        "Not in lib/delivery.ts — no delivery email configured",
+        "No email template for purchase confirmation"
+      ],
+      "score": 30
+    },
+    {
+      "slug": "5-suno-prompts",
+      "title": "5 Prompts That Made My Best Suno Tracks",
+      "id": "5-suno-prompts",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": false,
+      "pageLocation": "CTA points to /music-lab (not /products/5-suno-prompts)",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "products/5-suno-prompts/5-suno-prompts.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": true,
+      "emailTemplateNote": "Dedicated '5 Suno Prompts' email in email-templates.ts with download link",
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "No dedicated product page — CTA goes to /music-lab which handles the email gate",
+        "Not in lib/delivery.ts DELIVERY_CONFIG"
+      ],
+      "score": 70
+    },
+    {
+      "slug": "love-and-poetry",
+      "title": "Love & Poetry",
+      "id": "book-love-and-poetry",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/books/[bookSlug]/page.tsx (dynamic book route)",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "books/love-and-poetry/love-and-poetry.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "Gated download requires email but no email delivery template configured",
+        "Not in lib/delivery.ts DELIVERY_CONFIG"
+      ],
+      "score": 65
+    },
+    {
+      "slug": "spartan-mindset",
+      "title": "Spartan Mindset",
+      "id": "book-spartan-mindset",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/books/[bookSlug]/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "books/spartan-mindset/spartan-mindset.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "Gated download requires email but no email delivery template configured",
+        "Not in lib/delivery.ts DELIVERY_CONFIG"
+      ],
+      "score": 65
+    },
+    {
+      "slug": "self-development",
+      "title": "The Art of Self-Development",
+      "id": "book-self-development",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/books/[bookSlug]/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "books/self-development/self-development.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "Gated download requires email but no email delivery template configured",
+        "Not in lib/delivery.ts DELIVERY_CONFIG"
+      ],
+      "score": 65
+    },
+    {
+      "slug": "imagination",
+      "title": "Imagination",
+      "id": "book-imagination",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/books/[bookSlug]/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "books/imagination/imagination.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "Gated download requires email but no email delivery template configured",
+        "Not in lib/delivery.ts DELIVERY_CONFIG"
+      ],
+      "score": 65
+    },
+    {
+      "slug": "manifestation",
+      "title": "Manifestation",
+      "id": "book-manifestation",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/books/[bookSlug]/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "books/manifestation/manifestation.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "Gated download requires email but no email delivery template configured",
+        "Not in lib/delivery.ts DELIVERY_CONFIG"
+      ],
+      "score": 65
+    },
+    {
+      "slug": "golden-age",
+      "title": "The Golden Age of Creators",
+      "id": "golden-age-book",
+      "status": "published",
+      "price": 0,
+      "priceDisplay": "Free",
+      "hasPage": true,
+      "pageLocation": "app/books/[bookSlug]/page.tsx",
+      "hasDownloadUrl": true,
+      "hasBlobUrl": true,
+      "blobKey": "books/golden-age/golden-age.pdf",
+      "downloadApiConfigured": true,
+      "stripeConnected": false,
+      "stripeNeeded": false,
+      "emailTemplateExists": false,
+      "deliveryMethods": ["download", "gated"],
+      "requiresEmail": true,
+      "issues": [
+        "Gated download requires email but no email delivery template configured",
+        "Not in lib/delivery.ts DELIVERY_CONFIG",
+        "Uses different schema than other products — has 'title' instead of 'name', 'price' instead of 'offer.primaryPrice', 'status' field"
+      ],
+      "score": 60
+    }
+  ],
+  "summary": {
+    "total": 16,
+    "healthy": 1,
+    "broken": 5,
+    "needsWork": 10,
+    "draft": 0,
+    "healthyProducts": ["vibe-os"],
+    "brokenProducts": [
+      "creative-ai-toolkit",
+      "creation-chronicles",
+      "aurora-ui-kit",
+      "agentic-content-engine",
+      "suno-prompt-library"
+    ],
+    "averageScore": 51.9
+  },
+  "systemIssues": [
+    {
+      "severity": "CRITICAL",
+      "issue": "Stripe checkout route only maps 3 products (creative-ai-toolkit, acos-creator-kit, suno-prompt-pack) but product slugs don't match — 'acos-creator-kit' and 'suno-prompt-pack' don't exist in products.json",
+      "impact": "Stripe checkout is unreachable for ANY product in the catalog",
+      "fix": "Update checkout route PRODUCTS map to match actual product slugs and add all paid products"
+    },
+    {
+      "severity": "CRITICAL",
+      "issue": "All paid products CTA to Gumroad, bypassing the Stripe checkout route entirely",
+      "impact": "Stripe checkout route is dead code — all revenue flows through Gumroad with no delivery automation",
+      "fix": "Either commit to Gumroad (remove Stripe route) or migrate CTAs to use /api/checkout"
+    },
+    {
+      "severity": "HIGH",
+      "issue": "lib/delivery.ts DELIVERY_CONFIG only covers 5 products but products.json has 16 products",
+      "impact": "11 products have no delivery configuration — generateProductEmailData() returns null for them",
+      "fix": "Add all products with delivery blocks to DELIVERY_CONFIG"
+    },
+    {
+      "severity": "HIGH",
+      "issue": "lib/delivery.ts file references don't match products.json blobKeys",
+      "impact": "Even configured products may deliver wrong files or fail",
+      "details": {
+        "creative-ai-toolkit": "delivery.ts: 'creative-ai-toolkit-v1.pdf' vs products.json: no delivery block",
+        "agentic-creator-os": "delivery.ts: 3 files vs products.json: 4 files (missing ACOS-Product-Guide-v2.pdf)"
+      }
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "6 book products require email (gated) but have no email delivery template",
+      "impact": "Users provide email for gated download, get added to Resend audience, but receive no confirmation email with download link",
+      "fix": "Create book download email template or reuse the productDeliveryEmail from email-templates.ts"
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "Inconsistent blob key namespacing — some use 'products/{slug}/' prefix, some use root-level keys",
+      "impact": "Files may not be found in blob storage if uploaded under different paths",
+      "products": [
+        "suno-prompt-library",
+        "aurora-ui-kit",
+        "agentic-content-engine"
+      ]
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "golden-age product uses different schema (title vs name, price vs offer.primaryPrice)",
+      "impact": "Dynamic product page may render incorrectly or miss fields",
+      "fix": "Normalize golden-age entry to match standard product schema"
+    },
+    {
+      "severity": "LOW",
+      "issue": "Welcome email references /products/5-suno-prompts and /gencreator — URLs that may not have dedicated pages",
+      "impact": "Email links may 404",
+      "fix": "Verify all email template URLs resolve to valid pages"
+    },
+    {
+      "severity": "INFO",
+      "issue": "Download API (GET /api/download) correctly blocks gated products and requires POST with email",
+      "impact": "None — working as designed"
+    },
+    {
+      "severity": "INFO",
+      "issue": "File download API (/api/download/file?key=) provides an unprotected direct blob redirect",
+      "impact": "Anyone with a blob key can download files — acceptable for free products, problematic for paid"
+    }
+  ],
+  "recommendations": [
+    "P0: Decide on Gumroad vs Stripe and make ONE work end-to-end for all paid products",
+    "P0: Fix creative-ai-toolkit and creation-chronicles — paid products with zero delivery pipeline",
+    "P1: Sync lib/delivery.ts DELIVERY_CONFIG with products.json — all 16 products should be registered",
+    "P1: Add email delivery templates for book downloads (6 products need this)",
+    "P1: Fix blob key namespacing — standardize on products/{slug}/ prefix for all product files",
+    "P2: Normalize golden-age product schema to match other products",
+    "P2: Verify all blob files actually exist in Vercel Blob storage (cannot verify without runtime access)",
+    "P3: Consider access protection for paid product files — current /api/download/file endpoint is unprotected"
+  ]
+}

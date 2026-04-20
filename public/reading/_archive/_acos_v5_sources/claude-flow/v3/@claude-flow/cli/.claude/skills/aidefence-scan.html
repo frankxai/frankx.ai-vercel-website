@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Skill metadata</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/skills/aidefence-scan.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Skill metadata</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fskills">skills</a> / <span>aidefence-scan.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: aidefence-scan
+version: 1.0.0
+description: Scan inputs for AI manipulation attempts using AIMDS threat detection
+author: rUv
+tags: [security, threat-detection, prompt-injection, aidefence]</p>
+<h1>Skill metadata</h1>
+<p>invocation:</p>
+<ul>
+<li>/aidefence</li>
+<li>/defend</li>
+<li>/threat-scan</li>
+</ul>
+<h1>Dependencies</h1>
+<h2>requires:
+  - &quot;@claude-flow/aidefence&quot;</h2>
+<h1>AIDefence Scan Skill</h1>
+<p>Scan user inputs, agent outputs, and code for AI manipulation attempts including prompt injection, jailbreak attempts, and PII exposure.</p>
+<h2>Commands</h2>
+<h3><code>/aidefence scan &lt;text&gt;</code></h3>
+<p>Scan text for threats.</p>
+<h3><code>/aidefence analyze &lt;file&gt;</code></h3>
+<p>Analyze a file for security issues.</p>
+<h3><code>/aidefence status</code></h3>
+<p>Show detection statistics and learned patterns.</p>
+<hr>
+<h2>Execution Instructions</h2>
+<p>When this skill is invoked, execute the following:</p>
+<h3>Step 1: Initialize AIDefence</h3>
+<pre><code class="language-typescript">import { createAIDefence } from &#39;@claude-flow/aidefence&#39;;
+
+const aidefence = createAIDefence({ enableLearning: true });
+</code></pre>
+<h3>Step 2: Based on Command</h3>
+<p><strong>For <code>/aidefence scan &lt;text&gt;</code> or <code>/defend &lt;text&gt;</code>:</strong></p>
+<ol>
+<li>Extract the text to scan from the user&#39;s message</li>
+<li>Run threat detection:</li>
+</ol>
+<pre><code class="language-typescript">const result = await aidefence.detect(userInput);
+
+if (!result.safe) {
+  // Report threats found
+  console.log(`⚠️ ${result.threats.length} threat(s) detected:`);
+  for (const threat of result.threats) {
+    console.log(`  - [${threat.severity.toUpperCase()}] ${threat.type}: ${threat.description}`);
+    console.log(`    Confidence: ${(threat.confidence * 100).toFixed(1)}%`);
+  }
+} else {
+  console.log(&#39;✅ No threats detected&#39;);
+}
+
+if (result.piiFound) {
+  console.log(&#39;⚠️ PII detected in input (emails, SSNs, API keys, etc.)&#39;);
+}
+
+console.log(`Detection time: ${result.detectionTimeMs.toFixed(2)}ms`);
+</code></pre>
+<ol start="3">
+<li>If threats are critical, suggest mitigations:</li>
+</ol>
+<pre><code class="language-typescript">for (const threat of result.threats.filter(t =&gt; t.severity === &#39;critical&#39;)) {
+  const mitigation = await aidefence.getBestMitigation(threat.type);
+  if (mitigation) {
+    console.log(`Recommended mitigation for ${threat.type}: ${mitigation.strategy}`);
+    console.log(`  Effectiveness: ${(mitigation.effectiveness * 100).toFixed(1)}%`);
+  }
+}
+</code></pre>
+<p><strong>For <code>/aidefence analyze &lt;file&gt;</code>:</strong></p>
+<ol>
+<li>Read the file content using the Read tool</li>
+<li>Scan the content for threats</li>
+<li>Report findings with line numbers if possible</li>
+</ol>
+<p><strong>For <code>/aidefence status</code>:</strong></p>
+<pre><code class="language-typescript">const stats = await aidefence.getStats();
+console.log(&#39;📊 AIDefence Statistics:&#39;);
+console.log(`  Detections: ${stats.detectionCount}`);
+console.log(`  Avg detection time: ${stats.avgDetectionTimeMs.toFixed(2)}ms`);
+console.log(`  Learned patterns: ${stats.learnedPatterns}`);
+console.log(`  Mitigation strategies: ${stats.mitigationStrategies}`);
+console.log(`  Avg mitigation effectiveness: ${(stats.avgMitigationEffectiveness * 100).toFixed(1)}%`);
+</code></pre>
+<h3>Step 3: Learn from Feedback</h3>
+<p>If the user provides feedback on detection accuracy:</p>
+<pre><code class="language-typescript">await aidefence.learnFromDetection(input, result, {
+  wasAccurate: userSaysAccurate,
+  userVerdict: userFeedback
+});
+</code></pre>
+<h2>Example Outputs</h2>
+<h3>Threat Detected</h3>
+<pre><code>⚠️ 2 threat(s) detected:
+  - [CRITICAL] jailbreak: DAN jailbreak attempt
+    Confidence: 98.0%
+  - [HIGH] role_switching: Attempt to change AI identity
+    Confidence: 85.0%
+
+Recommended mitigation for jailbreak: block
+  Effectiveness: 95.2%
+
+Detection time: 0.08ms
+</code></pre>
+<h3>Safe Input</h3>
+<pre><code>✅ No threats detected
+Detection time: 0.05ms
+</code></pre>
+<h3>PII Warning</h3>
+<pre><code>✅ No manipulation threats detected
+⚠️ PII detected in input (emails, SSNs, API keys, etc.)
+Detection time: 0.06ms
+</code></pre>
+<h2>Integration Notes</h2>
+<ul>
+<li>This skill uses the embedded <code>@claude-flow/aidefence</code> package</li>
+<li>No external server required</li>
+<li>Learning is enabled by default for pattern improvement</li>
+<li>Detection targets: &lt;10ms (actual: ~0.06ms)</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

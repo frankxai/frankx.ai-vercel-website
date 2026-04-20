@@ -1,5 +1,6 @@
 import { ArrowRight, ExternalLink, Play, Sparkles, Youtube, TrendingUp, Users } from 'lucide-react'
 import Link from 'next/link'
+import type { ReactNode } from 'react'
 import { UniversalEmbed } from '@/components/embeds/UniversalEmbed'
 
 interface StrategyPageProps {
@@ -9,6 +10,7 @@ interface StrategyPageProps {
   stats: { label: string; value: string }[]
   steps: { title: string; description: string }[]
   tools: { name: string; description: string; url: string }[]
+  children?: ReactNode
 }
 
 export function StrategyPageLayout({
@@ -18,6 +20,7 @@ export function StrategyPageLayout({
   stats,
   steps,
   tools,
+  children,
 }: StrategyPageProps) {
   return (
     <main className="min-h-screen bg-[#0a0a0b] text-white selection:bg-emerald-500/30">
@@ -46,6 +49,15 @@ export function StrategyPageLayout({
           </div>
         </div>
       </section>
+
+      {/* Optional custom notice block */}
+      {children && (
+        <section className="px-6 pb-2">
+          <div className="max-w-4xl mx-auto rounded-2xl border border-amber-500/30 bg-gradient-to-br from-amber-500/10 to-orange-500/5 p-6 md:p-8">
+            {children}
+          </div>
+        </section>
+      )}
 
       {/* Stats Grid */}
       <section className="py-12 border-y border-white/[0.08] bg-white/[0.03]">

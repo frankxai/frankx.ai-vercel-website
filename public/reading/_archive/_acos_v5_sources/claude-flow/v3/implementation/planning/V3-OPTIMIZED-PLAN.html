@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow v3: Optimized Implementation Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/planning/V3-OPTIMIZED-PLAN.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow v3: Optimized Implementation Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fplanning">planning</a> / <span>V3-OPTIMIZED-PLAN.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude-Flow v3: Optimized Implementation Plan</h1>
+<h2>Core Priorities</h2>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Focus</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>1</strong></td>
+<td>Clean Integration</td>
+<td>Zero security vulnerabilities</td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td>Speed</td>
+<td>2.49x-7.47x performance gains</td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td>Self-Learning</td>
+<td>SONA + Reflexion + AgentDB</td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td>Backward Compatibility</td>
+<td>100% v2 API preservation</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td>Init Capabilities</td>
+<td>Enhanced initialization system</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>1. Clean Integration Architecture</h2>
+<h3>1.1 Security-First Design</h3>
+<p>All security issues resolved before any feature work:</p>
+<pre><code class="language-typescript">// src/v3/core/secure-foundation.ts
+import { createSecureHash, generateToken, validatePath } from &#39;./security&#39;;
+
+export class SecureFoundation {
+  // Secure password hashing (replaces SHA-256 with hardcoded salt)
+  async hashPassword(password: string): Promise&lt;string&gt; {
+    const bcrypt = await import(&#39;bcrypt&#39;);
+    return bcrypt.hash(password, 12);
+  }
+
+  // Secure token generation (replaces Math.random())
+  generateSecureToken(length = 32): string {
+    return crypto.randomBytes(length).toString(&#39;hex&#39;);
+  }
+
+  // Path validation (prevents traversal)
+  validateFilePath(userPath: string, baseDir: string): string {
+    const resolved = path.resolve(baseDir, userPath);
+    if (!resolved.startsWith(path.resolve(baseDir))) {
+      throw new SecurityError(&#39;Path traversal detected&#39;);
+    }
+    return resolved;
+  }
+
+  // Safe process execution (no shell injection)
+  async safeExec(command: string, args: string[]): Promise&lt;ExecResult&gt; {
+    return execFile(command, args, { shell: false });
+  }
+}
+</code></pre>
+<h3>1.2 Dependency Security</h3>
+<pre><code class="language-json">// package.json - Updated secure dependencies
+{
+  &quot;dependencies&quot;: {
+    &quot;@anthropic-ai/claude-code&quot;: &quot;^2.0.31&quot;,
+    &quot;@modelcontextprotocol/sdk&quot;: &quot;^1.24.0&quot;,
+    &quot;agentic-flow&quot;: &quot;^2.0.1-alpha.0&quot;,
+    &quot;bcrypt&quot;: &quot;^5.1.1&quot;,
+    &quot;zod&quot;: &quot;^3.22.0&quot;
+  }
+}
+</code></pre>
+<h3>1.3 Input Validation Layer</h3>
+<pre><code class="language-typescript">// src/v3/validation/schemas.ts
+import { z } from &#39;zod&#39;;
+
+export const InitConfigSchema = z.object({
+  mode: z.enum([&#39;standard&#39;, &#39;sparc&#39;, &#39;hive-mind&#39;, &#39;neural&#39;, &#39;github&#39;, &#39;enterprise&#39;]),
+  agenticFlow: z.object({
+    enabled: z.boolean().default(true),
+    sona: z.enum([&#39;real-time&#39;, &#39;balanced&#39;, &#39;research&#39;, &#39;edge&#39;, &#39;batch&#39;]).default(&#39;balanced&#39;),
+    attention: z.enum([&#39;flash&#39;, &#39;multi-head&#39;, &#39;linear&#39;, &#39;hyperbolic&#39;, &#39;moe&#39;]).default(&#39;flash&#39;),
+    learning: z.boolean().default(true)
+  }).optional(),
+  security: z.object({
+    validatePaths: z.boolean().default(true),
+    sanitizeInputs: z.boolean().default(true)
+  }).default({})
+});
+
+export type InitConfig = z.infer&lt;typeof InitConfigSchema&gt;;
+</code></pre>
+<hr>
+<h2>2. Speed Optimization</h2>
+<h3>2.1 agentic-flow Flash Attention Integration</h3>
+<pre><code class="language-typescript">// src/v3/speed/flash-attention-coordinator.ts
+import { EnhancedAgentDBWrapper, AttentionCoordinator } from &#39;agentic-flow/core&#39;;
+
+export class FlashCoordinator {
+  private wrapper: EnhancedAgentDBWrapper;
+  private attention: AttentionCoordinator;
+
+  constructor() {
+    this.wrapper = new EnhancedAgentDBWrapper({
+      enableAttention: true,
+      attentionConfig: {
+        type: &#39;flash&#39;,           // 2.49x-7.47x speedup
+        memoryEfficient: true,   // 50-75% memory reduction
+        batchSize: 64
+      },
+      runtimePreference: &#39;napi&#39;  // Fastest: NAPI → WASM → JS fallback
+    });
+  }
+
+  async initialize(): Promise&lt;void&gt; {
+    await this.wrapper.initialize();
+    this.attention = new AttentionCoordinator(
+      this.wrapper.getAttentionService()
+    );
+  }
+
+  // Fast agent coordination with consensus
+  async coordinateAgents(outputs: AgentOutput[]): Promise&lt;Consensus&gt; {
+    return this.attention.coordinateAgents(outputs, &#39;flash&#39;);
+  }
+
+  // Fast pattern search with HNSW indexing (150x-12,500x faster)
+  async searchPatterns(query: string, k = 5): Promise&lt;Pattern[]&gt; {
+    return this.wrapper.gnnEnhancedSearch(query, { k });
+  }
+}
+</code></pre>
+<h3>2.2 Lazy Initialization</h3>
+<pre><code class="language-typescript">// src/v3/init/lazy-loader.ts
+export class LazyInitializer {
+  private static instances = new Map&lt;string, any&gt;();
+  private static initializing = new Map&lt;string, Promise&lt;any&gt;&gt;();
+
+  static async get&lt;T&gt;(key: string, factory: () =&gt; Promise&lt;T&gt;): Promise&lt;T&gt; {
+    // Return cached instance
+    if (this.instances.has(key)) {
+      return this.instances.get(key);
+    }
+
+    // Wait for in-progress initialization
+    if (this.initializing.has(key)) {
+      return this.initializing.get(key);
+    }
+
+    // Initialize once
+    const promise = factory().then(instance =&gt; {
+      this.instances.set(key, instance);
+      this.initializing.delete(key);
+      return instance;
+    });
+
+    this.initializing.set(key, promise);
+    return promise;
+  }
+}
+
+// Usage - components only initialize when needed
+export const getFlashCoordinator = () =&gt;
+  LazyInitializer.get(&#39;flash&#39;, async () =&gt; {
+    const coord = new FlashCoordinator();
+    await coord.initialize();
+    return coord;
+  });
+
+export const getAgentDB = () =&gt;
+  LazyInitializer.get(&#39;agentdb&#39;, async () =&gt; {
+    const db = new AgentDBWrapper();
+    await db.initialize();
+    return db;
+  });
+</code></pre>
+<h3>2.3 Performance Targets</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>v2 Current</th>
+<th>v3 Target</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Init (cold)</td>
+<td>2s</td>
+<td>&lt;500ms</td>
+<td>Lazy loading</td>
+</tr>
+<tr>
+<td>Init (warm)</td>
+<td>500ms</td>
+<td>&lt;100ms</td>
+<td>Cached instances</td>
+</tr>
+<tr>
+<td>Agent spawn</td>
+<td>500ms</td>
+<td>&lt;100ms</td>
+<td>Flash Attention</td>
+</tr>
+<tr>
+<td>Memory query</td>
+<td>25ms</td>
+<td>&lt;5ms</td>
+<td>HNSW indexing</td>
+</tr>
+<tr>
+<td>Pattern search</td>
+<td>150ms</td>
+<td>0.5ms</td>
+<td>AgentDB GNN</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>3. Self-Learning System</h2>
+<h3>3.1 SONA Learning Integration</h3>
+<pre><code class="language-typescript">// src/v3/learning/sona-manager.ts
+export interface SONAConfig {
+  profile: &#39;real-time&#39; | &#39;balanced&#39; | &#39;research&#39; | &#39;edge&#39; | &#39;batch&#39;;
+  reflexion: boolean;
+  skillLibrary: boolean;
+  continualLearning: boolean;
+}
+
+export class SONAManager {
+  private adapter: AgenticFlowAdapter;
+  private config: SONAConfig;
+
+  constructor(config: Partial&lt;SONAConfig&gt; = {}) {
+    this.config = {
+      profile: config.profile ?? &#39;balanced&#39;,
+      reflexion: config.reflexion ?? true,
+      skillLibrary: config.skillLibrary ?? true,
+      continualLearning: config.continualLearning ?? true
+    };
+  }
+
+  async initialize(): Promise&lt;void&gt; {
+    this.adapter = new AgenticFlowAdapter({
+      sona: this.config.profile,
+      learning: true
+    });
+    await this.adapter.initialize();
+  }
+
+  // Learn from successful operations
+  async learn(context: LearningContext): Promise&lt;void&gt; {
+    const reward = this.calculateReward(context);
+
+    await this.adapter.storePattern(
+      context.operation,
+      context.result,
+      reward,
+      { algorithm: &#39;ppo&#39; }
+    );
+
+    // Add to skill library if high quality
+    if (reward &gt; 0.8 &amp;&amp; this.config.skillLibrary) {
+      await this.adapter.addToSkillLibrary(
+        context.agentId,
+        context.taskType,
+        context.output
+      );
+    }
+  }
+
+  // Reflexion: self-improvement through feedback
+  async reflect(agentId: string, task: Task, result: TaskResult): Promise&lt;Improvement[]&gt; {
+    if (!this.config.reflexion) return [];
+
+    const pastAttempts = await this.adapter.searchPatterns(
+      `${agentId}:${task.type}`,
+      { k: 10 }
+    );
+
+    const improvements = await this.adapter.analyzeForImprovement(
+      pastAttempts,
+      result
+    );
+
+    return improvements;
+  }
+
+  private calculateReward(context: LearningContext): number {
+    let reward = context.success ? 0.7 : 0.0;
+
+    if (context.metrics?.quality) reward += context.metrics.quality * 0.2;
+    if (context.metrics?.speed) reward += context.metrics.speed * 0.1;
+
+    return Math.min(reward, 1.0);
+  }
+}
+</code></pre>
+<h3>3.2 Learning Hooks Integration</h3>
+<pre><code class="language-typescript">// src/v3/learning/learning-hooks.ts
+export class LearningHooks {
+  private sona: SONAManager;
+
+  constructor(sona: SONAManager) {
+    this.sona = sona;
+  }
+
+  // Pre-task: Query learned patterns
+  async preTask(context: HookContext): Promise&lt;void&gt; {
+    const patterns = await this.sona.searchPatterns(context.taskDescription);
+
+    if (patterns.length &gt; 0) {
+      context.suggestions = patterns.map(p =&gt; ({
+        approach: p.pattern,
+        confidence: p.score,
+        source: &#39;learned&#39;
+      }));
+    }
+  }
+
+  // Post-task: Store learning
+  async postTask(context: HookContext): Promise&lt;void&gt; {
+    await this.sona.learn({
+      operation: context.taskId,
+      result: context.result,
+      success: context.success,
+      agentId: context.agentId,
+      taskType: context.taskType,
+      output: context.output,
+      metrics: context.metrics
+    });
+
+    // Trigger reflexion for improvement
+    if (context.success) {
+      const improvements = await this.sona.reflect(
+        context.agentId,
+        context.task,
+        context.result
+      );
+
+      if (improvements.length &gt; 0) {
+        await this.applyImprovements(context.agentId, improvements);
+      }
+    }
+  }
+
+  // Post-edit: Learn from code changes
+  async postEdit(context: HookContext): Promise&lt;void&gt; {
+    if (context.success) {
+      await this.sona.learn({
+        operation: `edit:${context.file}`,
+        result: context.changes,
+        success: true,
+        agentId: context.agentId || &#39;default&#39;,
+        taskType: &#39;code-edit&#39;,
+        output: context.newContent
+      });
+    }
+  }
+}
+</code></pre>
+<h3>3.3 ReasoningBank Integration</h3>
+<pre><code class="language-typescript">// src/v3/learning/reasoningbank-bridge.ts
+export class ReasoningBankBridge {
+  private agentDB: AgentDBWrapper;
+
+  async storeTrajectory(trajectory: Trajectory): Promise&lt;void&gt; {
+    // Store with embedding for semantic search
+    await this.agentDB.store({
+      key: `trajectory:${trajectory.id}`,
+      value: trajectory,
+      embedding: await this.embed(trajectory.description),
+      metadata: {
+        success: trajectory.success,
+        reward: trajectory.reward,
+        timestamp: Date.now()
+      }
+    });
+  }
+
+  async queryBestApproach(task: string): Promise&lt;Trajectory[]&gt; {
+    // GNN-enhanced search for similar successful trajectories
+    const results = await this.agentDB.gnnEnhancedSearch(task, {
+      k: 5,
+      filter: { success: true },
+      minReward: 0.7
+    });
+
+    return results.map(r =&gt; r.value as Trajectory);
+  }
+}
+</code></pre>
+<hr>
+<h2>4. Backward Compatibility Layer</h2>
+<h3>4.1 v2 API Preservation</h3>
+<pre><code class="language-typescript">// src/v3/compatibility/v2-api.ts
+import { FlashCoordinator } from &#39;../speed/flash-attention-coordinator&#39;;
+import { SONAManager } from &#39;../learning/sona-manager&#39;;
+
+/**
+ * Complete v2 API compatibility
+ * All existing code works unchanged
+ */
+
+// v2 SwarmCoordinator - fully preserved
+export class SwarmCoordinator {
+  private v3Flash: FlashCoordinator;
+  private v3Sona: SONAManager;
+  private eventEmitter = new EventEmitter();
+
+  constructor(config?: V2Config) {
+    // v3 enhancements transparent to v2 callers
+    this.v3Flash = new FlashCoordinator();
+    this.v3Sona = new SONAManager({ profile: &#39;balanced&#39; });
+  }
+
+  async initialize(): Promise&lt;void&gt; {
+    await Promise.all([
+      this.v3Flash.initialize(),
+      this.v3Sona.initialize()
+    ]);
+  }
+
+  // v2 method signature preserved exactly
+  async spawnAgent(profile: AgentProfile): Promise&lt;string&gt; {
+    // Internally uses v3 with learning
+    const agentId = await this.v3Flash.spawnAgent(profile.type, {
+      learning: true,  // v3 enhancement
+      ...profile
+    });
+
+    this.eventEmitter.emit(&#39;agent:spawned&#39;, { agentId, profile });
+    return agentId;
+  }
+
+  // v2 method signature preserved exactly
+  async assignTask(task: Task): Promise&lt;void&gt; {
+    await this.v3Flash.executeTask(task);
+    this.eventEmitter.emit(&#39;task:assigned&#39;, { task });
+  }
+
+  // v2 event system preserved
+  on(event: string, handler: (...args: any[]) =&gt; void): void {
+    this.eventEmitter.on(event, handler);
+  }
+
+  off(event: string, handler: (...args: any[]) =&gt; void): void {
+    this.eventEmitter.off(event, handler);
+  }
+}
+
+// v2 AgentManager - fully preserved
+export class AgentManager {
+  private v3: EnhancedAgentManager;
+
+  // All v2 methods work exactly as before
+  async createAgent(template: string): Promise&lt;string&gt; {
+    return this.v3.createAgentWithLearning(template);
+  }
+
+  async getAgent(id: string): Promise&lt;Agent | undefined&gt; {
+    return this.v3.getAgent(id);
+  }
+
+  async terminateAgent(id: string): Promise&lt;void&gt; {
+    return this.v3.terminateAgent(id);
+  }
+}
+
+// v2 MemoryManager - fully preserved
+export class MemoryManager {
+  private v3: HybridMemorySystem;
+
+  async store(key: string, value: any): Promise&lt;void&gt; {
+    return this.v3.store(key, value);
+  }
+
+  async retrieve(key: string): Promise&lt;any&gt; {
+    return this.v3.retrieve(key);
+  }
+
+  async search(query: string): Promise&lt;any[]&gt; {
+    return this.v3.search(query);
+  }
+}
+</code></pre>
+<h3>4.2 Config Auto-Migration</h3>
+<pre><code class="language-typescript">// src/v3/compatibility/config-migration.ts
+export async function autoMigrateConfig(): Promise&lt;void&gt; {
+  const configPath = &#39;.claude/config.json&#39;;
+
+  if (!await fileExists(configPath)) {
+    // Fresh install - create v3 config
+    await createDefaultV3Config(configPath);
+    return;
+  }
+
+  const config = await loadConfig(configPath);
+
+  // Already v3
+  if (config.version === &#39;3.0.0&#39;) return;
+
+  // Migrate v2 to v3
+  const v3Config = {
+    version: &#39;3.0.0&#39;,
+
+    // Preserve all v2 settings
+    ...config,
+
+    // Add v3 enhancements
+    agenticFlow: {
+      enabled: true,
+      attention: &#39;flash&#39;,
+      sona: &#39;balanced&#39;,
+      learning: true
+    },
+
+    // Migrate hooks to single source
+    hooks: consolidateHooks(config)
+  };
+
+  // Backup v2 config
+  await fs.copyFile(configPath, `${configPath}.v2.backup`);
+
+  // Save v3 config
+  await saveConfig(configPath, v3Config);
+
+  console.log(&#39;✅ Configuration migrated to v3&#39;);
+}
+</code></pre>
+<hr>
+<h2>5. Enhanced Init System</h2>
+<h3>5.1 Unified Init Controller</h3>
+<pre><code class="language-typescript">// src/v3/init/init-controller.ts
+import { SecureFoundation } from &#39;../core/secure-foundation&#39;;
+import { FlashCoordinator } from &#39;../speed/flash-attention-coordinator&#39;;
+import { SONAManager } from &#39;../learning/sona-manager&#39;;
+import { InitConfigSchema, InitConfig } from &#39;../validation/schemas&#39;;
+
+export class InitController {
+  private security: SecureFoundation;
+  private flash: FlashCoordinator;
+  private sona: SONAManager;
+  private config: InitConfig;
+
+  constructor(config: Partial&lt;InitConfig&gt; = {}) {
+    // Validate config with Zod
+    this.config = InitConfigSchema.parse(config);
+
+    this.security = new SecureFoundation();
+    this.flash = new FlashCoordinator();
+    this.sona = new SONAManager(this.config.agenticFlow);
+  }
+
+  async initialize(): Promise&lt;InitResult&gt; {
+    const startTime = Date.now();
+    const results: InitStepResult[] = [];
+
+    try {
+      // Step 1: Security initialization
+      results.push(await this.initSecurity());
+
+      // Step 2: Directory structure
+      results.push(await this.initDirectories());
+
+      // Step 3: agentic-flow integration
+      results.push(await this.initAgenticFlow());
+
+      // Step 4: Mode-specific initialization
+      results.push(await this.initMode());
+
+      // Step 5: Learning system
+      results.push(await this.initLearning());
+
+      // Step 6: Backward compatibility check
+      results.push(await this.initCompatibility());
+
+      return {
+        success: true,
+        mode: this.config.mode,
+        duration: Date.now() - startTime,
+        steps: results,
+        capabilities: this.getCapabilities()
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error.message,
+        duration: Date.now() - startTime,
+        steps: results
+      };
+    }
+  }
+
+  private async initSecurity(): Promise&lt;InitStepResult&gt; {
+    // Validate environment
+    await this.security.validateEnvironment();
+
+    // Check for secure token
+    if (!process.env.CLAUDE_FLOW_TOKEN) {
+      const token = this.security.generateSecureToken();
+      console.log(&#39;Generated secure token - add to environment&#39;);
+    }
+
+    return { step: &#39;security&#39;, success: true };
+  }
+
+  private async initDirectories(): Promise&lt;InitStepResult&gt; {
+    const dirs = [
+      &#39;.claude&#39;,
+      &#39;.claude/agents&#39;,
+      &#39;.claude/commands&#39;,
+      &#39;.claude/skills&#39;,
+      &#39;.claude/checkpoints/active&#39;,
+      &#39;.claude-flow/coordination&#39;,
+      &#39;.claude-flow/training&#39;,
+      &#39;.claude-flow/metrics&#39;
+    ];
+
+    for (const dir of dirs) {
+      await fs.mkdir(dir, { recursive: true });
+    }
+
+    return { step: &#39;directories&#39;, success: true };
+  }
+
+  private async initAgenticFlow(): Promise&lt;InitStepResult&gt; {
+    if (!this.config.agenticFlow?.enabled) {
+      return { step: &#39;agentic-flow&#39;, success: true, skipped: true };
+    }
+
+    await Promise.all([
+      this.flash.initialize(),
+      this.sona.initialize()
+    ]);
+
+    return { step: &#39;agentic-flow&#39;, success: true };
+  }
+
+  private async initMode(): Promise&lt;InitStepResult&gt; {
+    const modeInitializers: Record&lt;string, () =&gt; Promise&lt;void&gt;&gt; = {
+      &#39;standard&#39;: () =&gt; this.initStandardMode(),
+      &#39;sparc&#39;: () =&gt; this.initSparcMode(),
+      &#39;hive-mind&#39;: () =&gt; this.initHiveMindMode(),
+      &#39;neural&#39;: () =&gt; this.initNeuralMode(),
+      &#39;github&#39;: () =&gt; this.initGitHubMode(),
+      &#39;enterprise&#39;: () =&gt; this.initEnterpriseMode()
+    };
+
+    const initializer = modeInitializers[this.config.mode];
+    await initializer();
+
+    return { step: &#39;mode&#39;, success: true, mode: this.config.mode };
+  }
+
+  private async initLearning(): Promise&lt;InitStepResult&gt; {
+    // Load existing patterns
+    const patterns = await this.sona.loadExistingPatterns();
+
+    // Register learning hooks
+    await this.registerLearningHooks();
+
+    return {
+      step: &#39;learning&#39;,
+      success: true,
+      patternsLoaded: patterns.length
+    };
+  }
+
+  private async initCompatibility(): Promise&lt;InitStepResult&gt; {
+    // Auto-migrate v2 config if present
+    await autoMigrateConfig();
+
+    // Verify v2 APIs work
+    const v2Test = await this.testV2Compatibility();
+
+    return { step: &#39;compatibility&#39;, success: v2Test.passed };
+  }
+
+  private getCapabilities(): Capabilities {
+    return {
+      flashAttention: this.config.agenticFlow?.attention === &#39;flash&#39;,
+      sonaLearning: this.config.agenticFlow?.enabled,
+      reflexion: this.config.agenticFlow?.enabled,
+      vectorSearch: this.config.agenticFlow?.enabled,
+      mode: this.config.mode,
+      v2Compatible: true
+    };
+  }
+}
+</code></pre>
+<h3>5.2 Mode-Specific Initializers</h3>
+<pre><code class="language-typescript">// src/v3/init/modes/index.ts
+export abstract class ModeInitializer {
+  protected controller: InitController;
+  protected sona: SONAManager;
+
+  abstract get modeName(): string;
+  abstract get requiredAgents(): string[];
+  abstract get requiredSkills(): string[];
+
+  async initialize(): Promise&lt;void&gt; {
+    // Copy agents for this mode
+    await this.copyAgents();
+
+    // Copy skills for this mode
+    await this.copySkills();
+
+    // Copy commands for this mode
+    await this.copyCommands();
+
+    // Mode-specific setup
+    await this.modeSpecificSetup();
+
+    // Load learned patterns for this mode
+    await this.loadModePatterns();
+  }
+
+  protected async loadModePatterns(): Promise&lt;void&gt; {
+    const patterns = await this.sona.searchPatterns(
+      `mode:${this.modeName}`,
+      { k: 100 }
+    );
+
+    console.log(`Loaded ${patterns.length} learned patterns for ${this.modeName} mode`);
+  }
+
+  protected abstract modeSpecificSetup(): Promise&lt;void&gt;;
+}
+
+// Standard mode
+export class StandardModeInitializer extends ModeInitializer {
+  get modeName() { return &#39;standard&#39;; }
+  get requiredAgents() { return [&#39;coder&#39;, &#39;tester&#39;, &#39;reviewer&#39;, &#39;researcher&#39;, &#39;planner&#39;]; }
+  get requiredSkills() { return [&#39;swarm-orchestration&#39;, &#39;pair-programming&#39;]; }
+
+  protected async modeSpecificSetup(): Promise&lt;void&gt; {
+    // Standard mode uses balanced SONA profile
+    await this.sona.setProfile(&#39;balanced&#39;);
+  }
+}
+
+// SPARC mode
+export class SparcModeInitializer extends ModeInitializer {
+  get modeName() { return &#39;sparc&#39;; }
+  get requiredAgents() {
+    return [&#39;sparc-coord&#39;, &#39;specification&#39;, &#39;pseudocode&#39;, &#39;architecture&#39;, &#39;refinement&#39;];
+  }
+  get requiredSkills() { return [&#39;sparc-methodology&#39;, &#39;tdd-london-swarm&#39;]; }
+
+  protected async modeSpecificSetup(): Promise&lt;void&gt; {
+    // SPARC uses research profile for higher quality
+    await this.sona.setProfile(&#39;research&#39;);
+
+    // Initialize SPARC-specific learning
+    await this.initSparcPhaseMemory();
+  }
+
+  private async initSparcPhaseMemory(): Promise&lt;void&gt; {
+    // Load patterns for each SPARC phase
+    for (const phase of [&#39;spec&#39;, &#39;pseudo&#39;, &#39;arch&#39;, &#39;refine&#39;, &#39;complete&#39;]) {
+      await this.sona.searchPatterns(`sparc:${phase}`);
+    }
+  }
+}
+
+// Hive-Mind mode
+export class HiveMindModeInitializer extends ModeInitializer {
+  get modeName() { return &#39;hive-mind&#39;; }
+  get requiredAgents() {
+    return [&#39;queen-coordinator&#39;, &#39;worker-specialist&#39;, &#39;scout-explorer&#39;, &#39;swarm-memory-manager&#39;];
+  }
+  get requiredSkills() { return [&#39;hive-mind-advanced&#39;, &#39;collective-intelligence&#39;]; }
+
+  protected async modeSpecificSetup(): Promise&lt;void&gt; {
+    // Hive-mind uses real-time for fast coordination
+    await this.sona.setProfile(&#39;real-time&#39;);
+
+    // Initialize queen memory
+    await this.initQueenMemory();
+  }
+}
+
+// Neural mode
+export class NeuralModeInitializer extends ModeInitializer {
+  get modeName() { return &#39;neural&#39;; }
+  get requiredAgents() { return [&#39;ml-developer&#39;, &#39;perf-analyzer&#39;, &#39;code-analyzer&#39;]; }
+  get requiredSkills() { return [&#39;flow-nexus-neural&#39;, &#39;reasoningbank-intelligence&#39;]; }
+
+  protected async modeSpecificSetup(): Promise&lt;void&gt; {
+    // Neural uses research profile for maximum learning
+    await this.sona.setProfile(&#39;research&#39;);
+
+    // Initialize neural training pipelines
+    await this.initNeuralPipelines();
+  }
+}
+
+// GitHub mode
+export class GitHubModeInitializer extends ModeInitializer {
+  get modeName() { return &#39;github&#39;; }
+  get requiredAgents() {
+    return [&#39;pr-manager&#39;, &#39;code-review-swarm&#39;, &#39;issue-tracker&#39;, &#39;release-manager&#39;];
+  }
+  get requiredSkills() {
+    return [&#39;github-workflow-automation&#39;, &#39;github-code-review&#39;, &#39;github-release-management&#39;];
+  }
+
+  protected async modeSpecificSetup(): Promise&lt;void&gt; {
+    // GitHub mode uses balanced for general work
+    await this.sona.setProfile(&#39;balanced&#39;);
+
+    // Initialize GitHub-specific patterns
+    await this.initGitHubPatterns();
+  }
+}
+
+// Enterprise mode
+export class EnterpriseModeInitializer extends ModeInitializer {
+  get modeName() { return &#39;enterprise&#39;; }
+  get requiredAgents() {
+    return [...StandardModeInitializer.prototype.requiredAgents,
+            ...SparcModeInitializer.prototype.requiredAgents,
+            ...GitHubModeInitializer.prototype.requiredAgents];
+  }
+  get requiredSkills() {
+    return [&#39;all&#39;];  // All skills available
+  }
+
+  protected async modeSpecificSetup(): Promise&lt;void&gt; {
+    // Enterprise uses research for maximum quality
+    await this.sona.setProfile(&#39;research&#39;);
+
+    // Full feature set
+    await this.enableAllFeatures();
+  }
+}
+</code></pre>
+<h3>5.3 CLI Init Command</h3>
+<pre><code class="language-typescript">// src/v3/cli/commands/init.ts
+import { Command } from &#39;commander&#39;;
+import { InitController } from &#39;../init/init-controller&#39;;
+
+export function createInitCommand(): Command {
+  return new Command(&#39;init&#39;)
+    .description(&#39;Initialize Claude-Flow v3 with enhanced capabilities&#39;)
+    .option(&#39;-m, --mode &lt;mode&gt;&#39;, &#39;Initialization mode&#39;, &#39;standard&#39;)
+    .option(&#39;--sona &lt;profile&gt;&#39;, &#39;SONA learning profile&#39;, &#39;balanced&#39;)
+    .option(&#39;--no-learning&#39;, &#39;Disable self-learning&#39;)
+    .option(&#39;--attention &lt;type&gt;&#39;, &#39;Attention mechanism&#39;, &#39;flash&#39;)
+    .option(&#39;--migrate&#39;, &#39;Auto-migrate from v2&#39;)
+    .action(async (options) =&gt; {
+      console.log(&#39;🚀 Initializing Claude-Flow v3...\n&#39;);
+
+      const controller = new InitController({
+        mode: options.mode,
+        agenticFlow: {
+          enabled: true,
+          sona: options.sona,
+          attention: options.attention,
+          learning: options.learning !== false
+        }
+      });
+
+      const result = await controller.initialize();
+
+      if (result.success) {
+        console.log(`\n✅ Initialization complete in ${result.duration}ms`);
+        console.log(`   Mode: ${result.mode}`);
+        console.log(`   Capabilities:`);
+        console.log(`   - Flash Attention: ${result.capabilities.flashAttention ? &#39;✓&#39; : &#39;✗&#39;}`);
+        console.log(`   - SONA Learning: ${result.capabilities.sonaLearning ? &#39;✓&#39; : &#39;✗&#39;}`);
+        console.log(`   - Reflexion: ${result.capabilities.reflexion ? &#39;✓&#39; : &#39;✗&#39;}`);
+        console.log(`   - v2 Compatible: ${result.capabilities.v2Compatible ? &#39;✓&#39; : &#39;✗&#39;}`);
+      } else {
+        console.error(`\n❌ Initialization failed: ${result.error}`);
+        process.exit(1);
+      }
+    });
+}
+</code></pre>
+<hr>
+<h2>6. Implementation Phases</h2>
+<h3>Phase 1: Security &amp; Foundation (Week 1)</h3>
+<pre><code class="language-bash"># Day 1-2: Security fixes
+npm update @anthropic-ai/claude-code@^2.0.31
+npm update @modelcontextprotocol/sdk@^1.24.0
+npm install bcrypt zod
+
+# Day 3-4: Core foundation
+# - SecureFoundation class
+# - Input validation schemas
+# - Path sanitization
+
+# Day 5: Cleanup
+./scripts/cleanup-v3.sh --execute
+</code></pre>
+<h3>Phase 2: Speed Integration (Week 2)</h3>
+<pre><code class="language-bash"># Day 1-2: agentic-flow upgrade
+npm install agentic-flow@2.0.1-alpha.0
+
+# Day 3-4: Flash Attention
+# - FlashCoordinator implementation
+# - Lazy initialization
+
+# Day 5: Performance testing
+npm run benchmark
+</code></pre>
+<h3>Phase 3: Self-Learning (Week 3)</h3>
+<pre><code class="language-bash"># Day 1-2: SONA integration
+# - SONAManager implementation
+# - Profile configuration
+
+# Day 3-4: Learning hooks
+# - LearningHooks class
+# - ReasoningBank bridge
+
+# Day 5: Reflexion system
+# - Self-improvement loop
+# - Skill library
+</code></pre>
+<h3>Phase 4: Init &amp; Compatibility (Week 4)</h3>
+<pre><code class="language-bash"># Day 1-2: Init system
+# - InitController
+# - Mode initializers
+
+# Day 3-4: Backward compatibility
+# - v2 API wrappers
+# - Config migration
+
+# Day 5: Testing
+npm run test:v3
+npm run test:compatibility
+</code></pre>
+<hr>
+<h2>7. Quick Start After Implementation</h2>
+<pre><code class="language-bash"># Fresh v3 installation
+npx claude-flow init --mode sparc --sona research
+
+# With all features
+npx claude-flow init --mode enterprise --sona research --attention flash
+
+# Minimal (fast startup)
+npx claude-flow init --mode standard --sona real-time
+
+# Migrate from v2
+npx claude-flow init --migrate
+</code></pre>
+<pre><code class="language-typescript">// v3 API usage
+import { InitController, SwarmCoordinator, SONAManager } from &#39;claude-flow/v3&#39;;
+
+// Initialize with learning
+const init = new InitController({
+  mode: &#39;sparc&#39;,
+  agenticFlow: { sona: &#39;research&#39;, learning: true }
+});
+await init.initialize();
+
+// Use v2 API (still works!)
+const coordinator = new SwarmCoordinator();
+await coordinator.spawnAgent({ type: &#39;coder&#39; });
+
+// Or use v3 API directly
+const sona = new SONAManager({ profile: &#39;research&#39; });
+const patterns = await sona.searchPatterns(&#39;implement feature&#39;);
+</code></pre>
+<hr>
+<h2>Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Implemented</th>
+<th>Benefit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Security</strong></td>
+<td>SecureFoundation, Zod validation</td>
+<td>Zero vulnerabilities</td>
+</tr>
+<tr>
+<td><strong>Speed</strong></td>
+<td>Flash Attention, Lazy loading</td>
+<td>2.49x-7.47x faster</td>
+</tr>
+<tr>
+<td><strong>Learning</strong></td>
+<td>SONA, Reflexion, AgentDB</td>
+<td>+55% quality</td>
+</tr>
+<tr>
+<td><strong>Compatibility</strong></td>
+<td>v2 API wrappers, auto-migration</td>
+<td>100% preserved</td>
+</tr>
+<tr>
+<td><strong>Init</strong></td>
+<td>InitController, Mode initializers</td>
+<td>Clean, fast startup</td>
+</tr>
+</tbody></table>
+<p><strong>Total Implementation Time</strong>: 4 weeks
+<strong>Breaking Changes</strong>: Zero
+<strong>v2 Code Changes Required</strong>: None</p>
+<hr>
+<p><em>Optimized Plan Version: 1.0.0</em>
+<em>Last Updated: 2026-01-03</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

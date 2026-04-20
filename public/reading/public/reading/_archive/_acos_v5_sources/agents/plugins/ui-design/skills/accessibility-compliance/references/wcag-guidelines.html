@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>WCAG 2.2 Guidelines Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/ui-design/skills/accessibility-compliance/references/wcag-guidelines.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">WCAG 2.2 Guidelines Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design">ui-design</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills">skills</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Faccessibility-compliance">accessibility-compliance</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fui-design%2Fskills%2Faccessibility-compliance%2Freferences">references</a> / <span>wcag-guidelines.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>WCAG 2.2 Guidelines Reference</h1>
+<h2>Overview</h2>
+<p>The Web Content Accessibility Guidelines (WCAG) 2.2 provide recommendations for making web content more accessible. They are organized into four principles (POUR): Perceivable, Operable, Understandable, and Robust.</p>
+<h2>Conformance Levels</h2>
+<ul>
+<li><strong>Level A</strong>: Minimum accessibility (must satisfy)</li>
+<li><strong>Level AA</strong>: Standard accessibility (should satisfy)</li>
+<li><strong>Level AAA</strong>: Enhanced accessibility (may satisfy)</li>
+</ul>
+<p>Most organizations target Level AA compliance.</p>
+<h2>Principle 1: Perceivable</h2>
+<p>Content must be presentable in ways users can perceive.</p>
+<h3>1.1 Text Alternatives</h3>
+<h4>1.1.1 Non-text Content (Level A)</h4>
+<p>All non-text content needs text alternatives.</p>
+<pre><code class="language-tsx">// Images
+&lt;img src=&quot;chart.png&quot; alt=&quot;Q3 sales increased 25% compared to Q2&quot; /&gt;
+
+// Decorative images
+&lt;img src=&quot;decorative-line.svg&quot; alt=&quot;&quot; role=&quot;presentation&quot; /&gt;
+
+// Complex images with long descriptions
+&lt;figure&gt;
+  &lt;img src=&quot;org-chart.png&quot; alt=&quot;Organization chart&quot; aria-describedby=&quot;org-desc&quot; /&gt;
+  &lt;figcaption id=&quot;org-desc&quot;&gt;
+    The CEO reports to the board. Three VPs report to the CEO:
+    VP Engineering, VP Sales, and VP Marketing...
+  &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+// Icons with meaning
+&lt;button aria-label=&quot;Delete item&quot;&gt;
+  &lt;TrashIcon aria-hidden=&quot;true&quot; /&gt;
+&lt;/button&gt;
+
+// Icon buttons with visible text
+&lt;button&gt;
+  &lt;DownloadIcon aria-hidden=&quot;true&quot; /&gt;
+  &lt;span&gt;Download&lt;/span&gt;
+&lt;/button&gt;
+</code></pre>
+<h3>1.2 Time-based Media</h3>
+<h4>1.2.1 Audio-only and Video-only (Level A)</h4>
+<pre><code class="language-tsx">// Audio with transcript
+&lt;audio src=&quot;podcast.mp3&quot; controls /&gt;
+&lt;details&gt;
+  &lt;summary&gt;View transcript&lt;/summary&gt;
+  &lt;p&gt;Full transcript text here...&lt;/p&gt;
+&lt;/details&gt;
+
+// Video with captions
+&lt;video controls&gt;
+  &lt;source src=&quot;tutorial.mp4&quot; type=&quot;video/mp4&quot; /&gt;
+  &lt;track kind=&quot;captions&quot; src=&quot;captions-en.vtt&quot; srclang=&quot;en&quot; label=&quot;English&quot; /&gt;
+  &lt;track kind=&quot;subtitles&quot; src=&quot;subtitles-es.vtt&quot; srclang=&quot;es&quot; label=&quot;Spanish&quot; /&gt;
+&lt;/video&gt;
+</code></pre>
+<h3>1.3 Adaptable</h3>
+<h4>1.3.1 Info and Relationships (Level A)</h4>
+<p>Structure and relationships must be programmatically determinable.</p>
+<pre><code class="language-tsx">// Proper heading hierarchy
+&lt;main&gt;
+  &lt;h1&gt;Page Title&lt;/h1&gt;
+  &lt;section&gt;
+    &lt;h2&gt;Section Title&lt;/h2&gt;
+    &lt;h3&gt;Subsection&lt;/h3&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+
+// Data tables with headers
+&lt;table&gt;
+  &lt;caption&gt;Quarterly Sales Report&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope=&quot;col&quot;&gt;Product&lt;/th&gt;
+      &lt;th scope=&quot;col&quot;&gt;Q1&lt;/th&gt;
+      &lt;th scope=&quot;col&quot;&gt;Q2&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;th scope=&quot;row&quot;&gt;Widget A&lt;/th&gt;
+      &lt;td&gt;$10,000&lt;/td&gt;
+      &lt;td&gt;$12,000&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+// Lists for grouped content
+&lt;nav aria-label=&quot;Main navigation&quot;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/about&quot;&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+<h4>1.3.5 Identify Input Purpose (Level AA)</h4>
+<pre><code class="language-tsx">// Input with autocomplete for autofill
+&lt;form&gt;
+  &lt;label htmlFor=&quot;name&quot;&gt;Full Name&lt;/label&gt;
+  &lt;input id=&quot;name&quot; name=&quot;name&quot; autoComplete=&quot;name&quot; /&gt;
+
+  &lt;label htmlFor=&quot;email&quot;&gt;Email&lt;/label&gt;
+  &lt;input id=&quot;email&quot; name=&quot;email&quot; type=&quot;email&quot; autoComplete=&quot;email&quot; /&gt;
+
+  &lt;label htmlFor=&quot;phone&quot;&gt;Phone&lt;/label&gt;
+  &lt;input id=&quot;phone&quot; name=&quot;phone&quot; type=&quot;tel&quot; autoComplete=&quot;tel&quot; /&gt;
+
+  &lt;label htmlFor=&quot;address&quot;&gt;Street Address&lt;/label&gt;
+  &lt;input id=&quot;address&quot; name=&quot;address&quot; autoComplete=&quot;street-address&quot; /&gt;
+
+  &lt;label htmlFor=&quot;cc&quot;&gt;Credit Card Number&lt;/label&gt;
+  &lt;input id=&quot;cc&quot; name=&quot;cc&quot; autoComplete=&quot;cc-number&quot; /&gt;
+&lt;/form&gt;
+</code></pre>
+<h3>1.4 Distinguishable</h3>
+<h4>1.4.1 Use of Color (Level A)</h4>
+<pre><code class="language-tsx">// Bad: Color only indicates error
+&lt;input className={hasError ? &#39;border-red-500&#39; : &#39;&#39;} /&gt;
+
+// Good: Color plus icon and text
+&lt;div&gt;
+  &lt;input
+    className={hasError ? &#39;border-red-500&#39; : &#39;&#39;}
+    aria-invalid={hasError}
+    aria-describedby={hasError ? &#39;error-message&#39; : undefined}
+  /&gt;
+  {hasError &amp;&amp; (
+    &lt;p id=&quot;error-message&quot; className=&quot;text-red-500 flex items-center gap-1&quot;&gt;
+      &lt;AlertIcon aria-hidden=&quot;true&quot; /&gt;
+      This field is required
+    &lt;/p&gt;
+  )}
+&lt;/div&gt;
+</code></pre>
+<h4>1.4.3 Contrast (Minimum) (Level AA)</h4>
+<pre><code class="language-css">/* Minimum contrast ratios */
+/* Normal text: 4.5:1 */
+/* Large text (18pt+ or 14pt bold+): 3:1 */
+
+/* Good contrast examples */
+.text-on-white {
+  color: #595959; /* 7:1 ratio on white */
+}
+
+.text-on-dark {
+  color: #ffffff;
+  background: #333333; /* 12.6:1 ratio */
+}
+
+/* Link must be distinguishable from surrounding text */
+.link {
+  color: #0066cc; /* 4.5:1 on white */
+  text-decoration: underline; /* Additional visual cue */
+}
+</code></pre>
+<h4>1.4.11 Non-text Contrast (Level AA)</h4>
+<pre><code class="language-css">/* UI components need 3:1 contrast */
+.button {
+  border: 2px solid #767676; /* 3:1 against white */
+  background: white;
+}
+
+.input {
+  border: 1px solid #767676;
+}
+
+.input:focus {
+  outline: 2px solid #0066cc; /* Focus indicator needs 3:1 */
+  outline-offset: 2px;
+}
+
+/* Custom checkbox */
+.checkbox {
+  border: 2px solid #767676;
+}
+
+.checkbox:checked {
+  background: #0066cc;
+  border-color: #0066cc;
+}
+</code></pre>
+<h4>1.4.12 Text Spacing (Level AA)</h4>
+<p>Content must not be lost when user adjusts text spacing.</p>
+<pre><code class="language-css">/* Allow text spacing adjustments without breaking layout */
+.content {
+  /* Use relative units */
+  line-height: 1.5; /* At least 1.5x font size */
+  letter-spacing: 0.12em; /* Support for 0.12em */
+  word-spacing: 0.16em; /* Support for 0.16em */
+
+  /* Don&#39;t use fixed heights on text containers */
+  min-height: auto;
+
+  /* Allow wrapping */
+  overflow-wrap: break-word;
+}
+
+/* Test with these values: */
+/* Line height: 1.5x font size */
+/* Letter spacing: 0.12em */
+/* Word spacing: 0.16em */
+/* Paragraph spacing: 2x font size */
+</code></pre>
+<h4>1.4.13 Content on Hover or Focus (Level AA)</h4>
+<pre><code class="language-tsx">// Tooltip pattern
+function Tooltip({ content, children }) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    &lt;div
+      onMouseEnter={() =&gt; setIsVisible(true)}
+      onMouseLeave={() =&gt; setIsVisible(false)}
+      onFocus={() =&gt; setIsVisible(true)}
+      onBlur={() =&gt; setIsVisible(false)}
+    &gt;
+      {children}
+      {isVisible &amp;&amp; (
+        &lt;div
+          role=&quot;tooltip&quot;
+          // Dismissible: user can close without moving pointer
+          onKeyDown={(e) =&gt; e.key === &quot;Escape&quot; &amp;&amp; setIsVisible(false)}
+          // Hoverable: content stays visible when pointer moves to it
+          onMouseEnter={() =&gt; setIsVisible(true)}
+          onMouseLeave={() =&gt; setIsVisible(false)}
+          // Persistent: stays until trigger loses focus/hover
+        &gt;
+          {content}
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h2>Principle 2: Operable</h2>
+<p>Interface components must be operable by all users.</p>
+<h3>2.1 Keyboard Accessible</h3>
+<h4>2.1.1 Keyboard (Level A)</h4>
+<p>All functionality must be operable via keyboard.</p>
+<pre><code class="language-tsx">// Custom interactive element
+function CustomButton({ onClick, children }) {
+  return (
+    &lt;div
+      role=&quot;button&quot;
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) =&gt; {
+        if (e.key === &quot;Enter&quot; || e.key === &quot; &quot;) {
+          e.preventDefault();
+          onClick();
+        }
+      }}
+    &gt;
+      {children}
+    &lt;/div&gt;
+  );
+}
+
+// Better: just use a button
+function BetterButton({ onClick, children }) {
+  return &lt;button onClick={onClick}&gt;{children}&lt;/button&gt;;
+}
+</code></pre>
+<h4>2.1.2 No Keyboard Trap (Level A)</h4>
+<pre><code class="language-tsx">// Modal with proper focus management
+function Modal({ isOpen, onClose, children }) {
+  const closeButtonRef = useRef(null);
+
+  // Return focus on close
+  useEffect(() =&gt; {
+    if (!isOpen) return;
+
+    const previousFocus = document.activeElement;
+    closeButtonRef.current?.focus();
+
+    return () =&gt; {
+      (previousFocus as HTMLElement)?.focus();
+    };
+  }, [isOpen]);
+
+  // Allow Escape to close
+  useEffect(() =&gt; {
+    const handleKeyDown = (e: KeyboardEvent) =&gt; {
+      if (e.key === &quot;Escape&quot;) onClose();
+    };
+    document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+    return () =&gt; document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+  }, [onClose]);
+
+  return (
+    &lt;FocusTrap&gt;
+      &lt;div role=&quot;dialog&quot; aria-modal=&quot;true&quot;&gt;
+        &lt;button ref={closeButtonRef} onClick={onClose}&gt;
+          Close
+        &lt;/button&gt;
+        {children}
+      &lt;/div&gt;
+    &lt;/FocusTrap&gt;
+  );
+}
+</code></pre>
+<h3>2.4 Navigable</h3>
+<h4>2.4.1 Bypass Blocks (Level A)</h4>
+<pre><code class="language-tsx">// Skip links
+&lt;body&gt;
+  &lt;a href=&quot;#main&quot; className=&quot;skip-link&quot;&gt;
+    Skip to main content
+  &lt;/a&gt;
+  &lt;a href=&quot;#nav&quot; className=&quot;skip-link&quot;&gt;
+    Skip to navigation
+  &lt;/a&gt;
+
+  &lt;header&gt;...&lt;/header&gt;
+
+  &lt;nav id=&quot;nav&quot; aria-label=&quot;Main&quot;&gt;
+    ...
+  &lt;/nav&gt;
+
+  &lt;main id=&quot;main&quot; tabIndex={-1}&gt;
+    {/* Main content */}
+  &lt;/main&gt;
+&lt;/body&gt;
+</code></pre>
+<h4>2.4.4 Link Purpose (In Context) (Level A)</h4>
+<pre><code class="language-tsx">// Bad: Ambiguous link text
+&lt;a href=&quot;/report&quot;&gt;Click here&lt;/a&gt;
+&lt;a href=&quot;/report&quot;&gt;Read more&lt;/a&gt;
+
+// Good: Descriptive link text
+&lt;a href=&quot;/report&quot;&gt;View quarterly sales report&lt;/a&gt;
+
+// Good: Context provides meaning
+&lt;article&gt;
+  &lt;h2&gt;Quarterly Sales Report&lt;/h2&gt;
+  &lt;p&gt;Sales increased by 25% this quarter...&lt;/p&gt;
+  &lt;a href=&quot;/report&quot;&gt;Read full report&lt;/a&gt;
+&lt;/article&gt;
+
+// Good: Visually hidden text for context
+&lt;a href=&quot;/report&quot;&gt;
+  Read more
+  &lt;span className=&quot;sr-only&quot;&gt; about quarterly sales report&lt;/span&gt;
+&lt;/a&gt;
+</code></pre>
+<h4>2.4.7 Focus Visible (Level AA)</h4>
+<pre><code class="language-css">/* Always show focus indicator */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Custom focus styles */
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-focus);
+}
+
+/* High visibility focus for links */
+.link:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  background: var(--color-focus-bg);
+}
+</code></pre>
+<h3>2.5 Input Modalities (New in 2.2)</h3>
+<h4>2.5.8 Target Size (Minimum) (Level AA) - NEW</h4>
+<p>Interactive targets must be at least 24x24 CSS pixels.</p>
+<pre><code class="language-css">/* Minimum target size */
+.interactive {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+/* Recommended size for touch (44x44) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Inline links are exempt if they have adequate spacing */
+.link {
+  /* Inline text links don&#39;t need minimum size */
+  /* but should have adequate line-height */
+  line-height: 1.5;
+}
+</code></pre>
+<h2>Principle 3: Understandable</h2>
+<p>Content and interface must be understandable.</p>
+<h3>3.1 Readable</h3>
+<h4>3.1.1 Language of Page (Level A)</h4>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<h4>3.1.2 Language of Parts (Level AA)</h4>
+<pre><code class="language-tsx">&lt;p&gt;
+  The French phrase &lt;span lang=&quot;fr&quot;&gt;c&#39;est la vie&lt;/span&gt; means &quot;that&#39;s life.&quot;
+&lt;/p&gt;
+</code></pre>
+<h3>3.2 Predictable</h3>
+<h4>3.2.2 On Input (Level A)</h4>
+<p>Don&#39;t automatically change context on input.</p>
+<pre><code class="language-tsx">// Bad: Auto-submit on selection
+&lt;select onChange={(e) =&gt; form.submit()}&gt;
+  &lt;option&gt;Select country&lt;/option&gt;
+&lt;/select&gt;
+
+// Good: Explicit submit action
+&lt;select onChange={(e) =&gt; setCountry(e.target.value)}&gt;
+  &lt;option&gt;Select country&lt;/option&gt;
+&lt;/select&gt;
+&lt;button type=&quot;submit&quot;&gt;Continue&lt;/button&gt;
+</code></pre>
+<h3>3.3 Input Assistance</h3>
+<h4>3.3.1 Error Identification (Level A)</h4>
+<pre><code class="language-tsx">function FormField({ id, label, error, ...props }) {
+  return (
+    &lt;div&gt;
+      &lt;label htmlFor={id}&gt;{label}&lt;/label&gt;
+      &lt;input
+        id={id}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
+        {...props}
+      /&gt;
+      {error &amp;&amp; (
+        &lt;p id={`${id}-error`} role=&quot;alert&quot; className=&quot;text-red-600&quot;&gt;
+          {error}
+        &lt;/p&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h4>3.3.7 Redundant Entry (Level A) - NEW</h4>
+<p>Don&#39;t require users to re-enter previously provided information.</p>
+<pre><code class="language-tsx">// Auto-fill shipping address from billing
+function CheckoutForm() {
+  const [sameAsBilling, setSameAsBilling] = useState(false);
+  const [billing, setBilling] = useState({});
+  const [shipping, setShipping] = useState({});
+
+  return (
+    &lt;form&gt;
+      &lt;fieldset&gt;
+        &lt;legend&gt;Billing Address&lt;/legend&gt;
+        &lt;AddressFields value={billing} onChange={setBilling} /&gt;
+      &lt;/fieldset&gt;
+
+      &lt;label&gt;
+        &lt;input
+          type=&quot;checkbox&quot;
+          checked={sameAsBilling}
+          onChange={(e) =&gt; {
+            setSameAsBilling(e.target.checked);
+            if (e.target.checked) setShipping(billing);
+          }}
+        /&gt;
+        Shipping same as billing
+      &lt;/label&gt;
+
+      {!sameAsBilling &amp;&amp; (
+        &lt;fieldset&gt;
+          &lt;legend&gt;Shipping Address&lt;/legend&gt;
+          &lt;AddressFields value={shipping} onChange={setShipping} /&gt;
+        &lt;/fieldset&gt;
+      )}
+    &lt;/form&gt;
+  );
+}
+</code></pre>
+<h2>Principle 4: Robust</h2>
+<p>Content must be robust enough for assistive technologies.</p>
+<h3>4.1 Compatible</h3>
+<h4>4.1.2 Name, Role, Value (Level A)</h4>
+<pre><code class="language-tsx">// Custom components must expose name, role, and value
+function CustomCheckbox({ checked, onChange, label }) {
+  return (
+    &lt;button
+      role=&quot;checkbox&quot;
+      aria-checked={checked}
+      aria-label={label}
+      onClick={() =&gt; onChange(!checked)}
+    &gt;
+      {checked ? &quot;✓&quot; : &quot;○&quot;} {label}
+    &lt;/button&gt;
+  );
+}
+
+// Custom slider
+function CustomSlider({ value, min, max, label, onChange }) {
+  return (
+    &lt;div
+      role=&quot;slider&quot;
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      aria-label={label}
+      tabIndex={0}
+      onKeyDown={(e) =&gt; {
+        if (e.key === &quot;ArrowRight&quot;) onChange(Math.min(value + 1, max));
+        if (e.key === &quot;ArrowLeft&quot;) onChange(Math.max(value - 1, min));
+      }}
+    &gt;
+      &lt;div style={{ width: `${((value - min) / (max - min)) * 100}%` }} /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h2>Testing Checklist</h2>
+<pre><code class="language-markdown">## Keyboard Testing
+
+- [ ] All interactive elements focusable with Tab
+- [ ] Focus order matches visual order
+- [ ] Focus indicator always visible
+- [ ] No keyboard traps
+- [ ] Escape closes modals/dropdowns
+- [ ] Enter/Space activates buttons and links
+
+## Screen Reader Testing
+
+- [ ] All images have alt text
+- [ ] Form inputs have labels
+- [ ] Headings in logical order
+- [ ] Landmarks present (main, nav, header, footer)
+- [ ] Dynamic content announced
+- [ ] Error messages announced
+
+## Visual Testing
+
+- [ ] Text contrast at least 4.5:1
+- [ ] UI component contrast at least 3:1
+- [ ] Works at 200% zoom
+- [ ] Content readable with text spacing
+- [ ] Focus indicators visible
+- [ ] Color not sole indicator of meaning
+</code></pre>
+<h2>Resources</h2>
+<ul>
+<li><a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG 2.2 Quick Reference</a></li>
+<li><a href="https://www.w3.org/WAI/WCAG22/Understanding/">Understanding WCAG 2.2</a></li>
+<li><a href="https://www.w3.org/WAI/WCAG22/Techniques/">Techniques for WCAG 2.2</a></li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

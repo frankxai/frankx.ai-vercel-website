@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>@claude-flow/swarm</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/swarm/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">@claude-flow/swarm</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fswarm">swarm</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>@claude-flow/swarm</h1>
+<p><a href="https://www.npmjs.com/package/@claude-flow/swarm"><img src="https://img.shields.io/npm/v/@claude-flow/swarm.svg" alt="npm version"></a>
+<a href="https://www.npmjs.com/package/@claude-flow/swarm"><img src="https://img.shields.io/npm/dm/@claude-flow/swarm.svg" alt="npm downloads"></a>
+<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"></a>
+<a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0+-blue.svg" alt="TypeScript"></a>
+<a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/ADR--003-Compliant-green.svg" alt="ADR-003"></a>
+<a href="https://github.com/ruvnet/claude-flow"><img src="https://img.shields.io/badge/Agents-Up%20to%20100+-orange.svg" alt="Agents"></a></p>
+<blockquote>
+<p>V3 Unified Swarm Coordination Module implementing ADR-003: Single Coordination Engine with Hive-Mind Intelligence</p>
+</blockquote>
+<h2>Architecture (ADR-003)</h2>
+<p>This module provides a <strong>complete multi-agent coordination system</strong> with hive-mind capabilities:</p>
+<h3>Key Components</h3>
+<pre><code>@claude-flow/swarm
+├── UnifiedSwarmCoordinator ⭐ CANONICAL ENGINE
+│   ├── Configurable agent count (default 15, max 100+)
+│   ├── Domain-based task routing
+│   ├── Parallel execution across domains
+│   ├── Multiple consensus algorithms
+│   ├── 4 topology types (mesh, hierarchical, centralized, hybrid)
+│   └── Performance: &lt;100ms coordination
+│
+├── QueenCoordinator 👑 HIVE-MIND INTELLIGENCE
+│   ├── Strategic task analysis &amp; decomposition
+│   ├── Agent capability-based delegation
+│   ├── Swarm health monitoring &amp; bottleneck detection
+│   ├── 5 consensus types (majority, supermajority, unanimous, weighted, queen-override)
+│   └── Learning from outcomes
+│
+├── AttentionCoordinator 🧠 ATTENTION MECHANISMS
+│   ├── Flash Attention (2.49x-7.47x speedup)
+│   ├── Multi-Head Attention (8 heads)
+│   ├── Linear Attention (O(n) complexity)
+│   ├── Hyperbolic Attention (Poincaré hierarchies)
+│   ├── Mixture of Experts (MoE) routing
+│   └── GraphRoPE (topology-aware positioning)
+│
+├── FederationHub 🌐 CROSS-SWARM COORDINATION
+│   ├── Ephemeral agent spawning with TTL
+│   ├── Cross-swarm messaging
+│   ├── Federation-wide consensus voting
+│   └── Auto-cleanup &amp; heartbeat tracking
+│
+├── ConsensusEngines 🗳️ DISTRIBUTED AGREEMENT
+│   ├── Raft (leader election, log replication)
+│   ├── Byzantine (fault-tolerant, 2/3 supermajority)
+│   └── Gossip (epidemic protocol for large swarms)
+│
+└── SwarmHub (deprecated) - Thin facade for backward compatibility
+</code></pre>
+<h2>⚠️ Agent Count: Configurable, Not Limited</h2>
+<p>The default 15-agent architecture is a <strong>recommendation</strong>, not a hard limit:</p>
+<pre><code class="language-typescript">// Default: 15-agent V3 architecture
+const coordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;hierarchical&#39;, maxAgents: 15 },
+});
+
+// Scale up: 50 agents
+const largeCoordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;mesh&#39;, maxAgents: 50 },
+});
+
+// Maximum: 100+ agents (DEFAULT_MAX_AGENTS = 100)
+const enterpriseCoordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;hybrid&#39;, maxAgents: 100 },
+});
+</code></pre>
+<h2>Quick Start (Recommended)</h2>
+<pre><code class="language-typescript">import { createUnifiedSwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+
+// Create coordinator
+const coordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;hierarchical&#39;, maxAgents: 15 },
+  consensus: { algorithm: &#39;raft&#39;, threshold: 0.66 },
+});
+
+// Initialize
+await coordinator.initialize();
+
+// Spawn 15-agent hierarchy
+const agents = await coordinator.spawnFullHierarchy();
+console.log(`Spawned ${agents.size} agents across 5 domains`);
+
+// Submit tasks to specific domains
+const securityTaskId = await coordinator.submitTask({
+  type: &#39;review&#39;,
+  name: &#39;CVE Security Audit&#39;,
+  priority: &#39;critical&#39;,
+  maxRetries: 3,
+});
+
+await coordinator.assignTaskToDomain(securityTaskId, &#39;security&#39;);
+
+// Parallel execution across domains
+const results = await coordinator.executeParallel([
+  { task: { type: &#39;coding&#39;, name: &#39;Core Implementation&#39; }, domain: &#39;core&#39; },
+  { task: { type: &#39;testing&#39;, name: &#39;Security Tests&#39; }, domain: &#39;security&#39; },
+  { task: { type: &#39;documentation&#39;, name: &#39;API Docs&#39; }, domain: &#39;integration&#39; },
+]);
+
+console.log(`Completed ${results.filter(r =&gt; r.success).length} tasks in parallel`);
+
+// Get swarm status
+const status = coordinator.getStatus();
+console.log(&#39;Domain Status:&#39;, status.domains);
+console.log(&#39;Metrics:&#39;, status.metrics);
+
+// Shutdown
+await coordinator.shutdown();
+</code></pre>
+<h2>15-Agent Domain Architecture</h2>
+<p>The coordinator manages 5 domains with specific agent assignments:</p>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Agents</th>
+<th>Capabilities</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Queen</strong></td>
+<td>1</td>
+<td>Top-level coordination, consensus, planning</td>
+</tr>
+<tr>
+<td><strong>Security</strong></td>
+<td>2-4</td>
+<td>Security architecture, CVE fixes, threat modeling</td>
+</tr>
+<tr>
+<td><strong>Core</strong></td>
+<td>5-9</td>
+<td>DDD design, memory unification, type modernization</td>
+</tr>
+<tr>
+<td><strong>Integration</strong></td>
+<td>10-12</td>
+<td>agentic-flow integration, CLI, neural features</td>
+</tr>
+<tr>
+<td><strong>Support</strong></td>
+<td>13-15</td>
+<td>TDD testing, performance, deployment</td>
+</tr>
+</tbody></table>
+<h3>Domain-Based Task Routing</h3>
+<pre><code class="language-typescript">// Route tasks to optimal domains
+await coordinator.assignTaskToDomain(securityTask, &#39;security&#39;);
+await coordinator.assignTaskToDomain(coreTask, &#39;core&#39;);
+await coordinator.assignTaskToDomain(integrationTask, &#39;integration&#39;);
+
+// Get agents by domain
+const securityAgents = coordinator.getAgentsByDomain(&#39;security&#39;);
+console.log(`Security domain has ${securityAgents.length} agents`);
+
+// Get domain status
+const status = coordinator.getStatus();
+status.domains.forEach(domain =&gt; {
+  console.log(`${domain.name}: ${domain.availableAgents}/${domain.agentCount} available`);
+});
+</code></pre>
+<h2>Parallel Execution</h2>
+<p>Execute tasks across multiple domains simultaneously for maximum throughput:</p>
+<pre><code class="language-typescript">const tasks = [
+  { task: { type: &#39;coding&#39;, name: &#39;Implement Auth&#39; }, domain: &#39;core&#39; },
+  { task: { type: &#39;testing&#39;, name: &#39;Security Tests&#39; }, domain: &#39;security&#39; },
+  { task: { type: &#39;review&#39;, name: &#39;Code Review&#39; }, domain: &#39;support&#39; },
+];
+
+const results = await coordinator.executeParallel(tasks);
+
+// Check results
+results.forEach(result =&gt; {
+  if (result.success) {
+    console.log(`✅ ${result.domain}: ${result.durationMs}ms`);
+  } else {
+    console.error(`❌ ${result.domain}: ${result.error?.message}`);
+  }
+});
+</code></pre>
+<h2>Topology Support</h2>
+<p>Choose the coordination pattern that fits your needs:</p>
+<table>
+<thead>
+<tr>
+<th>Topology</th>
+<th>Best For</th>
+<th>Scalability</th>
+<th>Latency</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Hierarchical</strong></td>
+<td>Queen-led swarms</td>
+<td>O(n), up to 100+</td>
+<td>15-35ms</td>
+</tr>
+<tr>
+<td><strong>Mesh</strong></td>
+<td>Distributed workloads</td>
+<td>O(n²), up to 20</td>
+<td>10-40ms</td>
+</tr>
+<tr>
+<td><strong>Centralized</strong></td>
+<td>Simple coordination</td>
+<td>O(n), up to 50</td>
+<td>10-20ms</td>
+</tr>
+<tr>
+<td><strong>Hybrid</strong></td>
+<td>Large mixed workloads</td>
+<td>O(n), up to 200</td>
+<td>20-50ms</td>
+</tr>
+</tbody></table>
+<h3>Hierarchical (Default)</h3>
+<pre><code class="language-typescript">const coordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;hierarchical&#39;, maxAgents: 15 },
+});
+</code></pre>
+<ul>
+<li>Queen agent coordinates domain leads</li>
+<li>Domain leads manage worker agents</li>
+<li>Best for domain-organized V3 architecture</li>
+</ul>
+<h3>Mesh</h3>
+<pre><code class="language-typescript">const coordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;mesh&#39;, maxAgents: 20 },
+});
+</code></pre>
+<ul>
+<li>Limited peer-to-peer connections (max ~10 per node)</li>
+<li>No central coordinator</li>
+<li>Best for distributed workloads under 20 agents</li>
+</ul>
+<h3>Centralized</h3>
+<pre><code class="language-typescript">const coordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;centralized&#39;, maxAgents: 50 },
+});
+</code></pre>
+<ul>
+<li>Single coordinator hub manages all agents</li>
+<li>Simplest to reason about</li>
+<li>Best for small to medium swarms</li>
+</ul>
+<h3>Hybrid (Best for Scale)</h3>
+<pre><code class="language-typescript">const coordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;hybrid&#39;, maxAgents: 100 },
+});
+</code></pre>
+<ul>
+<li>Mesh workers + hierarchical coordinators</li>
+<li>Combines benefits of both patterns</li>
+<li>Best for large-scale enterprise deployments</li>
+</ul>
+<h2>Consensus Algorithms</h2>
+<p>Choose how agents reach agreement:</p>
+<h3>Raft (Default)</h3>
+<pre><code class="language-typescript">const coordinator = createUnifiedSwarmCoordinator({
+  consensus: { algorithm: &#39;raft&#39;, threshold: 0.66 },
+});
+</code></pre>
+<ul>
+<li>Leader-based consensus</li>
+<li>Strong consistency guarantees</li>
+<li>Target: &lt;100ms consensus time</li>
+</ul>
+<h3>Byzantine Fault Tolerance</h3>
+<pre><code class="language-typescript">const coordinator = createUnifiedSwarmCoordinator({
+  consensus: { algorithm: &#39;byzantine&#39;, threshold: 0.66 },
+});
+</code></pre>
+<ul>
+<li>Handles malicious agents</li>
+<li>Byzantine fault tolerance</li>
+<li>Higher overhead but more secure</li>
+</ul>
+<h3>Gossip Protocol</h3>
+<pre><code class="language-typescript">const coordinator = createUnifiedSwarmCoordinator({
+  consensus: { algorithm: &#39;gossip&#39;, threshold: 0.66 },
+});
+</code></pre>
+<ul>
+<li>Eventual consistency</li>
+<li>Low overhead</li>
+<li>Best for large swarms</li>
+</ul>
+<h2>Performance Targets</h2>
+<p>The coordinator is optimized for V3 performance requirements:</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Actual</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Coordination Latency</td>
+<td>&lt;100ms</td>
+<td>Verified in tests</td>
+</tr>
+<tr>
+<td>Consensus Time</td>
+<td>&lt;100ms</td>
+<td>Verified in tests</td>
+</tr>
+<tr>
+<td>Message Throughput</td>
+<td>&gt;1000 msgs/sec</td>
+<td>Verified in tests</td>
+</tr>
+<tr>
+<td>Agent Utilization</td>
+<td>&gt;85%</td>
+<td>Achieved via parallel execution</td>
+</tr>
+</tbody></table>
+<h3>Performance Monitoring</h3>
+<pre><code class="language-typescript">const report = coordinator.getPerformanceReport();
+
+console.log(&#39;Coordination Latency:&#39;, {
+  p50: report.coordinationLatencyP50,
+  p99: report.coordinationLatencyP99,
+});
+
+console.log(&#39;Throughput:&#39;, {
+  messagesPerSec: report.messagesPerSecond,
+  tasksPerSec: report.taskThroughput,
+});
+
+console.log(&#39;Utilization:&#39;, {
+  agentUtilization: report.agentUtilization,
+  consensusSuccessRate: report.consensusSuccessRate,
+});
+</code></pre>
+<h2>Backward Compatibility (SwarmHub)</h2>
+<p>For existing code using <code>SwarmHub</code>, the compatibility layer is maintained:</p>
+<pre><code class="language-typescript">import { createSwarmHub } from &#39;@claude-flow/swarm&#39;;
+
+// ⚠️ DEPRECATED: Use createUnifiedSwarmCoordinator() instead
+const hub = createSwarmHub();
+await hub.initialize();
+
+// SwarmHub delegates all operations to UnifiedSwarmCoordinator
+const coordinator = hub.getCoordinator();
+
+// Use coordinator for advanced features
+await coordinator.executeParallel(tasks);
+</code></pre>
+<h3>Migration from SwarmHub</h3>
+<pre><code class="language-typescript">// OLD (deprecated)
+import { createSwarmHub } from &#39;@claude-flow/swarm&#39;;
+const hub = createSwarmHub();
+await hub.initialize();
+await hub.spawnAllAgents();
+
+// NEW (recommended)
+import { createUnifiedSwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+const coordinator = createUnifiedSwarmCoordinator();
+await coordinator.initialize();
+await coordinator.spawnFullHierarchy();
+</code></pre>
+<h2>Hive-Mind Intelligence (Queen Coordinator)</h2>
+<p>The Queen Coordinator provides intelligent task orchestration:</p>
+<pre><code class="language-typescript">import { createQueenCoordinator } from &#39;@claude-flow/swarm&#39;;
+
+const queen = createQueenCoordinator({
+  swarmCoordinator: coordinator,
+  // Optional: connect to neural learning system
+  // neuralSystem: myNeuralSystem,
+  // memoryService: myMemoryService,
+});
+
+// Analyze a complex task
+const analysis = await queen.analyzeTask({
+  id: &#39;task-1&#39;,
+  type: &#39;security-audit&#39;,
+  description: &#39;Comprehensive CVE audit of authentication system&#39;,
+});
+
+console.log(&#39;Task Analysis:&#39;, {
+  complexity: analysis.complexity,        // &#39;low&#39; | &#39;medium&#39; | &#39;high&#39; | &#39;critical&#39;
+  estimatedDuration: analysis.estimatedDuration,
+  requiredCapabilities: analysis.requiredCapabilities,
+  suggestedSubtasks: analysis.subtasks,
+});
+
+// Delegate to optimal agents
+const plan = await queen.delegateToAgents(task, analysis);
+console.log(&#39;Delegation Plan:&#39;, {
+  primaryAgent: plan.primaryAgent,
+  backupAgents: plan.backupAgents,
+  parallelAssignments: plan.parallelAssignments,
+});
+
+// Monitor swarm health
+const health = await queen.monitorSwarmHealth();
+console.log(&#39;Health Report:&#39;, {
+  overallStatus: health.status,
+  bottlenecks: health.bottlenecks,
+  alerts: health.alerts,
+  recommendations: health.recommendations,
+});
+
+// Coordinate consensus with 5 types
+const decision = await queen.coordinateConsensus({
+  type: &#39;deployment&#39;,
+  value: { version: &#39;3.0.0&#39;, environment: &#39;production&#39; },
+  consensusType: &#39;supermajority&#39;, // &#39;majority&#39; | &#39;supermajority&#39; | &#39;unanimous&#39; | &#39;weighted&#39; | &#39;queen-override&#39;
+});
+</code></pre>
+<h2>Attention Mechanisms</h2>
+<p>Six attention mechanisms for intelligent agent coordination:</p>
+<pre><code class="language-typescript">import { createAttentionCoordinator } from &#39;@claude-flow/swarm&#39;;
+
+const attention = createAttentionCoordinator({
+  topology: coordinator.getTopology(),
+});
+
+// Flash Attention - 2.49x-7.47x speedup for long sequences
+const flashResult = await attention.coordinate(agents, task, { type: &#39;flash&#39; });
+
+// Multi-Head Attention - 8 parallel attention heads
+const multiHeadResult = await attention.coordinate(agents, task, { type: &#39;multi-head&#39; });
+
+// Linear Attention - O(n) complexity for very long sequences
+const linearResult = await attention.coordinate(agents, task, { type: &#39;linear&#39; });
+
+// Hyperbolic Attention - Poincaré distance for hierarchies
+const hyperbolicResult = await attention.coordinate(agents, task, { type: &#39;hyperbolic&#39; });
+
+// Mixture of Experts - Route to top-k best agents
+const moeResult = await attention.coordinate(agents, task, {
+  type: &#39;moe&#39;,
+  topK: 3,
+  loadBalancing: true,
+});
+
+// GraphRoPE - Topology-aware position encoding
+const graphResult = await attention.coordinate(agents, task, { type: &#39;graph-rope&#39; });
+</code></pre>
+<h2>Federation Hub (Cross-Swarm Coordination)</h2>
+<p>Coordinate multiple swarms with ephemeral agents:</p>
+<pre><code class="language-typescript">import { createFederationHub, getDefaultFederationHub } from &#39;@claude-flow/swarm&#39;;
+
+// Get singleton hub or create custom
+const hub = getDefaultFederationHub();
+// or: const hub = createFederationHub({ maxSwarms: 10 });
+
+// Register swarms
+await hub.registerSwarm(&#39;swarm-security&#39;, {
+  coordinator: securityCoordinator,
+  capabilities: [&#39;security-audit&#39;, &#39;penetration-testing&#39;],
+});
+
+await hub.registerSwarm(&#39;swarm-dev&#39;, {
+  coordinator: devCoordinator,
+  capabilities: [&#39;coding&#39;, &#39;testing&#39;, &#39;review&#39;],
+});
+
+// Spawn ephemeral agent (auto-cleanup after TTL)
+const { agentId } = await hub.spawnEphemeral({
+  swarmId: &#39;swarm-security&#39;,
+  ttlMs: 300000, // 5 minutes
+  task: { type: &#39;quick-audit&#39;, target: &#39;auth-module&#39; },
+});
+
+// Cross-swarm messaging
+await hub.sendMessage({
+  from: &#39;swarm-dev&#39;,
+  to: &#39;swarm-security&#39;,
+  type: &#39;audit-request&#39;,
+  payload: { module: &#39;auth&#39;, priority: &#39;high&#39; },
+});
+
+// Federation-wide consensus
+const vote = await hub.proposeConsensus({
+  topic: &#39;release-v3&#39;,
+  options: [&#39;approve&#39;, &#39;reject&#39;, &#39;defer&#39;],
+  timeout: 30000,
+});
+
+// Get federation stats
+const stats = hub.getStats();
+console.log(&#39;Federation:&#39;, {
+  swarms: stats.swarmCount,
+  ephemeralAgents: stats.ephemeralAgentCount,
+  messagesSent: stats.messageCount,
+});
+</code></pre>
+<h2>Advanced Features</h2>
+<h3>Agent Pool Management</h3>
+<pre><code class="language-typescript">// Get domain-specific pool
+const corePool = coordinator.getDomainPool(&#39;core&#39;);
+const stats = corePool?.getPoolStats();
+
+console.log(&#39;Core Domain Pool:&#39;, {
+  total: stats?.total,
+  available: stats?.available,
+  busy: stats?.busy,
+});
+
+// Auto-scaling is built-in
+// - Scale up at 80% utilization
+// - Scale down at 20% utilization
+</code></pre>
+<h3>Custom Agent Registration</h3>
+<pre><code class="language-typescript">// Register agent with automatic domain assignment
+const { agentId, domain } = await coordinator.registerAgentWithDomain(
+  {
+    name: &#39;security-agent-2&#39;,
+    type: &#39;specialist&#39;,
+    status: &#39;idle&#39;,
+    capabilities: {
+      codeReview: true,
+      securityAudit: true,
+    },
+    // ... other agent properties
+  },
+  2 // Agent number 2 → security domain
+);
+
+console.log(`Registered ${agentId} in ${domain} domain`);
+</code></pre>
+<h3>Event Monitoring</h3>
+<pre><code class="language-typescript">coordinator.on(&#39;agent.joined&#39;, (event) =&gt; {
+  console.log(&#39;Agent joined:&#39;, event.data.agentId);
+});
+
+coordinator.on(&#39;task.completed&#39;, (event) =&gt; {
+  console.log(&#39;Task completed:&#39;, event.data.taskId);
+});
+
+coordinator.on(&#39;consensus.achieved&#39;, (event) =&gt; {
+  console.log(&#39;Consensus achieved:&#39;, event.data.approvalRate);
+});
+
+coordinator.on(&#39;swarm.initialized&#39;, (event) =&gt; {
+  console.log(&#39;Swarm initialized:&#39;, event.data.swarmId);
+});
+</code></pre>
+<h2>API Reference</h2>
+<h3>UnifiedSwarmCoordinator</h3>
+<h4>Lifecycle</h4>
+<ul>
+<li><code>initialize(): Promise&lt;void&gt;</code> - Initialize coordinator</li>
+<li><code>shutdown(): Promise&lt;void&gt;</code> - Shutdown coordinator</li>
+<li><code>pause(): Promise&lt;void&gt;</code> - Pause operations</li>
+<li><code>resume(): Promise&lt;void&gt;</code> - Resume operations</li>
+</ul>
+<h4>Agent Management</h4>
+<ul>
+<li><code>registerAgent(agent): Promise&lt;string&gt;</code> - Register agent</li>
+<li><code>registerAgentWithDomain(agent, number): Promise&lt;{agentId, domain}&gt;</code> - Register with domain</li>
+<li><code>unregisterAgent(id): Promise&lt;void&gt;</code> - Unregister agent</li>
+<li><code>spawnFullHierarchy(): Promise&lt;Map&lt;number, {agentId, domain}&gt;&gt;</code> - Spawn 15 agents</li>
+<li><code>getAgent(id): AgentState | undefined</code> - Get agent by ID</li>
+<li><code>getAllAgents(): AgentState[]</code> - Get all agents</li>
+<li><code>getAgentsByDomain(domain): AgentState[]</code> - Get agents in domain</li>
+</ul>
+<h4>Task Management</h4>
+<ul>
+<li><code>submitTask(task): Promise&lt;string&gt;</code> - Submit task</li>
+<li><code>assignTaskToDomain(taskId, domain): Promise&lt;string | undefined&gt;</code> - Assign to domain</li>
+<li><code>executeParallel(tasks): Promise&lt;ParallelExecutionResult[]&gt;</code> - Parallel execution</li>
+<li><code>cancelTask(taskId): Promise&lt;void&gt;</code> - Cancel task</li>
+<li><code>getTask(id): TaskDefinition | undefined</code> - Get task by ID</li>
+</ul>
+<h4>Coordination</h4>
+<ul>
+<li><code>proposeConsensus(value): Promise&lt;ConsensusResult&gt;</code> - Propose consensus</li>
+<li><code>broadcastMessage(payload, priority): Promise&lt;void&gt;</code> - Broadcast message</li>
+</ul>
+<h4>Monitoring</h4>
+<ul>
+<li><code>getState(): CoordinatorState</code> - Get current state</li>
+<li><code>getMetrics(): CoordinatorMetrics</code> - Get metrics</li>
+<li><code>getPerformanceReport(): PerformanceReport</code> - Get performance stats</li>
+<li><code>getStatus(): {swarmId, status, domains, metrics}</code> - Get comprehensive status</li>
+</ul>
+<h2>Integration with agentic-flow@alpha</h2>
+<p>This module can integrate with agentic-flow@alpha for enhanced capabilities:</p>
+<pre><code class="language-typescript">import { createUnifiedSwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+import { AgenticFlowBridge } from &#39;@claude-flow/integration&#39;;
+
+// Connect to agentic-flow for enhanced features
+const bridge = new AgenticFlowBridge({
+  agenticFlow: { version: &#39;alpha&#39; },
+});
+
+const coordinator = createUnifiedSwarmCoordinator({
+  topology: { type: &#39;hierarchical&#39;, maxAgents: 15 },
+  // Enable agentic-flow features via bridge
+  extensions: {
+    transport: bridge.getQuicTransport(),     // QUIC 0-RTT
+    learning: bridge.getSwarmLearningOptimizer(),
+  },
+});
+</code></pre>
+<h3>Available from agentic-flow@alpha</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>QUIC Transport</td>
+<td>🔌 Via bridge</td>
+<td>0-RTT connections, 50-70% faster</td>
+</tr>
+<tr>
+<td>Swarm Learning Optimizer</td>
+<td>🔌 Via bridge</td>
+<td>Auto topology recommendations</td>
+</tr>
+<tr>
+<td>E2B Sandbox Agents</td>
+<td>🔌 Via bridge</td>
+<td>Isolated execution environments</td>
+</tr>
+<tr>
+<td>P2P with GunDB/IPFS</td>
+<td>🔌 Via bridge</td>
+<td>Free decentralized coordination</td>
+</tr>
+<tr>
+<td>WASM Acceleration</td>
+<td>⏳ Planned</td>
+<td>HNSW indexing, semantic routing</td>
+</tr>
+</tbody></table>
+<h2>Roadmap: Future Enhancements</h2>
+<p>Based on agentic-flow@alpha capabilities that could be integrated:</p>
+<h3>Priority 1 (High Impact)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Native QUIC transport with HTTP/2 fallback</li>
+<li><input disabled="" type="checkbox"> Swarm learning optimizer for auto-topology</li>
+<li><input disabled="" type="checkbox"> Free P2P provider integration (GunDB, IPFS)</li>
+</ul>
+<h3>Priority 2 (Medium Impact)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> WASM-accelerated member indexing</li>
+<li><input disabled="" type="checkbox"> E2B sandbox agent specialization</li>
+<li><input disabled="" type="checkbox"> Enhanced message types with fuel/memory budgets</li>
+</ul>
+<h3>Priority 3 (Nice to Have)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Advanced gossip variants</li>
+<li><input disabled="" type="checkbox"> CRDT synchronization</li>
+<li><input disabled="" type="checkbox"> Production-grade Ed25519/X25519 cryptography</li>
+</ul>
+<h2>Contributing</h2>
+<p>This module follows ADR-003: Single Coordination Engine. When contributing:</p>
+<ol>
+<li><strong>All coordination logic</strong> goes in <code>UnifiedSwarmCoordinator</code></li>
+<li><strong>SwarmHub</strong> is a thin facade - no new logic there</li>
+<li><strong>Domain-based routing</strong> should be used for organized hierarchies</li>
+<li><strong>Performance targets</strong> must be maintained (&lt;100ms coordination)</li>
+<li><strong>New features</strong> should integrate via the extensions API</li>
+</ol>
+<h2>License</h2>
+<p>MIT</p>
+<hr>
+<p><strong>ADR-003 Compliance</strong>: This module implements a single canonical coordination engine with hive-mind intelligence, 6 attention mechanisms, federation support, and backward compatibility via facade pattern.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

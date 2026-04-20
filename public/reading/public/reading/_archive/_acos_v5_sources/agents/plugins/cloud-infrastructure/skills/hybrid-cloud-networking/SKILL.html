@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Hybrid Cloud Networking</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/cloud-infrastructure/skills/hybrid-cloud-networking/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Hybrid Cloud Networking</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure">cloud-infrastructure</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fcloud-infrastructure%2Fskills%2Fhybrid-cloud-networking">hybrid-cloud-networking</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: hybrid-cloud-networking
+description: Configure secure, high-performance connectivity between on-premises infrastructure and cloud platforms using VPN and dedicated connections. Use when building hybrid cloud architectures, connecting data centers to cloud, or implementing secure cross-premises networking.</h2>
+<h1>Hybrid Cloud Networking</h1>
+<p>Configure secure, high-performance connectivity between on-premises and cloud environments using VPN, Direct Connect, and ExpressRoute.</p>
+<h2>Purpose</h2>
+<p>Establish secure, reliable network connectivity between on-premises data centers and cloud providers (AWS, Azure, GCP).</p>
+<h2>When to Use</h2>
+<ul>
+<li>Connect on-premises to cloud</li>
+<li>Extend datacenter to cloud</li>
+<li>Implement hybrid active-active setups</li>
+<li>Meet compliance requirements</li>
+<li>Migrate to cloud gradually</li>
+</ul>
+<h2>Connection Options</h2>
+<h3>AWS Connectivity</h3>
+<h4>1. Site-to-Site VPN</h4>
+<ul>
+<li>IPSec VPN over internet</li>
+<li>Up to 1.25 Gbps per tunnel</li>
+<li>Cost-effective for moderate bandwidth</li>
+<li>Higher latency, internet-dependent</li>
+</ul>
+<pre><code class="language-hcl">resource &quot;aws_vpn_gateway&quot; &quot;main&quot; {
+  vpc_id = aws_vpc.main.id
+  tags = {
+    Name = &quot;main-vpn-gateway&quot;
+  }
+}
+
+resource &quot;aws_customer_gateway&quot; &quot;main&quot; {
+  bgp_asn    = 65000
+  ip_address = &quot;203.0.113.1&quot;
+  type       = &quot;ipsec.1&quot;
+}
+
+resource &quot;aws_vpn_connection&quot; &quot;main&quot; {
+  vpn_gateway_id      = aws_vpn_gateway.main.id
+  customer_gateway_id = aws_customer_gateway.main.id
+  type                = &quot;ipsec.1&quot;
+  static_routes_only  = false
+}
+</code></pre>
+<h4>2. AWS Direct Connect</h4>
+<ul>
+<li>Dedicated network connection</li>
+<li>1 Gbps to 100 Gbps</li>
+<li>Lower latency, consistent bandwidth</li>
+<li>More expensive, setup time required</li>
+</ul>
+<p><strong>Reference:</strong> See <code>references/direct-connect.md</code></p>
+<h3>Azure Connectivity</h3>
+<h4>1. Site-to-Site VPN</h4>
+<pre><code class="language-hcl">resource &quot;azurerm_virtual_network_gateway&quot; &quot;vpn&quot; {
+  name                = &quot;vpn-gateway&quot;
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+
+  type     = &quot;Vpn&quot;
+  vpn_type = &quot;RouteBased&quot;
+  sku      = &quot;VpnGw1&quot;
+
+  ip_configuration {
+    name                          = &quot;vnetGatewayConfig&quot;
+    public_ip_address_id          = azurerm_public_ip.vpn.id
+    private_ip_address_allocation = &quot;Dynamic&quot;
+    subnet_id                     = azurerm_subnet.gateway.id
+  }
+}
+</code></pre>
+<h4>2. Azure ExpressRoute</h4>
+<ul>
+<li>Private connection via connectivity provider</li>
+<li>Up to 100 Gbps</li>
+<li>Low latency, high reliability</li>
+<li>Premium for global connectivity</li>
+</ul>
+<h3>GCP Connectivity</h3>
+<h4>1. Cloud VPN</h4>
+<ul>
+<li>IPSec VPN (Classic or HA VPN)</li>
+<li>HA VPN: 99.99% SLA</li>
+<li>Up to 3 Gbps per tunnel</li>
+</ul>
+<h4>2. Cloud Interconnect</h4>
+<ul>
+<li>Dedicated (10 Gbps, 100 Gbps)</li>
+<li>Partner (50 Mbps to 50 Gbps)</li>
+<li>Lower latency than VPN</li>
+</ul>
+<h2>Hybrid Network Patterns</h2>
+<h3>Pattern 1: Hub-and-Spoke</h3>
+<pre><code>On-Premises Datacenter
+         ↓
+    VPN/Direct Connect
+         ↓
+    Transit Gateway (AWS) / vWAN (Azure)
+         ↓
+    ├─ Production VPC/VNet
+    ├─ Staging VPC/VNet
+    └─ Development VPC/VNet
+</code></pre>
+<h3>Pattern 2: Multi-Region Hybrid</h3>
+<pre><code>On-Premises
+    ├─ Direct Connect → us-east-1
+    └─ Direct Connect → us-west-2
+            ↓
+        Cross-Region Peering
+</code></pre>
+<h3>Pattern 3: Multi-Cloud Hybrid</h3>
+<pre><code>On-Premises Datacenter
+    ├─ Direct Connect → AWS
+    ├─ ExpressRoute → Azure
+    └─ Interconnect → GCP
+</code></pre>
+<h2>Routing Configuration</h2>
+<h3>BGP Configuration</h3>
+<pre><code>On-Premises Router:
+- AS Number: 65000
+- Advertise: 10.0.0.0/8
+
+Cloud Router:
+- AS Number: 64512 (AWS), 65515 (Azure)
+- Advertise: Cloud VPC/VNet CIDRs
+</code></pre>
+<h3>Route Propagation</h3>
+<ul>
+<li>Enable route propagation on route tables</li>
+<li>Use BGP for dynamic routing</li>
+<li>Implement route filtering</li>
+<li>Monitor route advertisements</li>
+</ul>
+<h2>Security Best Practices</h2>
+<ol>
+<li><strong>Use private connectivity</strong> (Direct Connect/ExpressRoute)</li>
+<li><strong>Implement encryption</strong> for VPN tunnels</li>
+<li><strong>Use VPC endpoints</strong> to avoid internet routing</li>
+<li><strong>Configure network ACLs</strong> and security groups</li>
+<li><strong>Enable VPC Flow Logs</strong> for monitoring</li>
+<li><strong>Implement DDoS protection</strong></li>
+<li><strong>Use PrivateLink/Private Endpoints</strong></li>
+<li><strong>Monitor connections</strong> with CloudWatch/Monitor</li>
+<li><strong>Implement redundancy</strong> (dual tunnels)</li>
+<li><strong>Regular security audits</strong></li>
+</ol>
+<h2>High Availability</h2>
+<h3>Dual VPN Tunnels</h3>
+<pre><code class="language-hcl">resource &quot;aws_vpn_connection&quot; &quot;primary&quot; {
+  vpn_gateway_id      = aws_vpn_gateway.main.id
+  customer_gateway_id = aws_customer_gateway.primary.id
+  type                = &quot;ipsec.1&quot;
+}
+
+resource &quot;aws_vpn_connection&quot; &quot;secondary&quot; {
+  vpn_gateway_id      = aws_vpn_gateway.main.id
+  customer_gateway_id = aws_customer_gateway.secondary.id
+  type                = &quot;ipsec.1&quot;
+}
+</code></pre>
+<h3>Active-Active Configuration</h3>
+<ul>
+<li>Multiple connections from different locations</li>
+<li>BGP for automatic failover</li>
+<li>Equal-cost multi-path (ECMP) routing</li>
+<li>Monitor health of all connections</li>
+</ul>
+<h2>Monitoring and Troubleshooting</h2>
+<h3>Key Metrics</h3>
+<ul>
+<li>Tunnel status (up/down)</li>
+<li>Bytes in/out</li>
+<li>Packet loss</li>
+<li>Latency</li>
+<li>BGP session status</li>
+</ul>
+<h3>Troubleshooting</h3>
+<pre><code class="language-bash"># AWS VPN
+aws ec2 describe-vpn-connections
+aws ec2 get-vpn-connection-telemetry
+
+# Azure VPN
+az network vpn-connection show
+az network vpn-connection show-device-config-script
+</code></pre>
+<h2>Cost Optimization</h2>
+<ol>
+<li><strong>Right-size connections</strong> based on traffic</li>
+<li><strong>Use VPN for low-bandwidth</strong> workloads</li>
+<li><strong>Consolidate traffic</strong> through fewer connections</li>
+<li><strong>Minimize data transfer</strong> costs</li>
+<li><strong>Use Direct Connect</strong> for high bandwidth</li>
+<li><strong>Implement caching</strong> to reduce traffic</li>
+</ol>
+<h2>Reference Files</h2>
+<ul>
+<li><code>references/vpn-setup.md</code> - VPN configuration guide</li>
+<li><code>references/direct-connect.md</code> - Direct Connect setup</li>
+</ul>
+<h2>Related Skills</h2>
+<ul>
+<li><code>multi-cloud-architecture</code> - For architecture decisions</li>
+<li><code>terraform-module-library</code> - For IaC implementation</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

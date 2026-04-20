@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="2026-01-21" />
+  <title>Skill Learning OS: Gamifying the .claude-skills Architecture</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="research/gamified-ai-learning/SKILL_LEARNING_OS.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">Skill Learning OS: Gamifying the .claude-skills Architecture</div>
+    <div class="meta">LLM: Unknown • Date: 2026-01-21 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>SKILL_LEARNING_OS.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>2026-01-21</strong></div>
+      <h1>Skill Learning OS: Gamifying the .claude-skills Architecture</h1>
+<h2>The Vision</h2>
+<p>Transform your existing <code>.claude-skills/</code> and Soulbook architecture into a <strong>gamified learning system</strong> where:</p>
+<ul>
+<li>Personal development becomes an RPG</li>
+<li>AI agents are quest-givers and coaches</li>
+<li>Progress is visible, meaningful, and fun</li>
+<li>Mastery unlocks new content and capabilities</li>
+</ul>
+<hr>
+<h2>Current Architecture (What You Have)</h2>
+<pre><code>.claude-skills/
+├── soulbook/
+│   ├── 7-pillars/
+│   │   ├── energy/SKILL.md      # Physical foundation
+│   │   ├── mind/SKILL.md        # Mental clarity
+│   │   ├── soul/SKILL.md        # Values &amp; purpose
+│   │   ├── craft/SKILL.md       # Skills &amp; mastery
+│   │   ├── capital/SKILL.md     # Resources
+│   │   ├── circle/SKILL.md      # Relationships
+│   │   └── legacy/SKILL.md      # Integration
+│   └── agents/
+│       ├── lifesmith/           # Forges foundations
+│       └── soul-composer/       # Composes symphony
+└── [52 other skills across domains]
+</code></pre>
+<p><strong>What&#39;s great:</strong></p>
+<ul>
+<li>7 Pillars = Natural skill tree domains</li>
+<li>SKILL.md files = Structured knowledge</li>
+<li>AI agents = Coaching personalities</li>
+<li>Daily check-ins = Activity tracking</li>
+</ul>
+<p><strong>What&#39;s missing:</strong></p>
+<ul>
+<li>XP/level tracking</li>
+<li>Progression requirements</li>
+<li>Unlockable content</li>
+<li>Achievement system</li>
+</ul>
+<hr>
+<h2>Proposed: Gamified SKILL.md Format</h2>
+<h3>Enhanced Frontmatter</h3>
+<pre><code class="language-yaml">---
+name: Energy
+description: Physical foundation - the bedrock that powers everything
+version: 2.0.0
+type: pillar
+
+# GAMIFICATION ADDITIONS
+progression:
+  current_level: 2
+  current_xp: 340
+  levels:
+    - name: Novice
+      xp_required: 0
+      unlocks: [basic-practices]
+    - name: Apprentice
+      xp_required: 500
+      unlocks: [intermediate-content, energy-coach-agent]
+    - name: Journeyman
+      xp_required: 1500
+      unlocks: [advanced-techniques, custom-challenges]
+    - name: Master
+      xp_required: 4000
+      unlocks: [teaching-mode, system-creation]
+    - name: Sage
+      xp_required: 10000
+      unlocks: [full-access, mentorship]
+
+xp_actions:
+  - action: &quot;Complete workout&quot;
+    xp: 50
+  - action: &quot;7+ hours sleep&quot;
+    xp: 30
+  - action: &quot;Morning movement routine&quot;
+    xp: 20
+  - action: &quot;Weekly energy review&quot;
+    xp: 100
+
+achievements:
+  - id: first-workout
+    name: &quot;First Steps&quot;
+    description: &quot;Complete your first workout&quot;
+    xp_bonus: 50
+  - id: seven-day-streak
+    name: &quot;Week Warrior&quot;
+    description: &quot;7 consecutive days of movement&quot;
+    xp_bonus: 200
+  - id: energy-master
+    name: &quot;Energy Master&quot;
+    description: &quot;Reach Master level in Energy&quot;
+    xp_bonus: 500
+
+prerequisites: []  # Energy is a foundation - no prerequisites
+---
+</code></pre>
+<hr>
+<h2>Progression Tracker File</h2>
+<p>Create a central tracking file: <code>PROGRESS.yaml</code></p>
+<pre><code class="language-yaml"># PROGRESS.yaml - Your life RPG stats
+last_updated: 2026-01-13
+
+player:
+  name: Frank
+  title: &quot;Awakening Creator&quot;
+  total_xp: 2340
+  overall_level: 5
+
+pillars:
+  energy:
+    level: 2
+    xp: 340
+    streak: 3
+    last_activity: 2026-01-12
+  mind:
+    level: 3
+    xp: 890
+    streak: 7
+    last_activity: 2026-01-13
+  soul:
+    level: 2
+    xp: 450
+    streak: 0
+    last_activity: 2026-01-10
+  craft:
+    level: 4
+    xp: 1200
+    streak: 14
+    last_activity: 2026-01-13
+  capital:
+    level: 1
+    xp: 120
+    streak: 0
+    last_activity: 2026-01-08
+  circle:
+    level: 2
+    xp: 280
+    streak: 2
+    last_activity: 2026-01-11
+  legacy:
+    level: 1
+    xp: 60
+    streak: 0
+    last_activity: 2026-01-05
+
+achievements_earned:
+  - id: first-workout
+    earned: 2025-12-01
+  - id: seven-day-streak
+    earned: 2025-12-15
+  - id: craft-journeyman
+    earned: 2026-01-05
+
+active_quests:
+  - name: &quot;Energy Week&quot;
+    pillar: energy
+    goal: &quot;Complete 5 workouts this week&quot;
+    progress: 3/5
+    reward: 150 XP
+  - name: &quot;Mind Expansion&quot;
+    pillar: mind
+    goal: &quot;Read for 30 min daily for 7 days&quot;
+    progress: 5/7
+    reward: 200 XP
+</code></pre>
+<hr>
+<h2>Agent Integration: Quest-Giving AI</h2>
+<h3>How Agents Use Progression Data</h3>
+<pre><code class="language-markdown"># In agent&#39;s SKILL.md or system prompt:
+
+## Progression-Aware Coaching
+
+When coaching Frank:
+1. Read PROGRESS.yaml to understand current levels
+2. Adapt difficulty based on demonstrated skill
+3. Issue quests appropriate to current level
+4. Celebrate achievements and streaks
+5. Challenge at the edge of capability (flow state)
+
+## Example Prompts by Level
+
+### Novice (Level 1)
+&quot;Let&#39;s start simple. What&#39;s one movement you enjoy? Let&#39;s build from there.&quot;
+
+### Apprentice (Level 2)
+&quot;You&#39;ve got the basics down. Ready to add intensity? Try this...&quot;
+
+### Journeyman (Level 3)
+&quot;You&#39;re developing real consistency. Let&#39;s optimize your routine...&quot;
+
+### Master (Level 4)
+&quot;Your foundation is solid. Time to create YOUR system. What works best for you?&quot;
+
+### Sage (Level 5)
+&quot;You&#39;ve mastered this pillar. How might you teach others what you&#39;ve learned?&quot;
+</code></pre>
+<hr>
+<h2>Daily Interaction Flow</h2>
+<h3>Morning Check-In (with gamification)</h3>
+<pre><code>You: /pillar-check
+
+Agent: Good morning, Frank! 
+
+📊 YOUR STATS
+━━━━━━━━━━━━━━━━━━━━━
+Energy:  ████░░░░░░ Lvl 2 (340/500 XP)
+Mind:    ██████░░░░ Lvl 3 (890/1500 XP)  🔥 7-day streak!
+Craft:   ████████░░ Lvl 4 (1200/4000 XP) 🔥 14-day streak!
+
+🎯 ACTIVE QUESTS
+• Energy Week: 3/5 workouts (150 XP reward)
+• Mind Expansion: 5/7 days (200 XP reward)
+
+💡 TODAY&#39;S SUGGESTION
+Your Mind streak is strong! Complete today&#39;s reading to reach 6/7.
+Energy needs attention - a 20-min workout would earn 50 XP.
+
+What would you like to focus on today?
+</code></pre>
+<h3>After Completing an Action</h3>
+<pre><code>You: Completed my morning workout
+
+Agent: 🎉 WORKOUT COMPLETE!
+
++50 XP earned for Energy
+Energy: 340 → 390 XP (110 to next level)
+
+📈 Quest Progress: Energy Week 4/5 (one more to complete!)
+
+🏆 Streak: 4 days and counting
+
+Keep building that foundation! What&#39;s next?
+</code></pre>
+<hr>
+<h2>Implementation Roadmap</h2>
+<h3>Phase 1: Prototype (Week 1)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Add progression frontmatter to Energy pillar</li>
+<li><input disabled="" type="checkbox"> Create PROGRESS.yaml tracker</li>
+<li><input disabled="" type="checkbox"> Modify one agent to read/use progression data</li>
+<li><input disabled="" type="checkbox"> Test for 1 week</li>
+</ul>
+<h3>Phase 2: Expand (Week 2-3)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Apply pattern to all 7 pillars</li>
+<li><input disabled="" type="checkbox"> Define XP actions for each pillar</li>
+<li><input disabled="" type="checkbox"> Create achievement system</li>
+<li><input disabled="" type="checkbox"> Build quest templates</li>
+</ul>
+<h3>Phase 3: Automate (Week 4+)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Create /pillar-check command</li>
+<li><input disabled="" type="checkbox"> Build progress update commands</li>
+<li><input disabled="" type="checkbox"> Optional: Simple dashboard (CLI or web)</li>
+<li><input disabled="" type="checkbox"> Integrate with Personal Development Plan</li>
+</ul>
+<hr>
+<h2>Technical Options</h2>
+<h3>Option A: YAML-Based (Simple)</h3>
+<ul>
+<li>PROGRESS.yaml as source of truth</li>
+<li>Agent parses YAML on check-in</li>
+<li>Manual XP logging via commands</li>
+</ul>
+<h3>Option B: MCP Server (Advanced)</h3>
+<ul>
+<li>Build <code>gamified-learning-mcp</code> server</li>
+<li>Automatic activity tracking</li>
+<li>Real-time XP calculations</li>
+<li>Dashboard integration</li>
+</ul>
+<h3>Option C: Hybrid</h3>
+<ul>
+<li>YAML for data storage</li>
+<li>Simple CLI scripts for updates</li>
+<li>Agent reads YAML for coaching</li>
+</ul>
+<p><strong>Recommendation:</strong> Start with Option A (simple), evolve to C, eventually B.</p>
+<hr>
+<h2>Why This Could Be Powerful</h2>
+<ol>
+<li><strong>Your architecture already exists</strong> - 7 Pillars = skill domains</li>
+<li><strong>Agents already coach</strong> - Just need progression awareness</li>
+<li><strong>Psychology is proven</strong> - 48% higher engagement</li>
+<li><strong>It&#39;s personal</strong> - YOU define what earns XP</li>
+<li><strong>It compounds</strong> - Daily habits become visible progress</li>
+</ol>
+<hr>
+<h2>The Creator&#39;s Quest: Sample Vision</h2>
+<pre><code>╔════════════════════════════════════════════════════════════════╗
+║                    THE CREATOR&#39;S QUEST                         ║
+║           &quot;Build your extraordinary life, one XP at a time&quot;    ║
+╠════════════════════════════════════════════════════════════════╣
+║                                                                ║
+║  FRANK THE AWAKENING CREATOR                                   ║
+║  Level 5 | Total XP: 2,340                                     ║
+║                                                                ║
+║  ╔═══════════════════════════════════════════════════════════╗ ║
+║  ║                    LEGACY (Capstone)                      ║ ║
+║  ║                    Lvl 1 | 60 XP                          ║ ║
+║  ╚═══════════════════════════════════════════════════════════╝ ║
+║                            │                                   ║
+║       ┌────────────────────┼────────────────────┐              ║
+║       │                    │                    │              ║
+║  ┌────┴────┐         ┌────┴────┐         ┌────┴────┐          ║
+║  │  CRAFT  │         │ CAPITAL │         │  CIRCLE │          ║
+║  │  Lvl 4  │         │  Lvl 1  │         │  Lvl 2  │          ║
+║  │ 🔥14-day│         │  120 XP │         │  280 XP │          ║
+║  └────┬────┘         └────┬────┘         └────┬────┘          ║
+║       └────────────────────┼────────────────────┘              ║
+║                            │                                   ║
+║  ═══════════════════════════════════════════════════════       ║
+║  │ ENERGY │      MIND      │       SOUL       │                ║
+║  │  Lvl 2 │    Lvl 3 🔥    │      Lvl 2       │                ║
+║  │ 340 XP │     890 XP     │     450 XP       │                ║
+║  ═══════════════════════════════════════════════════════       ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+</code></pre>
+<hr>
+<p><em>&quot;Life is the ultimate game. Play it with intention.&quot;</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX Design System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="DESIGN_SYSTEM.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX Design System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>DESIGN_SYSTEM.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX Design System</h1>
+<p><strong>Official Design Token Documentation &amp; Component Style Guide</strong></p>
+<p><em>Version: 1.0</em>
+<em>Last Updated: 2026-01-14</em>
+<em>Maintained By: FrankX Design Team</em></p>
+<hr>
+<h2>🎨 Design Philosophy</h2>
+<p>The FrankX design system embodies:</p>
+<ul>
+<li><strong>Consciousness-First</strong>: Beautiful, soulful interfaces that feel alive</li>
+<li><strong>Creator-Focused</strong>: Designed for musicians, artists, and AI architects</li>
+<li><strong>Premium Glassmorphism</strong>: Frosted glass effects with depth and elegance</li>
+<li><strong>Accessibility-First</strong>: WCAG AAA compliance as the foundation</li>
+<li><strong>Performance-Optimized</strong>: Beautiful without sacrificing speed</li>
+</ul>
+<hr>
+<h2>🎯 Core Principles</h2>
+<h3>1. Visual Hierarchy</h3>
+<ul>
+<li>Clear focal points with gradient-enhanced headings</li>
+<li>8px spacing grid for mathematical consistency</li>
+<li>Purposeful use of whitespace to guide the eye</li>
+<li>Premium depth through layered glassmorphism</li>
+</ul>
+<h3>2. Accessibility Standards</h3>
+<ul>
+<li><strong>WCAG AAA</strong> compliance for all interactive elements</li>
+<li><strong>Minimum contrast</strong>: 7:1 for normal text, 4.5:1 for large text</li>
+<li><strong>Touch targets</strong>: 44x44px minimum for all buttons</li>
+<li><strong>Keyboard navigation</strong>: Full support with visible focus states</li>
+<li><strong>Screen reader</strong>: Semantic HTML + ARIA labels where needed</li>
+</ul>
+<h3>3. Responsive Design</h3>
+<ul>
+<li><strong>Mobile-first</strong> approach with progressive enhancement</li>
+<li><strong>Breakpoints</strong>: xs (475px), sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px)</li>
+<li><strong>Touch-optimized</strong>: Larger targets, reduced hover animations on mobile</li>
+<li><strong>Reduced motion</strong>: Respects user preference for minimal animation</li>
+</ul>
+<hr>
+<h2>🎨 Design Tokens</h2>
+<h3>Color Palette</h3>
+<h4>Brand Colors (From BRAND_IDENTITY.md)</h4>
+<pre><code class="language-css">/* Conscious &amp; Spirituality */
+--conscious-purple: #8B5CF6;      /* Primary brand color */
+--conscious-deep: #6D28D9;        /* Darker variant */
+--conscious-light: #C4B5FD;       /* Lighter variant */
+
+/* AI &amp; Technology */
+--tech-cyan: #06B6D4;             /* Secondary brand color */
+--tech-electric: #0891B2;         /* Darker variant */
+--tech-bright: #67E8F9;           /* Lighter variant */
+
+/* Music &amp; Creativity */
+--music-orange: #F97316;          /* Accent color */
+--music-vibrant: #EA580C;         /* Darker variant */
+--music-warm: #FDBA74;            /* Lighter variant */
+
+/* Personal Development */
+--growth-green: #10B981;          /* Success/growth color */
+--growth-forest: #059669;         /* Darker variant */
+--growth-fresh: #6EE7B7;          /* Lighter variant */
+
+/* Foundational */
+--deep-navy: #0F172A;             /* Background base */
+--midnight: #1E293B;              /* Surface color */
+--cosmic-dark: #0F1629;           /* Deep background */
+--cosmic-purple: #AB47C7;         /* Accent purple */
+--aurora-blue: #43BFE3;           /* Accent blue */
+--gold-accent: #F59E0B;           /* Warning/highlight */
+</code></pre>
+<h4>Tailwind Config Colors (Mapped to Brand)</h4>
+<pre><code class="language-javascript">// Primary: Conscious Purple Family
+primary: {
+  50: &#39;#f8f7ff&#39;,
+  100: &#39;#f1efff&#39;,
+  200: &#39;#e3e0ff&#39;,
+  300: &#39;#d0caff&#39;,
+  400: &#39;#b9acff&#39;,
+  500: &#39;#9f8bff&#39;,    // Base: close to conscious-purple
+  600: &#39;#8362ff&#39;,    // Matches #8B5CF6 range
+  700: &#39;#6943ff&#39;,
+  800: &#39;#5536d6&#39;,
+  900: &#39;#422ea9&#39;,
+  950: &#39;#332780&#39;,
+}
+
+// Secondary: Tech Cyan Family
+secondary: {
+  50: &#39;#f0f9ff&#39;,
+  100: &#39;#e0f2fe&#39;,
+  200: &#39;#bae6fd&#39;,
+  300: &#39;#7dd3fc&#39;,
+  400: &#39;#38bdf8&#39;,
+  500: &#39;#0ea5e9&#39;,    // Base: close to tech-cyan
+  600: &#39;#0284c7&#39;,    // Matches #06B6D4 range
+  700: &#39;#0369a1&#39;,
+  800: &#39;#075985&#39;,
+  900: &#39;#0c4a6e&#39;,
+  950: &#39;#082f49&#39;,
+}
+
+// Accent: Music Orange Family
+accent: {
+  50: &#39;#fdf7f0&#39;,
+  100: &#39;#fbeee0&#39;,
+  200: &#39;#f6dac1&#39;,
+  300: &#39;#efc197&#39;,
+  400: &#39;#e6a36b&#39;,
+  500: &#39;#de8a4a&#39;,    // Base
+  600: &#39;#d0713f&#39;,    // Close to #F97316
+  700: &#39;#ad5937&#39;,
+  800: &#39;#8a4732&#39;,
+  900: &#39;#703c2b&#39;,
+  950: &#39;#3c1e16&#39;,
+}
+
+// Semantic Colors
+success: {
+  50: &#39;#f0fdf4&#39;,
+  500: &#39;#22c55e&#39;,    // Matches growth-green family
+  700: &#39;#15803d&#39;
+}
+
+warning: {
+  50: &#39;#fffbeb&#39;,
+  500: &#39;#f59e0b&#39;,    // Matches gold-accent
+  700: &#39;#a16207&#39;
+}
+
+error: {
+  50: &#39;#fef2f2&#39;,
+  500: &#39;#ef4444&#39;,
+  700: &#39;#b91c1c&#39;
+}
+
+info: {
+  50: &#39;#eff6ff&#39;,
+  500: &#39;#3b82f6&#39;,
+  700: &#39;#1d4ed8&#39;
+}
+
+// Neutrals (Slate Scale)
+neutral: {
+  50: &#39;#f8fafc&#39;,
+  100: &#39;#f1f5f9&#39;,
+  200: &#39;#e2e8f0&#39;,
+  300: &#39;#cbd5e1&#39;,
+  400: &#39;#94a3b8&#39;,
+  500: &#39;#64748b&#39;,
+  600: &#39;#475569&#39;,
+  700: &#39;#334155&#39;,
+  800: &#39;#1e293b&#39;,    // Matches midnight
+  900: &#39;#0f172a&#39;,    // Matches deep-navy
+  950: &#39;#060b24&#39;
+}
+</code></pre>
+<h3>Typography</h3>
+<h4>Font Families</h4>
+<pre><code class="language-css">--font-heading: &#39;Poppins&#39;, sans-serif;     /* Brand identity (NOT IMPLEMENTED) */
+--font-body: &#39;Inter&#39;, sans-serif;          /* Currently used for all */
+--font-code: &#39;JetBrains Mono&#39;, monospace;  /* Code blocks */
+
+/* NOTE: Tailwind config uses Inter for both sans and display */
+/* DISCREPANCY: Brand identity specifies Poppins for headings */
+</code></pre>
+<h4>Font Scale (Tailwind Custom Tokens)</h4>
+<pre><code class="language-javascript">fontSize: {
+  // Headings
+  &#39;heading-1&#39;: [&#39;4.5rem&#39;, { lineHeight: &#39;1&#39; }],      // 72px
+  &#39;heading-2&#39;: [&#39;3.75rem&#39;, { lineHeight: &#39;1&#39; }],     // 60px
+  &#39;heading-3&#39;: [&#39;3rem&#39;, { lineHeight: &#39;1&#39; }],        // 48px
+  &#39;heading-4&#39;: [&#39;2.25rem&#39;, { lineHeight: &#39;2.5rem&#39; }], // 36px
+  &#39;heading-5&#39;: [&#39;1.875rem&#39;, { lineHeight: &#39;2.25rem&#39; }], // 30px
+  &#39;heading-6&#39;: [&#39;1.5rem&#39;, { lineHeight: &#39;2rem&#39; }],   // 24px
+
+  // Body
+  &#39;body&#39;: [&#39;1rem&#39;, { lineHeight: &#39;1.5rem&#39; }],        // 16px
+  &#39;body-sm&#39;: [&#39;0.875rem&#39;, { lineHeight: &#39;1.25rem&#39; }], // 14px
+  &#39;caption&#39;: [&#39;0.75rem&#39;, { lineHeight: &#39;1rem&#39; }],    // 12px
+}
+</code></pre>
+<h4>Font Weights</h4>
+<pre><code class="language-css">/* Available weights */
+font-normal: 400;
+font-medium: 500;
+font-semibold: 600;
+font-bold: 700;
+font-extrabold: 800;
+
+/* Usage Guidelines */
+- Headings: font-bold (700) or font-extrabold (800)
+- Buttons: font-semibold (600)
+- Body text: font-normal (400) or font-medium (500)
+- Captions: font-medium (500)
+</code></pre>
+<h3>Spacing Scale (8px Grid System)</h3>
+<pre><code class="language-javascript">spacing: {
+  // Standard Tailwind scale (4px base)
+  1: &#39;0.25rem&#39;,   // 4px
+  2: &#39;0.5rem&#39;,    // 8px  ← 8px grid base
+  3: &#39;0.75rem&#39;,   // 12px
+  4: &#39;1rem&#39;,      // 16px ← 2x base
+  5: &#39;1.25rem&#39;,   // 20px
+  6: &#39;1.5rem&#39;,    // 24px ← 3x base
+  8: &#39;2rem&#39;,      // 32px ← 4x base
+  10: &#39;2.5rem&#39;,   // 40px ← 5x base
+  12: &#39;3rem&#39;,     // 48px ← 6x base
+  16: &#39;4rem&#39;,     // 64px ← 8x base
+  20: &#39;5rem&#39;,     // 80px ← 10x base
+  24: &#39;6rem&#39;,     // 96px ← 12x base
+
+  // Custom extended spacing
+  18: &#39;4.5rem&#39;,   // 72px
+  88: &#39;22rem&#39;,    // 352px
+  128: &#39;32rem&#39;,   // 512px
+}
+
+/* Recommended Usage */
+- Micro spacing (within components): 4px, 8px, 12px
+- Component padding: 16px, 24px, 32px
+- Section spacing: 48px, 64px, 96px
+- Macro spacing (between major sections): 128px, 160px
+</code></pre>
+<h3>Border Radius (Roundness Scale)</h3>
+<pre><code class="language-javascript">borderRadius: {
+  &#39;none&#39;: &#39;0&#39;,
+  &#39;sm&#39;: &#39;calc(var(--radius) - 4px)&#39;,  // ~4px
+  &#39;md&#39;: &#39;calc(var(--radius) - 2px)&#39;,  // ~6px (default button)
+  &#39;lg&#39;: &#39;var(--radius)&#39;,               // ~8px
+  &#39;xl&#39;: &#39;12px&#39;,                        // 12px
+  &#39;2xl&#39;: &#39;16px&#39;,                       // 16px ← RECOMMENDED PRIMARY
+  &#39;3xl&#39;: &#39;24px&#39;,                       // 24px ← Cards
+  &#39;4xl&#39;: &#39;32px&#39;,                       // 32px
+  &#39;5xl&#39;: &#39;40px&#39;,                       // 40px
+  &#39;full&#39;: &#39;9999px&#39;,                    // Pills, circles
+}
+
+/* Component-Specific Recommendations */
+- Primary buttons (CTAs): rounded-2xl (16px)
+- Secondary buttons: rounded-xl (12px)
+- Small buttons/chips: rounded-lg (8px)
+- Icon buttons: rounded-full
+- Cards: rounded-3xl (24px)
+- Modals: rounded-2xl (16px)
+- Form inputs: rounded-xl (12px)
+- Pills/badges: rounded-full
+</code></pre>
+<h3>Shadows &amp; Elevation</h3>
+<pre><code class="language-javascript">boxShadow: {
+  // Custom FrankX shadows
+  &#39;soul-glow&#39;: &#39;0 0 40px rgb(107 70 193 / 0.45)&#39;,
+  &#39;glass&#39;: &#39;0 20px 60px rgb(8 15 33 / 0.45)&#39;,
+  &#39;elevation-1&#39;: &#39;0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.24)&#39;,
+  &#39;elevation-2&#39;: &#39;0 3px 6px rgb(0 0 0 / 0.16), 0 3px 6px rgb(0 0 0 / 0.23)&#39;,
+  &#39;elevation-3&#39;: &#39;0 10px 20px rgb(0 0 0 / 0.19), 0 6px 6px rgb(0 0 0 / 0.23)&#39;,
+
+  // Standard Tailwind shadows
+  &#39;sm&#39;: &#39;0 1px 2px 0 rgb(0 0 0 / 0.05)&#39;,
+  &#39;DEFAULT&#39;: &#39;0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)&#39;,
+  &#39;md&#39;: &#39;0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)&#39;,
+  &#39;lg&#39;: &#39;0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)&#39;,
+  &#39;xl&#39;: &#39;0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)&#39;,
+  &#39;2xl&#39;: &#39;0 25px 50px -12px rgb(0 0 0 / 0.25)&#39;,
+}
+
+/* Usage Guidelines */
+- Cards at rest: shadow-lg or elevation-1
+- Cards on hover: shadow-xl or elevation-2
+- Floating buttons: shadow-2xl
+- Premium elements: soul-glow (purple glow)
+- Glassmorphic elements: glass shadow
+</code></pre>
+<h3>Background Gradients</h3>
+<pre><code class="language-javascript">backgroundImage: {
+  // Custom FrankX gradients
+  &#39;midnight-radial&#39;: &#39;radial-gradient(circle at 20% 20%, rgba(92, 136, 245, 0.18), transparent 55%)&#39;,
+  &#39;aurora-vortex&#39;: &#39;radial-gradient(circle at 80% 10%, rgba(67, 191, 227, 0.22), transparent 45%)&#39;,
+  &#39;pulse-halo&#39;: &#39;radial-gradient(circle at 50% 80%, rgba(171, 71, 199, 0.18), transparent 55%)&#39;,
+  &#39;glass-light&#39;: &#39;linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%)&#39;,
+}
+
+/* Common Gradient Patterns (NOT CENTRALIZED - FIX NEEDED) */
+// Primary CTA gradient
+from-purple-600 via-blue-600 to-cyan-600
+
+// Hero backgrounds
+from-primary-900/20 via-transparent to-purple-900/30
+
+// Glass surfaces
+from-white/5 via-white/5 to-white/0
+</code></pre>
+<h3>Backdrop Blur (Glassmorphism)</h3>
+<pre><code class="language-javascript">backdropBlur: {
+  &#39;xs&#39;: &#39;2px&#39;,
+  &#39;sm&#39;: &#39;4px&#39;,
+  &#39;md&#39;: &#39;12px&#39;,      // Standard glass effect
+  &#39;lg&#39;: &#39;16px&#39;,
+  &#39;xl&#39;: &#39;24px&#39;,      // Premium glass
+  &#39;2xl&#39;: &#39;40px&#39;,
+  &#39;3xl&#39;: &#39;64px&#39;,
+}
+
+/* Glassmorphic Pattern */
+bg-white/5 backdrop-blur-md border border-white/10
+</code></pre>
+<hr>
+<h2>🎨 Component Style Guide</h2>
+<h3>Buttons</h3>
+<h4>Primary Button (CTA)</h4>
+<pre><code class="language-tsx">// Usage: Main call-to-action buttons
+&lt;button className=&quot;inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-purple-500/25 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/40 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:ring-offset-2 focus:ring-offset-slate-900 min-h-[44px]&quot;&gt;
+  Get Started
+  &lt;ArrowRight className=&quot;ml-2 h-5 w-5&quot; aria-hidden=&quot;true&quot; /&gt;
+&lt;/button&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Border radius: <code>rounded-2xl</code> (16px)</li>
+<li>Padding: <code>px-8 py-4</code> (32px horizontal, 16px vertical)</li>
+<li>Font: <code>text-lg font-semibold</code> (18px, 600 weight)</li>
+<li>Min height: <code>44px</code> (WCAG touch target)</li>
+<li>Gradient: Purple → Blue → Cyan</li>
+<li>Shadow: Purple glow on hover</li>
+<li>Animation: Scale + translate on hover</li>
+</ul>
+<h4>Secondary Button</h4>
+<pre><code class="language-tsx">&lt;button className=&quot;inline-flex items-center justify-center rounded-xl border-2 border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 min-h-[44px]&quot;&gt;
+  Learn More
+&lt;/button&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Border radius: <code>rounded-xl</code> (12px)</li>
+<li>Background: Glassmorphic (<code>bg-white/5 backdrop-blur-md</code>)</li>
+<li>Border: <code>border-2 border-white/20</code></li>
+<li>Hover: Increase opacity</li>
+</ul>
+<h4>Ghost Button</h4>
+<pre><code class="language-tsx">&lt;button className=&quot;inline-flex items-center justify-center rounded-xl px-6 py-3 text-base font-medium text-white transition-all duration-300 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-500/50 min-h-[44px]&quot;&gt;
+  Cancel
+&lt;/button&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>No background at rest</li>
+<li>Subtle hover state</li>
+<li>Lower visual hierarchy</li>
+</ul>
+<h4>Icon Button</h4>
+<pre><code class="language-tsx">&lt;button className=&quot;inline-flex items-center justify-center rounded-full w-10 h-10 bg-white/5 text-white transition-all duration-300 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-500/50&quot; aria-label=&quot;Close&quot;&gt;
+  &lt;X className=&quot;h-5 w-5&quot; aria-hidden=&quot;true&quot; /&gt;
+&lt;/button&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Border radius: <code>rounded-full</code></li>
+<li>Fixed size: <code>w-10 h-10</code> (40px minimum)</li>
+<li>Always include <code>aria-label</code></li>
+</ul>
+<h3>Cards</h3>
+<h4>Standard Card</h4>
+<pre><code class="language-tsx">&lt;div className=&quot;rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md transition-all duration-300 hover:bg-white/8 hover:border-white/20 hover:shadow-lg&quot;&gt;
+  &lt;h3 className=&quot;text-xl font-semibold text-white mb-4&quot;&gt;Card Title&lt;/h3&gt;
+  &lt;p className=&quot;text-white/70 leading-relaxed&quot;&gt;Card content goes here.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Border radius: <code>rounded-3xl</code> (24px)</li>
+<li>Glassmorphic background</li>
+<li>Hover state: Brightness + border intensity</li>
+</ul>
+<h4>Premium Card (Glow Effect)</h4>
+<pre><code class="language-tsx">&lt;div className=&quot;rounded-3xl border border-purple-500/30 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10 p-8 backdrop-blur-md shadow-soul-glow&quot;&gt;
+  &lt;h3 className=&quot;text-xl font-semibold text-white mb-4&quot;&gt;Premium Feature&lt;/h3&gt;
+  &lt;p className=&quot;text-white/70 leading-relaxed&quot;&gt;Enhanced card with glow.&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Gradient background</li>
+<li>Purple glow shadow</li>
+<li>Higher visual hierarchy</li>
+</ul>
+<h3>Form Inputs</h3>
+<h4>Text Input</h4>
+<pre><code class="language-tsx">&lt;div className=&quot;space-y-2&quot;&gt;
+  &lt;label htmlFor=&quot;email&quot; className=&quot;block text-sm font-medium text-white/90&quot;&gt;
+    Email address
+  &lt;/label&gt;
+  &lt;input
+    type=&quot;email&quot;
+    id=&quot;email&quot;
+    name=&quot;email&quot;
+    className=&quot;w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/50 backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50 min-h-[44px]&quot;
+    placeholder=&quot;you@example.com&quot;
+    required
+  /&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Border radius: <code>rounded-xl</code> (12px)</li>
+<li>Glassmorphic background</li>
+<li>Visible, persistent label (never placeholder-only)</li>
+<li>Focus ring: Purple</li>
+<li>Min height: 44px</li>
+</ul>
+<h3>Pills &amp; Badges</h3>
+<h4>Pill (Trust Badge)</h4>
+<pre><code class="language-tsx">&lt;span className=&quot;inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 px-4 py-2 text-sm font-semibold text-purple-200&quot;&gt;
+  &lt;Sparkles className=&quot;h-4 w-4&quot; aria-hidden=&quot;true&quot; /&gt;
+  Built by Oracle AI Architect
+&lt;/span&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Border radius: <code>rounded-full</code></li>
+<li>Gradient background</li>
+<li>Icon + text combination</li>
+</ul>
+<h4>Badge (Status Indicator)</h4>
+<pre><code class="language-tsx">&lt;span className=&quot;inline-flex items-center rounded-full bg-green-500/20 px-3 py-1 text-xs font-semibold text-green-300&quot;&gt;
+  Active
+&lt;/span&gt;
+</code></pre>
+<p><strong>Key Properties:</strong></p>
+<ul>
+<li>Smaller than pills</li>
+<li>Semantic colors (green, yellow, red)</li>
+<li>No icon typically</li>
+</ul>
+<hr>
+<h2>✅ Quality Checklist</h2>
+<h3>Design Review Checklist</h3>
+<p>Before shipping any component or page, verify:</p>
+<h4>Visual Design</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Uses design tokens from this document (no hardcoded values)</li>
+<li><input disabled="" type="checkbox"> Follows 8px spacing grid</li>
+<li><input disabled="" type="checkbox"> Button border-radius matches component type (2xl for primary, xl for secondary)</li>
+<li><input disabled="" type="checkbox"> Colors from official brand palette</li>
+<li><input disabled="" type="checkbox"> Typography scale applied correctly</li>
+<li><input disabled="" type="checkbox"> Glassmorphism effects consistent (white/5 + backdrop-blur-md)</li>
+</ul>
+<h4>Accessibility (WCAG AAA)</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Color contrast minimum 7:1 for normal text, 4.5:1 for large text</li>
+<li><input disabled="" type="checkbox"> All interactive elements minimum 44x44px touch target</li>
+<li><input disabled="" type="checkbox"> Visible focus indicators on all interactive elements (ring-2)</li>
+<li><input disabled="" type="checkbox"> Semantic HTML used (button, nav, header, main, footer)</li>
+<li><input disabled="" type="checkbox"> ARIA labels on icon-only buttons</li>
+<li><input disabled="" type="checkbox"> Form labels visible and persistent (not placeholder-only)</li>
+<li><input disabled="" type="checkbox"> Keyboard navigation fully supported</li>
+<li><input disabled="" type="checkbox"> Reduced motion preferences respected</li>
+</ul>
+<h4>Responsive Design</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Mobile-first approach</li>
+<li><input disabled="" type="checkbox"> Touch targets larger on mobile (min 44px)</li>
+<li><input disabled="" type="checkbox"> Breakpoints follow Tailwind defaults</li>
+<li><input disabled="" type="checkbox"> Text readable at all sizes (min 16px body)</li>
+<li><input disabled="" type="checkbox"> Images responsive with proper srcset/sizes</li>
+</ul>
+<h4>Performance</h4>
+<ul>
+<li><input disabled="" type="checkbox"> Animations use transform and opacity only (GPU-accelerated)</li>
+<li><input disabled="" type="checkbox"> Images optimized and lazy-loaded</li>
+<li><input disabled="" type="checkbox"> No layout shift on load</li>
+<li><input disabled="" type="checkbox"> Reduced motion media query implemented</li>
+</ul>
+<hr>
+<h2>🚨 Common Mistakes to Avoid</h2>
+<h3>1. Button Border-Radius Inconsistency</h3>
+<p>❌ <strong>WRONG:</strong></p>
+<pre><code class="language-tsx">&lt;button className=&quot;rounded-md ...&quot;&gt;  // 6px - too small
+</code></pre>
+<p>✅ <strong>CORRECT:</strong></p>
+<pre><code class="language-tsx">&lt;button className=&quot;rounded-2xl ...&quot;&gt;  // 16px - brand standard
+</code></pre>
+<h3>2. Hardcoded Colors</h3>
+<p>❌ <strong>WRONG:</strong></p>
+<pre><code class="language-tsx">&lt;div className=&quot;bg-[#8B5CF6] text-white&quot;&gt; // Hardcoded hex
+</code></pre>
+<p>✅ <strong>CORRECT:</strong></p>
+<pre><code class="language-tsx">&lt;div className=&quot;bg-primary-600 text-white&quot;&gt; // Design token
+</code></pre>
+<h3>3. Missing Touch Targets</h3>
+<p>❌ <strong>WRONG:</strong></p>
+<pre><code class="language-tsx">&lt;button className=&quot;px-3 py-1&quot;&gt;  // Too small (32px height)
+</code></pre>
+<p>✅ <strong>CORRECT:</strong></p>
+<pre><code class="language-tsx">&lt;button className=&quot;px-6 py-3 min-h-[44px]&quot;&gt;  // WCAG compliant
+</code></pre>
+<h3>4. Placeholder-Only Form Labels</h3>
+<p>❌ <strong>WRONG:</strong></p>
+<pre><code class="language-tsx">&lt;input placeholder=&quot;Email&quot; /&gt;  // No visible label
+</code></pre>
+<p>✅ <strong>CORRECT:</strong></p>
+<pre><code class="language-tsx">&lt;label htmlFor=&quot;email&quot;&gt;Email&lt;/label&gt;
+&lt;input id=&quot;email&quot; placeholder=&quot;you@example.com&quot; /&gt;
+</code></pre>
+<h3>5. Inconsistent Spacing</h3>
+<p>❌ <strong>WRONG:</strong></p>
+<pre><code class="language-tsx">&lt;div className=&quot;p-7&quot;&gt;  // Not on 8px grid (28px)
+</code></pre>
+<p>✅ <strong>CORRECT:</strong></p>
+<pre><code class="language-tsx">&lt;div className=&quot;p-6&quot;&gt;  // 24px (3x base)
+&lt;div className=&quot;p-8&quot;&gt;  // 32px (4x base)
+</code></pre>
+<hr>
+<h2>📊 Component Acceptance Criteria</h2>
+<p>Before merging any new component, it must:</p>
+<ol>
+<li><strong>Pass automated accessibility audit</strong> (Lighthouse score 100)</li>
+<li><strong>Manual keyboard navigation test</strong> (all interactions work)</li>
+<li><strong>Screen reader test</strong> (VoiceOver/NVDA confirms content)</li>
+<li><strong>Color contrast check</strong> (all text meets WCAG AAA)</li>
+<li><strong>Touch target verification</strong> (all buttons ≥44px)</li>
+<li><strong>Design token compliance</strong> (no hardcoded values)</li>
+<li><strong>Responsive test</strong> (mobile, tablet, desktop)</li>
+<li><strong>Performance budget</strong> (no layout shift, smooth 60fps)</li>
+</ol>
+<hr>
+<h2>🔄 Design System Governance</h2>
+<h3>When to Update This Document</h3>
+<p>This design system should be updated when:</p>
+<ul>
+<li>New design tokens are added (colors, spacing, etc.)</li>
+<li>Component patterns evolve</li>
+<li>Brand identity changes (requires Frank&#39;s approval)</li>
+<li>Accessibility standards update</li>
+<li>New best practices emerge</li>
+</ul>
+<h3>Update Process</h3>
+<ol>
+<li><strong>Propose change</strong> in design system discussion</li>
+<li><strong>Get approval</strong> from Frank or design lead</li>
+<li><strong>Update this document</strong> with new standard</li>
+<li><strong>Update Tailwind config</strong> if needed</li>
+<li><strong>Create migration guide</strong> for existing components</li>
+<li><strong>Update version number</strong> at top of document</li>
+</ol>
+<h3>Version History</h3>
+<ul>
+<li><strong>v1.0</strong> (2026-01-14): Initial design system documentation</li>
+</ul>
+<hr>
+<h2>📚 Resources</h2>
+<h3>Official Documentation</h3>
+<ul>
+<li><a href="https://tailwindcss.com/docs">Tailwind CSS</a></li>
+<li><a href="https://www.w3.org/WAI/WCAG22/quickref/">WCAG 2.2 Guidelines</a></li>
+<li><a href="/BRAND_IDENTITY.md">FrankX Brand Identity</a></li>
+</ul>
+<h3>Design Tools</h3>
+<ul>
+<li><a href="#">Figma FrankX Design Library</a> (TODO: Create)</li>
+<li><a href="https://webaim.org/resources/contrastchecker/">Color Contrast Checker</a></li>
+<li><a href="https://wave.webaim.org/">WAVE Accessibility Tool</a></li>
+</ul>
+<h3>Internal Files</h3>
+<ul>
+<li><code>/tailwind.config.js</code> - Tailwind configuration</li>
+<li><code>/BRAND_IDENTITY.md</code> - Official brand standards</li>
+<li><code>/components/ui/primitives/</code> - Base UI primitives</li>
+<li><code>/components/ui/PremiumButton.tsx</code> - Premium button component</li>
+</ul>
+<hr>
+<p><strong>Last Updated</strong>: 2026-01-14
+<strong>Next Review</strong>: 2026-02-14
+<strong>Maintained By</strong>: FrankX Design Team
+<strong>Questions?</strong> Contact <a href="mailto:hello@frankx.ai">hello@frankx.ai</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

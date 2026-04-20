@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow Memory System (Batchtools Optimized)</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/templates/claude-optimized/.claude/commands/claude-flow-memory.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow Memory System (Batchtools Optimized)</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates">templates</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized">claude-optimized</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized%2F.claude">.claude</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Ftemplates%2Fclaude-optimized%2F.claude%2Fcommands">commands</a> / <span>claude-flow-memory.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: claude-flow-memory
+description: Interact with Claude-Flow memory system using batchtools optimization</h2>
+<h1>Claude-Flow Memory System (Batchtools Optimized)</h1>
+<p>The memory system provides persistent storage with enhanced batch operations for efficient cross-session and cross-agent collaboration.</p>
+<h2>Batch Store Operations</h2>
+<pre><code class="language-bash"># Single store (traditional)
+npx claude-flow memory store &quot;key&quot; &quot;value&quot; --namespace project
+
+# Batch store multiple key-value pairs
+npx claude-flow memory batch-store --data &#39;{
+  &quot;project_specs&quot;: &quot;e-commerce platform requirements&quot;,
+  &quot;api_design&quot;: &quot;RESTful API architecture&quot;,
+  &quot;db_schema&quot;: &quot;PostgreSQL database design&quot;
+}&#39; --namespace project
+
+# Bulk import from file
+npx claude-flow memory bulk-import data.json --parallel
+</code></pre>
+<h2>Parallel Query Operations</h2>
+<pre><code class="language-bash"># Single query (traditional)
+npx claude-flow memory query &quot;search term&quot; --limit 10
+
+# Parallel multi-term search
+npx claude-flow memory batch-query --terms &quot;api,database,authentication&quot; --parallel
+
+# Cross-namespace parallel search
+npx claude-flow memory multi-query &quot;pattern&quot; --namespaces &quot;all&quot; --concurrent
+</code></pre>
+<h2>Batch Statistics &amp; Analysis</h2>
+<pre><code class="language-bash"># Comprehensive stats across all namespaces
+npx claude-flow memory batch-stats --detailed --parallel
+
+# Analyze memory usage patterns
+npx claude-flow memory analyze --patterns --concurrent
+
+# Generate usage reports
+npx claude-flow memory batch-report --format &quot;json,csv,html&quot;
+</code></pre>
+<h2>Bulk Export/Import Operations</h2>
+<pre><code class="language-bash"># Export multiple namespaces concurrently
+npx claude-flow memory batch-export --namespaces &quot;project,agents,tasks&quot; --output exports/
+
+# Parallel import with validation
+npx claude-flow memory batch-import --files &quot;*.json&quot; --validate --parallel
+
+# Incremental backup with compression
+npx claude-flow memory backup --incremental --compress --parallel
+</code></pre>
+<h2>Enhanced Namespace Operations</h2>
+<pre><code class="language-bash"># Create multiple namespaces
+npx claude-flow memory batch-create-ns &quot;feature1,feature2,feature3&quot;
+
+# Clone namespaces in parallel
+npx claude-flow memory batch-clone --source project --targets &quot;dev,test,prod&quot;
+
+# Merge namespaces concurrently
+npx claude-flow memory batch-merge --sources &quot;temp1,temp2&quot; --target main
+</code></pre>
+<h2>Advanced Batch Operations</h2>
+<h3>Parallel Data Processing</h3>
+<pre><code class="language-bash"># Transform data across namespaces
+npx claude-flow memory batch-transform --operation &quot;encrypt&quot; --namespaces &quot;sensitive&quot;
+
+# Aggregate data from multiple sources
+npx claude-flow memory batch-aggregate --sources &quot;logs,metrics,events&quot; --operation &quot;summarize&quot;
+</code></pre>
+<h3>Concurrent Synchronization</h3>
+<pre><code class="language-bash"># Sync memory across agents
+npx claude-flow memory batch-sync --agents &quot;all&quot; --bidirectional
+
+# Replicate to remote storage
+npx claude-flow memory batch-replicate --destinations &quot;s3,gcs&quot; --parallel
+</code></pre>
+<h3>Bulk Cleanup Operations</h3>
+<pre><code class="language-bash"># Clean old data in parallel
+npx claude-flow memory batch-clean --older-than &quot;30d&quot; --namespaces &quot;all&quot;
+
+# Optimize storage concurrently
+npx claude-flow memory batch-optimize --compact --dedupe --parallel
+</code></pre>
+<h2>Performance Optimizations</h2>
+<h3>Batch Read Operations</h3>
+<pre><code class="language-bash"># Prefetch related data
+npx claude-flow memory batch-prefetch --keys &quot;user_*&quot; --cache
+
+# Parallel read with fallback
+npx claude-flow memory batch-read --keys-file keys.txt --fallback-ns default
+</code></pre>
+<h3>Batch Write Operations</h3>
+<pre><code class="language-bash"># Atomic batch writes
+npx claude-flow memory batch-write --atomic --data updates.json
+
+# Conditional batch updates
+npx claude-flow memory batch-update --if-exists --data changes.json
+</code></pre>
+<h2>Monitoring &amp; Analytics</h2>
+<h3>Real-time Batch Monitoring</h3>
+<pre><code class="language-bash"># Monitor batch operations
+npx claude-flow memory monitor --batch-ops --real-time
+
+# Track memory usage patterns
+npx claude-flow memory track --patterns --visualize
+</code></pre>
+<h3>Performance Analysis</h3>
+<pre><code class="language-bash"># Analyze batch operation performance
+npx claude-flow memory perf-analyze --operations &quot;read,write,query&quot;
+
+# Generate optimization recommendations
+npx claude-flow memory optimize-suggest --based-on-usage
+</code></pre>
+<h2>Best Practices for Batch Operations</h2>
+<ul>
+<li>Use <code>--parallel</code> for independent operations</li>
+<li>Enable <code>--atomic</code> for data consistency</li>
+<li>Leverage <code>--cache</code> for repeated reads</li>
+<li>Use <code>--stream</code> for large datasets</li>
+<li>Enable <code>--compress</code> for network transfers</li>
+<li>Set <code>--batch-size</code> based on memory limits</li>
+<li>Use <code>--retry</code> for resilient operations</li>
+<li>Enable <code>--validate</code> for data integrity</li>
+</ul>
+<h2>Examples of Complex Workflows</h2>
+<h3>Project Initialization</h3>
+<pre><code class="language-bash"># Initialize complete project memory in parallel
+npx claude-flow memory batch-init --template &quot;web-app&quot; --namespaces &quot;specs,arch,impl,tests&quot;
+</code></pre>
+<h3>Data Migration</h3>
+<pre><code class="language-bash"># Migrate data between formats
+npx claude-flow memory batch-migrate --from &quot;v1&quot; --to &quot;v2&quot; --transform migrate.js --parallel
+</code></pre>
+<h3>Distributed Processing</h3>
+<pre><code class="language-bash"># Process memory data across multiple workers
+npx claude-flow memory distribute --operation &quot;analyze&quot; --workers 4 --queue-size 1000
+</code></pre>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

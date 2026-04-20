@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>hook session-restore</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/bin/init/templates/commands/hooks/session-restore.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">hook session-restore</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbin">bin</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbin%2Finit">init</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbin%2Finit%2Ftemplates">templates</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbin%2Finit%2Ftemplates%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fbin%2Finit%2Ftemplates%2Fcommands%2Fhooks">hooks</a> / <span>session-restore.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>hook session-restore</h1>
+<p>Restore a previous session&#39;s context and state.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">npx claude-flow hook session-restore [options]
+</code></pre>
+<h2>Options</h2>
+<ul>
+<li><code>--session-id, -s &lt;id&gt;</code> - Session ID to restore</li>
+<li><code>--load-memory</code> - Load session memories (default: true)</li>
+<li><code>--restore-files</code> - Reopen previous files</li>
+<li><code>--resume-tasks</code> - Continue incomplete tasks</li>
+<li><code>--merge-context</code> - Merge with current context</li>
+</ul>
+<h2>Examples</h2>
+<h3>Basic session restore</h3>
+<pre><code class="language-bash">npx claude-flow hook session-restore --session-id &quot;dev-session-2024&quot;
+</code></pre>
+<h3>Full restoration</h3>
+<pre><code class="language-bash">npx claude-flow hook session-restore -s &quot;feature-auth&quot; --load-memory --restore-files --resume-tasks
+</code></pre>
+<h3>Selective restore</h3>
+<pre><code class="language-bash">npx claude-flow hook session-restore -s &quot;bug-fix-123&quot; --load-memory --resume-tasks
+</code></pre>
+<h3>Context merging</h3>
+<pre><code class="language-bash">npx claude-flow hook session-restore -s &quot;refactor-api&quot; --merge-context
+</code></pre>
+<h2>Features</h2>
+<h3>Memory Loading</h3>
+<ul>
+<li>Retrieves stored decisions</li>
+<li>Loads implementation notes</li>
+<li>Restores agent configs</li>
+<li>Recovers context</li>
+</ul>
+<h3>File Restoration</h3>
+<ul>
+<li>Lists previously open files</li>
+<li>Suggests file reopening</li>
+<li>Maintains edit history</li>
+<li>Preserves cursor positions</li>
+</ul>
+<h3>Task Resumption</h3>
+<ul>
+<li>Shows incomplete tasks</li>
+<li>Restores task progress</li>
+<li>Loads task dependencies</li>
+<li>Continues workflows</li>
+</ul>
+<h3>Context Merging</h3>
+<ul>
+<li>Combines sessions</li>
+<li>Merges memories</li>
+<li>Unifies task lists</li>
+<li>Prevents conflicts</li>
+</ul>
+<h2>Integration</h2>
+<p>This hook is automatically called by Claude Code when:</p>
+<ul>
+<li>Resuming previous work</li>
+<li>After unexpected shutdown</li>
+<li>Loading saved sessions</li>
+<li>Switching between projects</li>
+</ul>
+<p>Manual usage in agents:</p>
+<pre><code class="language-bash"># To restore context
+npx claude-flow hook session-restore --session-id &quot;previous-session&quot; --load-memory
+</code></pre>
+<h2>Output</h2>
+<p>Returns JSON with:</p>
+<pre><code class="language-json">{
+  &quot;sessionId&quot;: &quot;dev-session-2024&quot;,
+  &quot;restored&quot;: true,
+  &quot;memories&quot;: 25,
+  &quot;files&quot;: [&quot;src/auth/login.js&quot;, &quot;src/api/users.js&quot;],
+  &quot;tasks&quot;: {
+    &quot;incomplete&quot;: 3,
+    &quot;completed&quot;: 12
+  },
+  &quot;context&quot;: {
+    &quot;project&quot;: &quot;auth-system&quot;,
+    &quot;branch&quot;: &quot;feature/oauth&quot;
+  },
+  &quot;warnings&quot;: []
+}
+</code></pre>
+<h2>See Also</h2>
+<ul>
+<li><code>hook session-start</code> - New session setup</li>
+<li><code>hook session-end</code> - Session cleanup</li>
+<li><code>memory usage</code> - Memory operations</li>
+<li><code>task status</code> - Task checking</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

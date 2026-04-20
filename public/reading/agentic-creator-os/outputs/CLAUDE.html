@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Outputs Directory - Published Content</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/outputs/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Outputs Directory - Published Content</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="index.html#agentic-creator-os%2Foutputs">outputs</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <claude-mem-context>
+# Outputs Directory - Published Content
+
+<p>This directory contains content ready for publication or already published.</p>
+<h2>⚠️ Important: Drafts vs Outputs</h2>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>drafts/</code></td>
+<td>Work in progress</td>
+<td>Creating new content</td>
+</tr>
+<tr>
+<td><code>outputs/</code></td>
+<td>Ready to publish</td>
+<td>Finalized content</td>
+</tr>
+</tbody></table>
+<p><strong>Rule:</strong> Always create in <code>drafts/</code>, move to <code>outputs/</code> when ready.</p>
+<h2>Directory Structure</h2>
+<pre><code>outputs/
+├── CLAUDE.md              ← YOU ARE HERE
+├── blog/                  ← Published blog posts
+├── social/                ← Published social content
+├── email/                 ← Published email content
+└── campaigns/             ← Campaign content
+</code></pre>
+<h2>Content Organization</h2>
+<h3>blog/</h3>
+<p>Published blog posts and articles.</p>
+<p><strong>Naming:</strong></p>
+<pre><code>outputs/blog/[yyyy-mm-dd]-descriptive-title.md
+outputs/blog/2026-01-20-future-game-development.md
+</code></pre>
+<h3>social/</h3>
+<p>Published social media content.</p>
+<p><strong>Naming:</strong></p>
+<pre><code>outputs/social/[platform]-[yyyy-mm-dd]-[short-title].md
+outputs/social/twitter-2026-01-20-ai-stack.md
+outputs/social/linkedin-2026-01-20-product-launch.md
+</code></pre>
+<h3>email/</h3>
+<p>Published newsletters and emails.</p>
+<p><strong>Naming:</strong></p>
+<pre><code>outputs/newsletter-[yyyy-mm-dd]-[title].md
+outputs/email/2026-01-weekly-newsletter.md
+</code></pre>
+<h3>campaigns/</h3>
+<p>Campaign-specific content.</p>
+<p><strong>Naming:</strong></p>
+<pre><code>outputs/campaigns/[campaign-name]/[content].md
+outputs/campaigns/product-launch-2026/twitter-thread.md
+</code></pre>
+<h2>Publishing Checklist</h2>
+<p>Before content goes to <code>outputs/</code>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Content is complete and polished</li>
+<li><input disabled="" type="checkbox"> Headline/title is finalized</li>
+<li><input disabled="" type="checkbox"> Platform-specific formatting is correct</li>
+<li><input disabled="" type="checkbox"> Links are verified</li>
+<li><input disabled="" type="checkbox"> Images/media are ready</li>
+<li><input disabled="" type="checkbox"> Metadata (keywords, tags) is included</li>
+<li><input disabled="" type="checkbox"> CTA is clear</li>
+<li><input disabled="" type="checkbox"> Spell-checked and proofread</li>
+<li><input disabled="" type="checkbox"> (Optional) Quality evaluation passed</li>
+</ul>
+<h2>Moving Content to Outputs</h2>
+<pre><code class="language-bash"># From project root
+mv drafts/blog/my-post.md outputs/blog/2026-01-20-my-post.md
+mv drafts/social/my-thread.md outputs/social/twitter-2026-01-20-my-thread.md
+</code></pre>
+<h2>Publishing Flow</h2>
+<pre><code>drafts/[type]/ → review → outputs/[type]/ → publish to platform
+</code></pre>
+<h2>For AI Agents</h2>
+<p>When working with outputs:</p>
+<ol>
+<li><strong>Create in drafts/</strong> - Never write directly here</li>
+<li><strong>Review before moving</strong> - Check quality checklist</li>
+<li><strong>Use proper naming</strong> - Include date and descriptive title</li>
+<li><strong>Include metadata</strong> - Title, date, keywords, platform</li>
+<li><strong>Only move final content</strong> - Outputs = ready to publish</li>
+<li><strong>Don&#39;t edit outputs directly</strong> - Move back to drafts if changes needed</li>
+</ol>
+<h2>Version Control</h2>
+<p>If you need to revise published content:</p>
+<ol>
+<li>Move from <code>outputs/</code> back to <code>drafts/</code></li>
+<li>Make changes</li>
+<li>Move back to <code>outputs/</code> with new date</li>
+<li>Consider archiving old version</li>
+</ol>
+<p>Example:</p>
+<pre><code class="language-bash">mv outputs/blog/2026-01-15-old-post.md drafts/archive/
+# Make changes in drafts/blog/2026-01-20-revised-post.md
+mv drafts/blog/2026-01-20-revised-post.md outputs/blog/
+</code></pre>
+<h2>Related Directories</h2>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>drafts/</code></td>
+<td>Work in progress</td>
+</tr>
+<tr>
+<td><code>workflows/</code></td>
+<td>Process definitions</td>
+</tr>
+<tr>
+<td><code>templates/</code></td>
+<td>Starting templates</td>
+</tr>
+<tr>
+<td><code>skills/</code></td>
+<td>Content triggers</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Outputs = Ready to publish. Everything starts in drafts/.</strong>
+</claude-mem-context></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

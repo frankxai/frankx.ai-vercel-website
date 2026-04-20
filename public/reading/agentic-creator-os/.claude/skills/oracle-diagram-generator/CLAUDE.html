@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Oracle Diagram Generator</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/oracle-diagram-generator/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Oracle Diagram Generator</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Foracle-diagram-generator">oracle-diagram-generator</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Oracle Diagram Generator</h1>
+<p>Generate professional Oracle Cloud Infrastructure (OCI) architecture diagrams using official Oracle icons and templates.</p>
+<h2>Quick Reference</h2>
+<p><strong>When to Use</strong>: Creating OCI architecture diagrams for presentations, documentation, or customer proposals
+<strong>Best Approach</strong>: Use official Oracle toolkit templates as starting point
+<strong>Output Formats</strong>: Draw.io (recommended), Python diagrams library, Mermaid.js (text-only)</p>
+<h2>Important: How OCI Icons Actually Work</h2>
+<p>OCI icons in Draw.io are <strong>embedded PNG images</strong> (base64-encoded), not simple shape references. This means:</p>
+<ol>
+<li><strong>Draw.io</strong>: Must use official Oracle toolkit as template - icons cannot be generated from shape names</li>
+<li><strong>Python diagrams</strong>: Can generate programmatically with proper library installation</li>
+<li><strong>Mermaid.js</strong>: Text-only representation - no actual icons, just boxes with labels</li>
+</ol>
+<h2>Official Oracle Resources</h2>
+<h3>Download Links (as of 2026)</h3>
+<ul>
+<li><strong>Draw.io Toolkit</strong>: <a href="https://docs.oracle.com/iaas/Content/Resources/Assets/OCI-Style-Guide-for-Drawio.zip">https://docs.oracle.com/iaas/Content/Resources/Assets/OCI-Style-Guide-for-Drawio.zip</a></li>
+<li><strong>PowerPoint Icons</strong>: <a href="https://docs.oracle.com/iaas/Content/Resources/Assets/OCI_Icons.pptx">https://docs.oracle.com/iaas/Content/Resources/Assets/OCI_Icons.pptx</a></li>
+<li><strong>Visio Icons</strong>: <a href="https://docs.oracle.com/iaas/Content/Resources/Assets/OCI_Icons_Visio.zip">https://docs.oracle.com/iaas/Content/Resources/Assets/OCI_Icons_Visio.zip</a></li>
+<li><strong>Documentation</strong>: <a href="https://docs.oracle.com/en-us/iaas/Content/General/Reference/graphicsfordiagrams.htm">https://docs.oracle.com/en-us/iaas/Content/General/Reference/graphicsfordiagrams.htm</a></li>
+</ul>
+<h3>Local Copies (in this repo)</h3>
+<pre><code>docs/diagrams/templates/
+├── OCI Architecture Diagram Toolkit v24.2.drawio  # Full template with examples
+├── OCI Library.xml                                 # Icon library for Draw.io
+└── oci-icon-catalog.json                          # Extracted icon metadata
+</code></pre>
+<h2>Workflow Options</h2>
+<h3>Option 1: Draw.io with Official Toolkit (RECOMMENDED)</h3>
+<p><strong>Best for</strong>: Visual editing, presentations, customer-facing documents</p>
+<p><strong>Steps</strong>:</p>
+<ol>
+<li>Open <code>docs/diagrams/templates/OCI Architecture Diagram Toolkit v24.2.drawio</code> in Draw.io</li>
+<li>Navigate to the &quot;Icons&quot; page to see all available icons</li>
+<li>Navigate to &quot;Physical&quot; or &quot;Logical&quot; pages for architecture templates</li>
+<li>Copy icons and templates to a new diagram</li>
+<li>Customize layout, labels, and connections</li>
+</ol>
+<p><strong>Import Library</strong>:</p>
+<ol>
+<li>In Draw.io: File → Open Library From → Device</li>
+<li>Select <code>docs/diagrams/templates/OCI Library.xml</code></li>
+<li>Icons appear in left sidebar under &quot;OCI Library&quot;</li>
+</ol>
+<h3>Option 2: Python Diagrams Library (Programmatic)</h3>
+<p><strong>Best for</strong>: CI/CD automation, documentation-as-code, reproducible diagrams</p>
+<p><strong>Installation</strong>:</p>
+<pre><code class="language-bash">pip install diagrams
+# Requires Graphviz
+brew install graphviz  # macOS
+apt install graphviz   # Ubuntu/Debian
+</code></pre>
+<p><strong>Example Code</strong>:</p>
+<pre><code class="language-python">from diagrams import Diagram, Cluster
+from diagrams.oci.compute import VM, Container
+from diagrams.oci.database import AutonomousDatabase
+from diagrams.oci.network import LoadBalancer, Vcn
+from diagrams.oci.storage import ObjectStorage
+
+with Diagram(&quot;OCI RAG Architecture&quot;, show=False, direction=&quot;TB&quot;):
+    with Cluster(&quot;VCN&quot;):
+        lb = LoadBalancer(&quot;Load Balancer&quot;)
+
+        with Cluster(&quot;Application Tier&quot;):
+            apps = [Container(&quot;API&quot;), Container(&quot;Worker&quot;)]
+
+        with Cluster(&quot;Data Tier&quot;):
+            adb = AutonomousDatabase(&quot;ADB 26ai&quot;)
+            storage = ObjectStorage(&quot;Documents&quot;)
+
+    lb &gt;&gt; apps &gt;&gt; adb
+    apps &gt;&gt; storage
+</code></pre>
+<p><strong>Output</strong>: PNG/SVG file with proper OCI icons</p>
+<h3>Option 3: Mermaid.js (Text-based)</h3>
+<p><strong>Best for</strong>: Markdown documentation, quick sketches, version-controlled diagrams</p>
+<p><strong>Note</strong>: No actual OCI icons - uses standard shapes with labels</p>
+<pre><code class="language-mermaid">flowchart TB
+    subgraph VCN[&quot;Virtual Cloud Network&quot;]
+        LB[Load Balancer]
+        subgraph App[&quot;Application Tier&quot;]
+            API[API Server]
+            Worker[Worker]
+        end
+        subgraph Data[&quot;Data Tier&quot;]
+            ADB[(ADB 26ai)]
+            OBJ[Object Storage]
+        end
+    end
+
+    LB --&gt; API
+    LB --&gt; Worker
+    API --&gt; ADB
+    Worker --&gt; OBJ
+
+    style ADB fill:#C74634,color:#fff
+</code></pre>
+<h2>Oracle Brand Guidelines</h2>
+<h3>Colors</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Hex</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Oracle Red</td>
+<td><code>#C74634</code></td>
+<td>Primary accent, icon fills</td>
+</tr>
+<tr>
+<td>Oracle Dark</td>
+<td><code>#312D2A</code></td>
+<td>Text, borders</td>
+</tr>
+<tr>
+<td>Background Light</td>
+<td><code>#F5F4F2</code></td>
+<td>Container backgrounds</td>
+</tr>
+<tr>
+<td>Border Gray</td>
+<td><code>#9E9892</code></td>
+<td>Strokes, separators</td>
+</tr>
+</tbody></table>
+<h3>Typography</h3>
+<ul>
+<li><strong>Font</strong>: Oracle Sans (or Arial as fallback)</li>
+<li><strong>Headers</strong>: Bold, 14-16px</li>
+<li><strong>Labels</strong>: Regular, 11-12px</li>
+</ul>
+<h3>Layout Principles</h3>
+<ul>
+<li>Use rounded rectangles for groupings (VCN, Subnet, Cluster)</li>
+<li>Dashed borders for logical groupings</li>
+<li>Solid borders for physical boundaries</li>
+<li>Consistent spacing: 20px between icons, 40px between groups</li>
+</ul>
+<h2>Architecture Patterns</h2>
+<h3>Pattern 1: Three-Tier Web App</h3>
+<pre><code>┌─────────────────── VCN ───────────────────┐
+│ ┌── Public Subnet ──┐ ┌─ Private Subnet ─┐│
+│ │    [Load Balancer]│ │    [Compute]     ││
+│ │         ↓         │ │       ↓          ││
+│ └───────────────────┘ │  [Autonomous DB] ││
+│                       └──────────────────┘│
+└───────────────────────────────────────────┘
+</code></pre>
+<h3>Pattern 2: RAG Platform</h3>
+<pre><code>[Data Sources] → [Streaming] → [Functions]
+                                    ↓
+                            [GenAI Embed]
+                                    ↓
+[Chat UI] ← [Cohere Command A] ← [ADB Vector Search]
+</code></pre>
+<h3>Pattern 3: Multi-Agent System</h3>
+<pre><code>            [Agent Hub]
+                ↓
+         [Supervisor Agent]
+        ↙     ↓     ↘
+   [Agent A] [Agent B] [Agent C]
+        ↘     ↓     ↙
+           [Tool Layer]
+                ↓
+            [ADB 26ai]
+</code></pre>
+<h2>Generation Commands</h2>
+<p>When asked to generate an OCI diagram:</p>
+<ol>
+<li><strong>Identify architecture type</strong>: RAG, Agent, Web App, Analytics, etc.</li>
+<li><strong>List OCI services required</strong>: ADB, Compute, GenAI, etc.</li>
+<li><strong>Choose output format</strong>:<ul>
+<li>Draw.io template for visual editing</li>
+<li>Python code for automation</li>
+<li>Mermaid for documentation</li>
+</ul>
+</li>
+<li><strong>Apply Oracle styling</strong>: Colors, fonts, spacing</li>
+<li><strong>Add annotations</strong>: Cost estimates, service details</li>
+</ol>
+<h2>Related Skills</h2>
+<ul>
+<li><code>oracle-ai-architect</code> - Architecture patterns and AI service details</li>
+<li><code>oci-services-expert</code> - Service pricing and capabilities</li>
+<li><code>oracle-adk</code> - Agent orchestration patterns</li>
+</ul>
+<hr>
+<p><em>Create professional OCI diagrams using official Oracle assets and proven architectural patterns.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow v2 to v3 Migration Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/migration/MIGRATION-GUIDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow v2 to v3 Migration Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fmigration">migration</a> / <span>MIGRATION-GUIDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude-Flow v2 to v3 Migration Guide</h1>
+<h2>Overview</h2>
+<p>This guide walks you through migrating from Claude-Flow v2.x to v3.0. The migration is designed to be <strong>zero-breaking-changes</strong> - all v2 code continues to work while you gradually adopt v3 features.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>Node.js &gt;= 18.0.0</li>
+<li>Claude-Flow v2.7.x installed</li>
+<li>Git for version control</li>
+</ul>
+<h2>Quick Migration (5 minutes)</h2>
+<h3>Step 1: Update Dependencies</h3>
+<pre><code class="language-bash"># Update to v3
+npm install claude-flow@3.0.0
+
+# Install new optional dependencies
+npm install sql.js  # Windows support
+</code></pre>
+<h3>Step 2: Run Auto-Migration</h3>
+<pre><code class="language-bash">npx claude-flow migrate --to v3
+</code></pre>
+<p>This command:</p>
+<ul>
+<li>Backs up your current config to <code>.claude/config.json.v2.backup</code></li>
+<li>Migrates settings to v3 format</li>
+<li>Consolidates duplicate settings files</li>
+<li>Archives old checkpoints</li>
+</ul>
+<h3>Step 3: Verify</h3>
+<pre><code class="language-bash"># Run compatibility tests
+npm run test:compatibility
+
+# Check migration status
+npx claude-flow status --check-migration
+</code></pre>
+<h2>Manual Migration Steps</h2>
+<p>If you prefer manual control or auto-migration fails:</p>
+<h3>1. Configuration Migration</h3>
+<h4>Before (v2)</h4>
+<pre><code>.claude/
+├── settings.json
+├── settings-enhanced.json
+├── settings-complete.json
+├── settings-github-npx.json
+└── ... (9 files total)
+</code></pre>
+<h4>After (v3)</h4>
+<pre><code>.claude/
+├── config.json              # Master config
+├── settings.prod.json       # Production
+├── settings.dev.json        # Development
+└── settings.github.json     # GitHub automation
+</code></pre>
+<h4>Migration Steps</h4>
+<ol>
+<li><strong>Create unified config.json</strong>:</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;3.0.0&quot;,
+  &quot;agenticFlow&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;attention&quot;: &quot;flash&quot;,
+    &quot;sona&quot;: &quot;balanced&quot;,
+    &quot;learning&quot;: true
+  },
+  &quot;extends&quot;: &quot;./settings.prod.json&quot;
+}
+</code></pre>
+<ol start="2">
+<li><strong>Merge settings files</strong>:</li>
+</ol>
+<pre><code class="language-bash"># settings.prod.json = settings-enhanced.json content
+cp .claude/settings-enhanced.json .claude/settings.prod.json
+
+# Update version in settings.prod.json
+</code></pre>
+<ol start="3">
+<li><strong>Remove deprecated files</strong>:</li>
+</ol>
+<pre><code class="language-bash">rm .claude/settings-complete.json
+rm .claude/settings-checkpoint-*.json
+rm .claude/settings.reasoningbank-*.json
+rm .claude/settings-npx-hooks.json
+</code></pre>
+<h3>2. Hooks Migration</h3>
+<h4>Before (v2)</h4>
+<p>Hooks scattered in multiple files:</p>
+<ul>
+<li><code>.claude/settings-enhanced.json</code></li>
+<li><code>.claude/settings-complete.json</code></li>
+<li><code>.claude-plugin/hooks/hooks.json</code></li>
+</ul>
+<h4>After (v3)</h4>
+<p>Single source in <code>config.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;commands&quot;: [&quot;npx claude-flow hooks pre-tool --tool=$TOOL_NAME&quot;]
+      }
+    ],
+    &quot;PostToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;*&quot;,
+        &quot;commands&quot;: [&quot;npx claude-flow hooks post-tool --tool=$TOOL_NAME&quot;]
+      }
+    ]
+  }
+}
+</code></pre>
+<h3>3. Agent Directory Migration</h3>
+<h4>Before (v2)</h4>
+<pre><code>.claude/agents/
+├── consensus/
+├── core/
+├── devops/
+├── flow-nexus/
+├── github/
+├── hive-mind/
+├── orchestration/
+├── performance/
+├── planning/
+├── sparc/
+├── specialized/
+├── swarm/
+├── templates/
+├── testing/
+└── ... (22 directories)
+</code></pre>
+<h4>After (v3)</h4>
+<pre><code>.claude/agents/
+├── core/           # Essential: coder, tester, reviewer, researcher, planner
+├── orchestration/  # All coordinators consolidated
+├── platform/       # github, flow-nexus, devops
+├── specialized/    # Domain experts
+├── methodology/    # sparc, tdd
+├── consensus/      # Distributed consensus
+└── testing/        # Quality &amp; validation
+</code></pre>
+<h3>4. Code Updates</h3>
+<h4>Agent Creation (Optional Enhancement)</h4>
+<pre><code class="language-typescript">// v2 code (still works!)
+const coordinator = new SwarmCoordinator();
+const agentId = await coordinator.spawnAgent({ type: &#39;coder&#39; });
+
+// v3 enhanced (opt-in)
+import { AgenticFlowAdapter } from &#39;claude-flow/v3&#39;;
+const adapter = new AgenticFlowAdapter({ sona: &#39;research&#39; });
+const agentId = await adapter.createAgent(&#39;coder&#39;, {
+  learning: true,       // +55% quality
+  reflexion: true       // Self-improvement
+});
+</code></pre>
+<h4>Memory Operations (Optional Enhancement)</h4>
+<pre><code class="language-typescript">// v2 code (still works!)
+const memory = new MemoryManager();
+const results = await memory.search(&#39;query&#39;);
+
+// v3 enhanced (opt-in)
+import { HybridMemorySystem } from &#39;claude-flow/v3&#39;;
+const memory = new HybridMemorySystem();
+const results = await memory.search(&#39;query&#39;, {
+  semantic: true,       // AgentDB vector search
+  k: 5                  // 150x faster with HNSW
+});
+</code></pre>
+<h2>Windows Users: sql.js Setup</h2>
+<h3>Automatic (Recommended)</h3>
+<pre><code class="language-bash">npm install sql.js
+</code></pre>
+<p>Claude-Flow v3 automatically detects Windows and uses sql.js.</p>
+<h3>Manual Configuration</h3>
+<pre><code class="language-json">// .claude/config.json
+{
+  &quot;database&quot;: {
+    &quot;provider&quot;: &quot;sql.js&quot;  // Force sql.js even on Linux/macOS
+  }
+}
+</code></pre>
+<h3>Feature Availability</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>better-sqlite3</th>
+<th>sql.js</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core operations</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Memory storage</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Swarm coordination</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>ReasoningBank</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Vector search</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<h2>Checkpoint Cleanup</h2>
+<p>v2 accumulated 3,720+ checkpoint files. v3 auto-archives old ones.</p>
+<h3>Manual Cleanup</h3>
+<pre><code class="language-bash"># Archive checkpoints older than 7 days
+cd .claude/checkpoints
+mkdir -p archive
+find . -maxdepth 1 -name &quot;*.json&quot; -mtime +7 -exec mv {} archive/ \;
+tar -czf archive.tar.gz archive/
+rm -rf archive/
+</code></pre>
+<h3>Automatic (v3)</h3>
+<pre><code class="language-json">// .claude/config.json
+{
+  &quot;checkpoints&quot;: {
+    &quot;maxActive&quot;: 20,
+    &quot;archiveAfterDays&quot;: 7,
+    &quot;compressArchive&quot;: true
+  }
+}
+</code></pre>
+<h2>Enabling v3 Features</h2>
+<h3>SONA Learning Profiles</h3>
+<pre><code class="language-json">// .claude/config.json
+{
+  &quot;agenticFlow&quot;: {
+    &quot;sona&quot;: &quot;research&quot;  // Options: real-time, balanced, research, edge, batch
+  }
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Quality</th>
+<th>Speed</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>real-time</td>
+<td>Baseline</td>
+<td>&lt;0.5ms</td>
+<td>Live apps</td>
+</tr>
+<tr>
+<td>balanced</td>
+<td>+25%</td>
+<td>18ms</td>
+<td>Default</td>
+</tr>
+<tr>
+<td>research</td>
+<td>+55%</td>
+<td>18ms</td>
+<td>Max accuracy</td>
+</tr>
+<tr>
+<td>edge</td>
+<td>Balanced</td>
+<td>Minimal</td>
+<td>&lt;5MB footprint</td>
+</tr>
+<tr>
+<td>batch</td>
+<td>+25%</td>
+<td>15-50ms</td>
+<td>Processing</td>
+</tr>
+</tbody></table>
+<h3>Flash Attention</h3>
+<pre><code class="language-json">// .claude/config.json
+{
+  &quot;agenticFlow&quot;: {
+    &quot;attention&quot;: &quot;flash&quot;  // 2.49x-7.47x speedup
+  }
+}
+</code></pre>
+<h3>GNN-Enhanced Search</h3>
+<pre><code class="language-typescript">import { AgenticFlowAdapter } from &#39;claude-flow/v3&#39;;
+
+const adapter = new AgenticFlowAdapter({ enableGNN: true });
+const results = await adapter.searchPatterns(query, {
+  k: 5,
+  graphContext: knowledgeBase  // +12.4% accuracy
+});
+</code></pre>
+<h2>Rollback</h2>
+<p>If you need to rollback to v2:</p>
+<pre><code class="language-bash"># Restore v2 config
+cp .claude/config.json.v2.backup .claude/config.json
+
+# Downgrade package
+npm install claude-flow@2.7.47
+
+# Restore v2 settings (if needed)
+git checkout HEAD~1 -- .claude/settings-*.json
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>&quot;Module not found: agentic-flow&quot;</h3>
+<pre><code class="language-bash">npm install agentic-flow@2.0.1-alpha.0
+</code></pre>
+<h3>&quot;sql.js WASM loading failed&quot;</h3>
+<pre><code class="language-bash"># Ensure WASM file is accessible
+npm rebuild sql.js
+</code></pre>
+<h3>&quot;v2 API deprecated warning&quot;</h3>
+<p>These are informational only. Your code still works. To silence:</p>
+<pre><code class="language-json">// .claude/config.json
+{
+  &quot;deprecationWarnings&quot;: false
+}
+</code></pre>
+<h3>&quot;Migration failed: hooks conflict&quot;</h3>
+<p>Manual resolution needed:</p>
+<ol>
+<li>Open <code>.claude/config.json.v2.backup</code></li>
+<li>Copy hook definitions</li>
+<li>Paste into <code>.claude/config.json</code> under <code>hooks</code> key</li>
+</ol>
+<h2>Support</h2>
+<ul>
+<li>Documentation: <a href="https://github.com/ruvnet/claude-flow/docs/v3">https://github.com/ruvnet/claude-flow/docs/v3</a></li>
+<li>Issues: <a href="https://github.com/ruvnet/claude-flow/issues">https://github.com/ruvnet/claude-flow/issues</a></li>
+<li>Discussions: <a href="https://github.com/ruvnet/claude-flow/discussions">https://github.com/ruvnet/claude-flow/discussions</a></li>
+</ul>
+<hr>
+<p><em>Migration Guide Version: 1.0.0</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

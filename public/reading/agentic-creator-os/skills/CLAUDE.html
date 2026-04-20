@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Skills Directory - Content Triggers</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/skills/CLAUDE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Skills Directory - Content Triggers</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="index.html#agentic-creator-os%2Fskills">skills</a> / <span>CLAUDE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <claude-mem-context>
+# Skills Directory - Content Triggers
+
+<p>This directory contains YAML files that define skills - triggers for content creation workflows.</p>
+<h2>What Are Skills?</h2>
+<p>Skills are trigger definitions that activate content creation workflows. When you use a skill trigger phrase, the system:</p>
+<ol>
+<li>Recognizes the trigger</li>
+<li>Loads the appropriate workflow</li>
+<li>Executes the content creation process</li>
+</ol>
+<h2>Directory Structure</h2>
+<pre><code>skills/
+├── CLAUDE.md              ← YOU ARE HERE
+├── content.yaml           ← Content creation skills
+├── marketing.yaml         ← Marketing workflow skills
+├── dev.yaml               ← Development workflow skills
+├── design.yaml            ← Design workflow skills
+├── business.yaml          ← Business workflow skills
+└── skill-rules.json       ← Auto-activation rules
+</code></pre>
+<h2>Available Skills</h2>
+<h3>content.yaml</h3>
+<p><strong>Purpose:</strong> Content creation and marketing</p>
+<p><strong>Triggers:</strong></p>
+<ul>
+<li>&quot;write a blog post&quot;, &quot;create content&quot;</li>
+<li>&quot;social media&quot;, &quot;newsletter&quot;</li>
+<li>&quot;video script&quot;, &quot;SEO optimization&quot;</li>
+<li>&quot;content strategy&quot;, &quot;content calendar&quot;</li>
+<li><code>skill:content</code></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash">skill:content, create a blog post about AI
+skill:content, create x content about machine learning
+skill:content, create content strategy for tech audience
+skill:content, create content calendar for next month
+</code></pre>
+<p><strong>Workflows activated:</strong></p>
+<ul>
+<li><code>workflows/content-strategy/</code></li>
+<li><code>workflows/content-calendar/</code></li>
+<li><code>workflows/linkedin/</code></li>
+<li><code>workflows/x/</code></li>
+<li><code>workflows/meta/</code></li>
+<li><code>workflows/farcaster/</code></li>
+<li><code>workflows/mirror/</code></li>
+</ul>
+<h3>marketing.yaml</h3>
+<p><strong>Purpose:</strong> Marketing and SEO workflows</p>
+<p><strong>Triggers:</strong></p>
+<ul>
+<li>&quot;seo audit&quot;, &quot;marketing campaign&quot;</li>
+<li>&quot;analytics&quot;, &quot;traffic analysis&quot;</li>
+<li>&quot;keyword research&quot;, &quot;backlinks&quot;</li>
+<li><code>skill:marketing</code></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash">skill:marketing, run seo audit for my website
+skill:marketing, create marketing campaign for product launch
+</code></pre>
+<h3>dev.yaml</h3>
+<p><strong>Purpose:</strong> Development workflows</p>
+<p><strong>Triggers:</strong></p>
+<ul>
+<li>&quot;create website&quot;, &quot;build application&quot;</li>
+<li>&quot;develop&quot;, &quot;code&quot;</li>
+<li><code>skill:dev</code></li>
+</ul>
+<p><strong>Examples:</strong></p>
+<pre><code class="language-bash">skill:dev, create a website for my business
+skill:dev, build an API for user management
+</code></pre>
+<h3>design.yaml</h3>
+<p><strong>Purpose:</strong> Design workflows</p>
+<p><strong>Triggers:</strong></p>
+<ul>
+<li>&quot;design logo&quot;, &quot;create visual&quot;</li>
+<li>&quot;branding&quot;, &quot;ui design&quot;</li>
+<li><code>skill:design</code></li>
+</ul>
+<h3>business.yaml</h3>
+<p><strong>Purpose:</strong> Business workflows</p>
+<p><strong>Triggers:</strong></p>
+<ul>
+<li>&quot;client management&quot;, &quot;CRM&quot;</li>
+<li>&quot;project planning&quot;, &quot;budget&quot;</li>
+<li><code>skill:business</code></li>
+</ul>
+<h2>skill-rules.json</h2>
+<p>This file defines auto-activation rules. When you use certain keywords, the system can automatically suggest or activate skills.</p>
+<p><strong>Format:</strong></p>
+<pre><code class="language-json">{
+  &quot;skills&quot;: {
+    &quot;content&quot;: {
+      &quot;promptTriggers&quot;: {
+        &quot;keywords&quot;: [&quot;blog&quot;, &quot;post&quot;, &quot;content&quot;, &quot;social&quot;],
+        &quot;intentPatterns&quot;: [&quot;write.*post&quot;, &quot;create.*content&quot;]
+      }
+    }
+  }
+}
+</code></pre>
+<h2>How Skills Work</h2>
+<h3>Manual Trigger (You type)</h3>
+<pre><code>skill:content, create a blog post about [TOPIC]
+</code></pre>
+<p>↓ System loads content.yaml
+↓ Activates appropriate workflow
+↓ Executes content creation</p>
+<h3>Auto-Activation (System detects)</h3>
+<pre><code>write a blog post about AI
+</code></pre>
+<p>↓ System detects &quot;blog&quot; keyword
+↓ Suggests content skill
+↓ You confirm, workflow executes</p>
+<h2>Using Skills</h2>
+<h3>Explicit Trigger</h3>
+<p>Type <code>skill:[name], [request]</code>:</p>
+<pre><code class="language-bash">skill:content, create x content about AI in 2026
+skill:content, create linkedin article about my product
+</code></pre>
+<h3>Slash Command (if configured)</h3>
+<pre><code class="language-bash">/x-content
+/linkedin-content
+/content-strategy
+</code></pre>
+<h3>Natural Language</h3>
+<p>The system can auto-detect keywords and suggest skills:</p>
+<pre><code>Create a Twitter thread about game development
+</code></pre>
+<p>↓ Detects &quot;Twitter thread&quot; → suggests content skill</p>
+<h2>For AI Agents</h2>
+<p>When working with skills:</p>
+<ol>
+<li><strong>Read skill files</strong> - Understand available triggers</li>
+<li><strong>Use skill triggers</strong> - Systematically, not arbitrarily</li>
+<li><strong>Follow workflows</strong> - Skills activate workflows</li>
+<li><strong>Check skill-rules.json</strong> - Understand auto-activation</li>
+<li><strong>Report which skill</strong> - When activating, mention it</li>
+</ol>
+<h2>Creating New Skills</h2>
+<p>To add a new skill:</p>
+<ol>
+<li><p>Create <code>skills/[name].yaml</code> with:</p>
+<ul>
+<li>name, description</li>
+<li>agents, tools</li>
+<li>examples, workflows</li>
+<li>configuration</li>
+</ul>
+</li>
+<li><p>Add to <code>skill-rules.json</code> if auto-activation wanted</p>
+</li>
+<li><p>Test the trigger</p>
+</li>
+</ol>
+<h2>Related Directories</h2>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>workflows/</code></td>
+<td>What skills activate</td>
+</tr>
+<tr>
+<td><code>drafts/</code></td>
+<td>Where content is created</td>
+</tr>
+<tr>
+<td><code>outputs/</code></td>
+<td>Where content goes</td>
+</tr>
+<tr>
+<td><code>templates/</code></td>
+<td>Templates for workflows</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Skills are the trigger. Workflows are the process. Drafts are the work. Outputs are the result.</strong>
+</claude-mem-context></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

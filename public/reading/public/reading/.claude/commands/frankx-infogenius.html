@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/frankx-infogenius - Premium Visual Generation for FrankX Brand</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/frankx-infogenius.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">/frankx-infogenius - Premium Visual Generation for FrankX Brand</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>frankx-infogenius.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/frankx-infogenius - Premium Visual Generation for FrankX Brand</h1>
+<p><strong>Premium-First Image Generation - Research → Brand-Aligned Style → High-Quality Output</strong></p>
+<h2>Overview</h2>
+<p>FrankX-specific implementation of InfoGenius that:</p>
+<ol>
+<li>Uses brand-approved premium styles</li>
+<li>Integrates with content roadmap and sprint plan</li>
+<li>Auto-detects missing images across blog/products</li>
+<li>Updates <code>IMAGE_INDEX.md</code> automatically</li>
+<li>Maintains consistent brand visual identity</li>
+</ol>
+<hr>
+<h2>Brand-Approved Styles (Use Only These)</h2>
+<p>Based on brand review, use ONLY these premium styles:</p>
+<table>
+<thead>
+<tr>
+<th>Style ID</th>
+<th>Visual Description</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>premium-gradient</code></td>
+<td>Elegant color gradients, soft glows, modern minimalism, clean typography</td>
+<td>Launches, announcements, flagship content, vision pieces</td>
+</tr>
+<tr>
+<td><code>da-vinci-technical</code></td>
+<td>Leonardo notebook style, warm sepia, ink sketches, technical diagrams, handwritten annotations</td>
+<td>Research, architecture, deep technical, scientific</td>
+</tr>
+<tr>
+<td><code>3d-isometric</code></td>
+<td>Clean isometric blocks, modern UI elements, soft shadows, studio lighting</td>
+<td>Workshops, tutorials, how-to guides, practical content</td>
+</tr>
+<tr>
+<td><code>business-professional</code></td>
+<td>Clean lines, blue/white/gold accents, corporate elegance, subtle gradients</td>
+<td>Business, strategy, enterprise, professional guides</td>
+</tr>
+<tr>
+<td><code>focused-futuristic</code></td>
+<td>Tech HUD elements (restrained), data visualization, glowing elements, NOT cluttered</td>
+<td>AI/tech content, cutting-edge topics, innovation</td>
+</tr>
+</tbody></table>
+<h3>AVOID These Styles</h3>
+<ul>
+<li><strong>cluttered-cyberpunk</strong> - Too busy, distracts from message</li>
+<li><strong>cartoon/comic</strong> - Doesn&#39;t match premium brand</li>
+<li><strong>overly-abstract</strong> - Needs clear visual communication</li>
+<li><strong>vintage/retro</strong> - Not aligned with modern tech brand</li>
+</ul>
+<hr>
+<h2>Auto-Detection Workflow</h2>
+<h3>Step 1: SCAN FOR MISSING IMAGES</h3>
+<p>When invoked without a specific topic, scan the codebase:</p>
+<pre><code class="language-bash"># Find blog posts without images
+grep -L &quot;^image:&quot; content/blog/*.mdx 2&gt;/dev/null
+
+# Find products without hero images
+# Check data/products.json for missing images
+</code></pre>
+<p><strong>OR check IMAGE_INDEX.md for:</strong></p>
+<ul>
+<li>Items marked <code>❌ Needs Redo</code></li>
+<li>Items marked <code>⏳ Review</code> that haven&#39;t been approved</li>
+</ul>
+<h3>Step 2: CONTEXT GATHERING</h3>
+<p>Before generating, read context files:</p>
+<ol>
+<li><p><strong>Content Roadmap</strong>: <code>/mnt/c/Users/Frank/FrankX/docs/CONTENT_ROADMAP.md</code></p>
+<ul>
+<li>Check current week&#39;s focus</li>
+<li>Identify priority content</li>
+</ul>
+</li>
+<li><p><strong>Foundation Spec</strong>: <code>/mnt/c/Users/Frank/FrankX/docs/FOUNDATION_SPEC.md</code></p>
+<ul>
+<li>Brand principles</li>
+<li>Quality standards</li>
+</ul>
+</li>
+<li><p><strong>Blog/Product Content</strong>: Read the actual MDX/page content</p>
+<ul>
+<li>Extract key topics</li>
+<li>Identify audience level</li>
+<li>Note technical depth</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2>Premium Generation Pipeline</h2>
+<h3>Step 3: RESEARCH WITH WEB GROUNDING</h3>
+<p>Use WebSearch to gather current facts:</p>
+<pre><code>WebSearch: &quot;{topic} {current_year} facts latest developments&quot;
+</code></pre>
+<p>Extract 3-5 key facts. Focus on:</p>
+<ul>
+<li>Current statistics (2026 data)</li>
+<li>Technical accuracy</li>
+<li>Industry trends</li>
+<li>Real examples</li>
+</ul>
+<p><strong>Research Output:</strong></p>
+<pre><code class="language-markdown">### Research for: {topic}
+
+**Key Facts (2026):**
+1. [Fact with source context]
+2. [Fact with source context]
+3. [Fact with source context]
+
+**Visual Elements:**
+- [Main visual concept]
+- [Supporting diagram]
+- [Key data point to show]
+</code></pre>
+<h3>Step 4: SELECT BRAND-ALIGNED STYLE</h3>
+<p>Match content type to approved style:</p>
+<table>
+<thead>
+<tr>
+<th>Content Type</th>
+<th>Recommended Style</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Technical tutorials</td>
+<td><code>da-vinci-technical</code> or <code>3d-isometric</code></td>
+</tr>
+<tr>
+<td>Workshop guides</td>
+<td><code>3d-isometric</code></td>
+</tr>
+<tr>
+<td>Business/strategy</td>
+<td><code>business-professional</code></td>
+</tr>
+<tr>
+<td>AI/cutting-edge</td>
+<td><code>focused-futuristic</code></td>
+</tr>
+<tr>
+<td>Launch/announcement</td>
+<td><code>premium-gradient</code></td>
+</tr>
+<tr>
+<td>Research/architecture</td>
+<td><code>da-vinci-technical</code></td>
+</tr>
+<tr>
+<td>Vision/manifesto</td>
+<td><code>premium-gradient</code></td>
+</tr>
+<tr>
+<td>Creator content</td>
+<td><code>premium-gradient</code> or <code>3d-isometric</code></td>
+</tr>
+</tbody></table>
+<h3>Step 5: CONSTRUCT PREMIUM PROMPT</h3>
+<p><strong>Prompt Formula:</strong></p>
+<pre><code>Create a 16:9 premium hero image for FrankX.ai about {topic}.
+
+VISUAL STYLE: {style_instruction}
+
+BRAND REQUIREMENTS:
+- Color palette: Deep blues (#0a0f1c, #1a1f2e), white, subtle gold/cyan accents
+- Clean, professional, premium feel
+- NO cluttered elements - breathing room is essential
+- Modern tech aesthetic with warmth
+- Quality over complexity
+
+CONTENT TO VISUALIZE:
+- {fact_1_as_visual}
+- {fact_2_as_visual}
+- {fact_3_as_visual}
+
+COMPOSITION:
+- Central focal point with clear hierarchy
+- Text should be large, legible, minimal
+- Leave space for blog title overlay if needed
+- Balanced, intentional negative space
+</code></pre>
+<p><strong>Style Instructions (copy verbatim):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Instruction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>premium-gradient</code></td>
+<td>Elegant gradient backgrounds (deep blue to subtle purple/cyan), soft glowing orbs, modern minimalism, clean sans-serif typography hints, luxurious feel with subtle glass morphism effects.</td>
+</tr>
+<tr>
+<td><code>da-vinci-technical</code></td>
+<td>Leonardo da Vinci notebook style. Warm sepia-toned parchment, detailed ink sketches with technical precision, handwritten-style annotations, anatomical/architectural diagram feel, intellectual and timeless.</td>
+</tr>
+<tr>
+<td><code>3d-isometric</code></td>
+<td>Clean 3D isometric render. Soft studio lighting, subtle shadows, modern UI blocks and components, claymorphism or high-gloss plastic textures, organized grid layout, professional documentation aesthetic.</td>
+</tr>
+<tr>
+<td><code>business-professional</code></td>
+<td>Corporate elegance. Clean white backgrounds with deep blue accents, subtle gold highlights, professional graphs/charts style, executive presentation quality, confident and trustworthy.</td>
+</tr>
+<tr>
+<td><code>focused-futuristic</code></td>
+<td>Restrained tech HUD. Subtle glowing data lines (cyan/blue), floating interface elements, clean dark background, holographic hints WITHOUT clutter, sophisticated AI visualization, minimal but impactful.</td>
+</tr>
+</tbody></table>
+<h3>Step 6: GENERATE WITH GEMINI 3 PRO</h3>
+<pre><code class="language-javascript">mcp__nanobanana__generate_image({
+  prompt: &quot;{constructed_premium_prompt}&quot;,
+  aspect_ratio: &quot;16:9&quot;,
+  model_tier: &quot;pro&quot;,
+  enable_grounding: true,
+  thinking_level: &quot;high&quot;,
+  resolution: &quot;high&quot;
+})
+</code></pre>
+<p><strong>Parameters (always use these):</strong></p>
+<ul>
+<li><code>model_tier: &quot;pro&quot;</code> - Best quality for premium brand</li>
+<li><code>enable_grounding: true</code> - Factual accuracy</li>
+<li><code>thinking_level: &quot;high&quot;</code> - Better reasoning</li>
+<li><code>resolution: &quot;high&quot;</code> - Publication quality</li>
+</ul>
+<h3>Step 7: UPDATE IMAGE INDEX</h3>
+<p>After successful generation, append to <code>/mnt/c/Users/Frank/FrankX/public/images/blog/IMAGE_INDEX.md</code>:</p>
+<pre><code class="language-markdown">| # | `{filename}` | {style} | {research_topic} | ⏳ Review |
+</code></pre>
+<p>Include:</p>
+<ul>
+<li>Filename</li>
+<li>Style used</li>
+<li>Research topic</li>
+<li>Timestamp (from generation)</li>
+<li>Initial status: <code>⏳ Review</code></li>
+</ul>
+<hr>
+<h2>Usage Patterns</h2>
+<h3>Generate for Specific Blog Post</h3>
+<pre><code>/frankx-infogenius for blog: mcp-server-architecture-workshop
+</code></pre>
+<h3>Scan and Generate All Missing</h3>
+<pre><code>/frankx-infogenius scan missing images
+</code></pre>
+<h3>Regenerate Rejected Image</h3>
+<pre><code>/frankx-infogenius redo: ultimate-guide-ai-coding-agents-2026
+</code></pre>
+<h3>Quick Generation with Topic</h3>
+<pre><code>/frankx-infogenius &quot;AI coding agents 2026&quot; style=da-vinci-technical
+</code></pre>
+<hr>
+<h2>Quality Checklist (Before Approval)</h2>
+<p>Each generated image must pass:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Brand Alignment</strong> - Uses approved style, not cluttered</li>
+<li><input disabled="" type="checkbox"> <strong>Premium Feel</strong> - Looks expensive, professional, intentional</li>
+<li><input disabled="" type="checkbox"> <strong>Color Palette</strong> - Deep blues, white, subtle accents</li>
+<li><input disabled="" type="checkbox"> <strong>Composition</strong> - Clear focal point, breathing room</li>
+<li><input disabled="" type="checkbox"> <strong>Relevance</strong> - Visually represents the content topic</li>
+<li><input disabled="" type="checkbox"> <strong>Resolution</strong> - High enough for web and social</li>
+<li><input disabled="" type="checkbox"> <strong>Text Legibility</strong> - Any text is readable (prefer minimal text)</li>
+</ul>
+<hr>
+<h2>Integration Points</h2>
+<h3>Content Pipeline</h3>
+<ol>
+<li>New blog created → Check if image exists</li>
+<li>If no image → Run <code>/frankx-infogenius</code> for that post</li>
+<li>Generate → Review → Approve/Redo</li>
+<li>Update MDX frontmatter: <code>image: &#39;/images/blog/{filename}.png&#39;</code></li>
+</ol>
+<h3>Production Sync</h3>
+<p>After approval:</p>
+<pre><code class="language-bash">cp public/images/blog/{filename}.png .worktrees/vercel-ui-ux/public/images/blog/
+</code></pre>
+<h3>Related Commands</h3>
+<ul>
+<li><code>/infogenius</code> - Generic InfoGenius (any style)</li>
+<li><code>/frankx-ai-blog</code> - Full blog creation workflow</li>
+<li><code>/frankx-ai-content-pipeline</code> - End-to-end content</li>
+</ul>
+<hr>
+<h2>File Locations</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Generated images</td>
+<td><code>/mnt/c/Users/Frank/FrankX/public/images/blog/</code></td>
+</tr>
+<tr>
+<td>Image index</td>
+<td><code>/mnt/c/Users/Frank/FrankX/public/images/blog/IMAGE_INDEX.md</code></td>
+</tr>
+<tr>
+<td>Production mirror</td>
+<td><code>/mnt/c/Users/Frank/FrankX/.worktrees/vercel-ui-ux/public/images/blog/</code></td>
+</tr>
+<tr>
+<td>Content roadmap</td>
+<td><code>/mnt/c/Users/Frank/FrankX/docs/CONTENT_ROADMAP.md</code></td>
+</tr>
+<tr>
+<td>Foundation spec</td>
+<td><code>/mnt/c/Users/Frank/FrankX/docs/FOUNDATION_SPEC.md</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Cost Tracking</h2>
+<p>Per image generation:</p>
+<ul>
+<li>Model: Gemini 3 Pro Image</li>
+<li>Cost: ~$0.12/image (with grounding + high thinking)</li>
+<li>Budget: Factor into content ROI</li>
+</ul>
+<hr>
+<p><em>Premium visual generation for the FrankX brand. Excellence in every pixel.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

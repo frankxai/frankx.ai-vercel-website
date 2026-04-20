@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Financial Projections</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/startup-business-analyst/commands/financial-projections.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Financial Projections</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst">startup-business-analyst</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fstartup-business-analyst%2Fcommands">commands</a> / <span>financial-projections.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>description: &quot;Create detailed 3-5 year financial model with revenue, costs, cash flow, and scenarios&quot;
+allowed-tools:
+  [&quot;Read&quot;, &quot;Write&quot;, &quot;Edit&quot;, &quot;Glob&quot;, &quot;Grep&quot;, &quot;Bash&quot;, &quot;WebSearch&quot;, &quot;WebFetch&quot;]</h2>
+<h1>Financial Projections</h1>
+<p>Create a comprehensive 3-5 year financial model with revenue projections, cost structure, headcount planning, cash flow analysis, and three-scenario modeling (conservative, base, optimistic) for startup financial planning and fundraising.</p>
+<h2>What This Command Does</h2>
+<p>This command builds a complete financial model including:</p>
+<ol>
+<li>Cohort-based revenue projections</li>
+<li>Detailed cost structure (COGS, S&amp;M, R&amp;D, G&amp;A)</li>
+<li>Headcount planning by role</li>
+<li>Monthly cash flow analysis</li>
+<li>Key metrics (CAC, LTV, burn rate, runway)</li>
+<li>Three-scenario analysis</li>
+</ol>
+<h2>Instructions for Claude</h2>
+<p>When this command is invoked, follow these steps:</p>
+<h3>Step 1: Gather Model Inputs</h3>
+<p>Ask the user for essential information:</p>
+<p><strong>Business Model:</strong></p>
+<ul>
+<li>Revenue model (SaaS, marketplace, transaction, etc.)</li>
+<li>Pricing structure (tiers, average price)</li>
+<li>Target customer segments</li>
+</ul>
+<p><strong>Starting Point:</strong></p>
+<ul>
+<li>Current MRR/ARR (if any)</li>
+<li>Current customer count</li>
+<li>Current team size</li>
+<li>Current cash balance</li>
+</ul>
+<p><strong>Growth Assumptions:</strong></p>
+<ul>
+<li>Expected monthly customer acquisition</li>
+<li>Customer retention/churn rate</li>
+<li>Average contract value (ACV)</li>
+<li>Sales cycle length</li>
+</ul>
+<p><strong>Cost Assumptions:</strong></p>
+<ul>
+<li>Gross margin or COGS %</li>
+<li>S&amp;M budget or CAC target</li>
+<li>Current burn rate (if applicable)</li>
+</ul>
+<p><strong>Funding:</strong></p>
+<ul>
+<li>Planned fundraising (amount, timing)</li>
+<li>Pre/post-money valuation</li>
+</ul>
+<h3>Step 2: Activate startup-financial-modeling Skill</h3>
+<p>The startup-financial-modeling skill provides frameworks. Reference it for:</p>
+<ul>
+<li>Revenue modeling approaches</li>
+<li>Cost structure templates</li>
+<li>Headcount planning guidance</li>
+<li>Scenario analysis methods</li>
+</ul>
+<h3>Step 3: Build Revenue Model</h3>
+<p><strong>Use Cohort-Based Approach:</strong></p>
+<p>For each month, track:</p>
+<ol>
+<li>New customers acquired</li>
+<li>Existing customers retained (apply churn)</li>
+<li>Revenue per cohort (customers × ARPU)</li>
+<li>Expansion revenue (upsells)</li>
+</ol>
+<p><strong>Formula:</strong></p>
+<pre><code>MRR (Month N) = Σ across all cohorts:
+  (Cohort Size × Retention Rate × ARPU) + Expansion
+</code></pre>
+<p><strong>Project:</strong></p>
+<ul>
+<li>Monthly detail for Year 1-2</li>
+<li>Quarterly detail for Year 3</li>
+<li>Annual for Years 4-5</li>
+</ul>
+<h3>Step 4: Model Cost Structure</h3>
+<p>Break down operating expenses:</p>
+<p><strong>1. Cost of Goods Sold (COGS)</strong></p>
+<ul>
+<li>Hosting/infrastructure (% of revenue or fixed)</li>
+<li>Payment processing (% of revenue)</li>
+<li>Variable customer support</li>
+<li>Third-party services</li>
+</ul>
+<p>Target gross margin:</p>
+<ul>
+<li>SaaS: 75-85%</li>
+<li>Marketplace: 60-70%</li>
+<li>E-commerce: 40-60%</li>
+</ul>
+<p><strong>2. Sales &amp; Marketing (S&amp;M)</strong></p>
+<ul>
+<li>Sales team compensation</li>
+<li>Marketing programs</li>
+<li>Tools and software</li>
+<li>Target: 40-60% of revenue (early stage)</li>
+</ul>
+<p><strong>3. Research &amp; Development (R&amp;D)</strong></p>
+<ul>
+<li>Engineering team</li>
+<li>Product management</li>
+<li>Design</li>
+<li>Target: 30-40% of revenue</li>
+</ul>
+<p><strong>4. General &amp; Administrative (G&amp;A)</strong></p>
+<ul>
+<li>Executive team</li>
+<li>Finance, legal, HR</li>
+<li>Office and facilities</li>
+<li>Target: 15-25% of revenue</li>
+</ul>
+<h3>Step 5: Plan Headcount</h3>
+<p>Create role-by-role hiring plan:</p>
+<p><strong>Reference team-composition-analysis skill for:</strong></p>
+<ul>
+<li>Roles by stage</li>
+<li>Compensation benchmarks</li>
+<li>Hiring velocity assumptions</li>
+</ul>
+<p><strong>For each role:</strong></p>
+<ul>
+<li>Title and department</li>
+<li>Start date (month/quarter)</li>
+<li>Base salary</li>
+<li>Fully-loaded cost (salary × 1.3-1.4)</li>
+<li>Equity grant</li>
+</ul>
+<p><strong>Track departmental ratios:</strong></p>
+<ul>
+<li>Engineering: 40-50% of team</li>
+<li>Sales &amp; Marketing: 25-35%</li>
+<li>G&amp;A: 10-15%</li>
+<li>Product/CS: 10-15%</li>
+</ul>
+<h3>Step 6: Calculate Cash Flow</h3>
+<p>Monthly cash flow projection:</p>
+<pre><code>Beginning Cash Balance
++ Cash Collected (revenue, consider payment terms)
+- Operating Expenses
+- CapEx
+= Ending Cash Balance
+
+Monthly Burn = Revenue - Expenses (if negative)
+Runway = Cash Balance / Monthly Burn Rate
+</code></pre>
+<p><strong>Include Funding Events:</strong></p>
+<ul>
+<li>Timing of raises</li>
+<li>Amount raised</li>
+<li>Use of proceeds</li>
+<li>Impact on cash balance</li>
+</ul>
+<h3>Step 7: Compute Key Metrics</h3>
+<p>Calculate monthly/quarterly:</p>
+<p><strong>Unit Economics:</strong></p>
+<ul>
+<li>CAC (S&amp;M spend / new customers)</li>
+<li>LTV (ARPU × margin% / churn rate)</li>
+<li>LTV:CAC ratio (target &gt; 3.0)</li>
+<li>CAC payback period (target &lt; 18 months)</li>
+</ul>
+<p><strong>Efficiency Metrics:</strong></p>
+<ul>
+<li>Burn multiple (net burn / net new ARR) - target &lt; 2.0</li>
+<li>Magic number (net new ARR / S&amp;M spend) - target &gt; 0.5</li>
+<li>Rule of 40 (growth% + margin%) - target &gt; 40%</li>
+</ul>
+<p><strong>Cash Metrics:</strong></p>
+<ul>
+<li>Monthly burn rate</li>
+<li>Runway in months</li>
+<li>Cash efficiency</li>
+</ul>
+<h3>Step 8: Create Three Scenarios</h3>
+<p>Build conservative, base, and optimistic projections:</p>
+<p><strong>Conservative (P10):</strong></p>
+<ul>
+<li>New customers: -30% vs. base</li>
+<li>Churn: +20% vs. base</li>
+<li>Pricing: -15% vs. base</li>
+<li>CAC: +25% vs. base</li>
+</ul>
+<p><strong>Base (P50):</strong></p>
+<ul>
+<li>Most likely assumptions</li>
+<li>Primary planning scenario</li>
+</ul>
+<p><strong>Optimistic (P90):</strong></p>
+<ul>
+<li>New customers: +30% vs. base</li>
+<li>Churn: -20% vs. base</li>
+<li>Pricing: +15% vs. base</li>
+<li>CAC: -25% vs. base</li>
+</ul>
+<h3>Step 9: Generate Financial Model Report</h3>
+<p>Create comprehensive markdown report with tables:</p>
+<p><strong>Section 1: Executive Summary</strong></p>
+<ul>
+<li>3-5 year financial snapshot</li>
+<li>Key metrics at scale</li>
+<li>Funding requirements</li>
+</ul>
+<p><strong>Section 2: Model Assumptions</strong></p>
+<ul>
+<li>Revenue model and pricing</li>
+<li>Growth assumptions</li>
+<li>Cost structure assumptions</li>
+<li>Headcount plan summary</li>
+</ul>
+<p><strong>Section 3: Revenue Projections</strong>
+Monthly/quarterly tables showing:</p>
+<pre><code>| Month | New Customers | Total Customers | MRR | ARR | Growth % |
+|-------|---------------|-----------------|-----|-----|----------|
+</code></pre>
+<p><strong>Section 4: Cost Breakdown</strong></p>
+<pre><code>| Department | Year 1 | Year 2 | Year 3 | % Revenue |
+|------------|--------|--------|--------|-----------|
+| COGS       | $X     | $Y     | $Z     | XX%       |
+| S&amp;M        | $X     | $Y     | $Z     | XX%       |
+| R&amp;D        | $X     | $Y     | $Z     | XX%       |
+| G&amp;A        | $X     | $Y     | $Z     | XX%       |
+</code></pre>
+<p><strong>Section 5: Headcount Plan</strong></p>
+<pre><code>| Department | Current | Year 1 | Year 2 | Year 3 |
+|------------|---------|--------|--------|--------|
+| Engineering| X       | Y      | Z      | W      |
+</code></pre>
+<p><strong>Section 6: Cash Flow Analysis</strong></p>
+<pre><code>| Quarter | Revenue | Expenses | Net Burn | Cash Balance | Runway |
+|---------|---------|----------|----------|--------------|--------|
+</code></pre>
+<p><strong>Section 7: Key Metrics</strong></p>
+<pre><code>| Metric | Year 1 | Year 2 | Year 3 | Target |
+|--------|--------|--------|--------|--------|
+| CAC | $X | $Y | $Z | &lt;$A |
+| LTV | $X | $Y | $Z | &gt;$B |
+| Burn Multiple | X | Y | Z | &lt;2.0 |
+</code></pre>
+<p><strong>Section 8: Scenario Analysis</strong></p>
+<pre><code>| Scenario | Year 3 ARR | Customers | Burn | Runway |
+|----------|------------|-----------|------|--------|
+| Conservative | $Xم | Y | $Z | W mo |
+| Base | $X | Y | $Z | W mo |
+| Optimistic | $X | Y | $Z | W mo |
+</code></pre>
+<p><strong>Section 9: Funding Requirements</strong></p>
+<ul>
+<li>Amount needed</li>
+<li>Use of proceeds breakdown</li>
+<li>Milestones to achieve</li>
+<li>Expected valuation impact</li>
+</ul>
+<p><strong>Section 10: Validation</strong></p>
+<ul>
+<li>Sanity checks performed</li>
+<li>Benchmark comparisons</li>
+<li>Risk factors</li>
+<li>Assumptions to monitor</li>
+</ul>
+<h3>Step 10: Save Model</h3>
+<p>Offer to save as markdown file:</p>
+<ul>
+<li>Suggest filename: <code>financial-projections-YYYY-MM-DD.md</code></li>
+<li>Include note that user can convert to Excel/Sheets</li>
+<li>Provide formulas for key calculations</li>
+</ul>
+<h2>Financial Model Best Practices</h2>
+<p><strong>Do:</strong></p>
+<ul>
+<li>Use cohort-based revenue model</li>
+<li>Include 3 scenarios</li>
+<li>Show monthly detail (Year 1-2)</li>
+<li>Calculate key metrics</li>
+<li>Validate against benchmarks</li>
+<li>Document all assumptions</li>
+<li>Show cash flow and runway</li>
+<li>Include fundraising milestones</li>
+</ul>
+<p><strong>Don&#39;t:</strong></p>
+<ul>
+<li>Be overly optimistic on growth</li>
+<li>Underestimate costs</li>
+<li>Forget fully-loaded compensation</li>
+<li>Ignore cash timing</li>
+<li>Skip scenario analysis</li>
+<li>Use static headcount</li>
+<li>Forget to validate</li>
+</ul>
+<h2>Integration with Other Commands</h2>
+<p>Pairs well with:</p>
+<ul>
+<li><code>/market-opportunity</code> - Use SOM for revenue ceiling</li>
+<li><code>/business-case</code> - Include projections in business case</li>
+</ul>
+<h2>Example Usage</h2>
+<pre><code>User: /financial-projections
+
+Claude: I&#39;ll create a comprehensive financial model for your startup. Let me gather the key inputs.
+
+What&#39;s your business model?
+→ &quot;B2B SaaS, subscription-based&quot;
+
+Current state?
+→ &quot;$50K MRR, 100 customers, 5-person team, $500K cash&quot;
+
+Growth assumptions?
+→ &quot;Expect 15% MoM growth, 10% monthly churn, $500 ACV&quot;
+
+[Claude builds complete model with all sections]
+</code></pre>
+<h2>Notes</h2>
+<ul>
+<li>Model building takes 45-90 minutes</li>
+<li>Results in comprehensive planning tool</li>
+<li>Update monthly to track vs. actuals</li>
+<li>Share with investors and board</li>
+<li>Use for fundraising decks</li>
+<li>Basis for budget and hiring decisions</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

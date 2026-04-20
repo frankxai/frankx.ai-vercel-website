@@ -1,0 +1,1695 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude-Flow V3 Complete CLI Reference</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/hooks/CLI-REFERENCE.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude-Flow V3 Complete CLI Reference</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fhooks">hooks</a> / <span>CLI-REFERENCE.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude-Flow V3 Complete CLI Reference</h1>
+<h2>Overview</h2>
+<p>Complete command reference for the claude-flow V3 CLI including hooks, workflow execution, hive-mind coordination, process management, and all subcommands with SONA/MoE/HNSW integration.</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#hooks-self-learning">Hooks (Self-Learning)</a></li>
+<li><a href="#intelligence--learning">Intelligence System</a></li>
+<li><a href="#workflow-execution">Workflow Execution</a></li>
+<li><a href="#hive-mind-consensus">Hive Mind Consensus</a></li>
+<li><a href="#agent-management">Agent Management</a></li>
+<li><a href="#memory-management">Memory Management</a></li>
+<li><a href="#process-management">Process Management</a></li>
+<li><a href="#swarm-coordination">Swarm Coordination</a></li>
+</ul>
+<hr>
+<h2>Hooks (Self-Learning)</h2>
+<p>The V3 hooks CLI provides command-line access to the hooks system for shell scripts, automation, and direct user interaction.</p>
+<h2>Installation</h2>
+<pre><code class="language-bash"># Hooks are available through the main claude-flow CLI
+npm install -g @claude-flow/cli
+
+# Or via npx
+npx claude-flow hooks --help
+</code></pre>
+<h2>Commands</h2>
+<h3>File Edit Hooks</h3>
+<h4>pre-edit</h4>
+<p>Get context and suggestions before editing a file.</p>
+<pre><code class="language-bash">npx claude-flow hooks pre-edit &lt;filePath&gt; [options]
+
+Options:
+  --operation, -o    Edit operation type (create|modify|delete) [default: modify]
+  --no-context       Skip context retrieval
+  --no-suggestions   Skip agent suggestions
+  --format           Output format (json|text) [default: text]
+
+Examples:
+  npx claude-flow hooks pre-edit src/auth.ts
+  npx claude-flow hooks pre-edit src/new-file.ts --operation create
+  npx claude-flow hooks pre-edit src/legacy.ts --no-suggestions --format json
+</code></pre>
+<h4>post-edit</h4>
+<p>Record edit outcome for learning.</p>
+<pre><code class="language-bash">npx claude-flow hooks post-edit &lt;filePath&gt; [options]
+
+Options:
+  --success, -s      Whether edit was successful [required]
+  --operation, -o    Edit operation type [default: modify]
+  --outcome          Description of outcome
+  --file, -f         Alias for filePath (V2 compatibility)
+  --memory-key       Memory storage key (V2 compatibility)
+
+Examples:
+  npx claude-flow hooks post-edit src/auth.ts --success true
+  npx claude-flow hooks post-edit src/auth.ts --success false --outcome &quot;Type error on line 42&quot;
+
+  # V2 compatibility
+  npx claude-flow hooks post-edit --file src/auth.ts --success true --memory-key &quot;swarm/coder/edit1&quot;
+</code></pre>
+<hr>
+<h3>Command Hooks</h3>
+<h4>pre-command</h4>
+<p>Assess risk before executing a command.</p>
+<pre><code class="language-bash">npx claude-flow hooks pre-command &quot;&lt;command&gt;&quot; [options]
+
+Options:
+  --working-dir, -d  Working directory for command
+  --no-risk          Skip risk assessment
+  --no-suggestions   Skip safety suggestions
+  --format           Output format (json|text) [default: text]
+
+Examples:
+  npx claude-flow hooks pre-command &quot;npm test&quot;
+  npx claude-flow hooks pre-command &quot;rm -rf ./dist&quot; --working-dir /project
+  npx claude-flow hooks pre-command &quot;docker compose up&quot; --format json
+</code></pre>
+<h4>post-command</h4>
+<p>Record command execution outcome.</p>
+<pre><code class="language-bash">npx claude-flow hooks post-command &quot;&lt;command&gt;&quot; [options]
+
+Options:
+  --success, -s      Whether command was successful [required]
+  --exit-code, -e    Command exit code [default: 0]
+  --output           Command output (truncated)
+  --error            Error message if failed
+  --time             Execution time in milliseconds
+
+Examples:
+  npx claude-flow hooks post-command &quot;npm test&quot; --success true --time 5230
+  npx claude-flow hooks post-command &quot;npm build&quot; --success false --exit-code 1 --error &quot;Module not found&quot;
+</code></pre>
+<hr>
+<h3>Task Lifecycle Hooks</h3>
+<h4>pre-task</h4>
+<p>Record task start for coordination.</p>
+<pre><code class="language-bash">npx claude-flow hooks pre-task [options]
+
+Options:
+  --description, -d  Task description [required]
+  --task-id          Task identifier
+  --agent            Assigned agent type
+
+Examples:
+  npx claude-flow hooks pre-task --description &quot;Implement OAuth2 flow&quot;
+  npx claude-flow hooks pre-task -d &quot;Fix login bug&quot; --agent debugger --task-id task-123
+</code></pre>
+<h4>post-task</h4>
+<p>Record task completion.</p>
+<pre><code class="language-bash">npx claude-flow hooks post-task [options]
+
+Options:
+  --task-id          Task identifier [required]
+  --success, -s      Whether task completed successfully
+  --result           Task result summary
+  --metrics          Include task metrics
+
+Examples:
+  npx claude-flow hooks post-task --task-id task-123 --success true
+  npx claude-flow hooks post-task --task-id task-123 --success false --result &quot;Blocked by dependency&quot;
+</code></pre>
+<hr>
+<h3>Session Hooks</h3>
+<h4>session-restore</h4>
+<p>Restore previous session context.</p>
+<pre><code class="language-bash">npx claude-flow hooks session-restore [options]
+
+Options:
+  --session-id       Session identifier to restore [required]
+  --include-memory   Restore memory state [default: true]
+  --include-agents   Restore agent states [default: true]
+
+Examples:
+  npx claude-flow hooks session-restore --session-id swarm-abc123
+  npx claude-flow hooks session-restore --session-id previous --include-memory false
+</code></pre>
+<h4>session-end</h4>
+<p>End session and persist state.</p>
+<pre><code class="language-bash">npx claude-flow hooks session-end [options]
+
+Options:
+  --export-metrics   Export session metrics [default: true]
+  --persist-memory   Persist memory to storage [default: true]
+  --summary          Generate session summary
+
+Examples:
+  npx claude-flow hooks session-end
+  npx claude-flow hooks session-end --export-metrics true --summary
+</code></pre>
+<hr>
+<h3>Task Routing</h3>
+<h4>route</h4>
+<p>Route a task to the optimal agent.</p>
+<pre><code class="language-bash">npx claude-flow hooks route &quot;&lt;task&gt;&quot; [options]
+
+Options:
+  --context, -c      Additional context
+  --prefer           Preferred agents (comma-separated)
+  --no-explanation   Skip explanation
+  --format           Output format (json|text) [default: text]
+
+Examples:
+  npx claude-flow hooks route &quot;Implement user authentication&quot;
+  npx claude-flow hooks route &quot;Fix CSS bug&quot; --prefer &quot;coder,reviewer&quot;
+  npx claude-flow hooks route &quot;Research API options&quot; --context &quot;REST vs GraphQL&quot; --format json
+</code></pre>
+<h4>explain</h4>
+<p>Explain routing decision with transparency.</p>
+<pre><code class="language-bash">npx claude-flow hooks explain &quot;&lt;task&gt;&quot; [options]
+
+Options:
+  --context, -c      Additional context
+  --verbose, -v      Include detailed reasoning
+  --format           Output format (json|text) [default: text]
+
+Examples:
+  npx claude-flow hooks explain &quot;Implement OAuth2 authentication&quot;
+  npx claude-flow hooks explain &quot;Security audit&quot; --verbose
+</code></pre>
+<hr>
+<h3>Intelligence &amp; Learning</h3>
+<h4>pretrain</h4>
+<p>Bootstrap intelligence from repository analysis.</p>
+<pre><code class="language-bash">npx claude-flow hooks pretrain [options]
+
+Options:
+  --path, -p         Repository path [default: current directory]
+  --include-git      Include git history analysis [default: true]
+  --include-deps     Include dependency analysis [default: true]
+  --max-patterns     Maximum patterns to extract [default: 1000]
+  --force            Force retraining even if data exists
+
+Examples:
+  npx claude-flow hooks pretrain
+  npx claude-flow hooks pretrain --path /project --max-patterns 5000
+  npx claude-flow hooks pretrain --force --no-include-git
+</code></pre>
+<h4>build-agents</h4>
+<p>Generate optimized agent configurations from pretrain data.</p>
+<pre><code class="language-bash">npx claude-flow hooks build-agents [options]
+
+Options:
+  --focus            Focus area (all|security|performance|testing) [default: all]
+  --output, -o       Output configuration file
+  --v3-mode          Use V3 agent definitions
+
+Examples:
+  npx claude-flow hooks build-agents --focus security
+  npx claude-flow hooks build-agents --output agents.json
+  npx claude-flow hooks build-agents --v3-mode --focus performance
+</code></pre>
+<h4>transfer</h4>
+<p>Transfer learned patterns from another project.</p>
+<pre><code class="language-bash">npx claude-flow hooks transfer &lt;sourceProject&gt; [options]
+
+Options:
+  --filter           Pattern filter (glob pattern)
+  --merge            Merge with existing patterns [default: true]
+  --dry-run          Show what would be transferred
+
+Examples:
+  npx claude-flow hooks transfer /other-project
+  npx claude-flow hooks transfer ../shared-project --filter &quot;security/*&quot;
+  npx claude-flow hooks transfer /template --dry-run
+</code></pre>
+<hr>
+<h3>Metrics &amp; Management</h3>
+<h4>metrics</h4>
+<p>View learning metrics dashboard.</p>
+<pre><code class="language-bash">npx claude-flow hooks metrics [options]
+
+Options:
+  --category, -c     Category (all|routing|edits|commands|patterns) [default: all]
+  --time-range, -t   Time range (hour|day|week|month|all) [default: all]
+  --detailed         Include detailed statistics
+  --format           Output format (json|text|table) [default: table]
+  --v3-dashboard     Use V3 metrics dashboard
+
+Examples:
+  npx claude-flow hooks metrics
+  npx claude-flow hooks metrics --category routing --time-range week
+  npx claude-flow hooks metrics --detailed --format json
+  npx claude-flow hooks metrics --v3-dashboard
+</code></pre>
+<h4>list</h4>
+<p>List registered hooks.</p>
+<pre><code class="language-bash">npx claude-flow hooks list [options]
+
+Options:
+  --category, -c     Filter by category
+  --include-disabled Show disabled hooks
+  --no-metadata      Hide hook metadata
+  --format           Output format (json|text|table) [default: table]
+
+Examples:
+  npx claude-flow hooks list
+  npx claude-flow hooks list --category routing
+  npx claude-flow hooks list --include-disabled --format json
+</code></pre>
+<hr>
+<h3>Notifications</h3>
+<h4>notify</h4>
+<p>Send notification message (V2 compatibility).</p>
+<pre><code class="language-bash">npx claude-flow hooks notify [options]
+
+Options:
+  --message, -m      Notification message [required]
+  --level            Severity level (info|warn|error) [default: info]
+  --channel          Notification channel
+
+Examples:
+  npx claude-flow hooks notify --message &quot;Task completed successfully&quot;
+  npx claude-flow hooks notify -m &quot;Build failed&quot; --level error
+</code></pre>
+<hr>
+<h2>Environment Variables</h2>
+<pre><code class="language-bash"># Hook execution timeout (milliseconds)
+CLAUDE_FLOW_HOOK_TIMEOUT=5000
+
+# Enable/disable ReasoningBank integration
+CLAUDE_FLOW_REASONINGBANK_ENABLED=true
+
+# Learning namespace
+CLAUDE_FLOW_HOOKS_NAMESPACE=hooks-learning
+
+# Logging level
+CLAUDE_FLOW_HOOKS_LOG_LEVEL=info
+</code></pre>
+<h2>V2 Compatibility</h2>
+<p>All V2 hook commands are supported for backward compatibility:</p>
+<pre><code class="language-bash"># V2 syntax (still works)
+npx claude-flow hooks pre-task --description &quot;[task]&quot;
+npx claude-flow hooks session-restore --session-id &quot;swarm-[id]&quot;
+npx claude-flow hooks post-edit --file &quot;[file]&quot; --memory-key &quot;swarm/[agent]/[step]&quot;
+npx claude-flow hooks notify --message &quot;[what was done]&quot;
+npx claude-flow hooks post-task --task-id &quot;[task]&quot;
+npx claude-flow hooks session-end --export-metrics true
+</code></pre>
+<h2>Exit Codes</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Success</td>
+</tr>
+<tr>
+<td>1</td>
+<td>General error</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Invalid arguments</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Hook execution failed</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Timeout exceeded</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Risk assessment blocked</td>
+</tr>
+</tbody></table>
+<h2>Output Examples</h2>
+<h3>Text Format (Default)</h3>
+<pre><code>$ npx claude-flow hooks route &quot;Implement authentication&quot;
+
+Task Routing Result
+==================
+Task: Implement authentication
+Recommended Agent: security-auditor
+Confidence: 92%
+
+Explanation:
+Based on task analysis and 15 similar historical tasks,
+&#39;security-auditor&#39; is recommended with 92% confidence.
+
+Alternative Agents:
+  - coder (78%)
+  - backend-dev (75%)
+</code></pre>
+<h3>JSON Format</h3>
+<pre><code class="language-bash">$ npx claude-flow hooks route &quot;Implement authentication&quot; --format json
+</code></pre>
+<pre><code class="language-json">{
+  &quot;task&quot;: &quot;Implement authentication&quot;,
+  &quot;recommendedAgent&quot;: &quot;security-auditor&quot;,
+  &quot;confidence&quot;: 0.92,
+  &quot;alternativeAgents&quot;: [
+    { &quot;agent&quot;: &quot;coder&quot;, &quot;confidence&quot;: 0.78 },
+    { &quot;agent&quot;: &quot;backend-dev&quot;, &quot;confidence&quot;: 0.75 }
+  ],
+  &quot;explanation&quot;: &quot;Based on task analysis...&quot;
+}
+</code></pre>
+<h3>Table Format</h3>
+<pre><code>$ npx claude-flow hooks metrics --format table
+
+Hooks Learning Metrics
+======================
+Category    Total    Success Rate    Patterns
+─────────────────────────────────────────────
+routing      423        84%           156
+edits        756        93%            89
+commands     368        82%            34
+─────────────────────────────────────────────
+Total       1547        89%           279
+</code></pre>
+<hr>
+<h2>Intelligence Command</h2>
+<p>The <code>hooks intelligence</code> command provides RuVector intelligence with SONA, MoE, and HNSW integration.</p>
+<pre><code class="language-bash">npx claude-flow hooks intelligence [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--mode</code></td>
+<td>string</td>
+<td><code>balanced</code></td>
+<td>Operation mode</td>
+</tr>
+<tr>
+<td><code>--enable-sona</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Enable SONA sub-0.05ms learning</td>
+</tr>
+<tr>
+<td><code>--enable-moe</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Enable Mixture of Experts routing</td>
+</tr>
+<tr>
+<td><code>--enable-hnsw</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Enable HNSW 150x faster search</td>
+</tr>
+<tr>
+<td><code>--embedding-provider</code></td>
+<td>string</td>
+<td><code>transformers</code></td>
+<td>Embedding provider</td>
+</tr>
+<tr>
+<td><code>--train</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Train from current context</td>
+</tr>
+<tr>
+<td><code>--reset</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Reset to defaults</td>
+</tr>
+<tr>
+<td><code>--status</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Show detailed status</td>
+</tr>
+</tbody></table>
+<p><strong>Modes:</strong></p>
+<ul>
+<li><code>real-time</code> - Prioritize speed (&lt;0.05ms learning)</li>
+<li><code>batch</code> - Optimized for bulk processing</li>
+<li><code>edge</code> - Minimal memory footprint</li>
+<li><code>research</code> - Maximum accuracy</li>
+<li><code>balanced</code> - Balance speed/accuracy (default)</li>
+</ul>
+<p><strong>Intelligence Components:</strong></p>
+<h3>SONA (Sub-0.05ms Learning)</h3>
+<ul>
+<li>Learning Time: &lt;0.05ms per pattern</li>
+<li>Adaptation Time: &lt;0.1ms</li>
+<li>Memory Efficiency: 50-75% reduction via quantization</li>
+<li>Pattern Persistence: Cross-session learning</li>
+</ul>
+<h3>MoE (Mixture of Experts)</h3>
+<ul>
+<li>8 Expert Models: Specialized for different task types</li>
+<li>Dynamic Routing: 92%+ routing accuracy</li>
+<li>Load Balancing: Automatic expert distribution</li>
+<li>Gating Network: Context-aware expert selection</li>
+</ul>
+<h3>HNSW (150x Faster Search)</h3>
+<ul>
+<li>Search Speedup: 150x-12,500x improvement</li>
+<li>Index Efficiency: Logarithmic complexity</li>
+<li>Memory Optimized: Quantized vectors (4/8/16-bit)</li>
+<li>Batch Support: Efficient bulk operations</li>
+</ul>
+<p><strong>Embedding Providers:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Model</th>
+<th>Dimension</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Transformers.js</td>
+<td>all-MiniLM-L6-v2</td>
+<td>384</td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td>text-embedding-3-small</td>
+<td>1536</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Mock</td>
+<td>-</td>
+<td>384</td>
+<td>Instant</td>
+</tr>
+</tbody></table>
+<p><strong>Example Output:</strong></p>
+<pre><code>🧠 RuVector Intelligence System
+
+Mode: balanced
+Components:
+  SONA:  ✅ enabled (learning: 0.03ms, adaptation: 0.08ms)
+  MoE:   ✅ enabled (8 experts, 94% routing accuracy)
+  HNSW:  ✅ enabled (index: 1.2M vectors, 287x speedup)
+
+Embedding Provider: transformers
+  Model: Xenova/all-MiniLM-L6-v2
+  Dimension: 384
+  Cache Hit Rate: 87%
+</code></pre>
+<hr>
+<h2>Workflow Execution</h2>
+<p>Workflow templates and execution management.</p>
+<h3><code>workflow run</code></h3>
+<p>Execute a workflow by name or file.</p>
+<pre><code class="language-bash">npx claude-flow workflow run &lt;name|file&gt; [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--input</code></td>
+<td>string</td>
+<td>-</td>
+<td>Input data (JSON string or file path)</td>
+</tr>
+<tr>
+<td><code>--parallel</code></td>
+<td>number</td>
+<td><code>4</code></td>
+<td>Maximum parallel steps</td>
+</tr>
+<tr>
+<td><code>--dry-run</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Show execution plan without running</td>
+</tr>
+<tr>
+<td><code>--timeout</code></td>
+<td>number</td>
+<td><code>3600000</code></td>
+<td>Workflow timeout in ms</td>
+</tr>
+<tr>
+<td><code>--on-error</code></td>
+<td>string</td>
+<td><code>stop</code></td>
+<td>Error handling (stop, continue, retry)</td>
+</tr>
+</tbody></table>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash">npx claude-flow workflow run development --input &#39;{&quot;feature&quot;: &quot;auth&quot;}&#39; --parallel 6
+</code></pre>
+<h3><code>workflow validate</code></h3>
+<p>Validate a workflow definition.</p>
+<pre><code class="language-bash">npx claude-flow workflow validate &lt;file&gt; [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--strict</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Enable strict validation</td>
+</tr>
+<tr>
+<td><code>--fix</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Auto-fix common issues</td>
+</tr>
+</tbody></table>
+<h3><code>workflow list</code></h3>
+<p>List available workflows.</p>
+<pre><code class="language-bash">npx claude-flow workflow list [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--format</code></td>
+<td>string</td>
+<td><code>table</code></td>
+<td>Output format (table, json, yaml)</td>
+</tr>
+<tr>
+<td><code>--category</code></td>
+<td>string</td>
+<td>-</td>
+<td>Filter by category</td>
+</tr>
+</tbody></table>
+<h3><code>workflow status</code></h3>
+<p>Show status of running workflows.</p>
+<pre><code class="language-bash">npx claude-flow workflow status [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--id</code></td>
+<td>string</td>
+<td>-</td>
+<td>Workflow ID</td>
+</tr>
+<tr>
+<td><code>--watch</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Watch mode with live updates</td>
+</tr>
+</tbody></table>
+<h3><code>workflow stop</code></h3>
+<p>Stop a running workflow.</p>
+<pre><code class="language-bash">npx claude-flow workflow stop [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--id</code></td>
+<td>string</td>
+<td>-</td>
+<td>Workflow ID to stop</td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Stop all running workflows</td>
+</tr>
+<tr>
+<td><code>--force</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Force immediate termination</td>
+</tr>
+</tbody></table>
+<h3><code>workflow template</code></h3>
+<p>Manage workflow templates.</p>
+<pre><code class="language-bash"># List templates
+npx claude-flow workflow template list
+
+# Show template details
+npx claude-flow workflow template show &lt;name&gt;
+
+# Create new template
+npx claude-flow workflow template create --name &lt;name&gt; --output &lt;file&gt;
+</code></pre>
+<p><strong>Built-in Templates:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>Description</th>
+<th>Steps</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>development</code></td>
+<td>Full development cycle</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>research</code></td>
+<td>Research and analysis</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>testing</code></td>
+<td>Comprehensive testing</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>security-audit</code></td>
+<td>Security scanning</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>code-review</code></td>
+<td>Code review workflow</td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>refactoring</code></td>
+<td>Refactoring workflow</td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>sparc</code></td>
+<td>SPARC methodology</td>
+<td>5</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Hive Mind Consensus</h2>
+<p>Queen-led consensus-based multi-agent coordination.</p>
+<h3><code>hive-mind init</code></h3>
+<p>Initialize a new hive-mind swarm.</p>
+<pre><code class="language-bash">npx claude-flow hive-mind init [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--topology</code></td>
+<td>string</td>
+<td><code>hierarchical</code></td>
+<td>Swarm topology</td>
+</tr>
+<tr>
+<td><code>--consensus</code></td>
+<td>string</td>
+<td><code>byzantine</code></td>
+<td>Consensus strategy</td>
+</tr>
+<tr>
+<td><code>--queen-model</code></td>
+<td>string</td>
+<td><code>opus</code></td>
+<td>Queen agent model</td>
+</tr>
+<tr>
+<td><code>--workers</code></td>
+<td>number</td>
+<td><code>5</code></td>
+<td>Initial worker count</td>
+</tr>
+<tr>
+<td><code>--memory-backend</code></td>
+<td>string</td>
+<td><code>agentdb</code></td>
+<td>Memory backend</td>
+</tr>
+</tbody></table>
+<p><strong>Topologies:</strong></p>
+<ul>
+<li><code>hierarchical</code> - Queen controls all workers</li>
+<li><code>mesh</code> - Peer-to-peer coordination</li>
+<li><code>hierarchical-mesh</code> - Queen + peer groups</li>
+<li><code>adaptive</code> - Dynamic topology</li>
+</ul>
+<p><strong>Consensus Strategies:</strong></p>
+<ul>
+<li><code>byzantine</code> - BFT (3f+1 fault tolerance)</li>
+<li><code>raft</code> - Leader election</li>
+<li><code>gossip</code> - Epidemic protocol</li>
+<li><code>crdt</code> - Conflict-free replicated data</li>
+<li><code>quorum</code> - Majority voting</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-bash">npx claude-flow hive-mind init --topology hierarchical-mesh --consensus byzantine --workers 15
+</code></pre>
+<h3><code>hive-mind spawn</code></h3>
+<p>Spawn new worker agents.</p>
+<pre><code class="language-bash">npx claude-flow hive-mind spawn [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--type</code></td>
+<td>string</td>
+<td><code>worker</code></td>
+<td>Agent type (queen, worker, specialist, drone)</td>
+</tr>
+<tr>
+<td><code>--role</code></td>
+<td>string</td>
+<td>-</td>
+<td>Specialized role</td>
+</tr>
+<tr>
+<td><code>--count</code></td>
+<td>number</td>
+<td><code>1</code></td>
+<td>Number to spawn</td>
+</tr>
+<tr>
+<td><code>--model</code></td>
+<td>string</td>
+<td><code>sonnet</code></td>
+<td>Model for agent</td>
+</tr>
+</tbody></table>
+<p><strong>Roles:</strong> <code>coder</code>, <code>researcher</code>, <code>reviewer</code>, <code>tester</code>, <code>architect</code>, <code>security</code></p>
+<h3><code>hive-mind status</code></h3>
+<p>Show hive status and metrics.</p>
+<pre><code class="language-bash">npx claude-flow hive-mind status [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--detailed</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Show detailed metrics</td>
+</tr>
+<tr>
+<td><code>--watch</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Watch mode</td>
+</tr>
+</tbody></table>
+<h3><code>hive-mind task</code></h3>
+<p>Submit tasks to the hive.</p>
+<pre><code class="language-bash">npx claude-flow hive-mind task [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--description</code></td>
+<td>string</td>
+<td>-</td>
+<td>Task description (required)</td>
+</tr>
+<tr>
+<td><code>--priority</code></td>
+<td>string</td>
+<td><code>normal</code></td>
+<td>Priority (low, normal, high, critical)</td>
+</tr>
+<tr>
+<td><code>--type</code></td>
+<td>string</td>
+<td><code>general</code></td>
+<td>Task type</td>
+</tr>
+<tr>
+<td><code>--deadline</code></td>
+<td>string</td>
+<td>-</td>
+<td>Deadline</td>
+</tr>
+<tr>
+<td><code>--consensus-required</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Require consensus</td>
+</tr>
+</tbody></table>
+<h3><code>hive-mind optimize-memory</code></h3>
+<p>Optimize hive collective memory.</p>
+<pre><code class="language-bash">npx claude-flow hive-mind optimize-memory [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--strategy</code></td>
+<td>string</td>
+<td><code>balanced</code></td>
+<td>Optimization strategy</td>
+</tr>
+<tr>
+<td><code>--target</code></td>
+<td>string</td>
+<td><code>all</code></td>
+<td>Target (queen, workers, shared, all)</td>
+</tr>
+</tbody></table>
+<h3><code>hive-mind shutdown</code></h3>
+<p>Gracefully shutdown the hive.</p>
+<pre><code class="language-bash">npx claude-flow hive-mind shutdown [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--force</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Force immediate shutdown</td>
+</tr>
+<tr>
+<td><code>--save-state</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Save hive state</td>
+</tr>
+<tr>
+<td><code>--timeout</code></td>
+<td>number</td>
+<td><code>30000</code></td>
+<td>Shutdown timeout in ms</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Agent Management</h2>
+<h3><code>agent spawn</code></h3>
+<p>Spawn a new agent.</p>
+<pre><code class="language-bash">npx claude-flow agent spawn [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--type</code></td>
+<td>string</td>
+<td><code>coder</code></td>
+<td>Agent type</td>
+</tr>
+<tr>
+<td><code>--name</code></td>
+<td>string</td>
+<td>-</td>
+<td>Agent name</td>
+</tr>
+<tr>
+<td><code>--model</code></td>
+<td>string</td>
+<td><code>sonnet</code></td>
+<td>Model (opus, sonnet, haiku)</td>
+</tr>
+<tr>
+<td><code>--task</code></td>
+<td>string</td>
+<td>-</td>
+<td>Initial task</td>
+</tr>
+<tr>
+<td><code>--tools</code></td>
+<td>string</td>
+<td>-</td>
+<td>Allowed tools (comma-separated)</td>
+</tr>
+<tr>
+<td><code>--timeout</code></td>
+<td>number</td>
+<td><code>300000</code></td>
+<td>Task timeout in ms</td>
+</tr>
+</tbody></table>
+<h3><code>agent list</code></h3>
+<p>List active agents.</p>
+<pre><code class="language-bash">npx claude-flow agent list [options]
+</code></pre>
+<h3><code>agent pool</code></h3>
+<p>Manage agent pool.</p>
+<pre><code class="language-bash">npx claude-flow agent pool [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--size</code></td>
+<td>number</td>
+<td>-</td>
+<td>Set pool size</td>
+</tr>
+<tr>
+<td><code>--min</code></td>
+<td>number</td>
+<td><code>1</code></td>
+<td>Minimum agents</td>
+</tr>
+<tr>
+<td><code>--max</code></td>
+<td>number</td>
+<td><code>10</code></td>
+<td>Maximum agents</td>
+</tr>
+<tr>
+<td><code>--auto-scale</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Enable auto-scaling</td>
+</tr>
+</tbody></table>
+<p><strong>Example Output:</strong></p>
+<pre><code>🏊 Agent Pool Management
+
+Current Pool Configuration:
+  Size:       5 / 10
+  Min:        1
+  Max:        10
+  Auto-scale: enabled
+
+Pool Statistics:
+  Active:     3
+  Idle:       2
+  Busy Rate:  60%
+
+Agent Distribution:
+  coder:      2 (40%)
+  researcher: 1 (20%)
+  reviewer:   1 (20%)
+  tester:     1 (20%)
+</code></pre>
+<h3><code>agent health</code></h3>
+<p>Monitor agent health.</p>
+<pre><code class="language-bash">npx claude-flow agent health [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--id</code></td>
+<td>string</td>
+<td>-</td>
+<td>Specific agent ID</td>
+</tr>
+<tr>
+<td><code>--detailed</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Show detailed metrics</td>
+</tr>
+<tr>
+<td><code>--watch</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Watch mode</td>
+</tr>
+</tbody></table>
+<h3><code>agent logs</code></h3>
+<p>View agent activity logs.</p>
+<pre><code class="language-bash">npx claude-flow agent logs [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--id</code></td>
+<td>string</td>
+<td>-</td>
+<td>Agent ID (required)</td>
+</tr>
+<tr>
+<td><code>--tail</code></td>
+<td>number</td>
+<td><code>50</code></td>
+<td>Number of lines</td>
+</tr>
+<tr>
+<td><code>--level</code></td>
+<td>string</td>
+<td><code>info</code></td>
+<td>Log level filter</td>
+</tr>
+<tr>
+<td><code>--follow</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Follow logs</td>
+</tr>
+<tr>
+<td><code>--since</code></td>
+<td>string</td>
+<td>-</td>
+<td>Show logs since time</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Memory Management</h2>
+<h3><code>memory store</code></h3>
+<p>Store data in memory.</p>
+<pre><code class="language-bash">npx claude-flow memory store --key &lt;key&gt; --value &lt;value&gt; [options]
+</code></pre>
+<h3><code>memory retrieve</code></h3>
+<p>Retrieve data from memory.</p>
+<pre><code class="language-bash">npx claude-flow memory retrieve --key &lt;key&gt; [options]
+</code></pre>
+<h3><code>memory search</code></h3>
+<p>Semantic vector search.</p>
+<pre><code class="language-bash">npx claude-flow memory search --query &quot;&lt;query&gt;&quot; [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--limit</code></td>
+<td>number</td>
+<td><code>10</code></td>
+<td>Maximum results</td>
+</tr>
+<tr>
+<td><code>--threshold</code></td>
+<td>number</td>
+<td><code>0.7</code></td>
+<td>Similarity threshold</td>
+</tr>
+<tr>
+<td><code>--namespace</code></td>
+<td>string</td>
+<td>-</td>
+<td>Namespace filter</td>
+</tr>
+</tbody></table>
+<h3><code>memory stats</code></h3>
+<p>Show memory statistics.</p>
+<pre><code class="language-bash">npx claude-flow memory stats [options]
+</code></pre>
+<h3><code>memory cleanup</code></h3>
+<p>Clean up stale/expired entries.</p>
+<pre><code class="language-bash">npx claude-flow memory cleanup [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--dry-run</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Preview without deleting</td>
+</tr>
+<tr>
+<td><code>--older-than</code></td>
+<td>string</td>
+<td><code>30d</code></td>
+<td>Age threshold</td>
+</tr>
+<tr>
+<td><code>--expired-only</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Only remove expired entries</td>
+</tr>
+<tr>
+<td><code>--low-quality</code></td>
+<td>number</td>
+<td>-</td>
+<td>Remove below quality score</td>
+</tr>
+</tbody></table>
+<h3><code>memory compress</code></h3>
+<p>Compress and optimize storage.</p>
+<pre><code class="language-bash">npx claude-flow memory compress [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--level</code></td>
+<td>string</td>
+<td><code>balanced</code></td>
+<td>Compression level (fast, balanced, max)</td>
+</tr>
+<tr>
+<td><code>--quantize</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Enable vector quantization</td>
+</tr>
+<tr>
+<td><code>--bits</code></td>
+<td>number</td>
+<td><code>8</code></td>
+<td>Quantization bits (4, 8, 16)</td>
+</tr>
+</tbody></table>
+<p><strong>Example Output:</strong></p>
+<pre><code>🗜️ Memory Compression
+
+Compression Settings:
+  Level:     balanced
+  Quantize:  enabled (8-bit)
+
+Before:
+  Total entries: 12,456
+  Storage size:  156 MB
+  Vector memory: 128 MB
+
+After:
+  Storage size:  89 MB (43% reduction)
+  Vector memory: 32 MB (75% reduction)
+
+Compression complete in 2.3s
+</code></pre>
+<h3><code>memory export</code> / <code>memory import</code></h3>
+<p>Backup and restore memory.</p>
+<pre><code class="language-bash"># Export memory
+npx claude-flow memory export --output &lt;file&gt; [options]
+
+# Import memory
+npx claude-flow memory import --input &lt;file&gt; [options]
+</code></pre>
+<hr>
+<h2>Process Management</h2>
+<h3><code>process daemon</code></h3>
+<p>Manage background daemon.</p>
+<pre><code class="language-bash">npx claude-flow process daemon --action &lt;action&gt; [options]
+</code></pre>
+<p><strong>Actions:</strong> <code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code></p>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--port</code></td>
+<td>number</td>
+<td><code>3847</code></td>
+<td>Daemon HTTP API port</td>
+</tr>
+<tr>
+<td><code>--pid-file</code></td>
+<td>string</td>
+<td><code>.claude-flow/daemon.pid</code></td>
+<td>PID file location</td>
+</tr>
+<tr>
+<td><code>--log-file</code></td>
+<td>string</td>
+<td><code>.claude-flow/daemon.log</code></td>
+<td>Log file location</td>
+</tr>
+<tr>
+<td><code>--detach</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Run detached</td>
+</tr>
+</tbody></table>
+<h3><code>process monitor</code></h3>
+<p>Real-time process monitoring.</p>
+<pre><code class="language-bash">npx claude-flow process monitor [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--interval</code></td>
+<td>number</td>
+<td><code>2</code></td>
+<td>Refresh interval (seconds)</td>
+</tr>
+<tr>
+<td><code>--format</code></td>
+<td>string</td>
+<td><code>dashboard</code></td>
+<td>Format (dashboard, compact, json)</td>
+</tr>
+<tr>
+<td><code>--components</code></td>
+<td>string</td>
+<td><code>all</code></td>
+<td>Components to monitor</td>
+</tr>
+<tr>
+<td><code>--watch</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Continuous monitoring</td>
+</tr>
+<tr>
+<td><code>--alerts</code></td>
+<td>boolean</td>
+<td><code>true</code></td>
+<td>Enable threshold alerts</td>
+</tr>
+</tbody></table>
+<p><strong>Dashboard Example:</strong></p>
+<pre><code>╔══════════════════════════════════════════════════════════════╗
+║            🖥️  CLAUDE-FLOW PROCESS MONITOR                    ║
+╠══════════════════════════════════════════════════════════════╣
+║  SYSTEM                                                      ║
+║  CPU:    [████████░░░░░░░░░░░░] 38.5%                        ║
+║  Memory: [██████████████░░░░░░] 512MB/2048MB                 ║
+╠══════════════════════════════════════════════════════════════╣
+║  AGENTS                                                      ║
+║  Active: 3   Idle: 2   Pool: 10                              ║
+╠══════════════════════════════════════════════════════════════╣
+║  TASKS                                                       ║
+║  Running: 2   Queued: 5   Completed: 147   Failed: 3         ║
+╠══════════════════════════════════════════════════════════════╣
+║  MEMORY SERVICE                                              ║
+║  Vectors: 12456   Index: 24MB                                ║
+║  Cache Hit: 87.3%  Avg Search: 2.34ms                        ║
+╚══════════════════════════════════════════════════════════════╝
+</code></pre>
+<h3><code>process workers</code></h3>
+<p>Manage background workers.</p>
+<pre><code class="language-bash">npx claude-flow process workers --action &lt;action&gt; [options]
+</code></pre>
+<p><strong>Actions:</strong> <code>list</code>, <code>spawn</code>, <code>kill</code>, <code>scale</code></p>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--type</code></td>
+<td>string</td>
+<td>-</td>
+<td>Worker type (task, memory, coordinator, neural)</td>
+</tr>
+<tr>
+<td><code>--count</code></td>
+<td>number</td>
+<td><code>1</code></td>
+<td>Number of workers</td>
+</tr>
+<tr>
+<td><code>--id</code></td>
+<td>string</td>
+<td>-</td>
+<td>Worker ID (for kill)</td>
+</tr>
+</tbody></table>
+<h3><code>process signals</code></h3>
+<p>Send signals to processes.</p>
+<pre><code class="language-bash">npx claude-flow process signals --target &lt;target&gt; --signal &lt;signal&gt; [options]
+</code></pre>
+<p><strong>Signals:</strong> <code>graceful-shutdown</code>, <code>force-kill</code>, <code>pause</code>, <code>resume</code>, <code>reload-config</code></p>
+<h3><code>process logs</code></h3>
+<p>View process logs.</p>
+<pre><code class="language-bash">npx claude-flow process logs [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--source</code></td>
+<td>string</td>
+<td><code>all</code></td>
+<td>Log source (daemon, workers, tasks, all)</td>
+</tr>
+<tr>
+<td><code>--tail</code></td>
+<td>number</td>
+<td><code>50</code></td>
+<td>Lines to show</td>
+</tr>
+<tr>
+<td><code>--follow</code></td>
+<td>boolean</td>
+<td><code>false</code></td>
+<td>Follow output</td>
+</tr>
+<tr>
+<td><code>--level</code></td>
+<td>string</td>
+<td><code>info</code></td>
+<td>Log level filter</td>
+</tr>
+<tr>
+<td><code>--grep</code></td>
+<td>string</td>
+<td>-</td>
+<td>Filter pattern</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Swarm Coordination</h2>
+<h3><code>swarm init</code></h3>
+<p>Initialize a swarm.</p>
+<pre><code class="language-bash">npx claude-flow swarm init [options]
+</code></pre>
+<p><strong>Options:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--topology</code></td>
+<td>string</td>
+<td><code>hierarchical</code></td>
+<td>Swarm topology</td>
+</tr>
+<tr>
+<td><code>--size</code></td>
+<td>number</td>
+<td><code>5</code></td>
+<td>Initial size</td>
+</tr>
+</tbody></table>
+<h3><code>swarm spawn</code></h3>
+<p>Spawn agents into swarm.</p>
+<pre><code class="language-bash">npx claude-flow swarm spawn [options]
+</code></pre>
+<h3><code>swarm status</code></h3>
+<p>Show swarm status.</p>
+<pre><code class="language-bash">npx claude-flow swarm status [options]
+</code></pre>
+<h3><code>swarm task</code></h3>
+<p>Submit task to swarm.</p>
+<pre><code class="language-bash">npx claude-flow swarm task --description &quot;&lt;task&gt;&quot; [options]
+</code></pre>
+<hr>
+<h2>Environment Variables</h2>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CLAUDE_FLOW_CONFIG</code></td>
+<td>Config file path</td>
+<td><code>.claude-flow/config.json</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_LOG_LEVEL</code></td>
+<td>Log level</td>
+<td><code>info</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_MEMORY_BACKEND</code></td>
+<td>Memory backend</td>
+<td><code>agentdb</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_EMBEDDING_PROVIDER</code></td>
+<td>Embedding provider</td>
+<td><code>transformers</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_HOOK_TIMEOUT</code></td>
+<td>Hook timeout (ms)</td>
+<td><code>5000</code></td>
+</tr>
+<tr>
+<td><code>CLAUDE_FLOW_REASONINGBANK_ENABLED</code></td>
+<td>ReasoningBank integration</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>ANTHROPIC_API_KEY</code></td>
+<td>Anthropic API key</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>OPENAI_API_KEY</code></td>
+<td>OpenAI API key</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Performance Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Target</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SONA Learning</td>
+<td>&lt;0.05ms</td>
+<td>Sub-millisecond adaptation</td>
+</tr>
+<tr>
+<td>HNSW Search</td>
+<td>150x-12,500x</td>
+<td>Faster than brute-force</td>
+</tr>
+<tr>
+<td>Memory Reduction</td>
+<td>50-75%</td>
+<td>Via quantization</td>
+</tr>
+<tr>
+<td>Flash Attention</td>
+<td>2.49x-7.47x</td>
+<td>Speedup</td>
+</tr>
+<tr>
+<td>MoE Routing</td>
+<td>92%+</td>
+<td>Accuracy</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>See Also</h2>
+<ul>
+<li><a href="/CLAUDE.md">CLAUDE.md</a> - Project configuration</li>
+<li><a href="/v3/implementation/architecture/">Architecture Decision Records</a> - V3 ADRs</li>
+<li><a href="https://github.com/ruvnet/agentic-flow">agentic-flow@alpha</a> - Core framework</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

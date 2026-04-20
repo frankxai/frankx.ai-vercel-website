@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>MCP Tools Migration Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/v3-migration/MCP-TOOLS-MIGRATION.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">MCP Tools Migration Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fv3-migration">v3-migration</a> / <span>MCP-TOOLS-MIGRATION.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>MCP Tools Migration Guide</h1>
+<blockquote>
+<p>Migrating from V2 MCP Tools (65) to V3 MCP Tools (22)</p>
+</blockquote>
+<h2>Overview</h2>
+<p>V3 has streamlined the MCP tools from 65 to 22, with a focus on core operations and the new hooks-based learning system. Many V2 tools need migration.</p>
+<h2>Tool Count Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>V2 Tools</th>
+<th>V3 Tools</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Agent</td>
+<td>11</td>
+<td>4</td>
+<td>-7</td>
+</tr>
+<tr>
+<td>Task</td>
+<td>8</td>
+<td>0</td>
+<td>-8</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>6</td>
+<td>3</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>System</td>
+<td>7</td>
+<td>0</td>
+<td>-7</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Swarm</td>
+<td>8</td>
+<td>3</td>
+<td>-5</td>
+</tr>
+<tr>
+<td>Workflow</td>
+<td>3</td>
+<td>0</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>Terminal</td>
+<td>3</td>
+<td>0</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>Message</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>Monitor</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>Neural</td>
+<td>3</td>
+<td>0</td>
+<td>-3</td>
+</tr>
+<tr>
+<td>Benchmark</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>2</td>
+<td>0</td>
+<td>-2</td>
+</tr>
+<tr>
+<td><strong>Hooks</strong></td>
+<td>0</td>
+<td>9</td>
+<td>+9</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>65</td>
+<td>22</td>
+<td>-43</td>
+</tr>
+</tbody></table>
+<h2>Implemented Tools ✅</h2>
+<h3>Agent Tools (4)</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/agent-tools.ts
+&#39;agent/spawn&#39;     // Spawn agent with type, config, priority
+&#39;agent/list&#39;      // List agents with filtering
+&#39;agent/terminate&#39; // Terminate agent
+&#39;agent/status&#39;    // Get agent status
+</code></pre>
+<h3>Swarm Tools (3)</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/swarm-tools.ts
+&#39;swarm/init&#39;      // Initialize swarm with topology
+&#39;swarm/status&#39;    // Get swarm status
+&#39;swarm/scale&#39;     // Scale swarm up/down (NEW)
+</code></pre>
+<h3>Memory Tools (3)</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/memory-tools.ts
+&#39;memory/store&#39;    // Store memory entry
+&#39;memory/search&#39;   // Semantic/keyword search
+&#39;memory/list&#39;     // List with filtering
+</code></pre>
+<h3>Config Tools (3)</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/config-tools.ts
+&#39;config/load&#39;     // Load configuration
+&#39;config/save&#39;     // Save configuration
+&#39;config/validate&#39; // Validate configuration
+</code></pre>
+<h3>Hooks Tools (9) - NEW</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/hooks-tools.ts
+&#39;hooks/pre-edit&#39;     // Pre-edit context
+&#39;hooks/post-edit&#39;    // Post-edit learning
+&#39;hooks/pre-command&#39;  // Pre-command risk
+&#39;hooks/post-command&#39; // Post-command learning
+&#39;hooks/route&#39;        // Task routing
+&#39;hooks/explain&#39;      // Routing explanation
+&#39;hooks/pretrain&#39;     // Repository bootstrap
+&#39;hooks/metrics&#39;      // Learning metrics
+&#39;hooks/list&#39;         // List hooks
+</code></pre>
+<h2>Missing Tools ❌</h2>
+<h3>Task Management (8 missing) - HIGH PRIORITY</h3>
+<pre><code class="language-typescript">// Need to add to v3/mcp/tools/task-tools.ts
+export const taskTools = [
+  {
+    name: &#39;tasks/create&#39;,
+    description: &#39;Create a new task for execution&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        type: { type: &#39;string&#39;, description: &#39;Task type&#39; },
+        description: { type: &#39;string&#39;, description: &#39;Task description&#39; },
+        priority: { type: &#39;number&#39;, default: 5 },
+        dependencies: { type: &#39;array&#39;, items: { type: &#39;string&#39; } },
+        assignToAgent: { type: &#39;string&#39; },
+        assignToAgentType: { type: &#39;string&#39; },
+        input: { type: &#39;object&#39; },
+        timeout: { type: &#39;number&#39; }
+      },
+      required: [&#39;type&#39;, &#39;description&#39;]
+    }
+  },
+  {
+    name: &#39;tasks/list&#39;,
+    description: &#39;List tasks with optional filtering&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        status: { type: &#39;string&#39;, enum: [&#39;pending&#39;, &#39;queued&#39;, &#39;assigned&#39;, &#39;running&#39;, &#39;completed&#39;, &#39;failed&#39;, &#39;cancelled&#39;] },
+        agentId: { type: &#39;string&#39; },
+        type: { type: &#39;string&#39; },
+        limit: { type: &#39;number&#39;, default: 50 },
+        offset: { type: &#39;number&#39;, default: 0 }
+      }
+    }
+  },
+  {
+    name: &#39;tasks/status&#39;,
+    description: &#39;Get detailed status of a specific task&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        taskId: { type: &#39;string&#39; }
+      },
+      required: [&#39;taskId&#39;]
+    }
+  },
+  {
+    name: &#39;tasks/cancel&#39;,
+    description: &#39;Cancel a pending or running task&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        taskId: { type: &#39;string&#39; },
+        reason: { type: &#39;string&#39; }
+      },
+      required: [&#39;taskId&#39;]
+    }
+  },
+  {
+    name: &#39;tasks/assign&#39;,
+    description: &#39;Assign a task to a specific agent&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        taskId: { type: &#39;string&#39; },
+        agentId: { type: &#39;string&#39; }
+      },
+      required: [&#39;taskId&#39;, &#39;agentId&#39;]
+    }
+  },
+  {
+    name: &#39;task_orchestrate&#39;,
+    description: &#39;Orchestrate task across the swarm&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        task: { type: &#39;string&#39; },
+        strategy: { type: &#39;string&#39;, enum: [&#39;parallel&#39;, &#39;sequential&#39;, &#39;adaptive&#39;] },
+        priority: { type: &#39;string&#39;, enum: [&#39;low&#39;, &#39;medium&#39;, &#39;high&#39;, &#39;critical&#39;] },
+        maxAgents: { type: &#39;number&#39;, min: 1, max: 10 }
+      },
+      required: [&#39;task&#39;]
+    }
+  },
+  {
+    name: &#39;task_status&#39;,
+    description: &#39;Check progress of running tasks&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        taskId: { type: &#39;string&#39; },
+        detailed: { type: &#39;boolean&#39;, default: false }
+      }
+    }
+  },
+  {
+    name: &#39;task_results&#39;,
+    description: &#39;Retrieve results from completed tasks&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        taskId: { type: &#39;string&#39; },
+        format: { type: &#39;string&#39;, enum: [&#39;summary&#39;, &#39;detailed&#39;, &#39;raw&#39;] }
+      },
+      required: [&#39;taskId&#39;]
+    }
+  }
+];
+</code></pre>
+<h3>System Tools (7 missing) - MEDIUM PRIORITY</h3>
+<pre><code class="language-typescript">// Need to add to v3/mcp/tools/system-tools.ts
+export const systemTools = [
+  {
+    name: &#39;system/status&#39;,
+    description: &#39;Get comprehensive system status&#39;,
+    inputSchema: { type: &#39;object&#39;, properties: {} }
+  },
+  {
+    name: &#39;system/metrics&#39;,
+    description: &#39;Get system performance metrics&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        timeRange: { type: &#39;string&#39;, enum: [&#39;1h&#39;, &#39;6h&#39;, &#39;24h&#39;, &#39;7d&#39;], default: &#39;1h&#39; }
+      }
+    }
+  },
+  {
+    name: &#39;system/health&#39;,
+    description: &#39;Perform comprehensive health check&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        deep: { type: &#39;boolean&#39;, default: false }
+      }
+    }
+  },
+  {
+    name: &#39;system/info&#39;,
+    description: &#39;Get system information&#39;,
+    inputSchema: { type: &#39;object&#39;, properties: {} }
+  },
+  {
+    name: &#39;tools/list&#39;,
+    description: &#39;List all available tools&#39;,
+    inputSchema: { type: &#39;object&#39;, properties: {} }
+  },
+  {
+    name: &#39;tools/schema&#39;,
+    description: &#39;Get schema for a specific tool&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        name: { type: &#39;string&#39; }
+      },
+      required: [&#39;name&#39;]
+    }
+  }
+];
+</code></pre>
+<h3>Swarm Tools (5 missing)</h3>
+<pre><code class="language-typescript">// Need to add to v3/mcp/tools/swarm-tools.ts
+const missingSwarmTools = [
+  {
+    name: &#39;swarm/create-objective&#39;,
+    description: &#39;Create a new swarm objective&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        title: { type: &#39;string&#39; },
+        description: { type: &#39;string&#39; },
+        tasks: { type: &#39;array&#39; },
+        strategy: { type: &#39;string&#39;, enum: [&#39;parallel&#39;, &#39;sequential&#39;, &#39;adaptive&#39;] },
+        timeout: { type: &#39;number&#39; }
+      },
+      required: [&#39;title&#39;, &#39;description&#39;, &#39;tasks&#39;]
+    }
+  },
+  {
+    name: &#39;swarm/execute-objective&#39;,
+    description: &#39;Execute a swarm objective&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        objectiveId: { type: &#39;string&#39; }
+      },
+      required: [&#39;objectiveId&#39;]
+    }
+  },
+  {
+    name: &#39;swarm/emergency-stop&#39;,
+    description: &#39;Emergency stop all swarm operations&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        reason: { type: &#39;string&#39; },
+        force: { type: &#39;boolean&#39;, default: false }
+      },
+      required: [&#39;reason&#39;]
+    }
+  },
+  {
+    name: &#39;swarm/monitor&#39;,
+    description: &#39;Monitor swarm activity in real-time&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        duration: { type: &#39;number&#39;, default: 10 },
+        interval: { type: &#39;number&#39;, default: 1 }
+      }
+    }
+  },
+  {
+    name: &#39;agents/spawn_parallel&#39;,
+    description: &#39;Spawn multiple agents in parallel (10-20x faster)&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        agents: { type: &#39;array&#39; },
+        maxConcurrency: { type: &#39;number&#39;, default: 5 },
+        batchSize: { type: &#39;number&#39;, default: 3 }
+      },
+      required: [&#39;agents&#39;]
+    }
+  }
+];
+</code></pre>
+<h3>Memory Tools (3 missing)</h3>
+<pre><code class="language-typescript">// Need to add to v3/mcp/tools/memory-tools.ts
+const missingMemoryTools = [
+  {
+    name: &#39;memory/delete&#39;,
+    description: &#39;Delete a memory entry&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        entryId: { type: &#39;string&#39; }
+      },
+      required: [&#39;entryId&#39;]
+    }
+  },
+  {
+    name: &#39;memory/export&#39;,
+    description: &#39;Export memory entries to file&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        format: { type: &#39;string&#39;, enum: [&#39;json&#39;, &#39;csv&#39;, &#39;markdown&#39;], default: &#39;json&#39; },
+        agentId: { type: &#39;string&#39; },
+        sessionId: { type: &#39;string&#39; },
+        startTime: { type: &#39;string&#39;, format: &#39;date-time&#39; },
+        endTime: { type: &#39;string&#39;, format: &#39;date-time&#39; }
+      }
+    }
+  },
+  {
+    name: &#39;memory/import&#39;,
+    description: &#39;Import memory entries from file&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        filePath: { type: &#39;string&#39; },
+        format: { type: &#39;string&#39;, enum: [&#39;json&#39;, &#39;csv&#39;], default: &#39;json&#39; },
+        mergeStrategy: { type: &#39;string&#39;, enum: [&#39;skip&#39;, &#39;overwrite&#39;, &#39;version&#39;], default: &#39;skip&#39; }
+      },
+      required: [&#39;filePath&#39;]
+    }
+  }
+];
+</code></pre>
+<h3>Workflow Tools (3 missing)</h3>
+<pre><code class="language-typescript">// Need to create v3/mcp/tools/workflow-tools.ts
+export const workflowTools = [
+  {
+    name: &#39;workflow/execute&#39;,
+    description: &#39;Execute a workflow from file or definition&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        filePath: { type: &#39;string&#39; },
+        workflow: { type: &#39;object&#39; },
+        parameters: { type: &#39;object&#39; }
+      }
+    }
+  },
+  {
+    name: &#39;workflow/create&#39;,
+    description: &#39;Create a new workflow definition&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        name: { type: &#39;string&#39; },
+        description: { type: &#39;string&#39; },
+        tasks: { type: &#39;array&#39; },
+        savePath: { type: &#39;string&#39; }
+      },
+      required: [&#39;name&#39;, &#39;tasks&#39;]
+    }
+  },
+  {
+    name: &#39;workflow/list&#39;,
+    description: &#39;List available workflows&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        directory: { type: &#39;string&#39; }
+      }
+    }
+  }
+];
+</code></pre>
+<h3>Terminal Tools (3 missing)</h3>
+<pre><code class="language-typescript">// Need to create v3/mcp/tools/terminal-tools.ts
+export const terminalTools = [
+  {
+    name: &#39;terminal/execute&#39;,
+    description: &#39;Execute command in terminal session&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        command: { type: &#39;string&#39; },
+        args: { type: &#39;array&#39; },
+        cwd: { type: &#39;string&#39; },
+        env: { type: &#39;object&#39; },
+        timeout: { type: &#39;number&#39;, default: 30000 },
+        terminalId: { type: &#39;string&#39; }
+      },
+      required: [&#39;command&#39;]
+    }
+  },
+  {
+    name: &#39;terminal/list&#39;,
+    description: &#39;List all terminal sessions&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        includeIdle: { type: &#39;boolean&#39;, default: true }
+      }
+    }
+  },
+  {
+    name: &#39;terminal/create&#39;,
+    description: &#39;Create new terminal session&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        cwd: { type: &#39;string&#39; },
+        env: { type: &#39;object&#39; },
+        shell: { type: &#39;string&#39; }
+      }
+    }
+  }
+];
+</code></pre>
+<h3>Query Control (2 missing)</h3>
+<pre><code class="language-typescript">// Need to create v3/mcp/tools/query-tools.ts
+export const queryTools = [
+  {
+    name: &#39;query/control&#39;,
+    description: &#39;Control running queries&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        action: { type: &#39;string&#39;, enum: [&#39;pause&#39;, &#39;resume&#39;, &#39;terminate&#39;, &#39;change_model&#39;] },
+        queryId: { type: &#39;string&#39; },
+        model: { type: &#39;string&#39; }
+      },
+      required: [&#39;action&#39;, &#39;queryId&#39;]
+    }
+  },
+  {
+    name: &#39;query/list&#39;,
+    description: &#39;List active queries&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        includeHistory: { type: &#39;boolean&#39;, default: false }
+      }
+    }
+  }
+];
+</code></pre>
+<h3>Resource &amp; Message (4 missing)</h3>
+<pre><code class="language-typescript">// Need to create v3/mcp/tools/resource-tools.ts
+export const resourceTools = [
+  {
+    name: &#39;resource/register&#39;,
+    description: &#39;Register a new resource&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        type: { type: &#39;string&#39;, enum: [&#39;compute&#39;, &#39;storage&#39;, &#39;network&#39;, &#39;memory&#39;, &#39;gpu&#39;, &#39;custom&#39;] },
+        name: { type: &#39;string&#39; },
+        capacity: { type: &#39;object&#39; },
+        metadata: { type: &#39;object&#39; }
+      },
+      required: [&#39;type&#39;, &#39;name&#39;, &#39;capacity&#39;]
+    }
+  },
+  {
+    name: &#39;resource/get-statistics&#39;,
+    description: &#39;Get resource statistics&#39;,
+    inputSchema: { type: &#39;object&#39;, properties: {} }
+  }
+];
+
+// Need to create v3/mcp/tools/message-tools.ts
+export const messageTools = [
+  {
+    name: &#39;message/send&#39;,
+    description: &#39;Send message through bus&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        type: { type: &#39;string&#39; },
+        content: { type: &#39;object&#39; },
+        sender: { type: &#39;string&#39; },
+        receivers: { type: &#39;array&#39; },
+        priority: { type: &#39;string&#39;, enum: [&#39;low&#39;, &#39;normal&#39;, &#39;high&#39;, &#39;critical&#39;] },
+        channel: { type: &#39;string&#39; }
+      },
+      required: [&#39;type&#39;, &#39;content&#39;, &#39;sender&#39;, &#39;receivers&#39;]
+    }
+  },
+  {
+    name: &#39;message/get-metrics&#39;,
+    description: &#39;Get message bus metrics&#39;,
+    inputSchema: { type: &#39;object&#39;, properties: {} }
+  }
+];
+</code></pre>
+<h3>Monitor Tools (2 missing)</h3>
+<pre><code class="language-typescript">// Need to add to v3/mcp/tools/monitor-tools.ts
+export const monitorTools = [
+  {
+    name: &#39;monitor/get-metrics&#39;,
+    description: &#39;Get system monitoring metrics&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        type: { type: &#39;string&#39;, enum: [&#39;system&#39;, &#39;swarm&#39;, &#39;agents&#39;, &#39;all&#39;], default: &#39;all&#39; }
+      }
+    }
+  },
+  {
+    name: &#39;monitor/get-alerts&#39;,
+    description: &#39;Get active alerts&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        level: { type: &#39;string&#39;, enum: [&#39;info&#39;, &#39;warning&#39;, &#39;critical&#39;, &#39;all&#39;], default: &#39;all&#39; },
+        limit: { type: &#39;number&#39;, default: 50 }
+      }
+    }
+  }
+];
+</code></pre>
+<h3>Neural Tools (3 missing)</h3>
+<pre><code class="language-typescript">// Need to add to v3/mcp/tools/neural-tools.ts
+export const neuralTools = [
+  {
+    name: &#39;neural/status&#39;,
+    description: &#39;Get neural agent status&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        agentId: { type: &#39;string&#39; }
+      }
+    }
+  },
+  {
+    name: &#39;neural/train&#39;,
+    description: &#39;Train neural agents&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        agentId: { type: &#39;string&#39; },
+        iterations: { type: &#39;number&#39;, min: 1, max: 100, default: 10 }
+      }
+    }
+  },
+  {
+    name: &#39;neural/patterns&#39;,
+    description: &#39;Get cognitive patterns&#39;,
+    inputSchema: {
+      type: &#39;object&#39;,
+      properties: {
+        pattern: { type: &#39;string&#39;, enum: [&#39;all&#39;, &#39;convergent&#39;, &#39;divergent&#39;, &#39;lateral&#39;, &#39;systems&#39;, &#39;critical&#39;, &#39;abstract&#39;], default: &#39;all&#39; }
+      }
+    }
+  }
+];
+</code></pre>
+<h2>Implementation Plan</h2>
+<h3>Phase 1: Core Tools (Week 1-2)</h3>
+<ol>
+<li>Task management tools (8 tools)</li>
+<li>System status tools (4 tools)</li>
+<li>Emergency stop tool</li>
+</ol>
+<h3>Phase 2: Operational Tools (Week 3-4)</h3>
+<ol>
+<li>Workflow tools (3 tools)</li>
+<li>Terminal tools (3 tools)</li>
+<li>Memory import/export (2 tools)</li>
+</ol>
+<h3>Phase 3: Advanced Tools (Week 5-6)</h3>
+<ol>
+<li>Query control (2 tools)</li>
+<li>Resource management (2 tools)</li>
+<li>Message bus (2 tools)</li>
+<li>Monitor/alerts (2 tools)</li>
+<li>Neural tools (3 tools)</li>
+</ol>
+<h3>Phase 4: Optimization (Week 7-8)</h3>
+<ol>
+<li>Parallel agent spawn</li>
+<li>Swarm monitoring</li>
+<li>Benchmark tools</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

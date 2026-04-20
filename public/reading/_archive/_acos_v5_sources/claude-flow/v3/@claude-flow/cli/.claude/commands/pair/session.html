@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Pair Programming Session Management</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/commands/pair/session.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Pair Programming Session Management</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands">commands</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fcommands%2Fpair">pair</a> / <span>session.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Pair Programming Session Management</h1>
+<p>Complete guide to managing pair programming sessions.</p>
+<h2>Session Lifecycle</h2>
+<h3>1. Initialization</h3>
+<pre><code class="language-bash">claude-flow pair --start
+</code></pre>
+<h3>2. Active Session</h3>
+<ul>
+<li>Real-time collaboration</li>
+<li>Continuous verification</li>
+<li>Quality monitoring</li>
+<li>Role management</li>
+</ul>
+<h3>3. Completion</h3>
+<pre><code class="language-bash">claude-flow pair --end
+</code></pre>
+<h2>Session Commands</h2>
+<p>During an active session, use these commands:</p>
+<h3>Basic Commands</h3>
+<pre><code>/help          - Show all available commands
+/status        - Current session status
+/metrics       - View quality metrics
+/pause         - Pause current session
+/resume        - Resume paused session
+/end           - End current session
+</code></pre>
+<h3>Code Commands</h3>
+<pre><code>/explain       - Explain current code
+/suggest       - Get improvement suggestions
+/refactor      - Refactor selected code
+/optimize      - Optimize for performance
+/document      - Add documentation
+/comment       - Add inline comments
+</code></pre>
+<h3>Testing Commands</h3>
+<pre><code>/test          - Run test suite
+/test-gen      - Generate tests
+/coverage      - Check test coverage
+/test-watch    - Enable test watching
+/mock          - Generate mocks
+</code></pre>
+<h3>Review Commands</h3>
+<pre><code>/review        - Full code review
+/security      - Security analysis
+/perf          - Performance review
+/quality       - Quality metrics
+/lint          - Run linters
+</code></pre>
+<h3>Navigation Commands</h3>
+<pre><code>/goto &lt;file&gt;   - Navigate to file
+/find &lt;text&gt;   - Search in project
+/recent        - Recent files
+/bookmark      - Bookmark location
+/history       - Command history
+</code></pre>
+<h3>Role Commands</h3>
+<pre><code>/switch        - Switch driver/navigator
+/mode &lt;type&gt;   - Change mode
+/role          - Show current role
+/handoff       - Prepare role handoff
+</code></pre>
+<h3>Git Commands</h3>
+<pre><code>/diff          - Show changes
+/commit        - Commit with verification
+/branch        - Branch operations
+/stash         - Stash changes
+/log           - View git log
+</code></pre>
+<h2>Session Status</h2>
+<p>Check current session status:</p>
+<pre><code class="language-bash">claude-flow pair --status
+</code></pre>
+<p>Output:</p>
+<pre><code>👥 Pair Programming Session
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Session ID: pair_1755021234567
+Duration: 45 minutes
+Status: Active
+
+Partner: senior-dev
+Current Role: DRIVER (you)
+Mode: Switch (10m intervals)
+Next Switch: in 3 minutes
+
+📊 Metrics:
+├── Truth Score: 0.982 ✅
+├── Lines Changed: 234
+├── Files Modified: 5
+├── Tests Added: 12
+├── Coverage: 87% ↑3%
+└── Commits: 3
+
+🎯 Focus: Implementation
+📝 Current File: src/auth/login.js
+</code></pre>
+<h2>Session History</h2>
+<p>View past sessions:</p>
+<pre><code class="language-bash">claude-flow pair --history
+</code></pre>
+<p>Output:</p>
+<pre><code>📚 Session History
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 2024-01-15 14:30 - 16:45 (2h 15m)
+   Partner: expert-coder
+   Focus: Refactoring
+   Truth Score: 0.975
+   Changes: +340 -125 lines
+
+2. 2024-01-14 10:00 - 11:30 (1h 30m)
+   Partner: tdd-specialist
+   Focus: Testing
+   Truth Score: 0.991
+   Tests Added: 24
+
+3. 2024-01-13 15:00 - 17:00 (2h)
+   Partner: debugger-expert
+   Focus: Bug Fixing
+   Truth Score: 0.968
+   Issues Fixed: 5
+</code></pre>
+<h2>Session Metrics</h2>
+<p>Real-time metrics during session:</p>
+<h3>Truth Score</h3>
+<pre><code>Current: 0.982 ✅
+Average: 0.975
+Minimum: 0.951
+Threshold: 0.950
+</code></pre>
+<h3>Productivity</h3>
+<pre><code>Lines Changed: 234
+Files Modified: 5
+Functions Added: 8
+Functions Refactored: 3
+</code></pre>
+<h3>Quality</h3>
+<pre><code>Test Coverage: 87% ↑3%
+Lint Issues: 0
+Security Issues: 0
+Performance Issues: 1 ⚠️
+</code></pre>
+<h3>Collaboration</h3>
+<pre><code>Suggestions Given: 45
+Suggestions Accepted: 38 (84%)
+Reviews Completed: 12
+Rollbacks: 1
+</code></pre>
+<h2>Session Persistence</h2>
+<h3>Save Session</h3>
+<pre><code class="language-bash">claude-flow pair --save [--name &lt;name&gt;]
+</code></pre>
+<h3>Load Session</h3>
+<pre><code class="language-bash">claude-flow pair --load &lt;session-id&gt;
+</code></pre>
+<h3>Export Session</h3>
+<pre><code class="language-bash">claude-flow pair --export &lt;session-id&gt; [--format json|md]
+</code></pre>
+<h2>Background Sessions</h2>
+<p>Run pair programming in background:</p>
+<h3>Start Background Session</h3>
+<pre><code class="language-bash">claude-flow pair --start --background
+</code></pre>
+<h3>Monitor Background Session</h3>
+<pre><code class="language-bash">claude-flow pair --monitor
+</code></pre>
+<h3>Attach to Background Session</h3>
+<pre><code class="language-bash">claude-flow pair --attach &lt;session-id&gt;
+</code></pre>
+<h2>Session Configuration</h2>
+<h3>Default Settings</h3>
+<pre><code class="language-json">{
+  &quot;pair&quot;: {
+    &quot;session&quot;: {
+      &quot;autoSave&quot;: true,
+      &quot;saveInterval&quot;: &quot;5m&quot;,
+      &quot;maxDuration&quot;: &quot;4h&quot;,
+      &quot;idleTimeout&quot;: &quot;15m&quot;,
+      &quot;metricsInterval&quot;: &quot;1m&quot;
+    }
+  }
+}
+</code></pre>
+<h3>Per-Session Config</h3>
+<pre><code class="language-bash">claude-flow pair --start \
+  --config custom-config.json
+</code></pre>
+<h2>Session Templates</h2>
+<h3>Refactoring Template</h3>
+<pre><code class="language-bash">claude-flow pair --template refactor
+</code></pre>
+<ul>
+<li>Focus: Code improvement</li>
+<li>Verification: High (0.98)</li>
+<li>Testing: After each change</li>
+<li>Review: Continuous</li>
+</ul>
+<h3>Feature Template</h3>
+<pre><code class="language-bash">claude-flow pair --template feature
+</code></pre>
+<ul>
+<li>Focus: Implementation</li>
+<li>Verification: Standard (0.95)</li>
+<li>Testing: On completion</li>
+<li>Review: Pre-commit</li>
+</ul>
+<h3>Debug Template</h3>
+<pre><code class="language-bash">claude-flow pair --template debug
+</code></pre>
+<ul>
+<li>Focus: Problem solving</li>
+<li>Verification: Moderate (0.90)</li>
+<li>Testing: Regression tests</li>
+<li>Review: Root cause</li>
+</ul>
+<h3>Learning Template</h3>
+<pre><code class="language-bash">claude-flow pair --template learn
+</code></pre>
+<ul>
+<li>Mode: Mentor</li>
+<li>Pace: Slow</li>
+<li>Explanations: Detailed</li>
+<li>Examples: Many</li>
+</ul>
+<h2>Session Reports</h2>
+<p>Generate session report:</p>
+<pre><code class="language-bash">claude-flow pair --report &lt;session-id&gt;
+</code></pre>
+<p>Report includes:</p>
+<ul>
+<li>Session summary</li>
+<li>Metrics overview</li>
+<li>Code changes</li>
+<li>Test results</li>
+<li>Quality scores</li>
+<li>Learning points</li>
+<li>Recommendations</li>
+</ul>
+<h2>Multi-Session Management</h2>
+<h3>List Active Sessions</h3>
+<pre><code class="language-bash">claude-flow pair --list
+</code></pre>
+<h3>Switch Between Sessions</h3>
+<pre><code class="language-bash">claude-flow pair --switch &lt;session-id&gt;
+</code></pre>
+<h3>Merge Sessions</h3>
+<pre><code class="language-bash">claude-flow pair --merge &lt;session-1&gt; &lt;session-2&gt;
+</code></pre>
+<h2>Session Recovery</h2>
+<h3>Auto-Recovery</h3>
+<p>Sessions auto-save every 5 minutes with recovery points.</p>
+<h3>Manual Recovery</h3>
+<pre><code class="language-bash">claude-flow pair --recover [--point &lt;timestamp&gt;]
+</code></pre>
+<h3>Crash Recovery</h3>
+<pre><code class="language-bash">claude-flow pair --crash-recovery
+</code></pre>
+<h2>Session Sharing</h2>
+<h3>Share with Team</h3>
+<pre><code class="language-bash">claude-flow pair --share &lt;session-id&gt; \
+  --team &lt;team-id&gt;
+</code></pre>
+<h3>Export for Review</h3>
+<pre><code class="language-bash">claude-flow pair --export-review &lt;session-id&gt;
+</code></pre>
+<h3>Create Learning Material</h3>
+<pre><code class="language-bash">claude-flow pair --create-tutorial &lt;session-id&gt;
+</code></pre>
+<h2>Advanced Features</h2>
+<h3>Session Recording</h3>
+<pre><code class="language-bash">claude-flow pair --start --record
+</code></pre>
+<p>Records all interactions for playback.</p>
+<h3>Session Replay</h3>
+<pre><code class="language-bash">claude-flow pair --replay &lt;session-id&gt;
+</code></pre>
+<p>Replay recorded session for learning.</p>
+<h3>Session Analytics</h3>
+<pre><code class="language-bash">claude-flow pair --analytics &lt;session-id&gt;
+</code></pre>
+<p>Deep analysis of session patterns.</p>
+<h2>Troubleshooting</h2>
+<h3>Session Won&#39;t Start</h3>
+<ul>
+<li>Check agent availability</li>
+<li>Verify configuration</li>
+<li>Ensure clean workspace</li>
+</ul>
+<h3>Session Disconnected</h3>
+<ul>
+<li>Use <code>--recover</code> to restore</li>
+<li>Check network connection</li>
+<li>Verify background processes</li>
+</ul>
+<h3>Poor Performance</h3>
+<ul>
+<li>Reduce verification threshold</li>
+<li>Disable continuous testing</li>
+<li>Check system resources</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Regular Saves</strong> - Auto-save enabled</li>
+<li><strong>Clear Goals</strong> - Define objectives</li>
+<li><strong>Appropriate Duration</strong> - 1-2 hour sessions</li>
+<li><strong>Breaks</strong> - Take regular breaks</li>
+<li><strong>Review</strong> - End with summary</li>
+</ol>
+<h2>Related Commands</h2>
+<ul>
+<li><code>pair --start</code> - Start new session</li>
+<li><code>pair --config</code> - Configure settings</li>
+<li><code>pair --templates</code> - Manage templates</li>
+<li><code>pair --analytics</code> - View analytics</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Backward Compatibility Guide</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/implementation/v3-migration/BACKWARD-COMPATIBILITY.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Backward Compatibility Guide</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../index.html#_archive">_archive</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation">implementation</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2Fimplementation%2Fv3-migration">v3-migration</a> / <span>BACKWARD-COMPATIBILITY.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Backward Compatibility Guide</h1>
+<blockquote>
+<p>Ensuring V2 code works with V3 architecture</p>
+</blockquote>
+<h2>Overview</h2>
+<p>V3 introduces breaking changes per ADR-001 through ADR-010. This document outlines compatibility layers and migration paths.</p>
+<h2>Breaking Changes Summary</h2>
+<h3>Architecture (ADR-001, ADR-002, ADR-003)</h3>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>V2</th>
+<th>V3</th>
+<th>Migration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core Foundation</td>
+<td>Custom implementation</td>
+<td>agentic-flow@alpha</td>
+<td>Update imports</td>
+</tr>
+<tr>
+<td>Structure</td>
+<td>Flat modules</td>
+<td>DDD bounded contexts</td>
+<td>Restructure code</td>
+</tr>
+<tr>
+<td>Coordination</td>
+<td>Multiple orchestrators</td>
+<td>UnifiedSwarmCoordinator</td>
+<td>Consolidate</td>
+</tr>
+</tbody></table>
+<h3>API Changes (ADR-005)</h3>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>V2</th>
+<th>V3</th>
+<th>Migration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tool Naming</td>
+<td>Mixed (<code>dispatch_agent</code>, <code>swarm_status</code>)</td>
+<td>Consistent (<code>agent/spawn</code>, <code>swarm/status</code>)</td>
+<td>Update tool calls</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td>Inconsistent</td>
+<td>Zod-validated schemas</td>
+<td>Update params</td>
+</tr>
+</tbody></table>
+<h3>Memory (ADR-006, ADR-009)</h3>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>V2</th>
+<th>V3</th>
+<th>Migration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Backend</td>
+<td>SQLite only</td>
+<td>Hybrid SQLite+AgentDB</td>
+<td>Configure backend</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Brute-force</td>
+<td>HNSW indexed</td>
+<td>No changes needed</td>
+</tr>
+</tbody></table>
+<h3>Runtime (ADR-010)</h3>
+<table>
+<thead>
+<tr>
+<th>Change</th>
+<th>V2</th>
+<th>V3</th>
+<th>Migration</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Deno</td>
+<td>Supported</td>
+<td>Removed</td>
+<td>Node.js only</td>
+</tr>
+<tr>
+<td>Node.js</td>
+<td>&gt;=16</td>
+<td>&gt;=20</td>
+<td>Update runtime</td>
+</tr>
+</tbody></table>
+<h2>Compatibility Layers</h2>
+<h3>Import Aliases</h3>
+<pre><code class="language-typescript">// v3/@claude-flow/shared/src/compat/v2-aliases.ts
+// Provides V2-compatible imports
+
+// V2 imports
+import { HiveMind } from &#39;claude-flow/hive-mind&#39;;
+import { SwarmCoordinator } from &#39;claude-flow/swarm&#39;;
+import { MemoryManager } from &#39;claude-flow/memory&#39;;
+
+// V3 compatibility layer
+export { UnifiedSwarmCoordinator as HiveMind } from &#39;@claude-flow/swarm&#39;;
+export { UnifiedSwarmCoordinator as SwarmCoordinator } from &#39;@claude-flow/swarm&#39;;
+export { UnifiedMemoryService as MemoryManager } from &#39;@claude-flow/memory&#39;;
+</code></pre>
+<h3>Tool Name Mapping</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/compat/v2-tool-names.ts
+// Maps V2 tool names to V3 equivalents
+
+export const toolNameMapping: Record&lt;string, string&gt; = {
+  // Agent tools
+  &#39;dispatch_agent&#39;: &#39;agent/spawn&#39;,
+  &#39;agents/spawn&#39;: &#39;agent/spawn&#39;,
+  &#39;agents/list&#39;: &#39;agent/list&#39;,
+  &#39;agents/terminate&#39;: &#39;agent/terminate&#39;,
+  &#39;agents/info&#39;: &#39;agent/status&#39;,
+  &#39;agent/create&#39;: &#39;agent/spawn&#39;,
+
+  // Swarm tools
+  &#39;swarm_status&#39;: &#39;swarm/status&#39;,
+  &#39;swarm/get-status&#39;: &#39;swarm/status&#39;,
+  &#39;swarm/get-comprehensive-status&#39;: &#39;swarm/status&#39;,
+  &#39;mcp__ruv-swarm__swarm_init&#39;: &#39;swarm/init&#39;,
+  &#39;mcp__ruv-swarm__swarm_status&#39;: &#39;swarm/status&#39;,
+  &#39;mcp__ruv-swarm__agent_spawn&#39;: &#39;agent/spawn&#39;,
+  &#39;mcp__ruv-swarm__agent_list&#39;: &#39;agent/list&#39;,
+  &#39;mcp__ruv-swarm__agent_metrics&#39;: &#39;agent/status&#39;,
+
+  // Memory tools
+  &#39;memory/query&#39;: &#39;memory/search&#39;,
+  &#39;mcp__ruv-swarm__memory_usage&#39;: &#39;memory/list&#39;,
+
+  // Config tools
+  &#39;config/get&#39;: &#39;config/load&#39;,
+  &#39;config/update&#39;: &#39;config/save&#39;,
+
+  // Neural tools (hooks-based in V3)
+  &#39;mcp__ruv-swarm__neural_status&#39;: &#39;hooks/metrics&#39;,
+  &#39;mcp__ruv-swarm__neural_train&#39;: &#39;hooks/pretrain&#39;
+};
+
+export function translateToolName(v2Name: string): string {
+  return toolNameMapping[v2Name] || v2Name;
+}
+</code></pre>
+<h3>Parameter Translation</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/compat/v2-params.ts
+// Translates V2 parameters to V3 format
+
+export function translateAgentSpawnParams(v2Params: any): any {
+  return {
+    agentType: v2Params.type,
+    id: v2Params.name,
+    config: {
+      capabilities: v2Params.capabilities,
+      systemPrompt: v2Params.systemPrompt,
+      maxConcurrentTasks: v2Params.maxConcurrentTasks
+    },
+    priority: v2Params.priority &gt; 5 ? &#39;high&#39; : v2Params.priority &lt; 5 ? &#39;low&#39; : &#39;normal&#39;,
+    metadata: {
+      environment: v2Params.environment,
+      workingDirectory: v2Params.workingDirectory
+    }
+  };
+}
+
+export function translateSwarmInitParams(v2Params: any): any {
+  return {
+    topology: v2Params.topology || &#39;hierarchical-mesh&#39;,
+    maxAgents: v2Params.maxAgents || 15,
+    config: {
+      consensusMechanism: v2Params.consensus || &#39;majority&#39;,
+      loadBalancing: v2Params.strategy === &#39;balanced&#39;
+    }
+  };
+}
+
+export function translateMemoryQueryParams(v2Params: any): any {
+  return {
+    query: v2Params.search || &#39;&#39;,
+    searchType: &#39;hybrid&#39;,
+    type: v2Params.type || &#39;all&#39;,
+    tags: v2Params.tags,
+    limit: v2Params.limit || 10,
+    includeMetadata: true
+  };
+}
+</code></pre>
+<h3>CLI Command Mapping</h3>
+<pre><code class="language-typescript">// v3/@claude-flow/cli/src/compat/v2-commands.ts
+// Provides V2 command aliases
+
+export const commandMapping: Record&lt;string, string[]&gt; = {
+  // Hive commands -&gt; swarm
+  &#39;hive-mind init&#39;: [&#39;swarm&#39;, &#39;init&#39;],
+  &#39;hive-mind status&#39;: [&#39;swarm&#39;, &#39;status&#39;],
+  &#39;hive-mind spawn&#39;: [&#39;agent&#39;, &#39;spawn&#39;],
+
+  // Hook commands
+  &#39;hooks pre-task&#39;: [&#39;hooks&#39;, &#39;pre-edit&#39;],  // Closest equivalent
+  &#39;hooks post-task&#39;: [&#39;hooks&#39;, &#39;post-edit&#39;],
+
+  // Deprecated commands
+  &#39;neural init&#39;: [&#39;hooks&#39;, &#39;pretrain&#39;],
+  &#39;goal init&#39;: [&#39;hooks&#39;, &#39;pretrain&#39;]
+};
+</code></pre>
+<h2>Configuration Migration</h2>
+<h3>V2 Configuration</h3>
+<pre><code class="language-yaml"># v2/.claude-flow/config.yaml
+orchestrator:
+  maxAgents: 10
+  defaultStrategy: balanced
+memory:
+  backend: sqlite
+  path: ./.claude-flow/memory.db
+coordination:
+  topology: hierarchical
+  consensus: quorum
+</code></pre>
+<h3>V3 Configuration</h3>
+<pre><code class="language-yaml"># v3/.claude-flow/config.yaml
+swarm:
+  topology: hierarchical-mesh
+  maxAgents: 15
+  consensus:
+    mechanism: majority
+    timeout: 30000
+memory:
+  backend: hybrid  # SQLite + AgentDB
+  sqlite:
+    path: ./.claude-flow/memory.db
+  agentdb:
+    enableHNSW: true
+    dimensions: 384
+hooks:
+  learning:
+    enabled: true
+    pretrainOnInit: false
+</code></pre>
+<h3>Migration Script</h3>
+<pre><code class="language-typescript">// v3/@claude-flow/cli/src/commands/migrate.ts
+export async function migrateConfig(v2ConfigPath: string): Promise&lt;void&gt; {
+  const v2Config = await loadYaml(v2ConfigPath);
+
+  const v3Config = {
+    swarm: {
+      topology: mapTopology(v2Config.coordination?.topology),
+      maxAgents: v2Config.orchestrator?.maxAgents || 15,
+      consensus: {
+        mechanism: mapConsensus(v2Config.coordination?.consensus),
+        timeout: 30000
+      }
+    },
+    memory: {
+      backend: &#39;hybrid&#39;,
+      sqlite: {
+        path: v2Config.memory?.path || &#39;./.claude-flow/memory.db&#39;
+      },
+      agentdb: {
+        enableHNSW: true,
+        dimensions: 384
+      }
+    },
+    hooks: {
+      learning: {
+        enabled: true,
+        pretrainOnInit: false
+      }
+    }
+  };
+
+  await saveYaml(&#39;.claude-flow/config.yaml&#39;, v3Config);
+}
+
+function mapTopology(v2Topology: string): string {
+  const mapping = {
+    &#39;hierarchical&#39;: &#39;hierarchical-mesh&#39;,
+    &#39;mesh&#39;: &#39;mesh&#39;,
+    &#39;ring&#39;: &#39;mesh&#39;,  // Ring deprecated
+    &#39;star&#39;: &#39;hierarchical&#39;  // Star deprecated
+  };
+  return mapping[v2Topology] || &#39;hierarchical-mesh&#39;;
+}
+
+function mapConsensus(v2Consensus: string): string {
+  const mapping = {
+    &#39;quorum&#39;: &#39;majority&#39;,
+    &#39;unanimous&#39;: &#39;unanimous&#39;,
+    &#39;weighted&#39;: &#39;qualified&#39;,  // Needs implementation
+    &#39;leader&#39;: &#39;raft&#39;
+  };
+  return mapping[v2Consensus] || &#39;majority&#39;;
+}
+</code></pre>
+<h2>Memory Data Migration</h2>
+<h3>Schema Changes</h3>
+<pre><code class="language-sql">-- V2 Schema
+CREATE TABLE memory_entries (
+  id TEXT PRIMARY KEY,
+  namespace TEXT,
+  session_id TEXT,
+  agent_id TEXT,
+  type TEXT,
+  content TEXT,
+  metadata TEXT,
+  tags TEXT,
+  created_at INTEGER,
+  updated_at INTEGER
+);
+
+-- V3 Schema (additional columns)
+ALTER TABLE memory_entries ADD COLUMN embedding BLOB;
+ALTER TABLE memory_entries ADD COLUMN importance REAL DEFAULT 0.5;
+ALTER TABLE memory_entries ADD COLUMN ttl INTEGER;
+ALTER TABLE memory_entries ADD COLUMN access_count INTEGER DEFAULT 0;
+</code></pre>
+<h3>Migration Script</h3>
+<pre><code class="language-typescript">// v3/@claude-flow/memory/src/migration.ts
+export async function migrateMemoryData(v2DbPath: string, v3DbPath: string): Promise&lt;void&gt; {
+  const v2Db = new Database(v2DbPath);
+  const v3Db = new Database(v3DbPath);
+
+  // Create V3 schema
+  v3Db.exec(`
+    CREATE TABLE IF NOT EXISTS memory_entries (
+      id TEXT PRIMARY KEY,
+      namespace TEXT,
+      session_id TEXT,
+      agent_id TEXT,
+      type TEXT,
+      content TEXT,
+      metadata TEXT,
+      tags TEXT,
+      embedding BLOB,
+      importance REAL DEFAULT 0.5,
+      ttl INTEGER,
+      access_count INTEGER DEFAULT 0,
+      created_at INTEGER,
+      updated_at INTEGER
+    )
+  `);
+
+  // Migrate entries
+  const entries = v2Db.prepare(&#39;SELECT * FROM memory_entries&#39;).all();
+  const insert = v3Db.prepare(`
+    INSERT INTO memory_entries
+    (id, namespace, session_id, agent_id, type, content, metadata, tags, importance, created_at, updated_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  for (const entry of entries) {
+    insert.run(
+      entry.id,
+      entry.namespace,
+      entry.session_id,
+      entry.agent_id,
+      entry.type,
+      entry.content,
+      entry.metadata,
+      entry.tags,
+      0.5,  // Default importance
+      entry.created_at,
+      entry.updated_at
+    );
+  }
+
+  // Generate embeddings for semantic search (async)
+  await generateEmbeddings(v3Db);
+}
+</code></pre>
+<h2>API Compatibility Mode</h2>
+<h3>Enabling Compatibility Mode</h3>
+<pre><code class="language-typescript">// v3/mcp/server.ts
+import { enableV2Compatibility } from &#39;./compat/v2-mode&#39;;
+
+const server = createMCPServer({
+  transport: &#39;stdio&#39;,
+  compatibility: {
+    v2: true,  // Enable V2 tool name mapping
+    paramTranslation: true,  // Enable param translation
+    deprecationWarnings: true  // Log deprecation warnings
+  }
+});
+
+if (server.config.compatibility?.v2) {
+  enableV2Compatibility(server);
+}
+</code></pre>
+<h3>Deprecation Warnings</h3>
+<pre><code class="language-typescript">// v3/mcp/tools/compat/deprecation.ts
+export function warnDeprecated(v2Name: string, v3Name: string): void {
+  console.warn(
+    `[DEPRECATION] Tool &quot;${v2Name}&quot; is deprecated. ` +
+    `Use &quot;${v3Name}&quot; instead. ` +
+    `V2 compatibility will be removed in v4.0.0`
+  );
+}
+
+export const deprecatedTools = [
+  { v2: &#39;dispatch_agent&#39;, v3: &#39;agent/spawn&#39;, removed: &#39;4.0.0&#39; },
+  { v2: &#39;swarm_status&#39;, v3: &#39;swarm/status&#39;, removed: &#39;4.0.0&#39; },
+  { v2: &#39;memory/query&#39;, v3: &#39;memory/search&#39;, removed: &#39;4.0.0&#39; },
+  { v2: &#39;config/get&#39;, v3: &#39;config/load&#39;, removed: &#39;4.0.0&#39; },
+  { v2: &#39;config/update&#39;, v3: &#39;config/save&#39;, removed: &#39;4.0.0&#39; }
+];
+</code></pre>
+<h2>Testing Compatibility</h2>
+<pre><code class="language-typescript">// v3/__tests__/compat/v2-compatibility.test.ts
+import { describe, it, expect } from &#39;vitest&#39;;
+import { translateToolName, translateAgentSpawnParams } from &#39;../compat&#39;;
+
+describe(&#39;V2 Compatibility&#39;, () =&gt; {
+  describe(&#39;Tool Name Translation&#39;, () =&gt; {
+    it(&#39;should translate dispatch_agent to agent/spawn&#39;, () =&gt; {
+      expect(translateToolName(&#39;dispatch_agent&#39;)).toBe(&#39;agent/spawn&#39;);
+    });
+
+    it(&#39;should translate swarm_status to swarm/status&#39;, () =&gt; {
+      expect(translateToolName(&#39;swarm_status&#39;)).toBe(&#39;swarm/status&#39;);
+    });
+  });
+
+  describe(&#39;Parameter Translation&#39;, () =&gt; {
+    it(&#39;should translate V2 agent spawn params&#39;, () =&gt; {
+      const v2Params = {
+        type: &#39;coder&#39;,
+        name: &#39;my-coder&#39;,
+        capabilities: [&#39;coding&#39;],
+        priority: 8
+      };
+
+      const v3Params = translateAgentSpawnParams(v2Params);
+
+      expect(v3Params.agentType).toBe(&#39;coder&#39;);
+      expect(v3Params.id).toBe(&#39;my-coder&#39;);
+      expect(v3Params.priority).toBe(&#39;high&#39;);
+    });
+  });
+});
+</code></pre>
+<h2>Deprecation Timeline</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Changes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>v3.0.0</strong></td>
+<td>Compatibility mode enabled by default</td>
+</tr>
+<tr>
+<td><strong>v3.1.0</strong></td>
+<td>Deprecation warnings added</td>
+</tr>
+<tr>
+<td><strong>v3.2.0</strong></td>
+<td>Compatibility mode opt-in</td>
+</tr>
+<tr>
+<td><strong>v4.0.0</strong></td>
+<td>V2 compatibility removed</td>
+</tr>
+</tbody></table>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

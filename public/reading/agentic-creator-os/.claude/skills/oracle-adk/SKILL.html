@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Oracle ADK Expert Skill</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/.claude/skills/oracle-adk/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Oracle ADK Expert Skill</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../../index.html#agentic-creator-os%2F.claude">.claude</a> / <a href="../index.html#agentic-creator-os%2F.claude%2Fskills">skills</a> / <a href="index.html#agentic-creator-os%2F.claude%2Fskills%2Foracle-adk">oracle-adk</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: Oracle ADK Expert
+description: Build production agentic applications on OCI using Oracle Agent Development Kit with multi-agent orchestration, function tools, and enterprise patterns
+version: 1.0.0</h2>
+<h1>Oracle ADK Expert Skill</h1>
+<h2>Purpose</h2>
+<p>Master Oracle&#39;s Agent Development Kit (ADK) for building enterprise-grade agentic applications on OCI Generative AI Agents Service with code-first approach and advanced orchestration patterns.</p>
+<h2>Platform Overview</h2>
+<h3>OCI Agent Development Kit (Released May 22, 2025)</h3>
+<p>Client-side library that simplifies building agentic applications on top of OCI Generative AI Agents Service.</p>
+<p><strong>Key Value:</strong> Code-first approach for embedding agents in applications (web apps, Slackbots, enterprise systems).</p>
+<p><strong>Requirements:</strong> Python 3.10 or later</p>
+<h2>Core Capabilities</h2>
+<h3>1. Multi-Turn Conversations</h3>
+<p>Build agents that maintain context across multiple interactions.</p>
+<p><strong>Pattern:</strong></p>
+<pre><code class="language-python">from oci_adk import Agent
+
+agent = Agent(
+    name=&quot;customer_support&quot;,
+    model=&quot;cohere.command-r-plus&quot;,
+    system_prompt=&quot;You are a helpful customer support agent&quot;
+)
+
+# Multi-turn conversation
+conversation = agent.create_conversation()
+response1 = conversation.send(&quot;I need help with my order&quot;)
+response2 = conversation.send(&quot;It&#39;s order #12345&quot;)
+# Agent remembers context from previous messages
+</code></pre>
+<h3>2. Multi-Agent Orchestration</h3>
+<p><strong>Routing Pattern:</strong></p>
+<pre><code class="language-python"># Route requests to specialized agents
+def orchestrator(user_query):
+    if requires_technical_support(user_query):
+        return technical_agent.handle(user_query)
+    elif requires_billing(user_query):
+        return billing_agent.handle(user_query)
+    else:
+        return general_agent.handle(user_query)
+</code></pre>
+<p><strong>Agent-as-a-Tool Pattern:</strong></p>
+<pre><code class="language-python"># One agent uses another agent as a tool
+main_agent = Agent(
+    name=&quot;supervisor&quot;,
+    tools=[research_agent, analysis_agent, report_agent]
+)
+
+# Main agent orchestrates specialist agents
+result = main_agent.execute(&quot;Research and analyze Q4 performance&quot;)
+</code></pre>
+<h3>3. Deterministic Workflows</h3>
+<p>Build predictable, orchestrated workflows with explicit control flow.</p>
+<pre><code class="language-python">from oci_adk import Workflow, Step
+
+workflow = Workflow([
+    Step(&quot;validate_input&quot;, validation_agent),
+    Step(&quot;process_request&quot;, processing_agent),
+    Step(&quot;generate_response&quot;, response_agent)
+])
+
+result = workflow.execute(user_input)
+</code></pre>
+<h3>4. Function Tools</h3>
+<p>Add custom capabilities to agents through function tools.</p>
+<pre><code class="language-python">from oci_adk import FunctionTool
+
+@FunctionTool(
+    name=&quot;get_customer_data&quot;,
+    description=&quot;Retrieve customer information from CRM&quot;,
+    parameters={
+        &quot;customer_id&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;required&quot;: True}
+    }
+)
+def get_customer_data(customer_id: str):
+    return crm_api.get_customer(customer_id)
+
+agent = Agent(
+    name=&quot;customer_agent&quot;,
+    tools=[get_customer_data]
+)
+</code></pre>
+<h2>Architectural Patterns</h2>
+<h3>Pattern 1: Hierarchical Orchestration</h3>
+<pre><code>Supervisor Agent
+    ├─→ Research Agent (gathers information)
+    ├─→ Analysis Agent (processes data)
+    └─→ Report Agent (generates output)
+</code></pre>
+<p><strong>Use Case:</strong> Complex tasks requiring specialized subtask agents</p>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-python">supervisor = Agent(
+    name=&quot;supervisor&quot;,
+    system_prompt=&quot;Coordinate specialist agents to complete complex tasks&quot;,
+    tools=[research_tool, analysis_tool, report_tool]
+)
+</code></pre>
+<h3>Pattern 2: Sequential Pipeline</h3>
+<pre><code>Input → Agent 1 → Agent 2 → Agent 3 → Output
+</code></pre>
+<p><strong>Use Case:</strong> Linear workflows with dependencies</p>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-python">pipeline = AgentPipeline([
+    (&quot;extract&quot;, data_extraction_agent),
+    (&quot;transform&quot;, data_transformation_agent),
+    (&quot;load&quot;, data_loading_agent)
+])
+
+result = pipeline.execute(raw_data)
+</code></pre>
+<h3>Pattern 3: Parallel Processing</h3>
+<pre><code>Coordinator
+    ├──→ Agent A ──┐
+    ├──→ Agent B ──┤→ Aggregator Agent
+    └──→ Agent C ──┘
+</code></pre>
+<p><strong>Use Case:</strong> Independent tasks that can run concurrently</p>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-python">import asyncio
+
+async def parallel_processing(task):
+    results = await asyncio.gather(
+        agent_a.execute_async(task),
+        agent_b.execute_async(task),
+        agent_c.execute_async(task)
+    )
+    return aggregator_agent.synthesize(results)
+</code></pre>
+<h2>Oracle-Specific Best Practices</h2>
+<h3>1. Leverage OCI Services</h3>
+<pre><code class="language-python"># Integrate with OCI services
+from oci import object_storage, database
+
+agent = Agent(
+    name=&quot;data_agent&quot;,
+    tools=[
+        object_storage_tool,
+        autonomous_db_tool,
+        analytics_cloud_tool
+    ]
+)
+</code></pre>
+<h3>2. Enterprise Security</h3>
+<pre><code class="language-python"># Use OCI IAM for authentication
+from oci.config import from_file
+
+config = from_file(&quot;~/.oci/config&quot;)
+
+agent = Agent(
+    name=&quot;secure_agent&quot;,
+    oci_config=config,
+    compartment_id=&quot;ocid1.compartment...&quot;
+)
+</code></pre>
+<h3>3. Multi-Region Deployment</h3>
+<pre><code class="language-python"># Deploy agents across OCI regions
+regions = [&quot;us-ashburn-1&quot;, &quot;eu-frankfurt-1&quot;, &quot;ap-tokyo-1&quot;]
+
+for region in regions:
+    deploy_agent(
+        agent=my_agent,
+        region=region,
+        config=regional_config[region]
+    )
+</code></pre>
+<h2>Production Deployment</h2>
+<h3>Application Integration</h3>
+<pre><code class="language-python"># Embed in FastAPI application
+from fastapi import FastAPI
+from oci_adk import Agent
+
+app = FastAPI()
+support_agent = Agent.load(&quot;customer_support_v2&quot;)
+
+@app.post(&quot;/support/chat&quot;)
+async def chat_endpoint(message: str, session_id: str):
+    conversation = support_agent.get_conversation(session_id)
+    response = await conversation.send_async(message)
+    return {&quot;reply&quot;: response.text}
+</code></pre>
+<h3>Slackbot Integration</h3>
+<pre><code class="language-python">from slack_sdk import WebClient
+from oci_adk import Agent
+
+slack_client = WebClient(token=slack_token)
+agent = Agent.load(&quot;slack_assistant&quot;)
+
+@slack_app.event(&quot;message&quot;)
+def handle_message(event):
+    user_message = event[&quot;text&quot;]
+    response = agent.execute(user_message)
+    slack_client.chat_postMessage(
+        channel=event[&quot;channel&quot;],
+        text=response.text
+    )
+</code></pre>
+<h2>Monitoring &amp; Observability</h2>
+<h3>Logging</h3>
+<pre><code class="language-python">import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(&quot;oci_agent&quot;)
+
+agent = Agent(
+    name=&quot;monitored_agent&quot;,
+    on_tool_call=lambda tool: logger.info(f&quot;Calling tool: {tool}&quot;),
+    on_error=lambda error: logger.error(f&quot;Agent error: {error}&quot;)
+)
+</code></pre>
+<h3>Metrics Collection</h3>
+<pre><code class="language-python">from oci.monitoring import MonitoringClient
+
+def track_agent_metrics(agent_id, metrics):
+    monitoring_client.post_metric_data(
+        post_metric_data_details={
+            &quot;namespace&quot;: &quot;agent_performance&quot;,
+            &quot;dimensions&quot;: {&quot;agent_id&quot;: agent_id},
+            &quot;datapoints&quot;: metrics
+        }
+    )
+</code></pre>
+<h2>Cost Optimization</h2>
+<h3>Model Selection</h3>
+<pre><code class="language-python"># Use appropriate models for tasks
+simple_agent = Agent(
+    model=&quot;cohere.command-light&quot;,  # Cheaper for simple tasks
+)
+
+complex_agent = Agent(
+    model=&quot;cohere.command-r-plus&quot;,  # More capable for complex reasoning
+)
+</code></pre>
+<h3>Caching Strategies</h3>
+<pre><code class="language-python">from functools import lru_cache
+
+@lru_cache(maxsize=1000)
+def cached_agent_call(prompt: str):
+    return agent.execute(prompt)
+</code></pre>
+<h2>Testing</h2>
+<h3>Unit Testing Agents</h3>
+<pre><code class="language-python">def test_customer_agent():
+    agent = Agent.load(&quot;customer_support&quot;)
+    response = agent.execute(&quot;What&#39;s your return policy?&quot;)
+    assert &quot;30 days&quot; in response.text.lower()
+</code></pre>
+<h3>Integration Testing</h3>
+<pre><code class="language-python">def test_agent_workflow():
+    workflow = Workflow([
+        Step(&quot;classify&quot;, classification_agent),
+        Step(&quot;process&quot;, processing_agent)
+    ])
+
+    result = workflow.execute(test_input)
+    assert result.status == &quot;success&quot;
+</code></pre>
+<h2>Oracle Enterprise Integration</h2>
+<h3>Fusion Applications</h3>
+<pre><code class="language-python"># Integrate with Oracle Fusion
+fusion_agent = Agent(
+    name=&quot;fusion_assistant&quot;,
+    tools=[
+        fusion_hcm_tool,
+        fusion_erp_tool,
+        fusion_scm_tool
+    ]
+)
+</code></pre>
+<h3>Database Integration</h3>
+<pre><code class="language-python"># Connect to Autonomous Database
+from oci_adk.tools import SQLTool
+
+db_tool = SQLTool(
+    connection_string=autonomous_db_connection,
+    allowed_tables=[&quot;customers&quot;, &quot;orders&quot;, &quot;products&quot;]
+)
+
+agent = Agent(
+    name=&quot;data_agent&quot;,
+    tools=[db_tool]
+)
+</code></pre>
+<h2>Decision Framework</h2>
+<p><strong>Use Oracle ADK when:</strong></p>
+<ul>
+<li>Building on OCI infrastructure</li>
+<li>Integrating with Oracle Fusion/Cloud applications</li>
+<li>Need enterprise-grade security and compliance</li>
+<li>Want code-first agent development</li>
+<li>Deploying multi-region applications</li>
+</ul>
+<p><strong>Consider alternatives when:</strong></p>
+<ul>
+<li>Not on Oracle Cloud (use Claude SDK or AgentKit)</li>
+<li>Need visual builder interface (use AgentKit)</li>
+<li>Want framework-agnostic approach (use Agent Spec)</li>
+</ul>
+<h2>Resources</h2>
+<p><strong>Documentation:</strong></p>
+<ul>
+<li>Official Docs: <a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/adk/">https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/adk/</a></li>
+<li>API Reference: <a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/adk/api-reference/">https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/adk/api-reference/</a></li>
+<li>Tutorials: <a href="https://docs.public.content.oci.oraclecloud.com/en-us/iaas/Content/generative-ai-agents/add-tool-adk.htm">https://docs.public.content.oci.oraclecloud.com/en-us/iaas/Content/generative-ai-agents/add-tool-adk.htm</a></li>
+</ul>
+<p><strong>Support:</strong></p>
+<ul>
+<li>OCI Documentation</li>
+<li>Oracle Support Portal</li>
+<li>Oracle Cloud Community</li>
+</ul>
+<h2>Final Principles</h2>
+<ol>
+<li><strong>Code-First</strong> - Leverage existing developer tooling and workflows</li>
+<li><strong>Enterprise-Grade</strong> - Built for production Oracle workloads</li>
+<li><strong>OCI-Native</strong> - Deep integration with Oracle Cloud services</li>
+<li><strong>Multi-Agent</strong> - Design for orchestration from the start</li>
+<li><strong>Deterministic</strong> - Explicit control flow for predictable behavior</li>
+</ol>
+<hr>
+<p><em>This skill enables you to build production-ready agentic applications on Oracle Cloud Infrastructure using ADK&#39;s code-first approach.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

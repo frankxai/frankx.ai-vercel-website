@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Claude Flow v2.0.0 Agent System</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/src/cli/agents/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Claude Flow v2.0.0 Agent System</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc">src</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli">cli</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fsrc%2Fcli%2Fagents">agents</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Claude Flow v2.0.0 Agent System</h1>
+<p>A comprehensive agent type system with specialized capabilities, neural pattern support, and advanced coordination.</p>
+<h2>Agent Types Implemented</h2>
+<h3>1. Researcher Agent (<code>researcher.ts</code>)</h3>
+<p><strong>Specialization</strong>: Information gathering and research</p>
+<ul>
+<li><strong>Capabilities</strong>: Web search, data collection, analysis, documentation</li>
+<li><strong>Domains</strong>: Research, market analysis, fact-checking, literature review</li>
+<li><strong>Tools</strong>: Web search, document analyzer, data extractor, citation generator</li>
+<li><strong>Use Cases</strong>: Market research, competitive intelligence, academic research</li>
+</ul>
+<h3>2. Coder Agent (<code>coder.ts</code>)</h3>
+<p><strong>Specialization</strong>: Software development and code generation</p>
+<ul>
+<li><strong>Capabilities</strong>: Code generation, review, testing, debugging</li>
+<li><strong>Languages</strong>: TypeScript, JavaScript, Python, Rust, Go, Java, C++, C#, PHP, Ruby</li>
+<li><strong>Frameworks</strong>: Deno, Node, React, Vue, Django, Spring, Rails</li>
+<li><strong>Tools</strong>: Git, editor, debugger, linter, formatter, compiler</li>
+<li><strong>Use Cases</strong>: Full-stack development, API creation, code refactoring</li>
+</ul>
+<h3>3. Analyst Agent (<code>analyst.ts</code>)</h3>
+<p><strong>Specialization</strong>: Data analysis and performance optimization</p>
+<ul>
+<li><strong>Capabilities</strong>: Statistical analysis, data visualization, predictive modeling</li>
+<li><strong>Languages</strong>: Python, R, SQL, TypeScript, Julia, Scala</li>
+<li><strong>Frameworks</strong>: Pandas, NumPy, Matplotlib, Plotly, TensorFlow, PyTorch</li>
+<li><strong>Tools</strong>: Data processor, statistical analyzer, chart generator</li>
+<li><strong>Use Cases</strong>: Business intelligence, performance analysis, anomaly detection</li>
+</ul>
+<h3>4. Architect Agent (<code>architect.ts</code>)</h3>
+<p><strong>Specialization</strong>: System design and architecture</p>
+<ul>
+<li><strong>Capabilities</strong>: System design, architecture review, API design</li>
+<li><strong>Domains</strong>: Cloud architecture, microservices, security design, scalability</li>
+<li><strong>Tools</strong>: Architecture diagrams, system modeler, design patterns</li>
+<li><strong>Use Cases</strong>: System design, technical specifications, cloud architecture</li>
+</ul>
+<h3>5. Tester Agent (<code>tester.ts</code>)</h3>
+<p><strong>Specialization</strong>: Testing and quality assurance</p>
+<ul>
+<li><strong>Capabilities</strong>: Unit testing, integration testing, E2E testing, security testing</li>
+<li><strong>Frameworks</strong>: Jest, Cypress, Playwright, Selenium, PyTest</li>
+<li><strong>Tools</strong>: Test runner, coverage analyzer, browser automation</li>
+<li><strong>Use Cases</strong>: Test automation, quality assurance, performance testing</li>
+</ul>
+<h3>6. Coordinator Agent (<code>coordinator.ts</code>)</h3>
+<p><strong>Specialization</strong>: Task orchestration and project management</p>
+<ul>
+<li><strong>Capabilities</strong>: Task orchestration, resource allocation, progress tracking</li>
+<li><strong>Domains</strong>: Project management, workflow orchestration, team coordination</li>
+<li><strong>Tools</strong>: Task manager, workflow orchestrator, communication hub</li>
+<li><strong>Use Cases</strong>: Project coordination, resource management, status reporting</li>
+</ul>
+<h2>Agent Capability System</h2>
+<h3>Capabilities Interface (<code>capabilities.ts</code>)</h3>
+<ul>
+<li><strong>Capability Registry</strong>: Comprehensive catalog of agent skills</li>
+<li><strong>Task Requirements</strong>: Smart matching of tasks to agent capabilities</li>
+<li><strong>Agent Selection</strong>: Advanced algorithms for optimal agent assignment</li>
+<li><strong>Semantic Matching</strong>: Intelligent capability inference and matching</li>
+</ul>
+<h3>Key Features</h3>
+<ul>
+<li><strong>Smart Agent Selection</strong>: Automatically finds the best agent for each task</li>
+<li><strong>Capability Matching</strong>: Evaluates agent skills against task requirements</li>
+<li><strong>Confidence Scoring</strong>: Provides confidence levels for agent assignments</li>
+<li><strong>Missing Capability Detection</strong>: Identifies gaps in agent capabilities</li>
+</ul>
+<h2>Agent Lifecycle Management</h2>
+<h3>Base Agent Class (<code>base-agent.ts</code>)</h3>
+<p>All specialized agents inherit from a robust base class providing:</p>
+<ul>
+<li><strong>Lifecycle Management</strong>: Initialize, run, shutdown sequences</li>
+<li><strong>Health Monitoring</strong>: Real-time health tracking and reporting</li>
+<li><strong>Memory Integration</strong>: Persistent state and coordination data</li>
+<li><strong>Event System</strong>: Event-driven communication and coordination</li>
+<li><strong>Error Handling</strong>: Comprehensive error tracking and recovery</li>
+</ul>
+<h3>Agent Factory (<code>index.ts</code>)</h3>
+<ul>
+<li><strong>Dynamic Agent Creation</strong>: Create agents based on type specifications</li>
+<li><strong>Balanced Swarms</strong>: Automatically create balanced agent teams</li>
+<li><strong>Lifecycle Management</strong>: Centralized agent lifecycle coordination</li>
+<li><strong>Configuration Management</strong>: Flexible agent configuration and environment setup</li>
+</ul>
+<h2>Agent Manager Integration</h2>
+<h3>Enhanced Agent Manager (<code>agent-manager.ts</code>)</h3>
+<ul>
+<li><strong>Pool Management</strong>: Automatic agent pool creation and scaling</li>
+<li><strong>Health Monitoring</strong>: Real-time agent health checks and alerts</li>
+<li><strong>Performance Metrics</strong>: Comprehensive agent performance tracking</li>
+<li><strong>Resource Management</strong>: Memory, CPU, and disk usage monitoring</li>
+<li><strong>Auto-scaling</strong>: Intelligent agent pool scaling based on demand</li>
+</ul>
+<h3>Agent Registry (<code>agent-registry.ts</code>)</h3>
+<ul>
+<li><strong>Persistent Storage</strong>: Agent state persistence across sessions</li>
+<li><strong>Query System</strong>: Advanced agent search and filtering</li>
+<li><strong>Statistics</strong>: Comprehensive agent usage and performance statistics</li>
+<li><strong>Coordination Data</strong>: Cross-agent coordination and collaboration data</li>
+</ul>
+<h2>Neural Pattern Support</h2>
+<p>Each agent type includes neural pattern integration:</p>
+<ul>
+<li><strong>Learning Capabilities</strong>: Agents can learn from successful task executions</li>
+<li><strong>Adaptation</strong>: Dynamic adaptation to changing requirements</li>
+<li><strong>Pattern Recognition</strong>: Recognition of recurring task patterns</li>
+<li><strong>Performance Optimization</strong>: Continuous improvement based on experience</li>
+</ul>
+<h2>Memory Integration</h2>
+<p>All agents integrate with the distributed memory system:</p>
+<ul>
+<li><strong>Task Progress</strong>: Real-time task progress and status storage</li>
+<li><strong>Results Storage</strong>: Persistent storage of task results and outputs</li>
+<li><strong>Coordination Data</strong>: Cross-agent communication and coordination</li>
+<li><strong>Performance Metrics</strong>: Historical performance and learning data</li>
+</ul>
+<h2>Configuration and Environment</h2>
+<p>Each agent supports comprehensive configuration:</p>
+<ul>
+<li><strong>Autonomy Levels</strong>: Configurable agent independence and decision-making</li>
+<li><strong>Resource Limits</strong>: Memory, CPU, and execution time constraints</li>
+<li><strong>Permissions</strong>: Fine-grained permission and access control</li>
+<li><strong>Tool Configuration</strong>: Customizable tool settings and preferences</li>
+<li><strong>Environment Setup</strong>: Runtime environment and working directory configuration</li>
+</ul>
+<h2>Usage Examples</h2>
+<h3>Creating Specialized Agents</h3>
+<pre><code class="language-typescript">import { AgentFactory, createAgentFactory } from &#39;./agents/index.js&#39;;
+
+// Create agent factory
+const factory = createAgentFactory(logger, eventBus, memory);
+
+// Create specific agent types
+const researcher = factory.createAgent(&#39;researcher&#39;);
+const coder = factory.createAgent(&#39;coder&#39;, {
+  preferences: { codeStyle: &#39;functional&#39; },
+});
+const analyst = factory.createAgent(&#39;analyst&#39;);
+</code></pre>
+<h3>Creating Balanced Swarms</h3>
+<pre><code class="language-typescript">// Create a balanced development team
+const devTeam = factory.createBalancedSwarm(6, &#39;development&#39;);
+// Result: 2 coders, 2 testers, 1 architect, 1 coordinator
+
+// Create a research-focused team
+const researchTeam = factory.createBalancedSwarm(5, &#39;research&#39;);
+// Result: 2 researchers, 1 analyst, 1 coordinator, 1 architect
+</code></pre>
+<h3>Smart Task Assignment</h3>
+<pre><code class="language-typescript">import { AgentCapabilitySystem } from &#39;./agents/capabilities.js&#39;;
+
+const capabilitySystem = new AgentCapabilitySystem();
+
+// Find best agents for a task
+const task = {
+  type: &#39;web-scraping&#39;,
+  description: &#39;Scrape product data from e-commerce sites&#39;,
+  parameters: {
+    languages: [&#39;python&#39;],
+    complexity: &#39;medium&#39;,
+  },
+};
+
+const matches = capabilitySystem.findBestAgents(task, availableAgents);
+const bestAgent = matches[0].agent; // Highest scoring agent
+</code></pre>
+<h2>Performance Characteristics</h2>
+<ul>
+<li><strong>Agent Creation</strong>: ~50ms per agent</li>
+<li><strong>Task Assignment</strong>: ~10ms average</li>
+<li><strong>Capability Matching</strong>: ~5ms per evaluation</li>
+<li><strong>Memory Operations</strong>: ~2ms read/write</li>
+<li><strong>Health Monitoring</strong>: 10-20 second intervals</li>
+<li><strong>Auto-scaling</strong>: Response time &lt; 30 seconds</li>
+</ul>
+<h2>Integration with Claude Flow v2.0.0</h2>
+<p>The agent system is fully integrated with:</p>
+<ul>
+<li><strong>Swarm Coordination</strong>: Works with ruv-swarm MCP tools</li>
+<li><strong>Memory System</strong>: Integrates with distributed memory</li>
+<li><strong>Event Bus</strong>: Participates in system-wide event coordination</li>
+<li><strong>Logging</strong>: Comprehensive logging and monitoring</li>
+<li><strong>Configuration</strong>: Respects system-wide configuration settings</li>
+</ul>
+<h2>Future Enhancements</h2>
+<ul>
+<li><strong>Machine Learning Integration</strong>: Advanced neural pattern training</li>
+<li><strong>Cross-Agent Learning</strong>: Shared learning across agent instances</li>
+<li><strong>Dynamic Capability Acquisition</strong>: Runtime capability enhancement</li>
+<li><strong>Advanced Coordination Patterns</strong>: Complex multi-agent workflows</li>
+<li><strong>Real-time Adaptation</strong>: Dynamic agent reconfiguration based on performance</li>
+</ul>
+<h2>Files Overview</h2>
+<ul>
+<li><code>base-agent.ts</code> - Base agent class with lifecycle management</li>
+<li><code>researcher.ts</code> - Research and information gathering specialist</li>
+<li><code>coder.ts</code> - Software development and code generation specialist</li>
+<li><code>analyst.ts</code> - Data analysis and performance optimization specialist</li>
+<li><code>architect.ts</code> - System design and architecture specialist</li>
+<li><code>tester.ts</code> - Testing and quality assurance specialist</li>
+<li><code>coordinator.ts</code> - Task orchestration and project management specialist</li>
+<li><code>capabilities.ts</code> - Agent capability system and matching algorithms</li>
+<li><code>agent-manager.ts</code> - Enhanced agent lifecycle and resource management</li>
+<li><code>agent-registry.ts</code> - Agent registration and persistent storage</li>
+<li><code>index.ts</code> - Agent factory and system exports</li>
+</ul>
+<p>This comprehensive agent system provides the foundation for sophisticated multi-agent workflows in Claude Flow v2.0.0, enabling intelligent task distribution, specialized expertise, and coordinated problem-solving.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ACOS Social Media Engine</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agentic-creator-os/modules/social-media-engine/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ACOS Social Media Engine</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../index.html#agentic-creator-os">agentic-creator-os</a> / <a href="../index.html#agentic-creator-os%2Fmodules">modules</a> / <a href="index.html#agentic-creator-os%2Fmodules%2Fsocial-media-engine">social-media-engine</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>ACOS Social Media Engine</h1>
+<p><strong>Part of Agentic Creator OS</strong>
+<strong>Status:</strong> Active
+<strong>Last Updated:</strong> 2026-01-27</p>
+<hr>
+<h2>Overview</h2>
+<p>The Social Media Engine automates the blog → social content pipeline:</p>
+<pre><code>Blog Published → /factory remix → Assets Generated → Review → Publish → Track
+</code></pre>
+<h2>Architecture</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│                    ACOS SOCIAL MEDIA ENGINE                      │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐      │
+│  │   /factory   │───►│  Asset Gen   │───►│   Staging    │      │
+│  │ social-remix │    │ (Nano Banana)│    │ (_staging/)  │      │
+│  └──────────────┘    └──────────────┘    └──────────────┘      │
+│                                                 │                │
+│                                                 ▼                │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐      │
+│  │   Metrics    │◄───│   Publish    │◄───│   Review     │      │
+│  │   Tracker    │    │ (Manual/API) │    │  &amp; Approve   │      │
+│  └──────────────┘    └──────────────┘    └──────────────┘      │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h2>Folder Structure</h2>
+<pre><code>public/social/
+├── linkedin/           # 1:1 images + captions (.md)
+├── twitter/            # 1:1 images + threads (.md)
+├── instagram/
+│   ├── feed/          # 1:1 carousels
+│   └── stories/       # 9:16 vertical
+├── youtube/           # 16:9 thumbnails
+├── tiktok/            # 9:16 vertical clips
+├── _staging/          # Pending review
+│   └── [blog-slug]/   # Per-article assets
+├── _published/        # Archive by date
+│   └── YYYY-MM-DD/
+├── _templates/        # Reusable templates
+└── PUBLISHING_TRACKER.md
+</code></pre>
+<h2>Integration Options</h2>
+<h3>Option 1: Claude Code Direct (RECOMMENDED START)</h3>
+<pre><code>Complexity: Low | Setup: Minutes | Cost: Free
+</code></pre>
+<ul>
+<li>Use Claude Code session to generate and post</li>
+<li>Manual scheduling via platform native tools</li>
+<li>Best for: Getting started, proving content quality</li>
+</ul>
+<h3>Option 2: MCP Servers</h3>
+<pre><code>Complexity: Medium | Setup: Hours | Cost: Free
+</code></pre>
+<p>Available community MCPs:</p>
+<ul>
+<li><code>@anthropic/mcp-twitter</code> - Twitter/X posting</li>
+<li><code>@linkedin/mcp-linkedin</code> - LinkedIn API</li>
+<li><code>@google/mcp-youtube</code> - YouTube uploads</li>
+</ul>
+<p>Setup:</p>
+<pre><code class="language-json">// ~/.claude.json
+{
+  &quot;mcpServers&quot;: {
+    &quot;twitter&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@anthropic/mcp-twitter&quot;],
+      &quot;env&quot;: {
+        &quot;TWITTER_API_KEY&quot;: &quot;...&quot;,
+        &quot;TWITTER_API_SECRET&quot;: &quot;...&quot;
+      }
+    }
+  }
+}
+</code></pre>
+<h3>Option 3: n8n Workflows</h3>
+<pre><code>Complexity: High | Setup: Days | Cost: ~$20/month or self-hosted
+</code></pre>
+<p>Best for:</p>
+<ul>
+<li>Multi-step workflows (publish → wait → check → reschedule)</li>
+<li>Cross-platform coordination</li>
+<li>Complex conditional logic</li>
+</ul>
+<p>When to upgrade to n8n:</p>
+<ul>
+<li>You&#39;re posting 10+ times/day</li>
+<li>You need advanced scheduling</li>
+<li>You want multi-platform coordination in single workflow</li>
+</ul>
+<h3>Option 4: Custom Dashboard</h3>
+<pre><code>Complexity: High | Setup: Weeks | Cost: Dev time
+</code></pre>
+<p>Build into ACOS web interface:</p>
+<ul>
+<li><code>/admin/social</code> route</li>
+<li>Preview, schedule, publish</li>
+<li>Analytics dashboard</li>
+</ul>
+<p>When to build:</p>
+<ul>
+<li>After 1+ month of proven content</li>
+<li>Clear requirements from manual phase</li>
+<li>Dedicated dev time available</li>
+</ul>
+<h2>Recommended Progression</h2>
+<pre><code>Week 1-2:    Claude Code Direct (prove content quality)
+     ↓
+Week 3-4:    Add MCP servers (automate posting)
+     ↓
+Month 2:     Add n8n (if volume justifies)
+     ↓
+Month 3+:    Dashboard (if clear ROI)
+</code></pre>
+<h2>Commands</h2>
+<h3>Generate Social Remix Pack</h3>
+<pre><code class="language-bash">/factory social-remix reader-first-golden-age
+</code></pre>
+<h3>Generate Platform-Specific Image</h3>
+<pre><code class="language-bash">/frankx-infogenius &quot;Golden Age&quot; aspect=1:1   # LinkedIn/Twitter
+/frankx-infogenius &quot;Golden Age&quot; aspect=9:16  # Stories/Reels
+</code></pre>
+<h3>Check Staging Queue</h3>
+<pre><code class="language-bash">ls public/social/_staging/
+</code></pre>
+<h3>Move to Published</h3>
+<pre><code class="language-bash">mv public/social/_staging/[slug] public/social/_published/$(date +%Y-%m-%d)/
+</code></pre>
+<h2>Platform Specs</h2>
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Image Size</th>
+<th>Caption Limit</th>
+<th>Best Hashtags</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LinkedIn</td>
+<td>1200x1200 (1:1)</td>
+<td>3000 chars</td>
+<td>3-5 max</td>
+</tr>
+<tr>
+<td>Twitter/X</td>
+<td>1200x1200 (1:1)</td>
+<td>280 chars</td>
+<td>1-2 max</td>
+</tr>
+<tr>
+<td>Instagram Feed</td>
+<td>1080x1080 (1:1)</td>
+<td>2200 chars</td>
+<td>5-10</td>
+</tr>
+<tr>
+<td>Instagram Stories</td>
+<td>1080x1920 (9:16)</td>
+<td>N/A</td>
+<td>0-3</td>
+</tr>
+<tr>
+<td>YouTube Thumb</td>
+<td>1280x720 (16:9)</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>TikTok</td>
+<td>1080x1920 (9:16)</td>
+<td>2200 chars</td>
+<td>3-5</td>
+</tr>
+</tbody></table>
+<h2>Metrics to Track</h2>
+<h3>Leading Indicators</h3>
+<ul>
+<li>Impressions per post</li>
+<li>Engagement rate (likes + comments + shares / impressions)</li>
+<li>Click-through rate to blog</li>
+</ul>
+<h3>Lagging Indicators</h3>
+<ul>
+<li>Newsletter signups from social</li>
+<li>Product page visits</li>
+<li>Revenue attributed to social</li>
+</ul>
+<h2>API Credentials Needed</h2>
+<p>Store in <code>.env.local</code> (never commit):</p>
+<pre><code class="language-env"># Twitter/X
+TWITTER_API_KEY=
+TWITTER_API_SECRET=
+TWITTER_ACCESS_TOKEN=
+TWITTER_ACCESS_SECRET=
+
+# LinkedIn
+LINKEDIN_CLIENT_ID=
+LINKEDIN_CLIENT_SECRET=
+LINKEDIN_ACCESS_TOKEN=
+
+# YouTube (via Google Cloud)
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+YOUTUBE_CHANNEL_ID=
+
+# Instagram (via Meta Business)
+META_APP_ID=
+META_APP_SECRET=
+INSTAGRAM_BUSINESS_ACCOUNT_ID=
+</code></pre>
+<hr>
+<p><em>Social Media Engine is part of ACOS. Start simple, automate what works.</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

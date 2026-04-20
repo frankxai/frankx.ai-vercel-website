@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>REST API Documentation</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v2/examples/05-swarm-apps/rest-api/API.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">REST API Documentation</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2">v2</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples">examples</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F05-swarm-apps">05-swarm-apps</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv2%2Fexamples%2F05-swarm-apps%2Frest-api">rest-api</a> / <span>API.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>REST API Documentation</h1>
+<h2>Base URL</h2>
+<pre><code>http://localhost:3000/api/v1
+</code></pre>
+<h2>Authentication</h2>
+<p>Currently, this API does not require authentication. In production, you should implement proper authentication.</p>
+<h2>Common Headers</h2>
+<pre><code>Content-Type: application/json
+Accept: application/json
+</code></pre>
+<h2>Endpoints</h2>
+<h3>Users Resource</h3>
+<h4>List Users</h4>
+<pre><code class="language-http">GET /api/v1/users
+</code></pre>
+<p>Query Parameters:</p>
+<ul>
+<li><code>page</code> (integer): Page number (default: 1)</li>
+<li><code>limit</code> (integer): Items per page (default: 10)</li>
+<li><code>sort</code> (string): Sort field (id, name, email, age)</li>
+</ul>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;John Doe&quot;,
+      &quot;email&quot;: &quot;john@example.com&quot;,
+      &quot;age&quot;: 30,
+      &quot;createdAt&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+    }
+  ],
+  &quot;pagination&quot;: {
+    &quot;page&quot;: 1,
+    &quot;limit&quot;: 10,
+    &quot;total&quot;: 3
+  }
+}
+</code></pre>
+<h4>Get User</h4>
+<pre><code class="language-http">GET /api/v1/users/:id
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;John Doe&quot;,
+    &quot;email&quot;: &quot;john@example.com&quot;,
+    &quot;age&quot;: 30,
+    &quot;createdAt&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+  }
+}
+</code></pre>
+<h4>Create User</h4>
+<pre><code class="language-http">POST /api/v1/users
+</code></pre>
+<p>Request Body:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Jane Smith&quot;,
+  &quot;email&quot;: &quot;jane@example.com&quot;,
+  &quot;age&quot;: 25
+}
+</code></pre>
+<p>Response (201 Created):</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;User created successfully&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 4,
+    &quot;name&quot;: &quot;Jane Smith&quot;,
+    &quot;email&quot;: &quot;jane@example.com&quot;,
+    &quot;age&quot;: 25,
+    &quot;createdAt&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+  }
+}
+</code></pre>
+<h4>Update User</h4>
+<pre><code class="language-http">PUT /api/v1/users/:id
+</code></pre>
+<p>Request Body:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Jane Doe&quot;,
+  &quot;email&quot;: &quot;jane.doe@example.com&quot;,
+  &quot;age&quot;: 26
+}
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;User updated successfully&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 4,
+    &quot;name&quot;: &quot;Jane Doe&quot;,
+    &quot;email&quot;: &quot;jane.doe@example.com&quot;,
+    &quot;age&quot;: 26,
+    &quot;updatedAt&quot;: &quot;2024-01-13T12:30:00.000Z&quot;
+  }
+}
+</code></pre>
+<h4>Delete User</h4>
+<pre><code class="language-http">DELETE /api/v1/users/:id
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;User deleted successfully&quot;
+}
+</code></pre>
+<h3>Products Resource</h3>
+<h4>List Products</h4>
+<pre><code class="language-http">GET /api/v1/products
+</code></pre>
+<p>Query Parameters:</p>
+<ul>
+<li><code>page</code> (integer): Page number (default: 1)</li>
+<li><code>limit</code> (integer): Items per page (default: 10)</li>
+<li><code>category</code> (string): Filter by category</li>
+<li><code>minPrice</code> (number): Minimum price filter</li>
+<li><code>maxPrice</code> (number): Maximum price filter</li>
+</ul>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;name&quot;: &quot;Laptop&quot;,
+      &quot;price&quot;: 999.99,
+      &quot;category&quot;: &quot;Electronics&quot;,
+      &quot;stock&quot;: 50,
+      &quot;description&quot;: &quot;High-performance laptop&quot;,
+      &quot;createdAt&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+    }
+  ],
+  &quot;pagination&quot;: {
+    &quot;page&quot;: 1,
+    &quot;limit&quot;: 10,
+    &quot;total&quot;: 4
+  }
+}
+</code></pre>
+<h4>Get Product</h4>
+<pre><code class="language-http">GET /api/v1/products/:id
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;data&quot;: {
+    &quot;id&quot;: 1,
+    &quot;name&quot;: &quot;Laptop&quot;,
+    &quot;price&quot;: 999.99,
+    &quot;category&quot;: &quot;Electronics&quot;,
+    &quot;stock&quot;: 50,
+    &quot;description&quot;: &quot;High-performance laptop&quot;,
+    &quot;createdAt&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+  }
+}
+</code></pre>
+<h4>Create Product</h4>
+<pre><code class="language-http">POST /api/v1/products
+</code></pre>
+<p>Request Body:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Wireless Mouse&quot;,
+  &quot;price&quot;: 29.99,
+  &quot;category&quot;: &quot;Accessories&quot;,
+  &quot;stock&quot;: 100,
+  &quot;description&quot;: &quot;Ergonomic wireless mouse&quot;
+}
+</code></pre>
+<p>Response (201 Created):</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Product created successfully&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 5,
+    &quot;name&quot;: &quot;Wireless Mouse&quot;,
+    &quot;price&quot;: 29.99,
+    &quot;category&quot;: &quot;Accessories&quot;,
+    &quot;stock&quot;: 100,
+    &quot;description&quot;: &quot;Ergonomic wireless mouse&quot;,
+    &quot;createdAt&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+  }
+}
+</code></pre>
+<h4>Update Product</h4>
+<pre><code class="language-http">PUT /api/v1/products/:id
+</code></pre>
+<p>Request Body:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Gaming Mouse&quot;,
+  &quot;price&quot;: 49.99,
+  &quot;category&quot;: &quot;Gaming&quot;,
+  &quot;stock&quot;: 75,
+  &quot;description&quot;: &quot;RGB gaming mouse with programmable buttons&quot;
+}
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Product updated successfully&quot;,
+  &quot;data&quot;: {
+    &quot;id&quot;: 5,
+    &quot;name&quot;: &quot;Gaming Mouse&quot;,
+    &quot;price&quot;: 49.99,
+    &quot;category&quot;: &quot;Gaming&quot;,
+    &quot;stock&quot;: 75,
+    &quot;description&quot;: &quot;RGB gaming mouse with programmable buttons&quot;,
+    &quot;updatedAt&quot;: &quot;2024-01-13T12:30:00.000Z&quot;
+  }
+}
+</code></pre>
+<h4>Delete Product</h4>
+<pre><code class="language-http">DELETE /api/v1/products/:id
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: true,
+  &quot;message&quot;: &quot;Product deleted successfully&quot;
+}
+</code></pre>
+<h2>Error Responses</h2>
+<h3>Validation Error (400)</h3>
+<pre><code class="language-json">{
+  &quot;errors&quot;: [
+    {
+      &quot;type&quot;: &quot;field&quot;,
+      &quot;value&quot;: &quot;invalid-email&quot;,
+      &quot;msg&quot;: &quot;Valid email is required&quot;,
+      &quot;path&quot;: &quot;email&quot;,
+      &quot;location&quot;: &quot;body&quot;
+    }
+  ]
+}
+</code></pre>
+<h3>Not Found (404)</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: false,
+  &quot;message&quot;: &quot;User not found&quot;
+}
+</code></pre>
+<h3>Server Error (500)</h3>
+<pre><code class="language-json">{
+  &quot;success&quot;: false,
+  &quot;error&quot;: {
+    &quot;message&quot;: &quot;Internal Server Error&quot;,
+    &quot;status&quot;: 500,
+    &quot;timestamp&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+  }
+}
+</code></pre>
+<h2>Rate Limiting</h2>
+<p>The API implements rate limiting (default: 100 requests per hour per IP). When exceeded:</p>
+<pre><code class="language-json">{
+  &quot;success&quot;: false,
+  &quot;error&quot;: {
+    &quot;message&quot;: &quot;Too many requests&quot;,
+    &quot;status&quot;: 429,
+    &quot;timestamp&quot;: &quot;2024-01-13T12:00:00.000Z&quot;
+  }
+}
+</code></pre>
+<h2>CORS</h2>
+<p>The API supports CORS for all origins in development. Configure appropriate origins for production.</p>
+<h2>Versioning</h2>
+<p>The API uses URL versioning (currently v1). Future versions will be available at <code>/api/v2</code>, etc.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

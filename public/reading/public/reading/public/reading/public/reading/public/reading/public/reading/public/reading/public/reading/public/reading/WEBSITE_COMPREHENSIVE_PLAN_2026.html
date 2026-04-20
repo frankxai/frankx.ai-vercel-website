@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>FrankX.AI Comprehensive Website Enhancement Plan</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="WEBSITE_COMPREHENSIVE_PLAN_2026.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">FrankX.AI Comprehensive Website Enhancement Plan</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><span>WEBSITE_COMPREHENSIVE_PLAN_2026.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>FrankX.AI Comprehensive Website Enhancement Plan</h1>
+<p><strong>Date</strong>: 2026-01-21
+<strong>Status</strong>: Active Development</p>
+<hr>
+<h2>Executive Summary</h2>
+<p>After comprehensive audit of 98 pages, 49 blog articles, 12 guides, 36 commands, and 60+ skills, this plan outlines state-of-the-art improvements for immersive, cutting-edge website experience.</p>
+<hr>
+<h2>Current Website Inventory</h2>
+<h3>Pages (98 Total)</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Key Pages</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core</td>
+<td>5</td>
+<td>Homepage, About, Contact, Team, Links</td>
+</tr>
+<tr>
+<td>Blog</td>
+<td>3</td>
+<td>Blog listing, Dynamic posts, Special articles</td>
+</tr>
+<tr>
+<td>Products</td>
+<td>7</td>
+<td>6 products + dynamic routing</td>
+</tr>
+<tr>
+<td>Soulbook</td>
+<td>6</td>
+<td>Main, 7-Pillars, Assessment, Golden Path, Life Symphony, Vault</td>
+</tr>
+<tr>
+<td>AI Architecture</td>
+<td>6</td>
+<td>Academy, CoE Hub, Multi-cloud comparison, Prototypes</td>
+</tr>
+<tr>
+<td>Tools</td>
+<td>4</td>
+<td>ROI Calculator, Strategy Canvas, Builder, Tools listing</td>
+</tr>
+<tr>
+<td>Workshops</td>
+<td>3</td>
+<td>Dynamic workshops, Student hub</td>
+</tr>
+<tr>
+<td>Dashboards</td>
+<td>4</td>
+<td>Main, Leads, PDF Analytics, Pipelines</td>
+</tr>
+<tr>
+<td>Guides</td>
+<td>2</td>
+<td>Listing + dynamic routing</td>
+</tr>
+<tr>
+<td>Research</td>
+<td>1</td>
+<td>Research Hub</td>
+</tr>
+<tr>
+<td>Other</td>
+<td>57</td>
+<td>Community, Courses, Assessments, etc.</td>
+</tr>
+</tbody></table>
+<h3>Blog Articles (49 Total)</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Count</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI/Tech</td>
+<td>18</td>
+<td>AGI 2026, Production Agents, Claude Code Jarvis</td>
+</tr>
+<tr>
+<td>Creator Systems</td>
+<td>12</td>
+<td>Agentic Creator OS, Content Systems</td>
+</tr>
+<tr>
+<td>Consciousness</td>
+<td>8</td>
+<td>Soul Frequency, Music as Tech</td>
+</tr>
+<tr>
+<td>Business</td>
+<td>6</td>
+<td>EU Inc, Business Canvas</td>
+</tr>
+<tr>
+<td>Workshops</td>
+<td>5</td>
+<td>Suno, Prompt Engineering, MCP</td>
+</tr>
+</tbody></table>
+<h3>Guides (12 Total)</h3>
+<ul>
+<li>Claude/Anthropic Guide</li>
+<li>OpenAI/ChatGPT Guide</li>
+<li>Perplexity AI Guide</li>
+<li>Midjourney Guide</li>
+<li>ElevenLabs Voice Guide</li>
+<li>Suno Prompt Playbook</li>
+<li>Skills Library Playbook</li>
+<li>Agent Collective OS</li>
+<li>Top 50 AI Prompts</li>
+<li>Claude Code Getting Started</li>
+<li>AI Writing System</li>
+<li>Modern Guide</li>
+</ul>
+<hr>
+<h2>Gap Analysis: What&#39;s Missing</h2>
+<h3>1. Social Media Embeds (HIGH PRIORITY)</h3>
+<p><strong>Current State</strong>: No live social feeds
+<strong>Needed</strong>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> TikTok feed embed (Smash Balloon / EmbedSocial)</li>
+<li><input disabled="" type="checkbox"> Instagram grid embed (Curator.io / Walls.io)</li>
+<li><input disabled="" type="checkbox"> YouTube playlist embed</li>
+<li><input disabled="" type="checkbox"> Twitter/X feed widget</li>
+</ul>
+<h3>2. AI Art Showcase (HIGH PRIORITY)</h3>
+<p><strong>Current State</strong>: No Midjourney/AI art gallery
+<strong>Needed</strong>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Midjourney gallery component</li>
+<li><input disabled="" type="checkbox"> nano-banana generated art showcase</li>
+<li><input disabled="" type="checkbox"> AI art before/after comparisons</li>
+<li><input disabled="" type="checkbox"> Prompt → Result demonstrations</li>
+</ul>
+<h3>3. Immersive Media (MEDIUM PRIORITY)</h3>
+<p><strong>Current State</strong>: Basic YouTube embeds only
+<strong>Needed</strong>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Full-screen video backgrounds</li>
+<li><input disabled="" type="checkbox"> Interactive 3D elements (Three.js)</li>
+<li><input disabled="" type="checkbox"> Parallax scrolling sections</li>
+<li><input disabled="" type="checkbox"> Audio visualizers for music pages</li>
+</ul>
+<h3>4. Real-Time Content (MEDIUM PRIORITY)</h3>
+<p><strong>Current State</strong>: Static content only
+<strong>Needed</strong>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Live activity feed</li>
+<li><input disabled="" type="checkbox"> Real-time visitor counter</li>
+<li><input disabled="" type="checkbox"> Dynamic testimonial carousel</li>
+<li><input disabled="" type="checkbox"> Auto-updating news ticker</li>
+</ul>
+<h3>5. Interactive Experiences (MEDIUM PRIORITY)</h3>
+<p><strong>Current State</strong>: Limited interactivity
+<strong>Needed</strong>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Interactive AI architecture explorer</li>
+<li><input disabled="" type="checkbox"> Drag-and-drop skill builder</li>
+<li><input disabled="" type="checkbox"> Live prompt playground</li>
+<li><input disabled="" type="checkbox"> Before/after sliders for transformations</li>
+</ul>
+<hr>
+<h2>Implementation Plan</h2>
+<h3>Phase 1: Social Media Integration (Week 1)</h3>
+<h4>1.1 Create SocialFeedEmbed Component</h4>
+<pre><code class="language-typescript">// components/embeds/SocialFeedEmbed.tsx
+- Support: TikTok, Instagram, Twitter, YouTube
+- Options: Grid, Carousel, Wall layouts
+- Features: Lightbox, filtering, lazy loading
+</code></pre>
+<h4>1.2 Integrate EmbedSocial or Curator.io</h4>
+<ul>
+<li>Free tier for basic feeds</li>
+<li>Auto-updating content</li>
+<li>Moderation controls</li>
+</ul>
+<h4>1.3 Add to Key Pages</h4>
+<ul>
+<li>Homepage: Featured social feed</li>
+<li>Music page: TikTok embeds</li>
+<li>Blog: Twitter discussions</li>
+<li>About: Instagram highlights</li>
+</ul>
+<h3>Phase 2: AI Art Gallery (Week 2)</h3>
+<h4>2.1 Create MidjourneyGallery Component</h4>
+<pre><code class="language-typescript">// components/embeds/MidjourneyGallery.tsx
+- Masonry layout
+- Prompt reveal on hover
+- Full-screen lightbox
+- Category filtering
+</code></pre>
+<h4>2.2 Create AI Art Showcase Page</h4>
+<ul>
+<li><code>/ai-art</code> - Dedicated gallery page</li>
+<li>Categories: Architecture, Consciousness, Music, Tech</li>
+<li>Featured in navigation</li>
+</ul>
+<h4>2.3 Integrate with Existing Content</h4>
+<ul>
+<li>Blog article headers from AI art</li>
+<li>Product page visuals</li>
+<li>Guide thumbnails</li>
+</ul>
+<h3>Phase 3: Immersive Media (Week 3)</h3>
+<h4>3.1 Video Background Hero</h4>
+<pre><code class="language-typescript">// components/ui/VideoHero.tsx
+- Autoplay, muted, loop
+- Fallback image
+- Overlay gradient
+- Performance optimized
+</code></pre>
+<h4>3.2 Audio Visualizer for Music</h4>
+<pre><code class="language-typescript">// components/music/AudioVisualizer.tsx
+- Canvas-based visualization
+- Frequency reactive
+- Multiple visualization styles
+</code></pre>
+<h4>3.3 Interactive Architecture Diagrams</h4>
+<ul>
+<li>Clickable node exploration</li>
+<li>Animated data flows</li>
+<li>Zoom and pan controls</li>
+</ul>
+<h3>Phase 4: Enhanced Components (Week 4)</h3>
+<h4>4.1 Universal Embed Component</h4>
+<pre><code class="language-typescript">// components/embeds/UniversalEmbed.tsx
+type EmbedType =
+  | &#39;youtube&#39;
+  | &#39;tiktok&#39;
+  | &#39;instagram&#39;
+  | &#39;twitter&#39;
+  | &#39;spotify&#39;
+  | &#39;soundcloud&#39;
+  | &#39;midjourney&#39;
+  | &#39;figma&#39;
+  | &#39;codepen&#39;
+  | &#39;github-gist&#39;
+</code></pre>
+<h4>4.2 MDX Embed Support</h4>
+<p>Add to MDXComponents.tsx:</p>
+<pre><code class="language-mdx">&lt;TikTokEmbed id=&quot;video-id&quot; /&gt;
+&lt;InstagramPost id=&quot;post-id&quot; /&gt;
+&lt;MidjourneyImage prompt=&quot;...&quot; src=&quot;...&quot; /&gt;
+&lt;SpotifyTrack id=&quot;track-id&quot; /&gt;
+</code></pre>
+<h4>4.3 OG Preview Generator</h4>
+<ul>
+<li>Dynamic OG images per page</li>
+<li>AI-generated preview cards</li>
+<li>Social share optimization</li>
+</ul>
+<hr>
+<h2>Page-by-Page Recommendations</h2>
+<h3>Homepage</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Add TikTok/Instagram social proof feed</li>
+<li><input disabled="" type="checkbox"> Video background hero section</li>
+<li><input disabled="" type="checkbox"> Live visitor/download counters</li>
+<li><input disabled="" type="checkbox"> Animated agent showcase</li>
+</ul>
+<h3>Music Page (<code>/music</code>)</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Spotify/SoundCloud embeds</li>
+<li><input disabled="" type="checkbox"> TikTok music clips feed</li>
+<li><input disabled="" type="checkbox"> Audio visualizer</li>
+<li><input disabled="" type="checkbox"> Suno AI demo player</li>
+</ul>
+<h3>Blog Articles</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Twitter/X discussion embed at bottom</li>
+<li><input disabled="" type="checkbox"> Related YouTube videos</li>
+<li><input disabled="" type="checkbox"> AI-generated hero images</li>
+<li><input disabled="" type="checkbox"> Reading progress bar (enhanced)</li>
+</ul>
+<h3>Products Pages</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Video demos embedded</li>
+<li><input disabled="" type="checkbox"> Before/after transformations</li>
+<li><input disabled="" type="checkbox"> User-generated content feed</li>
+<li><input disabled="" type="checkbox"> Interactive feature explorer</li>
+</ul>
+<h3>AI Architect Section</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 3D architecture diagrams</li>
+<li><input disabled="" type="checkbox"> Interactive cloud cost calculator</li>
+<li><input disabled="" type="checkbox"> Video tutorial embeds</li>
+<li><input disabled="" type="checkbox"> Live demo environments</li>
+</ul>
+<h3>Soulbook</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Ambient music player</li>
+<li><input disabled="" type="checkbox"> Interactive pillar explorer</li>
+<li><input disabled="" type="checkbox"> Progress visualization</li>
+<li><input disabled="" type="checkbox"> Community stories feed</li>
+</ul>
+<h3>Research Hub</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Live research feed from sources</li>
+<li><input disabled="" type="checkbox"> Paper preview cards</li>
+<li><input disabled="" type="checkbox"> Citation network visualization</li>
+<li><input disabled="" type="checkbox"> Trending topics widget</li>
+</ul>
+<hr>
+<h2>New Skills &amp; Agents Needed</h2>
+<h3>1. Social Media Embed Agent</h3>
+<pre><code class="language-yaml">Name: social-embed-architect
+Purpose: Generate optimal social embed configurations
+Capabilities:
+  - Analyze page context for best embed type
+  - Generate responsive embed code
+  - Optimize for performance
+  - Handle moderation rules
+</code></pre>
+<h3>2. AI Art Curator Agent</h3>
+<pre><code class="language-yaml">Name: ai-art-curator
+Purpose: Curate and present AI-generated art
+Capabilities:
+  - Select best Midjourney outputs
+  - Generate prompt metadata
+  - Create gallery layouts
+  - Match art to content themes
+</code></pre>
+<h3>3. Immersive Experience Agent</h3>
+<pre><code class="language-yaml">Name: immersive-design-architect
+Purpose: Design immersive web experiences
+Capabilities:
+  - Plan interactive elements
+  - Optimize for performance
+  - Ensure accessibility
+  - Create animation sequences
+</code></pre>
+<hr>
+<h2>Technical Implementation Notes</h2>
+<h3>Performance Considerations</h3>
+<ul>
+<li>Lazy load all embeds below fold</li>
+<li>Use intersection observer</li>
+<li>Implement skeleton loaders</li>
+<li>Cache external content</li>
+</ul>
+<h3>Accessibility</h3>
+<ul>
+<li>All videos need captions</li>
+<li>Audio content needs transcripts</li>
+<li>Interactive elements keyboard accessible</li>
+<li>ARIA labels for dynamic content</li>
+</ul>
+<h3>SEO Impact</h3>
+<ul>
+<li>Structured data for videos</li>
+<li>Alt text for AI art</li>
+<li>Proper heading hierarchy</li>
+<li>Social meta tags</li>
+</ul>
+<hr>
+<h2>Priority Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Enhancement</th>
+<th>Impact</th>
+<th>Effort</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TikTok/Instagram embeds</td>
+<td>High</td>
+<td>Low</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>Midjourney gallery</td>
+<td>High</td>
+<td>Medium</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>YouTube enhancements</td>
+<td>Medium</td>
+<td>Low</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>Video backgrounds</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>P2</td>
+</tr>
+<tr>
+<td>3D architecture viewer</td>
+<td>High</td>
+<td>High</td>
+<td>P3</td>
+</tr>
+<tr>
+<td>Audio visualizer</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>P3</td>
+</tr>
+<tr>
+<td>Live activity feed</td>
+<td>Low</td>
+<td>Medium</td>
+<td>P4</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Recommended Tools &amp; Services</h2>
+<h3>Social Embeds (Free Tiers Available)</h3>
+<ol>
+<li><strong>EmbedSocial</strong> - Best all-in-one (TikTok, Instagram, Twitter)</li>
+<li><strong>Curator.io</strong> - Instagram focus, clean design</li>
+<li><strong>Walls.io</strong> - Social walls, hashtag aggregation</li>
+<li><strong>Elfsight</strong> - Easy widgets, popup support</li>
+</ol>
+<h3>Image/Art Display</h3>
+<ol>
+<li><strong>Lightbox2</strong> - Simple image galleries</li>
+<li><strong>PhotoSwipe</strong> - Touch-friendly galleries</li>
+<li><strong>Masonry.js</strong> - Pinterest-style layouts</li>
+<li><strong>Framer Motion</strong> - Animation support</li>
+</ol>
+<h3>Video/Audio</h3>
+<ol>
+<li><strong>Plyr</strong> - Custom video player</li>
+<li><strong>Howler.js</strong> - Audio library</li>
+<li><strong>Wavesurfer.js</strong> - Audio visualization</li>
+<li><strong>Three.js</strong> - 3D graphics</li>
+</ol>
+<hr>
+<h2>Next Steps</h2>
+<ol>
+<li><strong>Immediate</strong>: Build SocialFeedEmbed component</li>
+<li><strong>This Week</strong>: Create MidjourneyGallery component</li>
+<li><strong>Next Week</strong>: Implement on key pages</li>
+<li><strong>Ongoing</strong>: Create new skills/agents for maintenance</li>
+</ol>
+<hr>
+<h2>Success Metrics</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Social embeds on 5+ key pages</li>
+<li><input disabled="" type="checkbox"> AI art gallery with 50+ pieces</li>
+<li><input disabled="" type="checkbox"> Video content on product pages</li>
+<li><input disabled="" type="checkbox"> 20% increase in time-on-page</li>
+<li><input disabled="" type="checkbox"> Improved social sharing rates</li>
+</ul>
+<hr>
+<p><em>Plan created by Claude Code Visual Research System</em>
+<em>Last updated: 2026-01-21</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

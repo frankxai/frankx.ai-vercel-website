@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Workflow Patterns</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/conductor/skills/workflow-patterns/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Workflow Patterns</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor">conductor</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fconductor%2Fskills%2Fworkflow-patterns">workflow-patterns</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: workflow-patterns
+description: Use this skill when implementing tasks according to Conductor&#39;s TDD workflow, handling phase checkpoints, managing git commits for tasks, or understanding the verification protocol.
+version: 1.0.0</h2>
+<h1>Workflow Patterns</h1>
+<p>Guide for implementing tasks using Conductor&#39;s TDD workflow, managing phase checkpoints, handling git commits, and executing the verification protocol that ensures quality throughout implementation.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Implementing tasks from a track&#39;s plan.md</li>
+<li>Following TDD red-green-refactor cycle</li>
+<li>Completing phase checkpoints</li>
+<li>Managing git commits and notes</li>
+<li>Understanding quality assurance gates</li>
+<li>Handling verification protocols</li>
+<li>Recording progress in plan files</li>
+</ul>
+<h2>TDD Task Lifecycle</h2>
+<p>Follow these 11 steps for each task:</p>
+<h3>Step 1: Select Next Task</h3>
+<p>Read plan.md and identify the next pending <code>[ ]</code> task. Select tasks in order within the current phase. Do not skip ahead to later phases.</p>
+<h3>Step 2: Mark as In Progress</h3>
+<p>Update plan.md to mark the task as <code>[~]</code>:</p>
+<pre><code class="language-markdown">- [~] **Task 2.1**: Implement user validation
+</code></pre>
+<p>Commit this status change separately from implementation.</p>
+<h3>Step 3: RED - Write Failing Tests</h3>
+<p>Write tests that define the expected behavior before writing implementation:</p>
+<ul>
+<li>Create test file if needed</li>
+<li>Write test cases covering happy path</li>
+<li>Write test cases covering edge cases</li>
+<li>Write test cases covering error conditions</li>
+<li>Run tests - they should FAIL</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">def test_validate_user_email_valid():
+    user = User(email=&quot;test@example.com&quot;)
+    assert user.validate_email() is True
+
+def test_validate_user_email_invalid():
+    user = User(email=&quot;invalid&quot;)
+    assert user.validate_email() is False
+</code></pre>
+<h3>Step 4: GREEN - Implement Minimum Code</h3>
+<p>Write the minimum code necessary to make tests pass:</p>
+<ul>
+<li>Focus on making tests green, not perfection</li>
+<li>Avoid premature optimization</li>
+<li>Keep implementation simple</li>
+<li>Run tests - they should PASS</li>
+</ul>
+<h3>Step 5: REFACTOR - Improve Clarity</h3>
+<p>With green tests, improve the code:</p>
+<ul>
+<li>Extract common patterns</li>
+<li>Improve naming</li>
+<li>Remove duplication</li>
+<li>Simplify logic</li>
+<li>Run tests after each change - they should remain GREEN</li>
+</ul>
+<h3>Step 6: Verify Coverage</h3>
+<p>Check test coverage meets the 80% target:</p>
+<pre><code class="language-bash">pytest --cov=module --cov-report=term-missing
+</code></pre>
+<p>If coverage is below 80%:</p>
+<ul>
+<li>Identify uncovered lines</li>
+<li>Add tests for missing paths</li>
+<li>Re-run coverage check</li>
+</ul>
+<h3>Step 7: Document Deviations</h3>
+<p>If implementation deviated from plan or introduced new dependencies:</p>
+<ul>
+<li>Update tech-stack.md with new dependencies</li>
+<li>Note deviations in plan.md task comments</li>
+<li>Update spec.md if requirements changed</li>
+</ul>
+<h3>Step 8: Commit Implementation</h3>
+<p>Create a focused commit for the task:</p>
+<pre><code class="language-bash">git add -A
+git commit -m &quot;feat(user): implement email validation
+
+- Add validate_email method to User class
+- Handle empty and malformed emails
+- Add comprehensive test coverage
+
+Task: 2.1
+Track: user-auth_20250115&quot;
+</code></pre>
+<p>Commit message format:</p>
+<ul>
+<li>Type: feat, fix, refactor, test, docs, chore</li>
+<li>Scope: affected module or component</li>
+<li>Summary: imperative, present tense</li>
+<li>Body: bullet points of changes</li>
+<li>Footer: task and track references</li>
+</ul>
+<h3>Step 9: Attach Git Notes</h3>
+<p>Add rich task summary as git note:</p>
+<pre><code class="language-bash">git notes add -m &quot;Task 2.1: Implement user validation
+
+Summary:
+- Added email validation using regex pattern
+- Handles edge cases: empty, no @, no domain
+- Coverage: 94% on validation module
+
+Files changed:
+- src/models/user.py (modified)
+- tests/test_user.py (modified)
+
+Decisions:
+- Used simple regex over email-validator library
+- Reason: No external dependency for basic validation&quot;
+</code></pre>
+<h3>Step 10: Update Plan with SHA</h3>
+<p>Update plan.md to mark task complete with commit SHA:</p>
+<pre><code class="language-markdown">- [x] **Task 2.1**: Implement user validation `abc1234`
+</code></pre>
+<h3>Step 11: Commit Plan Update</h3>
+<p>Commit the plan status update:</p>
+<pre><code class="language-bash">git add conductor/tracks/*/plan.md
+git commit -m &quot;docs: update plan - task 2.1 complete
+
+Track: user-auth_20250115&quot;
+</code></pre>
+<h2>Phase Completion Protocol</h2>
+<p>When all tasks in a phase are complete, execute the verification protocol:</p>
+<h3>Identify Changed Files</h3>
+<p>List all files modified since the last checkpoint:</p>
+<pre><code class="language-bash">git diff --name-only &lt;last-checkpoint-sha&gt;..HEAD
+</code></pre>
+<h3>Ensure Test Coverage</h3>
+<p>For each modified file:</p>
+<ol>
+<li>Identify corresponding test file</li>
+<li>Verify tests exist for new/changed code</li>
+<li>Run coverage for modified modules</li>
+<li>Add tests if coverage &lt; 80%</li>
+</ol>
+<h3>Run Full Test Suite</h3>
+<p>Execute complete test suite:</p>
+<pre><code class="language-bash">pytest -v --tb=short
+</code></pre>
+<p>All tests must pass before proceeding.</p>
+<h3>Generate Manual Verification Steps</h3>
+<p>Create checklist of manual verifications:</p>
+<pre><code class="language-markdown">## Phase 1 Verification Checklist
+
+- [ ] User can register with valid email
+- [ ] Invalid email shows appropriate error
+- [ ] Database stores user correctly
+- [ ] API returns expected response codes
+</code></pre>
+<h3>WAIT for User Approval</h3>
+<p>Present verification checklist to user:</p>
+<pre><code>Phase 1 complete. Please verify:
+1. [ ] Test suite passes (automated)
+2. [ ] Coverage meets target (automated)
+3. [ ] Manual verification items (requires human)
+
+Respond with &#39;approved&#39; to continue, or note issues.
+</code></pre>
+<p>Do NOT proceed without explicit approval.</p>
+<h3>Create Checkpoint Commit</h3>
+<p>After approval, create checkpoint commit:</p>
+<pre><code class="language-bash">git add -A
+git commit -m &quot;checkpoint: phase 1 complete - user-auth_20250115
+
+Verified:
+- All tests passing
+- Coverage: 87%
+- Manual verification approved
+
+Phase 1 tasks:
+- [x] Task 1.1: Setup database schema
+- [x] Task 1.2: Implement user model
+- [x] Task 1.3: Add validation logic&quot;
+</code></pre>
+<h3>Record Checkpoint SHA</h3>
+<p>Update plan.md checkpoints table:</p>
+<pre><code class="language-markdown">## Checkpoints
+
+| Phase   | Checkpoint SHA | Date       | Status   |
+| ------- | -------------- | ---------- | -------- |
+| Phase 1 | def5678        | 2025-01-15 | verified |
+| Phase 2 |                |            | pending  |
+</code></pre>
+<h2>Quality Assurance Gates</h2>
+<p>Before marking any task complete, verify these gates:</p>
+<h3>Passing Tests</h3>
+<ul>
+<li>All existing tests pass</li>
+<li>New tests pass</li>
+<li>No test regressions</li>
+</ul>
+<h3>Coverage &gt;= 80%</h3>
+<ul>
+<li>New code has 80%+ coverage</li>
+<li>Overall project coverage maintained</li>
+<li>Critical paths fully covered</li>
+</ul>
+<h3>Style Compliance</h3>
+<ul>
+<li>Code follows style guides</li>
+<li>Linting passes</li>
+<li>Formatting correct</li>
+</ul>
+<h3>Documentation</h3>
+<ul>
+<li>Public APIs documented</li>
+<li>Complex logic explained</li>
+<li>README updated if needed</li>
+</ul>
+<h3>Type Safety</h3>
+<ul>
+<li>Type hints present (if applicable)</li>
+<li>Type checker passes</li>
+<li>No type: ignore without reason</li>
+</ul>
+<h3>No Linting Errors</h3>
+<ul>
+<li>Zero linter errors</li>
+<li>Warnings addressed or justified</li>
+<li>Static analysis clean</li>
+</ul>
+<h3>Mobile Compatibility</h3>
+<p>If applicable:</p>
+<ul>
+<li>Responsive design verified</li>
+<li>Touch interactions work</li>
+<li>Performance acceptable</li>
+</ul>
+<h3>Security Audit</h3>
+<ul>
+<li>No secrets in code</li>
+<li>Input validation present</li>
+<li>Authentication/authorization correct</li>
+<li>Dependencies vulnerability-free</li>
+</ul>
+<h2>Git Integration</h2>
+<h3>Commit Message Format</h3>
+<pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+&lt;body&gt;
+
+&lt;footer&gt;
+</code></pre>
+<p>Types:</p>
+<ul>
+<li><code>feat</code>: New feature</li>
+<li><code>fix</code>: Bug fix</li>
+<li><code>refactor</code>: Code change without feature/fix</li>
+<li><code>test</code>: Adding tests</li>
+<li><code>docs</code>: Documentation</li>
+<li><code>chore</code>: Maintenance</li>
+</ul>
+<h3>Git Notes for Rich Summaries</h3>
+<p>Attach detailed notes to commits:</p>
+<pre><code class="language-bash">git notes add -m &quot;&lt;detailed summary&gt;&quot;
+</code></pre>
+<p>View notes:</p>
+<pre><code class="language-bash">git log --show-notes
+</code></pre>
+<p>Benefits:</p>
+<ul>
+<li>Preserves context without cluttering commit message</li>
+<li>Enables semantic queries across commits</li>
+<li>Supports track-based operations</li>
+</ul>
+<h3>SHA Recording in plan.md</h3>
+<p>Always record the commit SHA when completing tasks:</p>
+<pre><code class="language-markdown">- [x] **Task 1.1**: Setup schema `abc1234`
+- [x] **Task 1.2**: Add model `def5678`
+</code></pre>
+<p>This enables:</p>
+<ul>
+<li>Traceability from plan to code</li>
+<li>Semantic revert operations</li>
+<li>Progress auditing</li>
+</ul>
+<h2>Verification Checkpoints</h2>
+<h3>Why Checkpoints Matter</h3>
+<p>Checkpoints create restore points for semantic reversion:</p>
+<ul>
+<li>Revert to end of any phase</li>
+<li>Maintain logical code state</li>
+<li>Enable safe experimentation</li>
+</ul>
+<h3>When to Create Checkpoints</h3>
+<p>Create checkpoint after:</p>
+<ul>
+<li>All phase tasks complete</li>
+<li>All phase verifications pass</li>
+<li>User approval received</li>
+</ul>
+<h3>Checkpoint Commit Content</h3>
+<p>Include in checkpoint commit:</p>
+<ul>
+<li>All uncommitted changes</li>
+<li>Updated plan.md</li>
+<li>Updated metadata.json</li>
+<li>Any documentation updates</li>
+</ul>
+<h3>How to Use Checkpoints</h3>
+<p>For reverting:</p>
+<pre><code class="language-bash"># Revert to end of Phase 1
+git revert --no-commit &lt;phase-2-commits&gt;...
+git commit -m &quot;revert: rollback to phase 1 checkpoint&quot;
+</code></pre>
+<p>For review:</p>
+<pre><code class="language-bash"># See what changed in Phase 2
+git diff &lt;phase-1-sha&gt;..&lt;phase-2-sha&gt;
+</code></pre>
+<h2>Handling Deviations</h2>
+<p>During implementation, deviations from the plan may occur. Handle them systematically:</p>
+<h3>Types of Deviations</h3>
+<p><strong>Scope Addition</strong>
+Discovered requirement not in original spec.</p>
+<ul>
+<li>Document in spec.md as new requirement</li>
+<li>Add tasks to plan.md</li>
+<li>Note addition in task comments</li>
+</ul>
+<p><strong>Scope Reduction</strong>
+Feature deemed unnecessary during implementation.</p>
+<ul>
+<li>Mark tasks as <code>[-]</code> (skipped) with reason</li>
+<li>Update spec.md scope section</li>
+<li>Document decision rationale</li>
+</ul>
+<p><strong>Technical Deviation</strong>
+Different implementation approach than planned.</p>
+<ul>
+<li>Note deviation in task completion comment</li>
+<li>Update tech-stack.md if dependencies changed</li>
+<li>Document why original approach was unsuitable</li>
+</ul>
+<p><strong>Requirement Change</strong>
+Understanding of requirement changes during work.</p>
+<ul>
+<li>Update spec.md with corrected requirement</li>
+<li>Adjust plan.md tasks if needed</li>
+<li>Re-verify acceptance criteria</li>
+</ul>
+<h3>Deviation Documentation Format</h3>
+<p>When completing a task with deviation:</p>
+<pre><code class="language-markdown">- [x] **Task 2.1**: Implement validation `abc1234`
+  - DEVIATION: Used library instead of custom code
+  - Reason: Better edge case handling
+  - Impact: Added email-validator to dependencies
+</code></pre>
+<h2>Error Recovery</h2>
+<h3>Failed Tests After GREEN</h3>
+<p>If tests fail after reaching GREEN:</p>
+<ol>
+<li>Do NOT proceed to REFACTOR</li>
+<li>Identify which test started failing</li>
+<li>Check if refactoring broke something</li>
+<li>Revert to last known GREEN state</li>
+<li>Re-approach the implementation</li>
+</ol>
+<h3>Checkpoint Rejection</h3>
+<p>If user rejects a checkpoint:</p>
+<ol>
+<li>Note rejection reason in plan.md</li>
+<li>Create tasks to address issues</li>
+<li>Complete remediation tasks</li>
+<li>Request checkpoint approval again</li>
+</ol>
+<h3>Blocked by Dependency</h3>
+<p>If task cannot proceed:</p>
+<ol>
+<li>Mark task as <code>[!]</code> with blocker description</li>
+<li>Check if other tasks can proceed</li>
+<li>Document expected resolution timeline</li>
+<li>Consider creating dependency resolution track</li>
+</ol>
+<h2>TDD Variations by Task Type</h2>
+<h3>Data Model Tasks</h3>
+<pre><code>RED: Write test for model creation and validation
+GREEN: Implement model class with fields
+REFACTOR: Add computed properties, improve types
+</code></pre>
+<h3>API Endpoint Tasks</h3>
+<pre><code>RED: Write test for request/response contract
+GREEN: Implement endpoint handler
+REFACTOR: Extract validation, improve error handling
+</code></pre>
+<h3>Integration Tasks</h3>
+<pre><code>RED: Write test for component interaction
+GREEN: Wire components together
+REFACTOR: Improve error propagation, add logging
+</code></pre>
+<h3>Refactoring Tasks</h3>
+<pre><code>RED: Add characterization tests for current behavior
+GREEN: Apply refactoring (tests should stay green)
+REFACTOR: Clean up any introduced complexity
+</code></pre>
+<h2>Working with Existing Tests</h2>
+<p>When modifying code with existing tests:</p>
+<h3>Extend, Don&#39;t Replace</h3>
+<ul>
+<li>Keep existing tests passing</li>
+<li>Add new tests for new behavior</li>
+<li>Update tests only when requirements change</li>
+</ul>
+<h3>Test Migration</h3>
+<p>When refactoring changes test structure:</p>
+<ol>
+<li>Run existing tests (should pass)</li>
+<li>Add new tests for refactored code</li>
+<li>Migrate test cases to new structure</li>
+<li>Remove old tests only after new tests pass</li>
+</ol>
+<h3>Regression Prevention</h3>
+<p>After any change:</p>
+<ol>
+<li>Run full test suite</li>
+<li>Check for unexpected failures</li>
+<li>Investigate any new failures</li>
+<li>Fix regressions before proceeding</li>
+</ol>
+<h2>Checkpoint Verification Details</h2>
+<h3>Automated Verification</h3>
+<p>Run before requesting approval:</p>
+<pre><code class="language-bash"># Test suite
+pytest -v --tb=short
+
+# Coverage
+pytest --cov=src --cov-report=term-missing
+
+# Linting
+ruff check src/ tests/
+
+# Type checking (if applicable)
+mypy src/
+</code></pre>
+<h3>Manual Verification Guidance</h3>
+<p>For manual items, provide specific instructions:</p>
+<pre><code class="language-markdown">## Manual Verification Steps
+
+### User Registration
+
+1. Navigate to /register
+2. Enter valid email: test@example.com
+3. Enter password meeting requirements
+4. Click Submit
+5. Verify success message appears
+6. Verify user appears in database
+
+### Error Handling
+
+1. Enter invalid email: &quot;notanemail&quot;
+2. Verify error message shows
+3. Verify form retains other entered data
+</code></pre>
+<h2>Performance Considerations</h2>
+<h3>Test Suite Performance</h3>
+<p>Keep test suite fast:</p>
+<ul>
+<li>Use fixtures to avoid redundant setup</li>
+<li>Mock slow external calls</li>
+<li>Run subset during development, full suite at checkpoints</li>
+</ul>
+<h3>Commit Performance</h3>
+<p>Keep commits atomic:</p>
+<ul>
+<li>One logical change per commit</li>
+<li>Complete thought, not work-in-progress</li>
+<li>Tests should pass after every commit</li>
+</ul>
+<h2>Best Practices</h2>
+<ol>
+<li><strong>Never skip RED</strong>: Always write failing tests first</li>
+<li><strong>Small commits</strong>: One logical change per commit</li>
+<li><strong>Immediate updates</strong>: Update plan.md right after task completion</li>
+<li><strong>Wait for approval</strong>: Never skip checkpoint verification</li>
+<li><strong>Rich git notes</strong>: Include context that helps future understanding</li>
+<li><strong>Coverage discipline</strong>: Don&#39;t accept coverage below target</li>
+<li><strong>Quality gates</strong>: Check all gates before marking complete</li>
+<li><strong>Sequential phases</strong>: Complete phases in order</li>
+<li><strong>Document deviations</strong>: Note any changes from original plan</li>
+<li><strong>Clean state</strong>: Each commit should leave code in working state</li>
+<li><strong>Fast feedback</strong>: Run relevant tests frequently during development</li>
+<li><strong>Clear blockers</strong>: Address blockers promptly, don&#39;t work around them</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>ML Pipeline Workflow</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/agents/plugins/machine-learning-ops/skills/ml-pipeline-workflow/SKILL.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">ML Pipeline Workflow</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fagents">agents</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins">plugins</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fmachine-learning-ops">machine-learning-ops</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fmachine-learning-ops%2Fskills">skills</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fagents%2Fplugins%2Fmachine-learning-ops%2Fskills%2Fml-pipeline-workflow">ml-pipeline-workflow</a> / <span>SKILL.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<h2>name: ml-pipeline-workflow
+description: Build end-to-end MLOps pipelines from data preparation through model training, validation, and production deployment. Use when creating ML pipelines, implementing MLOps practices, or automating model training and deployment workflows.</h2>
+<h1>ML Pipeline Workflow</h1>
+<p>Complete end-to-end MLOps pipeline orchestration from data preparation through model deployment.</p>
+<h2>Overview</h2>
+<p>This skill provides comprehensive guidance for building production ML pipelines that handle the full lifecycle: data ingestion → preparation → training → validation → deployment → monitoring.</p>
+<h2>When to Use This Skill</h2>
+<ul>
+<li>Building new ML pipelines from scratch</li>
+<li>Designing workflow orchestration for ML systems</li>
+<li>Implementing data → model → deployment automation</li>
+<li>Setting up reproducible training workflows</li>
+<li>Creating DAG-based ML orchestration</li>
+<li>Integrating ML components into production systems</li>
+</ul>
+<h2>What This Skill Provides</h2>
+<h3>Core Capabilities</h3>
+<ol>
+<li><p><strong>Pipeline Architecture</strong></p>
+<ul>
+<li>End-to-end workflow design</li>
+<li>DAG orchestration patterns (Airflow, Dagster, Kubeflow)</li>
+<li>Component dependencies and data flow</li>
+<li>Error handling and retry strategies</li>
+</ul>
+</li>
+<li><p><strong>Data Preparation</strong></p>
+<ul>
+<li>Data validation and quality checks</li>
+<li>Feature engineering pipelines</li>
+<li>Data versioning and lineage</li>
+<li>Train/validation/test splitting strategies</li>
+</ul>
+</li>
+<li><p><strong>Model Training</strong></p>
+<ul>
+<li>Training job orchestration</li>
+<li>Hyperparameter management</li>
+<li>Experiment tracking integration</li>
+<li>Distributed training patterns</li>
+</ul>
+</li>
+<li><p><strong>Model Validation</strong></p>
+<ul>
+<li>Validation frameworks and metrics</li>
+<li>A/B testing infrastructure</li>
+<li>Performance regression detection</li>
+<li>Model comparison workflows</li>
+</ul>
+</li>
+<li><p><strong>Deployment Automation</strong></p>
+<ul>
+<li>Model serving patterns</li>
+<li>Canary deployments</li>
+<li>Blue-green deployment strategies</li>
+<li>Rollback mechanisms</li>
+</ul>
+</li>
+</ol>
+<h3>Reference Documentation</h3>
+<p>See the <code>references/</code> directory for detailed guides:</p>
+<ul>
+<li><strong>data-preparation.md</strong> - Data cleaning, validation, and feature engineering</li>
+<li><strong>model-training.md</strong> - Training workflows and best practices</li>
+<li><strong>model-validation.md</strong> - Validation strategies and metrics</li>
+<li><strong>model-deployment.md</strong> - Deployment patterns and serving architectures</li>
+</ul>
+<h3>Assets and Templates</h3>
+<p>The <code>assets/</code> directory contains:</p>
+<ul>
+<li><strong>pipeline-dag.yaml.template</strong> - DAG template for workflow orchestration</li>
+<li><strong>training-config.yaml</strong> - Training configuration template</li>
+<li><strong>validation-checklist.md</strong> - Pre-deployment validation checklist</li>
+</ul>
+<h2>Usage Patterns</h2>
+<h3>Basic Pipeline Setup</h3>
+<pre><code class="language-python"># 1. Define pipeline stages
+stages = [
+    &quot;data_ingestion&quot;,
+    &quot;data_validation&quot;,
+    &quot;feature_engineering&quot;,
+    &quot;model_training&quot;,
+    &quot;model_validation&quot;,
+    &quot;model_deployment&quot;
+]
+
+# 2. Configure dependencies
+# See assets/pipeline-dag.yaml.template for full example
+</code></pre>
+<h3>Production Workflow</h3>
+<ol>
+<li><p><strong>Data Preparation Phase</strong></p>
+<ul>
+<li>Ingest raw data from sources</li>
+<li>Run data quality checks</li>
+<li>Apply feature transformations</li>
+<li>Version processed datasets</li>
+</ul>
+</li>
+<li><p><strong>Training Phase</strong></p>
+<ul>
+<li>Load versioned training data</li>
+<li>Execute training jobs</li>
+<li>Track experiments and metrics</li>
+<li>Save trained models</li>
+</ul>
+</li>
+<li><p><strong>Validation Phase</strong></p>
+<ul>
+<li>Run validation test suite</li>
+<li>Compare against baseline</li>
+<li>Generate performance reports</li>
+<li>Approve for deployment</li>
+</ul>
+</li>
+<li><p><strong>Deployment Phase</strong></p>
+<ul>
+<li>Package model artifacts</li>
+<li>Deploy to serving infrastructure</li>
+<li>Configure monitoring</li>
+<li>Validate production traffic</li>
+</ul>
+</li>
+</ol>
+<h2>Best Practices</h2>
+<h3>Pipeline Design</h3>
+<ul>
+<li><strong>Modularity</strong>: Each stage should be independently testable</li>
+<li><strong>Idempotency</strong>: Re-running stages should be safe</li>
+<li><strong>Observability</strong>: Log metrics at every stage</li>
+<li><strong>Versioning</strong>: Track data, code, and model versions</li>
+<li><strong>Failure Handling</strong>: Implement retry logic and alerting</li>
+</ul>
+<h3>Data Management</h3>
+<ul>
+<li>Use data validation libraries (Great Expectations, TFX)</li>
+<li>Version datasets with DVC or similar tools</li>
+<li>Document feature engineering transformations</li>
+<li>Maintain data lineage tracking</li>
+</ul>
+<h3>Model Operations</h3>
+<ul>
+<li>Separate training and serving infrastructure</li>
+<li>Use model registries (MLflow, Weights &amp; Biases)</li>
+<li>Implement gradual rollouts for new models</li>
+<li>Monitor model performance drift</li>
+<li>Maintain rollback capabilities</li>
+</ul>
+<h3>Deployment Strategies</h3>
+<ul>
+<li>Start with shadow deployments</li>
+<li>Use canary releases for validation</li>
+<li>Implement A/B testing infrastructure</li>
+<li>Set up automated rollback triggers</li>
+<li>Monitor latency and throughput</li>
+</ul>
+<h2>Integration Points</h2>
+<h3>Orchestration Tools</h3>
+<ul>
+<li><strong>Apache Airflow</strong>: DAG-based workflow orchestration</li>
+<li><strong>Dagster</strong>: Asset-based pipeline orchestration</li>
+<li><strong>Kubeflow Pipelines</strong>: Kubernetes-native ML workflows</li>
+<li><strong>Prefect</strong>: Modern dataflow automation</li>
+</ul>
+<h3>Experiment Tracking</h3>
+<ul>
+<li>MLflow for experiment tracking and model registry</li>
+<li>Weights &amp; Biases for visualization and collaboration</li>
+<li>TensorBoard for training metrics</li>
+</ul>
+<h3>Deployment Platforms</h3>
+<ul>
+<li>AWS SageMaker for managed ML infrastructure</li>
+<li>Google Vertex AI for GCP deployments</li>
+<li>Azure ML for Azure cloud</li>
+<li>Kubernetes + KServe for cloud-agnostic serving</li>
+</ul>
+<h2>Progressive Disclosure</h2>
+<p>Start with the basics and gradually add complexity:</p>
+<ol>
+<li><strong>Level 1</strong>: Simple linear pipeline (data → train → deploy)</li>
+<li><strong>Level 2</strong>: Add validation and monitoring stages</li>
+<li><strong>Level 3</strong>: Implement hyperparameter tuning</li>
+<li><strong>Level 4</strong>: Add A/B testing and gradual rollouts</li>
+<li><strong>Level 5</strong>: Multi-model pipelines with ensemble strategies</li>
+</ol>
+<h2>Common Patterns</h2>
+<h3>Batch Training Pipeline</h3>
+<pre><code class="language-yaml"># See assets/pipeline-dag.yaml.template
+stages:
+  - name: data_preparation
+    dependencies: []
+  - name: model_training
+    dependencies: [data_preparation]
+  - name: model_evaluation
+    dependencies: [model_training]
+  - name: model_deployment
+    dependencies: [model_evaluation]
+</code></pre>
+<h3>Real-time Feature Pipeline</h3>
+<pre><code class="language-python"># Stream processing for real-time features
+# Combined with batch training
+# See references/data-preparation.md
+</code></pre>
+<h3>Continuous Training</h3>
+<pre><code class="language-python"># Automated retraining on schedule
+# Triggered by data drift detection
+# See references/model-training.md
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>Common Issues</h3>
+<ul>
+<li><strong>Pipeline failures</strong>: Check dependencies and data availability</li>
+<li><strong>Training instability</strong>: Review hyperparameters and data quality</li>
+<li><strong>Deployment issues</strong>: Validate model artifacts and serving config</li>
+<li><strong>Performance degradation</strong>: Monitor data drift and model metrics</li>
+</ul>
+<h3>Debugging Steps</h3>
+<ol>
+<li>Check pipeline logs for each stage</li>
+<li>Validate input/output data at boundaries</li>
+<li>Test components in isolation</li>
+<li>Review experiment tracking metrics</li>
+<li>Inspect model artifacts and metadata</li>
+</ol>
+<h2>Next Steps</h2>
+<p>After setting up your pipeline:</p>
+<ol>
+<li>Explore <strong>hyperparameter-tuning</strong> skill for optimization</li>
+<li>Learn <strong>experiment-tracking-setup</strong> for MLflow/W&amp;B</li>
+<li>Review <strong>model-deployment-patterns</strong> for serving strategies</li>
+<li>Implement monitoring with observability tools</li>
+</ol>
+<h2>Related Skills</h2>
+<ul>
+<li><strong>experiment-tracking-setup</strong>: MLflow and Weights &amp; Biases integration</li>
+<li><strong>hyperparameter-tuning</strong>: Automated hyperparameter optimization</li>
+<li><strong>model-deployment-patterns</strong>: Advanced deployment strategies</li>
+</ul>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

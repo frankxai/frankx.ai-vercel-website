@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Module 2: Setup Guides</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/workshops-repo/ai-coding-agents/02-setup-guides/README.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Module 2: Setup Guides</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../index.html#_archive">_archive</a> / <a href="../../index.html#_archive%2Fworkshops-repo">workshops-repo</a> / <a href="../index.html#_archive%2Fworkshops-repo%2Fai-coding-agents">ai-coding-agents</a> / <a href="index.html#_archive%2Fworkshops-repo%2Fai-coding-agents%2F02-setup-guides">02-setup-guides</a> / <span>README.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>Module 2: Setup Guides</h1>
+<p><strong>Time</strong>: 2 hours | <strong>Difficulty</strong>: Beginner to Intermediate</p>
+<hr>
+<h2>Learning Objectives</h2>
+<p>By completing this module, you will:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Install and configure at least one AI coding agent</li>
+<li><input disabled="" type="checkbox"> Understand the differences between popular agents</li>
+<li><input disabled="" type="checkbox"> Know when to use which agent</li>
+<li><input disabled="" type="checkbox"> Have a working development environment</li>
+</ul>
+<hr>
+<h2>Agent Comparison Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Claude Code</th>
+<th>OpenCode</th>
+<th>Cline</th>
+<th>Roo Code</th>
+<th>Kilo Code</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Official Support</strong></td>
+<td>Anthropic</td>
+<td>Community</td>
+<td>Community</td>
+<td>Community</td>
+<td>Community</td>
+</tr>
+<tr>
+<td><strong>Best Model</strong></td>
+<td>Claude</td>
+<td>Any</td>
+<td>Any</td>
+<td>Any</td>
+<td>Any</td>
+</tr>
+<tr>
+<td><strong>Interface</strong></td>
+<td>CLI</td>
+<td>CLI</td>
+<td>VS Code</td>
+<td>VS Code</td>
+<td>Terminal</td>
+</tr>
+<tr>
+<td><strong>MCP Support</strong></td>
+<td>Excellent</td>
+<td>Growing</td>
+<td>Limited</td>
+<td>Good</td>
+<td>Basic</td>
+</tr>
+<tr>
+<td><strong>Customization</strong></td>
+<td>High</td>
+<td>Very High</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><strong>Learning Curve</strong></td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Low</td>
+<td>Low</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Claude users</td>
+<td>Power users</td>
+<td>VS Code users</td>
+<td>Multi-model</td>
+<td>Quick tasks</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>1. Claude Code (Recommended Primary)</h2>
+<p>Claude Code is Anthropic&#39;s official CLI for Claude, offering the best integration with Claude models.</p>
+<h3>Installation</h3>
+<pre><code class="language-bash"># macOS/Linux
+npm install -g @anthropic-ai/claude-code
+
+# Or with Bun (faster)
+bun install -g @anthropic-ai/claude-code
+
+# Windows (PowerShell)
+npm install -g @anthropic-ai/claude-code
+</code></pre>
+<h3>Initial Setup</h3>
+<pre><code class="language-bash"># First run - will prompt for API key
+claude
+
+# Or set API key first
+export ANTHROPIC_API_KEY=&quot;your-key-here&quot;
+claude
+</code></pre>
+<h3>Configuration</h3>
+<p>Create <code>~/.claude/settings.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;theme&quot;: &quot;dark&quot;,
+  &quot;model&quot;: &quot;claude-sonnet-4-20250514&quot;,
+  &quot;maxTokens&quot;: 8192,
+  &quot;autoApprove&quot;: false
+}
+</code></pre>
+<h3>Key Commands</h3>
+<pre><code class="language-bash"># Start interactive session
+claude
+
+# Start in a specific directory
+claude /path/to/project
+
+# Resume previous session
+claude --resume
+
+# Run with specific model
+claude --model claude-opus-4
+
+# Built-in commands (inside session)
+/help          # Show all commands
+/clear         # Clear conversation
+/compact       # Compress context
+/model         # Switch models
+/mcp           # Manage MCP servers
+</code></pre>
+<h3>Project Configuration</h3>
+<p>Create <code>CLAUDE.md</code> in your project root:</p>
+<pre><code class="language-markdown"># Project Name
+
+## Overview
+Brief description of this project.
+
+## Tech Stack
+- Language: TypeScript
+- Framework: Next.js 15
+- Database: PostgreSQL
+
+## Important Patterns
+- We use functional components
+- Tests go in __tests__ folders
+- Use pnpm for package management
+
+## Current Focus
+Working on user authentication feature.
+</code></pre>
+<h3>Verification</h3>
+<pre><code class="language-bash"># Run Claude Code
+claude
+
+# Try a simple task
+&gt; &quot;What is 2 + 2?&quot;
+
+# Should respond with 4 and no errors
+</code></pre>
+<hr>
+<h2>2. OpenCode (Open Source Alternative)</h2>
+<p>OpenCode is a powerful open-source coding agent with extensive customization options.</p>
+<h3>Installation</h3>
+<pre><code class="language-bash"># Using npm
+npm install -g @opencode-ai/cli
+
+# Using Bun
+bun install -g @opencode-ai/cli
+
+# From source
+git clone https://github.com/opencode-ai/opencode
+cd opencode
+bun install
+bun link
+</code></pre>
+<h3>Configuration</h3>
+<p>Create <code>.opencode/config.yaml</code>:</p>
+<pre><code class="language-yaml"># OpenCode Configuration
+version: &quot;1.0&quot;
+
+# Model settings
+model:
+  provider: anthropic  # or openai, ollama
+  name: claude-3-5-sonnet-20241022
+  temperature: 0.7
+
+# Project settings
+project:
+  include:
+    - &quot;src/**/*.ts&quot;
+    - &quot;*.md&quot;
+  exclude:
+    - &quot;node_modules&quot;
+    - &quot;.git&quot;
+
+# Permissions
+permissions:
+  fileWrite: prompt
+  shellExec: prompt
+  networkAccess: deny
+</code></pre>
+<h3>Oh-My-OpenCode (Extensions)</h3>
+<p>Install the community extension pack:</p>
+<pre><code class="language-bash"># Install oh-my-opencode
+opencode plugin install oh-my-opencode
+
+# Includes:
+# - Enhanced git integration
+# - Code review automation
+# - Project scaffolding
+# - Custom prompts library
+</code></pre>
+<h3>Agent Configuration</h3>
+<p>Create <code>.opencode/agents/coder.md</code>:</p>
+<pre><code class="language-markdown"># Coder Agent
+
+## Persona
+You are a senior software engineer focused on clean, maintainable code.
+
+## Behaviors
+- Always write tests for new functions
+- Use TypeScript strict mode
+- Follow existing patterns in the codebase
+
+## Tools Available
+- file_read
+- file_write
+- terminal
+- web_search
+</code></pre>
+<h3>Verification</h3>
+<pre><code class="language-bash">opencode
+
+# Test with a simple task
+&gt; &quot;Show me the project structure&quot;
+</code></pre>
+<hr>
+<h2>3. Cline (VS Code Extension)</h2>
+<p>Cline provides AI coding assistance directly in VS Code with visual feedback.</p>
+<h3>Installation</h3>
+<ol>
+<li>Open VS Code</li>
+<li>Go to Extensions (Cmd/Ctrl + Shift + X)</li>
+<li>Search for &quot;Cline&quot;</li>
+<li>Click Install</li>
+</ol>
+<h3>Configuration</h3>
+<p>Open VS Code Settings (Cmd/Ctrl + ,) and search for &quot;Cline&quot;:</p>
+<pre><code class="language-json">{
+  &quot;cline.apiProvider&quot;: &quot;anthropic&quot;,
+  &quot;cline.anthropicApiKey&quot;: &quot;your-key-here&quot;,
+  &quot;cline.defaultModel&quot;: &quot;claude-3-5-sonnet-20241022&quot;,
+  &quot;cline.autoApprove&quot;: false,
+  &quot;cline.showDiffView&quot;: true
+}
+</code></pre>
+<h3>Usage</h3>
+<ol>
+<li>Open Command Palette (Cmd/Ctrl + Shift + P)</li>
+<li>Type &quot;Cline: Start Chat&quot;</li>
+<li>Chat panel opens in sidebar</li>
+<li>Type your request</li>
+</ol>
+<h3>Key Features</h3>
+<ul>
+<li><strong>Visual Diffs</strong>: See changes before applying</li>
+<li><strong>File Explorer Integration</strong>: Click to add files to context</li>
+<li><strong>Terminal Integration</strong>: Execute commands with approval</li>
+<li><strong>History</strong>: Browse previous conversations</li>
+</ul>
+<h3>Verification</h3>
+<ol>
+<li>Open a project in VS Code</li>
+<li>Start Cline chat</li>
+<li>Ask: &quot;What files are in this project?&quot;</li>
+</ol>
+<hr>
+<h2>4. Roo Code (Multi-Model)</h2>
+<p>Roo Code excels at switching between different AI models.</p>
+<h3>Installation</h3>
+<pre><code class="language-bash"># VS Code Extension
+# Search &quot;Roo Code&quot; in Extensions
+
+# Or CLI version
+npm install -g roo-code-cli
+</code></pre>
+<h3>Configuration</h3>
+<pre><code class="language-json">{
+  &quot;roo.providers&quot;: {
+    &quot;anthropic&quot;: {
+      &quot;apiKey&quot;: &quot;your-key&quot;,
+      &quot;models&quot;: [&quot;claude-3-5-sonnet&quot;, &quot;claude-3-opus&quot;]
+    },
+    &quot;openai&quot;: {
+      &quot;apiKey&quot;: &quot;your-key&quot;,
+      &quot;models&quot;: [&quot;gpt-4-turbo&quot;, &quot;gpt-4o&quot;]
+    },
+    &quot;ollama&quot;: {
+      &quot;baseUrl&quot;: &quot;http://localhost:11434&quot;,
+      &quot;models&quot;: [&quot;llama3.1&quot;, &quot;codellama&quot;]
+    }
+  },
+  &quot;roo.defaultProvider&quot;: &quot;anthropic&quot;,
+  &quot;roo.defaultModel&quot;: &quot;claude-3-5-sonnet&quot;
+}
+</code></pre>
+<h3>Multi-Model Workflow</h3>
+<pre><code class="language-bash"># Start with fast model for simple tasks
+roo --model gpt-4o &quot;fix this typo&quot;
+
+# Switch to powerful model for complex tasks
+roo --model claude-3-opus &quot;refactor authentication system&quot;
+
+# Use local model for privacy
+roo --model ollama/llama3.1 &quot;review this code&quot;
+</code></pre>
+<hr>
+<h2>5. Kilo Code (Lightweight)</h2>
+<p>Kilo Code is minimalist and fast, perfect for quick tasks.</p>
+<h3>Installation</h3>
+<pre><code class="language-bash"># Simple npm install
+npm install -g kilo-code
+
+# Or single binary
+curl -fsSL https://kilo.dev/install.sh | bash
+</code></pre>
+<h3>Configuration</h3>
+<p>Minimal config in <code>~/.kilorc</code>:</p>
+<pre><code class="language-bash">KILO_API_KEY=your-anthropic-key
+KILO_MODEL=claude-3-5-sonnet
+KILO_CONTEXT_SIZE=medium
+</code></pre>
+<h3>Usage</h3>
+<pre><code class="language-bash"># Quick question
+kilo &quot;what does this function do?&quot; src/utils.ts
+
+# Quick fix
+kilo fix src/buggy.ts
+
+# Quick test
+kilo test src/utils.ts
+
+# Quick docs
+kilo docs src/api/
+</code></pre>
+<h3>Best For</h3>
+<ul>
+<li>One-off questions</li>
+<li>Quick fixes</li>
+<li>Fast documentation</li>
+<li>Low resource usage</li>
+</ul>
+<hr>
+<h2>Recommended Setup Strategy</h2>
+<h3>For Beginners</h3>
+<ol>
+<li>Start with <strong>Claude Code</strong> (official, well-documented)</li>
+<li>Add <strong>Cline</strong> for VS Code integration</li>
+<li>Learn fundamentals before adding more tools</li>
+</ol>
+<h3>For Power Users</h3>
+<ol>
+<li><strong>Claude Code</strong> as primary CLI</li>
+<li><strong>OpenCode</strong> with oh-my-opencode for customization</li>
+<li><strong>Roo Code</strong> for multi-model experiments</li>
+</ol>
+<h3>For Enterprise</h3>
+<ol>
+<li><strong>Claude Code</strong> with strict permissions</li>
+<li>Custom <strong>MCP servers</strong> for internal data</li>
+<li><strong>OpenCode</strong> for self-hosted option</li>
+</ol>
+<hr>
+<h2>Verification Checklist</h2>
+<p>Run through this checklist to verify your setup:</p>
+<pre><code class="language-bash"># 1. Claude Code
+claude --version
+claude &quot;Hello, verify you&#39;re working&quot;
+
+# 2. OpenCode (if installed)
+opencode --version
+opencode &quot;Hello, verify you&#39;re working&quot;
+
+# 3. Check VS Code extensions
+code --list-extensions | grep -i &quot;cline\|roo&quot;
+</code></pre>
+<p>Expected results:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Claude Code responds to queries</li>
+<li><input disabled="" type="checkbox"> API key is recognized</li>
+<li><input disabled="" type="checkbox"> Project context loads correctly</li>
+<li><input disabled="" type="checkbox"> File operations work (with approval)</li>
+</ul>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>&quot;API key not found&quot;</h3>
+<pre><code class="language-bash"># Verify key is set
+echo $ANTHROPIC_API_KEY | head -c 10
+
+# Re-export if needed
+export ANTHROPIC_API_KEY=&quot;sk-ant-...&quot;
+</code></pre>
+<h3>&quot;Rate limited&quot;</h3>
+<ul>
+<li>Wait and retry</li>
+<li>Consider upgrading API tier</li>
+<li>Use a smaller model for frequent tasks</li>
+</ul>
+<h3>&quot;Context too large&quot;</h3>
+<ul>
+<li>Use <code>/compact</code> command</li>
+<li>Be more selective with file reading</li>
+<li>Clear conversation with <code>/clear</code></li>
+</ul>
+<h3>&quot;Permission denied&quot;</h3>
+<pre><code class="language-bash"># Fix npm permissions
+sudo chown -R $(whoami) ~/.npm
+npm install -g @anthropic-ai/claude-code
+</code></pre>
+<hr>
+<h2>Lab Exercise</h2>
+<h3>Lab 2.1: Install and Configure Claude Code</h3>
+<ol>
+<li>Install Claude Code</li>
+<li>Set up API key</li>
+<li>Create CLAUDE.md for a test project</li>
+<li>Run a simple query</li>
+<li>Verify file operations work</li>
+</ol>
+<p><strong>Success Criteria</strong>:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Claude responds to queries</li>
+<li><input disabled="" type="checkbox"> Can read files in project</li>
+<li><input disabled="" type="checkbox"> Project context is understood</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<p>With your agent installed, let&#39;s build your first AI assistant:</p>
+<p><strong><a href="../03-first-agent/">Module 3: First Agent →</a></strong></p>
+<hr>
+<p><em>Estimated time: 2 hours | Next: First Agent</em></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

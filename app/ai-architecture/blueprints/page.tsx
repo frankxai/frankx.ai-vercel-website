@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -141,7 +142,7 @@ export default function BlueprintsPage() {
   return (
     <main className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
-      <section className="pt-32 pb-12">
+      <section className="pt-8 pb-12">
         <div className="mx-auto max-w-6xl px-6">
           <Link
             href="/ai-architecture"

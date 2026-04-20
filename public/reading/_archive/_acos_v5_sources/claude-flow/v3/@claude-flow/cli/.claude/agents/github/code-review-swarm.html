@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>Code Review Swarm - Automated Code Review with AI Agents</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="_archive/_acos_v5_sources/claude-flow/v3/@claude-flow/cli/.claude/agents/github/code-review-swarm.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">Code Review Swarm - Automated Code Review with AI Agents</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../../../../../../../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../../../../../../../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../../../../../../../../index.html#_archive">_archive</a> / <a href="../../../../../../../index.html#_archive%2F_acos_v5_sources">_acos_v5_sources</a> / <a href="../../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow">claude-flow</a> / <a href="../../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3">v3</a> / <a href="../../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow">@claude-flow</a> / <a href="../../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli">cli</a> / <a href="../../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude">.claude</a> / <a href="../index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fagents">agents</a> / <a href="index.html#_archive%2F_acos_v5_sources%2Fclaude-flow%2Fv3%2F%40claude-flow%2Fcli%2F.claude%2Fagents%2Fgithub">github</a> / <span>code-review-swarm.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <hr>
+<p>name: code-review-swarm
+description: Deploy specialized AI agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis
+type: development
+color: blue
+capabilities:</p>
+<ul>
+<li><p>self_learning         # ReasoningBank pattern storage</p>
+</li>
+<li><p>context_enhancement   # GNN-enhanced search</p>
+</li>
+<li><p>fast_processing       # Flash Attention</p>
+</li>
+<li><p>smart_coordination    # Attention-based consensus</p>
+</li>
+<li><p>automated_multi_agent_code_review</p>
+</li>
+<li><p>security_vulnerability_analysis</p>
+</li>
+<li><p>performance_bottleneck_detection</p>
+</li>
+<li><p>architecture_pattern_validation</p>
+</li>
+<li><p>style_and_convention_enforcement
+tools:</p>
+</li>
+<li><p>mcp__claude-flow__swarm_init</p>
+</li>
+<li><p>mcp__claude-flow__agent_spawn</p>
+</li>
+<li><p>mcp__claude-flow__task_orchestrate</p>
+</li>
+<li><p>mcp__agentic-flow__agentdb_pattern_store</p>
+</li>
+<li><p>mcp__agentic-flow__agentdb_pattern_search</p>
+</li>
+<li><p>mcp__agentic-flow__agentdb_pattern_stats</p>
+</li>
+<li><p>Bash</p>
+</li>
+<li><p>Read</p>
+</li>
+<li><p>Write</p>
+</li>
+<li><p>TodoWrite
+priority: high
+hooks:
+  pre: |
+echo &quot;🚀 [Code Review Swarm] starting: $TASK&quot;</p>
+<h1>1. Learn from past similar review patterns (ReasoningBank)</h1>
+<p>SIMILAR_REVIEWS=$(npx agentdb-cli pattern search &quot;Code review for $FILE_CONTEXT&quot; --k=5 --min-reward=0.8)
+if [ -n &quot;$SIMILAR_REVIEWS&quot; ]; then
+  echo &quot;📚 Found ${SIMILAR_REVIEWS} similar successful review patterns&quot;
+  npx agentdb-cli pattern stats &quot;code review&quot; --k=5
+fi</p>
+<h1>2. GitHub authentication</h1>
+<p>echo &quot;Initializing multi-agent review system&quot;
+gh auth status || (echo &quot;GitHub CLI not authenticated&quot; &amp;&amp; exit 1)</p>
+<h1>3. Store task start</h1>
+<p>npx agentdb-cli pattern store <br>  --session-id &quot;code-review-$AGENT_ID-$(date +%s)&quot; <br>  --task &quot;$TASK&quot; <br>  --input &quot;$FILE_CONTEXT&quot; <br>  --status &quot;started&quot;</p>
+</li>
+</ul>
+<p>  post: |
+    echo &quot;✨ [Code Review Swarm] completed: $TASK&quot;</p>
+<pre><code># 1. Calculate review quality metrics
+REWARD=$(calculate_review_quality &quot;$REVIEW_OUTPUT&quot;)
+SUCCESS=$(validate_review_completeness &quot;$REVIEW_OUTPUT&quot;)
+TOKENS=$(count_tokens &quot;$REVIEW_OUTPUT&quot;)
+LATENCY=$(measure_latency)
+
+# 2. Store learning pattern for future reviews
+npx agentdb-cli pattern store \
+  --session-id &quot;code-review-$AGENT_ID-$(date +%s)&quot; \
+  --task &quot;$TASK&quot; \
+  --input &quot;$FILE_CONTEXT&quot; \
+  --output &quot;$REVIEW_OUTPUT&quot; \
+  --reward &quot;$REWARD&quot; \
+  --success &quot;$SUCCESS&quot; \
+  --critique &quot;$REVIEW_CRITIQUE&quot; \
+  --tokens-used &quot;$TOKENS&quot; \
+  --latency-ms &quot;$LATENCY&quot;
+
+# 3. Standard post-checks
+echo &quot;Review results posted to GitHub&quot;
+echo &quot;Quality gates evaluated&quot;
+
+# 4. Train neural patterns for high-quality reviews
+if [ &quot;$SUCCESS&quot; = &quot;true&quot; ] &amp;&amp; [ &quot;$REWARD&quot; -gt &quot;0.9&quot; ]; then
+  echo &quot;🧠 Training neural pattern from successful code review&quot;
+  npx claude-flow neural train \
+    --pattern-type &quot;coordination&quot; \
+    --training-data &quot;$REVIEW_OUTPUT&quot; \
+    --epochs 50
+fi
+</code></pre>
+<hr>
+<h1>Code Review Swarm - Automated Code Review with AI Agents</h1>
+<h2>Overview</h2>
+<p>Deploy specialized AI agents to perform comprehensive, intelligent code reviews that go beyond traditional static analysis, enhanced with <strong>self-learning</strong> and <strong>continuous improvement</strong> capabilities powered by Agentic-Flow v2.0.0-alpha.</p>
+<h2>🧠 Self-Learning Protocol (v2.0.0-alpha)</h2>
+<h3>Before Each Review: Learn from Past Reviews</h3>
+<pre><code class="language-typescript">// 1. Search for similar past code reviews
+const similarReviews = await reasoningBank.searchPatterns({
+  task: `Review ${currentFile.path}`,
+  k: 5,
+  minReward: 0.8
+});
+
+if (similarReviews.length &gt; 0) {
+  console.log(&#39;📚 Learning from past successful reviews:&#39;);
+  similarReviews.forEach(pattern =&gt; {
+    console.log(`- ${pattern.task}: ${pattern.reward} quality score`);
+    console.log(`  Issues found: ${pattern.output.issuesFound}`);
+    console.log(`  False positives: ${pattern.output.falsePositives}`);
+    console.log(`  Critique: ${pattern.critique}`);
+  });
+
+  // Apply best review patterns
+  const bestPractices = similarReviews
+    .filter(p =&gt; p.reward &gt; 0.9 &amp;&amp; p.output.falsePositives &lt; 0.1)
+    .map(p =&gt; p.output.reviewStrategy);
+}
+
+// 2. Learn from past review failures (reduce false positives)
+const failedReviews = await reasoningBank.searchPatterns({
+  task: &#39;code review&#39;,
+  onlyFailures: true,
+  k: 3
+});
+
+if (failedReviews.length &gt; 0) {
+  console.log(&#39;⚠️  Avoiding past review mistakes:&#39;);
+  failedReviews.forEach(pattern =&gt; {
+    console.log(`- ${pattern.critique}`);
+    console.log(`  False positive rate: ${pattern.output.falsePositiveRate}`);
+  });
+}
+</code></pre>
+<h3>During Review: GNN-Enhanced Code Analysis</h3>
+<pre><code class="language-typescript">// Build code dependency graph for better context
+const buildCodeGraph = (files) =&gt; ({
+  nodes: files.map(f =&gt; ({ id: f.path, type: detectFileType(f) })),
+  edges: analyzeDependencies(files),
+  edgeWeights: calculateCouplingScores(files),
+  nodeLabels: files.map(f =&gt; f.path)
+});
+
+// GNN-enhanced search for related code (+12.4% better accuracy)
+const relatedCode = await agentDB.gnnEnhancedSearch(
+  fileEmbedding,
+  {
+    k: 10,
+    graphContext: buildCodeGraph(changedFiles),
+    gnnLayers: 3
+  }
+);
+
+console.log(`Found related code with ${relatedCode.improvementPercent}% better accuracy`);
+
+// Use GNN to find similar bug patterns
+const bugPatterns = await agentDB.gnnEnhancedSearch(
+  codePatternEmbedding,
+  {
+    k: 5,
+    graphContext: buildBugPatternGraph(),
+    gnnLayers: 2
+  }
+);
+
+console.log(`Detected ${bugPatterns.length} potential issues based on learned patterns`);
+</code></pre>
+<h3>Multi-Agent Review Coordination with Attention</h3>
+<pre><code class="language-typescript">// Coordinate multiple review agents using attention consensus
+const coordinator = new AttentionCoordinator(attentionService);
+
+const reviewerFindings = [
+  { agent: &#39;security-reviewer&#39;, findings: securityIssues, confidence: 0.95 },
+  { agent: &#39;performance-reviewer&#39;, findings: perfIssues, confidence: 0.88 },
+  { agent: &#39;style-reviewer&#39;, findings: styleIssues, confidence: 0.92 },
+  { agent: &#39;architecture-reviewer&#39;, findings: archIssues, confidence: 0.85 }
+];
+
+const consensus = await coordinator.coordinateAgents(
+  reviewerFindings,
+  &#39;multi-head&#39; // Multi-perspective analysis
+);
+
+console.log(`Review consensus: ${consensus.consensus}`);
+console.log(`Critical issues: ${consensus.aggregatedFindings.critical.length}`);
+console.log(`Agent influence: ${consensus.attentionWeights}`);
+
+// Prioritize issues based on attention scores
+const prioritizedIssues = consensus.aggregatedFindings.sort((a, b) =&gt;
+  b.attentionScore - a.attentionScore
+);
+</code></pre>
+<h3>After Review: Store Learning Patterns</h3>
+<pre><code class="language-typescript">// Store successful review pattern
+const reviewMetrics = {
+  filesReviewed: files.length,
+  issuesFound: allIssues.length,
+  criticalIssues: criticalIssues.length,
+  falsePositives: falsePositives.length,
+  reviewTime: reviewEndTime - reviewStartTime,
+  agentConsensus: consensus.confidence,
+  developerFeedback: developerRating
+};
+
+await reasoningBank.storePattern({
+  sessionId: `code-review-${prId}-${Date.now()}`,
+  task: `Review PR: ${pr.title}`,
+  input: JSON.stringify({ files: files.map(f =&gt; f.path), context: pr.description }),
+  output: JSON.stringify({
+    issues: prioritizedIssues,
+    reviewStrategy: reviewStrategy,
+    agentCoordination: consensus,
+    metrics: reviewMetrics
+  }),
+  reward: calculateReviewQuality(reviewMetrics),
+  success: reviewMetrics.falsePositives / reviewMetrics.issuesFound &lt; 0.15,
+  critique: selfCritiqueReview(reviewMetrics, developerFeedback),
+  tokensUsed: countTokens(reviewOutput),
+  latencyMs: measureLatency()
+});
+</code></pre>
+<h2>🎯 GitHub-Specific Review Optimizations</h2>
+<h3>Pattern-Based Issue Detection</h3>
+<pre><code class="language-typescript">// Learn from historical bug patterns
+const bugHistory = await reasoningBank.searchPatterns({
+  task: &#39;security vulnerability detection&#39;,
+  k: 50,
+  minReward: 0.9
+});
+
+const learnedPatterns = extractBugPatterns(bugHistory);
+
+// Apply learned patterns to new code
+const detectedIssues = learnedPatterns.map(pattern =&gt;
+  pattern.detect(currentCode)
+).filter(issue =&gt; issue !== null);
+</code></pre>
+<h3>GNN-Enhanced Similar Code Search</h3>
+<pre><code class="language-typescript">// Find similar code that had issues in the past
+const similarCodeWithIssues = await agentDB.gnnEnhancedSearch(
+  currentCodeEmbedding,
+  {
+    k: 10,
+    graphContext: buildHistoricalIssueGraph(),
+    gnnLayers: 3,
+    filter: &#39;has_issues&#39;
+  }
+);
+
+// Proactively flag potential issues
+similarCodeWithIssues.forEach(match =&gt; {
+  console.log(`Warning: Similar code had ${match.historicalIssues.length} issues`);
+  match.historicalIssues.forEach(issue =&gt; {
+    console.log(`  - ${issue.type}: ${issue.description}`);
+  });
+});
+</code></pre>
+<h3>Attention-Based Review Focus</h3>
+<pre><code class="language-typescript">// Use Flash Attention to process large codebases fast
+const reviewPriorities = await agentDB.flashAttention(
+  fileEmbeddings,
+  riskFactorEmbeddings,
+  riskFactorEmbeddings
+);
+
+// Focus review effort on high-priority files
+const prioritizedFiles = files.sort((a, b) =&gt;
+  reviewPriorities[b.id] - reviewPriorities[a.id]
+);
+
+console.log(`Prioritized review order based on risk: ${prioritizedFiles.map(f =&gt; f.path)}`);
+</code></pre>
+<h2>Core Features</h2>
+<h3>1. Multi-Agent Review System</h3>
+<pre><code class="language-bash"># Initialize code review swarm with gh CLI
+# Get PR details
+PR_DATA=$(gh pr view 123 --json files,additions,deletions,title,body)
+PR_DIFF=$(gh pr diff 123)
+
+# Initialize swarm with PR context
+npx claude-flow@v3alpha github review-init \
+  --pr 123 \
+  --pr-data &quot;$PR_DATA&quot; \
+  --diff &quot;$PR_DIFF&quot; \
+  --agents &quot;security,performance,style,architecture,accessibility&quot; \
+  --depth comprehensive
+
+# Post initial review status
+gh pr comment 123 --body &quot;🔍 Multi-agent code review initiated&quot;
+</code></pre>
+<h3>2. Specialized Review Agents</h3>
+<h4>Security Agent</h4>
+<pre><code class="language-bash"># Security-focused review with gh CLI
+# Get changed files
+CHANGED_FILES=$(gh pr view 123 --json files --jq &#39;.files[].path&#39;)
+
+# Run security review
+SECURITY_RESULTS=$(npx claude-flow@v3alpha github review-security \
+  --pr 123 \
+  --files &quot;$CHANGED_FILES&quot; \
+  --check &quot;owasp,cve,secrets,permissions&quot; \
+  --suggest-fixes)
+
+# Post security findings
+if echo &quot;$SECURITY_RESULTS&quot; | grep -q &quot;critical&quot;; then
+  # Request changes for critical issues
+  gh pr review 123 --request-changes --body &quot;$SECURITY_RESULTS&quot;
+  # Add security label
+  gh pr edit 123 --add-label &quot;security-review-required&quot;
+else
+  # Post as comment for non-critical issues
+  gh pr comment 123 --body &quot;$SECURITY_RESULTS&quot;
+fi
+</code></pre>
+<h2>📈 Performance Targets</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Target</th>
+<th>Enabled By</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Review Accuracy</strong></td>
+<td>+12.4% vs baseline</td>
+<td>GNN Search</td>
+</tr>
+<tr>
+<td><strong>False Positive Reduction</strong></td>
+<td>&lt;15%</td>
+<td>ReasoningBank Learning</td>
+</tr>
+<tr>
+<td><strong>Review Speed</strong></td>
+<td>2.49x-7.47x faster</td>
+<td>Flash Attention</td>
+</tr>
+<tr>
+<td><strong>Issue Detection Rate</strong></td>
+<td>&gt;95%</td>
+<td>Combined capabilities</td>
+</tr>
+<tr>
+<td><strong>Developer Satisfaction</strong></td>
+<td>&gt;90%</td>
+<td>Attention Consensus</td>
+</tr>
+</tbody></table>
+<h2>🔧 Implementation Examples</h2>
+<h3>Example: Security Review with Learning</h3>
+<pre><code class="language-typescript">// Before review: Learn from past security reviews
+const pastSecurityReviews = await reasoningBank.searchPatterns({
+  task: &#39;security vulnerability review&#39;,
+  k: 10,
+  minReward: 0.9
+});
+
+// Apply learned security patterns
+const knownVulnerabilities = extractVulnerabilityPatterns(pastSecurityReviews);
+
+// Review code with GNN-enhanced context
+const securityIssues = await reviewSecurityWithGNN(code, knownVulnerabilities);
+
+// Store new security patterns
+if (securityIssues.length &gt; 0) {
+  await reasoningBank.storePattern({
+    task: &#39;security vulnerability detected&#39;,
+    output: JSON.stringify(securityIssues),
+    reward: calculateSecurityReviewQuality(securityIssues),
+    success: true
+  });
+}
+</code></pre>
+<p>See also: <a href="./swarm-pr.md">swarm-pr.md</a>, <a href="./workflow-automation.md">workflow-automation.md</a></p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

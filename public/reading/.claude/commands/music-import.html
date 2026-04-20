@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>/music-import - Music Catalog Management</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href=".claude/commands/music-import.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body>
+  <header>
+    <div class="title">/music-import - Music Catalog Management</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../../index.html">← Back to Index (All Pages)</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="../index.html#.claude">.claude</a> / <a href="index.html#.claude%2Fcommands">commands</a> / <span>music-import.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>/music-import - Music Catalog Management</h1>
+<p><strong>Manage the FrankX music inventory — add, scrape, clean, and sync tracks.</strong></p>
+<h2>Quick Commands</h2>
+<p>When the user provides a Suno URL or track ID:</p>
+<ol>
+<li>Extract the sunoId from the URL (format: <code>https://suno.com/song/{sunoId}</code>)</li>
+<li>Fetch track metadata via the Suno CDN/API</li>
+<li>Add to <code>data/inventories/frankx/music.json</code> using the schema below</li>
+<li>Confirm the addition</li>
+</ol>
+<h2>Operations</h2>
+<h3>1. Add Single Track</h3>
+<p><strong>Trigger</strong>: User provides a Suno URL like <code>https://suno.com/song/abc123-def456</code></p>
+<pre><code class="language-bash"># Extract sunoId from URL
+SUNO_ID=&quot;abc123-def456&quot;
+
+# Verify the track exists (CDN check)
+curl -sI &quot;https://cdn1.suno.ai/${SUNO_ID}.mp3&quot; | head -1
+</code></pre>
+<p>Then add to inventory with this schema:</p>
+<pre><code class="language-json">{
+  &quot;id&quot;: &quot;track-slug-name&quot;,
+  &quot;type&quot;: &quot;music&quot;,
+  &quot;title&quot;: &quot;Track Title&quot;,
+  &quot;brand&quot;: &quot;frankx&quot;,
+  &quot;status&quot;: &quot;published&quot;,
+  &quot;tags&quot;: [&quot;genre1&quot;, &quot;genre2&quot;],
+  &quot;platform&quot;: &quot;suno&quot;,
+  &quot;sunoId&quot;: &quot;the-uuid&quot;,
+  &quot;sunoUrl&quot;: &quot;https://suno.com/song/the-uuid&quot;,
+  &quot;genre&quot;: [&quot;genre1&quot;, &quot;genre2&quot;],
+  &quot;plays&quot;: 0,
+  &quot;section&quot;: &quot;songs&quot;
+}
+</code></pre>
+<p>Optional fields: <code>coverUrl</code>, <code>likes</code>, <code>duration</code>, <code>audioUrl</code>, <code>mood</code>, <code>description</code>, <code>promptUsed</code></p>
+<h3>2. Bulk Scrape Profile</h3>
+<p><strong>Trigger</strong>: User says &quot;scrape&quot;, &quot;sync&quot;, &quot;discover new tracks&quot;, or &quot;update catalog&quot;</p>
+<pre><code class="language-bash">cd /mnt/c/Users/Frank/FrankX/.worktrees/vercel-ui-ux
+node scripts/scrape-suno-catalog.mjs --index-only
+</code></pre>
+<p>After scraping, report:</p>
+<ul>
+<li>How many new tracks discovered</li>
+<li>How many existing tracks updated</li>
+<li>Total inventory count</li>
+</ul>
+<h3>3. Clean Genre Data</h3>
+<p><strong>Trigger</strong>: User says &quot;clean genres&quot;, &quot;fix tags&quot;, or &quot;clean up catalog&quot;</p>
+<p>Read <code>data/inventories/frankx/music.json</code> and for each track:</p>
+<ul>
+<li>If <code>genre</code> array contains long strings (&gt;30 chars), they&#39;re raw Suno prompt descriptions</li>
+<li>Extract only genre keywords: e.g., &quot;K-pop&quot;, &quot;Electronic&quot;, &quot;Ambient&quot;, &quot;Lo-fi&quot;, &quot;Orchestral&quot;</li>
+<li>If <code>tags</code> duplicates <code>genre</code>, deduplicate</li>
+<li>If <code>title</code> starts with &quot;Track &quot; followed by a hash, flag it for manual naming</li>
+</ul>
+<h3>4. Download + Upload MP3s</h3>
+<p><strong>Trigger</strong>: User says &quot;download mp3s&quot;, &quot;upload to blob&quot;, or &quot;self-host tracks&quot;</p>
+<pre><code class="language-bash">cd /mnt/c/Users/Frank/FrankX/.worktrees/vercel-ui-ux
+
+# Download only
+node scripts/scrape-suno-catalog.mjs --download
+
+# Download + upload to Vercel Blob
+node scripts/scrape-suno-catalog.mjs --download --upload
+</code></pre>
+<p>Requires <code>BLOB_READ_WRITE_TOKEN</code> env var for upload.</p>
+<h3>5. Stats Report</h3>
+<p><strong>Trigger</strong>: User says &quot;music stats&quot;, &quot;catalog status&quot;, or &quot;how many tracks&quot;</p>
+<p>Read <code>data/inventories/frankx/music.json</code> and report:</p>
+<ul>
+<li>Total tracks</li>
+<li>Tracks by section (songs, hooks, featured)</li>
+<li>Tracks with/without audioUrl (self-hosted vs CDN)</li>
+<li>Tracks with/without coverUrl</li>
+<li>Tracks with empty genre</li>
+<li>Profile stats (_profileStats)</li>
+<li>Last updated date</li>
+</ul>
+<h2>File Locations</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>data/inventories/frankx/music.json</code></td>
+<td>Track inventory (production worktree)</td>
+</tr>
+<tr>
+<td><code>scripts/scrape-suno-catalog.mjs</code></td>
+<td>Automated scraper</td>
+</tr>
+<tr>
+<td><code>lib/music.ts</code></td>
+<td>Track interface + helpers</td>
+</tr>
+<tr>
+<td><code>lib/player-context.tsx</code></td>
+<td>Audio player state</td>
+</tr>
+<tr>
+<td><code>components/music/GlobalAudioPlayer.tsx</code></td>
+<td>Player UI</td>
+</tr>
+<tr>
+<td><code>components/music/TrackCard.tsx</code></td>
+<td>Track card component</td>
+</tr>
+</tbody></table>
+<h2>Genre Keyword Reference</h2>
+<p>Clean genre tags should use these standard keywords:
+<code>ambient</code>, <code>cinematic</code>, <code>electronic</code>, <code>epic</code>, <code>folk</code>, <code>hip-hop</code>, <code>indie</code>, <code>jazz</code>,
+<code>k-pop</code>, <code>lo-fi</code>, <code>meditation</code>, <code>metal</code>, <code>orchestral</code>, <code>pop</code>, <code>r&amp;b</code>, <code>rock</code>,
+<code>soul</code>, <code>synthwave</code>, <code>trap</code>, <code>world</code></p>
+<h2>After Adding Tracks</h2>
+<ol>
+<li>Commit the updated music.json</li>
+<li>Push to production: <code>git push origin main</code></li>
+<li>Vercel auto-deploys from main</li>
+</ol>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>
