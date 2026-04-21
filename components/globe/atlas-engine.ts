@@ -26,6 +26,8 @@ export interface AtlasRefs {
   coords: HTMLElement
   compassStar: SVGElement | null
   card: HTMLElement
+  cardFlag: HTMLElement
+  cardEmoji: HTMLElement
   cardTitle: HTMLElement
   cardAlts: HTMLElement
   cardKind: HTMLElement
@@ -69,6 +71,7 @@ export interface AtlasRefs {
   quizFeedback: HTMLElement
   quizSkip: HTMLElement
   quizEnd: HTMLElement
+  quizListen: HTMLElement
   quizProgress: HTMLElement
   langBtns: ArrayLike<HTMLButtonElement>
 }
@@ -124,6 +127,8 @@ export function initAtlas(refs: AtlasRefs, opts: AtlasOptions = {}): () => void 
   const compassStar = refs.compassStar
 
   const cardEl = refs.card
+  const cardFlag = refs.cardFlag
+  const cardEmoji = refs.cardEmoji
   const cardTitle = refs.cardTitle
   const cardAlts = refs.cardAlts
   const cardKind = refs.cardKind
@@ -169,6 +174,7 @@ export function initAtlas(refs: AtlasRefs, opts: AtlasOptions = {}): () => void 
   const quizFeedback = refs.quizFeedback
   const quizSkip = refs.quizSkip
   const quizEnd = refs.quizEnd
+  const quizListen = refs.quizListen
   const quizProgress = refs.quizProgress
   const langBtns = refs.langBtns
 
@@ -699,6 +705,8 @@ export function initAtlas(refs: AtlasRefs, opts: AtlasOptions = {}): () => void 
       const primary = info ? (info.name[LANG] || info.name.en) : f.properties.name
       cardKind.textContent = T('country')
       cardTitle.textContent = primary
+      cardFlag.textContent = info?.flag || ''
+      cardEmoji.textContent = info?.emoji || ''
       cardAlts.innerHTML = ''
       if (info) {
         const others = LANGS.filter((l) => l !== LANG)
@@ -719,15 +727,24 @@ export function initAtlas(refs: AtlasRefs, opts: AtlasOptions = {}): () => void 
         cardMeta.appendChild(cap)
       }
       cardFact.textContent = info ? (info.fact[LANG] || info.fact.en) : '—'
-      if (info && info.word) {
+      const wordList = info?.words || (info?.word ? [info.word] : [])
+      if (wordList.length) {
         cardWordBlock.style.display = 'block'
         wordRow.innerHTML = ''
-        const order = [LANG, ...LANGS.filter((l) => l !== LANG)]
-        for (const l of order) {
-          const w = document.createElement('span')
-          w.className = 'w' + (l === LANG ? ' primary' : '')
-          w.innerHTML = `${info.word[l]} <small>${l.toUpperCase()}</small>`
-          wordRow.appendChild(w)
+        for (const word of wordList) {
+          const group = document.createElement('div')
+          group.className = 'word-group'
+          const primaryW = document.createElement('span')
+          primaryW.className = 'w primary'
+          primaryW.innerHTML = `${word[LANG]} <small>${LANG.toUpperCase()}</small>`
+          group.appendChild(primaryW)
+          for (const l of LANGS.filter((x) => x !== LANG)) {
+            const w = document.createElement('span')
+            w.className = 'w'
+            w.innerHTML = `${word[l]} <small>${l.toUpperCase()}</small>`
+            group.appendChild(w)
+          }
+          wordRow.appendChild(group)
         }
       } else {
         cardWordBlock.style.display = 'none'
@@ -737,12 +754,14 @@ export function initAtlas(refs: AtlasRefs, opts: AtlasOptions = {}): () => void 
       const p = selected.place
       cardKind.textContent = T('landmark')
       cardTitle.textContent = p.name[LANG] || p.name.en
+      const info = COUNTRIES[p.country_key]
+      cardFlag.textContent = info?.flag || ''
+      cardEmoji.textContent = info?.emoji || ''
       cardAlts.innerHTML = ''
       for (const l of LANGS.filter((x) => x !== LANG)) {
         const s = document.createElement('span'); s.textContent = p.name[l]; cardAlts.appendChild(s)
       }
       cardMeta.innerHTML = ''
-      const info = COUNTRIES[p.country_key]
       if (info) {
         const c = document.createElement('div'); c.className = 'cap'
         c.innerHTML = `${T('country')} · <b>${info.name[LANG] || info.name.en}</b>`
@@ -897,8 +916,13 @@ export function initAtlas(refs: AtlasRefs, opts: AtlasOptions = {}): () => void 
     const awayLon = Math.random() * 360 - 180
     const awayLat = (Math.random() * 60 - 30)
     flyTo([awayLon, awayLat], 1.1)
-    setT(() => speak(targetName, LANG), 450)
   }
+  on(quizListen, 'click', () => {
+    if (!quiz || !quiz.targetFeature) return
+    const info = COUNTRIES[quiz.targetFeature.properties.name]
+    const targetName = info ? (info.name[LANG] || info.name.en) : quiz.targetFeature.properties.name
+    speak(targetName, LANG)
+  })
   function quizAnswer(feature: CountryFeature) {
     if (!quiz || quiz.locked || !quiz.targetFeature) return
     const correct = feature.id === quiz.targetFeature.id

@@ -36,6 +36,8 @@ export default function Atlas({
   const compassStarRef = useRef<SVGGElement>(null)
 
   const cardRef = useRef<HTMLElement>(null)
+  const cardFlagRef = useRef<HTMLSpanElement>(null)
+  const cardEmojiRef = useRef<HTMLSpanElement>(null)
   const cardTitleRef = useRef<HTMLHeadingElement>(null)
   const cardAltsRef = useRef<HTMLDivElement>(null)
   const cardKindRef = useRef<HTMLSpanElement>(null)
@@ -82,6 +84,7 @@ export default function Atlas({
   const quizFeedbackRef = useRef<HTMLDivElement>(null)
   const quizSkipRef = useRef<HTMLButtonElement>(null)
   const quizEndRef = useRef<HTMLButtonElement>(null)
+  const quizListenRef = useRef<HTMLButtonElement>(null)
   const quizProgressRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -92,6 +95,7 @@ export default function Atlas({
       !cardMetaRef.current || !cardFactRef.current || !cardCloseRef.current || !cardWordBlockRef.current ||
       !wordLblRef.current || !wordRowRef.current || !cardListenRef.current || !cardFlyRef.current ||
       !cardNearRef.current || !listenLblRef.current || !flyLblRef.current || !nearLblRef.current ||
+      !cardFlagRef.current || !cardEmojiRef.current ||
       !btnQuizRef.current || !btnQuizLblRef.current || !btnResetRef.current || !btnResetLblRef.current ||
       !btnSpinRef.current || !btnSpinLblRef.current || !btnRandomRef.current || !btnRandomLblRef.current ||
       !spinStateRef.current || !placesListRef.current || !placeCountRef.current || !placesHeadRef.current ||
@@ -99,7 +103,7 @@ export default function Atlas({
       !quizRef.current || !quizPromptRef.current || !quizTargetRef.current ||
       !quizRoundLblRef.current || !quizScoreLblRef.current || !quizStreakLblRef.current ||
       !quizRoundRef.current || !quizScoreRef.current || !quizStreakRef.current ||
-      !quizFeedbackRef.current || !quizSkipRef.current || !quizEndRef.current || !quizProgressRef.current ||
+      !quizFeedbackRef.current || !quizSkipRef.current || !quizEndRef.current || !quizListenRef.current || !quizProgressRef.current ||
       !langBtns
     ) return
 
@@ -110,6 +114,8 @@ export default function Atlas({
       coords: coordsRef.current,
       compassStar: compassStarRef.current as unknown as SVGElement | null,
       card: cardRef.current,
+      cardFlag: cardFlagRef.current,
+      cardEmoji: cardEmojiRef.current,
       cardTitle: cardTitleRef.current,
       cardAlts: cardAltsRef.current,
       cardKind: cardKindRef.current,
@@ -153,6 +159,7 @@ export default function Atlas({
       quizFeedback: quizFeedbackRef.current,
       quizSkip: quizSkipRef.current,
       quizEnd: quizEndRef.current,
+      quizListen: quizListenRef.current,
       quizProgress: quizProgressRef.current,
       langBtns,
     }
@@ -222,7 +229,11 @@ export default function Atlas({
           <span className="dot" />
           <span ref={cardKindRef}>Country</span>
         </div>
-        <h2 ref={cardTitleRef}>—</h2>
+        <div className="title-row">
+          <span ref={cardFlagRef} className="flag" aria-hidden="true" />
+          <h2 ref={cardTitleRef}>—</h2>
+          <span ref={cardEmojiRef} className="c-emoji" aria-hidden="true" />
+        </div>
         <div ref={cardAltsRef} className="alts" />
         <div ref={cardMetaRef} className="meta" />
         <p ref={cardFactRef} className="fact" />
@@ -289,6 +300,7 @@ export default function Atlas({
         </div>
         <div ref={quizFeedbackRef} className="feedback" />
         <div className="bar">
+          <button ref={quizListenRef} className="listen" aria-label="Hear the country name">🔊</button>
           <button ref={quizSkipRef}>Skip</button>
           <button ref={quizEndRef}>End game</button>
         </div>

@@ -207,12 +207,37 @@
   margin-bottom: 10px;
 }
 .atlas-root .card .kicker .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+.atlas-root .card .title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 2px;
+}
+.atlas-root .card .title-row h2 {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+.atlas-root .card .flag {
+  font-size: 28px;
+  line-height: 1;
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+.atlas-root .card .flag:empty { display: none; }
+.atlas-root .card .c-emoji {
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 2px;
+  flex: 0 0 auto;
+  opacity: 0.9;
+}
+.atlas-root .card .c-emoji:empty { display: none; }
 .atlas-root .card h2 {
   font-family: var(--atlas-serif);
   font-weight: 600;
   font-size: 24px;
   line-height: 1.1;
-  margin: 0 0 2px;
   letter-spacing: -0.01em;
 }
 .atlas-root .card .alts {
@@ -251,13 +276,26 @@
   color: var(--ink-soft);
   margin-bottom: 4px;
 }
-.atlas-root .card .word .row { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.atlas-root .card .word .row { display: flex; flex-direction: column; gap: 10px; }
+.atlas-root .card .word .word-group {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
+  border-bottom: 1px dotted var(--ink-ghost);
+}
+.atlas-root .card .word .word-group:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
 .atlas-root .card .word .w {
   font-family: var(--atlas-serif);
-  font-size: 16px;
+  font-size: 15px;
   display: inline-flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 4px;
+  color: var(--ink-soft);
 }
 .atlas-root .card .word .w small {
   font-family: var(--atlas-mono);
@@ -266,7 +304,7 @@
   color: var(--ink-soft);
   text-transform: uppercase;
 }
-.atlas-root .card .word .w.primary { font-size: 22px; font-weight: 600; color: var(--accent); }
+.atlas-root .card .word .w.primary { font-size: 19px; font-weight: 600; color: var(--accent); }
 .atlas-root .card .actions { display: flex; gap: 8px; padding-top: 12px; border-top: 1px solid var(--ink-ghost); flex-wrap: wrap; }
 .atlas-root .card .actions button {
   appearance: none;
@@ -487,6 +525,11 @@
   cursor: pointer;
 }
 .atlas-root .quiz button:hover { background: var(--ink); color: var(--paper); }
+.atlas-root .quiz button.listen {
+  font-size: 14px;
+  padding: 4px 8px;
+  line-height: 1;
+}
 .atlas-root .quiz .progress {
   width: 100%;
   height: 3px;
@@ -505,18 +548,82 @@
 
 @media (max-width: 1000px) {
   .atlas-root .places { display: none; }
-  .atlas-root .card { width: calc(100vw - 40px); left: 20px; }
+  .atlas-root .card { width: calc(100vw - 28px); left: 14px; }
 }
 @media (max-width: 720px) {
   .atlas-root .atlas-back { top: 14px; left: 14px; }
-  .atlas-root .lang { left: 14px; top: 54px; }
-  .atlas-root .bar { top: 14px; }
-  .atlas-root .controls { left: 14px; bottom: 14px; }
-  .atlas-root .btn { min-width: 0; padding: 8px 10px; font-size: 10px; }
-  .atlas-root .coords { right: 14px; }
-  .atlas-root .compass { right: 14px; top: 54px; width: 64px; height: 64px; }
-  .atlas-root .card { top: 106px; }
-  .atlas-root .quiz { top: 106px; min-width: 0; }
+  .atlas-root .lang { left: 14px; top: 54px; padding: 2px; }
+  .atlas-root .lang button { padding: 5px 8px; font-size: 10px; }
+  .atlas-root .bar { top: 14px; gap: 8px; }
+  .atlas-root .brand { font-size: 16px; }
+  .atlas-root .plate { display: none; }
+  .atlas-root .controls {
+    left: 14px;
+    bottom: 14px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: calc(100vw - 28px);
+  }
+  .atlas-root .btn {
+    min-width: 0;
+    padding: 7px 9px;
+    font-size: 9.5px;
+    gap: 6px;
+  }
+  .atlas-root .btn .kbd { display: none; }
+  .atlas-root .coords { display: none; }
+  .atlas-root .compass { display: none; }
+
+  /* Slim bottom sheet for country card */
+  .atlas-root .card {
+    top: auto;
+    bottom: 86px;
+    left: 14px;
+    right: 14px;
+    width: auto;
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    padding: 14px 16px 14px;
+    transform: translateY(20px);
+  }
+  .atlas-root .card.open { transform: translateY(0); }
+  .atlas-root .card h2 { font-size: 20px; }
+  .atlas-root .card .flag { font-size: 24px; }
+  .atlas-root .card .title-row { gap: 8px; }
+  .atlas-root .card .fact { font-size: 13px; }
+
+  /* Slim compact quiz bar — doesn't block the globe */
+  .atlas-root .quiz {
+    top: 102px;
+    left: 50%;
+    right: auto;
+    width: calc(100vw - 28px);
+    max-width: calc(100vw - 28px);
+    min-width: 0;
+    padding: 8px 12px;
+    gap: 2px;
+    box-shadow: 3px 3px 0 0 var(--ink);
+  }
+  .atlas-root .quiz .prompt { font-size: 9px; letter-spacing: 0.14em; }
+  .atlas-root .quiz .target { font-size: 20px; }
+  .atlas-root .quiz .hud { gap: 10px; margin-top: 2px; font-size: 9.5px; }
+  .atlas-root .quiz .feedback { font-size: 12px; margin-top: 2px; min-height: 14px; }
+  .atlas-root .quiz .bar { margin-top: 4px; gap: 6px; }
+  .atlas-root .quiz button { padding: 5px 8px; font-size: 9.5px; }
+  .atlas-root .quiz .progress { margin-top: 5px; }
+
+  /* Hint hidden on mobile — quiz bar is the tutorial surface */
+  .atlas-root .hint { display: none; }
+}
+
+/* Landscape phones + small heights — push card to bottom but keep it shorter */
+@media (max-height: 500px) and (orientation: landscape) {
+  .atlas-root .card {
+    max-height: calc(100vh - 120px);
+    bottom: 70px;
+  }
+  .atlas-root .quiz { top: 58px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -11,9 +11,16 @@ export interface CountryWord extends LocalizedString {
 }
 
 export interface CountryInfo {
+  /** Unicode flag emoji, e.g. "🇫🇷". */
+  flag?: string
+  /** 2-3 representative emojis as a single string, e.g. "🥖🗼". */
+  emoji?: string
   name: LocalizedString
   capital: LocalizedString
   fact: LocalizedString
+  /** Kid-vocabulary words (trilingual). Three per country. */
+  words?: CountryWord[]
+  /** Legacy single-word form; if present without `words`, treated as one entry. */
   word?: CountryWord
 }
 
@@ -68,6 +75,8 @@ export const I18N: Record<string, LocalizedString> = {
 // Keyed by the exact Natural Earth name (countries-50m.json → properties.name).
 export const COUNTRIES: Record<string, CountryInfo> = {
   "France": {
+    flag: "🇫🇷",
+    emoji: "🥖🗼",
     name: { en: "France", de: "Frankreich", hr: "Francuska" },
     capital: { en: "Paris", de: "Paris", hr: "Pariz" },
     fact: {
@@ -75,9 +84,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Frankreich hat fast die Form eines Sechsecks — sechs Seiten!",
       hr: "Francuska ima oblik šesterokuta — šest stranica!",
     },
-    word: { key: "bread", en: "bread", de: "Brot", hr: "kruh" },
+    words: [
+      { key: "bread", en: "bread", de: "Brot", hr: "kruh" },
+      { key: "cheese", en: "cheese", de: "Käse", hr: "sir" },
+      { key: "sun", en: "sun", de: "Sonne", hr: "sunce" },
+    ],
   },
   "Germany": {
+    flag: "🇩🇪",
+    emoji: "🍺🏰🌲",
     name: { en: "Germany", de: "Deutschland", hr: "Njemačka" },
     capital: { en: "Berlin", de: "Berlin", hr: "Berlin" },
     fact: {
@@ -85,9 +100,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Deutschland gibt es über 1.500 verschiedene Wurstsorten.",
       hr: "U Njemačkoj postoji više od 1.500 vrsta kobasica.",
     },
-    word: { key: "forest", en: "forest", de: "Wald", hr: "šuma" },
+    words: [
+      { key: "forest", en: "forest", de: "Wald", hr: "šuma" },
+      { key: "bread", en: "bread", de: "Brot", hr: "kruh" },
+      { key: "castle", en: "castle", de: "Schloss", hr: "dvorac" },
+    ],
   },
   "Italy": {
+    flag: "🇮🇹",
+    emoji: "🍕🎨",
     name: { en: "Italy", de: "Italien", hr: "Italija" },
     capital: { en: "Rome", de: "Rom", hr: "Rim" },
     fact: {
@@ -95,9 +116,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Italien sieht aus wie ein Stiefel, der einen Stein kickt (Sizilien).",
       hr: "Italija izgleda kao čizma koja udara kamen (Siciliju).",
     },
-    word: { key: "pizza", en: "pizza", de: "Pizza", hr: "pizza" },
+    words: [
+      { key: "pizza", en: "pizza", de: "Pizza", hr: "pizza" },
+      { key: "pasta", en: "pasta", de: "Pasta", hr: "tjestenina" },
+      { key: "sea", en: "sea", de: "Meer", hr: "more" },
+    ],
   },
   "Spain": {
+    flag: "🇪🇸",
+    emoji: "💃🌞",
     name: { en: "Spain", de: "Spanien", hr: "Španjolska" },
     capital: { en: "Madrid", de: "Madrid", hr: "Madrid" },
     fact: {
@@ -105,9 +132,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Spanien isst man manchmal erst um 15 Uhr zu Mittag!",
       hr: "U Španjolskoj se ručak može jesti čak u 15 sati!",
     },
-    word: { key: "sun", en: "sun", de: "Sonne", hr: "sunce" },
+    words: [
+      { key: "sun", en: "sun", de: "Sonne", hr: "sunce" },
+      { key: "orange", en: "orange", de: "Orange", hr: "naranča" },
+      { key: "dance", en: "dance", de: "Tanz", hr: "ples" },
+    ],
   },
   "Portugal": {
+    flag: "🇵🇹",
+    emoji: "🏄⚓🍷",
     name: { en: "Portugal", de: "Portugal", hr: "Portugal" },
     capital: { en: "Lisbon", de: "Lissabon", hr: "Lisabon" },
     fact: {
@@ -115,9 +148,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Der meiste Kork der Welt kommt aus Portugal.",
       hr: "Većina pluta na svijetu dolazi iz Portugala.",
     },
-    word: { key: "ocean", en: "ocean", de: "Ozean", hr: "ocean" },
+    words: [
+      { key: "ocean", en: "ocean", de: "Ozean", hr: "ocean" },
+      { key: "fish", en: "fish", de: "Fisch", hr: "riba" },
+      { key: "cork", en: "cork", de: "Kork", hr: "pluto" },
+    ],
   },
   "United Kingdom": {
+    flag: "🇬🇧",
+    emoji: "☕👑",
     name: { en: "United Kingdom", de: "Vereinigtes Königreich", hr: "Ujedinjeno Kraljevstvo" },
     capital: { en: "London", de: "London", hr: "London" },
     fact: {
@@ -125,9 +164,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Irland gibt es keine Schlangen — die Sage sagt, St. Patrick habe sie vertrieben.",
       hr: "U Irskoj nema zmija — legenda kaže da ih je sveti Patrik otjerao.",
     },
-    word: { key: "tea", en: "tea", de: "Tee", hr: "čaj" },
+    words: [
+      { key: "tea", en: "tea", de: "Tee", hr: "čaj" },
+      { key: "rain", en: "rain", de: "Regen", hr: "kiša" },
+      { key: "queen", en: "queen", de: "Königin", hr: "kraljica" },
+    ],
   },
   "Ireland": {
+    flag: "🇮🇪",
+    emoji: "☘️🌈",
     name: { en: "Ireland", de: "Irland", hr: "Irska" },
     capital: { en: "Dublin", de: "Dublin", hr: "Dublin" },
     fact: {
@@ -135,9 +180,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Irland heißt auch die Grüne Insel, weil es so grün ist.",
       hr: "Irsku zovu Smaragdnim otokom jer je vrlo zelena.",
     },
-    word: { key: "green", en: "green", de: "grün", hr: "zelena" },
+    words: [
+      { key: "green", en: "green", de: "grün", hr: "zelena" },
+      { key: "shamrock", en: "shamrock", de: "Kleeblatt", hr: "djetelina" },
+      { key: "sheep", en: "sheep", de: "Schaf", hr: "ovca" },
+    ],
   },
   "Iceland": {
+    flag: "🇮🇸",
+    emoji: "🌋❄️",
     name: { en: "Iceland", de: "Island", hr: "Island" },
     capital: { en: "Reykjavík", de: "Reykjavík", hr: "Reykjavík" },
     fact: {
@@ -145,9 +196,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Island hat Vulkane UND Gletscher — Feuer und Eis.",
       hr: "Island ima vulkane I ledenjake — vatra i led.",
     },
-    word: { key: "ice", en: "ice", de: "Eis", hr: "led" },
+    words: [
+      { key: "ice", en: "ice", de: "Eis", hr: "led" },
+      { key: "volcano", en: "volcano", de: "Vulkan", hr: "vulkan" },
+      { key: "fish", en: "fish", de: "Fisch", hr: "riba" },
+    ],
   },
   "Norway": {
+    flag: "🇳🇴",
+    emoji: "🏔️⛷️",
     name: { en: "Norway", de: "Norwegen", hr: "Norveška" },
     capital: { en: "Oslo", de: "Oslo", hr: "Oslo" },
     fact: {
@@ -155,9 +212,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Norwegen geht die Sonne im Sommer nie ganz unter.",
       hr: "U Norveškoj ljeti sunce nikad potpuno ne zalazi.",
     },
-    word: { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+    words: [
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "salmon", en: "salmon", de: "Lachs", hr: "losos" },
+      { key: "troll", en: "troll", de: "Troll", hr: "trol" },
+    ],
   },
   "Sweden": {
+    flag: "🇸🇪",
+    emoji: "❄️🎄",
     name: { en: "Sweden", de: "Schweden", hr: "Švedska" },
     capital: { en: "Stockholm", de: "Stockholm", hr: "Stockholm" },
     fact: {
@@ -165,9 +228,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Schweden gibt es ein Hotel ganz aus Eis, das jeden Winter neu gebaut wird.",
       hr: "Švedska ima hotel u potpunosti od leda koji se svake zime ponovno gradi.",
     },
-    word: { key: "snow", en: "snow", de: "Schnee", hr: "snijeg" },
+    words: [
+      { key: "snow", en: "snow", de: "Schnee", hr: "snijeg" },
+      { key: "pine", en: "pine", de: "Kiefer", hr: "bor" },
+      { key: "viking", en: "viking", de: "Wikinger", hr: "Viking" },
+    ],
   },
   "Finland": {
+    flag: "🇫🇮",
+    emoji: "❄️🦌",
     name: { en: "Finland", de: "Finnland", hr: "Finska" },
     capital: { en: "Helsinki", de: "Helsinki", hr: "Helsinki" },
     fact: {
@@ -175,9 +244,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Finnland hat 188.000 Seen. Das sind viele Seen.",
       hr: "Finska ima 188.000 jezera. To je puno jezera.",
     },
-    word: { key: "lake", en: "lake", de: "See", hr: "jezero" },
+    words: [
+      { key: "lake", en: "lake", de: "See", hr: "jezero" },
+      { key: "sauna", en: "sauna", de: "Sauna", hr: "sauna" },
+      { key: "reindeer", en: "reindeer", de: "Rentier", hr: "sob" },
+    ],
   },
   "Denmark": {
+    flag: "🇩🇰",
+    emoji: "🧱🚲",
     name: { en: "Denmark", de: "Dänemark", hr: "Danska" },
     capital: { en: "Copenhagen", de: "Kopenhagen", hr: "Kopenhagen" },
     fact: {
@@ -185,9 +260,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "LEGO wurde 1932 in Dänemark erfunden.",
       hr: "LEGO je izmišljen u Danskoj 1932. godine.",
     },
-    word: { key: "toy", en: "toy", de: "Spielzeug", hr: "igračka" },
+    words: [
+      { key: "toy", en: "toy", de: "Spielzeug", hr: "igračka" },
+      { key: "bread", en: "bread", de: "Brot", hr: "kruh" },
+      { key: "bicycle", en: "bicycle", de: "Fahrrad", hr: "bicikl" },
+    ],
   },
   "Netherlands": {
+    flag: "🇳🇱",
+    emoji: "🌷🚲",
     name: { en: "Netherlands", de: "Niederlande", hr: "Nizozemska" },
     capital: { en: "Amsterdam", de: "Amsterdam", hr: "Amsterdam" },
     fact: {
@@ -195,9 +276,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Ein Drittel der Niederlande liegt unter dem Meeresspiegel.",
       hr: "Trećina Nizozemske je ispod razine mora.",
     },
-    word: { key: "bicycle", en: "bicycle", de: "Fahrrad", hr: "bicikl" },
+    words: [
+      { key: "bicycle", en: "bicycle", de: "Fahrrad", hr: "bicikl" },
+      { key: "tulip", en: "tulip", de: "Tulpe", hr: "tulipan" },
+      { key: "windmill", en: "windmill", de: "Windmühle", hr: "vjetrenjača" },
+    ],
   },
   "Belgium": {
+    flag: "🇧🇪",
+    emoji: "🍫🧇",
     name: { en: "Belgium", de: "Belgien", hr: "Belgija" },
     capital: { en: "Brussels", de: "Brüssel", hr: "Bruxelles" },
     fact: {
@@ -205,9 +292,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Belgien produziert jährlich über 220.000 Tonnen Schokolade.",
       hr: "Belgija proizvodi preko 220.000 tona čokolade godišnje.",
     },
-    word: { key: "chocolate", en: "chocolate", de: "Schokolade", hr: "čokolada" },
+    words: [
+      { key: "chocolate", en: "chocolate", de: "Schokolade", hr: "čokolada" },
+      { key: "waffle", en: "waffle", de: "Waffel", hr: "vafl" },
+      { key: "fries", en: "fries", de: "Pommes", hr: "pomfrit" },
+    ],
   },
   "Switzerland": {
+    flag: "🇨🇭",
+    emoji: "⛰️🧀",
     name: { en: "Switzerland", de: "Schweiz", hr: "Švicarska" },
     capital: { en: "Bern", de: "Bern", hr: "Bern" },
     fact: {
@@ -215,9 +308,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Die Schweiz hat vier Amtssprachen.",
       hr: "Švicarska ima četiri službena jezika.",
     },
-    word: { key: "cheese", en: "cheese", de: "Käse", hr: "sir" },
+    words: [
+      { key: "cheese", en: "cheese", de: "Käse", hr: "sir" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "watch", en: "watch", de: "Uhr", hr: "sat" },
+    ],
   },
   "Austria": {
+    flag: "🇦🇹",
+    emoji: "🎼🏔️",
     name: { en: "Austria", de: "Österreich", hr: "Austrija" },
     capital: { en: "Vienna", de: "Wien", hr: "Beč" },
     fact: {
@@ -225,9 +324,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "'The Sound of Music' wurde in den österreichischen Alpen gedreht.",
       hr: "Film 'Moje pjesme, moji snovi' snimljen je u austrijskim Alpama.",
     },
-    word: { key: "music", en: "music", de: "Musik", hr: "glazba" },
+    words: [
+      { key: "music", en: "music", de: "Musik", hr: "glazba" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "coffee", en: "coffee", de: "Kaffee", hr: "kava" },
+    ],
   },
   "Poland": {
+    flag: "🇵🇱",
+    emoji: "🏰🥟",
     name: { en: "Poland", de: "Polen", hr: "Poljska" },
     capital: { en: "Warsaw", de: "Warschau", hr: "Varšava" },
     fact: {
@@ -235,9 +340,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Polen gibt es einen Wald mit J-förmig gebogenen Bäumen.",
       hr: "Poljska ima šumu gdje stabla rastu u zakrivljenom J-obliku.",
     },
-    word: { key: "river", en: "river", de: "Fluss", hr: "rijeka" },
+    words: [
+      { key: "river", en: "river", de: "Fluss", hr: "rijeka" },
+      { key: "bread", en: "bread", de: "Brot", hr: "kruh" },
+      { key: "forest", en: "forest", de: "Wald", hr: "šuma" },
+    ],
   },
   "Czechia": {
+    flag: "🇨🇿",
+    emoji: "🏰🍺",
     name: { en: "Czechia", de: "Tschechien", hr: "Češka" },
     capital: { en: "Prague", de: "Prag", hr: "Prag" },
     fact: {
@@ -245,9 +356,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Prags astronomische Uhr ist über 600 Jahre alt.",
       hr: "Praški astronomski sat star je preko 600 godina.",
     },
-    word: { key: "castle", en: "castle", de: "Schloss", hr: "dvorac" },
+    words: [
+      { key: "castle", en: "castle", de: "Schloss", hr: "dvorac" },
+      { key: "beer", en: "beer", de: "Bier", hr: "pivo" },
+      { key: "bridge", en: "bridge", de: "Brücke", hr: "most" },
+    ],
   },
   "Croatia": {
+    flag: "🇭🇷",
+    emoji: "🌊🏝️",
     name: { en: "Croatia", de: "Kroatien", hr: "Hrvatska" },
     capital: { en: "Zagreb", de: "Zagreb", hr: "Zagreb" },
     fact: {
@@ -255,9 +372,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Kroatien hat 1.244 Inseln entlang seiner funkelnden Küste.",
       hr: "Hrvatska ima 1.244 otoka duž svoje svjetlucave obale.",
     },
-    word: { key: "sea", en: "sea", de: "Meer", hr: "more" },
+    words: [
+      { key: "sea", en: "sea", de: "Meer", hr: "more" },
+      { key: "island", en: "island", de: "Insel", hr: "otok" },
+      { key: "olive", en: "olive", de: "Olive", hr: "maslina" },
+    ],
   },
   "Serbia": {
+    flag: "🇷🇸",
+    emoji: "🏞️🎶",
     name: { en: "Serbia", de: "Serbien", hr: "Srbija" },
     capital: { en: "Belgrade", de: "Belgrad", hr: "Beograd" },
     fact: {
@@ -265,9 +388,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Die Donau fließt mitten durch Serbiens Hauptstadt.",
       hr: "Dunav teče kroz samu serbsku prijestolnicu.",
     },
-    word: { key: "river", en: "river", de: "Fluss", hr: "rijeka" },
+    words: [
+      { key: "river", en: "river", de: "Fluss", hr: "rijeka" },
+      { key: "plum", en: "plum", de: "Pflaume", hr: "šljiva" },
+      { key: "music", en: "music", de: "Musik", hr: "glazba" },
+    ],
   },
   "Bosnia and Herz.": {
+    flag: "🇧🇦",
+    emoji: "🌉☕",
     name: { en: "Bosnia and Herzegovina", de: "Bosnien und Herzegowina", hr: "Bosna i Hercegovina" },
     capital: { en: "Sarajevo", de: "Sarajevo", hr: "Sarajevo" },
     fact: {
@@ -275,9 +404,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Sarajevo treffen sich Ost und West seit Jahrhunderten.",
       hr: "U Sarajevu se stoljećima susreću Istok i Zapad.",
     },
-    word: { key: "bridge", en: "bridge", de: "Brücke", hr: "most" },
+    words: [
+      { key: "bridge", en: "bridge", de: "Brücke", hr: "most" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "coffee", en: "coffee", de: "Kaffee", hr: "kava" },
+    ],
   },
   "Slovenia": {
+    flag: "🇸🇮",
+    emoji: "🐝🌲",
     name: { en: "Slovenia", de: "Slowenien", hr: "Slovenija" },
     capital: { en: "Ljubljana", de: "Ljubljana", hr: "Ljubljana" },
     fact: {
@@ -285,9 +420,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Mehr als die Hälfte Sloweniens ist von Wald bedeckt.",
       hr: "Više od polovice Slovenije prekriveno je šumom.",
     },
-    word: { key: "bee", en: "bee", de: "Biene", hr: "pčela" },
+    words: [
+      { key: "bee", en: "bee", de: "Biene", hr: "pčela" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "lake", en: "lake", de: "See", hr: "jezero" },
+    ],
   },
   "Greece": {
+    flag: "🇬🇷",
+    emoji: "🏛️🫒",
     name: { en: "Greece", de: "Griechenland", hr: "Grčka" },
     capital: { en: "Athens", de: "Athen", hr: "Atena" },
     fact: {
@@ -295,9 +436,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Griechenland hat über 6.000 Inseln.",
       hr: "Grčka ima više od 6.000 otoka.",
     },
-    word: { key: "olive", en: "olive", de: "Olive", hr: "maslina" },
+    words: [
+      { key: "olive", en: "olive", de: "Olive", hr: "maslina" },
+      { key: "sea", en: "sea", de: "Meer", hr: "more" },
+      { key: "column", en: "column", de: "Säule", hr: "stup" },
+    ],
   },
   "Turkey": {
+    flag: "🇹🇷",
+    emoji: "🕌☕",
     name: { en: "Turkey", de: "Türkei", hr: "Turska" },
     capital: { en: "Ankara", de: "Ankara", hr: "Ankara" },
     fact: {
@@ -305,9 +452,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Die Türkei liegt auf ZWEI Kontinenten: Europa und Asien.",
       hr: "Turska leži na DVA kontinenta: Europi i Aziji.",
     },
-    word: { key: "carpet", en: "carpet", de: "Teppich", hr: "tepih" },
+    words: [
+      { key: "carpet", en: "carpet", de: "Teppich", hr: "tepih" },
+      { key: "tea", en: "tea", de: "Tee", hr: "čaj" },
+      { key: "mosque", en: "mosque", de: "Moschee", hr: "džamija" },
+    ],
   },
   "Russia": {
+    flag: "🇷🇺",
+    emoji: "🐻❄️",
     name: { en: "Russia", de: "Russland", hr: "Rusija" },
     capital: { en: "Moscow", de: "Moskau", hr: "Moskva" },
     fact: {
@@ -315,9 +468,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Russland erstreckt sich über 11 Zeitzonen — mehr als jedes andere Land.",
       hr: "Rusija se proteže kroz 11 vremenskih zona — najviše od svih zemalja.",
     },
-    word: { key: "bear", en: "bear", de: "Bär", hr: "medvjed" },
+    words: [
+      { key: "bear", en: "bear", de: "Bär", hr: "medvjed" },
+      { key: "snow", en: "snow", de: "Schnee", hr: "snijeg" },
+      { key: "forest", en: "forest", de: "Wald", hr: "šuma" },
+    ],
   },
   "Ukraine": {
+    flag: "🇺🇦",
+    emoji: "🌾🌻",
     name: { en: "Ukraine", de: "Ukraine", hr: "Ukrajina" },
     capital: { en: "Kyiv", de: "Kyjiw", hr: "Kijev" },
     fact: {
@@ -325,9 +484,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Die Ukraine ist das größte Land, das ganz in Europa liegt.",
       hr: "Ukrajina je najveća zemlja koja se u cijelosti nalazi u Europi.",
     },
-    word: { key: "wheat", en: "wheat", de: "Weizen", hr: "pšenica" },
+    words: [
+      { key: "wheat", en: "wheat", de: "Weizen", hr: "pšenica" },
+      { key: "sunflower", en: "sunflower", de: "Sonnenblume", hr: "suncokret" },
+      { key: "egg", en: "egg", de: "Ei", hr: "jaje" },
+    ],
   },
   "Egypt": {
+    flag: "🇪🇬",
+    emoji: "🐫🔺",
     name: { en: "Egypt", de: "Ägypten", hr: "Egipat" },
     capital: { en: "Cairo", de: "Kairo", hr: "Kairo" },
     fact: {
@@ -335,9 +500,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Der Nil ist der längste Fluss der Erde.",
       hr: "Nil je najdulja rijeka na Zemlji.",
     },
-    word: { key: "pyramid", en: "pyramid", de: "Pyramide", hr: "piramida" },
+    words: [
+      { key: "pyramid", en: "pyramid", de: "Pyramide", hr: "piramida" },
+      { key: "river", en: "river", de: "Fluss", hr: "rijeka" },
+      { key: "cat", en: "cat", de: "Katze", hr: "mačka" },
+    ],
   },
   "Morocco": {
+    flag: "🇲🇦",
+    emoji: "🐪🏜️",
     name: { en: "Morocco", de: "Marokko", hr: "Maroko" },
     capital: { en: "Rabat", de: "Rabat", hr: "Rabat" },
     fact: {
@@ -345,9 +516,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Marokko hat eine blaue Stadt namens Chefchaouen.",
       hr: "Maroko ima plavi grad koji se zove Chefchaouen.",
     },
-    word: { key: "desert", en: "desert", de: "Wüste", hr: "pustinja" },
+    words: [
+      { key: "desert", en: "desert", de: "Wüste", hr: "pustinja" },
+      { key: "mint", en: "mint", de: "Minze", hr: "metvica" },
+      { key: "spice", en: "spice", de: "Gewürz", hr: "začin" },
+    ],
   },
   "Kenya": {
+    flag: "🇰🇪",
+    emoji: "🦁🌍",
     name: { en: "Kenya", de: "Kenia", hr: "Kenija" },
     capital: { en: "Nairobi", de: "Nairobi", hr: "Nairobi" },
     fact: {
@@ -355,9 +532,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Kenia hat einen Nationalpark direkt neben der Hauptstadt.",
       hr: "Kenija ima nacionalni park tik uz svoju prijestolnicu.",
     },
-    word: { key: "lion", en: "lion", de: "Löwe", hr: "lav" },
+    words: [
+      { key: "lion", en: "lion", de: "Löwe", hr: "lav" },
+      { key: "savanna", en: "savanna", de: "Savanne", hr: "savana" },
+      { key: "acacia", en: "acacia", de: "Akazie", hr: "akacija" },
+    ],
   },
   "South Africa": {
+    flag: "🇿🇦",
+    emoji: "🦒🏔️",
     name: { en: "South Africa", de: "Südafrika", hr: "Južnoafrička Republika" },
     capital: { en: "Pretoria", de: "Pretoria", hr: "Pretoria" },
     fact: {
@@ -365,9 +548,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Südafrika hat DREI Hauptstädte.",
       hr: "Južna Afrika ima TRI glavna grada.",
     },
-    word: { key: "elephant", en: "elephant", de: "Elefant", hr: "slon" },
+    words: [
+      { key: "elephant", en: "elephant", de: "Elefant", hr: "slon" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "ocean", en: "ocean", de: "Ozean", hr: "ocean" },
+    ],
   },
   "India": {
+    flag: "🇮🇳",
+    emoji: "🐘🌶️",
     name: { en: "India", de: "Indien", hr: "Indija" },
     capital: { en: "New Delhi", de: "Neu-Delhi", hr: "New Delhi" },
     fact: {
@@ -375,9 +564,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Indien hat 22 Amtssprachen.",
       hr: "Indija ima 22 službena jezika.",
     },
-    word: { key: "tiger", en: "tiger", de: "Tiger", hr: "tigar" },
+    words: [
+      { key: "tiger", en: "tiger", de: "Tiger", hr: "tigar" },
+      { key: "spice", en: "spice", de: "Gewürz", hr: "začin" },
+      { key: "elephant", en: "elephant", de: "Elefant", hr: "slon" },
+    ],
   },
   "China": {
+    flag: "🇨🇳",
+    emoji: "🐼🏯",
     name: { en: "China", de: "China", hr: "Kina" },
     capital: { en: "Beijing", de: "Peking", hr: "Peking" },
     fact: {
@@ -385,9 +580,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Die Chinesische Mauer ist über 21.000 km lang.",
       hr: "Kineski zid dugačak je preko 21.000 km.",
     },
-    word: { key: "dragon", en: "dragon", de: "Drache", hr: "zmaj" },
+    words: [
+      { key: "dragon", en: "dragon", de: "Drache", hr: "zmaj" },
+      { key: "rice", en: "rice", de: "Reis", hr: "riža" },
+      { key: "panda", en: "panda", de: "Panda", hr: "panda" },
+    ],
   },
   "Mongolia": {
+    flag: "🇲🇳",
+    emoji: "🐎⛺",
     name: { en: "Mongolia", de: "Mongolei", hr: "Mongolija" },
     capital: { en: "Ulaanbaatar", de: "Ulan-Bator", hr: "Ulan Bator" },
     fact: {
@@ -395,9 +596,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In der Mongolei gibt es mehr Pferde als Menschen.",
       hr: "Mongolija ima više konja nego ljudi.",
     },
-    word: { key: "horse", en: "horse", de: "Pferd", hr: "konj" },
+    words: [
+      { key: "horse", en: "horse", de: "Pferd", hr: "konj" },
+      { key: "sky", en: "sky", de: "Himmel", hr: "nebo" },
+      { key: "yurt", en: "yurt", de: "Jurte", hr: "jurta" },
+    ],
   },
   "Japan": {
+    flag: "🇯🇵",
+    emoji: "🌸🗻🍣",
     name: { en: "Japan", de: "Japan", hr: "Japan" },
     capital: { en: "Tokyo", de: "Tokio", hr: "Tokio" },
     fact: {
@@ -405,9 +612,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Japan besteht aus 14.000 Inseln.",
       hr: "Japan se sastoji od 14.000 otoka.",
     },
-    word: { key: "cherry blossom", en: "cherry blossom", de: "Kirschblüte", hr: "trešnjin cvijet" },
+    words: [
+      { key: "cherry blossom", en: "cherry blossom", de: "Kirschblüte", hr: "trešnjin cvijet" },
+      { key: "rice", en: "rice", de: "Reis", hr: "riža" },
+      { key: "fish", en: "fish", de: "Fisch", hr: "riba" },
+    ],
   },
   "South Korea": {
+    flag: "🇰🇷",
+    emoji: "🍜🐅",
     name: { en: "South Korea", de: "Südkorea", hr: "Južna Koreja" },
     capital: { en: "Seoul", de: "Seoul", hr: "Seul" },
     fact: {
@@ -415,9 +628,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Südkorea hat Instant-Ramen erfunden.",
       hr: "Južna Koreja izmislila je instant ramen rezance.",
     },
-    word: { key: "rice", en: "rice", de: "Reis", hr: "riža" },
+    words: [
+      { key: "rice", en: "rice", de: "Reis", hr: "riža" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "kimchi", en: "kimchi", de: "Kimchi", hr: "kimchi" },
+    ],
   },
   "Thailand": {
+    flag: "🇹🇭",
+    emoji: "🐘🛕",
     name: { en: "Thailand", de: "Thailand", hr: "Tajland" },
     capital: { en: "Bangkok", de: "Bangkok", hr: "Bangkok" },
     fact: {
@@ -425,9 +644,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Thailand bedeutet 'Land der Freien'.",
       hr: "Tajland znači 'zemlja slobodnih'.",
     },
-    word: { key: "temple", en: "temple", de: "Tempel", hr: "hram" },
+    words: [
+      { key: "temple", en: "temple", de: "Tempel", hr: "hram" },
+      { key: "elephant", en: "elephant", de: "Elefant", hr: "slon" },
+      { key: "mango", en: "mango", de: "Mango", hr: "mango" },
+    ],
   },
   "Vietnam": {
+    flag: "🇻🇳",
+    emoji: "🍜🛶",
     name: { en: "Vietnam", de: "Vietnam", hr: "Vijetnam" },
     capital: { en: "Hanoi", de: "Hanoi", hr: "Hanoi" },
     fact: {
@@ -435,9 +660,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Vietnam baut einige der besten Kaffees der Welt an.",
       hr: "Vijetnam uzgaja neke od najboljih kava na svijetu.",
     },
-    word: { key: "boat", en: "boat", de: "Boot", hr: "brod" },
+    words: [
+      { key: "boat", en: "boat", de: "Boot", hr: "brod" },
+      { key: "rice", en: "rice", de: "Reis", hr: "riža" },
+      { key: "pho", en: "pho", de: "Pho", hr: "pho" },
+    ],
   },
   "Indonesia": {
+    flag: "🇮🇩",
+    emoji: "🌋🐅",
     name: { en: "Indonesia", de: "Indonesien", hr: "Indonezija" },
     capital: { en: "Jakarta", de: "Jakarta", hr: "Jakarta" },
     fact: {
@@ -445,9 +676,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Indonesien hat die meisten Vulkane der Welt.",
       hr: "Indonezija ima najviše vulkana od svih zemalja.",
     },
-    word: { key: "volcano", en: "volcano", de: "Vulkan", hr: "vulkan" },
+    words: [
+      { key: "volcano", en: "volcano", de: "Vulkan", hr: "vulkan" },
+      { key: "tiger", en: "tiger", de: "Tiger", hr: "tigar" },
+      { key: "rice", en: "rice", de: "Reis", hr: "riža" },
+    ],
   },
   "Australia": {
+    flag: "🇦🇺",
+    emoji: "🦘🐨",
     name: { en: "Australia", de: "Australien", hr: "Australija" },
     capital: { en: "Canberra", de: "Canberra", hr: "Canberra" },
     fact: {
@@ -455,9 +692,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Australien gibt es mehr Kängurus als Menschen.",
       hr: "Australija ima više klokana nego ljudi.",
     },
-    word: { key: "kangaroo", en: "kangaroo", de: "Känguru", hr: "klokan" },
+    words: [
+      { key: "kangaroo", en: "kangaroo", de: "Känguru", hr: "klokan" },
+      { key: "coral", en: "coral", de: "Koralle", hr: "koralj" },
+      { key: "beach", en: "beach", de: "Strand", hr: "plaža" },
+    ],
   },
   "New Zealand": {
+    flag: "🇳🇿",
+    emoji: "🐑🥝",
     name: { en: "New Zealand", de: "Neuseeland", hr: "Novi Zeland" },
     capital: { en: "Wellington", de: "Wellington", hr: "Wellington" },
     fact: {
@@ -465,9 +708,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "In Neuseeland gibt es keine einheimischen Landschlangen.",
       hr: "Novi Zeland nema nijednu autohtonu kopnenu zmiju.",
     },
-    word: { key: "sheep", en: "sheep", de: "Schaf", hr: "ovca" },
+    words: [
+      { key: "sheep", en: "sheep", de: "Schaf", hr: "ovca" },
+      { key: "kiwi", en: "kiwi", de: "Kiwi", hr: "kivi" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+    ],
   },
   "Canada": {
+    flag: "🇨🇦",
+    emoji: "🍁🐻",
     name: { en: "Canada", de: "Kanada", hr: "Kanada" },
     capital: { en: "Ottawa", de: "Ottawa", hr: "Ottawa" },
     fact: {
@@ -475,9 +724,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Kanada hat mehr Seen als der Rest der Welt zusammen.",
       hr: "Kanada ima više jezera od ostatka svijeta zajedno.",
     },
-    word: { key: "maple", en: "maple", de: "Ahorn", hr: "javor" },
+    words: [
+      { key: "maple", en: "maple", de: "Ahorn", hr: "javor" },
+      { key: "moose", en: "moose", de: "Elch", hr: "los" },
+      { key: "lake", en: "lake", de: "See", hr: "jezero" },
+    ],
   },
   "United States of America": {
+    flag: "🇺🇸",
+    emoji: "🦅🗽",
     name: { en: "United States", de: "Vereinigte Staaten", hr: "Sjedinjene Američke Države" },
     capital: { en: "Washington, D.C.", de: "Washington, D.C.", hr: "Washington, D.C." },
     fact: {
@@ -485,9 +740,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Die USA haben 63 Nationalparks zum Entdecken.",
       hr: "SAD ima 63 nacionalna parka za istraživanje.",
     },
-    word: { key: "eagle", en: "eagle", de: "Adler", hr: "orao" },
+    words: [
+      { key: "eagle", en: "eagle", de: "Adler", hr: "orao" },
+      { key: "star", en: "star", de: "Stern", hr: "zvijezda" },
+      { key: "river", en: "river", de: "Fluss", hr: "rijeka" },
+    ],
   },
   "Mexico": {
+    flag: "🇲🇽",
+    emoji: "🌵🌶️",
     name: { en: "Mexico", de: "Mexiko", hr: "Meksiko" },
     capital: { en: "Mexico City", de: "Mexiko-Stadt", hr: "Ciudad de México" },
     fact: {
@@ -495,9 +756,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Mexiko brachte der Welt die Schokolade.",
       hr: "Meksiko je svijetu donio čokoladu.",
     },
-    word: { key: "cactus", en: "cactus", de: "Kaktus", hr: "kaktus" },
+    words: [
+      { key: "cactus", en: "cactus", de: "Kaktus", hr: "kaktus" },
+      { key: "chili", en: "chili", de: "Chili", hr: "čili" },
+      { key: "sun", en: "sun", de: "Sonne", hr: "sunce" },
+    ],
   },
   "Brazil": {
+    flag: "🇧🇷",
+    emoji: "🌴⚽",
     name: { en: "Brazil", de: "Brasilien", hr: "Brazil" },
     capital: { en: "Brasília", de: "Brasília", hr: "Brasília" },
     fact: {
@@ -505,9 +772,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Der Amazonas-Regenwald liegt größtenteils in Brasilien.",
       hr: "Amazonska prašuma većinom se nalazi u Brazilu.",
     },
-    word: { key: "jungle", en: "jungle", de: "Dschungel", hr: "džungla" },
+    words: [
+      { key: "jungle", en: "jungle", de: "Dschungel", hr: "džungla" },
+      { key: "samba", en: "samba", de: "Samba", hr: "samba" },
+      { key: "coffee", en: "coffee", de: "Kaffee", hr: "kava" },
+    ],
   },
   "Argentina": {
+    flag: "🇦🇷",
+    emoji: "💃🥩",
     name: { en: "Argentina", de: "Argentinien", hr: "Argentina" },
     capital: { en: "Buenos Aires", de: "Buenos Aires", hr: "Buenos Aires" },
     fact: {
@@ -515,9 +788,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Argentinien hat Pinguine UND tropische Dschungel.",
       hr: "Argentina ima i pingvine i tropske džungle.",
     },
-    word: { key: "dance", en: "dance", de: "Tanz", hr: "ples" },
+    words: [
+      { key: "dance", en: "dance", de: "Tanz", hr: "ples" },
+      { key: "beef", en: "beef", de: "Rindfleisch", hr: "govedina" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+    ],
   },
   "Chile": {
+    flag: "🇨🇱",
+    emoji: "⛰️🌵",
     name: { en: "Chile", de: "Chile", hr: "Čile" },
     capital: { en: "Santiago", de: "Santiago", hr: "Santiago" },
     fact: {
@@ -525,9 +804,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Chile ist das längste und schmalste Land der Erde.",
       hr: "Čile je najdulja i najuža zemlja na svijetu.",
     },
-    word: { key: "star", en: "star", de: "Stern", hr: "zvijezda" },
+    words: [
+      { key: "star", en: "star", de: "Stern", hr: "zvijezda" },
+      { key: "desert", en: "desert", de: "Wüste", hr: "pustinja" },
+      { key: "sea", en: "sea", de: "Meer", hr: "more" },
+    ],
   },
   "Peru": {
+    flag: "🇵🇪",
+    emoji: "🦙🏔️",
     name: { en: "Peru", de: "Peru", hr: "Peru" },
     capital: { en: "Lima", de: "Lima", hr: "Lima" },
     fact: {
@@ -535,9 +820,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Machu Picchu liegt versteckt hoch in den Bergen Perus.",
       hr: "Machu Picchu skriven je visoko u peruanskim planinama.",
     },
-    word: { key: "llama", en: "llama", de: "Lama", hr: "lama" },
+    words: [
+      { key: "llama", en: "llama", de: "Lama", hr: "lama" },
+      { key: "mountain", en: "mountain", de: "Berg", hr: "planina" },
+      { key: "corn", en: "corn", de: "Mais", hr: "kukuruz" },
+    ],
   },
   "Greenland": {
+    flag: "🇬🇱",
+    emoji: "🧊🐻‍❄️",
     name: { en: "Greenland", de: "Grönland", hr: "Grenland" },
     capital: { en: "Nuuk", de: "Nuuk", hr: "Nuuk" },
     fact: {
@@ -545,9 +836,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Grönland ist die größte Insel der Welt.",
       hr: "Grenland je najveći otok na svijetu.",
     },
-    word: { key: "iceberg", en: "iceberg", de: "Eisberg", hr: "ledenjak" },
+    words: [
+      { key: "iceberg", en: "iceberg", de: "Eisberg", hr: "ledenjak" },
+      { key: "whale", en: "whale", de: "Wal", hr: "kit" },
+      { key: "cold", en: "cold", de: "Kälte", hr: "hladnoća" },
+    ],
   },
   "Antarctica": {
+    flag: "🇦🇶",
+    emoji: "🐧❄️",
     name: { en: "Antarctica", de: "Antarktis", hr: "Antarktika" },
     capital: { en: "—", de: "—", hr: "—" },
     fact: {
@@ -555,9 +852,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Niemand lebt dauerhaft in der Antarktis — nur Forscher und Pinguine.",
       hr: "Nitko ne živi stalno na Antarktici — samo znanstvenici i pingvini.",
     },
-    word: { key: "penguin", en: "penguin", de: "Pinguin", hr: "pingvin" },
+    words: [
+      { key: "penguin", en: "penguin", de: "Pinguin", hr: "pingvin" },
+      { key: "ice", en: "ice", de: "Eis", hr: "led" },
+      { key: "cold", en: "cold", de: "Kälte", hr: "hladnoća" },
+    ],
   },
   "Jordan": {
+    flag: "🇯🇴",
+    emoji: "🏛️🐪",
     name: { en: "Jordan", de: "Jordanien", hr: "Jordan" },
     capital: { en: "Amman", de: "Amman", hr: "Aman" },
     fact: {
@@ -565,9 +868,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Jordaniens rosarote Stadt Petra wurde direkt in die Felsen gehauen.",
       hr: "Jordanski ružičasti grad Petra uklesan je izravno u stijene.",
     },
-    word: { key: "stone", en: "stone", de: "Stein", hr: "kamen" },
+    words: [
+      { key: "stone", en: "stone", de: "Stein", hr: "kamen" },
+      { key: "desert", en: "desert", de: "Wüste", hr: "pustinja" },
+      { key: "camel", en: "camel", de: "Kamel", hr: "deva" },
+    ],
   },
   "Cambodia": {
+    flag: "🇰🇭",
+    emoji: "🛕🌴",
     name: { en: "Cambodia", de: "Kambodscha", hr: "Kambodža" },
     capital: { en: "Phnom Penh", de: "Phnom Penh", hr: "Phnom Penh" },
     fact: {
@@ -575,9 +884,15 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Kambodschas Angkor Wat ist das größte religiöse Bauwerk der Erde.",
       hr: "Kambodžanski Angkor Wat najveći je vjerski spomenik na Zemlji.",
     },
-    word: { key: "temple", en: "temple", de: "Tempel", hr: "hram" },
+    words: [
+      { key: "temple", en: "temple", de: "Tempel", hr: "hram" },
+      { key: "rice", en: "rice", de: "Reis", hr: "riža" },
+      { key: "river", en: "river", de: "Fluss", hr: "rijeka" },
+    ],
   },
   "Nepal": {
+    flag: "🇳🇵",
+    emoji: "⛰️🏔️",
     name: { en: "Nepal", de: "Nepal", hr: "Nepal" },
     capital: { en: "Kathmandu", de: "Kathmandu", hr: "Katmandu" },
     fact: {
@@ -585,7 +900,11 @@ export const COUNTRIES: Record<string, CountryInfo> = {
       de: "Acht der zehn höchsten Berge der Welt stehen in Nepal.",
       hr: "Osam od deset najviših planina svijeta nalaze se u Nepalu.",
     },
-    word: { key: "summit", en: "summit", de: "Gipfel", hr: "vrh" },
+    words: [
+      { key: "summit", en: "summit", de: "Gipfel", hr: "vrh" },
+      { key: "yak", en: "yak", de: "Yak", hr: "jak" },
+      { key: "tea", en: "tea", de: "Tee", hr: "čaj" },
+    ],
   },
 }
 
