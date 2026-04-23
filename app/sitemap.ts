@@ -273,6 +273,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/design-lab/acos', priority: 0.5, changeFrequency: 'monthly' as const },
     // ACOS
     { url: '/acos', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/acos/agents', priority: 0.8, changeFrequency: 'weekly' as const },
     // Plan
     { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
     // Inspiration
