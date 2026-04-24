@@ -68,6 +68,7 @@ const items: PaletteItem[] = [
   { group: 'GenCreators', label: 'Templates', description: 'Production-grade templates', href: '/templates', icon: FileText },
 
   // Learn
+  { group: 'Learn', label: 'Learn Hub', description: 'Complete learning OS — all paths', href: '/learn', icon: GraduationCap },
   { group: 'Learn', label: 'Courses', description: 'Structured AI programs', href: '/courses', icon: GraduationCap },
   { group: 'Learn', label: 'Guides', description: 'Deep-dive practical guides', href: '/guides', icon: BookOpen },
   { group: 'Learn', label: 'Books', description: 'Full-length books and workbooks', href: '/books', icon: Target },

@@ -616,7 +616,7 @@ function CreativeWorlds() {
           {/* Banner image */}
           <div className="relative aspect-[21/9] sm:aspect-[21/7]">
             <Image
-              src="/images/arcanea/eldrian-conclave-20260301.png"
+              src="/images/arcanea/eldrian-conclave-20260301.webp"
               alt="The Eldrian Conclave — five guardians of Arcanea"
               fill
               className="object-cover"

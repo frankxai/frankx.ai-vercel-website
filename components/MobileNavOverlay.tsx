@@ -112,10 +112,10 @@ const sections: NavSection[] = [
     icon: GraduationCap,
     tagline: 'Courses, guides, assessment, watch',
     featured: {
-      title: 'Learn with FrankX',
-      description: 'Courses, guides, and a full learning OS.',
-      href: '/courses',
-      badge: 'Learning OS',
+      title: 'Learn Hub',
+      description: 'Your learning OS — courses, guides, books, assessment, games, watch.',
+      href: '/learn',
+      badge: 'Hub',
     },
     items: [
       { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },

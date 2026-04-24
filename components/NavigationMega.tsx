@@ -85,12 +85,12 @@ const navigation = {
   },
   learn: {
     label: 'Learn',
-    href: '/courses',
+    href: '/learn',
     featured: {
-      title: 'Learning Paths',
-      description: 'Courses, guides, books, and assessments. Find your level and grow.',
-      href: '/courses',
-      badge: 'Free + Premium',
+      title: 'Learn Hub',
+      description: 'Your learning OS — courses, guides, books, assessment, games, watch. Find your level.',
+      href: '/learn',
+      badge: 'Hub',
     },
     items: [
       { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },
@@ -408,16 +408,8 @@ export default function NavigationMega() {
     }
   }, [])
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault()
-        openCommandPalette()
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [openCommandPalette])
+  // Ctrl+K hotkey lives in CommandPalette (single source of truth). Having it here too caused a race:
+  // NavigationMega dispatched the event → palette opened → palette's own keydown toggled it closed in the same tick.
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
