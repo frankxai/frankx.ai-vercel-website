@@ -52,6 +52,36 @@ export interface TOCItem {
 
 // ─── Library / Review Types ─────────────────────────────────────
 
+export interface BookQuote {
+  text: string;
+  chapter?: string; // e.g. "Chapter 3" or "Introduction"
+  page?: number;
+  context?: string; // short framing (1 sentence)
+}
+
+export interface BookChapterSummary {
+  number: number;
+  title: string;
+  summary: string; // 2–4 sentences
+  keyIdea: string; // one-line distillation
+}
+
+export interface RelatedReadingItem {
+  title: string;
+  author: string;
+  reason: string; // why it pairs with this book
+  url?: string; // canonical purchase/reference URL
+}
+
+export interface BookVideo {
+  title: string;
+  creator: string; // channel / host
+  url: string;
+  description: string;
+  duration?: string; // e.g. "1h 42m"
+  kind?: 'interview' | 'lecture' | 'talk' | 'explainer' | 'summary';
+}
+
 export interface BookReview {
   slug: string;
   title: string;
@@ -69,4 +99,8 @@ export interface BookReview {
   faq?: Array<{ q: string; a: string }>; // curated Q&A for FAQPage schema
   publicationYear?: number;
   hasCover?: boolean; // true if coverImage file ships in /public/images/library/
+  quotes?: BookQuote[]; // curated memorable quotes
+  chapters?: BookChapterSummary[]; // chapter-by-chapter breakdown
+  continueReading?: RelatedReadingItem[]; // external related books
+  videos?: BookVideo[]; // YouTube / podcast deep-dives
 }
