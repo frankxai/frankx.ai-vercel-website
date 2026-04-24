@@ -65,4 +65,8 @@ export interface BookReview {
   bestFor: string[];
   amazonUrl?: string;
   relatedBook?: string; // slug of our own book
+  tldr?: string; // 1–2 sentence answer block for AEO / summary cards
+  faq?: Array<{ q: string; a: string }>; // curated Q&A for FAQPage schema
+  publicationYear?: number;
+  hasCover?: boolean; // true if coverImage file ships in /public/images/library/
 }

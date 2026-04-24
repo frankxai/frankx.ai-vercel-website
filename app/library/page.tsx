@@ -1,25 +1,81 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { bookReviews, getAllReviewCategories } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 
+const SITE_URL = 'https://frankx.ai';
+const LIBRARY_URL = `${SITE_URL}/library`;
+
 export const metadata: Metadata = {
-  title: 'Library | Book Reviews & Insights | FrankX',
+  title: 'Library | Book Reviews & Key Insights | FrankX',
   description:
-    'Curated book reviews with key insights from the best books on self-development, mindset, creativity, and wealth. Read the ideas that shaped our own books.',
+    'Curated book reviews with key insights from the best books on self-development, mindset, creativity, wealth, and the architecture of reality. Read the ideas that shaped our own books.',
   keywords: [
     'book reviews',
+    'book summaries',
     'reading list',
     'best self-development books',
-    'book insights',
+    'book key insights',
     'curated reading',
+    'Profit First review',
+    'Fabric of Reality review',
   ],
+  alternates: { canonical: LIBRARY_URL },
   openGraph: {
     title: 'The Library | FrankX',
     description: 'Key insights from the books that matter most.',
     type: 'website',
+    url: LIBRARY_URL,
+    siteName: 'FrankX',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Library | FrankX',
+    description: 'Key insights from the books that matter most.',
   },
 };
+
+function CollectionJsonLd() {
+  const data = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+          { '@type': 'ListItem', position: 2, name: 'Library', item: LIBRARY_URL },
+        ],
+      },
+      {
+        '@type': 'CollectionPage',
+        name: 'The FrankX Library',
+        description:
+          'Curated book reviews with key insights — the ideas that shaped our own books.',
+        url: LIBRARY_URL,
+        isPartOf: { '@type': 'WebSite', name: 'FrankX', url: SITE_URL },
+      },
+      {
+        '@type': 'ItemList',
+        name: 'Book Reviews',
+        numberOfItems: bookReviews.length,
+        itemListElement: bookReviews.map((review, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${LIBRARY_URL}/${review.slug}`,
+          name: `${review.title} by ${review.author}`,
+        })),
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
 
 const categoryColors: Record<string, string> = {
   'Self-Development': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
@@ -65,6 +121,7 @@ export default function LibraryPage() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
+      <CollectionJsonLd />
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6">
         <div className="absolute inset-0 pointer-events-none">
@@ -120,11 +177,23 @@ export default function LibraryPage() {
                 <article className="h-full rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.04]">
                   {/* Header */}
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-16 h-24 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
-                      <span className="text-2xl font-serif text-white/20">
-                        {review.title.charAt(0)}
-                      </span>
-                    </div>
+                    {review.hasCover ? (
+                      <div className="w-16 h-24 rounded-lg border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
+                        <Image
+                          src={review.coverImage}
+                          alt={`${review.title} by ${review.author} — book cover`}
+                          width={128}
+                          height={192}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-16 h-24 rounded-lg bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
+                        <span className="text-2xl font-serif text-white/20">
+                          {review.title.charAt(0)}
+                        </span>
+                      </div>
+                    )}
                     <div className="flex-1 min-w-0">
                       <h2 className="text-lg font-semibold text-white group-hover:text-amber-300 transition-colors truncate">
                         {review.title}

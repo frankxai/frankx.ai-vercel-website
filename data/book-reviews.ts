@@ -161,6 +161,98 @@ export const bookReviews: BookReview[] = [
     amazonUrl: 'https://www.amazon.com/Meditations-New-Translation-Marcus-Aurelius/dp/0812968255',
     relatedBook: 'spartan-mindset',
   },
+  {
+    slug: 'profit-first',
+    title: 'Profit First',
+    author: 'Mike Michalowicz',
+    coverImage: '/images/library/profit-first.jpg',
+    hasCover: true,
+    rating: 5,
+    reviewDate: '2026-04-24',
+    categories: ['Wealth', 'Productivity', 'Career'],
+    readingTime: '6 min',
+    publicationYear: 2014,
+    tldr: 'Profit First inverts the GAAP formula (Sales − Expenses = Profit) into Sales − Profit = Expenses. By routing every deposit through five dedicated bank accounts before expenses are paid, Michalowicz forces small businesses to become profitable today rather than "eventually."',
+    keyInsights: [
+      'Invert GAAP: profit is not a leftover — it is a pre-allocated deposit. The formula becomes Sales minus Profit equals Expenses, not the other way around.',
+      "Parkinson's Law applies to cash: the money you see is the money you spend. Hide profit from yourself — into a separate account at a separate bank — to stop consuming it.",
+      'The five-account system (Income, Profit, Owner\'s Pay, Tax, Operating Expenses) enforces discipline through physical separation at the bank, not through willpower or spreadsheets.',
+      'Small plates, not bigger discipline: when the operating account shrinks, expenses contract to match. Structure beats intention every quarter.',
+      'Quarterly profit distributions create a reward loop that turns profitability from an accounting abstraction into a felt, recurring experience for the owner — the habit that compounds everything else.',
+    ],
+    bestFor: [
+      'Entrepreneurs who are "profitable on paper" but always broke in practice',
+      'Small business owners drowning in expenses despite growing revenue',
+      'Freelancers and service providers building their first real financial system',
+      'Operators who want cash flow to feel calm instead of chaotic',
+    ],
+    amazonUrl: 'https://www.amazon.com/Profit-First-Transform-Cash-Eating-Money-Making/dp/073521414X',
+    relatedBook: 'manifestation',
+    faq: [
+      {
+        q: 'What is the core idea of Profit First?',
+        a: 'Take profit first, before paying expenses. Michalowicz rewrites the traditional accounting equation from Sales − Expenses = Profit to Sales − Profit = Expenses, forcing the business to live within what remains after profit is set aside.',
+      },
+      {
+        q: 'What are the five Profit First bank accounts?',
+        a: 'Income (the single deposit account), Profit, Owner\'s Pay, Tax, and Operating Expenses. Revenue flows into Income, then is allocated on the 10th and 25th of each month to the other four accounts by pre-set percentages.',
+      },
+      {
+        q: 'Who is Profit First for?',
+        a: 'Primarily small businesses, freelancers, and service operators doing $0–$10M in revenue who want an owner-level cash discipline system that does not require an accountant to maintain. It is less useful for venture-backed companies optimizing for growth over profitability.',
+      },
+      {
+        q: 'What is the main criticism of Profit First?',
+        a: 'Accountants note it is behavioral psychology wrapped around basic cash envelopes, not a new accounting principle. That is also its strength: it works because it is behavioral, not because it is clever.',
+      },
+    ],
+  },
+  {
+    slug: 'fabric-of-reality',
+    title: 'The Fabric of Reality',
+    author: 'David Deutsch',
+    coverImage: '/images/library/fabric-of-reality.jpg',
+    hasCover: true,
+    rating: 5,
+    reviewDate: '2026-04-24',
+    categories: ['Philosophy', 'Classic', 'Creativity'],
+    readingTime: '8 min',
+    publicationYear: 1997,
+    tldr: 'Deutsch argues that reality is best understood as the intersection of four strands — quantum physics (many-worlds), the theory of computation, epistemology (Popper), and evolution. Together they form a Theory of Everything in which the multiverse is literal, knowledge is physical, and problems are soluble.',
+    keyInsights: [
+      'The four-strand explanation: reality is best understood as the intersection of quantum physics, the theory of computation, epistemology, and Darwinian evolution. No single strand is sufficient; none is fundamental above the others.',
+      'The multiverse is not speculation — it is the most parsimonious reading of quantum mechanics. Parallel universes exist, and the interference pattern of the double-slit experiment is their signature.',
+      'The Turing principle: a universal computer can simulate any physically possible process. This means reality itself is computable, and creativity is a physical phenomenon — not a metaphor.',
+      'Knowledge is explanation, not prediction. Good explanations are hard to vary without losing their predictive power; that is the demarcation criterion, not Bayesian confidence or consensus.',
+      'Problems are soluble. Pessimism about humanity\'s future mistakes the present for the permanent — any difficulty not forbidden by the laws of physics is, with enough knowledge, addressable.',
+    ],
+    bestFor: [
+      'Deep thinkers bridging physics, philosophy, and AI',
+      'Builders who want a first-principles view of reality and possibility',
+      'Readers of Popper, Feynman, or Wheeler looking for the synthesis',
+      'Anyone serious about epistemology, quantum foundations, or the theory of computation',
+    ],
+    amazonUrl: 'https://www.amazon.com/Fabric-Reality-Parallel-Universes-Implications/dp/014027541X',
+    relatedBook: 'imagination',
+    faq: [
+      {
+        q: 'What are the four strands in The Fabric of Reality?',
+        a: 'Quantum physics (specifically Everett\'s many-worlds interpretation), the theory of computation (Turing), epistemology (Popper\'s theory of knowledge), and Darwinian evolution. Deutsch argues each strand is necessary, and together they form a unified worldview.',
+      },
+      {
+        q: 'Does Deutsch really believe in the multiverse?',
+        a: 'Yes — literally. He treats parallel universes as the straightforward consequence of quantum mechanics taken at face value, without the philosophical add-ons of "wavefunction collapse" or Copenhagen-style interpretations. For Deutsch, interference is direct evidence of other universes acting on ours.',
+      },
+      {
+        q: 'Is The Fabric of Reality a physics book or a philosophy book?',
+        a: 'Both. It is physics in the sense that it takes quantum mechanics seriously as a description of reality, and philosophy in the sense that it argues for a specific epistemology (Popperian critical rationalism) as the right way to build knowledge. The argument is that you cannot have one without the other.',
+      },
+      {
+        q: 'How does this book relate to AI and computation?',
+        a: 'Deutsch\'s Turing principle — that a universal computer can simulate any physically possible process — grounds modern claims about general intelligence in physics rather than metaphor. If intelligence is a computational process and computation is physical, then creating AGI is a problem of knowledge, not of magic.',
+      },
+    ],
+  },
 ];
 
 // ─── Helper Functions ────────────────────────────────────────────
