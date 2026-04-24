@@ -152,6 +152,7 @@ const navigation = {
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
+      { name: 'Starlight IS', href: '/starlight-intelligence-system', icon: Brain, description: 'Sovereignty substrate (SIS)' },
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
       { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
@@ -165,7 +166,7 @@ const navigation = {
       },
       {
         label: 'Products & Systems',
-        items: ['Resource Hub', 'ACOS', 'ArcaneaVault', 'Arcanea'],
+        items: ['Starlight IS', 'ACOS', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',

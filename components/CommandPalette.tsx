@@ -92,6 +92,8 @@ const items: PaletteItem[] = [
   { group: 'Invest', label: 'Agent Packs', description: 'Productized agent bundles', href: '/investor/agents', icon: Bot },
 
   // Explore
+  { group: 'Explore', label: 'Starlight IS', description: 'Sovereignty substrate — 9 layers, MIT, markdown-first', href: '/starlight-intelligence-system', icon: Brain },
+  { group: 'Explore', label: 'SIS Starter Pack', description: 'Download the Claude Desktop starter (.zip)', href: 'https://github.com/frankxai/Starlight-Intelligence-System/releases/latest', icon: Brain, external: true },
   { group: 'Explore', label: 'Resource Hub', description: 'Curated resources', href: '/resources', icon: Sparkles },
   { group: 'Explore', label: 'Research Hub', description: 'Original research + briefs', href: '/research', icon: Microscope },
   { group: 'Explore', label: 'Intelligence Atlas', description: 'Global intelligence map', href: '/intelligence-atlas', icon: Star },

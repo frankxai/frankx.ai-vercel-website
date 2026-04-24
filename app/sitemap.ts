@@ -274,6 +274,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // ACOS
     { url: '/acos', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/acos/agents', priority: 0.8, changeFrequency: 'weekly' as const },
+    // Starlight Intelligence System
+    { url: '/starlight-intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
     // Plan
     { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
     // Inspiration
