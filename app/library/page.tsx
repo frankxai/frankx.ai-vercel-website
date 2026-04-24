@@ -161,7 +161,27 @@ export default function LibraryPage() {
             ))}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/library/quotes"
+              className="inline-flex items-center gap-2 text-sm text-rose-300/80 hover:text-rose-200 transition-colors border border-rose-500/20 rounded-full px-4 py-2 bg-rose-500/5 hover:bg-rose-500/10"
+            >
+              Browse all quotes
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                aria-hidden
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </Link>
             <Link
               href="/library/approach"
               className="inline-flex items-center gap-2 text-sm text-amber-400/80 hover:text-amber-300 transition-colors border border-amber-500/20 rounded-full px-4 py-2 bg-amber-500/5 hover:bg-amber-500/10"
