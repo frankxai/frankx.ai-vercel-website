@@ -1,11 +1,25 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { bookReviews, getReviewBySlug, getAllReviewSlugs } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
+import type { BookReview } from '@/app/books/types';
+
+const SITE_URL = 'https://frankx.ai';
 
 export function generateStaticParams() {
   return getAllReviewSlugs().map((slug) => ({ slug }));
+}
+
+function truncate(text: string, limit = 158) {
+  if (text.length <= limit) return text;
+  return text.slice(0, limit - 1).trimEnd() + '…';
+}
+
+function reviewDescription(review: BookReview) {
+  const lead = review.tldr ?? review.keyInsights[0];
+  return truncate(`${review.title} by ${review.author}: ${lead}`);
 }
 
 export async function generateMetadata({
@@ -17,14 +31,38 @@ export async function generateMetadata({
   const review = getReviewBySlug(slug);
   if (!review) return {};
 
+  const description = reviewDescription(review);
+  const canonical = `${SITE_URL}/library/${review.slug}`;
+  const ogImage = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
+
   return {
-    title: `${review.title} by ${review.author} — Book Review | FrankX Library`,
-    description: `Key insights from ${review.title}: ${review.keyInsights[0]}`,
-    keywords: [...review.categories, review.author, 'book review', 'key insights'],
+    title: `${review.title} by ${review.author} — Book Review & Key Insights | FrankX Library`,
+    description,
+    keywords: [
+      ...review.categories,
+      review.author,
+      `${review.title} summary`,
+      `${review.title} key insights`,
+      'book review',
+      'book summary',
+    ],
+    authors: [{ name: 'Frank' }],
+    alternates: { canonical },
     openGraph: {
-      title: `${review.title} — Book Review`,
-      description: review.keyInsights[0],
+      title: `${review.title} — Book Review & Key Insights`,
+      description,
       type: 'article',
+      url: canonical,
+      siteName: 'FrankX Library',
+      authors: ['Frank'],
+      publishedTime: review.reviewDate,
+      ...(ogImage ? { images: [{ url: ogImage, alt: `${review.title} — book cover` }] } : {}),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${review.title} — ${review.author}`,
+      description,
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
   };
 }
@@ -46,22 +84,77 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-function JsonLd({ review }: { review: { title: string; author: string; rating: number; reviewDate: string } }) {
+function JsonLd({ review }: { review: BookReview }) {
+  const url = `${SITE_URL}/library/${review.slug}`;
+  const description = reviewDescription(review);
+  const reviewBody = review.tldr ?? review.keyInsights.join(' — ');
+  const imageUrl = review.hasCover ? `${SITE_URL}${review.coverImage}` : undefined;
+
+  const graph: Array<Record<string, unknown>> = [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+        { '@type': 'ListItem', position: 2, name: 'Library', item: `${SITE_URL}/library` },
+        { '@type': 'ListItem', position: 3, name: review.title, item: url },
+      ],
+    },
+    {
+      '@type': 'Article',
+      headline: `${review.title} by ${review.author} — Book Review & Key Insights`,
+      description,
+      url,
+      ...(imageUrl ? { image: imageUrl } : {}),
+      author: { '@type': 'Person', name: 'Frank', url: SITE_URL },
+      publisher: {
+        '@type': 'Organization',
+        name: 'FrankX',
+        url: SITE_URL,
+      },
+      datePublished: review.reviewDate,
+      dateModified: review.reviewDate,
+      articleSection: review.categories,
+      keywords: [...review.categories, review.author, 'book review'].join(', '),
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    },
+    {
+      '@type': 'Review',
+      url,
+      itemReviewed: {
+        '@type': 'Book',
+        name: review.title,
+        author: { '@type': 'Person', name: review.author },
+        ...(imageUrl ? { image: imageUrl } : {}),
+        ...(review.publicationYear ? { datePublished: String(review.publicationYear) } : {}),
+        ...(review.amazonUrl ? { sameAs: review.amazonUrl } : {}),
+      },
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: review.rating,
+        bestRating: 5,
+        worstRating: 1,
+      },
+      reviewBody,
+      author: { '@type': 'Person', name: 'Frank' },
+      datePublished: review.reviewDate,
+      publisher: { '@type': 'Organization', name: 'FrankX', url: SITE_URL },
+    },
+  ];
+
+  if (review.faq && review.faq.length > 0) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: review.faq.map((pair) => ({
+        '@type': 'Question',
+        name: pair.q,
+        acceptedAnswer: { '@type': 'Answer', text: pair.a },
+      })),
+    });
+  }
+
   const data = {
     '@context': 'https://schema.org',
-    '@type': 'Review',
-    itemReviewed: {
-      '@type': 'Book',
-      name: review.title,
-      author: { '@type': 'Person', name: review.author },
-    },
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: review.rating,
-      bestRating: 5,
-    },
-    author: { '@type': 'Person', name: 'Frank' },
-    datePublished: review.reviewDate,
+    '@graph': graph,
   };
 
   return (
@@ -117,11 +210,24 @@ export default async function ReviewPage({
       {/* Review Header */}
       <header className="max-w-3xl mx-auto px-6 pb-12">
         <div className="flex items-start gap-6">
-          <div className="w-24 h-36 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
-            <span className="text-4xl font-serif text-white/20">
-              {review.title.charAt(0)}
-            </span>
-          </div>
+          {review.hasCover ? (
+            <div className="w-24 h-36 rounded-xl border border-white/10 overflow-hidden flex-shrink-0 bg-white/5">
+              <Image
+                src={review.coverImage}
+                alt={`${review.title} by ${review.author} — book cover`}
+                width={192}
+                height={288}
+                priority
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : (
+            <div className="w-24 h-36 rounded-xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 flex-shrink-0 flex items-center justify-center">
+              <span className="text-4xl font-serif text-white/20">
+                {review.title.charAt(0)}
+              </span>
+            </div>
+          )}
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
               {review.title}
@@ -141,6 +247,18 @@ export default async function ReviewPage({
           </div>
         </div>
       </header>
+
+      {/* The Short Answer (TL;DR) */}
+      {review.tldr && (
+        <section className="max-w-3xl mx-auto px-6 pb-12">
+          <div className="rounded-2xl border border-amber-500/15 bg-amber-500/[0.04] p-6">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-amber-400/70 mb-3">
+              The Short Answer
+            </p>
+            <p className="text-white/80 leading-relaxed text-[15px]">{review.tldr}</p>
+          </div>
+        </section>
+      )}
 
       {/* Key Insights */}
       <section className="max-w-3xl mx-auto px-6 pb-16">
@@ -180,6 +298,34 @@ export default async function ReviewPage({
           ))}
         </div>
       </section>
+
+      {/* Frequently Asked Questions */}
+      {review.faq && review.faq.length > 0 && (
+        <section className="max-w-3xl mx-auto px-6 pb-16">
+          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span className="w-8 h-px bg-blue-500/50" />
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-3">
+            {review.faq.map((pair, i) => (
+              <details
+                key={i}
+                className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 open:border-blue-500/20 open:bg-blue-500/[0.03] transition-colors"
+              >
+                <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+                  <h3 className="text-[15px] font-medium text-white/90 group-open:text-blue-300 transition-colors">
+                    {pair.q}
+                  </h3>
+                  <span className="flex-shrink-0 text-white/30 group-open:rotate-45 transition-transform text-lg leading-none mt-0.5">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 text-white/65 leading-relaxed text-[14px]">{pair.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Related Our Book */}
       {relatedBook && (
