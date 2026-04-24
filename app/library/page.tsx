@@ -209,6 +209,27 @@ export default function LibraryPage() {
                     {review.keyInsights[0]}
                   </p>
 
+                  {/* Deep-dive badge */}
+                  {(review.chapters?.length || review.quotes?.length) && (
+                    <div className="flex flex-wrap gap-2 mb-4 -mt-2">
+                      {review.quotes && review.quotes.length > 0 && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-rose-500/10 text-rose-300/80 border border-rose-500/15">
+                          {review.quotes.length} quotes
+                        </span>
+                      )}
+                      {review.chapters && review.chapters.length > 0 && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-violet-500/10 text-violet-300/80 border border-violet-500/15">
+                          {review.chapters.length} chapters
+                        </span>
+                      )}
+                      {review.videos && review.videos.length > 0 && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-red-500/10 text-red-300/80 border border-red-500/15">
+                          {review.videos.length} videos
+                        </span>
+                      )}
+                    </div>
+                  )}
+
                   {/* Categories */}
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {review.categories.map((cat) => (

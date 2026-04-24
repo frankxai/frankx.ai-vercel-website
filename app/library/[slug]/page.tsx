@@ -152,6 +152,21 @@ function JsonLd({ review }: { review: BookReview }) {
     });
   }
 
+  if (review.quotes && review.quotes.length > 0) {
+    review.quotes.forEach((quote) => {
+      graph.push({
+        '@type': 'Quotation',
+        text: quote.text,
+        spokenByCharacter: { '@type': 'Person', name: review.author },
+        isPartOf: {
+          '@type': 'Book',
+          name: review.title,
+          author: { '@type': 'Person', name: review.author },
+        },
+      });
+    });
+  }
+
   const data = {
     '@context': 'https://schema.org',
     '@graph': graph,
@@ -260,8 +275,64 @@ export default async function ReviewPage({
         </section>
       )}
 
+      {/* Table of Contents */}
+      <nav className="max-w-3xl mx-auto px-6 pb-12" aria-label="Contents">
+        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-white/40 mb-4">
+            In this deep-dive
+          </p>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-[14px] text-white/60">
+            <li>
+              <a href="#insights" className="hover:text-amber-300 transition-colors">
+                01 &nbsp;·&nbsp; Key Insights
+              </a>
+            </li>
+            {review.quotes && review.quotes.length > 0 && (
+              <li>
+                <a href="#quotes" className="hover:text-amber-300 transition-colors">
+                  02 &nbsp;·&nbsp; Quotes ({review.quotes.length})
+                </a>
+              </li>
+            )}
+            {review.chapters && review.chapters.length > 0 && (
+              <li>
+                <a href="#chapters" className="hover:text-amber-300 transition-colors">
+                  03 &nbsp;·&nbsp; Chapter-by-Chapter ({review.chapters.length})
+                </a>
+              </li>
+            )}
+            <li>
+              <a href="#audience" className="hover:text-amber-300 transition-colors">
+                04 &nbsp;·&nbsp; Best For
+              </a>
+            </li>
+            {review.faq && review.faq.length > 0 && (
+              <li>
+                <a href="#faq" className="hover:text-amber-300 transition-colors">
+                  05 &nbsp;·&nbsp; FAQ
+                </a>
+              </li>
+            )}
+            {review.continueReading && review.continueReading.length > 0 && (
+              <li>
+                <a href="#continue-reading" className="hover:text-amber-300 transition-colors">
+                  06 &nbsp;·&nbsp; Continue Reading
+                </a>
+              </li>
+            )}
+            {review.videos && review.videos.length > 0 && (
+              <li>
+                <a href="#videos" className="hover:text-amber-300 transition-colors">
+                  07 &nbsp;·&nbsp; Go Deeper — Videos
+                </a>
+              </li>
+            )}
+          </ol>
+        </div>
+      </nav>
+
       {/* Key Insights */}
-      <section className="max-w-3xl mx-auto px-6 pb-16">
+      <section id="insights" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
         <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
           <span className="w-8 h-px bg-amber-500/50" />
           Key Insights
@@ -281,8 +352,97 @@ export default async function ReviewPage({
         </div>
       </section>
 
+      {/* Quotes */}
+      {review.quotes && review.quotes.length > 0 && (
+        <section id="quotes" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span className="w-8 h-px bg-rose-400/60" />
+            Quotes Worth Remembering
+          </h2>
+          <p className="text-sm text-white/40 mb-6">
+            {review.quotes.length} curated passages from {review.title}. Chapter references
+            map back to the book so you can re-read them in context.
+          </p>
+          <div className="space-y-4">
+            {review.quotes.map((quote, i) => (
+              <figure
+                key={i}
+                className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-6 pl-8"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute top-3 left-3 text-rose-400/40 font-serif text-5xl leading-none select-none"
+                >
+                  &ldquo;
+                </span>
+                <blockquote className="text-white/80 leading-relaxed text-[15.5px] font-light italic">
+                  {quote.text}
+                </blockquote>
+                {(quote.chapter || quote.context) && (
+                  <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
+                    {quote.chapter && (
+                      <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
+                        {quote.chapter}
+                      </p>
+                    )}
+                    {quote.context && (
+                      <p className="text-[13px] text-white/50 leading-relaxed">
+                        {quote.context}
+                      </p>
+                    )}
+                  </figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Chapter-by-Chapter */}
+      {review.chapters && review.chapters.length > 0 && (
+        <section id="chapters" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span className="w-8 h-px bg-violet-400/60" />
+            Chapter-by-Chapter
+          </h2>
+          <p className="text-sm text-white/40 mb-6">
+            Each chapter distilled to a key idea + 2–4 sentence summary — so you can navigate
+            the book&apos;s argument without re-reading it, and re-read it with fresh compass
+            if you want.
+          </p>
+          <div className="space-y-3">
+            {review.chapters.map((ch) => (
+              <details
+                key={ch.number}
+                className="group rounded-xl border border-white/[0.06] bg-white/[0.02] open:border-violet-400/20 open:bg-violet-500/[0.03] transition-colors"
+              >
+                <summary className="cursor-pointer list-none p-5 flex items-start gap-4">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-300 text-sm font-mono font-semibold">
+                    {ch.number.toString().padStart(2, '0')}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-[15px] font-semibold text-white/90 group-open:text-violet-200 transition-colors leading-snug">
+                      {ch.title}
+                    </h3>
+                    <p className="mt-1 text-[13px] text-white/55 leading-relaxed">
+                      {ch.keyIdea}
+                    </p>
+                  </div>
+                  <span className="flex-shrink-0 text-white/30 group-open:rotate-45 transition-transform text-lg leading-none mt-2.5">
+                    +
+                  </span>
+                </summary>
+                <div className="px-5 pb-5 pl-[76px]">
+                  <p className="text-[14px] text-white/65 leading-relaxed">{ch.summary}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Best For */}
-      <section className="max-w-3xl mx-auto px-6 pb-16">
+      <section id="audience" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
         <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
           <span className="w-8 h-px bg-emerald-500/50" />
           Best For
@@ -301,7 +461,7 @@ export default async function ReviewPage({
 
       {/* Frequently Asked Questions */}
       {review.faq && review.faq.length > 0 && (
-        <section className="max-w-3xl mx-auto px-6 pb-16">
+        <section id="faq" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-blue-500/50" />
             Frequently Asked Questions
@@ -327,9 +487,147 @@ export default async function ReviewPage({
         </section>
       )}
 
+      {/* Continue Reading */}
+      {review.continueReading && review.continueReading.length > 0 && (
+        <section id="continue-reading" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span className="w-8 h-px bg-cyan-400/60" />
+            Continue Reading
+          </h2>
+          <p className="text-sm text-white/40 mb-6">
+            If {review.title} opened a door, these books walk you through it. Curated for
+            reason, not algorithm — each entry explains why it pairs with this book.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {review.continueReading.map((item, i) => {
+              const cardInner = (
+                <>
+                  <h3 className="text-[15px] font-semibold text-white group-hover:text-cyan-200 transition-colors leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-[13px] text-white/45 mt-1">by {item.author}</p>
+                  <p className="text-[13.5px] text-white/60 leading-relaxed mt-3">
+                    {item.reason}
+                  </p>
+                  {item.url && (
+                    <span className="inline-flex items-center gap-1 mt-4 text-[12px] text-cyan-400/60 group-hover:text-cyan-300 transition-colors">
+                      Get the book
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                        />
+                      </svg>
+                    </span>
+                  )}
+                </>
+              );
+
+              const className =
+                'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-all';
+
+              return item.url ? (
+                <a
+                  key={i}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                >
+                  {cardInner}
+                </a>
+              ) : (
+                <div key={i} className={className}>
+                  {cardInner}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
+      {/* Videos — Go Deeper */}
+      {review.videos && review.videos.length > 0 && (
+        <section id="videos" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span className="w-8 h-px bg-red-400/60" />
+            Go Deeper — Videos
+          </h2>
+          <p className="text-sm text-white/40 mb-6">
+            The book is the foundation. These talks and interviews are where the ideas
+            sharpen, get challenged, and connect to adjacent work. Best watched after
+            reading, not instead of.
+          </p>
+          <div className="space-y-3">
+            {review.videos.map((v, i) => (
+              <a
+                key={i}
+                href={v.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start gap-4 p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-red-400/20 hover:bg-red-500/[0.03] transition-all"
+              >
+                <span className="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400">
+                  <svg
+                    className="w-5 h-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-[15px] font-semibold text-white group-hover:text-red-200 transition-colors leading-snug">
+                    {v.title}
+                  </h3>
+                  <p className="text-[13px] text-white/45 mt-0.5">{v.creator}</p>
+                  <p className="text-[13.5px] text-white/60 leading-relaxed mt-2">
+                    {v.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {v.kind && (
+                      <span className="px-2 py-0.5 text-[10px] uppercase tracking-wider rounded-full bg-red-500/10 text-red-400/80 border border-red-500/15">
+                        {v.kind}
+                      </span>
+                    )}
+                    {v.duration && (
+                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-white/5 text-white/40 border border-white/10">
+                        {v.duration}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <svg
+                  className="flex-shrink-0 w-4 h-4 text-white/20 group-hover:text-red-400/60 transition-colors mt-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                  />
+                </svg>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Related Our Book */}
       {relatedBook && (
-        <section className="max-w-3xl mx-auto px-6 pb-16">
+        <section id="our-book" className="max-w-3xl mx-auto px-6 pb-16 scroll-mt-24">
           <h2 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
             <span className="w-8 h-px bg-violet-500/50" />
             If You Liked This, Read Ours
