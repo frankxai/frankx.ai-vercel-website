@@ -250,8 +250,8 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
   if (hasGroups) {
     const groups = (data as typeof data & { groups: { label: string; items: string[] }[] }).groups
     return (
-      <div className="w-[820px] p-4">
-        <div className="grid grid-cols-[200px_1fr] gap-4">
+      <div className="w-[760px] max-w-[calc(100vw-2rem)] p-4">
+        <div className="grid grid-cols-[180px_1fr] gap-4">
           <FeaturedCard data={data} />
           <div className="grid grid-cols-3 gap-4">
             {groups.map((group) => {
@@ -283,8 +283,8 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
     const col1 = data.items.slice(0, midpoint)
     const col2 = data.items.slice(midpoint)
     return (
-      <div className="w-[700px] p-4">
-        <div className="grid grid-cols-[200px_1fr] gap-4">
+      <div className="w-[660px] max-w-[calc(100vw-2rem)] p-4">
+        <div className="grid grid-cols-[180px_1fr] gap-4">
           <FeaturedCard data={data} />
           <div className="grid grid-cols-2 gap-3">
             <ul className="space-y-0.5">
@@ -305,8 +305,8 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
 
   // Compact single-column layout (Music, Creators, Students, Investor: ≤5 items)
   return (
-    <div className="w-[560px] p-4">
-      <div className="grid grid-cols-[200px_1fr] gap-4">
+    <div className="w-[540px] max-w-[calc(100vw-2rem)] p-4">
+      <div className="grid grid-cols-[180px_1fr] gap-4">
         <FeaturedCard data={data} />
         <ul className="space-y-0.5">
           {data.items.map((item) => (
@@ -489,8 +489,8 @@ export default function NavigationMega() {
             </NavigationMenu.Indicator>
           </NavigationMenu.List>
 
-          <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+          <div className="perspective-[2000px] absolute left-1/2 top-full flex -translate-x-1/2 justify-center">
+            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full max-w-[calc(100vw-2rem)] origin-[top_center] overflow-hidden rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
           </div>
         </NavigationMenu.Root>
 
