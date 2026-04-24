@@ -1,10 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
-import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu,
   X,
@@ -26,33 +25,31 @@ import {
   ExternalLink,
   Wand2,
   Star,
-  Heart,
   Network,
   Microscope,
   Building,
   TrendingUp,
-  Wrench,
   Download,
   Compass,
   Gamepad2,
-  Puzzle,
   Brain,
-  Trophy,
-  Search,
   Scroll,
   Map,
   Flame,
   Briefcase,
   Play,
   Zap,
+  Search,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import MobileNavOverlay from '@/components/MobileNavOverlay'
 
-// Navigation structure — 7 menus + Blog + Search + CTA
+// Navigation: 5 megas + Blog. Invest merged into Build (AI Architecture covers enterprise + investor tooling).
 const navigation = {
   music: {
     label: 'Music',
+    href: '/music',
     featured: {
       title: 'AI Music Portfolio',
       description: '12,000+ songs created with Suno AI. Explore the catalog.',
@@ -69,6 +66,7 @@ const navigation = {
   },
   gencreators: {
     label: 'GenCreators',
+    href: '/gencreator',
     featured: {
       title: 'The GenCreator Framework',
       description: 'Principles. Handbook. Blueprints. The operating system for generative creators.',
@@ -87,6 +85,7 @@ const navigation = {
   },
   learn: {
     label: 'Learn',
+    href: '/courses',
     featured: {
       title: 'Learning Paths',
       description: 'Courses, guides, books, and assessments. Find your level and grow.',
@@ -106,9 +105,10 @@ const navigation = {
   },
   build: {
     label: 'Build',
+    href: '/ai-architecture',
     featured: {
       title: 'AI Architecture Hub',
-      description: 'Blueprints, prototypes, and production templates. From idea to deployment.',
+      description: 'Blueprints, prototypes, templates, and investor intelligence. From idea to deployment.',
       href: '/ai-architecture',
       badge: 'Hub',
     },
@@ -120,25 +120,27 @@ const navigation = {
       { name: 'AI World', href: '/ai-world', icon: Workflow, description: 'Live architecture demos' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Tools & workflows' },
       { name: 'AI Studio', href: '/consulting', icon: Briefcase, description: 'Architecture consulting' },
-    ],
-  },
-  invest: {
-    label: 'Invest',
-    featured: {
-      title: 'Invest with AI',
-      description: 'Platforms, research tools, and AI prompts to invest smarter.',
-      href: '/investor',
-      badge: 'Intelligence',
-    },
-    items: [
       { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing' },
-      { name: 'Platform Picks', href: '/investor#platforms', icon: Star, description: 'Revolut, eToro & more' },
-      { name: 'AI Research Stack', href: '/investor#ai-tools', icon: Brain, description: 'Claude, GPT for investing' },
       { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis agents' },
+    ],
+    groups: [
+      {
+        label: 'Architecture',
+        items: ['Architecture Hub', 'Blueprints', 'Prototypes', 'Templates'],
+      },
+      {
+        label: 'Deep Dives',
+        items: ['AI World', 'Developer Hub', 'AI Studio'],
+      },
+      {
+        label: 'Invest',
+        items: ['Intelligence Hub', 'Agent Packs'],
+      },
     ],
   },
   explore: {
     label: 'Explore',
+    href: '/resources',
     featured: {
       title: 'The FrankX Ecosystem',
       description: 'Research, products, world-building, and the story behind it all.',
@@ -173,12 +175,13 @@ const navigation = {
   },
 }
 
-// Logo component - clean gradient wordmark
+type NavKey = keyof typeof navigation
+
 function Logo() {
   return (
     <Link
       href="/"
-      className="rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5"
+      className="rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
       aria-label="FrankX.AI - Home"
     >
       <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
@@ -188,8 +191,7 @@ function Logo() {
   )
 }
 
-// Shared menu link renderer
-function MenuLink({ item }: { item: (typeof navigation)[keyof typeof navigation]['items'][0] }) {
+function MenuLink({ item }: { item: (typeof navigation)[NavKey]['items'][0] }) {
   const Icon = item.icon
   const isExternal = 'external' in item && item.external
   const LinkComponent = isExternal ? 'a' : Link
@@ -202,7 +204,7 @@ function MenuLink({ item }: { item: (typeof navigation)[keyof typeof navigation]
       <NavigationMenu.Link asChild>
         <LinkComponent
           {...linkProps}
-          className="group flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-white/5"
+          className="group flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
         >
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
             <Icon className="h-3.5 w-3.5" />
@@ -220,12 +222,11 @@ function MenuLink({ item }: { item: (typeof navigation)[keyof typeof navigation]
   )
 }
 
-// Featured card component used in all mega menus
-function FeaturedCard({ data }: { data: (typeof navigation)[keyof typeof navigation] }) {
+function FeaturedCard({ data }: { data: (typeof navigation)[NavKey] }) {
   return (
     <Link
       href={data.featured.href}
-      className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900"
+      className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
       <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
@@ -240,13 +241,11 @@ function FeaturedCard({ data }: { data: (typeof navigation)[keyof typeof navigat
   )
 }
 
-// Adaptive mega menu content — layout scales with item count
-function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
+function MegaMenuContent({ section }: { section: NavKey }) {
   const data = navigation[section]
   const itemCount = data.items.length
   const hasGroups = 'groups' in data && data.groups
 
-  // Large grouped layout (Resources: 9+ items with semantic groups)
   if (hasGroups) {
     const groups = (data as typeof data & { groups: { label: string; items: string[] }[] }).groups
     return (
@@ -277,7 +276,6 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
     )
   }
 
-  // Medium 2-column layout (Developers: 6-8 items)
   if (itemCount > 5) {
     const midpoint = Math.ceil(itemCount / 2)
     const col1 = data.items.slice(0, midpoint)
@@ -303,7 +301,6 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
     )
   }
 
-  // Compact single-column layout (Music, Creators, Students, Investor: ≤5 items)
   return (
     <div className="w-[540px] max-w-[calc(100vw-2rem)] p-4">
       <div className="grid grid-cols-[180px_1fr] gap-4">
@@ -318,10 +315,14 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
   )
 }
 
-// Trigger button component
-function NavTrigger({ children }: { children: React.ReactNode }) {
+// Click = navigate to hub page. Hover still opens menu (Radix pointer-enter is independent of click).
+function NavTrigger({ children, href }: { children: React.ReactNode; href: string }) {
+  const router = useRouter()
   return (
-    <NavigationMenu.Trigger className="group flex items-center gap-1 rounded-md px-2.5 py-1.5 text-[13px] font-semibold text-slate-300 outline-none transition-all hover:bg-white/5 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-400/50 data-[state=open]:bg-white/5 data-[state=open]:text-white">
+    <NavigationMenu.Trigger
+      onClick={() => router.push(href)}
+      className="group flex items-center gap-1 rounded-md px-2.5 py-1.5 text-[13px] font-semibold text-slate-300 outline-none transition-all hover:bg-white/5 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712] data-[state=open]:bg-white/5 data-[state=open]:text-white"
+    >
       {children}
       <ChevronDown
         className="h-3.5 w-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
@@ -336,14 +337,14 @@ export default function NavigationMega() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeLeft, setActiveLeft] = useState<number | null>(null)
   const pathname = usePathname()
+  const rootRef = useRef<HTMLDivElement>(null)
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false)
   }, [pathname])
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden'
@@ -355,28 +356,21 @@ export default function NavigationMega() {
     }
   }, [isOpen])
 
-  // Intelligent scroll behavior: hide on scroll down, show on scroll up
   useEffect(() => {
     let lastScrollY = window.scrollY
     let ticking = false
 
     const updateScrollState = () => {
       const scrollY = window.scrollY
-
-      // Detect if we've scrolled past threshold
       setIsScrolled(scrollY > 20)
 
-      // Show/hide logic: only hide if menus are closed and scrolled past threshold
       if (!menuOpen && !isOpen && scrollY > 80) {
         if (scrollY > lastScrollY) {
-          // Scrolling DOWN - hide header
           setIsVisible(false)
         } else if (scrollY < lastScrollY) {
-          // Scrolling UP - show header
           setIsVisible(true)
         }
       } else {
-        // At top or menu open - always show
         setIsVisible(true)
       }
 
@@ -395,226 +389,134 @@ export default function NavigationMega() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [menuOpen, isOpen])
 
+  // Trigger-anchored viewport positioning: measure the active trigger's center and slide viewport under it.
+  const handleValueChange = useCallback((value: string) => {
+    setMenuOpen(!!value)
+    if (!value) return
+    requestAnimationFrame(() => {
+      const activeTrigger = rootRef.current?.querySelector<HTMLElement>('[data-state="open"]')
+      if (activeTrigger) {
+        const center = activeTrigger.offsetLeft + activeTrigger.offsetWidth / 2
+        setActiveLeft(center)
+      }
+    })
+  }, [])
+
+  const openCommandPalette = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('frankx:open-command-palette'))
+    }
+  }, [])
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault()
+        openCommandPalette()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [openCommandPalette])
+
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
     return pathname.startsWith(href)
   }
 
+  const desktopSections: NavKey[] = ['music', 'gencreators', 'learn', 'build', 'explore']
+
   return (
-    <header
-      className={cn(
-        'fixed top-0 z-50 w-full border-b transition-all duration-300 ease-in-out',
-        // Visibility and transform
-        isVisible ? 'translate-y-0' : '-translate-y-full',
-        // Background and border intensity based on scroll
-        isScrolled
-          ? 'border-white/10 bg-[#030712]/95 backdrop-blur-xl shadow-lg shadow-black/10'
-          : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
-      )}
-    >
-      <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Logo />
+    <>
+      <header
+        className={cn(
+          'fixed top-0 z-50 w-full border-b transition-all duration-300 ease-in-out',
+          isVisible ? 'translate-y-0' : '-translate-y-full',
+          isScrolled
+            ? 'border-white/10 bg-[#030712]/95 backdrop-blur-xl shadow-lg shadow-black/10'
+            : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
+        )}
+      >
+        <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+          <Logo />
 
-        {/* Desktop Navigation */}
-        <NavigationMenu.Root
-          className="relative hidden lg:block"
-          onValueChange={(value) => setMenuOpen(!!value)}
-        >
-          <NavigationMenu.List className="flex items-center gap-0.5">
-            {/* Music */}
-            <NavigationMenu.Item>
-              <NavTrigger>Music</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="music" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* GenCreators — merged from Creators + GenCreator framework */}
-            <NavigationMenu.Item>
-              <NavTrigger>GenCreators</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="gencreators" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Learn — expanded from Students */}
-            <NavigationMenu.Item>
-              <NavTrigger>Learn</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="learn" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Build — AI Architecture + consulting */}
-            <NavigationMenu.Item>
-              <NavTrigger>Build</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="build" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Invest */}
-            <NavigationMenu.Item>
-              <NavTrigger>Invest</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="invest" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Explore — trimmed resources */}
-            <NavigationMenu.Item>
-              <NavTrigger>Explore</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="explore" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Blog — direct link */}
-            <NavigationMenu.Item>
-              <Link
-                href="/blog"
-                className={cn(
-                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
-                  isActive('/blog')
-                    ? 'text-white bg-white/5'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
-                )}
-              >
-                Blog
-              </Link>
-            </NavigationMenu.Item>
-
-            <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
-              <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
-            </NavigationMenu.Indicator>
-          </NavigationMenu.List>
-
-          <div className="perspective-[2000px] absolute left-1/2 top-full flex -translate-x-1/2 justify-center">
-            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full max-w-[calc(100vw-2rem)] origin-[top_center] overflow-hidden rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
-          </div>
-        </NavigationMenu.Root>
-
-        {/* Desktop CTAs — Search + Primary */}
-        <div className="hidden items-center gap-2 lg:flex">
-          <Link
-            href="/search"
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
-            aria-label="Search"
-            title="Search (Ctrl+K)"
+          <NavigationMenu.Root
+            ref={rootRef}
+            className="relative hidden lg:block"
+            onValueChange={handleValueChange}
           >
-            <Search className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/start"
-            className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20"
-          >
-            Start Here
-          </Link>
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        >
-          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
-      </nav>
-
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="border-t border-white/5 bg-[#030712]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
-          >
-            <div className="mx-auto max-w-6xl space-y-1 px-4 sm:px-6 py-3 sm:py-4">
-              {/* Mobile dropdowns */}
-              {(Object.keys(navigation) as Array<keyof typeof navigation>).map((section) => (
-                <MobileSection key={section} section={section} onClose={() => setIsOpen(false)} />
+            <NavigationMenu.List className="flex items-center gap-0.5">
+              {desktopSections.map((section) => (
+                <NavigationMenu.Item key={section}>
+                  <NavTrigger href={navigation[section].href}>{navigation[section].label}</NavTrigger>
+                  <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                    <MegaMenuContent section={section} />
+                  </NavigationMenu.Content>
+                </NavigationMenu.Item>
               ))}
 
-              {/* Simple links */}
-              <Link
-                href="/blog"
-                onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
-              >
-                Blog
-              </Link>
+              <NavigationMenu.Item>
+                <Link
+                  href="/blog"
+                  className={cn(
+                    'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]',
+                    isActive('/blog')
+                      ? 'text-white bg-white/5'
+                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  )}
+                >
+                  Blog
+                </Link>
+              </NavigationMenu.Item>
 
-              {/* Mobile CTA */}
-              <div className="pt-3 sm:pt-4 pb-2 space-y-2">
-                <Link
-                  href="/search"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-2.5 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
-                >
-                  <Search className="h-4 w-4 flex-shrink-0" />
-                  Search
-                </Link>
-                <Link
-                  href="/start"
-                  onClick={() => setIsOpen(false)}
-                  className="block w-full rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
-                >
-                  Start Here
-                </Link>
-              </div>
+              <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
+                <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
+              </NavigationMenu.Indicator>
+            </NavigationMenu.List>
+
+            <div
+              className="perspective-[2000px] absolute top-full flex -translate-x-1/2 justify-center transition-[left] duration-200 ease-out"
+              style={{ left: activeLeft !== null ? `${activeLeft}px` : '50%' }}
+            >
+              <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full max-w-[calc(100vw-2rem)] origin-[top_center] overflow-hidden rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-  )
-}
+          </NavigationMenu.Root>
 
-// Mobile section accordion
-function MobileSection({ section, onClose }: { section: keyof typeof navigation; onClose: () => void }) {
-  const [expanded, setExpanded] = useState(false)
-  const data = navigation[section]
+          <div className="hidden items-center gap-2 lg:flex">
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              className="flex h-8 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70"
+              aria-label="Open search (Ctrl+K)"
+              title="Search (Ctrl+K)"
+            >
+              <Search className="h-3.5 w-3.5" />
+              <span className="hidden xl:inline text-[11px] font-medium">Search</span>
+              <kbd className="hidden xl:inline-flex items-center gap-0.5 rounded border border-white/10 bg-black/30 px-1 py-0.5 text-[10px] font-mono text-slate-500">
+                <span>⌘</span>K
+              </kbd>
+            </button>
+            <Link
+              href="/start"
+              className="rounded-full bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-1.5 text-[13px] font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
+            >
+              Start Here
+            </Link>
+          </div>
 
-  return (
-    <div>
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center justify-between rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
-      >
-        {data.label}
-        <ChevronDown className={cn('h-4 w-4 transition-transform duration-200', expanded && 'rotate-180')} />
-      </button>
-      <AnimatePresence>
-        {expanded && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.15 }}
-            className="overflow-hidden"
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 lg:hidden"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isOpen}
           >
-            <div className="space-y-0.5 pb-2 pl-2 sm:pl-4">
-              {data.items.map((item) => {
-                const Icon = item.icon
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={onClose}
-                    className="flex items-center gap-2.5 sm:gap-3 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-slate-400 transition-colors hover:bg-white/5 hover:text-white active:bg-white/10"
-                  >
-                    <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
-                    <span className="truncate">{item.name}</span>
-                  </Link>
-                )
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </nav>
+      </header>
+
+      <MobileNavOverlay isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
   )
 }

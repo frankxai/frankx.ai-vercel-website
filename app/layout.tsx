@@ -9,6 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
+import CommandPalette from '@/components/CommandPalette'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
@@ -16,9 +17,8 @@ import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
-// latin-ext adds full German diacritic support (ä, ö, ü, ß render natively)
 const inter = Inter({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700'],
@@ -26,16 +26,15 @@ const inter = Inter({
 
 // Poppins for display headings (≥18px only per brand guidelines)
 const poppins = Poppins({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   variable: '--font-poppins',
   display: 'swap',
   weight: ['600', '700', '800'],
 })
 
 // Playfair Display for editorial touches (italic quotes only per brand)
-// latin-ext critical for German umlauts in serif display text
 const playfair = Playfair_Display({
-  subsets: ['latin', 'latin-ext'],
+  subsets: ['latin'],
   variable: '--font-serif',
   display: 'swap',
   style: ['normal', 'italic'],
@@ -164,6 +163,7 @@ export default function RootLayout({
             <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
           </div>
           <NavigationMega />
+          <CommandPalette />
           <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
             {children}
           </div>
