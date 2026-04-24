@@ -118,6 +118,9 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function LibraryPage() {
   const categories = getAllReviewCategories();
+  const sortedReviews = [...bookReviews].sort((a, b) =>
+    b.reviewDate.localeCompare(a.reviewDate)
+  );
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -157,13 +160,36 @@ export default function LibraryPage() {
               </span>
             ))}
           </div>
+
+          <div className="mt-10">
+            <Link
+              href="/library/approach"
+              className="inline-flex items-center gap-2 text-sm text-amber-400/80 hover:text-amber-300 transition-colors border border-amber-500/20 rounded-full px-4 py-2 bg-amber-500/5 hover:bg-amber-500/10"
+            >
+              How this library is built
+              <svg
+                className="w-3.5 h-3.5"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
+                stroke="currentColor"
+                aria-hidden
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Reviews Grid */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {bookReviews.map((review) => {
+          {sortedReviews.map((review) => {
             const relatedBook = review.relatedBook
               ? booksRegistry.find((b) => b.slug === review.relatedBook)
               : null;
