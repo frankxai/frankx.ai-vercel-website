@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { bookReviews, getReviewBySlug, getAllReviewSlugs } from '@/data/book-reviews';
 import { booksRegistry } from '@/app/books/lib/books-registry';
 import type { BookReview } from '@/app/books/types';
+import { QuoteShareToolbar } from '@/components/share/QuoteShareToolbar';
 
 const SITE_URL = 'https://frankx.ai';
 
@@ -199,6 +200,7 @@ export default async function ReviewPage({
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
+      <QuoteShareToolbar />
       {/* Back Link */}
       <div className="max-w-3xl mx-auto px-6 pt-28 pb-4">
         <Link
@@ -364,37 +366,51 @@ export default async function ReviewPage({
             map back to the book so you can re-read them in context.
           </p>
           <div className="space-y-4">
-            {review.quotes.map((quote, i) => (
-              <figure
-                key={i}
-                className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-6 pl-8"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute top-3 left-3 text-rose-400/40 font-serif text-5xl leading-none select-none"
+            {review.quotes.map((quote, i) => {
+              const quoteId = `q-${review.slug}-${i + 1}`;
+              const permalink = `${SITE_URL}/library/${review.slug}#${quoteId}`;
+              return (
+                <figure
+                  key={i}
+                  id={quoteId}
+                  tabIndex={0}
+                  data-shareable="quote"
+                  data-quote-text={quote.text}
+                  data-quote-author={review.author}
+                  data-quote-source={review.title}
+                  data-quote-permalink={permalink}
+                  className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent p-6 pl-8 scroll-mt-24 outline-none focus-visible:border-rose-400/30 focus-visible:ring-2 focus-visible:ring-rose-400/20"
                 >
-                  &ldquo;
-                </span>
-                <blockquote className="text-white/80 leading-relaxed text-[15.5px] font-light italic">
-                  {quote.text}
-                </blockquote>
-                {(quote.chapter || quote.context) && (
-                  <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
-                    {quote.chapter && (
-                      <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
-                        {quote.chapter}
-                      </p>
-                    )}
-                    {quote.context && (
-                      <p className="text-[13px] text-white/50 leading-relaxed">
-                        {quote.context}
-                      </p>
-                    )}
-                  </figcaption>
-                )}
-              </figure>
-            ))}
+                  <span
+                    aria-hidden="true"
+                    className="absolute top-3 left-3 text-rose-400/40 font-serif text-5xl leading-none select-none"
+                  >
+                    &ldquo;
+                  </span>
+                  <blockquote className="text-white/80 leading-relaxed text-[15.5px] font-light italic">
+                    {quote.text}
+                  </blockquote>
+                  {(quote.chapter || quote.context) && (
+                    <figcaption className="mt-4 pt-4 border-t border-white/[0.04] space-y-1">
+                      {quote.chapter && (
+                        <p className="text-[11px] uppercase tracking-[0.15em] text-rose-400/60">
+                          {quote.chapter}
+                        </p>
+                      )}
+                      {quote.context && (
+                        <p className="text-[13px] text-white/50 leading-relaxed">
+                          {quote.context}
+                        </p>
+                      )}
+                    </figcaption>
+                  )}
+                </figure>
+              );
+            })}
           </div>
+          <p className="mt-6 text-[12px] text-white/30">
+            Tip: highlight any quote to share it. Press <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 font-mono text-[10px]">S</kbd> while focused on a quote for keyboard share.
+          </p>
         </section>
       )}
 
