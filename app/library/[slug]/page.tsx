@@ -368,7 +368,10 @@ export default async function ReviewPage({
           <div className="space-y-4">
             {review.quotes.map((quote, i) => {
               const quoteId = `q-${review.slug}-${i + 1}`;
-              const permalink = `${SITE_URL}/library/${review.slug}#${quoteId}`;
+              // Permalink points at the dedicated /q/{n} page so social shares
+              // get the per-quote OpenGraph image. Anchor still works for
+              // in-page navigation; the share URL is what amplifies.
+              const permalink = `${SITE_URL}/library/${review.slug}/q/${i + 1}`;
               return (
                 <figure
                   key={i}

@@ -272,8 +272,9 @@ export default function LibraryQuotesPage() {
               <div className="space-y-4">
                 {bookQuotes.map((q, i) => {
                   const quoteId = `q-${book.slug}-${i + 1}`;
-                  // Permalink prefers the canonical book page anchor (deeper SEO surface)
-                  const permalink = `${SITE_URL}/library/${book.slug}#${quoteId}`;
+                  // Permalink points at the dedicated /q/{n} page so social
+                  // shares get the per-quote OpenGraph image card.
+                  const permalink = `${SITE_URL}/library/${book.slug}/q/${i + 1}`;
                   return (
                     <figure
                       key={i}
