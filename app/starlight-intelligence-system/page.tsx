@@ -11,18 +11,22 @@ import {
   Compass,
   Brain,
   BookOpen,
-  Target,
   Check,
   FileCode,
   Workflow,
   Shield,
-  Zap,
   Network,
   Code2,
 } from 'lucide-react'
+import HeroDiagram from '@/components/sis/HeroDiagram'
+import PhaseJourney from '@/components/sis/PhaseJourney'
+import LayerStack from '@/components/sis/LayerStack'
+import SIPBadge from '@/components/sis/SIPBadge'
 
 const REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
-const RELEASE = 'https://github.com/frankxai/Starlight-Intelligence-System/releases/latest'
+// Direct zipball — GitHub auto-generates this for any tag, always works, downloads as a real .zip.
+const STARTER_ZIP = 'https://github.com/frankxai/Starlight-Intelligence-System/archive/refs/tags/v3.0.0.zip'
+const RELEASES = 'https://github.com/frankxai/Starlight-Intelligence-System/releases'
 const PROTOCOL = 'https://starlightintelligence.org/protocol'
 
 const phases = [
@@ -176,13 +180,11 @@ export default function StarlightIntelligenceSystemPage() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              href={RELEASE}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={STARTER_ZIP}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
               <Download className="h-4 w-4" />
-              Get the Starter Pack
+              Download .zip <span className="text-white/70 font-normal text-xs">v3.0.0</span>
             </Link>
             <Link
               href={REPO}
@@ -193,6 +195,11 @@ export default function StarlightIntelligenceSystemPage() {
               <Github className="h-4 w-4" />
               Clone the Repo
             </Link>
+          </div>
+
+          {/* Hero diagram */}
+          <div className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-2 sm:p-4">
+            <HeroDiagram className="w-full h-auto" />
           </div>
 
           {/* Stats */}
@@ -243,6 +250,11 @@ export default function StarlightIntelligenceSystemPage() {
             Five phases. You don&apos;t have to commit to all of them.
           </h2>
           <p className="text-base text-slate-400 mb-10 max-w-2xl">You just have to start.</p>
+
+          {/* Visual journey overview */}
+          <div className="mb-10 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-4 sm:p-6 overflow-x-auto">
+            <PhaseJourney className="min-w-[640px] w-full h-auto" />
+          </div>
 
           <ol className="space-y-4">
             {phases.map((p) => {
@@ -320,15 +332,18 @@ export default function StarlightIntelligenceSystemPage() {
                 <Check className="h-3 w-3 text-emerald-400" />
                 15 min setup · 90 min to your first Genius Profile
               </div>
-              <Link
-                href={RELEASE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-black transition-all hover:bg-emerald-400"
-              >
-                <Download className="h-3.5 w-3.5" />
-                Starter pack (.zip)
-              </Link>
+              <div className="flex flex-col gap-2">
+                <Link
+                  href={STARTER_ZIP}
+                  className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-black transition-all hover:bg-emerald-400 w-fit"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  Download .zip <span className="font-normal text-xs opacity-70">v3.0.0</span>
+                </Link>
+                <div className="text-[10px] text-slate-500 font-mono leading-relaxed">
+                  ~6 MB · markdown + commands + agents · drop into Claude Project
+                </div>
+              </div>
             </div>
 
             {/* Path 2 — builder */}
@@ -426,6 +441,28 @@ export default function StarlightIntelligenceSystemPage() {
           <p className="text-base text-slate-400 mb-10 max-w-2xl">
             You don&apos;t need all nine to start. You need one — Genius — working. The rest compounds when the time is right.
           </p>
+
+          {/* Visual layer stack */}
+          <div className="mb-8 grid lg:grid-cols-[1fr_auto] gap-8 items-start">
+            <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-4 sm:p-6">
+              <LayerStack className="w-full h-auto max-w-[720px] mx-auto" />
+            </div>
+            <div className="lg:sticky lg:top-24 max-w-sm">
+              <div className="text-[11px] uppercase tracking-wider text-emerald-300 font-semibold mb-3">
+                Foundation
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Start with Genius IS.</h3>
+              <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                The bottom layer is the only required layer. It&apos;s where you discover the frameworks
+                you keep rebuilding without realizing — your distinctive vocabulary, your cross-domain
+                synthesis edge, the shape of your actual thinking.
+              </p>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                Every layer above compounds on Genius. Without it, the rest are scaffolding without ground.
+                With it, the rest become inevitable in the order that matches your life.
+              </p>
+            </div>
+          </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden">
             <table className="w-full text-sm">
@@ -586,13 +623,11 @@ export default function StarlightIntelligenceSystemPage() {
 
           <div className="flex flex-wrap gap-3 justify-center">
             <Link
-              href={RELEASE}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={STARTER_ZIP}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20"
             >
               <Download className="h-4 w-4" />
-              Download Starter Pack
+              Download .zip <span className="text-white/70 font-normal text-xs">v3.0.0 · ~6MB</span>
             </Link>
             <Link
               href={REPO}
@@ -603,12 +638,25 @@ export default function StarlightIntelligenceSystemPage() {
               <Github className="h-4 w-4" />
               Clone the Repo
             </Link>
+            <Link
+              href={RELEASES}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-transparent px-4 py-3 text-xs font-semibold text-slate-400 transition-all hover:bg-white/5 hover:text-white"
+            >
+              All releases →
+            </Link>
           </div>
 
-          <div className="mt-16 pt-8 border-t border-white/5 text-[11px] text-slate-500 font-mono">
-            <div>Built on SIP — Starlight Intelligence Protocol</div>
-            <div>Substrate: starlightintelligence.org/protocol v1.1.0</div>
-            <div>Layers used: file-contract · attestation · commands · sovereignty</div>
+          {/* Attestation footer with badge */}
+          <div className="mt-16 pt-8 border-t border-white/5 flex items-center justify-center gap-6 flex-wrap">
+            <SIPBadge size={72} className="shrink-0" />
+            <div className="text-[11px] text-slate-500 font-mono leading-relaxed text-left">
+              <div className="text-emerald-300">Built on SIP — Starlight Intelligence Protocol</div>
+              <div>Substrate: starlightintelligence.org/protocol v1.1.0</div>
+              <div>Layers: file-contract · attestation · commands · sovereignty</div>
+              <div className="mt-1 text-slate-600">Attestation is compounding, not credit transfer.</div>
+            </div>
           </div>
         </div>
       </section>
