@@ -381,6 +381,22 @@ export const bookReviews: BookReview[] = [
         q: 'How does Deep Work relate to Atomic Habits?',
         a: 'Complementary. Atomic Habits tells you how to install any habit. Deep Work tells you which habit matters most in the knowledge economy. Read Atomic Habits for the mechanism; read Deep Work for the target.',
       },
+      {
+        q: 'How many hours of deep work can a person do per day?',
+        a: 'Newport cites the research consensus: 4 hours maximum for trained practitioners (deliberate-practice research from Anders Ericsson), with 1–2 hours being the realistic ceiling for most knowledge workers without prior training. Beyond that point, cognitive output degrades sharply. The implication: do not aim for 8-hour deep-work days — aim for 2–4 hours of genuine deep work and accept that the rest of the day will be shallow.',
+      },
+      {
+        q: 'What is the difference between flow and deep work?',
+        a: 'Flow (Csíkszentmihályi) is a subjective state — full absorption, time distortion, intrinsic reward — that can occur in any activity. Deep work (Newport) is an objective category — cognitively demanding professional work in a distraction-free state. The two overlap: deep work often produces flow, and flow correlates with high-quality output. But you can be in flow during a video game, and you can do deep work without enjoying it.',
+      },
+      {
+        q: 'Is deep work compatible with parenting and family life?',
+        a: 'Newport addresses this directly. He recommends fixed-schedule productivity — declare working hours (e.g., 9 to 5:30) and refuse to extend them. The constraint forces ruthless prioritization within deep-work blocks and protects family time afterward. Many readers report this is the book\'s most freeing argument: deep work is not about working more hours, it is about getting more done in the hours you already have.',
+      },
+      {
+        q: 'How do you protect deep work in an open-office environment?',
+        a: 'Newport\'s tactical advice: claim physical separation (conference rooms, library, café) for deep blocks; use noise-cancelling headphones as a social signal; schedule deep work in early mornings before the office fills; negotiate fixed office-presence hours with management; use the rhythmic philosophy (daily deep block at a fixed time). The organizational culture is a constraint, but rarely an absolute one — most knowledge workers have more discretion than they exercise.',
+      },
     ],
     quotes: [
       {
@@ -519,8 +535,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'The War of Art',
         author: 'Steven Pressfield',
-        reason: 'Pressfield names what Newport analyzes — Resistance, the force that stops you from doing the work. Both books agree on the diagnosis, approach it differently. Newport is systems, Pressfield is psychology.',
-        url: 'https://www.amazon.com/War-Art-Through-Creative-Battles/dp/1936891026',
+        reason: 'Already in this library — Pressfield names what Newport analyzes: Resistance, the force that stops you from doing the work. Both books agree on the diagnosis, approach it differently. Newport is systems; Pressfield is psychology. Read together for the complete focus operating system.',
+        url: '/library/the-war-of-art',
       },
     ],
     videos: [
@@ -605,6 +621,22 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Who is the Alchemist, and why is the book named for him?',
         a: 'The Alchemist Santiago meets in the desert is not primarily a chemist — he is a teacher who transforms lead into gold and students into seers. The title points at the real subject: the transformation of the self, using experience as the catalyst.',
+      },
+      {
+        q: 'What is the Soul of the World in The Alchemist?',
+        a: 'Coelho\'s term for the unified intelligence underlying all things — drawn from alchemical, Sufi, and Romantic traditions. To "speak the Language of the World" is to perceive this underlying unity directly, not as theory. The concept resembles Hegel\'s Geist, the Tao, or what Emerson called the Over-Soul. Coelho intentionally keeps the term ambiguous — it works as metaphysics, psychology, or literary device depending on the reader.',
+      },
+      {
+        q: 'Why has The Alchemist sold over 150 million copies?',
+        a: 'It is one of the best-selling books of all time and has been translated into 80+ languages. Reasons include: short and accessible (under 200 pages), parable structure that travels across cultures, universal "follow your dream" narrative, endorsements from Madonna, Will Smith, Pharrell, and Bill Clinton, and the rare quality of being equally compelling at age 18 and age 60. Its commercial success is itself a Coelho-style argument — a writer who gives himself entirely to a book the world rejects (Coelho\'s first publisher dropped it) eventually finds the readership the work was for.',
+      },
+      {
+        q: 'Is the "follow your dreams" message naive or dangerous?',
+        a: 'Critics argue it is. Coelho oversimplifies — not everyone has a clear Personal Legend, and "the universe conspires" can shade into magical thinking. The novel works best read as parable, not policy: it argues for orienting your life around something larger than comfort, not for abandoning responsibilities on a hunch. The principle of favorability requires action, not just belief — Santiago crosses a desert, gets robbed, works for a year — and Coelho is explicit about that cost.',
+      },
+      {
+        q: 'How does The Alchemist relate to Joseph Campbell\'s hero\'s journey?',
+        a: 'It is one of the cleanest examples of Campbell\'s monomyth in modern literature. Santiago receives the call (the dream), refuses then accepts (sells his sheep), crosses thresholds (the desert), meets mentors (the King, the Alchemist), faces ordeals (robbery, war, transformation into wind), and returns transformed. Reading Campbell after Coelho reveals the structural skeleton; reading Coelho after Campbell shows the form fully alive in a single small book.',
       },
     ],
     quotes: [
@@ -738,8 +770,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Man\'s Search for Meaning',
         author: 'Viktor Frankl',
-        reason: 'Frankl makes the same argument as Coelho — meaning, not pleasure, is the basis of a well-lived life — but from inside a concentration camp instead of a shepherd\'s tale. Dark mirror; same conclusion.',
-        url: 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273',
+        reason: 'Already in this library — Frankl makes the same argument as Coelho: meaning, not pleasure, is the basis of a well-lived life. But Frankl reaches it from inside a concentration camp instead of a shepherd\'s tale. Dark mirror; same conclusion. The pairing is one of the most illuminating in the library.',
+        url: '/library/mans-search-for-meaning',
       },
     ],
     videos: [
@@ -824,6 +856,22 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Is Goggins\'s approach sustainable long-term?',
         a: 'Honest answer: his own life contains injuries, relationship difficulties, and extreme cost. The book is not a template for a balanced life. It is a corrective for people who have drifted into under-effort. Apply the mindset selectively; Goggins himself has moderated in later work (Never Finished, 2022).',
+      },
+      {
+        q: 'How much weight did David Goggins lose in Can\'t Hurt Me?',
+        a: '106 pounds in three months — from 297 to 191 lbs. Goggins describes the precise mechanism: a calorie-restricted diet (estimated 1,200–1,500 calories), daily long-distance running starting at very low pace, and the Accountability Mirror Post-it system to face daily failure without dropping the goal. The speed is unusual; Goggins acknowledges the physical and mental cost. The book is honest about extremes.',
+      },
+      {
+        q: 'What is the "Cookie Jar" technique?',
+        a: 'Goggins\'s mental tool for sourcing fuel during extreme effort. You build a mental jar of past victories — the harder things you have already done — and reach into it when current effort feels unbearable. The technique uses memory as evidence of capacity. Examples Goggins uses: surviving childhood, completing Hell Week, finishing Badwater on broken legs. Modern psychology calls this "self-efficacy retrieval"; Goggins calls it the cookie jar.',
+      },
+      {
+        q: 'Is it dangerous to follow Goggins\'s training methodology?',
+        a: 'Yes, if applied literally without context. Goggins himself has had multiple injuries, surgeries, and a heart condition (atrial fibrillation, congenital). He acknowledges this. The book\'s value is the framework, not the literal program — apply the 40% Rule, the Accountability Mirror, the cookie jar, and the calluses-on-the-mind model. Calibrate the physical specifics to your own body, age, history, and recovery capacity. Goggins is a case study in extremes, not a coach prescribing for the average reader.',
+      },
+      {
+        q: 'How does Goggins\'s mindset compare to Stoic philosophy?',
+        a: 'They share most conclusions — discomfort builds capacity, suffering reveals character, you control only your response — but reach them by different routes. The Stoics argue from reason; Goggins argues from extreme experience. Marcus Aurelius and Epictetus would recognize Goggins\'s framework instantly; Goggins discovered it by walking through Hell Week three times rather than reading. Pair Marcus and Goggins for a complete view: ancient theory, modern applied case.',
       },
     ],
     quotes: [
@@ -974,8 +1022,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Man\'s Search for Meaning',
         author: 'Viktor Frankl',
-        reason: 'A different kind of survival literature. Frankl in a concentration camp reaches some of the same conclusions Goggins reaches in SEAL training — suffering is bearable when attached to meaning. Worth reading against Goggins to see what each gets right.',
-        url: 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273',
+        reason: 'Already in this library — a different kind of survival literature. Frankl in a concentration camp reaches some of the same conclusions Goggins reaches in SEAL training: suffering is bearable when attached to meaning. Worth reading against Goggins to see what each gets right and where they diverge — meaning vs. callusing, philosophy vs. pain-forging.',
+        url: '/library/mans-search-for-meaning',
       },
     ],
     videos: [
@@ -1060,6 +1108,22 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Which chapter matters most for modern readers?',
         a: 'Persistence. Every self-help book since 1937 rediscovers this chapter\'s thesis — that persistence is a trained response, not a personality trait, and most people quit roughly where success begins. If you read only one chapter, make it this one.',
+      },
+      {
+        q: 'Did Andrew Carnegie really commission Think and Grow Rich?',
+        a: 'According to Hill, yes — in 1908, Carnegie reportedly gave Hill an unpaid 20-year assignment to interview the wealthiest Americans and codify their methods. Some historians dispute the literal accuracy of Hill\'s account (Carnegie left no written record of the commission), but Hill produced ~500 documented interviews and the book\'s structure clearly reflects Carnegie\'s philosophy. Whether the founding story is exact, the resulting work is genuinely Carnegie-tradition.',
+      },
+      {
+        q: 'How is Think and Grow Rich different from The Law of Attraction?',
+        a: 'The Law of Attraction (popularized by Rhonda Byrne\'s The Secret, 2006) is a narrowed, mystical-only reading of Hill\'s broader principle. Hill requires desire + plan + persistence + mastermind + action. The Secret often presents intention alone as sufficient. Hill himself would have rejected the simplification — every chapter beyond Chapter 2 (Desire) is about action, not just thought.',
+      },
+      {
+        q: 'Is Hill\'s principle of "Sex Transmutation" still relevant?',
+        a: 'The framing is dated, but the principle is sound. Hill argues that creative drive (which he labels "sex energy" in 1937 language) can be channeled into productive work. Modern psychology calls this sublimation (Freud) or domain-specific channeling of arousal-based motivation (Csíkszentmihályi\'s flow research). The principle holds: if you have surplus energy, intentional redirection into focused work outperforms either suppression or undirected expression. Modern readers get more clarity from Csíkszentmihályi.',
+      },
+      {
+        q: 'Should I read Think and Grow Rich or a more modern self-development book first?',
+        a: 'For practical implementation, start with a modern book — Atomic Habits (Clear), Mindset (Dweck), or Deep Work (Newport). They have better research, clearer mechanisms, and more applicable advice. Read Think and Grow Rich as historical context — to understand the lineage that shaped almost every self-help book of the past 80 years. Hill is the source code; modern books are the refinements.',
       },
     ],
     quotes: [
@@ -1239,8 +1303,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Atomic Habits',
         author: 'James Clear',
-        reason: 'Hill\'s persistence chapter, modernized. Clear\'s Four Laws are a behavioral refinement of Hill\'s intuition that persistence is a trainable habit.',
-        url: 'https://www.amazon.com/Atomic-Habits-Proven-Build-Break/dp/0735211299',
+        reason: 'Already in this library — Hill\'s persistence chapter, modernized. Clear\'s Four Laws are a behavioral refinement of Hill\'s intuition that persistence is a trainable habit. Read Hill for the 1937 source, Clear for the 2018 mechanism.',
+        url: '/library/atomic-habits',
       },
     ],
     videos: [
@@ -1325,6 +1389,22 @@ export const bookReviews: BookReview[] = [
       {
         q: 'What is the "existential vacuum" Frankl describes as a modern epidemic?',
         a: 'Frankl observed in post-war patients a new kind of neurosis — not from suppressed drives (Freud) or inferiority (Adler), but from a sense of meaninglessness. Symptoms: boredom, apathy, "Sunday neurosis" (weekend emptiness), behavioral compulsions to fill the void. He argued the condition was epidemic in the 20th century and would grow. Fifty years later, he looks correct.',
+      },
+      {
+        q: 'Did Frankl actually write Man\'s Search for Meaning in nine days?',
+        a: 'Yes. After his liberation in 1945, Frankl wrote Part One (his Auschwitz memoir) in nine days in 1946, originally intended for anonymous publication. Friends convinced him to attach his name. Part Two (the Logotherapy primer) was added at the publisher\'s request to give the book theoretical weight. The compression explains the prose\'s intensity — it was written in a single sustained burst of need.',
+      },
+      {
+        q: 'What is "paradoxical intention" in Logotherapy?',
+        a: 'A clinical technique Frankl developed for treating phobias and obsessive behaviors. The patient is instructed to deliberately try to bring on the feared symptom — the insomniac tries to stay awake; the trembling-handed musician tries to tremble more; the social-phobic tries to sweat. Hyper-intention sabotages the symptom because anxiety requires the gap between fear and resistance. Removing resistance collapses the gap. Modern CBT has rediscovered the technique under the label "exposure with response prevention."',
+      },
+      {
+        q: 'How is Logotherapy different from CBT (Cognitive Behavioral Therapy)?',
+        a: 'Logotherapy and CBT share techniques — both use cognitive reframing, both treat behavior as influenced by thought, both emphasize present-tense responsibility. The difference is content. CBT focuses on identifying and correcting distorted thoughts; Logotherapy focuses on locating meaning. Donald Robertson and others argue Logotherapy was an early proto-CBT; Frankl himself argued Logotherapy goes deeper because meaning, not just accurate thinking, is the ultimate driver of mental health.',
+      },
+      {
+        q: 'Is Frankl\'s framework useful for people who haven\'t experienced extreme trauma?',
+        a: 'Yes — that is its primary application. Frankl explicitly argues that Logotherapy is for the "existential vacuum" of ordinary modern life: the meaninglessness, boredom, and quiet despair of comfortable people. The camps were the laboratory; the patient is the comfortable but disoriented citizen. Frankl believed the existential vacuum would become the dominant 20th-century neurosis — and post-2000 mental-health data suggests he was right.',
       },
     ],
     quotes: [
@@ -1466,8 +1546,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Meditations',
         author: 'Marcus Aurelius',
-        reason: 'Frankl explicitly admired Stoicism. Marcus\'s "the impediment to action advances action" is the ancient version of Frankl\'s "attitudinal value." Read together for the two-millennia conversation on choosing one\'s response.',
-        url: 'https://www.amazon.com/Meditations-New-Translation-Marcus-Aurelius/dp/0812968255',
+        reason: 'Already in this library — Frankl explicitly admired Stoicism. Marcus\'s "the impediment to action advances action" is the ancient version of Frankl\'s "attitudinal value." Read together for the two-millennia conversation on choosing one\'s response: Marcus from a Roman throne, Frankl from Auschwitz.',
+        url: '/library/meditations',
       },
       {
         title: 'Night',
@@ -1584,6 +1664,22 @@ export const bookReviews: BookReview[] = [
       {
         q: 'How does The War of Art relate to Deep Work?',
         a: 'Pressfield names the enemy; Newport engineers the defenses. Pressfield is psychology; Newport is systems. Read together: Pressfield tells you you\'re at war, Newport tells you how to fortify the battlefield. Both agree on the diagnosis.',
+      },
+      {
+        q: 'What is the difference between Resistance and procrastination?',
+        a: 'Procrastination is one of Resistance\'s many disguises, not its full identity. Pressfield\'s Resistance is more comprehensive — it includes procrastination, perfectionism, self-medication, busy-work, manufactured drama, "research" that never ends, and physical ailments that appear only before the work. Calling it procrastination minimizes it. Resistance is the underlying force; procrastination is one tactic.',
+      },
+      {
+        q: 'How long should I read The War of Art — once or daily?',
+        a: 'Pressfield himself uses it daily, opening to a random chapter as part of his morning ritual before writing. The chapters are deliberately short for this purpose. Most serious creators read it cover-to-cover once and then keep it on their desk for the rest of their career. Treat it as a sword on the wall — a reference for combat, not a book to finish and shelve.',
+      },
+      {
+        q: 'Is "turning pro" a one-time decision or a daily one?',
+        a: 'Both. Pressfield describes it as a single fundamental decision — you have either turned pro or you have not — but executes it daily. The amateur waits for inspiration and quits when it is hard; the professional shows up regardless. Each morning the decision is renewed by action. There is no certificate; the turning is the ongoing showing-up.',
+      },
+      {
+        q: 'Does The War of Art apply outside creative work?',
+        a: 'Yes — Pressfield is explicit. Resistance opposes any move from a lower to higher state: starting a business, recovering from addiction, beginning therapy, getting fit, ending a bad relationship. The framework applies anywhere ambition meets growth. Many readers report the book has more impact on their entrepreneurial or recovery work than on writing.',
       },
     ],
     quotes: [
@@ -1708,8 +1804,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Deep Work',
         author: 'Cal Newport',
-        reason: 'Pressfield names the enemy; Newport engineers the defenses. Read together for the complete psychology-and-systems framework for finishing creative work.',
-        url: 'https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692',
+        reason: 'Already in this library — Pressfield names the enemy; Newport engineers the defenses. Read together for the complete psychology-and-systems framework for finishing creative work: Pressfield is the diagnosis, Newport is the treatment plan.',
+        url: '/library/deep-work',
       },
       {
         title: 'Show Your Work!',
