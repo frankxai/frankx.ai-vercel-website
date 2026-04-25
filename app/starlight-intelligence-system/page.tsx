@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Script from 'next/script'
 import {
   ArrowRight,
@@ -18,7 +19,6 @@ import {
   Network,
   Code2,
 } from 'lucide-react'
-import HeroDiagram from '@/components/sis/HeroDiagram'
 import PhaseJourney from '@/components/sis/PhaseJourney'
 import LayerStack from '@/components/sis/LayerStack'
 import SIPBadge from '@/components/sis/SIPBadge'
@@ -197,9 +197,17 @@ export default function StarlightIntelligenceSystemPage() {
             </Link>
           </div>
 
-          {/* Hero diagram */}
-          <div className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-2 sm:p-4">
-            <HeroDiagram className="w-full h-auto" />
+          {/* Hero image — atmospheric brand piece, generated via Nano Banana Pro */}
+          <div className="mt-12 relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-emerald-500/5">
+            <Image
+              src="/images/sis/sis-hero-architecture-emerges.png"
+              alt="Scattered fragments of expertise — papers, screens, notebooks — caught in golden hour light on the left, flowing through a glowing emerald SIP threshold into a sovereign architected stack of nine translucent layers on the right. The foundation layer glows brightest emerald."
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/40 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Stats */}
@@ -225,6 +233,34 @@ export default function StarlightIntelligenceSystemPage() {
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-8">
             Two people read this page and feel seen.
           </h2>
+
+          {/* Atmospheric anchor — the cartographer's desk */}
+          <div className="mb-10 grid lg:grid-cols-[1.4fr_1fr] gap-6 items-center">
+            <div className="relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/20">
+              <Image
+                src="/images/sis/sis-cartographers-desk.png"
+                alt="A craftsman's desk: open leather notebook with handwritten frameworks, scattered Canva slide exports, MacBook with design tools, brass compass, fountain pen, coffee. Centered: a translucent blueprint paper with nine horizontal layered bands, the bottom band glowing brightest cyan-emerald — the architecture emerging from the materials beneath it."
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/30 to-transparent pointer-events-none" />
+            </div>
+            <div>
+              <div className="text-[11px] uppercase tracking-wider text-amber-300/80 mb-3 font-semibold">
+                The recognition
+              </div>
+              <p className="text-base text-slate-300 leading-relaxed mb-3">
+                The architecture isn&apos;t something you&apos;ll build later. It&apos;s already buried inside the
+                material you&apos;ve produced for the last fifteen years. You just couldn&apos;t see it.
+              </p>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                SIS extracts what&apos;s there. Not a new framework on top — your existing patterns,
+                surfaced and named.
+              </p>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/[0.04] to-transparent p-6">
               <div className="text-[11px] uppercase tracking-wider text-emerald-300 mb-2 font-semibold">The indispensable professional</div>
