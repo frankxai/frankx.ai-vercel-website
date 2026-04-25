@@ -215,6 +215,33 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'Microsoft', title: 'How Microsoft Defends Against Indirect Prompt Injection Attacks', url: 'https://www.microsoft.com/en-us/msrc/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks', type: 'blog' },
   ],
 
+  'context-engineering': [
+    { name: 'Andrej Karpathy', title: 'Context Engineering — original framing on X', url: 'https://x.com/karpathy/status/1937902205765607626', date: '2025-06-25', type: 'blog' },
+    { name: 'Anthropic', title: 'Effective Context Engineering for AI Agents', url: 'https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents', date: '2025-09-29', type: 'official' },
+    { name: 'Anthropic', title: 'Claude Code Skills — Progressive Disclosure of Capabilities', url: 'https://docs.claude.com/en/docs/claude-code/skills', date: '2025-10-15', type: 'official' },
+    { name: 'Anthropic', title: 'Model Context Protocol — Open Standard for AI Tool Integration', url: 'https://modelcontextprotocol.io/introduction', date: '2025-11-25', type: 'official' },
+    { name: 'arXiv / TACL', title: 'Lost in the Middle: How Language Models Use Long Contexts (Liu et al.)', url: 'https://arxiv.org/abs/2307.03172', date: '2024-07', type: 'journal' },
+    { name: 'arXiv', title: 'RULER: What\'s the Real Context Size of Your Long-Context Language Models? (Hsieh et al.)', url: 'https://arxiv.org/abs/2404.06654', date: '2024-08', type: 'benchmark' },
+    { name: 'Bojie Li (AWS re:Invent 2025 synthesis)', title: 'Claude\'s Context Engineering Secrets — Best Practices Learned from Anthropic', url: 'https://01.me/en/2025/12/context-engineering-from-claude/', date: '2025-12-20', type: 'blog' },
+    { name: 'InfoQ', title: 'Anthropic Introduces Managed Agents to Simplify AI Agent Deployment (Kumili)', url: 'https://www.infoq.com/news/2026/04/anthropic-managed-agents/', date: '2026-04-21', type: 'news' },
+    { name: 'arXiv / ICLR 2026', title: 'Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models (Zhang et al.)', url: 'https://arxiv.org/abs/2510.04618', date: '2026-03-29', type: 'preprint' },
+    { name: 'arXiv', title: 'Structured Context Engineering for File-Native Agentic Systems (McMillan)', url: 'https://arxiv.org/abs/2602.05447', date: '2026-02-12', type: 'preprint' },
+  ],
+
+  'agent-frameworks': [
+    { name: 'Google', title: 'google/agents-cli — GitHub Repository', url: 'https://github.com/google/agents-cli', date: '2026-04-22', type: 'official' },
+    { name: 'Google Developers Blog', title: 'Agents CLI in Agent Platform — Create to Production in One CLI', url: 'https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/', date: '2026-04-22', type: 'official' },
+    { name: 'Google', title: 'Agents CLI Documentation — Getting Started', url: 'https://google.github.io/agents-cli/guide/getting-started/', date: '2026-04-22', type: 'official' },
+    { name: 'Composio', title: 'Claude Agent SDK vs OpenAI Agents SDK vs Google ADK', url: 'https://composio.dev/content/claude-agents-sdk-vs-openai-agents-sdk-vs-google-adk', date: '2026-04', type: 'blog' },
+    { name: 'ClickHouse', title: 'How to Build AI Agents with MCP — 12 Framework Comparison', url: 'https://clickhouse.com/blog/how-to-build-ai-agents-mcp-12-frameworks', type: 'blog' },
+    { name: 'Harrison Chase (LangChain)', title: 'Tell Me Why Your Agent Framework Is Better Than LangGraph', url: 'https://x.com/hwchase17/status/1913662736963412365', date: '2026-04', type: 'blog' },
+    { name: 'Latent Space (Swyx)', title: 'Agent Engineering — Big Model Take the Wheel vs We Need to Write Code', url: 'https://www.latent.space/p/agent', type: 'blog' },
+    { name: 'Anthropic Engineering', title: 'Building Agents with the Claude Agent SDK', url: 'https://www.anthropic.com/engineering/building-agents-with-the-claude-agent-sdk', date: '2025-09-29', type: 'official' },
+    { name: 'Anthropic Engineering', title: 'Effective Harnesses for Long-Running Agents', url: 'https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents', date: '2025-11-26', type: 'official' },
+    { name: 'Andrej Karpathy', title: 'autoresearch — agent-driven research loop (GitHub)', url: 'https://github.com/karpathy/autoresearch', date: '2026-03', type: 'official' },
+    { name: 'InfoQ', title: 'Google DeepMind\'s Aletheia — Agentic Math Research with Generator/Verifier/Reviser Loop', url: 'https://www.infoq.com/news/2026/04/deepmind-aletheia-agentic-math/', date: '2026-04', type: 'news' },
+  ],
+
   'ai-education': [
     { name: 'UNESCO', title: 'Two-Thirds of Higher Education Institutions Developing AI Guidance', url: 'https://www.unesco.org/en/articles/unesco-survey-two-thirds-higher-education-institutions-have-or-are-developing-guidance-ai-use', type: 'official' },
     { name: 'Inside Higher Ed', title: '5 Predictions on How AI Will Shape Higher Ed in 2026', url: 'https://www.insidehighered.com/news/tech-innovation/artificial-intelligence/2026/01/05/5-predictions-how-ai-will-shape-higher-ed', type: 'news' },
