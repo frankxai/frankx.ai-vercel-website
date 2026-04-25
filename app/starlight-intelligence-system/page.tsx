@@ -25,7 +25,7 @@ import SIPBadge from '@/components/sis/SIPBadge'
 
 const REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
 // Direct zipball — GitHub auto-generates this for any tag, always works, downloads as a real .zip.
-const STARTER_ZIP = 'https://github.com/frankxai/Starlight-Intelligence-System/archive/refs/tags/v7.2.0.zip'
+const STARTER_ZIP = 'https://github.com/frankxai/Starlight-Intelligence-System/archive/refs/tags/v7.4.1.zip'
 const RELEASES = 'https://github.com/frankxai/Starlight-Intelligence-System/releases'
 const PROTOCOL = 'https://starlightintelligence.org/protocol'
 
@@ -184,7 +184,7 @@ export default function StarlightIntelligenceSystemPage() {
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
               <Download className="h-4 w-4" />
-              Download .zip <span className="text-white/70 font-normal text-xs">v7.2.0</span>
+              Download .zip <span className="text-white/70 font-normal text-xs">v7.4.1</span>
             </Link>
             <Link
               href={REPO}
@@ -374,7 +374,7 @@ export default function StarlightIntelligenceSystemPage() {
                   className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-black transition-all hover:bg-emerald-400 w-fit"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  Download .zip <span className="font-normal text-xs opacity-70">v7.2.0</span>
+                  Download .zip <span className="font-normal text-xs opacity-70">v7.4.1</span>
                 </Link>
                 <div className="text-[10px] text-slate-500 font-mono leading-relaxed">
                   ~6 MB · markdown + commands + agents · drop into Claude Project
@@ -663,7 +663,7 @@ export default function StarlightIntelligenceSystemPage() {
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20"
             >
               <Download className="h-4 w-4" />
-              Download .zip <span className="text-white/70 font-normal text-xs">v7.2.0 · ~6MB</span>
+              Download .zip <span className="text-white/70 font-normal text-xs">v7.4.1 · ~6MB</span>
             </Link>
             <Link
               href={REPO}
