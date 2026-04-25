@@ -49,6 +49,22 @@ export const bookReviews: BookReview[] = [
         q: 'Who is Atomic Habits NOT for?',
         a: 'People facing structural rather than behavioral problems — clinical addiction, severe environmental constraints, or mental-health conditions — will not find it sufficient. It also under-delivers for people whose problem is not "not doing enough" but "doing too much of the wrong thing." For most motivated adults with routine reshape needs, it is unmatched.',
       },
+      {
+        q: 'How long does it take for a habit to become automatic according to Atomic Habits?',
+        a: 'Clear cites the 2009 University College London study by Phillippa Lally — the average time was 66 days, with a range of 18 to 254 days. Clear explicitly rejects the popular "21 days" myth. The variance depends on habit complexity, individual biology, and consistency. The takeaway: do not panic if a habit hasn\'t stuck at three weeks; expect two to three months for most behavioural shifts.',
+      },
+      {
+        q: 'What is the two-minute rule in Atomic Habits?',
+        a: 'Make any new habit take less than two minutes to start. "Read before bed" becomes "read one page." "Run a marathon" becomes "put on running shoes." The point is not the achievement — it is establishing the cue-response loop. Once the two-minute version is automatic, the habit can grow. The rule defeats friction by making the entry threshold trivially low.',
+      },
+      {
+        q: 'How does Atomic Habits handle breaking bad habits?',
+        a: 'Invert the Four Laws. Make the cue invisible (remove the trigger from your environment), the craving unattractive (highlight the cost), the response difficult (add friction — locks, distance, time delay), and the reward unsatisfying (use accountability, public commitment, or a habit contract). Clear treats bad-habit removal as the same loop run in reverse.',
+      },
+      {
+        q: 'What is the Goldilocks rule and why does it matter for habit retention?',
+        a: 'Habits need to feel manageable but not boring — at the edge of your current ability. Too easy and you disengage; too hard and you quit. Clear cites the variable-difficulty studies in motivation research: the sweet spot is roughly 4% beyond your current capacity. The rule explains why most people abandon habits in the boredom phase, not the difficulty phase.',
+      },
     ],
     quotes: [
       {
@@ -254,8 +270,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Deep Work',
         author: 'Cal Newport',
-        reason: 'If Atomic Habits is how to make any habit stick, Deep Work is the specific habit with the highest leverage in the knowledge economy. Complementary, not overlapping.',
-        url: 'https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692',
+        reason: 'Already in this library — if Atomic Habits is how to make any habit stick, Deep Work is the specific habit with the highest leverage in the knowledge economy. Read Atomic Habits for the operating system; read Deep Work for the highest-ROI process to install on it.',
+        url: '/library/deep-work',
       },
       {
         title: 'The Checklist Manifesto',
@@ -1791,6 +1807,22 @@ export const bookReviews: BookReview[] = [
         q: 'Is Meditations religious?',
         a: 'Marcus is a religious Stoic — he speaks of "the gods" and "providence" throughout — but the framework is compatible with atheism, theism, or agnosticism. The practical discipline (control your mind, do your duty, accept fate) does not depend on any specific metaphysics. Most modern readers engage it as secular philosophy.',
       },
+      {
+        q: 'In what order should I read the twelve books of Meditations?',
+        a: 'Book 1 (Marcus\'s gratitude list to teachers and family) reads as a foreword and is the easiest entry point. Books 2 through 12 can be read in any order — they are not chronological. Most readers benefit from short daily readings rather than cover-to-cover. Hays\'s translation includes thematic organization in his introduction, useful as a non-linear map.',
+      },
+      {
+        q: 'Was Marcus Aurelius a good emperor?',
+        a: 'Yes, with caveats. He governed competently through the Antonine Plague, the Parthian War, and the Marcomannic Wars. He was the last of the "Five Good Emperors" before the dynastic succession failed with his son Commodus. Modern historians critique his persecution of Christians and his choice of heir, but the practical philosophy of Meditations was authored by a man who lived its principles under genuine duress.',
+      },
+      {
+        q: 'What is premeditatio malorum and how do I use it?',
+        a: 'The Stoic morning practice of imagining what could go wrong before the day begins — Marcus opens Book II with it: "Begin each day by telling yourself: today I shall be meeting with interference, ingratitude, insolence..." The function is not pessimism; it is calibration. By rehearsing difficulty in advance, you reduce the emotional shock when it arrives. Modern CBT has rediscovered the technique as decatastrophizing.',
+      },
+      {
+        q: 'How does Meditations differ from Eastern philosophy like Buddhism?',
+        a: 'Stoicism and Buddhism share remarkable conclusions — focus on the present, accept what you cannot control, recognize the impermanence of all things — but diverge on metaphysics. Marcus\'s Stoicism is tied to a rational cosmos (Logos) ordered by providence; Buddhism makes no such metaphysical commitment and emphasizes the cessation of desire. The practical disciplines overlap; the underlying worldviews do not. Reading both is illuminating.',
+      },
     ],
     quotes: [
       {
@@ -1971,8 +2003,8 @@ export const bookReviews: BookReview[] = [
       {
         title: 'Man\'s Search for Meaning',
         author: 'Viktor Frankl',
-        reason: 'The modern extreme-conditions application of the Stoic frame. Frankl in a concentration camp reaches Marcus\'s conclusions independently — your inner response to what happens is the one thing nobody can take. Dark mirror to Meditations.',
-        url: 'https://www.amazon.com/Mans-Search-Meaning-Viktor-Frankl/dp/0807014273',
+        reason: 'Already in this library — the modern extreme-conditions application of the Stoic frame. Frankl in a concentration camp reaches Marcus\'s conclusions independently: your inner response to what happens is the one thing nobody can take. The most powerful continuation of Meditations\' core lesson, rediscovered 1,800 years later under different barbarism.',
+        url: '/library/mans-search-for-meaning',
       },
     ],
     videos: [
