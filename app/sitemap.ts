@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
+import { bookReviews } from '@/data/book-reviews'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -523,6 +524,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     })
+  })
+
+  // Library OS — index, manifesto, quotes aggregation
+  entries.push(
+    { url: `${BASE_URL}/library`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE_URL}/library/approach`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${BASE_URL}/library/quotes`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.8 },
+  )
+
+  // Per-book deep-dive pages + per-quote landing pages
+  bookReviews.forEach(book => {
+    const lastMod = book.reviewDate ? new Date(book.reviewDate).toISOString() : currentDate
+    entries.push({
+      url: `${BASE_URL}/library/${book.slug}`,
+      lastModified: lastMod,
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    })
+    if (book.quotes && book.quotes.length > 0) {
+      book.quotes.forEach((_, idx) => {
+        entries.push({
+          url: `${BASE_URL}/library/${book.slug}/q/${idx + 1}`,
+          lastModified: lastMod,
+          changeFrequency: 'monthly',
+          priority: 0.6,
+        })
+      })
+    }
   })
 
   return entries
