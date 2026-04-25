@@ -42,10 +42,17 @@ export async function generateMetadata({
     keywords: [
       ...review.categories,
       review.author,
+      review.title,
+      `${review.title} ${review.author}`,
       `${review.title} summary`,
+      `${review.title} review`,
       `${review.title} key insights`,
+      `${review.title} explained`,
+      `${review.title} book review`,
+      `${review.author} ${review.title}`,
       'book review',
       'book summary',
+      'book key insights',
     ],
     authors: [{ name: 'Frank' }],
     alternates: { canonical },
@@ -194,9 +201,15 @@ export default async function ReviewPage({
     ? booksRegistry.find((b) => b.slug === review.relatedBook)
     : null;
 
-  const otherReviews = bookReviews
+  const reviewCategories = new Set(review.categories);
+  const scoredReviews = bookReviews
     .filter((r) => r.slug !== review.slug)
-    .slice(0, 3);
+    .map((r) => ({
+      review: r,
+      score: r.categories.filter((c) => reviewCategories.has(c)).length,
+    }))
+    .sort((a, b) => b.score - a.score || (b.review.reviewDate > a.review.reviewDate ? 1 : -1));
+  const otherReviews = scoredReviews.slice(0, 3).map((s) => s.review);
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -519,8 +532,14 @@ export default async function ReviewPage({
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {review.continueReading.map((item, i) => {
+              const isInternalLink = item.url?.startsWith('/');
               const cardInner = (
                 <>
+                  {isInternalLink && (
+                    <p className="text-[10px] uppercase tracking-wider text-cyan-400/60 mb-2">
+                      In this Library
+                    </p>
+                  )}
                   <h3 className="text-[15px] font-semibold text-white group-hover:text-cyan-200 transition-colors leading-snug">
                     {item.title}
                   </h3>
@@ -530,7 +549,7 @@ export default async function ReviewPage({
                   </p>
                   {item.url && (
                     <span className="inline-flex items-center gap-1 mt-4 text-[12px] text-cyan-400/60 group-hover:text-cyan-300 transition-colors">
-                      Get the book
+                      {isInternalLink ? 'Read the review' : 'Get the book'}
                       <svg
                         className="w-3 h-3"
                         fill="none"
@@ -551,6 +570,14 @@ export default async function ReviewPage({
 
               const className =
                 'group block h-full p-5 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-400/20 hover:bg-cyan-500/[0.03] transition-all';
+
+              if (item.url && isInternalLink) {
+                return (
+                  <Link key={i} href={item.url} className={className}>
+                    {cardInner}
+                  </Link>
+                );
+              }
 
               return item.url ? (
                 <a

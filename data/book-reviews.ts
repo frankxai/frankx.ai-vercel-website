@@ -2192,6 +2192,12 @@ export const bookReviews: BookReview[] = [
         reason: 'The personal side of the same lesson. If you run Profit First at the company and Your Money or Your Life at home, you will be in the top 1% of founders for financial health.',
         url: 'https://www.amazon.com/Your-Money-Life-Transforming-Relationship/dp/0143115766',
       },
+      {
+        title: 'Money: Master the Game',
+        author: 'Tony Robbins',
+        reason: 'Already in this library — Robbins runs Profit First\'s logic at the personal-investment level: pay yourself first, automate the percentage, let the system enforce discipline. Pair Profit First (business cash) with Money Master the Game (personal wealth) for a complete financial operating system.',
+        url: '/library/money-master-the-game',
+      },
     ],
     videos: [
       {
@@ -2244,6 +2250,26 @@ export const bookReviews: BookReview[] = [
         q: 'What is the main criticism of Profit First?',
         a: 'Accountants note it is behavioral psychology wrapped around basic cash envelopes, not a new accounting principle. That is also its strength: it works because it is behavioral, not because it is clever.',
       },
+      {
+        q: 'What percentages should I use for each Profit First account?',
+        a: 'Michalowicz publishes Target Allocation Percentages (TAPs) by revenue bracket. For sub-$250K real revenue: 5% Profit, 50% Owner\'s Pay, 15% Tax, 30% Operating Expenses. At $1M–$5M the targets shift to 15% Profit, 10% Owner\'s Pay, 15% Tax, 60% OpEx. Start with your current allocation, compare to the target, and close the gap by 1–2 percentage points each quarter — not all at once.',
+      },
+      {
+        q: 'How long does it take to see profit with Profit First?',
+        a: 'Your first quarterly distribution can happen within 90 days of setup, even at a 1% profit allocation. Most operators reach their full target allocation within 12–18 months. The system works fastest for businesses with healthy revenue but bloated expenses; slower for businesses that need to grow revenue first. Michalowicz argues 90 days of behavioural discipline beats five years of better accounting software.',
+      },
+      {
+        q: 'What if my business is too small for five separate bank accounts?',
+        a: 'Even solo freelancers running $50K/year benefit from the discipline. Some banks charge per account; Michalowicz recommends online banks (Capital One, Mercury, Relay) that offer free sub-accounts. The minimum viable version is just two accounts — Income and Profit, separated. The behavioural firewall of "money I cannot see" works at any scale.',
+      },
+      {
+        q: 'Is Profit First just envelope budgeting for businesses?',
+        a: 'Mechanically, yes — the innovation is treating profit as a non-negotiable envelope and forcing the business to live within the remaining envelopes. Critics point out it is behavioural psychology, not new accounting. Michalowicz\'s response: that is the point. Most cash-flow problems are behavioural, not arithmetic.',
+      },
+      {
+        q: 'Does Profit First work for venture-backed or growth-stage companies?',
+        a: 'It is a poor fit for venture-backed startups optimising for growth over profitability — the entire model assumes profit is the goal, not market capture. Profit First fits owner-operated businesses (freelancers, agencies, e-commerce, services) doing $0–$10M in revenue. Above that, it can adapt with custom TAPs, but the original five-account discipline is designed for owners who pay themselves and want cash to feel calm.',
+      },
     ],
   },
   {
@@ -2293,6 +2319,22 @@ export const bookReviews: BookReview[] = [
       {
         q: 'Should I read The Fabric of Reality or The Beginning of Infinity first?',
         a: 'The Fabric of Reality (1997) lays the foundation — the four strands, Popperian epistemology, the multiverse argument. The Beginning of Infinity (2011) builds on it with a more mature framework around "good explanations" and reaches further into ethics, creativity, and progress. Fabric of Reality first, Beginning of Infinity as the payoff.',
+      },
+      {
+        q: 'How does Deutsch\'s multiverse differ from Marvel or pop-culture multiverses?',
+        a: 'Deutsch\'s multiverse is a literal consequence of quantum mechanics — every quantum event splits the universe into all physically possible outcomes. There is no travel between universes, no narrative continuity, no parallel selves making different life choices. The branches are uncountable, mostly nearly-identical, and physically real. Pop-culture multiverses are dramatic devices; Deutsch\'s is a physics claim grounded in the Everett interpretation.',
+      },
+      {
+        q: 'Why does Deutsch reject the Copenhagen interpretation of quantum mechanics?',
+        a: 'Copenhagen treats quantum measurement as a collapse of possibilities into one classical reality, but Deutsch argues this is unexplained — what counts as "measurement"? Why should observation alter physical law? Many-worlds takes the wave function literally: every outcome happens, in different branches. For Deutsch, that is the parsimonious reading and the only one that makes quantum computation make physical sense.',
+      },
+      {
+        q: 'What is constructor theory and how does it relate to The Fabric of Reality?',
+        a: 'Constructor theory is Deutsch\'s later programme (with Chiara Marletto, 2010s onwards) — a physics framed in terms of which transformations are possible vs impossible, rather than initial conditions and laws of motion. It generalises the computational view from Fabric of Reality. If Fabric of Reality says "the universe is computable", constructor theory says "the universe is best described by what tasks it permits and forbids."',
+      },
+      {
+        q: 'How does The Fabric of Reality differ from Penrose\'s The Emperor\'s New Mind?',
+        a: 'They argue opposite positions on the same question. Penrose claims human consciousness is non-computable — there is something in mathematical insight that no Turing machine can replicate. Deutsch claims the Turing principle: any physical process, including conscious thought, can in principle be simulated by a universal computer. Reading both is the sharpest way to stress-test either side of the AGI question.',
       },
     ],
     quotes: [
