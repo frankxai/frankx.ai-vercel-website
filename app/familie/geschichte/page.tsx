@@ -19,11 +19,12 @@ import {
   Route,
   Shield,
   Wheat,
+  type LucideIcon,
 } from 'lucide-react'
 import { geschichteThemen } from '@/lib/familie/geschichte-themen'
 import { MigrationMap } from '@/components/familie/MigrationMap'
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, LucideIcon> = {
   Wheat,
   Shield,
   Mountain,

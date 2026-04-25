@@ -31,6 +31,7 @@ interface GalleryArtwork {
   featured: boolean
   score: number
   createdAt: string
+  curatorNote?: string
 }
 
 // ── Collections ──────────────────────────────────────────────────────────────
@@ -397,7 +398,10 @@ function CollectionCard({
 // ── Main Page ────────────────────────────────────────────────────────────────
 
 export default function GalleryPage() {
-  const artworks = (curationData.artworks || []) as GalleryArtwork[]
+  const artworks = useMemo(
+    () => (curationData.artworks || []) as GalleryArtwork[],
+    []
+  )
   const hero = curationData.heroFeature as GalleryArtwork | null
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)

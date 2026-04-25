@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { Copy, Check, Share2, Twitter, Linkedin, Zap } from 'lucide-react'
 
@@ -129,13 +130,13 @@ export function ShortDetailClient({
         transition={{ delay: 0.5 }}
         className="fixed bottom-5 right-5 z-30"
       >
-        <a
+        <Link
           href="/watch/shorts"
           className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-rose-500 to-fuchsia-500 text-white text-xs font-bold shadow-2xl shadow-rose-500/25 hover:shadow-rose-500/40 transition-all hover:scale-105"
         >
           <Zap className="w-3.5 h-3.5" />
           <span>Browse all Shorts</span>
-        </a>
+        </Link>
       </motion.div>
     </>
   )

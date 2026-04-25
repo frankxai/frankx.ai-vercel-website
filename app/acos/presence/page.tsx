@@ -272,7 +272,7 @@ export default function ACOSPresencePage() {
             >
               <code
                 className="text-xs px-2.5 py-1 rounded border font-mono whitespace-nowrap"
-                style={{ borderColor: `rgba(${i},${i},${i},0)`, color: level.color, background: `${level.color}10`, borderColor: `${level.color}25` }}
+                style={{ color: level.color, background: `${level.color}10`, borderColor: `${level.color}25` }}
               >
                 {level.cmd}
               </code>
@@ -325,7 +325,7 @@ export default function ACOSPresencePage() {
             const Icon = gate.icon
             return (
               <motion.div
-                key={gate.id}
+                key={gate.roman}
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

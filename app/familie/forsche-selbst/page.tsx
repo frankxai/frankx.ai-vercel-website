@@ -14,6 +14,7 @@ import {
   Quote,
   Sparkles,
   Users,
+  type LucideIcon,
 } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -651,7 +652,7 @@ function ArchiveCard({
   contact,
   url,
 }: {
-  icon: React.ElementType
+  icon: LucideIcon
   name: string
   ort: string
   detail: string
