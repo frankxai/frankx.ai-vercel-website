@@ -8,7 +8,9 @@
     "tags": [],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image"]
+    "suitableFor": [
+      "og-image"
+    ]
   },
   {
     "path": "/images/acos/acos-architecture.png",
@@ -16,10 +18,14 @@
     "category": "acos",
     "filename": "acos-architecture.png",
     "sizeKB": 1260,
-    "tags": ["technical"],
+    "tags": [
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-council-agents.png",
@@ -27,10 +33,14 @@
     "category": "acos",
     "filename": "acos-council-agents.png",
     "sizeKB": 825,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-hero-omega.png",
@@ -38,10 +48,15 @@
     "category": "acos",
     "filename": "acos-hero-omega.png",
     "sizeKB": 1771,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-self-learning.png",
@@ -49,10 +64,14 @@
     "category": "acos",
     "filename": "acos-self-learning.png",
     "sizeKB": 1580,
-    "tags": ["education"],
+    "tags": [
+      "education"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-smart-router.png",
@@ -63,7 +82,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-synthesis-pipeline.png",
@@ -74,7 +95,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-v10-architecture.png",
@@ -82,10 +105,14 @@
     "category": "acos",
     "filename": "acos-v10-architecture.png",
     "sizeKB": 738,
-    "tags": ["technical"],
+    "tags": [
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-v10-blog-screenshot.png",
@@ -93,10 +120,14 @@
     "category": "acos",
     "filename": "acos-v10-blog-screenshot.png",
     "sizeKB": 521,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/acos-v10-changelog-screenshot.png",
@@ -104,10 +135,14 @@
     "category": "acos",
     "filename": "acos-v10-changelog-screenshot.png",
     "sizeKB": 133,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/acos/acos-workflow-architecture.png",
@@ -115,10 +150,14 @@
     "category": "acos",
     "filename": "acos-workflow-architecture.png",
     "sizeKB": 693,
-    "tags": ["technical"],
+    "tags": [
+      "technical"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image"]
+    "suitableFor": [
+      "og-image"
+    ]
   },
   {
     "path": "/images/acos/arcanea-ecosystem.png",
@@ -126,10 +165,15 @@
     "category": "acos",
     "filename": "arcanea-ecosystem.png",
     "sizeKB": 1548,
-    "tags": ["arcanea", "ecosystem"],
+    "tags": [
+      "arcanea",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/changelog-v2-live.png",
@@ -140,7 +184,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/changelog-v2-screenshot.png",
@@ -148,10 +194,14 @@
     "category": "acos",
     "filename": "changelog-v2-screenshot.png",
     "sizeKB": 137,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/acos/creation-pipeline.png",
@@ -162,7 +212,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/frankx-superintelligent-system.png",
@@ -173,7 +225,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/golden-age-cocreation.png",
@@ -181,10 +235,14 @@
     "category": "acos",
     "filename": "golden-age-cocreation.png",
     "sizeKB": 1819,
-    "tags": ["golden-age"],
+    "tags": [
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/guardian-council.png",
@@ -192,10 +250,14 @@
     "category": "acos",
     "filename": "guardian-council.png",
     "sizeKB": 1503,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/starlight-orchestrator.png",
@@ -206,7 +268,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "light",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/v2-arcanea-ecosystem.png",
@@ -214,10 +278,15 @@
     "category": "acos",
     "filename": "v2-arcanea-ecosystem.png",
     "sizeKB": 1571,
-    "tags": ["arcanea", "ecosystem"],
+    "tags": [
+      "arcanea",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/v2-frankx-system.png",
@@ -228,7 +297,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/v2-golden-age.png",
@@ -236,10 +307,14 @@
     "category": "acos",
     "filename": "v2-golden-age.png",
     "sizeKB": 1753,
-    "tags": ["golden-age"],
+    "tags": [
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/v3-arcanea-ecosystem.png",
@@ -247,10 +322,15 @@
     "category": "acos",
     "filename": "v3-arcanea-ecosystem.png",
     "sizeKB": 1543,
-    "tags": ["arcanea", "ecosystem"],
+    "tags": [
+      "arcanea",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/v3-frankx-system.png",
@@ -261,7 +341,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos/v3-golden-age.png",
@@ -269,10 +351,14 @@
     "category": "acos",
     "filename": "v3-golden-age.png",
     "sizeKB": 1513,
-    "tags": ["golden-age"],
+    "tags": [
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ai-art/ai-architect-education.png",
@@ -280,10 +366,15 @@
     "category": "ai-art",
     "filename": "ai-architect-education.png",
     "sizeKB": 2816,
-    "tags": ["ai", "education"],
+    "tags": [
+      "ai",
+      "education"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/ai-architect-professor.png",
@@ -291,10 +382,14 @@
     "category": "ai-art",
     "filename": "ai-architect-professor.png",
     "sizeKB": 2979,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/ai-hologram-boardroom.png",
@@ -302,10 +397,14 @@
     "category": "ai-art",
     "filename": "ai-hologram-boardroom.png",
     "sizeKB": 1545,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/balance-trust-ethics.png",
@@ -313,10 +412,14 @@
     "category": "ai-art",
     "filename": "balance-trust-ethics.png",
     "sizeKB": 988,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/chakra-energy-pillars.png",
@@ -324,10 +427,14 @@
     "category": "ai-art",
     "filename": "chakra-energy-pillars.png",
     "sizeKB": 1659,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/crystalline-brain-runes.png",
@@ -335,10 +442,15 @@
     "category": "ai-art",
     "filename": "crystalline-brain-runes.png",
     "sizeKB": 7535,
-    "tags": ["ai", "nature"],
+    "tags": [
+      "ai",
+      "nature"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/crystalline-brain-runes.webp",
@@ -346,10 +458,16 @@
     "category": "ai-art",
     "filename": "crystalline-brain-runes.webp",
     "sizeKB": 307,
-    "tags": ["ai", "nature"],
+    "tags": [
+      "ai",
+      "nature"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail", "gallery"]
+    "suitableFor": [
+      "card-thumbnail",
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/data-explosion-abstract.png",
@@ -357,10 +475,14 @@
     "category": "ai-art",
     "filename": "data-explosion-abstract.png",
     "sizeKB": 1488,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/digital-data-stream.png",
@@ -368,10 +490,14 @@
     "category": "ai-art",
     "filename": "digital-data-stream.png",
     "sizeKB": 1247,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/digital-knowledge-flow.png",
@@ -379,10 +505,14 @@
     "category": "ai-art",
     "filename": "digital-knowledge-flow.png",
     "sizeKB": 1183,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/epic-sci-fi-vibe.png",
@@ -390,10 +520,15 @@
     "category": "ai-art",
     "filename": "epic-sci-fi-vibe.png",
     "sizeKB": 2558,
-    "tags": ["ai", "consciousness"],
+    "tags": [
+      "ai",
+      "consciousness"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/future-eco-city.png",
@@ -401,10 +536,14 @@
     "category": "ai-art",
     "filename": "future-eco-city.png",
     "sizeKB": 1959,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/golden-path-journey.png",
@@ -412,10 +551,15 @@
     "category": "ai-art",
     "filename": "golden-path-journey.png",
     "sizeKB": 1488,
-    "tags": ["ai", "golden-age"],
+    "tags": [
+      "ai",
+      "golden-age"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/grand-wisdom-temple.png",
@@ -423,10 +567,14 @@
     "category": "ai-art",
     "filename": "grand-wisdom-temple.png",
     "sizeKB": 1814,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/isometric-growth-chart.png",
@@ -434,10 +582,14 @@
     "category": "ai-art",
     "filename": "isometric-growth-chart.png",
     "sizeKB": 1129,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/isometric-tech-platform.png",
@@ -445,10 +597,14 @@
     "category": "ai-art",
     "filename": "isometric-tech-platform.png",
     "sizeKB": 1374,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/knowledge-domains-wave.png",
@@ -456,10 +612,14 @@
     "category": "ai-art",
     "filename": "knowledge-domains-wave.png",
     "sizeKB": 1681,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/life-symphony-conductor.png",
@@ -467,10 +627,14 @@
     "category": "ai-art",
     "filename": "life-symphony-conductor.png",
     "sizeKB": 1707,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/managed-vs-custom-code.png",
@@ -478,10 +642,14 @@
     "category": "ai-art",
     "filename": "managed-vs-custom-code.png",
     "sizeKB": 1604,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/modern-coworking-space.png",
@@ -489,10 +657,14 @@
     "category": "ai-art",
     "filename": "modern-coworking-space.png",
     "sizeKB": 1859,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/neural-network-brain.png",
@@ -500,10 +672,14 @@
     "category": "ai-art",
     "filename": "neural-network-brain.png",
     "sizeKB": 1230,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/pyramid-hierarchy-layers.png",
@@ -511,10 +687,14 @@
     "category": "ai-art",
     "filename": "pyramid-hierarchy-layers.png",
     "sizeKB": 1517,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/security-dashboard-shield.png",
@@ -522,10 +702,14 @@
     "category": "ai-art",
     "filename": "security-dashboard-shield.png",
     "sizeKB": 1334,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/sustainable-architecture.png",
@@ -533,10 +717,15 @@
     "category": "ai-art",
     "filename": "sustainable-architecture.png",
     "sizeKB": 2831,
-    "tags": ["ai", "technical"],
+    "tags": [
+      "ai",
+      "technical"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-art/tree-of-life-decorative.png",
@@ -544,10 +733,15 @@
     "category": "ai-art",
     "filename": "tree-of-life-decorative.png",
     "sizeKB": 1281,
-    "tags": ["ai", "nature"],
+    "tags": [
+      "ai",
+      "nature"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ai-world/fire-gate-orchestration.png",
@@ -555,10 +749,14 @@
     "category": "ai-world",
     "filename": "fire-gate-orchestration.png",
     "sizeKB": 998,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ai-world/flow-gate-knowledge.png",
@@ -566,10 +764,14 @@
     "category": "ai-world",
     "filename": "flow-gate-knowledge.png",
     "sizeKB": 810,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ai-world/intelligence-atlas-hero.png",
@@ -577,10 +779,16 @@
     "category": "ai-world",
     "filename": "intelligence-atlas-hero.png",
     "sizeKB": 886,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ai-world/renewal-gate-production.png",
@@ -588,10 +796,14 @@
     "category": "ai-world",
     "filename": "renewal-gate-production.png",
     "sizeKB": 996,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ai-world/source-gate-meta.png",
@@ -599,10 +811,14 @@
     "category": "ai-world",
     "filename": "source-gate-meta.png",
     "sizeKB": 883,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/alea/katze-mia-mascot.webp",
@@ -610,10 +826,16 @@
     "category": "alea",
     "filename": "katze-mia-mascot.webp",
     "sizeKB": 470,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail", "avatar"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail",
+      "avatar"
+    ]
   },
   {
     "path": "/images/alea/katze-schlafend.webp",
@@ -624,7 +846,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/alea/katze-spielend.webp",
@@ -635,7 +860,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/arcanea/10-gates-progression.png",
@@ -643,10 +871,14 @@
     "category": "arcanea",
     "filename": "10-gates-progression.png",
     "sizeKB": 825,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arc-cycle.png",
@@ -654,10 +886,14 @@
     "category": "arcanea",
     "filename": "arc-cycle.png",
     "sizeKB": 701,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-academy-vistas.png",
@@ -665,10 +901,14 @@
     "category": "arcanea",
     "filename": "arcanea-academy-vistas.png",
     "sizeKB": 3030,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-ai-classroom.png",
@@ -676,10 +916,15 @@
     "category": "arcanea",
     "filename": "arcanea-ai-classroom.png",
     "sizeKB": 961,
-    "tags": ["ai", "arcanea"],
+    "tags": [
+      "ai",
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-campus-map.png",
@@ -687,10 +932,15 @@
     "category": "arcanea",
     "filename": "arcanea-campus-map.png",
     "sizeKB": 833,
-    "tags": ["arcanea", "ecosystem"],
+    "tags": [
+      "arcanea",
+      "ecosystem"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-cognitive-bridge.png",
@@ -698,10 +948,14 @@
     "category": "arcanea",
     "filename": "arcanea-cognitive-bridge.png",
     "sizeKB": 724,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-grand-academy.png",
@@ -709,10 +963,14 @@
     "category": "arcanea",
     "filename": "arcanea-grand-academy.png",
     "sizeKB": 1248,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-hall-of-luminor.png",
@@ -720,10 +978,14 @@
     "category": "arcanea",
     "filename": "arcanea-hall-of-luminor.png",
     "sizeKB": 917,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-latent-space.png",
@@ -731,10 +993,14 @@
     "category": "arcanea",
     "filename": "arcanea-latent-space.png",
     "sizeKB": 803,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/arcanea-neuro-synthesis.png",
@@ -742,10 +1008,14 @@
     "category": "arcanea",
     "filename": "arcanea-neuro-synthesis.png",
     "sizeKB": 835,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/eldrian-conclave-20260301.webp",
@@ -753,10 +1023,14 @@
     "category": "arcanea",
     "filename": "eldrian-conclave-20260301.webp",
     "sizeKB": 833,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/five-elements.png",
@@ -764,10 +1038,14 @@
     "category": "arcanea",
     "filename": "five-elements.png",
     "sizeKB": 779,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/luminor-majestic-leadership.png",
@@ -775,10 +1053,14 @@
     "category": "arcanea",
     "filename": "luminor-majestic-leadership.png",
     "sizeKB": 2986,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/arcanea/wormhole-portal.png",
@@ -786,10 +1068,14 @@
     "category": "arcanea",
     "filename": "wormhole-portal.png",
     "sizeKB": 3015,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "cinematic",
     "theme": "dark",
-    "suitableFor": ["banner"]
+    "suitableFor": [
+      "banner"
+    ]
   },
   {
     "path": "/images/architectures/ai-coe.png",
@@ -797,10 +1083,15 @@
     "category": "architectures",
     "filename": "ai-coe.png",
     "sizeKB": 961,
-    "tags": ["ai", "technical"],
+    "tags": [
+      "ai",
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/architectures/ai-gateway.png",
@@ -808,10 +1099,15 @@
     "category": "architectures",
     "filename": "ai-gateway.png",
     "sizeKB": 693,
-    "tags": ["ai", "technical"],
+    "tags": [
+      "ai",
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/architectures/llmops.png",
@@ -819,10 +1115,15 @@
     "category": "architectures",
     "filename": "llmops.png",
     "sizeKB": 805,
-    "tags": ["ai", "technical"],
+    "tags": [
+      "ai",
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/architectures/mcp-hub.png",
@@ -830,10 +1131,14 @@
     "category": "architectures",
     "filename": "mcp-hub.png",
     "sizeKB": 825,
-    "tags": ["technical"],
+    "tags": [
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/122e43a8-45fe-4476-b36c-378c1abb8fa5.png",
@@ -844,7 +1149,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/122e43a8-45fe-4476-b36c-378c1abb8fa5.webp",
@@ -855,7 +1162,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/1975795f-8611-4469-bf99-388ddb81344e.png",
@@ -866,7 +1175,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/30-minute-creator-os-quick-start-hero.png",
@@ -874,10 +1186,16 @@
     "category": "blog",
     "filename": "30-minute-creator-os-quick-start-hero.png",
     "sizeKB": 563,
-    "tags": ["hero", "creator"],
+    "tags": [
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/3c710847-3391-4828-bdb2-75bad3f65f50.png",
@@ -888,7 +1206,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/4c5e3592-9710-4126-829a-c2cc3dce2f68.png",
@@ -899,7 +1219,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/4c5e3592-9710-4126-829a-c2cc3dce2f68.webp",
@@ -910,7 +1232,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/5380ce8e-21d1-4170-aca4-ace96ace1903.png",
@@ -921,7 +1246,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/5380ce8e-21d1-4170-aca4-ace96ace1903.webp",
@@ -932,7 +1259,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/5fd09a16-ec9a-4fcb-87f7-8eddf75073ef.png",
@@ -943,7 +1272,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/5fd09a16-ec9a-4fcb-87f7-8eddf75073ef.webp",
@@ -954,7 +1285,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/6845be60-90e8-43ee-acde-ae4a63222666.png",
@@ -965,7 +1298,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/6845be60-90e8-43ee-acde-ae4a63222666.webp",
@@ -976,7 +1311,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/6d67b02d-9716-45ff-a783-50184fca7770.png",
@@ -987,7 +1325,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/7687f2a9-dbff-4eb0-b1e4-878416e93542.png",
@@ -998,7 +1338,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/798e3bf1-c529-4786-b6aa-44f8f67c26f0.png",
@@ -1009,7 +1351,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/86ffc27a-e999-496d-9e57-66ffe9d5843a.png",
@@ -1020,7 +1364,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/88a9c574-4904-4627-84b0-c563cfd16564.png",
@@ -1031,7 +1377,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/8939bbe6-36e5-4f43-b34d-ac3fcf73f93f.png",
@@ -1042,7 +1390,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/8939bbe6-36e5-4f43-b34d-ac3fcf73f93f.webp",
@@ -1053,7 +1403,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/939afbcc-e121-41d4-b9df-ff385dab5c30.png",
@@ -1064,7 +1416,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/939afbcc-e121-41d4-b9df-ff385dab5c30.webp",
@@ -1075,7 +1429,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/97524302-532f-4a9e-bf4a-0429c2616c2a.png",
@@ -1086,7 +1443,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/acos-agent-orchestration-diagram.jpeg",
@@ -1094,7 +1453,10 @@
     "category": "blog",
     "filename": "acos-agent-orchestration-diagram.jpeg",
     "sizeKB": 733,
-    "tags": ["ai", "technical"],
+    "tags": [
+      "ai",
+      "technical"
+    ],
     "mood": "informational",
     "theme": "dark",
     "suitableFor": []
@@ -1105,10 +1467,15 @@
     "category": "blog",
     "filename": "acos-enterprise-hero.png",
     "sizeKB": 683,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/acos-hooks-hero.png",
@@ -1116,10 +1483,15 @@
     "category": "blog",
     "filename": "acos-hooks-hero.png",
     "sizeKB": 693,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/acos-philosophy-hero.png",
@@ -1127,10 +1499,15 @@
     "category": "blog",
     "filename": "acos-philosophy-hero.png",
     "sizeKB": 690,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/acos-quick-start-hero.png",
@@ -1138,10 +1515,15 @@
     "category": "blog",
     "filename": "acos-quick-start-hero.png",
     "sizeKB": 598,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/acos-use-cases-creator-types-hero.png",
@@ -1149,10 +1531,16 @@
     "category": "blog",
     "filename": "acos-use-cases-creator-types-hero.png",
     "sizeKB": 704,
-    "tags": ["hero", "creator"],
+    "tags": [
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/acos-v10-social-infographic-v2.png",
@@ -1160,10 +1548,14 @@
     "category": "blog",
     "filename": "acos-v10-social-infographic-v2.png",
     "sizeKB": 1440,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["documentation"]
+    "suitableFor": [
+      "documentation"
+    ]
   },
   {
     "path": "/images/blog/acos-v10-social-infographic-v3-pro.png",
@@ -1171,10 +1563,14 @@
     "category": "blog",
     "filename": "acos-v10-social-infographic-v3-pro.png",
     "sizeKB": 850,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["documentation"]
+    "suitableFor": [
+      "documentation"
+    ]
   },
   {
     "path": "/images/blog/acos-v10-social-infographic.png",
@@ -1182,10 +1578,14 @@
     "category": "blog",
     "filename": "acos-v10-social-infographic.png",
     "sizeKB": 742,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["documentation"]
+    "suitableFor": [
+      "documentation"
+    ]
   },
   {
     "path": "/images/blog/acos-v25-technical-architecture.jpeg",
@@ -1193,10 +1593,14 @@
     "category": "blog",
     "filename": "acos-v25-technical-architecture.jpeg",
     "sizeKB": 913,
-    "tags": ["technical"],
+    "tags": [
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-ai-roadmap-2026-hero-v2.png",
@@ -1204,10 +1608,17 @@
     "category": "blog",
     "filename": "agentic-ai-roadmap-2026-hero-v2.png",
     "sizeKB": 1200,
-    "tags": ["ai", "hero", "ecosystem"],
+    "tags": [
+      "ai",
+      "hero",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-ai-roadmap-2026-hero.png",
@@ -1215,10 +1626,17 @@
     "category": "blog",
     "filename": "agentic-ai-roadmap-2026-hero.png",
     "sizeKB": 669,
-    "tags": ["ai", "hero", "ecosystem"],
+    "tags": [
+      "ai",
+      "hero",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-creator-os-complete-guide-hero.png",
@@ -1226,10 +1644,17 @@
     "category": "blog",
     "filename": "agentic-creator-os-complete-guide-hero.png",
     "sizeKB": 735,
-    "tags": ["ai", "hero", "creator"],
+    "tags": [
+      "ai",
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-creator-os-hero.png",
@@ -1237,10 +1662,17 @@
     "category": "blog",
     "filename": "agentic-creator-os-hero.png",
     "sizeKB": 555,
-    "tags": ["ai", "hero", "creator"],
+    "tags": [
+      "ai",
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-creator-os-roadmap-2025.png",
@@ -1248,10 +1680,16 @@
     "category": "blog",
     "filename": "agentic-creator-os-roadmap-2025.png",
     "sizeKB": 1468,
-    "tags": ["ai", "ecosystem", "creator"],
+    "tags": [
+      "ai",
+      "ecosystem",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-roadmap-2025.png",
@@ -1259,10 +1697,15 @@
     "category": "blog",
     "filename": "agentic-roadmap-2025.png",
     "sizeKB": 1248,
-    "tags": ["ai", "ecosystem"],
+    "tags": [
+      "ai",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-seo-publishing-masterplan-hero.png",
@@ -1270,10 +1713,16 @@
     "category": "blog",
     "filename": "agentic-seo-publishing-masterplan-hero.png",
     "sizeKB": 689,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/agentic-workflows-save-hours-hero-v2.png",
@@ -1281,10 +1730,16 @@
     "category": "blog",
     "filename": "agentic-workflows-save-hours-hero-v2.png",
     "sizeKB": 1144,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "og-image"]
+    "suitableFor": [
+      "blog-hero",
+      "og-image"
+    ]
   },
   {
     "path": "/images/blog/agentic-workflows-save-hours-hero.png",
@@ -1292,10 +1747,16 @@
     "category": "blog",
     "filename": "agentic-workflows-save-hours-hero.png",
     "sizeKB": 774,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "og-image"]
+    "suitableFor": [
+      "blog-hero",
+      "og-image"
+    ]
   },
   {
     "path": "/images/blog/agi-2026-opportunities-students-creators-hero.png",
@@ -1303,10 +1764,17 @@
     "category": "blog",
     "filename": "agi-2026-opportunities-students-creators-hero.png",
     "sizeKB": 977,
-    "tags": ["hero", "education", "creator"],
+    "tags": [
+      "hero",
+      "education",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ai-coe-launch-hero.png",
@@ -1314,10 +1782,16 @@
     "category": "blog",
     "filename": "ai-coe-launch-hero.png",
     "sizeKB": 750,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ai-dd-agents-v2.png",
@@ -1325,10 +1799,14 @@
     "category": "blog",
     "filename": "ai-dd-agents-v2.png",
     "sizeKB": 971,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ai-dd-agents.png",
@@ -1336,10 +1814,14 @@
     "category": "blog",
     "filename": "ai-dd-agents.png",
     "sizeKB": 756,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ai-doesnt-have-to-be-soulless.png",
@@ -1347,10 +1829,15 @@
     "category": "blog",
     "filename": "ai-doesnt-have-to-be-soulless.png",
     "sizeKB": 1317,
-    "tags": ["ai", "consciousness"],
+    "tags": [
+      "ai",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ai-guide-families-professionals-hero-v2.png",
@@ -1358,10 +1845,16 @@
     "category": "blog",
     "filename": "ai-guide-families-professionals-hero-v2.png",
     "sizeKB": 917,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ai-guide-families-professionals-hero.png",
@@ -1369,10 +1862,16 @@
     "category": "blog",
     "filename": "ai-guide-families-professionals-hero.png",
     "sizeKB": 917,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ai-toolchain-motherboard.jpeg",
@@ -1380,10 +1879,14 @@
     "category": "blog",
     "filename": "ai-toolchain-motherboard.jpeg",
     "sizeKB": 757,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/aws-bedrock-agents.png",
@@ -1391,10 +1894,14 @@
     "category": "blog",
     "filename": "aws-bedrock-agents.png",
     "sizeKB": 624,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/brand-evolution-consciousness-to-systems-hero.png",
@@ -1402,10 +1909,17 @@
     "category": "blog",
     "filename": "brand-evolution-consciousness-to-systems-hero.png",
     "sizeKB": 565,
-    "tags": ["hero", "brand", "consciousness"],
+    "tags": [
+      "hero",
+      "brand",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/build-your-own-jarvis-hero.png",
@@ -1413,10 +1927,15 @@
     "category": "blog",
     "filename": "build-your-own-jarvis-hero.png",
     "sizeKB": 791,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/building-custom-skills-hero-v2.png",
@@ -1424,10 +1943,15 @@
     "category": "blog",
     "filename": "building-custom-skills-hero-v2.png",
     "sizeKB": 2252,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/building-custom-skills-hero-v2.webp",
@@ -1435,10 +1959,16 @@
     "category": "blog",
     "filename": "building-custom-skills-hero-v2.webp",
     "sizeKB": 334,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/building-custom-skills-hero-v3-pro.png",
@@ -1446,10 +1976,15 @@
     "category": "blog",
     "filename": "building-custom-skills-hero-v3-pro.png",
     "sizeKB": 1245,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/building-custom-skills-hero.png",
@@ -1457,10 +1992,15 @@
     "category": "blog",
     "filename": "building-custom-skills-hero.png",
     "sizeKB": 780,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/building-research-intelligence-system-hero.png",
@@ -1468,10 +2008,15 @@
     "category": "blog",
     "filename": "building-research-intelligence-system-hero.png",
     "sizeKB": 1084,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ce5e17ec-4e37-4003-a11c-2bfeaadea313.png",
@@ -1482,7 +2027,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/claude-code-mcp.png",
@@ -1490,10 +2037,14 @@
     "category": "blog",
     "filename": "claude-code-mcp.png",
     "sizeKB": 590,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-entrepreneurs-hero-v2.png",
@@ -1501,10 +2052,16 @@
     "category": "blog",
     "filename": "conscious-ai-entrepreneurs-hero-v2.png",
     "sizeKB": 1076,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-entrepreneurs-hero.png",
@@ -1512,10 +2069,16 @@
     "category": "blog",
     "filename": "conscious-ai-entrepreneurs-hero.png",
     "sizeKB": 668,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-framework-hero-v2.png",
@@ -1523,10 +2086,16 @@
     "category": "blog",
     "filename": "conscious-ai-framework-hero-v2.png",
     "sizeKB": 1387,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-framework-hero-v3-pro.png",
@@ -1534,10 +2103,16 @@
     "category": "blog",
     "filename": "conscious-ai-framework-hero-v3-pro.png",
     "sizeKB": 625,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-framework-hero.png",
@@ -1545,10 +2120,16 @@
     "category": "blog",
     "filename": "conscious-ai-framework-hero.png",
     "sizeKB": 577,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-integration-os-hero-v2.png",
@@ -1556,10 +2137,16 @@
     "category": "blog",
     "filename": "conscious-ai-integration-os-hero-v2.png",
     "sizeKB": 1165,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-integration-os-hero.png",
@@ -1567,10 +2154,16 @@
     "category": "blog",
     "filename": "conscious-ai-integration-os-hero.png",
     "sizeKB": 601,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/conscious-ai-integration.png",
@@ -1578,10 +2171,14 @@
     "category": "blog",
     "filename": "conscious-ai-integration.png",
     "sizeKB": 1515,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/creator-intelligence-systems-2026-hero.png",
@@ -1589,10 +2186,16 @@
     "category": "blog",
     "filename": "creator-intelligence-systems-2026-hero.png",
     "sizeKB": 730,
-    "tags": ["hero", "creator"],
+    "tags": [
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/creators-ai-toolkit-workshop-hero-v2.png",
@@ -1600,10 +2203,17 @@
     "category": "blog",
     "filename": "creators-ai-toolkit-workshop-hero-v2.png",
     "sizeKB": 1086,
-    "tags": ["ai", "hero", "creator"],
+    "tags": [
+      "ai",
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/creators-ai-toolkit-workshop-hero.png",
@@ -1611,10 +2221,17 @@
     "category": "blog",
     "filename": "creators-ai-toolkit-workshop-hero.png",
     "sizeKB": 839,
-    "tags": ["ai", "hero", "creator"],
+    "tags": [
+      "ai",
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/creators-life-architecture-guide-hero-v2.png",
@@ -1622,10 +2239,17 @@
     "category": "blog",
     "filename": "creators-life-architecture-guide-hero-v2.png",
     "sizeKB": 1338,
-    "tags": ["hero", "technical", "creator"],
+    "tags": [
+      "hero",
+      "technical",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/creators-life-architecture-guide-hero.png",
@@ -1633,10 +2257,17 @@
     "category": "blog",
     "filename": "creators-life-architecture-guide-hero.png",
     "sizeKB": 721,
-    "tags": ["hero", "technical", "creator"],
+    "tags": [
+      "hero",
+      "technical",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/dce2fd78-90ae-498d-a3b2-c6c6fc41b339.png",
@@ -1647,7 +2278,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/dce2fd78-90ae-498d-a3b2-c6c6fc41b339.webp",
@@ -1658,7 +2291,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/deal-flow-pipeline.png",
@@ -1669,7 +2304,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ecosystem-architecture-davinci.png",
@@ -1677,10 +2314,15 @@
     "category": "blog",
     "filename": "ecosystem-architecture-davinci.png",
     "sizeKB": 942,
-    "tags": ["technical", "ecosystem"],
+    "tags": [
+      "technical",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ecosystem-intelligence-stack.png",
@@ -1688,10 +2330,14 @@
     "category": "blog",
     "filename": "ecosystem-intelligence-stack.png",
     "sizeKB": 1026,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ecosystem-value-flow.png",
@@ -1699,10 +2345,14 @@
     "category": "blog",
     "filename": "ecosystem-value-flow.png",
     "sizeKB": 845,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ee442a07-3830-42e9-95bd-2a1737a29ff3.png",
@@ -1713,7 +2363,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ee442a07-3830-42e9-95bd-2a1737a29ff3.webp",
@@ -1724,7 +2376,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/enterprise-agent-roadmap-hero.png",
@@ -1732,10 +2386,17 @@
     "category": "blog",
     "filename": "enterprise-agent-roadmap-hero.png",
     "sizeKB": 786,
-    "tags": ["ai", "hero", "ecosystem"],
+    "tags": [
+      "ai",
+      "hero",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/eu-inc-28th-regime-european-startups-hero.png",
@@ -1743,10 +2404,15 @@
     "category": "blog",
     "filename": "eu-inc-28th-regime-european-startups-hero.png",
     "sizeKB": 922,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/f5df3ac3-164d-483c-933f-472296a12e34.png",
@@ -1757,7 +2423,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/frankx-business-plan-canvas-hero.png",
@@ -1765,10 +2433,15 @@
     "category": "blog",
     "filename": "frankx-business-plan-canvas-hero.png",
     "sizeKB": 656,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/frankx-intelligence-atlas-hero.png",
@@ -1776,10 +2449,15 @@
     "category": "blog",
     "filename": "frankx-intelligence-atlas-hero.png",
     "sizeKB": 720,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/frankx-vision-mission-values-hero.png",
@@ -1787,10 +2465,15 @@
     "category": "blog",
     "filename": "frankx-vision-mission-values-hero.png",
     "sizeKB": 789,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/getting-started-agentic-creator-os-hero-v2.png",
@@ -1798,10 +2481,17 @@
     "category": "blog",
     "filename": "getting-started-agentic-creator-os-hero-v2.png",
     "sizeKB": 1008,
-    "tags": ["ai", "hero", "creator"],
+    "tags": [
+      "ai",
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/getting-started-agentic-creator-os-hero.png",
@@ -1809,10 +2499,17 @@
     "category": "blog",
     "filename": "getting-started-agentic-creator-os-hero.png",
     "sizeKB": 500,
-    "tags": ["ai", "hero", "creator"],
+    "tags": [
+      "ai",
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/golden-age-field-guide-hero.png",
@@ -1820,10 +2517,16 @@
     "category": "blog",
     "filename": "golden-age-field-guide-hero.png",
     "sizeKB": 840,
-    "tags": ["hero", "golden-age"],
+    "tags": [
+      "hero",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/golden-age-intelligence.png",
@@ -1831,10 +2534,14 @@
     "category": "blog",
     "filename": "golden-age-intelligence.png",
     "sizeKB": 1358,
-    "tags": ["golden-age"],
+    "tags": [
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/golden-age-of-intelligence-hero-v2.png",
@@ -1842,10 +2549,16 @@
     "category": "blog",
     "filename": "golden-age-of-intelligence-hero-v2.png",
     "sizeKB": 1732,
-    "tags": ["hero", "golden-age"],
+    "tags": [
+      "hero",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/golden-age-of-intelligence-hero-v3-pro.png",
@@ -1853,10 +2566,16 @@
     "category": "blog",
     "filename": "golden-age-of-intelligence-hero-v3-pro.png",
     "sizeKB": 988,
-    "tags": ["hero", "golden-age"],
+    "tags": [
+      "hero",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/golden-age-of-intelligence-hero.png",
@@ -1864,10 +2583,16 @@
     "category": "blog",
     "filename": "golden-age-of-intelligence-hero.png",
     "sizeKB": 705,
-    "tags": ["hero", "golden-age"],
+    "tags": [
+      "hero",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/iacos-research-os.png",
@@ -1878,7 +2603,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/intelligence-atlas-volume-1.png",
@@ -1889,7 +2616,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/intelligence-revolution-2025.png",
@@ -1900,7 +2629,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/intelligence-revolution-hero.png",
@@ -1908,10 +2639,15 @@
     "category": "blog",
     "filename": "intelligence-revolution-hero.png",
     "sizeKB": 979,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/mcp-doctor-hero.png",
@@ -1919,10 +2655,15 @@
     "category": "blog",
     "filename": "mcp-doctor-hero.png",
     "sizeKB": 593,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/mcp-server-architecture-workshop-hero.png",
@@ -1930,10 +2671,16 @@
     "category": "blog",
     "filename": "mcp-server-architecture-workshop-hero.png",
     "sizeKB": 671,
-    "tags": ["hero", "technical"],
+    "tags": [
+      "hero",
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/mcp-server-integration-hero-v2.png",
@@ -1941,10 +2688,15 @@
     "category": "blog",
     "filename": "mcp-server-integration-hero-v2.png",
     "sizeKB": 1075,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/mcp-server-integration-hero.png",
@@ -1952,10 +2704,15 @@
     "category": "blog",
     "filename": "mcp-server-integration-hero.png",
     "sizeKB": 682,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/misinformation-guardian-custom-gpt.png",
@@ -1963,10 +2720,15 @@
     "category": "blog",
     "filename": "misinformation-guardian-custom-gpt.png",
     "sizeKB": 77,
-    "tags": ["ai", "arcanea"],
+    "tags": [
+      "ai",
+      "arcanea"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/misinformation-guardian-hackathon-hero.png",
@@ -1974,10 +2736,17 @@
     "category": "blog",
     "filename": "misinformation-guardian-hackathon-hero.png",
     "sizeKB": 233,
-    "tags": ["hero", "arcanea"],
+    "tags": [
+      "hero",
+      "arcanea"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/misinformation-guardian-multimodal-pipeline.png",
@@ -1985,10 +2754,15 @@
     "category": "blog",
     "filename": "misinformation-guardian-multimodal-pipeline.png",
     "sizeKB": 354,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/misinformation-guardian-reality-overlay-feed.png",
@@ -1996,10 +2770,15 @@
     "category": "blog",
     "filename": "misinformation-guardian-reality-overlay-feed.png",
     "sizeKB": 320,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/misinformation-guardian-synthetic-media-analysis.png",
@@ -2007,10 +2786,15 @@
     "category": "blog",
     "filename": "misinformation-guardian-synthetic-media-analysis.png",
     "sizeKB": 443,
-    "tags": ["arcanea"],
+    "tags": [
+      "arcanea"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/blog/multi-agent-orchestration-v2.png",
@@ -2018,10 +2802,14 @@
     "category": "blog",
     "filename": "multi-agent-orchestration-v2.png",
     "sizeKB": 1284,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/multi-agent-orchestration.png",
@@ -2029,10 +2817,14 @@
     "category": "blog",
     "filename": "multi-agent-orchestration.png",
     "sizeKB": 588,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/music-as-consciousness-technology-hero-v2.png",
@@ -2040,10 +2832,17 @@
     "category": "blog",
     "filename": "music-as-consciousness-technology-hero-v2.png",
     "sizeKB": 950,
-    "tags": ["music", "hero", "consciousness"],
+    "tags": [
+      "music",
+      "hero",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/music-as-consciousness-technology-hero-v3-pro.png",
@@ -2051,10 +2850,17 @@
     "category": "blog",
     "filename": "music-as-consciousness-technology-hero-v3-pro.png",
     "sizeKB": 689,
-    "tags": ["music", "hero", "consciousness"],
+    "tags": [
+      "music",
+      "hero",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/music-as-consciousness-technology-hero.png",
@@ -2062,10 +2868,17 @@
     "category": "blog",
     "filename": "music-as-consciousness-technology-hero.png",
     "sizeKB": 693,
-    "tags": ["music", "hero", "consciousness"],
+    "tags": [
+      "music",
+      "hero",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/music-consciousness.png",
@@ -2073,10 +2886,15 @@
     "category": "blog",
     "filename": "music-consciousness.png",
     "sizeKB": 1466,
-    "tags": ["music", "consciousness"],
+    "tags": [
+      "music",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/nvidia-physical-ai-hero.png",
@@ -2084,10 +2902,16 @@
     "category": "blog",
     "filename": "nvidia-physical-ai-hero.png",
     "sizeKB": 562,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/oci-agent-patterns-hero.jpg",
@@ -2095,10 +2919,16 @@
     "category": "blog",
     "filename": "oci-agent-patterns-hero.jpg",
     "sizeKB": 1604,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/oci-genai-architecture-hero.jpg",
@@ -2106,10 +2936,17 @@
     "category": "blog",
     "filename": "oci-genai-architecture-hero.jpg",
     "sizeKB": 1517,
-    "tags": ["ai", "hero", "technical"],
+    "tags": [
+      "ai",
+      "hero",
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/oci-operating-model-hero.jpg",
@@ -2117,10 +2954,15 @@
     "category": "blog",
     "filename": "oci-operating-model-hero.jpg",
     "sizeKB": 1334,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/oracle-genai-comparison.png",
@@ -2128,10 +2970,14 @@
     "category": "blog",
     "filename": "oracle-genai-comparison.png",
     "sizeKB": 711,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/orchestrator-core-agents.jpeg",
@@ -2139,10 +2985,14 @@
     "category": "blog",
     "filename": "orchestrator-core-agents.jpeg",
     "sizeKB": 739,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/personal-ai-assistant-setup-workshop-hero.png",
@@ -2150,10 +3000,16 @@
     "category": "blog",
     "filename": "personal-ai-assistant-setup-workshop-hero.png",
     "sizeKB": 608,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/production-agent-patterns-7-pillars-hero.png",
@@ -2161,10 +3017,16 @@
     "category": "blog",
     "filename": "production-agent-patterns-7-pillars-hero.png",
     "sizeKB": 699,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/production-agentic-ai-systems-hero-v2.png",
@@ -2172,10 +3034,16 @@
     "category": "blog",
     "filename": "production-agentic-ai-systems-hero-v2.png",
     "sizeKB": 1244,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/production-agentic-ai-systems-hero.png",
@@ -2183,10 +3051,16 @@
     "category": "blog",
     "filename": "production-agentic-ai-systems-hero.png",
     "sizeKB": 539,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/production-llm-agents-oci-part-3-hero.png",
@@ -2194,10 +3068,16 @@
     "category": "blog",
     "filename": "production-llm-agents-oci-part-3-hero.png",
     "sizeKB": 891,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/prompt-engineering-mastery-workshop-hero-v2.png",
@@ -2205,10 +3085,15 @@
     "category": "blog",
     "filename": "prompt-engineering-mastery-workshop-hero-v2.png",
     "sizeKB": 1116,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/prompt-engineering-mastery-workshop-hero.png",
@@ -2216,10 +3101,15 @@
     "category": "blog",
     "filename": "prompt-engineering-mastery-workshop-hero.png",
     "sizeKB": 743,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/props-to-the-builders-hero.webp",
@@ -2227,10 +3117,15 @@
     "category": "blog",
     "filename": "props-to-the-builders-hero.webp",
     "sizeKB": 719,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/reader-first-golden-age-hero.png",
@@ -2238,10 +3133,16 @@
     "category": "blog",
     "filename": "reader-first-golden-age-hero.png",
     "sizeKB": 628,
-    "tags": ["hero", "golden-age"],
+    "tags": [
+      "hero",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/science-of-state-change-music-hero.png",
@@ -2249,10 +3150,16 @@
     "category": "blog",
     "filename": "science-of-state-change-music-hero.png",
     "sizeKB": 913,
-    "tags": ["music", "hero"],
+    "tags": [
+      "music",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/seo-aeo-optimization-hero.png",
@@ -2260,10 +3167,15 @@
     "category": "blog",
     "filename": "seo-aeo-optimization-hero.png",
     "sizeKB": 796,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/six-plane-enterprise-ai-architecture.jpeg",
@@ -2271,10 +3183,15 @@
     "category": "blog",
     "filename": "six-plane-enterprise-ai-architecture.jpeg",
     "sizeKB": 685,
-    "tags": ["ai", "technical"],
+    "tags": [
+      "ai",
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/suno-ai-music-creation-workshop-hero.png",
@@ -2282,10 +3199,17 @@
     "category": "blog",
     "filename": "suno-ai-music-creation-workshop-hero.png",
     "sizeKB": 927,
-    "tags": ["music", "ai", "hero"],
+    "tags": [
+      "music",
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/suno-music-workflow-hero.png",
@@ -2293,10 +3217,16 @@
     "category": "blog",
     "filename": "suno-music-workflow-hero.png",
     "sizeKB": 605,
-    "tags": ["music", "hero"],
+    "tags": [
+      "music",
+      "hero"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "og-image"]
+    "suitableFor": [
+      "blog-hero",
+      "og-image"
+    ]
   },
   {
     "path": "/images/blog/suno-prompt-engineering-complete-guide-hero.png",
@@ -2304,10 +3234,16 @@
     "category": "blog",
     "filename": "suno-prompt-engineering-complete-guide-hero.png",
     "sizeKB": 914,
-    "tags": ["music", "hero"],
+    "tags": [
+      "music",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/swarm-intelligence-orchestration-hero.png",
@@ -2315,10 +3251,15 @@
     "category": "blog",
     "filename": "swarm-intelligence-orchestration-hero.png",
     "sizeKB": 709,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/the-creative-os-hero.png",
@@ -2326,10 +3267,15 @@
     "category": "blog",
     "filename": "the-creative-os-hero.png",
     "sizeKB": 652,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ultimate-guide-ai-coding-agents-2026-hero-v2.png",
@@ -2337,10 +3283,16 @@
     "category": "blog",
     "filename": "ultimate-guide-ai-coding-agents-2026-hero-v2.png",
     "sizeKB": 1000,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/ultimate-guide-ai-coding-agents-2026-hero.png",
@@ -2348,10 +3300,16 @@
     "category": "blog",
     "filename": "ultimate-guide-ai-coding-agents-2026-hero.png",
     "sizeKB": 984,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/vibe-os-creative-soul-hero.png",
@@ -2359,10 +3317,16 @@
     "category": "blog",
     "filename": "vibe-os-creative-soul-hero.png",
     "sizeKB": 535,
-    "tags": ["hero", "consciousness"],
+    "tags": [
+      "hero",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/visual-intelligence-system-ai-image-management-hero.webp",
@@ -2370,10 +3334,16 @@
     "category": "blog",
     "filename": "visual-intelligence-system-ai-image-management-hero.webp",
     "sizeKB": 1038,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/what-is-agentic-ai-hero.png",
@@ -2381,10 +3351,16 @@
     "category": "blog",
     "filename": "what-is-agentic-ai-hero.png",
     "sizeKB": 632,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/blog/why-everyone-needs-personal-ai-coe-hero.webp",
@@ -2392,10 +3368,17 @@
     "category": "blog",
     "filename": "why-everyone-needs-personal-ai-coe-hero.webp",
     "sizeKB": 343,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/books/arcanea-bestiary-cover.png",
@@ -2403,10 +3386,16 @@
     "category": "books",
     "filename": "arcanea-bestiary-cover.png",
     "sizeKB": 968,
-    "tags": ["arcanea", "book"],
+    "tags": [
+      "arcanea",
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/arcanea-chronicles-cover.png",
@@ -2414,10 +3403,16 @@
     "category": "books",
     "filename": "arcanea-chronicles-cover.png",
     "sizeKB": 896,
-    "tags": ["arcanea", "book"],
+    "tags": [
+      "arcanea",
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/arcanea-creator-principles-cover.png",
@@ -2425,10 +3420,17 @@
     "category": "books",
     "filename": "arcanea-creator-principles-cover.png",
     "sizeKB": 701,
-    "tags": ["arcanea", "book", "creator"],
+    "tags": [
+      "arcanea",
+      "book",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/arcanea-legends-cover.png",
@@ -2436,10 +3438,16 @@
     "category": "books",
     "filename": "arcanea-legends-cover.png",
     "sizeKB": 872,
-    "tags": ["arcanea", "book"],
+    "tags": [
+      "arcanea",
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/arcanea-wisdom-scrolls-cover.png",
@@ -2447,10 +3455,16 @@
     "category": "books",
     "filename": "arcanea-wisdom-scrolls-cover.png",
     "sizeKB": 838,
-    "tags": ["arcanea", "book"],
+    "tags": [
+      "arcanea",
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/golden-age-ch4-tools.png",
@@ -2458,10 +3472,16 @@
     "category": "books",
     "filename": "golden-age-ch4-tools.png",
     "sizeKB": 670,
-    "tags": ["book", "golden-age"],
+    "tags": [
+      "book",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/golden-age-ch5-building.png",
@@ -2469,10 +3489,16 @@
     "category": "books",
     "filename": "golden-age-ch5-building.png",
     "sizeKB": 618,
-    "tags": ["book", "golden-age"],
+    "tags": [
+      "book",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/golden-age-cover.png",
@@ -2480,10 +3506,16 @@
     "category": "books",
     "filename": "golden-age-cover.png",
     "sizeKB": 748,
-    "tags": ["book", "golden-age"],
+    "tags": [
+      "book",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/imagination-cover.png",
@@ -2491,10 +3523,15 @@
     "category": "books",
     "filename": "imagination-cover.png",
     "sizeKB": 656,
-    "tags": ["book"],
+    "tags": [
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/love-and-poetry-cover.png",
@@ -2502,10 +3539,15 @@
     "category": "books",
     "filename": "love-and-poetry-cover.png",
     "sizeKB": 779,
-    "tags": ["book"],
+    "tags": [
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/manifestation-cover.png",
@@ -2513,10 +3555,15 @@
     "category": "books",
     "filename": "manifestation-cover.png",
     "sizeKB": 613,
-    "tags": ["book"],
+    "tags": [
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/self-development-cover.png",
@@ -2524,10 +3571,15 @@
     "category": "books",
     "filename": "self-development-cover.png",
     "sizeKB": 585,
-    "tags": ["book"],
+    "tags": [
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/books/spartan-mindset-cover.png",
@@ -2535,10 +3587,15 @@
     "category": "books",
     "filename": "spartan-mindset-cover.png",
     "sizeKB": 571,
-    "tags": ["book"],
+    "tags": [
+      "book"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/brand/logo-full-v2.png",
@@ -2546,10 +3603,15 @@
     "category": "brand",
     "filename": "logo-full-v2.png",
     "sizeKB": 325,
-    "tags": ["brand"],
+    "tags": [
+      "brand"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/brand/logo-full.png",
@@ -2557,10 +3619,15 @@
     "category": "brand",
     "filename": "logo-full.png",
     "sizeKB": 325,
-    "tags": ["brand"],
+    "tags": [
+      "brand"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/brand/logo-mark-v2.png",
@@ -2568,10 +3635,14 @@
     "category": "brand",
     "filename": "logo-mark-v2.png",
     "sizeKB": 157,
-    "tags": ["brand"],
+    "tags": [
+      "brand"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/brand/logo-mark.png",
@@ -2579,10 +3650,14 @@
     "category": "brand",
     "filename": "logo-mark.png",
     "sizeKB": 157,
-    "tags": ["brand"],
+    "tags": [
+      "brand"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/brand/og-template.png",
@@ -2590,10 +3665,15 @@
     "category": "brand",
     "filename": "og-template.png",
     "sizeKB": 405,
-    "tags": ["brand"],
+    "tags": [
+      "brand"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/consciousness/alpha-wave-multiverse.png",
@@ -2601,10 +3681,14 @@
     "category": "consciousness",
     "filename": "alpha-wave-multiverse.png",
     "sizeKB": 837,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/consciousness/cosmic-energy-figure.jpeg",
@@ -2612,10 +3696,15 @@
     "category": "consciousness",
     "filename": "cosmic-energy-figure.jpeg",
     "sizeKB": 293,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/consciousness/neuro-technical-blueprint.png",
@@ -2623,10 +3712,14 @@
     "category": "consciousness",
     "filename": "neuro-technical-blueprint.png",
     "sizeKB": 953,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/consciousness/quantum-bridge-framework.png",
@@ -2634,10 +3727,14 @@
     "category": "consciousness",
     "filename": "quantum-bridge-framework.png",
     "sizeKB": 953,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/consciousness/quantum-jumping-schematic.png",
@@ -2645,10 +3742,14 @@
     "category": "consciousness",
     "filename": "quantum-jumping-schematic.png",
     "sizeKB": 873,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/consciousness/quantum-mechanics-chapter.png",
@@ -2656,10 +3757,16 @@
     "category": "consciousness",
     "filename": "quantum-mechanics-chapter.png",
     "sizeKB": 843,
-    "tags": ["book", "consciousness"],
+    "tags": [
+      "book",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/consciousness/quantum-neuroplasticity-guide.png",
@@ -2667,10 +3774,14 @@
     "category": "consciousness",
     "filename": "quantum-neuroplasticity-guide.png",
     "sizeKB": 1122,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/courses/agent-architecture.jpg",
@@ -2678,10 +3789,16 @@
     "category": "courses",
     "filename": "agent-architecture.jpg",
     "sizeKB": 1374,
-    "tags": ["ai", "technical", "education"],
+    "tags": [
+      "ai",
+      "technical",
+      "education"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/courses/business-strategy.jpg",
@@ -2689,10 +3806,14 @@
     "category": "courses",
     "filename": "business-strategy.jpg",
     "sizeKB": 1129,
-    "tags": ["education"],
+    "tags": [
+      "education"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/courses/ethics-governance.jpg",
@@ -2700,10 +3821,14 @@
     "category": "courses",
     "filename": "ethics-governance.jpg",
     "sizeKB": 988,
-    "tags": ["education"],
+    "tags": [
+      "education"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/courses/family-education.jpg",
@@ -2711,10 +3836,14 @@
     "category": "courses",
     "filename": "family-education.jpg",
     "sizeKB": 1281,
-    "tags": ["education"],
+    "tags": [
+      "education"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/courses/foundations.jpg",
@@ -2722,10 +3851,14 @@
     "category": "courses",
     "filename": "foundations.jpg",
     "sizeKB": 1230,
-    "tags": ["education"],
+    "tags": [
+      "education"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/courses/prompt-engineering.jpg",
@@ -2733,10 +3866,14 @@
     "category": "courses",
     "filename": "prompt-engineering.jpg",
     "sizeKB": 1488,
-    "tags": ["education"],
+    "tags": [
+      "education"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/design-lab/nature-01-digital-garden-hero.png",
@@ -2744,10 +3881,17 @@
     "category": "design-lab",
     "filename": "nature-01-digital-garden-hero.png",
     "sizeKB": 727,
-    "tags": ["hero", "nature", "design"],
+    "tags": [
+      "hero",
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "gallery"]
+    "suitableFor": [
+      "blog-hero",
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-02-neural-roots.png",
@@ -2755,10 +3899,15 @@
     "category": "design-lab",
     "filename": "nature-02-neural-roots.png",
     "sizeKB": 703,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-03-code-vines.png",
@@ -2766,10 +3915,15 @@
     "category": "design-lab",
     "filename": "nature-03-code-vines.png",
     "sizeKB": 746,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-04-data-streams.png",
@@ -2777,10 +3931,15 @@
     "category": "design-lab",
     "filename": "nature-04-data-streams.png",
     "sizeKB": 844,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-05-forest-architecture.png",
@@ -2788,10 +3947,16 @@
     "category": "design-lab",
     "filename": "nature-05-forest-architecture.png",
     "sizeKB": 767,
-    "tags": ["nature", "technical", "design"],
+    "tags": [
+      "nature",
+      "technical",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-06-seeds-of-intelligence.png",
@@ -2799,10 +3964,15 @@
     "category": "design-lab",
     "filename": "nature-06-seeds-of-intelligence.png",
     "sizeKB": 631,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-07-intelligence-bloom.png",
@@ -2810,10 +3980,15 @@
     "category": "design-lab",
     "filename": "nature-07-intelligence-bloom.png",
     "sizeKB": 561,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-08-ecosystem-map.png",
@@ -2821,10 +3996,16 @@
     "category": "design-lab",
     "filename": "nature-08-ecosystem-map.png",
     "sizeKB": 749,
-    "tags": ["nature", "ecosystem", "design"],
+    "tags": [
+      "nature",
+      "ecosystem",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-09-crystal-garden.png",
@@ -2832,10 +4013,15 @@
     "category": "design-lab",
     "filename": "nature-09-crystal-garden.png",
     "sizeKB": 791,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/nature-10-constellation-garden.png",
@@ -2843,10 +4029,17 @@
     "category": "design-lab",
     "filename": "nature-10-constellation-garden.png",
     "sizeKB": 997,
-    "tags": ["nature", "team", "design"],
+    "tags": [
+      "nature",
+      "team",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["team-card", "gallery"]
+    "suitableFor": [
+      "team-card",
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/variant-acos-nature.png",
@@ -2854,10 +4047,15 @@
     "category": "design-lab",
     "filename": "variant-acos-nature.png",
     "sizeKB": 696,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/variant-blog-nature.png",
@@ -2865,10 +4063,15 @@
     "category": "design-lab",
     "filename": "variant-blog-nature.png",
     "sizeKB": 551,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/variant-homepage-nature.png",
@@ -2876,10 +4079,15 @@
     "category": "design-lab",
     "filename": "variant-homepage-nature.png",
     "sizeKB": 598,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/variant-inner-circle-nature.png",
@@ -2887,10 +4095,15 @@
     "category": "design-lab",
     "filename": "variant-inner-circle-nature.png",
     "sizeKB": 619,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/variant-labs-nature.png",
@@ -2898,10 +4111,15 @@
     "category": "design-lab",
     "filename": "variant-labs-nature.png",
     "sizeKB": 657,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/design-lab/variant-products-nature.png",
@@ -2909,10 +4127,15 @@
     "category": "design-lab",
     "filename": "variant-products-nature.png",
     "sizeKB": 509,
-    "tags": ["nature", "design"],
+    "tags": [
+      "nature",
+      "design"
+    ],
     "mood": "artistic",
     "theme": "dark",
-    "suitableFor": ["gallery"]
+    "suitableFor": [
+      "gallery"
+    ]
   },
   {
     "path": "/images/ecosystem/01-frankx-ecosystem-overview.png",
@@ -2920,10 +4143,14 @@
     "category": "ecosystem",
     "filename": "01-frankx-ecosystem-overview.png",
     "sizeKB": 765,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/02-acos-6-layer-architecture.png",
@@ -2931,10 +4158,15 @@
     "category": "ecosystem",
     "filename": "02-acos-6-layer-architecture.png",
     "sizeKB": 848,
-    "tags": ["technical", "ecosystem"],
+    "tags": [
+      "technical",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/03-vibe-os-integration.png",
@@ -2942,10 +4174,15 @@
     "category": "ecosystem",
     "filename": "03-vibe-os-integration.png",
     "sizeKB": 582,
-    "tags": ["ecosystem", "consciousness"],
+    "tags": [
+      "ecosystem",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/04-gencreator-os-pipeline.png",
@@ -2953,10 +4190,15 @@
     "category": "ecosystem",
     "filename": "04-gencreator-os-pipeline.png",
     "sizeKB": 815,
-    "tags": ["ecosystem", "creator"],
+    "tags": [
+      "ecosystem",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/05-value-ladder-progression.png",
@@ -2964,10 +4206,14 @@
     "category": "ecosystem",
     "filename": "05-value-ladder-progression.png",
     "sizeKB": 736,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/06-user-journey-map.png",
@@ -2975,10 +4221,14 @@
     "category": "ecosystem",
     "filename": "06-user-journey-map.png",
     "sizeKB": 658,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/07-arcanea-10-gates.png",
@@ -2986,10 +4236,15 @@
     "category": "ecosystem",
     "filename": "07-arcanea-10-gates.png",
     "sizeKB": 867,
-    "tags": ["arcanea", "ecosystem"],
+    "tags": [
+      "arcanea",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/08-research-authority-map.png",
@@ -2997,10 +4252,14 @@
     "category": "ecosystem",
     "filename": "08-research-authority-map.png",
     "sizeKB": 676,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/09-agent-specialist-grid.png",
@@ -3008,10 +4267,15 @@
     "category": "ecosystem",
     "filename": "09-agent-specialist-grid.png",
     "sizeKB": 728,
-    "tags": ["ai", "ecosystem"],
+    "tags": [
+      "ai",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/10-brand-identity-system.png",
@@ -3019,10 +4283,15 @@
     "category": "ecosystem",
     "filename": "10-brand-identity-system.png",
     "sizeKB": 594,
-    "tags": ["brand", "ecosystem"],
+    "tags": [
+      "brand",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/11-soulbook-7-pillars.png",
@@ -3030,10 +4299,18 @@
     "category": "ecosystem",
     "filename": "11-soulbook-7-pillars.png",
     "sizeKB": 830,
-    "tags": ["book", "ecosystem", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "ecosystem",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/ecosystem/12-creative-ai-toolkit.png",
@@ -3041,10 +4318,15 @@
     "category": "ecosystem",
     "filename": "12-creative-ai-toolkit.png",
     "sizeKB": 788,
-    "tags": ["ai", "ecosystem"],
+    "tags": [
+      "ai",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/13-creation-chronicles.png",
@@ -3052,10 +4334,14 @@
     "category": "ecosystem",
     "filename": "13-creation-chronicles.png",
     "sizeKB": 851,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/14-creator-lab-30-day.png",
@@ -3063,10 +4349,15 @@
     "category": "ecosystem",
     "filename": "14-creator-lab-30-day.png",
     "sizeKB": 718,
-    "tags": ["ecosystem", "creator"],
+    "tags": [
+      "ecosystem",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/15-acos-claude-code.png",
@@ -3074,10 +4365,15 @@
     "category": "ecosystem",
     "filename": "15-acos-claude-code.png",
     "sizeKB": 793,
-    "tags": ["ai", "ecosystem"],
+    "tags": [
+      "ai",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/16-suno-production-workflow.png",
@@ -3085,10 +4381,15 @@
     "category": "ecosystem",
     "filename": "16-suno-production-workflow.png",
     "sizeKB": 831,
-    "tags": ["music", "ecosystem"],
+    "tags": [
+      "music",
+      "ecosystem"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image"]
+    "suitableFor": [
+      "og-image"
+    ]
   },
   {
     "path": "/images/ecosystem/17-model-routing-system.png",
@@ -3096,10 +4397,14 @@
     "category": "ecosystem",
     "filename": "17-model-routing-system.png",
     "sizeKB": 665,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/18-skill-profile-system.png",
@@ -3107,10 +4412,14 @@
     "category": "ecosystem",
     "filename": "18-skill-profile-system.png",
     "sizeKB": 808,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/19-content-pipeline.png",
@@ -3118,10 +4427,14 @@
     "category": "ecosystem",
     "filename": "19-content-pipeline.png",
     "sizeKB": 779,
-    "tags": ["ecosystem"],
+    "tags": [
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/ecosystem/20-enterprise-architecture.png",
@@ -3129,10 +4442,15 @@
     "category": "ecosystem",
     "filename": "20-enterprise-architecture.png",
     "sizeKB": 820,
-    "tags": ["technical", "ecosystem"],
+    "tags": [
+      "technical",
+      "ecosystem"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/fire-horse/fire-horse-v01-guardian.png",
@@ -3140,10 +4458,15 @@
     "category": "fire-horse",
     "filename": "fire-horse-v01-guardian.png",
     "sizeKB": 637,
-    "tags": ["arcanea", "fire-horse"],
+    "tags": [
+      "arcanea",
+      "fire-horse"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/fire-horse/fire-horse-v02-galloping-hero.png",
@@ -3151,10 +4474,16 @@
     "category": "fire-horse",
     "filename": "fire-horse-v02-galloping-hero.png",
     "sizeKB": 773,
-    "tags": ["hero", "fire-horse"],
+    "tags": [
+      "hero",
+      "fire-horse"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/fire-horse/fire-horse-v03-portrait.png",
@@ -3162,10 +4491,17 @@
     "category": "fire-horse",
     "filename": "fire-horse-v03-portrait.png",
     "sizeKB": 738,
-    "tags": ["ai", "portrait", "fire-horse"],
+    "tags": [
+      "ai",
+      "portrait",
+      "fire-horse"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "avatar"]
+    "suitableFor": [
+      "homepage-showcase",
+      "avatar"
+    ]
   },
   {
     "path": "/images/fire-horse/fire-horse-v04-constellation.png",
@@ -3173,10 +4509,17 @@
     "category": "fire-horse",
     "filename": "fire-horse-v04-constellation.png",
     "sizeKB": 478,
-    "tags": ["team", "fire-horse"],
+    "tags": [
+      "team",
+      "fire-horse"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail", "team-card"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail",
+      "team-card"
+    ]
   },
   {
     "path": "/images/fire-horse/fire-horse-v05-book-cover.png",
@@ -3184,10 +4527,16 @@
     "category": "fire-horse",
     "filename": "fire-horse-v05-book-cover.png",
     "sizeKB": 577,
-    "tags": ["book", "fire-horse"],
+    "tags": [
+      "book",
+      "fire-horse"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/fire-horse/fire-horse-v06-epic-eclipse.png",
@@ -3195,10 +4544,14 @@
     "category": "fire-horse",
     "filename": "fire-horse-v06-epic-eclipse.png",
     "sizeKB": 803,
-    "tags": ["fire-horse"],
+    "tags": [
+      "fire-horse"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/fire-horse/fire-horse-v07-calligraphy.png",
@@ -3206,10 +4559,14 @@
     "category": "fire-horse",
     "filename": "fire-horse-v07-calligraphy.png",
     "sizeKB": 575,
-    "tags": ["fire-horse"],
+    "tags": [
+      "fire-horse"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/gallery/instruments/biotech-future-lab.png",
@@ -3220,7 +4577,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/gallery/instruments/biotech-grand-piano.png",
@@ -3231,7 +4590,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/gallery/instruments/biotech-hex-drum-pads.png",
@@ -3242,7 +4603,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/gallery/instruments/biotech-soundboard-mycelium.png",
@@ -3253,7 +4616,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/gallery/instruments/biotech-synthesis-controller.png",
@@ -3264,7 +4629,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/gallery/instruments/biotech-violin-blueprint.png",
@@ -3275,7 +4642,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/games/games-lab-hero.png",
@@ -3283,10 +4652,16 @@
     "category": "games",
     "filename": "games-lab-hero.png",
     "sizeKB": 576,
-    "tags": ["hero", "game"],
+    "tags": [
+      "hero",
+      "game"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/gencreator/gencreator-framework-hero.webp",
@@ -3294,10 +4669,17 @@
     "category": "gencreator",
     "filename": "gencreator-framework-hero.webp",
     "sizeKB": 347,
-    "tags": ["hero", "creator"],
+    "tags": [
+      "hero",
+      "creator"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/general/consciousness-triptych.png",
@@ -3305,10 +4687,14 @@
     "category": "general",
     "filename": "consciousness-triptych.png",
     "sizeKB": 827,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/general/friendly-ai-robot.png",
@@ -3316,10 +4702,14 @@
     "category": "general",
     "filename": "friendly-ai-robot.png",
     "sizeKB": 708,
-    "tags": ["ai"],
+    "tags": [
+      "ai"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/general/ingest-1764814927239.jpg",
@@ -3330,7 +4720,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/general/ingest-1764814927510.jpg",
@@ -3341,7 +4734,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/general/ingest-1764835055849.jpg",
@@ -3352,7 +4748,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/general/ingest-1764835057399.jpg",
@@ -3363,7 +4762,10 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/golden-age/chapter-01-when-creation-calls.png",
@@ -3371,10 +4773,16 @@
     "category": "golden-age",
     "filename": "chapter-01-when-creation-calls.png",
     "sizeKB": 967,
-    "tags": ["book", "golden-age"],
+    "tags": [
+      "book",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/golden-age/chapter-02-the-orchestration-age.png",
@@ -3382,10 +4790,16 @@
     "category": "golden-age",
     "filename": "chapter-02-the-orchestration-age.png",
     "sizeKB": 1058,
-    "tags": ["book", "golden-age"],
+    "tags": [
+      "book",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/golden-age/chapter-03-the-first-gesture.png",
@@ -3393,10 +4807,16 @@
     "category": "golden-age",
     "filename": "chapter-03-the-first-gesture.png",
     "sizeKB": 821,
-    "tags": ["book", "golden-age"],
+    "tags": [
+      "book",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/golden-age/hero-golden-age.png",
@@ -3404,10 +4824,16 @@
     "category": "golden-age",
     "filename": "hero-golden-age.png",
     "sizeKB": 717,
-    "tags": ["hero", "golden-age"],
+    "tags": [
+      "hero",
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/golden-age/starlight-intelligence-v2.webp",
@@ -3415,10 +4841,14 @@
     "category": "golden-age",
     "filename": "starlight-intelligence-v2.webp",
     "sizeKB": 519,
-    "tags": ["golden-age"],
+    "tags": [
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "light",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/hoffnung/hoffnung-forest-clearing.webp",
@@ -3426,10 +4856,14 @@
     "category": "hoffnung",
     "filename": "hoffnung-forest-clearing.webp",
     "sizeKB": 1326,
-    "tags": ["nature"],
+    "tags": [
+      "nature"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/hoffnung/hoffnung-hero-tree.webp",
@@ -3437,10 +4871,16 @@
     "category": "hoffnung",
     "filename": "hoffnung-hero-tree.webp",
     "sizeKB": 1098,
-    "tags": ["hero", "nature"],
+    "tags": [
+      "hero",
+      "nature"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/hoffnung/hoffnung-leaf-dewdrop.webp",
@@ -3451,7 +4891,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/hoffnung/hoffnung-roots-moss.webp",
@@ -3462,7 +4904,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/hoffnung/lebensbaum-hero.webp",
@@ -3470,10 +4914,15 @@
     "category": "hoffnung",
     "filename": "lebensbaum-hero.webp",
     "sizeKB": 961,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/acos-hero.png",
@@ -3481,10 +4930,15 @@
     "category": "images",
     "filename": "acos-hero.png",
     "sizeKB": 670,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/github-profile-banner.png",
@@ -3495,7 +4949,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/readme-hero.png",
@@ -3503,10 +4959,15 @@
     "category": "images",
     "filename": "readme-hero.png",
     "sizeKB": 608,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/infographics/v7-01-pillars-premium.png",
@@ -3514,10 +4975,15 @@
     "category": "infographics",
     "filename": "v7-01-pillars-premium.png",
     "sizeKB": 573,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-01-seven-pillars-architecture.png",
@@ -3525,10 +4991,16 @@
     "category": "infographics",
     "filename": "v7-01-seven-pillars-architecture.png",
     "sizeKB": 604,
-    "tags": ["technical", "infographic"],
+    "tags": [
+      "technical",
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-04-agent-library.png",
@@ -3536,10 +5008,16 @@
     "category": "infographics",
     "filename": "v7-04-agent-library.png",
     "sizeKB": 770,
-    "tags": ["ai", "infographic"],
+    "tags": [
+      "ai",
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-04-agents-premium.png",
@@ -3547,10 +5025,16 @@
     "category": "infographics",
     "filename": "v7-04-agents-premium.png",
     "sizeKB": 600,
-    "tags": ["ai", "infographic"],
+    "tags": [
+      "ai",
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-05-command-routing.png",
@@ -3558,10 +5042,15 @@
     "category": "infographics",
     "filename": "v7-05-command-routing.png",
     "sizeKB": 667,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-05-routing-premium.png",
@@ -3569,10 +5058,15 @@
     "category": "infographics",
     "filename": "v7-05-routing-premium.png",
     "sizeKB": 629,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-09-architecture-premium.png",
@@ -3580,10 +5074,16 @@
     "category": "infographics",
     "filename": "v7-09-architecture-premium.png",
     "sizeKB": 618,
-    "tags": ["technical", "infographic"],
+    "tags": [
+      "technical",
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-09-full-system-architecture.png",
@@ -3591,10 +5091,16 @@
     "category": "infographics",
     "filename": "v7-09-full-system-architecture.png",
     "sizeKB": 689,
-    "tags": ["technical", "infographic"],
+    "tags": [
+      "technical",
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-agents-dev.png",
@@ -3602,10 +5108,17 @@
     "category": "infographics",
     "filename": "v7-agents-dev.png",
     "sizeKB": 414,
-    "tags": ["ai", "infographic"],
+    "tags": [
+      "ai",
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-hero-dev.png",
@@ -3613,7 +5126,10 @@
     "category": "infographics",
     "filename": "v7-hero-dev.png",
     "sizeKB": 438,
-    "tags": ["hero", "infographic"],
+    "tags": [
+      "hero",
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
     "suitableFor": [
@@ -3629,10 +5145,15 @@
     "category": "infographics",
     "filename": "v7-layers-dev.png",
     "sizeKB": 533,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "documentation"
+    ]
   },
   {
     "path": "/images/infographics/v7-stats-banner.png",
@@ -3640,10 +5161,16 @@
     "category": "infographics",
     "filename": "v7-stats-banner.png",
     "sizeKB": 497,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail", "documentation"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail",
+      "documentation"
+    ]
   },
   {
     "path": "/images/mascot/axi-v1-full.png",
@@ -3651,10 +5178,15 @@
     "category": "mascot",
     "filename": "axi-v1-full.png",
     "sizeKB": 568,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/axi-v2-avatar.png",
@@ -3662,10 +5194,16 @@
     "category": "mascot",
     "filename": "axi-v2-avatar.png",
     "sizeKB": 684,
-    "tags": ["mascot", "portrait"],
+    "tags": [
+      "mascot",
+      "portrait"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/axi-v3-icon.png",
@@ -3673,10 +5211,16 @@
     "category": "mascot",
     "filename": "axi-v3-icon.png",
     "sizeKB": 348,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail", "og-image", "avatar"]
+    "suitableFor": [
+      "card-thumbnail",
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/axi-v4-hero.png",
@@ -3684,10 +5228,17 @@
     "category": "mascot",
     "filename": "axi-v4-hero.png",
     "sizeKB": 722,
-    "tags": ["hero", "mascot"],
+    "tags": [
+      "hero",
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "og-image", "avatar"]
+    "suitableFor": [
+      "blog-hero",
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/axi-v5-celebrating.png",
@@ -3695,10 +5246,15 @@
     "category": "mascot",
     "filename": "axi-v5-celebrating.png",
     "sizeKB": 1464,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/axi-v5-thinking.png",
@@ -3706,10 +5262,15 @@
     "category": "mascot",
     "filename": "axi-v5-thinking.png",
     "sizeKB": 1455,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/axi-v5-waving.png",
@@ -3717,10 +5278,15 @@
     "category": "mascot",
     "filename": "axi-v5-waving.png",
     "sizeKB": 1515,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-chibi-avatar-v1.png",
@@ -3728,10 +5294,16 @@
     "category": "mascot",
     "filename": "frank-omega-chibi-avatar-v1.png",
     "sizeKB": 1354,
-    "tags": ["mascot", "portrait"],
+    "tags": [
+      "mascot",
+      "portrait"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-chibi-v1.png",
@@ -3739,10 +5311,15 @@
     "category": "mascot",
     "filename": "frank-omega-chibi-v1.png",
     "sizeKB": 1125,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-chill-v1.png",
@@ -3750,10 +5327,15 @@
     "category": "mascot",
     "filename": "frank-omega-chill-v1.png",
     "sizeKB": 1271,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-hero-v1.png",
@@ -3761,10 +5343,17 @@
     "category": "mascot",
     "filename": "frank-omega-hero-v1.png",
     "sizeKB": 1805,
-    "tags": ["hero", "mascot"],
+    "tags": [
+      "hero",
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "og-image", "avatar"]
+    "suitableFor": [
+      "blog-hero",
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-pixar-blue-v1.png",
@@ -3772,10 +5361,15 @@
     "category": "mascot",
     "filename": "frank-omega-pixar-blue-v1.png",
     "sizeKB": 1252,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-pixar-chibi-v1.png",
@@ -3783,10 +5377,15 @@
     "category": "mascot",
     "filename": "frank-omega-pixar-chibi-v1.png",
     "sizeKB": 1189,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-pixar-v1.webp",
@@ -3794,10 +5393,16 @@
     "category": "mascot",
     "filename": "frank-omega-pixar-v1.webp",
     "sizeKB": 291,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail", "og-image", "avatar"]
+    "suitableFor": [
+      "card-thumbnail",
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-pointing-v1.png",
@@ -3805,10 +5410,15 @@
     "category": "mascot",
     "filename": "frank-omega-pointing-v1.png",
     "sizeKB": 1286,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-portrait-v1.png",
@@ -3816,10 +5426,17 @@
     "category": "mascot",
     "filename": "frank-omega-portrait-v1.png",
     "sizeKB": 1322,
-    "tags": ["ai", "mascot", "portrait"],
+    "tags": [
+      "ai",
+      "mascot",
+      "portrait"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/frank-omega-thinking-v1.png",
@@ -3827,10 +5444,15 @@
     "category": "mascot",
     "filename": "frank-omega-thinking-v1.png",
     "sizeKB": 1320,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v05-techno-beast-standing.png",
@@ -3838,10 +5460,15 @@
     "category": "mascot",
     "filename": "mascot-v05-techno-beast-standing.png",
     "sizeKB": 683,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v06-prowling-action.png",
@@ -3849,10 +5476,15 @@
     "category": "mascot",
     "filename": "mascot-v06-prowling-action.png",
     "sizeKB": 714,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v07-kitsune-elegant.png",
@@ -3860,10 +5492,15 @@
     "category": "mascot",
     "filename": "mascot-v07-kitsune-elegant.png",
     "sizeKB": 829,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v08-holographic-entity.png",
@@ -3871,10 +5508,15 @@
     "category": "mascot",
     "filename": "mascot-v08-holographic-entity.png",
     "sizeKB": 665,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v09-wireframe-beast.png",
@@ -3882,10 +5524,15 @@
     "category": "mascot",
     "filename": "mascot-v09-wireframe-beast.png",
     "sizeKB": 584,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v10-data-constellation.png",
@@ -3893,10 +5540,17 @@
     "category": "mascot",
     "filename": "mascot-v10-data-constellation.png",
     "sizeKB": 800,
-    "tags": ["mascot", "team"],
+    "tags": [
+      "mascot",
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "avatar",
+      "team-card"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v11-chrome-guardian.png",
@@ -3904,10 +5558,16 @@
     "category": "mascot",
     "filename": "mascot-v11-chrome-guardian.png",
     "sizeKB": 725,
-    "tags": ["mascot", "arcanea"],
+    "tags": [
+      "mascot",
+      "arcanea"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v13-floating-head-3d.png",
@@ -3915,10 +5575,15 @@
     "category": "mascot",
     "filename": "mascot-v13-floating-head-3d.png",
     "sizeKB": 586,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v14-holographic-bust.png",
@@ -3926,10 +5591,15 @@
     "category": "mascot",
     "filename": "mascot-v14-holographic-bust.png",
     "sizeKB": 607,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v15-kitsune-mask.png",
@@ -3937,10 +5607,15 @@
     "category": "mascot",
     "filename": "mascot-v15-kitsune-mask.png",
     "sizeKB": 578,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v16-organic-digital-split.png",
@@ -3948,10 +5623,15 @@
     "category": "mascot",
     "filename": "mascot-v16-organic-digital-split.png",
     "sizeKB": 831,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v17-negative-space-mark.png",
@@ -3959,10 +5639,17 @@
     "category": "mascot",
     "filename": "mascot-v17-negative-space-mark.png",
     "sizeKB": 396,
-    "tags": ["mascot", "brand"],
+    "tags": [
+      "mascot",
+      "brand"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail", "og-image", "avatar"]
+    "suitableFor": [
+      "card-thumbnail",
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v18-hex-emblem.png",
@@ -3970,10 +5657,15 @@
     "category": "mascot",
     "filename": "mascot-v18-hex-emblem.png",
     "sizeKB": 529,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v19-hero-command-center.png",
@@ -3981,10 +5673,17 @@
     "category": "mascot",
     "filename": "mascot-v19-hero-command-center.png",
     "sizeKB": 633,
-    "tags": ["hero", "mascot"],
+    "tags": [
+      "hero",
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "og-image", "avatar"]
+    "suitableFor": [
+      "blog-hero",
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v20-evolution-stages.png",
@@ -3992,10 +5691,15 @@
     "category": "mascot",
     "filename": "mascot-v20-evolution-stages.png",
     "sizeKB": 639,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v21-stylized-avatar.png",
@@ -4003,10 +5707,16 @@
     "category": "mascot",
     "filename": "mascot-v21-stylized-avatar.png",
     "sizeKB": 588,
-    "tags": ["mascot", "portrait"],
+    "tags": [
+      "mascot",
+      "portrait"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v22-tech-avatar-head.png",
@@ -4014,10 +5724,16 @@
     "category": "mascot",
     "filename": "mascot-v22-tech-avatar-head.png",
     "sizeKB": 573,
-    "tags": ["mascot", "portrait"],
+    "tags": [
+      "mascot",
+      "portrait"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v23-premium-droid.png",
@@ -4025,10 +5741,16 @@
     "category": "mascot",
     "filename": "mascot-v23-premium-droid.png",
     "sizeKB": 453,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail", "og-image", "avatar"]
+    "suitableFor": [
+      "card-thumbnail",
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v24-cyborg-fusion-head.png",
@@ -4036,10 +5758,15 @@
     "category": "mascot",
     "filename": "mascot-v24-cyborg-fusion-head.png",
     "sizeKB": 651,
-    "tags": ["mascot"],
+    "tags": [
+      "mascot"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/mascot/mascot-v25-crystal-familiar.png",
@@ -4047,10 +5774,16 @@
     "category": "mascot",
     "filename": "mascot-v25-crystal-familiar.png",
     "sizeKB": 558,
-    "tags": ["mascot", "nature"],
+    "tags": [
+      "mascot",
+      "nature"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "avatar"]
+    "suitableFor": [
+      "og-image",
+      "avatar"
+    ]
   },
   {
     "path": "/images/models/claude-opus-4-6-hero.png",
@@ -4058,10 +5791,16 @@
     "category": "models",
     "filename": "claude-opus-4-6-hero.png",
     "sizeKB": 602,
-    "tags": ["ai", "hero"],
+    "tags": [
+      "ai",
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/music/infogenius/music-catalog-universe-poster-v1.png",
@@ -4069,10 +5808,16 @@
     "category": "music",
     "filename": "music-catalog-universe-poster-v1.png",
     "sizeKB": 913,
-    "tags": ["music", "infographic"],
+    "tags": [
+      "music",
+      "infographic"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "documentation"]
+    "suitableFor": [
+      "og-image",
+      "documentation"
+    ]
   },
   {
     "path": "/images/music/infogenius/music-revenue-flywheel-v1.png",
@@ -4080,10 +5825,16 @@
     "category": "music",
     "filename": "music-revenue-flywheel-v1.png",
     "sizeKB": 605,
-    "tags": ["music", "infographic"],
+    "tags": [
+      "music",
+      "infographic"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "documentation"]
+    "suitableFor": [
+      "og-image",
+      "documentation"
+    ]
   },
   {
     "path": "/images/music/infogenius/platform-content-atomization-v1.png",
@@ -4091,10 +5842,14 @@
     "category": "music",
     "filename": "platform-content-atomization-v1.png",
     "sizeKB": 725,
-    "tags": ["music"],
+    "tags": [
+      "music"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/music/infogenius/sub-agent-swarm-topology-v1.png",
@@ -4102,10 +5857,16 @@
     "category": "music",
     "filename": "sub-agent-swarm-topology-v1.png",
     "sizeKB": 689,
-    "tags": ["music", "ai", "technical"],
+    "tags": [
+      "music",
+      "ai",
+      "technical"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/newsletter/ai-architect-dispatch-banner.png",
@@ -4113,10 +5874,15 @@
     "category": "newsletter",
     "filename": "ai-architect-dispatch-banner.png",
     "sizeKB": 1610,
-    "tags": ["ai", "newsletter"],
+    "tags": [
+      "ai",
+      "newsletter"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/newsletter/arcanea-transmissions-banner-v1.png",
@@ -4124,10 +5890,15 @@
     "category": "newsletter",
     "filename": "arcanea-transmissions-banner-v1.png",
     "sizeKB": 723,
-    "tags": ["arcanea", "newsletter"],
+    "tags": [
+      "arcanea",
+      "newsletter"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/newsletter/arcanea-transmissions-banner.png",
@@ -4135,10 +5906,15 @@
     "category": "newsletter",
     "filename": "arcanea-transmissions-banner.png",
     "sizeKB": 568,
-    "tags": ["arcanea", "newsletter"],
+    "tags": [
+      "arcanea",
+      "newsletter"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/newsletter/creation-chronicles-banner.png",
@@ -4146,10 +5922,14 @@
     "category": "newsletter",
     "filename": "creation-chronicles-banner.png",
     "sizeKB": 1554,
-    "tags": ["newsletter"],
+    "tags": [
+      "newsletter"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/newsletter/inner-circle-banner.png",
@@ -4157,10 +5937,15 @@
     "category": "newsletter",
     "filename": "inner-circle-banner.png",
     "sizeKB": 465,
-    "tags": ["newsletter"],
+    "tags": [
+      "newsletter"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/newsletter/investor-brief-banner.png",
@@ -4168,10 +5953,14 @@
     "category": "newsletter",
     "filename": "investor-brief-banner.png",
     "sizeKB": 570,
-    "tags": ["newsletter"],
+    "tags": [
+      "newsletter"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/newsletter/music-letters-banner.png",
@@ -4179,10 +5968,15 @@
     "category": "newsletter",
     "filename": "music-letters-banner.png",
     "sizeKB": 633,
-    "tags": ["music", "newsletter"],
+    "tags": [
+      "music",
+      "newsletter"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/oracle-events/oracle-workshop-P1081508.jpg",
@@ -4193,7 +5987,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/oracle-events/oracle-workshop-P1081522.jpg",
@@ -4204,7 +6000,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/oracle-events/oracle-workshop-P1081706.jpg",
@@ -4215,7 +6013,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/oracle-events/oracle-workshop-P1081724.jpg",
@@ -4226,7 +6026,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/oracle-events/oracle-workshop-P1081726.jpg",
@@ -4237,7 +6039,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/portraits/frank-presenting-oracle-2025.jpg",
@@ -4245,10 +6049,17 @@
     "category": "portraits",
     "filename": "frank-presenting-oracle-2025.jpg",
     "sizeKB": 292,
-    "tags": ["ai", "portrait"],
+    "tags": [
+      "ai",
+      "portrait"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail", "avatar"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail",
+      "avatar"
+    ]
   },
   {
     "path": "/images/screenshots/changelog-2026-03-02.jpeg",
@@ -4256,10 +6067,14 @@
     "category": "screenshots",
     "filename": "changelog-2026-03-02.jpeg",
     "sizeKB": 108,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/screenshots/design-lab-2026-03-02.jpeg",
@@ -4267,10 +6082,15 @@
     "category": "screenshots",
     "filename": "design-lab-2026-03-02.jpeg",
     "sizeKB": 83,
-    "tags": ["screenshot", "design"],
+    "tags": [
+      "screenshot",
+      "design"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/screenshots/homepage-hero-2026-03-02.jpeg",
@@ -4278,10 +6098,16 @@
     "category": "screenshots",
     "filename": "homepage-hero-2026-03-02.jpeg",
     "sizeKB": 116,
-    "tags": ["hero", "screenshot"],
+    "tags": [
+      "hero",
+      "screenshot"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "card-thumbnail"]
+    "suitableFor": [
+      "blog-hero",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/screenshots/plan-page-2026-03-02.jpeg",
@@ -4289,10 +6115,14 @@
     "category": "screenshots",
     "filename": "plan-page-2026-03-02.jpeg",
     "sizeKB": 77,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/See-through-the-noise/Screenshot 2026-02-12 153128.png",
@@ -4300,10 +6130,15 @@
     "category": "See-through-the-noise",
     "filename": "Screenshot 2026-02-12 153128.png",
     "sizeKB": 320,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/See-through-the-noise/Screenshot 2026-02-12 154641.png",
@@ -4311,10 +6146,14 @@
     "category": "See-through-the-noise",
     "filename": "Screenshot 2026-02-12 154641.png",
     "sizeKB": 122,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/See-through-the-noise/Screenshot 2026-02-12 162813.png",
@@ -4322,10 +6161,15 @@
     "category": "See-through-the-noise",
     "filename": "Screenshot 2026-02-12 162813.png",
     "sizeKB": 354,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/See-through-the-noise/Screenshot 2026-02-12 162821.png",
@@ -4333,10 +6177,15 @@
     "category": "See-through-the-noise",
     "filename": "Screenshot 2026-02-12 162821.png",
     "sizeKB": 443,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/See-through-the-noise/Screenshot 2026-02-12 163646.png",
@@ -4344,10 +6193,14 @@
     "category": "See-through-the-noise",
     "filename": "Screenshot 2026-02-12 163646.png",
     "sizeKB": 77,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["card-thumbnail"]
+    "suitableFor": [
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/See-through-the-noise/Screenshot 2026-02-12 163655.png",
@@ -4355,10 +6208,15 @@
     "category": "See-through-the-noise",
     "filename": "Screenshot 2026-02-12 163655.png",
     "sizeKB": 233,
-    "tags": ["screenshot"],
+    "tags": [
+      "screenshot"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/soulbook/golden-path.png",
@@ -4366,10 +6224,18 @@
     "category": "soulbook",
     "filename": "golden-path.png",
     "sizeKB": 528,
-    "tags": ["book", "consciousness", "golden-age", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "golden-age",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/hero-assessment.png",
@@ -4377,10 +6243,19 @@
     "category": "soulbook",
     "filename": "hero-assessment.png",
     "sizeKB": 598,
-    "tags": ["hero", "book", "consciousness", "soulbook"],
+    "tags": [
+      "hero",
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/hero-soulbook.png",
@@ -4388,10 +6263,19 @@
     "category": "soulbook",
     "filename": "hero-soulbook.png",
     "sizeKB": 717,
-    "tags": ["hero", "book", "consciousness", "soulbook"],
+    "tags": [
+      "hero",
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/hero-vault.png",
@@ -4399,10 +6283,19 @@
     "category": "soulbook",
     "filename": "hero-vault.png",
     "sizeKB": 681,
-    "tags": ["hero", "book", "consciousness", "soulbook"],
+    "tags": [
+      "hero",
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/life-symphony.png",
@@ -4410,10 +6303,17 @@
     "category": "soulbook",
     "filename": "life-symphony.png",
     "sizeKB": 755,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/pillar-consciousness.png",
@@ -4421,10 +6321,17 @@
     "category": "soulbook",
     "filename": "pillar-consciousness.png",
     "sizeKB": 744,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/pillar-creation.png",
@@ -4432,10 +6339,17 @@
     "category": "soulbook",
     "filename": "pillar-creation.png",
     "sizeKB": 853,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/pillar-emotional-mastery.png",
@@ -4443,10 +6357,17 @@
     "category": "soulbook",
     "filename": "pillar-emotional-mastery.png",
     "sizeKB": 675,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/pillar-identity.png",
@@ -4454,10 +6375,17 @@
     "category": "soulbook",
     "filename": "pillar-identity.png",
     "sizeKB": 724,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/pillar-purpose.png",
@@ -4465,10 +6393,17 @@
     "category": "soulbook",
     "filename": "pillar-purpose.png",
     "sizeKB": 705,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/pillar-relationships.png",
@@ -4476,10 +6411,17 @@
     "category": "soulbook",
     "filename": "pillar-relationships.png",
     "sizeKB": 574,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/pillar-vitality.png",
@@ -4487,10 +6429,17 @@
     "category": "soulbook",
     "filename": "pillar-vitality.png",
     "sizeKB": 620,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/soulbook/seven-pillars.png",
@@ -4498,10 +6447,17 @@
     "category": "soulbook",
     "filename": "seven-pillars.png",
     "sizeKB": 901,
-    "tags": ["book", "consciousness", "soulbook"],
+    "tags": [
+      "book",
+      "consciousness",
+      "soulbook"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "book-cover"]
+    "suitableFor": [
+      "homepage-showcase",
+      "book-cover"
+    ]
   },
   {
     "path": "/images/team/arion-mamoru.png",
@@ -4509,10 +6465,15 @@
     "category": "team",
     "filename": "arion-mamoru.png",
     "sizeKB": 712,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/codex-falcon.png",
@@ -4520,10 +6481,15 @@
     "category": "team",
     "filename": "codex-falcon.png",
     "sizeKB": 782,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/codex.png",
@@ -4531,10 +6497,15 @@
     "category": "team",
     "filename": "codex.png",
     "sizeKB": 1481,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/codex.png",
@@ -4542,10 +6513,15 @@
     "category": "team",
     "filename": "codex.png",
     "sizeKB": 1481,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/draconia-tiger.png",
@@ -4553,10 +6529,15 @@
     "category": "team",
     "filename": "draconia-tiger.png",
     "sizeKB": 800,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/echo-leopard.png",
@@ -4564,10 +6545,15 @@
     "category": "team",
     "filename": "echo-leopard.png",
     "sizeKB": 782,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/echo.png",
@@ -4575,10 +6561,15 @@
     "category": "team",
     "filename": "echo.png",
     "sizeKB": 1552,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/echo.png",
@@ -4586,10 +6577,15 @@
     "category": "team",
     "filename": "echo.png",
     "sizeKB": 1552,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/lumi.png",
@@ -4597,10 +6593,15 @@
     "category": "team",
     "filename": "lumi.png",
     "sizeKB": 1559,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/lumi.png",
@@ -4608,10 +6609,15 @@
     "category": "team",
     "filename": "lumi.png",
     "sizeKB": 1559,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/lumina-sol.png",
@@ -4619,10 +6625,15 @@
     "category": "team",
     "filename": "lumina-sol.png",
     "sizeKB": 832,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/luminor-prime.png",
@@ -4630,10 +6641,15 @@
     "category": "team",
     "filename": "luminor-prime.png",
     "sizeKB": 1400,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/luminor-prime.png",
@@ -4641,10 +6657,15 @@
     "category": "team",
     "filename": "luminor-prime.png",
     "sizeKB": 1400,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/nero-umbra.png",
@@ -4652,10 +6673,15 @@
     "category": "team",
     "filename": "nero-umbra.png",
     "sizeKB": 620,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/nexus.png",
@@ -4663,10 +6689,15 @@
     "category": "team",
     "filename": "nexus.png",
     "sizeKB": 1512,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/nova-fox.png",
@@ -4674,10 +6705,15 @@
     "category": "team",
     "filename": "nova-fox.png",
     "sizeKB": 848,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/nova.png",
@@ -4685,10 +6721,15 @@
     "category": "team",
     "filename": "nova.png",
     "sizeKB": 1476,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/nova.png",
@@ -4696,10 +6737,15 @@
     "category": "team",
     "filename": "nova.png",
     "sizeKB": 1476,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/sensei.png",
@@ -4707,10 +6753,15 @@
     "category": "team",
     "filename": "sensei.png",
     "sizeKB": 1439,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/sensei.png",
@@ -4718,10 +6769,15 @@
     "category": "team",
     "filename": "sensei.png",
     "sizeKB": 1439,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/shinkami.png",
@@ -4729,10 +6785,15 @@
     "category": "team",
     "filename": "shinkami.png",
     "sizeKB": 757,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/sonnet.png",
@@ -4740,10 +6801,15 @@
     "category": "team",
     "filename": "sonnet.png",
     "sizeKB": 1318,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/sonnet.png",
@@ -4751,10 +6817,15 @@
     "category": "team",
     "filename": "sonnet.png",
     "sizeKB": 1318,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/stella-owl.png",
@@ -4762,10 +6833,15 @@
     "category": "team",
     "filename": "stella-owl.png",
     "sizeKB": 720,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/archive/stella.png",
@@ -4773,10 +6849,15 @@
     "category": "team",
     "filename": "stella.png",
     "sizeKB": 1467,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/stella.png",
@@ -4784,10 +6865,15 @@
     "category": "team",
     "filename": "stella.png",
     "sizeKB": 1467,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/team/team-lineup-composite.png",
@@ -4795,10 +6881,15 @@
     "category": "team",
     "filename": "team-lineup-composite.png",
     "sizeKB": 801,
-    "tags": ["team"],
+    "tags": [
+      "team"
+    ],
     "mood": "branded",
     "theme": "dark",
-    "suitableFor": ["og-image", "team-card"]
+    "suitableFor": [
+      "og-image",
+      "team-card"
+    ]
   },
   {
     "path": "/images/valentines/amsterdam-water.png",
@@ -4806,10 +6897,14 @@
     "category": "valentines",
     "filename": "amsterdam-water.png",
     "sizeKB": 560,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/cherry-blossom.png",
@@ -4817,10 +6912,14 @@
     "category": "valentines",
     "filename": "cherry-blossom.png",
     "sizeKB": 968,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/cultures-united.png",
@@ -4828,10 +6927,14 @@
     "category": "valentines",
     "filename": "cultures-united.png",
     "sizeKB": 782,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/german-poetry.png",
@@ -4839,10 +6942,14 @@
     "category": "valentines",
     "filename": "german-poetry.png",
     "sizeKB": 890,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/hero-celestial.png",
@@ -4850,10 +6957,16 @@
     "category": "valentines",
     "filename": "hero-celestial.png",
     "sizeKB": 528,
-    "tags": ["hero", "seasonal"],
+    "tags": [
+      "hero",
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/lotus-bloom.png",
@@ -4861,10 +6974,15 @@
     "category": "valentines",
     "filename": "lotus-bloom.png",
     "sizeKB": 531,
-    "tags": ["nature", "seasonal"],
+    "tags": [
+      "nature",
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/love-art.png",
@@ -4872,10 +6990,14 @@
     "category": "valentines",
     "filename": "love-art.png",
     "sizeKB": 745,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/love-fireworks.png",
@@ -4883,10 +7005,14 @@
     "category": "valentines",
     "filename": "love-fireworks.png",
     "sizeKB": 739,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/og-valentines-2026.png",
@@ -4894,10 +7020,15 @@
     "category": "valentines",
     "filename": "og-valentines-2026.png",
     "sizeKB": 475,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "card-thumbnail"]
+    "suitableFor": [
+      "homepage-showcase",
+      "card-thumbnail"
+    ]
   },
   {
     "path": "/images/valentines/rose-petals-hero.png",
@@ -4905,10 +7036,16 @@
     "category": "valentines",
     "filename": "rose-petals-hero.png",
     "sizeKB": 615,
-    "tags": ["hero", "seasonal"],
+    "tags": [
+      "hero",
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/two-souls.png",
@@ -4916,10 +7053,15 @@
     "category": "valentines",
     "filename": "two-souls.png",
     "sizeKB": 542,
-    "tags": ["consciousness", "seasonal"],
+    "tags": [
+      "consciousness",
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/valentines/vietnamese-love.png",
@@ -4927,10 +7069,14 @@
     "category": "valentines",
     "filename": "vietnamese-love.png",
     "sizeKB": 720,
-    "tags": ["seasonal"],
+    "tags": [
+      "seasonal"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vibe-os/vibe-club-membership-tiers.png",
@@ -4938,10 +7084,14 @@
     "category": "vibe-os",
     "filename": "vibe-club-membership-tiers.png",
     "sizeKB": 667,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vibe-os/vibe-os-agent-marketplace.png",
@@ -4949,10 +7099,16 @@
     "category": "vibe-os",
     "filename": "vibe-os-agent-marketplace.png",
     "sizeKB": 712,
-    "tags": ["ai", "brand", "consciousness"],
+    "tags": [
+      "ai",
+      "brand",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vibe-os/vibe-os-brainwave-interface.png",
@@ -4960,10 +7116,15 @@
     "category": "vibe-os",
     "filename": "vibe-os-brainwave-interface.png",
     "sizeKB": 725,
-    "tags": ["ai", "consciousness"],
+    "tags": [
+      "ai",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vibe-os/vibe-os-ecosystem-overview.png",
@@ -4971,10 +7132,15 @@
     "category": "vibe-os",
     "filename": "vibe-os-ecosystem-overview.png",
     "sizeKB": 814,
-    "tags": ["ecosystem", "consciousness"],
+    "tags": [
+      "ecosystem",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vibe-os/vibe-os-multi-llm-architecture.png",
@@ -4982,10 +7148,16 @@
     "category": "vibe-os",
     "filename": "vibe-os-multi-llm-architecture.png",
     "sizeKB": 910,
-    "tags": ["ai", "technical", "consciousness"],
+    "tags": [
+      "ai",
+      "technical",
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vibe-os/vibe-os-neural-sync.png",
@@ -4993,10 +7165,14 @@
     "category": "vibe-os",
     "filename": "vibe-os-neural-sync.png",
     "sizeKB": 648,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vibe-os/vibe-os-sonic-intelligence.png",
@@ -5004,10 +7180,14 @@
     "category": "vibe-os",
     "filename": "vibe-os-sonic-intelligence.png",
     "sizeKB": 705,
-    "tags": ["consciousness"],
+    "tags": [
+      "consciousness"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vision/community-builders.png",
@@ -5018,7 +7198,9 @@
     "tags": [],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vision/ecosystem-constellation.png",
@@ -5026,10 +7208,16 @@
     "category": "vision",
     "filename": "ecosystem-constellation.png",
     "sizeKB": 733,
-    "tags": ["ecosystem", "team"],
+    "tags": [
+      "ecosystem",
+      "team"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase", "team-card"]
+    "suitableFor": [
+      "homepage-showcase",
+      "team-card"
+    ]
   },
   {
     "path": "/images/vision/golden-age-horizon.png",
@@ -5037,10 +7225,14 @@
     "category": "vision",
     "filename": "golden-age-horizon.png",
     "sizeKB": 970,
-    "tags": ["golden-age"],
+    "tags": [
+      "golden-age"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["homepage-showcase"]
+    "suitableFor": [
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/vision/hero-builder-empire.png",
@@ -5048,10 +7240,15 @@
     "category": "vision",
     "filename": "hero-builder-empire.png",
     "sizeKB": 743,
-    "tags": ["hero"],
+    "tags": [
+      "hero"
+    ],
     "mood": "atmospheric",
     "theme": "dark",
-    "suitableFor": ["blog-hero", "homepage-showcase"]
+    "suitableFor": [
+      "blog-hero",
+      "homepage-showcase"
+    ]
   },
   {
     "path": "/images/youtube/youtube-pipeline-infographic.png",
@@ -5059,9 +7256,68 @@
     "category": "youtube",
     "filename": "youtube-pipeline-infographic.png",
     "sizeKB": 804,
-    "tags": ["infographic"],
+    "tags": [
+      "infographic"
+    ],
     "mood": "informational",
     "theme": "dark",
-    "suitableFor": ["documentation"]
+    "suitableFor": [
+      "documentation"
+    ]
+  },
+  {
+    "path": "/images/workshops/ikigai-branding/ikigai-venn.jpg",
+    "directory": "workshops/ikigai-branding",
+    "category": "workshops",
+    "filename": "ikigai-venn.jpg",
+    "sizeKB": 472,
+    "tags": [
+      "ikigai",
+      "branding",
+      "venn",
+      "framework"
+    ],
+    "mood": "editorial",
+    "theme": "dark",
+    "suitableFor": [
+      "hero",
+      "og-image",
+      "workshop-anchor"
+    ]
+  },
+  {
+    "path": "/images/workshops/ikigai-branding/purpose-to-brand-flow.jpg",
+    "directory": "workshops/ikigai-branding",
+    "category": "workshops",
+    "filename": "purpose-to-brand-flow.jpg",
+    "sizeKB": 476,
+    "tags": [
+      "flowchart",
+      "branding",
+      "positioning"
+    ],
+    "mood": "editorial",
+    "theme": "dark",
+    "suitableFor": [
+      "section-header",
+      "social"
+    ]
+  },
+  {
+    "path": "/images/workshops/ikigai-branding/three-cs-triad.jpg",
+    "directory": "workshops/ikigai-branding",
+    "category": "workshops",
+    "filename": "three-cs-triad.jpg",
+    "sizeKB": 437,
+    "tags": [
+      "3cs",
+      "claymorphism",
+      "framework"
+    ],
+    "mood": "premium",
+    "theme": "dark",
+    "suitableFor": [
+      "section-anchor"
+    ]
   }
 ]
