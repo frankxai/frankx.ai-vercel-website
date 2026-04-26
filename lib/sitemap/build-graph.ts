@@ -147,7 +147,14 @@ export async function buildSitemapGraph(): Promise<SitemapGraph> {
     readFile(IMAGE_MAP_PATH, 'utf8'),
   ])
   const registry = JSON.parse(registryRaw) as VisualRegistryEntry[]
-  const imageMap = JSON.parse(imageMapRaw) as SitemapImageMapEntry[]
+  // sitemap-image-map.json may be either a bare array (legacy) or an object
+  // with `_summary` + `pages` (current schema produced by `npm run image:scan`).
+  const imageMapRoot = JSON.parse(imageMapRaw) as
+    | SitemapImageMapEntry[]
+    | { _summary?: unknown; pages?: SitemapImageMapEntry[] }
+  const imageMap: SitemapImageMapEntry[] = Array.isArray(imageMapRoot)
+    ? imageMapRoot
+    : imageMapRoot.pages ?? []
 
   // Categories sorted by combined route + image count
   const categoryStats = new Map<string, { routeCount: number; imageCount: number }>()
