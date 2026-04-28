@@ -8,6 +8,7 @@ import type { SitemapGraph, SitemapView } from '@/lib/sitemap/types'
 import ListView from './views/ListView'
 
 const GraphView = lazy(() => import('./views/GraphView.client'))
+const SunburstView = lazy(() => import('./views/SunburstView.client'))
 
 const VIEWS: Array<{ id: SitemapView; label: string; icon: React.ReactNode }> = [
   { id: 'list', label: 'List', icon: <ListIcon className="w-3.5 h-3.5" /> },
@@ -184,7 +185,9 @@ export default function SitemapHub({ graph }: { graph: SitemapGraph }) {
           )}
           {view === '3d' && <ComingSoonView label="3D Swarm" detail="Three.js galaxy view — Phase 2." />}
           {view === 'sunburst' && (
-            <ComingSoonView label="Sunburst" detail="Radial hierarchy of categories → routes → images. Phase 2." />
+            <Suspense fallback={<GraphLoadingState />}>
+              <SunburstView graph={filtered} />
+            </Suspense>
           )}
         </main>
       </div>
