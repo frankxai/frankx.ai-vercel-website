@@ -478,6 +478,18 @@ export default function StarlightIntelligenceSystemPage() {
             You don&apos;t need all nine to start. You need one — Genius — working. The rest compounds when the time is right.
           </p>
 
+          {/* Atmospheric anchor — the substrate as architecture */}
+          <div className="mb-10 relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/5">
+            <Image
+              src="/images/priority-2026-04-25/04-sis-substrate-hero.jpg"
+              alt="Looking down at nine translucent stacked planes of dark glass, each plane edge-lit with cyan light. The planes are slightly offset so all nine layers are visible, each carrying subtle engraved text at the edge. The topmost plane catches a single warm gold accent. A museum display of an intelligence system's strata."
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1024px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/40 via-transparent to-transparent pointer-events-none" />
+          </div>
+
           {/* Visual layer stack */}
           <div className="mb-8 grid lg:grid-cols-[1fr_auto] gap-8 items-start">
             <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-4 sm:p-6">
