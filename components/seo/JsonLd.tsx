@@ -1,5 +1,4 @@
 import { useId } from 'react'
-import Script from 'next/script'
 
 // Extended schema types for AI-first content optimization
 type JsonLdType =
@@ -129,15 +128,22 @@ export function buildCourseData(data: {
 }
 
 // Main component
+//
+// NB: We render a plain <script> tag (not next/script) because next/script
+// with strategy=afterInteractive does NOT inject inline scripts into the
+// initial server HTML — they get added client-side after hydration. That
+// breaks JSON-LD for crawlers (Google, Bing) and AI agents (Perplexity,
+// ChatGPT browse, Claude search) which read the static HTML, not run JS.
+// Next.js official docs explicitly recommend a plain <script> tag for
+// structured data.
 export default function JsonLd({ type, data, id }: JsonLdProps) {
   const reactId = useId()
   const scriptId = id || `json-ld-${type.toLowerCase()}-${reactId.replace(/:/g, '')}`
 
   return (
-    <Script
+    <script
       id={scriptId}
       type="application/ld+json"
-      strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           '@context': 'https://schema.org',
@@ -183,10 +189,9 @@ export function ArticleWithFAQJsonLd({
   const scriptId = id || `json-ld-article-faq-${reactId.replace(/:/g, '')}`
 
   return (
-    <Script
+    <script
       id={scriptId}
       type="application/ld+json"
-      strategy="afterInteractive"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           '@context': 'https://schema.org',
