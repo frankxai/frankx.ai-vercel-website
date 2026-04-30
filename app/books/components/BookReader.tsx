@@ -56,6 +56,43 @@ export default function BookReader({
   const htmlContent = useMemo(() => {
     marked.setOptions({ gfm: true, breaks: true });
     let processed = content;
+
+    // Footnotes pass — marked has no native footnote support.
+    // Two markdown forms: inline `[^N]` references and `[^N]: text` definitions.
+    // We build the def map once, strip defs from prose, then rewrite refs.
+    const footnoteDefs = new Map<string, string>();
+    const defLineRegex = /^\[\^([\w-]+)\]:\s+(.+)$/gm;
+    let defMatch: RegExpExecArray | null;
+    while ((defMatch = defLineRegex.exec(processed)) !== null) {
+      footnoteDefs.set(defMatch[1], defMatch[2].trim());
+    }
+
+    if (footnoteDefs.size > 0) {
+      // Strip the existing markdown footnote section + its defs — we'll re-emit at the end.
+      processed = processed.replace(/\n+##\s+Footnotes\s*\n[\s\S]*$/m, '');
+      processed = processed.replace(/^\[\^[\w-]+\]:\s+.+(\n(?!\[\^|\n).+)*$/gm, '');
+
+      // Number footnotes in order of first inline appearance.
+      const orderMap = new Map<string, number>();
+      let counter = 1;
+      processed = processed.replace(/\[\^([\w-]+)\]/g, (_, key: string) => {
+        if (!orderMap.has(key)) orderMap.set(key, counter++);
+        const num = orderMap.get(key)!;
+        return `<sup class="footnote-ref"><a href="#fn-${num}" id="fnref-${num}" aria-label="Footnote ${num}">${num}</a></sup>`;
+      });
+
+      // Append the rendered footnote section. Each def's body is parsed inline so emphasis/links survive.
+      const sortedNotes = [...orderMap.entries()].sort((a, b) => a[1] - b[1]);
+      const notesItems = sortedNotes
+        .map(([key, num]) => {
+          const body = footnoteDefs.get(key) ?? '';
+          const inlineHtml = marked.parseInline(body) as string;
+          return `<li id="fn-${num}" class="footnote-item">${inlineHtml} <a href="#fnref-${num}" class="footnote-back" aria-label="Back to reference ${num}">↩</a></li>`;
+        })
+        .join('\n');
+      processed += `\n\n<hr class="footnote-divider" />\n<section class="footnotes" aria-label="Footnotes">\n<h2 id="footnotes">Footnotes</h2>\n<ol class="footnote-list">\n${notesItems}\n</ol>\n</section>\n`;
+    }
+
     tocItems.forEach((item) => {
       const escaped = item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const pattern = new RegExp(`^#{${item.level}}\\s+${escaped}$`, 'm');
@@ -225,6 +262,56 @@ export default function BookReader({
                 .book-reader-content mark {
                   background: rgba(250, 204, 21, 0.15);
                   color: rgba(255,255,255,0.95); padding: 0.1em 0.3em; border-radius: 0.2em;
+                }
+                /* Footnotes */
+                .book-reader-content .footnote-ref {
+                  font-size: 0.75em; line-height: 1; vertical-align: super;
+                  margin-left: 0.1em;
+                }
+                .book-reader-content .footnote-ref a {
+                  text-decoration: none; padding: 0 0.25em;
+                  border-radius: 0.2em; font-weight: 600;
+                  color: currentColor;
+                }
+                .book-reader-content .footnote-ref a:hover {
+                  background: rgba(255,255,255,0.08);
+                }
+                .book-reader-content section.footnotes {
+                  margin-top: 4rem; padding-top: 2rem;
+                  font-size: 0.9em; color: rgba(255,255,255,0.55);
+                }
+                .book-reader-content section.footnotes h2 {
+                  font-size: 1.15rem !important; margin-top: 0 !important;
+                  margin-bottom: 1.25rem !important; padding-top: 0 !important;
+                  border-top: 0 !important; color: rgba(255,255,255,0.7);
+                  text-transform: uppercase; letter-spacing: 0.1em;
+                }
+                .book-reader-content .footnote-list {
+                  counter-reset: footnote;
+                  list-style: none; padding-left: 0;
+                }
+                .book-reader-content .footnote-list .footnote-item {
+                  counter-increment: footnote;
+                  padding-left: 2.5rem; position: relative;
+                  margin-bottom: 1rem; line-height: 1.65;
+                }
+                .book-reader-content .footnote-list .footnote-item::before {
+                  content: counter(footnote);
+                  position: absolute; left: 0; top: 0;
+                  font-weight: 600; color: rgba(255,255,255,0.4);
+                  font-variant-numeric: tabular-nums;
+                  width: 2rem; text-align: right; padding-right: 0.5rem;
+                }
+                .book-reader-content .footnote-back {
+                  text-decoration: none; color: rgba(255,255,255,0.4);
+                  margin-left: 0.4em;
+                }
+                .book-reader-content .footnote-back:hover {
+                  color: rgba(255,255,255,0.8);
+                }
+                .book-reader-content hr.footnote-divider {
+                  margin: 3rem 0 1rem 0;
+                  background: rgba(255,255,255,0.06); height: 1px;
                 }
               `}</style>
 
