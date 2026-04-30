@@ -341,6 +341,48 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'City of Vienna', title: 'Vienna Model of Social Housing', url: 'https://socialhousing.wien/policy/the-vienna-model', type: 'official' },
     { name: 'Singapore HDB', title: 'About Us — Housing & Development Board', url: 'https://www.hdb.gov.sg/about-us', type: 'official' },
   ],
+  'voice-tech-2026': [
+    // Microsoft VibeVoice
+    { name: 'arXiv', title: 'VibeVoice Technical Report (Peng et al., arXiv:2508.19205)', url: 'https://arxiv.org/abs/2508.19205', date: '2025-08-26', type: 'preprint' },
+    { name: 'Microsoft / GitHub', title: 'VibeVoice — Open-Source Frontier Voice AI', url: 'https://github.com/microsoft/VibeVoice', type: 'official' },
+    { name: 'Microsoft Research', title: 'VibeVoice Project Page', url: 'https://microsoft.github.io/VibeVoice/', type: 'official' },
+    { name: 'Hugging Face', title: 'microsoft/VibeVoice-1.5B Model Card', url: 'https://huggingface.co/microsoft/VibeVoice-1.5B', type: 'official' },
+    { name: 'Hugging Face', title: 'microsoft/VibeVoice-Realtime-0.5B Model Card', url: 'https://huggingface.co/microsoft/VibeVoice-Realtime-0.5B', type: 'official' },
+    // NVIDIA Riva + Parakeet
+    { name: 'Hugging Face / NVIDIA', title: 'Parakeet RNNT 1.1B Model Card — 1.6% WER LibriSpeech-clean', url: 'https://huggingface.co/nvidia/parakeet-rnnt-1.1b', type: 'official' },
+    { name: 'Hugging Face / NVIDIA', title: 'Parakeet TDT 0.6B v3 Model Card', url: 'https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3', type: 'official' },
+    { name: 'NVIDIA', title: 'Riva — Real-Time Speech AI Developer Page', url: 'https://developer.nvidia.com/riva', type: 'official' },
+    { name: 'Hugging Face', title: 'Open ASR Leaderboard — Multilingual + Long-Form Speech Recognition', url: 'https://huggingface.co/spaces/hf-audio/open_asr_leaderboard', type: 'benchmark' },
+    { name: 'arXiv', title: 'Open ASR Leaderboard: Towards Reproducible and Transparent Speech Recognition Evaluation', url: 'https://arxiv.org/html/2510.06961v1', type: 'preprint' },
+    // ElevenLabs
+    { name: 'ElevenLabs', title: 'Eleven v3 — Most Expressive AI Voice Model', url: 'https://elevenlabs.io/v3', type: 'official' },
+    { name: 'ElevenLabs (X)', title: 'Eleven v3 (alpha) Launch Announcement', url: 'https://x.com/elevenlabsio/status/1930689774278570003', date: '2025-06-05', type: 'news' },
+    { name: 'Audio Generation Plugin', title: 'ElevenLabs Eleven v3 Alpha — Complete Guide to Audio Tags', url: 'https://audio-generation-plugin.com/elevenlabs-v3/', type: 'blog' },
+    { name: 'ElevenLabs', title: 'Text-to-Speech API Reference (Turbo v2.5 + Multilingual)', url: 'https://elevenlabs.io/docs/api-reference/text-to-speech', type: 'official' },
+    { name: 'ElevenLabs', title: 'Safety, Consent, and Watermarking Policy', url: 'https://elevenlabs.io/safety', type: 'official' },
+    // OpenAI Realtime
+    { name: 'OpenAI', title: 'Realtime API Guide — Speech-to-Speech with Function Calling', url: 'https://platform.openai.com/docs/guides/realtime', type: 'official' },
+    { name: 'OpenAI', title: 'Introducing gpt-realtime and Realtime API Updates for Production Voice Agents', url: 'https://openai.com/index/introducing-gpt-realtime/', type: 'official' },
+    { name: 'OpenAI', title: 'API Pricing — Realtime Audio Tokens ($32/$64 per 1M)', url: 'https://openai.com/api/pricing/', type: 'official' },
+    // Cartesia
+    { name: 'Cartesia', title: 'Sonic — Sub-100ms Streaming TTS Product Page', url: 'https://cartesia.ai/sonic', type: 'official' },
+    { name: 'Cartesia', title: 'Cartesia API Documentation — Streaming + Voice Cloning', url: 'https://docs.cartesia.ai/', type: 'official' },
+    { name: 'Cartesia', title: 'Older TTS Models — Sonic-2 and Predecessors', url: 'https://docs.cartesia.ai/build-with-cartesia/tts-models/older-models', type: 'official' },
+    // Deepgram
+    { name: 'BusinessWire / Deepgram', title: 'Deepgram Unveils Aura-2 — Enterprise-Grade Text-to-Speech', url: 'https://www.businesswire.com/news/home/20250415446781/en/Deepgram-Unveils-Aura-2-The-Worlds-Most-Professional-Cost-Effective-and-Enterprise-Grade-Text-to-Speech-Model', date: '2025-04-15', type: 'news' },
+    { name: 'Deepgram', title: 'Deepgram Pricing — Aura-2 ($0.030/1k chars) + Nova-3 ($0.0077/min)', url: 'https://deepgram.com/pricing', type: 'official' },
+    { name: 'PricingSaaS', title: 'Deepgram Launches Voice Agent API and Doubles Aura-2 Capacity', url: 'https://pricingsaas.com/news/deepgram/20251118/', type: 'news' },
+    { name: 'Deepgram', title: 'Aura-2 TTS Models Documentation', url: 'https://developers.deepgram.com/docs/tts-models', type: 'official' },
+    { name: 'Deepgram', title: 'Nova-3 ASR Models + Languages Overview', url: 'https://developers.deepgram.com/docs/models-languages-overview', type: 'official' },
+    // Independent benchmarks
+    { name: 'Async', title: 'Streaming TTS Latency vs Quality Benchmark — Async vs ElevenLabs vs Cartesia', url: 'https://async.com/blog/tts-latency-vs-quality-benchmark/', type: 'benchmark' },
+    { name: 'Smallest.ai', title: 'TTS Benchmark 2025 — Smallest.ai vs Cartesia (Real-World TTFB 156-163ms)', url: 'https://smallest.ai/blog/tts-benchmark-2025-smallestai-vs-cartesia-report', type: 'benchmark' },
+    { name: 'CloudX (DEV)', title: 'Cracking the Sub-1-Second Voice Loop — 30+ Stack Benchmarks', url: 'https://dev.to/cloudx/cracking-the-1-second-voice-loop-what-we-learned-after-30-stack-benchmarks-427', type: 'benchmark' },
+    { name: 'Hugging Face', title: 'TTS Arena — Community-Voted Naturalness Rankings', url: 'https://huggingface.co/spaces/TTS-AGI/TTS-Arena', type: 'benchmark' },
+    { name: 'PodcastVideos', title: 'Streaming TTS Latency-Quality Comparison 2025', url: 'https://www.podcastvideos.com/articles/streaming-tts-benchmark-latency-quality-comparison/', type: 'benchmark' },
+    // Regulation / context
+    { name: 'EU AI Act', title: 'Artificial Intelligence Act — Voice Cloning + Provenance Provisions', url: 'https://artificialintelligenceact.eu/', type: 'official' },
+  ],
 }
 
 export function getSourcesForDomain(slug: string): ResearchSource[] {
