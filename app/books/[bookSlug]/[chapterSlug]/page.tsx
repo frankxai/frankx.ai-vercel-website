@@ -26,7 +26,10 @@ export async function generateMetadata({ params }: PageProps) {
     });
   }
 
-  const ogImage = `/api/og?title=${encodeURIComponent(chapter.title)}&subtitle=${encodeURIComponent(`${book.title} · Chapter ${chapter.number} · ${book.author}`)}`;
+  // Prefer per-chapter image if defined, else book cover. /api/og dynamic
+  // route has empty-body issues in Next 16 + next/og — static images are
+  // the reliable path until next/og stabilizes.
+  const ogImage = chapter.image || book.coverImage || `/api/og?title=${encodeURIComponent(chapter.title)}`;
 
   return createMetadata({
     title: `${chapter.title} | ${book.title}`,
