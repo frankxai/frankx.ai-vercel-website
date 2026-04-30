@@ -1,7 +1,9 @@
 import { ImageResponse } from 'next/og'
 
-// Use nodejs runtime for Turbopack compatibility in Next.js 16
-export const runtime = 'nodejs'
+// next/og's ImageResponse requires edge runtime in Next 14+ — nodejs runtime
+// throws 500 in production (silent server-side error, no logs surfaced).
+// Edge runtime ships built-in font fallback so Inter/system fonts work.
+export const runtime = 'edge'
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
