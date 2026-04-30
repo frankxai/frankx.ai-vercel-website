@@ -26,6 +26,8 @@ export async function generateMetadata({ params }: PageProps) {
     });
   }
 
+  const ogImage = `/api/og?title=${encodeURIComponent(chapter.title)}&subtitle=${encodeURIComponent(`${book.title} · Chapter ${chapter.number} · ${book.author}`)}`;
+
   return createMetadata({
     title: `${chapter.title} | ${book.title}`,
     description: chapter.description,
@@ -33,6 +35,7 @@ export async function generateMetadata({ params }: PageProps) {
     type: 'article',
     keywords: book.keywords,
     authors: [book.author],
+    image: ogImage,
   });
 }
 
