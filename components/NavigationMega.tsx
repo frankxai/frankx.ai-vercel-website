@@ -157,7 +157,9 @@ const navigation = {
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
       { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
+      { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
       { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
+      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
@@ -167,11 +169,11 @@ const navigation = {
       },
       {
         label: 'Products & Systems',
-        items: ['Starlight IS', 'ACOS', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
+        items: ['Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',
-        items: ['About', 'Contact'],
+        items: ['About', 'Bio', 'Contact'],
       },
     ],
   },
