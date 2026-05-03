@@ -189,8 +189,11 @@ export default function PianoLearnPage() {
           <p className="mb-2 text-center text-base text-slate-600">
             Tippe auf die Tasten! Oder wähle ein Lied — die <span className="font-semibold text-emerald-600">grün leuchtende Taste</span> zeigt dir, wo du drücken musst.
           </p>
-          <p className="mb-6 text-center text-sm text-slate-500">
+          <p className="mb-2 text-center text-sm text-slate-500">
             ✨ Im <strong>Geführten Modus</strong> wartet das Klavier auf dich. Schaffst du 3 Sterne? ⭐⭐⭐
+          </p>
+          <p className="mb-6 text-center text-xs font-medium tracking-wide text-violet-600">
+            🇩🇪 Deutsche Kinderlieder zuerst — dann Klassik, Filmmusik & Volkslieder · 23 Lieder zum Üben
           </p>
           <InteractivePiano showLabels childMode guidedDefault />
         </motion.section>

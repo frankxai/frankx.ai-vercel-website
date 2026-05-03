@@ -71,25 +71,16 @@ export interface SongStep {
 
 export interface Song {
   name: string
+  /** Optional German display name — used when childMode is on. */
+  germanName?: string
   emoji: string
   notes: SongStep[]
 }
 
+// Songs are intentionally ordered: German Kinderlieder first (so they lead
+// in childMode), then international classics, classical, film/anime, folk.
 export const SONGS: Record<string, Song> = {
-  twinkle: {
-    name: 'Twinkle Twinkle',
-    emoji: '⭐',
-    notes: [
-      { note: 'C4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
-      { note: 'G4', duration: 0.4 }, { note: 'G4', duration: 0.4 },
-      { note: 'A4', duration: 0.4 }, { note: 'A4', duration: 0.4 },
-      { note: 'G4', duration: 0.8 },
-      { note: 'F4', duration: 0.4 }, { note: 'F4', duration: 0.4 },
-      { note: 'E4', duration: 0.4 }, { note: 'E4', duration: 0.4 },
-      { note: 'D4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
-      { note: 'C4', duration: 0.8 },
-    ],
-  },
+  // ── Deutsche Kinderlieder (top of list — Alea sees these first) ──────────
   entchen: {
     name: 'Alle meine Entchen',
     emoji: '🦆',
@@ -100,6 +91,52 @@ export const SONGS: Record<string, Song> = {
       { note: 'A4', duration: 0.3 }, { note: 'A4', duration: 0.3 },
       { note: 'A4', duration: 0.3 }, { note: 'A4', duration: 0.3 },
       { note: 'G4', duration: 0.8 },
+    ],
+  },
+  hanschen: {
+    name: 'Hänschen klein',
+    emoji: '🚶',
+    notes: [
+      { note: 'G4', duration: 0.4 }, { note: 'E4', duration: 0.4 }, { note: 'E4', duration: 0.6 },
+      { note: 'F4', duration: 0.4 }, { note: 'D4', duration: 0.4 }, { note: 'D4', duration: 0.6 },
+      { note: 'C4', duration: 0.3 }, { note: 'D4', duration: 0.3 }, { note: 'E4', duration: 0.3 }, { note: 'F4', duration: 0.3 },
+      { note: 'G4', duration: 0.3 }, { note: 'G4', duration: 0.3 }, { note: 'G4', duration: 0.6 },
+    ],
+  },
+  bruderJakob: {
+    name: 'Bruder Jakob',
+    emoji: '⛪',
+    notes: [
+      { note: 'C4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
+      { note: 'E4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
+      { note: 'C4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
+      { note: 'E4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
+      { note: 'E4', duration: 0.4 }, { note: 'F4', duration: 0.4 },
+      { note: 'G4', duration: 0.8 },
+    ],
+  },
+  backeKuchen: {
+    name: 'Backe, backe Kuchen',
+    emoji: '🍰',
+    notes: [
+      { note: 'G4', duration: 0.3 }, { note: 'G4', duration: 0.3 },
+      { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.3 },
+      { note: 'G4', duration: 0.3 }, { note: 'A4', duration: 0.3 }, { note: 'G4', duration: 0.6 },
+      { note: 'F4', duration: 0.3 }, { note: 'F4', duration: 0.3 },
+      { note: 'D4', duration: 0.3 }, { note: 'D4', duration: 0.3 },
+      { note: 'F4', duration: 0.3 }, { note: 'E4', duration: 0.3 }, { note: 'C4', duration: 0.6 },
+    ],
+  },
+  fuchsGans: {
+    name: 'Fuchs, du hast die Gans gestohlen',
+    emoji: '🦊',
+    notes: [
+      { note: 'C4', duration: 0.3 }, { note: 'E4', duration: 0.3 },
+      { note: 'G4', duration: 0.3 }, { note: 'G4', duration: 0.3 },
+      { note: 'A4', duration: 0.3 }, { note: 'A4', duration: 0.3 }, { note: 'G4', duration: 0.6 },
+      { note: 'F4', duration: 0.3 }, { note: 'F4', duration: 0.3 },
+      { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.3 },
+      { note: 'D4', duration: 0.3 }, { note: 'D4', duration: 0.3 }, { note: 'C4', duration: 0.6 },
     ],
   },
   ode: {
@@ -116,8 +153,26 @@ export const SONGS: Record<string, Song> = {
       { note: 'D4', duration: 0.8 },
     ],
   },
+
+  // ── International classics with well-known German titles ─────────────────
+  twinkle: {
+    name: 'Twinkle Twinkle',
+    germanName: 'Funkel, funkel, kleiner Stern',
+    emoji: '⭐',
+    notes: [
+      { note: 'C4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
+      { note: 'G4', duration: 0.4 }, { note: 'G4', duration: 0.4 },
+      { note: 'A4', duration: 0.4 }, { note: 'A4', duration: 0.4 },
+      { note: 'G4', duration: 0.8 },
+      { note: 'F4', duration: 0.4 }, { note: 'F4', duration: 0.4 },
+      { note: 'E4', duration: 0.4 }, { note: 'E4', duration: 0.4 },
+      { note: 'D4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
+      { note: 'C4', duration: 0.8 },
+    ],
+  },
   birthday: {
     name: 'Happy Birthday',
+    germanName: 'Zum Geburtstag viel Glück',
     emoji: '🎂',
     notes: [
       { note: 'G4', duration: 0.3 }, { note: 'G4', duration: 0.2 },
@@ -126,6 +181,40 @@ export const SONGS: Record<string, Song> = {
       { note: 'G4', duration: 0.3 }, { note: 'G4', duration: 0.2 },
       { note: 'A4', duration: 0.5 }, { note: 'G4', duration: 0.5 },
       { note: 'D5', duration: 0.5 }, { note: 'C5', duration: 0.8 },
+    ],
+  },
+  oldMacDonald: {
+    name: 'Old MacDonald',
+    germanName: 'Onkel Jörg hat einen Bauernhof',
+    emoji: '🐄',
+    notes: [
+      { note: 'C5', duration: 0.3 }, { note: 'C5', duration: 0.3 }, { note: 'C5', duration: 0.3 },
+      { note: 'G4', duration: 0.3 }, { note: 'A4', duration: 0.3 }, { note: 'A4', duration: 0.3 }, { note: 'G4', duration: 0.6 },
+      { note: 'E5', duration: 0.3 }, { note: 'E5', duration: 0.3 },
+      { note: 'D5', duration: 0.3 }, { note: 'D5', duration: 0.3 }, { note: 'C5', duration: 0.6 },
+    ],
+  },
+  maryLamb: {
+    name: 'Mary Had a Little Lamb',
+    germanName: 'Maria hatt’ ein Lämmchen klein',
+    emoji: '🐑',
+    notes: [
+      { note: 'E4', duration: 0.4 }, { note: 'D4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
+      { note: 'D4', duration: 0.4 }, { note: 'E4', duration: 0.4 }, { note: 'E4', duration: 0.4 },
+      { note: 'E4', duration: 0.8 }, { note: 'D4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
+      { note: 'D4', duration: 0.8 }, { note: 'E4', duration: 0.4 }, { note: 'G4', duration: 0.4 },
+      { note: 'G4', duration: 0.8 },
+    ],
+  },
+  jingleBells: {
+    name: 'Jingle Bells',
+    germanName: 'Kling, Glöckchen, klingelingeling',
+    emoji: '🔔',
+    notes: [
+      { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.6 },
+      { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.6 },
+      { note: 'E4', duration: 0.3 }, { note: 'G4', duration: 0.3 }, { note: 'C4', duration: 0.3 },
+      { note: 'D4', duration: 0.3 }, { note: 'E4', duration: 0.8 },
     ],
   },
   totoro: {
@@ -165,29 +254,9 @@ export const SONGS: Record<string, Song> = {
       { note: 'A4', duration: 0.3 }, { note: 'B4', duration: 0.6 },
     ],
   },
-  jingleBells: {
-    name: 'Jingle Bells',
-    emoji: '🔔',
-    notes: [
-      { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.6 },
-      { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.3 }, { note: 'E4', duration: 0.6 },
-      { note: 'E4', duration: 0.3 }, { note: 'G4', duration: 0.3 }, { note: 'C4', duration: 0.3 },
-      { note: 'D4', duration: 0.3 }, { note: 'E4', duration: 0.8 },
-    ],
-  },
-  maryLamb: {
-    name: 'Mary Had a Little Lamb',
-    emoji: '🐑',
-    notes: [
-      { note: 'E4', duration: 0.4 }, { note: 'D4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
-      { note: 'D4', duration: 0.4 }, { note: 'E4', duration: 0.4 }, { note: 'E4', duration: 0.4 },
-      { note: 'E4', duration: 0.8 }, { note: 'D4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
-      { note: 'D4', duration: 0.8 }, { note: 'E4', duration: 0.4 }, { note: 'G4', duration: 0.4 },
-      { note: 'G4', duration: 0.8 },
-    ],
-  },
   canon: {
     name: 'Canon in D',
+    germanName: 'Kanon in D',
     emoji: '🎶',
     notes: [
       { note: 'A4', duration: 0.5 }, { note: 'F#4', duration: 0.5 },
@@ -233,20 +302,9 @@ export const SONGS: Record<string, Song> = {
       { note: 'A4', duration: 1.0 },
     ],
   },
-  bruderJakob: {
-    name: 'Bruder Jakob',
-    emoji: '⛪',
-    notes: [
-      { note: 'C4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
-      { note: 'E4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
-      { note: 'C4', duration: 0.4 }, { note: 'D4', duration: 0.4 },
-      { note: 'E4', duration: 0.4 }, { note: 'C4', duration: 0.4 },
-      { note: 'E4', duration: 0.4 }, { note: 'F4', duration: 0.4 },
-      { note: 'G4', duration: 0.8 },
-    ],
-  },
   clairDeLune: {
     name: 'Clair de Lune',
+    germanName: 'Mondschein',
     emoji: '🌙',
     notes: [
       { note: 'E4', duration: 0.6 }, { note: 'F4', duration: 0.3 },
@@ -759,7 +817,7 @@ export default function InteractivePiano({
           >
             <div className={childMode ? 'text-slate-700' : 'text-white/80'}>
               <p className="text-xs font-medium uppercase tracking-wide opacity-60">
-                {guidedSong.emoji} {guidedSong.name} · {labels.noteLabel} {guided.step + 1} / {guidedSong.notes.length}
+                {guidedSong.emoji} {childMode && guidedSong.germanName ? guidedSong.germanName : guidedSong.name} · {labels.noteLabel} {guided.step + 1} / {guidedSong.notes.length}
               </p>
               <p className="mt-1 text-base font-bold">
                 {labels.pressTheKey}{' '}
@@ -808,7 +866,7 @@ export default function InteractivePiano({
               {completion.stars === 3 ? labels.perfect : completion.stars === 2 ? labels.greatJob : labels.completed}
             </p>
             <p className={`mt-1 text-sm ${childMode ? 'text-slate-600' : 'text-white/60'}`}>
-              {SONGS[completion.songId].emoji} {SONGS[completion.songId].name}
+              {SONGS[completion.songId].emoji} {childMode && SONGS[completion.songId].germanName ? SONGS[completion.songId].germanName : SONGS[completion.songId].name}
             </p>
             <div className="mt-3 flex justify-center gap-2">
               <button
@@ -944,7 +1002,7 @@ export default function InteractivePiano({
                 }`}
               >
                 <span className="mr-1">{song.emoji}</span>
-                <span>{song.name}</span>
+                <span>{childMode && song.germanName ? song.germanName : song.name}</span>
                 {songProgress && songProgress.bestStars > 0 && (
                   <StarsBadge stars={songProgress.bestStars} />
                 )}
