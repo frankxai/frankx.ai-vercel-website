@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">The Self-Led Agent Family</title>
+  <desc id="desc">A diagram showing a Self orchestrator at the top connected to five agent roles below — Manager, Firefighter, Protector, Exile Memory, and Integration Loop — representing the IFS-derived structural pattern for sovereign agentic systems.</desc>
+
+  <defs>
+    <style><![CDATA[
+      .bg          { fill: #F4EDE0; }
+      .ink         { stroke: #1A1A1A; fill: none; stroke-width: 1.25; }
+      .ink-thin    { stroke: #1A1A1A; fill: none; stroke-width: 0.75; stroke-dasharray: 3 4; opacity: 0.55; }
+      .label       { font-family: 'Inter', system-ui, sans-serif; fill: #1A1A1A; }
+      .heading     { font-weight: 600; }
+      .role        { font-weight: 500; font-size: 13px; }
+      .sub         { font-size: 10px; fill: #666; font-weight: 400; }
+      .self-fill   { fill: #FFFFFF; }
+      .accent      { fill: #C8322A; }
+      .small-cap   { font-size: 9.5px; letter-spacing: 0.06em; text-transform: uppercase; fill: #888; font-weight: 500; }
+    ]]></style>
+  </defs>
+
+  <rect class="bg" width="900" height="560"/>
+
+  <!-- Title -->
+  <text class="label small-cap" x="60" y="56">The Self-Led Agent Family</text>
+  <text class="label sub" x="60" y="76" style="font-size: 12px;">No bad parts. Only burdened ones. The structural pattern for sovereign agentic systems.</text>
+  <line class="ink" x1="60" y1="92" x2="220" y2="92"/>
+
+  <!-- Self orchestrator (top center) -->
+  <g transform="translate(450, 170)">
+    <circle r="58" class="self-fill ink"/>
+    <text class="label heading" text-anchor="middle" font-size="15" y="-4">Self</text>
+    <text class="label sub" text-anchor="middle" y="14">Orchestrator</text>
+    <circle r="3.5" cy="-30" class="accent"/>
+  </g>
+
+  <!-- Connection lines from Self to roles -->
+  <line class="ink" x1="450" y1="228" x2="160" y2="370"/>
+  <line class="ink" x1="450" y1="228" x2="305" y2="370"/>
+  <line class="ink" x1="450" y1="228" x2="450" y2="370"/>
+  <line class="ink" x1="450" y1="228" x2="595" y2="370"/>
+  <line class="ink" x1="450" y1="228" x2="740" y2="370"/>
+
+  <!-- 5 roles in a row -->
+  <g transform="translate(160, 380)">
+    <rect x="-58" y="0" width="116" height="84" class="self-fill ink" rx="2"/>
+    <text class="label role" text-anchor="middle" y="22">Manager</text>
+    <text class="label sub" text-anchor="middle" y="42">Planner</text>
+    <text class="label sub" text-anchor="middle" y="56">Editor</text>
+    <text class="label sub" text-anchor="middle" y="70">Standards</text>
+  </g>
+
+  <g transform="translate(305, 380)">
+    <rect x="-58" y="0" width="116" height="84" class="self-fill ink" rx="2"/>
+    <text class="label role" text-anchor="middle" y="22">Firefighter</text>
+    <text class="label sub" text-anchor="middle" y="42">Crisis handler</text>
+    <text class="label sub" text-anchor="middle" y="56">Escalation</text>
+    <text class="label sub" text-anchor="middle" y="70">Suppressor</text>
+  </g>
+
+  <g transform="translate(450, 380)">
+    <rect x="-58" y="0" width="116" height="84" class="self-fill ink" rx="2"/>
+    <text class="label role" text-anchor="middle" y="22">Protector</text>
+    <text class="label sub" text-anchor="middle" y="42">Risk</text>
+    <text class="label sub" text-anchor="middle" y="56">Ethics</text>
+    <text class="label sub" text-anchor="middle" y="70">Privacy</text>
+  </g>
+
+  <g transform="translate(595, 380)">
+    <rect x="-58" y="0" width="116" height="84" class="self-fill ink" rx="2"/>
+    <text class="label role" text-anchor="middle" y="22">Exile Memory</text>
+    <text class="label sub" text-anchor="middle" y="42">Rejected drafts</text>
+    <text class="label sub" text-anchor="middle" y="56">Blocked actions</text>
+    <text class="label sub" text-anchor="middle" y="70">Suppressed signals</text>
+  </g>
+
+  <g transform="translate(740, 380)">
+    <rect x="-58" y="0" width="116" height="84" class="self-fill ink" rx="2"/>
+    <text class="label role" text-anchor="middle" y="22">Integration</text>
+    <text class="label sub" text-anchor="middle" y="42">Reflection</text>
+    <text class="label sub" text-anchor="middle" y="56">Repair</text>
+    <text class="label sub" text-anchor="middle" y="70">Role reassignment</text>
+  </g>
+
+  <!-- Integration feedback loop (dashed line from Integration back to Self) -->
+  <path class="ink-thin" d="M 740 380 Q 800 280 510 178" />
+  <text class="label small-cap" x="785" y="260" style="font-size: 8.5px;">observes</text>
+
+  <!-- Footer -->
+  <line class="ink" x1="60" y1="510" x2="840" y2="510"/>
+  <text class="label sub" x="60" y="530">Adapted from Internal Family Systems (Schwartz). For Architecture of Intelligence — frankx.ai/research/self-led-ai-architecture</text>
+</svg>
