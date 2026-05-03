@@ -113,3 +113,5 @@ The four validators run in sequence and any failure blocks commit:
 ## Source-of-truth plan
 
 `docs/superpowers/plans/2026-05-03-contemplative-rails-and-reality-intelligence-system.md`
+
+<!-- build-trigger: 2026-05-03T15:11:36.021Z -->
