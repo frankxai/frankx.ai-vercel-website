@@ -1,0 +1,884 @@
+{
+  "generatedAt": "2026-05-03T22:28:19.099Z",
+  "window": {
+    "since": "2026-05-01",
+    "until": "2026-05-04"
+  },
+  "totals": {
+    "commits": 65,
+    "systems": 10,
+    "repos": 4
+  },
+  "repoStatus": [
+    {
+      "name": "frankx",
+      "status": "ok",
+      "commits": 28
+    },
+    {
+      "name": "frankx.ai-vercel-website",
+      "status": "ok",
+      "commits": 0
+    },
+    {
+      "name": "library-os",
+      "status": "ok",
+      "commits": 0
+    },
+    {
+      "name": "starlight-intelligence-system",
+      "status": "ok",
+      "commits": 16
+    },
+    {
+      "name": "starlight-agent-lab",
+      "status": "ok",
+      "commits": 0
+    },
+    {
+      "name": "gencreator.ai",
+      "status": "ok",
+      "commits": 18
+    },
+    {
+      "name": "arcanea",
+      "status": "ok",
+      "commits": 15
+    }
+  ],
+  "systems": [
+    {
+      "slug": "uncategorized",
+      "commitCount": 23,
+      "totalFiles": 146,
+      "repos": [
+        "starlight-intelligence-system",
+        "gencreator.ai",
+        "arcanea"
+      ],
+      "commits": [
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "34c8a67",
+          "date": "2026-05-03",
+          "author": "Frank",
+          "subject": "\u001fsystem architecture visualizations — Mermaid + Obsidian Canvas (#13)",
+          "raw": "docs(viz): system architecture visualizations — Mermaid + Obsidian Canvas (#13)",
+          "files": 2,
+          "additions": 541,
+          "deletions": 0
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "283007c",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fPhase 2 shipped — corpus lit, mempalace 1 → 520 atoms",
+          "raw": "feat(indexer): Phase 2 shipped — corpus lit, mempalace 1 → 520 atoms",
+          "files": 2,
+          "additions": 152,
+          "deletions": 0
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "9ff1999",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fPhase 2 cross-repo indexer v0.1",
+          "raw": "docs(plan): Phase 2 cross-repo indexer v0.1",
+          "files": 1,
+          "additions": 773,
+          "deletions": 0
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "d53bfe8",
+          "date": "2026-05-03",
+          "author": "Frank",
+          "subject": "\u001f/starlight-board + /process-inbox + naming reconciliation + 8 packets (#11)",
+          "raw": "feat(governance): /starlight-board + /process-inbox + naming reconciliation + 8 packets (#11)",
+          "files": 15,
+          "additions": 959,
+          "deletions": 3
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "b15bc61",
+          "date": "2026-05-03",
+          "author": "Frank",
+          "subject": "\u001festablish .intake/ workflow + process 5 ChatGPT extracts (2026-05-03) (#10)",
+          "raw": "feat(intake): establish .intake/ workflow + process 5 ChatGPT extracts (2026-05-03) (#10)",
+          "files": 10,
+          "additions": 775,
+          "deletions": 1
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "fcd7377",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fHeroPortrait component + photography slot architecture",
+          "raw": "feat(portrait): HeroPortrait component + photography slot architecture",
+          "files": 3,
+          "additions": 135,
+          "deletions": 11
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "41300a4",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fStack Lattice 3D — six persona nodes connected by synergy beams",
+          "raw": "feat(stacks): Stack Lattice 3D — six persona nodes connected by synergy beams",
+          "files": 3,
+          "additions": 266,
+          "deletions": 1
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "e9ff6c9",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fPillar Resonance Ring 3D — six rings filling clockwise per pillar",
+          "raw": "feat(dashboard): Pillar Resonance Ring 3D — six rings filling clockwise per pillar",
+          "files": 3,
+          "additions": 275,
+          "deletions": 0
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "9db6dd0",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fscroll-driven Lab Report reveal sequence + article progress bar",
+          "raw": "feat(research): scroll-driven Lab Report reveal sequence + article progress bar",
+          "files": 3,
+          "additions": 188,
+          "deletions": 41
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "3bcb589",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fpage transitions + custom cursor",
+          "raw": "feat(motion): page transitions + custom cursor",
+          "files": 3,
+          "additions": 124,
+          "deletions": 0
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "fa648e1",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fcinematic /og route with embedded Geist + Fraunces, per-cluster glyphs",
+          "raw": "feat(og): cinematic /og route with embedded Geist + Fraunces, per-cluster glyphs",
+          "files": 2,
+          "additions": 145,
+          "deletions": 27
+        },
+        {
+          "repo": "arcanea",
+          "hash": "7e8d377a",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001f@arcanea/multilingual-config preset for Arcanean properties",
+          "raw": "feat(multilingual-config): @arcanea/multilingual-config preset for Arcanean properties",
+          "files": 13,
+          "additions": 1250,
+          "deletions": 0
+        },
+        {
+          "repo": "arcanea",
+          "hash": "676b0d7b",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fsecurity + correctness fixes from reviewer + 133 unit tests",
+          "raw": "fix(multilingual): security + correctness fixes from reviewer + 133 unit tests",
+          "files": 15,
+          "additions": 1604,
+          "deletions": 37
+        },
+        {
+          "repo": "arcanea",
+          "hash": "1aaa7826",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fprint-ready route for Das Mädchen at /print",
+          "raw": "feat(books): print-ready route for Das Mädchen at /print",
+          "files": 1,
+          "additions": 239,
+          "deletions": 0
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "a23e90d",
+          "date": "2026-05-02",
+          "author": "Frank",
+          "subject": "\u001fv7.8 per-vertical landing pages + ACCENTS extraction + a11y polish (#8)",
+          "raw": "feat(site): v7.8 per-vertical landing pages + ACCENTS extraction + a11y polish (#8)",
+          "files": 7,
+          "additions": 865,
+          "deletions": 213
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "8dfa734",
+          "date": "2026-05-02",
+          "author": "Frank",
+          "subject": "\u001fcommit content/explainer.md so Vercel can read it (v7.7.2) (#7)",
+          "raw": "fix(site): commit content/explainer.md so Vercel can read it (v7.7.2) (#7)",
+          "files": 3,
+          "additions": 191,
+          "deletions": 8
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "c4b06a8",
+          "date": "2026-05-02",
+          "author": "Frank",
+          "subject": "\u001f/explainer markdown actually renders on Vercel (prebuild sync) (#6)",
+          "raw": "fix(site): /explainer markdown actually renders on Vercel (prebuild sync) (#6)",
+          "files": 5,
+          "additions": 40,
+          "deletions": 9
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "06278be",
+          "date": "2026-05-02",
+          "author": "Frank",
+          "subject": "\u001fv7.7 refresh — homepage + /verticals + /cockpit + /explainer + 10-IS architecture",
+          "raw": "feat(site): v7.7 refresh — homepage + /verticals + /cockpit + /explainer + 10-IS architecture",
+          "files": 32,
+          "additions": 4051,
+          "deletions": 350
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "cd86576",
+          "date": "2026-05-02",
+          "author": "Frank Riemer",
+          "subject": "\u001fD+7 welcome-deep + D+14 circle-pitch sequence with Vercel cron",
+          "raw": "feat(email): D+7 welcome-deep + D+14 circle-pitch sequence with Vercel cron",
+          "files": 4,
+          "additions": 344,
+          "deletions": 0
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "5ff7fb1",
+          "date": "2026-05-02",
+          "author": "Frank Riemer",
+          "subject": "\u001fstage-derived next-move CTAs + DPI placeholder (E3.2 + E3.6)",
+          "raw": "feat(community/dashboard): stage-derived next-move CTAs + DPI placeholder (E3.2 + E3.6)",
+          "files": 5,
+          "additions": 386,
+          "deletions": 50
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "53a7e1f",
+          "date": "2026-05-02",
+          "author": "Frank Riemer",
+          "subject": "\u001fstage taxonomy (E3.1) — members.stage 0..4 + tier_access view extension",
+          "raw": "feat(schema): stage taxonomy (E3.1) — members.stage 0..4 + tier_access view extension",
+          "files": 1,
+          "additions": 52,
+          "deletions": 0
+        },
+        {
+          "repo": "arcanea",
+          "hash": "d7d9bdce",
+          "date": "2026-05-02",
+          "author": "frankx-eth",
+          "subject": "\u001fwire das-maedchen-drei-sprachen into [bookId] + [chapterId] routes",
+          "raw": "fix(books): wire das-maedchen-drei-sprachen into [bookId] + [chapterId] routes",
+          "files": 2,
+          "additions": 27,
+          "deletions": 7
+        },
+        {
+          "repo": "arcanea",
+          "hash": "99063e13",
+          "date": "2026-05-02",
+          "author": "frankx-eth",
+          "subject": "\u001f@arcanea/i18n foundation + skill + plan",
+          "raw": "feat(i18n): @arcanea/i18n foundation + skill + plan",
+          "files": 11,
+          "additions": 1401,
+          "deletions": 0
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "contemplative-rails",
+      "commitCount": 13,
+      "totalFiles": 73,
+      "repos": [
+        "frankx",
+        "arcanea"
+      ],
+      "commits": [
+        {
+          "repo": "frankx",
+          "hash": "2c60625",
+          "date": "2026-05-04",
+          "author": "frankx-eth",
+          "subject": "\u001fpull /starlight-board /openclaw-audit /sip-attest from SIS + retrospective board on rails Phase 0",
+          "raw": "feat(governance): pull /starlight-board /openclaw-audit /sip-attest from SIS + retrospective board on rails Phase 0",
+          "files": 4,
+          "additions": 284,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "f89bf1e",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fhandover 2026-05-03 — rails Phase 0 LIVE + 4 hub heroes shipped",
+          "raw": "docs(ops): handover 2026-05-03 — rails Phase 0 LIVE + 4 hub heroes shipped",
+          "files": 1,
+          "additions": 177,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "3177d96",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fadd /study quiet aggregator hub + Footer link",
+          "raw": "feat(rails): add /study quiet aggregator hub + Footer link",
+          "files": 4,
+          "additions": 3295,
+          "deletions": 5
+        },
+        {
+          "repo": "frankx",
+          "hash": "18498e8",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fhandover 2026-05-03 — contemplative rails phase 0 complete",
+          "raw": "docs(ops): handover 2026-05-03 — contemplative rails phase 0 complete",
+          "files": 1,
+          "additions": 154,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "2911561",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fvoice rules + anti-patterns + research substrate + launch gate + incident response + RIS roadmap",
+          "raw": "docs(rails): voice rules + anti-patterns + research substrate + launch gate + incident response + RIS roadmap",
+          "files": 7,
+          "additions": 574,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "7b457c0",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fflagship entry + 4 canon pages",
+          "raw": "feat(rails): flagship entry + 4 canon pages",
+          "files": 5,
+          "additions": 300,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "0feeb92",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001froute group + 4 hub indexes + 4 entry detail routes + canon + RSS",
+          "raw": "feat(rails): route group + 4 hub indexes + 4 entry detail routes + canon + RSS",
+          "files": 17,
+          "additions": 625,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "8bb5982",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fcontemplative-dark UI components",
+          "raw": "feat(rails): contemplative-dark UI components",
+          "files": 8,
+          "additions": 410,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "aa408cf",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fJSON-LD schema composers + RSS generator",
+          "raw": "feat(rails): JSON-LD schema composers + RSS generator",
+          "files": 2,
+          "additions": 257,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "5231484",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fmarkdown loaders + four discipline validators",
+          "raw": "feat(rails): markdown loaders + four discipline validators",
+          "files": 7,
+          "additions": 336,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "6447029",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fRIS core types + hub config + tradition vocabulary",
+          "raw": "feat(rails): RIS core types + hub config + tradition vocabulary",
+          "files": 4,
+          "additions": 370,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "07873f7",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fadd contemplative-dark typography register for /on-*/ rails",
+          "raw": "feat(rails): add contemplative-dark typography register for /on-*/ rails",
+          "files": 4,
+          "additions": 59,
+          "deletions": 1
+        },
+        {
+          "repo": "arcanea",
+          "hash": "5f231951",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001frename to @starlight/multilingual + canon glossary + book helpers + Phase 2 spec",
+          "raw": "feat(multilingual): rename to @starlight/multilingual + canon glossary + book helpers + Phase 2 spec",
+          "files": 9,
+          "additions": 1697,
+          "deletions": 72
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "characters",
+      "commitCount": 8,
+      "totalFiles": 32,
+      "repos": [
+        "frankx"
+      ],
+      "commits": [
+        {
+          "repo": "frankx",
+          "hash": "b1b841a",
+          "date": "2026-05-04",
+          "author": "frankx-eth",
+          "subject": "\u001fadd 4 German Kinderlieder + germanName field — 19 -> 23 songs",
+          "raw": "feat(piano): add 4 German Kinderlieder + germanName field — 19 -> 23 songs",
+          "files": 2,
+          "additions": 112,
+          "deletions": 51
+        },
+        {
+          "repo": "frankx",
+          "hash": "6eb28da",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fguided mode + warmer audio + browser progress for Alea",
+          "raw": "feat(piano): guided mode + warmer audio + browser progress for Alea",
+          "files": 5,
+          "additions": 859,
+          "deletions": 114
+        },
+        {
+          "repo": "frankx",
+          "hash": "00bef5b",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001fre-render Ana-Ω v2 — robot-form + corrected glasses",
+          "raw": "feat(ana): re-render Ana-Ω v2 — robot-form + corrected glasses",
+          "files": 7,
+          "additions": 124,
+          "deletions": 1
+        },
+        {
+          "repo": "frankx",
+          "hash": "973ff8a",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001fnoindex AIS landing too — wait for Ana attribution consent",
+          "raw": "fix(ana): noindex AIS landing too — wait for Ana attribution consent",
+          "files": 1,
+          "additions": 5,
+          "deletions": 1
+        },
+        {
+          "repo": "frankx",
+          "hash": "a42a401",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001fhandover 2026-05-01 — AIS + /ana scaffolds, Phase 5 + render variants pending",
+          "raw": "docs(ops): handover 2026-05-01 — AIS + /ana scaffolds, Phase 5 + render variants pending",
+          "files": 1,
+          "additions": 107,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "293e626",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001f/ana-intelligence-system + /ana page scaffolds",
+          "raw": "feat(ana): /ana-intelligence-system + /ana page scaffolds",
+          "files": 3,
+          "additions": 728,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "c9cb2dc",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001fAna-Ω mascot system + AIS scaffolding (Phase 0-3)",
+          "raw": "feat(ana): Ana-Ω mascot system + AIS scaffolding (Phase 0-3)",
+          "files": 12,
+          "additions": 515,
+          "deletions": 3
+        },
+        {
+          "repo": "frankx",
+          "hash": "a158ac0",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001fAna Intelligence System — approved design (5 sub-projects, Ana-Ω mascot, sync pattern)",
+          "raw": "docs(spec): Ana Intelligence System — approved design (5 sub-projects, Ana-Ω mascot, sync pattern)",
+          "files": 1,
+          "additions": 291,
+          "deletions": 0
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "starlight-intelligence-system",
+      "commitCount": 7,
+      "totalFiles": 300,
+      "repos": [
+        "frankx",
+        "starlight-intelligence-system",
+        "gencreator.ai"
+      ],
+      "commits": [
+        {
+          "repo": "frankx",
+          "hash": "989cebd",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fdeclare inheritance from creator-meta substrate",
+          "raw": "feat(frankx-meta): declare inheritance from creator-meta substrate",
+          "files": 1,
+          "additions": 5,
+          "deletions": 1
+        },
+        {
+          "repo": "frankx",
+          "hash": "279f615",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001flayer model spec, /ecosystem page, frankx-meta skill, vault MOCs",
+          "raw": "feat(ecosystem): layer model spec, /ecosystem page, frankx-meta skill, vault MOCs",
+          "files": 24,
+          "additions": 3357,
+          "deletions": 6
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "9cd7996",
+          "date": "2026-05-03",
+          "author": "Frank",
+          "subject": "\u001fCalculator + Validation + Schemas packages + Energy IS scaffold + 3 board verdicts (#12)",
+          "raw": "feat(substrate): Calculator + Validation + Schemas packages + Energy IS scaffold + 3 board verdicts (#12)",
+          "files": 28,
+          "additions": 1706,
+          "deletions": 0
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "a2f844d",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fSubstrate Constellation 3D — six-surface drag-rotate node graph",
+          "raw": "feat(about): Substrate Constellation 3D — six-surface drag-rotate node graph",
+          "files": 3,
+          "additions": 339,
+          "deletions": 2
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "c431455",
+          "date": "2026-05-02",
+          "author": "Frank Riemer",
+          "subject": "\u001fship gencreator.ai v3 — research engine, factory, cohort substrate, homepage refit",
+          "raw": "feat: ship gencreator.ai v3 — research engine, factory, cohort substrate, homepage refit",
+          "files": 173,
+          "additions": 26896,
+          "deletions": 0
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "c7176b0",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001fhandover 2026-05-01 — substrate ratification cycle complete + verification findings",
+          "raw": "docs(ops): handover 2026-05-01 — substrate ratification cycle complete + verification findings",
+          "files": 1,
+          "additions": 206,
+          "deletions": 0
+        },
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "2dd292d",
+          "date": "2026-05-01",
+          "author": "frankx-eth",
+          "subject": "\u001fMusic IS Domain Sub-Stack Tier — 7 agents + 8 commands + skills + scaffold (hybrid substrate-home)",
+          "raw": "feat(verticals): Music IS Domain Sub-Stack Tier — 7 agents + 8 commands + skills + scaffold (hybrid substrate-home)",
+          "files": 70,
+          "additions": 12649,
+          "deletions": 4
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "design-system",
+      "commitCount": 7,
+      "totalFiles": 41,
+      "repos": [
+        "frankx",
+        "gencreator.ai",
+        "arcanea"
+      ],
+      "commits": [
+        {
+          "repo": "frankx",
+          "hash": "2b466d5",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001f4 strategic hub heroes via NB Pro (2K cinematic)",
+          "raw": "feat(design): 4 strategic hub heroes via NB Pro (2K cinematic)",
+          "files": 4,
+          "additions": 0,
+          "deletions": 0
+        },
+        {
+          "repo": "frankx",
+          "hash": "f8c3240",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fhub graphics audit + ready-to-run NB2 hero generation script",
+          "raw": "docs(design): hub graphics audit + ready-to-run NB2 hero generation script",
+          "files": 2,
+          "additions": 530,
+          "deletions": 0
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "40c484d",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fhandover brief + progress.md night-of-work entry",
+          "raw": "docs(design): handover brief + progress.md night-of-work entry",
+          "files": 2,
+          "additions": 337,
+          "deletions": 2
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "c0e443c",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fGenerative Mesh WebGL shader background — mouse-reactive warm field",
+          "raw": "feat(hero): Generative Mesh WebGL shader background — mouse-reactive warm field",
+          "files": 3,
+          "additions": 231,
+          "deletions": 1
+        },
+        {
+          "repo": "gencreator.ai",
+          "hash": "0c1dc22",
+          "date": "2026-05-03",
+          "author": "Frank Riemer",
+          "subject": "\u001fliquid-glass v3 + display type ramp + brand Glyph component",
+          "raw": "feat(design): liquid-glass v3 + display type ramp + brand Glyph component",
+          "files": 2,
+          "additions": 211,
+          "deletions": 0
+        },
+        {
+          "repo": "arcanea",
+          "hash": "eebbd05b",
+          "date": "2026-05-02",
+          "author": "frankx-eth",
+          "subject": "\u001f10 NB2 chapter spreads + wire into chapter reader",
+          "raw": "feat(books): 10 NB2 chapter spreads + wire into chapter reader",
+          "files": 21,
+          "additions": 228,
+          "deletions": 0
+        },
+        {
+          "repo": "arcanea",
+          "hash": "205c6b67",
+          "date": "2026-05-02",
+          "author": "frankx-eth",
+          "subject": "\u001fcover for Das Mädchen via NB2 — gouache-and-pencil editorial",
+          "raw": "feat(books): cover for Das Mädchen via NB2 — gouache-and-pencil editorial",
+          "files": 7,
+          "additions": 258,
+          "deletions": 2
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "starlight-chronicle",
+      "commitCount": 2,
+      "totalFiles": 14,
+      "repos": [
+        "frankx"
+      ],
+      "commits": [
+        {
+          "repo": "frankx",
+          "hash": "5b3622d",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001frebuild /chronicle as reading experience, not brochure",
+          "raw": "feat(chronicle): rebuild /chronicle as reading experience, not brochure",
+          "files": 1,
+          "additions": 219,
+          "deletions": 66
+        },
+        {
+          "repo": "frankx",
+          "hash": "cce535b",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fship Starlight Chronicle v1 + State of the Palace",
+          "raw": "feat(chronicle): ship Starlight Chronicle v1 + State of the Palace",
+          "files": 13,
+          "additions": 2573,
+          "deletions": 42
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "ops-tooling",
+      "commitCount": 2,
+      "totalFiles": 4,
+      "repos": [
+        "starlight-intelligence-system",
+        "arcanea"
+      ],
+      "commits": [
+        {
+          "repo": "starlight-intelligence-system",
+          "hash": "46f1ee2",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fv0.1 plan + handover + launcher",
+          "raw": "feat(memory-bus): v0.1 plan + handover + launcher",
+          "files": 3,
+          "additions": 1004,
+          "deletions": 0
+        },
+        {
+          "repo": "arcanea",
+          "hash": "58c9a7f1",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fhandover update — quality pass results + remaining items",
+          "raw": "docs(multilingual): handover update — quality pass results + remaining items",
+          "files": 1,
+          "additions": 26,
+          "deletions": 0
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "watch-os",
+      "commitCount": 1,
+      "totalFiles": 1,
+      "repos": [
+        "frankx"
+      ],
+      "commits": [
+        {
+          "repo": "frankx",
+          "hash": "348c1b4",
+          "date": "2026-05-03",
+          "author": "frankx-eth",
+          "subject": "\u001fhandover update — watch hero confirmed live (CDN cache refreshed)",
+          "raw": "docs(ops): handover update — watch hero confirmed live (CDN cache refreshed)",
+          "files": 1,
+          "additions": 3,
+          "deletions": 1
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "network",
+      "commitCount": 1,
+      "totalFiles": 6,
+      "repos": [
+        "gencreator.ai"
+      ],
+      "commits": [
+        {
+          "repo": "gencreator.ai",
+          "hash": "34e7bd3",
+          "date": "2026-05-02",
+          "author": "Frank Riemer",
+          "subject": "\u001fcomplete the 8-agent content team — Source Scout, Method Architect, Lab Pipeline, SEO Sentinel, Stack Librarian",
+          "raw": "feat(agents): complete the 8-agent content team — Source Scout, Method Architect, Lab Pipeline, SEO Sentinel, Stack Librarian",
+          "files": 6,
+          "additions": 398,
+          "deletions": 5
+        }
+      ],
+      "lastBlessing": null
+    },
+    {
+      "slug": "library-os",
+      "commitCount": 1,
+      "totalFiles": 2,
+      "repos": [
+        "arcanea"
+      ],
+      "commits": [
+        {
+          "repo": "arcanea",
+          "hash": "3e5c03d8",
+          "date": "2026-05-02",
+          "author": "frankx-eth",
+          "subject": "\u001fadd Das Mädchen, das drei Sprachen hörte — bilingual children's book",
+          "raw": "feat(library): add Das Mädchen, das drei Sprachen hörte — bilingual children's book",
+          "files": 2,
+          "additions": 1314,
+          "deletions": 0
+        }
+      ],
+      "lastBlessing": null
+    }
+  ]
+}

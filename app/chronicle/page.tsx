@@ -242,13 +242,13 @@ export default function ChroniclePage() {
       <section className="relative overflow-hidden">
         <div className="relative max-w-5xl mx-auto px-6 pt-12 pb-16">
           <p className="text-[11px] uppercase tracking-[0.3em] text-amber-400/70 mb-6">
-            The Starlight Chronicle
+            Creation Chronicles · The Starlight Chronicle
           </p>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05] mb-8">
             What was built. What is whole. What can be left alone.
           </h1>
           <p className="text-lg md:text-xl text-white/60 max-w-2xl leading-relaxed">
-            A practice of witnessing. The reflective layer of the FrankX OS. Below: the State of the Palace as it stands on Sunday, 2026-05-03.
+            A practice of witnessing — the reflective layer of the FrankX OS. The behind-the-scenes build log, published when ready. Below: the State of the Palace as it stands on Sunday, 2026-05-03.
           </p>
         </div>
 
