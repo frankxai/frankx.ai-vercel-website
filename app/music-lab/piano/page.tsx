@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import { getVolume, setVolume as persistVolume } from '@/lib/piano-progress'
 
 // ─── Music Theory ───────────────────────────────────────────────────
 
@@ -72,29 +73,30 @@ class GrandPianoEngine {
 
     this.ctx = new AudioContext({ sampleRate: 44100 })
 
+    // Compressor: looser threshold gives ~5 dB more loudness while still catching peaks
     this.compressor = this.ctx.createDynamicsCompressor()
-    this.compressor.threshold.value = -18
+    this.compressor.threshold.value = -12
     this.compressor.knee.value = 12
-    this.compressor.ratio.value = 3.5
-    this.compressor.attack.value = 0.002
-    this.compressor.release.value = 0.12
+    this.compressor.ratio.value = 2.5
+    this.compressor.attack.value = 0.003
+    this.compressor.release.value = 0.15
     this.compressor.connect(this.ctx.destination)
 
     const warmth = this.ctx.createBiquadFilter()
     warmth.type = 'peaking'
     warmth.frequency.value = 350
     warmth.Q.value = 0.6
-    warmth.gain.value = 2.5
+    warmth.gain.value = 3.5
     warmth.connect(this.compressor)
 
     const hiRolloff = this.ctx.createBiquadFilter()
     hiRolloff.type = 'lowpass'
-    hiRolloff.frequency.value = 9000
+    hiRolloff.frequency.value = 9500
     hiRolloff.Q.value = 0.4
     hiRolloff.connect(warmth)
 
     this.master = this.ctx.createGain()
-    this.master.gain.value = 0.9
+    this.master.gain.value = 1.15
 
     this.reverb = this.ctx.createConvolver()
     this.reverb.buffer = this.buildIR()
@@ -191,12 +193,12 @@ class GrandPianoEngine {
     panner.connect(this.master!)
 
     const noteGain = ctx.createGain()
-    noteGain.gain.value = 0.25 + velocity * 0.75
+    noteGain.gain.value = 0.4 + velocity * 0.85
     noteGain.connect(panner)
 
     const velFilter = ctx.createBiquadFilter()
     velFilter.type = 'lowpass'
-    velFilter.frequency.value = 1800 + velocity * 12000
+    velFilter.frequency.value = 2200 + velocity * 12000
     velFilter.Q.value = 0.6
     velFilter.connect(noteGain)
 
@@ -287,6 +289,12 @@ class GrandPianoEngine {
     this.sustainedNotes.clear()
   }
 
+  setMasterVolume(v: number) {
+    if (!this.ctx || !this.master) return
+    const clamped = Math.max(0, Math.min(2.0, v))
+    this.master.gain.setTargetAtTime(clamped, this.ctx.currentTime, 0.05)
+  }
+
   destroy() {
     for (const [midi] of this.active) this.damperRelease(midi)
     if (this.ctx) { try { this.ctx.close() } catch { /* ok */ } }
@@ -317,6 +325,7 @@ export default function PianoPage() {
   const [lastNote, setLastNote] = useState<string | null>(null)
   const [loadCount, setLoadCount] = useState(0)
   const [samplesReady, setSamplesReady] = useState(false)
+  const [volume, setVolume] = useState(1.15)
   const touchMap = useRef<Map<number, number>>(new Map())
   const pianoRef = useRef<HTMLDivElement>(null)
 
@@ -339,6 +348,15 @@ export default function PianoPage() {
   }, [])
 
   useEffect(() => () => { engineRef.current?.destroy() }, [])
+
+  // Hydrate volume from localStorage once
+  useEffect(() => { setVolume(getVolume() * 1.15) }, [])
+
+  // Persist + apply volume changes
+  useEffect(() => {
+    persistVolume(volume / 1.15)
+    engineRef.current?.setMasterVolume(volume)
+  }, [volume])
 
   const noteOn = useCallback(async (midi: number, vel?: number) => {
     const eng = await getEngine()
@@ -503,6 +521,20 @@ export default function PianoPage() {
         >
           Sustain
         </button>
+        <div className="w-px h-3.5 bg-white/8" />
+        <label className="flex items-center gap-2" aria-label="Volume">
+          <span className="text-white/35 text-[11px]" aria-hidden="true">🔊</span>
+          <input
+            type="range"
+            min="0"
+            max="1.8"
+            step="0.05"
+            value={volume}
+            onChange={(e) => setVolume(parseFloat(e.target.value))}
+            className="h-1 w-24 cursor-pointer accent-cyan-400"
+            aria-label="Master volume"
+          />
+        </label>
       </div>
 
       {/* Piano */}

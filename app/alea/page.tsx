@@ -614,6 +614,30 @@ export default function AleaPage() {
             </div>
           </Section>
 
+          {/* ── Klavier Hero (one-tap entry to guided practice) ────── */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="rounded-3xl bg-gradient-to-br from-violet-100 via-rose-50 to-amber-50 p-6 shadow-md sm:p-8"
+          >
+            <div className="flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
+              <div className="text-6xl sm:text-7xl">🎹</div>
+              <div className="flex-1">
+                <h2 className="text-2xl font-extrabold text-violet-700 sm:text-3xl">Klavier üben</h2>
+                <p className="mt-2 text-base text-slate-600">
+                  Lerne Lieder Note für Note — die Tasten leuchten grün und zeigen dir, wo du drücken musst. Sammle ⭐⭐⭐ Sterne!
+                </p>
+              </div>
+              <Link
+                href="/alea/musik/klavier"
+                className="rounded-full bg-violet-500 px-6 py-3 text-base font-bold text-white shadow-lg transition hover:bg-violet-600 active:scale-95"
+              >
+                Spielen →
+              </Link>
+            </div>
+          </motion.div>
+
           {/* ── Poetry Garden ──────────────────────────────────────── */}
           <Section id="poems" emoji="🌷" title="Gedichte für Alea" bg="bg-gradient-to-br from-rose-50/80 to-violet-50/80">
             <div className="space-y-8">
