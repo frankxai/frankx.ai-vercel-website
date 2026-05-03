@@ -1,6 +1,859 @@
 {
   "weeks": [
     {
+      "id": "week-2026-18",
+      "label": "Week 18",
+      "dateRange": "2026-04-27 → 2026-05-03",
+      "summary": "Themes: rails, meta, characters. 62 entries across 4 repos.",
+      "stats": {
+        "commits": 62,
+        "filesChanged": 62,
+        "linesAdded": 0,
+        "newPages": 3,
+        "imagesGenerated": 1
+      },
+      "entries": [
+        {
+          "id": "cl-2026-05-03-6eb28da",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "guided mode + warmer audio + browser progress for Alea",
+          "description": "feat(piano): guided mode + warmer audio + browser progress for Alea — frankx",
+          "tags": [
+            "frankx",
+            "characters",
+            "music"
+          ],
+          "commit": "6eb28da",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-989cebd",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "declare inheritance from creator-meta substrate",
+          "description": "feat(frankx-meta): declare inheritance from creator-meta substrate — frankx",
+          "tags": [
+            "frankx",
+            "meta"
+          ],
+          "commit": "989cebd",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-279f615",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "layer model spec, /ecosystem page, frankx-meta skill, vault MOCs",
+          "description": "feat(ecosystem): layer model spec, /ecosystem page, frankx-meta skill, vault MOCs — frankx",
+          "tags": [
+            "frankx",
+            "meta"
+          ],
+          "commit": "279f615",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-2b466d5",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "4 strategic hub heroes via NB Pro (2K cinematic)",
+          "description": "feat(design): 4 strategic hub heroes via NB Pro (2K cinematic) — frankx",
+          "tags": [
+            "frankx",
+            "design"
+          ],
+          "commit": "2b466d5",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-3177d96",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "add /study quiet aggregator hub + Footer link",
+          "description": "feat(rails): add /study quiet aggregator hub + Footer link — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "3177d96",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-7b457c0",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "flagship entry + 4 canon pages",
+          "description": "feat(rails): flagship entry + 4 canon pages — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "7b457c0",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-0feeb92",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "route group + 4 hub indexes + 4 entry detail routes + canon + RSS",
+          "description": "feat(rails): route group + 4 hub indexes + 4 entry detail routes + canon + RSS — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "0feeb92",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-8bb5982",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "contemplative-dark UI components",
+          "description": "feat(rails): contemplative-dark UI components — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "8bb5982",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-aa408cf",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "JSON-LD schema composers + RSS generator",
+          "description": "feat(rails): JSON-LD schema composers + RSS generator — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "aa408cf",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-5231484",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "markdown loaders + four discipline validators",
+          "description": "feat(rails): markdown loaders + four discipline validators — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "5231484",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-6447029",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "RIS core types + hub config + tradition vocabulary",
+          "description": "feat(rails): RIS core types + hub config + tradition vocabulary — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "6447029",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-07873f7",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "add contemplative-dark typography register for /on-*/ rails",
+          "description": "feat(rails): add contemplative-dark typography register for /on-*/ rails — frankx",
+          "tags": [
+            "frankx",
+            "rails"
+          ],
+          "commit": "07873f7",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-03-9cd7996",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "Calculator + Validation + Schemas packages + Energy IS scaffold + 3 board ver…",
+          "description": "feat(substrate): Calculator + Validation + Schemas packages + Energy IS scaffold + 3 board verdicts (#12) — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system",
+            "meta"
+          ],
+          "commit": "9cd7996",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-03-283007c",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "Phase 2 shipped — corpus lit, mempalace 1 → 520 atoms",
+          "description": "feat(indexer): Phase 2 shipped — corpus lit, mempalace 1 → 520 atoms — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "283007c",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-03-46f1ee2",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "v0.1 plan + handover + launcher",
+          "description": "feat(memory-bus): v0.1 plan + handover + launcher — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "46f1ee2",
+          "impact": "major",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-03-d53bfe8",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "/starlight-board + /process-inbox + naming reconciliation + 8 packets (#11)",
+          "description": "feat(governance): /starlight-board + /process-inbox + naming reconciliation + 8 packets (#11) — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "d53bfe8",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-03-b15bc61",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "establish .intake/ workflow + process 5 ChatGPT extracts (2026-05-03) (#10)",
+          "description": "feat(intake): establish .intake/ workflow + process 5 ChatGPT extracts (2026-05-03) (#10) — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "b15bc61",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-03-fcd7377",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "HeroPortrait component + photography slot architecture",
+          "description": "feat(portrait): HeroPortrait component + photography slot architecture — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "fcd7377",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-a2f844d",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "Substrate Constellation 3D — six-surface drag-rotate node graph",
+          "description": "feat(about): Substrate Constellation 3D — six-surface drag-rotate node graph — gencreator.ai",
+          "tags": [
+            "gencreator.ai",
+            "meta"
+          ],
+          "commit": "a2f844d",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-41300a4",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "Stack Lattice 3D — six persona nodes connected by synergy beams",
+          "description": "feat(stacks): Stack Lattice 3D — six persona nodes connected by synergy beams — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "41300a4",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-e9ff6c9",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "Pillar Resonance Ring 3D — six rings filling clockwise per pillar",
+          "description": "feat(dashboard): Pillar Resonance Ring 3D — six rings filling clockwise per pillar — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "e9ff6c9",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-9db6dd0",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "scroll-driven Lab Report reveal sequence + article progress bar",
+          "description": "feat(research): scroll-driven Lab Report reveal sequence + article progress bar — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "9db6dd0",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-3bcb589",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "page transitions + custom cursor",
+          "description": "feat(motion): page transitions + custom cursor — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "3bcb589",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-c0e443c",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "Generative Mesh WebGL shader background — mouse-reactive warm field",
+          "description": "feat(hero): Generative Mesh WebGL shader background — mouse-reactive warm field — gencreator.ai",
+          "tags": [
+            "gencreator.ai",
+            "design"
+          ],
+          "commit": "c0e443c",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-0c1dc22",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "liquid-glass v3 + display type ramp + brand Glyph component",
+          "description": "feat(design): liquid-glass v3 + display type ramp + brand Glyph component — gencreator.ai",
+          "tags": [
+            "gencreator.ai",
+            "design"
+          ],
+          "commit": "0c1dc22",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-fa648e1",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "cinematic /og route with embedded Geist + Fraunces, per-cluster glyphs",
+          "description": "feat(og): cinematic /og route with embedded Geist + Fraunces, per-cluster glyphs — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "fa648e1",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-03-7e8d377a",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "@arcanea/multilingual-config preset for Arcanean properties",
+          "description": "feat(multilingual-config): @arcanea/multilingual-config preset for Arcanean properties — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "7e8d377a",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-03-676b0d7b",
+          "date": "2026-05-03",
+          "type": "fixed",
+          "title": "security + correctness fixes from reviewer + 133 unit tests",
+          "description": "fix(multilingual): security + correctness fixes from reviewer + 133 unit tests — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "676b0d7b",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-03-1aaa7826",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "print-ready route for Das Mädchen at /print",
+          "description": "feat(books): print-ready route for Das Mädchen at /print — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "1aaa7826",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-03-5f231951",
+          "date": "2026-05-03",
+          "type": "shipped",
+          "title": "rename to @starlight/multilingual + canon glossary + book helpers + Phase 2 spec",
+          "description": "feat(multilingual): rename to @starlight/multilingual + canon glossary + book helpers + Phase 2 spec — arcanea",
+          "tags": [
+            "arcanea",
+            "library"
+          ],
+          "commit": "5f231951",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-02-a23e90d",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "v7.8 per-vertical landing pages + ACCENTS extraction + a11y polish (#8)",
+          "description": "feat(site): v7.8 per-vertical landing pages + ACCENTS extraction + a11y polish (#8) — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "a23e90d",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-02-8dfa734",
+          "date": "2026-05-02",
+          "type": "fixed",
+          "title": "commit content/explainer.md so Vercel can read it (v7.7.2) (#7)",
+          "description": "fix(site): commit content/explainer.md so Vercel can read it (v7.7.2) (#7) — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "8dfa734",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-02-c4b06a8",
+          "date": "2026-05-02",
+          "type": "fixed",
+          "title": "/explainer markdown actually renders on Vercel (prebuild sync) (#6)",
+          "description": "fix(site): /explainer markdown actually renders on Vercel (prebuild sync) (#6) — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "c4b06a8",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-02-06278be",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "v7.7 refresh — homepage + /verticals + /cockpit + /explainer + 10-IS architec…",
+          "description": "feat(site): v7.7 refresh — homepage + /verticals + /cockpit + /explainer + 10-IS architecture — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "06278be",
+          "impact": "major",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-05-02-34e7bd3",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "complete the 8-agent content team — Source Scout, Method Architect, Lab Pipel…",
+          "description": "feat(agents): complete the 8-agent content team — Source Scout, Method Architect, Lab Pipeline, SEO Sentinel, Stack Librarian — gencreator.ai",
+          "tags": [
+            "gencreator.ai",
+            "acos"
+          ],
+          "commit": "34e7bd3",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-02-cd86576",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "D+7 welcome-deep + D+14 circle-pitch sequence with Vercel cron",
+          "description": "feat(email): D+7 welcome-deep + D+14 circle-pitch sequence with Vercel cron — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "cd86576",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-02-5ff7fb1",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "stage-derived next-move CTAs + DPI placeholder (E3.2 + E3.6)",
+          "description": "feat(community/dashboard): stage-derived next-move CTAs + DPI placeholder (E3.2 + E3.6) — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "5ff7fb1",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-02-53a7e1f",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "stage taxonomy (E3.1) — members.stage 0..4 + tier_access view extension",
+          "description": "feat(schema): stage taxonomy (E3.1) — members.stage 0..4 + tier_access view extension — gencreator.ai",
+          "tags": [
+            "gencreator.ai"
+          ],
+          "commit": "53a7e1f",
+          "impact": "medium",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-02-c431455",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "ship gencreator.ai v3 — research engine, factory, cohort substrate, homepage …",
+          "description": "feat: ship gencreator.ai v3 — research engine, factory, cohort substrate, homepage refit — gencreator.ai",
+          "tags": [
+            "gencreator.ai",
+            "meta"
+          ],
+          "commit": "c431455",
+          "impact": "major",
+          "repo": "gencreator.ai"
+        },
+        {
+          "id": "cl-2026-05-02-eebbd05b",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "10 NB2 chapter spreads + wire into chapter reader",
+          "description": "feat(books): 10 NB2 chapter spreads + wire into chapter reader — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "eebbd05b",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-02-d7d9bdce",
+          "date": "2026-05-02",
+          "type": "fixed",
+          "title": "wire das-maedchen-drei-sprachen into [bookId] + [chapterId] routes",
+          "description": "fix(books): wire das-maedchen-drei-sprachen into [bookId] + [chapterId] routes — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "d7d9bdce",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-02-99063e13",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "@arcanea/i18n foundation + skill + plan",
+          "description": "feat(i18n): @arcanea/i18n foundation + skill + plan — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "99063e13",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-02-205c6b67",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "cover for Das Mädchen via NB2 — gouache-and-pencil editorial",
+          "description": "feat(books): cover for Das Mädchen via NB2 — gouache-and-pencil editorial — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "205c6b67",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-02-3e5c03d8",
+          "date": "2026-05-02",
+          "type": "shipped",
+          "title": "add Das Mädchen, das drei Sprachen hörte — bilingual children's book",
+          "description": "feat(library): add Das Mädchen, das drei Sprachen hörte — bilingual children's book — arcanea",
+          "tags": [
+            "arcanea",
+            "library"
+          ],
+          "commit": "3e5c03d8",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-05-01-00bef5b",
+          "date": "2026-05-01",
+          "type": "shipped",
+          "title": "re-render Ana-Ω v2 — robot-form + corrected glasses",
+          "description": "feat(ana): re-render Ana-Ω v2 — robot-form + corrected glasses — frankx",
+          "tags": [
+            "frankx",
+            "characters"
+          ],
+          "commit": "00bef5b",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-01-973ff8a",
+          "date": "2026-05-01",
+          "type": "fixed",
+          "title": "noindex AIS landing too — wait for Ana attribution consent",
+          "description": "fix(ana): noindex AIS landing too — wait for Ana attribution consent — frankx",
+          "tags": [
+            "frankx",
+            "characters"
+          ],
+          "commit": "973ff8a",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-01-293e626",
+          "date": "2026-05-01",
+          "type": "shipped",
+          "title": "/ana-intelligence-system + /ana page scaffolds",
+          "description": "feat(ana): /ana-intelligence-system + /ana page scaffolds — frankx",
+          "tags": [
+            "frankx",
+            "characters"
+          ],
+          "commit": "293e626",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-01-c9cb2dc",
+          "date": "2026-05-01",
+          "type": "shipped",
+          "title": "Ana-Ω mascot system + AIS scaffolding (Phase 0-3)",
+          "description": "feat(ana): Ana-Ω mascot system + AIS scaffolding (Phase 0-3) — frankx",
+          "tags": [
+            "frankx",
+            "characters"
+          ],
+          "commit": "c9cb2dc",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-05-01-2dd292d",
+          "date": "2026-05-01",
+          "type": "shipped",
+          "title": "Music IS Domain Sub-Stack Tier — 7 agents + 8 commands + skills + scaffold (h…",
+          "description": "feat(verticals): Music IS Domain Sub-Stack Tier — 7 agents + 8 commands + skills + scaffold (hybrid substrate-home) — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system",
+            "music",
+            "meta"
+          ],
+          "commit": "2dd292d",
+          "impact": "major",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-04-30-fbb920e",
+          "date": "2026-04-30",
+          "type": "shipped",
+          "title": "voice-tech-2026 hub + verified synthesis",
+          "description": "feat(research): voice-tech-2026 hub + verified synthesis — frankx",
+          "tags": [
+            "frankx"
+          ],
+          "commit": "fbb920e",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-04-30-3aa56bf",
+          "date": "2026-04-30",
+          "type": "shipped",
+          "title": "/perf-feedback-rehearsal — memory orchestrator v0.1 dogfood gate",
+          "description": "feat(people-intelligence): /perf-feedback-rehearsal — memory orchestrator v0.1 dogfood gate — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "3aa56bf",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-04-30-fe0db8d",
+          "date": "2026-04-30",
+          "type": "shipped",
+          "title": "/dispatch — operational-tier slash command for OrchestratorRouter",
+          "description": "feat(commands): /dispatch — operational-tier slash command for OrchestratorRouter — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "fe0db8d",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-04-30-a7b36074",
+          "date": "2026-04-30",
+          "type": "shipped",
+          "title": "A5 HUD overlay + A6 Brain Atlas + middleware unblock",
+          "description": "feat(presence,voice): A5 HUD overlay + A6 Brain Atlas + middleware unblock — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "a7b36074",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-04-30-5f156dec",
+          "date": "2026-04-30",
+          "type": "shipped",
+          "title": "cognition bridge endpoint /api/voice/cognition + boot runbook",
+          "description": "feat(voice): cognition bridge endpoint /api/voice/cognition + boot runbook — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "5f156dec",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-04-30-9f89577d",
+          "date": "2026-04-30",
+          "type": "fixed",
+          "title": "show \"Connect voice\" CTA before first speak when no BYOK keys",
+          "description": "fix(room): show \"Connect voice\" CTA before first speak when no BYOK keys — arcanea",
+          "tags": [
+            "arcanea"
+          ],
+          "commit": "9f89577d",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-04-29-d9cc95b",
+          "date": "2026-04-29",
+          "type": "shipped",
+          "title": "sis-memory-orchestrator — substrate-aware memory ops",
+          "description": "feat(skills): sis-memory-orchestrator — substrate-aware memory ops — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system",
+            "meta"
+          ],
+          "commit": "d9cc95b",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        },
+        {
+          "id": "cl-2026-04-29-c15061ed",
+          "date": "2026-04-29",
+          "type": "shipped",
+          "title": "scaffold /authors + map/read stubs (phase 0)",
+          "description": "feat(open-library): scaffold /authors + map/read stubs (phase 0) — arcanea",
+          "tags": [
+            "arcanea",
+            "library"
+          ],
+          "commit": "c15061ed",
+          "impact": "medium",
+          "repo": "arcanea"
+        },
+        {
+          "id": "cl-2026-04-28-4307404",
+          "date": "2026-04-28",
+          "type": "shipped",
+          "title": "rehome hub /sitemap → /network + ship SunburstView (parity with prod)",
+          "description": "feat(sitemap): rehome hub /sitemap → /network + ship SunburstView (parity with prod) — frankx",
+          "tags": [
+            "frankx"
+          ],
+          "commit": "4307404",
+          "impact": "major",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-04-28-89c282a",
+          "date": "2026-04-28",
+          "type": "shipped",
+          "title": "Pillar 6 (Research Hub) at 9/9 — final 3 skill wrappers close P6",
+          "description": "feat(acos): Pillar 6 (Research Hub) at 9/9 — final 3 skill wrappers close P6 — frankx",
+          "tags": [
+            "frankx",
+            "acos"
+          ],
+          "commit": "89c282a",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-04-28-0d51248",
+          "date": "2026-04-28",
+          "type": "shipped",
+          "title": "P6 batch 2 — research-newsletter + research-new-model command wrappers",
+          "description": "feat(acos): P6 batch 2 — research-newsletter + research-new-model command wrappers — frankx",
+          "tags": [
+            "frankx",
+            "acos"
+          ],
+          "commit": "0d51248",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-04-28-589cfac",
+          "date": "2026-04-28",
+          "type": "shipped",
+          "title": "P6 batch 1 — research-orchestrator + research-deep + research-daily-ops",
+          "description": "feat(acos): P6 batch 1 — research-orchestrator + research-deep + research-daily-ops — frankx",
+          "tags": [
+            "frankx",
+            "acos"
+          ],
+          "commit": "589cfac",
+          "impact": "medium",
+          "repo": "frankx"
+        },
+        {
+          "id": "cl-2026-04-28-f3aaa8a",
+          "date": "2026-04-28",
+          "type": "shipped",
+          "title": "Sound Intelligence command surface complete — 10 audience+sync commands shipped",
+          "description": "feat(v7.5.3): Sound Intelligence command surface complete — 10 audience+sync commands shipped — starlight-intelligence-system",
+          "tags": [
+            "starlight-intelligence-system"
+          ],
+          "commit": "f3aaa8a",
+          "impact": "medium",
+          "repo": "starlight-intelligence-system"
+        }
+      ]
+    },
+    {
       "id": "week-2026-11",
       "label": "Week 11",
       "dateRange": "Mar 1-2, 2026",
@@ -19,7 +872,12 @@
           "type": "shipped",
           "title": "Design Lab Strategy Arena — 3 Competing Approaches",
           "description": "Three design god teams competing for the frankx.ai visual identity. Team Alpha: Cosmic Forge (WebGL GLSL mesh gradient hero). Team Beta: Glass Cathedral (4-tier glassmorphism hierarchy). Team Gamma: Neon Grid (canvas dot grid with cursor-repulsion physics). Full arena page at /design-lab/strategy with live hero previews, card system demos, typography specimens, and comparison matrix.",
-          "tags": ["design-lab", "visual-identity", "webgl", "glassmorphism"],
+          "tags": [
+            "design-lab",
+            "visual-identity",
+            "webgl",
+            "glassmorphism"
+          ],
           "impact": "major",
           "url": "/design-lab/strategy",
           "metrics": {
@@ -35,7 +893,11 @@
           "type": "fixed",
           "title": "Auth Session 500 Error Resolved",
           "description": "Fixed /api/auth/session returning 500 errors. Root cause: double NextAuth initialization and invalid bcrypt placeholder hash. Consolidated to single auth config.",
-          "tags": ["auth", "bugfix", "nextauth"],
+          "tags": [
+            "auth",
+            "bugfix",
+            "nextauth"
+          ],
           "commit": "d3a29598",
           "impact": "medium"
         },
@@ -45,7 +907,12 @@
           "type": "shipped",
           "title": "Book PDF Pipeline — Generate, Upload, Email-Gate",
           "description": "Complete book-to-PDF pipeline: MDX content compiled to styled PDFs, uploaded to Vercel Blob, delivered through email-gated download component. BookDownloadGate captures email via Resend before releasing download link.",
-          "tags": ["books", "pdf", "email", "vercel-blob"],
+          "tags": [
+            "books",
+            "pdf",
+            "email",
+            "vercel-blob"
+          ],
           "commit": "36baafb6",
           "impact": "major"
         },
@@ -55,7 +922,11 @@
           "type": "improved",
           "title": "GlowCard + useMouseGlow Hook Migration",
           "description": "Migrated GlowCard, GlowButton, and BlogCard to shared useMouseGlow hook. Eliminated duplicate mouse-tracking logic. Restored authority bar and completed GlowCard section migration on homepage.",
-          "tags": ["refactor", "hooks", "performance"],
+          "tags": [
+            "refactor",
+            "hooks",
+            "performance"
+          ],
           "commit": "f421e018",
           "impact": "medium"
         },
@@ -65,7 +936,11 @@
           "type": "shipped",
           "title": "Brand Icon System — 50+ Service Icons",
           "description": "Integrated @lobehub/icons and @icons-pack/react-simple-icons across 13 files. Real brand logos for OpenAI, Anthropic, Google, Meta, Suno, Vercel, and 40+ more services replace generic Lucide placeholders. Respects Oracle logo restriction.",
-          "tags": ["brand", "icons", "ui"],
+          "tags": [
+            "brand",
+            "icons",
+            "ui"
+          ],
           "impact": "medium"
         }
       ]
@@ -89,7 +964,12 @@
           "type": "shipped",
           "title": "CSS Houdini Shimmer System + Component Playground",
           "description": "ShimmerCard component using CSS @property for hardware-accelerated rotating conic-gradient borders. 5 color presets, 3 speed modes. Interactive Component Playground page for testing all premium effects.",
-          "tags": ["design", "css-houdini", "shimmer", "playground"],
+          "tags": [
+            "design",
+            "css-houdini",
+            "shimmer",
+            "playground"
+          ],
           "commit": "5162a520",
           "impact": "major"
         },
@@ -99,7 +979,11 @@
           "type": "shipped",
           "title": "Liquid Glass GlowCard System",
           "description": "Complete GlowCard redesign with cursor-following radial glow (600px radius, 0.18 opacity), specular top-edge highlight, 11 color presets, and integrated useMouseGlow hook. Design-excellence overhaul across key pages.",
-          "tags": ["design", "glassmorphism", "glowcard"],
+          "tags": [
+            "design",
+            "glassmorphism",
+            "glowcard"
+          ],
           "commit": "f2856cb8",
           "impact": "major"
         },
@@ -109,7 +993,11 @@
           "type": "shipped",
           "title": "Site-Wide GlowCard Adoption",
           "description": "GlowCard deployed across all hub pages. Synced from production deployment. Consistent interactive card experience with cursor glow effect on every major section.",
-          "tags": ["ui", "consistency", "glowcard"],
+          "tags": [
+            "ui",
+            "consistency",
+            "glowcard"
+          ],
           "commit": "7ef029c6",
           "impact": "major"
         },
@@ -119,7 +1007,11 @@
           "type": "fixed",
           "title": "SPEC-010 Conversion Fixes",
           "description": "Coaching CTA elevated from newsletter to application framing. Community dead link fixed. Homepage voice and credentials refined. LemonSqueezy untested URLs redirected to newsletter waitlist.",
-          "tags": ["conversion", "coaching", "ux"],
+          "tags": [
+            "conversion",
+            "coaching",
+            "ux"
+          ],
           "commit": "22ae49a6",
           "impact": "medium"
         },
@@ -129,7 +1021,11 @@
           "type": "improved",
           "title": "Planning Consolidation — MASTER_PLAN",
           "description": "Archived 86 root planning files into docs/archive/root-planning-2026/. Created single MASTER_PLAN.md as source of truth. Domain-specific plans in docs/plans/.",
-          "tags": ["planning", "organization", "docs"],
+          "tags": [
+            "planning",
+            "organization",
+            "docs"
+          ],
           "commit": "ece12550",
           "impact": "medium"
         },
@@ -139,7 +1035,12 @@
           "type": "shipped",
           "title": "World-Class Design Token Elevation",
           "description": "5-step elevation shadow system, 8 gradient presets, 12-step fluid type scale (text-fluid-xs to 7xl), motion orchestration tokens (instant/fast/normal/slow). Professional design foundations matching Linear and Vercel quality.",
-          "tags": ["design-system", "tokens", "elevation", "typography"],
+          "tags": [
+            "design-system",
+            "tokens",
+            "elevation",
+            "typography"
+          ],
           "commit": "5798f1a3",
           "impact": "major"
         },
@@ -149,7 +1050,12 @@
           "type": "shipped",
           "title": "ACOS v11 Design Agent Swarm",
           "description": "Multi-agent design system with specialized agents competing and collaborating on visual challenges. Brand overhaul complete with swarm-generated design decisions.",
-          "tags": ["acos", "agents", "design", "swarm"],
+          "tags": [
+            "acos",
+            "agents",
+            "design",
+            "swarm"
+          ],
           "commit": "abfd2a50",
           "impact": "major"
         },
@@ -159,7 +1065,12 @@
           "type": "shipped",
           "title": "FrankX Universe Map — Repo Intelligence",
           "description": "Interactive map at /map showing all 49+ repos organized into 6 clusters: Arcanea (purple), ACOS (emerald), Websites (cyan), Creator Tools (amber), Products (rose), Research (sky). Admin dashboard at /admin/map with priorities. Weekly GitHub Action auto-sync.",
-          "tags": ["map", "repos", "intelligence", "github"],
+          "tags": [
+            "map",
+            "repos",
+            "intelligence",
+            "github"
+          ],
           "commit": "0fda204c",
           "impact": "major",
           "url": "/map"
@@ -170,7 +1081,11 @@
           "type": "shipped",
           "title": "Week 10 Sprint Page — Revenue Activation",
           "description": "Sprint planning page with revenue activation focus. Structured objectives, deliverables, and agent assignments for the week.",
-          "tags": ["sprint", "planning", "revenue"],
+          "tags": [
+            "sprint",
+            "planning",
+            "revenue"
+          ],
           "commit": "1bfd1fea",
           "impact": "small"
         }
@@ -195,7 +1110,11 @@
           "type": "shipped",
           "title": "Site-Wide Design System Standardization",
           "description": "Unified 240+ files to consistent design tokens. Single void background, standardized aurora effects with subtle opacity and 128px blur, glass card recipe across all pages, emerald CTA system, and white opacity text scale replacing scattered color values.",
-          "tags": ["design-system", "ui", "consistency"],
+          "tags": [
+            "design-system",
+            "ui",
+            "consistency"
+          ],
           "commit": "caae5b28",
           "impact": "major",
           "metrics": {
@@ -211,7 +1130,11 @@
           "type": "improved",
           "title": "Website Excellence Elevation",
           "description": "Centralized motion library with 10 animation presets. Scroll progress indicator. Dynamic imports for heavy libraries. Explicit image sizes on all mascot images. Mascot-first redesign across 8 business pages.",
-          "tags": ["performance", "motion", "ux"],
+          "tags": [
+            "performance",
+            "motion",
+            "ux"
+          ],
           "commit": "1749b33",
           "impact": "major"
         },
@@ -221,7 +1144,11 @@
           "type": "shipped",
           "title": "ACOS v10.2 — Magic Words & Continuity",
           "description": "New trigger system: ultrawork activates swarm mode, deep-think enables extended reasoning. Todo continuation saves and restores plan progress across sessions. Starlight Intelligence fully wired as persistent memory layer.",
-          "tags": ["acos", "intelligence", "agents"],
+          "tags": [
+            "acos",
+            "intelligence",
+            "agents"
+          ],
           "commit": "a2ff0e1a",
           "impact": "major"
         },
@@ -231,7 +1158,11 @@
           "type": "shipped",
           "title": "Visual Creation Council",
           "description": "Quality-gated image generation pipeline with 3-lens review: Brand Guardian, Art Director, Storyteller. Structural enforcement via templates, blocking council gate, and human approval before batch generation.",
-          "tags": ["visual", "quality", "agents"],
+          "tags": [
+            "visual",
+            "quality",
+            "agents"
+          ],
           "commit": "685d1b41",
           "impact": "medium"
         },
@@ -241,7 +1172,11 @@
           "type": "shipped",
           "title": "Brand Identity Overhaul",
           "description": "Axi mascot icon in navigation header and new favicon set. CharacterAvatar component with 10 characters mapped to page domains. Mascot-first policy established: Axi over Arcanea characters on all business-facing pages.",
-          "tags": ["brand", "identity", "mascot"],
+          "tags": [
+            "brand",
+            "identity",
+            "mascot"
+          ],
           "commit": "8d8fb4df",
           "impact": "major",
           "url": "/about"
@@ -252,7 +1187,11 @@
           "type": "shipped",
           "title": "6-Stream Newsletter Network",
           "description": "Content intelligence with 6 themed newsletter streams: Creation Chronicles, AI Architect Dispatch, Music Letters, Arcanea Transmissions, Investor Brief, Inner Circle. Stream picker with per-stream subscribe forms.",
-          "tags": ["newsletter", "content", "email"],
+          "tags": [
+            "newsletter",
+            "content",
+            "email"
+          ],
           "impact": "major",
           "url": "/newsletter"
         },
@@ -262,7 +1201,11 @@
           "type": "shipped",
           "title": "Video Vault — 132 Curated Videos",
           "description": "Dedicated watch page with hero section, category carousels, video lightbox, and catalog filters. 132 curated AI, tech, and creator economy videos organized into themed watchlists.",
-          "tags": ["video", "content", "watch"],
+          "tags": [
+            "video",
+            "content",
+            "watch"
+          ],
           "commit": "253a165b",
           "impact": "major",
           "url": "/watch",
@@ -279,7 +1222,11 @@
           "type": "shipped",
           "title": "Product Team Orchestration",
           "description": "6-team agent system for end-to-end product shipping: Architect, Frontend, Backend, Content, QA, Deployment. 5 orchestration commands with independent verification and dependency management.",
-          "tags": ["agents", "orchestration", "products"],
+          "tags": [
+            "agents",
+            "orchestration",
+            "products"
+          ],
           "impact": "medium"
         },
         {
@@ -288,7 +1235,11 @@
           "type": "shipped",
           "title": "Content Voice DNA & Social Pipeline",
           "description": "Codified authentic voice into automation rules. 5-pillar content strategy with Hub & Spoke distribution. Social content queue with voice-rewritten posts and automated Slack delivery.",
-          "tags": ["content", "voice", "automation"],
+          "tags": [
+            "content",
+            "voice",
+            "automation"
+          ],
           "impact": "medium"
         },
         {
@@ -297,7 +1248,11 @@
           "type": "shipped",
           "title": "Vibe OS — Phase 1",
           "description": "Premium product page with aurora aesthetics. Ecosystem hub with agent definitions. Navigation integration across the site.",
-          "tags": ["vibe-os", "product", "design"],
+          "tags": [
+            "vibe-os",
+            "product",
+            "design"
+          ],
           "commit": "d8eef888",
           "impact": "medium",
           "url": "/products/vibe-os"
@@ -308,7 +1263,11 @@
           "type": "shipped",
           "title": "The Great Transition — New Blog Post",
           "description": "Published Why Building Your Own Business Is the Smartest Move You Can Make Right Now. Navigator newsletter edition shipped with themed Slack delivery.",
-          "tags": ["blog", "content", "newsletter"],
+          "tags": [
+            "blog",
+            "content",
+            "newsletter"
+          ],
           "commit": "5b261c8d",
           "impact": "medium",
           "url": "/blog/the-great-transition-build-your-own-business"
@@ -319,7 +1278,11 @@
           "type": "improved",
           "title": "Image Style DNA System",
           "description": "Canonical visual reference for all AI image generation. 3 approved styles: Dark Premium Glass, Da Vinci Codex, Light Workshop. 7-gate quality filter with anti-pattern detection.",
-          "tags": ["visual", "quality", "brand"],
+          "tags": [
+            "visual",
+            "quality",
+            "brand"
+          ],
           "impact": "medium"
         }
       ]
@@ -343,7 +1306,12 @@
           "type": "shipped",
           "title": "ACOS v10 — Autonomous Intelligence",
           "description": "Five new safety and intelligence systems: Experience Replay, Agent IAM, Immutable Audit Trail, Confidence Circuit Breaker, and Conservative Self-Modify Gate. Intelligence score jumped from 72 to 93/100. Hooks optimized from 15 to 7.",
-          "tags": ["acos", "intelligence", "safety", "agents"],
+          "tags": [
+            "acos",
+            "intelligence",
+            "safety",
+            "agents"
+          ],
           "commit": "93539d0",
           "impact": "major",
           "image": "/images/acos/acos-v10-architecture.png",
@@ -361,7 +1329,11 @@
           "type": "shipped",
           "title": "Investor Intelligence Vertical",
           "description": "New /investor hub with 4 sub-pages. 14 products across dual-track pricing: Institutional $97-697 and Individual $27-147. Adaptive mega-menu with compact/medium/grouped layouts.",
-          "tags": ["investor", "products", "navigation"],
+          "tags": [
+            "investor",
+            "products",
+            "navigation"
+          ],
           "commit": "d5aec51",
           "impact": "major",
           "url": "/investor",
@@ -378,7 +1350,11 @@
           "type": "shipped",
           "title": "Starlight Intelligence System v4.0",
           "description": "Universal intelligence layer with ACOS bi-directional sync. 8 modules including SyncBridge and ScoreEngine. 109 memory entries synced across sessions.",
-          "tags": ["starlight", "intelligence", "integration"],
+          "tags": [
+            "starlight",
+            "intelligence",
+            "integration"
+          ],
           "commit": "1b2c559",
           "impact": "medium",
           "blogUrl": "/blog/frankx-intelligence-ecosystem-complete-guide"
@@ -389,8 +1365,14 @@
           "type": "shipped",
           "title": "Valentine's Day Interactive Experiences",
           "description": "Personal letter with Vietnamese poetry, AI artwork, and interactive piano synthesizer using Web Audio API with Salamander Grand Piano samples.",
-          "tags": ["valentines", "interactive", "music"],
-          "commits": ["latest"],
+          "tags": [
+            "valentines",
+            "interactive",
+            "music"
+          ],
+          "commits": [
+            "latest"
+          ],
           "impact": "medium",
           "url": "/valentines-day/tien"
         },
@@ -400,7 +1382,11 @@
           "type": "improved",
           "title": "Hook System Optimization",
           "description": "Trimmed from 15 hooks to 7. Per-tool-use subprocess spawns reduced from 5-6 to 1-2. Safe for 3-4 concurrent Claude Code instances on 16GB RAM.",
-          "tags": ["performance", "hooks", "wsl"],
+          "tags": [
+            "performance",
+            "hooks",
+            "wsl"
+          ],
           "impact": "medium",
           "metrics": {
             "label": "Hooks",
@@ -430,7 +1416,11 @@
           "type": "shipped",
           "title": "ACOS v7.0 — Unified Orchestration",
           "description": "Complete integration of claude-flow V3 into ACOS. Unified auto-router with intelligent complexity detection, Ultraworld creative swarm, hierarchical swarm topology with anti-drift.",
-          "tags": ["acos", "infrastructure", "agents"],
+          "tags": [
+            "acos",
+            "infrastructure",
+            "agents"
+          ],
           "commit": "90ee862",
           "impact": "major",
           "blogUrl": "/blog/agentic-creator-os-complete-guide",
@@ -442,8 +1432,17 @@
           "type": "shipped",
           "title": "7 Research Portals — Enterprise AI Authority",
           "description": "Healthcare, AI Architecture, Agentic AI, AI Ops, Oracle Database, Sovereign AI, and Cost Engineering. 164 validated sources, schema.org structured data, dedicated sitemap.",
-          "tags": ["research", "seo", "content"],
-          "commits": ["0de33c0", "b2d3ca5", "901984b", "e18a4e5"],
+          "tags": [
+            "research",
+            "seo",
+            "content"
+          ],
+          "commits": [
+            "0de33c0",
+            "b2d3ca5",
+            "901984b",
+            "e18a4e5"
+          ],
           "impact": "major",
           "url": "/research"
         },
@@ -453,7 +1452,11 @@
           "type": "shipped",
           "title": "AI Ops Intelligence Hub",
           "description": "Full /ai-ops section with 6 sub-routes: architecture patterns, implementation patterns, 2026 model landscape, maturity model, OCI accelerator packs.",
-          "tags": ["ai-ops", "enterprise", "research"],
+          "tags": [
+            "ai-ops",
+            "enterprise",
+            "research"
+          ],
           "commit": "91a59a1",
           "impact": "medium",
           "url": "/ai-ops"
@@ -464,8 +1467,16 @@
           "type": "improved",
           "title": "Research SEO & Discoverability",
           "description": "Phase 1 trust infrastructure: methodology page, schema.org Article + FAQPage markup on all 7 portals, dedicated research sitemap, enriched sources with 164 validated references.",
-          "tags": ["seo", "research", "discoverability"],
-          "commits": ["de9db8d", "2b750ad", "c9f9684"],
+          "tags": [
+            "seo",
+            "research",
+            "discoverability"
+          ],
+          "commits": [
+            "de9db8d",
+            "2b750ad",
+            "c9f9684"
+          ],
           "impact": "medium",
           "blogUrl": "/blog/seo-aeo-optimization-acos"
         },
@@ -475,8 +1486,17 @@
           "type": "shipped",
           "title": "Family Tree Design System — 15 Variants",
           "description": "Interactive genealogical visualization with 15 design variants. Connection graphs, hierarchical trees, timeline views.",
-          "tags": ["design", "family", "visualization"],
-          "commits": ["004315b", "d011f62", "2c2cf4d", "54dd0fa"],
+          "tags": [
+            "design",
+            "family",
+            "visualization"
+          ],
+          "commits": [
+            "004315b",
+            "d011f62",
+            "2c2cf4d",
+            "54dd0fa"
+          ],
           "impact": "medium"
         },
         {
@@ -485,8 +1505,16 @@
           "type": "improved",
           "title": "ACOS Visual Identity — Imagen 4 Ultra",
           "description": "Three iterations of ACOS visuals using Imagen 4, culminating in Ultra-quality renders. 9 premium images, 23 MB total.",
-          "tags": ["design", "acos", "visuals"],
-          "commits": ["2c61c32", "bbd181f", "6f5af96"],
+          "tags": [
+            "design",
+            "acos",
+            "visuals"
+          ],
+          "commits": [
+            "2c61c32",
+            "bbd181f",
+            "6f5af96"
+          ],
           "impact": "small"
         }
       ]
