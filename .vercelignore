@@ -3,45 +3,51 @@
 # These exclusions are SAFE because nothing under app/, components/, lib/ imports from them at runtime.
 # (.gitignore already excludes node_modules/, .next/, .worktrees/, public/reading/, frankx.ai-vercel-website/, etc.)
 
-# Dev/auth scratch — never needed at runtime
-.agent/
-.claude/
-.claude-flow/
-.claude-plugins-fcakyon/
-.claude-skills/
-.pp/
-.playwright-mcp/
+# IMPORTANT: .vercelignore uses .gitignore semantics — patterns WITHOUT a leading
+# slash match at ANY directory depth (e.g. `research/` would also exclude
+# `lib/research/` and break module resolution at compile time). Always anchor
+# top-level-only excludes with a leading `/`. We learned this the hard way on
+# 2026-05-05 when an unanchored `research/` excluded `lib/research/visionaries.ts`.
 
-# Documentation, research drafts, internal ops
-docs/
-research/
-_archive/
-_inbox/
-archived/
-v1-enterprise-backup/
-weekly-financial-health-*.md
+# Dev/auth scratch — never needed at runtime (top-level only, anchored)
+/.agent/
+/.claude/
+/.claude-flow/
+/.claude-plugins-fcakyon/
+/.claude-skills/
+/.pp/
+/.playwright-mcp/
+
+# Documentation, research drafts, internal ops (top-level only, anchored)
+/docs/
+/research/
+/_archive/
+/_inbox/
+/archived/
+/v1-enterprise-backup/
+/weekly-financial-health-*.md
 
 # Tests + test fixtures (build doesn't need them)
-tests/
+/tests/
 *.spec.ts
 *.spec.tsx
 *.test.ts
 *.test.tsx
-playwright.config.*
-vitest.config.*
+/playwright.config.*
+/vitest.config.*
 
 # Local-only sibling repos accidentally copied into tree (each has own .git)
-ai-architect-academy/
-education/
-products/mcp-doctor/
-products/notion-powered-blog/
-products/storage-intelligence/
-products/suno-mcp-server/
-products/visual-intelligence/
-keystatic-frankx/
-sanity-frankx/
-tina-frankx/
-new-landing-page-backup/
+/ai-architect-academy/
+/education/
+/products/mcp-doctor/
+/products/notion-powered-blog/
+/products/storage-intelligence/
+/products/suno-mcp-server/
+/products/visual-intelligence/
+/keystatic-frankx/
+/sanity-frankx/
+/tina-frankx/
+/new-landing-page-backup/
 
 # Local book project (separate from app/books/, content/books/)
 /books/
