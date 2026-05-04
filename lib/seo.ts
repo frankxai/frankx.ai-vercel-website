@@ -9,7 +9,9 @@ export const siteConfig = {
     'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
   url: siteUrl,
   twitter: '@frankxai',
-  ogImage: '/api/og?title=FrankX%20Intelligence%20Hub',
+  // Static fallback. /api/og dynamic route has empty-body issues in Next 16
+  // + next/og — using a real file ensures social shares always have an image.
+  ogImage: '/hero-homepage.png',
   keywords: [
     'ai architect',
     'ai music creation',

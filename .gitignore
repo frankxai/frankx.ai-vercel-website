@@ -10,6 +10,7 @@ coverage/
 .next/
 out/
 build/
+!/app/library/build/
 dist/
 
 # Logs
@@ -82,3 +83,6 @@ C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/
 .claude-flow/learning/
 nul
 tmp/
+
+# Private business / financial data — never commit
+data/bv-ops.json

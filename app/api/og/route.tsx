@@ -1,7 +1,9 @@
 import { ImageResponse } from 'next/og'
 
-// Use nodejs runtime for Turbopack compatibility in Next.js 16
-export const runtime = 'nodejs'
+// next/og's ImageResponse requires edge runtime in Next 14+ — nodejs runtime
+// throws 500 in production (silent server-side error, no logs surfaced).
+// Edge runtime ships built-in font fallback so Inter/system fonts work.
+export const runtime = 'edge'
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
@@ -17,7 +19,13 @@ export async function GET(req: Request) {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          background: 'radial-gradient(circle at top, rgba(16,185,129,0.25), transparent 60%), radial-gradient(circle at 20% 70%, rgba(34,211,238,0.2), transparent 60%), radial-gradient(circle at 80% 80%, rgba(245,158,11,0.18), transparent 60%), #0b0d10',
+          // Single solid bg + a single radial accent. next/og's CSS parser
+          // reliably handles solid colors and one gradient. The previous
+          // 3-stacked-radial-gradient + comma-separated background was logging
+          // "Error: Invalid background image" in production runtime logs —
+          // the response was 200 with empty body. Simpler bg = guaranteed render.
+          backgroundColor: '#0b0d10',
+          backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(34,211,238,0.18), transparent 65%)',
           color: '#e8eef5',
           fontSize: 64,
           fontFamily: 'Inter, Arial, sans-serif',

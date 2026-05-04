@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import Script from 'next/script'
 import {
   ArrowRight,
@@ -18,14 +19,13 @@ import {
   Network,
   Code2,
 } from 'lucide-react'
-import HeroDiagram from '@/components/sis/HeroDiagram'
 import PhaseJourney from '@/components/sis/PhaseJourney'
 import LayerStack from '@/components/sis/LayerStack'
 import SIPBadge from '@/components/sis/SIPBadge'
 
 const REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
 // Direct zipball — GitHub auto-generates this for any tag, always works, downloads as a real .zip.
-const STARTER_ZIP = 'https://github.com/frankxai/Starlight-Intelligence-System/archive/refs/tags/v3.0.0.zip'
+const STARTER_ZIP = 'https://github.com/frankxai/Starlight-Intelligence-System/archive/refs/tags/v7.4.1.zip'
 const RELEASES = 'https://github.com/frankxai/Starlight-Intelligence-System/releases'
 const PROTOCOL = 'https://starlightintelligence.org/protocol'
 
@@ -184,7 +184,7 @@ export default function StarlightIntelligenceSystemPage() {
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]"
             >
               <Download className="h-4 w-4" />
-              Download .zip <span className="text-white/70 font-normal text-xs">v3.0.0</span>
+              Download .zip <span className="text-white/70 font-normal text-xs">v7.4.1</span>
             </Link>
             <Link
               href={REPO}
@@ -197,9 +197,17 @@ export default function StarlightIntelligenceSystemPage() {
             </Link>
           </div>
 
-          {/* Hero diagram */}
-          <div className="mt-12 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.02] to-transparent p-2 sm:p-4">
-            <HeroDiagram className="w-full h-auto" />
+          {/* Hero image — atmospheric brand piece, generated via Nano Banana Pro */}
+          <div className="mt-12 relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-emerald-500/5">
+            <Image
+              src="/images/sis/sis-hero-architecture-emerges.png"
+              alt="Scattered fragments of expertise — papers, screens, notebooks — caught in golden hour light on the left, flowing through a glowing emerald SIP threshold into a sovereign architected stack of nine translucent layers on the right. The foundation layer glows brightest emerald."
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/40 via-transparent to-transparent pointer-events-none" />
           </div>
 
           {/* Stats */}
@@ -225,6 +233,34 @@ export default function StarlightIntelligenceSystemPage() {
           <h2 className="font-display text-2xl sm:text-3xl font-bold text-white mb-8">
             Two people read this page and feel seen.
           </h2>
+
+          {/* Atmospheric anchor — the cartographer's desk */}
+          <div className="mb-10 grid lg:grid-cols-[1.4fr_1fr] gap-6 items-center">
+            <div className="relative aspect-[3/2] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/20">
+              <Image
+                src="/images/sis/sis-cartographers-desk.png"
+                alt="A craftsman's desk: open leather notebook with handwritten frameworks, scattered Canva slide exports, MacBook with design tools, brass compass, fountain pen, coffee. Centered: a translucent blueprint paper with nine horizontal layered bands, the bottom band glowing brightest cyan-emerald — the architecture emerging from the materials beneath it."
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/30 to-transparent pointer-events-none" />
+            </div>
+            <div>
+              <div className="text-[11px] uppercase tracking-wider text-amber-300/80 mb-3 font-semibold">
+                The recognition
+              </div>
+              <p className="text-base text-slate-300 leading-relaxed mb-3">
+                The architecture isn&apos;t something you&apos;ll build later. It&apos;s already buried inside the
+                material you&apos;ve produced for the last fifteen years. You just couldn&apos;t see it.
+              </p>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                SIS extracts what&apos;s there. Not a new framework on top — your existing patterns,
+                surfaced and named.
+              </p>
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/[0.04] to-transparent p-6">
               <div className="text-[11px] uppercase tracking-wider text-emerald-300 mb-2 font-semibold">The indispensable professional</div>
@@ -338,7 +374,7 @@ export default function StarlightIntelligenceSystemPage() {
                   className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-black transition-all hover:bg-emerald-400 w-fit"
                 >
                   <Download className="h-3.5 w-3.5" />
-                  Download .zip <span className="font-normal text-xs opacity-70">v3.0.0</span>
+                  Download .zip <span className="font-normal text-xs opacity-70">v7.4.1</span>
                 </Link>
                 <div className="text-[10px] text-slate-500 font-mono leading-relaxed">
                   ~6 MB · markdown + commands + agents · drop into Claude Project
@@ -441,6 +477,18 @@ export default function StarlightIntelligenceSystemPage() {
           <p className="text-base text-slate-400 mb-10 max-w-2xl">
             You don&apos;t need all nine to start. You need one — Genius — working. The rest compounds when the time is right.
           </p>
+
+          {/* Atmospheric anchor — the substrate as architecture */}
+          <div className="mb-10 relative aspect-[16/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-cyan-500/5">
+            <Image
+              src="/images/priority-2026-04-25/04-sis-substrate-hero.jpg"
+              alt="Looking down at nine translucent stacked planes of dark glass, each plane edge-lit with cyan light. The planes are slightly offset so all nine layers are visible, each carrying subtle engraved text at the edge. The topmost plane catches a single warm gold accent. A museum display of an intelligence system's strata."
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1024px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030712]/40 via-transparent to-transparent pointer-events-none" />
+          </div>
 
           {/* Visual layer stack */}
           <div className="mb-8 grid lg:grid-cols-[1fr_auto] gap-8 items-start">
@@ -627,7 +675,7 @@ export default function StarlightIntelligenceSystemPage() {
               className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:from-emerald-400 hover:to-cyan-400 hover:shadow-lg hover:shadow-emerald-500/20"
             >
               <Download className="h-4 w-4" />
-              Download .zip <span className="text-white/70 font-normal text-xs">v3.0.0 · ~6MB</span>
+              Download .zip <span className="text-white/70 font-normal text-xs">v7.4.1 · ~6MB</span>
             </Link>
             <Link
               href={REPO}

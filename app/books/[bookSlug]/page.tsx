@@ -23,6 +23,11 @@ export async function generateMetadata({ params }: PageProps) {
     });
   }
 
+  // Prefer the book's static cover image — reliable, works on every platform.
+  // /api/og is dynamic but next/og has issues in Next 16 (empty body in
+  // production); the cover JPG is a real file that always renders.
+  const ogImage = book.coverImage || `/api/og?title=${encodeURIComponent(book.title)}`;
+
   return createMetadata({
     title: `${book.title} — ${book.subtitle}`,
     description: book.description,
@@ -30,6 +35,7 @@ export async function generateMetadata({ params }: PageProps) {
     type: 'website',
     keywords: book.keywords,
     authors: [book.author],
+    image: ogImage,
   });
 }
 

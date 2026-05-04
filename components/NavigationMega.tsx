@@ -95,7 +95,8 @@ const navigation = {
     items: [
       { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning paths' },
       { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
-      { name: 'Books', href: '/books', icon: BookOpen, description: '23 books, 411K+ words' },
+      { name: "Frank's Books", href: '/books', icon: BookOpen, description: '23 books, 411K+ words' },
+      { name: 'Library', href: '/library', icon: Layers, description: 'Book deep-dives · open-source Library OS' },
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your level' },
       { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Learn through play' },
@@ -156,7 +157,9 @@ const navigation = {
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'World-building academy' },
       { name: 'ACOS', href: '/acos', icon: Bot, description: 'Agentic Creator OS' },
+      { name: 'Design System', href: '/design', icon: Palette, description: 'Tokens, taste, source · open' },
       { name: 'About', href: '/about', icon: Users, description: 'Story & mission' },
+      { name: 'Bio', href: '/bio', icon: Users, description: 'Press kit & speaker topics' },
       { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
@@ -166,11 +169,11 @@ const navigation = {
       },
       {
         label: 'Products & Systems',
-        items: ['Starlight IS', 'ACOS', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
+        items: ['Starlight IS', 'ACOS', 'Design System', 'Resource Hub', 'ArcaneaVault', 'Arcanea'],
       },
       {
         label: 'Connect',
-        items: ['About', 'Contact'],
+        items: ['About', 'Bio', 'Contact'],
       },
     ],
   },
