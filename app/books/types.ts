@@ -42,6 +42,9 @@ export interface BookConfig {
   categories: string[];
   chapters: BookChapter[];
   contentDir: string; // relative path to chapter markdown files
+  language?: 'de' | 'en';
+  variantGroup?: string;
+  alternateSlug?: string;
 }
 
 export interface TOCItem {

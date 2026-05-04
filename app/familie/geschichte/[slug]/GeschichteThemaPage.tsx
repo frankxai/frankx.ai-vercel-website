@@ -22,11 +22,12 @@ import {
   Shield,
   Sparkles,
   Wheat,
+  type LucideIcon,
 } from 'lucide-react'
 import type { GeschichteThema, Forschungsstatus } from '@/lib/familie/geschichte-themen'
 import { geschichteThemen, forschungsstatusConfig } from '@/lib/familie/geschichte-themen'
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap: Record<string, LucideIcon> = {
   Wheat, Shield, Mountain, Route, Heart,
 }
 
@@ -39,7 +40,7 @@ const farbeCSS: Record<string, { border: string; text: string; bg: string; gradi
   rose: { border: 'border-rose-500/20', text: 'text-rose-400', bg: 'bg-rose-500/10', gradientFrom: 'from-rose-950/40' },
 }
 
-const quellenTypIcon: Record<string, React.ElementType> = {
+const quellenTypIcon: Record<string, LucideIcon> = {
   museum: MapPin,
   archiv: FileText,
   buch: BookOpen,
