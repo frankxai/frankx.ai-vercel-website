@@ -1,8 +1,15 @@
 {
-  "crons": [
+  "framework": "nextjs",
+  "cleanUrls": true,
+  "ignoreCommand": "bash scripts/should-deploy.sh",
+  "headers": [
     {
-      "path": "/api/cron/welcome-sequence",
-      "schedule": "0 */6 * * *"
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
     }
   ],
   "redirects": [
@@ -10,6 +17,12 @@
       "source": "/sitemap",
       "destination": "/network",
       "permanent": false
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/cron/welcome-sequence",
+      "schedule": "0 */6 * * *"
     }
   ]
 }
