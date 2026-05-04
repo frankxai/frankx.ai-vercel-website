@@ -269,7 +269,28 @@ const nextConfig = {
     ]
   },
   outputFileTracingRoot: __dirname,
-  async headers() {
+  // Belt-and-suspenders alongside .vercelignore: shrink serverless function bundles
+  // by ensuring large static-asset trees never get traced into function code.
+  // Phase 1.3 of VERCEL-COST-MASSIVE-ACTION (2026-05-05).
+  outputFileTracingExcludes: {
+    '*': [
+      'node_modules/@swc/core-*',
+      'node_modules/@esbuild/*',
+      'node_modules/sharp/build/**',
+      '.next/cache/**',
+      '.git/**',
+      'docs/**',
+      'research/**',
+      'tests/**',
+      '_archive/**',
+      '_inbox/**',
+      'archived/**',
+      'v1-enterprise-backup/**',
+      'public/images/**',
+      'public/videos/**',
+    ],
+  },
+    async headers() {
     return [
       {
         source: '/(.*)',

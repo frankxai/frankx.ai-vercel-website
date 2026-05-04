@@ -1,0 +1,67 @@
+# .vercelignore — exclude paths from Vercel build context + outputFileTracing graph.
+# Goal: shrink upload size, speed up file tracing, keep deploys cheap.
+# These exclusions are SAFE because nothing under app/, components/, lib/ imports from them at runtime.
+# (.gitignore already excludes node_modules/, .next/, .worktrees/, public/reading/, frankx.ai-vercel-website/, etc.)
+
+# Dev/auth scratch — never needed at runtime
+.agent/
+.claude/
+.claude-flow/
+.claude-plugins-fcakyon/
+.claude-skills/
+.pp/
+.playwright-mcp/
+
+# Documentation, research drafts, internal ops
+docs/
+research/
+_archive/
+_inbox/
+archived/
+v1-enterprise-backup/
+weekly-financial-health-*.md
+
+# Tests + test fixtures (build doesn't need them)
+tests/
+*.spec.ts
+*.spec.tsx
+*.test.ts
+*.test.tsx
+playwright.config.*
+vitest.config.*
+
+# Local-only sibling repos accidentally copied into tree (each has own .git)
+ai-architect-academy/
+education/
+products/mcp-doctor/
+products/notion-powered-blog/
+products/storage-intelligence/
+products/suno-mcp-server/
+products/visual-intelligence/
+keystatic-frankx/
+sanity-frankx/
+tina-frankx/
+new-landing-page-backup/
+
+# Local book project (separate from app/books/, content/books/)
+/books/
+
+# Generated artifacts that should never be in build context
+*.tsbuildinfo
+.gh-api-body.json
+ruvector.db
+nul
+content/hooks/inbox/*.csv
+data/acos/agentdb/
+
+# Backup files
+*.backup
+next.config.mjs.backup
+
+# Reports + scratch
+repo_sync_report.md
+notes.md
+task_plan.md
+
+# Plugin marketplace (Windows-pathed leakage)
+C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\
