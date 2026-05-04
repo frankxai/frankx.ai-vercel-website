@@ -49,6 +49,15 @@ const familieLinks = [
     iconColor: 'text-rose-400',
   },
   {
+    title: 'Papa',
+    description: 'Witali Riemer (1969-2018). Ein lebendiges Sohn-Archiv für Papa, mit Erbe für alle die ohne Vaterstimme aufwuchsen.',
+    href: '/papa',
+    icon: Heart,
+    color: 'from-cyan-500/20 to-cyan-600/5',
+    borderColor: 'border-cyan-500/20 hover:border-cyan-500/40',
+    iconColor: 'text-cyan-400',
+  },
+  {
     title: 'Interview-Kit',
     description: 'Fragenkataloge für die Gespräche mit Opa David, Oma Dorothea, Opa Alexander und Oma Paulina. Ausdruckbar.',
     href: '/familie/interview-kit',

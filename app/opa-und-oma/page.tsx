@@ -386,6 +386,13 @@ export default function OpaUndOmaPage() {
           </p>
           <div className="mt-4 flex items-center justify-center gap-4">
             <Link
+              href="/papa"
+              className="text-xs text-white/20 transition-colors hover:text-white/40"
+            >
+              Papa
+            </Link>
+            <span className="text-white/10">&middot;</span>
+            <Link
               href="/familie"
               className="text-xs text-white/20 transition-colors hover:text-white/40"
             >
