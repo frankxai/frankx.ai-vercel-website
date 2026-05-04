@@ -3,7 +3,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
-import { bookReviews } from '@/data/book-reviews'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -168,6 +167,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/developers',
   ]
 
+  // Papa hub — public-indexed pages only (per Starlight Board verdict 2026-05-05).
+  // Draft manifesto sections (/papa/erbe/, /papa/en/inheritance/) and personal
+  // archive (/papa/erinnerungen/, /papa/mitmachen/) are deliberately omitted from
+  // the sitemap — they set robots: noindex on the page itself.
+  const papaPages = [
+    '/papa',
+    '/papa/leben',
+    '/papa/en',
+    '/papa/en/life',
+    '/papa/ru',
+  ]
+
   // Audience landing pages
   const audiencePages = [
     { url: '/for/creators', priority: 0.9, changeFrequency: 'monthly' as const },
@@ -242,32 +253,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
     { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
-    { url: '/design', priority: 0.6, changeFrequency: 'monthly' as const },
     { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architecture', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architectures', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
     { url: '/prototypes', priority: 0.5, changeFrequency: 'monthly' as const },
-    // Newly indexed orphan pages (audit 2026-05-04)
-    { url: '/chronicle', priority: 0.8, changeFrequency: 'weekly' as const },
-    { url: '/bio', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/library', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/library/approach', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/books', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/books/golden-age-of-intelligence', priority: 0.9, changeFrequency: 'weekly' as const },
-    // 12 chapters of Golden Age of Intelligence
-    { url: '/books/golden-age-of-intelligence/chapter-01-the-two-intelligences-awakening', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-02-the-twenty-watt-miracle', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-03-what-the-ancients-knew', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-04-stimulus-and-response', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-05-states-not-stages', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-06-the-imagination-engine', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-07-memory-sleep-replay', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-08-ai-as-mirror', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-09-personal-center-of-excellence', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-10-creators-renaissance', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-11-governance-of-the-self', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/books/golden-age-of-intelligence/chapter-12-transmission', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Sub-route pages (nested under parent sections)
@@ -318,8 +308,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
-    // Architecture of Intelligence series — 5-domain spine, flagship blog 2026-05-04
-    { url: '/research/series/architecture-of-intelligence', priority: 0.95, changeFrequency: 'weekly' as const },
   ]
 
   // Get dynamic content
@@ -439,6 +427,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Papa hub (man-as-fact pages only — see papaPages comment above)
+  papaPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    })
+  })
+
   // Content pages
   contentPages.forEach(page => {
     entries.push({
@@ -547,34 +545,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.7,
     })
-  })
-
-  // Library OS — index, manifesto, quotes aggregation
-  entries.push(
-    { url: `${BASE_URL}/library`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.9 },
-    { url: `${BASE_URL}/library/approach`, lastModified: currentDate, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${BASE_URL}/library/quotes`, lastModified: currentDate, changeFrequency: 'weekly', priority: 0.8 },
-  )
-
-  // Per-book deep-dive pages + per-quote landing pages
-  bookReviews.forEach(book => {
-    const lastMod = book.reviewDate ? new Date(book.reviewDate).toISOString() : currentDate
-    entries.push({
-      url: `${BASE_URL}/library/${book.slug}`,
-      lastModified: lastMod,
-      changeFrequency: 'monthly',
-      priority: 0.85,
-    })
-    if (book.quotes && book.quotes.length > 0) {
-      book.quotes.forEach((_, idx) => {
-        entries.push({
-          url: `${BASE_URL}/library/${book.slug}/q/${idx + 1}`,
-          lastModified: lastMod,
-          changeFrequency: 'monthly',
-          priority: 0.6,
-        })
-      })
-    }
   })
 
   return entries
