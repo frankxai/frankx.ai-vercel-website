@@ -27,12 +27,12 @@
 /v1-enterprise-backup/
 /weekly-financial-health-*.md
 
-# Tests + test fixtures (build doesn't need them)
+# Tests + test fixtures (build doesn't need them).
+# Only the top-level /tests/ dir — never anchored *.spec.ts globs because those
+# would also exclude future colocation tests like app/foo/page.spec.tsx (Vitest
+# pattern). If you want to exclude colocation tests, do it via Next.js
+# pageExtensions config, not here.
 /tests/
-*.spec.ts
-*.spec.tsx
-*.test.ts
-*.test.tsx
 /playwright.config.*
 /vitest.config.*
 
@@ -52,22 +52,14 @@
 # Local book project (separate from app/books/, content/books/)
 /books/
 
-# Generated artifacts that should never be in build context
-*.tsbuildinfo
-.gh-api-body.json
-ruvector.db
-nul
-content/hooks/inbox/*.csv
-data/acos/agentdb/
-
-# Backup files
-*.backup
-next.config.mjs.backup
-
-# Reports + scratch
-repo_sync_report.md
-notes.md
-task_plan.md
-
-# Plugin marketplace (Windows-pathed leakage)
-C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\
+# Generated artifacts that should never be in build context.
+# Anchored to root or specific subtrees to avoid the unanchored gitignore trap.
+/.gh-api-body.json
+/ruvector.db
+/nul
+/content/hooks/inbox/*.csv
+/data/acos/agentdb/
+/next.config.mjs.backup
+/repo_sync_report.md
+/notes.md
+/task_plan.md
