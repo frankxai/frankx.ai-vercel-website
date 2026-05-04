@@ -22,6 +22,7 @@ RELEVANT_PATHS=(
   data
   public
   scripts
+  styles
   package.json
   package-lock.json
   pnpm-lock.yaml
@@ -31,6 +32,10 @@ RELEVANT_PATHS=(
   tsconfig.json
   middleware.ts
   middleware.js
+  .vercelignore
+  .npmrc
+  postcss.config.js
+  postcss.config.mjs
 )
 
 if git diff --quiet HEAD^ HEAD -- "${RELEVANT_PATHS[@]}"; then
