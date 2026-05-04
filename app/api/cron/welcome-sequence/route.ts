@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { kv } from '@vercel/kv'
 import { welcomeEmail2, welcomeEmail3 } from '@/lib/email-templates-welcome'
+// @vercel/kv is lazy-imported inside the handler so this route doesn't 500
+// at module load when KV env vars are not configured (the package validates
+// env on import). The cron schedule (`0 */6 * * *` per vercel.json) was
+// firing 4x/day with "Error: @vercel/kv: Missing KV_REST_API_URL" — silent
+// to users but it pollutes Vercel runtime logs and consumes invocations.
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const CRON_SECRET = process.env.CRON_SECRET
@@ -33,6 +37,22 @@ export async function GET(request: NextRequest) {
   if (!RESEND_API_KEY) {
     return NextResponse.json({ error: 'RESEND_API_KEY not configured' }, { status: 500 })
   }
+
+  // Early-return if KV env not configured. The @vercel/kv package crashes
+  // on import without these — that's why we lazy-import below. Returning 200
+  // here keeps the cron successful (no false-alarm 500s) while making it
+  // clear the queue is being skipped.
+  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+    return NextResponse.json({
+      ok: true,
+      skipped: true,
+      reason: 'KV env vars not configured — welcome sequence queue is paused',
+      now: new Date().toISOString(),
+    })
+  }
+
+  // Lazy import — only after env check passes
+  const { kv } = await import('@vercel/kv')
 
   const now = Date.now()
   const TWO_DAYS = 2 * 24 * 60 * 60 * 1000
