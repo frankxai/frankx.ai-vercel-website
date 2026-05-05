@@ -167,16 +167,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/developers',
   ]
 
-  // Papa hub — public-indexed pages only (per Starlight Board verdict 2026-05-05).
-  // Draft manifesto sections (/papa/erbe/, /papa/en/inheritance/) and personal
-  // archive (/papa/erinnerungen/, /papa/mitmachen/) are deliberately omitted from
-  // the sitemap — they set robots: noindex on the page itself.
+  // Papa hub — public-indexed pages only.
+  // Personal archive (/papa/erinnerungen/, /papa/mitmachen/) is deliberately omitted
+  // from the sitemap — those pages set robots: noindex on the page itself.
+  // Slimmed 2026-05-05: removed /papa/ru (was performative without Russian audience).
   const papaPages = [
     '/papa',
     '/papa/leben',
     '/papa/en',
     '/papa/en/life',
-    '/papa/ru',
   ]
 
   // Audience landing pages
