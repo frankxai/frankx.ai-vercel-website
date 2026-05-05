@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
@@ -127,6 +128,17 @@ export default function ErbePage() {
             habe. Jeder Punkt wird mit Geschichten der Familie verfeinert.
           </p>
 
+          <figure className="mb-12 overflow-hidden rounded-xl border border-white/[0.08]">
+            <Image
+              src="/images/papa/papa-ten-standards.jpg"
+              alt="Letterpress-Plakat im 2:3-Format. Zehn nummerierte Felder (01-10) mit abstrakten geometrischen Symbolen. Soul-amber auf void."
+              width={1080}
+              height={1620}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </figure>
+
           <ol className="space-y-10">
             {principles.map((p) => (
               <li key={p.number} className="flex gap-6">
@@ -161,6 +173,17 @@ export default function ErbePage() {
             Vom Jungen, der gerettet werden will, zum Ältesten, der ohne Anspruch übergibt.
             Sechs Stationen — jede hat ihre Qualität, ihre Gefahr, ihren Übergang.
           </p>
+
+          <figure className="mb-12 overflow-hidden rounded-xl border border-white/[0.08]">
+            <Image
+              src="/images/papa/papa-six-stages.jpg"
+              alt="Sechs abstrakte Glyphen in Kreisen, von links nach rechts: Junge, Rebell, Strebende, Bauende, Vater, Älteste. Soul-amber Linienkunst auf void."
+              width={1920}
+              height={1080}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </figure>
 
           <ol className="space-y-8">
             {stages.map((s) => (
@@ -327,6 +350,17 @@ export default function ErbePage() {
           <h2 className="mb-12 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Vater → Erbe → Synthese → System → Weitergabe
           </h2>
+
+          <figure className="mb-12 overflow-hidden rounded-xl border border-white/[0.08]">
+            <Image
+              src="/images/papa/papa-inheritance-chain.jpg"
+              alt="Fünf Glyphen in horizontaler Anordnung, verbunden durch progressiv leuchtende Pfeile: Vater, Erbe, Synthese, System, Weitergabe. Soul-amber auf void."
+              width={1920}
+              height={1080}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </figure>
 
           <ol className="grid gap-3 sm:grid-cols-5">
             {inheritanceChain.map((node, i) => (

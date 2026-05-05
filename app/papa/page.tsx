@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, Heart, MapPin, ScrollText } from 'lucide-react'
 
@@ -46,9 +47,18 @@ export default function PapaHomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-950/30 via-transparent to-transparent" />
-          <div className="absolute left-1/3 top-24 h-[420px] w-[420px] rounded-full bg-amber-500/[0.07] blur-3xl" />
-          <div className="absolute right-1/4 top-48 h-[320px] w-[320px] rounded-full bg-amber-700/[0.05] blur-3xl" />
+          <Image
+            src="/images/papa/papa-hero-birch.jpg"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/60 via-[#0a0a0b]/80 to-[#0a0a0b]" />
+          <div className="absolute left-1/3 top-24 h-[420px] w-[420px] rounded-full bg-amber-500/[0.05] blur-3xl" />
+          <div className="absolute right-1/4 top-48 h-[320px] w-[320px] rounded-full bg-amber-700/[0.04] blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-3xl px-6 py-32 text-center lg:py-40">

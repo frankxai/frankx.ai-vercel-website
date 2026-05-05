@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, MapPin } from 'lucide-react'
 
@@ -76,9 +77,23 @@ export default function RuPage() {
         </header>
 
         <div className="mx-auto max-w-2xl px-6 py-24">
-          <p className="mb-12 text-lg leading-[1.85] text-white/75">
+          <p className="mb-8 text-lg leading-[1.85] text-white/75">
             {russianHeritage.lead}
           </p>
+
+          <figure className="mb-12 overflow-hidden rounded-xl border border-white/[0.08]">
+            <Image
+              src="/images/papa/papa-migration-map.jpg"
+              alt="Стилизованная карта: Саратов на Волге (1763) — Павловка, Казахстан (1941, 1969) — Зезен, Германия (поздние переселенцы до 2018)."
+              width={1920}
+              height={1080}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+            <figcaption className="bg-white/[0.02] px-5 py-3 text-xs italic text-white/45">
+              Четыре поколения. Три страны. Одна линия.
+            </figcaption>
+          </figure>
 
           <div className="rounded-2xl border border-amber-500/15 bg-amber-500/[0.04] p-8 text-center">
             <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.25em] text-amber-300/60">

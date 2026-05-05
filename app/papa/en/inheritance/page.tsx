@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 
@@ -126,6 +127,17 @@ export default function InheritancePage() {
             stories.
           </p>
 
+          <figure className="mb-12 overflow-hidden rounded-xl border border-white/[0.08]">
+            <Image
+              src="/images/papa/papa-ten-standards.jpg"
+              alt="Letterpress poster, 2:3 portrait. Ten numbered slots (01-10) with abstract geometric symbols. Soul-amber on void."
+              width={1080}
+              height={1620}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </figure>
+
           <ol className="space-y-10">
             {principles.map((p) => (
               <li key={p.number} className="flex gap-6">
@@ -160,6 +172,17 @@ export default function InheritancePage() {
             From the boy who waits to be rescued, to the elder who hands over without claim.
             Six stations — each with its quality, its danger, its passage.
           </p>
+
+          <figure className="mb-12 overflow-hidden rounded-xl border border-white/[0.08]">
+            <Image
+              src="/images/papa/papa-six-stages.jpg"
+              alt="Six abstract glyphs in circles, left to right: Boy, Rebel, Striver, Builder, Father, Elder. Soul-amber linework on void."
+              width={1920}
+              height={1080}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </figure>
 
           <ol className="space-y-8">
             {stages.map((s) => (
@@ -321,6 +344,17 @@ export default function InheritancePage() {
           <h2 className="mb-12 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             Father → Inheritance → Synthesis → System → Transmission
           </h2>
+
+          <figure className="mb-12 overflow-hidden rounded-xl border border-white/[0.08]">
+            <Image
+              src="/images/papa/papa-inheritance-chain.jpg"
+              alt="Five glyphs in horizontal flow connected by progressively brightening arrows: Father, Inheritance, Synthesis, System, Transmission. Soul-amber on void."
+              width={1920}
+              height={1080}
+              sizes="(max-width: 768px) 100vw, 720px"
+              className="h-auto w-full"
+            />
+          </figure>
 
           <ol className="grid gap-3 sm:grid-cols-5">
             {inheritanceChain.map((node, i) => (

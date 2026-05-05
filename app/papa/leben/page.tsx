@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
@@ -93,6 +94,20 @@ export default function LebenPage() {
                 ihnen sein ganzes Leben, so wie sich die Familie zwischen Ländern bewegte.
               </p>
             </Section>
+
+            <figure className="my-8 overflow-hidden rounded-xl border border-white/[0.08]">
+              <Image
+                src="/images/papa/papa-migration-map.jpg"
+                alt="Stilisierte Karte: Saratow an der Wolga (1763) — Pavlovka, Kasachstan (1941, 1969) — Seesen, Deutschland (Spätaussiedler bis 2018). Soul-amber Linien auf dunklem Grund."
+                width={1920}
+                height={1080}
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="h-auto w-full"
+              />
+              <figcaption className="bg-white/[0.02] px-5 py-3 text-xs italic text-white/45">
+                Vier Generationen. Drei Länder. Eine Linie.
+              </figcaption>
+            </figure>
 
             <Section title="Der Weg zurück">
               <p>

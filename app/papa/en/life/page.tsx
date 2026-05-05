@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 
@@ -89,6 +90,20 @@ export default function LifePage() {
                 whole life, the way the family moved between countries.
               </p>
             </Section>
+
+            <figure className="my-8 overflow-hidden rounded-xl border border-white/[0.08]">
+              <Image
+                src="/images/papa/papa-migration-map.jpg"
+                alt="Stylized map: Saratov on the Volga (1763) — Pavlovka, Kazakhstan (1941, 1969) — Seesen, Germany (Spätaussiedler through 2018). Soul-amber linework on dark."
+                width={1920}
+                height={1080}
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="h-auto w-full"
+              />
+              <figcaption className="bg-white/[0.02] px-5 py-3 text-xs italic text-white/45">
+                Four generations. Three countries. One line.
+              </figcaption>
+            </figure>
 
             <Section title="The way back">
               <p>
