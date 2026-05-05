@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Heart, MapPin, ScrollText } from 'lucide-react'
+import { ArrowRight, Globe, MapPin } from 'lucide-react'
 
 import PapaShell from '@/components/papa/PapaShell'
 import {
@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     languages: {
       de: 'https://frankx.ai/papa',
       en: 'https://frankx.ai/papa/en',
-      ru: 'https://frankx.ai/papa/ru',
     },
   },
   openGraph: {
@@ -132,10 +131,10 @@ export default function PapaEnHomePage() {
             Find your way
           </p>
           <h2 className="mb-12 text-3xl font-semibold tracking-tight text-white">
-            Three rooms, one story
+            Where to read
           </h2>
 
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2">
             <NavCard
               href="/papa/en/life"
               icon={MapPin}
@@ -144,15 +143,8 @@ export default function PapaEnHomePage() {
               description="Pavlovka 1969 to Seesen 2018. Volga-German roots and the arc that brought him to Germany and me to Amsterdam."
             />
             <NavCard
-              href="/papa/en/inheritance"
-              icon={ScrollText}
-              eyebrow="Draft"
-              title="The inheritance"
-              description="Ten principles, six ways to become solid, discipline codes, backbone. What he gave me, translated into a language others can read."
-            />
-            <NavCard
               href="/papa"
-              icon={Heart}
+              icon={Globe}
               eyebrow="Original"
               title="Auf Deutsch"
               description="The full hub in German — including the family-only memories archive at /papa/erinnerungen/."
