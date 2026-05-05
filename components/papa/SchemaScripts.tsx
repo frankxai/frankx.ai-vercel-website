@@ -75,29 +75,6 @@ export function ArticleJsonLd({
   )
 }
 
-export function BookScaffoldJsonLd() {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'Book',
-    name: 'What My Father Gave Me',
-    alternateName: ['Was mir mein Vater gab', 'Что мне дал мой отец'],
-    author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
-    about: { '@type': 'Person', name: witali.fullName },
-    bookFormat: 'https://schema.org/EBook',
-    inLanguage: ['de', 'en', 'ru'],
-    publisher: { '@type': 'Organization', name: 'FrankX' },
-    creativeWorkStatus: 'Draft',
-    isAccessibleForFree: true,
-    url: 'https://frankx.ai/papa/erbe/',
-  }
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-    />
-  )
-}
-
 export function BreadcrumbJsonLd({ items }: { items: { name: string; url: string }[] }) {
   const data = {
     '@context': 'https://schema.org',
