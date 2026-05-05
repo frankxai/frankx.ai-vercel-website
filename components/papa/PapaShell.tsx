@@ -17,7 +17,7 @@ interface PapaShellProps {
   /** When true, renders the noindex draft banner across the top */
   draft?: boolean
   /** Language of the current page — affects banner copy and switcher highlight */
-  lang?: 'de' | 'en' | 'ru'
+  lang?: 'de' | 'en'
 }
 
 const bannerCopy = {
@@ -31,17 +31,12 @@ const bannerCopy = {
     body:
       'This page is being refined with the family. Read freely — please do not share until family review clears.',
   },
-  ru: {
-    label: 'Черновик',
-    body:
-      'Эта страница дорабатывается с семьёй. Читайте свободно — не делитесь до согласования с семьёй.',
-  },
 }
 
-const switcherLabels = { de: 'Deutsch', en: 'English', ru: 'Русский' }
-const switcherHrefs = { de: '/papa', en: '/papa/en', ru: '/papa/ru' }
+const switcherLabels = { de: 'Deutsch', en: 'English' }
+const switcherHrefs = { de: '/papa', en: '/papa/en' }
 
-export function DraftBanner({ lang = 'de' }: { lang?: 'de' | 'en' | 'ru' }) {
+export function DraftBanner({ lang = 'de' }: { lang?: 'de' | 'en' }) {
   const copy = bannerCopy[lang]
   return (
     <div
@@ -58,10 +53,10 @@ export function DraftBanner({ lang = 'de' }: { lang?: 'de' | 'en' | 'ru' }) {
   )
 }
 
-export function LanguageSwitcher({ active }: { active: 'de' | 'en' | 'ru' }) {
+export function LanguageSwitcher({ active }: { active: 'de' | 'en' }) {
   return (
     <nav aria-label="Sprache" className="flex items-center gap-3 text-xs">
-      {(['de', 'en', 'ru'] as const).map((l) => (
+      {(['de', 'en'] as const).map((l) => (
         <Link
           key={l}
           href={switcherHrefs[l]}
@@ -79,7 +74,7 @@ export function LanguageSwitcher({ active }: { active: 'de' | 'en' | 'ru' }) {
   )
 }
 
-export function PapaFooter({ lang = 'de' }: { lang?: 'de' | 'en' | 'ru' }) {
+export function PapaFooter({ lang = 'de' }: { lang?: 'de' | 'en' }) {
   const copy = {
     de: {
       built: 'Mit Liebe gebaut von Frank in Amsterdam — für Papa.',
@@ -98,13 +93,6 @@ export function PapaFooter({ lang = 'de' }: { lang?: 'de' | 'en' | 'ru' }) {
         { href: '/papa', label: 'Deutsch' },
         { href: '/family', label: 'Family' },
         { href: '/familie/stammbaum', label: 'Family Tree' },
-      ],
-    },
-    ru: {
-      built: 'Создано с любовью Франком в Амстердаме — для Папы.',
-      links: [
-        { href: '/papa', label: 'Deutsch' },
-        { href: '/papa/en', label: 'English' },
       ],
     },
   }[lang]
@@ -133,6 +121,8 @@ export function PapaFooter({ lang = 'de' }: { lang?: 'de' | 'en' | 'ru' }) {
 }
 
 export default function PapaShell({ children, draft, lang = 'de' }: PapaShellProps) {
+  // After 2026-05-05 cleanup, no /papa/ pages render with draft=true. The prop
+  // is kept for future re-introduction when family-witnessed manifesto returns.
   return (
     <main className="min-h-screen bg-[#0a0a0b] font-serif-editorial text-white/80">
       {draft ? <DraftBanner lang={lang} /> : null}
