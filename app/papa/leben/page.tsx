@@ -153,10 +153,10 @@ export default function LebenPage() {
 
           <div className="mt-16 flex flex-col items-start gap-4 border-t border-white/5 pt-12 sm:flex-row sm:items-center sm:justify-between">
             <Link
-              href="/papa/erbe"
+              href="/papa/erinnerungen"
               className="group inline-flex items-center gap-2 text-sm text-amber-300/80 transition-colors hover:text-amber-200"
             >
-              Weiter zum Erbe
+              Weiter zu den Erinnerungen
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </Link>
             <Link
