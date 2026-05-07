@@ -35,18 +35,20 @@ function YouTubeEmbed(props: { id: string; title?: string; [key: string]: unknow
   )
 }
 
-type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
+type CalloutKind = 'info' | 'warning' | 'tip' | 'success' | 'insight' | 'note'
 
 interface CalloutProps {
   children: ReactNode
-  type?: CalloutKind
+  type?: CalloutKind | string
 }
 
 const calloutStyles: Record<CalloutKind, { border: string; bg: string; icon: string; label: string }> = {
   info: { border: 'border-sky-400/30', bg: 'bg-sky-400/[0.06]', icon: 'text-sky-400', label: 'Note' },
+  note: { border: 'border-sky-400/30', bg: 'bg-sky-400/[0.06]', icon: 'text-sky-400', label: 'Note' },
   warning: { border: 'border-amber-400/30', bg: 'bg-amber-400/[0.06]', icon: 'text-amber-400', label: 'Warning' },
   tip: { border: 'border-emerald-400/30', bg: 'bg-emerald-400/[0.06]', icon: 'text-emerald-400', label: 'Tip' },
   success: { border: 'border-emerald-400/30', bg: 'bg-emerald-400/[0.06]', icon: 'text-emerald-400', label: 'Success' },
+  insight: { border: 'border-violet-400/30', bg: 'bg-violet-400/[0.06]', icon: 'text-violet-400', label: 'Insight' },
 }
 
 // Inline SVG icons to avoid React version conflicts with lucide-react in RSC
@@ -78,18 +80,23 @@ const CheckIcon = () => (
 function getCalloutIcon(type: CalloutKind) {
   switch (type) {
     case 'info': return <InfoIcon />
+    case 'note': return <InfoIcon />
     case 'warning': return <WarningIcon />
     case 'tip': return <LightbulbIcon />
     case 'success': return <CheckIcon />
+    case 'insight': return <LightbulbIcon />
   }
 }
 
 function Callout({ children, type = 'info' }: CalloutProps) {
-  const style = calloutStyles[type]
+  // Defensive lookup — unknown `type` from a blog post falls back to 'info'
+  // instead of throwing during prerender (caught 'insight' on six-primitives 2026-05-07).
+  const safeType: CalloutKind = (type in calloutStyles ? type : 'info') as CalloutKind
+  const style = calloutStyles[safeType]
   return (
     <aside className={`my-10 rounded-xl border ${style.border} ${style.bg} px-6 py-5`}>
       <div className="flex items-start gap-3">
-        <span className={`mt-0.5 shrink-0 ${style.icon}`}>{getCalloutIcon(type)}</span>
+        <span className={`mt-0.5 shrink-0 ${style.icon}`}>{getCalloutIcon(safeType)}</span>
         <div className="flex-1">
           <span className={`text-xs font-semibold uppercase tracking-wider ${style.icon}`}>{style.label}</span>
           <div className="mt-1 text-[15px] leading-relaxed text-white/80 [&>p]:mb-0">{children}</div>
