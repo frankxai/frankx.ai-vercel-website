@@ -287,6 +287,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/acos/agents', priority: 0.8, changeFrequency: 'weekly' as const },
     // Starlight Intelligence System
     { url: '/starlight-intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
+    // Investment Intelligence System (IIS) — public hub
+    { url: '/intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
     // Plan
     { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
     // Inspiration
