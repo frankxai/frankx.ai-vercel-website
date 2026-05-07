@@ -38,7 +38,7 @@ const aboutFaqs = [
   {
     question: 'How can I get started with the resources on this site?',
     answer:
-      'Start with the /start page for a guided overview, explore the Music Lab for AI music creation, browse the Prompt Library for ready-to-use prompts, or dive into the blog for practical insights and tutorials.',
+      'Start with the /start page for a guided overview, explore the Music Lab for AI music creation, browse the Prompt Library for ready-to-use prompts, or open the blog for practical insights and tutorials.',
   },
   {
     question: 'Does Frank offer consulting or collaboration opportunities?',

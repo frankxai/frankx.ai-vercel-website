@@ -7,7 +7,7 @@ import { getAllBlogPosts } from '@/lib/blog'
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
   description:
-    'AI Systems Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
+    'AI Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -39,7 +39,7 @@ const websiteSchema = {
 
 const personSchema = {
   name: 'Frank Riemer',
-  jobTitle: 'AI Systems Architect',
+  jobTitle: 'AI Architect',
   url: 'https://frankx.ai/about',
   sameAs: [
     'https://linkedin.com/in/frank-x-riemer/',
@@ -74,7 +74,7 @@ const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an AI Systems Architect and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
+      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
   },
   {
     question: 'What kind of content does FrankX publish?',

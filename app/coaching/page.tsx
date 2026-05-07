@@ -60,7 +60,7 @@ const processSteps = [
   {
     number: '01',
     title: 'Discovery',
-    description: 'Deep dive into your current systems, goals, and challenges to create a custom roadmap.',
+    description: 'Map your current systems, goals, and challenges to build a custom roadmap.',
     icon: Target,
     color: '#43BFE3',
   },

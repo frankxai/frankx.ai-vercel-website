@@ -28,6 +28,8 @@
     "factory:validate": "npm run content:validate && npm run qa:check",
     "factory:publish": "npm run qa:check && npm run publish:artifact",
     "ci:check": "npm run type-check && npm run lint && npm run content:validate",
+    "ai-slop:audit": "node scripts/audit-ai-slop.mjs",
+    "ai-slop:audit:strict": "node scripts/audit-ai-slop.mjs --strict",
     "links:check": "node scripts/check-links.mjs",
     "log:session": "node scripts/log-session.mjs",
     "sync:check": "bash scripts/pre-deploy-sync-check.sh",

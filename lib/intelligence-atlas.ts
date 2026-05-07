@@ -144,7 +144,7 @@ export const atlasMetrics: AtlasMetric[] = [
 
 export const atlasActions: AtlasAction[] = [
   {
-    title: 'Dive into Volume I',
+    title: 'Open Volume I',
     description: 'Read the 10,000-word architecting the agentic era report and deploy the included frameworks.',
     href: '/blog/frankx-intelligence-atlas-volume-1',
     label: 'Published January 2025',

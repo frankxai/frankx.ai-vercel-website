@@ -24,10 +24,9 @@
 **Frank X. Riemer**
 
 ### Professional Titles
+- AI Architect (primary — never "AI Systems Architect" per CLAUDE.md mandate)
 - Musician-Technologist
-- AI Systems Architect
 - Creator Transformation Guide
-- Consciousness & Technology Bridge
 
 ### Bio (Short - 160 chars for Twitter)
 Musician-technologist building AI systems that amplify human creativity. Founder @FrankX_AI • Vibe OS • Suno • Oracle

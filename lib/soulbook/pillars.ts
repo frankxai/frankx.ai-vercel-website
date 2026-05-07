@@ -136,7 +136,7 @@ export function getPillarsForLifeBook(bookType: 'symphony' | 'path' | 'pillars')
       // Golden Path - pillars 1, 3, 6 (Awareness, Emotions, Purpose)
       return [pillars[0], pillars[2], pillars[5]]
     case 'pillars':
-      // 7 Pillars - deep dive into all 7
+      // 7 Pillars - all 7 in sequence
       return pillars
     default:
       return pillars

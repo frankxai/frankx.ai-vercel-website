@@ -123,7 +123,7 @@ const methodology = {
     {
       number: '01',
       title: 'Discovery & Assessment',
-      description: 'Deep dive into business context, existing systems, and constraints',
+      description: 'Map business context, existing systems, and constraints',
       activities: [
         'Stakeholder interviews and requirements gathering',
         'Current state architecture analysis',

@@ -826,7 +826,7 @@ function CTASection() {
             The research behind the games
           </h2>
           <p className="text-white/50 text-lg mb-8 max-w-xl mx-auto">
-            Deep dive into agentic game development — market data, tools,
+            A working primer on agentic game development — market data, tools,
             best practices, and what works (and what doesn&apos;t) for creators and game devs.
           </p>
 

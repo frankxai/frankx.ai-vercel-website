@@ -191,7 +191,7 @@ const mockUserProgress: UserProgress = {
       id: '1',
       type: 'course',
       title: 'Advanced Prompt Engineering',
-      description: 'Deep dive into sophisticated prompting techniques',
+      description: 'Walk through sophisticated prompting techniques',
       reason: 'Based on your progress in fundamentals',
       priority: 'high',
       href: '/courses/advanced-prompt-engineering',
