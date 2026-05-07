@@ -8,8 +8,12 @@ const __dirname = dirname(__filename)
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   typescript: {
-    // Skip type checking during build (run separately)
-    ignoreBuildErrors: true,
+    // Type-check on every Vercel build. Verified clean tsc --noEmit on
+    // 2026-05-07 (0 errors, 2 deprecation warnings silenced via tsconfig
+    // ignoreDeprecations:"6.0"). Flipping false locks in the gain — Vercel
+    // deploys now fail on TS regression instead of swallowing them.
+    // To temporarily bypass in an emergency: set true + file an issue.
+    ignoreBuildErrors: false,
   },
   images: {
     // Enable modern image formats for better compression
