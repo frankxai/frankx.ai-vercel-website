@@ -7,6 +7,7 @@
  */
 
 import type { FAQItem, HowToStep } from '@/components/seo/JsonLd'
+import { socialLinks } from '@/lib/social-links'
 
 // Site-wide constants for consistent schema data
 export const SITE_CONFIG = {
@@ -17,9 +18,9 @@ export const SITE_CONFIG = {
     url: 'https://frankx.ai/about',
     jobTitle: 'AI Architect & Creator',
     sameAs: [
-      'https://www.linkedin.com/in/frank-x-riemer/',
-      'https://x.com/frankxeth',
-      'https://github.com/frankxai',
+      socialLinks.linkedin,
+      socialLinks.twitter,
+      socialLinks.github,
     ],
   },
   organization: {

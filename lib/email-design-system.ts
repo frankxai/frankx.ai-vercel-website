@@ -1,3 +1,5 @@
+import { socialLinks } from '@/lib/social-links'
+
 /**
  * FrankX.AI Email Design System v3.1
  *
@@ -347,7 +349,7 @@ function footer(): string {
                   </td>
                   <td style="color: ${T.textFaint}; font-size: 10px;">&bull;</td>
                   <td style="padding: 0 10px;">
-                    <a href="https://www.linkedin.com/in/frank-x-riemer/" style="font-family: ${T.fontStack}; font-size: 13px; color: ${T.textDim}; text-decoration: none; font-weight: 500;">LinkedIn</a>
+                    <a href="${socialLinks.linkedin}" style="font-family: ${T.fontStack}; font-size: 13px; color: ${T.textDim}; text-decoration: none; font-weight: 500;">LinkedIn</a>
                   </td>
                 </tr>
               </table>

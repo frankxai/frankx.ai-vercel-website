@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
+import { socialLinks } from '@/lib/social-links'
 import {
   ArrowRight,
   Brain,
@@ -429,7 +430,7 @@ function ContactSection() {
                 frank@frankx.ai
               </a>
               <a
-                href="https://linkedin.com/in/frankriemer"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group"

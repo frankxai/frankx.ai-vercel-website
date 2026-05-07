@@ -42,8 +42,8 @@ const personSchema = {
   jobTitle: 'AI Architect',
   url: 'https://frankx.ai/about',
   sameAs: [
-    'https://linkedin.com/in/frank-x-riemer/',
-    'https://github.com/frankxai',
+    socialLinks.linkedin,
+    socialLinks.github,
     'https://suno.com/@frankx',
     'https://x.com/frankxeth',
   ],
@@ -62,8 +62,8 @@ const organizationSchema = {
   url: 'https://frankx.ai',
   logo: 'https://frankx.ai/images/brand/logo-full.png',
   sameAs: [
-    'https://linkedin.com/in/frank-x-riemer/',
-    'https://github.com/frankxai',
+    socialLinks.linkedin,
+    socialLinks.github,
     'https://suno.com/@frankx',
   ],
   description:

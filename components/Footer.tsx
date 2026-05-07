@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Mail, ExternalLink } from 'lucide-react'
 
 import { LogoMarkMinimal } from '@/components/ui/LogoMark'
+import { socialLinks } from '@/lib/social-links'
 
 export default function Footer() {
   return (
@@ -23,9 +24,9 @@ export default function Footer() {
               Oracle AI architect by day. Music creator by night.
               Building systems, making music, sharing everything.
             </p>
-            <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2 sm:gap-3">
+            <nav aria-label="Social profiles" className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2 sm:gap-3">
               <a
-                href="https://linkedin.com/in/frank-x-riemer/"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
@@ -33,9 +34,9 @@ export default function Footer() {
                 LinkedIn
                 <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               </a>
-              <span className="text-white/20">·</span>
+              <span className="text-white/20" aria-hidden>·</span>
               <a
-                href="https://suno.com/@frankx"
+                href={socialLinks.suno}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
@@ -43,7 +44,7 @@ export default function Footer() {
                 Suno
                 <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               </a>
-              <span className="text-white/20">·</span>
+              <span className="text-white/20" aria-hidden>·</span>
               <a
                 href="mailto:hello@frankx.ai"
                 className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
@@ -51,11 +52,11 @@ export default function Footer() {
                 <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 Email
               </a>
-            </div>
+            </nav>
           </div>
 
           {/* Create */}
-          <div>
+          <nav aria-label="Create">
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Create</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
@@ -63,10 +64,10 @@ export default function Footer() {
               <li><Link href="/products/vibe-os" className="hover:text-white transition-colors">Vibe OS</Link></li>
               <li><Link href="/templates" className="hover:text-white transition-colors">Templates</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Learn */}
-          <div>
+          <nav aria-label="Learn">
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Learn</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/resources" className="hover:text-white transition-colors">Resource Hub</Link></li>
@@ -80,10 +81,10 @@ export default function Footer() {
               <li><Link href="/workshops" className="hover:text-white transition-colors">Workshops</Link></li>
               <li><Link href="/study" className="hover:text-white transition-colors">Study</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Build */}
-          <div>
+          <nav aria-label="Build">
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Build</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
@@ -92,18 +93,22 @@ export default function Footer() {
               <li><Link href="/ai-architecture/templates" className="hover:text-white transition-colors">Templates</Link></li>
               <li><Link href="/ai-architecture/tools" className="hover:text-white transition-colors">Tools</Link></li>
             </ul>
-          </div>
+          </nav>
 
-          {/* More */}
-          <div>
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">More</h3>
+          {/* Work with me — commercial funnel + utility */}
+          <nav aria-label="Work with Frank">
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Work with me</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+              <li><Link href="/start" className="hover:text-white transition-colors">Start here</Link></li>
+              <li><Link href="/build" className="hover:text-white transition-colors">Build (€0–€2,997)</Link></li>
+              <li><Link href="/founders-circle" className="text-rose-400/70 hover:text-rose-300 transition-colors">Founder&apos;s Circle</Link></li>
+              <li><Link href="/coaching" className="hover:text-white transition-colors">Coaching</Link></li>
+              <li><Link href="/work-with-me" className="hover:text-white transition-colors">Studio</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/resources" className="hover:text-white transition-colors">Resources</Link></li>
               <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmap</Link></li>
               <li><Link href="/products" className="hover:text-white transition-colors">All Products</Link></li>
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom bar */}
