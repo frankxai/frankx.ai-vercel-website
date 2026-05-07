@@ -22,6 +22,10 @@ import {
 // Vercel CDN edge caching (per docs/ops/VERCEL-COST-MASSIVE-ACTION.md).
 export const dynamic = 'force-static'
 
+// Flip to `true` when the OSS substrate is published at github.com/frankxai/investment-intelligence-system
+// via `bash iis/scripts/extract-to-public-repo.sh`. Until then, the GitHub button shows "OSS coming soon"
+// and links to the substrate's sibling SIS repo as the reference pattern.
+const IIS_REPO_PUBLIC = false
 const IIS_REPO = 'https://github.com/frankxai/investment-intelligence-system'
 const SIS_REPO = 'https://github.com/frankxai/Starlight-Intelligence-System'
 const LIBRARY_OS_REPO = 'https://github.com/frankxai/library-os'
@@ -29,7 +33,7 @@ const LIBRARY_OS_REPO = 'https://github.com/frankxai/library-os'
 export const metadata: Metadata = {
   title: 'Investment Intelligence System — The Kata for Personal Capital Stewardship | FrankX',
   description:
-    'A markdown-first, MIT-licensed substrate that turns any code agent into a sophisticated decision-support engine for personal wealth management. Multi-agent debate team, retrospective learning loop, mandatory human-gate. Not a trading bot.',
+    'A markdown-first, MIT-licensed substrate that turns any AI assistant or code agent — Claude Cowork, ChatGPT, Claude Code, Gemini CLI, OpenCode — into a sophisticated decision-support engine for personal wealth management. Multi-agent debate team, retrospective learning loop, mandatory human-gate. Not a trading bot.',
   alternates: { canonical: 'https://frankx.ai/intelligence-system' },
   openGraph: {
     title: 'Investment Intelligence System — The Kata for Personal Capital Stewardship',
@@ -234,9 +238,9 @@ export default function IntelligenceSystemPage() {
             <span className="text-zinc-100">capital stewardship.</span>
           </h1>
           <p className="mt-6 max-w-3xl text-lg text-zinc-400 sm:text-xl">
-            A markdown-first, MIT-licensed substrate that turns any code agent — Claude Code, Cowork, Codex, Gemini CLI, OpenCode — into a sophisticated decision-support engine for personal wealth management.
+            A markdown-first, MIT-licensed substrate that turns any AI assistant or code agent — <strong className="text-zinc-300">Claude Cowork, ChatGPT, Claude Code, Gemini CLI, OpenCode</strong> — into a sophisticated decision-support engine for personal wealth management.
           </p>
-          <p className="mt-4 max-w-3xl text-base text-zinc-500">
+          <p className="mt-4 max-w-3xl text-base text-zinc-400">
             Not a trading bot. Not a robo-advisor. Not alpha. The discipline-imposing scaffolding that turns intuition + checklists into outperforming intuition alone — borrowed from medicine (Gawande), aviation (cockpit cross-checks), and software engineering (RFC + post-mortem).
           </p>
 
@@ -248,15 +252,25 @@ export default function IntelligenceSystemPage() {
               Quickstart
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-            <a
-              href={IIS_REPO}
-              className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/40 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-600 hover:bg-zinc-900"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
-              GitHub
-            </a>
+            {IIS_REPO_PUBLIC ? (
+              <a
+                href={IIS_REPO}
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/40 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-600 hover:bg-zinc-900"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                GitHub
+              </a>
+            ) : (
+              <span
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900/20 px-5 py-3 text-sm font-medium text-zinc-500"
+                aria-label="GitHub repository pending OSS extraction"
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                GitHub — coming soon
+              </span>
+            )}
             <Link
               href="#honest-limits"
               className="inline-flex items-center gap-2 rounded-lg border border-amber-900/40 bg-amber-950/20 px-5 py-3 text-sm font-medium text-amber-200 transition hover:border-amber-800/60"
@@ -444,6 +458,56 @@ export default function IntelligenceSystemPage() {
         </div>
       </section>
 
+      {/* Two adoption paths */}
+      <section aria-labelledby="iis-paths-heading" className="border-b border-zinc-800/60">
+        <div className="mx-auto max-w-5xl px-6 py-20">
+          <h2 id="iis-paths-heading" className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Two paths. <span className="text-emerald-400">Same substrate.</span>
+          </h2>
+          <p className="mt-4 max-w-3xl text-zinc-400">
+            The substrate is &quot;markdown + JSON + agent prompts&quot; — that means it works <strong className="text-zinc-200">anywhere an AI can read text</strong>. Two well-documented adoption paths cover most operators.
+          </p>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/10 p-6">
+              <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-emerald-900/20 px-3 py-1 text-xs font-medium text-emerald-300">
+                Path A · AI assistant (browser/desktop)
+              </div>
+              <h3 className="mt-3 text-xl font-semibold text-zinc-100">Claude Cowork · ChatGPT · Claude.ai</h3>
+              <p className="mt-3 text-sm text-zinc-300">
+                Paste prompts into chat. Save Strategy Sessions to <strong>Notion</strong> or <strong>Google Drive</strong> via your assistant&apos;s native connectors. No filesystem, no CLI, no install. Lowest barrier to start.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-zinc-400">
+                <li className="flex gap-2"><span aria-hidden="true" className="text-emerald-400">·</span> Copy-paste-ready prompts in <code className="rounded bg-zinc-800 px-1 text-emerald-300">iis/docs/ai-assistants.md</code></li>
+                <li className="flex gap-2"><span aria-hidden="true" className="text-emerald-400">·</span> Sessions auto-stored in Notion via Cowork connector</li>
+                <li className="flex gap-2"><span aria-hidden="true" className="text-emerald-400">·</span> Tier 0 only (single-agent simulation; no multi-agent runtime)</li>
+                <li className="flex gap-2"><span aria-hidden="true" className="text-emerald-400">·</span> 30 min/week — Sunday review cadence</li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-teal-900/40 bg-teal-950/10 p-6">
+              <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-teal-900/20 px-3 py-1 text-xs font-medium text-teal-300">
+                Path B · Code agent (CLI)
+              </div>
+              <h3 className="mt-3 text-xl font-semibold text-zinc-100">Claude Code · Codex · Gemini CLI · OpenCode</h3>
+              <p className="mt-3 text-sm text-zinc-300">
+                Clone the substrate. Use slash commands. Sessions stored locally in your private operator dir. Multi-agent debate runtime, ReasoningBank trajectory store, full execution layer (AgentKit / Alpaca / Freqtrade) when ready.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-zinc-400">
+                <li className="flex gap-2"><span aria-hidden="true" className="text-teal-400">·</span> Slash commands: <code className="rounded bg-zinc-800 px-1 text-teal-300">/weekly-strategy</code>, <code className="rounded bg-zinc-800 px-1 text-teal-300">/thesis-debate</code>, <code className="rounded bg-zinc-800 px-1 text-teal-300">/iis-retrospective</code></li>
+                <li className="flex gap-2"><span aria-hidden="true" className="text-teal-400">·</span> Tier 1-2 (multi-agent + execution)</li>
+                <li className="flex gap-2"><span aria-hidden="true" className="text-teal-400">·</span> 2-3 hr setup, then 15-45 min/week</li>
+                <li className="flex gap-2"><span aria-hidden="true" className="text-teal-400">·</span> Best fit when you already use a coding-CLI agent daily</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className="mt-8 text-sm text-zinc-400">
+            <strong className="text-zinc-200">Both paths produce the same artifact:</strong> a Strategy Session conforming to <code className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs text-emerald-300">strategy-session.schema.json</code>. You can switch paths at any time — Cowork operators graduate to CLI when complexity warrants; CLI operators run quick checks in Cowork on mobile.
+          </p>
+        </div>
+      </section>
+
       {/* Five loops */}
       <section aria-labelledby="iis-loops-heading" className="border-b border-zinc-800/60 bg-zinc-950/60">
         <div className="mx-auto max-w-5xl px-6 py-20">
@@ -586,15 +650,25 @@ export default function IntelligenceSystemPage() {
             Internalize that, and the substrate gives you what it can give you. Reject it, and look elsewhere — there are better tools for whatever else you want.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <a
-              href={IIS_REPO}
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="h-4 w-4" aria-hidden="true" />
-              Clone the repo
-            </a>
+            {IIS_REPO_PUBLIC ? (
+              <a
+                href={IIS_REPO}
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-4 w-4" aria-hidden="true" />
+                Clone the repo
+              </a>
+            ) : (
+              <Link
+                href="#quickstart"
+                className="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-emerald-400"
+              >
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                Start with the quickstart
+              </Link>
+            )}
             <Link
               href="/os"
               className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/40 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-zinc-600 hover:bg-zinc-900"
