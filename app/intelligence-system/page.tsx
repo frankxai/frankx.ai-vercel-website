@@ -38,9 +38,12 @@ export const metadata: Metadata = {
     url: 'https://frankx.ai/intelligence-system',
     siteName: 'FrankX',
     type: 'website',
+    // Using /hero-intelligence-atlas.png as themed stand-in until the
+    // dedicated NB2 hero image at /og/intelligence-system.jpg is generated.
+    // See public/images/intelligence-system/hero.spec.md for the prompt.
     images: [
       {
-        url: 'https://frankx.ai/og/intelligence-system.jpg',
+        url: 'https://frankx.ai/hero-intelligence-atlas.png',
         width: 1200,
         height: 630,
         alt: 'Investment Intelligence System — the kata for personal capital stewardship',
@@ -52,7 +55,7 @@ export const metadata: Metadata = {
     title: 'Investment Intelligence System — The Kata for Personal Capital Stewardship',
     description:
       'Decision-support and discipline-imposition substrate for personal wealth management. Open source. MIT.',
-    images: ['https://frankx.ai/og/intelligence-system.jpg'],
+    images: ['https://frankx.ai/hero-intelligence-atlas.png'],
   },
 }
 
