@@ -77,8 +77,9 @@ export function generateStaticParams() {
   return osModules.map((m) => ({ slug: m.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const module = osModules.find((m) => m.slug === params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const module = osModules.find((m) => m.slug === slug)
   if (!module) return { title: 'Not found' }
   return {
     title: `${module.name} — FrankX OS`,
@@ -124,8 +125,9 @@ function Schema({ module }: { module: OSModule }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
 }
 
-export default function OSModulePage({ params }: { params: { slug: string } }) {
-  const module = osModules.find((m) => m.slug === params.slug)
+export default async function OSModulePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const module = osModules.find((m) => m.slug === slug)
   if (!module) notFound()
 
   const Icon = ICON_MAP[module.iconName as keyof typeof ICON_MAP] ?? Sparkles
