@@ -706,11 +706,11 @@ function ResultsStep({ profile }: { profile: UserProfile }) {
       },
       practitioner: {
         title: 'The Technical Pioneer',
-        description: 'You push the boundaries of what\'s possible with AI, implementing cutting-edge solutions and sharing knowledge.',
+        description: 'You push the boundaries of what\'s possible with AI, implementing frontier patterns and sharing what you learn.',
         icon: Brain,
         color: 'from-purple-500 to-violet-500',
         recommendations: [
-          'Dive into advanced Agent Architecture patterns',
+          'Study advanced Agent Architecture patterns',
           'Contribute to our open-source initiatives',
           'Apply for our Technical Advisory Board',
           'Lead workshops in our community'

@@ -572,7 +572,7 @@ export default function AgentTeamPage() {
           <section className="rounded-4xl border border-white/10 bg-gradient-to-r from-primary-500/20 via-primary-600/15 to-sky-500/20 p-10 text-center">
             <h2 className="text-3xl font-semibold text-white">Ready to orchestrate your agent collective?</h2>
             <p className="mt-4 text-sm text-white/80 leading-relaxed">
-              Start with a briefing, dive into a workshop, or craft a bespoke retainer. The FrankX agent team is ready to co-create systems that
+              Start with a briefing, step into a workshop, or craft a bespoke retainer. The FrankX agent team is ready to co-create systems that
               honor your people and accelerate your roadmap.
             </p>
             <div className="mt-6 flex flex-col items-center justify-center gap-4 sm:flex-row">

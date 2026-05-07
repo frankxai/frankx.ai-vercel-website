@@ -59,7 +59,7 @@ const docSections = [
     title: 'Skills Guide',
     slug: 'skills',
     icon: BookOpen,
-    description: 'Deep dive into the 62 skills that power your creative workflows.',
+    description: 'Walk through the 62 skills that power your creative workflows.',
     topics: ['Skill Categories', 'Auto-Activation', 'Creating Skills', 'Best Practices']
   },
   {

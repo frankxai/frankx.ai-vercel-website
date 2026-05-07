@@ -82,7 +82,7 @@ export const docsContent: Record<string, DocContent> = {
 
   'skills': {
     title: 'Skills Guide',
-    description: 'Deep dive into the 62 skills that power your creative workflows.',
+    description: 'Walk through the 62 skills that power your creative workflows.',
     category: 'Guide',
     keywords: ['claude code skills', 'ai skills system', 'custom ai skills'],
     readTime: '10 min',

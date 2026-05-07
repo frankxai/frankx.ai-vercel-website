@@ -318,7 +318,7 @@ export default function FreePlaybookPage() {
             className="grid gap-4 sm:grid-cols-3"
           >
             {[
-              { href: '/blog', label: 'Read the Blog', desc: 'Deep dives into AI creation' },
+              { href: '/blog', label: 'Read the Blog', desc: 'Field notes on AI creation' },
               { href: '/newsletter', label: 'Newsletter', desc: '6 streams for builders' },
               { href: '/shop', label: 'Shop Templates', desc: 'Premium AI blueprints' },
             ].map((link) => (
