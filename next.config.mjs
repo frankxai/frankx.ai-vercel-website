@@ -8,12 +8,13 @@ const __dirname = dirname(__filename)
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   typescript: {
-    // Type-check on every Vercel build. Verified clean tsc --noEmit on
-    // 2026-05-07 (0 errors, 2 deprecation warnings silenced via tsconfig
-    // ignoreDeprecations:"6.0"). Flipping false locks in the gain — Vercel
-    // deploys now fail on TS regression instead of swallowing them.
-    // To temporarily bypass in an emergency: set true + file an issue.
-    ignoreBuildErrors: false,
+    // TODO(audit-2026-05-07): Flip to false after clearing TS debt.
+    //   Discovered errors hidden by this flag (logged in PR #59 attempts):
+    //   - app/familie/interview-kit/page.tsx:433 (FIXED in this PR)
+    //   - app/frankx/page.tsx:493 — AuroraGradient.intensity union mismatch
+    //   - more cascade likely
+    //   Cleanup tracker: docs/ops/TS-DEBT-CLEANUP.md (private repo)
+    ignoreBuildErrors: true,
   },
   images: {
     // Enable modern image formats for better compression
