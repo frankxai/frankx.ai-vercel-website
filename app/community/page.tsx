@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { containerVariants, itemVariants } from '@/lib/motion'
+import { socialLinks } from '@/lib/social-links'
 import {
   Users,
   MessageCircle,
@@ -92,7 +93,7 @@ const currentConnections = [
   {
     title: 'LinkedIn',
     description: 'Follow for daily AI insights and behind-the-scenes updates.',
-    href: 'https://linkedin.com/in/frank-x-riemer/',
+    href: socialLinks.linkedin,
     external: true,
   },
   {

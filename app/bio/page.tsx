@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { socialLinks } from '@/lib/social-links';
 import {
   Linkedin,
   Github,
@@ -141,7 +142,7 @@ export default function BioPage() {
           description: ONE_LINE,
           url: 'https://frankx.ai/bio',
           sameAs: [
-            'https://linkedin.com/in/frank-x-riemer/',
+            socialLinks.linkedin,
             'https://github.com/frankxai',
             'https://suno.com/@frankx',
           ],
@@ -207,7 +208,7 @@ export default function BioPage() {
                 <Mail className="h-4 w-4" /> Invite to speak
               </a>
               <a
-                href="https://linkedin.com/in/frank-x-riemer/"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/70 transition-all hover:bg-white/10 hover:text-white"

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
+import { socialLinks } from '@/lib/social-links'
 import {
   ArrowRight,
   Linkedin,
@@ -175,7 +176,7 @@ export default function AboutPage() {
               className="mt-8 flex flex-wrap items-center gap-3"
             >
               <a
-                href="https://linkedin.com/in/frank-x-riemer/"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-white/10"
