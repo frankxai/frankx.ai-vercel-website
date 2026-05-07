@@ -311,6 +311,46 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
+  // Library OS hub + manifesto/build/quotes funnels
+  const libraryPages = [
+    { url: '/library', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/library/approach', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/library/build', priority: 0.85, changeFrequency: 'monthly' as const },
+    { url: '/library/quotes', priority: 0.7, changeFrequency: 'weekly' as const },
+  ]
+
+  // Library OS — individual book deep-dives (dynamic from book-reviews registry)
+  let libraryDetailPages: { url: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = []
+  try {
+    const reviews = require('@/data/book-reviews').bookReviews as Array<{
+      slug: string
+      reviewDate?: string
+    }>
+    libraryDetailPages = reviews.map((r) => ({
+      url: `/library/${r.slug}`,
+      priority: 0.75,
+      changeFrequency: 'monthly' as const,
+    }))
+  } catch {
+    /* book-reviews may not exist in test envs */
+  }
+
+  // FrankX OS — meta-spine + per-module deep-dives (dynamic from os-modules registry)
+  const osHubPages = [
+    { url: '/os', priority: 0.9, changeFrequency: 'weekly' as const },
+  ]
+  let osDetailPages: { url: string; priority: number; changeFrequency: 'weekly' | 'monthly' }[] = []
+  try {
+    const mods = require('@/data/os-modules').osModules as Array<{ slug: string }>
+    osDetailPages = mods.map((m) => ({
+      url: `/os/${m.slug}`,
+      priority: 0.8,
+      changeFrequency: 'monthly' as const,
+    }))
+  } catch {
+    /* os-modules may not exist */
+  }
+
   // Get dynamic content
   const blogEntries = getBlogEntries()
   const guideSlugs = getGuideSlugs()
@@ -545,6 +585,46 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.7,
+    })
+  })
+
+  // Library OS — hub + manifesto + build + quotes
+  libraryPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // Library OS — individual book deep-dives
+  libraryDetailPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // FrankX OS — meta-spine hub
+  osHubPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // FrankX OS — per-module deep-dives
+  osDetailPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
     })
   })
 

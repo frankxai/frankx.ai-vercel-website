@@ -95,6 +95,21 @@ export const PRIMARY_SOCIAL_LINKS = Object.values(SOCIAL_PROFILES).filter(
 )
 
 /**
+ * Ergonomic flat-object accessor for url-only consumers.
+ * Mirror of SOCIAL_PROFILES.<key>.url for places that just want the URL string.
+ * Use this in: schema sameAs[], JSX href, email template ${interpolation}.
+ */
+export const socialLinks = {
+  twitter: SOCIAL_PROFILES.x.url,
+  x: SOCIAL_PROFILES.x.url,
+  linkedin: SOCIAL_PROFILES.linkedin.url,
+  github: SOCIAL_PROFILES.github.url,
+  youtube: SOCIAL_PROFILES.youtube.url,
+  instagram: SOCIAL_PROFILES.instagram.url,
+  suno: SOCIAL_PROFILES.suno.url,
+} as const
+
+/**
  * All social links (including secondary)
  */
 export const ALL_SOCIAL_LINKS = Object.values(SOCIAL_PROFILES)
