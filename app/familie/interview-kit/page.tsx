@@ -427,7 +427,7 @@ export default function InterviewKitPage() {
   )
 }
 
-function HeroMeta({ icon: Icon, text }: { icon: React.ElementType; text: string }) {
+function HeroMeta({ icon: Icon, text }: { icon: React.ComponentType<{ className?: string }>; text: string }) {
   return (
     <div className="flex items-center gap-2 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2">
       <Icon className="h-3.5 w-3.5 text-white/40" />
