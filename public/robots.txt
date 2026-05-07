@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://frankx.ai/sitemap.xml
-Sitemap: https://frankx.ai/research/sitemap.xml
-

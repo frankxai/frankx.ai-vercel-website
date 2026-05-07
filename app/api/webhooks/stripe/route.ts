@@ -3,9 +3,20 @@ import Stripe from 'stripe'
 import { generateProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_placeholder')
+// Lazy initialization — Stripe SDK throws at module load if STRIPE_SECRET_KEY
+// is missing, breaking `next build` in environments without the env var
+// (CI, preview deploys, local dev without secrets). Defer until first request.
+let stripeClient: Stripe | null = null
+function getStripe(): Stripe {
+  if (stripeClient) return stripeClient
+  const key = process.env.STRIPE_SECRET_KEY
+  if (!key) {
+    throw new Error('STRIPE_SECRET_KEY is not configured. Cannot process webhook.')
+  }
+  stripeClient = new Stripe(key)
+  return stripeClient
+}
 
-const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 
@@ -50,10 +61,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Missing stripe-signature header' }, { status: 400 })
   }
 
-  let event: Stripe.Event
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET
+  if (!webhookSecret) {
+    console.error('[Stripe] STRIPE_WEBHOOK_SECRET not configured')
+    return NextResponse.json({ error: 'Server misconfigured' }, { status: 500 })
+  }
 
+  let event: Stripe.Event
   try {
-    event = stripe.webhooks.constructEvent(body, signature, WEBHOOK_SECRET)
+    event = getStripe().webhooks.constructEvent(body, signature, webhookSecret)
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'
     console.error('[Stripe] Webhook signature verification failed:', message)

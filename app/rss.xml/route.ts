@@ -1,8 +1,10 @@
 import { getAllBlogPosts } from '@/lib/blog'
+import { siteConfig } from '@/lib/seo'
 
-const SITE_URL = 'https://frankx.ai'
+const SITE_URL = siteConfig.url
 
 function escapeXml(str: string): string {
+  if (!str) return ''
   return str
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -11,30 +13,41 @@ function escapeXml(str: string): string {
     .replace(/'/g, '&apos;')
 }
 
+const FEED_LIMIT = 50
+
 export async function GET() {
-  const posts = getAllBlogPosts().slice(0, 20)
+  const posts = getAllBlogPosts().slice(0, FEED_LIMIT)
 
   const items = posts
-    .map(
-      (post) => `    <item>
+    .map((post) => {
+      const dateStr = post.date ? new Date(post.date).toUTCString() : new Date().toUTCString()
+      const description = post.tldr || post.description || ''
+      return `    <item>
       <title>${escapeXml(post.title)}</title>
       <link>${SITE_URL}/blog/${post.slug}</link>
       <guid isPermaLink="true">${SITE_URL}/blog/${post.slug}</guid>
-      <description>${escapeXml(post.description)}</description>
-      <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-      <category>${escapeXml(post.category)}</category>
+      <description>${escapeXml(description)}</description>
+      <pubDate>${dateStr}</pubDate>
+      <category>${escapeXml(post.category || 'AI & Systems')}</category>
+      <author>noreply@frankx.ai (${escapeXml(post.author || 'Frank')})</author>
     </item>`
-    )
+    })
     .join('\n')
 
+  const buildDate = new Date().toUTCString()
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>FrankX — AI Architect &amp; Creator</title>
+    <title>${escapeXml(siteConfig.name)} — AI Architect &amp; Creator</title>
     <link>${SITE_URL}</link>
-    <description>AI architecture, music production, and creator tools. Technical tutorials and deep dives.</description>
+    <description>${escapeXml(siteConfig.description)}</description>
     <language>en-us</language>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <copyright>© ${new Date().getFullYear()} Frank X. Riemer</copyright>
+    <managingEditor>noreply@frankx.ai (Frank)</managingEditor>
+    <webMaster>noreply@frankx.ai (Frank)</webMaster>
+    <lastBuildDate>${buildDate}</lastBuildDate>
+    <pubDate>${buildDate}</pubDate>
+    <ttl>60</ttl>
     <atom:link href="${SITE_URL}/rss.xml" rel="self" type="application/rss+xml"/>
 ${items}
   </channel>
@@ -47,3 +60,5 @@ ${items}
     },
   })
 }
+
+export const revalidate = 3600
