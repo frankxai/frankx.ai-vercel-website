@@ -8,7 +8,12 @@ const __dirname = dirname(__filename)
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   typescript: {
-    // Skip type checking during build (run separately)
+    // TODO(audit-2026-05-07): Flip to false after clearing TS debt.
+    //   Discovered errors hidden by this flag (logged in PR #59 attempts):
+    //   - app/familie/interview-kit/page.tsx:433 (FIXED in this PR)
+    //   - app/frankx/page.tsx:493 — AuroraGradient.intensity union mismatch
+    //   - more cascade likely
+    //   Cleanup tracker: docs/ops/TS-DEBT-CLEANUP.md (private repo)
     ignoreBuildErrors: true,
   },
   images: {
