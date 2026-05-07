@@ -3,6 +3,7 @@ import { createMetadata } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { getAllBlogPosts } from '@/lib/blog'
+import { socialLinks } from '@/lib/social-links'
 
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
