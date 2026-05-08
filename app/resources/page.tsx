@@ -334,6 +334,8 @@ export default function ResourcesPage() {
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     href="https://arcanea.ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="rounded-full bg-gradient-to-r from-violet-600 to-pink-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-violet-500/25"
                   >
                     Enter Arcanea

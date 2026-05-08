@@ -105,7 +105,7 @@ export const osModules: OSModule[] = [
     id: 'coe-hub',
     name: 'AI CoE Hub',
     slug: 'coe-hub',
-    route: '/ai-architect/ai-coe-hub',
+    route: '/ai-coe',
     status: 'live',
     color: 'slate',
     iconName: 'Building2',

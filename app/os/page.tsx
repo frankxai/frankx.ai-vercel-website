@@ -458,7 +458,7 @@ export default function OSPage() {
           </p>
           <div className="mt-6 flex items-center justify-center gap-3 text-xs text-zinc-600">
             <Link
-              href="/ai-architect/ai-coe-hub"
+              href="/ai-coe"
               className="inline-flex items-center gap-1.5 hover:text-zinc-400 transition-colors"
             >
               AI CoE Hub

@@ -1,224 +1,491 @@
-import { ArrowRight, Brain, Building2, CheckCircle2, Cpu, Globe, Shield, Users, Zap } from 'lucide-react'
+import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
+import {
+  ArrowRight,
+  Bot,
+  BrainCircuit,
+  CheckCircle2,
+  ClipboardCheck,
+  Code2,
+  Compass,
+  GitBranch,
+  Layers3,
+  Network,
+  Route,
+  ShieldCheck,
+  Workflow,
+} from 'lucide-react'
 
-import { createMetadata } from '@/lib/seo'
+const SITE_URL = 'https://frankx.ai'
 
-const capabilities = [
+export const metadata: Metadata = {
+  title: 'Agentic AI Center',
+  description:
+    'A practical hub for understanding, designing, and shipping agentic AI systems: agents, workflows, orchestration, memory, tools, governance, and production patterns.',
+  alternates: {
+    canonical: `${SITE_URL}/agentic-ai-center`,
+  },
+  openGraph: {
+    title: 'Agentic AI Center | FrankX',
+    description:
+      'The FrankX hub for agentic AI: fundamentals, architecture, orchestration patterns, operating models, and implementation resources.',
+    url: `${SITE_URL}/agentic-ai-center`,
+    type: 'article',
+    images: [
+      {
+        url: `${SITE_URL}/images/blog/production-agentic-ai-systems-hero-v2.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Agentic AI systems architecture visual',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Agentic AI Center | FrankX',
+    description:
+      'A structured field guide to agentic AI systems, from first concepts to production architecture.',
+    images: [`${SITE_URL}/images/blog/production-agentic-ai-systems-hero-v2.png`],
+  },
+}
+
+const foundations = [
   {
-    icon: Brain,
-    title: 'AI Strategy & Architecture',
-    description: 'Comprehensive intelligence systems design from concept to deployment.',
-    features: [
-      'Strategic AI roadmapping and governance',
-      'System architecture and integration planning',
-      'Risk assessment and compliance frameworks',
-      'ROI modeling and success metrics'
-    ]
+    title: 'Agents',
+    description:
+      'Systems that can interpret a goal, plan the work, call tools, inspect results, and keep moving under constraints.',
+    icon: Bot,
   },
   {
-    icon: Building2,
-    title: 'Enterprise Implementation',
-    description: 'Large-scale AI transformations with proven methodologies.',
-    features: [
-      'Pilot to production scaling strategies',
-      'Change management and training programs',
-      'Technical integration and deployment',
-      'Ongoing optimization and support'
-    ]
+    title: 'Tools',
+    description:
+      'The controlled actions an agent can take: search, retrieval, code execution, browser work, database operations, and APIs.',
+    icon: Code2,
   },
   {
-    icon: Shield,
-    title: 'AI Governance & Ethics',
-    description: 'Responsible AI frameworks that protect your organization and stakeholders.',
-    features: [
-      'Ethics frameworks and bias detection',
-      'Data privacy and security protocols',
-      'Regulatory compliance strategies',
-      'Human oversight and control systems'
-    ]
+    title: 'Memory',
+    description:
+      'The working context, project history, user preferences, and long-lived knowledge that make an agent useful beyond one prompt.',
+    icon: BrainCircuit,
   },
   {
-    icon: Users,
-    title: 'Team Enablement',
-    description: 'Transform your workforce with AI literacy and capability building.',
-    features: [
-      'Leadership AI education programs',
-      'Technical team upskilling',
-      'Cross-functional collaboration frameworks',
-      'AI productivity workflows'
-    ]
-  }
+    title: 'Orchestration',
+    description:
+      'The routing layer that decides which agent acts, when work escalates, and how outputs are checked before they matter.',
+    icon: Network,
+  },
 ]
 
-const solutions = [
+const maturityLevels = [
   {
-    icon: Cpu,
-    title: 'Intelligent Automation',
-    description: 'Streamline operations with AI-powered process automation.',
-    benefits: ['Workflow simplification opportunities', 'Improved process consistency', 'Better operational visibility']
+    level: '01',
+    title: 'Assisted Work',
+    description: 'A human drives the workflow. AI drafts, summarizes, explains, and suggests next steps.',
   },
   {
-    icon: Globe,
-    title: 'Customer Intelligence',
-    description: 'Transform customer experiences with AI-driven insights and personalization.',
-    benefits: ['Personalized customer journeys', 'Predictive analytics and forecasting', 'Decision support for key workflows']
+    level: '02',
+    title: 'Tool-Using Agent',
+    description: 'The agent can read, write, search, run commands, and complete bounded tasks with review.',
   },
   {
-    icon: Zap,
-    title: 'Innovation Acceleration',
-    description: 'Accelerate R&D and product development with AI capabilities.',
-    benefits: ['Faster iteration loops', 'Enhanced creative processes', 'Data-informed experimentation']
-  }
+    level: '03',
+    title: 'Workflow Agent',
+    description: 'The system owns a repeatable business or creator workflow with logs, checkpoints, and handoffs.',
+  },
+  {
+    level: '04',
+    title: 'Agent Team',
+    description: 'Multiple roles collaborate: planner, researcher, builder, reviewer, operator, and evaluator.',
+  },
+  {
+    level: '05',
+    title: 'Operating System',
+    description: 'Agents sit inside a durable system with memory, governance, observability, deployment, and improvement loops.',
+  },
 ]
 
-const stats = [
-  { value: 'Strategy', label: 'Engagement Type' },
-  { value: 'Governance', label: 'Core Focus' },
-  { value: 'Implementation', label: 'Delivery Track' },
-  { value: 'Enablement', label: 'Team Outcome' }
+const buildPath = [
+  {
+    title: 'Start with the job',
+    description:
+      'Choose one workflow where the desired output, review criteria, and failure cost are clear.',
+    href: '/blog/production-agentic-ai-systems',
+    label: 'Decision framework',
+  },
+  {
+    title: 'Map the architecture',
+    description:
+      'Separate planning, retrieval, tools, memory, evaluation, permissions, and human review.',
+    href: '/ai-architecture',
+    label: 'Architecture hub',
+  },
+  {
+    title: 'Pick the operating model',
+    description:
+      'Decide who owns prompts, data, approvals, release quality, incident handling, and continuous improvement.',
+    href: '/ai-coe',
+    label: 'AI CoE model',
+  },
+  {
+    title: 'Ship a constrained version',
+    description:
+      'Build the smallest useful agent, add logs, test real edge cases, and expand only after the workflow proves itself.',
+    href: '/products/agentic-creator-os/docs',
+    label: 'ACOS docs',
+  },
 ]
 
-export const metadata = createMetadata({
-  title: 'Agentic AI Center of Excellence - FrankX.AI',
-  description: 'Transform your organization with enterprise AI strategy, implementation, and governance.',
-  keywords: ['enterprise ai consulting', 'ai strategy', 'ai implementation', 'ai governance', 'agentic ai'],
-  path: '/agentic-ai-center',
-})
+const resourceTracks = [
+  {
+    title: 'Understand Agentic AI',
+    description: 'Definitions, mental models, and the difference between chat, automation, and real agent behavior.',
+    href: '/blog/what-is-agentic-ai',
+    icon: Compass,
+  },
+  {
+    title: 'Roadmap the Field',
+    description: 'Where agentic systems are going across tools, protocols, orchestration, and enterprise adoption.',
+    href: '/blog/agentic-ai-roadmap-2026',
+    icon: Route,
+  },
+  {
+    title: 'Design Production Systems',
+    description: 'When to use agents, when not to, and how to reason about maturity before implementation.',
+    href: '/blog/production-agentic-ai-systems',
+    icon: Layers3,
+  },
+  {
+    title: 'Study Orchestration',
+    description: 'Patterns for routing work across multiple agents, tools, evaluators, and review steps.',
+    href: '/blog/multi-agent-orchestration-patterns-2026',
+    icon: GitBranch,
+  },
+  {
+    title: 'Build with ACOS',
+    description: 'The Agentic Creator OS as a practical reference system for agent teams, skills, and workflows.',
+    href: '/products/agentic-creator-os',
+    icon: Workflow,
+  },
+  {
+    title: 'Use Architecture Blueprints',
+    description: 'Move from idea to implementation with diagrams, templates, and production patterns.',
+    href: '/ai-architecture/blueprints',
+    icon: ClipboardCheck,
+  },
+]
 
-export default function AgenticAICenterPage() {
+const guardrails = [
+  'Give agents narrow tools before broad autonomy.',
+  'Log plans, tool calls, outputs, and review decisions.',
+  'Keep humans accountable for high-impact actions.',
+  'Use evaluation before scale, not after failure.',
+  'Treat memory as product infrastructure, not a chat feature.',
+  'Design rollback, permissions, and escalation from the start.',
+]
+
+const faqs = [
+  {
+    question: 'What is agentic AI?',
+    answer:
+      'Agentic AI refers to AI systems that can pursue a goal through multiple steps: planning, using tools, reading context, checking results, and adapting their next action.',
+  },
+  {
+    question: 'How is this different from AI architecture?',
+    answer:
+      'The Agentic AI Center explains the field and organizes the learning path. AI Architecture is the deeper implementation layer for blueprints, prototypes, tools, and production designs.',
+  },
+  {
+    question: 'When should a team use an agent instead of a normal workflow?',
+    answer:
+      'Use an agent when the work requires context, branching decisions, tool use, and repeated judgment. If the process is fixed and deterministic, traditional automation is usually simpler.',
+  },
+  {
+    question: 'What is the safest way to start?',
+    answer:
+      'Start with a bounded workflow, limited permissions, visible logs, human review, and a clear definition of done. Expand autonomy only after the system is observable and reliable.',
+  },
+]
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: 'Agentic AI Center',
+    description: metadata.description,
+    url: `${SITE_URL}/agentic-ai-center`,
+    image: `${SITE_URL}/images/blog/production-agentic-ai-systems-hero-v2.png`,
+    author: {
+      '@type': 'Person',
+      name: 'Frank',
+      jobTitle: 'AI Architect',
+      url: SITE_URL,
+    },
+    about: ['Agentic AI', 'AI agents', 'Multi-agent systems', 'AI architecture', 'AI governance'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Agentic AI Center',
+        item: `${SITE_URL}/agentic-ai-center`,
+      },
+    ],
+  },
+]
+
+export default function AgenticAiCenterPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-<main className="px-6 pt-28 pb-20">
-        <div className="mx-auto max-w-7xl space-y-20">
-          {/* Hero Section */}
-          <header className="text-center space-y-8">
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cyan-300">
-              <Brain className="h-5 w-5" />
-              Agentic AI Center of Excellence
-            </div>
-            <h1 className="text-5xl font-bold text-white md:text-6xl xl:text-7xl max-w-4xl mx-auto leading-tight">
-              <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                Enterprise AI
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                That Actually Works
-              </span>
-            </h1>
-            <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Strategic AI implementation for enterprise and growth-stage teams.
-              From governance frameworks to production systems, we architect intelligence that scales with your business.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-              <Link
-                href="mailto:hello@frankx.ai?subject=Agentic%20AI%20Consultation"
-                className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
-              >
-                Schedule Consultation
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                href="/founder-playbook"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
-              >
-                View Founder's Playbook
-              </Link>
-            </div>
-          </header>
+    <main id="main" className="min-h-screen bg-[#06080f] text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
 
-          {/* Stats Section */}
-          <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, index) => (
-              <div key={stat.label} className="text-center p-6 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
-                <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  {stat.value}
+      <section className="relative overflow-hidden border-b border-white/10">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/blog/production-agentic-ai-systems-hero-v2.png"
+            alt="Abstract visualization of an agentic AI system with connected workflow layers"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-[#06080f]/80" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(67,191,227,0.22),transparent_34%),radial-gradient(circle_at_78%_16%,rgba(16,185,129,0.16),transparent_32%)]" />
+        </div>
+
+        <div className="relative mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-10 px-6 py-28 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
+              Agentic AI Center
+            </p>
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+              Understand agents. Design systems. Ship real workflows.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">
+              This is the FrankX hub for agentic AI: how agents work, where they fail,
+              how to design them, and how to move from experiments to production-grade
+              operating systems.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href="/blog/what-is-agentic-ai"
+                className="inline-flex items-center gap-2 rounded-lg bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+              >
+                Start with the field guide
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/ai-architecture"
+                className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              >
+                Go to architecture
+              </Link>
+            </div>
+          </div>
+
+          <div className="border border-white/10 bg-slate-950/70 p-5 shadow-2xl shadow-black/30 backdrop-blur rounded-lg">
+            <div className="grid gap-3">
+              {foundations.map((item) => {
+                const Icon = item.icon
+                return (
+                  <div key={item.title} className="flex gap-4 border border-white/10 bg-white/[0.03] p-4 rounded-lg">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-cyan-300/10 text-cyan-200">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-semibold text-white">{item.title}</h3>
+                      <p className="mt-1 text-sm leading-6 text-slate-400">{item.description}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300/80">
+              Maturity Model
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Agentic AI is not one capability. It is a progression.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-400">
+              Most failures come from skipping levels: giving broad autonomy before the workflow,
+              tools, memory, and review model are ready.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-4 lg:grid-cols-5">
+            {maturityLevels.map((item) => (
+              <article key={item.level} className="border border-white/10 bg-white/[0.03] p-5 rounded-lg">
+                <div className="text-xs font-semibold uppercase tracking-[0.24em] text-cyan-300/70">
+                  {item.level}
                 </div>
-                <div className="mt-2 text-sm font-medium text-white/80">{stat.label}</div>
+                <h3 className="mt-4 text-lg font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 py-20">
+        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300/80">
+              Build Path
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Use agents where judgment, context, and action meet.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-400">
+              The center is organized around a practical path: choose a workflow, design
+              the system, set the operating model, then ship a constrained version.
+            </p>
+          </div>
+
+          <div className="grid gap-4">
+            {buildPath.map((step, index) => (
+              <article key={step.title} className="grid gap-4 border border-white/10 bg-slate-950/70 p-5 rounded-lg sm:grid-cols-[72px_1fr_auto] sm:items-center">
+                <div className="text-3xl font-semibold text-white/20">{String(index + 1).padStart(2, '0')}</div>
+                <div>
+                  <h3 className="text-lg font-semibold text-white">{step.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-400">{step.description}</p>
+                </div>
+                <Link
+                  href={step.href}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200"
+                >
+                  {step.label}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300/80">
+                Resource Map
+              </p>
+              <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+                The FrankX agentic AI learning path
+              </h2>
+            </div>
+            <Link
+              href="/resources"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 transition hover:text-cyan-200"
+            >
+              Browse all resources
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {resourceTracks.map((track) => {
+              const Icon = track.icon
+              return (
+                <Link
+                  key={track.title}
+                  href={track.href}
+                  className="group border border-white/10 bg-white/[0.03] p-5 transition hover:border-cyan-300/40 hover:bg-white/[0.055] rounded-lg"
+                >
+                  <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-cyan-200">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold text-white">{track.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-400">{track.description}</p>
+                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300">
+                    Open
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-white/10 py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-300/80">
+              Guardrails
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Autonomy needs constraints.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-400">
+              Agentic systems are only useful when the actions, permissions, memory, and
+              review moments are explicit. The goal is not more autonomy. The goal is
+              accountable execution.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {guardrails.map((item) => (
+              <div key={item} className="flex gap-3 border border-white/10 bg-slate-950/70 p-4 rounded-lg">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-300" />
+                <p className="text-sm leading-6 text-slate-300">{item}</p>
               </div>
             ))}
-          </section>
-
-          {/* Core Capabilities */}
-          <section className="space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold text-white">Core Capabilities</h2>
-              <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                End-to-end AI transformation services designed for enterprise scale and complexity.
-              </p>
-            </div>
-            <div className="grid gap-8 md:grid-cols-2">
-              {capabilities.map((capability) => (
-                <article key={capability.title} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 flex items-center justify-center">
-                      <capability.icon className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-white">{capability.title}</h3>
-                  </div>
-                  <p className="text-white/70 mb-6 leading-relaxed">{capability.description}</p>
-                  <ul className="space-y-3">
-                    {capability.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-white/80">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* Solutions */}
-          <section className="space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold text-white">AI Solutions</h2>
-              <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                Proven AI applications that drive measurable business outcomes.
-              </p>
-            </div>
-            <div className="grid gap-8 lg:grid-cols-3">
-              {solutions.map((solution) => (
-                <article key={solution.title} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center mx-auto mb-6">
-                    <solution.icon className="w-8 h-8 text-cyan-400" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-4">{solution.title}</h3>
-                  <p className="text-white/70 mb-6 leading-relaxed">{solution.description}</p>
-                  <ul className="space-y-2">
-                    {solution.benefits.map((benefit) => (
-                      <li key={benefit} className="text-sm text-white/60">• {benefit}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">
-            <h2 className="text-4xl font-bold text-white">Ready to Transform Your Enterprise?</h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Start a scoped strategy conversation for your AI transformation journey.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="mailto:hello@frankx.ai?subject=Enterprise%20AI%20Strategy%20Session"
-                className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
-              >
-                Book Strategy Session
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                href="/resources"
-                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30"
-              >
-                View Resources
-              </Link>
-            </div>
-          </section>
+          </div>
         </div>
-      </main>
-</div>
+      </section>
+
+      <section className="py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-emerald-300/80">
+              FAQ
+            </p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Agentic AI, without the hype.
+            </h2>
+          </div>
+
+          <div className="grid gap-4">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="border border-white/10 bg-white/[0.03] p-5 rounded-lg">
+                <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-400">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
   )
 }

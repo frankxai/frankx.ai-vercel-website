@@ -641,6 +641,8 @@ function CreativeWorlds() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="https://arcanea.ai"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-200 px-5 py-2.5 text-sm font-medium transition-colors"
               >
                 Enter Arcanea

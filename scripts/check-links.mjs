@@ -14,18 +14,22 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const issues = [];
 const testedUrls = new Map();
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 const pagesToTest = [
   { path: '/', name: 'Homepage' },
   { path: '/products', name: 'Products' },
   { path: '/resources', name: 'Resources' },
   { path: '/blog', name: 'Blog' },
   { path: '/assessment', name: 'Assessment' },
-  { path: '/enterprise', name: 'Enterprise' },
+  { path: '/work-with-me', name: 'Work With Me' },
   { path: '/coaching', name: 'Coaching' },
   { path: '/courses', name: 'Courses' },
   { path: '/agentic-ai-center', name: 'Agentic AI Center' },
+  { path: '/ai-architecture', name: 'AI Architecture' },
+  { path: '/ai-coe', name: 'AI CoE' },
   { path: '/founder-playbook', name: 'Founder Playbook' },
-  { path: '/realm', name: 'Realm' },
+  { path: '/inner-circle', name: 'Inner Circle' },
 ];
 
 // Simple HTML parser to extract links
@@ -59,31 +63,37 @@ function extractLinks(html) {
 }
 
 async function fetchPage(url) {
-  try {
-    const response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        'User-Agent': 'FrankX-Link-Checker/1.0'
-      },
-      redirect: 'manual' // Don't follow redirects automatically
-    });
+  let lastError;
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'User-Agent': 'FrankX-Link-Checker/1.0'
+        },
+        redirect: 'manual' // Don't follow redirects automatically
+      });
 
-    const text = response.ok ? await response.text() : null;
+      const text = response.ok ? await response.text() : null;
 
-    return {
-      status: response.status,
-      ok: response.ok,
-      text,
-      redirected: response.status >= 300 && response.status < 400
-    };
-  } catch (error) {
-    return {
-      status: 0,
-      ok: false,
-      error: error.message,
-      redirected: false
-    };
+      return {
+        status: response.status,
+        ok: response.ok,
+        text,
+        redirected: response.status >= 300 && response.status < 400
+      };
+    } catch (error) {
+      lastError = error;
+      await sleep(350 * (attempt + 1));
+    }
   }
+
+  return {
+    status: 0,
+    ok: false,
+    error: lastError?.message ?? 'fetch failed',
+    redirected: false
+  };
 }
 
 async function checkInternalLink(href) {

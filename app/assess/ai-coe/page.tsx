@@ -189,7 +189,7 @@ export default function AICoEAssessment() {
 
           {/* Actions */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1 }} className="flex flex-col sm:flex-row gap-3">
-            <PremiumButton variant="luxury" size="lg" href="/research/personal-ai-coe" className="flex-1">
+            <PremiumButton variant="luxury" size="lg" href="/ai-coe" className="flex-1">
               <Sparkles className="h-4 w-4" />
               Build Your AI CoE
               <ArrowRight className="h-4 w-4" />

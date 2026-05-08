@@ -55,7 +55,7 @@ const ROUTE_CATALOG = [
   '/ai-ops/accelerator-packs',
   '/ai-ops/agi-ready',
   '/ai-architect',
-  '/ai-architect/ai-coe-hub',
+  '/ai-coe',
   '/ai-architect/multi-cloud-comparison',
   '/ai-architecture',
   '/ai-architectures',

@@ -181,7 +181,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     tier: 'tier-1-frankx-surface',
     layer: 'L4-public-face',
     repo: 'frankx',
-    publicUrl: 'https://frankx.ai/ai-architect/ai-coe-hub',
+    publicUrl: 'https://frankx.ai/ai-coe',
     repoUrl: null,
     status: 'live',
     shipped: 'pre-existing',

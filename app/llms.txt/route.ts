@@ -42,8 +42,8 @@ The site combines enterprise-grade AI architecture (multi-agent orchestration, M
 - [Homepage](${SITE_URL}/): Hub with recent work and primary funnels
 - [About Frank](${SITE_URL}/about): Story, identity, current work
 - [Start Here](${SITE_URL}/start): Guided entry point for new visitors
-- [Build with Me](${SITE_URL}/build): 5-tier product ladder (€0 Primer to €2,997 Founder's Circle)
-- [Founder's Circle](${SITE_URL}/founders-circle): Application-only quarterly cohort
+- [Build with Me](${SITE_URL}/products): 5-tier product ladder (€0 Primer to €2,997 Founder's Circle)
+- [Founder's Circle](${SITE_URL}/inner-circle): Application-only quarterly cohort
 
 ## Operating Systems (the FrankX OS spine)
 ${osLinks}

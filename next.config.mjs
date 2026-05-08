@@ -105,6 +105,32 @@ const nextConfig = {
         destination: '/tools/visual-intelligence',
         permanent: true,
       },
+      {
+        source: '/research/personal-ai-coe',
+        destination: '/ai-coe',
+        permanent: true,
+      },
+      // Legacy hub aliases
+      {
+        source: '/enterprise',
+        destination: '/work-with-me',
+        permanent: true,
+      },
+      {
+        source: '/build',
+        destination: '/products',
+        permanent: true,
+      },
+      {
+        source: '/founders-circle',
+        destination: '/inner-circle',
+        permanent: true,
+      },
+      {
+        source: '/workshops/personal-ai-coe',
+        destination: '/ai-coe',
+        permanent: true,
+      },
       // Blog post legacy redirects
       {
         source: '/blog/big-props-to-the-builders-of-this-era',
@@ -236,6 +262,16 @@ const nextConfig = {
       {
         source: '/ai-architect',
         destination: '/ai-architecture',
+        permanent: true,
+      },
+      {
+        source: '/ai-architect/ai-coe-hub',
+        destination: '/ai-coe',
+        permanent: true,
+      },
+      {
+        source: '/ai-architecture/ai-coe-hub',
+        destination: '/ai-coe',
         permanent: true,
       },
       {
