@@ -3,12 +3,12 @@
 # Always use LF for executable scripts
 *.sh text eol=lf
 
-# Keep common source/config files normalized
-*.ts text
-*.tsx text
-*.js text
-*.mjs text
-*.json text
-*.md text
-*.mdx text
-*.css text
+# Keep common source/config files normalized with LF
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.mdx text eol=lf
+*.css text eol=lf
