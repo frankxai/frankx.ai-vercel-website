@@ -27,7 +27,7 @@
   "alerts": [
     "count_error=4 (threshold: >=2 → RED): all 4 errors on preview branches only — PR#59 feat/build-hardening-2026-05-07 (3 errors: ignoreBuildErrors flip cascaded into pre-existing TS debt) and PR#58 feat/conversion-a11y-2026-05-07 (1 error: missing socialLinks import). Production builds unaffected — all 10 production deploys reached READY state.",
     "Baseline run — no prior week snapshot (2026-W19) found; all deltas set to 'baseline'. Next run (2026-W21) will have delta comparison.",
-    "duration_p50_seconds=329s is within YELLOW range (271–360s). Within expected May 2026 post-audit baseline (3.5–5 min). Monitor for regression above 360s.",
-    "duration_max_seconds=393s (6m33s): outlier is dpl_FQW7iqiG23fRt1dUqQ1698fwbWPu (PR#3 seo/workshops squash-merge, production) — 28% above median. Investigate if it persists."
+    "duration_p50_seconds=329s (~5.5 min) is within YELLOW range (271–360s). Note: 329s exceeds the 5 min (300s) post-audit target — monitor for regression above 360s.",
+    "duration_max_seconds=393s (6m33s): outlier is dpl_FQW7iqiG23fRt1dUqQ1698fwbWPu (PR#3 seo/workshops squash-merge, production) — ~19% above median (329s). Investigate if it persists."
   ]
 }
