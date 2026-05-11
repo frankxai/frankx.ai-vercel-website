@@ -1,0 +1,33 @@
+{
+  "week": "2026-W20",
+  "generatedAt": "2026-05-11T07:10:59Z",
+  "projectId": "prj_NHVIKZtglNidOE1FJiq6eYx5QjIL",
+  "windowDays": 7,
+  "windowStart": "2026-05-04T07:10:59Z",
+  "windowEnd": "2026-05-11T07:10:59Z",
+  "metrics": {
+    "count_total": 20,
+    "count_production": 10,
+    "count_preview": 10,
+    "count_skipped": 0,
+    "count_error": 4,
+    "duration_p50_seconds": 329,
+    "duration_p95_seconds": 354,
+    "duration_max_seconds": 393,
+    "total_build_minutes": 88.68,
+    "duration_method": "readyAt_minus_buildingAt",
+    "ready_deploys_sampled": 16
+  },
+  "deltas_vs_prior_week": {
+    "duration_p50_seconds": "baseline",
+    "count_total": "baseline",
+    "total_build_minutes": "baseline"
+  },
+  "verdict": "RED",
+  "alerts": [
+    "count_error=4 (threshold: >=2 → RED): all 4 errors on preview branches only — PR#59 feat/build-hardening-2026-05-07 (3 errors: ignoreBuildErrors flip cascaded into pre-existing TS debt) and PR#58 feat/conversion-a11y-2026-05-07 (1 error: missing socialLinks import). Production builds unaffected — all 10 production deploys reached READY state.",
+    "Baseline run — no prior week snapshot (2026-W19) found; all deltas set to 'baseline'. Next run (2026-W21) will have delta comparison.",
+    "duration_p50_seconds=329s is within YELLOW range (271–360s). Within expected May 2026 post-audit baseline (3.5–5 min). Monitor for regression above 360s.",
+    "duration_max_seconds=393s (6m33s): outlier is dpl_FQW7iqiG23fRt1dUqQ1698fwbWPu (PR#3 seo/workshops squash-merge, production) — 28% above median. Investigate if it persists."
+  ]
+}
