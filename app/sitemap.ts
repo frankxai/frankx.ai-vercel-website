@@ -302,6 +302,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/studio/screen', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/studio/food', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/studio/travel', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/calendar', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/operating', priority: 0.8, changeFrequency: 'monthly' as const },
     // Plan
     { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
     // Inspiration
