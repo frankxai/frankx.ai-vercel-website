@@ -151,6 +151,26 @@ export default async function PartnershipPage({
         <>
           <ProposalDivider />
 
+          {partner.visualSummaryUrl ? (
+            <section
+              aria-labelledby="visual-summary-heading"
+              className="max-w-6xl mx-auto px-6 lg:px-8 pb-8"
+            >
+              <h2 id="visual-summary-heading" className="sr-only">
+                Partnership shape at a glance
+              </h2>
+              <figure className="rounded-3xl overflow-hidden border border-white/[0.08] bg-white/[0.01]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={partner.visualSummaryUrl}
+                  alt={partner.visualSummaryAlt ?? `${partner.name} partnership at a glance`}
+                  className="w-full h-auto block"
+                  loading="eager"
+                />
+              </figure>
+            </section>
+          ) : null}
+
           {partner.proposalIntro ? (
             <section className="max-w-3xl mx-auto px-6 lg:px-8 pb-12">
               <p className="text-base text-zinc-300 leading-relaxed">

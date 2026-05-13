@@ -99,6 +99,13 @@ export type Partner = {
   partnerLogoUrl?: string
   accent?: PartnerAccent
   ogImagePath?: string
+  /**
+   * Optional infographic that summarises the partnership shape — embedded
+   * between the proposal divider and the asymmetric-value grid. Should be
+   * 1200x630 or similar, 16:9-ish aspect, SVG preferred for crispness.
+   */
+  visualSummaryUrl?: string
+  visualSummaryAlt?: string
 
   // SEO
   seo: { title: string; description: string }

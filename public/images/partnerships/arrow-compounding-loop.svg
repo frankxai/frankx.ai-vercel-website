@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="arrow-compound-title arrow-compound-desc" preserveAspectRatio="xMidYMid meet">
+  <title id="arrow-compound-title">FrankX × Arrow ECS — coding-agent AI CoE compounding loop</title>
+  <desc id="arrow-compound-desc">Diagram showing how Frank's coding-agent methodology and Arrow's EMEA channel reach compound over months 0, 3, 6, and 12 into a coding-agent-native AI CoE practice.</desc>
+
+  <defs>
+    <radialGradient id="ambient" cx="50%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.18"/>
+      <stop offset="55%" stop-color="#10b981" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="connector" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.0"/>
+      <stop offset="18%" stop-color="#10b981" stop-opacity="0.55"/>
+      <stop offset="82%" stop-color="#06b6d4" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.0"/>
+    </linearGradient>
+    <linearGradient id="cardEdge" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.02"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+
+  <!-- Foundation -->
+  <rect width="1200" height="630" fill="#0a0a0b"/>
+  <rect width="1200" height="630" fill="url(#ambient)"/>
+
+  <!-- Subtle grid floor — peer-architect, restrained -->
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="1">
+    <line x1="0" y1="520" x2="1200" y2="520"/>
+    <line x1="0" y1="560" x2="1200" y2="560"/>
+  </g>
+
+  <!-- Eyebrow + brand pairing -->
+  <text x="80" y="78" fill="#10b981" fill-opacity="0.6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" letter-spacing="3.25" font-weight="500">PARTNERSHIP &nbsp;·&nbsp; A R R O W &nbsp; E C S</text>
+
+  <!-- Brand pairing: FrankX × Arrow -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600">
+    <text x="80" y="118" fill="#FFFFFF" font-size="22">FrankX</text>
+    <text x="172" y="118" fill="#FFFFFF" fill-opacity="0.3" font-size="22">×</text>
+    <text x="200" y="118" fill="#FFFFFF" fill-opacity="0.92" font-size="22">Arrow Electronics ECS</text>
+  </g>
+
+  <!-- Hero title -->
+  <text x="80" y="184" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="700" letter-spacing="-0.5">A coding-agent-native AI CoE practice</text>
+  <text x="80" y="232" fill="#FFFFFF" fill-opacity="0.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="700" letter-spacing="-0.5">for EMEA distribution.</text>
+
+  <!-- Compounding-loop ribbon -->
+  <g transform="translate(0, 340)">
+    <!-- horizontal connector -->
+    <line x1="140" y1="60" x2="1060" y2="60" stroke="url(#connector)" stroke-width="2"/>
+
+    <!-- Four nodes: M0 / M3 / M6 / M12 -->
+    <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+
+      <!-- M0 -->
+      <g transform="translate(200, 60)">
+        <circle r="32" fill="#0a0a0b" stroke="#10b981" stroke-width="2.5"/>
+        <circle r="14" fill="#10b981" filter="url(#softGlow)"/>
+        <circle r="6" fill="#10b981"/>
+        <text y="-58" text-anchor="middle" fill="#10b981" fill-opacity="0.7" font-size="11" letter-spacing="3" font-weight="500">MONTH&nbsp; 0</text>
+        <text y="62" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="600">Foundations</text>
+        <text y="86" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">CoE architecture</text>
+        <text y="104" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">3 SAs coached</text>
+      </g>
+
+      <!-- M3 -->
+      <g transform="translate(467, 60)">
+        <circle r="32" fill="#0a0a0b" stroke="#10b981" stroke-width="2.5"/>
+        <circle r="14" fill="#10b981" filter="url(#softGlow)"/>
+        <circle r="6" fill="#10b981"/>
+        <text y="-58" text-anchor="middle" fill="#10b981" fill-opacity="0.7" font-size="11" letter-spacing="3" font-weight="500">MONTH&nbsp; 3</text>
+        <text y="62" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="600">First publications</text>
+        <text y="86" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">2 reference architectures</text>
+        <text y="104" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">ArrowSphere CTAs live</text>
+      </g>
+
+      <!-- M6 -->
+      <g transform="translate(733, 60)">
+        <circle r="32" fill="#0a0a0b" stroke="#06b6d4" stroke-width="2.5"/>
+        <circle r="14" fill="#06b6d4" filter="url(#softGlow)"/>
+        <circle r="6" fill="#06b6d4"/>
+        <text y="-58" text-anchor="middle" fill="#06b6d4" fill-opacity="0.7" font-size="11" letter-spacing="3" font-weight="500">MONTH&nbsp; 6</text>
+        <text y="62" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="600">Cohort certified</text>
+        <text y="86" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">3 workshops shipped</text>
+        <text y="104" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">First OCI consumption</text>
+      </g>
+
+      <!-- M12 -->
+      <g transform="translate(1000, 60)">
+        <circle r="36" fill="#0a0a0b" stroke="#06b6d4" stroke-width="3"/>
+        <circle r="18" fill="#06b6d4" filter="url(#softGlow)"/>
+        <circle r="8" fill="#06b6d4"/>
+        <text y="-62" text-anchor="middle" fill="#06b6d4" fill-opacity="0.8" font-size="11" letter-spacing="3" font-weight="500">MONTH&nbsp; 12</text>
+        <text y="64" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="600">Practice mature</text>
+        <text y="88" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">EMEA CoE practice</text>
+        <text y="106" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.55" font-size="12">Renewal — expanded scope</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Footer URL -->
+  <text x="80" y="584" fill="#FFFFFF" fill-opacity="0.4" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace" font-size="13" letter-spacing="0.5">frankx.ai/partnerships/arrow</text>
+
+  <!-- Right-side scope chip -->
+  <g transform="translate(1120, 568)">
+    <rect x="-100" y="0" width="100" height="24" rx="12" fill="#10b981" fill-opacity="0.10" stroke="#10b981" stroke-opacity="0.25"/>
+    <text x="-50" y="16" text-anchor="middle" fill="#10b981" fill-opacity="0.9" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.4">EMEA · 12 MONTHS</text>
+  </g>
+</svg>
