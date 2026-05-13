@@ -1,0 +1,163 @@
+import type { ProducerMeta } from './types'
+
+// 8 L4 producer specialists. Each reads the same substrate
+// (personas, capture-types, inbox config) and produces per-platform output.
+// Adding a producer is ~1 day of work — the pattern is the VIS shipping pattern.
+
+export const producers: ProducerMeta[] = [
+  {
+    id: 'vis-producer',
+    label: 'Visual Intelligence',
+    status: 'shipped',
+    shipped: '2026-05-13',
+    description:
+      'Image batch → per-platform strategy + variants + gap-fill briefs. Composes NB2 (premium hero), Higgsfield × 4 (cinematic + product + soul-id + marketplace-cards). The first producer; proved the shipping pattern.',
+    acceptedCaptureTypes: ['photo-hero', 'photo-utility'],
+    producedAssetTypes: [
+      'hero-still',
+      'cover',
+      'carousel-frame',
+      'thumbnail',
+      'quote-card',
+      'lifestyle-scene',
+    ],
+    targetPlatforms: [
+      'linkedin',
+      'instagram',
+      'x',
+      'youtube-long',
+      'youtube-shorts',
+      'tiktok',
+      'spotify',
+      'newsletter',
+      'blog',
+    ],
+    skill: 'visual-intelligence',
+    command: '/visual-strategy',
+    agent: 'visual-intelligence-orchestrator',
+    studioRoute: '/studio/visual',
+    publicStatusBlurb: 'Live. Drop images, get a per-platform strategy.',
+  },
+  {
+    id: 'video-producer',
+    label: 'Video',
+    status: 'partial',
+    shipped: 'partial-existing',
+    description:
+      'Talking-head + B-roll → YouTube long-form + Shorts + TikTok + Reels. Uses the existing /talking-head-ship pipeline (Remotion + brand caption style). HyperFrames for caption-heavy variants. Higgsfield Soul ID for cutaways.',
+    acceptedCaptureTypes: ['talking-head-video', 'b-roll-video'],
+    producedAssetTypes: ['long-form-video', 'short-video', 'cinematic-clip', 'thumbnail'],
+    targetPlatforms: ['youtube-long', 'youtube-shorts', 'tiktok', 'instagram'],
+    skill: 'frankx-talking-head',
+    command: '/talking-head-ship',
+    studioRoute: '/studio/video',
+    publicStatusBlurb: 'Live (existing /talking-head-ship). Substrate integration W20.',
+  },
+  {
+    id: 'audio-producer',
+    label: 'Audio',
+    status: 'planned-w20',
+    shipped: 'W20',
+    description:
+      'Voice memo → blog draft + podcast snippet + newsletter excerpt. Whisper transcription, brand-voice gate, prose-producer hand-off for long-form blog. Highest-leverage new producer — voice memos are Frank\'s most frequent capture.',
+    acceptedCaptureTypes: ['voice-memo'],
+    producedAssetTypes: ['blog-draft', 'podcast-snippet', 'newsletter-section', 'thread-post'],
+    targetPlatforms: ['blog', 'podcast', 'newsletter', 'bluesky', 'x', 'threads', 'linkedin'],
+    skill: '—', // ships W20
+    command: '/audio-produce',
+    studioRoute: '/studio/audio',
+    publicStatusBlurb: 'W20. Voice memo → blog + podcast + newsletter excerpt.',
+  },
+  {
+    id: 'music-producer',
+    label: 'Music',
+    status: 'partial',
+    shipped: 'partial-existing',
+    description:
+      'Music track → cover (NB2) + visualizer (Higgsfield Cinema Studio) + IG promo + Spotify-companion post. Uses the existing music-catalog-indexer + music-video-batch + suno-prompt-architect skills. Substrate integration W20.',
+    acceptedCaptureTypes: ['music-track', 'music-seed'],
+    producedAssetTypes: ['cover', 'cinematic-clip', 'carousel-post', 'short-video'],
+    targetPlatforms: ['spotify', 'instagram', 'youtube-shorts', 'tiktok'],
+    skill: 'music-create-wizard',
+    command: '/create-music',
+    studioRoute: '/studio/music',
+    publicStatusBlurb: '60% live (existing music-video-batch + Suno pipeline). Substrate integration W20.',
+  },
+  {
+    id: 'prose-producer',
+    label: 'Prose',
+    status: 'planned-w21',
+    shipped: 'W21',
+    description:
+      'Text seed (document, voice-memo transcript, idea note) → blog post + LinkedIn thread + X thread + newsletter section. Brand-voice gate applies. Pairs tightly with audio-producer.',
+    acceptedCaptureTypes: ['document', 'quote'],
+    producedAssetTypes: ['blog-draft', 'newsletter-section', 'thread-post'],
+    targetPlatforms: ['blog', 'linkedin', 'x', 'threads', 'newsletter'],
+    skill: '—',
+    command: '/prose-produce',
+    studioRoute: '/studio/prose',
+    publicStatusBlurb: 'W21. Text seed → cross-platform.',
+  },
+  {
+    id: 'screen-producer',
+    label: 'Screen + Diagrams',
+    status: 'planned-w21',
+    shipped: 'W21',
+    description:
+      'Screen-record + architecture-snap → tutorial blog + Short + GitHub README section + Mermaid diagram. SE-specific. The keystone for solution-engineer content; until it ships, SE work routes through vis-producer + prose-producer manually.',
+    acceptedCaptureTypes: ['screen-record', 'architecture-snap'],
+    producedAssetTypes: [
+      'short-video',
+      'blog-draft',
+      'github-readme-section',
+      'mermaid-diagram',
+    ],
+    targetPlatforms: ['github', 'blog', 'youtube-shorts', 'youtube-long', 'linkedin'],
+    skill: '—',
+    command: '/screen-produce',
+    studioRoute: '/studio/screen',
+    publicStatusBlurb: 'W21. Screen-record → tutorial + README + Short. SE-specific.',
+  },
+  {
+    id: 'food-producer',
+    label: 'Food',
+    status: 'planned-w20',
+    shipped: 'W20',
+    description:
+      'Photo-food (+ optional voice-memo opinion) → IG post + Threads + running travel-blog entry. Small, fast specialist. Restaurant capture → ship in <10 min.',
+    acceptedCaptureTypes: ['photo-food'],
+    producedAssetTypes: ['carousel-post', 'thread-post'],
+    targetPlatforms: ['instagram', 'threads', 'blog', 'stories'],
+    skill: '—',
+    command: '/food-produce',
+    studioRoute: '/studio/food',
+    publicStatusBlurb: 'W20. Restaurant photo + optional voice note → IG + Threads + travel-blog.',
+  },
+  {
+    id: 'travel-producer',
+    label: 'Travel',
+    status: 'planned-w20',
+    shipped: 'W20',
+    description:
+      'Photo-travel (with EXIF GPS) → IG carousel + blog post + Stories. Location-rich, story-driven. Pairs with audio-producer for narrated travel logs.',
+    acceptedCaptureTypes: ['photo-travel'],
+    producedAssetTypes: ['carousel-post', 'blog-draft'],
+    targetPlatforms: ['instagram', 'blog', 'stories', 'threads'],
+    skill: '—',
+    command: '/travel-produce',
+    studioRoute: '/studio/travel',
+    publicStatusBlurb: 'W20. Travel photo with GPS → IG carousel + blog + Stories.',
+  },
+]
+
+export function getProducer(id: ProducerMeta['id']): ProducerMeta | undefined {
+  return producers.find((p) => p.id === id)
+}
+
+export function producersByStatus(status: ProducerMeta['status']): ProducerMeta[] {
+  return producers.filter((p) => p.status === status)
+}
+
+export function producersAcceptingCaptureType(captureType: string): ProducerMeta[] {
+  return producers.filter((p) => p.acceptedCaptureTypes.includes(captureType as never))
+}

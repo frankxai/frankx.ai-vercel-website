@@ -292,8 +292,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/starlight-intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
     // Investment Intelligence System (IIS) — public hub
     { url: '/intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
-    // Visual Intelligence System (VIS) — drop-images-get-strategy
+    // Studio — content operations system (index + 8 producer specialists)
+    { url: '/studio', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/studio/visual', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/studio/audio', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/video', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/music', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/prose', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/screen', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/food', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/studio/travel', priority: 0.7, changeFrequency: 'weekly' as const },
     // Plan
     { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
     // Inspiration
