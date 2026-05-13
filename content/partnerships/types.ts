@@ -1,0 +1,105 @@
+/**
+ * Partnerships content schema.
+ *
+ * Two-tier model per partner:
+ * - Tier 1: working reality (verifiable today, top of page)
+ * - Tier 2: proposal (clearly labeled, bottom of page)
+ *
+ * See docs/superpowers/specs/2026-05-07-partnerships-arrow-design.md
+ * for content rules, tone-correction patches, and the public/private split.
+ */
+
+export type PartnerStatus = 'active' | 'in-conversation' | 'placeholder'
+
+export type PartnerTier =
+  | 'distribution'
+  | 'cloud'
+  | 'model-provider'
+  | 'tooling'
+  | 'silicon'
+
+export type PartnerAccent = 'tech' | 'soul' | 'bridge'
+
+export type WorkingRealityBlock = {
+  label: string
+  detail: string
+  evidence?: { label: string; href: string }
+}
+
+export type ValueBlock = {
+  title: string
+  body: string
+  metric?: string
+}
+
+export type ProofPoint = {
+  label: string
+  href: string
+  metric?: string
+}
+
+export type Program = {
+  number: 1 | 2 | 3 | 4 | 5 | 6
+  name: string
+  cadence: string
+  whatItIs: string
+  whatItProduces: string[]
+  pricingPosture: string
+}
+
+export type CompoundingNode = {
+  month: 0 | 3 | 6 | 12
+  title: string
+  body: string
+}
+
+export type CrossLinkSurface =
+  | 'ai-coe'
+  | 'ai-architecture'
+  | 'ai-architect-academy'
+  | 'research'
+  | 'workshops'
+  | 'blog'
+  | 'os'
+
+export type CrossLink = {
+  surface: CrossLinkSurface
+  label: string
+  href: string
+  rationale: string
+}
+
+export type Partner = {
+  slug: string
+  name: string
+  shortName: string
+  tier: PartnerTier
+  status: PartnerStatus
+
+  // Hero
+  title: string
+  tagline: string
+  subTagline: string
+
+  // Tier 1 — working reality (top of page)
+  contextWindow: string
+  workingReality: WorkingRealityBlock[]
+  proofPoints: ProofPoint[]
+
+  // Tier 2 — proposal (bottom of page, labeled)
+  proposalIntro: string
+  asymmetricValue: ValueBlock[]
+  programs: Program[]
+  compoundingModel: CompoundingNode[]
+  crossLinks: CrossLink[]
+  whatThisIsNot: string[]
+  cta: { label: string; href: string }
+
+  // Visual
+  partnerLogoUrl?: string
+  accent?: PartnerAccent
+  ogImagePath?: string
+
+  // SEO
+  seo: { title: string; description: string }
+}

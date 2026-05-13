@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
+import { listPartners } from '@/content/partnerships'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -629,6 +630,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: page.changeFrequency,
       priority: page.priority,
+    })
+  })
+
+  // Partnerships — strategic-partner hub + per-partner deep pages
+  entries.push({
+    url: `${BASE_URL}/partnerships`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  })
+  listPartners().forEach(partner => {
+    entries.push({
+      url: `${BASE_URL}/partnerships/${partner.slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: partner.status === 'active' ? 0.8 : 0.5,
     })
   })
 
