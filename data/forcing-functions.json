@@ -1,0 +1,98 @@
+{
+  "$schema": "../lib/intake/forcing-functions.ts",
+  "version": 1,
+  "updatedAt": "2026-05-13",
+  "comment": "Canonical list of upcoming forcing functions. The classifier reads this to bias dispatch decisions. Update when a new commitment lands; remove or mark `state:completed` when shipped.",
+  "functions": [
+    {
+      "id": "cis-mv1-bluesky-launch",
+      "label": "CIS MV1 — first mic-to-Bluesky publish",
+      "kind": "launch-deadline",
+      "date": "2026-05-09",
+      "platforms": ["bluesky", "blog"],
+      "archetype": "influencer",
+      "spectrum": "tech",
+      "state": "active",
+      "biasInstruction": "Prioritize same-day Bluesky publishes for voice memos. Mic-to-publish workflow live."
+    },
+    {
+      "id": "nldigital-workshop-2026-05-19",
+      "label": "NLDigital workshop",
+      "kind": "workshop-delivery",
+      "date": "2026-05-19",
+      "platforms": ["linkedin", "newsletter", "blog", "youtube-long"],
+      "archetype": "influencer",
+      "spectrum": "tech",
+      "state": "active",
+      "biasInstruction": "Lift LinkedIn AI Architect content frequency in the 5 days before. Newsletter feature this week. Generate post-workshop debrief content same-day."
+    },
+    {
+      "id": "madrid-workshop-2026-05-27",
+      "label": "Madrid workshop",
+      "kind": "workshop-delivery",
+      "date": "2026-05-27",
+      "platforms": ["linkedin", "newsletter", "blog", "podcast"],
+      "archetype": "influencer",
+      "spectrum": "tech",
+      "state": "active",
+      "biasInstruction": "Spanish-market LinkedIn variant if the audience warrants. Podcast episode candidate post-event."
+    },
+    {
+      "id": "spotify-friday-drop",
+      "label": "Spotify weekly album drop",
+      "kind": "recurring-release",
+      "date": "2026-05-16",
+      "recurrence": "weekly-friday",
+      "platforms": ["spotify", "instagram", "youtube-shorts", "tiktok"],
+      "archetype": "creator",
+      "spectrum": "soul",
+      "state": "active",
+      "biasInstruction": "Every Friday: new cover (NB2) + Instagram carousel + optional cinematic visualizer (Higgsfield). Music-producer leads."
+    },
+    {
+      "id": "weekly-newsletter-sunday",
+      "label": "AI Architect Newsletter weekly send",
+      "kind": "recurring-content",
+      "date": "2026-05-17",
+      "recurrence": "weekly-sunday",
+      "platforms": ["newsletter"],
+      "archetype": "influencer",
+      "spectrum": "tech",
+      "state": "active",
+      "biasInstruction": "Sunday morning send. Sections: one big idea + 3 short notes + tool of the week. Pull from week's prose-producer outputs."
+    },
+    {
+      "id": "build-first-ai-agent-funnel-launch",
+      "label": "Build First AI Agent funnel public",
+      "kind": "launch-deadline",
+      "date": "2026-06-01",
+      "platforms": ["blog", "linkedin", "x", "github", "newsletter"],
+      "archetype": "solution-engineer",
+      "spectrum": "tech",
+      "state": "active",
+      "biasInstruction": "5-tier premium funnel launch. Screen-producer content tied to Toolkit + Mastery + Architect tiers. SE archetype heavy."
+    },
+    {
+      "id": "iis-oss-extraction",
+      "label": "Investment Intelligence System OSS publish",
+      "kind": "launch-deadline",
+      "date": "2026-06-15",
+      "platforms": ["github", "blog", "linkedin", "newsletter", "podcast"],
+      "archetype": "solution-engineer",
+      "spectrum": "tech",
+      "state": "planned",
+      "biasInstruction": "GitHub repo publication. Tutorial + README via screen-producer. Long-form blog from voice memos via audio-producer."
+    },
+    {
+      "id": "library-os-deepen-wave",
+      "label": "Library OS depth wave 3",
+      "kind": "content-batch",
+      "date": "2026-05-25",
+      "platforms": ["blog", "linkedin", "instagram"],
+      "archetype": "influencer",
+      "spectrum": "tech",
+      "state": "active",
+      "biasInstruction": "5-book deep-dive batch on frankx.ai/library. Each book ships with paired LinkedIn carousel + IG quote-card."
+    }
+  ]
+}
