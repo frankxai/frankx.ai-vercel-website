@@ -1,6 +1,6 @@
 export type ModulePhase = 'authoring' | 'funnel' | 'amplify' | 'cross-cutting'
 export type ModuleStatus = 'live' | 'active' | 'scaffolded' | 'deferred'
-export type ModuleColor = 'cyan' | 'violet' | 'amber' | 'emerald' | 'rose' | 'slate' | 'fuchsia' | 'teal'
+export type ModuleColor = 'cyan' | 'violet' | 'amber' | 'emerald' | 'rose' | 'slate' | 'fuchsia' | 'teal' | 'lime'
 
 export interface OSModuleDeepDive {
   route: string // child route deep-diving one slot of this module
@@ -105,7 +105,7 @@ export const osModules: OSModule[] = [
     id: 'coe-hub',
     name: 'AI CoE Hub',
     slug: 'coe-hub',
-    route: '/ai-coe',
+    route: '/ai-architect/ai-coe-hub',
     status: 'live',
     color: 'slate',
     iconName: 'Building2',
@@ -173,6 +173,29 @@ export const osModules: OSModule[] = [
       label: 'Browse the 11-agent strategy team',
       description:
         'Macro-Risk, Crypto-DCA, DeFi-Yield, Fundamentals, Technical, Risk-Manager, Tax-Optimizer, Regulatory-Risk, Portfolio-Manager, Chief-of-Staff, Researcher. Personas + tool budgets + calibration approach.',
+    },
+  },
+  {
+    id: 'vis',
+    name: 'Visual Intelligence System',
+    slug: 'vis',
+    route: '/studio/visual',
+    status: 'live',
+    color: 'lime',
+    iconName: 'Layers',
+    shipped: '2026-05-13',
+    oneLine: 'Drop images, get a per-platform strategy.',
+    description:
+      'The connective tissue between asset generation, composition, and ship. Three asset tiers (NB2, Higgsfield, HyperFrames), nine platform personas, one drop-images workflow. Substrate at lib/visual-intelligence/, runtime at /visual-strategy + visual-intelligence skill + visual-intelligence-orchestrator agent.',
+    phases: ['authoring', 'amplify', 'cross-cutting'],
+    connectsTo: ['watch-os', 'aco', 'workshop-os', 'library-os', 'iis'],
+    artifacts: ['Per-batch strategy', 'Per-image analysis', 'Gap-fill briefs', 'Persona matrix'],
+    commands: ['/visual-strategy', '/vis-search', '/vis-audit', '/infogenius'],
+    deepDive: {
+      route: '/studio/visual#platforms',
+      label: 'Browse the 9-platform persona matrix',
+      description:
+        'LinkedIn (AI Architect), YouTube long-form (the Builder), Shorts + TikTok (the Creator), Instagram (the Aesthete), X (the Thinker), Threads (Conversation-starter), Bluesky (Live-thinker), Spotify (the Producer). One persona per profile.',
     },
   },
 ]
