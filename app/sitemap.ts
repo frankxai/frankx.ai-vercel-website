@@ -291,6 +291,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/starlight-intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
     // Investment Intelligence System (IIS) — public hub
     { url: '/intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
+    // Visual Intelligence System (VIS) — drop-images-get-strategy
+    { url: '/studio/visual', priority: 0.9, changeFrequency: 'weekly' as const },
     // Plan
     { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
     // Inspiration

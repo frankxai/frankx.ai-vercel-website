@@ -181,7 +181,7 @@ export const ecosystemEntries: EcosystemEntry[] = [
     tier: 'tier-1-frankx-surface',
     layer: 'L4-public-face',
     repo: 'frankx',
-    publicUrl: 'https://frankx.ai/ai-coe',
+    publicUrl: 'https://frankx.ai/ai-architect/ai-coe-hub',
     repoUrl: null,
     status: 'live',
     shipped: 'pre-existing',
@@ -368,6 +368,24 @@ export const ecosystemEntries: EcosystemEntry[] = [
     relatedSystems: ['frankx-os-meta', 'frankx-meta-skill'],
     commands: [],
     color: 'fuchsia',
+  },
+  {
+    id: 'visual-intelligence-system',
+    name: 'Visual Intelligence System',
+    slug: 'visual-intelligence-system',
+    tier: 'tier-1-frankx-surface',
+    layer: 'L4-public-face',
+    repo: 'frankx',
+    publicUrl: 'https://frankx.ai/studio/visual',
+    repoUrl: null,
+    status: 'live',
+    shipped: '2026-05-13',
+    summary: 'Drop-images-get-strategy substrate. 9-platform persona matrix, 3-layer asset/composition/gate stack.',
+    description:
+      'The connective tissue between asset generation (NB2, Higgsfield × 4 skills, music-video-batch), composition (HyperFrames, Remotion), and ship gate (vis, visual-creation, brand-voice). Substrate at lib/visual-intelligence/ (typed personas, stack, recipes). Runtime: /visual-strategy command + visual-intelligence skill + visual-intelligence-orchestrator agent. Built autonomously overnight 2026-05-13.',
+    relatedSystems: ['watch-os', 'aco', 'workshop-os', 'library-frankx-surface', 'iis'],
+    commands: ['/visual-strategy', '/vis-search', '/vis-audit', '/infogenius'],
+    color: 'lime',
   },
 
   // ─── Tier 2 — Open-source sibling repos ─────────────────────────────────
