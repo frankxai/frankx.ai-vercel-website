@@ -219,7 +219,7 @@ export function getModule(id: string): OSModule | undefined {
 }
 
 export function getConnections(moduleId: string): OSModule[] {
-  const module = getModule(moduleId)
-  if (!module) return []
-  return module.connectsTo.map((id) => getModule(id)).filter((m): m is OSModule => !!m)
+  const mod = getModule(moduleId)
+  if (!mod) return []
+  return mod.connectsTo.map((id) => getModule(id)).filter((m): m is OSModule => !!m)
 }

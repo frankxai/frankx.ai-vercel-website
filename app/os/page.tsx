@@ -83,6 +83,12 @@ const COLOR_TOKENS: Record<ModuleColor, { ring: string; text: string; bg: string
     bg: 'bg-teal-500/10',
     glow: 'from-teal-500/[0.08]',
   },
+  lime: {
+    ring: 'ring-lime-400/30 hover:ring-lime-400/60',
+    text: 'text-lime-300',
+    bg: 'bg-lime-500/10',
+    glow: 'from-lime-500/[0.08]',
+  },
 }
 
 const STATUS_LABEL = {

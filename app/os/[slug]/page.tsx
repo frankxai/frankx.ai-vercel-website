@@ -71,6 +71,12 @@ const COLOR_TOKENS: Record<ModuleColor, { text: string; bg: string; border: stri
     border: 'border-teal-500/25',
     glow: 'from-teal-500/[0.08]',
   },
+  lime: {
+    text: 'text-lime-300',
+    bg: 'bg-lime-500/10',
+    border: 'border-lime-500/25',
+    glow: 'from-lime-500/[0.08]',
+  },
 }
 
 export function generateStaticParams() {
