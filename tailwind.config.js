@@ -247,7 +247,7 @@ module.exports = {
 
       // =====================================================
       // TYPOGRAPHY - Perfect Fourth Scale (1.333)
-      // See /lib/design-system.ts for full scale
+      // See /lib/design-system.ts for full documentation
       // =====================================================
       fontFamily: {
         // INTER - Primary brand font for all body/UI text (DO NOT CHANGE)
