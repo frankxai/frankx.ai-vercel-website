@@ -112,3 +112,82 @@ export const FRANK_CREDENTIALS = {
     'Multi-pillar operating system: SIS · ACOS · IIS · Workshop OS · Library OS',
   ],
 } as const
+
+/**
+ * Concrete receipts — public artifacts the audience can verify
+ * themselves. Avoids "trust me" claims. Each entry pairs a what-Frank-did
+ * receipt with a link they can open from the QR code at the end.
+ */
+export interface FrankReceipt {
+  /** What Frank built — short, specific */
+  artifact: string
+  /** Public URL to verify */
+  href: string
+  /** Why this matters to the workshop audience */
+  signal: string
+}
+
+export const FRANK_RECEIPTS: FrankReceipt[] = [
+  {
+    artifact: 'Library OS — open-source book intelligence',
+    href: 'https://github.com/frankxai/library-os',
+    signal: 'MIT, bootable. Same pattern you can fork for any knowledge domain.',
+  },
+  {
+    artifact: 'Prompt Library — 98 patterns red-teamed',
+    href: 'https://frankx.ai/prompts',
+    signal: 'Public, eval-gated, contribution-ready. The prompt mastery shown, not claimed.',
+  },
+  {
+    artifact: 'Starlight Intelligence System (SIS)',
+    href: 'https://github.com/frankxai/Starlight-Intelligence-System',
+    signal: 'The substrate every FrankX surface composes on. 9 layers. MIT.',
+  },
+  {
+    artifact: 'Atlas Globe — trilingual interactive',
+    href: 'https://frankx.ai/globe',
+    signal: 'Same hands. Different surface. Shipping discipline applies to anything.',
+  },
+  {
+    artifact: '12,000+ AI-produced tracks with Suno',
+    href: 'https://frankx.ai/music',
+    signal: 'Volume + quality. AI augmentation, not replacement.',
+  },
+  {
+    artifact: 'frankx.ai itself',
+    href: 'https://frankx.ai',
+    signal: 'Everything you are learning runs the site you are looking at right now.',
+  },
+]
+
+/**
+ * Eight unspoken doubts the audience walks in with. Naming them out
+ * loud in slide #2 earns trust in the first 90 seconds. Workshop
+ * facilitator playbook: name the objection before they raise it.
+ */
+export interface UnspokenDoubt {
+  /** What's in their head */
+  doubt: string
+  /** Frank's one-line acknowledgment that the doubt is valid */
+  acknowledgment: string
+}
+
+export const UNSPOKEN_DOUBTS: UnspokenDoubt[] = [
+  {
+    doubt: 'Ikigai workshops are overdone.',
+    acknowledgment: 'They are. This one ends with an artifact you can publish, not a Venn diagram you screenshot.',
+  },
+  {
+    doubt: 'I do not have time to post five times a week.',
+    acknowledgment: 'You will not. You will commit to one post, one short, one conversation, one product — in 30 days.',
+  },
+  {
+    doubt: 'I will sound like every other thought-leader.',
+    acknowledgment: 'You will, if you skip the audience-of-one exercise. You will not, if you do it specifically.',
+  },
+  {
+    doubt: 'I tried this before and quit.',
+    acknowledgment: 'Most people do. The Day-7 check-in is how this workshop is different.',
+  },
+]
+

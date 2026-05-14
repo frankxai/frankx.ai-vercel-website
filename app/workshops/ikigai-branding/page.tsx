@@ -28,6 +28,10 @@ import { LiveArtifact } from '@/components/workshops/ikigai/LiveArtifact'
 import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
 import { AuthorityBar } from '@/components/workshops/ikigai/AuthorityBar'
 import { AICompanions } from '@/components/workshops/ikigai/AICompanions'
+import { CommonTraps } from '@/components/workshops/ikigai/CommonTraps'
+import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
+import { AIConnectors } from '@/components/workshops/ikigai/AIConnectors'
+import { WORKSHOP_PROMPTS } from '@/lib/workshop-prompts'
 import { emptyIkigai, type IkigaiState } from '@/components/workshops/ikigai/types'
 import { getWorkshopBySlug } from '@/data/workshops'
 import { MODULE_4_CITATIONS, MODULE_5_CITATIONS } from '@/lib/workshop-citations'
@@ -38,7 +42,6 @@ const LIVE_ARTIFACT_URL = ''
 
 const PRESENTER_SECTIONS = [
   'intro',
-  'three-cs',
   'module-1',
   'synthesis',
   'brand-bridge',
@@ -213,85 +216,6 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* The 3Cs */}
-      <section id="three-cs" className="pb-16 scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <p className="text-xs font-medium uppercase tracking-wider text-zinc-500 mb-2">
-              Framework
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              The 3Cs — Human skills that compound with AI
-            </h2>
-            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              Your Ikigai points at what to build. The 3Cs are how you build it without getting automated around.
-            </p>
-          </div>
-
-          <div className="mb-6 rounded-3xl overflow-hidden border border-white/[0.06] bg-white/[0.01]">
-            <Image
-              src="/images/workshops/ikigai-branding/three-cs-triad.jpg"
-              alt="The 3Cs as three interlocking clay forms — a violet sphere (Collaboration), an amber cube (Communication), and an emerald prism (Creation) — fused at a warm glowing core."
-              width={1200}
-              height={1200}
-              className="w-full h-auto max-w-2xl mx-auto"
-            />
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              {
-                title: 'Collaboration',
-                items: [
-                  'PACE: Plan → Act → Check → Evolve',
-                  'PAIR with AI: Plan, Ask, Iterate, Review',
-                  'Iteration speed & decision clarity',
-                ],
-                color: 'violet',
-              },
-              {
-                title: 'Communication',
-                items: [
-                  'BLUF and SCQA frameworks',
-                  'Design docs & demo scripts',
-                  'Clear, reproducible outputs',
-                ],
-                color: 'amber',
-              },
-              {
-                title: 'Creation',
-                items: [
-                  'Goldilocks scope',
-                  'Build → measure → learn',
-                  "Ship small, show don't tell",
-                ],
-                color: 'emerald',
-              },
-            ].map((c) => (
-              <div
-                key={c.title}
-                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5"
-              >
-                <h3 className="text-base font-semibold text-white mb-3">
-                  {c.title}
-                </h3>
-                <ul className="space-y-2">
-                  {c.items.map((it, i) => (
-                    <li
-                      key={i}
-                      className="text-sm text-zinc-400 flex items-start gap-2"
-                    >
-                      <span className="text-zinc-600">—</span>
-                      <span>{it}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Module 1: The Ikigai Map */}
       <section id="module-1" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -309,7 +233,27 @@ export default function IkigaiBrandingWorkshopPage() {
             </p>
           </div>
 
-          <IkigaiWizard value={ikigai} onChange={setIkigai} />
+          <div className="mb-5">
+            <CommonTraps
+              simplification="Pick ONE circle. Get it embarrassingly specific. Move on."
+              traps={[
+                'Listing what you wish you loved instead of what made time disappear last month',
+                'Confusing "good at" with "qualified for" — what others actually thank you for beats the resume',
+                'Picking "what pays" from market hype instead of real invoices you can name',
+              ]}
+            />
+          </div>
+          <div className="mb-6">
+            <PromptStack module={1} prompts={WORKSHOP_PROMPTS} label="The AI-native path — paste these prompts" />
+          </div>
+          <details className="mb-2 rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+              Or do the wizard manually — works without AI
+            </summary>
+            <div className="mt-4">
+              <IkigaiWizard value={ikigai} onChange={setIkigai} />
+            </div>
+          </details>
         </div>
       </section>
 
@@ -324,12 +268,32 @@ export default function IkigaiBrandingWorkshopPage() {
               Write the sentence
             </h2>
           </div>
+          <div className="mb-5">
+            <CommonTraps
+              simplification="Fill the template. Trade with your neighbor. Cut one word. Done."
+              traps={[
+                'Using abstract nouns (transformation, potential, journey) instead of specific verbs',
+                'Writing a sentence a direct competitor could also say verbatim',
+                'Trying to be poetic — good purpose statements are boring and specific',
+              ]}
+            />
+          </div>
+          <div className="mb-6">
+            <PromptStack module={2} prompts={WORKSHOP_PROMPTS} label="The AI-native path" />
+          </div>
+          <details className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+              Or draft manually below
+            </summary>
+            <div className="mt-4">
           <SynthesisPanel
             value={ikigai}
             onStatementChange={(statement) =>
               setIkigai((prev) => ({ ...prev, statement }))
             }
           />
+            </div>
+          </details>
         </div>
       </section>
 
@@ -345,11 +309,27 @@ export default function IkigaiBrandingWorkshopPage() {
               className="w-full h-auto"
             />
           </div>
-          <BrandingBridge value={ikigai} />
+          <CommonTraps
+            simplification="Force one trade-off in positioning. Name one human in audience-of-one. Test each pillar with 5 example posts."
+            traps={[
+              'Choosing a demographic ("millennial women in tech") instead of a single named person with a Tuesday problem',
+              'Three pillars that overlap 80% — same content, different label',
+              'Skipping the positioning trade-off ("we serve everyone")',
+            ]}
+          />
+          <PromptStack module={3} prompts={WORKSHOP_PROMPTS} label="The AI-native path" />
+          <details className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+              Or work through the bridge exercises manually
+            </summary>
+            <div className="mt-4">
+              <BrandingBridge value={ikigai} />
+            </div>
+          </details>
         </div>
       </section>
 
-      {/* Module 4: Content Operating Plan — NEW */}
+      {/* Module 4: Content Operating Plan */}
       <section id="content-plan" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
@@ -365,9 +345,32 @@ export default function IkigaiBrandingWorkshopPage() {
             </p>
           </div>
           <div className="mb-5">
+            <CommonTraps
+              simplification="Pick ONE hook format. Write Monday's post in 5 minutes. Schedule it Sunday."
+              traps={[
+                'Promising to post 5×/week from day 1 — the burnout pattern',
+                'Reposting the same content across 4 channels (each channel has a different job)',
+                'Optimizing for likes instead of dwell time and replies',
+              ]}
+            />
+          </div>
+          <div className="mb-5">
             <AuthorityBar citations={MODULE_4_CITATIONS} label="Why this module matters" />
           </div>
-          <ContentOperatingPlan value={ikigai} />
+          <div className="mb-6">
+            <PromptStack module={4} prompts={WORKSHOP_PROMPTS} label="The AI-native path — these prompts generate your plan" />
+          </div>
+          <div className="mb-6">
+            <AIConnectors />
+          </div>
+          <details className="rounded-2xl border border-white/[0.06] bg-white/[0.01] p-4">
+            <summary className="cursor-pointer text-sm font-medium text-zinc-400 hover:text-white transition-colors">
+              Or use the interactive plan builder below
+            </summary>
+            <div className="mt-4">
+              <ContentOperatingPlan value={ikigai} />
+            </div>
+          </details>
         </div>
       </section>
 
@@ -385,6 +388,16 @@ export default function IkigaiBrandingWorkshopPage() {
               Two layers. First the AI brain you actually think with. Then the four other jobs you run
               every week. Opinionated, picked from the field, built to compound — not sprawl.
             </p>
+          </div>
+          <div className="mb-5">
+            <CommonTraps
+              simplification="Pick the weakest of the five jobs. Buy or master ONE tool there this week. The other four can wait."
+              traps={[
+                'Subscribing to 5+ AI tools, mastering none ("toolbelt envy")',
+                'Letting the tool dictate the workflow ("I have Claude, what should I do with it?")',
+                'Skipping Capture because it feels unsexy — the system fails at the inbox, not the output',
+              ]}
+            />
           </div>
           <div className="mb-6">
             <AuthorityBar citations={MODULE_5_CITATIONS} label="Why this stack now" />
@@ -429,9 +442,11 @@ export default function IkigaiBrandingWorkshopPage() {
             </h2>
             <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
               Pick one pillar. Commit to 4 visible artifacts in 30 days — one post, one short video, one conversation, one small product.
-              Subscribe for the Resource Pack and a Day-7 check-in.
+              Public commitment increases follow-through 3×.
             </p>
           </div>
+
+          <PromptStack module={7} prompts={WORKSHOP_PROMPTS} label="Lock the commitment — paste this" />
 
           <GlowCard color="emerald">
             <div className="p-6 sm:p-8 text-center">
