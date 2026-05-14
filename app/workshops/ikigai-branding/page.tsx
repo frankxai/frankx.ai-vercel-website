@@ -26,8 +26,15 @@ import { ContentOperatingPlan } from '@/components/workshops/ikigai/ContentOpera
 import { GenCreatorStack } from '@/components/workshops/ikigai/GenCreatorStack'
 import { LiveArtifact } from '@/components/workshops/ikigai/LiveArtifact'
 import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
+import { AuthorityBar } from '@/components/workshops/ikigai/AuthorityBar'
+import { AICompanions } from '@/components/workshops/ikigai/AICompanions'
 import { emptyIkigai, type IkigaiState } from '@/components/workshops/ikigai/types'
 import { getWorkshopBySlug } from '@/data/workshops'
+import { MODULE_4_CITATIONS, MODULE_5_CITATIONS } from '@/lib/workshop-citations'
+
+// Update this when Frank records the Claude Cowork demo. When empty, the
+// Module 6 section is hidden entirely (no empty placeholder on a public page).
+const LIVE_ARTIFACT_URL = ''
 
 const PRESENTER_SECTIONS = [
   'intro',
@@ -37,7 +44,7 @@ const PRESENTER_SECTIONS = [
   'brand-bridge',
   'content-plan',
   'gencreator-stack',
-  'live-artifact',
+  // 'live-artifact' is hidden until LIVE_ARTIFACT_URL is populated
   'activation',
 ]
 
@@ -357,47 +364,58 @@ export default function IkigaiBrandingWorkshopPage() {
               and the calendar so blank-page mornings end. Anchored to your three pillars from Module 3.
             </p>
           </div>
+          <div className="mb-5">
+            <AuthorityBar citations={MODULE_4_CITATIONS} label="Why this module matters" />
+          </div>
           <ContentOperatingPlan value={ikigai} />
         </div>
       </section>
 
-      {/* Module 5: GenCreator Stack — NEW */}
+      {/* Module 5: GenCreator Stack + AI Companions */}
       <section id="gencreator-stack" className="pb-12 scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-sky-300 mb-2">
-              Module 5 · The GenCreator Stack
+              Module 5 · The Operating Stack
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Five jobs. Five tools. One creator hub.
+              Your AI companion. Then the 5-job stack.
             </h2>
             <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              The opinionated short-list of MCPs, extensions, and apps that compound your craft
-              instead of fragmenting your attention. Build the hub once; ship for years.
+              Two layers. First the AI brain you actually think with. Then the four other jobs you run
+              every week. Opinionated, picked from the field, built to compound — not sprawl.
             </p>
+          </div>
+          <div className="mb-6">
+            <AuthorityBar citations={MODULE_5_CITATIONS} label="Why this stack now" />
+          </div>
+          <div className="mb-8">
+            <AICompanions />
           </div>
           <GenCreatorStack />
         </div>
       </section>
 
-      {/* Module 6: Live Artifact — NEW */}
-      <section id="live-artifact" className="pb-12 scroll-mt-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-6">
-            <p className="text-xs font-medium uppercase tracking-wider text-amber-400 mb-2">
-              Module 6 · The Artifact
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              AI-assisted. Voice-preserved.
-            </h2>
-            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              The whole workshop in one demo. Watch a LinkedIn post get written — with rejections, redirects,
-              and the prompt scaffold you can keep.
-            </p>
+      {/* Module 6: Live Artifact — gated until Frank records */}
+      {LIVE_ARTIFACT_URL && (
+        <section id="live-artifact" className="pb-12 scroll-mt-24">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-6">
+              <p className="text-xs font-medium uppercase tracking-wider text-amber-400 mb-2">
+                Module 6 · The Artifact
+              </p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                AI-assisted. Voice-preserved.
+              </h2>
+              <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
+                The whole workshop in one demo. Watch a LinkedIn post get written — with rejections, redirects,
+                and the prompt scaffold you can keep.
+              </p>
+            </div>
+            <LiveArtifact embedUrl={LIVE_ARTIFACT_URL} />
           </div>
-          <LiveArtifact />
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Module 7: Activation + Email capture (was Module 4) */}
       <section id="activation" className="pb-24 scroll-mt-24">
