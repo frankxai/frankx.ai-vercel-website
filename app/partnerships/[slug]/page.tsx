@@ -50,7 +50,9 @@ export default async function PartnershipPage({
   const partner = getPartner(slug)
   if (!partner) notFound()
 
-  const isProposalTier = partner.status === 'active'
+  const isProposalTier =
+    partner.status === 'active' || partner.status === 'strategic-alignment'
+  const isActiveConversation = partner.status === 'active'
   const url = `${SITE_URL}/partnerships/${partner.slug}`
 
   const graph: Record<string, unknown>[] = [

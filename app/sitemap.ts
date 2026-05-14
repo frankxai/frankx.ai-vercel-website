@@ -643,6 +643,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Partners — affiliate transparency hub (workshop tools + pursued programs)
+  entries.push({
+    url: `${BASE_URL}/partners`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  })
+
   // Partnerships — strategic-partner hub + per-partner deep pages
   entries.push({
     url: `${BASE_URL}/partnerships`,
@@ -651,11 +659,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   })
   listPartners().forEach(partner => {
+    const isFeatured =
+      partner.status === 'active' || partner.status === 'strategic-alignment'
     entries.push({
       url: `${BASE_URL}/partnerships/${partner.slug}`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
-      priority: partner.status === 'active' ? 0.8 : 0.5,
+      priority: isFeatured ? 0.8 : 0.5,
     })
   })
 
