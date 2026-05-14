@@ -30,24 +30,32 @@ export interface WorkshopPrompt {
 export const WORKSHOP_PROMPTS: WorkshopPrompt[] = [
   // ─── Module 1 ─────────────────────────────────────────────────────
   {
-    id: 'mine-history',
+    id: 'socratic-ikigai',
     module: 1,
-    title: 'Mine my chat history for Ikigai inputs',
-    subtitle: 'Lets the AI pull evidence from your existing chats instead of asking you to remember everything from scratch.',
-    body: `You have access to my full chat history with you and any connected memory.
-I am building my Ikigai map. Based on patterns in my chats over the last 12 months,
-identify with chat-snippet evidence:
+    title: 'Walk me through my four Ikigai circles',
+    subtitle: 'Interactive Socratic facilitator — works in any fresh ChatGPT, Claude, or Gemini chat. No memory or history required.',
+    body: `You are a Socratic facilitator for the Ikigai mapping exercise. I am working through 4 circles:
 
-1. **What I love** — 3 activities where I lost track of time. Cite the chat where I described it.
-2. **What I am good at** — 3 things people thanked me for, asked me to do again, or recommended me for. External evidence only — other people's words, not mine.
-3. **What the world needs** — 1–2 problems I keep returning to think about, six months running.
-4. **What pays** — 1–2 spaces where money is flowing that overlap with the above. Real invoices, courses, agencies, SaaS — not hype.
+1. **What I love** — activities where time disappears
+2. **What I am good at** — what others actually thank me for (external evidence only)
+3. **What the world needs** — whose problem I care about for ten years
+4. **What pays** — where money is actually flowing (real invoices, real courses, real agencies — not hype)
 
-Format your answer as four labeled sections. Under each, list the evidence with the chat snippet in quotes.
+**How to facilitate me:**
+- Walk me through one circle at a time, starting with circle 1
+- For each circle, ask me ONE specific question that forces a concrete answer
+- If my answer is vague ("I like helping people", "marketing"), push back with a sharper follow-up — "name a Tuesday afternoon last month when time disappeared", "what is the last DM where someone thanked you?"
+- Move to the next circle ONLY when my answer is specific (a named moment, person, situation, or invoice — not a category)
+- After all four circles, summarize my inputs back to me in four clean bullets
 
-After all four, ask me ONE Socratic follow-up question that would tighten the weakest input. Push past generic. Specificity beats volume.`,
+**Discipline:**
+- External evidence beats internal guessing. Other people's words beat mine.
+- Specificity beats volume.
+- "Everyone" and "people" are not answers.
+
+Start with circle 1 now. One question. Wait for my answer.`,
     bestIn: ['ChatGPT', 'Claude', 'Gemini'],
-    outputHandling: 'Read each section. Sit with the evidence. The Ikigai statement in Module 2 chains directly off this.',
+    outputHandling: 'Stay in the SAME chat for Module 2 (your context carries forward), OR copy the AI\'s four-bullet summary at the end to paste into Module 2.',
   },
 
   // ─── Module 2 ─────────────────────────────────────────────────────
@@ -56,7 +64,17 @@ After all four, ask me ONE Socratic follow-up question that would tighten the we
     module: 2,
     title: 'Synthesize my Ikigai into a statement',
     subtitle: 'Turns the four circles into a 2-line statement that fits on a business card.',
-    body: `Based on the 4 Ikigai circles I just identified (and any context from this chat or my history), draft my Ikigai statement using this template:
+    body: `Based on my 4 Ikigai circles below (paste from Module 1 OR continue in the same chat), draft my Ikigai statement using this template:
+
+If continuing same chat: use what I just told you.
+If fresh chat: I'll paste my circles here →
+
+  - What I love: [PASTE]
+  - What I am good at: [PASTE]
+  - What the world needs: [PASTE]
+  - What pays: [PASTE]
+
+
 
 > "I help [WHO] achieve [OUTCOME] by [HOW], using [SKILLS] in [DOMAIN]."
 
@@ -71,7 +89,7 @@ Give me **3 versions**, ordered from safest to most confrontational. For each, n
 
 Then tell me which version I should ship and why. Be honest — if all three are weak, say so and propose a fourth that fixes the underlying issue.`,
     bestIn: ['ChatGPT', 'Claude'],
-    outputHandling: 'Pick one. Edit one word. Lock it in. Paste it as the anchor in Module 3 prompts.',
+    outputHandling: 'Pick one version. Edit one word. Lock it in. Stay in the same chat for Module 3, OR copy your locked statement to paste into Module 3.',
   },
 
   // ─── Module 3 ─────────────────────────────────────────────────────
@@ -104,7 +122,7 @@ For each pillar:
 
 Each pillar must survive 12 months of weekly publishing without me repeating myself. If you can't generate 5 distinct posts off the top, the pillar is too narrow — say so.`,
     bestIn: ['ChatGPT', 'Claude'],
-    outputHandling: 'Save the three pillars — Module 4 chains off them. The audience-of-one is who you write every post for.',
+    outputHandling: 'Save the three pillars + audience-of-one — Module 4 chains directly off them. Stay in the same chat, or copy them to paste into Module 4.',
   },
 
   // ─── Module 4a ────────────────────────────────────────────────────
