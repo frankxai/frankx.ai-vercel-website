@@ -35,6 +35,7 @@ import { WORKSHOP_PROMPTS } from '@/lib/workshop-prompts'
 import { emptyIkigai, type IkigaiState } from '@/components/workshops/ikigai/types'
 import { getWorkshopBySlug } from '@/data/workshops'
 import { MODULE_4_CITATIONS, MODULE_5_CITATIONS } from '@/lib/workshop-citations'
+import { WORKSHOP_PROMPTS as ALL_PROMPTS } from '@/lib/workshop-prompts'
 
 // Update this when Frank records the Claude Cowork demo. When empty, the
 // Module 6 section is hidden entirely (no empty placeholder on a public page).
@@ -54,26 +55,58 @@ const PRESENTER_SECTIONS = [
 function CourseSchema() {
   const ld = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Course',
-    name: 'Ikigai & Branding Workshop',
-    description:
-      'Interactive, coach-guided workshop. Map your Ikigai, write your purpose statement, translate it into a brand positioning, and ship a 30-day content plan across LinkedIn + newsletter + video.',
-    url: 'https://frankx.ai/workshops/ikigai-branding',
-    provider: {
-      '@type': 'Person',
-      name: 'Frank Riemer',
-      url: 'https://frankx.ai',
-      jobTitle: 'AI Architect',
-    },
-    educationalLevel: 'Beginner',
-    timeRequired: 'PT75M',
-    numberOfCredits: 7,
-    isAccessibleForFree: true,
-    hasCourseInstance: {
-      '@type': 'CourseInstance',
-      courseMode: 'online',
-      courseWorkload: 'PT75M',
-    },
+    '@graph': [
+      {
+        '@type': 'Course',
+        '@id': 'https://frankx.ai/workshops/ikigai-branding#course',
+        name: 'Ikigai & Branding Workshop',
+        description:
+          'Interactive, coach-guided workshop. Map your Ikigai, write your purpose statement, translate it into a brand positioning, and ship a 30-day content plan across LinkedIn + newsletter + video.',
+        url: 'https://frankx.ai/workshops/ikigai-branding',
+        provider: {
+          '@type': 'Person',
+          name: 'Frank Riemer',
+          url: 'https://frankx.ai',
+          jobTitle: 'AI Architect',
+        },
+        educationalLevel: 'Beginner',
+        timeRequired: 'PT75M',
+        numberOfCredits: 7,
+        isAccessibleForFree: true,
+        hasCourseInstance: {
+          '@type': 'CourseInstance',
+          courseMode: 'online',
+          courseWorkload: 'PT75M',
+        },
+      },
+      {
+        // HowTo schema — agent-readable instructions for running the
+        // workshop programmatically. Browser agents (Comet, Operator)
+        // can parse this to execute the workshop on the user's behalf.
+        '@type': 'HowTo',
+        '@id': 'https://frankx.ai/workshops/ikigai-branding#howto',
+        name: 'Run the Ikigai & Branding Workshop',
+        description:
+          'Six prompts, paste-and-run, that turn an attendee from cold open to shipped 30-day plan. Each prompt works in ChatGPT, Claude, or Gemini.',
+        totalTime: 'PT75M',
+        tool: ['ChatGPT', 'Claude', 'Gemini'],
+        supply: [
+          { '@type': 'HowToSupply', name: 'A favorite AI assistant account' },
+          { '@type': 'HowToSupply', name: 'Notion, Google Sheets, or a CSV-capable tool' },
+        ],
+        step: ALL_PROMPTS.map((p, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: `Module ${p.module}: ${p.title}`,
+          text: p.subtitle,
+          url: `https://frankx.ai/workshops/ikigai-branding#prompt-${p.id}`,
+          itemListElement: {
+            '@type': 'HowToDirection',
+            text: p.body.slice(0, 280) + '…',
+          },
+        })),
+      },
+    ],
   })
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />
 }

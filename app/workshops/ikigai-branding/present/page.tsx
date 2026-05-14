@@ -42,6 +42,8 @@ export default function IkigaiPresentPage() {
   const startRef = useRef<number>(Date.now())
   const tickRef = useRef<number | null>(null)
   const chromeTimerRef = useRef<number | null>(null)
+  const touchStartXRef = useRef<number | null>(null)
+  const touchStartYRef = useRef<number | null>(null)
 
   const slide = SLIDES[index] ?? SLIDES[0]
   const total = SLIDES.length
@@ -149,11 +151,37 @@ export default function IkigaiPresentPage() {
 
   const progress = useMemo(() => ((index + 1) / total) * 100, [index, total])
 
+  // Touch handlers — mobile swipe navigation
+  function onTouchStart(e: React.TouchEvent) {
+    const t = e.touches[0]
+    touchStartXRef.current = t.clientX
+    touchStartYRef.current = t.clientY
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return
+    const t = e.changedTouches[0]
+    const dx = t.clientX - touchStartXRef.current
+    const dy = t.clientY - touchStartYRef.current
+    touchStartXRef.current = null
+    touchStartYRef.current = null
+    // Ignore short or vertical-dominant swipes (so scrolling still works)
+    if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx)) return
+    if (dx < 0) next()
+    else prev()
+  }
+
   return (
     <div
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
       className={`fixed inset-0 bg-[#0a0a0b] text-white overflow-hidden ${
         isFullscreen ? 'cursor-none' : ''
       } ${chromeVisible ? '!cursor-default' : ''}`}
+      data-workshop-deck="ikigai-branding"
+      data-slide-index={index}
+      data-slide-id={slide.id}
+      data-slide-total={total}
     >
       {/* Backdrop gradients */}
       <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.04] via-transparent to-amber-500/[0.03] pointer-events-none" />
@@ -217,7 +245,28 @@ export default function IkigaiPresentPage() {
         </AnimatePresence>
 
         {/* Slide content */}
-        <div className="flex-1 flex items-center justify-center px-8 py-8 overflow-hidden">
+        <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 overflow-hidden relative">
+          {/* Mobile tap zones — visible only when chrome hidden (fullscreen).
+              On windowed mode the footer buttons handle navigation. */}
+          {isFullscreen && !chromeVisible && (
+            <>
+              <button
+                onClick={prev}
+                aria-label="Previous slide"
+                className="absolute inset-y-0 left-0 w-1/3 z-10 cursor-default"
+              />
+              <button
+                onClick={next}
+                aria-label="Next slide"
+                className="absolute inset-y-0 right-0 w-1/3 z-10 cursor-default"
+              />
+              <button
+                onClick={() => setChromeVisible(true)}
+                aria-label="Show controls"
+                className="absolute inset-y-0 left-1/3 right-1/3 z-10 cursor-default"
+              />
+            </>
+          )}
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
@@ -225,7 +274,7 @@ export default function IkigaiPresentPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.3 }}
-              className="w-full max-w-6xl mx-auto"
+              className="w-full max-w-6xl mx-auto relative z-20 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto [&_iframe]:pointer-events-auto"
             >
               {slide.eyebrow && (
                 <p className="text-xs font-medium uppercase tracking-wider text-violet-300 mb-3">
@@ -233,7 +282,7 @@ export default function IkigaiPresentPage() {
                 </p>
               )}
               {slide.id !== 'cover' && (
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-10 max-w-4xl">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-6 sm:mb-10 max-w-4xl">
                   {slide.title}
                 </h2>
               )}

@@ -69,14 +69,14 @@ export const SLIDES: SlideDef[] = [
       'BRIDGE · "Before we start — why this room, why this hour. Three minutes."',
     ],
     body: () => (
-      <div className="text-center space-y-10 max-w-5xl mx-auto">
+      <div className="text-center space-y-6 sm:space-y-10 max-w-5xl mx-auto px-2">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-violet-500/20 bg-violet-500/[0.06] text-[10px] font-medium text-violet-300 uppercase tracking-[0.18em]">
           <Compass className="w-3 h-3" />
           A 75-minute workshop
         </div>
         <div className="space-y-2">
           <h1
-            className="text-7xl sm:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.95]"
+            className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold tracking-tighter leading-[0.95]"
             style={{ fontFamily: '"Source Serif 4", "Source Serif Pro", Georgia, serif' }}
           >
             <span className="text-white">Ikigai </span>
@@ -86,11 +86,11 @@ export const SLIDES: SlideDef[] = [
             </span>
           </h1>
         </div>
-        <p className="text-xl sm:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed font-light">
+        <p className="text-base sm:text-xl lg:text-2xl text-zinc-400 max-w-3xl mx-auto leading-relaxed font-light">
           Find what makes time disappear. Translate it into a brand the world remembers.
           Ship the plan before you leave the room.
         </p>
-        <div className="pt-12 text-sm text-zinc-500 tracking-wide flex items-center justify-center gap-3 flex-wrap">
+        <div className="pt-6 sm:pt-12 text-xs sm:text-sm text-zinc-500 tracking-wide flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
           <span className="text-zinc-300 font-medium">Frank Riemer</span>
           <span className="text-zinc-700">·</span>
           <span>{FRANK_CREDENTIALS.role}, {FRANK_CREDENTIALS.org}</span>
@@ -698,7 +698,7 @@ export const SLIDES: SlideDef[] = [
           If you remember nothing else, remember this
         </p>
         <h2
-          className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight"
           style={{ fontFamily: '"Source Serif 4", "Source Serif Pro", Georgia, serif' }}
         >
           Your purpose is not in your head.
