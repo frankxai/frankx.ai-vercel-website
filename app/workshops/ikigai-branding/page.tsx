@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -14,6 +14,7 @@ import {
   Sparkles,
   Compass,
   MessageSquareMore,
+  Presentation,
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
@@ -21,8 +22,24 @@ import { IkigaiWizard } from '@/components/workshops/ikigai/IkigaiWizard'
 import { SynthesisPanel } from '@/components/workshops/ikigai/SynthesisPanel'
 import { BrandingBridge } from '@/components/workshops/ikigai/BrandingBridge'
 import { CoachGPTCard } from '@/components/workshops/ikigai/CoachGPTCard'
+import { ContentOperatingPlan } from '@/components/workshops/ikigai/ContentOperatingPlan'
+import { GenCreatorStack } from '@/components/workshops/ikigai/GenCreatorStack'
+import { LiveArtifact } from '@/components/workshops/ikigai/LiveArtifact'
+import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
 import { emptyIkigai, type IkigaiState } from '@/components/workshops/ikigai/types'
 import { getWorkshopBySlug } from '@/data/workshops'
+
+const PRESENTER_SECTIONS = [
+  'intro',
+  'three-cs',
+  'module-1',
+  'synthesis',
+  'brand-bridge',
+  'content-plan',
+  'gencreator-stack',
+  'live-artifact',
+  'activation',
+]
 
 function CourseSchema() {
   const ld = JSON.stringify({
@@ -30,7 +47,7 @@ function CourseSchema() {
     '@type': 'Course',
     name: 'Ikigai & Branding Workshop',
     description:
-      'Interactive, coach-guided workshop. Map your Ikigai, write your purpose statement, and translate it into a brand positioning, audience-of-one, and content pillars.',
+      'Interactive, coach-guided workshop. Map your Ikigai, write your purpose statement, translate it into a brand positioning, and ship a 30-day content plan across LinkedIn + newsletter + video.',
     url: 'https://frankx.ai/workshops/ikigai-branding',
     provider: {
       '@type': 'Person',
@@ -39,13 +56,13 @@ function CourseSchema() {
       jobTitle: 'AI Architect',
     },
     educationalLevel: 'Beginner',
-    timeRequired: 'PT55M',
-    numberOfCredits: 4,
+    timeRequired: 'PT75M',
+    numberOfCredits: 7,
     isAccessibleForFree: true,
     hasCourseInstance: {
       '@type': 'CourseInstance',
       courseMode: 'online',
-      courseWorkload: 'PT55M',
+      courseWorkload: 'PT75M',
     },
   })
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld }} />
@@ -54,13 +71,21 @@ function CourseSchema() {
 export default function IkigaiBrandingWorkshopPage() {
   const workshop = getWorkshopBySlug('ikigai-branding')!
   const [ikigai, setIkigai] = useState<IkigaiState>(emptyIkigai)
+  const [presenterActive, setPresenterActive] = useState(false)
+
+  // Activate presenter overlay via ?present=1 query param (read on mount, no Suspense needed)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('present') === '1') setPresenterActive(true)
+  }, [])
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       <CourseSchema />
 
       {/* Hero */}
-      <section className="relative pt-28 pb-12 overflow-hidden">
+      <section id="intro" className="relative pt-28 pb-12 overflow-hidden scroll-mt-24">
         <div className="absolute inset-0 bg-gradient-to-b from-violet-500/[0.05] via-amber-500/[0.02] to-transparent" />
         <div className="absolute top-20 left-1/3 w-[500px] h-[500px] bg-violet-500/[0.06] rounded-full blur-[140px]" />
         <div className="absolute top-40 right-1/3 w-[400px] h-[400px] bg-amber-500/[0.05] rounded-full blur-[120px]" />
@@ -89,7 +114,7 @@ export default function IkigaiBrandingWorkshopPage() {
               </span>
               <span className="flex items-center gap-1.5 text-xs text-zinc-500">
                 <Layers className="w-3.5 h-3.5" />
-                {workshop.moduleCount} modules
+                7 modules
               </span>
               <span className="flex items-center gap-1.5 text-xs text-zinc-500">
                 <Users className="w-3.5 h-3.5" />
@@ -113,6 +138,23 @@ export default function IkigaiBrandingWorkshopPage() {
 
             <div className="mt-8 max-w-xl">
               <CoachGPTCard />
+            </div>
+
+            {/* Presenter tools — visible to anyone, useful for facilitators */}
+            <div className="mt-4 flex flex-wrap items-center gap-2">
+              <Link
+                href="/workshops/ikigai-branding/present"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white transition-colors"
+              >
+                <Presentation className="w-3.5 h-3.5" />
+                Open presenter mode
+              </Link>
+              <button
+                onClick={() => setPresenterActive((v) => !v)}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium text-zinc-400 bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.06] hover:text-zinc-200 transition-colors"
+              >
+                {presenterActive ? 'Hide' : 'Show'} on-page HUD
+              </button>
             </div>
           </motion.div>
         </div>
@@ -150,14 +192,22 @@ export default function IkigaiBrandingWorkshopPage() {
                     <p className="text-sm text-zinc-300">{obj}</p>
                   </div>
                 ))}
+                <div className="flex items-start gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-emerald-400 opacity-70" />
+                  <p className="text-sm text-zinc-300">A 30-day content plan generated from your three pillars — exportable to Notion, Google Sheets, or CSV.</p>
+                </div>
+                <div className="flex items-start gap-2.5">
+                  <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-emerald-400 opacity-70" />
+                  <p className="text-sm text-zinc-300">The GenCreator Stack — five tools across Capture · Think · Make · Ship · Measure.</p>
+                </div>
               </div>
             </div>
           </GlowCard>
         </div>
       </section>
 
-      {/* The 3Cs — framework preserved from legacy page */}
-      <section id="three-cs" className="pb-16">
+      {/* The 3Cs */}
+      <section id="three-cs" className="pb-16 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-zinc-500 mb-2">
@@ -236,7 +286,7 @@ export default function IkigaiBrandingWorkshopPage() {
       </section>
 
       {/* Module 1: The Ikigai Map */}
-      <section className="pb-12">
+      <section id="module-1" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-violet-300 mb-2">
@@ -257,7 +307,7 @@ export default function IkigaiBrandingWorkshopPage() {
       </section>
 
       {/* Module 2: Synthesis */}
-      <section className="pb-12">
+      <section id="synthesis" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-amber-400 mb-2">
@@ -277,7 +327,7 @@ export default function IkigaiBrandingWorkshopPage() {
       </section>
 
       {/* Module 3: Brand Bridge */}
-      <section className="pb-12">
+      <section id="brand-bridge" className="pb-12 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="rounded-3xl overflow-hidden border border-white/[0.06] bg-white/[0.01]">
             <Image
@@ -292,12 +342,69 @@ export default function IkigaiBrandingWorkshopPage() {
         </div>
       </section>
 
-      {/* Module 4: Activation + Email capture */}
-      <section className="pb-24">
+      {/* Module 4: Content Operating Plan — NEW */}
+      <section id="content-plan" className="pb-12 scroll-mt-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-6">
+            <p className="text-xs font-medium uppercase tracking-wider text-violet-300 mb-2">
+              Module 4 · Content Operating Plan
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              From positioning to publishing
+            </h2>
+            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
+              The pillars tell you what to write about. This module gives you the patterns, the rhythm,
+              and the calendar so blank-page mornings end. Anchored to your three pillars from Module 3.
+            </p>
+          </div>
+          <ContentOperatingPlan value={ikigai} />
+        </div>
+      </section>
+
+      {/* Module 5: GenCreator Stack — NEW */}
+      <section id="gencreator-stack" className="pb-12 scroll-mt-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-6">
+            <p className="text-xs font-medium uppercase tracking-wider text-sky-300 mb-2">
+              Module 5 · The GenCreator Stack
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              Five jobs. Five tools. One creator hub.
+            </h2>
+            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
+              The opinionated short-list of MCPs, extensions, and apps that compound your craft
+              instead of fragmenting your attention. Build the hub once; ship for years.
+            </p>
+          </div>
+          <GenCreatorStack />
+        </div>
+      </section>
+
+      {/* Module 6: Live Artifact — NEW */}
+      <section id="live-artifact" className="pb-12 scroll-mt-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-6">
+            <p className="text-xs font-medium uppercase tracking-wider text-amber-400 mb-2">
+              Module 6 · The Artifact
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              AI-assisted. Voice-preserved.
+            </h2>
+            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
+              The whole workshop in one demo. Watch a LinkedIn post get written — with rejections, redirects,
+              and the prompt scaffold you can keep.
+            </p>
+          </div>
+          <LiveArtifact />
+        </div>
+      </section>
+
+      {/* Module 7: Activation + Email capture (was Module 4) */}
+      <section id="activation" className="pb-24 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="mb-2">
             <p className="text-xs font-medium uppercase tracking-wider text-emerald-400 mb-2">
-              Module 4 · Activation
+              Module 7 · Activation
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Ship the brand into reality
@@ -315,7 +422,7 @@ export default function IkigaiBrandingWorkshopPage() {
                 Get the Resource Pack
               </h3>
               <p className="text-sm text-zinc-400 mb-5 max-w-md mx-auto">
-                Templates for the positioning sentence, avatar, and 30-day expression plan. Plus a Day-7 check-in from Frank.
+                Templates for the positioning sentence, avatar, 30-day expression plan, and the GenCreator Stack checklist. Plus a Day-7 check-in from Frank.
               </p>
               <div className="max-w-sm mx-auto">
                 <EmailSignup
@@ -367,6 +474,9 @@ export default function IkigaiBrandingWorkshopPage() {
           </div>
         </div>
       </section>
+
+      {/* Presenter HUD overlay — activates via state toggle or ?present=1 */}
+      <PresenterOverlay sectionIds={PRESENTER_SECTIONS} active={presenterActive} />
     </div>
   )
 }
