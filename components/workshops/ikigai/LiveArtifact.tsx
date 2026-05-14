@@ -12,6 +12,11 @@ interface LiveArtifactProps {
 export function LiveArtifact({ embedUrl, posterSrc }: LiveArtifactProps) {
   const hasVideo = Boolean(embedUrl)
 
+  // Don't render the section when there's no video — empty placeholder on a
+  // public page reads as unfinished work. Section is gated upstream too via
+  // LIVE_ARTIFACT_URL constant in app/workshops/ikigai-branding/page.tsx.
+  if (!hasVideo) return null
+
   return (
     <div id="live-artifact" className="space-y-6">
       <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden">
