@@ -8,7 +8,8 @@ type PartnershipHeroProps = {
 }
 
 const STATUS_LABEL: Record<Partner['status'], string> = {
-  active: 'Working partnership',
+  active: 'Active strategic conversation',
+  'strategic-alignment': 'Strategic alignment',
   'in-conversation': 'In conversation',
   placeholder: 'Conversation open',
 }
@@ -17,7 +18,8 @@ export function PartnershipHero({
   partner,
   secondaryCta,
 }: PartnershipHeroProps) {
-  const isProposalTier = partner.status === 'active'
+  const isProposalTier =
+    partner.status === 'active' || partner.status === 'strategic-alignment'
 
   return (
     <section

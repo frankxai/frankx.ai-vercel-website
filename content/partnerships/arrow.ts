@@ -263,7 +263,7 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, AI Architect Academy cur
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/arrow.svg',
-  ogImagePath: '/images/partnerships/arrow-og.png',
+  // ogImagePath: '/images/partnerships/arrow-og.png', // TODO: generate via NB2, falls back to site default until then
   visualSummaryUrl: '/images/partnerships/arrow-compounding-loop.svg',
   visualSummaryAlt:
     'Twelve-month compounding loop showing the FrankX coding-agent AI CoE practice with Arrow ECS — Month 0 foundations, Month 3 first publications, Month 6 cohort certified, Month 12 practice mature.',
