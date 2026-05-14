@@ -70,7 +70,12 @@ export function PromptCard({ prompt }: PromptCardProps) {
   }
 
   return (
-    <div className="rounded-3xl border border-violet-500/20 bg-gradient-to-br from-violet-500/[0.04] via-white/[0.02] to-amber-500/[0.03] overflow-hidden">
+    <div
+      className="rounded-3xl border border-violet-500/20 bg-gradient-to-br from-violet-500/[0.04] via-white/[0.02] to-amber-500/[0.03] overflow-hidden"
+      data-workshop-prompt={prompt.id}
+      data-workshop-module={prompt.module}
+      data-workshop-prompt-title={prompt.title}
+    >
       {/* Header */}
       <div className="px-5 sm:px-6 pt-5 sm:pt-6 pb-4 border-b border-white/[0.04]">
         <div className="flex items-center gap-2 mb-2">
@@ -85,10 +90,15 @@ export function PromptCard({ prompt }: PromptCardProps) {
         <p className="text-sm text-zinc-400 leading-relaxed">{prompt.subtitle}</p>
       </div>
 
-      {/* Prompt body — scrollable, mono, readable on mobile */}
+      {/* Prompt body — scrollable, mono, readable on mobile. The
+          data-workshop-prompt-body attribute exposes the prompt text
+          to browser agents (Comet, Operator, Computer Use). */}
       <div className="relative">
         <div className="max-h-64 sm:max-h-72 overflow-y-auto p-4 sm:p-5 bg-[#0a0a0b]/40">
-          <pre className="text-[11px] sm:text-[13px] text-zinc-300 leading-relaxed font-mono whitespace-pre-wrap break-words">
+          <pre
+            data-workshop-prompt-body={prompt.id}
+            className="text-[11px] sm:text-[13px] text-zinc-300 leading-relaxed font-mono whitespace-pre-wrap break-words"
+          >
             {prompt.body}
           </pre>
         </div>
