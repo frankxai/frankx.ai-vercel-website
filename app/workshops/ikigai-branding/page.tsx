@@ -31,6 +31,8 @@ import { AICompanions } from '@/components/workshops/ikigai/AICompanions'
 import { CommonTraps } from '@/components/workshops/ikigai/CommonTraps'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
 import { AIConnectors } from '@/components/workshops/ikigai/AIConnectors'
+import { WorkshopPath } from '@/components/workshops/ikigai/WorkshopPath'
+import { WorkshopProgressRail } from '@/components/workshops/ikigai/WorkshopProgressRail'
 import { WORKSHOP_PROMPTS } from '@/lib/workshop-prompts'
 import { emptyIkigai, type IkigaiState } from '@/components/workshops/ikigai/types'
 import { getWorkshopBySlug } from '@/data/workshops'
@@ -126,6 +128,7 @@ export default function IkigaiBrandingWorkshopPage() {
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       <CourseSchema />
+      <WorkshopProgressRail />
 
       {/* Hero */}
       <section id="intro" className="relative pt-28 pb-12 overflow-hidden scroll-mt-24">
@@ -171,7 +174,7 @@ export default function IkigaiBrandingWorkshopPage() {
                 Workshop
               </span>
             </h1>
-            <p className="text-lg text-zinc-400 mb-6 max-w-2xl">
+            <p className="text-lg text-zinc-400 mb-6 max-w-2xl leading-relaxed">
               {workshop.subtitle}.
             </p>
 
@@ -179,29 +182,59 @@ export default function IkigaiBrandingWorkshopPage() {
               {workshop.overview}
             </p>
 
-            <div className="mt-8 max-w-xl">
-              <CoachGPTCard />
+            {/* Primary CTA — for individuals */}
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Link
+                href="#start"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-400 hover:to-violet-500 transition-colors shadow-lg shadow-violet-500/20 cursor-pointer"
+              >
+                Start the workshop
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="/go/ikigai-coach"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-3 rounded-lg text-sm font-medium text-zinc-200 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white transition-colors cursor-pointer"
+              >
+                Prefer a chat? Open Coach GPT
+              </a>
             </div>
 
-            {/* Presenter tools — visible to anyone, useful for facilitators */}
-            <div className="mt-4 flex flex-wrap items-center gap-2">
+            {/* Facilitator tools — small, secondary, separated */}
+            <div className="mt-5 pt-5 border-t border-white/[0.04] flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-zinc-500">
+              <span>Facilitating?</span>
               <Link
                 href="/workshops/ikigai-branding/present"
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium text-zinc-300 bg-white/[0.04] border border-white/[0.08] hover:bg-white/[0.08] hover:text-white transition-colors"
+                className="inline-flex items-center gap-1.5 text-zinc-300 hover:text-violet-200 transition-colors cursor-pointer"
               >
                 <Presentation className="w-3.5 h-3.5" />
                 Open presenter mode
               </Link>
+              <span className="text-zinc-700">·</span>
               <button
                 onClick={() => setPresenterActive((v) => !v)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs font-medium text-zinc-400 bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.06] hover:text-zinc-200 transition-colors"
+                className="text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer"
               >
                 {presenterActive ? 'Hide' : 'Show'} on-page HUD
               </button>
+              <span className="text-zinc-700">·</span>
+              <Link
+                href="/workshops/ikigai-branding/present/speaker"
+                target="_blank"
+                className="text-zinc-400 hover:text-zinc-200 transition-colors cursor-pointer"
+              >
+                Speaker view
+              </Link>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Path-selector — orient the three user types */}
+      <div id="start" className="scroll-mt-24">
+        <WorkshopPath />
+      </div>
 
       {/* Ikigai Venn — visual anchor */}
       <section className="pb-12">
@@ -254,7 +287,7 @@ export default function IkigaiBrandingWorkshopPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-violet-300 mb-2">
-              Module 1 · The Ikigai Map
+              Module 1 · The Ikigai Map · ~15 min
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
               <Compass className="w-6 h-6 text-violet-300" />
@@ -295,7 +328,7 @@ export default function IkigaiBrandingWorkshopPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-amber-400 mb-2">
-              Module 2 · Purpose Statement
+              Module 2 · Purpose Statement · ~10 min
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Write the sentence
@@ -367,14 +400,14 @@ export default function IkigaiBrandingWorkshopPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-violet-300 mb-2">
-              Module 4 · Content Operating Plan
+              Module 4 · Content Operating Plan · ~12 min
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               From positioning to publishing
             </h2>
-            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              The pillars tell you what to write about. This module gives you the patterns, the rhythm,
-              and the calendar so blank-page mornings end. Anchored to your three pillars from Module 3.
+            <p className="text-sm text-zinc-400 mt-2 max-w-2xl leading-relaxed">
+              Pillars tell you what to write. This module gives you the rhythm, the formats, and
+              the 30-day calendar — anchored to your Module 3 pillars. Monday&apos;s post written by Sunday night.
             </p>
           </div>
           <div className="mb-5">
@@ -412,14 +445,14 @@ export default function IkigaiBrandingWorkshopPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">
             <p className="text-xs font-medium uppercase tracking-wider text-sky-300 mb-2">
-              Module 5 · The Operating Stack
+              Module 5 · The Operating Stack · ~8 min
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Your AI companion. Then the 5-job stack.
             </h2>
-            <p className="text-sm text-zinc-400 mt-2 max-w-2xl">
-              Two layers. First the AI brain you actually think with. Then the four other jobs you run
-              every week. Opinionated, picked from the field, built to compound — not sprawl.
+            <p className="text-sm text-zinc-400 mt-2 max-w-2xl leading-relaxed">
+              First the AI you think with daily. Then the four other jobs every creator runs.
+              Opinionated, picked from the field, built to compound — not sprawl.
             </p>
           </div>
           <div className="mb-5">
@@ -468,7 +501,7 @@ export default function IkigaiBrandingWorkshopPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="mb-2">
             <p className="text-xs font-medium uppercase tracking-wider text-emerald-400 mb-2">
-              Module 7 · Activation
+              Module 7 · Activation · ~5 min
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Ship the brand into reality
