@@ -1,0 +1,11 @@
+{
+  "risk": "production",
+  "health": "pnpm build && pnpm start",
+  "agentFiles": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".codex/instructions.md"
+  ],
+  "deployPolicy": "vercel-main",
+  "globalHooksAllowed": false
+}
