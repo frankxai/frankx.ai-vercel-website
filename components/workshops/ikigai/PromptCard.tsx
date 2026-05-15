@@ -136,7 +136,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 href={t.href(prompt.body)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium border ${ACCENT_MAP[t.accent]} transition-colors`}
+                className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium border cursor-pointer ${ACCENT_MAP[t.accent]} transition-colors`}
                 title={t.note ? `Opens new chat — paste the copied prompt` : `Opens with prompt pre-filled`}
               >
                 <span className={`flex items-center justify-center w-6 h-6 rounded border ${ACCENT_MAP[t.accent]} font-bold text-[11px]`}>
@@ -147,6 +147,19 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 <ExternalLink className="w-3 h-3 opacity-60 ml-0.5" />
               </a>
             ))}
+          </div>
+
+          {/* When-to-use-which guidance */}
+          <div className="mt-3 pt-3 border-t border-white/[0.04] grid grid-cols-1 sm:grid-cols-3 gap-x-3 gap-y-1.5 text-[11px] leading-snug">
+            <p className="text-zinc-400">
+              <span className="text-emerald-300 font-medium">ChatGPT</span> — opens with prompt prefilled. Best if you use Memory.
+            </p>
+            <p className="text-zinc-400">
+              <span className="text-amber-300 font-medium">Claude</span> — paste after open. Best for long, careful reasoning.
+            </p>
+            <p className="text-zinc-400">
+              <span className="text-sky-300 font-medium">Gemini</span> — paste after open. Best if you live in Google Workspace.
+            </p>
           </div>
         </div>
       </div>

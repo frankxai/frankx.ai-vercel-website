@@ -438,6 +438,18 @@ export default function IkigaiPresentPage() {
       </AnimatePresence>
 
       <style jsx global>{`
+        html, body {
+          /* Prevent pull-to-refresh and bounce on mobile while in presenter mode */
+          overscroll-behavior: contain;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          /* Respect users who request reduced motion */
+          * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+          }
+        }
         @media print {
           html, body { background: white !important; color: black !important; }
           .fixed { position: static !important; }
