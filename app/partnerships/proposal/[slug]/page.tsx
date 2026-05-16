@@ -122,6 +122,7 @@ export default async function ProposalPage({
           <Link
             href={proposal.cta.href}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-sm font-medium tracking-tight transition-colors"
+            style={{ boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.1)' }}
           >
             {proposal.cta.label}
             <span aria-hidden>→</span>
