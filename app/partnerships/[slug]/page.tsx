@@ -153,7 +153,9 @@ export default async function PartnershipPage({
       {/* Tier 2 — labeled proposal (only for active partners) */}
       {isProposalTier ? (
         <>
-          <ProposalDivider />
+          <ProposalDivider
+            variant={isActiveConversation ? 'active' : 'strategic-alignment'}
+          />
 
           {partner.visualSummaryUrl ? (
             <section
