@@ -23,3 +23,4 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: 'https://frankx.ai/sitemap.xml',
   }
 }
+// Vercel deploy trigger: 2026-05-16T17:24:15Z
