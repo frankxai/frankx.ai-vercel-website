@@ -1,6 +1,9 @@
 import { NextRequest } from 'next/server'
 
-export const runtime = 'edge'
+// Runtime: Vercel Fluid Compute (default Node.js). Edge runtime is
+// deprecated as of 2026-02-27 per vercel:knowledge-update — Fluid
+// Compute runs in the same regions, same price, full Node ecosystem,
+// 300s default timeout. Streaming response works identically.
 
 interface Message {
   role: 'user' | 'assistant' | 'system'
