@@ -1,8 +1,15 @@
 import { ImageResponse } from 'next/og'
 
-// next/og's ImageResponse requires edge runtime in Next 14+ — nodejs runtime
-// throws 500 in production (silent server-side error, no logs surfaced).
-// Edge runtime ships built-in font fallback so Inter/system fonts work.
+// Runtime: Edge intentionally retained. next/og's ImageResponse historically
+// required edge runtime — nodejs runtime threw 500 in production (silent
+// server-side error, no logs surfaced). Edge runtime ships built-in font
+// fallback so Inter/system fonts work.
+//
+// TODO: validate Fluid Compute compatibility in Next 16+. Vercel's
+// vercel:knowledge-update (2026-02-27) recommends migrating off Edge to
+// Fluid Compute everywhere, but this route is a documented exception
+// until verified. Migration test: remove this export, deploy preview,
+// curl /api/og?title=test, verify 200 + valid PNG output.
 export const runtime = 'edge'
 
 export async function GET(req: Request) {
@@ -19,13 +26,7 @@ export async function GET(req: Request) {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          // Single solid bg + a single radial accent. next/og's CSS parser
-          // reliably handles solid colors and one gradient. The previous
-          // 3-stacked-radial-gradient + comma-separated background was logging
-          // "Error: Invalid background image" in production runtime logs —
-          // the response was 200 with empty body. Simpler bg = guaranteed render.
-          backgroundColor: '#0b0d10',
-          backgroundImage: 'radial-gradient(circle at 30% 30%, rgba(34,211,238,0.18), transparent 65%)',
+          background: 'radial-gradient(circle at top, rgba(16,185,129,0.25), transparent 60%), radial-gradient(circle at 20% 70%, rgba(34,211,238,0.2), transparent 60%), radial-gradient(circle at 80% 80%, rgba(245,158,11,0.18), transparent 60%), #0b0d10',
           color: '#e8eef5',
           fontSize: 64,
           fontFamily: 'Inter, Arial, sans-serif',
