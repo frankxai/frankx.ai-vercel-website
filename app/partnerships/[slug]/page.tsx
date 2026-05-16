@@ -14,6 +14,8 @@ import { CrossLinkTour } from '@/components/partnerships/CrossLinkTour'
 import { AntiPositioning } from '@/components/partnerships/AntiPositioning'
 import { PartnerCTA } from '@/components/partnerships/PartnerCTA'
 import { PlaceholderState } from '@/components/partnerships/PlaceholderState'
+import { AlreadySharedSection } from '@/components/partnerships/AlreadySharedSection'
+import { FormalizeBand } from '@/components/partnerships/FormalizeBand'
 
 const SITE_URL = 'https://frankx.ai'
 
@@ -181,6 +183,10 @@ export default async function PartnershipPage({
             </section>
           ) : null}
 
+          {partner.alreadyShared && partner.alreadyShared.length > 0 ? (
+            <AlreadySharedSection items={partner.alreadyShared} />
+          ) : null}
+
           {partner.asymmetricValue.length > 0 ? (
             <AsymmetricValueGrid blocks={partner.asymmetricValue} />
           ) : null}
@@ -199,6 +205,10 @@ export default async function PartnershipPage({
 
           {partner.whatThisIsNot.length > 0 ? (
             <AntiPositioning items={partner.whatThisIsNot} />
+          ) : null}
+
+          {partner.formalizationAsk ? (
+            <FormalizeBand text={partner.formalizationAsk} />
           ) : null}
 
           <PartnerCTA partner={partner} />

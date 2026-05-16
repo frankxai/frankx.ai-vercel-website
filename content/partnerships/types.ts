@@ -113,6 +113,19 @@ export type Partner = {
    */
   operatesFrom?: string
 
+  /**
+   * For strategic-alignment tier — explicit list of touchpoints already
+   * shared with the partner today. Renders as "What we already share today"
+   * section between hero and working-reality, biased toward conversion via
+   * factual already-true reciprocal alignment.
+   */
+  alreadyShared?: string[]
+  /**
+   * For strategic-alignment tier — closing band before CTA. Articulates that
+   * the work is in motion and only the formal program lane remains.
+   */
+  formalizationAsk?: string
+
   // Visual
   partnerLogoUrl?: string
   accent?: PartnerAccent

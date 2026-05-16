@@ -164,9 +164,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const aiPages = [
     '/agents',
     '/agent-team',
-    '/agentic-ai-center',
     '/ai-architect',
-    '/ai-coe',
     '/developers',
   ]
 
@@ -292,18 +290,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/starlight-intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
     // Investment Intelligence System (IIS) — public hub
     { url: '/intelligence-system', priority: 0.9, changeFrequency: 'weekly' as const },
-    // Studio — content operations system (index + 8 producer specialists)
-    { url: '/studio', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/studio/visual', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/studio/audio', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/video', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/music', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/prose', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/screen', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/food', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/travel', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/calendar', priority: 0.7, changeFrequency: 'weekly' as const },
-    { url: '/studio/operating', priority: 0.8, changeFrequency: 'monthly' as const },
     // Plan
     { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
     // Inspiration
@@ -668,6 +654,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: isFeatured ? 0.8 : 0.5,
     })
   })
+
+  // /partnerships/proposal/* is intentionally NOT indexed (noindex + robots.txt
+  // disallow). Unlisted proposals are share-by-URL only.
+
+  // Work — engagement hub + per-engagement case studies
+  entries.push({
+    url: `${BASE_URL}/work`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  })
+  // Per-engagement entries are added once content/work/index.ts registers them.
+  // /work/proposal/* is intentionally NOT indexed (share-by-URL only).
 
   return entries
 }
