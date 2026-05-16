@@ -3,9 +3,12 @@ import { bookReviews } from '@/data/book-reviews';
 
 const SITE_URL = 'https://frankx.ai';
 
-export const runtime = 'edge';
-// 5-minute Vercel edge cache — random doesn't need to be perfectly random per call,
-// and caching dramatically reduces cold-start cost
+// Runtime: Vercel Fluid Compute (default Node.js). Edge deprecated
+// 2026-02-27 per vercel:knowledge-update. Fluid Compute matches edge
+// latency profile while keeping the full Node ecosystem.
+//
+// 5-minute static cache — random doesn't need to be perfectly random
+// per call, and caching dramatically reduces invocation cost.
 export const revalidate = 300;
 
 type ApiQuote = {

@@ -1,6 +1,11 @@
 import { ImageResponse } from 'next/og';
 import { getReviewBySlug } from '@/data/book-reviews';
 
+// Runtime: Edge intentionally retained. next/og's ImageResponse
+// historically required edge — nodejs threw 500 silently with no logs.
+// TODO: validate Fluid Compute compatibility in Next 16+. Test:
+// remove this export, deploy preview, curl /library/<slug>/q/<n>
+// opengraph-image URL, verify 200 + valid PNG output.
 export const runtime = 'edge';
 export const alt = 'Quote from the FrankX Library';
 export const size = { width: 1200, height: 630 };
