@@ -25,7 +25,7 @@ export const google: Partner = {
   tagline:
     'Gemini and the Agent Development Kit, taught in the workshop and used in real delivery.',
   subTagline:
-    'Pursuing Google Cloud Partner Advantage. The natural shape is workshop attendee credits plus a Gemini-native AI CoE practice across EMEA.',
+    'Gemini already in daily multimodal delivery. Google ADK + A2A protocol already in the workshop enterprise lane. The conversation is Cloud Partner Advantage entry + workshop credits.',
 
   contextWindow: `Gemini is part of my daily multimodal delivery — text, image (Nano Banana / Imagen), and video (Veo) all sit inside the working set alongside Claude and the OpenAI stack. The Google Agent Development Kit and the A2A protocol are not a slide — they are the enterprise lane of the Build First AI Agent workshop and the explicit enterprise lane of the Starlight Agent Lab three-lane portfolio (Vercel AI SDK / Claude Agent SDK / Google ADK).
 
@@ -257,6 +257,18 @@ The strategic alignment here is about a Google-native AI CoE practice with works
   },
 
   programStatus: 'Google Cloud Partner Advantage — pursuit underway',
+
+  alreadyShared: [
+    'Gemini in daily multimodal delivery — Veo, Nano Banana 2, and Imagen evaluations sit inside the working set.',
+    'Google ADK + A2A protocol in the Build First AI Agent workshop enterprise lane, taught hands-on.',
+    'Public /guides/agent-card-a2a-spec documentation written from operator-grade use of the protocol.',
+    'Starlight Agent Lab three-lane portfolio explicitly positions ADK as the enterprise lane alongside Vercel AI SDK and Claude Agent SDK.',
+    'Multi-cloud AI CoE methodology with Google as a first-class enterprise lane across reference architectures.',
+    '7,000+ EMEA AI architect audience overlapping the GCP developer community across Oracle, NVIDIA, Anthropic, and founder networks.',
+  ],
+
+  formalizationAsk:
+    "What's left to formalize. Gemini is daily delivery. ADK is the enterprise lane in the workshop. A2A protocol is publicly documented. The conversation is closing Cloud Partner Advantage, workshop attendee credits for Build First AI Agent (Google branch), DevRel touchpoint with the ADK team, and a joint slot at Google Cloud Next EMEA.",
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/google.svg',

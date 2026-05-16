@@ -29,7 +29,7 @@ export const nvidia: Partner = {
   tagline:
     'Silicon-aware AI CoE methodology for the EMEA accelerator wave.',
   subTagline:
-    'Co-architect of the Oracle x NVIDIA partner event 2025. Munich EBC bridge. NIM hands-on inside Oracle EMEA AI CoE reference architectures.',
+    'Co-architect of the Oracle × NVIDIA partner event 2025. Munich EBC bridge already warm. The conversation is the formal Inception + EMEA event lane.',
 
   contextWindow: `GPU and accelerator infrastructure is the silicon layer of the AI CoE practice I run inside Oracle EMEA. NIM, NeMo, and the NVIDIA AI Enterprise stack are quietly becoming default ingredients in every multi-cloud reference architecture an AI Architect ships in this region. The Oracle x NVIDIA AI accelerator pack wave is moving through EMEA channel right now, and the bridge from GPU infrastructure to agent workloads is where the methodology earns its keep.
 
@@ -256,6 +256,18 @@ The strategic alignment is about the EMEA agent plus accelerator distribution wa
   },
 
   programStatus: 'NVIDIA Inception — nominee pathway',
+
+  alreadyShared: [
+    'Co-architect of the Oracle × NVIDIA partner event 2025 from the Oracle EMEA AI CoE side.',
+    'Munich EBC contacts active from the CoE work — the bridge is warm, not cold outreach.',
+    'NIM hands-on practice threaded through Oracle EMEA AI CoE reference architectures.',
+    'GPU-to-agent CoE methodology productized inside the AI Architect Academy curriculum.',
+    'Oracle × NVIDIA AI accelerator pack content stream ready to publish on /research.',
+    '7,000+ EMEA AI architect audience overlapping the NVIDIA developer community across Oracle, NVIDIA, Anthropic, and founder networks.',
+  ],
+
+  formalizationAsk:
+    "What's left to formalize. Munich EBC bridge is already warm from 2025. The CoE methodology is productized. The audience is engaged. The conversation is Inception membership, recurring EBC briefings, joint EMEA event slots, and accelerator-pack content sponsorship.",
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/nvidia.svg',

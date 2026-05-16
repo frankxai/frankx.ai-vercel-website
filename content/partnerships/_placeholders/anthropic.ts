@@ -26,7 +26,7 @@ export const anthropic: Partner = {
   tagline:
     'The harness this practice ships in. The conversation is about scaling that pattern.',
   subTagline:
-    'Pursuing the Anthropic Claude for Work Partner Program. Claude Code is already the daily build harness for frankx.ai, ACOS, SIS, Library OS, the AI Architect Academy, and the OCI Claude Code skill pack.',
+    "Frank's practice and Anthropic Claude already ship every day together. Claude Code is the build harness underneath frankx.ai, ACOS, SIS, Library OS, the AI Architect Academy, and the OCI Claude Code skill pack. The conversation is making the alignment formal through Claude for Work.",
 
   contextWindow: `Claude Code is not a tool I evaluated and adopted. It is the harness every shipped artifact on frankx.ai is built in — the operating layer underneath an open coding-agent practice that already runs in public.
 
@@ -261,6 +261,18 @@ That is the layer I bring. Oracle EMEA AI CoE pedigree, four public Claude-Code-
   },
 
   programStatus: 'Anthropic Claude for Work — application pathway',
+
+  alreadyShared: [
+    'Claude Code is the harness for every shipped FrankX project — frankx.ai, ACOS, SIS, Library OS, the workshop curriculum.',
+    'ACOS, SIS, and Library OS are three Claude-Code-native open-source systems, all public on github.com/frankxai.',
+    'The Build First AI Agent workshop teaches Claude as a primary agent path to the EMEA enterprise architect audience.',
+    '7,000+ EMEA AI architect followers across Oracle, NVIDIA, Anthropic, and founder networks already watching Claude-native CoE patterns.',
+    'A2A protocol guide and the agent-framework comparison content publish Claude as the reasoning-lane benchmark.',
+    'Active feedback loop on Claude Code skills and the MCP roadmap from daily delivery use.',
+  ],
+
+  formalizationAsk:
+    "What's left to formalize. The work is in motion. The audience is engaged. The reference-implementation is public. What remains is the formal program lane — Claude for Work Partner Program entry, attendee credits for the workshop Claude branch, and co-marketing visibility on the surfaces already pointing at you. That is the conversation.",
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/anthropic.svg',

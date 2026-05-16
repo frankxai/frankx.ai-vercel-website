@@ -22,7 +22,7 @@ export const vercel: Partner = {
   tagline:
     'The deployment substrate the entire AI CoE practice runs on.',
   subTagline:
-    'Vercel Partner Program application is in flight. Every FrankX project — frankx.ai, the production site, Watch OS, Workshop OS, Library OS, Studio, ACO, Partnerships — ships on Vercel.',
+    'Every shipped FrankX surface already runs on Vercel infrastructure. The Build First AI Agent workshop centres Vercel AI SDK. The conversation is making the alignment formal.',
 
   contextWindow: `Vercel is the deployment substrate the entire FrankX AI Architect practice runs on. frankx.ai, the production site frankx.ai-vercel-website, Watch OS, Workshop OS, Library OS, Studio, ACO, Partnerships — every public surface ships on Vercel. The AI Architect Academy uses Next.js 16 with Turbopack, Cache Components, Fluid Compute, and the new vercel.ts config as its standard reference deploy.
 
@@ -259,6 +259,18 @@ Vercel Partner Program — application is in flight. This page is the conversati
   },
 
   programStatus: 'Vercel Partner Program — application in flight',
+
+  alreadyShared: [
+    'Every shipped frankx.ai surface runs on Vercel infrastructure — Watch OS, Workshop OS, Library OS, Studio, ACO, Partnerships.',
+    'The Build First AI Agent workshop centres Vercel AI SDK as the recommended path for the central cohort track.',
+    '8+ public production deploys under the frankxai/* org, every one a working Next-on-Vercel reference.',
+    'Active feedback loop on AI Gateway, Fluid Compute, Cache Components, and the new vercel.ts config from daily delivery.',
+    'Workshop curriculum biased Vercel AI SDK first — not OpenAI Assistants, not LangChain — across every cohort.',
+    'Reference-architecture demos with Deploy-via-Vercel CTAs ready to publish on /ai-architecture.',
+  ],
+
+  formalizationAsk:
+    "What's left to formalize. Eight production deploys ship on your platform already. The workshop curriculum already biases your AI SDK. The conversation is closing the Partner Program loop, attendee credits for the workshop EMEA cohort, and DevRel touchpoint with the Lee Robinson / Guillermo Rauch network.",
 
   accent: 'tech',
   partnerLogoUrl: '/images/partnerships/logos/vercel.svg',
