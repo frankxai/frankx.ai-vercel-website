@@ -3,7 +3,10 @@ import { bookReviews } from '@/data/book-reviews';
 
 const SITE_URL = 'https://frankx.ai';
 
-export const runtime = 'edge';
+// Runtime: Vercel Fluid Compute (default Node.js). Edge runtime
+// deprecated 2026-02-27 per vercel:knowledge-update — Fluid Compute
+// runs in same regions, same price, full Node ecosystem, 300s default
+// timeout. Static cache via Next.js handles revalidation identically.
 
 type ApiQuote = {
   text: string;
