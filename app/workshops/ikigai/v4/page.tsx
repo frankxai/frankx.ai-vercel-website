@@ -35,6 +35,7 @@
 
 import { useEffect, useState, type ReactNode } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   motion,
   useScroll,
@@ -43,6 +44,10 @@ import {
   useReducedMotion,
 } from 'framer-motion'
 import { ArrowLeft, ArrowRight, ArrowUpRight, Mail, Presentation } from 'lucide-react'
+
+// Hero variant 1-4. Change this single number to switch which NB2 generation
+// renders as the V4 hero. Files at /public/images/workshops/ikigai-branding/v4-hero-variant-{1,2,3,4}.jpg
+const HERO_VARIANT: 1 | 2 | 3 | 4 = 1
 import { EmailSignup } from '@/components/email-signup'
 import { IkigaiWizard } from '@/components/workshops/ikigai/IkigaiWizard'
 import { SynthesisPanel } from '@/components/workshops/ikigai/SynthesisPanel'
@@ -343,54 +348,79 @@ function NextStepBody({ step }: { step: NextStep }) {
   )
 }
 
-// ─── Animated kanji — h1 LCP element ─────────────────────────────────────
+// ─── Animated kanji — secondary serif label below the hero image ─────────
+// (h1 role still owned here so the document outline is intact)
 function AnimatedKanji() {
   return (
     <h1
       aria-label="生き甲斐 — ikigai — a reason to wake up"
-      className="select-none flex items-baseline justify-center gap-2 [font-family:var(--font-jp-serif)] font-light text-white/95 m-0"
+      className="select-none flex items-baseline justify-center gap-1.5 [font-family:var(--font-jp-serif)] font-light text-white/95 m-0"
     >
       <motion.span
         aria-hidden="true"
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[18vw] sm:text-[14vw] md:text-[12rem] lg:text-[15rem] leading-none tracking-[-0.04em]"
+        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        className="text-[10vw] sm:text-[8vw] md:text-[6rem] lg:text-[7rem] leading-none tracking-[-0.04em]"
         style={{ fontWeight: 200 }}
       >
         生
       </motion.span>
       <motion.span
         aria-hidden="true"
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 0.7, y: 0 }}
-        transition={{ duration: 1.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[12vw] sm:text-[10vw] md:text-[8rem] lg:text-[10rem] leading-none tracking-[-0.04em] text-zinc-400"
+        transition={{ duration: 1.0, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="text-[7vw] sm:text-[6vw] md:text-[4rem] lg:text-[5rem] leading-none tracking-[-0.04em] text-zinc-400"
         style={{ fontWeight: 200 }}
       >
         き
       </motion.span>
       <motion.span
         aria-hidden="true"
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.4, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[18vw] sm:text-[14vw] md:text-[12rem] lg:text-[15rem] leading-none tracking-[-0.04em]"
+        transition={{ duration: 1.0, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="text-[10vw] sm:text-[8vw] md:text-[6rem] lg:text-[7rem] leading-none tracking-[-0.04em]"
         style={{ fontWeight: 200 }}
       >
         甲
       </motion.span>
       <motion.span
         aria-hidden="true"
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.4, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="text-[18vw] sm:text-[14vw] md:text-[12rem] lg:text-[15rem] leading-none tracking-[-0.04em]"
+        transition={{ duration: 1.0, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="text-[10vw] sm:text-[8vw] md:text-[6rem] lg:text-[7rem] leading-none tracking-[-0.04em]"
         style={{ fontWeight: 200 }}
       >
         斐
       </motion.span>
     </h1>
+  )
+}
+
+// ─── Hero image — NB2 sumi-e dark-glass brushstroke, primary LCP visual ──
+function HeroImage() {
+  return (
+    <motion.figure
+      initial={{ opacity: 0, y: 24, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full max-w-4xl mx-auto mb-8 sm:mb-12"
+    >
+      <div className="relative rounded-3xl overflow-hidden border border-white/[0.06] shadow-[0_20px_80px_-20px_rgba(59,51,128,0.4)]">
+        <Image
+          src={`/images/workshops/ikigai-branding/v4-hero-variant-${HERO_VARIANT}.jpg`}
+          alt="A sumi-e ink brushstroke on dark glass — an abstract reading of the four ikigai circles, with the kanji 生き甲斐 as a small signature stamp in the corner."
+          width={2560}
+          height={1440}
+          priority
+          className="w-full h-auto"
+        />
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+      </div>
+    </motion.figure>
   )
 }
 
@@ -612,13 +642,14 @@ export default function IkigaiV4Page() {
             </div>
           </div>
 
-          <div className="relative z-10">
+          <div className="relative z-10 w-full max-w-5xl">
+            <HeroImage />
             <AnimatedKanji />
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.0, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 sm:mt-12 text-center"
+              transition={{ duration: 1.0, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 sm:mt-8 text-center"
             >
               <p className="text-xs uppercase tracking-[0.32em] text-zinc-400 mb-3">
                 i&middot;ki&middot;gai
