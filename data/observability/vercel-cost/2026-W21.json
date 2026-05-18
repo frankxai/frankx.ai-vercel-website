@@ -22,6 +22,7 @@
   },
   "deltas_vs_prior_week": {
     "duration_p50_seconds": "+8",
+    "duration_p95_seconds": "+90",
     "count_total": "+28",
     "total_build_minutes": "+167"
   },
