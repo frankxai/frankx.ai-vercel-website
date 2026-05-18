@@ -343,6 +343,35 @@ export default function LibraryPage() {
               honest reckoning of the 2014 Western Venn. 12-minute read.
             </p>
           </Link>
+
+          <div className="mt-4 grid sm:grid-cols-2 gap-3">
+            <Link
+              href="/workshops/ikigai-branding"
+              prefetch={false}
+              className="group block rounded-xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-1.5">
+                Walk the practice
+              </p>
+              <p className="text-sm font-semibold text-white">Ikigai &amp; Branding workshop</p>
+              <p className="text-xs text-white/55 mt-1 leading-relaxed">
+                10 chapters, 13 prompts. Free. 75-minute self-guided walk.
+              </p>
+            </Link>
+            <Link
+              href="/research/conscious-ai-operating-systems"
+              prefetch={false}
+              className="group block rounded-xl border border-white/[0.06] bg-white/[0.01] hover:bg-white/[0.025] hover:border-white/[0.12] p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            >
+              <p className="text-[10px] uppercase tracking-[0.24em] text-white/40 mb-1.5">
+                Adjacent research
+              </p>
+              <p className="text-sm font-semibold text-white">Conscious AI Operating Systems</p>
+              <p className="text-xs text-white/55 mt-1 leading-relaxed">
+                The architectural answer to the meaning question.
+              </p>
+            </Link>
+          </div>
         </div>
       </section>
 

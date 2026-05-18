@@ -555,6 +555,27 @@ export default function IkigaiBrandingWorkshopPage() {
             </div>
           </div>
 
+          <Link
+            href="/research/blue-zones-ikigai-ai-era"
+            prefetch={false}
+            className="group block rounded-2xl border border-violet-500/[0.16] bg-violet-500/[0.03] hover:bg-violet-500/[0.06] hover:border-violet-500/[0.24] p-5 sm:p-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            <p className="text-[10px] uppercase tracking-[0.24em] text-violet-200 mb-2">
+              The research behind this workshop
+            </p>
+            <p className="text-sm font-semibold text-white mb-1.5 leading-snug">
+              Blue Zones, Ikigai, and the AI Era
+            </p>
+            <p className="text-sm text-zinc-300/90 leading-relaxed [font-family:var(--font-serif-editorial)] italic">
+              Kamiya 1966 &rarr; Buettner 2005 &rarr; Garc&iacute;a &amp; Miralles 2016 &rarr; Mogi 2017 &mdash; the
+              full lineage of ikigai, with an honest reckoning of the 2014 Western Venn. 12-minute read.
+            </p>
+            <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-violet-300 group-hover:text-violet-200 transition-colors">
+              Read the research
+              <ArrowRight className="w-3.5 h-3.5" />
+            </span>
+          </Link>
+
           <div className="flex items-center justify-between pt-4">
             <Link
               href="/workshops"
