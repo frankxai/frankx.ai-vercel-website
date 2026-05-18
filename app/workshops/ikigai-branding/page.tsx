@@ -44,7 +44,6 @@ import {
 } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
 import { EmailSignup } from '@/components/email-signup'
-import { IkigaiVenn } from '@/components/workshops/ikigai/IkigaiVenn'
 import { PresenterOverlay } from '@/components/workshops/ikigai/PresenterOverlay'
 import { PromptCard } from '@/components/workshops/ikigai/PromptCard'
 import { PromptStack } from '@/components/workshops/ikigai/PromptStack'
@@ -73,47 +72,6 @@ const PRESENTER_SECTIONS = [
 
 // V8 Coach prompt (id 'coach', module 0) — the spine of the workshop.
 const COACH_PROMPT = WORKSHOP_PROMPTS.find((p) => p.id === 'coach')!
-
-interface StackLinkProps {
-  label: string
-  title: string
-  body: string
-  href?: string
-  external?: boolean
-}
-
-function StackLink({
-  label,
-  title,
-  body,
-  href = '/stack',
-  external = false,
-}: StackLinkProps) {
-  const cls =
-    'group flex items-start justify-between gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.015] hover:bg-white/[0.03] hover:border-white/[0.12] p-5 sm:p-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]'
-  const inner = (
-    <>
-      <div>
-        <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">{label}</p>
-        <h3 className="text-base font-semibold text-white mb-2">{title}</h3>
-        <p className="text-sm text-zinc-300 leading-relaxed">{body}</p>
-      </div>
-      <ArrowUpRight
-        aria-hidden="true"
-        className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors flex-shrink-0 mt-1"
-      />
-    </>
-  )
-  return external ? (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
-      {inner}
-    </a>
-  ) : (
-    <Link href={href} prefetch={false} className={cls}>
-      {inner}
-    </Link>
-  )
-}
 
 interface ModuleHeaderProps {
   number: number
@@ -305,12 +263,12 @@ export default function IkigaiBrandingWorkshopPage() {
               90 minutes &middot; what you walk out with
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
-              Five concrete things, not a feeling
+              Five tangible artefacts you can paste, post, or schedule
             </h2>
             <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-              Workshops collapse when they end on inspiration. This one ends on
-              artefacts &mdash; every module produces something you can paste, post, or
-              schedule before you stand up.
+              Every module produces something you can ship before you stand up. The
+              Coach holds the conversation; each module sharpens one of the artefacts
+              you walk out with.
             </p>
           </div>
 
@@ -334,7 +292,7 @@ export default function IkigaiBrandingWorkshopPage() {
               {
                 n: '04',
                 t: 'Three named humans living from your direction',
-                b: 'Real first names, real revenue mechanisms, sourced or marked unverified. The doubt step dies with evidence.',
+                b: 'Real first names with revenue mechanisms, sourced or marked unverified. The doubt step becomes a research step.',
               },
               {
                 n: '05',
@@ -368,7 +326,7 @@ export default function IkigaiBrandingWorkshopPage() {
                 How we use AI here
               </p>
               <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
-                Mirror. Explorer. Researcher. Not ground truth.
+                Mirror, explorer, researcher
               </h2>
               <p className="text-sm sm:text-base text-zinc-400 max-w-2xl mx-auto leading-relaxed">
                 Your AI is the most patient thinking partner you&apos;ve ever had &mdash;
@@ -439,8 +397,15 @@ export default function IkigaiBrandingWorkshopPage() {
             </p>
           </div>
 
-          <figure>
-            <IkigaiVenn />
+          <figure className="max-w-md mx-auto">
+            <Image
+              src="/images/workshops/ikigai-branding/ikigai-venn.jpg"
+              alt="The four-circle Ikigai Venn diagram — what you love, what you are good at, what the world needs, what pays — with the kanji 生き甲斐 at the center."
+              width={1400}
+              height={1400}
+              sizes="(max-width: 768px) 90vw, 448px"
+              className="w-full h-auto rounded-3xl border border-white/[0.06] shadow-[0_20px_60px_-20px_rgba(59,51,128,0.3)]"
+            />
             <figcaption className="text-center text-xs text-zinc-500 mt-5 max-w-md mx-auto leading-relaxed">
               The Venn is scaffolding. The depth comes from the longevity research and
               the Japanese masters who wrote about ikigai before the West did —{' '}
@@ -524,7 +489,7 @@ export default function IkigaiBrandingWorkshopPage() {
             title="The Map"
             duration="8 min"
             accent="violet"
-            lead="Three ikigai directions on the table — safe, stretch, wild — drawn from what your AI already knows about you. Three, not eight."
+            lead="Three ikigai directions on the table — safe, stretch, wild — drawn from what your AI already knows about you."
           />
           <PromptStack module={1} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
@@ -538,7 +503,7 @@ export default function IkigaiBrandingWorkshopPage() {
             title="Stress-Test"
             duration="8 min"
             accent="emerald"
-            lead="Three real humans already earning a living from your direction. Named. Sourced. Or marked unverified. The doubt step dies with evidence."
+            lead="Three real humans already earning a living from your direction. Named with sourced links, or marked unverified. The doubt step becomes a research step."
           />
           <PromptStack module={2} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
@@ -608,7 +573,7 @@ export default function IkigaiBrandingWorkshopPage() {
             title="The Brand"
             duration="10 min"
             accent="violet"
-            lead="Positioning, one reader with a first name, three pillars that survive twelve months of weekly publishing. Built on your actual words, not invented."
+            lead="Positioning, one reader with a first name, three pillars that survive twelve months of weekly publishing. Built from what you actually said earlier in the conversation."
           />
           <PromptStack module={4} prompts={WORKSHOP_PROMPTS} label="Deepening tool" />
         </div>
@@ -657,16 +622,16 @@ export default function IkigaiBrandingWorkshopPage() {
           <GlowCard color="emerald">
             <div className="p-6 sm:p-8 text-center">
               <Mail className="w-8 h-8 text-emerald-400 mx-auto mb-3" aria-hidden="true" />
-              <h3 className="text-xl font-semibold text-white mb-2">Get the Resource Pack</h3>
+              <h3 className="text-xl font-semibold text-white mb-2">Stay in the loop</h3>
               <p className="text-sm text-zinc-400 mb-5 max-w-md mx-auto">
-                Templates for the positioning sentence, audience-of-one, 30-day plan, and
-                the GenCreator Stack checklist. Plus a Day-7 check-in from Frank.
+                Join the workshop list. The Coach is yours forever; this gets you the next
+                workshop date and a Day-7 nudge from Frank to check on what you shipped.
               </p>
               <div className="max-w-sm mx-auto">
                 <EmailSignup
                   listType="ikigai-branding"
                   placeholder="Your email"
-                  buttonText="Send the pack"
+                  buttonText="Join"
                   compact
                 />
               </div>
@@ -720,30 +685,67 @@ export default function IkigaiBrandingWorkshopPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
-            <StackLink
-              label="daily"
-              title="The Prompt Library — 98 patterns, red-teamed"
-              body="Drop into one each morning. Eval-gated, voice-checked, MIT-licensed — fork what works for your own daily practice."
-              href="/prompt-library"
-            />
-            <StackLink
-              label="weekly"
-              title="Other live workshops"
-              body="AI in 2026 for graduates, Sovereign Leadership, the bespoke ones. The same hands run the next."
-              href="/workshops"
-            />
-            <StackLink
-              label="monthly"
-              title="The Library — books, annotated"
-              body="Kamiya, Mogi, García & Miralles, Buettner. Read one chapter a month. The lineage of the word."
-              href="/library"
-            />
-            <StackLink
-              label="research"
-              title="Blue Zones, Ikigai, and the AI Era"
-              body="The flagship research grounding this workshop. Twelve minutes. Sourced. FAQ'd."
-              href="/research/blue-zones-ikigai-ai-era"
-            />
+            {[
+              {
+                kanji: '究',
+                label: 'research',
+                title: 'Blue Zones, Ikigai, and the AI Era',
+                body: 'The flagship research grounding this workshop. Twelve minutes. Sourced and FAQ’d.',
+                href: '/research/blue-zones-ikigai-ai-era',
+              },
+              {
+                kanji: '型',
+                label: 'patterns',
+                title: 'The Prompt Library',
+                body: 'Drop into one each morning. Red-teamed, MIT-licensed — fork what works for your own daily practice.',
+                href: '/prompt-library',
+              },
+              {
+                kanji: '本',
+                label: 'library',
+                title: 'The Library — books, annotated',
+                body: 'Kamiya, Mogi, García &amp; Miralles, Buettner. Read one chapter a month. The lineage of the word.',
+                href: '/library',
+              },
+              {
+                kanji: '塾',
+                label: 'workshops',
+                title: 'Other live workshops',
+                body: 'AI in 2026 for graduates, Sovereign Leadership, the bespoke ones. The same hands run the next.',
+                href: '/workshops',
+              },
+            ].map((f) => (
+              <Link
+                key={f.title}
+                href={f.href}
+                prefetch={false}
+                className="group block rounded-2xl border border-white/[0.06] bg-white/[0.015] p-6 hover:bg-white/[0.03] hover:border-white/[0.12] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] h-full"
+              >
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <span
+                    className="text-4xl text-white/80 leading-none [font-family:var(--font-jp-serif)] group-hover:text-white transition-colors"
+                    style={{ fontWeight: 200 }}
+                    aria-hidden="true"
+                  >
+                    {f.kanji}
+                  </span>
+                  <ArrowUpRight
+                    aria-hidden="true"
+                    className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors flex-shrink-0 mt-1"
+                  />
+                </div>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-zinc-400 mb-2">
+                  {f.label}
+                </p>
+                <h3 className="text-base font-semibold text-white mb-2 leading-snug">
+                  {f.title}
+                </h3>
+                <p
+                  className="text-sm text-zinc-300 leading-relaxed [font-family:var(--font-serif-editorial)] italic"
+                  dangerouslySetInnerHTML={{ __html: f.body }}
+                />
+              </Link>
+            ))}
           </div>
 
           <div className="flex items-center justify-between pt-12 mt-12 border-t border-white/[0.04]">
