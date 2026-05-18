@@ -62,7 +62,14 @@ export function IkigaiWizard({ value, onChange }: IkigaiWizardProps) {
             {completed}/{ikigaiSteps.length} answered
           </p>
         </div>
-        <div className="relative h-1 rounded-full bg-white/[0.06] overflow-hidden">
+        <div
+          role="progressbar"
+          aria-valuenow={stepIndex + 1}
+          aria-valuemin={1}
+          aria-valuemax={ikigaiSteps.length}
+          aria-label={`Step ${stepIndex + 1} of ${ikigaiSteps.length}: ${step.label}`}
+          className="relative h-1 rounded-full bg-white/[0.06] overflow-hidden"
+        >
           <motion.div
             className="absolute inset-y-0 left-0 bg-gradient-to-r from-violet-400 to-amber-400"
             initial={false}
@@ -86,7 +93,10 @@ export function IkigaiWizard({ value, onChange }: IkigaiWizardProps) {
             <p className="text-xs font-medium uppercase tracking-wider text-violet-300 mb-2">
               {step.label}
             </p>
-            <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+            <h3
+              id={`wizard-question-${stepIndex}`}
+              className="text-2xl sm:text-3xl font-semibold text-white tracking-tight"
+            >
               {step.question}
             </h3>
             <p className="mt-3 text-sm text-zinc-400 flex items-start gap-2">
@@ -115,12 +125,13 @@ export function IkigaiWizard({ value, onChange }: IkigaiWizardProps) {
 
           {/* Textarea */}
           <textarea
+            aria-labelledby={`wizard-question-${stepIndex}`}
             value={currentValue}
             onChange={(e) =>
               onChange({ ...value, [step.key]: e.target.value })
             }
             placeholder="Write your answer here. Specificity beats volume."
-            className="w-full h-36 px-4 py-3 bg-[#0a0a0b] border border-white/[0.08] rounded-xl text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-violet-500/40 focus:ring-2 focus:ring-violet-500/20 resize-none leading-relaxed"
+            className="w-full h-36 px-4 py-3 bg-[#0a0a0b] border border-white/[0.08] rounded-xl text-sm text-white placeholder:text-zinc-500 focus-visible:outline-none focus-visible:border-violet-400/80 focus-visible:ring-2 focus-visible:ring-violet-400/60 resize-none leading-relaxed"
           />
 
           {/* Coach deep-link */}

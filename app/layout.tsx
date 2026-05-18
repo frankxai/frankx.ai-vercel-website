@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Poppins, Playfair_Display, JetBrains_Mono, Source_Serif_4 } from 'next/font/google'
+import { Inter, Poppins, Playfair_Display, JetBrains_Mono, Source_Serif_4, Noto_Serif_JP } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 import { Analytics } from '@vercel/analytics/react'
@@ -50,6 +50,18 @@ const sourceSerif = Source_Serif_4({
   style: ['normal', 'italic'],
   variable: '--font-serif-editorial',
   display: 'swap',
+})
+
+// Noto Serif JP for Japanese-typography registers (workshops/ikigai/v3)
+// Global fallback at display:'optional' — if not cached, use system serif
+// permanently. No FOUT, no CLS. The actual font load is owned by the
+// route-segment layout at app/workshops/ikigai/v3/layout.tsx where it
+// matters (with preload=true scoped to that subtree only).
+const notoSerifJP = Noto_Serif_JP({
+  weight: ['200', '400', '700'],
+  variable: '--font-jp-serif',
+  display: 'optional',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -137,6 +149,7 @@ export default function RootLayout({
           playfair.variable,
           jetbrains.variable,
           sourceSerif.variable,
+          notoSerifJP.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
         )}
         suppressHydrationWarning
