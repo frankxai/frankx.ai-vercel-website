@@ -97,6 +97,14 @@ const categoryColors: Record<string, string> = {
   Memoir: 'bg-stone-500/10 text-stone-400 border-stone-500/20',
   Autobiography: 'bg-stone-500/10 text-stone-400 border-stone-500/20',
   Discipline: 'bg-red-500/10 text-red-400 border-red-500/20',
+  Ikigai: 'bg-teal-500/10 text-teal-300 border-teal-500/25',
+  Longevity: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/25',
+  Meaning: 'bg-amber-500/10 text-amber-300 border-amber-500/25',
+  Health: 'bg-green-500/10 text-green-300 border-green-500/25',
+  Anthropology: 'bg-stone-500/10 text-stone-300 border-stone-500/25',
+  Neuroscience: 'bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/25',
+  'Inner Work': 'bg-violet-500/10 text-violet-300 border-violet-500/25',
+  IFS: 'bg-violet-500/10 text-violet-300 border-violet-500/25',
 };
 
 function StarRating({ rating }: { rating: number }) {
